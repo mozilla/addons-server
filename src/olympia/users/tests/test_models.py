@@ -25,7 +25,8 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile)
+    DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile,
+    EmailUserRestriction, IPNetworkUserRestriction)
 from olympia.zadmin.models import set_config
 
 
@@ -619,6 +620,71 @@ class TestDeniedName(TestCase):
         assert DeniedName.blocked('IE6fantastic')
         assert not DeniedName.blocked('IE6')
         assert not DeniedName.blocked('testo')
+
+
+class TestIPNetworkUserRestriction(TestCase):
+
+    def test_allowed_ip4_address(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.1.0/28')
+        assert IPNetworkUserRestriction.allow_request(request)
+
+        request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='10.8.0.0/32')
+        assert IPNetworkUserRestriction.allow_request(request)
+
+    def test_blocked_ip4_32_subnet(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.8').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.8/32')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
+    def test_allowed_ip4_28_subnet(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
+        assert IPNetworkUserRestriction.allow_request(request)
+
+    def test_blocked_ip4_24_subnet(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/24')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
+    def test_blocked_ip4_address(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
+        request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='10.8.0.0/28')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
+    def test_ip4_address_validated(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            IPNetworkUserRestriction(network='127.0.0.1/1218').full_clean()
+        assert exc_info.value.messages[0] == (
+            "'127.0.0.1/1218' does not appear to be an IPv4 or IPv6 network")
+
+    def test_ip6_address_validated(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            IPNetworkUserRestriction(network='::1/1218').full_clean()
+        assert exc_info.value.messages[0] == (
+            "'::1/1218' does not appear to be an IPv4 or IPv6 network")
+
+
+class TestEmailUserRestriction(TestCase):
+    def test_email_allowed(self):
+        EmailUserRestriction.objects.create(email='foo@bar.com')
+        assert EmailUserRestriction.allow_email('bar@foo.com')
+
+    def test_blocked_email(self):
+        EmailUserRestriction.objects.create(email='foo@bar.com')
+        assert not EmailUserRestriction.allow_email('foo@bar.com')
+
+    def test_email_validated(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            EmailUserRestriction(email='bar').full_clean()
+
+        assert exc_info.value.messages[0] == (
+            'Enter a valid email address.')
 
 
 class TestUserEmailField(TestCase):

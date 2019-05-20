@@ -3,6 +3,7 @@ import os
 import random
 import re
 import time
+import ipaddress
 
 from datetime import datetime
 
@@ -17,14 +18,14 @@ from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.fields import PositiveAutoField
+from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.lib.cache import cache_get_or_set
@@ -635,6 +636,56 @@ class DeniedName(ModelBase):
 
         blocked_list = cache_get_or_set('denied-name:blocked', fetch_names)
         return any(n in name for n in blocked_list)
+
+
+class IPNetworkUserRestriction(ModelBase):
+    id = PositiveAutoField(primary_key=True)
+    network = CIDRField(
+        blank=True, null=True,
+        help_text=_(
+            'Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'))
+
+    class Meta:
+        db_table = 'users_user_network_restriction'
+
+    @classmethod
+    def allow_request(self, request):
+        try:
+            remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
+        except ValueError:
+            # If we don't have a valid ip address, let's deny
+            # TODO: Verify this is what we want…
+            return False
+
+        restrictions = IPNetworkUserRestriction.objects.all()
+
+        for restriction in restrictions:
+            if remote_addr in restriction.network:
+                return False
+        return True
+
+    @classmethod
+    def get_error_message(self, request):
+        return _(
+            'Multiple add-ons violating our policies have been'
+            ' submitted from your location. The IP address has been'
+            ' blocked.')
+
+
+class EmailUserRestriction(ModelBase):
+    id = PositiveAutoField(primary_key=True)
+    email = models.EmailField(max_length=75, blank=True, null=True)
+
+    class Meta:
+        db_table = 'users_user_email_restriction'
+
+    @classmethod
+    def allow_email(self, email):
+        return not EmailUserRestriction.objects.filter(email=email).exists()
+
+    def get_error_message(self, request):
+        return _('The email address you used for your developer account'
+                 ' is not allowed for add-on submission.')
 
 
 class UserHistory(ModelBase):
