@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2018-12-27 08:58+0000\n"
+"PO-Revision-Date: 2019-05-20 15:08+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -110,7 +110,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "వివరణాత్మక వెర్షన్ గమనికలను చేర్చండి (ఇది తరువాతి దశలో చేయవచ్చు)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "మీ పొడగింతను పూర్తిగా పరీక్షించటానికి ఒక వెబ్‌సైటు ఖాతా అవసరమైతే, సమీక్షకులకు గమనికలలో ఒక పరీక్షా వాడుకరి పేరు, సంకేతపదాన్ని ఇవ్వండి (దీన్ని తరువాతి అంచెలో చేయవచ్చు)."
 
 msgid "Add-on submission checklist"
 msgstr "పొడిగింతల సమర్పణ పరిశీలిత పట్టిక"
@@ -124,7 +124,7 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "సరిచూత ప్రక్రియ ఈ క్రింది తిరస్కరణకు దారితీసే సమస్యలను కనుగొంది:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "మీరు ఎక్కించిన ఫైలు రకం గుర్తించబడలేదు."
