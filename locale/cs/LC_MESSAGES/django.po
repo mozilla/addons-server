@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-20 15:42+0000\n"
+"PO-Revision-Date: 2019-05-20 17:51+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4446,7 +4446,7 @@ msgstr "Jednoduše klikněte na tlačítko a zavřete tak otravné vyskakovací 
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vypátrejte každý obrázek {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
@@ -4454,11 +4454,11 @@ msgstr "Narazili jste na webu na zajímavý obrázek? S TinEye zjistíte, odkud 
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zjednodušte věci {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "Přetáhněte text, obrázek nebo odkazy pro jejich kopírování, otevření, vyhledávání a další."
+msgstr "Přetáhněte text, obrázek nebo odkazy pro jejich zkopírování, otevření, vyhledání apod."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
