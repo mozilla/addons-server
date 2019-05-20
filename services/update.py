@@ -88,7 +88,8 @@ class Update(object):
         # https://github.com/mozilla/addons-server/issues/7223
         app = applications.APP_GUIDS.get(self.data.get('appID'))
         return app and app.id in (applications.FIREFOX.id,
-                                  applications.ANDROID.id)
+                                  applications.ANDROID.id,
+                                  applications.THUNDERBIRD.id)
 
     def is_valid(self):
         # If you accessing this from unit tests, then before calling
