@@ -175,6 +175,10 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # it.
         return False
 
+    def delete_queryset(self, request, queryset):
+        """Given a queryset, soft-delete it from the database."""
+        queryset.update(state=AbuseReport.STATES.DELETED)
+
     def get_actions(self, request):
         actions = super().get_actions(request)
         if not acl.action_allowed(request, amo.permissions.ABUSEREPORTS_EDIT):
