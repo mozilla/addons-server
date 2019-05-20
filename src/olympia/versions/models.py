@@ -710,30 +710,6 @@ def cleanup_version(sender, instance, **kw):
         cleanup_file(file_.__class__, file_)
 
 
-def clear_compatversion_cache_on_save(sender, instance, created, **kw):
-    """Clears compatversion cache if new Version created."""
-    try:
-        if not instance.addon.type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    if not kw.get('raw') and (created or instance.deleted):
-        instance.addon.invalidate_d2c_versions()
-
-
-def clear_compatversion_cache_on_delete(sender, instance, **kw):
-    """Clears compatversion cache when Version deleted."""
-    try:
-        if not instance.addon.type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    if not kw.get('raw'):
-        instance.addon.invalidate_d2c_versions()
-
-
 @Version.on_change
 def watch_recommendation_changes(old_attr=None, new_attr=None, instance=None,
                                  sender=None, **kwargs):
@@ -760,9 +736,6 @@ models.signals.post_save.connect(
 models.signals.post_save.connect(
     update_incompatible_versions, sender=Version,
     dispatch_uid='version_update_incompat')
-models.signals.post_save.connect(
-    clear_compatversion_cache_on_save, sender=Version,
-    dispatch_uid='clear_compatversion_cache_save')
 
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version')
@@ -771,9 +744,6 @@ models.signals.post_delete.connect(
 models.signals.post_delete.connect(
     update_incompatible_versions, sender=Version,
     dispatch_uid='version_update_incompat')
-models.signals.post_delete.connect(
-    clear_compatversion_cache_on_delete, sender=Version,
-    dispatch_uid='clear_compatversion_cache_del')
 
 
 class LicenseManager(ManagerBase):

@@ -442,18 +442,6 @@ class TestVersion(TestCase):
                                            max_app_version='10.*')
         assert version.compat_override_app_versions() == [('10.0a1', '10.*')]
 
-    @mock.patch('olympia.addons.models.Addon.invalidate_d2c_versions')
-    def test_invalidate_d2c_version_signals_on_delete(self, inv_mock):
-        version = Addon.objects.get(pk=3615).current_version
-        version.delete()
-        assert inv_mock.called
-
-    @mock.patch('olympia.addons.models.Addon.invalidate_d2c_versions')
-    def test_invalidate_d2c_version_signals_on_save(self, inv_mock):
-        addon = Addon.objects.get(pk=3615)
-        version_factory(addon=addon)
-        assert inv_mock.called
-
     def test_get_url_path(self):
         assert self.version.get_url_path() == (
             '/en-US/firefox/addon/a3615/versions/')

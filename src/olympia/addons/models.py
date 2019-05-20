@@ -854,16 +854,6 @@ class Addon(OnChangeMixin, ModelBase):
         # Set the current version.
         self.update(_current_version=version.save())
 
-    def invalidate_d2c_versions(self):
-        """Invalidates the cache of compatible versions.
-
-        Call this when there is an event that may change what compatible
-        versions are returned so they are recalculated.
-        """
-        key = cache_ns_key('d2c-versions:%s' % self.id, increment=True)
-        log.info('Incrementing d2c-versions namespace for add-on [%s]: %s' % (
-                 self.id, key))
-
     @property
     def current_version(self):
         """Return the latest public listed version of an addon.

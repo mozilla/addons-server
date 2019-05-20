@@ -319,10 +319,6 @@ def update_incompatible_appversions(data, **kw):
                      'app:%d, %s -> %s' % (version_id, app_range.app.id,
                                            app_range.min, app_range.max))
 
-    # Increment namespace cache of compat versions.
-    for addon_id in addon_ids:
-        cache_ns_key('d2c-versions:%s' % addon_id, increment=True)
-
 
 def make_checksum(header_path):
     ls = LocalFileStorage()
