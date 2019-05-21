@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-27 13:25+0000\n"
+"PO-Revision-Date: 2019-05-21 13:27+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4726,7 +4726,7 @@ msgstr "我们的 Twitter 账户 <a href=\"%(url)s\">mozamo</a> 会时常发布�
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr "我们的<a href=\"%(url)s\">论坛</a>是附加组件社群交流与讨论 AMO 最新变化的一个好地方。"
+msgstr "我们的<a href=\"%(url)s\">论坛</a>是附加组件社区交流与讨论 AMO 最新变化的一个好地方。"
 
 msgid "This sounds great! How can I get involved?"
 msgstr "这听起来真棒！我该如何参与？"
