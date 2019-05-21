@@ -902,7 +902,7 @@ class SortingFilter(BaseFilterBackend):
                 'api-recommendations-priority')
             split_sort_params = (
                 ['relevance'] if search_query_param else
-                ['recommended', 'downloads'] if recommended_waffle_on else
+                ['recommended', 'users'] if recommended_waffle_on else
                 ['downloads'])
 
         try:
