@@ -88,7 +88,7 @@ This endpoint allows you to search through public add-ons.
 
     The new default behavior is to sort by relevance if a search query (``q``)
     is present; otherwise place recommended add-ons first, then non recommended
-    add-ons, then sorted by number of weekly downloads, descending. (``sort=recommended,downloads``).
+    add-ons, then sorted by average daily users, descending. (``sort=recommended,users``).
     This is the default on AMO dev server.
 
     The default on AMO production currently is to sort by relevance if a search
