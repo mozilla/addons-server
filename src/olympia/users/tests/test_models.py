@@ -672,19 +672,24 @@ class TestIPNetworkUserRestriction(TestCase):
 
 class TestEmailUserRestriction(TestCase):
     def test_email_allowed(self):
-        EmailUserRestriction.objects.create(email='foo@bar.com')
+        EmailUserRestriction.objects.create(domain='foo@bar.com')
         assert EmailUserRestriction.allow_email('bar@foo.com')
 
     def test_blocked_email(self):
-        EmailUserRestriction.objects.create(email='foo@bar.com')
+        EmailUserRestriction.objects.create(domain='foo@bar.com')
         assert not EmailUserRestriction.allow_email('foo@bar.com')
 
-    def test_email_validated(self):
+    def test_blocked_subdomain(self):
+        EmailUserRestriction.objects.create(domain='faz.bar.com')
+        assert not EmailUserRestriction.allow_email('foo@faz.bar.com')
+        assert EmailUserRestriction.allow_email('foo@raz.bar.com')
+
+    def test_domain_doesnt_allow_whitespaces(self):
         with pytest.raises(forms.ValidationError) as exc_info:
-            EmailUserRestriction(email='bar').full_clean()
+            EmailUserRestriction(domain='bar foo').full_clean()
 
         assert exc_info.value.messages[0] == (
-            'Enter a valid email address.')
+            'The domain name cannot contain any spaces or tabs.')
 
 
 class TestUserEmailField(TestCase):

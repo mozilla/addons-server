@@ -3,6 +3,7 @@ import os
 import random
 import re
 import time
+import string
 import ipaddress
 
 from datetime import datetime
@@ -41,6 +42,19 @@ def generate_auth_id():
     # We use MySQL's maximum value for an unsigned int:
     # https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
     return random.SystemRandom().randint(1, 4294967295)
+
+
+def simple_domain_name_validator(value):
+    """
+    Validate that the given value contains no whitespaces to prevent common
+    typos. Copied from django.contrib.sites.
+    """
+    checks = ((s in value) for s in string.whitespace)
+    if any(checks):
+        raise forms.ValidationError(
+            _("The domain name cannot contain any spaces or tabs."),
+            code='invalid',
+        )
 
 
 class UserForeignKey(models.ForeignKey):
@@ -674,14 +688,23 @@ class IPNetworkUserRestriction(ModelBase):
 
 class EmailUserRestriction(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    email = models.EmailField(max_length=75, blank=True, null=True)
+    domain = models.CharField(
+        _('domain name'),
+        max_length=100,
+        validators=[simple_domain_name_validator],
+    )
 
     class Meta:
         db_table = 'users_user_email_restriction'
 
     @classmethod
     def allow_email(self, email):
-        return not EmailUserRestriction.objects.filter(email=email).exists()
+        restrictions = EmailUserRestriction.objects.all()
+
+        for restriction in restrictions:
+            if email.endswith(restriction.domain):
+                return False
+        return True
 
     def get_error_message(self, request):
         return _('The email address you used for your developer account'
