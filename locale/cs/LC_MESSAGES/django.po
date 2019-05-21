@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-21 22:40+0000\n"
+"PO-Revision-Date: 2019-05-21 23:06+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -534,7 +534,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "Od doplňku {addon} verze {version} byl smazán soubor {0}."
 
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} byl schválen."
+msgstr "Doplněk {addon} {version} byl schválen."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} byl předběžně zkontrolován."
@@ -1846,7 +1846,7 @@ msgstr "Nedávná aktivita pro mé doplňky"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Nedávná aktivita pro jazyk: {0}"
+msgstr "Nedávná aktivita pro doplněk {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
