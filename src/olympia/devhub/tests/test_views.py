@@ -42,7 +42,7 @@ from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
-from olympia.users.models import UserProfile
+from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.users.tests.test_views import UserViewBase
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview)
@@ -848,6 +848,58 @@ class TestAPIAgreement(TestCase):
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
+    @mock.patch(
+        'olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    def test_cant_submit_agreement_if_restricted(
+            self, is_submission_allowed_mock):
+        is_submission_allowed_mock.return_value = False
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(reverse('devhub.api_key_agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+        assert response.status_code == 200
+        assert response.context['agreement_form'].is_valid() is False
+        self.user.reload()
+        assert self.user.read_dev_agreement is None
+        assert is_submission_allowed_mock.call_count == 2
+        # First call is from the form, and it's not checking the agreement,
+        # it's just to see if the user is restricted.
+        assert is_submission_allowed_mock.call_args_list[0] == (
+            (), {'check_dev_agreement': False}
+        )
+        # Second call is from the view itself, no arguments
+        assert is_submission_allowed_mock.call_args_list[1] == ((), {})
+
+    def test_cant_submit_agreement_if_restricted_functional(self):
+        # Like test_cant_submit_agreement_if_restricted() but with no mocks,
+        # picking a single restriction and making sure it's working properly.
+        IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(reverse('devhub.api_key_agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+        assert response.status_code == 200
+        assert response.context['agreement_form'].is_valid() is False
+        doc = pq(response.content)
+        assert doc('.addon-submission-process').text() == (
+            'Multiple add-ons violating our policies have been submitted '
+            'from your location. The IP address has been blocked.')
+
+    @mock.patch(
+        'olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    def test_agreement_page_shown_if_restricted(
+            self, is_submission_allowed_mock):
+        # Like test_agreement_read() above, but with a restricted user: they
+        # are shown the agreement page again instead of redirecting to the
+        # api keys page.
+        is_submission_allowed_mock.return_value = False
+        self.user.update(read_dev_agreement=self.days_ago(0))
+        response = self.client.get(reverse('devhub.api_key_agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+
 
 class TestAPIKeyPage(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -860,6 +912,11 @@ class TestAPIKeyPage(TestCase):
 
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.api_key'))
+        self.assert3xx(response, reverse('devhub.api_key_agreement'))
+
+    def test_redirect_if_restricted(self):
+        IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         response = self.client.get(reverse('devhub.api_key'))
         self.assert3xx(response, reverse('devhub.api_key_agreement'))
 

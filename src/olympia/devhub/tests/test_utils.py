@@ -3,6 +3,7 @@ import os.path
 
 from django.conf import settings
 from django.forms import ValidationError
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from unittest import mock
@@ -20,6 +21,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tests.test_models import UploadTest
 from olympia.lib.akismet.models import AkismetReport
+from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
 
 
 class TestAddonsLinterListed(UploadTest, TestCase):
@@ -476,3 +478,47 @@ def test_wizard_unsupported_properties():
     properties = utils.wizard_unsupported_properties(
         data, fields)
     assert properties == ['extrathing', 'extracolor', 'additionalBackground']
+
+
+class TestUploadRestrictionChecker(TestCase):
+    def setUp(self):
+        self.request = RequestFactory().get('/')
+        self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
+
+    def test_is_submission_allowed_pass(self):
+        checker = utils.UploadRestrictionChecker(self.request)
+        assert checker.is_submission_allowed()
+
+    def test_is_submission_allowed_hasnt_read_agreement(self):
+        self.request.user.update(read_dev_agreement=None)
+        checker = utils.UploadRestrictionChecker(self.request)
+        assert not checker.is_submission_allowed()
+        assert checker.get_error_message() == (
+            'Before starting, please read and accept our Firefox Add-on '
+            'Distribution Agreement as well as our Review Policies and Rules. '
+            'The Firefox Add-on Distribution Agreement also links to our '
+            'Privacy Notice which explains how we handle your information.'
+        )
+
+    def test_is_submission_allowed_bypassing_read_dev_agreement(self):
+        self.request.user.update(read_dev_agreement=None)
+        checker = utils.UploadRestrictionChecker(self.request)
+        assert checker.is_submission_allowed(check_dev_agreement=False)
+
+    def test_is_submission_allowed_ip_restricted(self):
+        IPNetworkUserRestriction.objects.create(network='127.0.0.0/24')
+        checker = utils.UploadRestrictionChecker(self.request)
+        assert not checker.is_submission_allowed()
+        assert checker.get_error_message() == (
+            'Multiple add-ons violating our policies have been submitted '
+            'from your location. The IP address has been blocked.'
+        )
+
+    def test_is_submission_allowed_email_restricted(self):
+        EmailUserRestriction.objects.create(email=self.request.user.email)
+        checker = utils.UploadRestrictionChecker(self.request)
+        assert not checker.is_submission_allowed()
+        assert checker.get_error_message() == (
+            'The email address you used for your developer account is not '
+            'allowed for add-on submission.'
+        )

@@ -19,6 +19,10 @@ from olympia.files.utils import parse_addon, parse_xpi
 from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
+from olympia.users.models import (
+    DeveloperAgreementRestriction, EmailUserRestriction,
+    IPNetworkUserRestriction
+)
 from olympia.versions.compare import version_int
 from olympia.versions.utils import process_color_value
 
@@ -402,3 +406,55 @@ def wizard_unsupported_properties(data, wizard_fields):
         key for key in data.get('images', {}) if key != 'theme_frame']
 
     return unsupported
+
+
+class UploadRestrictionChecker:
+    """
+    Wrapper around all our submission restriction classes.
+
+    To use, instantiate it with the request and call is_submission_allowed().
+    After this method has been called, the error message to show the user if
+    needed will be available through get_error_message()
+    """
+    # Order matters if we want to show some error messages before others, as
+    # we only display one.
+    restriction_classes = (
+        DeveloperAgreementRestriction, EmailUserRestriction,
+        IPNetworkUserRestriction,
+    )
+
+    def __init__(self, request):
+        self.request = request
+        self.failed_restrictions = []
+
+    def is_submission_allowed(self, check_dev_agreement=True):
+        """
+        Check whether the `request` passed is allowed to submit add-ons.
+        Will check all classes declared in self.restriction_classes.
+
+        Pass check_dev_agreement=False to avoid checking
+        DeveloperAgreementRestriction class, which is useful only for the
+        developer agreement page itself, where the developer hasn't validated
+        the agreement yet but we want to do the other checks anyway.
+        """
+        for cls in self.restriction_classes:
+            if (check_dev_agreement is False and
+                    cls == DeveloperAgreementRestriction):
+                continue
+            allowed = cls.allow_request(self.request)
+            if not allowed:
+                self.failed_restrictions.append(cls)
+        return not self.failed_restrictions
+
+    def get_error_message(self):
+        """
+        Return the error message to show to the user after a call to
+        is_submission_allowed_for_request() has been made. Will return the
+        message to be displayed to the user, or None if there is no specific
+        restriction applying.
+        """
+        try:
+            msg = self.failed_restrictions[0].error_message
+        except IndexError:
+            msg = None
+        return msg
