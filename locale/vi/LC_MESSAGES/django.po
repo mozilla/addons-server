@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-10 14:56+0000\n"
+"PO-Revision-Date: 2019-05-21 08:02+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -59,7 +59,7 @@ msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Thông báo [%s] không tồn tại"
 
 msgid "Review"
 msgstr "Đánh giá"
@@ -567,7 +567,7 @@ msgid "The addon has been flagged for Admin Review.  It's still in our review qu
 msgstr ""
 
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Nhận xét về {addon} {version}."
 
 msgid "Commented"
 msgstr "Đã nhận xét"
