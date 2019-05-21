@@ -275,7 +275,9 @@ class File(OnChangeMixin, ModelBase):
         return os.path.splitext(self.filename)[-1]
 
     def move_file(self, source, destination, log_message):
-        """Move a file from `source` to `destination`."""
+        """Move a file from `source` to `destination`.
+
+        IOError and UnicodeEncodeError are caught and logged."""
         log_message = force_text(log_message)
         try:
             if storage.exists(source):
@@ -295,6 +297,7 @@ class File(OnChangeMixin, ModelBase):
             src, dst, 'Moving disabled file: {source} => {destination}')
 
     def unhide_disabled_file(self):
+        """Move a disabled file to the public file path."""
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
