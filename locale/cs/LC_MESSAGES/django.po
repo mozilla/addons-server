@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-21 11:11+0000\n"
+"PO-Revision-Date: 2019-05-21 11:29+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4518,7 +4518,7 @@ msgstr "Zahlaďte za sebou stopy {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr "Vyhledávejte s bezpečným šifrováním a dalšími základy pro ochranu vašeho soukromí."
+msgstr "Vyhledávejte bezpečněji za pomoci blokování sledovacích prvků, sofistikovanějšího šifrování, anonymního hledání a dalších opatření."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4526,7 +4526,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr ""
+msgstr "Uspořádejte si velké množství otevřených panelů ve svislé postranní liště."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
