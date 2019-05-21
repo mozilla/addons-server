@@ -44,7 +44,7 @@ from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
     fetch_existing_translations_from_addon, get_addon_akismet_reports,
-    wizard_unsupported_properties)
+    UploadRestrictionChecker, wizard_unsupported_properties)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.signing import sign_file
@@ -52,7 +52,7 @@ from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
-from olympia.users.models import UserProfile
+from olympia.users.models import DeveloperAgreementRestriction, UserProfile
 from olympia.versions.models import Version
 from olympia.versions.tasks import extract_version_source_to_git
 from olympia.versions.utils import get_next_version_number
@@ -1217,14 +1217,14 @@ def _submit_distribution(request, addon, next_view):
 
 @login_required
 def submit_addon_distribution(request):
-    if not request.user.has_read_developer_agreement():
+    if not UploadRestrictionChecker(request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     return _submit_distribution(request, None, 'devhub.submit.upload')
 
 
 @dev_required(submitting=True)
 def submit_version_distribution(request, addon_id, addon):
-    if not request.user.has_read_developer_agreement():
+    if not UploadRestrictionChecker(request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
 
@@ -1344,6 +1344,8 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
 
 @login_required
 def submit_addon_upload(request, channel):
+    if not UploadRestrictionChecker(request).is_submission_allowed():
+        return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
         request, None, channel_id, 'devhub.submit.source')
@@ -1352,6 +1354,8 @@ def submit_addon_upload(request, channel):
 @dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
+    if not UploadRestrictionChecker(request).is_submission_allowed():
+        return redirect('devhub.submit.version.agreement', addon.slug)
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
         request, addon, channel_id, 'devhub.submit.version.source')
@@ -1360,7 +1364,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 @dev_required
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
-    if not request.user.has_read_developer_agreement():
+    if not UploadRestrictionChecker(request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     # choose the channel we need from the last upload
     last_version = addon.find_latest_version(None, exclude=())
@@ -1373,6 +1377,8 @@ def submit_version_auto(request, addon_id, addon):
 
 @login_required
 def submit_addon_theme_wizard(request, channel):
+    if not UploadRestrictionChecker(request).is_submission_allowed():
+        return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
         request, None, channel_id, 'devhub.submit.source', wizard=True)
@@ -1381,6 +1387,8 @@ def submit_addon_theme_wizard(request, channel):
 @dev_required
 @no_admin_disabled
 def submit_version_theme_wizard(request, addon_id, addon, channel):
+    if not UploadRestrictionChecker(request).is_submission_allowed():
+        return redirect('devhub.submit.version.agreement', addon.slug)
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
         request, addon, channel_id, 'devhub.submit.version.source',
@@ -1668,22 +1676,27 @@ def api_key_agreement(request):
     )
 
 
-def render_agreement(
-        request, template, next_step, **extra_context):
+def render_agreement(request, template, next_step, **extra_context):
     form = forms.AgreementForm(
-        request.POST if request.method == 'POST' else None
+        request.POST if request.method == 'POST' else None,
+        request=request
     )
     if request.method == 'POST' and form.is_valid():
         # Developer has validated the form: let's update its profile and
-        # redirect to next step.
+        # redirect to next step. Note that the form is supposed to always be
+        # invalid if submission is not allowed for this request.
         request.user.update(read_dev_agreement=datetime.datetime.now())
         return redirect(next_step)
-    elif not request.user.has_read_developer_agreement():
+    elif not UploadRestrictionChecker(request).is_submission_allowed():
         # Developer has either posted an invalid form or just landed on the
-        # page but haven't read the agreement yet: show the form (with
+        # page but haven't read the agreement yet, or isn't allowed to submit
+        # for some other reason (denied ip/email): show the form (with
         # potential errors highlighted)
         context = {
             'agreement_form': form,
+            'agreement_message': str(
+                DeveloperAgreementRestriction.error_message
+            )
         }
         context.update(extra_context)
         return render(request, template, context)
@@ -1697,7 +1710,7 @@ def render_agreement(
 @login_required
 @transaction.atomic
 def api_key(request):
-    if not request.user.has_read_developer_agreement():
+    if not UploadRestrictionChecker(request).is_submission_allowed():
         return redirect(reverse('devhub.api_key_agreement'))
 
     try:

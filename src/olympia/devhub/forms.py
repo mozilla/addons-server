@@ -41,7 +41,8 @@ from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
 from olympia.devhub.utils import (
-    fetch_existing_translations_from_addon, get_addon_akismet_reports)
+    fetch_existing_translations_from_addon, get_addon_akismet_reports,
+    UploadRestrictionChecker)
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
@@ -1193,10 +1194,19 @@ class AgreementForm(forms.Form):
     recaptcha = ReCaptchaField(label='')
 
     def __init__(self, *args, **kwargs):
-        super(AgreementForm, self).__init__(*args, **kwargs)
+        self.request = kwargs.pop('request', None)
+
+        super().__init__(*args, **kwargs)
 
         if not waffle.switch_is_active('developer-agreement-captcha'):
             del self.fields['recaptcha']
+
+    def clean(self):
+        # Check if user ip or email is not supposed to be allowed to submit.
+        checker = UploadRestrictionChecker(self.request)
+        if not checker.is_submission_allowed(check_dev_agreement=False):
+            raise forms.ValidationError(checker.get_error_message())
+        return self.cleaned_data
 
 
 class SingleCategoryForm(forms.Form):

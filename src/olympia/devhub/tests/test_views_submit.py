@@ -36,7 +36,7 @@ from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.git import AddonGitRepository
-from olympia.users.models import UserProfile
+from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config, set_config
 
@@ -230,6 +230,20 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert response.status_code == 302
         assert response['Location'] == reverse('devhub.submit.distribution')
 
+    def test_cant_submit_agreement_if_restricted_functional(self):
+        IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+        assert response.status_code == 200
+        assert response.context['agreement_form'].is_valid() is False
+        doc = pq(response.content)
+        assert doc('.addon-submission-process').text().endswith(
+            'Multiple add-ons violating our policies have been submitted '
+            'from your location. The IP address has been blocked.')
+
 
 class TestAddonSubmitDistribution(TestCase):
     fixtures = ['base/users']
@@ -269,6 +283,12 @@ class TestAddonSubmitDistribution(TestCase):
         before_agreement_last_changed = (
             datetime(2018, 1, 1) - timedelta(days=1))
         self.user.update(read_dev_agreement=before_agreement_last_changed)
+        response = self.client.get(
+            reverse('devhub.submit.distribution'), follow=True)
+        self.assert3xx(response, reverse('devhub.submit.agreement'))
+
+    def test_redirect_back_to_agreement_if_restricted(self):
+        IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         response = self.client.get(
             reverse('devhub.submit.distribution'), follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
@@ -330,6 +350,16 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
                 assert (
                     response.context['new_addon_form'].errors.as_text() == '')
         return response
+
+    def test_redirect_back_to_agreement_if_restricted(self):
+        url = reverse('devhub.submit.upload', args=['listed'])
+        IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
+        response = self.client.post(url, follow=True)
+        self.assert3xx(response, reverse('devhub.submit.agreement'))
+
+        url = reverse('devhub.submit.upload', args=['unlisted'])
+        response = self.client.post(url, follow=True)
+        self.assert3xx(response, reverse('devhub.submit.agreement'))
 
     def test_unique_name(self):
         addon_factory(name='Beastify')

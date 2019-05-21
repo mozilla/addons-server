@@ -7,6 +7,7 @@ from django import forms
 from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
 from django.contrib.auth import get_user
+from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 
@@ -673,11 +674,21 @@ class TestIPNetworkUserRestriction(TestCase):
 class TestEmailUserRestriction(TestCase):
     def test_email_allowed(self):
         EmailUserRestriction.objects.create(email='foo@bar.com')
-        assert EmailUserRestriction.allow_email('bar@foo.com')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='bar@foo.com')
+        assert EmailUserRestriction.allow_request(request)
 
     def test_blocked_email(self):
         EmailUserRestriction.objects.create(email='foo@bar.com')
-        assert not EmailUserRestriction.allow_email('foo@bar.com')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        assert not EmailUserRestriction.allow_request(request)
+
+    def test_user_somehow_not_authenticated(self):
+        EmailUserRestriction.objects.create(email='foo@bar.com')
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        assert not EmailUserRestriction.allow_request(request)
 
     def test_email_validated(self):
         with pytest.raises(forms.ValidationError) as exc_info:
