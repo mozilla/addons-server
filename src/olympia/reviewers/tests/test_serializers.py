@@ -194,6 +194,27 @@ class TestFileEntriesDiffSerializer(TestCase):
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.refresh_from_db()
 
+    def create_new_version_for_addon(self, xpi_filename):
+        addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': xpi_filename})
+
+        extract_version_to_git(addon.current_version.pk)
+
+        addon.current_version.refresh_from_db()
+        parent_version = addon.current_version
+
+        new_version = version_factory(
+            addon=addon, file_kw={
+                'filename': xpi_filename,
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        return addon, repo, parent_version, new_version
+
     def get_serializer(self, obj, **extra_context):
         api_version = api_settings.DEFAULT_VERSION
         request = APIRequestFactory().get('/api/%s/' % api_version)
@@ -310,6 +331,118 @@ class TestFileEntriesDiffSerializer(TestCase):
         # We deleted the selected file, so there should be a diff.
         assert data['diff'] is not None
         assert data['diff']['mode'] == 'D'
+
+    def test_recreate_parent_dir_of_deleted_file(self):
+        addon, repo, parent_version, new_version = \
+            self.create_new_version_for_addon(
+                'webextension_signed_already.xpi')
+
+        apply_changes(
+            repo, new_version, '', 'META-INF/mozilla.rsa', delete=True)
+
+        data = self.serialize(
+            new_version.current_file, parent_version=parent_version)
+
+        entries_by_file = {
+            e['path']: e for e in data['entries'].values()
+        }
+        parent_dir = 'META-INF'
+        assert parent_dir in entries_by_file.keys()
+
+        parent = entries_by_file[parent_dir]
+        assert parent['depth'] == 0
+        assert parent['filename'] == parent_dir
+        assert parent['sha256'] is None
+        assert parent['mime_category'] == 'directory'
+        assert parent['mimetype'] == 'application/octet-stream'
+        assert parent['path'] == parent_dir
+        assert parent['size'] is None
+        assert parent['modified'] is None
+
+    def test_recreate_nested_parent_dir_of_deleted_file(self):
+        addon, repo, parent_version, new_version = \
+            self.create_new_version_for_addon('https-everywhere.xpi')
+
+        apply_changes(
+            repo,
+            new_version,
+            '',
+            '_locales/ru/messages.json',
+            delete=True)
+
+        data = self.serialize(
+            new_version.current_file, parent_version=parent_version)
+
+        entries_by_file = {
+            e['path']: e for e in data['entries'].values()
+        }
+        parent_dir = '_locales/ru'
+        assert parent_dir in entries_by_file.keys()
+
+        parent = entries_by_file[parent_dir]
+        assert parent['depth'] == 1
+        assert parent['filename'] == 'ru'
+        assert parent['path'] == parent_dir
+
+    def test_do_not_recreate_parent_dir_of_deleted_root_file(self):
+        addon, repo, parent_version, new_version = \
+            self.create_new_version_for_addon(
+                'webextension_signed_already.xpi')
+
+        apply_changes(
+            repo, new_version, '', 'manifest.json', delete=True)
+
+        data = self.serialize(
+            new_version.current_file, parent_version=parent_version)
+
+        entries_by_file = {
+            e['path']: e for e in data['entries'].values()
+        }
+
+        # Since we just deleted a root file, no additional entries
+        # should have been added for its parent directory.
+        assert list(sorted(entries_by_file.keys())) == [
+            'META-INF',
+            'META-INF/mozilla.rsa',
+            'index.js',
+            'manifest.json',
+        ]
+
+    def test_do_not_recreate_parent_dir_if_it_exists(self):
+        addon, repo, parent_version, new_version = \
+            self.create_new_version_for_addon('https-everywhere.xpi')
+
+        # Delete a file within a directory but modify another file.
+        # This will preserve the directory, i.e. we won't have to
+        # recreate it.
+        apply_changes(
+            repo,
+            new_version,
+            '',
+            'chrome-resources/css/chrome_shared.css',
+            delete=True)
+        apply_changes(
+            repo,
+            new_version,
+            '/* new content */',
+            'chrome-resources/css/widgets.css')
+
+        data = self.serialize(
+            new_version.current_file, parent_version=parent_version)
+
+        entries_by_file = {
+            e['path']: e for e in data['entries'].values()
+        }
+        parent_dir = 'chrome-resources/css'
+        assert parent_dir in entries_by_file.keys()
+
+        parent = entries_by_file[parent_dir]
+        assert parent['mime_category'] == 'directory'
+        assert parent['mimetype'] == 'application/octet-stream'
+        assert parent['path'] == parent_dir
+        # Since the directory is returned from git, it will have a real
+        # modified timestamp.
+        assert parent['modified'] is not None
 
 
 @pytest.mark.parametrize(

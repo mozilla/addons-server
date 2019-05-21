@@ -341,15 +341,18 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         for patch in diff:
             path = patch['path']
 
+            path_depth = path.count(os.sep)
+            path_deleted = False
             if path not in entries:
-                # File got deleted, let's mimic the original data-structure
-                # for better modeling on the client.
-                # Most of the actual data is not present though so we set
+                # The file got deleted so let's mimic the original data-
+                # structure for better modeling on the client.
+                # Most of the actual data is not present, though, so we set
                 # it to `None`.
+                path_deleted = True
                 filename = os.path.basename(path)
                 mime, _ = mimetypes.guess_type(filename)
                 entries[path] = {
-                    'depth': path.count(os.sep),
+                    'depth': path_depth,
                     'filename': filename,
                     'sha256': None,
                     'mime_category': None,
@@ -361,6 +364,26 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
 
             # Now we can set the git-status.
             entries[path]['status'] = patch['mode']
+
+            parent_path = os.path.dirname(path)
+            if (
+                path_deleted is True and
+                parent_path != '' and
+                parent_path not in entries
+            ):
+                # The parent directory of this deleted file does not
+                # exist. This could happen if no other files were
+                # modified within the directory.
+                entries[parent_path] = {
+                    'depth': path_depth - 1,
+                    'filename': os.path.basename(parent_path),
+                    'sha256': None,
+                    'mime_category': 'directory',
+                    'mimetype': 'application/octet-stream',
+                    'path': parent_path,
+                    'size': None,
+                    'modified': None,
+                }
 
         return entries
 
