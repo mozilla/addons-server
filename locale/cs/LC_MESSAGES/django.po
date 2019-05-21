@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-21 16:31+0000\n"
+"PO-Revision-Date: 2019-05-21 16:41+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5909,11 +5909,11 @@ msgstr[2] "Požadavky po lhůtě na doplnění informací ({0})"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr ""
+msgstr "Neplatný parametr \"%s\"."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neplatná kombinace parametrů \"%s\" a \"%s\"."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
@@ -5926,7 +5926,7 @@ msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neplatná kombinace parametrů\"%s\", \"%s\" a \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Překročena maximální délka dotazu."
