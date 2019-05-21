@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-21 12:29+0000\n"
+"PO-Revision-Date: 2019-05-21 12:42+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4612,10 +4612,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Nepodařilo se zpracovat nahrávaný soubor, element <%s> chybí nebo je prázdný"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: Chyba zabezpečení souboru XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Chyba při zpracování souboru XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Nepodařilo se zpracovat nahrávaný soubor."
@@ -4654,7 +4654,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a následující speciální znaky: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Maximální velikost WebExtension motivů vzhledu je {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Přidávání tohoto typu doplňku není povoleno"
