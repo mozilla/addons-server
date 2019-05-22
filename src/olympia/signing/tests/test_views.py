@@ -783,7 +783,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
     def test_post_addon_restricted(self):
         Addon.objects.all().get().delete()
         assert Addon.objects.count() == 0
-        EmailUserRestriction.objects.create(domain_pattern=self.user.email)
+        EmailUserRestriction.objects.create(email_pattern=self.user.email)
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),

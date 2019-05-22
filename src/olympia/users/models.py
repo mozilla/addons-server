@@ -678,12 +678,13 @@ class IPNetworkUserRestriction(ModelBase):
 
 class EmailUserRestriction(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    domain_pattern = models.CharField(
-        _('Domain Pattern'),
+    email_pattern = models.CharField(
+        _('Email Pattern'),
         max_length=100,
         help_text=_(
-            'Either enter full domain that should be blocked or use glob-style'
-            ' wildcards to match other patterns. E.g "@*.mail.com"\n'
+            'Either enter full domain or email that should be blocked or use '
+            ' glob-style wildcards to match other patterns.'
+            ' E.g "@*.mail.com"\n'
             ' Please note that we do not include "@" in the match so you '
             ' should do that in the pattern.'))
 
@@ -708,7 +709,7 @@ class EmailUserRestriction(ModelBase):
         restrictions = EmailUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if fnmatchcase(request.user.email, restriction.domain_pattern):
+            if fnmatchcase(request.user.email, restriction.email_pattern):
                 return False
         return True
 

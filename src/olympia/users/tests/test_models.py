@@ -673,25 +673,25 @@ class TestIPNetworkUserRestriction(TestCase):
 
 class TestEmailUserRestriction(TestCase):
     def test_email_allowed(self):
-        EmailUserRestriction.objects.create(domain_pattern='foo@bar.com')
+        EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='bar@foo.com')
         assert EmailUserRestriction.allow_request(request)
 
     def test_blocked_email(self):
-        EmailUserRestriction.objects.create(domain_pattern='foo@bar.com')
+        EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@bar.com')
         assert not EmailUserRestriction.allow_request(request)
 
     def test_user_somehow_not_authenticated(self):
-        EmailUserRestriction.objects.create(domain_pattern='foo@bar.com')
+        EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
         assert not EmailUserRestriction.allow_request(request)
 
     def test_blocked_subdomain(self):
-        EmailUserRestriction.objects.create(domain_pattern='*@faz.bar.com')
+        EmailUserRestriction.objects.create(email_pattern='*@faz.bar.com')
 
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.bar.com')
@@ -702,7 +702,7 @@ class TestEmailUserRestriction(TestCase):
 
     def test_blocked_subdomain_but_allow_parent(self):
         EmailUserRestriction.objects.create(
-            domain_pattern='*.mail.com')
+            email_pattern='*.mail.com')
 
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.mail.com')

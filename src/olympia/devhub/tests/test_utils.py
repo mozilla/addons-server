@@ -516,7 +516,7 @@ class TestUploadRestrictionChecker(TestCase):
 
     def test_is_submission_allowed_email_restricted(self):
         EmailUserRestriction.objects.create(
-            domain_pattern=self.request.user.email)
+            email_pattern=self.request.user.email)
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
