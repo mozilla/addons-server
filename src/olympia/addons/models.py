@@ -41,7 +41,7 @@ from olympia.amo.models import (
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    AMOJSONEncoder, StopWatch, attach_trans_dict, cache_ns_key, chunked,
+    AMOJSONEncoder, StopWatch, attach_trans_dict, chunked,
     find_language, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.reviewers import REPUTATION_CHOICES
@@ -392,22 +392,6 @@ class Addon(OnChangeMixin, ModelBase):
         self.clean_slug()
         super(Addon, self).save(**kw)
 
-    @classmethod
-    def search_public(cls):
-        """Legacy search method for public add-ons.
-
-        Note that typically, code using this method do a search in ES but then
-        will fetch the relevant objects from the database using Addon.objects,
-        so deleted addons won't be returned no matter what ES returns. See
-        amo.search.ES and amo.search.ObjectSearchResults for more details.
-
-        In new code, use elasticsearch-dsl instead.
-        """
-        return cls.search().filter(
-            is_disabled=False,
-            status__in=amo.REVIEWED_STATUSES,
-            current_version__exists=True)
-
     @use_primary_db
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
@@ -689,21 +673,6 @@ class Addon(OnChangeMixin, ModelBase):
     def ratings_url(self):
         return reverse('addons.ratings.list', args=[self.slug])
 
-    @classmethod
-    def get_type_url(cls, type):
-        try:
-            type = amo.ADDON_SLUGS[type]
-        except KeyError:
-            return None
-        return reverse('browse.%s' % type)
-
-    def type_url(self):
-        """The url for this add-on's type."""
-        return Addon.get_type_url(self.type)
-
-    def share_url(self):
-        return reverse('addons.share', args=[self.slug])
-
     @cached_property
     def listed_authors(self):
         return UserProfile.objects.filter(
@@ -717,11 +686,6 @@ class Addon(OnChangeMixin, ModelBase):
     @property
     def ratings(self):
         return Rating.objects.filter(addon=self, reply_to=None)
-
-    def get_category(self, app_id):
-        appname = getattr(amo.APP_IDS.get(app_id), 'short', '')
-        categories = self.app_categories.get(appname)
-        return categories[0] if categories else None
 
     def language_ascii(self):
         lang = trans_real.to_language(self.default_locale)
@@ -853,16 +817,6 @@ class Addon(OnChangeMixin, ModelBase):
         version.version = str(float(version.version) + 1)
         # Set the current version.
         self.update(_current_version=version.save())
-
-    def invalidate_d2c_versions(self):
-        """Invalidates the cache of compatible versions.
-
-        Call this when there is an event that may change what compatible
-        versions are returned so they are recalculated.
-        """
-        key = cache_ns_key('d2c-versions:%s' % self.id, increment=True)
-        log.info('Incrementing d2c-versions namespace for add-on [%s]: %s' % (
-                 self.id, key))
 
     @property
     def current_version(self):
@@ -1331,10 +1285,6 @@ class Addon(OnChangeMixin, ModelBase):
             return False
         return AddonUser.objects.filter(addon=self, user=user).exists()
 
-    @property
-    def takes_contributions(self):
-        pass
-
     @classmethod
     def _last_updated_queries(cls):
         """
@@ -1410,10 +1360,6 @@ class Addon(OnChangeMixin, ModelBase):
             except IndexError:
                 pass
         return ''
-
-    def can_review(self, user):
-        """Check whether the user should be prompted to add a review or not."""
-        return not user.is_authenticated or not self.has_author(user)
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):

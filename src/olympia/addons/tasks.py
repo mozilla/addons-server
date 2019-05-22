@@ -32,7 +32,7 @@ from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, StopWatch, cache_ns_key,
+    ImageCheck, LocalFileStorage, StopWatch,
     extract_colors_from_image, pngcrush_image)
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
@@ -318,10 +318,6 @@ def update_incompatible_appversions(data, **kw):
             log.info('Added incompatible version for version ID [%d]: '
                      'app:%d, %s -> %s' % (version_id, app_range.app.id,
                                            app_range.min, app_range.max))
-
-    # Increment namespace cache of compat versions.
-    for addon_id in addon_ids:
-        cache_ns_key('d2c-versions:%s' % addon_id, increment=True)
 
 
 def make_checksum(header_path):
