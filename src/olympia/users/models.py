@@ -5,6 +5,7 @@ import re
 import time
 import ipaddress
 
+from fnmatch import fnmatchcase
 from datetime import datetime
 
 from django import forms
@@ -677,7 +678,15 @@ class IPNetworkUserRestriction(ModelBase):
 
 class EmailUserRestriction(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    email = models.EmailField(max_length=75, blank=True, null=True)
+    email_pattern = models.CharField(
+        _('Email Pattern'),
+        max_length=100,
+        help_text=_(
+            'Either enter full domain or email that should be blocked or use '
+            ' glob-style wildcards to match other patterns.'
+            ' E.g "@*.mail.com"\n'
+            ' Please note that we do not include "@" in the match so you '
+            ' should do that in the pattern.'))
 
     error_message = _('The email address you used for your developer account'
                       ' is not allowed for add-on submission.')
@@ -696,8 +705,13 @@ class EmailUserRestriction(ModelBase):
         """
         if not request.user.is_authenticated:
             return False
-        return not EmailUserRestriction.objects.filter(
-            email=request.user.email).exists()
+
+        restrictions = EmailUserRestriction.objects.all()
+
+        for restriction in restrictions:
+            if fnmatchcase(request.user.email, restriction.email_pattern):
+                return False
+        return True
 
 
 class DeveloperAgreementRestriction:

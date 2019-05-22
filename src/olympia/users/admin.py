@@ -264,5 +264,5 @@ class IPNetworkUserRestrictionAdmin(admin.ModelAdmin):
 
 @admin.register(EmailUserRestriction)
 class EmailUserRestrictionAdmin(admin.ModelAdmin):
-    list_display = ('email',)
-    search_fields = ('^email',)
+    list_display = ('email_pattern',)
+    search_fields = ('^email_pattern',)
