@@ -4524,7 +4524,7 @@ msgstr "Διόρθωση ενοχλητικού ήχου {start_sub_heading}με
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Είναι πολύ χαμηλή η ένταση σε κάποια ιστοσελίδα; Πολύ υψηλή; Το SoundFixer μπορεί να βοηθήσει."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
