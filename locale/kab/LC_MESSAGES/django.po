@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-22 22:52+0000\n"
+"PO-Revision-Date: 2019-05-22 23:03+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -965,31 +965,33 @@ msgstr "Iccaren"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
+"Sider isiɣzaf Firefox i tmerna n yiccaren udmawanen neɣ asebter amaynut n yiccer. Wali isiɣzaf i izemren ad erren iccaren n yiminig gar ifassen-ik,  ad snernin tarrayt n temyigawt yid-sen d wayen-"
+"nniḍen."
 
 msgid "Web Development"
 msgstr "Taneflit Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Sider isiɣzaf Firefox yesnernayessumuren ifecka n tneflit web. Taggayt-a tegber isiɣzaf i GitHub, akken ad tbeddleḍ imeggi aseqdac, asefrek n yinagan n tuqqna d wayen-nniḍen."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Wiyaḍ"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Sider isiɣzaf Firefox izemren ad k-swehmen, maca lhan i umahil ur nettwassen ara aṭas."
 
 msgid "Device Features & Location"
 msgstr "Timahilin akked wadig n ibenkan"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Sider isiɣzaf Firefox yesnernayen Firefox i Android. Eg inadiyen iruraden, serreḥ i teɣbula tinagrawanin, aru tizmilin, d wayen-nniḍen."
 
 msgid "Experimental"
 msgstr "Armitan"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Sider isiɣzaf Firefox s lqem yittilin si sya ɣer daa, i iheggan i usekyed izuyaz. Iwenniten-ik ad lqun ineflayen ɣef yibeddilen ara yilin deg yileqman i d-iteddun."
 
 msgid "Performance"
 msgstr "Tamellit"
@@ -1070,13 +1072,13 @@ msgid "Fashion"
 msgstr "Amaynut"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Sider isental Firefox yesfugulen aɣanib-ik anurif n yal talɣa — tineɣrufin, initen, talɣiwind wayen-nniḍen."
 
 msgid "Film and TV"
 msgstr "Isura & Tiliẓri"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Sider isental i Firefox i d-yekkan seg isura akked tiliẓri. Taggayt-a tegber unuɣen yettḥerriken am Uchiha Madara, isura am Matrix, tidwilin am (Game of Thrones), d wayen-nniḍen."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
