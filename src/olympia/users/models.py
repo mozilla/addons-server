@@ -6,6 +6,7 @@ import time
 import string
 import ipaddress
 
+from fnmatch import fnmatchcase
 from datetime import datetime
 
 from django import forms
@@ -42,19 +43,6 @@ def generate_auth_id():
     # We use MySQL's maximum value for an unsigned int:
     # https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
     return random.SystemRandom().randint(1, 4294967295)
-
-
-def simple_domain_name_validator(value):
-    """
-    Validate that the given value contains no whitespaces to prevent common
-    typos. Copied from django.contrib.sites.
-    """
-    checks = ((s in value) for s in string.whitespace)
-    if any(checks):
-        raise forms.ValidationError(
-            _("The domain name cannot contain any spaces or tabs."),
-            code='invalid',
-        )
 
 
 class UserForeignKey(models.ForeignKey):
@@ -691,11 +679,14 @@ class IPNetworkUserRestriction(ModelBase):
 
 class EmailUserRestriction(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    domain = models.CharField(
-        _('domain name'),
+    domain_pattern = models.CharField(
+        _('Domain Pattern'),
         max_length=100,
-        validators=[simple_domain_name_validator],
-    )
+        help_text=_(
+            'Either enter full domain that should be blocked or use glob-style'
+            ' wildcards to match other patterns. E.g "@*.mail.com"\n'
+            ' Please note that we do not include "@" in the match so you '
+            ' should do that in the pattern.'))
 
     error_message = _('The email address you used for your developer account'
                       ' is not allowed for add-on submission.')
@@ -718,7 +709,7 @@ class EmailUserRestriction(ModelBase):
         restrictions = EmailUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if request.user.email.endswith(restriction.domain):
+            if fnmatchcase(request.user.email, restriction.domain_pattern):
                 return False
         return True
 

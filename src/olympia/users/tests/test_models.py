@@ -673,25 +673,25 @@ class TestIPNetworkUserRestriction(TestCase):
 
 class TestEmailUserRestriction(TestCase):
     def test_email_allowed(self):
-        EmailUserRestriction.objects.create(domain='foo@bar.com')
+        EmailUserRestriction.objects.create(domain_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='bar@foo.com')
         assert EmailUserRestriction.allow_request(request)
 
     def test_blocked_email(self):
-        EmailUserRestriction.objects.create(domain='foo@bar.com')
+        EmailUserRestriction.objects.create(domain_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@bar.com')
         assert not EmailUserRestriction.allow_request(request)
 
     def test_user_somehow_not_authenticated(self):
-        EmailUserRestriction.objects.create(domain='foo@bar.com')
+        EmailUserRestriction.objects.create(domain_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
         assert not EmailUserRestriction.allow_request(request)
 
     def test_blocked_subdomain(self):
-        EmailUserRestriction.objects.create(domain='faz.bar.com')
+        EmailUserRestriction.objects.create(domain_pattern='*@faz.bar.com')
 
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.bar.com')
@@ -700,12 +700,21 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@raz.bar.com')
         assert EmailUserRestriction.allow_request(request)
 
-    def test_domain_doesnt_allow_whitespaces(self):
-        with pytest.raises(forms.ValidationError) as exc_info:
-            EmailUserRestriction(domain='bar foo').full_clean()
+    def test_blocked_subdomain_but_allow_parent(self):
+        EmailUserRestriction.objects.create(
+            domain_pattern='*.mail.com')
 
-        assert exc_info.value.messages[0] == (
-            'The domain name cannot contain any spaces or tabs.')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@faz.mail.com')
+        assert not EmailUserRestriction.allow_request(request)
+
+        # We only block a subdomain pattern
+        request.user = user_factory(email='foo@mail.com')
+        assert EmailUserRestriction.allow_request(request)
+
+        # Which also allows similar domains to work
+        request.user = user_factory(email='foo@gmail.com')
+        assert EmailUserRestriction.allow_request(request)
 
 
 class TestUserEmailField(TestCase):
