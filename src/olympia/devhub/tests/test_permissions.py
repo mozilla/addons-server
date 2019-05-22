@@ -38,7 +38,7 @@ class TestIsSubmissionAllowedFor(TestCase):
             'from your location. The IP address has been blocked.')
 
     def test_has_permission_user_email_restricted(self):
-        EmailUserRestriction.objects.create(email='test@example.com')
+        EmailUserRestriction.objects.create(domain_pattern='test@example.com')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
             'The email address you used for your developer account is not '
@@ -47,7 +47,7 @@ class TestIsSubmissionAllowedFor(TestCase):
     def test_has_permission_both_user_ip_and_email_restricted(self):
         self.request.META['REMOTE_ADDR'] = '127.0.0.1'
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
-        EmailUserRestriction.objects.create(email='test@example.com')
+        EmailUserRestriction.objects.create(domain_pattern='test@example.com')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
             'The email address you used for your developer account is not '

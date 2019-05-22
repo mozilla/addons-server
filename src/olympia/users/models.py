@@ -3,7 +3,6 @@ import os
 import random
 import re
 import time
-import string
 import ipaddress
 
 from fnmatch import fnmatchcase
