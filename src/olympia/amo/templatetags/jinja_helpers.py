@@ -2,8 +2,6 @@ import json as jsonlib
 import os
 import random
 
-from operator import attrgetter
-
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
@@ -25,10 +23,8 @@ from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 from six.moves.urllib_parse import urljoin
 
-from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
-from olympia.lib.cache import cache_get_or_set, make_key
 from olympia.lib.jingo_minify_helpers import (
     _build_html, get_css_urls, get_js_urls)
 
@@ -329,39 +325,6 @@ def static(context, url):
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
-
-
-@library.global_function
-@jinja2.contextfunction
-def side_nav(context, addon_type, category=None):
-    app = context['request'].APP.id
-    cat = str(category.id) if category else 'all'
-    cache_key = make_key(
-        'side-nav-%s-%s-%s' % (app, addon_type, cat),
-        # We have potentially very long names in the cache-key,
-        # normalize to not hit any memcached key-limits
-        normalize=True)
-    return cache_get_or_set(
-        cache_key, lambda: _side_nav(context, addon_type, category))
-
-
-def _side_nav(context, addon_type, cat):
-    # Prevent helpers generating circular imports.
-    from olympia.addons.models import Category, Addon
-    request = context['request']
-    qs = Category.objects.filter(weight__gte=0)
-    if addon_type != amo.ADDON_PERSONA:
-        qs = qs.filter(application=request.APP.id)
-    sort_key = attrgetter('weight', 'name')
-    categories = sorted(qs.filter(type=addon_type), key=sort_key)
-    if cat:
-        base_url = cat.get_url_path()
-    else:
-        base_url = Addon.get_type_url(addon_type)
-    ctx = dict(request=request, base_url=base_url, categories=categories,
-               addon_type=addon_type, amo=amo)
-    template = loader.get_template('amo/side_nav.html')
-    return jinja2.Markup(template.render(ctx))
 
 
 @library.global_function

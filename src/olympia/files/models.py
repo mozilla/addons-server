@@ -448,19 +448,6 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
                  (instance.pk, addon, old, new))
 
 
-@File.on_change
-def clear_d2c_version(old_attr, new_attr, instance, sender, **kw):
-    do_clear = False
-    fields = ['status', 'strict_compatibility', 'binary_components']
-
-    for field in fields:
-        if old_attr[field] != new_attr[field]:
-            do_clear = True
-
-    if do_clear:
-        instance.version.addon.invalidate_d2c_versions()
-
-
 def track_new_status(sender, instance, *args, **kw):
     if kw.get('raw'):
         # The file is being loaded from a fixure.
