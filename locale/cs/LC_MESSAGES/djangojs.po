@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-03 10:53+0000\n"
+"PO-Revision-Date: 2019-05-21 23:23+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -53,9 +53,9 @@ msgstr "Nezapomeňte prosím jakékoliv problémy související s lintingem nahl
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Váš doplněk neprošel kontrolou; nalezena {0} chyba."
-msgstr[1] "Váš doplněk neprošel kontrolou; nalezeny {0} chyby."
-msgstr[2] "Váš doplněk neprošel kontrolou; nalezeno {0} chyb."
+msgstr[0] "Váš doplněk neprošel kontrolou – nalezena {0} chyba."
+msgstr[1] "Váš doplněk neprošel kontrolou – nalezeny {0} chyby."
+msgstr[2] "Váš doplněk neprošel kontrolou – nalezeno {0} chyb."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -64,7 +64,7 @@ msgstr[1] "&hellip;a {0} další"
 msgstr[2] "&hellip;a {0} dalších"
 
 msgid "See full validation report"
-msgstr "Zobrazit podrobný report"
+msgstr "Zobrazit podrobné hlášení"
 
 msgid "Validating {0}"
 msgstr "Probíhá kontrola souboru {0}"
@@ -819,7 +819,7 @@ msgid "Status"
 msgstr "Stav"
 
 msgid "All tests passed successfully."
-msgstr "Všechny testy prošly úspěšně."
+msgstr "Všechny testy proběhly úspěšně."
 
 msgid "These tests were not run."
 msgstr "Testy nebyly spuštěny."
@@ -840,7 +840,7 @@ msgid "{0} line {1}"
 msgstr "{0} řádek {1}"
 
 msgid "Add-on failed validation."
-msgstr "Doplněk prošel kontrolou s chybami."
+msgstr "Doplněk neprošel kontrolou."
 
 msgid "Add-on passed validation."
 msgstr "Doplněk úspěšně prošel kontrolou."

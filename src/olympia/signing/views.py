@@ -21,6 +21,7 @@ from olympia.api.throttling import (
     ThrottleOnlyUnsafeMethodsMixin
 )
 from olympia.devhub.views import handle_upload as devhub_handle_upload
+from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.signing.serializers import FileUploadSerializer
@@ -99,7 +100,7 @@ class SustainedIPAddonUploadThrottle(
 
 class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
     throttle_classes = (
         BurstUserAddonUploadThrottle, SustainedUserAddonUploadThrottle,
         BurstIPAddonUploadThrottle, SustainedIPAddonUploadThrottle,

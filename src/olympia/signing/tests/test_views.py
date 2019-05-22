@@ -26,13 +26,16 @@ from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.files.models import File, FileUpload
 from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
-from olympia.users.models import UserProfile
+from olympia.users.models import (
+    EmailUserRestriction, IPNetworkUserRestriction, UserProfile
+)
 from olympia.versions.models import Version
 
 
 class SigningAPITestMixin(APIKeyAuthTestMixin):
     def setUp(self):
-        self.user = developer_factory(email='del@icio.us')
+        self.user = developer_factory(
+            email='del@icio.us', read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
 
 
@@ -542,7 +545,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                     view_class=self.view_class,
                     url=url,
                     user=UserProfile(pk=42 + x),
-                    remote_addr='123.456.78.9',
+                    remote_addr='63.245.208.194',
                 )
 
             # At this point we should be throttled since we're using the same
@@ -552,8 +555,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 addon='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
-            assert response.status_code == 429
+                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
+            assert response.status_code == 429, response.content
 
             # 'Burst' throttling is 1 minute, so 61 seconds later we should be
             # allowed again.
@@ -563,7 +566,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 addon='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == expected_status
 
     def _test_throttling_verb_ip_sustained(
@@ -576,7 +579,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                     view_class=self.view_class,
                     url=url,
                     user=UserProfile(pk=42 + x),
-                    remote_addr='123.456.78.9',
+                    remote_addr='63.245.208.194',
                 )
 
             # At this point we should be throttled since we're using the same
@@ -586,7 +589,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 addon='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == 429
 
             # One minute later, past the 'burst' throttling period, we're still
@@ -597,7 +600,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 addon='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == 429
 
             # 'Sustained' throttling is 1 hour, so 3601 seconds later we should
@@ -608,7 +611,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 addon='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == expected_status
 
     def _test_throttling_verb_user_burst(self, verb, url, expected_status=201):
@@ -776,6 +779,35 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
             latest_version)
+
+    def test_post_addon_restricted(self):
+        Addon.objects.all().get().delete()
+        assert Addon.objects.count() == 0
+        EmailUserRestriction.objects.create(email=self.user.email)
+        response = self.request(
+            'POST',
+            url=reverse_ns('signing.version'),
+            addon='@create-webextension',
+            version='1.0')
+        assert response.status_code == 403
+        assert json.loads(response.content.decode('utf-8')) == {
+            'detail': 'The email address you used for your developer account '
+                      'is not allowed for add-on submission.'
+        }
+        EmailUserRestriction.objects.all().delete()
+        IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
+        response = self.request(
+            'POST',
+            url=reverse_ns('signing.version'),
+            addon='@create-webextension',
+            version='1.0')
+        assert response.status_code == 403
+        assert json.loads(response.content.decode('utf-8')) == {
+            'detail': 'Multiple add-ons violating our policies have been '
+                      'submitted from your location. The IP address has been '
+                      'blocked.'
+        }
+        assert Addon.objects.count() == 0
 
     def test_addon_does_not_exist_webextension_with_guid_in_url(self):
         guid = '@custom-guid-provided'

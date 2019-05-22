@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-20 21:13+0000\n"
+"PO-Revision-Date: 2019-05-21 23:06+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -281,11 +281,11 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Je nám líto, ale nemůžeme nalézt, co hledáte.</h1> <p>Stránka nebo soubor, který jste požadovali, nebyl na tomto serveru nalezen. Pravděpodobně jste klepli na neaktuální odkaz nebo napsali "
-"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, %(open_bug_link)sdejte nám o tom prosím "
-"vědět%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé populární stránky na našem "
-"serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na stránku <a "
-"href=\"%(search)s\">hledání</a> a nebo použijte vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
+"<h1>Je nám líto, ale nemůžeme nalézt, co hledáte.</h1> <p>Požadovaná stránka nebo soubor nebyl na našem webu nalezen. Pravděpodobně jste klepli na již neaktuální odkaz nebo jste napsali nesprávnou "
+"adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, %(open_bug_link)snahlaste nám prosím chybu%(close_bug_link)s. Sdělte "
+"nám, odkud jste přišli a co jste hledali, a my to dáme do pořádku. </li> </ul> <p>A nebo můžete rovnou skočit na některou z populárních stránek na našem webu.</p> <ul> <li>Zajímal by vás seznam <a "
+"href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte nějaký doplněk? Pak přejděte na <a href=\"%(search)s\">stránku vyhledávání</a> nebo použijte vyhledávací pole výše. </li> <li> Pokud si"
+" přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
 
 msgid "Oops"
 msgstr "Jejda"
@@ -534,7 +534,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "Od doplňku {addon} verze {version} byl smazán soubor {0}."
 
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} byl schválen."
+msgstr "Doplněk {addon} {version} byl schválen."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} byl předběžně zkontrolován."
@@ -1846,7 +1846,7 @@ msgstr "Nedávná aktivita pro mé doplňky"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Nedávná aktivita pro jazyk: {0}"
+msgstr "Nedávná aktivita pro doplněk {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2831,7 +2831,7 @@ msgid "Developer News"
 msgstr "Novinky pro vývojáře"
 
 msgid "View the blog &#9658;"
-msgstr "Zobrazit blog &#9658;"
+msgstr "Přejít na blog &#9658;"
 
 msgid "Pending information request:"
 msgstr "Vyžádáno více informací:"
@@ -4490,19 +4490,19 @@ msgstr "Proveďte mimořádné vizuální změny – odstraňte reklamy nebo odp
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Sledujte historii cen na Amazonu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Čiňte informovaná rozhodnutí sledováním a dostáváním upozornění na cenu produktu na Amazonu."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vyšperkujte si zvuk {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Upravte nastavení zvuku prohlížeče, aby byl co nejčistší."
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4518,55 +4518,55 @@ msgstr "Zahlaďte za sebou stopy {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr "Vyhledávejte s bezpečným šifrováním a dalšími základy pro ochranu vašeho soukromí."
+msgstr "Vyhledávejte bezpečněji za pomoci blokování sledovacích prvků, sofistikovanějšího šifrování, anonymního hledání a dalších opatření."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zjednodušte si své panely {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr ""
+msgstr "Uspořádejte si velké množství otevřených panelů ve svislé postranní liště."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Pokročilá správa cookies {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Automaticky odstraňte nechtěná cookies. Nabízí možnost umístit je na seznam povolených či zakázaných."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dívejte se na velký obraz {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "Kliknutím myši můžete sledovat videa v celé kráse – na celé obrazovce."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Šetřete pamětí {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Už neplýtvejte drahocenným paměťovým prostorem díky neaktivním panelům."
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ukládejte webové stránky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Uložte celou stránku – nebo jen její části – jako jeden soubor HTML."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vynechte všechny ty nesmysly {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
-msgstr ""
+msgstr "Inteligentní rozšíření, které vám pomůže rychle porozumět tomu, s čím že to souhlasíte."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4605,17 +4605,17 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Nejnižší možná hodnota \"strict_min_version\" je 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Neznámá hodnota \"strict_min_version\" {appver} pro {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Nepodařilo se zpracovat nahrávaný soubor, element <%s> chybí nebo je prázdný"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: Chyba zabezpečení souboru XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Chyba při zpracování souboru XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Nepodařilo se zpracovat nahrávaný soubor."
@@ -4654,7 +4654,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a následující speciální znaky: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Maximální velikost WebExtension motivů vzhledu je {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Přidávání tohoto typu doplňku není povoleno"
@@ -4796,7 +4796,7 @@ msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
-msgstr "O serveru Doplňky Mozilly"
+msgstr "O webu Doplňky Mozilly"
 
 msgid "What is this website?"
 msgstr "K čemu slouží tento web?"
@@ -5909,11 +5909,11 @@ msgstr[2] "Požadavky po lhůtě na doplnění informací ({0})"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr ""
+msgstr "Neplatný parametr \"%s\"."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neplatná kombinace parametrů \"%s\" a \"%s\"."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
@@ -5926,7 +5926,7 @@ msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neplatná kombinace parametrů\"%s\", \"%s\" a \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Překročena maximální délka dotazu."

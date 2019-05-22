@@ -973,9 +973,9 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
 
     def test_get_queryset_excludes(self):
-        addon_factory(slug='my-addon', name=u'My Addôn', weekly_downloads=666)
+        addon_factory(slug='my-addon', name=u'My Addôn', popularity=666)
         addon_factory(slug='my-second-addon', name=u'My second Addôn',
-                      weekly_downloads=555)
+                      popularity=555)
         self.refresh()
 
         view = AddonSearchView()
@@ -1022,9 +1022,9 @@ class TestAddonSearchView(ESTestCase):
 
     def test_basic(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=666)
+                              popularity=666)
         addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
-                               weekly_downloads=555)
+                               popularity=555)
         self.refresh()
 
         data = self.perform_search(self.url)  # No query.
@@ -1080,7 +1080,7 @@ class TestAddonSearchView(ESTestCase):
     def test_no_unlisted(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
                       status=amo.STATUS_NULL,
-                      weekly_downloads=666,
+                      popularity=666,
                       version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         self.refresh()
         data = self.perform_search(self.url)
@@ -1089,11 +1089,11 @@ class TestAddonSearchView(ESTestCase):
 
     def test_pagination(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=33)
+                              popularity=33)
         addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
-                               weekly_downloads=22)
+                               popularity=22)
         addon_factory(slug='my-third-addon', name=u'My third Addôn',
-                      weekly_downloads=11)
+                      popularity=11)
         self.refresh()
 
         data = self.perform_search(self.url, {'page_size': 1})
@@ -1144,7 +1144,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filtering_only_reviewed_addons(self):
         public_addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                                     weekly_downloads=222)
+                                     popularity=222)
         addon_factory(slug='my-incomplete-addon', name=u'My incomplete Addôn',
                       status=amo.STATUS_NULL)
         addon_factory(slug='my-disabled-addon', name=u'My disabled Addôn',
@@ -1309,15 +1309,15 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=33)
+                              popularity=33)
         addon_factory(
             slug='my-linux-addon', name=u'My linux-only Addön',
             file_kw={'platform': amo.PLATFORM_LINUX.id},
-            weekly_downloads=22)
+            popularity=22)
         mac_addon = addon_factory(
             slug='my-mac-addon', name=u'My mac-only Addön',
             file_kw={'platform': amo.PLATFORM_MAC.id},
-            weekly_downloads=11)
+            popularity=11)
         self.refresh()
 
         data = self.perform_search(self.url)
@@ -1333,16 +1333,16 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_app(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
+            slug='my-addon', name=u'My Addôn', popularity=33,
             version_kw={'min_app_version': '42.0',
                         'max_app_version': '*'})
         an_addon = addon_factory(
-            slug='my-tb-addon', name=u'My ANd Addøn', weekly_downloads=22,
+            slug='my-tb-addon', name=u'My ANd Addøn', popularity=22,
             version_kw={'application': amo.ANDROID.id,
                         'min_app_version': '42.0',
                         'max_app_version': '*'})
         both_addon = addon_factory(
-            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
+            slug='my-both-addon', name=u'My Both Addøn', popularity=11,
             version_kw={'min_app_version': '43.0',
                         'max_app_version': '*'})
         # both_addon was created with firefox compatibility, manually add
@@ -1371,16 +1371,16 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_appversion(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
+            slug='my-addon', name=u'My Addôn', popularity=33,
             version_kw={'min_app_version': '42.0',
                         'max_app_version': '*'})
         an_addon = addon_factory(
-            slug='my-tb-addon', name=u'My ANd Addøn', weekly_downloads=22,
+            slug='my-tb-addon', name=u'My ANd Addøn', popularity=22,
             version_kw={'application': amo.ANDROID.id,
                         'min_app_version': '42.0',
                         'max_app_version': '*'})
         both_addon = addon_factory(
-            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
+            slug='my-both-addon', name=u'My Both Addøn', popularity=11,
             version_kw={'min_app_version': '43.0',
                         'max_app_version': '*'})
         # both_addon was created with firefox compatibility, manually add
@@ -1486,10 +1486,10 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_with_tags(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              tags=['some_tag'], weekly_downloads=999)
+                              tags=['some_tag'], popularity=999)
         addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
                                tags=['unique_tag', 'some_tag'],
-                               weekly_downloads=333)
+                               popularity=333)
         addon3 = addon_factory(slug='unrelated', name=u'Unrelated',
                                tags=['unrelated'])
         self.refresh()
@@ -1533,11 +1533,11 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_author(self):
         author = user_factory(username=u'my-fancyAuthôr')
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              tags=['some_tag'], weekly_downloads=999)
+                              tags=['some_tag'], popularity=999)
         AddonUser.objects.create(addon=addon, user=author)
         addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
                                tags=['unique_tag', 'some_tag'],
-                               weekly_downloads=333)
+                               popularity=333)
         author2 = user_factory(username=u'my-FancyAuthôrName')
         AddonUser.objects.create(addon=addon2, user=author2)
         self.reindex(Addon)
@@ -1555,12 +1555,12 @@ class TestAddonSearchView(ESTestCase):
         author2 = user_factory(username='bar')
         another_author = user_factory(username='someoneelse')
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              tags=['some_tag'], weekly_downloads=999)
+                              tags=['some_tag'], popularity=999)
         AddonUser.objects.create(addon=addon, user=author)
         AddonUser.objects.create(addon=addon, user=author2)
         addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
                                tags=['unique_tag', 'some_tag'],
-                               weekly_downloads=333)
+                               popularity=333)
         AddonUser.objects.create(addon=addon2, user=author2)
         another_addon = addon_factory()
         AddonUser.objects.create(addon=another_addon, user=another_author)
@@ -1605,7 +1605,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_guid(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', weekly_downloads=999)
+                              guid='random@guid', popularity=999)
         addon_factory()
         self.reindex(Addon)
 
@@ -1619,10 +1619,10 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_multiple_guid(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', weekly_downloads=999)
+                              guid='random@guid', popularity=999)
         addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
                                guid='random2@guid',
-                               weekly_downloads=333)
+                               popularity=333)
         addon_factory()
         self.reindex(Addon)
 
@@ -1649,7 +1649,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_guid_return_to_amo(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', weekly_downloads=999)
+                              guid='random@guid', popularity=999)
         DiscoveryItem.objects.create(addon=addon)
         addon_factory()
         self.reindex(Addon)
@@ -1670,7 +1670,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_guid_return_to_amo_not_part_of_safe_list(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', weekly_downloads=999)
+                              guid='random@guid', popularity=999)
         addon_factory()
         self.reindex(Addon)
 
@@ -1713,7 +1713,7 @@ class TestAddonSearchView(ESTestCase):
         self.create_switch('return-to-amo', active=False)
         assert not switch_is_active('return-to-amo')
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', weekly_downloads=999)
+                              guid='random@guid', popularity=999)
         addon_factory()
         self.reindex(Addon)
 
@@ -1837,11 +1837,11 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 0
 
     def test_with_recommended_addons(self):
-        addon1 = addon_factory(weekly_downloads=666)
-        addon2 = addon_factory(weekly_downloads=555)
-        addon3 = addon_factory(weekly_downloads=444)
-        addon4 = addon_factory(weekly_downloads=333)
-        addon5 = addon_factory(weekly_downloads=222)
+        addon1 = addon_factory(popularity=666)
+        addon2 = addon_factory(popularity=555)
+        addon3 = addon_factory(popularity=444)
+        addon4 = addon_factory(popularity=333)
+        addon5 = addon_factory(popularity=222)
         self.refresh()
 
         # Default case first - no recommended addons
@@ -1968,7 +1968,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def test_get_queryset_excludes(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
-                      weekly_downloads=666)
+                      popularity=666)
         addon_factory(slug='my-persona', name=u'My Persona',
                       type=amo.ADDON_PERSONA)
         self.refresh()
@@ -1993,7 +1993,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
     def test_no_unlisted(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
                       status=amo.STATUS_NULL,
-                      weekly_downloads=666,
+                      popularity=666,
                       version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         self.refresh()
         data = self.perform_search(self.url)

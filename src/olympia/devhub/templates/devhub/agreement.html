@@ -1,11 +1,7 @@
 <form method="post">
+  {% if not agreement_form.has_error('__all__') %}
   <p>
-  {% trans %}
-    Before starting, please read and accept our Firefox Add-on Distribution
-    Agreement as well as our Review Policies and Rules. The Firefox
-    Add-on Distribution Agreement also links to our Privacy Notice which
-    explains how we handle your information.
-  {% endtrans %}
+    {{ agreement_message }}
   </p>
   <ul class="agreement-links">
     <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
@@ -29,4 +25,7 @@
       </button>
     {{ _('or <a href="{0}">Cancel</a>')|format_html(url('devhub.index')) }}
   </div>
+  {% else %}
+    {{ agreement_form.non_field_errors() }}
+  {% endif %}
 </form>

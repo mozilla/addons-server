@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-08 09:59+0000\n"
+"PO-Revision-Date: 2019-05-22 11:49+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -187,7 +187,7 @@ msgid "Reviewer Tools"
 msgstr "მიმომხილველის ხელსაწყოები"
 
 msgid "Admin Tools"
-msgstr "ადმინისტრატორის ხელსაწყოები"
+msgstr "მმართველის ხელსაწყოები"
 
 msgid "Positive integer"
 msgstr "დადებითი მთელი რიცხვი"
@@ -564,7 +564,7 @@ msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} საჭიროებს პროფესიონალურ განხილვას."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr "თქვენი დამატება მონიშნულია ადმინისტრაციული განხილვისთვის.  ჯერ კიდევ რიგშია, მაგრამ საჭიროა ერთმა ადმინისტრატორმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტხანს შეიძლება გაგრძელდეს."
+msgstr "თქვენი დამატება მონიშნულია ადმინისტრაციული განხილვისთვის.  ჯერ კიდევ რიგშია, მაგრამ საჭიროა ერთმა მმართველმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტხანს შეიძლება გაგრძელდეს."
 
 msgid "Comment on {addon} {version}."
 msgstr "შენიშვნა {addon} {version}-ზე."
@@ -670,7 +670,7 @@ msgid "User {user} restricted."
 msgstr "მომხმარებელი {user} შეიზღუდა."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "ადმინისტრატორმა {0} გადახედა {user}-ის აღრიცხულ მოქმედებებს."
+msgstr "მმართველმა {0} გადახედა {user}-ის აღრიცხულ მოქმედებებს."
 
 msgid "{rating} for {addon} updated."
 msgstr "{addon}-ის {rating} განახლდა."
@@ -752,7 +752,7 @@ msgid "Content rejected"
 msgstr "შიგთავსი უარყოფილია"
 
 msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} მონაცემების მოთხოვნა შეცვლილი ან გაუქმებულია ადმინისტრატორის მიერ."
+msgstr "{addon} მონაცემების მოთხოვნა შეცვლილი ან გაუქმებულია მმართველის მიერ."
 
 msgid "Information request altered"
 msgstr "მონაცემების მოთხოვნა შეცვლილია"
@@ -764,22 +764,22 @@ msgid "Information request removed"
 msgstr "მონაცემების მოთხოვნა გაუქმებულია"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} საჭიროებს ადმინისტრატორის განხილვას."
+msgstr "{addon} {version} საჭიროებს მმართველის მიერ განხილვას."
 
 msgid "Admin add-on-review requested"
-msgstr "საჭიროებს ადმინისტრატორის განხილვას"
+msgstr "საჭიროებს მმართველის მიერ განხილვას"
 
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} შიგთავსი საჭიროებს ადმინისტრატორის განხილვას."
+msgstr "{addon} {version} შიგთავსი საჭიროებს მმართველის მიერ განხილვას."
 
 msgid "Admin content-review requested"
-msgstr "შიგთავსი საჭიროებს ადმინისტრატორის განხილვას"
+msgstr "შიგთავსი საჭიროებს მმართველის მიერ განხილვას"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} თემა საჭიროებს ადმინისტრატორის განხილვას."
+msgstr "{addon} {version} თემა საჭიროებს მმართველის მიერ განხილვას."
 
 msgid "Admin theme-review requested"
-msgstr "თემა საჭიროებს ადმინისტრატორის განხილვას"
+msgstr "თემა საჭიროებს მმართველის მიერ განხილვას"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} გადმოტანილია მსუბუქი თემიდან."
@@ -2752,7 +2752,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "თქვენი დამატება შეტანილია ჩვენს გალერეაში და მომხმარებლები იღებენ ავტომატურ განახლებებს."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr "თქვენი დამატება შეზღუდულია საიტის ადმინისტრატორის მიერ და ამოღებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.org."
+msgstr "თქვენი დამატება შეზღუდულია საიტის მმართველის მიერ და ამოღებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "თქვენი დამატება არ გამოჩნდება ძიების შედეგებში, მის გვერდზე კი მიეთითება, რომ არაა ხელმისაწვდომი. ასეთ შემთხვევაში, წარდგენილი ახალი ვერსიები არ მიიღება."
@@ -2813,7 +2813,7 @@ msgid "Unlisted Review Page"
 msgstr "გამოუქვეყნებლის განსახილველი გვერდი"
 
 msgid "Admin Manage"
-msgstr "ადმინისტრატორის გამართვა"
+msgstr "მმართველის გამართვა"
 
 msgid "View Statistics Dashboard"
 msgstr "სტატისტიკური მონაცემების გვერდი"
@@ -5223,7 +5223,7 @@ msgid "Search by add-on name / author email"
 msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით"
 
 msgid "Needs Admin Code Review"
-msgstr "კოდი საჭიროებს ადმინისტრატორის მიმოხილვას"
+msgstr "კოდი საჭიროებს მმართველის მიერ გადახედვას"
 
 msgid "yes"
 msgstr "დიახ"
@@ -5271,10 +5271,10 @@ msgid "Skip for now"
 msgstr "ამჟამად გამოტოვება"
 
 msgid "Needs Admin Content Review"
-msgstr "დამატების შიგთავსი საჭიროებს ადმინისტრატორის მიმოხილვას"
+msgstr "დამატების შიგთავსი საჭიროებს მმართველის მიერ გადახედვას"
 
 msgid "Needs Admin Static Theme Review"
-msgstr "უცვლელი თემა საჭიროებს ადმინისტრატორის მიმოხილვას"
+msgstr "უცვლელი თემა საჭიროებს მმართველის მიერ გადახედვას"
 
 msgid "Requires Restart"
 msgstr "საჭიროებს გადატვირთვას"
@@ -5376,7 +5376,7 @@ msgid "Request super-review"
 msgstr "განსაკუთრებული განხილვის მოთხოვნა"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "თუ გარკვეული მოსაზრებები გაგაჩნიათ ამ დამატების შესახებ, რომელიც გსურთ მიმომხილველმა ადმინისტრატორმა გაითვალისწინოს, დატოვეთ კომენტარი ქვემოთ. შემმუშავებელს არ გაეგზავნება."
+msgstr "თუ გარკვეული მოსაზრებები გაგაჩნიათ ამ დამატების შესახებ, რომელიც გსურთ მიმომხილველმა მმართველმა გაითვალისწინოს, დატოვეთ კომენტარი ქვემოთ. შემმუშავებელს არ გაეგზავნება."
 
 msgid "Comment"
 msgstr "შენიშვნა"
@@ -5770,19 +5770,19 @@ msgid "Clear information request"
 msgstr "მონაცემების მოთხოვნის წაშლა"
 
 msgid "Clear Admin Code Review Flag"
-msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
+msgstr "მმართველის მიმოხილვის მონიშვნის მოხსნა"
 
 msgid "Clear Admin Content Review Flag"
-msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
+msgstr "მმართველის მიმოხილვის მონიშვნის მოხსნა"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
+msgstr "მმართველის მიმოხილვის მონიშვნის მოხსნა"
 
 msgid "(admin)"
-msgstr "(ადმინისტრატორი)"
+msgstr "(მმართველი)"
 
 msgid "Admin Page"
-msgstr "ადმინისტრატორის გვერდი"
+msgstr "მმართველის გვერდი"
 
 msgid "Review This Add-on"
 msgstr "დამატების მიმოხილვა"

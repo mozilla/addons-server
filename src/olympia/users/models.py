@@ -659,16 +659,26 @@ class IPNetworkUserRestriction(ModelBase):
         help_text=_(
             'Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'))
 
+    error_message = _('Multiple add-ons violating our policies have been'
+                      ' submitted from your location. The IP address has been'
+                      ' blocked.')
+
     class Meta:
         db_table = 'users_user_network_restriction'
 
+    def __str__(self):
+        return str(self.network)
+
     @classmethod
     def allow_request(self, request):
+        """
+        Return whether the specified request should be allowed to submit
+        add-ons.
+        """
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
         except ValueError:
             # If we don't have a valid ip address, let's deny
-            # TODO: Verify this is what we want…
             return False
 
         restrictions = IPNetworkUserRestriction.objects.all()
@@ -677,13 +687,6 @@ class IPNetworkUserRestriction(ModelBase):
             if remote_addr in restriction.network:
                 return False
         return True
-
-    @classmethod
-    def get_error_message(self, request):
-        return _(
-            'Multiple add-ons violating our policies have been'
-            ' submitted from your location. The IP address has been'
-            ' blocked.')
 
 
 class EmailUserRestriction(ModelBase):
@@ -694,21 +697,48 @@ class EmailUserRestriction(ModelBase):
         validators=[simple_domain_name_validator],
     )
 
+    error_message = _('The email address you used for your developer account'
+                      ' is not allowed for add-on submission.')
+
     class Meta:
         db_table = 'users_user_email_restriction'
 
+    def __str__(self):
+        return str(self.email)
+
     @classmethod
-    def allow_email(self, email):
+    def allow_request(self, request):
+        """
+        Return whether the specified request should be allowed to submit
+        add-ons.
+        """
+        if not request.user.is_authenticated:
+            return False
+
         restrictions = EmailUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if email.endswith(restriction.domain):
+            if request.user.email.endswith(restriction.domain):
                 return False
         return True
 
-    def get_error_message(self, request):
-        return _('The email address you used for your developer account'
-                 ' is not allowed for add-on submission.')
+
+class DeveloperAgreementRestriction:
+    error_message = _('Before starting, please read and accept our Firefox'
+                      ' Add-on Distribution Agreement as well as our Review'
+                      ' Policies and Rules. The Firefox Add-on Distribution'
+                      ' Agreement also links to our Privacy Notice which'
+                      ' explains how we handle your information.')
+
+    @classmethod
+    def allow_request(cls, request):
+        """
+        Return whether the specified request should be allowed to submit
+        add-ons.
+        """
+        allowed = (request.user.is_authenticated and
+                   request.user.has_read_developer_agreement())
+        return allowed
 
 
 class UserHistory(ModelBase):

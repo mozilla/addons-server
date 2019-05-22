@@ -394,7 +394,7 @@ class TestSortingFilter(FilterTestsBase):
         qs = self._filter()
         assert qs['sort'] == [
             self._reformat_order('-is_recommended'),
-            self._reformat_order('-weekly_downloads')]
+            self._reformat_order('-average_daily_users')]
 
     def test_sort_query(self):
         SORTING_PARAMS = copy.copy(SortingFilter.SORTING_PARAMS)
@@ -494,7 +494,7 @@ class TestSortingFilter(FilterTestsBase):
         qs = self._filter(data={'sort': 'recommended'})
         assert qs['sort'] == [
             self._reformat_order('-is_recommended'),
-            self._reformat_order('-weekly_downloads')]
+            self._reformat_order('-average_daily_users')]
 
 
 class TestSearchParameterFilter(FilterTestsBase):
