@@ -117,6 +117,8 @@ DJANGO_PERMISSIONS_MAPPING.update({
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,
+    'users.change_emailuserrestriction': ADMIN_ADVANCED,
+    'users.change_ipnetworkuserrestriction': ADMIN_ADVANCED,
 
     'ratings.change_rating': RATINGS_MODERATE,
     'ratings.delete_rating': ADMIN_ADVANCED,

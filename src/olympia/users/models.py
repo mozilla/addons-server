@@ -695,7 +695,7 @@ class EmailUserRestriction(ModelBase):
         db_table = 'users_user_email_restriction'
 
     def __str__(self):
-        return str(self.email)
+        return str(self.email_pattern)
 
     @classmethod
     def allow_request(self, request):
