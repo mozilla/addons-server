@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-23 10:45+0000\n"
+"PO-Revision-Date: 2019-05-23 11:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -737,7 +737,7 @@ msgid "Content rejected"
 msgstr "విషయం తిరస్కరించబడింది"
 
 msgid "{addon} information request altered or removed by admin."
-msgstr ""
+msgstr "{addon} సమాచార అభ్యర్థన మార్చబడింది లేదా నిర్వాహకులచే తొలగించబడింది."
 
 msgid "Information request altered"
 msgstr "సమాచార అభ్యర్థన మార్చబడింది"
@@ -2106,7 +2106,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "{0} కోసం పొడిగింత మీడియా"
 
 msgid "Add-on icon"
 msgstr "పొడగింత ప్రతీకం"
@@ -2117,7 +2117,7 @@ msgid ""
 msgstr ""
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "మీ పొడగింత కోసం ఒక ప్రతీకాన్ని ఎంచుకోండి:"
 
 #. The size of the icon
 msgid "32x32px"
@@ -2231,7 +2231,7 @@ msgid "Delete Add-on"
 msgstr "పొడగింతను తొలగించు"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "మీ అలంకారాన్ని తొలగిస్తే అది సైటు నుండి శాశ్వతంగా తీసివేయబడుతుంది."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2242,7 +2242,7 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "మీ అలంకారాన్ని ఎందుకు తొలగిస్తున్నారో దయచేసి మాకు చెప్పండి:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
@@ -2949,7 +2949,7 @@ msgstr "వాడుకరి చిత్రం"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr ""
+msgstr "<a href=\"%(register)s\">నమోదవండి</a> లేదా <a href=\"%(login)s\">ప్రవేశించండి</a>"
 
 msgid "Customize Firefox"
 msgstr "Firefox‌ను తీర్చిదిద్దుకోండి"
@@ -2961,7 +2961,7 @@ msgid ""
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
-msgstr ""
+msgstr "పొడగింతలు ఎలా చేయాలో తెలుసుకోండి"
 
 msgid "Port a Chrome Extension"
 msgstr ""
