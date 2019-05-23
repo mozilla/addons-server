@@ -1232,9 +1232,7 @@ class Addon(OnChangeMixin, ModelBase):
         except DiscoveryItem.DoesNotExist:
             recommended = False
         else:
-            recommended = (
-                item.recommendable and self.current_version and
-                self.current_version.recommendation_approved)
+            recommended = item.recommended_status == DiscoveryItem.RECOMMENDED
         if not recommended and self.type == amo.ADDON_STATICTHEME:
             recommended = CollectionAddon.objects.filter(
                 collection_id=settings.COLLECTION_FEATURED_THEMES_ID,

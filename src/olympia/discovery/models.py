@@ -15,6 +15,10 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 
 @python_2_unicode_compatible
 class DiscoveryItem(OnChangeMixin, ModelBase):
+    RECOMMENDED = 'Recommended'
+    PENDING_RECOMMENDATION = 'Pending Recommendation'
+    NOT_RECOMMENDED = 'Not Recommended'
+
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE,
         help_text='Add-on id this item will point to (If you do not know the '
@@ -164,6 +168,16 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         be returned by the disco pane API.
         """
         return self._build_description(html=False)
+
+    @property
+    def recommended_status(self):
+        return (
+            self.RECOMMENDED if (
+                self.recommendable and
+                self.addon.current_version and
+                self.addon.current_version.recommendation_approved) else
+            self.PENDING_RECOMMENDATION if self.recommendable else
+            self.NOT_RECOMMENDED)
 
 
 @DiscoveryItem.on_change

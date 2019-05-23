@@ -76,10 +76,10 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             'all': ('css/admin/discovery.css',)
         }
     list_display = ('__str__', 'custom_addon_name', 'custom_heading',
-                    'position', 'position_china', 'recommendable')
+                    'position', 'position_china', 'recommended_status')
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
-    readonly_fields = ('previews',)
+    readonly_fields = ('recommended_status', 'previews',)
     view_on_site = False
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
