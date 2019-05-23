@@ -24,7 +24,11 @@ from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewerScore
 from olympia.users.admin import UserAdmin
-from olympia.users.models import UserProfile
+from olympia.users.models import (
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    UserProfile
+)
 
 
 class TestUserAdmin(TestCase):
@@ -495,3 +499,34 @@ class TestUserAdmin(TestCase):
             '?user=%d' % self.user.pk)
         assert url == expected_url
         assert text == '2'
+
+
+class TestEmailUserRestrictionAdmin(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:Tools')
+        self.grant_permission(self.user, 'Admin:Advanced')
+
+        self.client.login(email=self.user.email)
+        self.list_url = reverse('admin:users_emailuserrestriction_changelist')
+
+    def test_list(self):
+        EmailUserRestriction.objects.create(email_pattern='*@*foo.com')
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+
+
+class TestIPNetworkUserRestrictionAdmin(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:Tools')
+        self.grant_permission(self.user, 'Admin:Advanced')
+
+        self.client.login(email=self.user.email)
+        self.list_url = reverse(
+            'admin:users_ipnetworkuserrestriction_changelist')
+
+    def test_list(self):
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/24')
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200

@@ -624,6 +624,9 @@ class TestDeniedName(TestCase):
 
 
 class TestIPNetworkUserRestriction(TestCase):
+    def test_str(self):
+        obj = IPNetworkUserRestriction.objects.create(network='192.168.1.0/24')
+        assert str(obj) == '192.168.1.0/24'
 
     def test_allowed_ip4_address(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
@@ -672,6 +675,10 @@ class TestIPNetworkUserRestriction(TestCase):
 
 
 class TestEmailUserRestriction(TestCase):
+    def test_str(self):
+        obj = EmailUserRestriction.objects.create(email_pattern='fôo@bar.com')
+        assert str(obj) == 'fôo@bar.com'
+
     def test_email_allowed(self):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
