@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 17:12+0000\n"
+"PO-Revision-Date: 2019-05-23 01:54+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1560,9 +1560,8 @@ msgstr "ਆਪਣੇ ਆਪ ਤੇ। <span class=\"helptext\">ਸਵੈ-ਡਿ�
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "ਵਰਗ ਨੂੰ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ, ਜਦੋਂ ਕਿ ਤੁਹਾਡੀ ਐਡਆਨ ਫੀਚਰ ਹੈ।"
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "ਅਵੈਧ ਜਾਂ ਖਰਾਬ ਆਰਕਾਈਵ।"
+msgstr "ਗ਼ਲਤ ਜਾਂ ਖਰਾਬ ਐਡ-ਆਨ ਫ਼ਾਇਲ ਹੈ।"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "ਤੁਹਾਡੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਦਰਜ ਕੀਤੀ ਗਈ ਫਾਇਲ ਵਿੱਚ ਮਿਲੀ ਸੀ। ਆਪਣੇ ਖਾਤੇ ਦੀ ਰੱਖਿਆ ਕਰਨ ਲਈ, ਕੁੰਜੀ ਨੂੰ ਰੱਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
@@ -5370,9 +5369,8 @@ msgstr "ਸਮੱਗਰੀ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਦੀ ਸਮਗਰੀ ਦੀ ਤੁਹਾਡੀ ਅਨੁਮਤੀ ਨੂੰ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ।"
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "ਆਟੋ-ਮਨਜ਼ੂਰ ਐਡਆਨ"
+msgstr "ਪਹਿਲੋਂ-ਮਨਜ਼ੂਰ ਐਡ-ਆਨ"
 
 msgid "New ({0})"
 msgstr "ਨਵਾਂ ({0})"
@@ -5789,9 +5787,9 @@ msgstr "ਟਿੱਪਣੀਆਂ ਲੁਕਾਓ"
 msgid "No reviews found for this period."
 msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] %(date)s ਉੱਤੇ %(object)s ਰਿਪੋਰਟ ਕੀਤਾ"
+msgstr "%(user)s [%(country_code)s] ਨੇ %(object)s ਬਾਰੇ %(date)s ਨੂੰ ਰਿਪੋਰਟ ਕੀਤਾ"
 
 msgid "Dismiss this announcement"
 msgstr "ਇਹ ਐਲਾਨ ਖਾਰਜ ਕਰੋ"
@@ -5868,9 +5866,9 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "ਮਿਆਦ ਪੁੱਗੀ ਜਾਣਕਾਰੀ ਬੇਨਤੀ ({0})"
 msgstr[1] "ਮਿਆਦ ਪੁੱਗ ਗਈ ਜਾਣਕਾਰੀ ਬੇਨਤੀਆਂ ({0})"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "ਗਲਤ ਵੰਨਗੀ ਹੱਦ।"
+msgstr "ਗਲਤ \"%s\" ਪੈਰਾਮੀਟਰ ਹੈ।"
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
