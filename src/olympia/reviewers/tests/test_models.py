@@ -21,11 +21,11 @@ from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, ReviewerScore,
-    ReviewerSubscription, ViewExtensionFullReviewQueue,
-    ViewExtensionPendingQueue, ViewRecommendedQueue, ViewThemeFullReviewQueue,
+    AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
+    ViewExtensionQueue, ViewRecommendedQueue, ViewThemeFullReviewQueue,
     ViewThemePendingQueue, ViewUnlistedAllList, send_notifications,
     set_reviewing_cache, CannedResponse)
+
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -92,9 +92,9 @@ class TestQueue(TestCase):
         assert self.Queue.objects.all().count() == 2
 
 
-class TestExtensionPendingQueue(TestQueue):
+class TestExtensionQueueWithAwaitingReview(TestQueue):
     __test__ = True
-    Queue = ViewExtensionPendingQueue
+    Queue = ViewExtensionQueue
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def new_addon(self, name=u'Pending', version=u'1.0'):
@@ -170,9 +170,9 @@ class TestThemePendingQueue(TestQueue):
     Queue = ViewThemePendingQueue
 
 
-class TestExtensionFullReviewQueue(TestQueue):
+class TestExtensionQueueWithNominated(TestQueue):
     __test__ = True
-    Queue = ViewExtensionFullReviewQueue
+    Queue = ViewExtensionQueue
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def new_addon(self, name=u'Nominated', version=u'1.0',

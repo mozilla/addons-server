@@ -25,7 +25,7 @@ from olympia.amo.utils import send_mail
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.reviewers.models import (
-    AutoApprovalSummary, ReviewerScore, ViewExtensionPendingQueue)
+    AutoApprovalSummary, ReviewerScore, ViewExtensionQueue)
 from olympia.reviewers.utils import (
     PENDING_STATUSES, ReviewAddon, ReviewFiles, ReviewHelper,
     ViewUnlistedAllListTable, view_table_factory)
@@ -38,11 +38,11 @@ pytestmark = pytest.mark.django_db
 REVIEW_FILES_STATUSES = (amo.STATUS_APPROVED, amo.STATUS_DISABLED)
 
 
-class TestViewPendingQueueTable(TestCase):
+class TestViewExtensionQueueTable(TestCase):
 
     def setUp(self):
-        super(TestViewPendingQueueTable, self).setUp()
-        self.table = view_table_factory(ViewExtensionPendingQueue)([])
+        super().setUp()
+        self.table = view_table_factory(ViewExtensionQueue)([])
 
     def test_addon_name(self):
         row = Mock()

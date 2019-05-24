@@ -84,14 +84,10 @@ def queue_tabnav(context):
                  ugettext('Recommended ({0})').format(counts['recommended'])),
             )
         if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
-            new_text = ugettext('New ({0})')
-            update_text = ungettext(
-                'Update ({0})', 'Updates ({0})', counts['extension_pending'])
+            new_text = ugettext('Other Pending Review ({0})')
             tabnav.extend((
-                ('extension_nominated', 'queue_extension_nominated',
-                 '🛠️ ' + new_text.format(counts['extension_nominated'])),
-                ('extension_pending', 'queue_extension_pending',
-                 '🛠️ ' + update_text.format(counts['extension_pending'])),
+                ('extension', 'queue_extension',
+                 '🛠️ ' + new_text.format(counts['extension'])),
             ))
         if acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
             new_text = ugettext('New ({0})')
