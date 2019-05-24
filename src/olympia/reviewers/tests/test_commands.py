@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
-from unittest import mock
 import six
 
 from olympia import amo
@@ -17,9 +17,10 @@ from olympia.addons.models import (
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.amo.utils import days_ago
-from olympia.lib.crypto.signing import SigningError
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileValidation
 from olympia.files.utils import atomic_lock
+from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.management.commands import auto_approve
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
@@ -134,6 +135,20 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             file_kw={'is_webextension': True})
         version_factory(addon=complex_addon, file_kw={
             'status': amo.STATUS_AWAITING_REVIEW})
+
+        # Some recommended add-ons - one nominated and one update
+        DiscoveryItem.objects.create(
+            recommendable=True,
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                version_kw={'recommendation_approved': True},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW}))
+        DiscoveryItem.objects.create(
+            recommendable=True,
+            addon=version_factory(
+                addon=addon_factory(),
+                recommendation_approved=True,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW}).addon)
 
         # Finally, add a second file to self.version to test the distinct().
         file_factory(

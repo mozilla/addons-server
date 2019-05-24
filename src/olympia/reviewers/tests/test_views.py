@@ -37,6 +37,7 @@ from olympia.amo.tests import (
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
@@ -500,7 +501,20 @@ class TestDashboard(TestCase):
 
     def test_admin_all_permissions(self):
         # Create a lot of add-ons to test the queue counts.
-        # Nominated and pending.
+        # Recommended extensions
+        DiscoveryItem.objects.create(
+            recommendable=True,
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                version_kw={'recommendation_approved': True},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW}))
+        DiscoveryItem.objects.create(
+            recommendable=True,
+            addon=version_factory(
+                addon=addon_factory(),
+                recommendation_approved=True,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW}).addon)
+        # Nominated and pending themes
         addon_factory(
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
@@ -508,14 +522,15 @@ class TestDashboard(TestCase):
         version_factory(
             addon=addon_factory(type=amo.ADDON_STATICTHEME),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # Nominated and pending extensions.
         version_factory(
             addon=addon_factory(),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        under_admin_review = addon_factory(
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         AddonReviewerFlags.objects.create(
-            addon=under_admin_review, needs_admin_code_review=True)
+            needs_admin_code_review=True,
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW}))
         under_admin_review_and_pending = addon_factory()
         AddonReviewerFlags.objects.create(
             addon=under_admin_review_and_pending,
@@ -610,6 +625,7 @@ class TestDashboard(TestCase):
         doc = pq(response.content)
         assert len(doc('.dashboard h3')) == 8  # All sections are present.
         expected_links = [
+            reverse('reviewers.queue_recommended'),
             reverse('reviewers.queue_extension_nominated'),
             reverse('reviewers.queue_extension_pending'),
             reverse('reviewers.performance'),
@@ -637,20 +653,21 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         # pre-approval addons
-        assert doc('.dashboard a')[0].text == 'New (1)'
-        assert doc('.dashboard a')[1].text == 'Updates (2)'
+        assert doc('.dashboard a')[0].text == 'Recommended (2)'
+        assert doc('.dashboard a')[1].text == 'Other New (1)'
+        assert doc('.dashboard a')[2].text == 'Other Updates (2)'
         # auto-approved addons
-        assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[9].text == 'Content Review (4)'
+        assert doc('.dashboard a')[10].text == 'Content Review (4)'
         # themes
-        assert doc('.dashboard a')[11].text == 'New (1)'
-        assert doc('.dashboard a')[12].text == 'Updates (1)'
+        assert doc('.dashboard a')[12].text == 'New (1)'
+        assert doc('.dashboard a')[13].text == 'Updates (1)'
         # user ratings moderation
-        assert (doc('.dashboard a')[16].text ==
+        assert (doc('.dashboard a')[17].text ==
                 'Ratings Awaiting Moderation (1)')
         # admin tools
-        assert (doc('.dashboard a')[22].text ==
+        assert (doc('.dashboard a')[23].text ==
                 'Expired Information Requests (2)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -733,8 +750,8 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New (1)'
-        assert doc('.dashboard a')[1].text == 'Updates (2)'
+        assert doc('.dashboard a')[0].text == 'Other New (1)'
+        assert doc('.dashboard a')[1].text == 'Other Updates (2)'
 
     def test_post_reviewer(self):
         # Create an add-on to test the queue count. It's under admin content
@@ -970,9 +987,9 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New (0)'
+        assert doc('.dashboard a')[0].text == 'Other New (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[1].text == 'Updates (0)'
+        assert doc('.dashboard a')[1].text == 'Other Updates (0)'
         assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
         assert 'target' not in doc('.dashboard a')[6].attrib
         assert doc('.dashboard a')[7].text == 'Moderation Guide'
@@ -1007,16 +1024,6 @@ class QueueTest(ReviewerTest):
         if subset is None:
             subset = []
         files = files or OrderedDict([
-            ('Pending One', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_APPROVED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
-            }),
-            ('Pending Two', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_APPROVED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
-            }),
             ('Nominated One', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
@@ -1025,6 +1032,16 @@ class QueueTest(ReviewerTest):
             ('Nominated Two', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
+            }),
+            ('Pending One', {
+                'version_str': '0.1',
+                'addon_status': amo.STATUS_APPROVED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
+            }),
+            ('Pending Two', {
+                'version_str': '0.1',
+                'addon_status': amo.STATUS_APPROVED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Public', {
@@ -1308,7 +1325,10 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected.append(reverse('reviewers.queue_expired_info_requests'))
+        expected = (
+            [reverse('reviewers.queue_recommended')] +
+            expected +
+            [reverse('reviewers.queue_expired_info_requests')])
         assert links == expected
 
 
@@ -1579,6 +1599,78 @@ class TestThemeNominatedQueue(QueueTest):
         # Even if you have that permission also
         self.grant_permission(self.user, 'Addons:Review')
         self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
+
+
+class TestRecommendedQueue(QueueTest):
+    def setUp(self):
+        super().setUp()
+        self.grant_permission(self.user, 'Reviews:Admin')
+        # These should be the only ones present.
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'])
+        for addon in self.expected_addons:
+            DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        self.url = reverse('reviewers.queue_recommended')
+
+    def test_results(self):
+        self._test_results()
+
+    def test_results_two_versions(self):
+        version1 = self.addons['Nominated One'].versions.all()[0]
+        version2 = self.addons['Nominated Two'].versions.all()[0]
+        file_ = version2.files.get()
+
+        # Versions are ordered by creation date, so make sure they're set.
+        past = self.days_ago(1)
+        version2.update(created=past, nomination=past)
+
+        # Create another version, v0.2, by "cloning" v0.1.
+        version2.pk = None
+        version2.version = '0.2'
+        version2.save()
+
+        # Reset creation date once it has been saved.
+        future = datetime.now() - timedelta(seconds=1)
+        version2.update(created=future, nomination=future)
+
+        # Associate v0.2 it with a file.
+        file_.pk = None
+        file_.version = version2
+        file_.save()
+
+        # disable old files like Version.from_upload() would.
+        version2.disable_old_files()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        expected = [
+            ('Nominated One 0.1', reverse('reviewers.review',
+                                          args=[version1.addon.slug])),
+            ('Nominated Two 0.2', reverse('reviewers.review',
+                                          args=[version2.addon.slug])),
+        ]
+        doc = pq(response.content)
+        check_links(
+            expected,
+            doc('#addon-queue tr.addon-row td a:not(.app-icon)'),
+            verify=False)
+
+    def test_queue_layout(self):
+        self._test_queue_layout(
+            'Recommended', tab_position=0, total_addons=4, total_queues=4)
+
+    def test_nothing_recommended_filtered_out(self):
+        version = self.addons['Nominated One'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending Two'], auto_approval_disabled=False)
+
         self._test_results()
 
 
@@ -2168,7 +2260,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout('Content Review',
-                                tab_position=2, total_addons=3, total_queues=4)
+                                tab_position=3, total_addons=3, total_queues=5)
 
 
 class TestPerformance(QueueTest):

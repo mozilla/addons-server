@@ -3,11 +3,10 @@ import json
 import time
 
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django.conf import settings
 from django.core import mail
-
-from unittest import mock
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -17,15 +16,16 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, ReviewerScore,
     ReviewerSubscription, ViewExtensionFullReviewQueue,
-    ViewExtensionPendingQueue, ViewThemeFullReviewQueue, ViewThemePendingQueue,
-    ViewUnlistedAllList, send_notifications, set_reviewing_cache,
-    CannedResponse)
+    ViewExtensionPendingQueue, ViewRecommendedQueue, ViewThemeFullReviewQueue,
+    ViewThemePendingQueue, ViewUnlistedAllList, send_notifications,
+    set_reviewing_cache, CannedResponse)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -201,6 +201,50 @@ class TestExtensionFullReviewQueue(TestQueue):
 
 class TestThemeFullReviewQueue(TestQueue):
     Queue = ViewThemeFullReviewQueue
+
+
+class TestRecommendedQueue(TestQueue):
+    __test__ = True
+    Queue = ViewRecommendedQueue
+    channel = amo.RELEASE_CHANNEL_LISTED
+
+    def new_addon(self, name=u'Nominated', version=u'1.0',
+                  addon_status=amo.STATUS_NOMINATED,
+                  file_status=amo.STATUS_AWAITING_REVIEW):
+        addon = addon_factory(
+            name=name, status=addon_status,
+            version_kw={'version': version, 'channel': self.channel},
+            file_kw={'status': file_status})
+        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        return addon
+
+    def new_search_ext(self, name, version, **kw):
+        addon = create_search_ext(
+            name, version, amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
+            channel=self.channel, **kw)
+        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        return addon
+
+    def test_new_submissions_and_updates_present(self):
+        self.new_addon()
+        version_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            addon=self.new_addon(
+                addon_status=amo.STATUS_APPROVED,
+                file_status=amo.STATUS_APPROVED,
+                name='Updated'))
+        # Add some extras that shouldn't be there
+        self.new_addon(
+            addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
+            name='No updates')
+        DiscoveryItem.objects.get(
+            addon=self.new_addon(name='Not recommendable')).update(
+            recommendable=False)
+        DiscoveryItem.objects.get(
+            addon=self.new_addon(name='Not discovery item')).delete()
+
+        assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
+            ['Nominated', 'Updated'])
 
 
 class TestUnlistedAllList(TestCase):
