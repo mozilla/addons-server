@@ -24,6 +24,7 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
+from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     ReviewerScore, ViewUnlistedAllList, get_flags, get_flags_for_row)
@@ -499,6 +500,17 @@ class ReviewBase(object):
             file.status = status
             file.save()
 
+    def set_recommended(self):
+        try:
+            item = self.addon.discoveryitem
+        except DiscoveryItem.DoesNotExist:
+            return
+        if item.recommendable:
+            # These addons shouldn't be be attempted for auto approval anyway,
+            # but double check that the cron job isn't trying to approve it.
+            assert not self.user.id == settings.TASK_USER_ID
+            self.version.update(recommendation_approved=True)
+
     def log_action(self, action, version=None, files=None,
                    timestamp=None):
         details = {'comments': self.data['comments'],
@@ -646,6 +658,7 @@ class ReviewBase(object):
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_APPROVED, self.files)
+        self.set_recommended()
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
 

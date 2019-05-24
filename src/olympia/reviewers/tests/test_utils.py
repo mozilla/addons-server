@@ -22,6 +22,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, file_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ViewExtensionPendingQueue)
@@ -1284,6 +1285,34 @@ class TestReviewHelper(TestCase):
         context_data = self.helper.handler.get_context_data()
         assert context_data['dev_versions_url'] == absolutify(
             reverse('devhub.addons.versions', args=[self.addon.id]))
+
+    def test_nominated_to_approved_recommended(self):
+        DiscoveryItem.objects.create(
+            addon=self.addon, recommendable=True)
+        assert not self.addon.is_recommended
+        self.test_nomination_to_public()
+        del self.addon.is_recommended
+        assert self.addon.current_version.recommendation_approved is True
+        assert self.addon.is_recommended
+
+    def test_approved_update_recommended(self):
+        DiscoveryItem.objects.create(
+            addon=self.addon, recommendable=True)
+        assert not self.addon.is_recommended
+        self.test_public_addon_with_version_awaiting_review_to_public()
+        del self.addon.is_recommended
+        assert self.addon.current_version.recommendation_approved is True
+        assert self.addon.is_recommended is True
+
+    def test_autoapprove_fails_for_recommended(self):
+        DiscoveryItem.objects.create(
+            addon=self.addon, recommendable=True)
+        assert not self.addon.is_recommended
+        self.request.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
+        with self.assertRaises(AssertionError):
+            self.test_nomination_to_public()
+        assert self.addon.current_version.recommendation_approved is False
+        assert not self.addon.is_recommended
 
 
 def test_send_email_autoescape():

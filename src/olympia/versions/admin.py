@@ -17,7 +17,7 @@ class VersionAdmin(admin.ModelAdmin):
         js = ('js/admin/l10n.js',)
 
     view_on_site = False
-    readonly_fields = ('version', 'channel')
+    readonly_fields = ('version', 'channel', 'recommendation_approved')
 
     raw_id_fields = ('addon', 'license')
 
