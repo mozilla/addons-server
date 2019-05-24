@@ -251,3 +251,16 @@ class TestDiscoveryItem(TestCase):
         assert q.get('utm_medium') == 'firefox-browser'
         assert q.get('utm_content') == 'discopane-entry-link'
         assert q.get('src') == 'api'
+
+    def test_recommended_status(self):
+        item = DiscoveryItem.objects.create(addon=addon_factory())
+        assert item.recommended_status == DiscoveryItem.NOT_RECOMMENDED
+
+        item.update(recommendable=True)
+        assert item.recommended_status == DiscoveryItem.PENDING_RECOMMENDATION
+
+        item.addon.current_version.update(recommendation_approved=True)
+        assert item.recommended_status == DiscoveryItem.RECOMMENDED
+
+        item.update(recommendable=False)
+        assert item.recommended_status == DiscoveryItem.NOT_RECOMMENDED
