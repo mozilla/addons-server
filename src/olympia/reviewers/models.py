@@ -195,7 +195,7 @@ class ViewQueue(RawSQLModel):
 
 
 def _int_join(list_of_ints):
-    return ','.join(str(int_) for int_ in list_of_ints)
+    return ','.join(str(int(int_)) for int_ in list_of_ints)
 
 
 class FullReviewQueueMixin:

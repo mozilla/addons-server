@@ -1603,7 +1603,6 @@ class TestThemeNominatedQueue(QueueTest):
 
 
 class TestRecommendedQueue(QueueTest):
-    # FIXME
     def setUp(self):
         super().setUp()
         self.grant_permission(self.user, 'Reviews:Admin')

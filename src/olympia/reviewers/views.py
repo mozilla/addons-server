@@ -163,9 +163,9 @@ def dashboard(request):
 
         sections[ugettext('Pre-Reviewed Add-ons')] = []
         if admin_reviewer:
-            recommended_queue = ViewRecommendedQueue.objects
+            recommended_queue_count = ViewRecommendedQueue.objects.count()
             sections[ugettext('Pre-Reviewed Add-ons')].append((
-                ugettext(f'Recommended ({recommended_queue.count()})'),
+                ugettext('Recommended ({0})').format(recommended_queue_count),
                 reverse('reviewers.queue_recommended')
             ))
         sections[ugettext('Pre-Reviewed Add-ons')].extend(((
