@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-25 06:21+0000\n"
+"PO-Revision-Date: 2019-05-25 06:50+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -25,7 +25,7 @@ msgid "This reviewer name cannot be used."
 msgstr "ਇਹ ਸਮੀਖਿਅਕ ਦਾ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr "ਹੋਮਪੇਜ ਖੇਤਰ ਨੂੰ ਸਿਰਫ਼ ਬਾਹਰੀ ਵੈਬਸਾਈਟਸ ਨਾਲ ਲਿੰਕ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।"
+msgstr "ਮੁੱਖ-ਸਫ਼ੇ ਖੇਤਰ ਨੂੰ ਸਿਰਫ਼ ਬਾਹਰੀ ਵੈਬਸਾਈਟਾਂ ਨਾਲ ਲਿੰਕ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।"
 
 msgid "Images must be either PNG or JPG."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
@@ -35,7 +35,7 @@ msgstr "ਤਸਵੀਰ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ %dMB ਤੋਂ ਛੋਟੀਆਂ ਤਸਵੀਰਾਂ ਵਰਤੋਂ।"
+msgstr "%dMB ਤੋਂ ਛੋਟੀਆਂ ਤਸਵੀਰਾਂ ਵਰਤੋਂ।"
 
 msgid "You are already logged in."
 msgstr "ਤੁਸੀ ਪਹਿਲਾਂ ਹੀ ਲਾਗ-ਇਨ ਹੋ।"
@@ -47,13 +47,13 @@ msgid "Your Firefox Account could not be found. Please try again."
 msgstr "ਤੁਹਾਡਾ ਫਾਈਰਫਾਕਸ ਖਾਤਾ ਲੱਭਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
 
 msgid "You could not be logged in. Please try again."
-msgstr "ਤੁਸੀਂ ਲਾੱਗਇਨ ਨਹੀਂ ਹੋ ਸਕੇ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
+msgstr "ਤੁਸੀਂ ਲਾਗਇਨ ਨਹੀਂ ਹੋ ਸਕੇ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
 
 msgid "Need help?"
 msgstr "ਮਦਦ ਚਾਹੀਦੀ ਹੈ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "ਐਡ-ਆਨ ਜਾਂ ਥੀਮ ਦੇ ਡਿਵੈਲਪਰ ਆਪਣਾ ਖਾਤਾ ਨਹੀਂ ਮਿਟਾ ਸਕਦੇ। ਤੁਹਾਨੂੰ ਇਸ ਅਕਾਊਂਟ ਨਾਲ ਸਬੰਧਿਤ ਸਾਰੇ ਐਡ-ਆਨ ਅਤੇ ਥੀਮ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਾਂ ਉਨ੍ਹਾਂ ਨੂੰ ਦੂਜੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਟਰਾਂਸਫਰ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।"
+msgstr "ਐਡ-ਆਨ ਜਾਂ ਥੀਮ ਦੇ ਡਿਵੈਲਪਰ ਆਪਣਾ ਖਾਤਾ ਨਹੀਂ ਮਿਟਾ ਸਕਦੇ। ਤੁਹਾਨੂੰ ਇਸ ਅਕਾਊਂਟ ਨਾਲ ਸਬੰਧਿਤ ਸਾਰੇ ਐਡ-ਆਨ ਅਤੇ ਥੀਮ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਾਂ ਉਨ੍ਹਾਂ ਨੂੰ ਦੂਜੇ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਟਰਾਂਸਫਰ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।"
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -155,7 +155,7 @@ msgid "My Profile"
 msgstr "ਮੇਰਾ ਬਿਉਰਾ"
 
 msgid "Account Settings"
-msgstr "ਖਾਤਾ ਸੈਟਿੰਗ"
+msgstr "ਖਾਤਾ ਸੈਟਿੰਗਾਂ"
 
 msgid "My Collections"
 msgstr "ਮੇਰੇ ਸੰਗ੍ਰਹਿ"
@@ -167,10 +167,10 @@ msgid "Log out"
 msgstr "ਬਾਹਰ ਹੋਵੋ"
 
 msgid "Manage My Submissions"
-msgstr "ਮੇਰੀਆਂ ਪੇਸ਼ਕਸ਼ਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
+msgstr "ਮੇਰੀਆਂ ਪੇਸ਼ਕਸ਼ਾਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰੋ"
 
 msgid "Submit a New Add-on"
-msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
+msgstr "ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
 msgid "Submit a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
@@ -179,7 +179,7 @@ msgid "Developer Hub"
 msgstr "ਡਿਵੈਲਪਰ ਹਬ"
 
 msgid "Manage API Keys"
-msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
+msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰੋ"
 
 msgid "Reviewer Tools"
 msgstr "ਪੜਤਾਲ ਸੰਦ"
@@ -239,10 +239,10 @@ msgid "Page Not Found"
 msgstr "ਇਹ ਸਫ਼ਾ ਨਹੀਂ ਲੱਭਿਆI"
 
 msgid "Firefox Add-ons"
-msgstr "ਫਾਇਰਫੌਕਸ ਦੇ ਐਡ-ਆਨ"
+msgstr "ਫਾਇਰਫਾਕਸ ਦੇ ਐਡ-ਆਨ"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "ਅਫਸੋਸ ਹੈ, ਪਰ ਸਾਡੇ ਦੁਆਰਾ ਦਿੱਤੇ ਗਏ ਪਤੇ ਤੇ ਸਾਨੂੰ ਕੁਝ ਨਹੀਂ ਮਿਲ ਸਕਦਾ। ਜੇ ਤੁਸੀਂ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਲਿੰਕ ਦਾ ਅਨੁਸਰਣ ਕਰਦੇ ਹੋ, ਤਾਂ ਸੰਭਵ ਹੈ ਕਿ ਐਡ-ਓਨ ਇਸਦੇ ਲੇਖਕ ਦੁਆਰਾ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
+msgstr "ਅਫਸੋਸ ਹੈ, ਪਰ ਸਾਡੇ ਦੁਆਰਾ ਦਿੱਤੇ ਗਏ ਪਤੇ ਤੇ ਸਾਨੂੰ ਕੁਝ ਨਹੀਂ ਮਿਲ ਸਕਦਾ। ਜੇ ਤੁਸੀਂ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਲਿੰਕ ਨੂੰ ਫ਼ਾਲੋ ਕਰਦੇ ਹੋ, ਤਾਂ ਸੰਭਵ ਹੈ ਕਿ ਐਡ-ਓਨ ਇਸਦੇ ਲੇਖਕ ਦੁਆਰਾ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Suggested Pages"
 msgstr "ਸੁਝਾਏ ਗਏ ਸਫ਼ੇ"
@@ -450,7 +450,7 @@ msgid "GUID"
 msgstr "GUID"
 
 msgid "Versions"
-msgstr "ਵੰਨਗੀਆਂ"
+msgstr "ਵਰਜ਼ਨ"
 
 #, python-format
 msgid ""
@@ -792,13 +792,13 @@ msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} ਇੱਕ ਹਲਕੇ ਥੀਮ ਤੋਂ ਪਰਵਾਸ ਕੀਤਾ ਗਿਆ ਸੀ।"
 
 msgid "Firefox"
-msgstr "ਫਾਇਰਫੌਕਸ"
+msgstr "ਫਾਇਰਫਾਕਸ"
 
 msgid "Thunderbird"
 msgstr "ਥੰਡਰਬਰਡ"
 
 msgid "SeaMonkey"
-msgstr "ਸੀਅਮੰਕੀ"
+msgstr "SeaMonkey"
 
 msgid "Sunbird"
 msgstr "ਸਨਬਰਡ"
@@ -807,10 +807,10 @@ msgid "Mobile"
 msgstr "ਮੋਬਾਇਲ"
 
 msgid "Firefox for Android"
-msgstr "ਐਂਡਰੌਇਡ ਲਈ ਫਾਇਰਫੌਕਸ"
+msgstr "ਐਂਡਰਾਇਡ ਲਈ ਫਾਇਰਫਾਕਸ"
 
 msgid "Mozilla"
-msgstr "ਮੌਜ਼ਿਲਾ"
+msgstr "ਮੌਜ਼ੀਲਾ"
 
 msgid "Unknown"
 msgstr "ਅਣਪਛਾਤੇ"
@@ -822,7 +822,7 @@ msgid "Disabled by Mozilla"
 msgstr "ਮੌਜੀਲਾ ਵੱਲੋਂ ਅਯੋਗ ਕੀਤਾ"
 
 msgid "Deleted"
-msgstr "ਮਿਟਾਇਆ"
+msgstr "ਹਟਾਇਆ"
 
 msgid "Pending approval"
 msgstr "ਪਰਵਾਨਗੀ ਬਕਾਇਆ"
@@ -969,11 +969,11 @@ msgid "Download Firefox extensions to enhance social media and instant messaging
 msgstr "ਸੋਸ਼ਲ ਮੀਡੀਆ ਅਤੇ ਤੁਰੰਤ ਸੁਨੇਹਾ ਭੇਜਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਸੁਧਾਰਿਆ ਟੈਬ ਸੂਚਨਾਵਾਂ, ਵੀਡੀਓ ਡਾਉਨਲੋਡਰ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Tabs"
-msgstr "ਪੱਲੇ"
+msgstr "ਟੈਬਾਂ"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
-"ਟੈਬਸ ਅਤੇ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹ ਐਕਸਟੈਂਸ਼ਨਾਂ ਖੋਜੋ ਜੋ ਟੈਬਾਂ ਨੂੰ ਨਿਯੰਤਰਿਤ ਕਰ ਸਕਦੇ ਹਨ, ਉਨ੍ਹਾਂ ਨਾਲ ਕਿਵੇਂ ਤਾਲਮੇਲ ਬਿਠਾ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ।"
+"ਟੈਬਾਂ ਅਤੇ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹ ਇਕਸਟੈਨਸ਼ਨਾਂ ਖੋਜੋ ਜੋ ਟੈਬਾਂ ਨੂੰ ਨਿਯੰਤਰਿਤ ਕਰ ਸਕਦੇ ਹਨ, ਉਨ੍ਹਾਂ ਨਾਲ ਕਿਵੇਂ ਤਾਲਮੇਲ ਬਿਠਾ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ।"
 
 msgid "Web Development"
 msgstr "ਵੈੱਬ ਵਿਕਾਸ"
@@ -1013,12 +1013,12 @@ msgid "Download Firefox extensions to enhance photos and media. This category in
 msgstr "ਫੋਟੋਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਵਧਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸ਼ਟੇਸ਼ਨ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਖੋਜ ਚਿੱਤਰਾਂ ਨੂੰ ਉਲਟਾਉਣ, ਪੂਰੇ ਸਫੇ ਦੇ ਸਕ੍ਰੀਨਸ਼ਾਟ ਕੈਪਚਰ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਐਕਸਟੈਂਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Security & Privacy"
-msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਨਿੱਜਤਾ"
+msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਪਰਦੇਦਾਰੀ"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਸਪੰਨੀ ਵਿਗਿਆਪਨ ਟ੍ਰੈਕਡਰ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬ੍ਰਾਊਜ਼ਿੰਗ ਇਤਿਹਾਸ"
-" ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
+"ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਸਪੰਨੀ ਇਸ਼ਤਿਜਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ "
+"ਅਤੀਤ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
 
 msgid "Social Networking"
 msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
@@ -1030,13 +1030,13 @@ msgid "Sports & Games"
 msgstr "ਖੇਡਾਂ"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "ਆਪਣੇ ਮਨੋਰੰਜਨ ਦੇ ਤਜਰਬੇ ਨੂੰ ਲਾਈਵ ਸਟ੍ਰੀਮ ਵਧਾਉਣ ਵਾਲੇ, ਖੇਡਾਂ ਦੇ ਨਵੀਨੀਕਰਨ, ਅਤੇ ਹੋਰ ਦੇ ਨਾਲ ਇੱਕ ਹੁਲਾਰਾ ਦੇਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
+msgstr "ਆਪਣੇ ਮਨੋਰੰਜਨ ਦੇ ਤਜਰਬੇ ਨੂੰ ਲਾਈਵ ਸਟ੍ਰੀਮ ਵਧਾਉਣ ਵਾਲੇ, ਖੇਡਾਂ ਦੇ ਨਵੀਨੀਕਰਨ, ਅਤੇ ਹੋਰ ਦੇ ਨਾਲ ਇੱਕ ਹੁਲਾਰਾ ਦੇਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 msgid "User Interface"
-msgstr "ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ"
+msgstr "ਵਰਤੋਂਕਾਰ ਇੰਟਰਫੇਸ"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "ਅਸਾਨ ਪੜ੍ਹਨਾ, ਖੋਜ, ਬ੍ਰਾਊਜ਼ਿੰਗ ਅਤੇ ਹੋਰ ਲਈ ਵੈੱਬ ਪੰਨੇ ਬਦਲਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਡਾਊਨਲੋਡ ਕਰੋ।"
+msgstr "ਅਸਾਨ ਪੜ੍ਹਨਾ, ਖੋਜ, ਬਰਾਊਜ਼ ਕਰਬ ਅਤੇ ਹੋਰ ਲਈ ਵੈੱਬ ਸਫ਼ੇ ਬਦਲਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਵਰਤੋਂਕਾਰ ਇੰਟਰਫੇਸ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 msgid "Animals"
 msgstr "ਡੰਗਰ"
@@ -1108,10 +1108,10 @@ msgid "Music"
 msgstr "ਸੰਗੀਤ"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "ਸੰਗੀਤ ਦੀਆਂ ਦਿਲਚਸਪੀਆਂ ਅਤੇ ਕਲਾਕਾਰਾਂ ਲਈ ਫਾਇਰਫਾਕਸ ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ. ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਨਿਰਵਾਣਾ ਅਤੇ ਬੀਟੀਐਸ, ਇੰਸਟ੍ਰੂਮੈਂਟਸ, ਸੰਗੀਤ ਵਿਡੀਓ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਦੇ ਥੀਮ ਨੂੰ ਜਾਨਵਰਾਂ ਅਤੇ ਕੁਦਰਤੀ ਦ੍ਰਿਸ਼ਾਂ ਨਾਲ ਡਾਊਨਲੋਡ ਕਰੋ ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਫੁੱਲਾਂ, ਸਨਸੈਟਾਂ, ਲੂੰਬੜੀਆਂ, ਮੌਸਮ, ਗ੍ਰਹਿ, ਕੁੱਤੇ, ਪੰਛੀ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "ਫਾਇਰਫਾਕਸ ਦੇ ਉਹ ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਦਿਲਚਸਪ, ਰਚਨਾਤਮਕ ਅਤੇ ਵਿਲੱਖਣ ਹਨ।"
@@ -1120,13 +1120,13 @@ msgid "Scenery"
 msgstr "ਦ੍ਰਿਸ਼"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਵਾਤਾਵਰਣ ਅਤੇ ਕੁਦਰਤੀ ਸੰਸਾਰ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਸਨਸਕੈਟ, ਬੀਚ, ਦ੍ਰਿਸ਼, ਸ਼ਹਿਰ ਦੀਆਂ ਸਕਾਈਲਨਾਂ ਅਤੇ ਹੋਰ ਵੀ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Seasonal"
 msgstr "ਮੌਸਮੀ"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "ਸਾਰੇ ਚਾਰ ਮੌਸਮ ਲਈ ਫਾਇਰਫਾਕਸ ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ — ਪਤਝੜ, ਸਰਦੀ, ਬਸੰਤ ਅਤੇ ਗਰਮੀ ਪਤਝੜ ਦੇ ਪੱਤੇ, ਬਰਫ਼ਬਾਰੀ ਪਹਾੜ ਪੀਕ, ਧੁੱਪ ਦੀਆਂ ਗਰਮੀ ਦੇ ਦਿਨ ਅਤੇ ਬਸੰਤ ਦੇ ਫੁੱਲ।"
 
 msgid "Solid"
 msgstr "ਸਖ਼ਤ"
@@ -1485,22 +1485,22 @@ msgid "Provide the text of your license."
 msgstr "ਤੁਹਾਡੇ ਲਾਇਸੰਸ ਦੀ ਲਿਖਤ ਦਵੋ।"
 
 msgid "License text is required when choosing Other."
-msgstr "ਲਾਇਸੰਸ ਲਿਖਤ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਜਦੋਂ ਹੋਰ ਦੀ ਚੋਣ ਕਰ ਰਹੇ ਹੋਵੋ।"
+msgstr "ਲਸੰਸ ਲਿਖਤ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਜਦੋਂ ਹੋਰ ਦੀ ਚੋਣ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
 msgid "This add-on has an End-User License Agreement"
 msgstr "ਇਸ ਐਡ-ਆਨ ਕੋਲ ਇੱਕ ਅੰਤਿਮ-ਯੂਜ਼ਰ ਲਾਇਸੰਸ ਸਮਝੌਤਾ ਹੈ"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਅੰਤਿਮ-ਯੂਜ਼ਰ ਲਾਇਸੰਸ ਸਮਝੌਤਾ ਨਿਰਧਾਰਤ ਕਰੋ:"
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਅੰਤਿਮ-ਯੂਜ਼ਰ ਲਾਇਸੰਸ ਸਮਝੌਤਾ ਨਿਰਧਾਰਤ ਕਰੋ:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਇੱਕ ਪਰਦਾ ਨੀਤੀ ਹੈ"
+msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਪਰਦੇਦਾਰੀ ਨੀਤੀ ਹੈ"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਪਰਦਾ ਨੀਤੀ ਨਿਰਧਾਰਤ ਕਰੋ:"
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਪਰਦੇਦਾਰੀ ਨੀਤੀ ਨਿਰਧਾਰਤ ਕਰੋ:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
+msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
 
 msgid "Invalid or broken archive."
 msgstr "ਅਵੈਧ ਜਾਂ ਖਰਾਬ ਆਰਕਾਈਵ।"
@@ -1634,7 +1634,7 @@ msgid "An author has been removed from your add-on"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂੰ ਹਟਾਇਆ ਗਿਆ"
 
 msgid "Changes successfully saved."
-msgstr "ਬਦਲਾਅ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
+msgstr "ਬਦਲਾਅ ਕਾਮਯਾਬੀ ਨਾਲ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
 
 msgid "Validate Add-on"
 msgstr "ਐਡ-ਆਨ ਦੀ ਪੜਤਾਲ"
@@ -1786,7 +1786,7 @@ msgid "Documentation"
 msgstr "ਦਸਤਾਵੇਜ਼"
 
 msgid "Extension Development"
-msgstr "ਐਕਸਟੇਸ਼ਨ ਵਿਕਾਸ"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਿਕਾਸ"
 
 msgid "Developer Policies"
 msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
@@ -1890,7 +1890,7 @@ msgid "Remove"
 msgstr "ਹਟਾਓ"
 
 msgid "Add Another Application&hellip;"
-msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ ਜੋੜੋ&hellip;"
+msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ &hellip; ਜੋੜੋ"
 
 msgid "Save Changes"
 msgstr "ਤਬਦੀਲੀ ਸੰਭਾਲ੍ਹੋ"
@@ -2078,7 +2078,7 @@ msgid "Categories cannot be changed while your add-on is featured. Please email 
 msgstr "ਵਰਗ ਨੂੰ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ, ਜਦੋਂ ਕਿ ਤੁਹਾਡੀ ਐਡਆਨ ਫੀਚਰ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ <a href=\"mailto:%(email)s\">%(email)s</a> ਨੂੰ ਈਮੇਲ ਕਰੋ ਜੇਕਰ ਕੋਈ ਕਾਰਨ ਹੈ ਕਿ ਤੁਹਾਨੂੰ ਆਪਣੀਆਂ ਸ਼੍ਰੇਣੀਆਂ ਨੂੰ ਸੋਧਣ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "Email"
-msgstr "ਈ-ਚਿੱਠੀ"
+msgstr "ਈਮੇਲ"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -2210,25 +2210,25 @@ msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "ਆਈਕਾਨ ਨੂੰ 128x128 ਪਿਕਸਲ ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ ਜੇ ਵੱਡਾ ਹੋਵੇ।"
 
 msgid "Screenshots"
-msgstr "ਸਕਰੀਨਸ਼ਾੱਟ"
+msgstr "ਸਕਰੀਨਸ਼ਾਟ"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਕਰੀਨਸ਼ਾੱਟ ਦਿਓ:"
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਘੱਟੋ-ਘੱਟ ਸਕਰੀਨਸ਼ਾਟ ਦਿਓ:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਦਿਓ:"
+msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਦਿਓ:"
 
 msgid "Add a Screenshot..."
-msgstr "ਇੱਕ ਸਕਰੀਨਸ਼ਾੱਟ ਜੋੜੋ..."
+msgstr "...ਸ਼ਕਰੀਨਸ਼ਾਟ ਜੋੜੋ"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG ਅਤੇ JPG ਸਮਰਥਿਤ, PNG ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਗਈ। ਸਕ੍ਰੀਨਸਾਟਾਂ ਲਈ ਅਧਿਕਤਮ ਅਤੇ ਸਿਫਾਰਸ਼ ਕੀਤੇ ਸਾਈਜ਼ 2400x1800 ਪਿਕਸਲ ਹਨ।"
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "ਘੱਟ-ਘੱਟ ਆਕਾਰ 1000x750 ਹੈ, ਅਤੇ 4:3 ਦਾ ਅਨੁਪਾਤ ਲਾਜ਼ਮੀ ਹੈ।"
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਉਤਪਾਦ ਪੇਜ ਵਿੱਚ ਸਕਰੀਨਸ਼ਾਟ ਹੋਣ ਨਾਲ ਇਸਦੇ ਸਥਾਪਿਤ ਹੋਣ ਦੀ ਸੰਭਾਵਨਾ ਵਧ ਜਾਂਦੀ ਹੈ ਅਤੇ ਹੋਮਪੇਜ ਵਿੱਚ ਫੀਚਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "Continue"
 msgstr "ਜਾਰੀ"
@@ -2279,7 +2279,7 @@ msgid "Hide messages present in previous version and ignored"
 msgstr "ਪਿਛਲੇ ਵਰਜਨ ਵਿੱਚ ਮੌਜੂਦ ਸੰਦੇਸ਼ਾਂ ਨੂੰ ਓਹਲੇ ਕਰੋ ਅਤੇ ਅਣਡਿੱਠੇ ਕਰੋ"
 
 msgid "Top"
-msgstr "  ਚੋਟੀ ਦੇ"
+msgstr "ਚੋਟੀ ਦੇ"
 
 msgid "Delete Theme"
 msgstr "ਥੀਮ ਹਟਾਓ"
@@ -2392,7 +2392,7 @@ msgid "Submit a New Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਸੰਸਕਰਣ ਦਰਜ ਕਰੋ"
 
 msgid "Name and Summary:"
-msgstr "ਨਾਮ ਅਤੇ ਸੰਖੇਪ:"
+msgstr "ਨਾਂ ਅਤੇ ਸੰਖੇਪ:"
 
 msgid "required"
 msgstr "ਜ਼ਰੂਰਤ"
@@ -2422,7 +2422,7 @@ msgid "Description:"
 msgstr "ਵੇਰਵਾ:"
 
 msgid "This add-on is experimental"
-msgstr "ਇਹ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ"
+msgstr "ਇਹ ਐਡ-ਆਨ ਤਜਰਬੇਅਧੀਨ ਹੈ"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "ਇਸ ਚੋਣ ਨੂੰ ਚੁਣੋ ਜੇ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ ਜਾਂ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਨਹੀਂ ਹੈ।  ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕੀਤਾ ਜਾਵੇਗਾ ਪਰੰਤੂ ਦ੍ਰਿਸ਼ਟੀ ਘਟਾਈ ਹੋਵੇਗੀ।  ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਇਸ ਸੈਟਿੰਗ ਨੂੰ ਬਦਲ ਸਕਦੇ ਹੋ।"
@@ -2437,7 +2437,7 @@ msgid "Support website:"
 msgstr "ਸਹਿਯੋਗ ਵੈਬਸਾਈਟ:"
 
 msgid "License:"
-msgstr "ਲਾਇਸੰਸ:"
+msgstr "ਲਸੰਸ:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਤੁਹਾਡੇ ਦੁਆਰਾ ਪ੍ਰਦਾਨ ਕੀਤੇ ਗਏ ਅਧਿਕਾਰਾਂ ਲਈ ਲਾਇਸੈਂਸ ਸਹੀ ਚੁਣੋ।"
@@ -2466,7 +2466,7 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "ਇਹ ਨੋਟ ਸਿਰਫ ਤੁਹਾਡੇ ਅਤੇ ਸਾਡੇ ਸਮੀਖਿਅਕਾਂ ਨੂੰ ਦਿਖਾਈ ਦੇਣਗੇ।"
 
 msgid "Submit Version"
-msgstr "ਵਰਜਨ ਦਾਖਲ ਕਰੋ"
+msgstr "ਵਰਜਨ ਭੇਜੋ"
 
 msgid "Cancel and Disable Version"
 msgstr "ਰੱਦ ਅਤੇ ਅਸਮਰੱਥ ਕਰੋ ਵਰਜਨ"
@@ -2607,7 +2607,7 @@ msgid "Upload source code:"
 msgstr "ਸਰੋਤ ਕੋਡ ਅਪਲੋਡ ਕਰੋ:"
 
 msgid "Add-on Distribution Agreement"
-msgstr "ਐਡ-ਔਨ ਵੰਡ ਸਮਝੌਤਾ"
+msgstr "ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ"
 
 msgid "Upload Add-on"
 msgstr "ਐਡਆਨ ਅਪਲੋਡ ਕਰੋ"
