@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-25 06:50+0000\n"
+"PO-Revision-Date: 2019-05-25 06:58+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2631,10 +2631,10 @@ msgid "Administrative overrides"
 msgstr "ਪ੍ਰਬੰਧਕੀ ਓਵਰਰਾਈਡ"
 
 msgid "Create a Theme Version"
-msgstr "ਇੱਕ ਥੀਮ ਵਰਜਨ ਬਣਾਓ"
+msgstr "ਥੀਮ ਵਰਜਨ ਬਣਾਓ"
 
 msgid "Create a Theme"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
+msgstr "ਨਵਾਂ ਥੀਮ ਰਚੋ"
 
 msgid "Sign Add-on"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
@@ -2676,7 +2676,7 @@ msgid "optional"
 msgstr "ਵਿਕਲਪਿਕ"
 
 msgid "Browser preview"
-msgstr "ਬ੍ਰਾਉਜ਼ਰ ਪ੍ਰੀਵਿਊ"
+msgstr "ਬਰਾਊਜ਼ਰ ਝਲਕ"
 
 msgid "Uploading Theme"
 msgstr "ਅੱਪਲੋਡ ਥੀਮ"
@@ -2688,7 +2688,7 @@ msgid "Back"
 msgstr "ਪਿੱਛੇ ਜਾਉ"
 
 msgid "API Credentials"
-msgstr "API ਸਰਟੀਫਿਕੇਟਸ"
+msgstr "API ਸਨਦਾਂ"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2797,7 +2797,7 @@ msgid "Unlisted Review Page"
 msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ ਰਿਵਿਊ ਪੰਨਾ"
 
 msgid "Admin Manage"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਫ਼ਾ"
+msgstr "ਪਰਸ਼ਾਸਕੀ ਬੰਦੋਬਸਤ"
 
 msgid "View Statistics Dashboard"
 msgstr "ਅੰਕੜੇ ਵਾਲਾ ਡੈਸ਼ਬੋਰਡ ਵੇਖੋ"
@@ -2815,7 +2815,7 @@ msgid "This request for information has been resolved"
 msgstr "ਜਾਣਕਾਰੀ ਲਈ ਇਹ ਬੇਨਤੀ ਹੱਲ ਕੀਤੀ ਗਈ ਹੈ"
 
 msgid "License"
-msgstr "ਲਾਇਸੰਸ"
+msgstr "ਲਸੰਸ"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "ਤੁਹਾਡੇ ਵੱਲੋਂ ਆਪਣੇ ਸੋਰਸ ਕੋਡ ਨੂੰ ਦਿੱਤੇ ਅਧਿਕਾਰਾਂ ਦੇ ਅਨੁਕੂਲ ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਲਾਇਸੰਸ ਚੁਣੋ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
@@ -2924,10 +2924,10 @@ msgid "Contribute"
 msgstr "ਯੋਗਦਾਨ ਪਾਓ"
 
 msgid "Review Add-ons"
-msgstr "ਐਡਆਨ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
+msgstr "ਐਡਆਨ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "ਸਵੈਸੇਵੀ ਸਮੀਖਿਅਕਾਂ ਨੂੰ ਵਰਤਣ ਲਈ ਐਡਆਨ ਸੁਰੱਖਿਅਤ ਅਤੇ ਭਰੋਸੇਯੋਗ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ। ਉਨ੍ਹਾਂ ਨੂੰ ਬਹੁਤ ਵਧੀਆ ਸਹੂਲਤਾਂ ਵੀ ਮਿਲਦੀਆਂ ਹਨ!"
+msgstr "ਵਲੰਟੀਅਰ ਸਮੀਖਿਅਕਾਂ ਨੂੰ ਵਰਤਣ ਲਈ ਐਡਆਨ ਸੁਰੱਖਿਅਤ ਅਤੇ ਭਰੋਸੇਯੋਗ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ। ਉਨ੍ਹਾਂ ਨੂੰ ਬਹੁਤ ਵਧੀਆ ਸਹੂਲਤਾਂ ਵੀ ਮਿਲਦੀਆਂ ਹਨ!"
 
 msgid "Join us!"
 msgstr "ਸਾਡੇ ਨਾਲ ਰਲੋ!"
@@ -2957,7 +2957,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੋਧਣ ਅਤੇ ਅਪਡੇਟ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ"
 
 msgid "Write one code base for many browsers"
-msgstr "ਬਹੁਤ ਸਾਰੇ ਬ੍ਰਾਉਜ਼ਰਸ ਲਈ ਇੱਕ ਕੋਡ ਬੇਸ ਲਿਖੋ"
+msgstr "ਬਹੁਤ ਸਾਰੇ ਬਰਾਊਜ਼ਰਾਂ ਲਈ ਕੋਡ ਬੇਸ ਲਿਖੋ"
 
 msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
@@ -2978,7 +2978,7 @@ msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
 msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
+msgstr "ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਆਨ-ਬੋਰਡਿੰਗ ਲਈ ਸਾਡੇ ਸਰਵੋਤਮ ਅਭਿਆਸ ਦੀ ਪਾਲਣਾ ਕਰਕੇ ਤੁਸੀਂ ਆਪਣੇ ਵਿਸਥਾਰ ਵਿੱਚ ਵਿਸ਼ਵਾਸ ਅਤੇ ਭਰੋਸਾ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਮਦਦ ਕਰ ਸਕਦੇ ਹੋ।"
 
 msgid "See Best Practices"
 msgstr "ਵਧੀਆ ਪ੍ਰੈਕਟਿਸਾਂ ਦੇਖੋ"
@@ -2988,7 +2988,7 @@ msgstr "ਕੋਡ ਰਿਵਿਊ ਪਾਸ ਕਰਨ ਤੋਂ ਬਾਅਦ ਇ
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "ਸਾਰੇ ਸਬਮਿਸ਼ਨ ਵੇਖੋ"
+msgstr "ਸਾਰੀਆਂ ਪੇਸ਼ਕਸ਼ਾਂ ਵੇਖੋ"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "ਇਹ ਉਹ ਥਾਂ ਹੈ ਜਿੱਥੇ ਤੁਸੀਂ ਆਪਣੇ ਐਡਆਨ ਅਤੇ ਥੀਮ ਵੇਖੋ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰਦੇ ਹੋ। ਆਪਣਾ ਪਹਿਲਾ ਐਡਆਨ ਪਬਲਿਸ਼ ਕਰਨ ਲਈ,\"ਆਪਣੀ ਪਹਿਲੀ ਐਡਆਨ ਜਮ੍ਹਾਂ ਕਰੋ\" ਜਾਂ \"ਆਪਣੀ ਪਹਿਲੀ ਥੀਮ ਭੇਜੋ\" ਤੇ ਕਲਿੱਕ ਕਰੋ।"
@@ -3012,7 +3012,7 @@ msgid "No Photo"
 msgstr "ਕੋਈ ਤਸਵੀਰ ਨਹੀਂ"
 
 msgid "User Photo"
-msgstr "ਯੂਜ਼ਰ ਫੋਟੋ"
+msgstr "ਵਰਤੋਂਕਾਰ ਫੋਟੋ"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -3081,7 +3081,7 @@ msgstr "ਵਰਜਨ {0} ਸੰਭਾਲ੍ਹੋ"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr "ਸੰਭਾਲ੍ਹੋ {0}"
+msgstr "{0} ਬੰਦੋਬਸਤ"
 
 msgid "Files"
 msgstr "ਫ਼ਾਈਲਾਂ"
@@ -3136,7 +3136,7 @@ msgid "Review History"
 msgstr "ਸਮੀਖਿਆ ਅਤੀਤ"
 
 msgid "Close Review History"
-msgstr "ਰਿਵਿਊ ਇਤਿਹਾਸ ਬੰਦ ਕਰੋ"
+msgstr "ਪੜਤਾਲ ਅਤੀਤ ਬੰਦ ਕਰੋ"
 
 msgid "Not validated."
 msgstr "ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ।"
@@ -3151,7 +3151,7 @@ msgid "Cancel Review Request"
 msgstr "ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰੋ"
 
 msgid "Loading Review History..."
-msgstr "ਰੀਵਿਊ ਇਤਿਹਾਸ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
+msgstr "ਪੜਤਾਲ ਅਤੀਤ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
 
 msgid "We had a problem retrieving review notes"
 msgstr "ਸਮੀਖਿਆ ਨੋਟਸ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਸਾਨੂੰ ਇੱਕ ਸਮੱਸਿਆ ਆਈ ਸੀ"
@@ -3187,7 +3187,7 @@ msgid "Validation"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ"
 
 msgid "Delete/Disable"
-msgstr "ਮਿਟਾਉ /Disable"
+msgstr "ਹਟਾਓ /Disable"
 
 msgid "Next version of this add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਅਗਲਾ ਵਰਜਨ"
@@ -4330,7 +4330,7 @@ msgstr "ਪਾਸਵਰਡ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿ�
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "ਇੱਕ ਸਧਾਰਨ ਵਿਗਿਆਪਨ ਬਲੌਕਰ ਜੋ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਉਹ ਸਮਗਰੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਤੇ ਕੇਂਦਰਿਤ ਹੈ।"
+msgstr "ਇੱਕ ਸਧਾਰਨ ਇਸ਼ਟਿਹਾਰ ਬਲੌਕਰ ਜੋ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਉਹ ਸਮਗਰੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਤੇ ਕੇਂਦਰਿਤ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4490,9 +4490,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਰਲ ਸਰਚ ਨਾਲ ਕਰੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "ਸੁਥਰੇ ਸਾਈਡਬਾਰ ਵਿਚ ਆਪਣੇ ਖੁੱਲ੍ਹੇ ਟੈਬਸ ਵਿਵਸਥਿਤ ਕਰੋ।"
+msgstr "ਸੁਥਰੇ ਸਾਈਡਬਾਰ ਵਿਚ ਆਪਣੇ ਖੁੱਲ੍ਹੀਆਂ ਟੈਬਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
