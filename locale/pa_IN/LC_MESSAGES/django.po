@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-23 01:54+0000\n"
+"PO-Revision-Date: 2019-05-25 06:21+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3293,7 +3293,7 @@ msgstr "ਇੰਜਣਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੋਂ ਉਲਟ ਚਿ
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਗਿਆਪਨ ਨੂੰ ਰੋਕਣਾ ਅਤੇ ਗੋਪਨੀਯਤਾ ਸੁਰੱਖਿਆ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਇਸ਼ਤਿਹਾਰ ਰੋਕਣਾ ਅਤੇ ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
@@ -4470,7 +4470,7 @@ msgstr "ਬਹੁਤ ਸਪੱਸ਼ਟਤਾ ਨਾਲ ਬਰਾਊਜ਼ਰ �
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਗੋਪਨੀਯਤਾ ਸੁਰੱਖਿਆ"
+msgstr "{start_sub_heading}{addon_name} ਨਾਲ{end_sub_heading} ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
