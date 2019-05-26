@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-26 04:24+0000\n"
+"PO-Revision-Date: 2019-05-26 05:10+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -203,7 +203,7 @@ msgid "Error verifying input, please try again."
 msgstr "Eroare la verificarea datelor introduse. Te rugăm să încerci din nou."
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Unele caracteristici sunt dezactivate temporar în timp ce efectuăm întreținerea site-ului. Revenim imediat la capacitate maximă."
+msgstr "Unele funcționalități sunt dezactivate temporar, cât efectuăm întreținerea pe site. Revenim imediat la capacitate maximă."
 
 msgid "Must contain at least one printable character."
 msgstr "Trebuie să conțină cel puțin un caracter tipăribil."
@@ -315,7 +315,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "Această funcționalitate este dezactivată temporar cât realizăm mentenanță pe site. Te rugăm să folosești butonul Înapoi al browserului și să încerci din nou mai târziu."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Unele funcționalități de pe această pagină sunt dezactivate temporar cât efectuăm mentenanța pe site. Te rugăm încerci din nou puțin mai târziu."
+msgstr "Unele funcționalități de pe această pagină sunt dezactivate temporar, cât efectuăm mentenanța pe site. Te rugăm încerci din nou puțin mai târziu."
 
 msgid "Are you human?"
 msgstr "Ești om?"
