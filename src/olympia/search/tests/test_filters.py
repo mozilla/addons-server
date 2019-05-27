@@ -401,9 +401,12 @@ class TestSortingFilter(FilterTestsBase):
         SORTING_PARAMS.pop('random')  # Tested separately below.
         SORTING_PARAMS.pop('recommended')  # Tested separately below.
 
-        for param in SORTING_PARAMS:
+        for param, es in SORTING_PARAMS.items():
             qs = self._filter(data={'sort': param})
-            assert qs['sort'] == [self._reformat_order(SORTING_PARAMS[param])]
+            if param == 'relevance':
+                # relevance without q is ignored so default downloads is used
+                es = SORTING_PARAMS['downloads']
+            assert qs['sort'] == [self._reformat_order(es)]
         # Having a search query does not change anything, the requested sort
         # takes precedence.
         for param in SORTING_PARAMS:
@@ -492,6 +495,19 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['sort'] == [self._reformat_order('_score')]
 
         qs = self._filter(data={'sort': 'recommended'})
+        assert qs['sort'] == [
+            self._reformat_order('-is_recommended'),
+            self._reformat_order('-average_daily_users')]
+
+    @override_switch('api-recommendations-priority', active=True)
+    def test_sort_recommended_and_relevance(self):
+        # with a q, recommended with relevance sort, recommended is ignored.
+        qs = self._filter(
+            data={'q': 'something', 'sort': 'recommended,relevance'})
+        assert qs['sort'] == [self._reformat_order('_score')]
+
+        # except if you don't specify a query, then it falls back to default
+        qs = self._filter(data={'sort': 'recommended,relevance'})
         assert qs['sort'] == [
             self._reformat_order('-is_recommended'),
             self._reformat_order('-average_daily_users')]

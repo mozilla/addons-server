@@ -859,7 +859,7 @@ class SortingFilter(BaseFilterBackend):
     def filter_queryset(self, request, qs, view):
         search_query_param = request.GET.get('q')
         sort_param = request.GET.get('sort')
-        order_by = None
+        split_sort_params = None
 
         if sort_param is not None:
             split_sort_params = sort_param.split(',')
@@ -891,11 +891,21 @@ class SortingFilter(BaseFilterBackend):
                         'when the "featured" or "recommended" parameter is '
                         'also present, and the "q" parameter absent.')
 
-            # Having just recommended sort doesn't make any sense, so ignore it
-            if sort_param == 'recommended':
-                sort_param = None
+            # Sorting by relevance only makes sense with a query string
+            if not search_query_param and 'relevance' in split_sort_params:
+                split_sort_params = [
+                    param for param in split_sort_params if not 'relevance']
 
-        if sort_param is None:
+            # Having just recommended sort doesn't make any sense, so ignore it
+            if split_sort_params == ['recommended']:
+                split_sort_params = None
+            # relevance already takes into account recommended so ignore it too
+            elif ('recommended' in split_sort_params and
+                  'relevance' in split_sort_params):
+                split_sort_params = [
+                    param for param in split_sort_params if not 'recommended']
+
+        if not split_sort_params:
             # The default sort depends on the presence of a query: we sort by
             # relevance if we have a query, otherwise by recommended,downloads.
             recommended_waffle_on = switch_is_active(

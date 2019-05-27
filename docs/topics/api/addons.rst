@@ -81,7 +81,10 @@ This endpoint allows you to search through public add-ons.
             rating  Bayesian rating, descending.
        recommended  Recommended add-ons above non-recommend add-ons. Only
                     available combined with another sort - ignored on its own.
-         relevance  Search query relevance, descending.
+                    Also ignored if combined with relevance as it already takes
+                    into account recommended status.
+         relevance  Search query relevance, descending.  Ignored without a
+                    query.
            updated  Last updated date, descending.
              users  Average number of daily users, descending.
     ==============  ==========================================================
