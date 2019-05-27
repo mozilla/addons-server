@@ -274,22 +274,35 @@ class File(OnChangeMixin, ModelBase):
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 
-    def move_file(self, source, destination, log_message):
-        """Move a file from `source` to `destination`.
+    def move_file(self, source_path, destination_path, log_message):
+        """Move a file from `source_path` to `destination_path` and delete the
+        source directory if it's empty once the file has been successfully
+        moved.
+
+        Meant to move files from/to the guarded file path as they are disabled
+        or re-enabled.
 
         IOError and UnicodeEncodeError are caught and logged."""
         log_message = force_text(log_message)
         try:
-            if storage.exists(source):
+            if storage.exists(source_path):
+                source_parent_path = os.path.dirname(source_path)
                 log.info(log_message.format(
-                    source=source, destination=destination))
-                move_stored_file(source, destination)
+                    source=source_path, destination=destination_path))
+                move_stored_file(source_path, destination_path)
+                # Now that the file has been deleted, remove the directory if
+                # it exists to preventing the main directory from growing too
+                # much (#11464)
+                remaining_dirs, remaining_files = storage.listdir(
+                    source_parent_path)
+                if len(remaining_dirs) == len(remaining_files) == 0:
+                    storage.delete(source_parent_path)
         except (UnicodeEncodeError, IOError):
-            msg = u'Move Failure: {} {}'.format(source, destination)
+            msg = u'Move Failure: {} {}'.format(source_path, destination_path)
             log.exception(msg)
 
     def hide_disabled_file(self):
-        """Move a disabled file to the guarded file path."""
+        """Move a file from the public path to the guarded file path."""
         if not self.filename:
             return
         src, dst = self.file_path, self.guarded_file_path
@@ -297,7 +310,7 @@ class File(OnChangeMixin, ModelBase):
             src, dst, 'Moving disabled file: {source} => {destination}')
 
     def unhide_disabled_file(self):
-        """Move a disabled file to the public file path."""
+        """Move a file from guarded file path to the public file path."""
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
