@@ -1478,6 +1478,16 @@ class TestExtensionQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         self._test_results()
 
+    def test_search_plugins_filtered_out(self):
+        self.addons['Nominated Two'].update(type=amo.ADDON_SEARCH)
+        self.addons['Pending Two'].update(type=amo.ADDON_SEARCH)
+
+        # search extensions are filtered out from the queue since auto_approve
+        # is taking care of them.
+        self.expected_addons = [
+            self.addons['Nominated One'], self.addons['Pending One']]
+        self._test_results()
+
 
 class TestThemeNominatedQueue(QueueTest):
 
@@ -2361,6 +2371,12 @@ class BaseTestQueueSearch(SearchTest):
                 'file_status': amo.STATUS_AWAITING_REVIEW,
                 'type': amo.ADDON_SEARCH,
             }),
+            ('Bieber Dictionary', {
+                'version_str': '0.1',
+                'addon_status': amo.STATUS_NOMINATED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'type': amo.ADDON_DICT,
+            }),
             ('Bieber For Mobile', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
@@ -2551,12 +2567,12 @@ class TestQueueSearch(BaseTestQueueSearch):
 
     def test_search_by_many_addon_types(self):
         self.generate_files(['Not Needing Admin Review', 'Justin Bieber Theme',
-                             'Justin Bieber Search Bar'])
-        response = self.search(addon_type_ids=[amo.ADDON_THEME,
-                                               amo.ADDON_SEARCH])
+                             'Bieber Dictionary'])
+        response = self.search(
+            addon_type_ids=[amo.ADDON_THEME, amo.ADDON_DICT])
         assert response.status_code == 200
         assert sorted(self.named_addons(response)) == (
-            ['Justin Bieber Search Bar', 'Justin Bieber Theme'])
+            ['Bieber Dictionary', 'Justin Bieber Theme'])
 
     def test_search_by_app(self):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
