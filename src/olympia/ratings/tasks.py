@@ -33,13 +33,18 @@ def update_denorm(*pairs, **kw):
         if not reviews:
             continue
 
+        data = {}
         for idx, review in enumerate(reviews):
-            review.previous_count = idx
-            review.is_latest = False
-        reviews[-1].is_latest = True
+            data[review.pk] = {
+                'previous_count': idx,
+                'is_latest': False,
+            }
+        data[reviews[-1].pk]['is_latest'] = True
 
         for review in reviews:
-            review.save()
+            # Update the review, without sending post_save as it would do it
+            # again needlessly.
+            review.update(_signal=False, **data[review.pk])
 
 
 @task
@@ -69,14 +74,16 @@ def addon_rating_aggregates(addons, **kw):
     text_stats = {x['addon']: x['count'] for x in text_qs}
 
     for addon in addon_objs:
-        rating, reviews = stats.get(addon.id, [0, 0])
-        reviews_with_text = text_stats.get(addon.id, 0)
+        rating, reviews = stats.get(addon.pk, [0, 0])
+        reviews_with_text = text_stats.get(addon.pk, 0)
         addon.update(total_ratings=reviews, average_rating=rating,
                      text_ratings_count=reviews_with_text)
 
+        # Clear cached grouped ratings
+        GroupedRating.delete(addon.pk)
+
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)
-    addon_grouped_rating.apply_async(args=addons)
 
 
 @task
@@ -103,24 +110,13 @@ def addon_bayesian_rating(*addons, **kw):
 
         # Update the addon bayesian_rating atomically using F objects (unless
         # it has no reviews, in which case directly set it to 0).
-        qs = Addon.objects.filter(id=addon.id)
+        qs = Addon.objects.filter(pk=addon.pk)
         if addon.total_ratings:
             num = mc + F('total_ratings') * F('average_rating')
             denom = avg['reviews'] + F('total_ratings')
             qs.update(bayesian_rating=num / denom)
         else:
             qs.update(bayesian_rating=0)
-
-
-@task
-@use_primary_db
-def addon_grouped_rating(*addons, **kw):
-    """Roll up add-on ratings for the bar chart."""
-    # We stick this all in memcached since it's not critical.
-    log.info('[%s@%s] Updating addon grouped ratings.' %
-             (len(addons), addon_grouped_rating.rate_limit))
-    for addon in addons:
-        GroupedRating.set(addon, using='default')
 
 
 @task

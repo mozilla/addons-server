@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
+from django.dispatch import receiver
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
@@ -249,8 +250,16 @@ class Rating(ModelBase):
             subject, template, data,
             recipient_list=recipients, perm_setting=perm_setting)
 
-    @staticmethod
+    def update_denormalized_fields(self):
+        from . import tasks
+
+        pair = self.addon_id, self.user_id
+        tasks.update_denorm(pair)
+
     def post_save(sender, instance, created, **kwargs):
+        from olympia.addons.models import update_search_index
+        from . import tasks
+
         if kwargs.get('raw'):
             return
 
@@ -278,29 +287,22 @@ class Rating(ModelBase):
             if created:
                 instance.send_notification_email()
 
-        instance.refresh(update_denorm=created)
-
-    def refresh(self, update_denorm=False):
-        from olympia.addons.models import update_search_index
-        from . import tasks
-
-        if update_denorm:
-            # Do this immediately so is_latest is correct.
-            self.update_denormalized_fields()
+        if created:
+            # Do this immediately synchronously so is_latest is correct before
+            # we fire the aggregates task.
+            instance.update_denormalized_fields()
 
         # Rating counts have changed, so run the task and trigger a reindex.
-        tasks.addon_rating_aggregates.delay(self.addon_id)
-        update_search_index(self.addon.__class__, self.addon)
-
-    def update_denormalized_fields(self):
-        from . import tasks
-
-        pair = self.addon_id, self.user_id
-        tasks.update_denorm(pair)
+        tasks.addon_rating_aggregates.delay(instance.addon_id)
+        update_search_index(instance.addon.__class__, instance.addon)
 
 
-models.signals.post_save.connect(Rating.post_save, sender=Rating,
-                                 dispatch_uid='rating_post_save')
+@receiver(models.signals.post_save, sender=Rating,
+          dispatch_uid='rating_post_save')
+def rating_post_save(sender, instance, created, **kwargs):
+    # The extra indirection is to make it easy to mock and deactivate on a case
+    # by case basis in tests despite the fact that it's already been connected.
+    Rating.post_save(sender, instance, created, **kwargs)
 
 
 class RatingFlag(ModelBase):
@@ -335,32 +337,37 @@ class GroupedRating(object):
 
     SELECT rating, COUNT(rating) FROM reviews where addon=:id
     """
-    # Non-critical data, so we always leave it in memcache. Numbers are updated
-    # when a new rating comes in.
+    # Non-critical data, so we always leave it in memcache. Cache for a
+    # particular add-on is cleared when a rating is added/modified and updated
+    # when a request tries to retrieve them and the cache is empty.
     prefix = 'addons:grouped:rating'
 
     @classmethod
-    def key(cls, addon):
-        return '%s:%s' % (cls.prefix, addon)
+    def key(cls, addon_pk):
+        return '%s:%s' % (cls.prefix, addon_pk)
 
     @classmethod
-    def get(cls, addon, update_none=True):
+    def delete(cls, addon_pk):
+        cache.delete(cls.key(addon_pk))
+
+    @classmethod
+    def get(cls, addon_pk, update_none=True):
         try:
-            grouped_ratings = cache.get(cls.key(addon))
+            grouped_ratings = cache.get(cls.key(addon_pk))
             if update_none and grouped_ratings is None:
-                return cls.set(addon)
+                return cls.set(addon_pk)
             return grouped_ratings
         except Exception:
             # Don't worry about failures, especially timeouts.
             return
 
     @classmethod
-    def set(cls, addon, using=None):
+    def set(cls, addon_pk, using=None):
         qs = (Rating.without_replies.all().using(using)
-              .filter(addon=addon, is_latest=True)
+              .filter(addon=addon_pk, is_latest=True)
               .values_list('rating')
               .annotate(models.Count('rating')).order_by())
         counts = dict(qs)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
-        cache.set(cls.key(addon), ratings)
+        cache.set(cls.key(addon_pk), ratings)
         return ratings

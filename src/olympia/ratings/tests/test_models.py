@@ -9,7 +9,6 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import ESTestCase, TestCase, addon_factory, user_factory
-from olympia.ratings import tasks
 from olympia.ratings.models import GroupedRating, Rating, RatingFlag
 from olympia.users.models import UserProfile
 
@@ -262,11 +261,11 @@ class TestRatingModel(TestCase):
 
 class TestGroupedRating(TestCase):
     @classmethod
-    # Prevent <Rating>.refresh() from being fired when setting up test data,
+    # Prevent <Rating>.post_save() from being fired when setting up test data,
     # since it'd affect the results of our tests by calculating GroupedRating
     # results early (and storing result in cache) or changing is_latest boolean
     # on reviews.
-    @mock.patch.object(Rating, 'refresh', lambda x, update_denorm=False: None)
+    @mock.patch.object(Rating, 'post_save', lambda *args, **kwargs: None)
     def setUpTestData(cls):
         cls.addon = addon_factory()
         user = user_factory()
@@ -293,6 +292,12 @@ class TestGroupedRating(TestCase):
         # count.
         cls.expected_grouped_rating = [(1, 3), (2, 1), (3, 2), (4, 0), (5, 0)]
 
+    def test_delete_grouped_rating_on_save(self):
+        # post_save() -> addon_rating_aggregates() -> GroupedRating.delete()
+        self.test_set()
+        GroupedRating.delete(self.addon.pk)
+        assert GroupedRating.get(self.addon.pk, update_none=False) is None
+
     def test_get_unknown_addon_id(self):
         assert GroupedRating.get(3, update_none=False) is None
         assert GroupedRating.get(3) == [(1, 0), (2, 0), (3, 0), (4, 0), (5, 0)]
@@ -300,12 +305,6 @@ class TestGroupedRating(TestCase):
     def test_set(self):
         assert GroupedRating.get(self.addon.pk, update_none=False) is None
         GroupedRating.set(self.addon.pk)
-        assert GroupedRating.get(self.addon.pk, update_none=False) == (
-            self.expected_grouped_rating)
-
-    def test_cron(self):
-        assert GroupedRating.get(self.addon.pk, update_none=False) is None
-        tasks.addon_grouped_rating(self.addon.pk)
         assert GroupedRating.get(self.addon.pk, update_none=False) == (
             self.expected_grouped_rating)
 

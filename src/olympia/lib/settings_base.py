@@ -1176,7 +1176,6 @@ CELERY_TASK_ROUTES = {
 
     # Ratings
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
-    'olympia.ratings.tasks.addon_grouped_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
     'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
