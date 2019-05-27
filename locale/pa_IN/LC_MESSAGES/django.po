@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-11 17:09+0000\n"
-"Last-Translator: Sanjna <randhawasanjna75@gmail.com>\n"
+"PO-Revision-Date: 2019-05-27 13:28+0000\n"
+"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -1686,9 +1686,8 @@ msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇ�
 msgid "Header area background"
 msgstr "ਸਿਰਲੇਖ ਇਲਾਕੇ ਦੇ ਪਿਛਲਾ ਪਰਦਾ"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਊਂਡ ਦਾ ਰੰਗ, ਸਿਰਲੇਖ ਦੇ ਭਾਗ ਵਿੱਚ ਪ੍ਰਦਰਸ਼ਿਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ ਜੋ ਸਿਰਲੇਖ ਚਿੱਤਰ ਦੁਆਰਾ ਕਵਰ ਕੀਤਾ ਜਾਂ ਵਿਖਾਈ ਦੇ ਰਿਹਾ ਹੈ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  accentcolor।"
+msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਊਂਡ ਦਾ ਰੰਗ, ਸਿਰਲੇਖ ਦੇ ਭਾਗ ਵਿੱਚ ਪ੍ਰਦਰਸ਼ਿਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ ਜੋ ਸਿਰਲੇਖ ਚਿੱਤਰ ਦੁਆਰਾ ਕਵਰ ਕੀਤਾ ਜਾਂ ਵਿਖਾਈ ਦੇ ਰਿਹਾ ਹੈ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਫਰੇਮ।"
 
 msgid "Header area text and icons"
 msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
@@ -1706,9 +1705,8 @@ msgstr "ਨੇਵੀਗੇਸ਼ਨ ਪੱਟੀ ਲਈ ਬੈਕਗਰਾਊਂ
 msgid "Toolbar area text and icons"
 msgstr "ਟੂਲਬਾਰ ਦੇ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "ਟੂਲਬਾਰ ਅਤੇ ਐਕਟਿਵ ਟੈਬ ਵਿੱਚ ਟੈਕਸਟ ਅਤੇ ਆਈਕਾਨ ਦਾ ਰੰਗ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਟੂਲਬਾਰ_ਟੇਸਟ।"
+msgstr "ਟੂਲਬਾਰ ਅਤੇ ਐਕਟਿਵ ਟੈਬ ਵਿੱਚ ਟੈਕਸਟ ਅਤੇ ਆਈਕਾਨ ਦਾ ਰੰਗ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਬੁੱਕਮਾਰਕ_ਟੇਸਟ।"
 
 msgid "Toolbar field area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
@@ -4485,9 +4483,8 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "ਟਰੈਕਰ ਬਲਾਕਿੰਗ, ਸਮਾਰਟ ਏਨਕ੍ਰਿਪਸ਼ਨ, ਪ੍ਰਾਈਵੇਟ ਖੋਜ, ਅਤੇ ਹੋਰ ਜ਼ਰੂਰੀ ਚੀਜ਼ਾਂ ਹੋਰ ਸੁਰੱਖਿਆ ਦੇ ਨਾਲ ਖੋਜੋ।"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਰਲ ਸਰਚ ਨਾਲ ਕਰੋ"
+msgstr "{addon_name}{end_sub_heading}ਦੇ ਨਾਲ {start_sub_heading} ਟੈਬਸ ਸਧਾਰਨ ਬਣਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Organize your many open tabs in a vertical sidebar."
@@ -4585,7 +4582,7 @@ msgid "OpenSearch: XML Security error."
 msgstr "OpenSearch: XML ਸੁਰੱਖਿਆ ਗਲਤੀ।"
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: XML ਪਾਰਸ ਗਲਤੀ।"
 
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
@@ -4636,16 +4633,15 @@ msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆ�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
+msgstr "ਗ਼ੈਰਸਮਰਥਿਤ ਫਾਈਲ ਕਿਸਮ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮਰਥਿਤ ਫਾਈਲ {extensions} ਅਪਲੋਡ ਕਰੋੋ।"
 
 msgid "Unexpected error."
 msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em: ਕਿਸਮ> ਤੁਹਾਡੇ install.rdf (%s)ਵਿੱਚ AMO (%s) ਉੱਪਰ ਤੁਹਾਡੇ ਐਡਆਨ ਦੀ ਕਿਸਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
+msgstr ""
 
 msgid "Back to review"
 msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
