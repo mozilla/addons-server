@@ -236,13 +236,8 @@ class ThemeQueueMixin:
         return query
 
 
-class ViewExtensionFullReviewQueue(ExtensionQueueMixin, FullReviewQueueMixin,
-                                   ViewQueue):
-    pass
-
-
-class ViewExtensionPendingQueue(ExtensionQueueMixin, PendingQueueMixin,
-                                ViewQueue):
+class ViewExtensionQueue(ExtensionQueueMixin, CombinedReviewQueueMixin,
+                         ViewQueue):
     pass
 
 
