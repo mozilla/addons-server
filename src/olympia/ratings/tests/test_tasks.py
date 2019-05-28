@@ -13,9 +13,9 @@ from olympia.ratings.tasks import (
 
 
 class TestAddonRatingAggregates(TestCase):
-    # Prevent <Rating>.refresh() from being fired when setting up test data,
+    # Prevent Rating.post_save() from being fired when setting up test data,
     # since it'd call addon_rating_aggregates too early.
-    @mock.patch.object(Rating, 'refresh', lambda x, update_denorm=False: None)
+    @mock.patch.object(Rating, 'post_save', lambda *args, **kwargs: None)
     def test_addon_rating_aggregates(self):
         addon = addon_factory()
         addon2 = addon_factory()
@@ -54,7 +54,7 @@ class TestAddonRatingAggregates(TestCase):
         assert new_rating.is_latest is True
 
         # Make sure total_ratings hasn't been updated yet (because we are
-        # mocking Rating.refresh()).
+        # mocking post_save()).
         addon.reload()
         addon2.reload()
         assert addon.total_ratings == 0
