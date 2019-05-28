@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-28 20:50+0000\n"
+"PO-Revision-Date: 2019-05-28 21:16+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -21,45 +21,40 @@ msgstr ""
 msgid "type"
 msgstr "tipo"
 
-#, fuzzy
 msgid "Users"
-msgstr "Usuário"
+msgstr "Usuários"
 
 msgid "Addons"
 msgstr "Extensões"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "número mínimo de relatos (agrupados por guid)"
 
-#, fuzzy
 msgid "creation date"
-msgstr "Guia de moderação"
+msgstr "data de criação"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Extensões não-listadas"
+msgstr "Usuário / Extensão"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Descrição"
+msgstr "Distribuição"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "País do relator"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Trecho da mensagem"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "O texto inserido foi marcado como spam."
+msgstr "Os %d relatos selecionados foram marcados como válidos."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Os %d relatos selecionados foram marcados como suspeitos."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Solicitação de ajuda ou bug reportado no local errado"
+msgstr "Marcar relatos de abuso selecionados como suspeitos"
 
 msgid "Modified on:"
 msgstr "Modificado por:"
@@ -1316,17 +1311,14 @@ msgid "Persona"
 msgstr "Persona"
 
 # This is the name/category for a group of tests
-#, fuzzy
 msgid "Security"
-msgstr "Testes de segurança"
+msgstr "Segurança"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Política de privacidade"
+msgstr "Privacidade"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Ver melhores práticas"
+msgstr "Práticas de desenvolvimento"
 
 msgid "No Reputation"
 msgstr "Sem reputação"
@@ -5408,17 +5400,15 @@ msgstr "Aprovar conteúdo"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Isso registra sua aprovação do conteúdo da última versão pública, sem notificar o desenvolvedor."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Revisar extensões"
+msgstr "Revisão prévia de extensões"
 
 msgid "Recommended ({0})"
 msgstr "Recomendado ({0})"
 
 # %1 is the review count
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Avaliação de análise ({0})"
+msgstr "Outras revisões pendentes ({0})"
 
 msgid "Review Log"
 msgstr "Registo de revisão"
@@ -6329,7 +6319,7 @@ msgid "Activity Logs"
 msgstr "Registro de atividades"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Digite um endereço IPv4 ou IPv6 válido, por exemplo 127.0.0.1. Será convertido em uma rede /32."
 
 msgid "You can only enter one, either IP Address or Network."
 msgstr "Só pode informar um dos dois, Endereço IP ou Rede."
@@ -6347,21 +6337,23 @@ msgid "My Favorite Add-ons"
 msgstr "Minhas extensões favoritas"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Digite uma faixa de rede IPv6 ou IPv6 CIDR válida, por exemplo 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Várias extensões que violam nossas políticas foram enviadas a partir de sua localização. O endereço IP foi bloqueado."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Máscara de e-mails"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Digite um domínio completo ou e-mail que deve ser bloqueado, ou use uma máscara estilo glob para corresponder a outros padrões. Por exemplo, \"@*.mail.com\"\n"
+"Note que não incluímos o \"@\" ao corresponder, por isso você deve incluir na máscara."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "O endereço de e-mail que você usou na sua conta de desenvolvedor não é aceita para enviar extensões."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
