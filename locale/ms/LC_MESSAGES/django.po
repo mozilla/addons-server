@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"POT-Creation-Date: 2019-05-28 15:04+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,59 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "type"
+msgstr ""
+
+#, fuzzy
+msgid "Users"
+msgstr "Nama pengguna"
+
+msgid "Addons"
+msgstr "Add-ons"
+
+msgid "minimum reports count (grouped by guid)"
+msgstr ""
+
+#, fuzzy
+msgid "creation date"
+msgstr "Panduan Moderasi"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "Add-ons Tidak Disenaraikan"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "Keterangan"
+
+msgid "Reporter's country"
+msgstr ""
+
+msgid "Message excerpt"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr "Teks yang dimasukkan telah ditanda sebagai spam."
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr ""
+
+#, fuzzy
+msgid "Mark selected abuse reports as suspicious"
+msgstr "Laporan atau sokongan pepijat yang tersalah tempat"
+
+msgid "Modified on:"
+msgstr ""
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr ""
+
+msgid "All"
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Tiada pautan dibenarkan."
@@ -199,6 +252,12 @@ msgstr "Tidak betul, sila cuba lagi."
 
 msgid "Error verifying input, please try again."
 msgstr "Ralat mengesahkan input, sila cuba lagi."
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr ""
+
+msgid "CIDR"
+msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Beberapa ciri dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Kami akan kembali ke kapasiti penuh tidak lama lagi."
@@ -1219,6 +1278,18 @@ msgstr "Tema Statik"
 msgid "Persona"
 msgstr "Persona"
 
+#, fuzzy
+msgid "Security"
+msgstr "Ujian Keselamatan"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "Dasar Privasi"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "Polisi Pembangun"
+
 msgid "No Reputation"
 msgstr "Tiada Reputasi"
 
@@ -1505,6 +1576,9 @@ msgstr "Pembatalan gagal pengesahan"
 msgid "Need to select at least one application."
 msgstr "Perlu pilih sekurang-kurangnya satu aplikasi."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} telah dimuat naik sebelum ini dan dibuang."
 
@@ -1730,13 +1804,6 @@ msgstr "Kekunci API dimansuhkan"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Add-on saya tidak boleh dimuatkan ke dalam mana-mana kategori"
-
-msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
-msgstr ""
-"Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox serta Polisi dan Peraturan Semakan kami. Perjanjian Pengedaran Add-on Firefox juga ada hubungan dengan Notis Privasi "
-"kami yang menjelaskan cara kami mengendalikan maklumat anda."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Perjanjian Distribusi Add-on Firefox"
@@ -5000,21 +5067,6 @@ msgstr "Nama pengguna"
 msgid "IP Address"
 msgstr "Alamat E-mel"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Ulasan untuk %s"
-
-msgid "Review History for this Addon"
-msgstr "Sejarah Semakan Add-on ini"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Tahap %d daripada 5 bintang"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Penjelasan ringkas mesti disertakan apabila memilih \"Lain-lain\" sebagai alasan tandaan."
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam atau kandungan lain yang tiada kaitan"
 
@@ -5048,131 +5100,15 @@ msgstr "Anda tidak boleh semak add-on anda sendiri."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
 
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr ""
+
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Penilaian ini tidak boleh ditandakan kerana tiada teks ulasan."
 
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan penyemak."
-
-msgid "Add a review for {0}"
-msgstr "Beri ulasan untuk {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Perlu sentiasa diingat:</h2> <ul> <li> Tulis seperti anda berkongsi pengalaman menggunakan add-on kepada rakan anda. Beri butiran khusus dan berguna, seperti ciri yangn anda suka dan/atau tidak "
-"suka, betapa mudah menggunakannya, dan keburukannya. Elakkan bahasa umum seperti \"Bagus\" atau \"Buruk\" kecuali anda ada alasan untuk berbuat begitu. </li> <li> Jangan lapor pepijat di sini. Kami "
-"tidak memberikan alamat e-mel anda kepada pembangun add-on, maka mereka tidak dapat menyelesaikan isu anda, Lihat <a href=\"%(support)s\">bahagian sokongan</a> untuk mengetahui samada ada bantuan "
-"atau tidak. Anda juga boleh tanya <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">komuniti add-on</a> untuk bantuan. </li> <li>Sila pastikan ulasan itu bersih, elakkan "
-"penggunaan bahasa kurang sopan dan menyiarkan makumat peribadi. </li> </ul> <p> Sila baca <a href=\"%(guide)s\">Garis Panduan Ulasan</a> untuk maklumat lanjut perihal ulasan add-on.</p>"
-
-msgid "Submit review"
-msgstr "Hantar semakan"
-
-msgid "Reply to review by {0}"
-msgstr "Balasan untuk ulasan oleh {0}"
-
-msgid "Write a Reply"
-msgstr "Tulis Balasan"
-
-msgid "Submit"
-msgstr "Hantar"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "atau <a href=\"%(url)s\">Batal</a>"
-
-msgid "Please select a reason:"
-msgstr "Sila pilih alasan:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "oleh %(user)s <b>(Pembangun)</b> pada %(date)s"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "oleh %(user)s pada %(date)s"
-
-msgid "permalink"
-msgstr "pautan kekal"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ulasan ini untuk add-on ({0}) versi terdahulu."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Pengguna ini ada <a href=\"%(user_review_url)s\">%(cnt)s ulasan sebelum ini</a> perihal add-on ini."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Pengguna ini ada<a href=\"%(user_review_url)s\">ulasan lain</a> perihal add-on ini."
-
-msgid "Flagged for review"
-msgstr "Ditanda untuk semakan"
-
-msgid "Report this review"
-msgstr "Lapor ulasan ini"
-
-msgid "Reply to review"
-msgstr "Balasan untuk ulasan"
-
-msgid "Edit reply"
-msgstr "Edit balasan"
-
-msgid "Edit review"
-msgstr "Edit ulasan"
-
-msgid "Delete reply"
-msgstr "Buang balasan"
-
-msgid "Delete review"
-msgstr "Buang semakan"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Ulasan"
-
-msgid "Reviews for {0}"
-msgstr "Ulasan untuk {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> ulasan untuk add-ons ini"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Balasan pembangun oleh {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Ulasan untuk %(addon)s oleh %(user)s"
-
-msgid "No reviews found."
-msgstr "Belum ada ulasan."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Purata</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Tulis Ulasan Baru"
-
-msgid "Be the first to write a review."
-msgstr "Jadi orang pertama menulis ulasan."
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Add-on ini belum diulas."
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Penjelasan ringkas mesti disertakan apabila memilih \"Lain-lain\" sebagai alasan tandaan."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5263,6 +5199,9 @@ msgstr "Kekalkan semakan; buang tanda"
 
 msgid "Skip for now"
 msgstr "Langkau dulu sekarang"
+
+msgid "Delete review"
+msgstr "Buang semakan"
 
 msgid "Needs Admin Content Review"
 msgstr "Perlu Semakan Kandungan Pentadbir"
@@ -5382,14 +5321,15 @@ msgid "This records your approbation of the content of the latest public version
 msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
 #, fuzzy
-msgid "Pre-Approval Add-ons"
-msgstr "Add-ons Auto-Lulus"
+msgid "Pre-Review Add-ons"
+msgstr "Semak Add-ons"
 
-msgid "New ({0})"
-msgstr "Baru ({0})"
+msgid "Recommended ({0})"
+msgstr ""
 
-msgid "Updates ({0})"
-msgstr "Kemaskini ({0})"
+#, fuzzy
+msgid "Other Pending Review ({0})"
+msgstr "Ulasan Penilaian ({0})"
 
 msgid "Review Log"
 msgstr "Log Ulasan"
@@ -5415,6 +5355,12 @@ msgstr "Semakan Kandungan"
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "Semakan Kandungan ({0})"
+
+msgid "New ({0})"
+msgstr "Baru ({0})"
+
+msgid "Updates ({0})"
+msgstr "Kemaskini ({0})"
 
 msgid "Theme Review Guide"
 msgstr "Panduan Semakan Tema"
@@ -5470,6 +5416,9 @@ msgstr "{addon} :: Laporan Penyalahgunaan"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Laporan Penyalahgunaan untuk {addon} dan pembangunnya ({num})"
 
+msgid "Abuse Reports"
+msgstr "Laporan Penyalahgunaan"
+
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "Maklumat Add-on untuk {0}"
@@ -5492,9 +5441,6 @@ msgstr "Tampak"
 
 msgid "Average Daily Users"
 msgstr "Purata Pengguna Harian"
-
-msgid "Abuse Reports"
-msgstr "Laporan Penyalahgunaan"
 
 msgid "View Privacy Policy"
 msgstr "Lihat Dasar Privasi"
@@ -5799,10 +5745,6 @@ msgstr "Sorok Komen"
 
 msgid "No reviews found for this period."
 msgstr "Tiada semakan ditemukan dalam tempoh ini."
-
-#, fuzzy, python-format
-msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] melaporkan %(object)s pada %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Abaikan pengumuman ini"
@@ -6266,11 +6208,14 @@ msgstr "Foto Profil"
 msgid "Collections"
 msgstr "Koleksi"
 
-msgid "Addons"
-msgstr "Add-ons"
-
 msgid "Activity Logs"
 msgstr "Log Aktiviti"
+
+msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+msgstr ""
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr ""
 
 msgid "No user with that email."
 msgstr "Tiada pengguna dengan e-mel berkenaan."
@@ -6283,6 +6228,30 @@ msgstr "Add-ons Mobile Saya"
 
 msgid "My Favorite Add-ons"
 msgstr "Add-ons Kegemaran Saya"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr ""
+
+msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgstr ""
+
+msgid "Email Pattern"
+msgstr ""
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgstr ""
+
+msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+"Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox serta Polisi dan Peraturan Semakan kami. Perjanjian Pengedaran Add-on Firefox juga ada hubungan dengan Notis Privasi "
+"kami yang menjelaskan cara kami mengendalikan maklumat anda."
 
 msgid "an add-on developer replies to my review"
 msgstr "pembangun add-on membalas ulasan saya"
@@ -6316,37 +6285,6 @@ msgstr "Sekat"
 
 msgid "Delete picture"
 msgstr "Buang gambar"
-
-msgid "Unsubscribe"
-msgstr "Batal langganan"
-
-msgid "You are successfully unsubscribed!"
-msgstr "Anda berjaya membatalkan langganan!"
-
-#, python-format
-msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr "Alamat e-mel <strong>%(email)s</strong> tidak akan menerima mesej lagi apabila:"
-
-msgid "More Actions:"
-msgstr "Tindakan Lanjutan:"
-
-msgid "edit your notification settings"
-msgstr "edit tetapan notifikasi anda"
-
-msgid "edit your profile"
-msgstr "edit profil anda"
-
-msgid "We could not unsubscribe you"
-msgstr "Kami tidak dapat membatalkan langganan anda"
-
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
-"Malangnya, kami tidak dapat membatalkan langganan anda. Pautan yang anda klik tidak sah. Tapi, anda masih boleh membatalkan langganan anda dalam <a href=\"%(edit_url)s\">halaman edit profil</a>."
-
-#, python-format
-msgid "by %(users)s"
-msgstr "oleh %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"
