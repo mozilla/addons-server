@@ -533,9 +533,9 @@ class ManifestJSONExtractor(object):
                 'is_restart_required': self.get('legacy') is not None,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
-                # Langpacks have strict compatibility enabled, rest of
+                # Langpacks and legacy add-ons have strict compatibility enabled, rest of
                 # webextensions don't.
-                'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
+                'strict_compatibility': self.get('legacy') is not None or data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
                 'is_experiment': self.is_experiment,
             })
