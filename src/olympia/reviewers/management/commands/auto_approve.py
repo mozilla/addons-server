@@ -4,7 +4,6 @@ from collections import Counter
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from django.db.models import Q
 
 import six
 
@@ -42,17 +41,8 @@ class Command(BaseCommand):
     def fetch_candidates(self):
         """Return a queryset with the Version instances that should be
         considered for auto approval."""
-        qs = Version.objects.filter(
-            addon__type__in=(
-                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
-                amo.ADDON_SEARCH),
-            addon__disabled_by_user=False,
-            addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
-            files__status=amo.STATUS_AWAITING_REVIEW).filter(
-            Q(files__is_webextension=True) | Q(addon__type=amo.ADDON_SEARCH))
-        qs = qs.exclude(
-            addon__discoveryitem__recommendable=True)
-        return qs.order_by('nomination', 'created').distinct()
+        return Version.objects.auto_approve().order_by(
+            'nomination', 'created').distinct()
 
     def handle(self, *args, **options):
         """Command entry point."""

@@ -663,6 +663,7 @@ def _get_comments_for_hard_deleted_versions(addon):
         status = 'Deleted'
         deleted = True
         channel = amo.RELEASE_CHANNEL_LISTED
+        is_ready_for_auto_approval = False
 
         @property
         def created(self):
@@ -914,6 +915,8 @@ def review(request, addon, channel=None):
     # generate auto approvals info. Note that the variable should not clash
     # the already existing 'version'.
     for a_version in pager.object_list:
+        if not a_version.is_ready_for_auto_approval:
+            continue
         try:
             summary = a_version.autoapprovalsummary
         except AutoApprovalSummary.DoesNotExist:
