@@ -885,7 +885,9 @@ class TestAPIAgreement(TestCase):
         doc = pq(response.content)
         assert doc('.addon-submission-process').text() == (
             'Multiple add-ons violating our policies have been submitted '
-            'from your location. The IP address has been blocked.')
+            'from your location. The IP address has been blocked.\n'
+            'More information on Developer Accounts'
+        )
 
     @mock.patch(
         'olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
