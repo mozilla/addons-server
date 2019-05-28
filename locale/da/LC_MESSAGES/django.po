@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"POT-Creation-Date: 2019-05-28 15:04+0000\n"
 "PO-Revision-Date: 2019-01-31 09:20+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -17,6 +17,59 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "type"
+msgstr ""
+
+#, fuzzy
+msgid "Users"
+msgstr "Bruger"
+
+msgid "Addons"
+msgstr "Tilføjelser"
+
+msgid "minimum reports count (grouped by guid)"
+msgstr ""
+
+#, fuzzy
+msgid "creation date"
+msgstr "Anmeldelse af tilføjelse"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "Tilføjelser til Android"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "Beskrivelse"
+
+msgid "Reporter's country"
+msgstr ""
+
+msgid "Message excerpt"
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr ""
+
+#, fuzzy
+msgid "Mark selected abuse reports as suspicious"
+msgstr "Fejlplaceret fejlrapport eller support-spørgsmål"
+
+msgid "Modified on:"
+msgstr ""
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr ""
+
+msgid "All"
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Links ikke tilladt."
@@ -203,6 +256,12 @@ msgid "Incorrect, please try again."
 msgstr "Forkert, prøv igen."
 
 msgid "Error verifying input, please try again."
+msgstr ""
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr ""
+
+msgid "CIDR"
 msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -1230,6 +1289,18 @@ msgid "Persona"
 msgstr "Persona"
 
 #, fuzzy
+msgid "Security"
+msgstr "Privatliv & sikkerhed"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "Privatlivspolitik"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "Politikker for udviklere"
+
+#, fuzzy
 msgid "No Reputation"
 msgstr "Omdømme"
 
@@ -1531,6 +1602,9 @@ msgstr ""
 msgid "Need to select at least one application."
 msgstr ""
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
@@ -1749,11 +1823,6 @@ msgid "API key revoked"
 msgstr "API-nøglen er tilbagekaldt"
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
-
-msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
@@ -5081,21 +5150,6 @@ msgstr "Bruger"
 msgid "IP Address"
 msgstr "IP-adresse"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Anmeldelser af %s"
-
-msgid "Review History for this Addon"
-msgstr "Anmeldelseshistorik for denne tilføjelse"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Bedømmelse: %d ud af 5 stjerner"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam eller på anden måde ikke en anmeldelse"
 
@@ -5129,136 +5183,15 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr ""
+
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Tak; denne anmeldelse er rapporteret til redaktørerne."
-
-msgid "Add a review for {0}"
-msgstr "Tilføj en anmeldelse af {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
-"<h2>Husk at:</h2> <ul> <li>Skrive som hvis du fortalte en ven om din oplevelse af tilføjelsen. Give specifikke og brugbare detaljer, eksempelvis hvilke funktioner kunne du lide og/eller ikke lide, "
-"hvor let er den at bruge, og hvilke ulemper har den. Undgå generelle vendinger som \"Fantastisk\" eller \"Dårlig\" med mindre du kan begrunde, hvorfor du mener det. </li> <li> Indsend ikke "
-"fejlrapporter her. Din mailadresse bliver ikke gjort tilgængelig for udviklere af udvidelser, og de kan have behov for at kontakte dig for at løse dit problem. Se <a href=\"%(support)s"
-"\">supportafsnittet</a> for at finde ud af, om du kan få hjælp. Du kan også prøve, at bede <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">the add-on community</a> om "
-"hjælp. </li> <li>Lav sobre anmeldelser, undgå brug af upassende sprog og opgiv ikke personlige oplysninger. </li> </ul> <p>Læs <a href=\"%(guide)s\">Retningslinjer for anmeldelser</a> for flere "
-"detaljer om brugeranmeldelser af tilføjelser.</p>"
-
-msgid "Submit review"
-msgstr "Indsend anmeldelse"
-
-msgid "Reply to review by {0}"
-msgstr "Svar på anmeldelse af {0}"
-
-msgid "Write a Reply"
-msgstr "Skriv et svar"
-
-msgid "Submit"
-msgstr "Indsend"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "eller <a href=\"%(url)s\">Annuller</a>"
-
-msgid "Please select a reason:"
-msgstr "Vælg en årsag:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "af %(user)s <b>(Udvikler)</b> den %(date)s"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "af %(user)s den %(date)s"
-
-msgid "permalink"
-msgstr "permalink"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Denne anmeldelse er af en tidligere version af tilføjelsen ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Denne bruger har en <a href=\"%(user_review_url)s\">tidligere anmeldelse</a> af denne tilføjelse."
-msgstr[1] "Denne bruger har <a href=\"%(user_review_url)s\">%(cnt)s tidligere anmeldelser</a> af denne tilføjelse."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Denne bruger har <a href=\"%(user_review_url)s\"> andre anmeldelser</a> af denne tilføjelse."
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Report this review"
-msgstr "Rapportér denne anmeldelse"
-
-msgid "Reply to review"
-msgstr "Svar på anmeldelse"
-
-msgid "Edit reply"
-msgstr "Rediger svar"
-
-msgid "Edit review"
-msgstr "Rediger anmeldelse"
-
-msgid "Delete reply"
-msgstr "Slet svar"
-
-msgid "Delete review"
-msgstr "Slet anmeldelse"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Anmeldelser"
-
-msgid "Reviews for {0}"
-msgstr "Bedømmelser af {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> anmeldelse af denne tilføjelse"
-msgstr[1] "<b>{0}</b> anmeldelser af denne tilføjelse"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Svar fra udvikleren {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Anmeldelse af %(addon)s af %(user)s"
-msgstr[1] "Anmeldelser af %(addon)s af %(user)s"
-
-msgid "No reviews found."
-msgstr "Ingen anmeldelser fundet."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Gennemsnit</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Skriv en ny anmeldelse"
-
-msgid "Be the first to write a review."
-msgstr "Vær den første som skriver en anmeldelse."
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Denne tilføjelse er endnu ikke blevet anmeldt."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5351,6 +5284,9 @@ msgstr ""
 
 msgid "Skip for now"
 msgstr ""
+
+msgid "Delete review"
+msgstr "Slet anmeldelse"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5476,17 +5412,15 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
-msgid "Pre-Approval Add-ons"
+msgid "Pre-Review Add-ons"
 msgstr "Auto-godkendte tilføjelser"
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "New ({0})"
-msgstr "Ny ({0})"
+msgid "Recommended ({0})"
+msgstr ""
 
-msgid "Updates ({0})"
-msgstr "Opdateringer ({0})"
+#, fuzzy
+msgid "Other Pending Review ({0})"
+msgstr "Anmeld {0}"
 
 #, fuzzy
 msgid "Review Log"
@@ -5521,6 +5455,15 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "Anmeld {0}"
 msgstr[1] "Anmeld {0}"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+msgid "New ({0})"
+msgstr "Ny ({0})"
+
+msgid "Updates ({0})"
+msgstr "Opdateringer ({0})"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -5580,6 +5523,9 @@ msgstr "{addon} :: Rapporter om misbrug"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
+msgid "Abuse Reports"
+msgstr "Rapporter om misbrug"
+
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "Tilføjelsesinformation for {0}"
@@ -5601,9 +5547,6 @@ msgstr "Synlig"
 
 msgid "Average Daily Users"
 msgstr "Gennemsnitlige daglige brugere"
-
-msgid "Abuse Reports"
-msgstr "Rapporter om misbrug"
 
 msgid "View Privacy Policy"
 msgstr "Vis privatlivspolitik"
@@ -5914,10 +5857,6 @@ msgid "Hide Comments"
 msgstr "Skjul kommentarer"
 
 msgid "No reviews found for this period."
-msgstr ""
-
-#, python-format
-msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
@@ -6382,11 +6321,14 @@ msgstr "Profilfoto"
 msgid "Collections"
 msgstr "Samlinger"
 
-msgid "Addons"
-msgstr "Tilføjelser"
-
 msgid "Activity Logs"
 msgstr "Aktivitets-log"
+
+msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+msgstr ""
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr ""
 
 msgid "No user with that email."
 msgstr "Ingen bruger med denne mailadresse."
@@ -6399,6 +6341,28 @@ msgstr "Mine tilføjelser til Mobilen"
 
 msgid "My Favorite Add-ons"
 msgstr "Mine favorittilføjelser"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr ""
+
+msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgstr ""
+
+msgid "Email Pattern"
+msgstr ""
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgstr ""
+
+msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
 
 msgid "an add-on developer replies to my review"
 msgstr "en udvikler af tilføjelser svarer på min anmeldelse"
@@ -6432,36 +6396,6 @@ msgstr "Udeluk"
 
 msgid "Delete picture"
 msgstr "Slet billede"
-
-msgid "Unsubscribe"
-msgstr "Stop abonnement"
-
-msgid "You are successfully unsubscribed!"
-msgstr "Du abonnerer ikke længere!"
-
-#, python-format
-msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr "Mailadressen <strong>%(email)s</strong> vil ikke længere modtage meddelelser når:"
-
-msgid "More Actions:"
-msgstr "Flere handlinger:"
-
-msgid "edit your notification settings"
-msgstr ""
-
-msgid "edit your profile"
-msgstr "rediger din profil"
-
-msgid "We could not unsubscribe you"
-msgstr "Vi kunne ikke stoppe dit abonnement"
-
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Vi var desværre ikke i stand til at stoppe dit abonnement. Det link du klikkede på er ugyldigt. Men du kan stadig stoppe abonnementet på siden <a href=\"%(edit_url)s\">Rediger profil</a>."
-
-#, python-format
-msgid "by %(users)s"
-msgstr "af %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"

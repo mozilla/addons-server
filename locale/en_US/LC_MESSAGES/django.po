@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"POT-Creation-Date: 2019-05-28 15:04+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,6 +16,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+msgid "type"
+msgstr "type"
+
+#, fuzzy
+msgid "Users"
+msgstr "Username"
+
+msgid "Addons"
+msgstr "Addons"
+
+msgid "minimum reports count (grouped by guid)"
+msgstr "minimum reports count (grouped by guid)"
+
+#, fuzzy
+msgid "creation date"
+msgstr "Moderation actions:"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "All Unlisted Add-ons"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "Description"
+
+msgid "Reporter's country"
+msgstr "Reporter's country"
+
+msgid "Message excerpt"
+msgstr "Message excerpt"
+
+#, fuzzy, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr "The text entered has been flagged as spam."
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr "The %d selected reports have been marked as suspicious."
+
+#, fuzzy
+msgid "Mark selected abuse reports as suspicious"
+msgstr "Misplaced bug report or support request"
+
+msgid "Modified on:"
+msgstr "Modified on:"
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr "By %(filter_title)s"
+
+msgid "All"
+msgstr "All"
 
 msgid "No links are allowed."
 msgstr "No links are allowed."
@@ -208,6 +261,12 @@ msgstr "Incorrect, please try again."
 
 msgid "Error verifying input, please try again."
 msgstr "Error verifying input, please try again."
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr "Enter a valid IP4 or IP6 network."
+
+msgid "CIDR"
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -1303,6 +1362,18 @@ msgid "Persona"
 msgstr "Persona"
 
 #, fuzzy
+msgid "Security"
+msgstr "Security Tests"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "Privacy Policy"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "See Best Practices"
+
+#, fuzzy
 msgid "No Reputation"
 msgstr "Resolution"
 
@@ -1611,6 +1682,9 @@ msgstr "Override failed validation"
 msgid "Need to select at least one application."
 msgstr "Need at least one compatible application."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "You have submitted too many uploads recently. Please try again after some time."
+
 #, fuzzy
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version %s already exists, or was uploaded before."
@@ -1855,12 +1929,6 @@ msgstr "API key revoked"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "My add-on doesn't fit into any of the categories"
-
-#, fuzzy
-msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
-msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox Add-on Distribution Agreement"
@@ -5442,21 +5510,6 @@ msgstr "Username"
 msgid "IP Address"
 msgstr "Email Address"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Reviews for %s"
-
-msgid "Review History for this Addon"
-msgstr "Review History for this Addon"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Rated %d out of 5 stars"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "A short explanation must be provided when selecting \"Other\" as a flag reason."
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam or otherwise non-review content"
 
@@ -5494,136 +5547,16 @@ msgstr "someone writes a review of my add-on"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "You cannot upload any more files for this version."
 
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr "Invalid flag [%s] - must be one of [%s]"
+
 #, fuzzy
 msgid "This rating can't be flagged because it has no review text."
 msgstr "This rating can't flagged because it has no review text."
 
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Thanks; this review has been flagged for editor approval."
-
-msgid "Add a review for {0}"
-msgstr "Add a review for {0}"
-
-#, fuzzy, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
-
-msgid "Submit review"
-msgstr "Submit review"
-
-msgid "Reply to review by {0}"
-msgstr "Reply to review by {0}"
-
-msgid "Write a Reply"
-msgstr "Write a Reply"
-
-msgid "Submit"
-msgstr "Submit"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "or <a href=\"%(url)s\">Cancel</a>"
-
-msgid "Please select a reason:"
-msgstr "Please select a reason:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "by %(user)s <b>(Developer)</b> on %(date)s"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "by %(user)s on %(date)s"
-
-msgid "permalink"
-msgstr "permalink"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "This review is for a previous version of the add-on ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgstr[1] "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-
-msgid "Flagged for review"
-msgstr "Flagged for review"
-
-msgid "Report this review"
-msgstr "Report this review"
-
-msgid "Reply to review"
-msgstr "Reply to review"
-
-msgid "Edit reply"
-msgstr "Edit reply"
-
-msgid "Edit review"
-msgstr "Edit review"
-
-msgid "Delete reply"
-msgstr "Delete reply"
-
-msgid "Delete review"
-msgstr "Delete review"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Reviews"
-
-msgid "Reviews for {0}"
-msgstr "Reviews for {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> review for this add-on"
-msgstr[1] "<b>{0}</b> reviews for this add-on"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Developer reply by {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Review for %(addon)s by %(user)s"
-msgstr[1] "Reviews for %(addon)s by %(user)s"
-
-msgid "No reviews found."
-msgstr "No reviews found."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Average</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Write a New Review"
-
-msgid "Be the first to write a review."
-msgstr "Be the first to write a review."
-
-msgid "This add-on has not yet been reviewed."
-msgstr "This add-on has not yet been reviewed."
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "A short explanation must be provided when selecting \"Other\" as a flag reason."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5719,6 +5652,9 @@ msgstr "Keep review; remove flags"
 
 msgid "Skip for now"
 msgstr "Skip for now"
+
+msgid "Delete review"
+msgstr "Delete review"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5861,16 +5797,15 @@ msgid "This records your approbation of the content of the latest public version
 msgstr "This records your approbation of the content of this version, without notifying the developer."
 
 #, fuzzy
-msgid "Pre-Approval Add-ons"
-msgstr "Android Add-ons"
+msgid "Pre-Review Add-ons"
+msgstr "Review This Add-on"
+
+msgid "Recommended ({0})"
+msgstr "Recommended ({0})"
 
 #, fuzzy
-msgid "New ({0})"
-msgstr "All Unlisted Add-ons ({0})"
-
-#, fuzzy
-msgid "Updates ({0})"
-msgstr "Updated {0}"
+msgid "Other Pending Review ({0})"
+msgstr "Moderated Review ({0})"
 
 #, fuzzy
 msgid "Review Log"
@@ -5904,6 +5839,14 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "Moderated Review ({0})"
 msgstr[1] "Moderated Reviews ({0})"
+
+#, fuzzy
+msgid "New ({0})"
+msgstr "All Unlisted Add-ons ({0})"
+
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "Updated {0}"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -5966,6 +5909,9 @@ msgstr "{addon} :: Abuse Reports"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Abuse Reports for {addon} ({num})"
 
+msgid "Abuse Reports"
+msgstr "Abuse Reports"
+
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "Add-on Information for {0}"
@@ -5989,9 +5935,6 @@ msgstr "Visibility"
 
 msgid "Average Daily Users"
 msgstr "Average Daily Users"
-
-msgid "Abuse Reports"
-msgstr "Abuse Reports"
 
 msgid "View Privacy Policy"
 msgstr "View Privacy Policy"
@@ -6318,10 +6261,6 @@ msgstr "Hide Comments"
 
 msgid "No reviews found for this period."
 msgstr "No reviews found for this period."
-
-#, fuzzy, python-format
-msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Dismiss this announcement"
@@ -6802,12 +6741,15 @@ msgstr "Profile Photo"
 msgid "Collections"
 msgstr "Collections"
 
-msgid "Addons"
-msgstr "Addons"
-
 #, fuzzy
 msgid "Activity Logs"
 msgstr "Activity"
+
+msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+msgstr "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr "You can only enter one, either IP Address or Network."
 
 msgid "No user with that email."
 msgstr "No user with that email."
@@ -6821,6 +6763,31 @@ msgstr "My Mobile Add-ons"
 
 msgid "My Favorite Add-ons"
 msgstr "My Favorite Add-ons"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+
+msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgstr "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+
+msgid "Email Pattern"
+msgstr "Email Pattern"
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgstr ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+
+msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgstr "The email address you used for your developer account is not allowed for add-on submission."
+
+#, fuzzy
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
 msgid "an add-on developer replies to my review"
 msgstr "an add-on developer replies to my review"
@@ -6858,36 +6825,6 @@ msgstr "and"
 #, fuzzy
 msgid "Delete picture"
 msgstr "Delete my user picture now"
-
-msgid "Unsubscribe"
-msgstr "Unsubscribe"
-
-msgid "You are successfully unsubscribed!"
-msgstr "You are successfully unsubscribed!"
-
-#, python-format
-msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr "The email address <strong>%(email)s</strong> will no longer get messages when:"
-
-msgid "More Actions:"
-msgstr "More Actions:"
-
-msgid "edit your notification settings"
-msgstr "edit your notification settings"
-
-msgid "edit your profile"
-msgstr "edit your profile"
-
-msgid "We could not unsubscribe you"
-msgstr "We could not unsubscribe you"
-
-#, fuzzy, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Unfortunately, we weren't able to unsubscribe you.  The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-
-#, python-format
-msgid "by %(users)s"
-msgstr "by %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"

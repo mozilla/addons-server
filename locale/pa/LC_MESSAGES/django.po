@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"POT-Creation-Date: 2019-05-28 15:04+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,6 +11,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+msgid "type"
+msgstr ""
+
+#, fuzzy
+msgid "Users"
+msgstr "ਉਪਭੋਗੀ ਨਾਂ"
+
+msgid "Addons"
+msgstr ""
+
+msgid "minimum reports count (grouped by guid)"
+msgstr ""
+
+#, fuzzy
+msgid "creation date"
+msgstr "ਦਰਮਿਆਨੀ ਕਾਰਵਾਈਆਂ:"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "ਵੇਰਵਾ"
+
+msgid "Reporter's country"
+msgstr ""
+
+msgid "Message excerpt"
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr ""
+
+#, fuzzy
+msgid "Mark selected abuse reports as suspicious"
+msgstr "ਗੁਆਚੀ ਬਗ ਰਿਪੋਰਟ ਜਾਂ ਸਹਿਯੋਗ ਬੇਨਤੀ"
+
+msgid "Modified on:"
+msgstr ""
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr ""
+
+msgid "All"
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ।"
@@ -199,6 +252,12 @@ msgid "Incorrect, please try again."
 msgstr ""
 
 msgid "Error verifying input, please try again."
+msgstr ""
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr ""
+
+msgid "CIDR"
 msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -1283,6 +1342,18 @@ msgid "Persona"
 msgstr "ਪਰਸੋਨਾ"
 
 #, fuzzy
+msgid "Security"
+msgstr "ਸੁਰੱਖਿਆ ਪਰਖ"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "ਪਰਦਾ ਨੀਤੀ"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
+
+#, fuzzy
 msgid "No Reputation"
 msgstr "ਮਤਾ"
 
@@ -1590,6 +1661,9 @@ msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹ
 msgid "Need to select at least one application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅਨੁਕੂਲ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਲੋੜ।"
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
@@ -1815,12 +1889,6 @@ msgstr ""
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "ਮੇਰਾ ਐਡ-ਆਨ ਕਿਸੇ ਵੀ ਵਰਗ ਵਿੱਚ ਰਾਸ ਨਹੀਂਂ ਆ ਰਿਹਾ"
-
-#, fuzzy
-msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
-msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। ਇਹ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਵੀ ਸਬੰਧ ਰੱਖਦਾ ਜੋ ਦੱਸਦਾ ਹੈ ਕੀ ਕਿਵੇਂ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਦੇ ਹਾਂ।"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
@@ -5177,21 +5245,6 @@ msgstr "ਉਪਭੋਗੀ ਨਾਂ"
 msgid "IP Address"
 msgstr "ਈਮੇਲ ਪਤਾ"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "%s ਲਈ ਸਮੀਖਿਆਵਾਂ"
-
-msgid "Review History for this Addon"
-msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ %d ਮਿਲੇ"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
 msgid "Spam or otherwise non-review content"
 msgstr "ਸਪੈਮ ਜਾਂ ਹੋਰ ਬਿਨਾਂ-ਸਮੀਖਿਆ ਵਾਲੀ ਸਮੱਗਰੀ"
 
@@ -5229,130 +5282,15 @@ msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
 
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr ""
+
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "ਧੰਨਵਾਦ; ਇਸ ਸਮੀਖਿਆ ਉੱਤੇ ਸੰਪਾਦਕ ਪ੍ਰਵਾਨਗੀ ਲਈ ਝੰਡਾ ਲਗਾਇਆ ਗਿਆ।"
-
-msgid "Add a review for {0}"
-msgstr "{0} ਲਈ ਇੱਕ ਸਮੀਖਿਆ ਜੋੜੋ"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
-
-msgid "Submit review"
-msgstr "ਸਮੀਖਿਆ ਦਿਓ"
-
-msgid "Reply to review by {0}"
-msgstr "{0} ਵੱਲੋਂ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ"
-
-msgid "Write a Reply"
-msgstr "ਇੱਕ ਜਵਾਬ ਲਿਖੋ"
-
-msgid "Submit"
-msgstr "ਭੇਜੋ"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ਜਾਂ <a href=\"%(url)s\">ਰੱਦ ਕਰੋ</a>"
-
-msgid "Please select a reason:"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਕਾਰਨ ਚੁਣੋ:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "%(date)s ਤੇ %(user)s <b>(Developer)</b> ਵੱਲੋਂ"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "ਵੱਲੋਂ %(user)s %(date)s ਤੇ"
-
-msgid "permalink"
-msgstr "ਪਰਮਾਲਿੰਕ"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "ਇਹ ਸਮੀਖਿਆ ਐਡ-ਆਨ ({0}) ਦੇ ਪਿਛਲੇ ਵਰਜਨ ਲਈ ਹੈ।"
-
-#, fuzzy, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਪਿਛਲੀ ਸਮੀਖਿਆ</a> ਹੈ।"
-msgstr[1] "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਪਿਛਲੀਆਂ ਸਮੀਖਿਆਵਾਂ</a> ਹਨ।"
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਹੋਰ ਸਮੀਖਿਆਵਾਂ</a> ਹਨ।"
-
-msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲੱਗਿਆ"
-
-msgid "Report this review"
-msgstr "ਇਸ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ ਦਿਓ"
-
-msgid "Reply to review"
-msgstr "ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਦਿਓ"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "ਸਮੀਖਿਆ ਸੋਧ"
-
-msgid "Delete reply"
-msgstr ""
-
-msgid "Delete review"
-msgstr "ਸਮੀਖਿਆ ਹਟਾਓ"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: ਸਮੀਖਿਆਵਾਂ"
-
-msgid "Reviews for {0}"
-msgstr "{0} ਲਈ ਸਮੀਖਿਆਵਾਂ"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0}</b> ਸਮੀਖਿਆ"
-msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0}</b> ਸਮੀਖਿਆਵਾਂ"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "{0} ਵੱਲੋਂ ਡਿਵੈਲਪਰ ਜਵਾਬ"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s ਵੱਲੋਂ %(addon)s ਲਈ ਸਮੀਖਿਆ"
-msgstr[1] "%(user)s ਵੱਲੋਂ %(addon)s ਲਈ ਸਮੀਖਿਆਵਾਂ"
-
-msgid "No reviews found."
-msgstr "ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>ਔਸਤ</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "ਨਵੀਂ ਸਮੀਖਿਆ ਲਿਖੋ"
-
-msgid "Be the first to write a review."
-msgstr "ਸਮੀਖਿਆ ਲਿੱਖਣ ਵਿੱਚ ਪਹਿਲ ਕਰੋ।"
-
-msgid "This add-on has not yet been reviewed."
-msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਅਜੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ।"
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5448,6 +5386,9 @@ msgstr "ਸਮੀਖਿਆ ਰੱਖੋ; ਝੰਡੇ ਹਟਾਓ"
 
 msgid "Skip for now"
 msgstr "ਹੁਣ ਲਈ ਛੱਡੋ"
+
+msgid "Delete review"
+msgstr "ਸਮੀਖਿਆ ਹਟਾਓ"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5586,16 +5527,15 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
-msgid "Pre-Approval Add-ons"
-msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
+msgid "Pre-Review Add-ons"
+msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
+
+msgid "Recommended ({0})"
+msgstr ""
 
 #, fuzzy
-msgid "New ({0})"
-msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-
-#, fuzzy
-msgid "Updates ({0})"
-msgstr "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+msgid "Other Pending Review ({0})"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 #, fuzzy
 msgid "Review Log"
@@ -5629,6 +5569,14 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+
+#, fuzzy
+msgid "New ({0})"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -5692,6 +5640,9 @@ msgstr "{addon} :: ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} ({num}) ਲਈ ਬਦਸਲੂਕੀ ਰਿਪੋਰਟਾਂ"
 
+msgid "Abuse Reports"
+msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
+
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "{0} ਲਈ ਐਡ-ਆਨ ਦੀ ਜਾਣਕਾਰੀ"
@@ -5715,9 +5666,6 @@ msgstr "ਪ੍ਰਤੱਖਤਾ"
 
 msgid "Average Daily Users"
 msgstr "ਔਸਤ ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
-
-msgid "Abuse Reports"
-msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
 
 msgid "View Privacy Policy"
 msgstr "ਵੇਖੋ ਪਰਦਾ ਨੀਤੀ"
@@ -6044,10 +5992,6 @@ msgstr "ਟਿੱਪਣੀਆਂ ਲੁਕਾਓ"
 
 msgid "No reviews found for this period."
 msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
-
-#, python-format
-msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "ਇਹ ਐਲਾਨ ਖਾਰਜ ਕਰੋ"
@@ -6522,12 +6466,15 @@ msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
 msgid "Collections"
 msgstr "ਸੰਗ੍ਰਹਿ "
 
-msgid "Addons"
-msgstr ""
-
 #, fuzzy
 msgid "Activity Logs"
 msgstr "ਸਰਗਰਮੀ"
+
+msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+msgstr ""
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr ""
 
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ।"
@@ -6541,6 +6488,29 @@ msgstr "ਮੇਰੇ ਮੋਬਾਈਲ ਐਡ-ਆਨ"
 
 msgid "My Favorite Add-ons"
 msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr ""
+
+msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgstr ""
+
+msgid "Email Pattern"
+msgstr ""
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgstr ""
+
+msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। ਇਹ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਵੀ ਸਬੰਧ ਰੱਖਦਾ ਜੋ ਦੱਸਦਾ ਹੈ ਕੀ ਕਿਵੇਂ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਦੇ ਹਾਂ।"
 
 msgid "an add-on developer replies to my review"
 msgstr "ਇੱਕ ਐਡ-ਆਨ ਡਿਵੈਲਪਰ ਨੇ ਮੇਰੀ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਦਿੱਤਾ"
@@ -6577,36 +6547,6 @@ msgstr "ਅਤੇ"
 #, fuzzy
 msgid "Delete picture"
 msgstr "ਮੇਰੀ ਉਪਭੋਗੀ ਤਸਵੀਰ ਹੁਣੇ ਹਟਾਓ"
-
-msgid "Unsubscribe"
-msgstr "ਗਾਹਕੀ ਰੱਦ ਕਰੋ"
-
-msgid "You are successfully unsubscribed!"
-msgstr "ਤੁਹਾਡੀ ਗਾਹਕੀ ਸਫ਼ਲਤਾਪੂਰਨ ਰੱਦ ਹੋਈ!"
-
-#, python-format
-msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr "ਈਮੇਲ ਪਤਾ <strong>%(email)s</strong> ਜਿਆਦਾ ਸਮੇਂ ਤੱਕ ਸੁਨੇਹੇ ਨਹੀਂ ਪ੍ਰਾਪਤ ਕਰੇਗਾ ਜਦੋਂ:"
-
-msgid "More Actions:"
-msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ:"
-
-msgid "edit your notification settings"
-msgstr "ਆਪਣੀਆਂ ਅਧਿਸੂਚਨਾ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਸੋਧ ਕਰੋ"
-
-msgid "edit your profile"
-msgstr "ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਵਿੱਚ ਸੋਧ ਕਰੋ"
-
-msgid "We could not unsubscribe you"
-msgstr "ਅਸੀਂ ਤੁਹਾਡੀ ਗਾਹਕੀ ਰੱਦ ਨਹੀਂ ਕਰ ਸਕਦੇ"
-
-#, fuzzy, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "ਬਦਕਿਸਮਤੀ ਨਾਲ, ਅਸੀਂ ਤੁਹਾਡੀ ਗਾਹਕੀ ਰੱਦ ਕਰਨਯੋਗ ਨਹੀਂ। ਤੁਹਾਡੇ ਵੱਲੋਂ ਕਲਿੱਕ ਕੀਤਾ ਲਿੰਕ ਗਲਤ ਹੈ। ਜਦਕਿ, ਤੁਸੀਂ <a href=\"%(edit_url)s\">ਪ੍ਰੋਫ਼ਾਈਲ ਸਫ਼ੇ ਵਿੱਚ ਸੋਧ</a>ਕਰਕੇ ਗਾਹਕੀ ਰੱਦ ਕਰ ਸਕਦੇ ਹੋ।"
-
-#, python-format
-msgid "by %(users)s"
-msgstr "%(users)s ਵੱਲੋਂ"
 
 msgctxt "user_list_others"
 msgid "others"

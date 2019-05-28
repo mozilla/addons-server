@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"POT-Creation-Date: 2019-05-28 15:04+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -14,6 +14,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+msgid "type"
+msgstr ""
+
+#, fuzzy
+msgid "Users"
+msgstr "Korisničko ime"
+
+msgid "Addons"
+msgstr ""
+
+msgid "minimum reports count (grouped by guid)"
+msgstr ""
+
+#, fuzzy
+msgid "creation date"
+msgstr "Akcije moderacije:"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "Svi dodaci"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "Opis"
+
+msgid "Reporter's country"
+msgstr ""
+
+msgid "Message excerpt"
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr ""
+
+#, fuzzy
+msgid "Mark selected abuse reports as suspicious"
+msgstr "Pogrešno postavljen izveštaj o grešci ili zahtev za podršku"
+
+msgid "Modified on:"
+msgstr ""
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr ""
+
+msgid "All"
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Veze nisu dozvoljene."
@@ -208,6 +261,12 @@ msgid "Incorrect, please try again."
 msgstr ""
 
 msgid "Error verifying input, please try again."
+msgstr ""
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr ""
+
+msgid "CIDR"
 msgstr ""
 
 msgid ""
@@ -1477,6 +1536,18 @@ msgid "Persona"
 msgstr "Persona"
 
 #, fuzzy
+msgid "Security"
+msgstr "Testovi bezbednosti"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "Polisa privatnosti"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "Programerske vesti"
+
+#, fuzzy
 msgid "No Reputation"
 msgstr "Rezolucija"
 
@@ -1805,6 +1876,11 @@ msgstr "Prepis nije prešao validaciju"
 msgid "Need to select at least one application."
 msgstr "Potrebna je najmanje jedna kompatibilna aplikacija."
 
+msgid ""
+"You have submitted too many uploads recently. Please try again after some "
+"time."
+msgstr ""
+
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
@@ -2064,13 +2140,6 @@ msgstr ""
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Moj dodatak ne odgovara ni jednoj kategoriji"
-
-msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution "
-"Agreement as well as our Review Policies and Rules. The Firefox Add-on "
-"Distribution Agreement also links to our Privacy Notice which explains how "
-"we handle your information."
-msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
@@ -6013,23 +6082,6 @@ msgstr "Korisničko ime"
 msgid "IP Address"
 msgstr "Adresa e-pošte"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Recenzije za %s"
-
-msgid "Review History for this Addon"
-msgstr "Istorija pregleda za ovaj dodatak"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Ocenjeno sa %d od 5 zvezdica"
-
-msgid ""
-"A short explanation must be provided when selecting \"Other\" as a flag "
-"reason."
-msgstr ""
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam ili drugi sadržaj ne-recenzentnog tipa"
 
@@ -6069,150 +6121,17 @@ msgstr "neko piše recenziju na moj dodatak"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ne možete više datoteka otpremiti za ovu verziju."
 
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr ""
+
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Hvala; ova recenzija je označena za odobrenje urednika."
-
-msgid "Add a review for {0}"
-msgstr "Dodaj recenziju za {0}"
-
-#, python-format
 msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a "
-"friend about your experience with the add-on. Give specifics and helpful "
-"details, such as what features you liked and/or disliked, how easy to use it "
-"is, and any disadvantages it has. Avoid generic language such as calling it "
-"\"Great\" or \"Bad\" unless you can give reasons why you believe this is so. "
-"</li> <li> Please do not post bug reports here. We do not make your email "
-"address available to add-on developers, so they can't contact you to resolve "
-"your issue. See this add-on's <a href=\"%(support)s\">support section</a> to "
-"find out if assistance is available. You can also try asking the <a href="
-"\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use "
-"of improper language and do not post any personal information. </li> </ul> "
-"<p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more "
-"detail about user add-on reviews.</p>"
+"A short explanation must be provided when selecting \"Other\" as a flag "
+"reason."
 msgstr ""
-
-msgid "Submit review"
-msgstr "Pošalji komentar"
-
-msgid "Reply to review by {0}"
-msgstr "Odgovor na recenziju od {0}"
-
-msgid "Write a Reply"
-msgstr "Napiši odgovor"
-
-msgid "Submit"
-msgstr "Pošalji"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ili <a href=\"%(url)s\">otkaži</a>"
-
-msgid "Please select a reason:"
-msgstr "Izaberite razlog:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "od %(user)s <b>(Programer)</b> datuma %(date)s"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "od %(user)s dana %(date)s"
-
-msgid "permalink"
-msgstr "trajna veza"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ovaj pregled je za prethodnu verziju dodatka ({0})."
-
-#, fuzzy, python-format
-msgid ""
-"This user has a <a href=\"%(user_review_url)s\">previous review</a> of this "
-"add-on."
-msgid_plural ""
-"This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
-"of this add-on."
-msgstr[0] ""
-"Ovaj korisnik ima <a href=\"%(user_review_url)s\">prethodni pregled</a> ovog "
-"dodatka."
-msgstr[1] ""
-"Ovaj korisnik ima <a href=\"%(user_review_url)s\">%(cnt)s prethodna "
-"pregleda</a> ovog dodatka."
-
-#, python-format
-msgid ""
-"This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-"
-"on."
-msgstr ""
-"Ovaj korisnik ima <a href=\"%(user_review_url)s\">druge preglede</a> ovog "
-"dodatka."
-
-msgid "Flagged for review"
-msgstr "Označeno za recenziju"
-
-msgid "Report this review"
-msgstr "Prijavi ovu recenziju"
-
-msgid "Reply to review"
-msgstr "Odgovori na recenziju"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "Uredi recenziju"
-
-msgid "Delete reply"
-msgstr ""
-
-msgid "Delete review"
-msgstr "Obrisana kritika"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: recenzija"
-
-msgid "Reviews for {0}"
-msgstr "Recenzije za {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> pregled za ovaj dodatak"
-msgstr[1] "<b>{0}</b> pregleda za ovaj dodatak"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Programer {0} je odgovorio"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Recenzija za %(addon)s od %(user)s"
-msgstr[1] "Recenzije za %(addon)s od %(user)s"
-
-msgid "No reviews found."
-msgstr "Nema pronađenih rezultata."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Prosek</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Napiši novu recenziju"
-
-msgid "Be the first to write a review."
-msgstr "Budite prvi da napišete recenziju."
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Ovaj dodatak još nema recenziju."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -6308,6 +6227,9 @@ msgstr "Zadrži recenziju; ukloni zastavice"
 
 msgid "Skip for now"
 msgstr "Preskoči za sada"
+
+msgid "Delete review"
+msgstr "Obrisana kritika"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -6469,16 +6391,15 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Pre-Approval Add-ons"
-msgstr "Dodaci za Android"
+msgid "Pre-Review Add-ons"
+msgstr "Pregledaj ovaj dodatak"
+
+msgid "Recommended ({0})"
+msgstr ""
 
 #, fuzzy
-msgid "New ({0})"
-msgstr "Svi moji dodaci"
-
-#, fuzzy
-msgid "Updates ({0})"
-msgstr "Ažurirano {0}"
+msgid "Other Pending Review ({0})"
+msgstr "Kontorlisan pregled ({0})"
 
 #, fuzzy
 msgid "Review Log"
@@ -6512,6 +6433,14 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "Kontorlisan pregled ({0})"
 msgstr[1] "Kontorlisana pregleda ({0})"
+
+#, fuzzy
+msgid "New ({0})"
+msgstr "Svi moji dodaci"
+
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "Ažurirano {0}"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -6575,6 +6504,9 @@ msgstr "{addon} :: Izveštaji zlostavljanja"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Izveštaji o zlostavljanju za {addon} ({num})"
 
+msgid "Abuse Reports"
+msgstr "Izveštaji o zloupotrebi"
+
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "Informacije o {0} dodatku"
@@ -6597,9 +6529,6 @@ msgstr ""
 
 msgid "Average Daily Users"
 msgstr "Prosečani dnevni korisnici"
-
-msgid "Abuse Reports"
-msgstr "Izveštaji o zloupotrebi"
 
 msgid "View Privacy Policy"
 msgstr "Pogledaj polisu privatnosti"
@@ -6951,10 +6880,6 @@ msgstr "Sakrij komentare"
 
 msgid "No reviews found for this period."
 msgstr "Nije pronađena ni jedna recenzija za ovaj period."
-
-#, python-format
-msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "Odbaci ovu najavu"
@@ -7468,12 +7393,17 @@ msgstr "Profilna slika"
 msgid "Collections"
 msgstr "Kolekcije"
 
-msgid "Addons"
-msgstr ""
-
 #, fuzzy
 msgid "Activity Logs"
 msgstr "Aktivnost"
+
+msgid ""
+"Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into "
+"a /32 network."
+msgstr ""
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr ""
 
 msgid "No user with that email."
 msgstr "Nema korisnika sa tom adresom e-pošte."
@@ -7487,6 +7417,36 @@ msgstr "Moji dodaci za mobilne"
 
 msgid "My Favorite Add-ons"
 msgstr "Moji omiljeni dodaci"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr ""
+
+msgid ""
+"Multiple add-ons violating our policies have been submitted from your "
+"location. The IP address has been blocked."
+msgstr ""
+
+msgid "Email Pattern"
+msgstr ""
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style "
+"wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do "
+"that in the pattern."
+msgstr ""
+
+msgid ""
+"The email address you used for your developer account is not allowed for add-"
+"on submission."
+msgstr ""
+
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution "
+"Agreement as well as our Review Policies and Rules. The Firefox Add-on "
+"Distribution Agreement also links to our Privacy Notice which explains how "
+"we handle your information."
+msgstr ""
 
 msgid "an add-on developer replies to my review"
 msgstr "programer dodatka mi odgovorio na kritiku"
@@ -7525,45 +7485,6 @@ msgstr "i"
 #, fuzzy
 msgid "Delete picture"
 msgstr "Obriši moju korisničku sliku"
-
-msgid "Unsubscribe"
-msgstr "Otkaži pretplatu"
-
-msgid "You are successfully unsubscribed!"
-msgstr "Uspešno ste otkazali pretplatu!"
-
-#, python-format
-msgid ""
-"The email address <strong>%(email)s</strong> will no longer get messages "
-"when:"
-msgstr ""
-"Adresa e-pošte <strong>%(email)s</strong> više neće dobiti poruke kada:"
-
-msgid "More Actions:"
-msgstr "Još opcija:"
-
-msgid "edit your notification settings"
-msgstr "izmenite podešavanja obaveštenja"
-
-msgid "edit your profile"
-msgstr "izmenite profil"
-
-msgid "We could not unsubscribe you"
-msgstr "Mogli bi da Vam otkažemo pretplatu"
-
-#, fuzzy, python-format
-msgid ""
-"Unfortunately, we weren't able to unsubscribe you. The link you clicked is "
-"invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s"
-"\">edit profile page</a>."
-msgstr ""
-"Nažalost, nismo u mogućnosti da Vam otkažemo pretplatu. Veza na koju ste "
-"kliknuli je neispravna. Međutim, Vi još uvek možete da otkažete pretplatu na "
-"Vašoj <a href=\"%(edit_url)s\">stranici za uređivanja profila</a>."
-
-#, python-format
-msgid "by %(users)s"
-msgstr "od %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"

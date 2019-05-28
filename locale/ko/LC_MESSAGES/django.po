@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"POT-Creation-Date: 2019-05-28 15:04+0000\n"
 "PO-Revision-Date: 2019-02-12 02:26+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -17,6 +17,59 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "type"
+msgstr ""
+
+#, fuzzy
+msgid "Users"
+msgstr "사용자 이름"
+
+msgid "Addons"
+msgstr ""
+
+msgid "minimum reports count (grouped by guid)"
+msgstr ""
+
+#, fuzzy
+msgid "creation date"
+msgstr "조정 행동:"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "모든 부가 기능"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "설명"
+
+msgid "Reporter's country"
+msgstr ""
+
+msgid "Message excerpt"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr "입력한 글이 스팸으로 처리되었습니다."
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr ""
+
+#, fuzzy
+msgid "Mark selected abuse reports as suspicious"
+msgstr "없는 버그를 신고했거나 기술 지원을 요청합니다"
+
+msgid "Modified on:"
+msgstr ""
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr ""
+
+msgid "All"
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "링크는 넣을 수 없습니다."
@@ -202,6 +255,12 @@ msgstr "정확하지 않습니다. 다시 시도해 주세요."
 
 msgid "Error verifying input, please try again."
 msgstr "입력 검증에 실패하였습니다. 다시 시도해 주세요."
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr ""
+
+msgid "CIDR"
+msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "웹사이트 점검 관계로 일부 기능을 잠시동안 사용할 수 없습니다. 최대한 빨리 사이트를 정상화 하도록 하겠습니다."
@@ -1220,6 +1279,18 @@ msgstr "정적 테마"
 msgid "Persona"
 msgstr "페르소나"
 
+#, fuzzy
+msgid "Security"
+msgstr "보안성 테스트"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "개인 정보 보호 정책"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "개발자 뉴스"
+
 msgid "No Reputation"
 msgstr "평판 없음"
 
@@ -1510,6 +1581,9 @@ msgstr "Override failed validation"
 msgid "Need to select at least one application."
 msgstr "호환되는 애플리케이션이 최소 한개는 있어야 합니다."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} 버전이 이전에 업로드 되고 삭제된적이 있습니다."
 
@@ -1731,13 +1805,6 @@ msgstr "API 키 폐기됨"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "어떤 분류에도 이 부가 기능과 부합하지 않습니다"
-
-msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
-msgstr ""
-"시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습"
-"니다."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox 부가 기능 배포 계약"
@@ -5021,21 +5088,6 @@ msgstr "사용자 이름"
 msgid "IP Address"
 msgstr "이메일 주소"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "%s에 대한 검토"
-
-msgid "Review History for this Addon"
-msgstr "이 부가 기능의 검토 내역"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "별 5개 만점에 %d개 받음"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
 msgid "Spam or otherwise non-review content"
 msgstr "스팸이거나 검토 내용이 아님"
 
@@ -5072,126 +5124,15 @@ msgstr "자신의 부가 기능에는 검토 의견을 남길 수 없습니다."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
 
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr ""
+
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "감사합니다. 검토 의견이 검토자에게 전달되었습니다."
-
-msgid "Add a review for {0}"
-msgstr "{0}에 대한 검토 작성"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
-
-msgid "Submit review"
-msgstr "검토 제출"
-
-msgid "Reply to review by {0}"
-msgstr "{0}님의 검토에 답변"
-
-msgid "Write a Reply"
-msgstr "댓글 작성하기"
-
-msgid "Submit"
-msgstr "입력하기"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "또는 <a href=\"%(url)s\">취소</a>"
-
-msgid "Please select a reason:"
-msgstr "사유를 선택하세요:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "작성: %(user)s <b>(개발자)</b>, 날짜: %(date)s"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "작성: %(user)s, 날짜: %(date)s"
-
-msgid "permalink"
-msgstr "고유 주소"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "이 검토는 현재 부가 기능의 이전 ({0}) 버전에 대한 것입니다."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "전에 이 사용자는 이 부가 기능에 <a href=\"%(user_review_url)s\">%(cnt)s개 검토</a>를 했습니다."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "이 사용자는 이 부가 기능의 <a href=\"%(user_review_url)s\">다른 평가</a>를 작성해 놓았습니다."
-
-msgid "Flagged for review"
-msgstr "검토를 위해 표시됨"
-
-msgid "Report this review"
-msgstr "검토 신고"
-
-msgid "Reply to review"
-msgstr "검토에 답변"
-
-msgid "Edit reply"
-msgstr "답글 수정"
-
-msgid "Edit review"
-msgstr "검토 편집"
-
-msgid "Delete reply"
-msgstr "답글 삭제"
-
-msgid "Delete review"
-msgstr "검토 삭제"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: 검토"
-
-msgid "Reviews for {0}"
-msgstr "{0}에 대한 검토"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "전체 검토: <b>{0}</b>개"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "{0}님의 개발자 댓글"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s님의 %(addon)s 검토"
-
-msgid "No reviews found."
-msgstr "검토 의견이 없습니다."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>평균</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "새 검토 의견 작성하기"
-
-msgid "Be the first to write a review."
-msgstr "첫번째로 검토 의견을 써보세요."
-
-msgid "This add-on has not yet been reviewed."
-msgstr "이 부가 기능은 아직 검토를 거치지 않았습니다."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5286,6 +5227,9 @@ msgstr "계속 검토; 표시 삭제"
 
 msgid "Skip for now"
 msgstr "지금은 접어두기"
+
+msgid "Delete review"
+msgstr "검토 삭제"
 
 msgid "Needs Admin Content Review"
 msgstr "관리자 콘텐츠 검토가 필요"
@@ -5412,16 +5356,15 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
-msgid "Pre-Approval Add-ons"
-msgstr "안드로이드용 부가 기능"
+msgid "Pre-Review Add-ons"
+msgstr "부가 기능 검토"
+
+msgid "Recommended ({0})"
+msgstr ""
 
 #, fuzzy
-msgid "New ({0})"
-msgstr "내가 제작한 모든 부가 기능"
-
-#, fuzzy
-msgid "Updates ({0})"
-msgstr "업데이트 ({0})"
+msgid "Other Pending Review ({0})"
+msgstr "심사 조정 ({0})"
 
 msgid "Review Log"
 msgstr "검토 기록"
@@ -5449,6 +5392,14 @@ msgstr "콘텐츠 검토"
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "콘텐츠 검토({0})"
+
+#, fuzzy
+msgid "New ({0})"
+msgstr "내가 제작한 모든 부가 기능"
+
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "업데이트 ({0})"
 
 msgid "Theme Review Guide"
 msgstr "테마 검토 가이드"
@@ -5513,6 +5464,9 @@ msgstr "{addon} :: 정책 위반 신고"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} ({num})에 대한 정책 위반 신고"
 
+msgid "Abuse Reports"
+msgstr "정책 위반 신고"
+
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "{0}의 부가 기능 정보"
@@ -5535,9 +5489,6 @@ msgstr "보임"
 
 msgid "Average Daily Users"
 msgstr "평균 일일 사용자 수"
-
-msgid "Abuse Reports"
-msgstr "정책 위반 신고"
 
 msgid "View Privacy Policy"
 msgstr "개인 정보 보호 정책 보기"
@@ -5860,10 +5811,6 @@ msgstr "코멘트 숨김"
 
 msgid "No reviews found for this period."
 msgstr "기간 내 제출된 검토 항목이 없습니다."
-
-#, python-format
-msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "알림 무시하기"
@@ -6344,11 +6291,14 @@ msgstr "프로필 사진"
 msgid "Collections"
 msgstr "모음집"
 
-msgid "Addons"
-msgstr ""
-
 msgid "Activity Logs"
 msgstr "활동 로그"
+
+msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+msgstr ""
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr ""
 
 msgid "No user with that email."
 msgstr "해당 이메일로 등록된 사용자가 없습니다"
@@ -6362,6 +6312,30 @@ msgstr "내 모바일 부가 기능"
 
 msgid "My Favorite Add-ons"
 msgstr "좋아하는 부가 기능"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr ""
+
+msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgstr ""
+
+msgid "Email Pattern"
+msgstr ""
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgstr ""
+
+msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+"시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습"
+"니다."
 
 msgid "an add-on developer replies to my review"
 msgstr "부가 기능 개발자가 검토에 댓글을 달았습니다"
@@ -6395,36 +6369,6 @@ msgstr "차단"
 
 msgid "Delete picture"
 msgstr "사진 삭제"
-
-msgid "Unsubscribe"
-msgstr "구독 해제"
-
-msgid "You are successfully unsubscribed!"
-msgstr "구독을 해제했습니다!"
-
-#, python-format
-msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr "이메일 주소 <strong>%(email)s</strong>은(는) 다음 시간 이후로 더이상 메시지를 받지 않습니다:"
-
-msgid "More Actions:"
-msgstr "다른 작업:"
-
-msgid "edit your notification settings"
-msgstr "알림 메시지 설정 변경"
-
-msgid "edit your profile"
-msgstr "프로필 수정"
-
-msgid "We could not unsubscribe you"
-msgstr "구독 해제를 할 수 없습니다"
-
-#, fuzzy, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "죄송하지만 당신을 구독 해제할 수 없었습니다. 클릭하신 링크가 올바르지 않았습니다. <a href=\"%(edit_url)s\">프로필 페이지 수정</a>을 통해 구독 해제를 하실 수 있습니다."
-
-#, python-format
-msgid "by %(users)s"
-msgstr "제작: %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"

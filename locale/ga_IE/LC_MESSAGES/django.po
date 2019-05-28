@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"POT-Creation-Date: 2019-05-28 15:04+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -18,6 +18,59 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
+
+msgid "type"
+msgstr ""
+
+#, fuzzy
+msgid "Users"
+msgstr "Ainm an Úsáideora"
+
+msgid "Addons"
+msgstr ""
+
+msgid "minimum reports count (grouped by guid)"
+msgstr ""
+
+#, fuzzy
+msgid "creation date"
+msgstr "Scrúduithe le Ceannasaí"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "Breiseáin Android"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "Cur Síos"
+
+msgid "Reporter's country"
+msgstr ""
+
+msgid "Message excerpt"
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr ""
+
+#, fuzzy
+msgid "Mark selected abuse reports as suspicious"
+msgstr "Tuairisc ar fhabht nó iarratas ar thacaíocht as áit"
+
+msgid "Modified on:"
+msgstr ""
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr ""
+
+msgid "All"
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Ní cheadaítear nascanna."
@@ -213,6 +266,12 @@ msgstr "Mícheart, bain triail eile as."
 
 msgid "Error verifying input, please try again."
 msgstr "Earráid agus an t-ionchur á dheimhniú, bain triail eile as."
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr ""
+
+msgid "CIDR"
+msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -1282,6 +1341,18 @@ msgid "Persona"
 msgstr "Pearsantacht"
 
 #, fuzzy
+msgid "Security"
+msgstr "Tástálacha Slándála"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "Polasaí Príobháideachta"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "Nuacht Forbartha"
+
+#, fuzzy
 msgid "No Reputation"
 msgstr "Réiteach"
 
@@ -1603,6 +1674,9 @@ msgstr ""
 msgid "Need to select at least one application."
 msgstr "Feidhmchlár comhoiriúnach amháin de dhíth ar a laghad."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
@@ -1825,11 +1899,6 @@ msgstr ""
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Níl aon chatagóir oiriúnach do mo bhreiseán seo"
-
-msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
-msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
@@ -5138,21 +5207,6 @@ msgstr "Ainm an Úsáideora"
 msgid "IP Address"
 msgstr "Seoladh Ríomhphoist"
 
-#, python-format
-msgid "Reviews for %s"
-msgstr "Léirmheasanna ar %s"
-
-msgid "Review History for this Addon"
-msgstr "Féach ar Stair an Bhreiseáin seo"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Rátáilte %d as 5 réiltín"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
 msgid "Spam or otherwise non-review content"
 msgstr "Turscar nó ábhar nach mbaineann le léirmheas"
 
@@ -5187,139 +5241,15 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Níl cead agat níos mó ná léirmheas amháin a dhéanamh ar leagan amháin de bhreiseán."
 
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr ""
+
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Go raibh maith agat; cuireadh bratach leis an léirmheas seo agus déanfaidh eagarthóir iniúchadh air."
-
-msgid "Add a review for {0}"
-msgstr "Déan léirmheas ar {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
-
-msgid "Submit review"
-msgstr "Seol an léirmheas"
-
-msgid "Reply to review by {0}"
-msgstr "Tabhair freagra ar léirmheas le {0}"
-
-msgid "Write a Reply"
-msgstr "Tabhair Freagra"
-
-msgid "Submit"
-msgstr "Seol"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "nó <a href=\"%(url)s\">Cealaigh</a>"
-
-msgid "Please select a reason:"
-msgstr "Roghnaigh fáth:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "le %(user)s <b>(Forbróir)</b> ar %(date)s"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "le %(user)s ar %(date)s"
-
-msgid "permalink"
-msgstr "buan-nasc"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Léirmheas ar leagan níos sine den bhreiseán seo ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">léirmheas</a> ar an mbreiseán seo cheana."
-msgstr[1] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
-msgstr[2] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
-msgstr[3] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
-msgstr[4] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">léirmheasanna eile</a> ar an mbreiseán seo."
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Report this review"
-msgstr "Cuir bratach leis an léirmheas seo"
-
-msgid "Reply to review"
-msgstr "Tabhair freagra ar léirmheas"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "Cuir an léirmheas in eagar"
-
-msgid "Delete reply"
-msgstr ""
-
-msgid "Delete review"
-msgstr "Scrios an léirmheas"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Léirmheasanna"
-
-msgid "Reviews for {0}"
-msgstr "Léirmheasanna ar {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> léirmheas ar an mbreiseán seo"
-msgstr[1] "<b>{0}</b> léirmheas ar an mbreiseán seo"
-msgstr[2] "<b>{0}</b> léirmheas ar an mbreiseán seo"
-msgstr[3] "<b>{0}</b> léirmheas ar an mbreiseán seo"
-msgstr[4] "<b>{0}</b> léirmheas ar an mbreiseán seo"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Freagra ó fhorbróir {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Léirmheas ar %(addon)s le %(user)s"
-msgstr[1] "Léirmheasanna ar %(addon)s le %(user)s"
-msgstr[2] "Léirmheasanna ar %(addon)s le %(user)s"
-msgstr[3] "Léirmheasanna ar %(addon)s le %(user)s"
-msgstr[4] "Léirmheasanna ar %(addon)s le %(user)s"
-
-msgid "No reviews found."
-msgstr "Níor aimsíodh aon léirmheasanna."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
-
-msgid "Write a New Review"
-msgstr "Déan Léirmheas Nua"
-
-msgid "Be the first to write a review."
-msgstr ""
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Níl aon léirmheas déanta ar an mbreiseán seo."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5418,6 +5348,9 @@ msgstr ""
 
 msgid "Skip for now"
 msgstr ""
+
+msgid "Delete review"
+msgstr "Scrios an léirmheas"
 
 #, fuzzy
 msgid "Needs Admin Content Review"
@@ -5559,18 +5492,15 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
-msgid "Pre-Approval Add-ons"
-msgstr "Breiseáin Android"
+msgid "Pre-Review Add-ons"
+msgstr "Tuilleadh Breiseán"
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "New ({0})"
-msgstr "Breiseáin le haghaidh {0}"
+msgid "Recommended ({0})"
+msgstr ""
 
 #, fuzzy
-msgid "Updates ({0})"
-msgstr "Nuashonraithe {0}"
+msgid "Other Pending Review ({0})"
+msgstr "Ag feitheamh le Réamhscrúdú"
 
 #, fuzzy
 msgid "Review Log"
@@ -5608,6 +5538,16 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New ({0})"
+msgstr "Breiseáin le haghaidh {0}"
+
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "Nuashonraithe {0}"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -5668,6 +5608,9 @@ msgstr ""
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
+msgid "Abuse Reports"
+msgstr "Tuairiscí ar Dhrochúsáid"
+
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "Eolas faoi Bhreiseán {0}"
@@ -5690,9 +5633,6 @@ msgstr "Infheicthe"
 
 msgid "Average Daily Users"
 msgstr "Meánlíon na nÚsáideoirí Laethúla"
-
-msgid "Abuse Reports"
-msgstr "Tuairiscí ar Dhrochúsáid"
 
 msgid "View Privacy Policy"
 msgstr "Polasaí Príobháideachta"
@@ -6016,10 +5956,6 @@ msgstr "Folaigh Nótaí"
 
 msgid "No reviews found for this period."
 msgstr "Níor aimsíodh aon rud sa tréimhse seo."
-
-#, python-format
-msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr ""
@@ -6502,12 +6438,15 @@ msgstr "Grianghraf na Próifíle"
 msgid "Collections"
 msgstr "Bailiúcháin"
 
-msgid "Addons"
-msgstr ""
-
 #, fuzzy
 msgid "Activity Logs"
 msgstr "Gníomhaíocht"
+
+msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+msgstr ""
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr ""
 
 msgid "No user with that email."
 msgstr "Níl aon úsáideoir leis an seoladh ríomhphoist sin."
@@ -6521,6 +6460,28 @@ msgstr "Mo Chuid Breiseán Soghluaiste"
 
 msgid "My Favorite Add-ons"
 msgstr "Na Breiseáin Is Ansa Liom"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr ""
+
+msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgstr ""
+
+msgid "Email Pattern"
+msgstr ""
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgstr ""
+
+msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
 
 msgid "an add-on developer replies to my review"
 msgstr ""
@@ -6556,36 +6517,6 @@ msgstr "agus"
 #, fuzzy
 msgid "Delete picture"
 msgstr "Scrios mo ghrianghraf úsáideora anois"
-
-msgid "Unsubscribe"
-msgstr "Díliostáil"
-
-msgid "You are successfully unsubscribed!"
-msgstr "Tá tú díliostáilte anois!"
-
-#, python-format
-msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
-
-msgid "More Actions:"
-msgstr "Tuilleadh Gníomhartha:"
-
-msgid "edit your notification settings"
-msgstr ""
-
-msgid "edit your profile"
-msgstr "cuir do phróifíl in eagar"
-
-msgid "We could not unsubscribe you"
-msgstr "Ní rabhamar in ann thú a dhíliostáil"
-
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
-
-#, python-format
-msgid "by %(users)s"
-msgstr "le %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"
