@@ -108,6 +108,7 @@ tasks = {
     'delete_armagaddon_ratings_for_addons': {
         'method': delete_armagaddon_ratings_for_addons,
         'qs': [Q(**get_armagaddon_ratings_filters(prefix='_ratings__'))],
+        'distinct': True,
     },
 }
 
@@ -154,12 +155,6 @@ class Command(BaseCommand):
             type=int,
             help='Only apply task to the first X addon ids.')
 
-        parser.add_argument(
-            '--distinct',
-            action='store_true',
-            dest='distinct',
-            help='Apply DISTINCT() to the query.')
-
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -175,7 +170,7 @@ class Command(BaseCommand):
         pks = (addon_manager.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('id'))
-        if options.get('distinct'):
+        if task.get('distinct'):
             pks = pks.distinct()
         if options.get('limit'):
             pks = pks[:options.get('limit')]

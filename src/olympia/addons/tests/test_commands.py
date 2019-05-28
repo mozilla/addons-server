@@ -311,8 +311,7 @@ class TestDeleteArmagaddonRatings(TestCase):
         fake_task_user = user_factory()
         with override_settings(TASK_USER_ID=fake_task_user.pk):
             call_command(
-                'process_addons', task='delete_armagaddon_ratings_for_addons',
-                distinct=True)
+                'process_addons', task='delete_armagaddon_ratings_for_addons')
 
         # We should have soft-deleted 3 ratings, leaving 3 untouched.
         assert Rating.unfiltered.count() == 6

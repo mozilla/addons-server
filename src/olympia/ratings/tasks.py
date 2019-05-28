@@ -147,6 +147,7 @@ def get_armagaddon_ratings_filters(prefix=''):
     end_datetime = datetime(2019, 5, 7, 6, 48)
     rating_threshold = 4
     return {
+        f'{prefix}deleted': False,
         f'{prefix}created__gte': start_datetime,
         f'{prefix}created__lte': end_datetime,
         f'{prefix}rating__lt': rating_threshold,
