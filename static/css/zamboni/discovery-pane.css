@@ -67,6 +67,10 @@ section > section {
     float: left;
 }
 
+#up-and-coming, #learn-more {
+    display: none;
+}
+
 .html-rtl #main {
     float: right;
 }
@@ -263,9 +267,6 @@ header:after,
     border-radius: 8px;
 }
 
-#main #featured-addons {
-    margin-top: 283px;
-}
 #main #promos.js + #featured-addons {
     margin-top: 0;
 }
