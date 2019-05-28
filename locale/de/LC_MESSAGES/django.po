@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-28 18:52+0000\n"
+"PO-Revision-Date: 2019-05-28 18:58+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -33,37 +33,35 @@ msgstr "Erstelldatum"
 msgid "User / Add-on"
 msgstr "Benutzer / Add-on"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Beschreibung"
+msgstr "Verteilung"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Land des Meldenden"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Auszug aus Nachricht"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Der eingegebene Text wurde als Spam markiert."
+msgstr "Die %d ausgewählten Meldungen wurden als gültig markiert."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Die %d ausgewählten Meldungen wurden als verdächtig markiert."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Unpassender Fehlerbericht oder Unterstützungs-Anfrage"
+msgstr "Ausgewählte Missbrauchsmeldungen als verdächtig markieren"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Geändert am:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Nach %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 msgid "No links are allowed."
 msgstr "Links sind nicht erlaubt."
@@ -253,10 +251,10 @@ msgid "Error verifying input, please try again."
 msgstr "Fehler beim Verifizieren der Eingabe, bitte erneut versuchen."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Geben Sie ein gültiges IP4- oder IP6-Netzwerk ein."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Einige Funktionen sind während der Wartungsarbeiten an dieser Website vorübergehend abgeschaltet. Wir werden die volle Funktionsfähigkeit bald wiederherstellen."
@@ -1309,17 +1307,14 @@ msgstr "Statisches Theme"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Sicherheitstests"
+msgstr "Sicherheit"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Datenschutzerklärung"
+msgstr "Datenschutz"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Best Practices ansehen"
+msgstr "Entwicklungspraktiken"
 
 msgid "No Reputation"
 msgstr "Kein Ruf"
@@ -1617,7 +1612,7 @@ msgid "Need to select at least one application."
 msgstr "Es muss mindestens eine Anwendung ausgewählt werden."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Sie haben in letzter Zeit zu viele Uploads übermittelt. Bitte versuchen Sie es nach einiger Zeit erneut."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} wurde zuvor schon hochgeladen und gelöscht."
@@ -5135,7 +5130,7 @@ msgstr "Sie können nicht mehr als eine Bewertung für dieselbe Version eines Ad
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Ungültige Markierung [%s] – muss eines von [%s] sein"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Diese Bewertung kann nicht gemeldet werden, weil sie keinen Bewertungstext enthält."
@@ -5357,16 +5352,14 @@ msgstr "Inhalt annehmen"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Dadurch wird Ihre Zustimmung zum Inhalt der neuesten öffentlichen Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Add-ons überprüfen"
+msgstr "Add-ons vorab überprüfen"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Empfohlen ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Bewertungsüberprüfung ({0})"
+msgstr "Andere ausstehende Überprüfung ({0})"
 
 msgid "Review Log"
 msgstr "Logbuch der Überprüfungen"
@@ -6255,10 +6248,10 @@ msgid "Activity Logs"
 msgstr "Aktivitätsprotokolle"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Geben Sie eine gültige IPv4- oder IPv6-Adresse ein, z.&thinsp;B. 127.0.0.1. Wird in ein /32-Netzwerk umgewandelt."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Sie können nur eine IP-Adresse oder ein Netzwerk eingeben."
 
 msgid "No user with that email."
 msgstr "Kein Benutzer mit dieser E-Mail-Adresse."
@@ -6273,21 +6266,23 @@ msgid "My Favorite Add-ons"
 msgstr "Meine bevorzugten Add-ons"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Geben Sie einen gültigen IPv6- oder IPv6-CIDR-Netzwerkbereich ein, z. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Von Ihrem Standort wurden mehrere Add-ons übermittelt, die gegen unsere Richtlinien verstoßen. Die IP-Adresse wurde gesperrt."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "E-Mail-Muster"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Geben Sie entweder die vollständige Domain oder die E-Mail-Adresse ein, die blockiert werden soll, oder verwenden Sie  glob-artige Platzhalter, um andere Muster abzugleichen. Zum Beispiel „@*.mail.com“\n"
+"Bitte beachten Sie, dass wir kein „@“ in die Passung aufnehmen, also  sollten Sie es in das Muster aufnehmen."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "Die E-Mail-Adresse, die Sie für Ihr Entwicklerkonto verwendet haben, ist für die Übermittlung von Add-ons nicht zulässig."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
