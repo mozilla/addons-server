@@ -18,8 +18,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import (
-    Addon, AddonReviewerFlags, CompatOverride, CompatOverrideRange)
+from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
@@ -484,50 +483,6 @@ class TestVersion(TestCase):
         version.all_files[0].update(status=99)  # 99 isn't a valid status.
         # otherwise return the status code for reference.
         assert version.status == [u'[status:99]']
-
-    def test_is_ready_for_auto_approval(self):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        assert not version.is_ready_for_auto_approval
-
-        version.all_files = [
-            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=False)]
-        assert not version.is_ready_for_auto_approval
-
-        version.all_files = [
-            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
-        version.channel = amo.RELEASE_CHANNEL_UNLISTED
-        assert not version.is_ready_for_auto_approval
-
-        version.channel = amo.RELEASE_CHANNEL_LISTED
-        assert version.is_ready_for_auto_approval
-
-        # With the auto-approval disabled flag set, it's still considered
-        # "ready", even though the auto_approve code won't approve it.
-        AddonReviewerFlags.objects.create(
-            addon=addon, auto_approval_disabled=False)
-
-        assert version.is_ready_for_auto_approval
-
-        addon.type = amo.ADDON_THEME
-        assert not version.is_ready_for_auto_approval
-
-        addon.type = amo.ADDON_LPAPP
-        assert version.is_ready_for_auto_approval
-
-        addon.type = amo.ADDON_DICT
-        assert version.is_ready_for_auto_approval
-
-    def test_is_ready_for_auto_approval_addon_status(self):
-        addon = Addon.objects.get(id=3615)
-        addon.status = amo.STATUS_NOMINATED
-        version = addon.current_version
-        version.all_files = [
-            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
-        assert version.is_ready_for_auto_approval
-
-        addon.status = amo.STATUS_DISABLED
-        assert not version.is_ready_for_auto_approval
 
     def test_was_auto_approved(self):
         addon = Addon.objects.get(id=3615)

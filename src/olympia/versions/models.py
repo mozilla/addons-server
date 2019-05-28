@@ -583,23 +583,6 @@ class Version(OnChangeMixin, ModelBase):
         return self.files.filter(status=amo.STATUS_AWAITING_REVIEW)
 
     @property
-    def is_ready_for_auto_approval(self):
-        """Return whether or not this version could be *considered* for
-        auto-approval.
-
-        Does not necessarily mean that it would be auto-approved, just that it
-        passes the most basic criteria to be considered a candidate by the
-        auto_approve command."""
-        return (
-            self.addon.status in (
-                amo.STATUS_APPROVED, amo.STATUS_NOMINATED) and
-            self.addon.type in (
-                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) and
-            self.is_webextension and
-            self.is_unreviewed and
-            self.channel == amo.RELEASE_CHANNEL_LISTED)
-
-    @property
     def was_auto_approved(self):
         """Return whether or not this version was auto-approved."""
         from olympia.reviewers.models import AutoApprovalSummary
