@@ -291,7 +291,7 @@ class File(OnChangeMixin, ModelBase):
                     source=source_path, destination=destination_path))
                 move_stored_file(source_path, destination_path)
                 # Now that the file has been deleted, remove the directory if
-                # it exists to preventing the main directory from growing too
+                # it exists to prevent the main directory from growing too
                 # much (#11464)
                 remaining_dirs, remaining_files = storage.listdir(
                     source_parent_path)
