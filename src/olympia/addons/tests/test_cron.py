@@ -3,6 +3,7 @@ import datetime
 import os
 import time
 
+from django.core.files.storage import default_storage as storage
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
@@ -11,7 +12,7 @@ from unittest import mock
 from olympia import amo
 from olympia.addons import cron
 from olympia.addons.models import Addon, AppSupport
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
 from olympia.lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from olympia.stats.models import DownloadCount, UpdateCount
@@ -74,13 +75,12 @@ class TestHideDisabledFiles(TestCase):
 
     def setUp(self):
         super(TestHideDisabledFiles, self).setUp()
-        p = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
-        self.f1 = File.objects.create(version=self.version, platform=p,
-                                      filename='f1')
+        self.f1 = File.objects.create(version=self.version, filename='f1',
+                                      platform=amo.PLATFORM_ALL.id)
         self.f2 = File.objects.create(version=self.version, filename='f2',
-                                      platform=p)
+                                      platform=amo.PLATFORM_ALL.id)
 
     @mock.patch('olympia.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
@@ -92,6 +92,8 @@ class TestHideDisabledFiles(TestCase):
             File.objects.update(status=file_status)
             cron.hide_disabled_files()
             assert not os_mock.path.exists.called, (addon_status, file_status)
+            assert not os_mock.path.remove.called, (addon_status, file_status)
+            assert not os_mock.path.rmdir.called, (addon_status, file_status)
 
     @mock.patch('olympia.files.models.File.move_file')
     def test_move_user_disabled_addon(self, mv_mock):
@@ -175,30 +177,88 @@ class TestHideDisabledFiles(TestCase):
 
 
 class TestUnhideDisabledFiles(TestCase):
+    msg = 'Moving undisabled file: {source} => {destination}'
 
     def setUp(self):
         super(TestUnhideDisabledFiles, self).setUp()
-        p = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
-        self.file_ = File.objects.create(version=self.version, platform=p,
-                                         filename=u'fé')
+        self.file_ = File.objects.create(
+            version=self.version, platform=amo.PLATFORM_ALL.id, filename=u'fé')
 
     @mock.patch('olympia.files.models.os')
     def test_leave_disabled_files(self, os_mock):
         self.addon.update(status=amo.STATUS_DISABLED)
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
+        assert not os_mock.path.remove.called
+        assert not os_mock.path.rmdir.called
 
         self.addon.update(status=amo.STATUS_APPROVED)
         self.file_.update(status=amo.STATUS_DISABLED)
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
+        assert not os_mock.path.remove.called
+        assert not os_mock.path.rmdir.called
 
         self.addon.update(disabled_by_user=True)
         self.file_.update(status=amo.STATUS_APPROVED)
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
+        assert not os_mock.path.remove.called
+        assert not os_mock.path.rmdir.called
+
+    @mock.patch('olympia.files.models.File.move_file')
+    def test_move_public_files(self, mv_mock):
+        self.addon.update(status=amo.STATUS_APPROVED)
+        self.file_.update(status=amo.STATUS_APPROVED)
+        cron.unhide_disabled_files()
+        mv_mock.assert_called_with(
+            self.file_.guarded_file_path, self.file_.file_path, self.msg)
+        assert mv_mock.call_count == 1
+
+    def test_cleans_up_empty_directories_after_moving(self):
+        self.addon.update(status=amo.STATUS_APPROVED)
+        self.file_.update(status=amo.STATUS_APPROVED)
+        with storage.open(self.file_.guarded_file_path, 'wb') as fp:
+            fp.write(b'content')
+        assert not storage.exists(self.file_.file_path)
+        assert storage.exists(self.file_.guarded_file_path)
+
+        cron.unhide_disabled_files()
+
+        assert storage.exists(self.file_.file_path)
+        assert not storage.exists(self.file_.guarded_file_path)
+        # Empty dir also removed:
+        assert not storage.exists(
+            os.path.dirname(self.file_.guarded_file_path))
+
+    def test_doesnt_remove_non_empty_directories(self):
+        # Add an extra disabled file. The approved one should move, but not the
+        # other, so the directory should be left intact.
+        self.disabled_file = file_factory(
+            version=self.version, status=amo.STATUS_DISABLED)
+        self.addon.update(status=amo.STATUS_APPROVED)
+        self.file_.update(status=amo.STATUS_APPROVED)
+        with storage.open(self.file_.guarded_file_path, 'wb') as fp:
+            fp.write(b'content')
+        assert not storage.exists(self.file_.file_path)
+        assert storage.exists(self.file_.guarded_file_path)
+        with storage.open(self.disabled_file.guarded_file_path, 'wb') as fp:
+            fp.write(b'disabled content')
+        assert not storage.exists(self.disabled_file.file_path)
+        assert storage.exists(self.disabled_file.guarded_file_path)
+
+        cron.unhide_disabled_files()
+
+        assert storage.exists(self.file_.file_path)
+        assert not storage.exists(self.file_.guarded_file_path)
+
+        # The disabled file shouldn't have moved.
+        assert not storage.exists(self.disabled_file.file_path)
+        assert storage.exists(self.disabled_file.guarded_file_path)
+        # The directory in guarded file path should still exist.
+        assert storage.exists(os.path.dirname(self.file_.guarded_file_path))
 
     @override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons')
     @mock.patch('olympia.files.models.File.unhide_disabled_file')
