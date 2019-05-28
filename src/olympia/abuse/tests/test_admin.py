@@ -242,8 +242,8 @@ class TestAbuse(TestCase):
         even_more_time_ago = self.days_ago(99).date()
 
         data = {
-            'created__gte': even_more_time_ago.isoformat(),
-            'created__lte': some_time_ago.isoformat(),
+            'created__range__gte': even_more_time_ago.isoformat(),
+            'created__range__lte': some_time_ago.isoformat(),
         }
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
@@ -262,19 +262,19 @@ class TestAbuse(TestCase):
         assert lis.text().split() == [
             'All', 'All', 'All', 'From:', 'To:', 'All'
         ]
-        elm = lis.eq(3).find('#id_created__gte')
+        elm = lis.eq(3).find('#id_created__range__gte')
         assert elm
-        assert elm.attr('name') == 'created__gte'
+        assert elm.attr('name') == 'created__range__gte'
         assert elm.attr('value') == even_more_time_ago.isoformat()
-        elm = lis.eq(4).find('#id_created__lte')
+        elm = lis.eq(4).find('#id_created__range__lte')
         assert elm
-        assert elm.attr('name') == 'created__lte'
+        assert elm.attr('name') == 'created__range__lte'
         assert elm.attr('value') == some_time_ago.isoformat()
 
     def test_filter_by_created_only_from(self):
         not_long_ago = self.days_ago(2).date()
         data = {
-            'created__gte': not_long_ago.isoformat(),
+            'created__range__gte': not_long_ago.isoformat(),
         }
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
@@ -291,15 +291,15 @@ class TestAbuse(TestCase):
         assert lis.text().split() == [
             'All', 'All', 'All', 'From:', 'All'
         ]
-        elm = lis.eq(3).find('#id_created__gte')
+        elm = lis.eq(3).find('#id_created__range__gte')
         assert elm
-        assert elm.attr('name') == 'created__gte'
+        assert elm.attr('name') == 'created__range__gte'
         assert elm.attr('value') == not_long_ago.isoformat()
 
     def test_filter_by_created_only_to(self):
         some_time_ago = self.days_ago(97).date()
         data = {
-            'created__lte': some_time_ago.isoformat(),
+            'created__range__lte': some_time_ago.isoformat(),
         }
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
@@ -316,9 +316,9 @@ class TestAbuse(TestCase):
         assert lis.text().split() == [
             'All', 'All', 'All', 'To:', 'All'
         ]
-        elm = lis.eq(3).find('#id_created__lte')
+        elm = lis.eq(3).find('#id_created__range__lte')
         assert elm
-        assert elm.attr('name') == 'created__lte'
+        assert elm.attr('name') == 'created__range__lte'
         assert elm.attr('value') == some_time_ago.isoformat()
 
     def test_filter_by_minimum_reports_count_for_guid(self):
@@ -354,8 +354,8 @@ class TestAbuse(TestCase):
             'reason__exact': str(AbuseReport.REASONS.OTHER),
             'type': 'addon',
             'q': 'Soap',
-            'created__gte': self.days_ago(100).date().isoformat(),
-            'created__lte': self.days_ago(97).date().isoformat(),
+            'created__range__gte': self.days_ago(100).date().isoformat(),
+            'created__range__lte': self.days_ago(97).date().isoformat(),
             'modified__day': str(today.day),
             'modified__month': str(today.month),
             'modified__year': str(today.year),
@@ -388,8 +388,8 @@ class TestAbuse(TestCase):
         assert lis.text().split() == [
             'Addons', 'All', 'Other', 'From:', 'To:', 'All'
         ]
-        assert lis.eq(3).find('#id_created__gte')
-        assert lis.eq(4).find('#id_created__lte')
+        assert lis.eq(3).find('#id_created__range__gte')
+        assert lis.eq(4).find('#id_created__range__lte')
 
         # The links used for 'normal' filtering should also contain all active
         # filters even our custom fancy ones. We just look at the selected
