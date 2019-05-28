@@ -170,7 +170,7 @@ class Rating(ModelBase):
         self.save()
         ReviewerScore.award_moderation_points(user, self.addon, self.pk)
 
-    def delete(self, user_responsible=None):
+    def delete(self, user_responsible=None, send_post_save_signal=True):
         if user_responsible is None:
             user_responsible = self.user
 
@@ -184,18 +184,20 @@ class Rating(ModelBase):
 
             activity.log_create(
                 amo.LOG.DELETE_RATING, self.addon, self, user=user_responsible,
-                details=dict(
-                    body=six.text_type(self.body),
-                    addon_id=self.addon.pk,
-                    addon_title=six.text_type(self.addon.name),
-                    is_flagged=self.ratingflag_set.exists()))
+                details={
+                    'body': six.text_type(self.body),
+                    'addon_id': self.addon.pk,
+                    'addon_title': six.text_type(self.addon.name),
+                    'is_flagged': self.ratingflag_set.exists()
+                }
+            )
             for flag in self.ratingflag_set.all():
                 flag.delete()
 
         log.info(u'Rating deleted: %s deleted id:%s by %s ("%s")',
                  user_responsible.name, self.pk, self.user.name,
                  six.text_type(self.body))
-        self.update(deleted=True)
+        self.update(deleted=True, _signal=send_post_save_signal)
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).
         self.update_denormalized_fields()

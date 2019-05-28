@@ -1,16 +1,20 @@
+from datetime import datetime
+
+import six
+import waffle
+
 from django.db.models import Avg, Count, F
 from django.conf import settings
-import six
-
-import waffle
 
 import olympia.core.logger
 
 from olympia.addons.models import Addon
+from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.cache import cache_get_or_set
+from olympia.users.models import UserProfile
 
 from .models import GroupedRating, Rating
 
@@ -120,6 +124,7 @@ def addon_bayesian_rating(*addons, **kw):
 
 
 @task
+@use_primary_db
 def check_akismet_reports(report_ids):
     from olympia.ratings.models import RatingFlag  # circular import
 
@@ -135,3 +140,31 @@ def check_akismet_reports(report_ids):
                 rating=rating, user_id=settings.TASK_USER_ID,
                 flag=RatingFlag.SPAM)
             rating.update(editorreview=True)
+
+
+def get_armagaddon_ratings_filters(prefix=''):
+    start_datetime = datetime(2019, 5, 3, 22, 13)
+    end_datetime = datetime(2019, 5, 7, 6, 48)
+    rating_threshold = 4
+    return {
+        f'{prefix}created__gte': start_datetime,
+        f'{prefix}created__lte': end_datetime,
+        f'{prefix}rating__lt': rating_threshold,
+    }
+
+
+@task
+@use_primary_db
+def delete_armagaddon_ratings_for_addons(ids, **kw):
+    ratings = Rating.objects.filter(
+        addon__in=ids, **get_armagaddon_ratings_filters())
+    task_user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+    for rating in ratings:
+        # Normally, deletions are a special kind of save (because we
+        # soft-delete) and that'd send a post save signal, which would trigger
+        # addon ratings aggregate computation and reindexing. We specifically
+        # avoid sending post_save to do those things only once per add-on.
+        rating.delete(user_responsible=task_user,
+                      send_post_save_signal=False)
+    addon_rating_aggregates(ids)
+    index_addons.delay(ids)

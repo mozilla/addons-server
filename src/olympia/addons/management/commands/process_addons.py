@@ -18,6 +18,9 @@ from olympia.addons.tasks import (
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
+from olympia.ratings.tasks import (
+    delete_armagaddon_ratings_for_addons, get_armagaddon_ratings_filters
+)
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
 
@@ -101,7 +104,11 @@ tasks = {
     'extract_colors_from_static_themes': {
         'method': extract_colors_from_static_themes,
         'qs': [Q(type=amo.ADDON_STATICTHEME)]
-    }
+    },
+    'delete_armagaddon_ratings_for_addons': {
+        'method': delete_armagaddon_ratings_for_addons,
+        'qs': [Q(**get_armagaddon_ratings_filters(prefix='_ratings__'))],
+    },
 }
 
 
@@ -147,6 +154,12 @@ class Command(BaseCommand):
             type=int,
             help='Only apply task to the first X addon ids.')
 
+        parser.add_argument(
+            '--distinct',
+            action='store_true',
+            dest='distinct',
+            help='Apply DISTINCT() to the query.')
+
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -162,6 +175,8 @@ class Command(BaseCommand):
         pks = (addon_manager.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('id'))
+        if options.get('distinct'):
+            pks = pks.distinct()
         if options.get('limit'):
             pks = pks[:options.get('limit')]
         if 'pre' in task:

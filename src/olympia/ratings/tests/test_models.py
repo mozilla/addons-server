@@ -17,6 +17,9 @@ class TestRatingModel(TestCase):
     fixtures = ['ratings/test_models']
 
     def test_soft_delete(self):
+        addon = Addon.objects.get()
+        assert addon.average_rating == 0.0  # Hasn't been computed yet.
+
         assert Rating.objects.count() == 2
         assert Rating.unfiltered.count() == 2
 
@@ -29,6 +32,32 @@ class TestRatingModel(TestCase):
         rating = Rating.objects.get(id=2)
         assert rating.previous_count == 0
         assert rating.is_latest is True
+
+        addon.reload()
+        assert addon.average_rating == 4.0  # Has been computed after deletion.
+
+    def test_soft_delete_dont_send_signal(self):
+        addon = Addon.objects.get()
+        assert addon.average_rating == 0.0  # Hasn't been computed yet.
+
+        assert Rating.objects.count() == 2
+        assert Rating.unfiltered.count() == 2
+
+        Rating.objects.get(id=1).delete(send_post_save_signal=False)
+
+        assert Rating.objects.count() == 1
+        assert Rating.without_replies.count() == 1
+        assert Rating.unfiltered.count() == 2
+
+        # update_denormalized_fields() is still called.
+        rating = Rating.objects.get(id=2)
+        assert rating.previous_count == 0
+        assert rating.is_latest is True
+
+        # post_save() isn't though, so average_rating of the add-on should stay
+        # at 0.0
+        addon.reload()
+        assert addon.average_rating == 0.0
 
     @mock.patch('olympia.ratings.models.log')
     def test_soft_delete_user_responsible(self, log_mock):
