@@ -9,6 +9,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
+from django.db.models import Q
 from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
@@ -80,6 +81,21 @@ class VersionManager(ManagerBase):
             channel=amo.RELEASE_CHANNEL_LISTED,
             files__status=amo.STATUS_APPROVED,
         ).order_by('-created')
+
+    def auto_approvable(self):
+        """Returns a queryset filtered with just the versions that should
+        attempted for auto-approval by the cron job."""
+        qs = self.filter(
+            addon__type__in=(
+                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
+                amo.ADDON_SEARCH),
+            addon__disabled_by_user=False,
+            addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
+            files__status=amo.STATUS_AWAITING_REVIEW).filter(
+            Q(files__is_webextension=True) | Q(addon__type=amo.ADDON_SEARCH))
+        qs = qs.exclude(
+            addon__discoveryitem__recommendable=True)
+        return qs
 
 
 def source_upload_path(instance, filename):
@@ -590,14 +606,7 @@ class Version(OnChangeMixin, ModelBase):
         Does not necessarily mean that it would be auto-approved, just that it
         passes the most basic criteria to be considered a candidate by the
         auto_approve command."""
-        return (
-            self.addon.status in (
-                amo.STATUS_APPROVED, amo.STATUS_NOMINATED) and
-            self.addon.type in (
-                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) and
-            self.is_webextension and
-            self.is_unreviewed and
-            self.channel == amo.RELEASE_CHANNEL_LISTED)
+        return Version.objects.auto_approvable().filter(id=self.id).exists()
 
     @property
     def was_auto_approved(self):

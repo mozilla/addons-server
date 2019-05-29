@@ -538,10 +538,10 @@ def queue_extension(request):
     # Most WebExtensions are picked up by auto_approve cronjob, they don't need
     # to appear in the queues, unless auto approvals have been disabled for
     # them.
-    qs = TableObj.Meta.model.objects.all().filter(
-        Q(**{'files.is_webextension': False}) |
-        Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
-    )
+    qs = TableObj.Meta.model.objects.all().filter_raw(
+        Q('addon_type_id !=', amo.ADDON_SEARCH,
+          'files.is_webextension =', False) |
+        Q('addons_addonreviewerflags.auto_approval_disabled =', True))
     return _queue(request, TableObj, 'extension', qs=qs)
 
 

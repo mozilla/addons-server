@@ -96,15 +96,17 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         dictionary_version = dictionary.versions.all()[0]
         dictionary_version.update(nomination=self.days_ago(4))
 
+        # search engine plugins are considered now
+        search_addon = addon_factory(type=amo.ADDON_SEARCH)
+        search_version = version_factory(
+            addon=search_addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True},
+            nomination=self.days_ago(5))
+
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
         addon_factory(file_kw={'is_webextension': True})
-
-        # Non-extension with updates.
-        search_addon = addon_factory(type=amo.ADDON_SEARCH)
-        version_factory(addon=search_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
 
         # Disabled add-on with updates.
         disabled_addon = addon_factory(disabled_by_user=True)
@@ -161,14 +163,17 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         qs = command.fetch_candidates()
 
         # 4 versions should be found. Because of the nomination date,
-        # dictionary_version should be first (its nomination date is the
-        # oldest) followed by langpack_version, new_addon_version and then
-        # self.version.
-        assert len(qs) == 4
-        assert qs[0] == dictionary_version
-        assert qs[1] == langpack_version
-        assert qs[2] == new_addon_version
-        assert qs[3] == self.version
+        # search_version should be first (its nomination date is the
+        # oldest) followed etc.
+        assert len(qs) == 5
+        assert list(v.addon.type for v in qs) == list(
+            a.type for a in (
+                search_addon, dictionary, langpack, new_addon, self.addon))
+        assert qs[0] == search_version
+        assert qs[1] == dictionary_version
+        assert qs[2] == langpack_version
+        assert qs[3] == new_addon_version
+        assert qs[4] == self.version
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.statsd.incr')
