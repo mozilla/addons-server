@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 08:29+0000\n"
+"PO-Revision-Date: 2019-05-29 09:14+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -33,7 +33,7 @@ msgid "Addons"
 msgstr "Kiegészítők"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "jelentések minimális száma (guid szerint csoportosítva)"
 
 msgid "creation date"
 msgstr "létrehozás dátuma"
@@ -56,7 +56,7 @@ msgstr "A(z) %d kiválasztott jelentés érvényesnek lett jelölve."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "A(z) %d kiválasztott jelentés gyanúsnak lett jelölve."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "A kiválasztott visszaélési jelentések gyanúsnak jelölése"
@@ -66,7 +66,7 @@ msgstr "Módosítva:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "%(filter_title)s szerint"
 
 msgid "All"
 msgstr "Összes"
@@ -1605,7 +1605,7 @@ msgid "Need to select at least one application."
 msgstr "Legalább egy alkalmazást ki kell választania."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Túl sok feltöltést küldött be a közelmúltban. Próbálkozzon újra egy kicsit később."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A(z) {version} verzió már korábban fel lett töltve, és törölve lett."
@@ -5124,7 +5124,7 @@ msgstr "Nem készíthet több értékelést egy kiegészítő ugyanazon verziój
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Érvénytelen jelző [%s] – ezek egyikének kell lennie: [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Ez az értékelés nem jelölhető meg, mert nincs értékelési szövege."
