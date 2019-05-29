@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 21:43+0000\n"
+"PO-Revision-Date: 2019-05-29 22:05+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1284,13 +1284,11 @@ msgstr "Thema static"
 msgid "Persona"
 msgstr "Thema de personas"
 
-#, fuzzy
 msgid "Security"
-msgstr "Tests de securitate"
+msgstr "Securitate"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Politica de confidentialitate"
+msgstr "Confidentialitate"
 
 msgid "Development Practices"
 msgstr "Practicas de disveloppamento"
@@ -5098,7 +5096,7 @@ msgstr "Tu non pote lassar plus del un revision pro le mesme version de un addit
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Flag invalide [%s] - debe ser un de [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Iste classification non pote ser signalate pois que il ha nulle texto de revision."
@@ -5320,16 +5318,14 @@ msgstr "Approbar le contento"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Isto registra tu approbation del contento del ultime version public, sin notificar le disveloppator."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Revider le additivos"
+msgstr "Pre-revider le additivos"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Commendate ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Revision de valutation ({0})"
+msgstr "Altere revision pendente ({0})"
 
 msgid "Review Log"
 msgstr "Registro del revisiones"
@@ -6219,10 +6215,10 @@ msgid "Activity Logs"
 msgstr "Registros del activitate"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Insere un valide adresse IPv4 o IPv6, e.g 127.0.0.1. Sera convertite in un rete /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Tu pote solo inserer un, o adresse IP o Rete."
 
 msgid "No user with that email."
 msgstr "Nulle usator con ille email."
@@ -6237,13 +6233,13 @@ msgid "My Favorite Add-ons"
 msgstr "Mi additivos favorite"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Insere un campo de rete CIDR IPv6 o IPv6 valide, eg. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Plure additivos que viola nostre politicas ha essite inviate ab tu position. Le adresse IP ha essite blocate."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Modello de email"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
@@ -6251,7 +6247,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "Le adresse email que tu ha usate pro tu conto de disveloppator non es consentite pro invio de additivos."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
