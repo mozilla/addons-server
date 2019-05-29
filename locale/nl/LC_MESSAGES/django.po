@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 09:41+0000\n"
-"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
+"PO-Revision-Date: 2019-05-29 10:08+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,8 @@ msgstr ""
 msgid "type"
 msgstr "type"
 
-#, fuzzy
 msgid "Users"
-msgstr "Gebruiker"
+msgstr "Gebruikers"
 
 msgid "Addons"
 msgstr "Add-ons"
@@ -31,17 +30,14 @@ msgstr "Add-ons"
 msgid "minimum reports count (grouped by guid)"
 msgstr "minimum aantal rapporten (gegroepeerd op guid)"
 
-#, fuzzy
 msgid "creation date"
-msgstr "Gids voor moderatoren"
+msgstr "creatiedatum"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Niet-vermelde add-ons"
+msgstr "Gebruiker / add-on"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Beschrijving"
+msgstr "Verspreiding"
 
 msgid "Reporter's country"
 msgstr "Land van melder"
@@ -49,27 +45,26 @@ msgstr "Land van melder"
 msgid "Message excerpt"
 msgstr "Uittreksel bericht"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "De ingevoerde tekst is gemarkeerd als spam."
+msgstr "De %d geselecteerde rapporten zijn gemarkeerd als geldig."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "De %d geselecteerde rapporten zijn gemarkeerd als verdacht."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Misplaatst bugrapport of ondersteuningsverzoek"
+msgstr "Geselecteerde misbruikrapporten markeren als verdacht"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Aangepast op:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Op %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 msgid "No links are allowed."
 msgstr "Koppelingen zijn niet toegestaan."
@@ -259,10 +254,10 @@ msgid "Error verifying input, please try again."
 msgstr "Fout bij controleren invoer, probeer het opnieuw."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Voer een geldig IP4- of IP6-netwerk in."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Enkele functies zijn tijdelijk uitgeschakeld vanwege onderhoud aan de website. Binnenkort zijn we weer volledig beschikbaar."
@@ -1297,17 +1292,14 @@ msgstr "Statisch thema"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Beveiligingstests"
+msgstr "Beveiliging"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Privacybeleid"
+msgstr "Privacy"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Goede voorbeelden bekijken"
+msgstr "Ontwikkelpraktijken"
 
 msgid "No Reputation"
 msgstr "Geen reputatie"
@@ -1605,7 +1597,7 @@ msgid "Need to select at least one application."
 msgstr "U dient ten minste één toepassing te selecteren."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "U hebt onlangs te veel uploads ingediend. Probeer het na enige tijd nog eens."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versie {version} is eerder geüpload en verwijderd."
@@ -5118,7 +5110,7 @@ msgstr "U kunt niet meerdere beoordelingen voor dezelfde versie van een add-on s
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Ongeldig label [%s] – dient er een van [%s] te zijn"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Deze waardering kan niet worden gemarkeerd, omdat hij geen beoordelingstekst bevat."
@@ -5341,16 +5333,14 @@ msgstr "Inhoud goedkeuren"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Dit legt uw goedkeuring van de inhoud van de laatste publieke versie vast, zonder de ontwikkelaar te informeren."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Add-ons beoordelen"
+msgstr "Add-ons vooraf beoordelen"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Aanbevolen ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Waarderingsbeoordeling ({0})"
+msgstr "Overige wachtend op beoordeling ({0})"
 
 msgid "Review Log"
 msgstr "Beoordelingslogboek"
@@ -6245,10 +6235,10 @@ msgid "Activity Logs"
 msgstr "Activiteitenlogboeken"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Voer een geldig IPv4- of IPv6-adres in, bijv. 127.0.0.1. Wordt geconverteerd naar een /32-netwerk."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "U kunt er slechts één invoeren, zijnde een IP-adres of een netwerk."
 
 msgid "No user with that email."
 msgstr "Er is geen gebruiker met dat e-mailadres."
@@ -6263,21 +6253,23 @@ msgid "My Favorite Add-ons"
 msgstr "Mijn favoriete add-ons"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Voer een geldige IPv6- of IPv6 CIDR-netwerkrange in, bijv. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Vanaf uw locatie zijn meerdere add-ons die strijdig zijn met ons beleid ingediend. Het IP-adres is geblokkeerd."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "E-mailpatroon"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Voer een volledig domein of e-mailadres is dat moet worden geblokkeerd, of gebruik  glob-achtige wildcards die overeenkomen met andere patronen. Bijv. ‘@*mail.com’\n"
+" Merk op dat we ‘@’ niet in de opdracht opnemen, dus dat moet u  zelf doen in het patroon."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "Het e-mailadres dat u voor uw ontwikkelaarsaccount hebt gebruikt is niet toegestaan voor het indienen van add-ons."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
