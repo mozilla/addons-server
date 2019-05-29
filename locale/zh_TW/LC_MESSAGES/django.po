@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 03:12+0000\n"
+"PO-Revision-Date: 2019-05-29 03:15+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "類型"
 
 msgid "Users"
 msgstr "使用者"
@@ -25,7 +25,7 @@ msgid "Addons"
 msgstr "附加元件"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "最小報告數量（依照 GUID 分組）"
 
 msgid "creation date"
 msgstr "建立日期"
@@ -37,32 +37,31 @@ msgid "Distribution"
 msgstr "發行"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "回報者國家"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "訊息摘要"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "輸入的文字已被標示為垃圾留言。"
+msgstr "已將 %d 筆選擇的報告標示為有效報告。"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "已將 %d 筆選擇的報告標示為可疑的。"
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "誤置的臭蟲回報或是技術支援要求"
+msgstr "將選擇的濫用報告標示為可疑的"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "修改於:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "由 %(filter_title)s 回報"
 
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 msgid "No links are allowed."
 msgstr "不允許加入鏈結。"
@@ -249,10 +248,10 @@ msgid "Error verifying input, please try again."
 msgstr "驗證輸入內容時發生錯誤，請再試一次。"
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "請輸入有效的 IPv4 或 IPv6 網段。"
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "我們正在進行網站維護，部分功能暫時無法使用。我們將盡快完全復原。"
@@ -5012,7 +5011,7 @@ msgstr "您不能對同一套附加元件的相同版本評論超過一次。"
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "無效的旗標 [%s]，必須是 [%s] 其中的一種"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "沒有評價內容，無法標記此評價。"
@@ -5234,7 +5233,7 @@ msgid "Pre-Review Add-ons"
 msgstr "預先審核附加元件"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "推薦（{0}）"
 
 msgid "Other Pending Review ({0})"
 msgstr "其他尚待審核項目（{0}）"
@@ -6112,10 +6111,10 @@ msgid "Activity Logs"
 msgstr "活動紀錄"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "請輸入有效的 IPv4 或 IPv6 地址，例如 127.0.0.1。將轉換為 /32 網段。"
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "僅能輸入一組 IP 地址或網段。"
 
 msgid "No user with that email."
 msgstr "無使用者使用此信箱。"
@@ -6130,7 +6129,7 @@ msgid "My Favorite Add-ons"
 msgstr "我最愛的附加元件"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "請輸入有效的 IPv6 或 IPv6 CIDR 網段，例如 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
