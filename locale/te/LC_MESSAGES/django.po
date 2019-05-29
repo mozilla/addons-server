@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 11:51+0000\n"
+"PO-Revision-Date: 2019-05-29 11:58+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3294,7 +3294,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "మీవద్ద తెరిచివున్న ట్యాబులు చాలా ఉన్నాయా? వాటిని చక్కని పక్కపట్టీలో నిర్వహించుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4701,7 +4701,7 @@ msgid "Expand all"
 msgstr "అన్నింటినీ విస్తరించుట"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "వృక్షాన్ని దాచు లేదా చూపించు"
 
 msgid "Wrap or unwrap text"
 msgstr ""
@@ -4786,7 +4786,7 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr ""
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "అద్భుతంగా ఉంది! నేను ఎలా పాలుపంచుకోగలను?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
