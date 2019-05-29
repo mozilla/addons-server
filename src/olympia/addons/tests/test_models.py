@@ -1311,7 +1311,7 @@ class TestAddonModels(TestCase):
 
     def test_delete_to(self):
         self.delete()
-        assert mail.outbox[0].to == [settings.FLIGTAR]
+        assert mail.outbox[0].to == [settings.DELETION_EMAIL]
 
     def test_delete_by(self):
         try:
