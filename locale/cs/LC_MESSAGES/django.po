@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 11:23+0000\n"
+"PO-Revision-Date: 2019-05-29 22:54+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -38,9 +38,8 @@ msgstr "datum vytvoření"
 msgid "User / Add-on"
 msgstr "Uživatel / Doplněk"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Popis"
+msgstr "Distribuce"
 
 msgid "Reporter's country"
 msgstr ""
@@ -48,17 +47,16 @@ msgstr ""
 msgid "Message excerpt"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Zadaný text byl označen jako spam."
+msgstr ""
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
 msgstr ""
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Nevhodné oznámení chyby nebo žádost o podporu"
+msgstr ""
 
 msgid "Modified on:"
 msgstr ""
