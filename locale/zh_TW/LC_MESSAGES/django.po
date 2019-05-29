@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 03:15+0000\n"
+"PO-Revision-Date: 2019-05-29 12:29+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -6135,15 +6135,15 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr ""
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "郵件模式"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
-msgstr ""
+msgstr "請輸入要封鎖的完整網域，或是使用 glob 風格的萬用字元來比對其他模式，例如「@*.mail.com」請注意，我們不會在比對時加入「@」，所以您應該在比對模式中加入此符號。"
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "您用於開發者帳號的電子郵件地址，不允許用來上架附加元件。"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
