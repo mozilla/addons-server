@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-28 23:46+0000\n"
+"PO-Revision-Date: 2019-05-29 00:02+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "类型"
 
 msgid "Users"
 msgstr "用户"
@@ -25,43 +25,43 @@ msgid "Addons"
 msgstr "附加组件"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "最低报告数（按 GUID 分组）"
 
 msgid "creation date"
-msgstr ""
+msgstr "创建日期"
 
 msgid "User / Add-on"
 msgstr "用户 / 附加组件"
 
 msgid "Distribution"
-msgstr ""
+msgstr "发行"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "报告者国家/地区"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "消息摘录"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "%d 条选定的报告已标记为有效。"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
 msgstr ""
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "将选定的滥用报告标记为可疑"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "修改时间："
 
 #, python-format
 msgid "By %(filter_title)s"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "所有"
 
 msgid "No links are allowed."
 msgstr "不允许使用链接。"
@@ -248,10 +248,10 @@ msgid "Error verifying input, please try again."
 msgstr "验证输入出错，请重试。"
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "请输入有效的 IP4 或 IP6 网络。"
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "在我们进行网站维护时，某些功能会被暂时禁用。我们将很快恢复全部功能。"
@@ -1263,13 +1263,13 @@ msgid "Persona"
 msgstr "炫彩风格"
 
 msgid "Security"
-msgstr ""
+msgstr "安全"
 
 msgid "Privacy"
-msgstr ""
+msgstr "隐私"
 
 msgid "Development Practices"
-msgstr ""
+msgstr "开发实践"
 
 msgid "No Reputation"
 msgstr "不知名"
@@ -1558,7 +1558,7 @@ msgid "Need to select at least one application."
 msgstr "需要选择至少一个应用程序。"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "您最近提交了太多上传内容。请过一段时间再试。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 此前已上传并已删除。"
@@ -5203,13 +5203,13 @@ msgid "This records your approbation of the content of the latest public version
 msgstr "这将记录您为何认可最新公开版本的内容（不会通知开发者）。"
 
 msgid "Pre-Review Add-ons"
-msgstr ""
+msgstr "预审核附加组件"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "推荐（{0}）"
 
 msgid "Other Pending Review ({0})"
-msgstr ""
+msgstr "其他待审核（{0}）"
 
 msgid "Review Log"
 msgstr "审核日志"
@@ -6083,10 +6083,10 @@ msgid "Activity Logs"
 msgstr "活动日志"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "请输入有效的 IPv4 或 IPv6 地址，例如：127.0.0.1，将转换为 /32 网络。"
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "您只能输入 IP 地址或网络。"
 
 msgid "No user with that email."
 msgstr "那个邮件地址没有用户。"
@@ -6101,7 +6101,7 @@ msgid "My Favorite Add-ons"
 msgstr "我最爱的附加组件"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "请输入有效的 IPv6 或 IPv6 CIDR 网络范围，例如： 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
