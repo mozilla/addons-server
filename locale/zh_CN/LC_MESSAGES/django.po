@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 00:19+0000\n"
+"PO-Revision-Date: 2019-05-29 03:35+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -48,7 +48,7 @@ msgstr "%d 条选定的报告已标记为有效。"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "已将 %d 条选定的报告标记为可疑。"
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "将选定的滥用报告标记为可疑"
@@ -58,7 +58,7 @@ msgstr "修改时间："
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "按%(filter_title)s"
 
 msgid "All"
 msgstr "所有"
@@ -4984,7 +4984,7 @@ msgstr "您不能为同一版本的附加组件留下两条评价。"
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "无效标记 [%s]  - 必须是 [%s] 之一"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "无法标记此评价，没有评价内容。"
@@ -6113,6 +6113,8 @@ msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"输入要屏蔽的完整域名或电子邮件，或者使用全局样式通配符来匹配其他模式。例如：“@*.mail.com”\n"
+"请注意，我们不在匹配中包含“@”，因此您应该在模式中这样做。"
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
 msgstr "您用于开发者账户的电子邮件地址不允许用于提交附加组件。"
