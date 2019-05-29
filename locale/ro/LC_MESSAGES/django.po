@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 11:31+0000\n"
+"PO-Revision-Date: 2019-05-29 11:32+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -48,7 +48,7 @@ msgstr "Textul introdus a fost semnalat ca spam."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Cele %d rapoarte selectate au fost marcate ca suspecte."
 
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
@@ -252,7 +252,7 @@ msgid "Error verifying input, please try again."
 msgstr "Eroare la verificarea datelor introduse. Te rugăm să încerci din nou."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Introdu o rețea IP4 sau IP6 validă."
 
 msgid "CIDR"
 msgstr "CIDR"
