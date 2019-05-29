@@ -82,7 +82,9 @@ class VersionManager(ManagerBase):
             files__status=amo.STATUS_APPROVED,
         ).order_by('-created')
 
-    def auto_approve(self):
+    def auto_approvable(self):
+        """Returns a queryset filtered with just the versions that should
+        attempted for auto-approval by the cron job."""
         qs = self.filter(
             addon__type__in=(
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
@@ -604,7 +606,7 @@ class Version(OnChangeMixin, ModelBase):
         Does not necessarily mean that it would be auto-approved, just that it
         passes the most basic criteria to be considered a candidate by the
         auto_approve command."""
-        return Version.objects.auto_approve().filter(id=self.id).exists()
+        return Version.objects.auto_approvable().filter(id=self.id).exists()
 
     @property
     def was_auto_approved(self):
