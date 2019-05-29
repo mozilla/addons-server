@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 21:28+0000\n"
+"PO-Revision-Date: 2019-05-29 21:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -41,29 +41,28 @@ msgid "Reporter's country"
 msgstr "Pais del reporter"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Extracto del message"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Le texto inserite esseva signalate como spam."
+msgstr "Le %d seligite reportos ha essite marcate como valide."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Le %d seligite reportos ha essite marcate como suspecte."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Reporto de defecto o requesta de supporto mal ponite"
+msgstr "Marcar le seligite reportos de abuso como suspecte"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Modificate sur:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Per %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Toto"
 
 msgid "No links are allowed."
 msgstr "Nulle ligamines es consentite."
@@ -251,10 +250,10 @@ msgid "Error verifying input, please try again."
 msgstr "Error verificante le entrata, per favor prova ancora."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Insere un rete valide IP4 o IP6."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Alcun functionalitates es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Nos tornara al plen capacitate a breve."
@@ -1293,9 +1292,8 @@ msgstr "Tests de securitate"
 msgid "Privacy"
 msgstr "Politica de confidentialitate"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Vide le melior practicas"
+msgstr "Practicas de disveloppamento"
 
 msgid "No Reputation"
 msgstr "Nulle reputation"
@@ -1591,7 +1589,7 @@ msgid "Need to select at least one application."
 msgstr "Il es necesse al minus eliger un application compatibile."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Tu ha inviate trop cargas recentemente. Reproba post alcun tempore."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Le version {version} esseva jam cargate e delite."
