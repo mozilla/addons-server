@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 16:56+0000\n"
+"PO-Revision-Date: 2019-05-29 16:40+0000\n"
 "Last-Translator: Davide Quaranta <dvd.forty@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -1644,7 +1644,7 @@ msgid "Need to select at least one application."
 msgstr "È necessario selezionare almeno un’applicazione."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Hai effettuato troppi caricamenti di recente. Riprova tra un po’ di tempo."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versione {version} è stata già caricata e poi eliminata."
@@ -5191,7 +5191,7 @@ msgstr "Non è consentito inserire più di una recensione per la stessa versione
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Flag non valido [%s] - deve essere uno tra [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Questa valutazione non può essere segnalata perché non contiene nessuna recensione."
