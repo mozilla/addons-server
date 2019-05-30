@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-30 07:41+0000\n"
+"PO-Revision-Date: 2019-05-30 16:28+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -42,18 +42,18 @@ msgid "Distribution"
 msgstr "Distribuce"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Země nahlašujícího"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Výňatek ze zprávy"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "%d vybraných hlášení bylo označeno jako platné."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d vybraných hlášení bylo označeno jako podezřelé."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
@@ -1725,7 +1725,7 @@ msgstr "Ikony nemohou být animované."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr "Obrázky nemohou být větší než %d kb."
+msgstr "Obrázky nemohou být větší než %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
