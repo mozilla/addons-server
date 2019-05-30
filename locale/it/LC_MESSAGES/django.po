@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-29 16:41+0000\n"
+"PO-Revision-Date: 2019-05-29 16:56+0000\n"
 "Last-Translator: Davide Quaranta <dvd.forty@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -6320,7 +6320,7 @@ msgid "Activity Logs"
 msgstr "Registri attività"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Inserisci un indirizzo IPv4 o IPv6 valido, es. 127.0.0.1. Sarà convertito in una rete /32."
 
 msgid "You can only enter one, either IP Address or Network."
 msgstr ""
@@ -6338,13 +6338,13 @@ msgid "My Favorite Add-ons"
 msgstr "I miei componenti aggiuntivi preferiti"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Inserisci un IPv6 valido o un intervallo di rete IPv6 CIDR valido, es. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Pattern email"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
