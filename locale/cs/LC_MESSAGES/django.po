@@ -49,11 +49,11 @@ msgstr "Výňatek ze zprávy"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "%d vybraných hlášení bylo označeno jako platné."
+msgstr ""
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr "%d vybraných hlášení bylo označeno jako podezřelé."
+msgstr ""
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
