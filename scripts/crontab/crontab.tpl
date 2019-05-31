@@ -12,13 +12,13 @@ HOME=/tmp
 10 * * * * %(z_cron)s update_blog_posts
 15 * * * * %(django)s send_info_request_last_warning_notifications
 20 * * * * %(z_cron)s addon_last_updated
+25 * * * * %(z_cron)s hide_disabled_files
 45 * * * * %(z_cron)s update_addon_appsupport
 50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
 
 #twice per day
-25 17,5 * * * %(z_cron)s hide_disabled_files
-25 18,6 * * * %(z_cron)s cleanup_image_files
+35 18,6 * * * %(z_cron)s cleanup_image_files
 
 #once per day
 30 9 * * * %(z_cron)s update_user_ratings
