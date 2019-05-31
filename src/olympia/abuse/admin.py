@@ -174,8 +174,31 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     raw_id_fields = ('addon', 'user', 'reporter')
     # All fields except state must be readonly - the submitted data should
     # not be changed, only the state for triage.
-    readonly_fields = list(
-        f.name for f in AbuseReport._meta.fields if f.name != 'state')
+    readonly_fields = (
+        'created',
+        'modified',
+        'reporter',
+        'country_code',
+        'addon',
+        'guid',
+        'user',
+        'message',
+        'client_id',
+        'addon_name',
+        'addon_summary',
+        'addon_version',
+        'addon_signature',
+        'application',
+        'application_version',
+        'application_locale',
+        'operating_system',
+        'operating_system_version',
+        'install_date',
+        'addon_install_origin',
+        'addon_install_method',
+        'report_entry_point',
+        'addon_card',
+    )
     ADDON_METADATA_FIELDSET = 'Add-on metadata'
     fieldsets = (
         (None, {'fields': ('state', 'reason', 'message')}),
@@ -209,12 +232,6 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # fields that were submitted with the report.
         'guid': ('addon_name', 'addon_version', 'guid', 'addon_summary'),
     }
-    # We want to display *all* fields, even non editable ones that django would
-    # normally hide. Just have them readonly, and add our custom addon_card.
-    readonly_fields = tuple(
-        f.name for f in AbuseReport._meta.fields if f.editable is False) + (
-        'addon_card',
-    )
     view_on_site = False  # Abuse reports have no public page to link to.
 
     def has_add_permission(self, request):

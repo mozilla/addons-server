@@ -100,9 +100,9 @@ class AbuseReport(ModelBase):
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(
         UserProfile, null=True, blank=True, related_name='abuse_reported',
-        on_delete=models.SET_NULL, editable=False)
+        on_delete=models.SET_NULL)
     country_code = models.CharField(
-        max_length=2, default=None, null=True, editable=False)
+        max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
     # If user is non-null then both addon and guid should be null.
     # If user is null then addon should be non-null if guid was in our DB,
@@ -110,14 +110,13 @@ class AbuseReport(ModelBase):
     # If both addon and user is null guid should be set.
     addon = models.ForeignKey(
         Addon, null=True, related_name='abuse_reports',
-        on_delete=models.CASCADE, editable=False)
-    guid = models.CharField(max_length=255, null=True, editable=False)
+        on_delete=models.CASCADE)
+    guid = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(
         UserProfile, null=True, related_name='abuse_reports',
-        on_delete=models.SET_NULL, editable=False)
-    message = models.TextField(blank=True, editable=False)
+        on_delete=models.SET_NULL)
+    message = models.TextField(blank=True)
 
-    # state is editable to allow admin to triage reports.
     state = models.PositiveSmallIntegerField(
         default=STATES.UNTRIAGED, choices=STATES.choices)
 
@@ -125,41 +124,38 @@ class AbuseReport(ModelBase):
     # meant to be extracted automatically by the client (i.e. Firefox) and
     # submitted via the API.
     client_id = models.CharField(
-        default=None, max_length=64, blank=True, null=True, editable=False)
+        default=None, max_length=64, blank=True, null=True)
     addon_name = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     addon_summary = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     addon_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     addon_signature = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_SIGNATURES.choices, blank=True, null=True,
-        editable=False)
+        default=None, choices=ADDON_SIGNATURES.choices, blank=True, null=True)
     application = models.PositiveSmallIntegerField(
         default=amo.FIREFOX.id, choices=amo.APPS_CHOICES, blank=True,
-        null=True, editable=False)
+        null=True)
     application_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     application_locale = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     operating_system = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     operating_system_version = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     install_date = models.DateTimeField(
-        default=None, blank=True, null=True, editable=False)
-    # reason is editable to allow admin to fix categorization mistakes made by
-    # the reporter.
+        default=None, blank=True, null=True)
     reason = models.PositiveSmallIntegerField(
         default=None, choices=REASONS.choices, blank=True, null=True)
     addon_install_origin = models.CharField(
-        default=None, max_length=255, blank=True, null=True, editable=False)
+        default=None, max_length=255, blank=True, null=True)
     addon_install_method = models.PositiveSmallIntegerField(
         default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True,
-        null=True, editable=False)
+        null=True)
     report_entry_point = models.PositiveSmallIntegerField(
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True,
-        null=True, editable=False)
+        null=True)
 
     unfiltered = AbuseReportManager(include_deleted=True)
     objects = AbuseReportManager()
