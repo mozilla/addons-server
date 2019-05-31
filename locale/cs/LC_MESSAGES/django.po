@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-31 15:28+0000\n"
+"PO-Revision-Date: 2019-05-31 15:44+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4839,20 +4839,20 @@ msgstr "Zobrazit hodnocení na webu"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Submit Ham to Akismet"
-msgstr ""
+msgstr "Poslat Akismetu \"není spam\""
 
 msgid "Submit Spam to Akismet"
-msgstr ""
+msgstr "Poslat Akismetu \"je spam\""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s hlášení \"není spam\" odesláno jako \"je spam\""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s hlášení \"je spam\" odesláno jako \"není spam\""
 
 msgid "About Mozilla Add-ons"
 msgstr "O webu Doplňky Mozilly"
@@ -5101,7 +5101,7 @@ msgstr "Nemůžete zanechat více než jednu recenzi ke stejné verzi doplňku."
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Neplatné označení [%s] – musí být jedno z těchto: [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Toto hodnocení nelze nahlásit, protože k němu není žádný text."
