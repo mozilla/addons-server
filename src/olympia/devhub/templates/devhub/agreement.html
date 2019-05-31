@@ -11,6 +11,16 @@
     {{ _('I have read and accept this Agreement and the Rules and Policies') }}.
   </p>
 
+  {% if 'display_name' in agreement_form.fields %}
+  <h3> {{ _('Display Name') }} </h3>
+  <p> {{ _('Your account needs a display name set so users know who your add-on is coming from. Please enter one below.' )}} </p>
+  <p>
+    {{ agreement_form.display_name.label_tag() }}
+    {{ agreement_form.display_name }}
+    {{ agreement_form.display_name.errors }}
+  </p>
+  {% endif %}
+
   {% if 'recaptcha' in agreement_form.fields %}
   <p>
     {{ agreement_form.recaptcha }}
@@ -27,6 +37,6 @@
   </div>
   {% else %}
     {{ agreement_form.non_field_errors() }}
-    <p><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Developer_accounts">{{ _('More information on Developer Accounts') }}</a></p>
   {% endif %}
 </form>
+<p><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Developer_accounts">{{ _('More information on Developer Accounts') }}</a></p>

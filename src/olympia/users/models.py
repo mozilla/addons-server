@@ -29,6 +29,7 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.lib.cache import cache_get_or_set
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -127,7 +128,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     username = models.CharField(max_length=255, default='', unique=True)
     display_name = models.CharField(
         max_length=50, default='', null=True, blank=True,
-        validators=[validators.MinLengthValidator(2)])
+        validators=[validators.MinLengthValidator(2),
+                    OneOrMorePrintableCharacterValidator()])
 
     email = models.EmailField(unique=True, null=True, max_length=75)
 

@@ -54,6 +54,7 @@ from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
+from olympia.users.models import UserProfile
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
@@ -1191,6 +1192,7 @@ class DistributionChoiceForm(forms.Form):
 class AgreementForm(forms.Form):
     distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
+    display_name = forms.CharField(label=_('Display Name'))
     recaptcha = ReCaptchaField(label='')
 
     def __init__(self, *args, **kwargs):
@@ -1200,6 +1202,16 @@ class AgreementForm(forms.Form):
 
         if not waffle.switch_is_active('developer-agreement-captcha'):
             del self.fields['recaptcha']
+
+        if (self.request.user.is_authenticated and
+                self.request.user.display_name):
+            # Don't bother asking for a display name if there is one already.
+            del self.fields['display_name']
+        else:
+            # If there isn't one... we want to make sure to use the same
+            # validators as the model.
+            self.fields['display_name'].validators += (
+                UserProfile._meta.get_field('display_name').validators)
 
     def clean(self):
         # Check if user ip or email is not supposed to be allowed to submit.
