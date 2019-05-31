@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-31 14:30+0000\n"
+"PO-Revision-Date: 2019-05-31 14:48+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1292,9 +1292,8 @@ msgstr "Zabezpečení"
 msgid "Privacy"
 msgstr "Ochrana soukromí"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Prohlédnout si osvědčené postupy"
+msgstr "Vývojové postupy"
 
 msgid "No Reputation"
 msgstr "Zatím žádná reputace"
@@ -1595,7 +1594,7 @@ msgid "Need to select at least one application."
 msgstr "Vyberte alespoň jednu aplikaci."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "V poslední době jste toho odeslali příliš mnoho. Zkuste to prosím znovu za nějaký čas."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verze {version} už byla dříve nahrána a smazána."
