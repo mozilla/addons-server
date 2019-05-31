@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-31 14:53+0000\n"
+"PO-Revision-Date: 2019-05-31 15:28+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4819,20 +4819,20 @@ msgid "Fetching file."
 msgstr "Probíhá stahování souboru."
 
 msgid "Reported Status"
-msgstr ""
+msgstr "Hlášený stav"
 
 msgid "Reported Spam"
-msgstr ""
+msgstr "Nahlášeno jako spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
-msgstr ""
+msgstr "Nahlášeno jako \"není spam\""
 
 msgid "Not Reported"
-msgstr ""
+msgstr "Nehlášeno"
 
 msgid "Content Submitted"
-msgstr ""
+msgstr "Obsah byl odeslán"
 
 msgid "View Rating on site"
 msgstr "Zobrazit hodnocení na webu"
