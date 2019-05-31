@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-30 16:28+0000\n"
+"PO-Revision-Date: 2019-05-31 14:30+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -49,24 +49,24 @@ msgstr "Výňatek ze zprávy"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "%d vybraných nahlášení bylo označeno jako oprávněné."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d vybraných nahlášení bylo označeno jako podezřelé."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Označit vybraná nahlášení jako podezřelé"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Změněno dne:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Podle: %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 msgid "No links are allowed."
 msgstr "Odkazy nejsou povoleny."
@@ -1286,13 +1286,11 @@ msgstr "Statický vzhled"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Bezpečnostní testy"
+msgstr "Zabezpečení"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Zásady ochrany osobních údajů"
+msgstr "Ochrana soukromí"
 
 #, fuzzy
 msgid "Development Practices"
