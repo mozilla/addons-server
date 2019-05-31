@@ -348,6 +348,8 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             approvals_info = None
         developers = addon.listed_authors
 
+        # Provide all the necessary context addon_details_box.html needs. Note
+        # the use of Paginator() to match what the template expects.
         context = {
             'addon': addon,
             'addon_name': addon.name,
