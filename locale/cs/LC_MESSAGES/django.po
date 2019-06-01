@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-31 15:44+0000\n"
+"PO-Revision-Date: 2019-06-01 01:12+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5226,7 +5226,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Rozpis rizik není k dispozici."
 
 msgid "Is locked by a reviewer."
 msgstr "Uzamčeno redaktorem."
@@ -5327,16 +5327,14 @@ msgstr "Schválit obsah"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Kontrola doplňků"
+msgstr "Předběžná kontrola doplňků"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Doporučeno ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Jedna kontrola hodnocení"
+msgstr "Další nevyřízená recenze ({0})"
 
 msgid "Review Log"
 msgstr "Záznam kontrol"
@@ -5844,13 +5842,13 @@ msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "Neplatná kombinace parametrů \"%s\" a \"%s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Návrat na AMO je momentálně zakázán"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Neplatný guid pro návrat na AMO (není ve formátu base64url?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Neplatný guid pro návrat na AMO (doplněk není pod naší záštitou)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -6231,10 +6229,10 @@ msgid "Activity Logs"
 msgstr "Záznam aktivity"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Zadejte platnou IPv4 nebo IPv6 adresu, např. 127.0.0.1. Bude převedena na síť /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Můžete zadat pouze jednu adresu, buď IP adresu nebo síť."
 
 msgid "No user with that email."
 msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
@@ -6252,7 +6250,7 @@ msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Z vašeho umístění bylo odesláno více doplňků, které porušují naše pravidla. IP adresa byla zablokována."
 
 msgid "Email Pattern"
 msgstr ""
