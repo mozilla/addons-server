@@ -25,9 +25,9 @@ py==1.8.0 \
     --hash=sha256:64f65755aee5b381cea27766a3a147c3f15b9b6b9ac88676de66ba2ae36793fa \
     --hash=sha256:dc639b046a6e2cff5bbe40194ad65936d6ba360b52b3c3fe1d08a82dd50b5e53
 # pytest is required by amo-validator, pytest-base-url, pytest-cov, pytest-django, pytest-html, pytest-instafail, pytest-selenium, pytest-variables, pytest-xdist
-pytest==4.4.2 \
-    --hash=sha256:136632a40451162cdfc18fe4d7ecc5d169b558a3d4bbb1603d4005308a42fd03 \
-    --hash=sha256:62b129bf8368554ca7a942cbdb57ea26aafef46cc65bc317cdac3967e54483a3
+pytest==4.6.0 \
+    --hash=sha256:52fa94b4ac81d2f063ee05e303acedf5c605e15dc0f4eef468b5c137f77241c3 \
+    --hash=sha256:5467f37a0d6bb0b4e684b71af268e005996b9eaaefe54e3d64d86afd90da8d78
 pytest-django==3.4.8 \
     --hash=sha256:30d773f1768e8f214a3106f1090e00300ce6edfcac8c55fd13b675fe1cbd1c85 \
     --hash=sha256:4d3283e774fe1d40630ee58bf34929b83875e4751b525eeb07a7506996eb42ee
