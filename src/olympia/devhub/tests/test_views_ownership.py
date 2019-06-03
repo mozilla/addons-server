@@ -10,6 +10,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, formset
 from olympia.devhub.forms import LicenseForm
+from olympia.users.models import EmailUserRestriction
 from olympia.versions.models import License, Version
 
 
@@ -271,6 +272,53 @@ class TestEditAuthor(TestOwnership):
         # Make sure all the authors are aware of the addition.
         assert 'del@icio.us' in author_added.to  # The original author.
         assert 'regular@mozilla.com' in author_added.to  # The new one.
+
+    def test_failure_add_non_existing_user(self):
+        qs = (AddonUser.objects.filter(addon=3615)
+              .values_list('user', flat=True))
+        assert list(qs.all()) == [55021]
+
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'nonexistinguser@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 0
+        }
+        data = self.formset(form.initial, user_data, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert response.context['user_form'].errors == [
+            {},  # No errors in the first form
+            {
+                'user': ['No user with that email.']
+            }
+        ]
+
+    def test_failure_add_restricted_user(self):
+        qs = (AddonUser.objects.filter(addon=3615)
+              .values_list('user', flat=True))
+        assert list(qs.all()) == [55021]
+
+        EmailUserRestriction.objects.create(
+            email_pattern='regular@mozilla.com')
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 0
+        }
+        data = self.formset(form.initial, user_data, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert response.context['user_form'].errors == [
+            {},  # No errors in the first form
+            {
+                'user': ['The email address you used for your developer '
+                         'account is not allowed for add-on submission.']
+            }
+        ]
 
     def test_success_edit_user(self):
         # Add an author b/c we can't edit anything about the current one.

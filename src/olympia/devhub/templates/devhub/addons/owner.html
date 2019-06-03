@@ -32,7 +32,7 @@
           {{ user_form.non_form_errors() }}
           <ul id="author_list">
           {% for form in user_form.forms %}
-            <li class="author {{ 'initial' if not form.user.errors }}">
+            <li class="author {{ 'initial' if not form.user.errors else '' }}">
               <span class="handle">&nbsp;</span>
               {{ form.user.errors }}
               {{ form.user }}

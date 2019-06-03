@@ -659,7 +659,7 @@ class IPNetworkUserRestriction(ModelBase):
         return str(self.network)
 
     @classmethod
-    def allow_request(self, request):
+    def allow_request(cls, request):
         """
         Return whether the specified request should be allowed to submit
         add-ons.
@@ -700,7 +700,7 @@ class EmailUserRestriction(ModelBase):
         return str(self.email_pattern)
 
     @classmethod
-    def allow_request(self, request):
+    def allow_request(cls, request):
         """
         Return whether the specified request should be allowed to submit
         add-ons.
@@ -708,10 +708,17 @@ class EmailUserRestriction(ModelBase):
         if not request.user.is_authenticated:
             return False
 
+        return cls.allow_email(request.user.email)
+
+    @classmethod
+    def allow_email(cls, email):
+        """
+        Return whether the specified email should be allowed to submit add-ons.
+        """
         restrictions = EmailUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if fnmatchcase(request.user.email, restriction.email_pattern):
+            if fnmatchcase(email, restriction.email_pattern):
                 return False
         return True
 

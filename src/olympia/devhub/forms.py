@@ -54,7 +54,7 @@ from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
-from olympia.users.models import UserProfile
+from olympia.users.models import EmailUserRestriction, UserProfile
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
@@ -437,6 +437,16 @@ class AuthorForm(forms.ModelForm):
     class Meta:
         model = AddonUser
         exclude = ('addon',)
+
+    # Note: AddonUser's user db field is a UserForeignKey(), which will expose
+    # the user email address in the form (and lookup users from the email
+    # submitted in the form data when adding/changing)
+
+    def clean_user(self):
+        user = self.cleaned_data.get('user')
+        if user and not EmailUserRestriction.allow_email(user.email):
+            raise forms.ValidationError(EmailUserRestriction.error_message)
+        return user
 
 
 class BaseModelFormSet(BaseModelFormSet):
