@@ -489,7 +489,7 @@ class Addon(OnChangeMixin, ModelBase):
             log.debug('Deleting add-on: %s' % self.id)
 
             if send_delete_email:
-                email_to = [settings.FLIGTAR]
+                email_to = [settings.DELETION_EMAIL]
                 subject, email_msg = self._prepare_deletion_email(msg, reason)
             # If the add-on was disabled by Mozilla, add the guid to
             #  DeniedGuids to prevent resubmission after deletion.
