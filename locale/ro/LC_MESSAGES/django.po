@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-06-03 09:46+0000\n"
+"PO-Revision-Date: 2019-06-03 11:00+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -42,17 +42,16 @@ msgstr "Țara raportorului"
 msgid "Message excerpt"
 msgstr "Extras din mesaj"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Textul introdus a fost semnalat ca spam."
+msgstr "Cele %d rapoarte selectate au fost marcate ca valide."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
 msgstr "Cele %d rapoarte selectate au fost marcate ca suspecte."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Raport de defect sau cerere de asistență plasat(ă) greșit"
+msgstr "Marchează rapoartele de abuz selectate ca suspecte"
 
 msgid "Modified on:"
 msgstr "Modificat la:"
@@ -5364,16 +5363,14 @@ msgstr "Aprobă conținutul"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Aceasta este înregistrarea aprobării pe care ai dat-o pentru conținutul ultimei versiuni publice, fără notificarea dezvoltatorului."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Recenzează suplimente"
+msgstr "Prerecenzează suplimente"
 
 msgid "Recommended ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Recenzie de evaluare ({0})"
+msgstr "O altă recenzie în așteptare ({0})"
 
 msgid "Review Log"
 msgstr "Jurnal de recenzii"
