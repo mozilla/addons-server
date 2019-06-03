@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-28 20:09+0000\n"
+"PO-Revision-Date: 2019-05-31 13:22+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -41,7 +41,7 @@ msgid "Reporter's country"
 msgstr "Država prijavitelja"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Odlomek iz sporočila"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -59,7 +59,7 @@ msgstr "Spremenjeno:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Po %(filter_title)s"
 
 msgid "All"
 msgstr "Vse"
@@ -5366,7 +5366,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Preglejte dodatke"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Priporočeno ({0})"
 
 #, fuzzy
 msgid "Other Pending Review ({0})"

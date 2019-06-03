@@ -1685,7 +1685,12 @@ def render_agreement(request, template, next_step, **extra_context):
         # Developer has validated the form: let's update its profile and
         # redirect to next step. Note that the form is supposed to always be
         # invalid if submission is not allowed for this request.
-        request.user.update(read_dev_agreement=datetime.datetime.now())
+        data = {
+            'read_dev_agreement': datetime.datetime.now(),
+        }
+        if 'display_name' in form.cleaned_data:
+            data['display_name'] = form.cleaned_data['display_name']
+        request.user.update(**data)
         return redirect(next_step)
     elif not UploadRestrictionChecker(request).is_submission_allowed():
         # Developer has either posted an invalid form or just landed on the
@@ -1696,7 +1701,7 @@ def render_agreement(request, template, next_step, **extra_context):
             'agreement_form': form,
             'agreement_message': str(
                 DeveloperAgreementRestriction.error_message
-            )
+            ),
         }
         context.update(extra_context)
         return render(request, template, context)

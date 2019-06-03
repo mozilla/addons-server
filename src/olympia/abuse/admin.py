@@ -2,7 +2,9 @@ from collections import OrderedDict
 
 from django import forms
 from django.contrib import admin
+from django.core.paginator import Paginator
 from django.db.models import Count, Q, Prefetch
+from django.template import loader
 from django.utils.translation import ugettext
 
 from rangefilter.filter import (
@@ -11,8 +13,9 @@ from rangefilter.filter import (
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.admin import CommaSearchInAdminMixin
+from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
 from .models import AbuseReport
@@ -148,6 +151,11 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
 
 
 class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
+    class Media:
+        css = {
+            'all': ('css/admin/abuse_reports.css',)
+        }
+
     actions = ('delete_selected', 'mark_as_valid', 'mark_as_suspicious')
     date_hierarchy = 'modified'
     list_display = ('target_name', 'guid', 'type', 'state', 'distribution',
@@ -166,14 +174,77 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     raw_id_fields = ('addon', 'user', 'reporter')
     # All fields except state must be readonly - the submitted data should
     # not be changed, only the state for triage.
-    readonly_fields = list(
-        f.name for f in AbuseReport._meta.fields if f.name != 'state')
+    readonly_fields = (
+        'created',
+        'modified',
+        'reporter',
+        'country_code',
+        'addon',
+        'guid',
+        'user',
+        'message',
+        'client_id',
+        'addon_name',
+        'addon_summary',
+        'addon_version',
+        'addon_signature',
+        'application',
+        'application_version',
+        'application_locale',
+        'operating_system',
+        'operating_system_version',
+        'install_date',
+        'addon_install_origin',
+        'addon_install_method',
+        'report_entry_point',
+        'addon_card',
+    )
+    ADDON_METADATA_FIELDSET = 'Add-on metadata'
+    fieldsets = (
+        (None, {'fields': ('state', 'reason', 'message')}),
+        (None, {'fields': (
+            'created',
+            'modified',
+            'reporter',
+            'country_code',
+            'client_id',
+            'addon_signature',
+            'application',
+            'application_version',
+            'application_locale',
+            'operating_system',
+            'operating_system_version',
+            'install_date',
+            'addon_install_origin',
+            'addon_install_method',
+            'report_entry_point'
+        )})
+    )
+    # The first fieldset is going to be dynamically added through
+    # get_fieldsets() depending on the target (add-on, user or unknown add-on),
+    # using the fields below:
+    dynamic_fieldset_fields = {
+        # Known add-on in database
+        'addon': ('addon_card',),
+        # User
+        'user': ('user',),
+        # Unknown add-on, we only have the guid and maybe some extra addon_*
+        # fields that were submitted with the report.
+        'guid': ('addon_name', 'addon_version', 'guid', 'addon_summary'),
+    }
     view_on_site = False  # Abuse reports have no public page to link to.
 
     def has_add_permission(self, request):
         # Adding new abuse reports through the admin is useless, so we prevent
         # it.
         return False
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_continue'] = False  # Don't need this.
+        return super().change_view(
+            request, object_id, form_url, extra_context=extra_context,
+        )
 
     def delete_queryset(self, request, queryset):
         """Given a queryset, soft-delete it from the database."""
@@ -251,10 +322,53 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 'addon', queryset=Addon.objects.all().only_translations()),
         )
 
+    def get_fieldsets(self, request, obj=None):
+        if obj.addon:
+            target = 'addon'
+        elif obj.user:
+            target = 'user'
+        else:
+            target = 'guid'
+        dynamic_fieldset = (
+            (None, {'fields': self.dynamic_fieldset_fields[target]}),
+        )
+        return dynamic_fieldset + self.fieldsets
+
     def target_name(self, obj):
         name = obj.target.name if obj.target else obj.addon_name
         return '%s %s' % (name, obj.addon_version or '')
     target_name.short_description = ugettext('User / Add-on')
+
+    def addon_card(self, obj):
+        template = loader.get_template('reviewers/addon_details_box.html')
+        addon = obj.addon
+        try:
+            approvals_info = addon.addonapprovalscounter
+        except AddonApprovalsCounter.DoesNotExist:
+            approvals_info = None
+        developers = addon.listed_authors
+
+        # Provide all the necessary context addon_details_box.html needs. Note
+        # the use of Paginator() to match what the template expects.
+        context = {
+            'addon': addon,
+            'addon_name': addon.name,
+            'approvals_info': approvals_info,
+            'reports': Paginator(
+                (AbuseReport.objects
+                    .filter(Q(addon=addon) | Q(user__in=developers))
+                    .order_by('-created')), 5).page(1),
+            'user_ratings': Paginator(
+                (Rating.without_replies
+                    .filter(addon=addon, rating__lte=3, body__isnull=False)
+                    .order_by('-created')), 5).page(1),
+            'was_auto_approved': (
+                addon.current_version and
+                addon.current_version.was_auto_approved
+            ),
+        }
+        return template.render(context)
+    addon_card.short_description = ''
 
     def distribution(self, obj):
         return obj.get_addon_signature_display() if obj.addon_signature else ''

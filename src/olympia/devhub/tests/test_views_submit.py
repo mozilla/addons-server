@@ -246,6 +246,77 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
             'More information on Developer Accounts'
         )
 
+    def test_display_name_already_set_not_asked_again(self):
+        self.user.update(read_dev_agreement=None, display_name='Foo')
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'display_name' not in form.fields
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+        assert response.status_code == 302
+        assert self.user.reload().read_dev_agreement
+
+    def test_display_name_required(self):
+        self.user.update(read_dev_agreement=None, display_name='')
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        form = response.context['agreement_form']
+        assert 'display_name' in form.fields
+        assert 'Your account needs a display name' in doc(
+            '.addon-submission-process').text()
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+        assert response.status_code == 200
+        assert response.context['agreement_form'].is_valid() is False
+        assert response.context['agreement_form'].errors == {
+            'display_name': ['This field is required.']
+        }
+        doc = pq(response.content)
+        assert doc('.addon-submission-process .errorlist')
+        assert not self.user.reload().read_dev_agreement
+
+    def test_display_name_submission(self):
+        self.user.update(read_dev_agreement=None, display_name='')
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+            'display_name': 'ö',  # Too short.
+        })
+        assert response.status_code == 200
+        assert response.context['agreement_form'].is_valid() is False
+        assert response.context['agreement_form'].errors == {
+            'display_name': [
+                'Ensure this value has at least 2 characters (it has 1).'
+            ]
+        }
+
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+            'display_name': '\n\n\n',  # Only contains non-printable chars
+        })
+        assert response.status_code == 200
+        assert response.context['agreement_form'].is_valid() is False
+        assert response.context['agreement_form'].errors == {
+            'display_name': ['This field is required.']
+        }
+
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+            'display_name': 'Fôä',
+        })
+        assert response.status_code == 302
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
+        assert self.user.display_name == 'Fôä'
+
 
 class TestAddonSubmitDistribution(TestCase):
     fixtures = ['base/users']

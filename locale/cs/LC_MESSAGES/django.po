@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-30 16:28+0000\n"
+"PO-Revision-Date: 2019-06-01 01:12+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -30,7 +30,7 @@ msgid "Addons"
 msgstr "Doplňky"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "minimální počet nahlášení (roztříděné podle guid)"
 
 msgid "creation date"
 msgstr "datum vytvoření"
@@ -49,24 +49,24 @@ msgstr "Výňatek ze zprávy"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "%d vybraných nahlášení bylo označeno jako oprávněné."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d vybraných nahlášení bylo označeno jako podezřelé."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Označit vybraná nahlášení jako podezřelé"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Změněno dne:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Podle: %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Vše"
 
 msgid "No links are allowed."
 msgstr "Odkazy nejsou povoleny."
@@ -1286,17 +1286,14 @@ msgstr "Statický vzhled"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Bezpečnostní testy"
+msgstr "Zabezpečení"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Zásady ochrany osobních údajů"
+msgstr "Ochrana soukromí"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Prohlédnout si osvědčené postupy"
+msgstr "Vývojové postupy"
 
 msgid "No Reputation"
 msgstr "Zatím žádná reputace"
@@ -1597,7 +1594,7 @@ msgid "Need to select at least one application."
 msgstr "Vyberte alespoň jednu aplikaci."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "V poslední době jste toho odeslali příliš mnoho. Zkuste to prosím znovu za nějaký čas."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verze {version} už byla dříve nahrána a smazána."
@@ -4822,40 +4819,40 @@ msgid "Fetching file."
 msgstr "Probíhá stahování souboru."
 
 msgid "Reported Status"
-msgstr ""
+msgstr "Hlášený stav"
 
 msgid "Reported Spam"
-msgstr ""
+msgstr "Nahlášeno jako spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
-msgstr ""
+msgstr "Nahlášeno jako \"není spam\""
 
 msgid "Not Reported"
-msgstr ""
+msgstr "Nehlášeno"
 
 msgid "Content Submitted"
-msgstr ""
+msgstr "Obsah byl odeslán"
 
 msgid "View Rating on site"
 msgstr "Zobrazit hodnocení na webu"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Submit Ham to Akismet"
-msgstr ""
+msgstr "Poslat Akismetu \"není spam\""
 
 msgid "Submit Spam to Akismet"
-msgstr ""
+msgstr "Poslat Akismetu \"je spam\""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s hlášení \"není spam\" odesláno jako \"je spam\""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s hlášení \"je spam\" odesláno jako \"není spam\""
 
 msgid "About Mozilla Add-ons"
 msgstr "O webu Doplňky Mozilly"
@@ -5104,7 +5101,7 @@ msgstr "Nemůžete zanechat více než jednu recenzi ke stejné verzi doplňku."
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Neplatné označení [%s] – musí být jedno z těchto: [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Toto hodnocení nelze nahlásit, protože k němu není žádný text."
@@ -5229,7 +5226,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Rozpis rizik není k dispozici."
 
 msgid "Is locked by a reviewer."
 msgstr "Uzamčeno redaktorem."
@@ -5330,16 +5327,14 @@ msgstr "Schválit obsah"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Kontrola doplňků"
+msgstr "Předběžná kontrola doplňků"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Doporučeno ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Jedna kontrola hodnocení"
+msgstr "Další nevyřízená recenze ({0})"
 
 msgid "Review Log"
 msgstr "Záznam kontrol"
@@ -5847,13 +5842,13 @@ msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "Neplatná kombinace parametrů \"%s\" a \"%s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Návrat na AMO je momentálně zakázán"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Neplatný guid pro návrat na AMO (není ve formátu base64url?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Neplatný guid pro návrat na AMO (doplněk není pod naší záštitou)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -6234,10 +6229,10 @@ msgid "Activity Logs"
 msgstr "Záznam aktivity"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Zadejte platnou IPv4 nebo IPv6 adresu, např. 127.0.0.1. Bude převedena na síť /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Můžete zadat pouze jednu adresu, buď IP adresu nebo síť."
 
 msgid "No user with that email."
 msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
@@ -6255,7 +6250,7 @@ msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Z vašeho umístění bylo odesláno více doplňků, které porušují naše pravidla. IP adresa byla zablokována."
 
 msgid "Email Pattern"
 msgstr ""

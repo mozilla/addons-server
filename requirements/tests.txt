@@ -37,9 +37,9 @@ pytest-xdist==1.28.0 \
 pytest-forked==1.0.2 \
     --hash=sha256:5fe33fbd07d7b1302c95310803a5e5726a4ff7f19d5a542b7ce57c76fed8135f \
     --hash=sha256:d352aaced2ebd54d42a65825722cb433004b4446ab5d2044851d9cc7a00c9e38
-freezegun==0.3.11 \
-    --hash=sha256:6cb82b276f83f2acce67f121dc2656f4df26c71e32238334eb071170b892a278 \
-    --hash=sha256:e839b43bfbe8158b4d62bb97e6313d39f3586daf48e1314fb1083d2ef17700da
+freezegun==0.3.12 \
+    --hash=sha256:2a4d9c8cd3c04a201e20c313caf8b6338f1cfa4cda43f46a94cc4a9fd13ea5e7 \
+    --hash=sha256:edfdf5bc6040969e6ed2e36eafe277963bdc8b7c01daeda96c5c8594576c9390
 cookies==2.2.1 \
     --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3
 responses==0.10.6 \
@@ -69,14 +69,14 @@ pathtools==0.1.2 \
 attrs==19.1.0 \
     --hash=sha256:69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79 \
     --hash=sha256:f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399
-pluggy==0.11.0 \
-    --hash=sha256:25a1bc1d148c9a640211872b4ff859878d422bccb59c9965e04eed468a0aa180 \
-    --hash=sha256:964cedd2b27c492fbf0b7f58b3284a09cf7f99b0f715941fb24a439b3af1bd1a
+pluggy==0.12.0 \
+    --hash=sha256:0825a152ac059776623854c1543d65a4ad408eb3d33ee114dff91e57ec6ae6fc \
+    --hash=sha256:b9817417e95936bf75d85d3f8767f7df6cdde751fc40aed3bb3074cbcb77757c
 atomicwrites==1.3.0 \
     --hash=sha256:03472c30eb2c5d1ba9227e4c2ca66ab8287fbfbbda3888aa93dc2e28fc6811b4 \
     --hash=sha256:75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6
-PyFxA==0.7.1 \
-    --hash=sha256:616689486d8d63956aa40836cffafde6e7590cdeb200badabaaf3c17d5b26cce
+PyFxA==0.7.2 \
+    --hash=sha256:87c1f940e40c6dce4d46ec0d411bb521a897f574234462c970e6392a834305ea
 PyBrowserID==0.14.0 \
     --hash=sha256:6c227669e87cc25796ae76f6a0ef65025528c8ad82d352679fa9a3e5663a71e3 \
     --hash=sha256:8e237d6a2bc9ead849a4472a84d3e6a9309bec99cf8e10d36213710dda8df8ca
@@ -86,3 +86,9 @@ hawkauthlib==2.0.0 \
 WebOb==1.8.5 \
     --hash=sha256:36db8203c67023d68c1b00208a7bf55e3b10de2aa317555740add29c619de12b \
     --hash=sha256:05aaab7975e0ee8af2026325d656e5ce14a71f1883c52276181821d6d5bf7086
+importlib-metadata==0.17 \
+    --hash=sha256:a9f185022cfa69e9ca5f7eabfd5a58b689894cb78a11e3c8c89398a8ccbb8e7f \
+    --hash=sha256:df1403cd3aebeb2b1dcd3515ca062eecb5bd3ea7611f18cba81130c68707e879
+zipp==0.5.1 \
+    --hash=sha256:8c1019c6aad13642199fbe458275ad6a84907634cc9f0989877ccc4a2840139d \
+    --hash=sha256:ca943a7e809cc12257001ccfb99e3563da9af99d52f261725e96dfe0f9275bc3
