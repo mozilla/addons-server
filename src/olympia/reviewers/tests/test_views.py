@@ -4672,7 +4672,7 @@ class TestReviewPending(ReviewBase):
         # Locked by a reviewer is shown.
         assert len(doc('.auto_approval li')) == 1
         assert doc('.auto_approval li').eq(0).text() == (
-            'Is locked by a reviewer.')
+            'Is locked by a reviewer')
 
     def test_comments_box_doesnt_have_required_html_attribute(self):
         """Regression test

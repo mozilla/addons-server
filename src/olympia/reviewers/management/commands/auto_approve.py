@@ -88,15 +88,21 @@ class Command(BaseCommand):
                          six.text_type(version.version))
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)
-                log.info('Auto Approval for %s version %s: %s',
-                         six.text_type(version.addon.name),
-                         six.text_type(version.version),
-                         summary.get_verdict_display())
                 self.stats.update({k: int(v) for k, v in info.items()})
                 if summary.verdict == self.successful_verdict:
                     if summary.verdict == amo.AUTO_APPROVED:
                         self.approve(version)
                     self.stats['auto_approved'] += 1
+                    verdict_string = summary.get_verdict_display()
+                else:
+                    verdict_string = '%s (%s)' % (
+                        summary.get_verdict_display(),
+                        ', '.join(summary.verdict_info_prettifier(info))
+                    )
+                log.info('Auto Approval for %s version %s: %s',
+                         six.text_type(version.addon.name),
+                         six.text_type(version.version),
+                         verdict_string)
 
         # At this point, any exception should have rolled back the transaction,
         # so even if we did create/update an AutoApprovalSummary instance that

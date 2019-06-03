@@ -93,8 +93,6 @@ class VersionManager(ManagerBase):
             addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW).filter(
             Q(files__is_webextension=True) | Q(addon__type=amo.ADDON_SEARCH))
-        qs = qs.exclude(
-            addon__discoveryitem__recommendable=True)
         return qs
 
 

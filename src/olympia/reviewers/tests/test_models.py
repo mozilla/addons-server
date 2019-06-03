@@ -1637,6 +1637,17 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 
+    def test_check_is_recommendable(self):
+        assert AutoApprovalSummary.check_is_recommendable(
+            self.version) is False
+
+        disco_item = DiscoveryItem.objects.create(addon=self.addon)
+        assert AutoApprovalSummary.check_is_recommendable(
+            self.version) is False
+
+        disco_item.update(recommendable=True)
+        assert AutoApprovalSummary.check_is_recommendable(self.version) is True
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1698,6 +1709,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
+            'is_recommendable': False,
         }
 
     def test_create_summary_no_files(self):
@@ -1712,6 +1724,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': True,
+            'is_recommendable': False,
             'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
@@ -1722,6 +1735,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': True,
+            'is_recommendable': False,
             'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
@@ -1731,6 +1745,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'is_recommendable': False,
             'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
@@ -1740,6 +1755,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'is_locked': False,
+            'is_recommendable': False,
             'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
@@ -1750,20 +1766,34 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
+            'is_recommendable': False,
             'has_auto_approval_disabled': True,
+        }
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
+
+    def test_calculate_verdict_is_recommendable(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, is_recommendable=True)
+        info = summary.calculate_verdict()
+        assert info == {
+            'is_locked': False,
+            'is_recommendable': True,
+            'has_auto_approval_disabled': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):
         verdict_info = {
             'is_locked': True,
+            'is_recommendable': True,
             'has_auto_approval_disabled': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
-            u'Has auto-approval disabled flag set.',
-            u'Is locked by a reviewer.',
+            'Has auto-approval disabled flag set',
+            'Is locked by a reviewer',
+            'Is recommendable',
         ]
 
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
