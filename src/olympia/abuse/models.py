@@ -101,7 +101,8 @@ class AbuseReport(ModelBase):
     reporter = models.ForeignKey(
         UserProfile, null=True, blank=True, related_name='abuse_reported',
         on_delete=models.SET_NULL)
-    country_code = models.CharField(max_length=2, default=None, null=True)
+    country_code = models.CharField(
+        max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
     # If user is non-null then both addon and guid should be null.
     # If user is null then addon should be non-null if guid was in our DB,

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-05-28 15:04+0000\n"
-"PO-Revision-Date: 2019-05-30 07:48+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2019-05-30 12:02+0000\n"
+"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -22,9 +22,8 @@ msgstr ""
 msgid "type"
 msgstr "tipo"
 
-#, fuzzy
 msgid "Users"
-msgstr "Utente"
+msgstr "Utenti"
 
 msgid "Addons"
 msgstr "Componenti aggiuntivi"
@@ -32,17 +31,14 @@ msgstr "Componenti aggiuntivi"
 msgid "minimum reports count (grouped by guid)"
 msgstr "numero minimo di segnalazioni (raggruppate per guid)"
 
-#, fuzzy
 msgid "creation date"
-msgstr "Guida per i moderatori"
+msgstr "data di creazione"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Componenti aggiuntivi esterni"
+msgstr "Utente / Componente aggiuntivo"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Descrizione"
+msgstr "Distribuzione"
 
 msgid "Reporter's country"
 msgstr "Nazione di segnalazione"
@@ -50,17 +46,16 @@ msgstr "Nazione di segnalazione"
 msgid "Message excerpt"
 msgstr "Estratto del messaggio"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Il testo immesso è stato identificato come spam."
+msgstr "Le %d segnalazioni selezionate sono state contrassegnate come valide."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
 msgstr "Le %d segnalazioni selezionate sono state contrassegnate come sospette."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "segnalazione bug o richiesta di supporto inserita nella sezione non corretta"
+msgstr "Contrassegna le segnalazioni di abuso selezionate come sospette"
 
 msgid "Modified on:"
 msgstr "Data di modifica:"
@@ -1336,17 +1331,14 @@ msgstr "Tema statico"
 msgid "Persona"
 msgstr "Tema di Personas"
 
-#, fuzzy
 msgid "Security"
-msgstr "Test di sicurezza"
+msgstr "Sicurezza"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Informativa sulla privacy"
+msgstr "Privacy"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Scopri le buone pratiche"
+msgstr "Pratiche di sviluppo"
 
 msgid "No Reputation"
 msgstr "Nessuna reputazione"
@@ -5417,16 +5409,14 @@ msgstr "Approva contenuti"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Revisione componenti aggiuntivi"
+msgstr "Pre-revisione dei componenti aggiuntivi"
 
 msgid "Recommended ({0})"
 msgstr "Consigliato ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Revisione valutazione ({0})"
+msgstr "Altre revisioni in attesa ({0})"
 
 msgid "Review Log"
 msgstr "Registro revisioni"

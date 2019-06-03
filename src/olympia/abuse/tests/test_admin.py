@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import date
+from datetime import date, datetime
 
 from django.contrib import admin
 from django.contrib.messages.storage import (
@@ -11,11 +11,15 @@ from django.urls import reverse
 from pyquery import PyQuery as pq
 from six.moves.urllib_parse import parse_qsl, urlparse
 
+from olympia import amo
 from olympia.abuse.admin import AbuseReportAdmin
 from olympia.abuse.models import AbuseReport
+from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
     addon_factory, days_ago, grant_permission, TestCase, user_factory
 )
+from olympia.ratings.models import Rating
+from olympia.reviewers.models import AutoApprovalSummary
 
 
 class TestAbuse(TestCase):
@@ -29,7 +33,7 @@ class TestAbuse(TestCase):
         grant_permission(cls.user, 'Admin:Tools', 'Admin Group')
         grant_permission(cls.user, 'AbuseReports:Edit', 'Abuse Report Triage')
         # Create a few abuse reports.
-        AbuseReport.objects.create(
+        cls.report1 = AbuseReport.objects.create(
             addon=cls.addon1, guid='@guid1', message='Foo',
             state=AbuseReport.STATES.VALID,
             created=days_ago(98))
@@ -44,10 +48,10 @@ class TestAbuse(TestCase):
             addon=cls.addon1, guid='@guid1', message='',
             reporter=user_factory())
         # This is a report for an addon not in the database.
-        AbuseReport.objects.create(
+        cls.report2 = AbuseReport.objects.create(
             guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo')
         # This is one against a user.
-        AbuseReport.objects.create(
+        cls.report3 = AbuseReport.objects.create(
             user=user_factory(username='malicious_user'), message='Ehehehehe')
 
     def setUp(self):
@@ -488,3 +492,49 @@ class TestAbuse(TestCase):
         assert reports.count() == 0  # All should have been soft-deleted.
         assert AbuseReport.objects.count() == 4  # Should have 1 unaffected.
         assert AbuseReport.unfiltered.count() == 6  # We're only soft-deleting.
+
+    def test_detail_addon_report(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon1, last_human_review=datetime.now())
+        Rating.objects.create(
+            addon=self.addon1, rating=2.0, body='Badd-on', user=user_factory())
+        AutoApprovalSummary.objects.create(
+            version=self.addon1.current_version,
+            verdict=amo.AUTO_APPROVED)
+        self.detail_url = reverse(
+            'admin:abuse_abusereport_change', args=(self.report1.pk,))
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Full add-on card
+        assert doc('.addon-info-and-previews')
+        assert 'Neo' in doc('.addon-info-and-previews h2').text()
+        assert doc('.addon-info-and-previews .meta-abuse td').text() == '2'
+        assert doc('.addon-info-and-previews .meta-rating td').text() == (
+            'Rated 2 out of 5 stars 1 review')
+        assert doc('.addon-info-and-previews .last-approval-date td').text()
+        assert doc('.auto-approved-extra')
+        assert doc('.auto-approved-extra h3').eq(0).text() == (
+            'Abuse Reports (2)')
+        assert doc('.auto-approved-extra h3').eq(1).text() == (
+            'Bad User Ratings (1)')
+
+    def test_detail_guid_report(self):
+        self.detail_url = reverse(
+            'admin:abuse_abusereport_change', args=(self.report2.pk,))
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.addon-info-and-previews')
+        assert doc('.field-addon_name')
+        assert 'Mysterious' in doc('.field-addon_name').text()
+
+    def test_detail_user_report(self):
+        self.detail_url = reverse(
+            'admin:abuse_abusereport_change', args=(self.report3.pk,))
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.addon-info-and-previews')
+        assert not doc('.field-addon_name')
+        assert 'malicious_user' in doc('.field-user').text()
