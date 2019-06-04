@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 17:29+0000\n"
+"PO-Revision-Date: 2019-06-04 17:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4653,7 +4653,7 @@ msgstr "Polěpšće swoje čitanske dožiwjenje {start_sub_heading}z {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Wotstrońće mylacy wobsah w teksće na webstronach. Čitajće jasny tekst z wjace lochkosću."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4662,7 +4662,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
-msgstr ""
+msgstr "Blokujće nic jenož wobćežne wabjenje, ale škitajće so před škódnej softwaru a slědowanjom přez wabjenje."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4671,7 +4671,7 @@ msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Wužiwajće wjacenitkowu sćehnjensku podpěru. Wotkryjće rozdźělne typy medijow za sćehnjenje."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4680,7 +4680,7 @@ msgstr "Pytajće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "Składujće jenož wobrazy ze swojeho aktualneho rajtarka."
 
 #. editorial content for the discovery pane.
 #, fuzzy
