@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 23:32+0000\n"
+"PO-Revision-Date: 2019-06-04 23:48+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4726,20 +4726,19 @@ msgstr "Zobrazuje postranní lištu, která vám umožňuje vést si poznámky p
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Hlasem aktivované vyhledávání {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
 msgstr "Použijte rozpoznávání řeči pro umožnění hlasového vyhledávání na Googlu, Yahoo a DuckDuckGo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sledujte produktivitu {start_sub_heading}díky {addon_name}{end_sub_heading}"
+msgstr "Sledujte ceny produktů {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Buďte upozorněni při poklesu cen u položek, o něž máte zájem na Amazonu, Best Buy, eBay, Home Depotu a Walmartu."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6375,7 +6374,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "E-mailová adresa, kterou jste použili pro účet vývojáře, nemá povoleno odesílat doplňky."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
