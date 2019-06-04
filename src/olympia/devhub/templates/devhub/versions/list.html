@@ -89,7 +89,7 @@
       </ul>
     </td>
     <td class="version-delete">
-      <a href="#" class="remove" data-version="{{ version.id }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
+      <a href="#" class="remove" data-version="{{ version.id }}" data-is-recommended="{{ (addon.is_recommended and version.recommendation_approved)|int }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
   {% set can_request_review=addon.can_request_review() %}
@@ -273,8 +273,8 @@
   {% endif %}
 
   <div id="modal-delete-version" class="modal modal-delete">
+    <h3 data-tmpl="{{ _('Delete Version {version}') }}"></h3>
     <form method="post" action="{{ url('devhub.versions.delete', addon.slug) }}">
-      <h3 data-tmpl="{{ _('Delete Version {version}') }}"></h3>
       <p class="current-version-warning highlight">{{ _('You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on.') }}</p>
       <p>{{ _('Deleting this version will permanently delete:') }}</p>
       <ul>
@@ -299,15 +299,21 @@
         {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
       </div>
     </form>
+    <p class="recommended-version-warning">
+      {# will be hidden by default, shown by javascript if data-is-recommended is truthy #}
+      {% trans %}
+        The latest approved version of a Recommended extension cannot be deleted or disabled.
+        Please contact AMO Admins if you need help with this.
+      {% endtrans %}
+      <a href="#" class="close">{{ _('Cancel') }}</a>
+    </p>
   </div>
 
   {% if has_listed_versions %}
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">
+    <h3>{{ _('Hide Add-on') }}</h3>
     <form method="post" action="{{ addon.get_dev_url('disable') }}">
-      <h3>
-        {{ _('Hide Add-on') }}
-      </h3>
       <p>
         {% trans %}
           Hiding your add-on will prevent it from appearing anywhere in our

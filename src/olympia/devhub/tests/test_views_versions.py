@@ -22,6 +22,7 @@ from olympia.amo.tests import (
     TestCase, formset, initial, reverse_ns, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.git import AddonGitRepository
 from olympia.users.models import UserProfile
@@ -170,6 +171,78 @@ class TestVersion(TestCase):
         assert Version.objects.get(pk=81551).is_user_disabled
         assert ActivityLog.objects.filter(
             action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
+
+    def test_cant_disable_or_delete_current_version_recommended(self):
+        # If the add-on is recommended you can't disable or delete the current
+        # version.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.version.update(recommendation_approved=True)
+        assert self.version == self.addon.current_version
+        self.client.post(self.delete_url, self.delete_data)
+        assert Version.objects.filter(pk=81551).exists()
+        assert not Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 0
+
+        self.delete_data['disable_version'] = ''
+        self.client.post(self.delete_url, self.delete_data)
+        assert Version.objects.filter(pk=81551).exists()
+        assert not Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 0
+
+    def test_can_still_disable_or_delete_old_version_recommended(self):
+        # If the add-on is recommended, you can still disable or delete older
+        # versions than the current one.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.version.update(recommendation_approved=True)
+        version_factory(addon=self.addon, recommendation_approved=True)
+        self.addon.reload()
+        assert self.version != self.addon.current_version
+
+        self.delete_data['disable_version'] = ''
+        self.client.post(self.delete_url, self.delete_data)
+        assert Version.objects.filter(pk=81551).exists()
+        assert Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
+
+        del self.delete_data['disable_version']
+        self.client.post(self.delete_url, self.delete_data)
+        assert not Version.objects.filter(pk=81551).exists()
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 1
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
+
+    def test_can_still_disable_or_delete_current_version_recommendable(self):
+        # If the add-on is recommendable but hasn't been recommended yet, then
+        # deleting the current version is fine.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        assert self.version == self.addon.current_version
+
+        self.delete_data['disable_version'] = ''
+        self.client.post(self.delete_url, self.delete_data)
+        assert Version.objects.filter(pk=81551).exists()
+        assert Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
+
+        del self.delete_data['disable_version']
+        self.client.post(self.delete_url, self.delete_data)
+        assert not Version.objects.filter(pk=81551).exists()
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 1
         assert ActivityLog.objects.filter(
             action=amo.LOG.DISABLE_VERSION.id).count() == 1
 
