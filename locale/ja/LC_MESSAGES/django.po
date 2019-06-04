@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-28 15:04+0000\n"
+"POT-Creation-Date: 2019-06-04 11:47+0000\n"
 "PO-Revision-Date: 2019-04-20 01:38+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1629,6 +1629,9 @@ msgid ""
 msgstr ""
 "自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
 
+msgid "Display Name"
+msgstr ""
+
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "アドオンがおすすめに設定されている間はカテゴリーを変更できません。"
 
@@ -1828,11 +1831,18 @@ msgstr "審査ポリシーとルール"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "この規約とルール・ポリシーを読み同意しました"
 
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
 msgid "Accept"
 msgstr "承認"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "または <a href=\"{0}\">キャンセル</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "Creative Commons ライセンスに関する詳しい情報"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2820,7 +2830,8 @@ msgstr "審査完了時にあなた宛てのメールが送信されます。そ
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "このアドオンは当サイトのギャラリーに表示されており、ユーザーには自動更新が配信されています。"
 
-msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
+#, fuzzy
+msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "このアドオンはサイト管理者によって無効化されており、当サイトのギャラリーには表示されません。質問がある場合は amo-admins@mozilla.org までメールを送ってください。"
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4634,6 +4645,123 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ウェブを撮影�
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}フォームに自動入力"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}より快適な閲覧体験を実現"
+
+#. editorial content for the discovery pane.
+msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
+
+#. editorial content for the discovery pane.
+msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}画像を検索"
+
+#. editorial content for the discovery pane.
+msgid "Grab just images from your current tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
+
+#. editorial content for the discovery pane.
+msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get the benefits of strong password management."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を拡大表示しましょう"
+
+#. editorial content for the discovery pane.
+msgid "Customize shades of light and dark to make web pages more visually pleasing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}邪魔なものを減らす"
+
+#. editorial content for the discovery pane.
+msgid "List the websites you want the extension to block. Instant discipline!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
+
+#. editorial content for the discovery pane.
+msgid "Find archived, dead, or otherwise disappeared web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Firefoxを検索"
+
+#. editorial content for the discovery pane.
+msgid "Easily design your own visual themes to make Firefox look as you please."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}タブを更新しましょう"
+
+#. editorial content for the discovery pane.
+msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}検索広告を削除"
+
+#. editorial content for the discovery pane.
+msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}生産性を追跡"
+
+#. editorial content for the discovery pane.
+msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #, python-format
