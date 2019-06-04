@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 16:02+0000\n"
+"PO-Revision-Date: 2019-06-04 18:06+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1814,9 +1814,8 @@ msgstr "Godkänn"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "eller <a href=\"{0}\">Avbryt</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Mer information om Creative Commons licenser"
+msgstr "Mer information om utvecklarkonton"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2821,12 +2820,8 @@ msgstr ""
 "Ditt tillägg visas i vårt galleri och användare\n"
 "                             får automatiska uppdateringar."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
-"Ditt tillägg har inaktiverats av en webbplatsadministratör och visas inte\n"
-"                             längre i vårt galleri. Om du har några frågor,\n"
-"                             mejla amo-admins@mozilla.org."
+msgstr "Ditt tillägg har inaktiverats av administratören och visas inte längre i vårt galleri. Om du har några frågor, vänligen mejla amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Ditt tillägg kommer inte att ingå i sökresultaten och på dess listningssida anges att du har inaktiverat det. Nya bidragsversioner för listning kommer inte att godtas i detta tillstånd."
@@ -4643,110 +4638,99 @@ msgstr "En bättre läsupplevelse {start_sub_heading}med {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Ta bort röran runt text på webbsidor. Enklare och tydligare att läsa."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Blockera annonser och mer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
-msgstr ""
+msgstr "Blockerar inte bara irriterande annonser, men skyddar dig mot skadlig kod och annonsspårning."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ladda ner media lättare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Njut av nedladdning med stöd för flera trådar. Upptäck automatiskt olika typer av media som är tillgängliga för nedladdning."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sök bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Spara bilder enkelt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "Hämta bara bilder från din nuvarande flik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Spara webbsidor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Mäta på webbsidor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Rita en digital linjal över vilken webbsida som helst för att kontrollera höjd, bredd och justering av sidelement."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Få fördelarna med stark lösenordshantering."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förstora bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ögonvänliga sidor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Anpassa nyanser av ljusa och mörka toner för att göra webbsidor mer visuellt tilltalande."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Minska distraktioner {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Blockera distraherande webbplatser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Ange de webbplatser du vill att tillägget ska blockera. Omedelbar disciplin!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Spara webbsidor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Återuppliva döda sidor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Hitta arkiverade, döda eller på annat sätt försvunna webbsidor."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sök i Firefox {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ändra hur Firefox ser ut {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Skapa enkelt dina egna visuella teman så att Firefox ser ut som du vill."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Uppdatera flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Spara anteckningar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "Visar ett sidofält som låter dig spara anteckningar per enskild webbsida."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ta bort sökannonser {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Röstaktiverad sökning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Använd taligenkänning för att aktivera röstsökning på Google, Yahoo och DuckDuckGo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Spåra produktivitet {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Spåra produktpriser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Få besked när priserna sjunker på varor du är intresserad av på Amazon, Best Buy, eBay, Home Depot och Walmart."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
