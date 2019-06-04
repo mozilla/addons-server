@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 17:10+0000\n"
+"PO-Revision-Date: 2019-06-04 17:12+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4739,7 +4739,7 @@ msgstr "מדידת דפי אינטרנט {start_sub_heading}עם {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "ציור סרגל דיגיטלי בכל דף אינטרנט כדי לבדוק גובה, רוחב ויישור של רכיבי הדף."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
