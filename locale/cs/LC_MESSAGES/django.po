@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 20:54+0000\n"
+"PO-Revision-Date: 2019-06-04 21:10+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2828,9 +2828,8 @@ msgstr "Až bude kontrola dokončena, bude vám zaslán e-mail. Do té doby nen�
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Váš doplněk je zobrazen v naší galerii a uživatelé k němu získávají aktualizace."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Váš doplněk byl zakázán správcem stránky a již není na našich stránkách dostupný. Máte-li nějaké dotazy, pošlete e-mail na amo-admins@mozilla.org."
+msgstr "Váš doplněk byl zakázán správcem webu a již není na našich stránkách dostupný. Máte-li nějaké dotazy, pošlete e-mail na amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Váš doplněk nebude zobrazován ve výsledcích vyhledávání a na jeho stránce se zobrazí informace, že jste jej zakázali. V tomto stavu také nebudou přijímány nové verze."
@@ -4638,23 +4637,20 @@ msgid "A clever extension that helps you quickly understand what you’re agreei
 msgstr "Inteligentní rozšíření, které vám pomůže rychle porozumět tomu, s čím že to souhlasíte."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vyplňujte formuláře automaticky {start_sub_heading}díky {addon_name}{end_sub_heading}"
+msgstr "Automatická kontrola gramatiky a pravopisu {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} zvýší zážitek ze čtení"
+msgstr "Lepší zážitek ze čtení {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Odstraňte balast kolem textu na webových stránkách. Čtěte soustředěněji a snadněji."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zablokujte reklamy {start_sub_heading}díky {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy a další prvky na stránce {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
