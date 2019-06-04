@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-28 15:04+0000\n"
+"POT-Creation-Date: 2019-06-04 11:47+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1627,6 +1627,9 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Awuma rat. <span class=\"helptext\">Re ruwäch re' xtijuch' richin nitalüx awuma. Ri taq k'exoj xkesamajïx chi q'ab'aj rik'in jun updateURL o chi kij taq ruk'exoj ri chokoy.</span>"
 
+msgid "Display Name"
+msgstr ""
+
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Man tikirel ta yejal ri taq ruwäch toq ri atz'aqat ya'on ruq'ij."
 
@@ -1826,11 +1829,18 @@ msgstr "Kib'eyal chuqa' Kina'ojil Nik'onem"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Xinsik'ij chuqa' ütz yentz'ët ri Ch'ob'otzij chuqa' taq ri B'eyal chuqa' ri taq Na'ojil"
 
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
 msgid "Accept"
 msgstr "Tik'ul"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Tiq'at</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "Ch'aqa' chik etamab'äl chi rij ri taq Ruya'öl Q'ij Creative Commons"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2825,7 +2835,8 @@ msgstr "Xtak'ül jun taqoya'l toq xtik'is runik'oxik. Ruma k'a ri', ri atz'aqat 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Ri atz'aqat k'o pa ruwachib'al qochoch chuqa' ri okisanela' yekik'ül yonil taq k'exoj."
 
-msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
+#, fuzzy
+msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "Jun nuk'samajel xuchüp ri atz'aqat ruma ri' toq man k'o ta chik pa wachib'äl qochochch. We k'o ak'utunik, katz'ib'an pa amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4635,6 +4646,123 @@ msgstr "Tawelesaj taq wachib'äl pan ajk'amaya'l {start_sub_heading}rik'in {addo
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ruyon Kenojisäx ri taq nojwuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tawutzilaj awetamab'al richin nasik'ij wuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ke'aq'ata' eltzijol {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ke'aqasaj taq silowäch {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ke'akanoj taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Grab just images from your current tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Kekanöx wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get the benefits of strong password management."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ke'animirisaj ri taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Customize shades of light and dark to make web pages more visually pleasing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ke'ach'utinisaj ri rusachik k'u'x {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "List the websites you want the extension to block. Instant discipline!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Kekanöx wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find archived, dead, or otherwise disappeared web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tikanöx pa Firefox {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily design your own visual themes to make Firefox look as you please."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Kek'ex ri taq ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ke'ayuju' eltzijonel toq yakanon {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tawojqaj ri ramaj yasamäj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #, python-format

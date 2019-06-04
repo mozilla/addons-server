@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-28 15:04+0000\n"
+"POT-Creation-Date: 2019-06-04 11:47+0000\n"
 "PO-Revision-Date: 2019-05-27 13:28+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1609,6 +1609,9 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "ਆਪਣੇ ਆਪ ਤੇ। <span class=\"helptext\">ਸਵੈ-ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਲਈ ਤੁਹਾਡੇ ਸਬਮਿਸ਼ਨ ਤੁਰੰਤ ਹਸਤਾਖਰ ਕੀਤੇ ਜਾਣਗੇ। ਅੱਪਡੇਟ ਤੁਹਾਡੇ ਦੁਆਰਾ ਇੱਕ updateURL ਜਾਂ ਬਾਹਰੀ ਐਪਲੀਕੇਸ਼ਨ ਅਪਡੇਟਸ ਦੁਆਰਾ ਨਿਪਟਾਰੇ ਜਾਣੇ ਚਾਹੀਦੇ ਹਨ।</span>"
 
+msgid "Display Name"
+msgstr ""
+
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "ਵਰਗ ਨੂੰ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ, ਜਦੋਂ ਕਿ ਤੁਹਾਡੀ ਐਡਆਨ ਫੀਚਰ ਹੈ।"
 
@@ -1802,11 +1805,18 @@ msgstr "ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਦੀ ਸਮੀਖਿ�
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "ਮੈਂ ਨਿਯਮ ਅਤੇ ਨੀਤੀਆਂ ਪੜ੍ਹ ਲਏ ਤੇ ਮੰਨਜ਼ੂਰ ਕਰ ਲਏ ਹਨ"
 
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
 msgid "Accept"
 msgstr "ਪਰਵਾਨ ਹੈ"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ਜਾਂ <a href=\"{0}\">ਰੱਦ</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਲਾਇਸੈਂਸ ਤੇ ਹੋਰ ਜਾਣਕਾਰੀ"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2770,7 +2780,8 @@ msgstr "ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋਣ ਤੇ ਤੁਹਾਨ�
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਅਤੇ ਉਪਭੋਗੀ ਆਪਣੇ ਆਪ ਹੀ ਅੱਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰ ਰਹੇ ਹਨ।"
 
-msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
+#, fuzzy
+msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "ਤੁਹਾਡੀ ਐਡਆਨ ਨੂੰ ਸਾਈਟ ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਅਸਮਰੱਥ ਬਣਾਇਆ ਗਿਆ ਸੀ ਅਤੇ ਹੁਣ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਦਿਖਾਇਆ ਨਹੀਂ ਗਿਆ ਹੈ। ਜੇ ਤੁਹਾਡੇ ਕੋਈ ਪ੍ਰਸ਼ਨ ਹੋਣ, ਕਿਰਪਾ ਕਰਕੇ ਈ-ਮੇਲ ਕਰੋ amo-admins@mozilla.org।"
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4567,6 +4578,123 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੈ
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਫਾਰਮ ਨੂੰ ਆਟੋਮੈਟਿਕ ਹੀ ਭਰੋ"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣੇ ਪੜ੍ਹਨ ਦੇ ਅਨੁਭਵ ਨੂੰ ਵਧਾਓ"
+
+#. editorial content for the discovery pane.
+msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀਡਿਓ ਡਾਊਨਲੋਡ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰ ਖੋਜੋ"
+
+#. editorial content for the discovery pane.
+msgid "Grab just images from your current tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰ ਖੋਜੋ"
+
+#. editorial content for the discovery pane.
+msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get the benefits of strong password management."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰ ਵਧਾਓ"
+
+#. editorial content for the discovery pane.
+msgid "Customize shades of light and dark to make web pages more visually pleasing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਵਹਾਰ ਨੂੰ ਘਟਾਓ"
+
+#. editorial content for the discovery pane.
+msgid "List the websites you want the extension to block. Instant discipline!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰ ਖੋਜੋ"
+
+#. editorial content for the discovery pane.
+msgid "Find archived, dead, or otherwise disappeared web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਫਾਇਰਫਾਕਸ ਦੀ ਖੋਜ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "Easily design your own visual themes to make Firefox look as you please."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਟੈਬਸ ਤਾਜ਼ਾ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਹਟਾਓ"
+
+#. editorial content for the discovery pane.
+msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਉਤਪਾਦਕਤਾ ਟ੍ਰਸਟ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #, python-format

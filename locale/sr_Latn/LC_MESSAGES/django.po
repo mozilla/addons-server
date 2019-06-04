@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-28 15:04+0000\n"
+"POT-Creation-Date: 2019-06-04 11:47+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1923,6 +1923,9 @@ msgid ""
 "updateURL or external application updates.</span>"
 msgstr ""
 
+msgid "Display Name"
+msgstr ""
+
 #, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
@@ -2151,11 +2154,20 @@ msgstr "Datum recenzije"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
+msgid ""
+"Your account needs a display name set so users know who your add-on is "
+"coming from. Please enter one below."
+msgstr ""
+
 msgid "Accept"
 msgstr ""
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ili <a href=\"{0}\">Otkaži</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "Zahtevane dodatne informacije"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3349,7 +3361,7 @@ msgstr ""
 
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
-"our gallery. If you have any questions, please email amo-admins@mozilla.org."
+"our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr ""
 
 msgid ""
@@ -5527,6 +5539,136 @@ msgstr ""
 #. editorial content for the discovery pane.
 msgid ""
 "A clever extension that helps you quickly understand what you’re agreeing to."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Grammar & spell check automatically {start_sub_heading}with {addon_name}"
+"{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"A better reading experience {start_sub_heading}with {addon_name}"
+"{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Remove the clutter around text on web pages. Read with more clarity and ease."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Not only block annoying ads, but protect yourself against malware and ad "
+"tracking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Enjoy multi-threading download support. Automatically detect different types "
+"of media available for download."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Grab just images from your current tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Draw a digital ruler across any web page to check height, width, and "
+"alignment of page elements."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get the benefits of strong password management."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Customize shades of light and dark to make web pages more visually pleasing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Block distracting websites {start_sub_heading}with {addon_name}"
+"{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "List the websites you want the extension to block. Instant discipline!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find archived, dead, or otherwise disappeared web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Change the way Firefox looks {start_sub_heading}with {addon_name}"
+"{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Easily design your own visual themes to make Firefox look as you please."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Use speech recognition to enable voice search on Google, Yahoo, and "
+"DuckDuckGo."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Get notified when prices drop on items you're interested in at Amazon, Best "
+"Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #, python-format
