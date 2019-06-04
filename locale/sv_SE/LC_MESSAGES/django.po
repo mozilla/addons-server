@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 13:25+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2019-06-04 16:02+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -1806,7 +1806,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Ditt konto behöver ett visningsnamn så att användarna vet vem tillägget kommer från. Vänligen ange en nedan."
 
 msgid "Accept"
 msgstr "Godkänn"
@@ -4634,14 +4634,12 @@ msgid "A clever extension that helps you quickly understand what you’re agreei
 msgstr "En smart utökning som hjälper dig att snabbt förstå vad du samtycker till."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fyll i formulär automatiskt {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Automatiskt grammatik och stavningskontroll {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra din läsupplevelse {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "En bättre läsupplevelse {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
