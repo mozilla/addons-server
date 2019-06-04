@@ -1069,7 +1069,16 @@ def _log_max_version_change(addon, version, appversion):
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
-    if 'disable_version' in request.POST:
+    if (addon.is_recommended and
+            version.recommendation_approved and
+            version == addon.current_version):
+        # Developers shouldn't be able to delete/disable the current version
+        # of an approved add-on.
+        msg = ugettext('The latest approved version of a Recommended extension'
+                       ' cannot be deleted or disabled. Please contact AMO '
+                       'Admins if you need help with this.')
+        messages.error(request, msg)
+    elif 'disable_version' in request.POST:
         messages.success(
             request,
             ugettext('Version %s disabled.') % version.version)
