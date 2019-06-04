@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 23:12+0000\n"
+"PO-Revision-Date: 2019-06-04 23:32+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4717,22 +4717,20 @@ msgid "Easily design your own visual themes to make Firefox look as you please."
 msgstr "Snadno si navrhněte své vlastní motivy vzhledu, aby Firefox vypadal tak, jak si přejete."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Aktualizujte panely {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
+msgstr "Veďte si poznámky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "Zobrazuje postranní lištu, která vám umožňuje vést si poznámky pro každou webovou stránku zvlášť."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vás zbaví reklam při vyhledávání"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Použijte rozpoznávání řeči pro umožnění hlasového vyhledávání na Googlu, Yahoo a DuckDuckGo."
 
 #. editorial content for the discovery pane.
 #, fuzzy
