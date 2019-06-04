@@ -26,6 +26,7 @@ from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.reviewers.sql_model import RawSQLModel
@@ -847,6 +848,7 @@ class AutoApprovalSummary(ModelBase):
         Version, on_delete=models.CASCADE, primary_key=True)
     is_locked = models.BooleanField(default=False)
     has_auto_approval_disabled = models.BooleanField(default=False)
+    is_recommendable = models.BooleanField(default=False)
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -1020,7 +1022,7 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_verdict(self, dry_run=False, pretty=False):
         """Calculate the verdict for this instance based on the values set
-        on it and the current configuration.
+        on it previously and the current configuration.
 
         Return a dict containing more information about what critera passed
         or not."""
@@ -1031,11 +1033,16 @@ class AutoApprovalSummary(ModelBase):
             success_verdict = amo.AUTO_APPROVED
             failure_verdict = amo.NOT_AUTO_APPROVED
 
-        # Currently the only thing that can prevent approval are a reviewer
-        # lock and having auto-approval disabled flag set on the add-on.
+        # Currently the only thing that can prevent approval are:
+        # - a reviewer lock (someone is currently looking at this add-on)
+        # - auto-approval disabled flag set on the add-on
+        # - recommendable flag set to True - such add-ons need to be manually
+        #   reviewed.
+        # create_summary_for_version() should set properties accordingly.
         verdict_info = {
             'is_locked': self.is_locked,
             'has_auto_approval_disabled': self.has_auto_approval_disabled,
+            'is_recommendable': self.is_recommendable,
         }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
@@ -1052,9 +1059,10 @@ class AutoApprovalSummary(ModelBase):
         """Return a generator of strings representing the a verdict_info
         (as computed by calculate_verdict()) in human-readable form."""
         mapping = {
-            'is_locked': ugettext('Is locked by a reviewer.'),
+            'is_locked': ugettext('Is locked by a reviewer'),
             'has_auto_approval_disabled': ugettext(
-                'Has auto-approval disabled flag set.')
+                'Has auto-approval disabled flag set'),
+            'is_recommendable': ugettext('Is recommendable')
         }
         return (mapping[key] for key, value in sorted(verdict_info.items())
                 if value)
@@ -1141,6 +1149,16 @@ class AutoApprovalSummary(ModelBase):
         return bool(version.addon.auto_approval_disabled)
 
     @classmethod
+    def check_is_recommendable(cls, version):
+        try:
+            item = version.addon.discoveryitem
+        except DiscoveryItem.DoesNotExist:
+            recommendable = False
+        else:
+            recommendable = item.recommendable
+        return bool(recommendable)
+
+    @classmethod
     def create_summary_for_version(cls, version, dry_run=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
@@ -1163,7 +1181,8 @@ class AutoApprovalSummary(ModelBase):
             'version': version,
             'is_locked': cls.check_is_locked(version),
             'has_auto_approval_disabled': cls.check_has_auto_approval_disabled(
-                version)
+                version),
+            'is_recommendable': cls.check_is_recommendable(version),
         }
         instance = cls(**data)
         verdict_info = instance.calculate_verdict(dry_run=dry_run)

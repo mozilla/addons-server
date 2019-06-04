@@ -98,11 +98,38 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # search engine plugins are considered now
         search_addon = addon_factory(type=amo.ADDON_SEARCH)
-        search_version = version_factory(
+        version_factory(
             addon=search_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
             nomination=self.days_ago(5))
+
+        # Some recommended add-ons - one nominated and one update.
+        # They should be considered by fetch_candidate(), so that they get a
+        # weight assigned etc - they will not be auto-approved but that's
+        # handled at a later stage, when calculating the verdict.
+        recommendable_addon_nominated = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            version_kw={
+                'recommendation_approved': True,
+                'nomination': self.days_ago(6)
+            },
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True},
+        )
+        recommended_addon = version_factory(
+            addon=addon_factory(),
+            recommendation_approved=True,
+            nomination=self.days_ago(7),
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True
+            }).addon
+        DiscoveryItem.objects.create(
+            recommendable=True, addon=recommendable_addon_nominated)
+        DiscoveryItem.objects.create(
+            recommendable=True, addon=recommended_addon)
 
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
@@ -138,20 +165,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         version_factory(addon=complex_addon, file_kw={
             'status': amo.STATUS_AWAITING_REVIEW})
 
-        # Some recommended add-ons - one nominated and one update
-        DiscoveryItem.objects.create(
-            recommendable=True,
-            addon=addon_factory(
-                status=amo.STATUS_NOMINATED,
-                version_kw={'recommendation_approved': True},
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW}))
-        DiscoveryItem.objects.create(
-            recommendable=True,
-            addon=version_factory(
-                addon=addon_factory(),
-                recommendation_approved=True,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW}).addon)
-
         # Finally, add a second file to self.version to test the distinct().
         file_factory(
             version=self.version, status=amo.STATUS_AWAITING_REVIEW,
@@ -162,18 +175,14 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         command.post_review = True
         qs = command.fetch_candidates()
 
-        # 4 versions should be found. Because of the nomination date,
+        # 5 versions should be found. Because of the nomination date,
         # search_version should be first (its nomination date is the
         # oldest) followed etc.
-        assert len(qs) == 5
-        assert list(v.addon.type for v in qs) == list(
-            a.type for a in (
-                search_addon, dictionary, langpack, new_addon, self.addon))
-        assert qs[0] == search_version
-        assert qs[1] == dictionary_version
-        assert qs[2] == langpack_version
-        assert qs[3] == new_addon_version
-        assert qs[4] == self.version
+        assert len(qs) == 7
+        assert [v.addon.pk for v in qs] == [a.pk for a in (
+            recommended_addon, recommendable_addon_nominated,
+            search_addon, dictionary, langpack, new_addon, self.addon,
+        )]
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.statsd.incr')
@@ -287,7 +296,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert sign_file_mock.call_count == 1
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'error': 1, 'is_locked': 0,
-                           'has_auto_approval_disabled': 0})
+                           'has_auto_approval_disabled': 0,
+                           'is_recommendable': 0})
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
@@ -411,7 +421,7 @@ class TestAutoApproveCommandTransactions(
 
         self._check_stats({'total': 2, 'error': 1, 'is_locked': 0,
                            'has_auto_approval_disabled': 0,
-                           'auto_approved': 1})
+                           'auto_approved': 1, 'is_recommendable': 0})
 
 
 class TestRecalculatePostReviewWeightsCommand(TestCase):
