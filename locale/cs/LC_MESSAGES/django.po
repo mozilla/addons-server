@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 22:11+0000\n"
+"PO-Revision-Date: 2019-06-04 22:23+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4674,7 +4674,7 @@ msgstr "Odchyťte z aktuálního panelu jenom obrázky."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Změřte webové stránky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
+msgstr "Měřte webové stránky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4682,16 +4682,15 @@ msgstr "Nakreslete přes libovolnou webovou stránku digitální pravítko a zko
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Využijte výhod správy silných hesel."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zvětšete obrázky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
+msgstr "Oku lahodící stránky {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Upravte světlé a tmavé odstíny, aby byly webové stránky příjemnější na pohled."
 
 #. editorial content for the discovery pane.
 #, fuzzy
