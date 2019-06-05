@@ -1644,7 +1644,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         super(TestAddonSubmitFinish, self).setUp()
         self.url = reverse('devhub.submit.finish', args=[self.addon.slug])
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
+    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_welcome_email_for_newbies(self, send_welcome_email_mock):
         self.client.get(self.url)
@@ -1658,7 +1658,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         send_welcome_email_mock.assert_called_with(
             self.addon.id, ['del@icio.us'], context)
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
+    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_welcome_email_first_listed_addon(self, send_welcome_email_mock):
         new_addon = addon_factory(
@@ -1675,7 +1675,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         send_welcome_email_mock.assert_called_with(
             self.addon.id, ['del@icio.us'], context)
 
-    @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
+    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_welcome_email_if_previous_addon_is_incomplete(
             self, send_welcome_email_mock):

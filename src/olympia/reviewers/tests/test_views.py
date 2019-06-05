@@ -3500,6 +3500,8 @@ class TestReview(ReviewBase):
         self.assertContains(response, privacy_url + '"')
 
         # The url should pass on the channel param so the backlink works
+        # FIXME: oh, that's why. I definitely need to fix that and document
+        # it.
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
         unlisted_url = reverse(

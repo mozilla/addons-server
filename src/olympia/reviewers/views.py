@@ -754,13 +754,6 @@ def determine_channel(channel_as_text):
 @login_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon, channel=None):
-    channel_param = ('?channel=%s' % channel) if channel else ''
-    eula_url = reverse(
-        'reviewers.eula',
-        args=(addon.slug if addon.slug else addon.pk,)) + (channel_param)
-    privacy_url = reverse(
-        'reviewers.privacy',
-        args=(addon.slug if addon.slug else addon.pk,)) + (channel_param)
     whiteboard_url = reverse(
         'reviewers.whiteboard',
         args=(channel or 'listed', addon.slug if addon.slug else addon.pk))
@@ -948,10 +941,9 @@ def review(request, addon, channel=None):
         actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        content_review_only=content_review_only,
-        count=count, eula_url=eula_url, flags=flags, form=form,
-        is_admin=is_admin, num_pages=num_pages, pager=pager, reports=reports,
-        privacy_url=privacy_url, show_diff=show_diff,
+        content_review_only=content_review_only, count=count, flags=flags,
+        form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
+        reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),

@@ -115,7 +115,7 @@
           <tr class="meta-abuse">
             <th>{{ _('Abuse Reports') }}</th>
             <td>
-                <a href="{{ url('reviewers.abuse_reports', addon.slug) }}">
+                <a href="{{ url('reviewers.abuse_reports', addon.slug)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
                   <strong>{{ reports.paginator.count|numberfmt }}</strong>
                 </a>
             </td>
@@ -125,7 +125,7 @@
             <tr>
               <th>{{ _('Privacy Policy') }}</th>
               <td>
-                <a href="{{ privacy_url }}">
+                <a href="{{ url('reviewers.privacy', addon.slug)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
                   {{ _('View Privacy Policy') }}</a>
               </td>
             </tr>
@@ -140,7 +140,7 @@
             <tr>
               <th>{{ _('EULA') }}</th>
               <td>
-                <a href="{{ eula_url }}">
+                <a href="{{ url('reviewers.eula', addon.slug)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
                   {{ _('View End-User License Agreement') }}</a>
               </td>
             </tr>
@@ -160,12 +160,12 @@
   {% if was_auto_approved %}
   <div class="auto-approved-extra">
     {% if reports %}
-      <h3><a href="{{ url('reviewers.abuse_reports', addon.slug) }}">{{_('Abuse Reports ({num})')|format_html(num=reports.paginator.count|numberfmt) }}</a></h3>
+      <h3><a href="{{ url('reviewers.abuse_reports', addon.slug)|absolutify }}">{{_('Abuse Reports ({num})')|format_html(num=reports.paginator.count|numberfmt) }}</a></h3>
       {% include "reviewers/includes/abuse_reports_list.html" %}
     {% endif %}
 
     {% if user_ratings %}
-      <h3><a href="{{ url('addons.ratings.list', addon.slug) }}">{{_('Bad User Ratings ({num})')|format_html(num=user_ratings.paginator.count|numberfmt) }}</a></h3>
+      <h3><a href="{{ url('addons.ratings.list', addon.slug)|absolutify }}">{{_('Bad User Ratings ({num})')|format_html(num=user_ratings.paginator.count|numberfmt) }}</a></h3>
       {% include "reviewers/includes/user_ratings_list.html" %}
     {% endif %}
   </div>

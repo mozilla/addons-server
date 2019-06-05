@@ -2106,7 +2106,7 @@ class TestPersonaModel(TestCase):
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
                            VAMO_URL='https://vamo',
-                           SITE_URL='https://omgsh.it'):
+                           EXTERNAL_SITE_URL='https://omgsh.it'):
             data = self.persona.theme_data
 
             id_ = str(self.persona.addon.id)
@@ -2145,7 +2145,7 @@ class TestPersonaModel(TestCase):
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
                            VAMO_URL='https://vamo',
-                           SITE_URL='https://omgsh.it'):
+                           EXTERNAL_SITE_URL='https://omgsh.it'):
             data = self.persona.theme_data
 
             id_ = str(self.persona.addon.id)
