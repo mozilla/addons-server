@@ -82,7 +82,7 @@ services:
       - RABBITMQ_DEFAULT_VHOST=olympia
 
   autograph:
-    image: mozilla/autograph:3.2.0
+    image: mozilla/autograph:3.3.2
 
   addons-frontend:
     <<: *env
