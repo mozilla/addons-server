@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-05 13:50+0000\n"
+"PO-Revision-Date: 2019-06-05 13:53+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1858,9 +1858,8 @@ msgstr "Aceitar"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ou <a href=\"{0}\">Cancelar</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Mais informações sobre licenças Creative Commons"
+msgstr "Mais informações sobre Contas do Desenvolvedor"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2877,9 +2876,8 @@ msgstr "Irá receber um email quando a análise estiver concluída. Até lá, a 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Sua extensão será exibido em nossa galeria e os usuários receberão atualizações automáticas."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria. Se você tem alguma dúvida, envie um e-mail para amo-admins@mozilla.org."
+msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria. Se tiver alguma dúvida, envie um e-mail para amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Sua extensão não será incluída nos resultados de pesquisas, e a página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
@@ -4818,7 +4816,7 @@ msgstr "Monitore a produtividade {start_sub_heading}com {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Seja notificado quando caírem os preços de itens que você está interessado na Amazon, Best Buy, eBay, Home Depot e Walmart."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
