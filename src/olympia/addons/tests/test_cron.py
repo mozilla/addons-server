@@ -263,7 +263,7 @@ class TestUnhideDisabledFiles(TestCase):
     @override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons')
     @mock.patch('olympia.files.models.File.unhide_disabled_file')
     def test_move_not_disabled_files(self, unhide_mock):
-        fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
+        fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
         with amo.tests.copy_file(fpath, self.file_.guarded_file_path):
             # Make sure this works correctly with bytestring base paths
             # and doesn't raise a `UnicodeDecodeError`

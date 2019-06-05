@@ -41,7 +41,6 @@ from olympia.access import acl
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
-from olympia.lib.safe_xml import lxml
 from olympia.lib.crypto.signing import get_signer_organizational_unit_name
 from olympia.lib import unicodehelper
 from olympia.users.utils import (
@@ -1157,10 +1156,7 @@ def update_version_number(file_obj, new_version_number):
         with zipfile.ZipFile(updated, 'w', zipfile.ZIP_DEFLATED) as dest:
             for file_ in file_list:
                 content = source.read(file_.filename)
-                if file_.filename == 'install.rdf':
-                    content = _update_version_in_install_rdf(
-                        content, new_version_number)
-                if file_.filename in ['package.json', 'manifest.json']:
+                if file_.filename == 'manifest.json':
                     content = _update_version_in_json_manifest(
                         content, new_version_number)
                 dest.writestr(file_, content)
@@ -1203,32 +1199,6 @@ def write_crx_as_xpi(chunks, target):
                 bytes = tmp.read(65536)
 
     return hash
-
-
-def _update_version_in_install_rdf(content, new_version_number):
-    """Change the version number in the install.rdf provided."""
-    # We need to use an XML parser, and not a RDF parser, because our
-    # install.rdf files aren't really standard (they use default namespaces,
-    # don't namespace the "about" attribute... rdflib can parse them, and can
-    # now even serialize them, but the end result could be very different from
-    # the format we need.
-    tree = lxml.etree.fromstring(content)
-    # There's two different formats for the install.rdf: the "standard" one
-    # uses nodes for each item (like <em:version>1.2</em:version>), the other
-    # alternate one sets attributes on the <RDF:Description
-    # RDF:about="urn:mozilla:install-manifest"> element.
-
-    # Get the version node, if it's the common format, or the Description node
-    # that has the "em:version" attribute if it's the alternate format.
-    namespace = 'http://www.mozilla.org/2004/em-rdf#'
-    version_uri = '{{{0}}}version'.format(namespace)
-    for node in tree.xpath('//em:version | //*[@em:version]',
-                           namespaces={'em': namespace}):
-        if node.tag == version_uri:  # Common format, version is a node.
-            node.text = new_version_number
-        else:  # Alternate format, version is an attribute.
-            node.set(version_uri, new_version_number)
-    return lxml.etree.tostring(tree, xml_declaration=True, encoding='utf-8')
 
 
 def _update_version_in_json_manifest(content, new_version_number):

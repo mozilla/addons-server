@@ -106,12 +106,12 @@ def test_process_addons_limit_addons():
     assert Addon.objects.count() == 5
 
     with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='sign_addons')
+        call_command('process_addons', task='resign_addons_for_cose')
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids]
 
     with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='sign_addons', limit=2)
+        call_command('process_addons', task='resign_addons_for_cose', limit=2)
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 

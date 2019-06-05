@@ -39,7 +39,7 @@ tasks = {
             Q(**{current_autoapprovalsummary + 'verdict': amo.AUTO_APPROVED}) &
             ~Q(**{current_autoapprovalsummary + 'confirmed': True})
         ]},
-    'sign_addons': {
+    'resign_addons_for_cose': {
         'method': sign_addons,
         'qs': []},
     'migrate_lwt': {
