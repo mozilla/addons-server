@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 17:45+0000\n"
+"PO-Revision-Date: 2019-06-05 07:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1831,9 +1831,8 @@ msgstr "Akceptować"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "abo <a href=\"{0}\">Přetorhnyć</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Dalše informacije wo licencach Creative Commons"
+msgstr "Dalše informacije wo wuwiwarskich kontach"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2830,9 +2829,8 @@ msgstr "Dóstanjeće e-mejlku, hdyž přepruwowanje je dokónčene. Hač do toho
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Waš přidatk so w našej galeriji pokazuje a wužiwarjo awtomatiske aktualizacije dóstawaja."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Waš přidatk je so wot sydłoweho administratora znjemóžnił a so hižo w našej galeriji njepokazuje. Jeli maće prašenja, sćelće e-mejlku na amo-admins@mozilla.org."
+msgstr "Waš přidatk je so wot sydłoweho administratora znjemóžnił a so hižo w našej galeriji njepokazuje. Jeli maće prašenja, sćelće e-mejlku na amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Waš přidatk so w pytanskich wuslědkach njezjewi, a jeho lisćinowa strona pokaza, zo sće jón znjemóžnił. Zapodaća nowych wersijow za lisćinu njebudu so w tutym statusu akceptować."
@@ -4642,50 +4640,44 @@ msgid "A clever extension that helps you quickly understand what you’re agreei
 msgstr "Inteligentne rozšěrjenje, kotrež wam pomha, spěšnje rozumić, do čehož zwoliće."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Wupjelńće formulary awtomatisce {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Awtomatiska kontrola gramatiki a prawopisa {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće swoje čitanske dožiwjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Lěpše čitanske dožiwjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
 msgstr "Wotstrońće mylacy wobsah w teksće na webstronach. Čitajće jasny tekst z wjace lochkosću."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Blokujće wabjenje a wjace {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
 msgstr "Blokujće nic jenož wobćežne wabjenje, ale škitajće so před škódnej softwaru a slědowanjom přez wabjenje."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Sćehńće medije lóšo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Wužiwajće wjacenitkowu sćehnjensku podpěru. Wotkryjće rozdźělne typy medijow za sćehnjenje."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pytajće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pytajće wobrazy lochko {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
 msgstr "Składujće jenož wobrazy ze swojeho aktualneho rajtarka."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Składujće strony {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Měrće webstrony {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
