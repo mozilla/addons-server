@@ -1566,7 +1566,11 @@ AUTOGRAPH_CONFIG = {
     # are already signed when submitted to AMO.
     'signer': env(
         'AUTOGRAPH_SIGNER_ID',
-        default='webextensions-rsa')
+        default='webextensions-rsa'),
+    # This signer is only used for add-ons that are recommended.
+    'recommendation-signer': env(
+        'AUTOGRAPH_RECOMMENDATION_SIGNER_ID',
+        default='webextensions-rsa-with-recommendation')
 }
 
 # Enable addon signing. Autograph is configured to something reasonable
