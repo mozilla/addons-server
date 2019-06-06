@@ -188,7 +188,6 @@ class Command(BaseCommand):
                     for arg in task['allowed_kwargs']})
             # All the remaining tasks go in one group.
             grouping = []
-            print('XXXXXXXXXX', pks)
             for chunk in chunked(pks, 100):
                 grouping.append(
                     task['method'].subtask(args=[chunk], kwargs=kwargs))
