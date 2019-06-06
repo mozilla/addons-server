@@ -1746,7 +1746,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert len(links) == 2
         # First link is to the file download.
         file_ = latest_version.all_files[-1]
-        assert links[0].attrib['href'] == file_.get_url_path('devhub')
+        assert links[0].attrib['href'] == file_.get_absolute_url('devhub')
         assert links[0].text == (
             'Download %s' % file_.filename)
         # Second back to my submissions.
@@ -1814,7 +1814,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert len(links) == 2
         # First link is to the file download.
         file_ = latest_version.all_files[-1]
-        assert links[0].attrib['href'] == file_.get_url_path('devhub')
+        assert links[0].attrib['href'] == file_.get_absolute_url('devhub')
         assert links[0].text == (
             'Download %s' % file_.filename)
         # Second back to my submissions.

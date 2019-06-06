@@ -41,7 +41,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
         current_user = getattr(request, 'user', None) if request else None
         # Only return your own profile url, and for developers.
         if obj == current_user or is_adminish(current_user) or obj.is_public:
-            return absolutify(obj.get_url_path())
+            return obj.get_absolute_url()
 
     # Used in subclasses.
     def get_permissions(self, obj):

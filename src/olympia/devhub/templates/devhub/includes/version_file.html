@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <a href="{{ file.get_url_path('devhub') }}">
+    <a href="{{ file.get_absolute_url('devhub') }}">
       {{ file.pretty_filename() }}</a>
   </td>
   <td>{{ file.size|filesizeformat(binary=True) }}</td>

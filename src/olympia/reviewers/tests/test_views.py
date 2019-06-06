@@ -2835,11 +2835,11 @@ class TestReview(ReviewBase):
         items = pq(response.content)('#review-files .files .file-info')
         assert items.length == 1
 
-        f = self.version.all_files[0]
+        file_ = self.version.all_files[0]
         expected = [
-            ('All Platforms', f.get_url_path('reviewer')),
-            ('Validation',
-             reverse('devhub.file_validation', args=[self.addon.slug, f.id])),
+            ('All Platforms', file_.get_absolute_url('reviewer')),
+            ('Validation', reverse(
+                'devhub.file_validation', args=[self.addon.slug, file_.id])),
             ('Contents', None),
         ]
         check_links(expected, items.find('a'), verify=False)
