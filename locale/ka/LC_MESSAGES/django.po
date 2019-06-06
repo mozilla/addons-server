@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-06 00:51+0000\n"
+"PO-Revision-Date: 2019-06-06 00:59+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4710,25 +4710,23 @@ msgstr "გააკეთეთ ჩანაწერები {start_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "გვერდითი ზოლი საშუალებას გაძლევთ გააკეთოთ ჩანაწერები თითოეული გვერდისთვის."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "რეკლამების მოცილება ძიებისას {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ხმოვანი ძიება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "ისარგებლეთ ხმის ამოცნობის შესაძლებლობით და გამოიყენეთ ძიებისთვის Google, Yahoo და DuckDuckGo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "თვალი ადევნეთ შრომის ნაყოფიერებას {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "თვალი ადევნეთ საყიდლების ფასებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "შეიტყვეთ ფასდაკლებების შესახებ სასურველ ნივთებზე მაღაზიებში, როგორიცაა Amazon, Best Buy, eBay, Home Depot და Walmart."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
