@@ -148,10 +148,12 @@ class TestUserProfile(TestCase):
 
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):
-        user_sole = user_factory(email='sole@foo.baa', fxa_id='13579')
+        user_sole = user_factory(email='sole@foo.baa', fxa_id='13579',
+                                 last_login_ip='127.0.0.1')
         addon_sole = addon_factory(users=[user_sole])
         self.setup_user_to_be_have_content_disabled(user_sole)
-        user_multi = user_factory(email='multi@foo.baa', fxa_id='24680')
+        user_multi = user_factory(email='multi@foo.baa', fxa_id='24680',
+                                  last_login_ip='127.0.0.2')
         innocent_user = user_factory()
         addon_multi = addon_factory(
             users=UserProfile.objects.filter(
@@ -192,10 +194,12 @@ class TestUserProfile(TestCase):
         assert user_sole.email == 'sole@foo.baa'
         assert user_sole.auth_id
         assert user_sole.fxa_id == '13579'
+        assert user_sole.last_login_ip == '127.0.0.1'
         assert user_multi.deleted
         assert user_multi.email == 'multi@foo.baa'
         assert user_multi.auth_id
         assert user_multi.fxa_id == '24680'
+        assert user_multi.last_login_ip == '127.0.0.2'
 
         hide_disabled_mock.assert_not_called()
 

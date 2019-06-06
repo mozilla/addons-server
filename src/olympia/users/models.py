@@ -520,6 +520,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     self, self.email))
                 self.email = None
                 self.fxa_id = None
+                self.last_login_ip = ''
             self.biography = ''
             self.display_name = None
             self.homepage = ''
@@ -527,7 +528,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.deleted = True
             self.picture_type = None
             self.auth_id = generate_auth_id()
-            self.last_login_ip = ''
             self.anonymize_username()
             self.save()
 
