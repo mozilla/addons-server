@@ -367,7 +367,9 @@ class TestTasks(TestCase):
 
     def setUp(self):
         super(TestTasks, self).setUp()
-        self.addon = amo.tests.addon_factory(version_kw={'version': '0.0.1'})
+        self.addon = amo.tests.addon_factory(
+            name=u'Rændom add-on',
+            version_kw={'version': '0.0.1'})
         self.version = self.addon.current_version
         self.max_appversion = self.version.apps.first().max
         self.set_max_appversion('48')
@@ -619,6 +621,18 @@ class TestTasks(TestCase):
             mock_sign_file.assert_called_with(self.file_)
 
         assert 'stronger signature' in mail.outbox[0].message().as_string()
+
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def test_sign_mail_cose_message_contains_addon_name(self, mock_sign_file):
+        self.file_.update(status=amo.STATUS_APPROVED)
+        AddonUser.objects.create(addon=self.addon, user_id=999)
+        with amo.tests.copy_file(
+                'src/olympia/files/fixtures/files/webextension.xpi',
+                self.file_.file_path):
+            tasks.sign_addons([self.addon.pk])
+            mock_sign_file.assert_called_with(self.file_)
+
+        assert u'Rændom add-on' in mail.outbox[0].message().as_string()
 
 
 @pytest.mark.parametrize(('old', 'new'), [

@@ -23,21 +23,31 @@ MAIL_COSE_SUBJECT = (
 MAIL_COSE_MESSAGE = u'''
 Hello,
 
-Mozilla has recently upgraded the signing for Firefox extensions and themes to
-provide a stronger signature. All extension versions uploaded to
-addons.mozilla.org after April 5, 2019 have this signature. We plan to stop
-accepting the old signature with Firefox 70.
+Mozilla has recently upgraded the signing [1] for Firefox extensions, themes,
+dictionaries, and langpacks to provide a stronger signature. All add-on
+versions uploaded to addons.mozilla.org after April 5, 2019 have this
+signature. We plan to stop accepting the old signature with Firefox 70 [2].
 
-The current version of your extension listed on addons.mozilla.org has been
-automatically re-signed with the stronger signature. Your extension will remain
-backwards compatible with previous versions of Firefox, including ESR 68, and
-will continue working when your users upgrade to Firefox 70.
+The current version of your add-on, {addon}, listed on addons.mozilla.org has
+been automatically re-signed with the stronger signature. Your add-on will
+remain backwards compatible with previous versions of Firefox, including ESR 68
+[3], and will continue working when your users upgrade to Firefox 70.
 
 You do not need to take any action at this time.
 
 Regards,
 
 The Add-ons Team
+
+---
+[1] https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Distribution
+[2] https://wiki.mozilla.org/Release_Management/Calendar
+[3] https://www.mozilla.org/firefox/enterprise/
+--
+
+You have received this email because you are a registered developer of a
+Firefox add-on. If you do not want to receive these updates regarding your
+add-on, please sign in to addons.mozilla.org and delete your add-on(s).
 '''
 
 version_regex = re.compile(
@@ -136,11 +146,8 @@ def sign_addons(addon_ids, force=False, **kw):
                       .filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon)
                       .exclude(user__email__isnull=True))
                 emails = qs.values_list('user__email', flat=True)
-                subject = mail_subject.format(addon=addon.name)
-                message = mail_message.format(
-                    addon=addon.name,
-                    addon_url=amo.templatetags.jinja_helpers.absolutify(
-                        addon.get_dev_url(action='versions')))
+                subject = mail_subject
+                message = mail_message.format(addon=addon.name)
                 amo.utils.send_mail(
                     subject, message, recipient_list=emails,
                     headers={'Reply-To': 'amo-admins@mozilla.com'})
