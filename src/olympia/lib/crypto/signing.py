@@ -83,11 +83,12 @@ def call_signing(file_obj):
         },
     }
 
+    # We are using a separate signer that adds the mozilla-recommendation.json
+    # file. There is currently only `recommended` as a type but more may be
+    # added later, e.g partner.
     if file_obj.version.recommendation_approved:
         signing_data['keyid'] = conf['recommendation-signer']
-        # TODO: Clarify why there's a `standard` state necessary
-        signing_data['options']['recommendations'] = [
-            'standard', 'recommended']
+        signing_data['options']['recommendations'] = ['recommended']
 
     with statsd.timer('services.sign.addon.autograph'):
         response = requests.post(

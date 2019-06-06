@@ -130,7 +130,6 @@ signers:
       recommendation:
         path: "mozilla-recommendation.json"
         states:
-          standard: true
           recommended: true
         relative_start: 0h
         duration: 26298h

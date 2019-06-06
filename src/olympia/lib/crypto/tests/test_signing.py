@@ -393,7 +393,7 @@ class TestSigning(TestCase):
 
         recommendation_data = self._get_recommendation_data()
         assert recommendation_data['addon_id'] == 'xxxxx'
-        assert recommendation_data['states'] == ['standard', 'recommended']
+        assert recommendation_data['states'] == ['recommended']
 
     def test_call_signing_pending_recommendation(self):
         # Mark the add-on as recommended
