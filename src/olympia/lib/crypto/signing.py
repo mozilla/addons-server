@@ -62,7 +62,7 @@ def call_signing(file_obj):
     with storage.open(file_obj.current_file_path) as fobj:
         input_data = force_text(b64encode(fobj.read()))
 
-    signing_request = [{
+    signing_data = {
         'input': input_data,
         'keyid': conf['signer'],
         'options': {
@@ -81,12 +81,19 @@ def call_signing(file_obj):
             'pkcs7_digest': 'SHA1',
             'cose_algorithms': ['ES256']
         },
-    }]
+    }
+
+    # We are using a separate signer that adds the mozilla-recommendation.json
+    # file. There is currently only `recommended` as a type but more may be
+    # added later, e.g partner.
+    if file_obj.version.recommendation_approved:
+        signing_data['keyid'] = conf['recommendation-signer']
+        signing_data['options']['recommendations'] = ['recommended']
 
     with statsd.timer('services.sign.addon.autograph'):
         response = requests.post(
             '{server}/sign/file'.format(server=conf['server_url']),
-            json=signing_request,
+            json=[signing_data],
             auth=HawkAuth(id=conf['user_id'], key=conf['key']))
 
     if response.status_code != requests.codes.CREATED:

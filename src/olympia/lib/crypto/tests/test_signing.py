@@ -5,6 +5,7 @@ import shutil
 import zipfile
 import collections
 import datetime
+import json
 
 from django.conf import settings
 from django.core import mail
@@ -22,6 +23,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
+from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto import signing, tasks
 from olympia.lib.git import AddonGitRepository
 from olympia.versions.compare import version_int
@@ -81,6 +83,11 @@ class TestSigning(TestCase):
             info = signing.SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
             manifest = force_text(zobj.read('META-INF/manifest.mf'))
             return info, manifest
+
+    def _get_recommendation_data(self):
+        with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
+            return json.loads(force_text(
+                zobj.read('mozilla-recommendation.json')))
 
     def assert_not_signed(self):
         assert not self.file_.is_signed
@@ -360,6 +367,52 @@ class TestSigning(TestCase):
 
         # 2 actual commits, including the repo initialization
         assert output.count('Mozilla Add-ons Robot') == 3
+
+    def test_call_signing_recommended_addon(self):
+        # Mark the add-on as recommended
+        DiscoveryItem.objects.create(
+            addon=self.file_.version.addon,
+            recommendable=True)
+
+        # And also set the required flags on the version as done during
+        # approval.
+        self.file_.version.update(recommendation_approved=True)
+
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 4
+
+        assert 'Name: mozilla-recommendation.json' in manifest
+        assert 'Name: install.rdf' in manifest
+        assert 'Name: META-INF/cose.manifest' in manifest
+        assert 'Name: META-INF/cose.sig' in manifest
+
+        recommendation_data = self._get_recommendation_data()
+        assert recommendation_data['addon_id'] == 'xxxxx'
+        assert recommendation_data['states'] == ['recommended']
+
+    def test_call_signing_pending_recommendation(self):
+        # Mark the add-on as recommended
+        DiscoveryItem.objects.create(
+            addon=self.file_.version.addon,
+            recommendable=True)
+
+        # But don't set the necessary flag on the version yet
+        self.file_.version.update(recommendation_approved=False)
+
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 3
+
+        assert 'Name: mozilla-recommendation.json' not in manifest
 
 
 class TestTasks(TestCase):
