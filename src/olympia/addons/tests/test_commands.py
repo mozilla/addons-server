@@ -356,9 +356,11 @@ class TestResignAddonsForCose(TestCase):
         addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
 
         # Search add-ons won't get re-signed, same with deleted and disabled
-        # versions
+        # versions. Also, only public addons are being resigned
         addon_factory(type=amo.ADDON_SEARCH, file_kw=file_kw)
         addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_REVIEW_PENDING, file_kw=file_kw)
 
         # Create a few more versions for this add-on to test that we only
         # re-sign current versions

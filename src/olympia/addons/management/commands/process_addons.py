@@ -42,6 +42,7 @@ tasks = {
     'resign_addons_for_cose': {
         'method': sign_addons,
         'qs': [
+            Q(status=amo.STATUS_APPROVED) &
             ~Q(type=amo.ADDON_SEARCH)
         ]
     },
