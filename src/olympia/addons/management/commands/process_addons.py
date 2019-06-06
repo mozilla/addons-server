@@ -41,7 +41,10 @@ tasks = {
         ]},
     'resign_addons_for_cose': {
         'method': sign_addons,
-        'qs': []},
+        'qs': [
+            ~Q(type=amo.ADDON_SEARCH)
+        ]
+    },
     'migrate_lwt': {
         'method': migrate_lwts_to_static_themes,
         'qs': [
@@ -185,6 +188,7 @@ class Command(BaseCommand):
                     for arg in task['allowed_kwargs']})
             # All the remaining tasks go in one group.
             grouping = []
+            print('XXXXXXXXXX', pks)
             for chunk in chunked(pks, 100):
                 grouping.append(
                     task['method'].subtask(args=[chunk], kwargs=kwargs))

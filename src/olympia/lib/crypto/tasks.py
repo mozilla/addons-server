@@ -76,11 +76,8 @@ def sign_addons(addon_ids, force=False, **kw):
     current_versions = (
         Addon.objects
         .filter(id__in=addon_ids)
-        .exclude(type=amo.ADDON_SEARCH)
         .values_list('_current_version', flat=True))
-    qset = (
-        Version.objects.filter(id__in=current_versions)
-        .exclude(addon__type=amo.ADDON_SEARCH))
+    qset = Version.objects.filter(id__in=current_versions)
 
     addons_emailed = set()
 

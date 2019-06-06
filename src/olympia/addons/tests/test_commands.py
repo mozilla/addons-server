@@ -342,3 +342,30 @@ class TestDeleteArmagaddonRatings(TestCase):
         # deleted.
         assert index_addons_mock.delay.call_count == 1
         index_addons_mock.delay.call_args == [self.addon1.pk, self.addon2.pk]
+
+
+class TestResignAddonsForCose(TestCase):
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def test_basic(self, sign_file_mock):
+        file_kw = {'is_webextension': True, 'filename': 'webextension.xpi'}
+
+        addon_with_history = addon_factory(file_kw=file_kw)
+        addon_factory(file_kw=file_kw)
+        addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
+        addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
+        addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
+
+        # Search add-ons won't get re-signed, same with deleted and disabled
+        # versions
+        addon_factory(type=amo.ADDON_SEARCH, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
+
+        # Create a few more versions for this add-on to test that we only
+        # re-sign current versions
+        version_factory(addon=addon_with_history, file_kw=file_kw)
+        version_factory(addon=addon_with_history, file_kw=file_kw)
+        version_factory(addon=addon_with_history, file_kw=file_kw)
+
+        call_command('process_addons', task='resign_addons_for_cose')
+
+        assert sign_file_mock.call_count == 5
