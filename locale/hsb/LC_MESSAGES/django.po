@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-05 07:26+0000\n"
+"PO-Revision-Date: 2019-06-06 18:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4696,27 +4696,24 @@ msgid "Customize shades of light and dark to make web pages more visually pleasi
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redukujće rozpjeršenja {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Blokujće wotwobroćace so websydła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Składujće strony {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Wožiwće so mortwe strony {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přepytujće Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Změńće napohlad Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
@@ -4732,9 +4729,8 @@ msgid "Displays a sidebar that lets you keep notes per specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Wotstrońće pytanske wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pytanje aktiwizowane z hłosom {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
