@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-06 00:32+0000\n"
+"PO-Revision-Date: 2019-06-06 00:51+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4653,67 +4653,60 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "ისარგებლეთ მრავალნაკადიანი ჩამოტვირთვის მხარდაჭერით. ავტომატური აღმოჩენა სხვადასხვა სახის ფაილების, ჩამოსატვირთად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოიძიეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "შეინახეთ სურათები მარტივად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "წამოიღეთ სურათები, მხოლოდ მიმდინარე ჩანართიდან."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოიძიეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გაზომეთ ვებგვერდები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "დაამატეთ ციფრული სახაზავი, ნებისმიერი გვერდის სიმაღლის, სიგანისა და გვერდების განლაგების შესამოწმებლად."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "ისარგებლეთ პაროლის მძლავრი მართვის საშუალებებით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "სურათების გადიდება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "თვალებისთვის საამო გვერდები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "შუქჩრდილებისა და სიმუქის მორგება, გვერდებისთვის სასიამოვნო იერსახის მისანიჭებლად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ყურადღების გაფანტვის შემცირება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ყურადღების გასაფანტი საიტების შეზღუდვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "ვებსაიტების ჩამონათვალი, რომელიც გსურთ შეიზღუდოთ. მყისიერი წესრიგი!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოიძიეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მკვდარი გვერდების გაცოცხლება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "მოიძიეთ ძველი, მკვდარი ან სხვაგვარად გამქრალი ვებგვერდები."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ძიება Firefox-ში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "შეცვალეთ Firefox-ის იერსახე {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "მარტივად გააფორმეთ საკუთარი თემებით, რომ Firefox გამოიყურებოდეს თქვენი გემოვნების შესაბამისად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "განაახლეთ ჩანართები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გააკეთეთ ჩანაწერები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
