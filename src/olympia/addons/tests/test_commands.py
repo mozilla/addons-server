@@ -101,9 +101,12 @@ def count_subtask_calls(original_function):
     original_function.subtask = original_function_subtask
 
 
+@freeze_time('2019-04-01')
 @pytest.mark.django_db
 def test_process_addons_limit_addons():
-    addon_ids = [addon_factory().id for _ in range(5)]
+    addon_ids = [
+        addon_factory(status=amo.STATUS_APPROVED).id for _ in range(5)
+    ]
     assert Addon.objects.count() == 5
 
     with count_subtask_calls(process_addons.sign_addons) as calls:
