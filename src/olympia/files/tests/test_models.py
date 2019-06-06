@@ -70,23 +70,30 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     fixtures = ['base/addon_3615', 'base/addon_5579']
 
     def test_get_absolute_url(self):
-        f = File.objects.get(id=67442)
-        url = f.get_absolute_url(src='src')
+        file_ = File.objects.get(id=67442)
+        url = file_.get_absolute_url(src='foo')
         expected = ('/firefox/downloads/file/67442/'
-                    'delicious_bookmarks-2.1.072-fx.xpi?src=src')
+                    'delicious_bookmarks-2.1.072-fx.xpi?src=foo')
         assert url.endswith(expected), url
 
     def test_get_url_path(self):
         file_ = File.objects.get(id=67442)
-        assert absolutify(file_.get_url_path('src')) == (
-            file_.get_absolute_url(src='src'))
+        assert absolutify(file_.get_url_path('foo')) == (
+            file_.get_absolute_url(src='foo'))
 
     def test_get_url_path_attachment(self):
         file_ = File.objects.get(id=67442)
+        expected = ('/firefox/downloads/file/67442'
+                    '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+                    '?src=foo')
+        assert file_.get_url_path('foo', attachment=True) == expected
+
+    def test_absolute_url_attachment(self):
+        file_ = File.objects.get(id=67442)
         expected = ('http://testserver/firefox/downloads/file/67442'
                     '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
-                    '?src=src')
-        assert file_.get_url_path('src', attachment=True) == expected
+                    '?src=foo')
+        assert file_.get_absolute_url('foo', attachment=True) == expected
 
     def check_delete(self, file_, filename):
         """Test that when the File object is deleted, it is removed from the

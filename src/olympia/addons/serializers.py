@@ -47,9 +47,7 @@ class FileSerializer(serializers.ModelSerializer):
                   'platform', 'size', 'status', 'url', 'permissions')
 
     def get_url(self, obj):
-        # File.get_url_path() is a little different, it's already absolute, but
-        # needs a src parameter that is appended as a query string.
-        return obj.get_url_path(src='')
+        return obj.get_absolute_url(src='')
 
 
 class PreviewSerializer(serializers.ModelSerializer):
@@ -427,9 +425,9 @@ class AddonSerializer(serializers.ModelSerializer):
         return getattr(obj, 'tag_list', [])
 
     def get_url(self, obj):
-        # Use get_detail_url(), get_url_path() does an extra check on
-        # current_version that is annoying in subclasses which don't want to
-        # load that version.
+        # Use absolutify(get_detail_url()), get_absolute_url() calls
+        # get_url_path() which does an extra check on current_version that is
+        # annoying in subclasses which don't want to load that version.
         return absolutify(obj.get_detail_url())
 
     def get_edit_url(self, obj):
@@ -714,11 +712,12 @@ class ESAddonAutoCompleteSerializer(ESAddonSerializer):
         model = Addon
 
     def get_url(self, obj):
-        # Addon.get_url_path() wants current_version to exist, but that's just
-        # a safeguard. We don't care and don't want to fetch the current
-        # version field to improve perf, so give it a fake one.
+        # Addon.get_absolute_url() calls get_url_path(), which wants
+        # current_version to exist, but that's just a safeguard. We don't care
+        # and don't want to fetch the current version field to improve perf, so
+        # give it a fake one.
         obj._current_version = Version()
-        return absolutify(obj.get_url_path())
+        return obj.get_absolute_url()
 
 
 class StaticCategorySerializer(serializers.Serializer):

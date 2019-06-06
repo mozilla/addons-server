@@ -23,7 +23,7 @@ DEBUG = False
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 
-SITE_URL = CDN_HOST = 'http://testserver'
+SITE_URL = CDN_HOST = EXTERNAL_SITE_URL = 'http://testserver'
 
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST

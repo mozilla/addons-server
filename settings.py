@@ -42,6 +42,7 @@ ES_DEFAULT_NUM_REPLICAS = 0
 SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
+EXTERNAL_SITE_URL = SITE_URL
 
 CODE_MANAGER_URL = os.environ.get('CODE_MANAGER_URL') or 'http://localhost:3000'
 

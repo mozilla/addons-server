@@ -45,7 +45,7 @@ class AddonSerializerOutputTestMixin(object):
             'id': author.pk,
             'name': author.name,
             'picture_url': None,
-            'url': absolutify(author.get_url_path()),
+            'url': author.get_absolute_url(),
             'username': author.username,
         }
 
@@ -93,7 +93,7 @@ class AddonSerializerOutputTestMixin(object):
             amo.PLATFORM_CHOICES_API[file_.platform])
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
-        assert result_file['url'] == file_.get_url_path(src='')
+        assert result_file['url'] == file_.get_absolute_url(src='')
         assert result_file['permissions'] == file_.webext_permissions_list
 
         assert data['edit_url'] == absolutify(
@@ -289,7 +289,7 @@ class AddonSerializerOutputTestMixin(object):
         assert 'theme_data' not in result
         assert set(result['tags']) == {'some_tag', 'some_other_tag'}
         assert result['type'] == 'extension'
-        assert result['url'] == absolutify(self.addon.get_url_path())
+        assert result['url'] == self.addon.get_absolute_url()
         assert result['weekly_downloads'] == self.addon.weekly_downloads
 
         return result
@@ -880,7 +880,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         assert data == {
             'id': author.pk,
             'name': author.name,
-            'url': absolutify(author.get_url_path()),
+            'url': author.get_absolute_url(),
             'username': author.username,
         }
 
@@ -968,7 +968,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][0]['platform'] == 'windows'
         assert result['files'][0]['size'] == first_file.size
         assert result['files'][0]['status'] == 'public'
-        assert result['files'][0]['url'] == first_file.get_url_path(src='')
+        assert result['files'][0]['url'] == first_file.get_absolute_url(src='')
 
         assert result['files'][1]['id'] == second_file.pk
         assert result['files'][1]['created'] == (
@@ -981,7 +981,8 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][1]['platform'] == 'mac'
         assert result['files'][1]['size'] == second_file.size
         assert result['files'][1]['status'] == 'public'
-        assert result['files'][1]['url'] == second_file.get_url_path(src='')
+        assert result['files'][1]['url'] == second_file.get_absolute_url(
+            src='')
 
         assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(addon.get_dev_url(
@@ -1168,7 +1169,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert result['slug'] == self.addon.slug
         assert result['target_locale'] == self.addon.target_locale
         assert result['type'] == 'language'
-        assert result['url'] == absolutify(self.addon.get_url_path())
+        assert result['url'] == self.addon.get_absolute_url()
         assert 'current_compatible_version' not in result
         assert 'locale_disambiguation' not in result
 
@@ -1266,7 +1267,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_recommended'] == self.addon.is_recommended is False
         assert result['type'] == 'extension'
-        assert result['url'] == absolutify(self.addon.get_url_path())
+        assert result['url'] == self.addon.get_absolute_url()
 
     def test_translations(self):
         translated_name = {
@@ -1398,7 +1399,7 @@ class TestReplacementAddonSerializer(TestCase):
         assert result['replacement'] == [u'newstuff@mozilla']
 
         # But urls aren't resolved - and don't break everything
-        rep.update(path=absolutify(addon.get_url_path()))
+        rep.update(path=addon.get_absolute_url())
         result = self.serialize(rep)
         assert result['guid'] == u'legacy@mozilla'
         assert result['replacement'] == []

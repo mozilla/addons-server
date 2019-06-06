@@ -4,7 +4,7 @@
 {% for file in distinct_files %}
 <li class="file-info">
   <span class="light">
-    <strong><a href="{{ file[0].get_url_path('reviewer') }}" class="reviewers-install"
+    <strong><a href="{{ file[0].get_absolute_url('reviewer') }}" class="reviewers-install"
         data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file[1] }}</a></strong>
     <div>
       {{ file_review_status(addon, file[0]) }}
