@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 15:12+0000\n"
+"PO-Revision-Date: 2019-06-04 15:10+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1846,7 +1846,7 @@ msgstr "thêm tiện ích..."
 
 # Plural in this context means many of the add-on type
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Extension Workshop"
 
 msgid "Documentation"
 msgstr "Tài liệu"
@@ -5517,7 +5517,7 @@ msgid "Theme Images"
 msgstr "Hình ảnh chủ đề"
 
 msgid "Rendered Preview"
-msgstr ""
+msgstr "Xem trước đã được kết xuất"
 
 msgid "More about this add-on"
 msgstr "Thông tin thêm về tiện ích"
@@ -5529,7 +5529,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Quay trở lại bảng điều khiển Công cụ đánh giá"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
