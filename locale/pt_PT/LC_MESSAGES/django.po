@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-07 00:31+0000\n"
+"PO-Revision-Date: 2019-06-07 00:47+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4679,7 +4679,7 @@ msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
-msgstr ""
+msgstr "Não bloqueie apenas anúncios irritantes, mas proteja-se contra software malicioso e monitorização por ferramentas de publicidade."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4688,7 +4688,7 @@ msgstr "Transfira vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Aproveite o suporte para transferências multi-threading. Deteção automática dos tipos de media disponíveis transferência."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4697,7 +4697,7 @@ msgstr "Pesquise imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "Obtenha apenas imagens do seu separador atual."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4706,11 +4706,11 @@ msgstr "Guarde páginas web {start_sub_heading}com {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Desenhe uma régua digital em qualquer página da web para verificar a altura, a largura e o alinhamento dos elementos da página."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Obtenha os benefícios da gestão de palavras-passe fortes."
 
 #. editorial content for the discovery pane.
 #, fuzzy
