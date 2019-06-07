@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-07 04:06+0000\n"
+"PO-Revision-Date: 2019-06-07 04:33+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -986,8 +986,8 @@ msgstr "Fluxuri, știri și blogging"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
-"Descarcă extensii Firefox care elimină dezordinea ca să poți fi la curent cu ce se întâmplă pe rețelele de socializare, să urmărești noutățile de pe bloguri, fluxurile RSS, să reduci efortul ochilor"
-" și multe altele."
+"Descarcă extensii Firefox care elimină elementele inutile aglomerate pe pagini ca să poți fi la curent cu ce se întâmplă pe rețelele de socializare, să urmărești noutățile de pe bloguri, fluxurile "
+"RSS, să reduci efortul ochilor și multe altele."
 
 msgid "Games & Entertainment"
 msgstr "Jocuri și divertisment"
@@ -1648,7 +1648,7 @@ msgstr ""
 "aplicației.</span>"
 
 msgid "Display Name"
-msgstr ""
+msgstr "Nume afișat"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Categoriile nu pot fi modificate cât timp suplimentul este promovat."
@@ -1843,7 +1843,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Am citit și accept acest Acord și Regulile și politicile"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Trebuie să setezi un nume de afișat pentru ca utilizatorii să știe de unde vine suplimentul. Te rugăm să introduci unul mai jos."
 
 msgid "Accept"
 msgstr "Accept"
@@ -1851,9 +1851,8 @@ msgstr "Accept"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "sau <a href=\"{0}\">Anulează</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Informații suplimentare despre licențele Creative Commons"
+msgstr "Mai multe informații despre conturile de dezvoltatori"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2851,9 +2850,8 @@ msgstr "La finalizarea recenziei, vei primi un mesaj pe e-mail. Până atunci, s
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Suplimentul tău este afișat în galeria noastră și utilizatorii primesc actualizări automate."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Suplimentul tău a fost dezactivat de un administrator al site-ului și nu mai apare în galeria noastră. Pentru orice întrebări, te rugăm să trimiți un mesaj la amo-admins@mozilla.org."
+msgstr "Suplimentul tău a fost dezactivat de un administrator al site-ului și nu mai apare în galeria noastră. Pentru orice întrebări, te rugăm să ne scrii la amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -4668,50 +4666,44 @@ msgid "A clever extension that helps you quickly understand what you’re agreei
 msgstr "O extensie inteligentă care te ajută să înțelegi repede ce anume agreezi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Completează automat formulare {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Corector ortografic și gramatical automat {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Îmbunătățește experiența de lectură {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "O experiență mai bună de lectură {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Elimină elementele inutile din jurul textului pe paginile web. Citește mai clar și mai ușor."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Blochează reclame și multe altele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Descarcă mai ușor multimedia {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Salvează imagini ușor {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salvează pagini web {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Măsoară paginile web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4722,36 +4714,32 @@ msgid "Get the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mărește imaginile {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Pagini optimizate vizual {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Redu distragerea atenției {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Blochează site-urile ce distrag atenția {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salvează pagini web {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Reanimează pagini moarte {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută Firefox {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Schimbă aspectul Firefox {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
