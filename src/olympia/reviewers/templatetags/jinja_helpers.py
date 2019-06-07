@@ -78,7 +78,8 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = []
-        if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
+        if acl.action_allowed(
+                request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
             tabnav.append(
                 ('recommended', 'queue_recommended',
                  ugettext('Recommended ({0})').format(counts['recommended'])),
