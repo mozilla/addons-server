@@ -591,24 +591,27 @@ class TestTasks(TestCase):
         new_file = new_current_version.current_file
 
         with amo.tests.copy_file(fname, new_file.file_path):
-            file_hash = new_file.generate_hash()
-            tasks.sign_addons([self.addon.pk])
+            with amo.tests.copy_file(fname, self.file_.file_path):
+                file_hash = self.file_.generate_hash()
+                new_file_hash = new_file.generate_hash()
 
-            # Only one signing call since we only sign the most recent
-            # versions
-            assert mock_sign_file.call_count == 1
+                tasks.sign_addons([self.addon.pk])
 
-            new_current_version.reload()
-            assert new_current_version.version == '0.0.2.1-signed'
-            assert new_current_version.version_int == version_int(
-                '0.0.2.1-signed')
-            assert file_hash != new_file.generate_hash()
+                # Only one signing call since we only sign the most recent
+                # versions
+                assert mock_sign_file.call_count == 1
 
-            # Verify that the old version hasn't been resigned
-            self.version.reload()
-            assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
-            assert file_hash != new_file.generate_hash()
+                new_current_version.reload()
+                assert new_current_version.version == '0.0.2.1-signed'
+                assert new_current_version.version_int == version_int(
+                    '0.0.2.1-signed')
+                assert new_file_hash != new_file.generate_hash()
+
+                # Verify that the old version hasn't been resigned
+                self.version.reload()
+                assert self.version.version == '0.0.1'
+                assert self.version.version_int == version_int('0.0.1')
+                assert file_hash == self.file_.generate_hash()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_mail_cose_subject(self, mock_sign_file):
