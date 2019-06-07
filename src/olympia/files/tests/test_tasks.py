@@ -3,7 +3,8 @@ from unittest import mock
 import zipfile
 
 from olympia.amo.tests import TestCase
-from olympia.files.tasks import repack_fileupload
+from olympia.files.tasks import repack_fileupload, add_addon_id_to_manifest
+from olympia.files.utils import parse_xpi
 from olympia.files.tests.test_models import UploadTest
 
 
@@ -81,3 +82,20 @@ class TestRepackFileUpload(UploadTest, TestCase):
         assert info.file_size == 717
         assert info.compress_size < info.file_size
         assert info.compress_type == zipfile.ZIP_DEFLATED
+
+
+class TestAddManifestId(UploadTest, TestCase):
+    def test_add_guid_to_manifest(self):
+        upload = self.get_upload('webextension_no_id.xpi')
+        original_hash = upload.hash
+
+        data = parse_xpi(upload.path)
+        assert not data['guid']
+
+        add_addon_id_to_manifest(upload.pk)
+        upload.reload()
+        assert upload.hash.startswith('sha256:')
+        assert upload.hash != original_hash
+
+        data = parse_xpi(upload.path)
+        assert data['guid']

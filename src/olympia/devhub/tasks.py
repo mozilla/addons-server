@@ -39,7 +39,7 @@ from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     InvalidManifest, NoManifestFound, parse_addon, SafeZip,
     UnsupportedFileType)
-from olympia.files.tasks import repack_fileupload
+from olympia.files.tasks import repack_fileupload, add_addon_id_to_manifest
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
 
@@ -193,6 +193,7 @@ def validate_upload(upload_pk, channel):
     """
     upload = FileUpload.objects.get(pk=upload_pk)
     repack_fileupload(upload.pk)
+    add_addon_id_to_manifest(upload.pk)
     return validate_file_path(upload.path, channel)
 
 

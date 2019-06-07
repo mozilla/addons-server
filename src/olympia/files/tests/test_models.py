@@ -48,6 +48,7 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
                    addon=None, user=None, version=None, with_validation=True):
         with open(abspath if abspath else self.file_path(filename), 'rb') as f:
             xpi = f.read()
+
         upload = FileUpload.from_post([xpi], filename=abspath or filename,
                                       size=1234)
         upload.addon = addon

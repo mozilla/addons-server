@@ -564,6 +564,7 @@ class FileUpload(ModelBase):
                 for chunk in chunks:
                     hash_func.update(chunk)
                     file_destination.write(chunk)
+
         self.path = loc
         self.name = filename
         self.hash = 'sha256:%s' % hash_func.hexdigest()

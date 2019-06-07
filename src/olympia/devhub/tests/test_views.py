@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import zipfile
 
 from datetime import datetime, timedelta
 
@@ -1376,6 +1377,19 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'][0]['id'] == [
             u'validation', u'messages', u'legacy_addons_unsupported'
         ]
+
+    def test_add_generated_guid_to_manifest(self):
+        user_factory(email='redpanda@mozilla.com')
+        assert self.client.login(email='redpanda@mozilla.com')
+        self.upload_file(
+            '../../../files/fixtures/files/webextension_no_id.xpi')
+        upload = FileUpload.objects.get()
+        self.client.get(reverse('devhub.upload_detail',
+                                args=[upload.uuid.hex, 'json']))
+
+        fpath = upload.path
+        with zipfile.ZipFile(fpath, 'r') as zobj:
+            assert b'"id": "{' in zobj.read('manifest.json')
 
     def test_no_redirect_for_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')

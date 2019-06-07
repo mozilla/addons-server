@@ -2463,26 +2463,6 @@ class TestAddonFromUpload(UploadTest):
         assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
 
-    def test_webextension_generate_guid(self):
-        self.upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-
-        assert addon.guid is not None
-        assert addon.guid.startswith('{')
-        assert addon.guid.endswith('}')
-
-        # Uploading the same addon without a id works.
-        self.upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
-        new_addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-        assert new_addon.guid is not None
-        assert new_addon.guid != addon.guid
-        assert addon.guid.startswith('{')
-        assert addon.guid.endswith('}')
-
     def test_webextension_reuse_guid(self):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())

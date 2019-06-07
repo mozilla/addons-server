@@ -1,6 +1,8 @@
 import os
 import shutil
 import tempfile
+import json
+import zipfile
 
 from django.conf import settings
 
@@ -9,6 +11,7 @@ import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import move_stored_file
+from olympia.addons.utils import generate_addon_guid
 from olympia.files.models import File, FileUpload, WebextPermission
 from olympia.files.utils import extract_zip, get_sha256, parse_xpi
 from olympia.users.models import UserProfile
@@ -75,3 +78,36 @@ def repack_fileupload(upload_pk):
         upload.save()
     else:
         log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)
+
+
+@task
+@use_primary_db
+def add_addon_id_to_manifest(upload_pk):
+    log.info('Adding add-on id to manifest.json for FileUpload %s', upload_pk)
+    upload = FileUpload.objects.get(pk=upload_pk)
+
+    # We only have to care about .xpi files
+    if not upload.path.endswith('.xpi'):
+        return
+
+    data = parse_xpi(upload.path, minimal=True)
+
+    generate_guid = (
+        not data.get('guid', None) and
+        data.get('is_webextension', False)
+    )
+
+    if generate_guid:
+        data['guid'] = guid = generate_addon_guid()
+
+        with zipfile.ZipFile(upload.path, 'r') as source:
+            data = json.loads(source.read('manifest.json'))
+            gecko = data.setdefault(
+                'browser_specific_settings', {}).setdefault('gecko', {})
+            gecko['id'] = guid
+
+        with zipfile.ZipFile(upload.path, 'w', zipfile.ZIP_DEFLATED) as target:
+            target.writestr('manifest.json', json.dumps(data))
+
+        with open(upload.path, 'rb') as fobj:
+            upload.update(hash='sha256:%s' % get_sha256(fobj))

@@ -31,8 +31,7 @@ import olympia.core.logger
 
 from olympia import activity, amo, core
 from olympia.access import acl
-from olympia.addons.utils import (
-    generate_addon_guid, get_creatured_ids, get_featured_ids)
+from olympia.addons.utils import get_creatured_ids, get_featured_ids
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
@@ -539,13 +538,6 @@ class Addon(OnChangeMixin, ModelBase):
             except ObjectDoesNotExist:
                 pass
 
-        generate_guid = (
-            not data.get('guid', None) and
-            data.get('is_webextension', False)
-        )
-
-        if generate_guid:
-            data['guid'] = guid = generate_addon_guid()
         timer.log_interval('1.guids')
 
         data = cls.resolve_webext_translations(data, upload)
