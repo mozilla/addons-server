@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-04 20:38+0000\n"
+"PO-Revision-Date: 2019-06-07 00:31+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "tipo"
 
 #, fuzzy
 msgid "Users"
@@ -26,7 +26,7 @@ msgid "Addons"
 msgstr "Extras"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "contagem mínima de relatórios (agrupada por guid)"
 
 #, fuzzy
 msgid "creation date"
@@ -41,10 +41,10 @@ msgid "Distribution"
 msgstr "Descrição"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "País de quem reportou"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Excerto da mensagem"
 
 #, fuzzy, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -52,21 +52,21 @@ msgstr "O texto introduzido foi marcado como spam."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Os %d relatórios selecionados foram marcados como suspeitos."
 
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Relatório de erro mal colocado ou pedido de apoio"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Modificado em:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Por %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Tudo"
 
 msgid "No links are allowed."
 msgstr "Não são permitidas ligações."
@@ -257,10 +257,10 @@ msgid "Error verifying input, please try again."
 msgstr "Erro ao verificar a entrada, por favor, tente novamente."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Insira uma rede IP4 ou IP6 válida."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao website. Voltamos dentro de alguns momentos com todas as funcionalidades."
@@ -1605,7 +1605,7 @@ msgid "Need to select at least one application."
 msgstr "Necessita de selecionar pelo menos uma aplicação."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Submeteu muitos envios recentemente. Por favor, tente novamente depois de algum tempo."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A versão {version} foi anteriormente carregada e eliminada."
@@ -1644,7 +1644,7 @@ msgstr ""
 "aplicação externas.</span>"
 
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a apresentar"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver em destaque."
@@ -1839,7 +1839,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Li e aceito este Acordo e as Regras e Políticas"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Sua conta precisa de um nome de apresentação definido para que os utilizadores saibam de onde vem o seu extra. Por favor, introduza um abaixo."
 
 msgid "Accept"
 msgstr "Aceitar"
@@ -4670,7 +4670,7 @@ msgstr "Melhore a sua experiência de leitura {start_sub_heading}com {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Remova a confusão à volta do texto nas páginas web. Leia com mais clareza e facilidade."
 
 #. editorial content for the discovery pane.
 #, fuzzy
