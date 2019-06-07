@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-07 07:46+0000\n"
-"Last-Translator: Davide Quaranta <dvd.forty@gmail.com>\n"
+"PO-Revision-Date: 2019-06-07 12:33+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4723,7 +4723,7 @@ msgstr "Arricchisci le tue letture {start_sub_heading}con {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Rimuovi gli elementi di disturbo intorno al testo delle pagine web per rendere la lettura più semplice e chiara."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4732,7 +4732,7 @@ msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
-msgstr ""
+msgstr "Non limitarti a bloccare le pubblicità fastidiose, proteggiti anche da malware e tracciamenti pubblicitari."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4741,7 +4741,7 @@ msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Goditi il supporto al download multi-thread. Rileva automaticamente diversi tipi di contenuti multimediali scaricabili."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4750,7 +4750,7 @@ msgstr "Cerca immagini {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "Cattura solo le immagini contenute nella scheda corrente."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4759,11 +4759,11 @@ msgstr "Salva le pagine web {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Controlla altezza, larghezza e allineamento degli elementi in qualsiasi pagina web con un righello virtuale."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Scopri i vantaggi di una solida gestione delle password."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4781,7 +4781,7 @@ msgstr "Riduci le distrazioni {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Elenca i siti che vuoi bloccare attraverso l’estensione. Disciplina istantanea!"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4799,7 +4799,7 @@ msgstr "Cerca all’interno di Firefox {start_sub_heading}con {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Progetta i tuoi temi visivi: dare a Firefox il tuo stile personale è facile!"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4808,7 +4808,7 @@ msgstr "Ricarica le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "Una barra laterale che ti permette di prendere annotazioni per pagine web specifiche."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4826,7 +4826,7 @@ msgstr "Traccia la produttività {start_sub_heading}con {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Ricevi un avviso quando i prezzi dei prodotti a cui sei interessato si abbassano. Funziona con Amazon, Best Buy, eBay, Home Depot e Walmart."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
