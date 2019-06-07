@@ -7,7 +7,7 @@
   {% with num=addon.total_ratings %}
     {% if num %}
     {{ addon.average_rating|float|stars }}
-    <a href="{{ base }}">
+    <a href="{{ base|absolutify }}">
       {% with count='<span itemprop="count">{0}</span>'|format_html(num|numberfmt) %}
         {# Using num=count so we don't change an L10n string. #}
         <strong>{{ ngettext('{num} review', '{num} reviews',

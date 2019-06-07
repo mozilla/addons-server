@@ -191,11 +191,11 @@ def json(s):
 
 @library.filter
 def absolutify(url, site=None):
-    """Takes a URL and prepends the SITE_URL"""
-    if url.startswith('http'):
+    """Takes a URL and prepends the EXTERNAL_SITE_URL"""
+    if url.startswith(('http://', 'http://')):
         return url
     else:
-        return urljoin(site or settings.SITE_URL, url)
+        return urljoin(site or settings.EXTERNAL_SITE_URL, url)
 
 
 @library.filter

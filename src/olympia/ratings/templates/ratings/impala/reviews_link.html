@@ -7,7 +7,7 @@
   {% with num=addon.total_ratings %}
     {% if num %}
       {{ addon.average_rating|float|stars }}
-      <a href="{{ base }}">({{ num|numberfmt }})</a>
+      <a href="{{ base|absolutify }}">({{ num|numberfmt }})</a>
     {% else %}
       <b>{{ _('Not yet rated') }}</b>
     {% endif %}
