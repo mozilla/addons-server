@@ -36,7 +36,6 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     else:
         endpoint = urljoin(server, '%s/' % client_id_or_guid)
         request_kwargs['json'] = data
-    log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:
         with statsd.timer('services.recommendations'):
             response = getattr(requests, verb)(endpoint, **request_kwargs)
