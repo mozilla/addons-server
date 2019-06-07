@@ -185,6 +185,13 @@ class TestAbuse(TestCase):
         GeoIP2_mock.return_value.country_code.side_effect = GeoIP2Error
         assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == ''
 
+    def test_save_soft_deleted(self):
+        report = AbuseReport.objects.create()
+        report.delete()
+        report.reason = AbuseReport.REASONS.SPAM
+        report.save()
+        assert report.reason == AbuseReport.REASONS.SPAM
+
 
 class TestAbuseManager(TestCase):
     def test_deleted(self):

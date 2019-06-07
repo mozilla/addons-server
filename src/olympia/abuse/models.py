@@ -162,6 +162,10 @@ class AbuseReport(ModelBase):
 
     class Meta:
         db_table = 'abuse_reports'
+        # See comment in addons/models.py about base_manager_name. It needs to
+        # be unfiltered to prevent exceptions when dealing with relations or
+        # saving already deleted objects.
+        base_manager_name = 'unfiltered'
 
     def send(self):
         if self.reporter:
