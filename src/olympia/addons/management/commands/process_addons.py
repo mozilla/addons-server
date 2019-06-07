@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
@@ -39,9 +41,16 @@ tasks = {
             Q(**{current_autoapprovalsummary + 'verdict': amo.AUTO_APPROVED}) &
             ~Q(**{current_autoapprovalsummary + 'confirmed': True})
         ]},
-    'sign_addons': {
+    'resign_addons_for_cose': {
         'method': sign_addons,
-        'qs': []},
+        'qs': [
+            # Only resign public add-ons where the latest version has been
+            # created before the 5th of April
+            Q(status=amo.STATUS_APPROVED,
+              _current_version__created__lt=datetime(2019, 4, 5)) &
+            ~Q(type=amo.ADDON_SEARCH)
+        ]
+    },
     'migrate_lwt': {
         'method': migrate_lwts_to_static_themes,
         'qs': [

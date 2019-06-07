@@ -6,6 +6,7 @@ from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
+from freezegun import freeze_time
 from unittest import mock
 import pytest
 
@@ -100,18 +101,21 @@ def count_subtask_calls(original_function):
     original_function.subtask = original_function_subtask
 
 
+@freeze_time('2019-04-01')
 @pytest.mark.django_db
 def test_process_addons_limit_addons():
-    addon_ids = [addon_factory().id for _ in range(5)]
+    addon_ids = [
+        addon_factory(status=amo.STATUS_APPROVED).id for _ in range(5)
+    ]
     assert Addon.objects.count() == 5
 
     with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='sign_addons')
+        call_command('process_addons', task='resign_addons_for_cose')
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids]
 
     with count_subtask_calls(process_addons.sign_addons) as calls:
-        call_command('process_addons', task='sign_addons', limit=2)
+        call_command('process_addons', task='resign_addons_for_cose', limit=2)
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 
@@ -342,3 +346,38 @@ class TestDeleteArmagaddonRatings(TestCase):
         # deleted.
         assert index_addons_mock.delay.call_count == 1
         index_addons_mock.delay.call_args == [self.addon1.pk, self.addon2.pk]
+
+
+class TestResignAddonsForCose(TestCase):
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def test_basic(self, sign_file_mock):
+        file_kw = {'is_webextension': True, 'filename': 'webextension.xpi'}
+
+        with freeze_time('2019-04-01'):
+            addon_with_history = addon_factory(file_kw=file_kw)
+            # Create a few more versions for this add-on to test that we only
+            # re-sign current versions
+            version_factory(addon=addon_with_history, file_kw=file_kw)
+            version_factory(addon=addon_with_history, file_kw=file_kw)
+            version_factory(addon=addon_with_history, file_kw=file_kw)
+
+            addon_factory(file_kw=file_kw)
+            addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
+            addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
+            addon_factory(type=amo.ADDON_DICT, file_kw=file_kw)
+
+        # Don't resign add-ons created after April 4th 2019
+        with freeze_time('2019-05-01'):
+            addon_factory(file_kw=file_kw)
+            addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
+
+        # Search add-ons won't get re-signed, same with deleted and disabled
+        # versions. Also, only public addons are being resigned
+        addon_factory(type=amo.ADDON_SEARCH, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_REVIEW_PENDING, file_kw=file_kw)
+
+        call_command('process_addons', task='resign_addons_for_cose')
+
+        assert sign_file_mock.call_count == 5
