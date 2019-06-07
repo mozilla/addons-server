@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-06 10:38+0000\n"
+"PO-Revision-Date: 2019-06-07 16:57+0000\n"
 "Last-Translator: Muhen Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1055,13 +1055,13 @@ msgid "Performance"
 msgstr "Tamellit"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Sider isiɣzaf ara yesnernin timellit n Firefox. Af-d isiɣzaf ara k-d-imudden afus deg tiffursa neɣ deg tmellit s usewḥel n udellel ur nemɛin ara, d wayen-nniḍen."
 
 msgid "Photos & Media"
 msgstr "Tiwlafin & Allalen n teɣwalt"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Sider isiɣzaf ara yesnerni n tewlafin akked imidyaten. Taggayt-a tegber isiɣzaf n unadi deg tewlafin, akken ad tegeḍ tuṭṭfiwin n ugdil n yisebtar ummiden, d wayen-nniḍen."
 
 msgid "Security & Privacy"
 msgstr "Taɣellist & Tabaḍnit"
@@ -3841,11 +3841,11 @@ msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Eg tuṭṭfiwin n ugdil n yisebtar web seg wayen i tferneḍ sakin beddel-iten neɣ bḍu-ten."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Afecku n usider ufrin i Windows kan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
