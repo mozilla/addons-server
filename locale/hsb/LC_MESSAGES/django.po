@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-06 18:53+0000\n"
+"PO-Revision-Date: 2019-06-08 21:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4681,7 +4681,7 @@ msgstr "Měrće webstrony {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Ćehńće digitalny lineal po webstronje, zo byšće wysokosć, šěrokosć a wusměrjenje elementow strony kontrolował."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
@@ -4709,7 +4709,7 @@ msgstr "Wožiwće so mortwe strony {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Namakajće archiwowane, mortwe abo hewak někak zhubjene webstrony."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
