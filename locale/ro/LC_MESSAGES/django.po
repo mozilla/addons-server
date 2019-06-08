@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-07 04:58+0000\n"
-"Last-Translator: robbp <robbpaun@gmail.com>\n"
+"PO-Revision-Date: 2019-06-08 15:36+0000\n"
+"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -6354,7 +6354,7 @@ msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save
 msgstr "Ai modificări nesalvate în<b>{0}</b> limba actuală. Vrei să-ți salvezi modificările înainte de comutarea limbii?"
 
 msgid "Discard Changes"
-msgstr "Renunță la modificări"
+msgstr "Înlătură modificările"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
