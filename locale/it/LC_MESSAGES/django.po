@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-07 12:33+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2019-06-07 19:48+0000\n"
+"Last-Translator: Davide Quaranta <dvd.forty@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1881,9 +1881,8 @@ msgstr "Accetto"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Annulla</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Ulteriori informazioni sulle licenze Creative Commons"
+msgstr "Ulteriori informazioni sugli account sviluppatore"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2891,9 +2890,8 @@ msgstr ""
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Il componente aggiuntivo è visualizzato nelle pagine elenco del sito e gli aggiornamenti automatici sono attivi."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Questo componente aggiuntivo è stato disattivato da un amministratore del sito e non viene più visualizzato nelle pagine elenco. Per qualsiasi domanda contatta amo-admins@mozilla.org."
+msgstr "Il componente aggiuntivo è stato disattivato da un amministratore e rimosso dalle pagine pubbliche. Per qualsiasi domanda rivolgiti a amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -4712,50 +4710,44 @@ msgid "A clever extension that helps you quickly understand what you’re agreei
 msgstr "Un’estensione intelligente per esaminare velocemente le condizioni prima di dare il tuo consenso."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Riempi moduli automaticamente {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Controllo grammaticale e ortografico automatico {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Arricchisci le tue letture {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Migliore esperienza di lettura {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
 msgstr "Rimuovi gli elementi di disturbo intorno al testo delle pagine web per rendere la lettura più semplice e chiara."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
 msgstr "Non limitarti a bloccare le pubblicità fastidiose, proteggiti anche da malware e tracciamenti pubblicitari."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Scarica facilmente elementi multimediali {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Goditi il supporto al download multi-thread. Rileva automaticamente diversi tipi di contenuti multimediali scaricabili."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cerca immagini {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Salva facilmente le immagini {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
 msgstr "Cattura solo le immagini contenute nella scheda corrente."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salva le pagine web {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Misura le pagine web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4766,63 +4758,56 @@ msgid "Get the benefits of strong password management."
 msgstr "Scopri i vantaggi di una solida gestione delle password."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ingrandisci le immagini {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Abbellisci le pagine {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Personalizza le gradazioni di luce e ombre, per rendere le pagine web più piacevoli visivamente."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Riduci le distrazioni {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
 msgstr "Elenca i siti che vuoi bloccare attraverso l’estensione. Disciplina istantanea!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salva le pagine web {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr "Trova pagine web archiviate, irraggiungibili o scomparse."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cerca all’interno di Firefox {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Cambia l’aspetto di Firefox {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
 msgstr "Progetta i tuoi temi visivi: dare a Firefox il tuo stile personale è facile!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ricarica le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
 msgstr "Una barra laterale che ti permette di prendere annotazioni per pagine web specifiche."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rimuovi gli annunci dai risultati di ricerca {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Usa la ricerca vocale {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
 msgstr "Usa il riconoscimento vocale per abilitare la ricerca vocale su Google, Yahoo e DuckDuckGo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Traccia la produttività {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Traccia i prezzi dei prodotti {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
