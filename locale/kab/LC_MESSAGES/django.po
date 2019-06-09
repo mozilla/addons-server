@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-09 16:32+0000\n"
+"PO-Revision-Date: 2019-06-09 16:34+0000\n"
 "Last-Translator: Muhen Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -19,9 +19,8 @@ msgstr ""
 msgid "type"
 msgstr "anaw"
 
-#, fuzzy
 msgid "Users"
-msgstr "Isem n useqdac"
+msgstr "Iseqdacen"
 
 msgid "Addons"
 msgstr "Izegrar"
@@ -29,17 +28,14 @@ msgstr "Izegrar"
 msgid "minimum reports count (grouped by guid)"
 msgstr "amḍan adday n yineqqisen (yeddukel s guid)"
 
-#, fuzzy
 msgid "creation date"
-msgstr "Amnir n usenqed"
+msgstr "azemz n tmerna"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Izegrar ur d-yettwabedren ara"
+msgstr "Aseqdac / Azegrir"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Aglam"
+msgstr "Tussa"
 
 msgid "Reporter's country"
 msgstr "Tamurt n umazan"
