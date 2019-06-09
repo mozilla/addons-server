@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-09 17:09+0000\n"
+"PO-Revision-Date: 2019-06-09 17:28+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -4711,7 +4711,7 @@ msgstr "Descarga vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Disfruta de descargas multihilo. Detecta automáticamente diferentes tipos de contenido multimedia para descargar."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6424,6 +6424,8 @@ msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Escribe el dominio completo o el correo electrónico que se debe bloquear o usa comodines de estilo glob para que coincida con otros patrones. P.ej. \"@*.mail.com\"\n"
+"Ten en cuenta que no incluimos \"@\" en la correspondencia, por lo que debes hacerlo en el patrón."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
 msgstr "La dirección que usaste para la cuenta de desarrollador no se permite para enviar complementos."
