@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-09 10:33+0000\n"
+"PO-Revision-Date: 2019-06-09 10:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4733,7 +4733,7 @@ msgstr "Pytanje aktiwizowane z hłosom {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Wužiwajće rěčenske spóznaće, zo byšće hłosowe pytanje na Google, Yahoo a DuckDuckGo zmóžnił."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4741,7 +4741,7 @@ msgstr "Slědujće produktowym płaćiznam {start_sub_heading}z {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Dóstańće zdźělenki, hdyž płaćizny artiklow spaduja, za kotrež na Amazon, Best Buy, eBay, Home Depot a Walmart zajimujeće."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
