@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-01 13:56+0000\n"
-"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
+"PO-Revision-Date: 2019-06-09 01:15+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -77,20 +77,20 @@ msgid "The homepage field can only be used to link to external websites."
 msgstr "O campo da página inicial só pode ser utilizado para ligações a websites externos."
 
 msgid "Images must be either PNG or JPG."
-msgstr "As imagens devem de ser PNG ou JPG."
+msgstr "As imagens devem ser PNG ou JPG."
 
 msgid "Images cannot be animated."
 msgstr "As imagens não podem ser animadas."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Por favor, use imagens menores que %dMB."
+msgstr "Por favor, utilize imagens menores que %dMB."
 
 msgid "You are already logged in."
 msgstr "Já iniciou a sessão."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "A sua tentativa de iniciar a sessão não pôde ser analisada. Por favor tente novamente."
+msgstr "Não foi possível analisar a sua tentativa de início de sessão. Por favor, tente novamente."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "Não foi possível encontrar a sua Conta Firefox. Por favor, tente novamente."
@@ -102,7 +102,7 @@ msgid "Need help?"
 msgstr "Precisa de ajuda?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Os programadores de extras ou temas não podem eliminar as suas contas. Tem de eliminar todos os extras e temas associados com esta conta, ou transferi-los para outros utilizadores."
+msgstr "Os programadores de extras ou temas não podem eliminar as suas contas. Deve eliminar todos os extras e temas associados com esta conta, ou transferi-los para outros utilizadores."
 
 #, python-format
 msgid "Notification [%s] does not exist"
