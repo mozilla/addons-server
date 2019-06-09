@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-08 21:41+0000\n"
+"PO-Revision-Date: 2019-06-09 10:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4685,7 +4685,7 @@ msgstr "Ćehńće digitalny lineal po webstronje, zo byšće wysokosć, šěroko
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Zwužitkujće sylneho zarjadowanje hesłow."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4693,7 +4693,7 @@ msgstr "Wočipřećelne wobrazy {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Přiměrće swětłe a ćmowe wotsćiny, zo byšće webstrony optisce spodobne činił."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4701,7 +4701,7 @@ msgstr "Blokujće wotwobroćace so websydła {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Nalistujće websydła, kotrež rozšěrjenje ma blokowác. A to hnydom!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4717,7 +4717,7 @@ msgstr "Změńće napohlad Firefox {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Wuhotujće swoje wizuelne drasty, zo by Firefox tak wupadał, kaž wy chceće."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4725,7 +4725,7 @@ msgstr "Čińće noticy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "Pokazuje bóčnicu, hdźež móžeće noticy wo wěstych webstronach składować."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
