@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-09 10:29+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2019-06-09 17:09+0000\n"
+"Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgid "Addons"
 msgstr "Complementos"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "número mínimo de informes (agrupado por guid)"
 
 msgid "creation date"
 msgstr "fecha de creación"
@@ -47,7 +47,7 @@ msgid "Reporter's country"
 msgstr "País del informante"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Extracto de mensaje"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -4695,7 +4695,7 @@ msgstr "Mejora tu experiencia de lectura {start_sub_heading}con {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Elimina el desorden alrededor del texto en las páginas web. Lee con más claridad y facilidad."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
