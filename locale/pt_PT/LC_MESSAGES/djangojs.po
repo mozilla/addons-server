@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-04-11 15:29+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2019-04-30 16:58+0000\n"
+"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -454,7 +454,7 @@ msgstr "Transferências, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Transferências desde {0} a {1}"
+msgstr "Transferências de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -462,7 +462,7 @@ msgstr "Utilizadores diários, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "Utilizadores diários desde {0} a {1}"
+msgstr "Utilizadores diários de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -470,7 +470,7 @@ msgstr "Aplicações, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "Aplicações desde {0} a {1}"
+msgstr "Aplicações de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -478,7 +478,7 @@ msgstr "Plataformas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "Plataformas desde {0} a {1}"
+msgstr "Plataformas de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -486,7 +486,7 @@ msgstr "Idiomas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "Idiomas desde {0} a {1}"
+msgstr "Idiomas de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
@@ -494,7 +494,7 @@ msgstr "Versões do extra, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Versões do extra desde {0} a {1}"
+msgstr "Versões do extra de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -502,7 +502,7 @@ msgstr "Estado do extra, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Estado do extra desde {0} a {1}"
+msgstr "Estado do extra de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -510,7 +510,7 @@ msgstr "Fontes das transferências, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Fontes das transferências desde {0} a {1}"
+msgstr "Fontes das transferências de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -518,7 +518,7 @@ msgstr "Contribuições, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Contribuições desde {0} a {1}"
+msgstr "Contribuições de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -526,7 +526,7 @@ msgstr "Medições do site, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Medições do site desde {0} a {1}"
+msgstr "Medições do site de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"

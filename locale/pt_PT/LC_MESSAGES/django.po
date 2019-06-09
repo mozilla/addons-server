@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-07 00:47+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2019-06-01 13:56+0000\n"
+"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,8 @@ msgstr ""
 msgid "type"
 msgstr "tipo"
 
-#, fuzzy
 msgid "Users"
-msgstr "Utilizador"
+msgstr "Utilizadores"
 
 msgid "Addons"
 msgstr "Extras"
@@ -28,17 +27,14 @@ msgstr "Extras"
 msgid "minimum reports count (grouped by guid)"
 msgstr "contagem mínima de relatórios (agrupada por guid)"
 
-#, fuzzy
 msgid "creation date"
-msgstr "Guia de moderação"
+msgstr "data de criação"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Extras não-listados"
+msgstr "Utilizador / Extra"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Descrição"
+msgstr "Distribuição"
 
 msgid "Reporter's country"
 msgstr "País de quem reportou"
@@ -46,9 +42,9 @@ msgstr "País de quem reportou"
 msgid "Message excerpt"
 msgstr "Excerto da mensagem"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "O texto introduzido foi marcado como spam."
+msgstr "Os %d relatórios selecionados foram marcados como válidos."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
@@ -75,7 +71,7 @@ msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser utilizado."
 
 msgid "This reviewer name cannot be used."
-msgstr "Este nome de analisador não pode ser utilizado."
+msgstr "Este nome de revisor não pode ser utilizado."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "O campo da página inicial só pode ser utilizado para ligações a websites externos."
