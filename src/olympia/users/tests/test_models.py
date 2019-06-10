@@ -1,18 +1,22 @@
 # -*- coding: utf-8 -*-
 from datetime import date, datetime, timedelta
+import json
 
 import django  # noqa
 
 from django import forms
 from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
+from django.conf import settings
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 from unittest import mock
 import pytest
+import responses
 
 from six import text_type
 
@@ -26,8 +30,9 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile,
-    EmailUserRestriction, IPNetworkUserRestriction)
+    DeniedName, generate_auth_id, EmailReputationRestriction,
+    EmailUserRestriction, IPNetworkUserRestriction, IPReputationRestriction,
+    UserEmailField, UserForeignKey, UserProfile)
 from olympia.zadmin.models import set_config
 
 
@@ -733,6 +738,88 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@gmail.com')
         assert EmailUserRestriction.allow_request(request)
         assert EmailUserRestriction.allow_email(request.user.email)
+
+
+@override_settings(REPUTATION_SERVICE_URL='https://reputation.example.com')
+class TestIPReputationRestriction(TestCase):
+    expected_url = 'https://reputation.example.com/type/ip/192.168.0.1'
+    restriction_class = IPReputationRestriction
+
+    @override_settings(REPUTATION_SERVICE_URL=None)
+    def test_allowed_reputation_service_not_configured(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 0
+
+    def test_allowed_response_not_200(self):
+        responses.add(responses.GET, self.expected_url, status=404)
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+
+    def test_allowed_reputation_threshold(self):
+        responses.add(
+            responses.GET, self.expected_url,
+            content_type='application/json',
+            json={'reputation': 100})
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+
+    def test_blocked_reputation_threshold(self):
+        responses.add(
+            responses.GET, self.expected_url,
+            content_type='application/json',
+            json={'reputation': 45})
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert not self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+
+    def test_allowed_valueerror(self):
+        responses.add(
+            responses.GET, self.expected_url,
+            content_type='application/json',
+            body='garbage')
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+
+    def test_allowed_valueerror_but_valid_json(self):
+        responses.add(
+            responses.GET, self.expected_url,
+            content_type='application/json',
+            json={'reputation': 'garbage'})
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+
+    def test_allowed_keyerror(self):
+        responses.add(
+            responses.GET, self.expected_url,
+            content_type='application/json',
+            json={'no_reputation_oh_noes': 'garbage'})
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+
+
+class TestEmailReputationRestriction(TestIPReputationRestriction):
+    expected_url = 'https://reputation.example.com/type/email/foo@bar.com'
+    restriction_class = EmailReputationRestriction
 
 
 class TestUserEmailField(TestCase):

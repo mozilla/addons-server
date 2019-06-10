@@ -4,9 +4,11 @@ import random
 import re
 import time
 import ipaddress
+from urllib.parse import urljoin
 
 from fnmatch import fnmatchcase
 from datetime import datetime
+import requests
 
 from django import forms
 from django.conf import settings
@@ -674,7 +676,11 @@ class IPNetworkUserRestriction(ModelBase):
 
         for restriction in restrictions:
             if remote_addr in restriction.network:
+                log.info('Restricting request from %s %s (%s)',
+                         'ip', remote_addr,
+                         'network=%s' % restriction.network)
                 return False
+
         return True
 
 
@@ -719,8 +725,71 @@ class EmailUserRestriction(ModelBase):
 
         for restriction in restrictions:
             if fnmatchcase(email, restriction.email_pattern):
+                log.info('Restricting request from %s %s (%s)',
+                         'email', email,
+                         'email_pattern=%s' % restriction.email_pattern)
                 return False
+
         return True
+
+
+class ReputationRestrictionMixin:
+    reputation_threshold = 50
+
+    @classmethod
+    def allow_reputation(cls, reputation_type, obj):
+        """
+        Call reputation service for a given `reputation_type` and `target`,
+        returning whether or not it should be allowed.
+
+        `reputation_type` is either "email" or "ip", and `obj` is either the
+        email or ip adress from the request we want to check.
+
+        Needs REPUTATION_SERVICE_URL set, otherwise it will always return True.
+        """
+        if not settings.REPUTATION_SERVICE_URL:
+            return True  # Not configured.
+        url = urljoin(
+            settings.REPUTATION_SERVICE_URL, f'/type/{reputation_type}/{obj}')
+        response = requests.get(url)
+        if response.status_code == 200:
+            try:
+                data = response.json()
+                if int(data['reputation']) <= cls.reputation_threshold:
+                    # Low reputation means we should block that request.
+                    log.info('Restricting request from %s %s (%s)',
+                             reputation_type, obj,
+                             'reputation=%s' % data['reputation'])
+                    return False
+            except (ValueError, KeyError):
+                log.exception('Exception calling reputation service for %s %s',
+                              reputation_type, obj)
+        return True
+
+
+class IPReputationRestriction(ReputationRestrictionMixin):
+    error_message = IPNetworkUserRestriction.error_message
+
+    @classmethod
+    def allow_request(cls, request):
+        try:
+            remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
+        except ValueError:
+            # If we don't have a valid ip address, let's deny
+            return False
+
+        return cls.allow_reputation('ip', remote_addr)
+
+
+class EmailReputationRestriction(ReputationRestrictionMixin):
+    error_message = EmailUserRestriction.error_message
+
+    @classmethod
+    def allow_request(cls, request):
+        if not request.user.is_authenticated:
+            return False
+
+        return cls.allow_reputation('email', request.user.email)
 
 
 class DeveloperAgreementRestriction:
@@ -738,6 +807,9 @@ class DeveloperAgreementRestriction:
         """
         allowed = (request.user.is_authenticated and
                    request.user.has_read_developer_agreement())
+        if not allowed:
+            log.info('Restricting request from %s %s (%s)',
+                     'developer', request.user.pk, 'agreement')
         return allowed
 
 
