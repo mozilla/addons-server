@@ -391,6 +391,7 @@ class TestAddonSubmitDistribution(TestCase):
         assert b'This field is required' in self.client.post(url).content
 
 
+@override_settings(REPUTATION_SERVICE_URL=None)
 class TestAddonSubmitUpload(UploadTest, TestCase):
     fixtures = ['base/users']
 
@@ -427,12 +428,32 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
     def test_redirect_back_to_agreement_if_restricted(self):
         url = reverse('devhub.submit.upload', args=['listed'])
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
-        response = self.client.post(url, follow=True)
+        response = self.client.post(url, follow=False)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
         url = reverse('devhub.submit.upload', args=['unlisted'])
-        response = self.client.post(url, follow=True)
+        response = self.client.post(url, follow=False)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
+
+    @override_settings(
+        REPUTATION_SERVICE_URL='https://reputation.example.com',
+        REPUTATION_SERVICE_TOKEN='some_token')
+    def test_redirect_back_to_agreement_if_restricted_by_reputation(self):
+        assert Addon.objects.count() == 0
+        responses.add(
+            responses.GET, 'https://reputation.example.com/type/ip/127.0.0.1',
+            content_type='application/json',
+            json={'reputation': 45})
+        responses.add(
+            responses.GET,
+            'https://reputation.example.com/type/email/regular@mozilla.com',
+            content_type='application/json',
+            status=404)
+        url = reverse('devhub.submit.upload', args=['unlisted'])
+        response = self.client.post(url, follow=False)
+        self.assert3xx(response, reverse('devhub.submit.agreement'))
+        assert len(responses.calls) == 2
+        assert Addon.objects.count() == 0
 
     def test_unique_name(self):
         addon_factory(name='Beastify')

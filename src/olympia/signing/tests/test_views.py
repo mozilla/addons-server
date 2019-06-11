@@ -809,6 +809,63 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         }
         assert Addon.objects.count() == 0
 
+    @override_settings(
+        REPUTATION_SERVICE_URL='https://reputation.example.com',
+        REPUTATION_SERVICE_TOKEN='atoken')
+    def test_post_addon_restricted_by_reputation_ip(self):
+        Addon.objects.all().get().delete()
+        assert Addon.objects.count() == 0
+        responses.add(
+            responses.GET, 'https://reputation.example.com/type/ip/127.0.0.1',
+            content_type='application/json',
+            json={'reputation': 45})
+        responses.add(
+            responses.GET,
+            'https://reputation.example.com/type/email/%s' % self.user.email,
+            content_type='application/json',
+            status=404)
+        response = self.request(
+            'POST',
+            url=reverse_ns('signing.version'),
+            addon='@create-webextension',
+            version='1.0')
+        assert response.status_code == 403
+        assert json.loads(response.content.decode('utf-8')) == {
+            'detail': 'Multiple add-ons violating our policies have been '
+                      'submitted from your location. The IP address has been '
+                      'blocked.'
+        }
+        assert len(responses.calls) == 2
+        assert Addon.objects.count() == 0
+
+    @override_settings(
+        REPUTATION_SERVICE_URL='https://reputation.example.com',
+        REPUTATION_SERVICE_TOKEN='some_token')
+    def test_post_addon_restricted_by_reputation_email(self):
+        Addon.objects.all().get().delete()
+        assert Addon.objects.count() == 0
+        responses.add(
+            responses.GET, 'https://reputation.example.com/type/ip/127.0.0.1',
+            content_type='application/json',
+            status=404)
+        responses.add(
+            responses.GET,
+            'https://reputation.example.com/type/email/%s' % self.user.email,
+            content_type='application/json',
+            json={'reputation': 45})
+        response = self.request(
+            'POST',
+            url=reverse_ns('signing.version'),
+            addon='@create-webextension',
+            version='1.0')
+        assert response.status_code == 403
+        assert json.loads(response.content.decode('utf-8')) == {
+            'detail': 'The email address you used for your developer account '
+                      'is not allowed for add-on submission.'
+        }
+        assert len(responses.calls) == 2
+        assert Addon.objects.count() == 0
+
     def test_addon_does_not_exist_webextension_with_guid_in_url(self):
         guid = '@custom-guid-provided'
         # Override the filename self.request() picks, we want that specific
