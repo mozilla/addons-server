@@ -737,33 +737,38 @@ class ReputationRestrictionMixin:
     reputation_threshold = 50
 
     @classmethod
-    def allow_reputation(cls, reputation_type, obj):
+    def allow_reputation(cls, reputation_type, target):
         """
         Call reputation service for a given `reputation_type` and `target`,
         returning whether or not it should be allowed.
 
-        `reputation_type` is either "email" or "ip", and `obj` is either the
-        email or ip adress from the request we want to check.
+        `reputation_type` is either "email" or "ip", and `target` is either the
+        email or ip address from the request we want to check.
 
         Needs REPUTATION_SERVICE_URL set, otherwise it will always return True.
         """
-        if not settings.REPUTATION_SERVICE_URL:
+        if (not settings.REPUTATION_SERVICE_URL or
+                not settings.REPUTATION_SERVICE_TOKEN):
             return True  # Not configured.
         url = urljoin(
-            settings.REPUTATION_SERVICE_URL, f'/type/{reputation_type}/{obj}')
-        response = requests.get(url)
+            settings.REPUTATION_SERVICE_URL,
+            f'/type/{reputation_type}/{target}'
+        )
+        response = requests.get(url, headers={
+            'Authorization': f'APIKey {settings.REPUTATION_SERVICE_TOKEN}'
+        })
         if response.status_code == 200:
             try:
                 data = response.json()
                 if int(data['reputation']) <= cls.reputation_threshold:
                     # Low reputation means we should block that request.
                     log.info('Restricting request from %s %s (%s)',
-                             reputation_type, obj,
+                             reputation_type, target,
                              'reputation=%s' % data['reputation'])
                     return False
             except (ValueError, KeyError):
                 log.exception('Exception calling reputation service for %s %s',
-                              reputation_type, obj)
+                              reputation_type, target)
         return True
 
 

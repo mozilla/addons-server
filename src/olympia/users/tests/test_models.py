@@ -738,13 +738,23 @@ class TestEmailUserRestriction(TestCase):
         assert EmailUserRestriction.allow_email(request.user.email)
 
 
-@override_settings(REPUTATION_SERVICE_URL='https://reputation.example.com')
+@override_settings(
+    REPUTATION_SERVICE_URL='https://reputation.example.com',
+    REPUTATION_SERVICE_TOKEN='fancy_token')
 class TestIPReputationRestriction(TestCase):
     expected_url = 'https://reputation.example.com/type/ip/192.168.0.1'
     restriction_class = IPReputationRestriction
 
     @override_settings(REPUTATION_SERVICE_URL=None)
-    def test_allowed_reputation_service_not_configured(self):
+    def test_allowed_reputation_service_url_not_configured(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 0
+
+    @override_settings(REPUTATION_SERVICE_TOKEN=None)
+    def test_allowed_reputation_service_token_not_configured(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
@@ -758,6 +768,9 @@ class TestIPReputationRestriction(TestCase):
 
         assert self.restriction_class.allow_request(request)
         assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
     def test_allowed_reputation_threshold(self):
         responses.add(
@@ -769,6 +782,9 @@ class TestIPReputationRestriction(TestCase):
 
         assert self.restriction_class.allow_request(request)
         assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
     def test_blocked_reputation_threshold(self):
         responses.add(
@@ -780,6 +796,9 @@ class TestIPReputationRestriction(TestCase):
 
         assert not self.restriction_class.allow_request(request)
         assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
     def test_allowed_valueerror(self):
         responses.add(
@@ -791,6 +810,9 @@ class TestIPReputationRestriction(TestCase):
 
         assert self.restriction_class.allow_request(request)
         assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
     def test_allowed_valueerror_but_valid_json(self):
         responses.add(
@@ -802,6 +824,9 @@ class TestIPReputationRestriction(TestCase):
 
         assert self.restriction_class.allow_request(request)
         assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
     def test_allowed_keyerror(self):
         responses.add(
@@ -813,6 +838,9 @@ class TestIPReputationRestriction(TestCase):
 
         assert self.restriction_class.allow_request(request)
         assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
 
 class TestEmailReputationRestriction(TestIPReputationRestriction):
