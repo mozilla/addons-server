@@ -1810,7 +1810,7 @@ RECOMMENDATION_ENGINE_TIMEOUT = env.float(
     'RECOMMENDATION_ENGINE_TIMEOUT', default=1)
 
 # Reputation service is disabled by default, enabled for dev/stage/prod.
-REPUTATION_SERVICE_URL = None
+REPUTATION_SERVICE_URL = env('REPUTATION_SERVICE_URL', default=None)
 
 # This is the queue used for addons-dev, so it'll consume events (i.e. process
 # then delete) before you can locally.  If you really need to test get ops to
