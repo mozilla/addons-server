@@ -3833,6 +3833,25 @@ class TestReview(ReviewBase):
         assert b'The developer has provided source code.' in response.content
 
     @patch('olympia.reviewers.utils.sign_file')
+    def test_approve_recommended_addon(self, mock_sign_file):
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
+        response = self.client.post(self.url, {
+            'action': 'public',
+            'comments': 'all good'
+        })
+        assert response.status_code == 302
+        self.assert3xx(response, reverse('reviewers.queue_recommended'))
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_APPROVED
+        assert addon.current_version
+        assert addon.current_version.all_files[0].status == amo.STATUS_APPROVED
+        assert addon.current_version.recommendation_approved
+        assert mock_sign_file.called
+
+    @patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
