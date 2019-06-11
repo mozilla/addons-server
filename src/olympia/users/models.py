@@ -745,18 +745,23 @@ class ReputationRestrictionMixin:
         `reputation_type` is either "email" or "ip", and `target` is either the
         email or ip address from the request we want to check.
 
-        Needs REPUTATION_SERVICE_URL set, otherwise it will always return True.
+        Needs REPUTATION_SERVICE_URL, REPUTATION_SERVICE_TOKEN and
+        REPUTATION_SERVICE_TIMEOUT settings set, otherwise it will always
+        return True.
         """
         if (not settings.REPUTATION_SERVICE_URL or
-                not settings.REPUTATION_SERVICE_TOKEN):
+                not settings.REPUTATION_SERVICE_TOKEN or
+                settings.REPUTATION_SERVICE_TIMEOUT is None):
             return True  # Not configured.
         url = urljoin(
             settings.REPUTATION_SERVICE_URL,
             f'/type/{reputation_type}/{target}'
         )
-        response = requests.get(url, headers={
-            'Authorization': f'APIKey {settings.REPUTATION_SERVICE_TOKEN}'
-        })
+        response = requests.get(
+            url, timeout=settings.REPUTATION_SERVICE_TIMEOUT, headers={
+                'Authorization': f'APIKey {settings.REPUTATION_SERVICE_TOKEN}'
+            }
+        )
         if response.status_code == 200:
             try:
                 data = response.json()

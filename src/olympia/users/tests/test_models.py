@@ -740,7 +740,8 @@ class TestEmailUserRestriction(TestCase):
 
 @override_settings(
     REPUTATION_SERVICE_URL='https://reputation.example.com',
-    REPUTATION_SERVICE_TOKEN='fancy_token')
+    REPUTATION_SERVICE_TOKEN='fancy_token',
+    REPUTATION_SERVICE_TIMEOUT=1.0)
 class TestIPReputationRestriction(TestCase):
     expected_url = 'https://reputation.example.com/type/ip/192.168.0.1'
     restriction_class = IPReputationRestriction
@@ -755,6 +756,14 @@ class TestIPReputationRestriction(TestCase):
 
     @override_settings(REPUTATION_SERVICE_TOKEN=None)
     def test_allowed_reputation_service_token_not_configured(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='foo@bar.com')
+
+        assert self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 0
+
+    @override_settings(REPUTATION_SERVICE_TIMEOUT=None)
+    def test_allowed_reputation_service_timeout_not_configured(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 

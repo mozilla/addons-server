@@ -391,6 +391,7 @@ class TestAddonSubmitDistribution(TestCase):
         assert b'This field is required' in self.client.post(url).content
 
 
+@override_settings(REPUTATION_SERVICE_URL=None)
 class TestAddonSubmitUpload(UploadTest, TestCase):
     fixtures = ['base/users']
 
@@ -434,7 +435,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         response = self.client.post(url, follow=False)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
-    @override_settings(REPUTATION_SERVICE_URL='https://reputation.example.com')
+    @override_settings(
+        REPUTATION_SERVICE_URL='https://reputation.example.com',
+        REPUTATION_SERVICE_TOKEN='some_token')
     def test_redirect_back_to_agreement_if_restricted_by_reputation(self):
         assert Addon.objects.count() == 0
         responses.add(

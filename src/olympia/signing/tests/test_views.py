@@ -836,7 +836,9 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert len(responses.calls) == 2
         assert Addon.objects.count() == 0
 
-    @override_settings(REPUTATION_SERVICE_URL='https://reputation.example.com')
+    @override_settings(
+        REPUTATION_SERVICE_URL='https://reputation.example.com',
+        REPUTATION_SERVICE_TOKEN='some_token')
     def test_post_addon_restricted_by_reputation_email(self):
         Addon.objects.all().get().delete()
         assert Addon.objects.count() == 0
