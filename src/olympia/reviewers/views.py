@@ -48,6 +48,7 @@ from olympia.api.permissions import (
     ByHttpMethod)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
+from olympia.discovery.models import DiscoveryItem
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
     AllAddonSearchForm, MOTDForm, PublicWhiteboardForm, QueueSearchForm,
@@ -158,7 +159,8 @@ def dashboard(request):
                 review_queue)
 
         sections[ugettext('Pre-Review Add-ons')] = []
-        if admin_reviewer:
+        if acl.action_allowed(
+                request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
             recommended_queue_count = ViewRecommendedQueue.objects.count()
             sections[ugettext('Pre-Review Add-ons')].append((
                 ugettext('Recommended ({0})').format(recommended_queue_count),
@@ -545,7 +547,7 @@ def queue_extension(request):
     return _queue(request, TableObj, 'extension', qs=qs)
 
 
-@permission_or_tools_view_required(amo.permissions.REVIEWS_ADMIN)
+@permission_or_tools_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
 def queue_recommended(request):
     return _queue(
         request, view_table_factory(ViewRecommendedQueue),
@@ -704,12 +706,19 @@ def perform_review_permission_checks(
         channel == amo.RELEASE_CHANNEL_LISTED and
         addon.current_version and addon.current_version.was_auto_approved)
     static_theme = addon.type == amo.ADDON_STATICTHEME
+    try:
+        is_recommendable = addon.discoveryitem.recommendable
+    except DiscoveryItem.DoesNotExist:
+        is_recommendable = False
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?
     if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
         raise PermissionDenied
-
+    # Recommended add-ons need special treatment.
+    if is_recommendable and not acl.action_allowed(
+            request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
+        raise PermissionDenied
     # If we're only doing a content review, we just need to check for the
     # content review permission, otherwise it's the "main" review page.
     if content_review_only:

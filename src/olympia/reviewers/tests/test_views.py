@@ -1313,15 +1313,20 @@ class TestQueueBasics(QueueTest):
         expected.append(reverse('reviewers.queue_content_review'))
         assert links == expected
 
+        self.grant_permission(self.user, 'Addons:RecommendedReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
+        expected.insert(0, reverse('reviewers.queue_recommended'))
+        assert links == expected
+
         self.grant_permission(self.user, 'Reviews:Admin')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected = (
-            [reverse('reviewers.queue_recommended')] +
-            expected +
-            [reverse('reviewers.queue_expired_info_requests')])
+        expected.append(reverse('reviewers.queue_expired_info_requests'))
         assert links == expected
 
 
@@ -1565,7 +1570,7 @@ class TestThemeNominatedQueue(QueueTest):
 class TestRecommendedQueue(QueueTest):
     def setUp(self):
         super().setUp()
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, 'Addons:RecommendedReview')
         # These should be the only ones present.
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'])
@@ -1619,7 +1624,7 @@ class TestRecommendedQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout(
-            'Recommended', tab_position=0, total_addons=4, total_queues=3)
+            'Recommended', tab_position=0, total_addons=4, total_queues=2)
 
     def test_nothing_recommended_filtered_out(self):
         version = self.addons['Nominated One'].find_latest_version(
@@ -2221,7 +2226,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=2, total_addons=3, total_queues=4)
+            'Content Review', tab_position=1, total_addons=3, total_queues=3)
 
 
 class TestPerformance(QueueTest):
@@ -2711,6 +2716,16 @@ class TestReview(ReviewBase):
         assert self.addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
         assert self.client.head(self.url).status_code == 200
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        assert self.client.head(self.url).status_code == 200
+
+    def test_need_recommended_reviewer_for_recommendable_addon(self):
+        item = DiscoveryItem.objects.create(addon=self.addon)
+        assert self.client.head(self.url).status_code == 200
+
+        item.update(recommendable=True)
+        assert self.client.head(self.url).status_code == 403
+
+        self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         assert self.client.head(self.url).status_code == 200
 
     def test_not_flags(self):
