@@ -120,7 +120,8 @@ def check_addons_reviewer(request):
     return (
         action_allowed(request, amo.permissions.ADDONS_REVIEW) or
         action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW))
+        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW) or
+        action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW))
 
 
 def check_unlisted_addons_reviewer(request):
@@ -162,6 +163,7 @@ def is_user_any_kind_of_reviewer(user):
         action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED) or
         action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW) or
         action_allowed_user(user, amo.permissions.ADDONS_POST_REVIEW) or
+        action_allowed_user(user, amo.permissions.ADDONS_RECOMMENDED_REVIEW) or
         action_allowed_user(user, amo.permissions.THEMES_REVIEW) or
         action_allowed_user(user, amo.permissions.STATIC_THEMES_REVIEW))
     return allow_access

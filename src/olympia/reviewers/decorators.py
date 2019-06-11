@@ -60,6 +60,7 @@ def any_reviewer_required(f):
     - Addons:ContentReview
     - Addons:PostReview
     - Addons:ThemeReview
+    - Addons:RecommendedReview
     """
     @functools.wraps(f)
     def wrapper(request, *args, **kw):

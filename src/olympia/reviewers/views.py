@@ -772,6 +772,10 @@ def review(request, addon, channel=None):
         channel == amo.RELEASE_CHANNEL_LISTED and
         addon.current_version and addon.current_version.was_auto_approved)
     is_static_theme = addon.type == amo.ADDON_STATICTHEME
+    try:
+        is_recommendable = addon.discoveryitem.recommendable
+    except DiscoveryItem.DoesNotExist:
+        is_recommendable = False
 
     # If we're just looking (GET) we can bypass the specific permissions checks
     # if we have ReviewerTools:View.
@@ -832,6 +836,8 @@ def review(request, addon, channel=None):
 
         if content_review_only:
             queue_type = 'content_review'
+        elif is_recommendable:
+            queue_type = 'recommended'
         elif was_auto_approved:
             queue_type = 'auto_approved'
         elif is_static_theme:
