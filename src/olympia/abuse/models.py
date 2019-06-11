@@ -77,7 +77,7 @@ class AbuseReport(ModelBase):
         ('MANAGEMENT_WEBEXT_API', 5, 'Webext management API'),
         ('DRAG_AND_DROP', 6, 'Drag & Drop'),
         ('SIDELOAD', 7, 'Sideload'),
-        ('FILE_URI', 8, 'File URI'),
+        ('FILE_URL', 8, 'File URL'),
         ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
         ('DISTRIBUTION', 10, 'Included in build'),
         ('SYSTEM_ADDON', 11, 'System Add-on'),

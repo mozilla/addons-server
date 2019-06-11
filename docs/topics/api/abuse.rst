@@ -95,7 +95,7 @@ and should be truncated by the client where necessary.
        management_webext_api  WebExt Management API
                drag_and_drop  Drag & Drop
                     sideload  Sideload
-                    file_uri  File URI
+                    file_url  File URL
            enterprise_policy  Enterprise Policy
                 distribution  Included in build
                 system_addon  System Add-on
