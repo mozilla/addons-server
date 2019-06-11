@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 from datetime import date, datetime, timedelta
-import json
 
 import django  # noqa
 
 from django import forms
 from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
-from django.conf import settings
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage

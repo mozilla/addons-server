@@ -27,8 +27,7 @@ from olympia.files.models import File, FileUpload
 from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
 from olympia.users.models import (
-    EmailReputationRestriction, EmailUserRestriction,
-    IPNetworkUserRestriction, UserProfile
+    EmailUserRestriction, IPNetworkUserRestriction, UserProfile
 )
 from olympia.versions.models import Version
 
