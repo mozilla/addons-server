@@ -1553,7 +1553,7 @@ SIGNING_SERVER_MONITORING_TIMEOUT = 10
 AUTOGRAPH_CONFIG = {
     'server_url': env(
         'AUTOGRAPH_SERVER_URL',
-        default='http://autograph:8000'),
+        default='http://autograph:5500'),
     'user_id': env(
         'AUTOGRAPH_HAWK_USER_ID',
         default='alice'),
@@ -1575,10 +1575,10 @@ AUTOGRAPH_CONFIG = {
         default='webextensions-rsa-with-recommendation'),
     'recommendation_signer_user_id': env(
         'AUTOGRAPH_RECOMMENDATION_SIGNER_HAWK_USER_ID',
-        default='alice'),
+        default='bob'),
     'recommendation_signer_key': env(
         'AUTOGRAPH_RECOMMENDATION_SIGNER_HAWK_KEY',
-        default='fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu'),
+        default='9vh6bhlc10y63ow2k4zke7k0c3l9hpr8mo96p92jmbfqngs9e7d'),
 
 }
 
