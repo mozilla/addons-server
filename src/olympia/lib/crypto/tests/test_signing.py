@@ -30,6 +30,18 @@ from olympia.versions.compare import version_int
 from olympia.lib.tests.test_git import _run_process
 
 
+def _get_signature_details(path):
+    with zipfile.ZipFile(path, mode='r') as zobj:
+        info = signing.SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
+        manifest = force_text(zobj.read('META-INF/manifest.mf'))
+        return info, manifest
+
+
+def _get_recommendation_data(path):
+    with zipfile.ZipFile(path, mode='r') as zobj:
+        return json.loads(force_text(zobj.read('mozilla-recommendation.json')))
+
+
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestSigning(TestCase):
 
@@ -77,17 +89,6 @@ class TestSigning(TestCase):
 
     def _sign_file(self, file_):
         signing.sign_file(file_)
-
-    def _get_signature_details(self):
-        with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
-            info = signing.SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
-            manifest = force_text(zobj.read('META-INF/manifest.mf'))
-            return info, manifest
-
-    def _get_recommendation_data(self):
-        with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
-            return json.loads(force_text(
-                zobj.read('mozilla-recommendation.json')))
 
     def assert_not_signed(self):
         assert not self.file_.is_signed
@@ -233,7 +234,8 @@ class TestSigning(TestCase):
     def test_call_signing(self):
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = self._get_signature_details()
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -275,7 +277,8 @@ class TestSigning(TestCase):
         self.addon.update(guid=long_guid)
         signing.sign_file(self.file_)
 
-        signature_info, manifest = self._get_signature_details()
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == hashed
@@ -320,7 +323,8 @@ class TestSigning(TestCase):
 
         signing.sign_file(self.file_)
 
-        signature_info, manifest = self._get_signature_details()
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
 
@@ -368,19 +372,19 @@ class TestSigning(TestCase):
         # 2 actual commits, including the repo initialization
         assert output.count('Mozilla Add-ons Robot') == 3
 
-    def test_call_signing_recommended_addon(self):
-        # Mark the add-on as recommended
+    def test_call_signing_recommendable(self):
+        # This is the usual process for recommended add-ons, they're
+        # in "pending recommendation" and only *after* we approve and sign
+        # them they will become "recommended". Once the `recommendable`
+        # flag is turned off we won't sign further versions as recommended.
         DiscoveryItem.objects.create(
             addon=self.file_.version.addon,
             recommendable=True)
 
-        # And also set the required flags on the version as done during
-        # approval.
-        self.file_.version.update(recommendation_approved=True)
-
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = self._get_signature_details()
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -391,22 +395,20 @@ class TestSigning(TestCase):
         assert 'Name: META-INF/cose.manifest' in manifest
         assert 'Name: META-INF/cose.sig' in manifest
 
-        recommendation_data = self._get_recommendation_data()
+        recommendation_data = _get_recommendation_data(
+            self.file_.current_file_path)
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert recommendation_data['states'] == ['recommended']
 
-    def test_call_signing_pending_recommendation(self):
-        # Mark the add-on as recommended
+    def test_call_signing_not_recommendable(self):
         DiscoveryItem.objects.create(
             addon=self.file_.version.addon,
-            recommendable=True)
-
-        # But don't set the necessary flag on the version yet
-        self.file_.version.update(recommendation_approved=False)
+            recommendable=False)
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = self._get_signature_details()
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'

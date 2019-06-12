@@ -6,6 +6,7 @@ from base64 import b64decode, b64encode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import force_bytes, force_text
 
 import requests
@@ -52,6 +53,15 @@ def get_id(addon):
     return force_text(hashlib.sha256(guid).hexdigest())
 
 
+def use_recommendation_signer(file_obj):
+    try:
+        item = file_obj.version.addon.discoveryitem
+    except ObjectDoesNotExist:
+        return False
+
+    return item.recommendable
+
+
 def call_signing(file_obj):
     """Sign `file_obj` via autographs /sign/file endpoint.
 
@@ -83,18 +93,23 @@ def call_signing(file_obj):
         },
     }
 
+    hawk_auth = HawkAuth(id=conf['user_id'], key=conf['key'])
+
     # We are using a separate signer that adds the mozilla-recommendation.json
     # file. There is currently only `recommended` as a type but more may be
     # added later, e.g partner.
-    if file_obj.version.recommendation_approved:
-        signing_data['keyid'] = conf['recommendation-signer']
+    if use_recommendation_signer(file_obj):
+        signing_data['keyid'] = conf['recommendation_signer']
         signing_data['options']['recommendations'] = ['recommended']
+        hawk_auth = HawkAuth(
+            id=conf['recommendation_signer_user_id'],
+            key=conf['recommendation_signer_key'])
 
     with statsd.timer('services.sign.addon.autograph'):
         response = requests.post(
             '{server}/sign/file'.format(server=conf['server_url']),
             json=[signing_data],
-            auth=HawkAuth(id=conf['user_id'], key=conf['key']))
+            auth=hawk_auth)
 
     if response.status_code != requests.codes.CREATED:
         msg = u'Posting to add-on signing failed: {0} {1}'.format(
