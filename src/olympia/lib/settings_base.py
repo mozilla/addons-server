@@ -1567,10 +1567,19 @@ AUTOGRAPH_CONFIG = {
     'signer': env(
         'AUTOGRAPH_SIGNER_ID',
         default='webextensions-rsa'),
+
     # This signer is only used for add-ons that are recommended.
-    'recommendation-signer': env(
+    # The signer uses it's own HAWK auth credentials
+    'recommendation_signer': env(
         'AUTOGRAPH_RECOMMENDATION_SIGNER_ID',
-        default='webextensions-rsa-with-recommendation')
+        default='webextensions-rsa-with-recommendation'),
+    'recommendation_signer_user_id': env(
+        'AUTOGRAPH_RECOMMENDATION_SIGNER_HAWK_USER_ID',
+        default='alice'),
+    'recommendation_signer_key': env(
+        'AUTOGRAPH_RECOMMENDATION_SIGNER_HAWK_KEY',
+        default='fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu'),
+
 }
 
 # Enable addon signing. Autograph is configured to something reasonable

@@ -368,15 +368,14 @@ class TestSigning(TestCase):
         # 2 actual commits, including the repo initialization
         assert output.count('Mozilla Add-ons Robot') == 3
 
-    def test_call_signing_recommended_addon(self):
-        # Mark the add-on as recommended
+    def test_call_signing_recommendable(self):
+        # This is the usual process for recommended add-ons, they're
+        # in "pending recommendation" and only *after* we approve and sign
+        # them they will become "recommended". Once the `recommendable`
+        # flag is turned off we won't sign further versions as recommended.
         DiscoveryItem.objects.create(
             addon=self.file_.version.addon,
             recommendable=True)
-
-        # And also set the required flags on the version as done during
-        # approval.
-        self.file_.version.update(recommendation_approved=True)
 
         assert signing.sign_file(self.file_)
 
@@ -395,14 +394,10 @@ class TestSigning(TestCase):
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert recommendation_data['states'] == ['recommended']
 
-    def test_call_signing_pending_recommendation(self):
-        # Mark the add-on as recommended
+    def test_call_signing_not_recommendable(self):
         DiscoveryItem.objects.create(
             addon=self.file_.version.addon,
-            recommendable=True)
-
-        # But don't set the necessary flag on the version yet
-        self.file_.version.update(recommendation_approved=False)
+            recommendable=False)
 
         assert signing.sign_file(self.file_)
 
