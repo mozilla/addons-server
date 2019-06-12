@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-12 07:13+0000\n"
+"PO-Revision-Date: 2019-06-12 07:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1630,7 +1630,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr "Samostatny. <span class=\"helptext\">Wašo zapódaśe buźo se ned za samorozdźělenje signěrowaś. Aktualizacije by měli se pśez updateURL abo eksterne nałožeńske aktualizacije zastojaś.</span>"
 
 msgid "Display Name"
-msgstr ""
+msgstr "Zwobraznjeńske mě"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorije njedaju se změniś, mjaztym až se waš dodank pśedstaja."
@@ -1825,7 +1825,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Som toś to dojadnanje, pšawidła a zasady pśecytał a akceptěrował"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Wašo konto zwobraznjeńske mě trjeba, aby wužywarje wěźeli, wót kogo waš dodank pśiźo. Pšosym zapódajśo jo dołojce."
 
 msgid "Accept"
 msgstr "Akceptěrowaś"
@@ -4690,63 +4690,56 @@ msgid "Get the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pówětšćo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Wócypśijaśelne wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reducěrujśo rozdrosćenje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Blokěrujśo wótchylajuce websedła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Składujśo boki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Wóžywśo zasej marłe boki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśepytujśo Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Změńśo naglěd Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Aktualizěrujśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Cyńśo notice {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Wótwónoźćo pytańske wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pytanje aktiwěrowane z głosom {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Wobglědujśo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Slědujśo produktowym płaśiznam {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
