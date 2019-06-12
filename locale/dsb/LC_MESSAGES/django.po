@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-12 07:23+0000\n"
+"PO-Revision-Date: 2019-06-12 12:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4651,7 +4651,7 @@ msgstr "Lěpše cytańske dožywjenje {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Wótwónoźćo mólece wopśimjeśe w teksće na webbokach. Cytajśo jasny tekst z wěcej lažkosću."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4659,7 +4659,7 @@ msgstr "Blokěrujśo wabjenje a wjace {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
-msgstr ""
+msgstr "Blokěrujśo nic jano gramne wabjenje, ale šćitajśo se pśed škódneju softwaru a slědowanim pśez wabjenje."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4667,7 +4667,7 @@ msgstr "Ześěgniśo medije lažčej {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Wužywajśo wěcejnitkowu ześěgnjeńsku pódpěru. Namakjśo rozdźělne typy medijow za ześěgnjenje."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4675,7 +4675,7 @@ msgstr "Pytajśo wobraze lažko {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "Składujśo jano wobraze ze swójogo aktualnego rejtarka."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4683,11 +4683,11 @@ msgstr "Měŕśo webboki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Śěgniśo digitalny lineal pó webboku, aby wusokosć, šyrokosć a wusměrjenje elementow boka kontrolěrował."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Zwužytkujśo sylne zastojanje gronidłow."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4695,7 +4695,7 @@ msgstr "Wócypśijaśelne wobraze {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Pśiměŕśo swětłe a śamne wósenjenja, aby webboki optiski spódobne gótował."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4703,7 +4703,7 @@ msgstr "Blokěrujśo wótchylajuce websedła {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Nalicćo websedła, kótarež rozšyrjenje ma blokěrowaś. A to ned!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4711,7 +4711,7 @@ msgstr "Wóžywśo zasej marłe boki {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Namakajśo archiwowane, marłe abo howac někak zgubjone webboki."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4719,7 +4719,7 @@ msgstr "Změńśo naglěd Firefox {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Wugótujśo swóje wizuelne drastwy, aby Firefox tak woglědał, ako wy cośo."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4727,7 +4727,7 @@ msgstr "Cyńśo notice {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "Pokazujo bocnicu, źož móžośo notice wó wěstych webbokach składowaś."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4735,7 +4735,7 @@ msgstr "Pytanje aktiwěrowane z głosom {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Wužywajśo powědańske spóznaśe, aby głosowe pytanje na Google, Yahoo a DuckDuckGo zmóžnił."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4743,7 +4743,7 @@ msgstr "Slědujśo produktowym płaśiznam {start_sub_heading}z {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Dostańśo powěźeńki, gaž płaśizny artiklow spaduju, za kótarež na Amazon, Best Buy, eBay, Home Depot a Walmart zajmujośo."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
