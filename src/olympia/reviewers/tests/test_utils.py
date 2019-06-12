@@ -10,6 +10,7 @@ from django.utils import translation
 from unittest import mock
 import pytest
 import six
+import responses
 
 from unittest.mock import Mock, patch
 from pyquery import PyQuery as pq
@@ -19,7 +20,8 @@ from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, file_factory, version_factory
+from olympia.amo.tests import (
+    TestCase, file_factory, version_factory, addon_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.discovery.models import DiscoveryItem
@@ -30,7 +32,8 @@ from olympia.reviewers.utils import (
     PENDING_STATUSES, ReviewAddon, ReviewFiles, ReviewHelper,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
-
+from olympia.lib.crypto.tests.test_signing import (
+    _get_signature_details, _get_recommendation_data)
 
 pytestmark = pytest.mark.django_db
 
@@ -170,17 +173,14 @@ class TestUnlistedViewAllListTable(TestCase):
 yesterday = datetime.today() - timedelta(days=1)
 
 
-# Those tests can call signing when making things public. We want to test that
-# it works correctly, so we set ENABLE_ADDON_SIGNING to True and mock the
-# actual signing call.
-@override_settings(ENABLE_ADDON_SIGNING=True)
-@mock.patch('olympia.lib.crypto.signing.call_signing', lambda f: None)
-class TestReviewHelper(TestCase):
+class TestReviewHelperBase(TestCase):
+    __test__ = False
+
     fixtures = ['base/addon_3615', 'base/users']
     preamble = 'Mozilla Add-ons: Delicious Bookmarks 2.1.072'
 
     def setUp(self):
-        super(TestReviewHelper, self).setUp()
+        super().setUp()
 
         class FakeRequest:
             user = UserProfile.objects.get(pk=10482)
@@ -211,6 +211,26 @@ class TestReviewHelper(TestCase):
                     f.write('test data\n')
         self.addCleanup(self.remove_paths)
 
+    def setup_data(self, status, delete=None,
+                   file_status=amo.STATUS_AWAITING_REVIEW,
+                   channel=amo.RELEASE_CHANNEL_LISTED,
+                   content_review_only=False, type=amo.ADDON_EXTENSION):
+        if delete is None:
+            delete = []
+        mail.outbox = []
+        ActivityLog.objects.for_addons(self.helper.addon).delete()
+        self.addon.update(status=status, type=type)
+        self.file.update(status=file_status)
+        if channel == amo.RELEASE_CHANNEL_UNLISTED:
+            self.make_addon_unlisted(self.addon)
+            self.version.reload()
+            self.file.reload()
+        self.helper = self.get_helper(content_review_only=content_review_only)
+        data = self.get_data().copy()
+        for key in delete:
+            del data[key]
+        self.helper.set_data(data)
+
     def get_data(self):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
                 'action': 'public', 'operating_systems': 'osx',
@@ -229,6 +249,15 @@ class TestReviewHelper(TestCase):
     def check_log_count(self, id):
         return (ActivityLog.objects.for_addons(self.helper.addon)
                                    .filter(action=id).count())
+
+
+# Those tests can call signing when making things public. We want to test that
+# it works correctly, so we set ENABLE_ADDON_SIGNING to True and mock the
+# actual signing call.
+@override_settings(ENABLE_ADDON_SIGNING=True)
+@mock.patch('olympia.lib.crypto.signing.call_signing', lambda f: None)
+class TestReviewHelper(TestReviewHelperBase):
+    __test__ = True
 
     def test_no_request(self):
         self.request = None
@@ -434,26 +463,6 @@ class TestReviewHelper(TestCase):
             assert len(mail.outbox) == 1
             assert context_key in context_data
             assert context_data.get(context_key) in mail.outbox[0].body
-
-    def setup_data(self, status, delete=None,
-                   file_status=amo.STATUS_AWAITING_REVIEW,
-                   channel=amo.RELEASE_CHANNEL_LISTED,
-                   content_review_only=False, type=amo.ADDON_EXTENSION):
-        if delete is None:
-            delete = []
-        mail.outbox = []
-        ActivityLog.objects.for_addons(self.helper.addon).delete()
-        self.addon.update(status=status, type=type)
-        self.file.update(status=file_status)
-        if channel == amo.RELEASE_CHANNEL_UNLISTED:
-            self.make_addon_unlisted(self.addon)
-            self.version.reload()
-            self.file.reload()
-        self.helper = self.get_helper(content_review_only=content_review_only)
-        data = self.get_data().copy()
-        for key in delete:
-            del data[key]
-        self.helper.set_data(data)
 
     def test_send_reviewer_reply(self):
         assert not self.addon.pending_info_request
@@ -1313,6 +1322,90 @@ class TestReviewHelper(TestCase):
             self.test_nomination_to_public()
         assert self.addon.current_version.recommendation_approved is False
         assert not self.addon.is_recommended
+
+
+@override_settings(ENABLE_ADDON_SIGNING=True)
+class TestReviewHelperSigning(TestReviewHelperBase):
+    """Tests that call signing but don't mock the actual call.
+
+    Instead tests will have to check the end-result to see if the signing
+    calls succeeded.
+    """
+    __test__ = True
+
+    def setUp(self):
+        super().setUp()
+        responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
+
+        self.addon = addon_factory(
+            guid='test@local', file_kw={'filename': 'webextension.xpi'},
+            users=[self.request.user])
+        self.version = self.addon.versions.all()[0]
+        self.helper = self.get_helper()
+        self.file = self.version.files.all()[0]
+
+    def test_nomination_to_public(self):
+        self.setup_data(amo.STATUS_NOMINATED)
+
+        self.helper.handler.process_public()
+
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_APPROVED)
+
+        assert len(mail.outbox) == 1
+
+        # AddonApprovalsCounter counter is now at 1 for this addon.
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 1
+
+        assert storage.exists(self.file.file_path)
+
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+
+        signature_info, manifest = _get_signature_details(self.file.file_path)
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'test@local'
+        assert manifest.count('Name: ') == 4
+
+        assert 'Name: index.js' in manifest
+        assert 'Name: manifest.json' in manifest
+        assert 'Name: META-INF/cose.manifest' in manifest
+        assert 'Name: META-INF/cose.sig' in manifest
+
+    def test_nominated_to_public_recommended(self):
+        self.setup_data(amo.STATUS_NOMINATED)
+
+        DiscoveryItem.objects.create(
+            addon=self.addon, recommendable=True)
+        assert not self.addon.is_recommended
+
+        self.helper.handler.process_public()
+
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_APPROVED)
+
+        del self.addon.is_recommended
+        assert self.addon.current_version.recommendation_approved is True
+        assert self.addon.is_recommended
+
+        signature_info, manifest = _get_signature_details(self.file.file_path)
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'test@local'
+        assert manifest.count('Name: ') == 5
+
+        assert 'Name: index.js' in manifest
+        assert 'Name: manifest.json' in manifest
+        assert 'Name: META-INF/cose.manifest' in manifest
+        assert 'Name: META-INF/cose.sig' in manifest
+        assert 'Name: mozilla-recommendation.json' in manifest
+
+        recommendation_data = _get_recommendation_data(self.file.file_path)
+        assert recommendation_data['addon_id'] == 'test@local'
+        assert recommendation_data['states'] == ['recommended']
 
 
 def test_send_email_autoescape():

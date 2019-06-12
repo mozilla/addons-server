@@ -1553,7 +1553,7 @@ SIGNING_SERVER_MONITORING_TIMEOUT = 10
 AUTOGRAPH_CONFIG = {
     'server_url': env(
         'AUTOGRAPH_SERVER_URL',
-        default='http://autograph:8000'),
+        default='http://autograph:5500'),
     'user_id': env(
         'AUTOGRAPH_HAWK_USER_ID',
         default='alice'),
@@ -1567,10 +1567,19 @@ AUTOGRAPH_CONFIG = {
     'signer': env(
         'AUTOGRAPH_SIGNER_ID',
         default='webextensions-rsa'),
+
     # This signer is only used for add-ons that are recommended.
-    'recommendation-signer': env(
+    # The signer uses it's own HAWK auth credentials
+    'recommendation_signer': env(
         'AUTOGRAPH_RECOMMENDATION_SIGNER_ID',
-        default='webextensions-rsa-with-recommendation')
+        default='webextensions-rsa-with-recommendation'),
+    'recommendation_signer_user_id': env(
+        'AUTOGRAPH_RECOMMENDATION_SIGNER_HAWK_USER_ID',
+        default='bob'),
+    'recommendation_signer_key': env(
+        'AUTOGRAPH_RECOMMENDATION_SIGNER_HAWK_KEY',
+        default='9vh6bhlc10y63ow2k4zke7k0c3l9hpr8mo96p92jmbfqngs9e7d'),
+
 }
 
 # Enable addon signing. Autograph is configured to something reasonable

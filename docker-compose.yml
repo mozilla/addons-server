@@ -83,6 +83,9 @@ services:
 
   autograph:
     image: mozilla/autograph:3.3.2
+    command: /go/bin/autograph -c /code/scripts/autograph_travis_test_config.yaml
+    volumes:
+      - .:/code
 
   addons-frontend:
     <<: *env
