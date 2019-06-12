@@ -21,8 +21,10 @@ either listed on https://addons.mozilla.org or not.
 Authentication is not required, but is recommended so reports can be responded
 to if necessary.
 
-Except for the ``message``, all strings have a maximum length of 255 characters
-and should be truncated by the client where necessary.
+.. warning::
+
+    Except for the ``message``, all strings have a maximum length of 255 characters
+    and should be truncated by the client where necessary.
 
 .. http:post:: /api/v4/abuse/report/addon/
 
