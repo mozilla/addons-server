@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-12 05:01+0000\n"
+"PO-Revision-Date: 2019-06-12 05:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6389,7 +6389,7 @@ msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into
 msgstr ""
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Μπορείτε να εισάγετε μόνο ένα, είτε διεύθυνση IP είτε δίκτυο."
 
 msgid "No user with that email."
 msgstr "Κανένας χρήστης με αυτό το email."
@@ -6404,13 +6404,13 @@ msgid "My Favorite Add-ons"
 msgstr "Τα αγαπημένα μου πρόσθετα"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Εισάγετε ένα έγκυρο εύρος δικτύου IPv6 ή IPv6 CIDR, π.χ. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Μοτίβο email"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
