@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-13 10:32+0000\n"
+"PO-Revision-Date: 2019-06-13 10:33+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -262,9 +262,8 @@ msgstr "サイトメンテナンスの間、いくつかの機能が一時的に
 msgid "Must contain at least one printable character."
 msgstr "表示可能な文字を最低１文字含める必要があります。"
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "オーナーが最低 1 人は必要です。"
+msgstr "このフィールドには最低 1 文字の英数字を含めてください。"
 
 msgid "Not allowed"
 msgstr "許可されていません"
@@ -1270,13 +1269,11 @@ msgstr "静的テーマ"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "セキュリティテスト"
+msgstr "セキュリティ"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "プライバシーポリシー"
+msgstr "プライバシー"
 
 #, fuzzy
 msgid "Development Practices"
@@ -5121,9 +5118,8 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr "一般的に言えばできません。ただし、レビューが上記のレビューガイドラインに準じていない場合は、「このレビューを報告」をクリックして、審査するようリクエストしてください。アドオンの新しいリリースによって該当しなくなった苦情がレビューに含まれている場合は、削除を検討する可能性があります。"
 
-#, fuzzy
 msgid "User"
-msgstr "ユーザー名"
+msgstr "ユーザー"
 
 msgid "IP Address"
 msgstr "IP アドレス"
@@ -5381,16 +5377,14 @@ msgstr "コンテンツを承認"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "これによって、開発者に通知することなく、最新の公開バージョンの内容を承認したことが記録されます。"
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "アドオンを審査"
+msgstr "レビュー前のアドオン"
 
 msgid "Recommended ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "レーティング審査 ({0})"
+msgstr "その他の保留中のレビュー ({0})"
 
 msgid "Review Log"
 msgstr "審査ログ"
