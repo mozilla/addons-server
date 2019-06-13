@@ -43,11 +43,6 @@
         {% for item in addon_items %}
           <li class="item">
             {{ item }}
-            <span class="activity-timestamp">
-            {% trans user=item.user|user_link, ago=item.created|timesince %}
-            {{ ago }} by {{ user }}
-            {% endtrans %}
-            </span>
           </li>
         {% endfor %}
       </ul>

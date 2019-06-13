@@ -29,15 +29,6 @@
             <span class="action {{ log_action_class(item.action) }}"></span>
             {{ item }}
           </p>
-          <p class="timestamp">
-          {% trans user=item.author_name,
-                   ago=item.created|timesince,
-                   iso=item.created|isotime,
-                   pretty=item.created|datetime %}
-          <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
-          by {{ user }}
-          {% endtrans %}
-          </p>
 
         </div>
         {% endfor %}
