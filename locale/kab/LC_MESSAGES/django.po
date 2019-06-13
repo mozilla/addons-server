@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-13 09:40+0000\n"
+"PO-Revision-Date: 2019-06-13 20:44+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -466,9 +466,8 @@ msgstr "Ajiṭun JWT mačči d ameɣtu."
 msgid "Invalid token or hash."
 msgstr "Yir aɣbaṛ"
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "Tansa imayl"
+msgstr "Tansa imayl ur tettwaf ara."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Urti-agi yessefk ad igber ɣarsum {num} n isekkilen."
@@ -5148,7 +5147,7 @@ msgstr ""
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s ineqqisen ispamen ttwaznen am Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Ɣef izegrar n Mozilla"
