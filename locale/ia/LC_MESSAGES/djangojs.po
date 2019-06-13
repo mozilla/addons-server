@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-13 09:05+0000\n"
+"PO-Revision-Date: 2019-06-13 09:50+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -84,22 +84,22 @@ msgstr "Le validation de tu additivo vadeva foras tempore limite, illo essera re
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Tu additivo esseva validate con nulle errores e {0} aviso."
-msgstr[1] "Tu additivo esseva validate con nulle errores e {0} avisos."
+msgstr[0] "Tu additivo esseva validate sin errores e con {0} aviso."
+msgstr[1] "Tu additivo esseva validate sin errores e con {0} avisos."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Tu additivo esseva validate con nulle errores e {0} message."
-msgstr[1] "Tu additivo esseva validate con nulle errores e {0} messages."
+msgstr[0] "Tu additivo esseva validate sin errores e {0} con message."
+msgstr[1] "Tu additivo esseva validate sin errores e {0} con messages."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "Tu additivo esseva validate con nulle errores o avisos."
+msgstr "Tu additivo esseva validate sin errores o avisos."
 
 msgid "Your submission will be automatically signed."
 msgstr "Tu submission essera signate automaticamente."
 
 msgid "WebExtension upgrade"
-msgstr "Promotion de WebExtension"
+msgstr "Actualisation de WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste processo. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo legate."
