@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-13 10:49+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1846,6 +1846,9 @@ msgstr "Icon must be square (same width and height)."
 
 msgid "There was an error uploading your preview."
 msgstr "There was an error uploading your preview."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
 
 #, python-format
 msgid "Version %s disabled."
@@ -5813,11 +5816,15 @@ msgid "Risk breakdown not available."
 msgstr "Risk breakdown not available."
 
 #, fuzzy
-msgid "Is locked by a reviewer."
+msgid "Is locked by a reviewer"
 msgstr "my add-on is reviewed by an editor"
 
-msgid "Has auto-approval disabled flag set."
+#, fuzzy
+msgid "Has auto-approval disabled flag set"
 msgstr "Has auto-approval disabled flag set."
+
+msgid "Is recommendable"
+msgstr "Is recommendable"
 
 msgid "Type"
 msgstr "Type"

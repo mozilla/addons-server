@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-13 10:49+0000\n"
 "PO-Revision-Date: 2017-04-09 10:50+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -1792,6 +1792,9 @@ msgstr "L’icône doit être carrée (largeur égale à la hauteur)."
 
 msgid "There was an error uploading your preview."
 msgstr "Une erreur est survenue pendant l’envoi de votre aperçu."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -5428,11 +5431,16 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr "Répartition des risques non disponible."
 
-msgid "Is locked by a reviewer."
+#, fuzzy
+msgid "Is locked by a reviewer"
 msgstr "Verrouillée par un évaluateur."
 
-msgid "Has auto-approval disabled flag set."
+#, fuzzy
+msgid "Has auto-approval disabled flag set"
 msgstr "L’approbation automatique est marquée comme désactivée."
+
+msgid "Is recommendable"
+msgstr ""
 
 msgid "Type"
 msgstr "Type"
