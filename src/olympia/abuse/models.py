@@ -173,13 +173,48 @@ class AbuseReport(ModelBase):
         else:
             user_name = 'An anonymous user'
 
-        target_url = ('%s%s' % (settings.SITE_URL, self.target.get_url_path())
-                      if self.target else 'GUID not in database')
-        name = self.target.name if self.target else self.guid
-        msg = u'%s reported abuse for %s (%s).\n\n%s' % (
-            user_name, name, target_url, self.message)
+        # Give a URL pointing to the admin for that report. If there is a
+        # target (add-on or user in database) we can point directly to the
+        # admin url for that object, otherwise we use the admin url of the
+        # report itself.
+        if self.target:
+            target_url = self.target.get_admin_absolute_url()
+            target_name = self.target.name
+        else:
+            target_url = self.get_admin_absolute_url()
+            target_name = self.guid
+        metadata = '\n'.join(
+            ['%s => %s' % (k, v) for k, v in self.metadata.items()]
+        )
+        msg = '%s reported abuse for %s (%s).\n\n%s\n\n%s' % (
+            user_name, target_name, target_url, metadata, self.message)
         send_mail(
             six.text_type(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
+
+    @property
+    def metadata(self):
+        """
+        Dict of metadata about this report. Only includes non-null values.
+        """
+        data = {}
+        field_names = (
+            'client_id', 'addon_name', 'addon_summary', 'addon_version',
+            'addon_signature', 'application', 'application_version',
+            'application_locale', 'operating_system',
+            'operating_system_version', 'install_date', 'reason',
+            'addon_install_origin', 'addon_install_method',
+            'report_entry_point'
+        )
+        for field_name in field_names:
+            value = self.__dict__[field_name]
+            # Only include values that matter.
+            if value is not None:
+                field = self._meta.get_field(field_name)
+                # If it's a choice field, display the "pretty" version.
+                if field.choices:
+                    value = getattr(self, 'get_%s_display' % field_name)()
+                data[field_name] = value
+        return data
 
     def save(self, *args, **kwargs):
         creation = not self.pk

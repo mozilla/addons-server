@@ -6,6 +6,7 @@ from unittest import mock
 import six
 
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
+from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase
 
 
@@ -118,7 +119,7 @@ class TestAbuse(TestCase):
         )
 
     def test_user(self):
-        report = AbuseReport(user_id=999)
+        report = AbuseReport.objects.create(user_id=999)
         report.send()
         assert (
             six.text_type(report) ==
@@ -131,7 +132,8 @@ class TestAbuse(TestCase):
         assert mail.outbox[0].to == [settings.ABUSE_EMAIL]
 
     def test_addon(self):
-        report = AbuseReport(addon_id=3615)
+        addon = Addon.objects.get(pk=3615)
+        report = AbuseReport.objects.create(addon=addon)
         assert (
             six.text_type(report) ==
             u'[Extension] Abuse Report for Delicious Bookmarks')
@@ -139,10 +141,40 @@ class TestAbuse(TestCase):
         assert (
             mail.outbox[0].subject ==
             u'[Extension] Abuse Report for Delicious Bookmarks')
-        assert 'addon/a3615' in mail.outbox[0].body
+        assert addon.get_admin_absolute_url() in mail.outbox[0].body
+
+    def test_addon_send_metadata(self):
+        addon = Addon.objects.get(pk=3615)
+        in_the_past = addon.created
+        report = AbuseReport.objects.create(
+            addon=addon, addon_name='Fôo', addon_summary='Sûmmary',
+            install_date=in_the_past, reason=AbuseReport.REASONS.DAMAGE,
+            addon_signature=AbuseReport.ADDON_SIGNATURES.CURATED)
+        assert report.metadata == {
+            'addon_name': 'Fôo',
+            'addon_signature': 'Curated',
+            'addon_summary': 'Sûmmary',
+            'application': 'Firefox',
+            'install_date': in_the_past,
+            'reason': 'Damages computer and/or data'
+        }
+        report.send()
+        expected_mail_body = (
+            """An anonymous user reported abuse for Delicious Bookmarks (http://testserver/en-US/admin/models/addons/addon/3615/change/).
+
+addon_name => Fôo
+addon_summary => Sûmmary
+addon_signature => Curated
+application => Firefox
+install_date => 2006-10-23 12:57:41
+reason => Damages computer and/or data
+
+""")
+        assert mail.outbox[0].body == expected_mail_body
 
     def test_type_unknown_addon_type(self):
-        report = AbuseReport(addon_id=3615)
+        addon = Addon.objects.get(pk=3615)
+        report = AbuseReport.objects.create(addon=addon)
         report.addon.type = -42  # Obviously that type isn't valid.
         assert report.type == 'Addon'  # Doesn't fail.
 
@@ -158,7 +190,7 @@ class TestAbuse(TestCase):
             u'[Extension] Abuse Report for Delicious Bookmarks')
 
     def test_guid(self):
-        report = AbuseReport(guid='foo@bar.org')
+        report = AbuseReport.objects.create(guid='foo@bar.org')
         report.send()
         assert (
             six.text_type(report) ==
@@ -166,7 +198,10 @@ class TestAbuse(TestCase):
         assert (
             mail.outbox[0].subject ==
             u'[Addon] Abuse Report for foo@bar.org')
-        assert 'GUID not in database' in mail.outbox[0].body
+        assert (
+            'An anonymous user reported abuse for foo@bar.org '
+            in mail.outbox[0].body)
+        assert report.get_admin_absolute_url() in mail.outbox[0].body
 
     @mock.patch('olympia.abuse.models.GeoIP2')
     def test_lookup_country_code_from_ip(self, GeoIP2_mock):
