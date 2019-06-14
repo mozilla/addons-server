@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-14 14:15+0000\n"
+"PO-Revision-Date: 2019-06-14 15:26+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -141,10 +141,10 @@ msgid "Awaiting Review"
 msgstr "În așteptarea revizuirii"
 
 msgid "Rejected"
-msgstr "Respins"
+msgstr "Respinsă"
 
 msgid "Approved"
-msgstr "Aprobat"
+msgstr "Aprobată"
 
 msgid "Added {0}"
 msgstr "Adăugat {0}"
@@ -217,7 +217,7 @@ msgid "Log out"
 msgstr "Deconectare"
 
 msgid "Manage My Submissions"
-msgstr "Gestionarea propunerilor mele"
+msgstr "Gestionează propunerile mele"
 
 msgid "Submit a New Add-on"
 msgstr "Trimite un supliment nou"
@@ -1638,9 +1638,9 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Pe acest site. <span class=\"helptext\"> Propunerea ta va fi listată pe acest site și în Managerul de suplimente Firefox pentru milioane de utilizatori, după ce trece recenzia codului. Actualizările"
-" automate sunt tratate de acest site. Acest supliment va fi, de asemenea, luat în considerare pentru promoțiile și concursurile Mozilla. Este posibilă și distribuirea automată a fișierelor "
-"examinate.</span>"
+"Pe acest site. <span class=\"helptext\">Propunerea ta va fi listată pe acest site și în Managerul de suplimente Firefox pentru milioane de utilizatori, după ce trece examinarea codului. "
+"Actualizările automate sunt gestionate de acest site. Acest supliment va fi, de asemenea, luat în considerare pentru promoțiile și concursurile Mozilla. Este posibilă și distribuirea automată a "
+"fișierelor examinate.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
@@ -1691,10 +1691,10 @@ msgid "All Activity"
 msgstr "Toată activitatea"
 
 msgid "Add-on Updates"
-msgstr "Actualizări supliment"
+msgstr "Actualizările suplimentului"
 
 msgid "Add-on Status"
-msgstr "Stare supliment"
+msgstr "Starea suplimentului"
 
 msgid "User Collections"
 msgstr "Colecțiile utilizatorului"
@@ -1846,7 +1846,7 @@ msgid "Your account needs a display name set so users know who your add-on is co
 msgstr "Trebuie să setezi un nume de afișat pentru ca utilizatorii să știe de unde vine suplimentul. Te rugăm să introduci unul mai jos."
 
 msgid "Accept"
-msgstr "Accept"
+msgstr "Acceptă"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "sau <a href=\"{0}\">Anulează</a>"
@@ -2091,7 +2091,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr "Dacă vrei să soliciți contribuții financiare de la utilizatori, setează o pagină unde să poată contribui."
 
 msgid "Default Locale"
-msgstr "Limba implicită"
+msgstr "Limbă implicită"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "Informațiile despre suplimentul tău sunt afișate în această limbă dacă nu o înlocuiești cu o traducere specifică limbii respective. Are relevanță numai pentru suplimentele listate."
@@ -2810,7 +2810,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "Pentru instrucțiuni detaliate, consultă <a href=\"%(docs_url)s\">documentația API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Ține-ți cheile API secrete și <strong>nu le împărtăși nimănui niciodată</strong>, inclusiv colaboratorii Mozilla."
+msgstr "Ține-ți cheile API secrete și <strong>nu le împărtăși nimănui niciodată</strong>, inclusiv colaboratorilor Mozilla."
 
 msgid "JWT issuer"
 msgstr "Emitent JWT"
@@ -2956,7 +2956,7 @@ msgstr[1] "Selectează <b>până la {0}</b> {1} categorii pentru acest supliment
 msgstr[2] "Selectează <b>până la {0}</b> {1} de categorii pentru acest supliment:"
 
 msgid "End-User License Agreement"
-msgstr "Acord de licență cu utilizatorul final"
+msgstr "Acord de licență pentru utilizatorul final"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -2966,7 +2966,7 @@ msgstr ""
 "numărul de descărcări ale unui supliment. Te rugăm să reții că EULA nu este același lucru cu licența pentru cod, cum ar fi GPL sau MPL. Are relevanță numai pentru suplimentele listate."
 
 msgid "Privacy Policy"
-msgstr "Politica de confidențialitate"
+msgstr "Politică de confidențialitate"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3044,10 +3044,10 @@ msgid "Contribute"
 msgstr "Contribuie"
 
 msgid "Review Add-ons"
-msgstr "Recenzează suplimente"
+msgstr "Examinează suplimente"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Revizorii voluntari ajută la păstrarea suplimentelor sigure și fiabile la utilizare. Se bucură și de beneficii grozave!"
+msgstr "Examinatorii voluntari ajută la păstrarea suplimentelor sigure și fiabile la utilizare. Aceștia se bucură și de beneficii grozave!"
 
 msgid "Join us!"
 msgstr "Alătură-te!"
@@ -3260,10 +3260,10 @@ msgid "Re-enable Version"
 msgstr "Reactivează versiunea"
 
 msgid "Review History"
-msgstr "Istoricul recenziilor"
+msgstr "Istoricul examinărilor"
 
 msgid "Close Review History"
-msgstr "Închide istoricul recenziilor"
+msgstr "Închide istoricul examinărilor"
 
 msgid "Not validated."
 msgstr "Nevalidată."
@@ -3278,7 +3278,7 @@ msgid "Cancel Review Request"
 msgstr "Anulează cererea de revizuire"
 
 msgid "Loading Review History..."
-msgstr "Se încarcă istoricul recenziilor..."
+msgstr "Se încarcă istoricul examinărilor..."
 
 msgid "We had a problem retrieving review notes"
 msgstr "Am întâmpinat o problemă la recuperarea notelor de revizuire"
@@ -3344,7 +3344,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Ștergerea acestei versiuni va șterge definitiv:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Important:</strong> Odată ce o versiune este ștearsă, nu mai poți încărca o versiune nouă cu același număr de versiune."
+msgstr "<strong>Important:</strong> Odată ce o versiune este ștearsă, nu mai poți încărca o versiune nouă cu același număr al versiunii."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Sigur vrei să ștergi această versiune?"

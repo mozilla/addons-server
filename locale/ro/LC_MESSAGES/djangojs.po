@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2018-11-25 09:02+0000\n"
-"Last-Translator: robbp <robbpaun@gmail.com>\n"
+"PO-Revision-Date: 2019-06-14 15:17+0000\n"
+"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -704,7 +704,7 @@ msgid "Changes Saved"
 msgstr "Modificări salvate"
 
 msgid "Enter a new author's email address"
-msgstr "Introdu adresa de e-mail a unui nou autor"
+msgstr "Introdu e-mailul unui nou autor"
 
 msgid "There was an error uploading your file."
 msgstr "A apărut o eroare la încărcarea fișierului tău."
