@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-08 15:36+0000\n"
+"PO-Revision-Date: 2019-06-14 14:15+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2230,10 +2230,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr "Dacă sursa suplimentului poate fi afișată în vizualizatorul nostru online. Este un aspect relevant numai pentru suplimentele listate."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr "Codul-sursă al acestui supliment este vizibil publicului."
+msgstr "Codul sursă al acestui supliment este vizibil publicului."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Nu, codul-sursă al acestui supliment nu este vizibil publicului."
+msgstr "Nu, codul sursă al acestui supliment nu este vizibil publicului."
 
 msgid "Public Stats?"
 msgstr "Statistici publice?"
@@ -2686,7 +2686,7 @@ msgstr "Propunerea ta impune trimiterea codului-sursă."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Codul-sursă trebuie să întrunească <a %(a_attrs)s>cerințele politicii</a>, care includ:"
+msgstr "Codul sursă trebuie să întrunească <a %(a_attrs)s>cerințele politicii</a>, care includ:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Instrucțiuni de compilare pas cu pas pentru crearea unei copii exacte a codului suplimentului."
@@ -2719,7 +2719,7 @@ msgid "or in reviewer notes on the next page (if applicable)."
 msgstr "sau în notele revizorului de pe pagina următoare (dacă este cazul)."
 
 msgid "Upload source code:"
-msgstr "Încarcă codul-sursă:"
+msgstr "Încarcă codul sursă:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Acord de distribuție pentru suplimente"
@@ -5807,7 +5807,7 @@ msgid "Download files"
 msgstr "Descarcă fișierele"
 
 msgid "The developer has provided source code."
-msgstr "Dezvoltatorul a furnizat codul-sursă."
+msgstr "Dezvoltatorul a furnizat codul sursă."
 
 msgid "Weight:"
 msgstr "Greutate:"
