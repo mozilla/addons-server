@@ -44,8 +44,8 @@
           <li class="item">
             {{ item }}
             <span class="activity-timestamp">
-            {% trans user=item.user|user_link, ago=item.created|timesince %}
-            {{ ago }}
+            {% trans user=item.user, ago=item.created|timesince %}
+            {{ ago }} by {{ user }}
             {% endtrans %}
             </span>
           </li>
