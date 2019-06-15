@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-05 17:15+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"PO-Revision-Date: 2019-06-14 08:20+0000\n"
+"Last-Translator: Wannaphong Phatthiyaphaibun <wannaphong@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "ประเภท"
 
 #, fuzzy
 msgid "Users"
@@ -607,7 +607,7 @@ msgid "{addon} {version} review requested."
 msgstr ""
 
 msgid "Review requested"
-msgstr ""
+msgstr "ร้องขอการพิจารณาแล้ว"
 
 msgid "{addon} {version} more information requested."
 msgstr ""
@@ -1636,7 +1636,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "ชื่อที่แสดงผล"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
@@ -1804,7 +1804,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "Review requested."
-msgstr ""
+msgstr "ได้ขอคำวิจารณ์แล้ว"
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -1931,7 +1931,7 @@ msgid "No results found."
 msgstr "ไม่พบผลลัพธ์"
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "ปรับปรุงกิจกรรม"
 
 msgid "Activity"
 msgstr "กิจกรรม"
@@ -2219,7 +2219,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr ""
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Whiteboard"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
