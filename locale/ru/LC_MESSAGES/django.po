@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-16 12:10+0000\n"
+"PO-Revision-Date: 2019-06-16 12:18+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4719,70 +4719,63 @@ msgstr "Рисует виртуальную линейку на любой ве�
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Ощутите преимущества удобного управления паролями."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Увеличивайте изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Приятные глазу страницы {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Настраивайте оттенки светлого и тёмного, чтобы сделать веб-страницы визуально более приятными."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Сосредоточьте внимание {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Заблокируйте отвлекающие сайты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Укажите список веб-сайтов, которые вы хотите заблокировать. Моментальная дисциплина!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Сохраняйте веб-страницы {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Оживите мёртвые веб-страницы {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Находите архивированные, мёртвые или ещё каким-либо образом исчезнувшие веб-страницы."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ищите в Firefox {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Измените внешний вид Firefox {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Легко создавайте свои собственные визуальные темы, чтобы Firefox выглядел так, как вам хочется."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Обновляйте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Сохраняйте заметки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "Открывает боковую панель, которая позволяет создавать заметки для определённых веб-страниц."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Удаляйте рекламу при поиске {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Голосовой поиск {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Используйте распознавание речи для голосового поиска в Google, Yahoo и DuckDuckGo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Контролируйте продуктивность {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Отслеживайте цену товаров {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Получайте уведомления при снижении цены на интересующие вас товары в Amazon, Best Buy, eBay, Home Depot и Walmart."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5263,7 +5256,7 @@ msgstr "Нельзя оставить более одного отзыва дл�
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Некорректный флаг [%s] - должен быть одним из [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Этот рейтинг невозможно отметить, потому что у него нет текста отзыва."
@@ -5489,16 +5482,14 @@ msgstr "Одобрить содержимое"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Проверка дополнений"
+msgstr "Предпроверка дополнений"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Рекомендуемые ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Проверка рейтинга ({0})"
+msgstr "Другие ожидающие проверки ({0})"
 
 msgid "Review Log"
 msgstr "Лог проверки"
@@ -6392,10 +6383,10 @@ msgid "Activity Logs"
 msgstr "Логи активности"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Введите корректный IPv4 или IPv6 адрес, например, 127.0.0.1. Будет преобразован в подсеть с маской /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Вы можете ввести только что-то одно, IP-адрес или подсеть."
 
 msgid "No user with that email."
 msgstr "Нет пользователя с таким почтовым адресом."
@@ -6410,13 +6401,13 @@ msgid "My Favorite Add-ons"
 msgstr "Мои любимые дополнения"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Введите корректную IPv6 или IPv6 CIDR подсеть, например, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Несколько дополнений, нарушающих наши правила, были представлены из вашего местоположения. IP-адрес был заблокирован."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Шаблон адреса электронной почты"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
@@ -6424,7 +6415,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "Адрес электронной почты, используемый вами в аккаунте разработчика, не может быть использован для представления дополнений."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
