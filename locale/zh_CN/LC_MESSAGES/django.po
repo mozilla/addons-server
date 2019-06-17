@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-05 14:44+0000\n"
-"Last-Translator: passionforlife <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2019-06-17 00:21+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -3704,7 +3704,7 @@ msgstr "使用伪装身份浏览网页——甚至好像您从其他国家/地�
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "访问您喜爱的网站、最近关闭的标签页等等——来自一个华丽的磁贴布局。"
+msgstr "用华丽的磁贴呈现您喜爱的网站、最近关闭的标签页等等，好看又便捷。"
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4548,7 +4548,7 @@ msgstr "网页去芜存菁。阅读更清晰、更轻松。"
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "屏蔽广告及更多 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
