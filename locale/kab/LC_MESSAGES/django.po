@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-13 20:44+0000\n"
+"PO-Revision-Date: 2019-06-18 14:41+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -41,11 +41,11 @@ msgid "Reporter's country"
 msgstr "Tamurt n umazan"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Tukkist seg yizen"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
+msgstr "Asulay %d n yineqqisen yettwafernen ttwaceṛḍen d imeɣta."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
@@ -68,7 +68,7 @@ msgid "No links are allowed."
 msgstr "Iseɣwan gedlen."
 
 msgid "This display name cannot be used."
-msgstr "Isem-agi ur yettwaseqdac ara."
+msgstr "Isem-a ur yettwaseqdac ara."
 
 #, fuzzy
 msgid "This reviewer name cannot be used."
