@@ -1680,6 +1680,7 @@ DRF_API_GATES = {
         'del-version-license-is-custom',
         'del-ratings-flags',
         'activity-user-shim',
+        'autocomplete-sort-param',
     ),
     'v4': (
         'l10n_flat_input_output',

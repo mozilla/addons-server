@@ -2012,6 +2012,31 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert 'prev' not in data
         assert len(data['results']) == 10
 
+    def test_sort_ignored(self):
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', average_daily_users=100)
+        addon2 = addon_factory(
+            slug='my-second-addon', name=u'My second Addôn',
+            average_daily_users=200)
+        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        self.refresh()
+
+        data = self.perform_search(self.url, {'q': 'my', 'sort': 'users'})
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 2
+
+        assert {itm['id'] for itm in data['results']} == {addon2.pk, addon.pk}
+
+        # check the sort isn't ignored when the gate is enabled
+        overridden_api_gates = {
+            'v5': ('autocomplete-sort-param',)}
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            data = self.perform_search(self.url, {'q': 'my', 'sort': 'users'})
+            assert {itm['id'] for itm in data['results']} == {
+                addon.pk, addon2.pk}
+
 
 class TestAddonFeaturedView(TestCase):
     client_class = APITestClient

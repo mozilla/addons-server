@@ -10,6 +10,7 @@ from rest_framework.filters import BaseFilterBackend
 from waffle import switch_is_active
 
 from olympia import amo
+from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
@@ -856,14 +857,15 @@ class SortingFilter(BaseFilterBackend):
         'users': '-average_daily_users',
     }
 
+    def get_sort_params(self, request):
+        sort = request.GET.get('sort')
+        return sort.split(',') if sort else []
+
     def filter_queryset(self, request, qs, view):
         search_query_param = request.GET.get('q')
-        sort_param = request.GET.get('sort')
-        split_sort_params = None
+        split_sort_params = self.get_sort_params(request)
 
-        if sort_param is not None:
-            split_sort_params = sort_param.split(',')
-
+        if split_sort_params:
             # Random sort is a bit special.
             # First, it can't be combined with other sorts.
             if 'random' in split_sort_params and len(split_sort_params) > 1:
@@ -875,7 +877,7 @@ class SortingFilter(BaseFilterBackend):
             # documents we'll have to apply the random score to) and a search
             # query is absent (to prevent clashing with the score functions
             # coming from a search query).
-            if sort_param == 'random':
+            if split_sort_params == ['random']:
 
                 is_random_sort_available = (
                     (AddonFeaturedQueryParam.query_param in request.GET or
@@ -922,3 +924,10 @@ class SortingFilter(BaseFilterBackend):
             raise serializers.ValidationError('Invalid "sort" parameter.')
 
         return qs.sort(*order_by)
+
+
+class AutoCompleteSortFilter(SortingFilter):
+    def get_sort_params(self, request):
+        if not is_gate_active(request, 'autocomplete-sort-param'):
+            return []
+        return super().get_sort_params(request)

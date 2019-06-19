@@ -31,6 +31,7 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
     AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
     AddonCategoryQueryParam, AddonGuidQueryParam, AddonTypeQueryParam,
+    AutoCompleteSortFilter,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
 from olympia.translations.query import order_by_translation
@@ -383,6 +384,10 @@ class AddonSearchView(ListAPIView):
 class AddonAutoCompleteSearchView(AddonSearchView):
     pagination_class = None
     serializer_class = ESAddonAutoCompleteSerializer
+    filter_backends = [
+        ReviewedContentFilter, SearchQueryFilter, SearchParameterFilter,
+        AutoCompleteSortFilter,
+    ]
 
     def get_queryset(self):
         # Minimal set of fields from ES that we need to build our results.
