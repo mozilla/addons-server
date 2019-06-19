@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-05 17:03+0000\n"
+"PO-Revision-Date: 2019-06-19 16:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4219,7 +4219,7 @@ msgstr "Elimine a formatação desnecessária e copie somente o texto simples."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr "Com um simples clique, traduza uma página da web inteira para o idioma se sua escolha."
+msgstr "Traduza uma página web inteira para seu idioma preferido — com o clique de um botão."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4227,7 +4227,7 @@ msgstr "Extrair links {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr "Abra imediatamente todos os links de uma página da web em abas novas."
+msgstr "Abra imediatamente todos os links de uma página web em novas abas."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
