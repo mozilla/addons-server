@@ -117,6 +117,8 @@ for autocomplete though, there are a couple key differences:
     fields, and passing ``page_size`` or ``page`` has no effect, a maximum of 10
     results will be returned at all times.
   - Only a subset of fields are returned.
+  - ``sort`` is not supported. Sort order is always ``relevance`` if ``q`` is
+    provided, or the :ref:`search default <addon-search-sort>` otherwise.
 
 .. http:get:: /api/v4/addons/autocomplete/
 
@@ -129,7 +131,6 @@ for autocomplete though, there are a couple key differences:
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
-    :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``is_recommended``, ``name``, ``type`` and ``url`` fields are supported though.
 
 
