@@ -160,6 +160,7 @@ def delete_preview_files(id, **kw):
 
 
 @task(acks_late=True)
+@use_primary_db
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_tags, attach_translations)
@@ -168,6 +169,7 @@ def index_addons(ids, **kw):
 
 
 @task
+@use_primary_db
 def unindex_addons(ids, **kw):
     for addon in ids:
         log.info('Removing addon [%s] from search index.' % addon)
