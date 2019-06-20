@@ -757,6 +757,28 @@ class TestActivityFeed(TestCase):
         assert self.action_user.reviewer_name not in content
         assert self.action_user.name in content
 
+    def test_addons_dashboard_name(self):
+        self.add_log()
+        res = self.client.get(reverse('devhub.addons'))
+        doc = pq(res.content)
+        timestamp = doc('.recent-activity li.item span.activity-timestamp')
+        assert len(timestamp) == 1
+        assert self.action_user.name
+        assert self.action_user.name in timestamp.html()
+        assert '<a href=' not in timestamp.html()
+
+    def test_addons_dashboard_reviewer_name(self):
+        self.action_user.update(reviewer_name='bob')
+        self.add_log(action=amo.LOG.APPROVE_VERSION)
+        res = self.client.get(reverse('devhub.addons'))
+        doc = pq(res.content)
+        timestamp = doc('.recent-activity li.item span.activity-timestamp')
+        assert len(timestamp) == 1
+        assert self.action_user.name
+        assert self.action_user.name not in timestamp.html()
+        assert self.action_user.reviewer_name in timestamp.html()
+        assert '<a href=' not in timestamp.html()
+
 
 class TestAPIAgreement(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
