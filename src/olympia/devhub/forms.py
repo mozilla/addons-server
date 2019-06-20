@@ -821,8 +821,8 @@ class SingleCategoryForm(forms.Form):
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
         # Hack because we know this is only used for Static Themes that only
-        # support Firefox.  Hoping to unify per-app categories in the meantime.
-        app = amo.FIREFOX
+        # support Thunderbird.  Hoping to unify per-app categories in the meantime.
+        app = amo.THUNDERBIRD
         sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
                              key=lambda slug_cat: slug_cat[0])
         self.fields['category'].choices = [

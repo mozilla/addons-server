@@ -23,7 +23,7 @@ class FIREFOX(App):
     pretty = _(u'Firefox')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA, ADDON_STATICTHEME]
+             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
@@ -47,7 +47,7 @@ class THUNDERBIRD(App):
     pretty = _(u'Thunderbird')
     browser = False
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP,
-             ADDON_PERSONA]
+             ADDON_PERSONA, ADDON_STATICTHEME]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
     min_display_version = 1.0
     user_agent_string = 'Thunderbird'
@@ -168,7 +168,7 @@ APP_USAGE = (FIREFOX, THUNDERBIRD, ANDROID, SEAMONKEY)
 # permanently and removed this constant can go away and APP_USAGE can be
 # changed to only (ANDROID, FIREFOX).
 APP_USAGE_FIREFOXES_ONLY = (THUNDERBIRD, SEAMONKEY)
-APP_USAGE_STATICTHEME = (FIREFOX,)
+APP_USAGE_STATICTHEME = (THUNDERBIRD,)
 APPS = {app.short: app for app in APP_USAGE}
 APPS_ALL = {app.id: app for app in APP_USAGE + (MOZILLA, SUNBIRD, MOBILE)}
 APP_IDS = {app.id: app for app in APP_USAGE}

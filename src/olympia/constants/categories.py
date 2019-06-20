@@ -90,23 +90,6 @@ CATEGORIES = {
             'retro': StaticCategory(id=31, name=_(u'Retro')),
             'sports': StaticCategory(id=26, name=_(u'Sports'))
         },
-        ADDON_STATICTHEME: {
-            'abstract': StaticCategory(id=300, name=_(u'Abstract')),
-            'causes': StaticCategory(id=320, name=_(u'Causes')),
-            'fashion': StaticCategory(id=324, name=_(u'Fashion')),
-            'film-and-tv': StaticCategory(id=326, name=_(u'Film and TV')),
-            'firefox': StaticCategory(id=308, name=_(u'Firefox')),
-            'foxkeh': StaticCategory(id=310, name=_(u'Foxkeh')),
-            'holiday': StaticCategory(id=328, name=_(u'Holiday')),
-            'music': StaticCategory(id=322, name=_(u'Music')),
-            'nature': StaticCategory(id=302, name=_(u'Nature')),
-            'other': StaticCategory(id=314, name=_(u'Other'), weight=333),
-            'scenery': StaticCategory(id=306, name=_(u'Scenery')),
-            'seasonal': StaticCategory(id=312, name=_(u'Seasonal')),
-            'solid': StaticCategory(id=318, name=_(u'Solid')),
-            'sports': StaticCategory(id=304, name=_(u'Sports')),
-            'websites': StaticCategory(id=316, name=_(u'Websites'))
-        },
         ADDON_DICT: {
             'general': StaticCategory(id=95, name=_(u'General'))
         },
@@ -197,6 +180,21 @@ CATEGORIES = {
             'miscellaneous': StaticCategory(id=60, name=_(u'Miscellaneous')),
             'modern': StaticCategory(id=63, name=_(u'Modern')),
             'nature': StaticCategory(id=65, name=_(u'Nature'))
+        },
+        ADDON_STATICTHEME: {
+            'abstract': StaticCategory(id=300, name=_(u'Abstract')),
+            'causes': StaticCategory(id=320, name=_(u'Causes')),
+            'fashion': StaticCategory(id=324, name=_(u'Fashion')),
+            'film-and-tv': StaticCategory(id=326, name=_(u'Film and TV')),
+            'holiday': StaticCategory(id=328, name=_(u'Holiday')),
+            'music': StaticCategory(id=322, name=_(u'Music')),
+            'nature': StaticCategory(id=302, name=_(u'Nature')),
+            'other': StaticCategory(id=314, name=_(u'Other'), weight=333),
+            'scenery': StaticCategory(id=306, name=_(u'Scenery')),
+            'seasonal': StaticCategory(id=312, name=_(u'Seasonal')),
+            'solid': StaticCategory(id=318, name=_(u'Solid')),
+            'sports': StaticCategory(id=304, name=_(u'Sports')),
+            'websites': StaticCategory(id=316, name=_(u'Websites'))
         },
         ADDON_DICT: {
             'general': StaticCategory(id=97, name=_(u'General'))

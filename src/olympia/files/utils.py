@@ -424,9 +424,9 @@ class ManifestJSONExtractor(object):
                 (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
             )
         elif type_ == amo.ADDON_STATICTHEME:
-            # Static themes are only compatible with Firefox desktop >= 53.
+            # Static themes are only compatible with Thunderbird >= 60.
             apps = (
-                (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
+                (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD),
             )
         elif type_ == amo.ADDON_DICT:
             # WebExt dicts are only compatible with Thunderbird >= 60.5.
@@ -444,9 +444,9 @@ class ManifestJSONExtractor(object):
                 vint(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID))
         )
 
-        if self.guid is None and doesnt_support_no_id:
+        if self.guid is None:
             raise forms.ValidationError(
-                ugettext('GUID is required for Firefox 47 and below.')
+                ugettext('GUID is required for Thunderbird Mail Extensions, including Themes.')
             )
 
         # If a minimum strict version is specified, it needs to be higher
