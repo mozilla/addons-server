@@ -506,7 +506,6 @@ class TestReviewerScore(TestCase):
             amo.ADDON_LPADDON: 'LP',
             amo.ADDON_PLUGIN: 'ADDON',
             amo.ADDON_API: 'ADDON',
-            amo.ADDON_PERSONA: 'PERSONA',
             amo.ADDON_STATICTHEME: 'STATICTHEME',
         }
         statuses = {
@@ -781,9 +780,10 @@ class TestReviewerScore(TestCase):
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
         self._give_points(
-            user=user2, addon=amo.tests.addon_factory(type=amo.ADDON_PERSONA))
+            user=user2, addon=amo.tests.addon_factory(
+                type=amo.ADDON_STATICTHEME))
         leaders = ReviewerScore.get_leaderboards(
-            self.user, addon_type=amo.ADDON_PERSONA)
+            self.user, addon_type=amo.ADDON_STATICTHEME)
         assert len(leaders['leader_top']) == 1
         assert leaders['leader_top'][0]['user_id'] == user2.id
 
@@ -824,7 +824,7 @@ class TestReviewerScore(TestCase):
             self._give_points(user=u)
         # Last user gets lower points by reviewing a persona.
         addon = self.addon
-        addon.type = amo.ADDON_PERSONA
+        addon.type = amo.ADDON_STATICTHEME
         self._give_points(user=last_user, addon=addon)
         leaders = ReviewerScore.get_leaderboards(last_user)
         assert leaders['user_rank'] == 6
