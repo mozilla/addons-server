@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-14 10:40+0000\n"
+"PO-Revision-Date: 2019-06-20 14:29+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -35,13 +35,13 @@ msgid "minimum reports count (grouped by guid)"
 msgstr "nombre de rapports minimum (groupés par guid)"
 
 msgid "creation date"
-msgstr ""
+msgstr "date de création"
 
 msgid "User / Add-on"
-msgstr ""
+msgstr "Utilisateur / Module complémentaire"
 
 msgid "Distribution"
-msgstr ""
+msgstr "Distribution"
 
 msgid "Reporter's country"
 msgstr "Pays de la personne qui signale un problème"
@@ -51,14 +51,14 @@ msgstr "Extrait du message"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "Les %d rapports sélectionnés ont été marqués comme valides."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
 msgstr "Les %d rapports sélectionnés ont été marqués comme suspects."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Marquer les rapports d’abus sélectionnés comme suspects"
 
 msgid "Modified on:"
 msgstr "Dernière modification le :"
@@ -1327,13 +1327,13 @@ msgid "Persona"
 msgstr "Persona"
 
 msgid "Security"
-msgstr ""
+msgstr "Sécurité"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Confidentialité"
 
 msgid "Development Practices"
-msgstr ""
+msgstr "Pratiques de développement"
 
 msgid "No Reputation"
 msgstr "Aucune évaluation"
@@ -1866,7 +1866,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "J’ai lu et j’accepte cet accord ainsi que les règles et principes"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Un nom à afficher est nécessaire pour compléter votre compte afin que les utilisateurs et utilisatrices sachent qui a réalisé votre module complémentaire. Veuillez en saisir un ci-dessous."
 
 msgid "Accept"
 msgstr "Accepter"
@@ -1875,7 +1875,7 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ou <a href=\"{0}\">Annuler</a>"
 
 msgid "More information on Developer Accounts"
-msgstr ""
+msgstr "Informations supplémentaires sur les comptes de développeur"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -4691,7 +4691,7 @@ msgstr "Une extension astucieuse qui vous aide à comprendre rapidement ce que v
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vérifiez automatiquement la grammaire et l’orthographe {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4699,7 +4699,7 @@ msgstr "Améliorez votre expérience de lecture {start_sub_heading}avec {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Retirez les éléments superflus qui entourent le texte sur les pages web. Rendez votre lecture plus claire et facile."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4707,7 +4707,7 @@ msgstr "Bloquez les publicités et bien d’autres choses {start_sub_heading}ave
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
-msgstr ""
+msgstr "Bloquez non seulement les publicités ennuyeuses, mais protégez-vous contre les logiciels malveillants et le pistage publicitaire."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4719,31 +4719,31 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Enregistrez facilement des images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "Récupérez simplement des images dans votre onglet actuel."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Mesurez des pages web {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Déployez une règle numérique sur n’importe quelle page web pour mesurer la hauteur, la largeur et l’alignement des éléments de la page."
 
 #. editorial content for the discovery pane.
 msgid "Get the benefits of strong password management."
-msgstr ""
+msgstr "Bénéficiez des avantages d’une gestion de mots de passe forts."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Des pages agréables à regarder {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Personnalisez les teintes claires et sombres pour rendre les pages web plus agréables visuellement."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4756,27 +4756,27 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ressuscitez des pages mortes {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Retrouvez des pages web archivées, mortes ou disparues."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Changez l’apparence de Firefox {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Concevez facilement vos propres thèmes visuels pour que Firefox ait l’apparence que vous voulez."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Prenez des notes {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr ""
+msgstr "L’extension affiche une barre latérale qui vous permet de prendre des notes liées à des pages web précises."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
