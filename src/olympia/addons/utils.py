@@ -191,13 +191,19 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
         "manifest_version": 2,
         "name": unicode(lwt.name or lwt.slug),
         "version": '1.0',
+        "applications": {
+            "gecko": {
+                "id": generate_addon_guid(),
+                "strict_min_version": "60.0"
+            }
+        },
         "theme": {
             "images": {
-                "headerURL": lwt.persona.header
+                "theme_frame": lwt.persona.header
             },
             "colors": {
-                "accentcolor": accentcolor,
-                "textcolor": textcolor
+                "frame": accentcolor,
+                "tab_background_text": textcolor
             }
         }
     }
