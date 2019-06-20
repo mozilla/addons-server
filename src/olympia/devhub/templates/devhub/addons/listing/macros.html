@@ -4,8 +4,6 @@
     {% if is_complete %}<a href="{{ addon.get_dev_url() }}">{% endif %}
     {% if addon.type == amo.ADDON_STATICTHEME and addon.current_previews %}
       {% set icon_url = addon.current_previews[0].thumbnail_url %}
-    {% elif addon.type == amo.ADDON_PERSONA %}
-      {% set icon_url = addon.persona.preview_url %}
     {% else %}
       {% set icon_url = addon.get_icon_url(64) %}
     {% endif %}

@@ -19,38 +19,11 @@
           </div>
         {% endif %}
         <ul class="item-details">
-          {% if addon.is_persona() %}
-            {# L10n: {0} is a date. #}
-            <li class="date-created">{{ _('<strong>Created:</strong> {0}'|format_html(addon.created|date)) }}</li>
-            <li id="version-status-item">
-              <strong>{{ _('Status:') }}</strong>
-              {% if addon.disabled_by_user %}
-                <span class="{{ status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
-              {% else %}
-                <span class="{{ status_class(addon) }}">
-                  <b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
-              {% endif %}
-            </li>
-            {% with position = get_position(addon) %}
-              {% if position.pos and position.total %}
-                <li class="queue-position">
-                  {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
-                    <b>Queue position:</b> {{ pos }} of {{ total }}
-                  {% endtrans %}
-                </li>
-              {% endif %}
-            {% endwith %}
-          {% else %}
-            {% include "devhub/includes/addon_details.html" %}
-          {% endif %}
+          {% include "devhub/includes/addon_details.html" %}
         </ul>
       {% endif %}
       <div class="item-actions">
-        {% if addon.is_persona() %}
-          {% include "devhub/addons/listing/item_actions_theme.html" %}
-        {% else %}
-          {% include "devhub/addons/listing/item_actions.html" %}
-        {% endif %}
+        {% include "devhub/addons/listing/item_actions.html" %}
       </div>
     </div>
   </div>

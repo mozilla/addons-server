@@ -95,13 +95,13 @@ class ThemeFilter(BaseFilter):
 def addon_listing(request, theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
-        qs = request.user.addons.filter(
-            type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
+        qs = Addon.objects.filter(
+            authors=request.user, type=amo.ADDON_STATICTHEME)
         filter_cls = ThemeFilter
         default = 'created'
     else:
         qs = Addon.objects.filter(authors=request.user).exclude(
-            type__in=[amo.ADDON_PERSONA, amo.ADDON_STATICTHEME])
+            type=amo.ADDON_STATICTHEME)
         filter_cls = AddonFilter
         default = 'updated'
     filter_ = filter_cls(request, qs, 'sort', default)
@@ -332,15 +332,9 @@ def edit(request, addon_id, addon):
     return render(request, 'devhub/addons/edit.html', data)
 
 
-@dev_required(theme=True)
-def edit_theme(request, addon_id, addon, theme=False):
-    return render(request, 'devhub/personas/edit.html', {
-        'addon': addon, 'persona': addon.persona})
-
-
-@dev_required(owner_for_post=True, theme=True)
+@dev_required(owner_for_post=True)
 @post_required
-def delete(request, addon_id, addon, theme=False):
+def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
         msg = ugettext(
@@ -348,7 +342,7 @@ def delete(request, addon_id, addon, theme=False):
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
-    any_theme = theme or addon.type == amo.ADDON_STATICTHEME
+    any_theme = addon.type == amo.ADDON_STATICTHEME
     form = forms.DeleteForm(request.POST, addon=addon)
     if form.is_valid():
         reason = form.cleaned_data.get('reason', '')
@@ -364,8 +358,7 @@ def delete(request, addon_id, addon, theme=False):
             ugettext('URL name was incorrect. Theme was not deleted.')
             if any_theme else
             ugettext('URL name was incorrect. Add-on was not deleted.'))
-        return redirect(
-            addon.get_dev_url() if theme else addon.get_dev_url('versions'))
+        return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required
@@ -844,14 +837,11 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
 
 @never_cache
-@dev_required(theme=True)
+@dev_required
 @json_view
-def image_status(request, addon_id, addon, theme=False):
+def image_status(request, addon_id, addon):
     # Default icon needs no checking.
     if not addon.icon_type or addon.icon_type.split('/')[0] == 'icon':
-        icons = True
-    # Persona icon is handled differently.
-    elif addon.type == amo.ADDON_PERSONA:
         icons = True
     else:
         icons = storage.exists(os.path.join(addon.get_icon_dir(),
@@ -880,7 +870,6 @@ def upload_image(request, addon_id, addon, upload_type):
                 fd.write(chunk)
 
         is_icon = upload_type == 'icon'
-        is_persona = upload_type.startswith('persona_')
         is_preview = upload_type == 'preview'
         image_check = amo_utils.ImageCheck(upload_preview)
         is_animated = image_check.is_animated()  # will also cache .is_image()
@@ -900,8 +889,6 @@ def upload_image(request, addon_id, addon, upload_type):
 
         if is_icon:
             max_size = settings.MAX_ICON_UPLOAD_SIZE
-        elif is_persona:
-            max_size = settings.MAX_PERSONA_UPLOAD_SIZE
         else:
             max_size = None
 
@@ -910,20 +897,6 @@ def upload_image(request, addon_id, addon, upload_type):
                 errors.append(
                     ugettext('Please use images smaller than %dMB.')
                     % (max_size // 1024 // 1024))
-            if is_persona:
-                errors.append(
-                    ugettext('Images cannot be larger than %dKB.')
-                    % (max_size // 1024))
-
-        if image_check.is_image() and is_persona:
-            persona, img_type = upload_type.split('_')  # 'header' or 'footer'
-            expected_size = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
-            actual_size = image_check.size
-            if actual_size != expected_size:
-                # L10n: {0} is an image width (in pixels), {1} is a height.
-                errors.append(ugettext('Image must be exactly {0} pixels '
-                                       'wide and {1} pixels tall.')
-                              .format(expected_size[0], expected_size[1]))
 
         content_waffle = waffle.switch_is_active('content-optimization')
         if image_check.is_image() and content_waffle and is_preview:
@@ -1617,9 +1590,9 @@ def submit_version_finish(request, addon_id, addon, version_id):
     return _submit_finish(request, addon, version)
 
 
-@dev_required(theme=True)
+@dev_required
 @post_required
-def remove_locale(request, addon_id, addon, theme):
+def remove_locale(request, addon_id, addon):
     POST = request.POST
     if 'locale' in POST and POST['locale'] != addon.default_locale:
         addon.remove_locale(POST['locale'])

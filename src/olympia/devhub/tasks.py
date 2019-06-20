@@ -26,7 +26,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, Persona, Preview
+from olympia.addons.models import Addon, Preview
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.urlresolvers import reverse
@@ -267,7 +267,7 @@ def handle_upload_validation_result(
     upload = FileUpload.objects.get(pk=upload_pk)
 
     # Check for API keys in submissions.
-    # Make sure it is extension-like, e.g. no LWT or search plugin
+    # Make sure it is extension-like, e.g. no search plugin
     try:
         results = check_for_api_keys_in_file(results=results, upload=upload)
     except (ValidationError, BadZipfile, IOError):
@@ -532,30 +532,6 @@ def pngcrush_existing_preview(preview_id):
     # We don't need a hash, previews are cachebusted with their modified date,
     # which does not change often. @set_modified_on will do that for us
     # automatically if the task was called with set_modified_on_obj=[preview].
-
-
-@task
-@use_primary_db
-@set_modified_on
-def pngcrush_existing_theme(persona_id):
-    """
-    Call pngcrush_image() on the images of a given Persona object.
-    """
-    log.info('Crushing images for Persona %s', persona_id)
-    persona = Persona.objects.get(pk=persona_id)
-    # Only do this on "new" Personas with persona_id = 0, the older ones (with
-    # a persona_id) have jpeg and not pngs.
-    if not persona.is_new():
-        log.info('Aborting images crush for Persona %s (too old).', persona_id)
-        return
-    pngcrush_image(persona.preview_path)
-    # No need to crush thumb_path, it's the same as preview_path for "new"
-    # Personas.
-    pngcrush_image(persona.icon_path)
-    if persona.header:
-        pngcrush_image(persona.header_path)
-    if persona.footer:
-        pngcrush_image(persona.footer_path)
 
 
 @task

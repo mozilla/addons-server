@@ -9,16 +9,6 @@ from olympia.lib.misc.urlconf_decorator import decorate
 from . import views
 
 
-# These will all start with /theme/<slug>/
-theme_detail_patterns = [
-    url(r'^$', lambda r,
-        addon_id: redirect('devhub.themes.edit', addon_id, permanent=True)),
-    url(r'^delete$', views.delete, name='devhub.themes.delete'),
-    url(r'^edit$', views.edit_theme, name='devhub.themes.edit'),
-    url(r'^rmlocale$', views.remove_locale,
-        name='devhub.themes.remove-locale'),
-]
-
 # These will all start with /addon/<addon_id>/
 detail_patterns = [
     # Redirect to the edit page from the base.
@@ -186,10 +176,9 @@ urlpatterns = decorate(use_primary_db, [
 
     url(r'^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
-    # Themes submission.
+    # Old LWT Theme submission.
     url(r'^theme/submit/?$', lambda r: redirect('devhub.submit.agreement'),
         name='devhub.themes.submit'),
-    url(r'^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     # Add-on SDK page
     url(r'builder$', lambda r: redirect(views.MDN_BASE)),

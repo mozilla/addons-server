@@ -135,12 +135,6 @@ class TestDashboard(HubTest):
     def test_themes(self):
         """Check themes show on dashboard."""
         # Create 2 themes.
-        lwts = []
-        for x in range(2):
-            addon = addon_factory(
-                type=amo.ADDON_PERSONA, users=[self.user_profile])
-            lwts.append(addon)
-        # And 2 static themes.
         staticthemes = []
         for x in range(2):
             addon = addon_factory(
@@ -149,31 +143,11 @@ class TestDashboard(HubTest):
             staticthemes.append(addon)
         response = self.client.get(self.themes_url)
         doc = pq(response.content)
-        assert len(doc('.item .item-info')) == 4
-        assert len(doc('.item .info.persona')) == 2
+        assert len(doc('.item .item-info')) == 2
         assert len(doc('.item .info.statictheme')) == 2
-        for addon in lwts:
-            assert addon.persona.preview_url in [
-                img.attrib['src'] for img in doc('.item .info.persona h3 img')]
         for addon in staticthemes:
             assert addon.current_previews[0].thumbnail_url in [
                 img.attrib['src'] for img in doc('.info.statictheme h3 img')]
-
-    @override_switch('disable-lwt-uploads', active=False)
-    def test_disable_lwt_uploads_waffle_disabled(self):
-        response = self.client.get(self.themes_url)
-        doc = pq(response.content)
-        assert doc('.submit-theme.submit-cta a').attr('href') == (
-            reverse('devhub.themes.submit')
-        )
-
-    @override_switch('disable-lwt-uploads', active=True)
-    def test_disable_lwt_uploads_waffle_enabled(self):
-        response = self.client.get(self.themes_url)
-        doc = pq(response.content)
-        assert doc('.submit-theme.submit-cta a').attr('href') == (
-            reverse('devhub.submit.agreement')
-        )
 
     def test_show_hide_statistics_and_new_version_for_disabled(self):
         # Not disabled: show statistics and new version links.
@@ -239,25 +213,6 @@ class TestDashboard(HubTest):
         assert elm.remove('strong').text() == (
             trim_whitespace(
                 format_date(self.addon.last_updated)))
-
-    def test_no_sort_updated_filter_for_themes(self):
-        # Create a theme.
-        addon = addon_factory(type=amo.ADDON_PERSONA)
-        addon.addonuser_set.create(user=self.user_profile)
-
-        # There's no "updated" sort filter, so order by the default: "Created".
-        response = self.client.get(self.themes_url + '?sort=updated')
-        doc = pq(response.content)
-        assert doc('#sorter li.selected').text() == 'Created'
-        sorts = doc('#sorter li a.opt')
-        assert not any('?sort=updated' in a.attrib['href'] for a in sorts)
-
-        # No "updated" in details.
-        assert doc('.item-details .date-updated') == []
-        # There's no "last updated" for themes, so always display "created".
-        elm = doc('.item-details .date-created')
-        assert elm.remove('strong').text() == (
-            trim_whitespace(format_date(addon.created)))
 
     def test_purely_unlisted_addon_are_not_shown_as_incomplete(self):
         self.make_addon_unlisted(self.addon)
@@ -470,28 +425,6 @@ class TestDelete(TestCase):
         assert self.get_addon().exists()
         self.assert3xx(response, self.get_addon()[0].get_dev_url('versions'))
 
-    def test_post_lwtheme(self):
-        theme = addon_factory(
-            name='xpi name', type=amo.ADDON_PERSONA, slug='theme-slug',
-            users=[self.user])
-        response = self.client.post(
-            theme.get_dev_url('delete'), {'slug': 'theme-slug'}, follow=True)
-        assert pq(response.content)('.notification-box').text() == (
-            'Theme deleted.')
-        assert not Addon.objects.filter(id=theme.id).exists()
-        self.assert3xx(response, reverse('devhub.themes'))
-
-    def test_post_lwtheme_wrong_slug(self):
-        theme = addon_factory(
-            name='xpi name', type=amo.ADDON_PERSONA, slug='theme-slug',
-            users=[self.user])
-        response = self.client.post(
-            theme.get_dev_url('delete'), {'slug': 'addon-slug'}, follow=True)
-        assert pq(response.content)('.notification-box').text() == (
-            'URL name was incorrect. Theme was not deleted.')
-        assert Addon.objects.filter(id=theme.id).exists()
-        self.assert3xx(response, theme.get_dev_url())
-
     def test_post_statictheme(self):
         theme = addon_factory(
             name='xpi name', type=amo.ADDON_STATICTHEME, slug='stheme-slug',
@@ -556,25 +489,6 @@ class TestHome(TestCase):
 
         href = addon_list.find('.DevHub-MyAddons-item-versions a').attr('href')
         assert href == self.addon.get_dev_url('versions')
-
-    def test_my_addons_persona_versions_link(self):
-        """References https://github.com/mozilla/addons-server/issues/4283
-
-        Make sure that a call to a persona doesn't result in a 500."""
-        assert self.client.login(email='del@icio.us')
-        user_profile = UserProfile.objects.get(email='del@icio.us')
-        addon_factory(type=amo.ADDON_PERSONA, users=[user_profile])
-
-        doc = self.get_pq()
-        addon_list = doc('.DevHub-MyAddons-list')
-        assert len(addon_list.find('.DevHub-MyAddons-item')) == 2
-
-        span_text = (
-            addon_list.find('.DevHub-MyAddons-item')
-            .eq(0)
-            .find('span.DevHub-MyAddons-VersionStatus').text())
-
-        assert span_text == 'Approved'
 
     def test_my_addons(self):
         statuses = [
@@ -1717,18 +1631,11 @@ class TestRedirects(TestCase):
         self.assert3xx(
             response, reverse('devhub.addons.versions', args=['a3615']), 301)
 
-    @override_switch('disable-lwt-uploads', active=True)
     def test_lwt_submit_redirects_to_addon_submit(self):
         url = reverse('devhub.themes.submit')
         response = self.client.get(url, follow=True)
         self.assert3xx(
             response, reverse('devhub.submit.distribution'), 302)
-
-    @override_switch('disable-lwt-uploads', active=False)
-    def test_lwt_submit_no_redirect_when_waffle_offf(self):
-        url = reverse('devhub.themes.submit')
-        response = self.client.get(url, follow=True)
-        assert response.status_code == 200
 
 
 class TestHasCompleteMetadataRedirects(TestCase):
