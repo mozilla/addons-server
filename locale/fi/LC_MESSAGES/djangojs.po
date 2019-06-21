@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-02-12 08:09+0000\n"
-"Last-Translator: Mikko <mikko.alafossi@gmail.com>\n"
+"PO-Revision-Date: 2019-06-21 13:47+0000\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -248,7 +248,7 @@ msgid "Daily Users"
 msgstr "Päivittäiset käyttäjät"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Summa, USD"
 
 msgid "Number of Contributions"
 msgstr ""
@@ -836,11 +836,11 @@ msgstr[1] "{0} varoitusta"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ilmoitus"
+msgstr[1] "{0} ilmoitusta"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Tarkistusta ei voitu suorittaa, tai sen suorituksessa ilmeni virheitä"
 
 msgid "Internal server error"
 msgstr "Palvelimen sisäinen virhe"
