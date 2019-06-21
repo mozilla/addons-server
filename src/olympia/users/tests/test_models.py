@@ -564,11 +564,11 @@ class TestUserProfile(TestCase):
         assert hash1 != hash2
 
     def test_has_read_developer_agreement(self):
-        set_config('last_dev_agreement_change_date', '2018-01-01 00:00')
+        set_config('last_dev_agreement_change_date', '2019-06-12 00:00')
         after_change = (
-            datetime(2018, 1, 1) + timedelta(days=1))
+            datetime(2019, 6, 12) + timedelta(days=1))
         before_change = (
-            datetime(2018, 1, 1) - timedelta(days=42))
+            datetime(2019, 6, 12) - timedelta(days=42))
 
         assert not UserProfile.objects.create(
             username='a').has_read_developer_agreement()
