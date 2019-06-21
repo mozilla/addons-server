@@ -7,10 +7,12 @@ import collections
 import datetime
 import json
 
+from django.db import transaction
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
+from django.test.testcases import TransactionTestCase
 from django.utils.encoding import force_bytes, force_text
 
 from unittest import mock
@@ -46,37 +48,15 @@ def _get_recommendation_data(path):
 class TestSigning(TestCase):
 
     def setUp(self):
-        super(TestSigning, self).setUp()
+        super().setUp()
 
         # Change addon file name
-        self.addon = amo.tests.addon_factory()
+        self.addon = amo.tests.addon_factory(file_kw={
+            'filename': 'webextension.xpi'
+        })
         self.addon.update(guid='xxxxx')
         self.version = self.addon.current_version
         self.file_ = self.version.all_files[0]
-
-        # Add actual file to addons
-        if not os.path.exists(os.path.dirname(self.file_.file_path)):
-            os.makedirs(os.path.dirname(self.file_.file_path))
-
-        fp = zipfile.ZipFile(self.file_.file_path, 'w')
-        fp.writestr('install.rdf', (
-            '<?xml version="1.0"?><RDF '
-            '   xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" '
-            '   xmlns:em="http://www.mozilla.org/2004/em-rdf#">'
-            '<Description about="urn:mozilla:install-manifest">'
-            '      <em:id>foo@webextension</em:id>'
-            '      <em:type>2</em:type>'
-            '      <em:bootstrap>true</em:bootstrap>'
-            '      <em:unpack>false</em:unpack>'
-            '      <em:version>0.1</em:version>'
-            '      <em:name>foo</em:name>'
-            '      <em:description>foo bar</em:description>'
-            '      <em:optionsType>2</em:optionsType>'
-            '      <em:targetApplication></em:targetApplication>'
-            '</Description>'
-            '</RDF>'))
-
-        fp.close()
 
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
@@ -85,7 +65,7 @@ class TestSigning(TestCase):
             os.unlink(self.file_.file_path)
         if os.path.exists(self.file_.guarded_file_path):
             os.unlink(self.file_.guarded_file_path)
-        super(TestSigning, self).tearDown()
+        super().tearDown()
 
     def _sign_file(self, file_):
         signing.sign_file(file_)
@@ -239,20 +219,24 @@ class TestSigning(TestCase):
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
-        assert manifest.count('Name: ') == 3
+        assert manifest.count('Name: ') == 4
         # Need to use .startswith() since the signature from `cose.sig`
         # changes on every test-run, so we're just not going to check it
         # explicitly...
         assert manifest.startswith(
             'Manifest-Version: 1.0\n\n'
-            'Name: install.rdf\n'
+            'Name: index.js\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: V/tyfTP/mpl35QSMyq1MNfwGp/k=\n'
-            'SHA256-Digest: kxvbLVQq1TerEUTNXPZjCqfU6n1BG1r2CU+TcAh4bDU=\n\n'
+            'SHA1-Digest: nsBG7x6peXmndngU43AGIi6CKBM=\n'
+            'SHA256-Digest: Hh3yviccEoUvKvoYupqPO+k900wpIMgPFsRMmRW+fGg=\n\n'
+            'Name: manifest.json\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: +1L0sNk03EPxDOB6QX3QbtFy8XA=\n'
+            'SHA256-Digest: a+UZOkXfCnXKTRM459ip/0OdJt9SxM/DAOkhKTyCsSA=\n\n'
             'Name: META-INF/cose.manifest\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: BofxIny3xTBMslpCxjYTq2CQMeQ=\n'
-            'SHA256-Digest: mxxnbguFIZ9tT5UdvenKu5mOGV5eX4Dll1YSXp/AxvA=\n\n'
+            'SHA1-Digest: xy12EQlU8eCap0SY5C0WMHoNtj8=\n'
+            'SHA256-Digest: YdsmjrtOMGyISHs7UgxAXzLHSKoQRGe+NGzc4pDCos8=\n\n'
             'Name: META-INF/cose.sig\n'
             'Digest-Algorithms: SHA1 SHA256\n'
         )
@@ -282,20 +266,24 @@ class TestSigning(TestCase):
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == hashed
-        assert manifest.count('Name: ') == 3
+        assert manifest.count('Name: ') == 4
         # Need to use .startswith() since the signature from `cose.sig`
         # changes on every test-run, so we're just not going to check it
         # explicitly...
         assert manifest.startswith(
             'Manifest-Version: 1.0\n\n'
-            'Name: install.rdf\n'
+            'Name: index.js\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: V/tyfTP/mpl35QSMyq1MNfwGp/k=\n'
-            'SHA256-Digest: kxvbLVQq1TerEUTNXPZjCqfU6n1BG1r2CU+TcAh4bDU=\n\n'
+            'SHA1-Digest: nsBG7x6peXmndngU43AGIi6CKBM=\n'
+            'SHA256-Digest: Hh3yviccEoUvKvoYupqPO+k900wpIMgPFsRMmRW+fGg=\n\n'
+            'Name: manifest.json\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: +1L0sNk03EPxDOB6QX3QbtFy8XA=\n'
+            'SHA256-Digest: a+UZOkXfCnXKTRM459ip/0OdJt9SxM/DAOkhKTyCsSA=\n\n'
             'Name: META-INF/cose.manifest\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: BofxIny3xTBMslpCxjYTq2CQMeQ=\n'
-            'SHA256-Digest: mxxnbguFIZ9tT5UdvenKu5mOGV5eX4Dll1YSXp/AxvA=\n\n'
+            'SHA1-Digest: xy12EQlU8eCap0SY5C0WMHoNtj8=\n'
+            'SHA256-Digest: YdsmjrtOMGyISHs7UgxAXzLHSKoQRGe+NGzc4pDCos8=\n\n'
             'Name: META-INF/cose.sig\n'
             'Digest-Algorithms: SHA1 SHA256\n'
         )
@@ -331,46 +319,27 @@ class TestSigning(TestCase):
         assert (
             subject_info['common_name'] ==
             u'NavratnePeniaze@NávratnéPeniaze')
-        assert manifest.count('Name: ') == 3
+        assert manifest.count('Name: ') == 4
         # Need to use .startswith() since the signature from `cose.sig`
         # changes on every test-run, so we're just not going to check it
         # explicitly...
         assert manifest.startswith(
             'Manifest-Version: 1.0\n\n'
-            'Name: install.rdf\n'
+            'Name: index.js\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: V/tyfTP/mpl35QSMyq1MNfwGp/k=\n'
-            'SHA256-Digest: kxvbLVQq1TerEUTNXPZjCqfU6n1BG1r2CU+TcAh4bDU=\n\n'
+            'SHA1-Digest: nsBG7x6peXmndngU43AGIi6CKBM=\n'
+            'SHA256-Digest: Hh3yviccEoUvKvoYupqPO+k900wpIMgPFsRMmRW+fGg=\n\n'
+            'Name: manifest.json\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: +1L0sNk03EPxDOB6QX3QbtFy8XA=\n'
+            'SHA256-Digest: a+UZOkXfCnXKTRM459ip/0OdJt9SxM/DAOkhKTyCsSA=\n\n'
             'Name: META-INF/cose.manifest\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: BofxIny3xTBMslpCxjYTq2CQMeQ=\n'
-            'SHA256-Digest: mxxnbguFIZ9tT5UdvenKu5mOGV5eX4Dll1YSXp/AxvA=\n\n'
+            'SHA1-Digest: xy12EQlU8eCap0SY5C0WMHoNtj8=\n'
+            'SHA256-Digest: YdsmjrtOMGyISHs7UgxAXzLHSKoQRGe+NGzc4pDCos8=\n\n'
             'Name: META-INF/cose.sig\n'
             'Digest-Algorithms: SHA1 SHA256\n'
         )
-
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_runs_git_extraction_after_signing(self):
-        # Make sure the initial version is already extracted, simulating
-        # a regular upload.
-        AddonGitRepository.extract_and_commit_from_version(self.version)
-        self.version.refresh_from_db()
-
-        old_git_hash = self.version.git_hash
-
-        signing.sign_file(self.file_)
-
-        self.version.refresh_from_db()
-        assert self.version.git_hash != old_git_hash
-
-        repo = AddonGitRepository(self.addon)
-
-        output = _run_process('git log listed', repo)
-        assert output.count('Create new version') == 2
-        assert '(after successful signing)' in output
-
-        # 2 actual commits, including the repo initialization
-        assert output.count('Mozilla Add-ons Robot') == 3
 
     def test_call_signing_recommendable(self):
         # This is the usual process for recommended add-ons, they're
@@ -388,10 +357,10 @@ class TestSigning(TestCase):
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
-        assert manifest.count('Name: ') == 4
+        assert manifest.count('Name: ') == 5
 
         assert 'Name: mozilla-recommendation.json' in manifest
-        assert 'Name: install.rdf' in manifest
+        assert 'Name: manifest.json' in manifest
         assert 'Name: META-INF/cose.manifest' in manifest
         assert 'Name: META-INF/cose.sig' in manifest
 
@@ -412,9 +381,73 @@ class TestSigning(TestCase):
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
-        assert manifest.count('Name: ') == 3
+        assert manifest.count('Name: ') == 4
 
         assert 'Name: mozilla-recommendation.json' not in manifest
+
+
+@override_settings(ENABLE_ADDON_SIGNING=True)
+class TestTransactionRelatedSigning(TransactionTestCase):
+
+    def setUp(self):
+        super().setUp()
+
+        self.addon = amo.tests.addon_factory(file_kw={
+            'filename': 'webextension.xpi'
+        })
+        self.version = self.addon.current_version
+
+        responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
+
+        # Make sure the initial version is already extracted, simulating
+        # a regular upload.
+        AddonGitRepository.extract_and_commit_from_version(self.version)
+        self.version.refresh_from_db()
+
+    @override_switch('enable-uploads-commit-to-git-storage', active=True)
+    def test_runs_git_extraction_after_signing(self):
+        old_git_hash = self.version.git_hash
+
+        with transaction.atomic():
+            signing.sign_file(self.version.current_file)
+
+        self.version.refresh_from_db()
+        assert self.version.git_hash != old_git_hash
+
+        repo = AddonGitRepository(self.addon)
+
+        output = _run_process('git log listed', repo)
+        assert output.count('Create new version') == 2
+        assert '(after successful signing)' in output
+
+        # 2 actual commits, including the repo initialization
+        assert output.count('Mozilla Add-ons Robot') == 3
+
+    @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
+    @override_switch('enable-uploads-commit-to-git-storage', active=True)
+    def test_commits_to_git_async_signing_happened(self, extract_mock):
+        old_git_hash = self.version.git_hash
+
+        def call_sign_file():
+            signing.sign_file(self.version.current_file)
+            # raise ValueError after the sign_file call so that
+            # the extraction is queued via the on_commit hook
+            # but the atomic block won't complete.
+            raise ValueError()
+
+        with pytest.raises(ValueError):
+            with transaction.atomic():
+                call_sign_file()
+
+        extract_mock.assert_not_called()
+
+        self.version.refresh_from_db()
+        assert self.version.git_hash == old_git_hash
+
+        repo = AddonGitRepository(self.addon)
+
+        output = _run_process('git log listed', repo)
+        assert output.count('Create new version') == 1
 
 
 class TestTasks(TestCase):
