@@ -109,9 +109,9 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         self.assertCloseToNow(self.user.read_dev_agreement)
 
     def test_set_read_dev_agreement_error(self):
-        set_config('last_dev_agreement_change_date', '2018-01-01 00:00')
+        set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         before_agreement_last_changed = (
-            datetime(2018, 1, 1) - timedelta(days=1))
+            datetime(2019, 6, 10) - timedelta(days=1))
         self.user.update(read_dev_agreement=before_agreement_last_changed)
         response = self.client.post(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
@@ -129,14 +129,14 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
 
     def test_read_dev_agreement_skip(self):
         after_agreement_last_changed = (
-            datetime(2018, 1, 1) + timedelta(days=1))
+            datetime(2019, 6, 10) + timedelta(days=1))
         self.user.update(read_dev_agreement=after_agreement_last_changed)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
     def test_read_dev_agreement_set_to_future(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
-        read_dev_date = datetime(2018, 1, 1)
+        read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
@@ -352,9 +352,9 @@ class TestAddonSubmitDistribution(TestCase):
 
         # read_dev_agreement needs to be a more recent date than
         # the setting.
-        set_config('last_dev_agreement_change_date', '2018-01-01 00:00')
+        set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         before_agreement_last_changed = (
-            datetime(2018, 1, 1) - timedelta(days=1))
+            datetime(2019, 6, 10) - timedelta(days=1))
         self.user.update(read_dev_agreement=before_agreement_last_changed)
         response = self.client.get(
             reverse('devhub.submit.distribution'), follow=True)
