@@ -150,7 +150,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
 
     def test_read_dev_agreement_invalid_date_agreed_post_fallback(self):
         set_config('last_dev_agreement_change_date', '2099-25-75 00:00')
-        read_dev_date = datetime(2018, 1, 1)
+        read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
