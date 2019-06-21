@@ -19,7 +19,7 @@
       {{ _("You’re done! This version will be available after it passes review. "
            "You will be notified when it is reviewed.") }}
     </p>
-  {% elif uploaded_version.is_ready_for_auto_approval() %}
+  {% elif uploaded_version.is_ready_for_auto_approval %}
     <h3>{{ _("Version Submitted") }}</h3>
     <p>
       {{ _("You’re done! This version will be available on our site shortly.") }}
