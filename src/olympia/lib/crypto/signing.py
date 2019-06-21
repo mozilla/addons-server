@@ -4,6 +4,7 @@ import zipfile
 
 from base64 import b64decode, b64encode
 
+from django.db import transaction
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.exceptions import ObjectDoesNotExist
@@ -187,8 +188,11 @@ def sign_file(file_obj):
     log.info(u'Signing complete for file {0}'.format(file_obj.pk))
 
     if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-        extract_version_to_git.delay(
-            version_id=file_obj.version.pk, note='after successful signing')
+        # Extract this version into git repository
+        transaction.on_commit(
+            lambda: extract_version_to_git.delay(
+                version_id=file_obj.version.pk,
+                note='after successful signing'))
 
     return file_obj
 
