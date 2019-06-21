@@ -216,8 +216,8 @@ MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
 VALID_CONTRIBUTION_DOMAINS = (
-    'flattr.com',
     'donate.mozilla.org',
+    'flattr.com',
     'liberapay.com',
     'micropayment.de',
     'opencollective.com',
