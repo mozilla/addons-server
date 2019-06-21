@@ -159,6 +159,10 @@ This endpoint allows you to compare two Add-on versions with each other.
 
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/compare_to/(int:version_id)/
 
+    .. note::
+
+        Contrary to what ``git diff`` does, this API renders a hunk full of unmodified lines for unmodified files.
+
     Inherits most properties from :ref:`browse detail <reviewers-versions-browse-detail>`, except that most of the `file.entries[]` properties
     and `file.download_url` can be `null` in case of a deleted file.
 

@@ -895,7 +895,6 @@ def test_get_diff_delete_file():
 
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
-    # Let's a file
     apply_changes(repo, version, '', 'manifest.json', delete=True)
 
     changes = repo.get_diff(
@@ -905,6 +904,52 @@ def test_get_diff_delete_file():
     assert changes[0]['mode'] == 'D'
     assert all(
         x['type'] == 'delete' for x in changes[0]['hunks'][0]['changes'])
+
+
+
+@pytest.mark.django_db
+def test_get_diff_unmodified_file_by_default_not_rendered():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert not changes
+
+
+@pytest.mark.django_db
+def test_get_diff_unmodified_file():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash,
+        pathspec=['manifest.json'])
+
+    assert len(changes) == 1
+    assert changes[0]['mode'] == ' '
+    assert changes[0]['hunks'][0]['header'] == '@@ -0 +0 @@'
+    assert all(
+        x['type'] == ' ' for x in changes[0]['hunks'][0]['changes'])
 
 
 @pytest.mark.django_db
@@ -920,7 +965,6 @@ def test_get_raw_diff_cache():
 
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
-    # Let's a file
     apply_changes(repo, version, '', 'manifest.json', delete=True)
 
     with mock.patch('olympia.lib.git.pygit2.Repository.diff') as mocked_diff:
