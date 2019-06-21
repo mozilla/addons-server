@@ -542,9 +542,9 @@ class AddonGitRepository(object):
         # a diff view for an file. That way we increase performance for
         # reguar unittests and full-tree diffs.
         generate_unmodified_fake_diff = (
-            not patch.delta.is_binary
-            and pathspec is not None
-            and patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
+            not patch.delta.is_binary and
+            pathspec is not None
+            patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
         )
         if generate_unmodified_fake_diff:
             tree = self.get_root_tree(commit)
@@ -571,7 +571,6 @@ class AddonGitRepository(object):
                 'new_lines': changes[-1]['new_line_number'],
                 'changes': changes
             })
-
 
         entry = {
             'path': patch.delta.new_file.path,

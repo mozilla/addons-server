@@ -906,7 +906,6 @@ def test_get_diff_delete_file():
         x['type'] == 'delete' for x in changes[0]['hunks'][0]['changes'])
 
 
-
 @pytest.mark.django_db
 def test_get_diff_unmodified_file_by_default_not_rendered():
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
