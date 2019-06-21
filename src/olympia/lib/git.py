@@ -543,7 +543,7 @@ class AddonGitRepository(object):
         # reguar unittests and full-tree diffs.
         generate_unmodified_fake_diff = (
             not patch.delta.is_binary and
-            pathspec is not None
+            pathspec is not None and
             patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
         )
         if generate_unmodified_fake_diff:
