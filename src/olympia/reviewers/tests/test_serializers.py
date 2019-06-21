@@ -471,6 +471,8 @@ class TestFileEntriesDiffSerializer(TestCase):
         (MagicMock(type='blob'), 'bmp-v4.bmp', 'image', 'image/bmp'),
         (MagicMock(type='blob'), 'bmp-v5.bmp', 'image', 'image/bmp'),
         (MagicMock(type='blob'), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
+        (MagicMock(type='blob'), 'html-containing.json', 'text',
+                                 'application/json'),
     ]
 )
 def test_file_entries_serializer_category_type(
