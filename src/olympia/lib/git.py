@@ -417,7 +417,7 @@ class AddonGitRepository(object):
                     tree_entry=tree_entry,
                     path=tree_entry.name)
 
-    def get_raw_diff(self, commit, parent=None):
+    def get_raw_diff(self, commit, parent=None, include_unmodifed=False):
         """Return the raw diff object.
 
         This is cached as we'll be calling it multiple times, e.g
@@ -425,6 +425,11 @@ class AddonGitRepository(object):
         status information (added, removed etc) in a later step.
         """
         diff_cache = getattr(self, '_diff_cache', {})
+
+        flags = pygit2.GIT_DIFF_NORMAL
+
+        if include_unmodifed:
+            flags |= pygit2.GIT_DIFF_INCLUDE_UNMODIFIED
 
         try:
             return diff_cache[(commit, parent)]
@@ -434,6 +439,7 @@ class AddonGitRepository(object):
                     # We always show the whole file by default
                     context_lines=sys.maxsize,
                     interhunk_lines=0,
+                    flags=flags,
                     swap=True)
             else:
                 retval = self.git_repository.diff(
@@ -441,6 +447,7 @@ class AddonGitRepository(object):
                     self.get_root_tree(commit),
                     # We always show the whole file by default
                     context_lines=sys.maxsize,
+                    flags=flags,
                     interhunk_lines=0)
 
             diff_cache[(commit, parent)] = retval
@@ -454,13 +461,11 @@ class AddonGitRepository(object):
         If `parent` is not given we assume it's the first commit and handle
         it accordingly.
 
-        We are resolving renames and copies according to a 50% similarity
-        threshold.
-
         :param pathspec: If a list of files is given we only retrieve a list
                          for them.
         """
-        diff = self.get_raw_diff(commit, parent=parent)
+        diff = self.get_raw_diff(
+            commit, parent=parent, include_unmodifed=pathspec is not None)
 
         changes = []
 
@@ -472,12 +477,14 @@ class AddonGitRepository(object):
                 continue
 
             if parent is None:
-                changes.append(self._render_patch(patch, commit, commit))
+                changes.append(self._render_patch(
+                    patch, commit, commit, pathspec))
             else:
-                changes.append(self._render_patch(patch, commit, parent))
+                changes.append(self._render_patch(
+                    patch, commit, parent, pathspec))
         return changes
 
-    def _render_patch(self, patch, commit, parent):
+    def _render_patch(self, patch, commit, parent, pathspec=None):
         """
         This will be moved to a proper drf serializer in the future
         but until the format isn't set we'll keep it like that to simplify
@@ -522,6 +529,46 @@ class AddonGitRepository(object):
                 'new_start': hunk.new_start,
                 'old_lines': hunk.old_lines,
                 'new_lines': hunk.new_lines,
+                'changes': changes
+            })
+
+        # We are exposing unchanged files fully to the frontend client
+        # so that it can show them for an better review experience.
+        # We are using the "include unmodified"-flag for git but that
+        # doesn't render any hunks and there's no way to enforce it.
+        # Unfortunately that means we have to simulate line changes and
+        # hunk data for unmodified files.
+        # Unchanged files are *only* exposed in case of explicitly requesting
+        # a diff view for an file. That way we increase performance for
+        # reguar unittests and full-tree diffs.
+        generate_unmodified_fake_diff = (
+            not patch.delta.is_binary and
+            pathspec is not None and
+            patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
+        )
+        if generate_unmodified_fake_diff:
+            tree = self.get_root_tree(commit)
+
+            blob_or_tree = tree[patch.delta.new_file.path]
+
+            actual_blob = self.git_repository[blob_or_tree.oid]
+
+            changes = [
+                {
+                    'content': line,
+                    'type': GIT_DIFF_LINE_CONTEXT,
+                    'old_line_number': lineno,
+                    'new_line_number': lineno,
+                }
+                for lineno, line in enumerate(actual_blob.data.split(b'\n'))
+            ]
+
+            hunks.append({
+                'header': '@@ -0 +0 @@',
+                'old_start': 0,
+                'new_start': 0,
+                'old_lines': changes[-1]['old_line_number'],
+                'new_lines': changes[-1]['new_line_number'],
                 'changes': changes
             })
 
