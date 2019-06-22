@@ -56,7 +56,8 @@ before_install:
   # JSON detection features which we require for the code-manager related APIs
   - wget http://security.ubuntu.com/ubuntu/pool/main/f/file/libmagic-dev_5.35-4_amd64.deb
   - wget http://security.ubuntu.com/ubuntu/pool/main/f/file/libmagic1_5.35-4_amd64.deb
-  - sudo dpkg -i libmagic-dev_5.35-4_amd64.deb libmagic1_5.35-4_amd64.deb
+  - wget http://security.ubuntu.com/ubuntu/pool/main/f/file/libmagic-mgc_5.35-4_amd64.deb
+  - sudo dpkg -i libmagic-dev_5.35-4_amd64.deb libmagic1_5.35-4_amd64.deb libmagic-mgc_5.35-4_amd64.deb
 
 install:
   - nvm current
