@@ -54,9 +54,9 @@ before_install:
   - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
   # Unfortunately we require the most recent libmagic-dev version to make use of more recent
   # JSON detection features which we require for the code-manager related APIs
-  - wget http://security.ubuntu.com/ubuntu/pool/main/f/file/libmagic-dev_5.35-4_i386.deb
-  - wget http://security.ubuntu.com/ubuntu/pool/main/f/file/libmagic1_5.35-4_i386.deb
-  - sudo dpkg -i libmagic-dev_5.35-4_i386.deb libmagic1_5.35-4_i386.deb
+  - wget http://security.ubuntu.com/ubuntu/pool/main/f/file/libmagic-dev_5.35-4_amd64.deb
+  - wget http://security.ubuntu.com/ubuntu/pool/main/f/file/libmagic1_5.35-4_amd64.deb
+  - sudo dpkg -i libmagic-dev_5.35-4_amd64.deb libmagic1_5.35-4_amd64.deb
 
 install:
   - nvm current
