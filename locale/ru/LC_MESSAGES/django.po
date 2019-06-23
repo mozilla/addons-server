@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-16 12:18+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2019-06-21 16:46+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4677,9 +4677,8 @@ msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{
 msgstr "Проверяйте грамматику и орфографию автоматически {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Облегчите чтение {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Улучшите чтение {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
@@ -6413,6 +6412,8 @@ msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Введите полный домен или адрес электронной почты, который должен быть заблокирован, или используйте  звёздочки (glob-style wildcards) для задания шаблонов. Например, «@*.mail.com»\n"
+" Пожалуйста заметьте, что «@» не включается в совпадения, так что вам  необходимо делать это в шаблоне."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
 msgstr "Адрес электронной почты, используемый вами в аккаунте разработчика, не может быть использован для представления дополнений."
