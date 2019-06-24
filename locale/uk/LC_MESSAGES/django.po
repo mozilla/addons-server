@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-24 07:24+0000\n"
+"PO-Revision-Date: 2019-06-24 08:50+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4696,7 +4696,7 @@ msgstr "Блокуйте надокучливі веб-сайти {start_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Перелічіть веб-сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4704,7 +4704,7 @@ msgstr "Оживіть мертві сторінки {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Знаходьте заархівовані, мертві, або іншим чином зниклі веб-сторінки."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4712,7 +4712,7 @@ msgstr "Змініть вигляд Firefox {start_sub_heading}за допомо
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Легко створюйте власні візуальні теми, щоб надати Firefox вигляду, який вам до вподоби."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
