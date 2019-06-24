@@ -5496,9 +5496,8 @@ msgstr "Approuver le contenu"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Cela enregistre votre approbation du contenu de la dernière version publique, sans en informer le développeur."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Passer des modules en revue"
+msgstr ""
 
 msgid "Recommended ({0})"
 msgstr ""
