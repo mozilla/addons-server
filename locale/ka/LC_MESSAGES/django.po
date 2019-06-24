@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-06 00:59+0000\n"
+"PO-Revision-Date: 2019-06-24 20:54+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -944,19 +944,19 @@ msgid "Alerts & Updates"
 msgstr "უწყებები და განახლებები"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც დაგეხმარებათ მუდამ იყოთ თანამედროვე და მეტად შედეგიანად იმუშაოთ. მონახეთ გაფართოებები ჩანართების განახლებისთვის, საქმიანობის სამართავად და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც დაგეხმარებათ მუდამ იყოთ თანამედროვე და მეტად შედეგიანად იმუშაოთ. მონახეთ გაფართოებები ჩანართების განახლებისთვის, საქმიანობის სამართავად და ა. შ."
 
 msgid "Appearance"
 msgstr "იერსახე"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც სრულად შეცვლის საიტებისა და ბრაუზერის იერსახეს. ეს ჯგუფი მოიცავს გაფართოებებს მუქი თემების, ჩანართების მართვის და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც სრულად შეცვლის საიტებისა და ბრაუზერის იერსახეს. ეს ჯგუფი მოიცავს გაფართოებებს მუქი თემების, ჩანართების მართვის და ა. შ."
 
 msgid "Bookmarks"
 msgstr "სანიშნები"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "ჩამოტვირთეთ გაფართოებები, რომლებიც გააუმჯობესებს სანიშნებით სარგებლობას, მათი პაროლით დაცვის გზით, ორმაგი ჩანაწერების მოცილებით, დაზიანებულების პოვნით და ა.შ."
+msgstr "ჩამოტვირთეთ გაფართოებები, რომლებიც გააუმჯობესებს სანიშნებით სარგებლობას, მათი პაროლით დაცვის გზით, ორმაგი ჩანაწერების მოცილებით, დაზიანებულების პოვნით და ა. შ."
 
 msgid "Download Management"
 msgstr "ჩამოტვირთვების მართვა"
@@ -964,7 +964,7 @@ msgstr "ჩამოტვირთვების მართვა"
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც დაგეხმარებათ მარტივად გადმოწეროთ ვებშიგთავსი, სიმღერები და ვიდეოები. აგრეთვე შეგიძლიათ მონახოთ გაფართოებები ჩამოტვირთვების სამართავად, ფაილების "
-"გასაზიარებლად და ა.შ."
+"გასაზიარებლად და ა. შ."
 
 msgid "Feeds, News & Blogging"
 msgstr "სიახლეების არხები და სვეტები"
@@ -972,7 +972,7 @@ msgstr "სიახლეების არხები და სვეტე
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც მოაცილებს ზედმეტ და უსარგებლო ნაწილების გვერდებიდან, რის შედეგადაც შეძლებთ უკეთ ადევნოთ თვალი სოციალურ ქსელს, არ ჩამორჩეთ ახალ ამბებს, RSS-არხებს, "
-"შეამციროთ თვალებზე დატვირთვა და ა.შ."
+"შეამციროთ თვალებზე დატვირთვა და ა. შ."
 
 msgid "Games & Entertainment"
 msgstr "თამაშები და გართობა"
@@ -980,7 +980,7 @@ msgstr "თამაშები და გართობა"
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა დახმარებითაც უკეთ შეძლებთ გართობას. ეს ჯგუფი მოიცავს იმ გაფართოებებს, რომლებიც აუმჯობესებს თამაშის მიმდინარეობას, მეტ შესაძლებლობებს იძლევა ვიდეოების "
-"გაშვებისას და ა.შ."
+"გაშვებისას და ა. შ."
 
 msgid "Language Support"
 msgstr "ენის ხელსაწყოები"
@@ -988,7 +988,7 @@ msgstr "ენის ხელსაწყოები"
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გთავაზობთ გაუმჯობესებულ მხარდაჭერას თქვენი ენისთვის, როგორიცაა მართლწერის შემოწმება, სიტყვების მნიშვნელობების მოძიება, სტატიების თარგმნა, ტექსტის "
-"წარმოთქმა და ა.შ."
+"წარმოთქმა და ა. შ."
 
 msgid "Photos, Music & Videos"
 msgstr "ფოტო, მუსიკა და ვიდეო"
@@ -996,7 +996,7 @@ msgstr "ფოტო, მუსიკა და ვიდეო"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გააუმჯობესებს სურათებით, სიმღერებითა და ვიდეოებით სარგებლობის შესაძლებლობებს. ამ ჯგუფის გაფართოებებით შესაძლებელია ხმოვანი ან ვიდეოფაილების გარდაქმნა, "
-"სურათებით მსგავსი სურათების მოძიება და ა.შ."
+"სურათებით მსგავსი სურათების მოძიება და ა. შ."
 
 msgid "Privacy & Security"
 msgstr "პირადულობა და უსაფრთხოება"
@@ -1004,16 +1004,16 @@ msgstr "პირადულობა და უსაფრთხოება"
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც გვერდებს მოინახულებთ უსაფრთხოდ და პირადი მონაცემების დაცვით. ეს ჯგუფის მოიცავს გაფართოებებს, რომლებიც ზღუდავს რეკლამებს, გვერდს უვლის "
-"თვალთვალს, ამოწმებს გადამისამართებებს და ა.შ."
+"თვალთვალს, ამოწმებს გადამისამართებებს და ა. შ."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, ძიებისა და პოვნისთვის. ეს ჯგუფი მოიცავს გაფართოებებს, რომლებიც გამოარჩევს და მოიძიებს მითითებულ ტექსტს, მოიპოვებს IP-მისამართებს/დასახელებებს და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, ძიებისა და პოვნისთვის. ეს ჯგუფი მოიცავს გაფართოებებს, რომლებიც გამოარჩევს და მოიძიებს მითითებულ ტექსტს, მოიპოვებს IP-მისამართებს/დასახელებებს და ა. შ."
 
 msgid "Shopping"
 msgstr "ვაჭრობა"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც დაგეხმარებათ შენაძენების გაკეთებაში, ფასდაკლების ბარათების მოძიებით, საუკეთესო შემოთავაზებების მონახვით, მიმოხილვების გარჩევითა და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც დაგეხმარებათ შენაძენების გაკეთებაში, ფასდაკლების ბარათების მოძიებით, საუკეთესო შემოთავაზებების მონახვით, მიმოხილვების გარჩევითა და ა. შ."
 
 msgid "Social & Communication"
 msgstr "სოციალური ქსელები"
@@ -1021,14 +1021,15 @@ msgstr "სოციალური ქსელები"
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც დაგეხმარებათ სოციალური ქსელებისა და მყისიერი მიმოწერის პროგრამების გამოყენებაში. ეს ჯგუფი მოიცავს გაფართოებებს, ჩანართების შეტყობინებების "
-"გასაუმჯობესებლად, ვიდეოების ჩამოსატვირთად და ა.შ."
+"გასაუმჯობესებლად, ვიდეოების ჩამოსატვირთად და ა. შ."
 
 msgid "Tabs"
 msgstr "ჩანართები"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
-"ჩამოტვირთეთ Firefox-ის გაფართოებები, ჩანართებისა და ახალი გვერდების მოსარგებად. აღმოაჩინეთ გაფართოებები, რომლებიც გამართავენ თქვენს ჩანართებს, სრულად შეცვლიან მისი გამოყენების შესაძლებლობებს და ა.შ."
+"ჩამოტვირთეთ Firefox-ის გაფართოებები, ჩანართებისა და ახალი გვერდების მოსარგებად. აღმოაჩინეთ გაფართოებები, რომლებიც გამართავენ თქვენს ჩანართებს, სრულად შეცვლიან მისი გამოყენების შესაძლებლობებს და ა. "
+"შ."
 
 msgid "Web Development"
 msgstr "ვებშემუშავება"
@@ -1036,7 +1037,7 @@ msgstr "ვებშემუშავება"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გააუმჯობესებს ვებშემუშავების ხელსაწყოებს. ეს ჯგუფი მოიცავს გაფართოებებს, GitHub-ისთვის, მომხმარებლის პროგრამის გადართვისთვის, ფუნთუშების მართვისთვის და "
-"ა.შ."
+"ა. შ."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -1049,7 +1050,7 @@ msgid "Device Features & Location"
 msgstr "მოწყობილობის შესაძლებლობები და ადგილმდებარეობა"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "ჩამოტვირთეთ გაფართოებები Firefox-ის გასაუმჯობესებლად Android-ზე. მოიძიეთ სწრაფად, მოხსენით სისტემის დატვირთულობა, გააკეთეთ ჩანიშვნები და ა.შ."
+msgstr "ჩამოტვირთეთ გაფართოებები Firefox-ის გასაუმჯობესებლად Android-ზე. მოიძიეთ სწრაფად, მოხსენით სისტემის დატვირთულობა, გააკეთეთ ჩანიშვნები და ა. შ."
 
 msgid "Experimental"
 msgstr "საცდელი"
@@ -1064,7 +1065,7 @@ msgstr "წარმადობა"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
-"ჩამოტვირთეთ გაფართოებები, რომლებიც Firefox-ის წარმადობას აამაღლებს. მონახეთ გაფართოებები, რომლებიც დაგეხმარებათ შედეგიანობისა და სარგებლიანობის გაზრდაში, მომაბეზრებელი რეკლამების შეზღუდვით და ა.შ."
+"ჩამოტვირთეთ გაფართოებები, რომლებიც Firefox-ის წარმადობას აამაღლებს. მონახეთ გაფართოებები, რომლებიც დაგეხმარებათ შედეგიანობისა და სარგებლიანობის გაზრდაში, მომაბეზრებელი რეკლამების შეზღუდვით და ა. შ."
 
 msgid "Photos & Media"
 msgstr "ფოტო და მედია"
@@ -1072,7 +1073,7 @@ msgstr "ფოტო და მედია"
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გააუმჯობესებს სურათებით და სხვა ფაილებით სარგებლობის შესაძლებლობებს. ამ ჯგუფის გაფართოებებით შესაძლებელია სურათებით, მსგავსი სურათების მოძიება, სრული "
-"ვებგვერდისთვის სურათის გადაღება და ა.შ."
+"ვებგვერდისთვის სურათის გადაღება და ა. შ."
 
 msgid "Security & Privacy"
 msgstr "უსაფრთხოება და პირადულობა"
@@ -1080,25 +1081,25 @@ msgstr "უსაფრთხოება და პირადულობა"
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც გვერდებს მოინახულებთ უსაფრთხოდ და პირადი მონაცემების დაცვით. აღმოაჩინეთ გაფართოებებს, რომლებიც ზღუდავს გაიძვერა რეკლამებს და მათ მიერ "
-"თვალთვალს, მარტივად ასუფთავებს ისტორიას და ა.შ."
+"თვალთვალს, მარტივად ასუფთავებს ისტორიას და ა. შ."
 
 msgid "Social Networking"
 msgstr "სოციალური ქსელები"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც უკეთ შეძლებთ ისარგებლოთ სოციალური ქსელებით, მათ შორის YouTube, GitHub, Reddit და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც უკეთ შეძლებთ ისარგებლოთ სოციალური ქსელებით, მათ შორის YouTube, GitHub, Reddit და ა. შ."
 
 msgid "Sports & Games"
 msgstr "სპორტი და თამაშები"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც უკეთ გაერთობით და გაუმჯობესებულად შეძლებთ პირდაპირ ეთერში ადევნოთ თვალი სპორტის სიახლეებს და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც უკეთ გაერთობით და გაუმჯობესებულად შეძლებთ პირდაპირ ეთერში ადევნოთ თვალი სპორტის სიახლეებს და ა. შ."
 
 msgid "User Interface"
 msgstr "სამომხმარებლო გარემო"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "ჩამოტვირთეთ იერსახის შემცვლელი Firefox-ის გაფართოებები, რომლებიც სრულად გადაასხვაფერებენ ვებგვერდებს, ტექსტების უკეთ ამოსაკითხად, ძიების გასამარტივებლად და ა.შ."
+msgstr "ჩამოტვირთეთ იერსახის შემცვლელი Firefox-ის გაფართოებები, რომლებიც სრულად გადაასხვაფერებენ ვებგვერდებს, ტექსტების უკეთ ამოსაკითხად, ძიების გასამარტივებლად და ა. შ."
 
 msgid "Animals"
 msgstr "ცხოველები"
@@ -1139,20 +1140,20 @@ msgid "Causes"
 msgstr "მრწამსი"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემები, თქვენი მისწრაფებებისა და გემოვნების მიხედვით. ეს ჯგუფი მოიცავს სპორტის თემებს, არდადეგებს, საქველმოქმედო მიზნების მქონეს, ეროვნების აღმნიშვნელს და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, თქვენი მისწრაფებებისა და გემოვნების მიხედვით. ეს ჯგუფი მოიცავს სპორტის თემებს, არდადეგებს, საქველმოქმედო მიზნების მქონეს, ეროვნების აღმნიშვნელს და ა. შ."
 
 msgid "Fashion"
 msgstr "მოდა"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემები, ყველანაირი სახის მოხატულობის — უჯრედებიანი, ყვავილებიანი, მოცულობითი, ნიმუშებიანი და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ყველანაირი სახის მოხატულობის — უჯრედებიანი, ყვავილებიანი, მოცულობითი, ნიმუშებიანი და ა. შ."
 
 msgid "Film and TV"
 msgstr "ფილმები და ტელევიზია"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
-"ჩამოტვირთეთ Firefox-ის თემები, სატელევიზიო ფილმებისა და სერიალების, ამ ჯგუფში იხილავთ ანიმეებს, მათ შორის „უჩიჰა მადარას“, ფილმებს როგორიცაა „მატრიცა“, სერიალებს („სამეფო კარის თამაშები“) და ა.შ."
+"ჩამოტვირთეთ Firefox-ის თემები, სატელევიზიო ფილმებისა და სერიალების, ამ ჯგუფში იხილავთ ანიმეებს, მათ შორის „უჩიჰა მადარას“, ფილმებს როგორიცაა „მატრიცა“, სერიალებს („სამეფო კარის თამაშები“) და ა. შ."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr "ჩამოტვირთეთ Firefox-ის თემები, Firefox-ის ბრაუზერის გაფორმებით. ეს ჯგუფი მოიცავს ფერად, სხვადასხვაგვარ გამოსახულებებს Firefox-ის ლოგოებისა და ხატულების, ასევე ზოგადად მელაკუდას თემებს."
@@ -1167,16 +1168,16 @@ msgid "Holiday"
 msgstr "დღესასწაული"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემები, შვებულებებისთვის. ეს ჯგუფი მოიცავს გაფორმებებს შობის, მადლიერების დღის, ჰელოუინის, წმ. პატრიკის დღის, აღდგომის, ოთხი ივლისისთვის და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, შვებულებებისთვის. ეს ჯგუფი მოიცავს გაფორმებებს შობის, მადლიერების დღის, ჰელოუინის, წმ. პატრიკის დღის, აღდგომის, ოთხი ივლისისთვის და ა. შ."
 
 msgid "Music"
 msgstr "მუსიკა"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემები, მუსიკალური მისწრაფებებსა და ხელოვანებთან დაკავშირებით. ეს ჯგუფი მოიცავს ცნობილ ჯგუფებს, როგორიცაა ნირვანა და BTS, ინსტრუმენტებს, მუსიკალურ ვიდეოებს და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, მუსიკალური მისწრაფებებსა და ხელოვანებთან დაკავშირებით. ეს ჯგუფი მოიცავს ცნობილ ჯგუფებს, როგორიცაა ნირვანა და BTS, ინსტრუმენტებს, მუსიკალურ ვიდეოებს და ა. შ."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემები, ცხოველების სურათებითა და ბუნების ხედებით. ეს ჯგუფი მოიცავს ყვავილებს, მზის ჩასვლის ხედებს, წელიწადის დროებს, პლანეტებს, კნუტებს, ფრინველებს და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ცხოველების სურათებითა და ბუნების ხედებით. ეს ჯგუფი მოიცავს ყვავილებს, მზის ჩასვლის ხედებს, წელიწადის დროებს, პლანეტებს, კნუტებს, ფრინველებს და ა. შ."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "ჩამოტვირთეთ Firefox-ის თემები, რომლებიც მეტად საინტერესო, ორიგინალური და გამორჩეულია."
@@ -1185,7 +1186,7 @@ msgid "Scenery"
 msgstr "ხედები"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემები დაკავშირებული გარემოსა და ბუნებასთან. ეს ჯგუფი მოიცავს მზის ჩასვლის ხედებს, სანაპიროებს, ქალაქის სილუეტებს და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემები დაკავშირებული გარემოსა და ბუნებასთან. ეს ჯგუფი მოიცავს მზის ჩასვლის ხედებს, სანაპიროებს, ქალაქის სილუეტებს და ა. შ."
 
 msgid "Seasonal"
 msgstr "სეზონური"
@@ -1197,10 +1198,10 @@ msgid "Solid"
 msgstr "მთლიანი"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემები, ერთიანი და გარდამავალი ფერებით, თქვენი ბრაუზერის მოსარგებად. ეს ჯგუფი მოიცავს მუქ წითელს, რბილ ნაცრისფერს, პასტელურ ფერებს და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ერთიანი და გარდამავალი ფერებით, თქვენი ბრაუზერის მოსარგებად. ეს ჯგუფი მოიცავს მუქ წითელს, რბილ ნაცრისფერს, პასტელურ ფერებს და ა. შ."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr "ჩამოტვირთეთ Firefox-ის თემებს სპორტის სხვადასხვა სახეობასთან დაკავშირებით. ეს ჯგუფი მოიცავს ქვეყნის დროშებს, გუნდებს, ფეხბურთს, ჰოკეის და ა.შ."
+msgstr "ჩამოტვირთეთ Firefox-ის თემებს სპორტის სხვადასხვა სახეობასთან დაკავშირებით. ეს ჯგუფი მოიცავს ქვეყნის დროშებს, გუნდებს, ფეხბურთს, ჰოკეის და ა. შ."
 
 msgid "Websites"
 msgstr "ვებგვერდები"
@@ -2162,7 +2163,7 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"თუ გსურთ, ელფოსტის მითითება, შეკითხვების, თხოვნების, მხადაჭერისთვის და ა.შ. შეიყვანეთ აქ. თუ სხვადასხვა მისამართები გაქვთ, თითოეული ენისთვის, შეიძლება დაემატოს ამ ველის თარგმანიც. ეხება, მხოლოდ "
+"თუ გსურთ, ელფოსტის მითითება, შეკითხვების, თხოვნების, მხადაჭერისთვის და ა. შ. შეიყვანეთ აქ. თუ სხვადასხვა მისამართები გაქვთ, თითოეული ენისთვის, შეიძლება დაემატოს ამ ველის თარგმანიც. ეხება, მხოლოდ "
 "გამოქვეყნებულ დამატებებს."
 
 msgid "Website"
@@ -2193,7 +2194,7 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 "ნებისმიერი სახის ინფორმაცია, რომელიც გსურთ მიაწოდოთ მომხმარებლებს და რომლის მითითებაც არაა აუცილებელი დამატების მონაცემებსა და აღწერაში. ჩვეულებრივ, ეს შეიძლება იყოს ცნობილი ხარვეზების სია, "
-"პრობლემის შესახებ მოხსენების გაგზავნის გზები, ახალი ვერსიის გამოშვების თარიღის დაანონსება და ა.შ. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+"პრობლემის შესახებ მოხსენების გაგზავნის გზები, ახალი ვერსიის გამოშვების თარიღის დაანონსება და ა. შ. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "View Source?"
 msgstr "წყაროს ნახვა?"
@@ -3365,7 +3366,7 @@ msgstr "მოირგეთ ახალი ჩანართის გვე
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "ისიამოვნეთ უმშვენიერესი ახალი გვერდით, მასზე მორგებული ფონებით, ადგილობრივი ამინდის მონაცემებით და ა.შ."
+msgstr "ისიამოვნეთ უმშვენიერესი ახალი გვერდით, მასზე მორგებული ფონებით, ადგილობრივი ამინდის მონაცემებით და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3445,7 +3446,7 @@ msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "მუშაობს ასობით ვიდეო-საიტთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა.შ."
+msgstr "მუშაობს ასობით ვიდეო-საიტთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3477,7 +3478,7 @@ msgstr "გააუმჯობესეთ ვიდეოების ჩვ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რომელიც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, ვიდეოების თვითგაშვებას და ა.შ."
+msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რომელიც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, ვიდეოების თვითგაშვებას და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3517,7 +3518,7 @@ msgstr "წაიკითხეთ სადაც გსურთ {start_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "გაგზავნეთ ახალი ამბები, სტატიები, ჩანაწერები და ა.შ. თქვენს Kindle-ზე."
+msgstr "გაგზავნეთ ახალი ამბები, სტატიები, ჩანაწერები და ა. შ. თქვენს Kindle-ზე."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3541,7 +3542,7 @@ msgstr "მართლწერის თვითშემოწმება {
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "შეამოწმეთ მართლწერა ტექსტის აკრეფისთანავე ყველგან — სოციალურ ქსელში, ელფოსტაზე, დოკუმენტებში და ა.შ."
+msgstr "შეამოწმეთ მართლწერა ტექსტის აკრეფისთანავე ყველგან — სოციალურ ქსელში, ელფოსტაზე, დოკუმენტებში და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3690,7 +3691,7 @@ msgstr "განაცალკევეთ თქვენი სხვად�
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "უსაფრთხოდ გამიჯნეთ თქვენი ცალკეული ანგარიშები — სამუშაო, პირადი და ა.შ. — ფერადი ჩანართებით, რომლებიც გამოყოფს ერთმანეთისგან შესაბამის ფუნთუშებს."
+msgstr "უსაფრთხოდ გამიჯნეთ თქვენი ცალკეული ანგარიშები — სამუშაო, პირადი და ა. შ. — ფერადი ჩანართებით, რომლებიც გამოყოფს ერთმანეთისგან შესაბამის ფუნთუშებს."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3706,7 +3707,7 @@ msgstr "წაიკითხეთ ePub ფაილები {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "გახსენით ePub ფაილები პირდაპირ Firefox-ში — მიუთითეთ შრიფტის, გვერდების ზომები და ა.შ."
+msgstr "გახსენით ePub ფაილები პირდაპირ Firefox-ში — მიუთითეთ შრიფტის, გვერდების ზომები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3714,7 +3715,7 @@ msgstr "უკეთ მოირგეთ YouTube {start_sub_heading}{addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr "გაუშვით ვიდეოები უმაღლეს ხარისხში, მოაცილეთ წარწერები და ა.შ."
+msgstr "გაუშვით ვიდეოები უმაღლეს ხარისხში, მოაცილეთ წარწერები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3794,7 +3795,7 @@ msgstr "ეწვიეთ ვებგვერდებს შენიღბ�
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "მიიღეთ წვდომა თქვენ რჩეულ საიტებზე, ბოლო დახურულ ჩანართებზე და ა.შ. — ყველაფერი ლამაზად დალაგებული ფილების სახით."
+msgstr "მიიღეთ წვდომა თქვენ რჩეულ საიტებზე, ბოლო დახურულ ჩანართებზე და ა. შ. — ყველაფერი ლამაზად დალაგებული ფილების სახით."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3818,7 +3819,7 @@ msgstr "ჩამოტვირთვების მძლავრი მა�
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr "იხილეთ ჩამოტვირთვების მიმდინარეობა მდგომარეობის ზოლზე, ჩამოტვირთეთ ისტორიის გვერდი და ა.შ."
+msgstr "იხილეთ ჩამოტვირთვების მიმდინარეობა მდგომარეობის ზოლზე, ჩამოტვირთეთ ისტორიის გვერდი და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3826,7 +3827,7 @@ msgstr "გადაიღეთ ვებშიგთავსის სურ�
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr "შეინახეთ ინფორმაცია ინტერნეტიდან პირდაპირ OneNote-ში, შედეგად შეგეძლებათ მისი ჩასწორება, ტექსტის დართვა და ა.შ."
+msgstr "შეინახეთ ინფორმაცია ინტერნეტიდან პირდაპირ OneNote-ში, შედეგად შეგეძლებათ მისი ჩასწორება, ტექსტის დართვა და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3842,7 +3843,7 @@ msgstr "გვერდებზე მოქნილი გადაადგ�
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, წინა გვერდზე გადასასვლელად, გვერდის ხელახლა გასახსნელად და ა.შ."
+msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, წინა გვერდზე გადასასვლელად, გვერდის ხელახლა გასახსნელად და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3874,7 +3875,7 @@ msgstr "მოირგეთ თქვენი რჩეული საიტ
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr "შეცვალეთ ნებისმიერი საიტის იერსახე! ჩაანაცვლეთ ფერები, გვერდის ფონები და ა.შ."
+msgstr "შეცვალეთ ნებისმიერი საიტის იერსახე! ჩაანაცვლეთ ფერები, გვერდის ფონები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3882,7 +3883,7 @@ msgstr "მოირგეთ ახალი ჩანართის გვე
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr "ჩაასწორეთ ახალი ჩანართის გვერდი და გამოიტანეთ სასურველი რაოდენობის საიტები, აირჩიეთ ფონის სურათი და ა.შ."
+msgstr "ჩაასწორეთ ახალი ჩანართის გვერდი და გამოიტანეთ სასურველი რაოდენობის საიტები, აირჩიეთ ფონის სურათი და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3930,7 +3931,7 @@ msgstr "გააუმჯობესეთ შედეგიანობა {
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "შეცვალეთ ახალი ჩანართის გვერდი და განათავსეთ სასურველი ფონი, მიუთითეთ ყოველდღიურად შესასრულებელი მიზნები და ა.შ."
+msgstr "შეცვალეთ ახალი ჩანართის გვერდი და განათავსეთ სასურველი ფონი, მიუთითეთ ყოველდღიურად შესასრულებელი მიზნები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3954,7 +3955,7 @@ msgstr "ჩანიშნული გვერდების გასწო�
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr "მონახეთ და გაასწორეთ დაზიანებული სანიშნები, განმეორებული ბმულები და ა.შ."
+msgstr "მონახეთ და გაასწორეთ დაზიანებული სანიშნები, განმეორებული ბმულები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3970,7 +3971,7 @@ msgstr "ივაჭრეთ მოხერხებულად {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr "თვალი ადევნეთ ფასების ცვლილებას, მონახეთ ურთიერთშემცვლელი საქონელი, გაეცანით გამყიდველის შესახებ შეფასებებს და ა.შ."
+msgstr "თვალი ადევნეთ ფასების ცვლილებას, მონახეთ ურთიერთშემცვლელი საქონელი, გაეცანით გამყიდველის შესახებ შეფასებებს და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4334,7 +4335,7 @@ msgstr "ჩანართების გაუმჯობესებულ�
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "უამრავი დამატებითი შესაძლებლობა ჩანართების მართვისას — ერთნაირი ჩანართების დახურვა, ფანჯრების გაერთიანება, ჩანართის დასახელების ასლის აღება და ა.შ."
+msgstr "უამრავი დამატებითი შესაძლებლობა ჩანართების მართვისას — ერთნაირი ჩანართების დახურვა, ფანჯრების გაერთიანება, ჩანართის დასახელების ასლის აღება და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4446,7 +4447,7 @@ msgstr "თვალი ადევნეთ შრომის ნაყოფ
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთ ცალკეულ პროგრამებთან მუშაობის დრო, როგორციაა Trello, JIRA, Basecamp, GitHub და ა.შ."
+msgstr "გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთ ცალკეულ პროგრამებთან მუშაობის დრო, როგორციაა Trello, JIRA, Basecamp, GitHub და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
@@ -4514,7 +4515,7 @@ msgstr "მოქმედებების გამარტივება {
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "უბრალოდ გადააადგილეთ ტექსტი, სურათები ან ბმულები ისეთი მოქმედებების შესასრულებლად, როგორიცაა ასლის აღება, ახალ გვერდზე გახსნა, მოძიება და ა.შ."
+msgstr "უბრალოდ გადააადგილეთ ტექსტი, სურათები ან ბმულები ისეთი მოქმედებების შესასრულებლად, როგორიცაა ასლის აღება, ახალ გვერდზე გახსნა, მოძიება და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -6165,7 +6166,7 @@ msgstr ""
 "მითითება, რითიც შეძლებთ, მაგ საიტიდან ჩამოტვირთვების აღრიცხვას. მაგალითად, შემდეგი ბმულის წყაროდ გამოჩნდება თქვენი ბლოგი: <dl> <dt>დამატებების მთავარი გვერდი</dt> "
 "<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>ფაილის პირდაპირი ბმული</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
 ">external-blog</b></dd> </dl> <p> მხოლოდ აღირიცხება ის src პარამეტრები, რომელიც დაიწყება \"external-\" წინსართით, არაუმეტეს 61 სიმბოლომდე. ნებისმიერი ტექსტი \"external-\" წინსართის შემდეგ, გამოდგება"
-" წყაროს აღსაწერად შემდეგნაირად: \"external-blog\", \"external-sidebar\", \"external-campaign225\" და ა.შ. დაშვებულია შემდეგი URL-უსაფრთხო სიმბოლოები: <code>a-z A-Z - . _ ~ %% +</code>"
+" წყაროს აღსაწერად შემდეგნაირად: \"external-blog\", \"external-sidebar\", \"external-campaign225\" და ა. შ. დაშვებულია შემდეგი URL-უსაფრთხო სიმბოლოები: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "დამატების მდგომარეობა თარიღის მიხედვით"
@@ -6237,7 +6238,7 @@ msgid "Desktop Browser"
 msgstr "კომპიუტერისთვის"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, Developer ვერსია"
+msgstr "Beta, Nightly, Developer გამოშვებები"
 
 msgid "Other languages"
 msgstr "სხვა ენები"
