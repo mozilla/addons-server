@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-24 09:00+0000\n"
+"PO-Revision-Date: 2019-06-24 13:52+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "тип"
 
 msgid "Users"
 msgstr "Користувачів"
@@ -32,7 +32,7 @@ msgid "Addons"
 msgstr "Додатки"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "мінімальна кількість звітів (згруповано за guid)"
 
 msgid "creation date"
 msgstr "дата створення"
@@ -44,10 +44,10 @@ msgid "Distribution"
 msgstr "Розповсюдження"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Країна подавача звіту"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Уривок з повідомлення"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -55,20 +55,20 @@ msgstr "%d вибраних звітів позначено як дійсні."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d вибраних звітів позначено як підозрілі."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Позначити вибрані звіти про порушення як підозрілі"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Змінено:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "За %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 msgid "No links are allowed."
 msgstr "Посилання не дозволені."
@@ -258,10 +258,10 @@ msgid "Error verifying input, please try again."
 msgstr "Помилка перевірки введення, спробуйте знову."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Введіть дійсну мережу IP4 або IP6."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Деякі функції тимчасово недоступні, поки ми проводимо обслуговування сайту. Незабаром ми повернемо повну функціональність."
@@ -5216,7 +5216,7 @@ msgstr "Ви не можете залишати більше одного від
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Недійсна позначка [%s] - повинна бути одна з [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Цю оцінку неможливо позначити, тому що тут немає тексту відгуку."
@@ -5341,7 +5341,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Розподіл ризиків недоступний."
 
 msgid "Is locked by a reviewer."
 msgstr "Заблокований рецензентом."
@@ -5446,7 +5446,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Попередня перевірка додатків"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Рекомендовано ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Інші очікувані перевірки ({0})"
@@ -6342,10 +6342,10 @@ msgid "Activity Logs"
 msgstr "Журнали активності"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Введіть дійсну адресу IPv4 або IPv6, наприклад, 127.0.0.1. Буде перетворено в мережу з маскою /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Ви можете ввести лише IP-адресу або мережу."
 
 msgid "No user with that email."
 msgstr "Немає користувача з цією адресою ел. пошти."
@@ -6360,18 +6360,20 @@ msgid "My Favorite Add-ons"
 msgstr "Мої улюблені додатки"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Введіть дійсний діапазон CIDR-мережі IPv6 або IPv6, наприклад, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "З вашого розташування надіслано декілька додатків, що порушують ваші правила. IP-адресу було заблоковано."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Шаблон електронної пошти"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Введіть повний домен чи електронну пошту, які слід заблокувати, або використайте  замінники (зірочки) (glob-style wildcards) для відповідності іншим шаблонам. Наприклад, \"@*.mail.com\"\n"
+" Зверніть увагу, що ми не включаємо \"@\" для збігу, отже вам слід зробити це в шаблоні."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
 msgstr ""
