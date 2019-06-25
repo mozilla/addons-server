@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2019-05-27 13:28+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1700,14 +1700,6 @@ msgstr "ਆਈਕਾਨ PNG ਜਾਂJPG ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ�
 msgid "Icons cannot be animated."
 msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "ਤਸਵੀਰ %dKB ਤੋਂ ਵੱਡੀ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "ਤਸਵੀਰ ਬਿਲਕੁਲ {0} ਪਿਕਸਲ ਚੌੜੀ ਅਤੇ {1} ਪਿਕਸਲ ਲੰਬੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
-
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "ਚਿੱਤਰ ਘੱਟੋ ਘੱਟ {0} ਪਿਕਸਲ ਚੌੜਾ ਅਤੇ {1} ਲੰਬਾ ਪਿਕਸਲ ਲੰਬਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈੈ।"
 
@@ -1722,6 +1714,9 @@ msgstr "ਆਈਕਨ ਵਰਗ (ਇੱਕੋ ਚੌੜਾਈ ਅਤੇ ਉਚਾ
 
 msgid "There was an error uploading your preview."
 msgstr "ਤੁਹਾਡੀ ਝਲਕ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਵਿੱਚ ਖਾਮੀ ਆਈ।"
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2330,14 +2325,8 @@ msgstr "ਪਿਛਲੇ ਵਰਜਨ ਵਿੱਚ ਮੌਜੂਦ ਸੰਦੇ�
 msgid "Top"
 msgstr "ਚੋਟੀ ਦੇ"
 
-msgid "Delete Theme"
-msgstr "ਥੀਮ ਹਟਾਓ"
-
 msgid "Delete Add-on"
 msgstr "ਐਡ-ਆਨ ਹਟਾਓ"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਹਟਾਉਣਾ ਇਸ ਨੂੰ ਸਾਈਟ ਤੋਂ ਪੱਕੇ ਤੌਰ ਤੇ ਹਟਾ ਦੇਵੇਗਾ।"
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2346,9 +2335,6 @@ msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁ
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "ਆਪਣੇ ਫੈਸਲੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਹੇਠਲਾ ਪਾਠ ਦਰਜ ਕਰੋ: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਆਪਣੇ ਥੀਮ ਨੂੰ ਕਿਉਂ ਹਟਾ ਰਹੇ ਹੋ:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਕਿਉਂ ਹਟਾ ਰਹੇ ਹੋ:"
@@ -2389,39 +2375,11 @@ msgstr "ਦਰਜੇ ਅਤੇ ਵਰਜਨਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕ�
 msgid "View Recent Changes"
 msgstr "ਤਾਜ਼ਾ ਬਦਲਾਵ ਵੇਖੋ"
 
-msgid "Edit details on this theme's product page"
-msgstr "ਇਸ ਥੀਮ ਦੇ ਉਤਪਾਦ ਪੰਨੇ ਤੇ ਵੇਰਵੇ ਸੰਪਾਦਿਤ ਕਰੋ"
-
-msgid "View the popularity of this theme over time"
-msgstr "ਸਮੇਂ ਦੇ ਨਾਲ ਇਸ ਥੀਮ ਦੀ ਪ੍ਰਸਿੱਧੀ ਵੇਖੋ"
-
-msgid "View Statistics"
-msgstr "ਅੰਕੜੇ ਵੇਖੋ"
-
-msgid "Change the owner of this theme"
-msgstr "ਇਸ ਥੀਮ ਦਾ ਮਾਲਕ ਬਦਲੋ"
-
-msgid "Transfer Ownership"
-msgstr "ਮਾਲਕੀ ਤਬਾਦਲਾ"
-
-msgid "Delete this theme"
-msgstr "ਇਸ ਥੀਮ ਨੂੰ ਹਟਾਓ"
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "ਇਹ ਐਡ-ਓਨ ਪਬਲੀਕੇਸ਼ਨ ਲਈ ਜਮ੍ਹਾਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਜਰੂਰੀ ਜਾਣਕਾਰੀ ਗੁਆਚ ਰਿਹਾ ਹੈ।"
 
 msgid "This add-on doesn't have any versions."
 msgstr "ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਕੋਈ ਵੀ ਵਰਜਨ ਨਹੀਂ ਹਨ।"
-
-msgid "Status:"
-msgstr "ਦਰਜਾ:"
-
-msgid "Disabled"
-msgstr "ਅਯੋਗ ਹੋਇਆ"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>ਕਤਾਰ ਸਥਿਤੀ:</b> %(total)s ਵਿੱਚੋਂ %(pos)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2799,6 +2757,9 @@ msgstr "ਆਖਰੀ ਵਾਰ ਨਵਿਆਇਆ ਗਿਆ:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "ਕੋਡ ਰਿਵਿਊ ਪਾਸ ਕਰਨ ਤੋਂ ਬਾਅਦ ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਬੱਧ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
 
+msgid "Status:"
+msgstr "ਦਰਜਾ:"
+
 msgid "Listed Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
@@ -3117,9 +3078,6 @@ msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬਗਿੰਗ ਲਈ ਅਸਥਾਈ ਰੂਪ ਵਿੱਚ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਆਪਣਾ ਐਕਸਟੈਂਸ਼ਨ ਇੰਸਟਾਲ ਕਰੋ।"
-
-msgid "Lightweight Theme editing has been disabled."
-msgstr "ਲਾਈਟਵੇਟ ਥੀਮ ਐਡੀਟਿੰਗ ਨੂੰ ਅਯੋਗ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Manage Version {0}"
 msgstr "ਵਰਜਨ {0} ਸੰਭਾਲ੍ਹੋ"
@@ -4697,6 +4655,33 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਉਤ
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੈਬ ਕੈਪਚਰ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਟ੍ਰੈਕਰਾਂ ਨੂੰ ਬੰਦ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀਡੀਓ ਖੋਜੋ"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "ਫਾਇਲ ਦਰਸ਼ਕ ਲਾਕ ਹੈ, %s ਲਈ ਖੋਲਣ ਦੀ ਕਾਰਵਾਈ ਜਾਰੀ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਲਗਭਗ 5 ਮਿੰਟ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
@@ -5295,11 +5280,16 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+#, fuzzy
+msgid "Is locked by a reviewer"
 msgstr "ਇੱਕ ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਲਾਕ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
-msgid "Has auto-approval disabled flag set."
+#, fuzzy
+msgid "Has auto-approval disabled flag set"
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਅਸਮਰਥਿਤ ਝੰਡੇ ਸੈਟ ਹੈ।"
+
+msgid "Is recommendable"
+msgstr ""
 
 msgid "Type"
 msgstr "ਕਿਸਮ"
@@ -5509,6 +5499,9 @@ msgstr "ਪ੍ਰਤੱਖਤਾ"
 
 msgid "Visible"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
+
+msgid "View Statistics"
+msgstr "ਅੰਕੜੇ ਵੇਖੋ"
 
 msgid "Average Daily Users"
 msgstr "ਔਸਤ ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"

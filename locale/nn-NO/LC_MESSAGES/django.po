@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2019-04-16 17:50+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1714,14 +1714,6 @@ msgstr "Ikon må anten vera PNG eller JPG."
 msgid "Icons cannot be animated."
 msgstr "Ikon kan ikkje vere animerte."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Bilde kan ikkje vere større enn %dkB."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Bilde må vere akkurat {0} pikslar breie og {1} pikslar høge."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Bilde må vere akkurat {0} pikslar breie og {1} pikslar høge."
@@ -1739,6 +1731,9 @@ msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Det oppstod ein feil under opplasting av førehandsvisinga di."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2353,14 +2348,8 @@ msgstr "Skjul meldingar som finst i tidlegare versjon og ignorerte"
 msgid "Top"
 msgstr "Øvst"
 
-msgid "Delete Theme"
-msgstr "Slett temaet"
-
 msgid "Delete Add-on"
 msgstr "Slett utvidinga"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Slettar du temaet ditt vil det permanent verte fjerna frå nettsida."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2369,9 +2358,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Skriv inn følgjande tekst for å stadfeste avgjerda di: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Fortel oss gjerne kvifor du slettar temaet ditt:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Fortel oss gjerne kvifor du slettar utvidinga di:"
@@ -2416,42 +2402,11 @@ msgstr "Handsam status og versjonar"
 msgid "View Recent Changes"
 msgstr "Vis siste endringar"
 
-#, fuzzy
-msgid "Edit details on this theme's product page"
-msgstr "Rediger detaljar for listinga av dette temaet."
-
-#, fuzzy
-msgid "View the popularity of this theme over time"
-msgstr "Vis popularitet for dette temaet gjennom tidene."
-
-msgid "View Statistics"
-msgstr "Vis statistikk"
-
-#, fuzzy
-msgid "Change the owner of this theme"
-msgstr "Endre eigar for dette temaet."
-
-msgid "Transfer Ownership"
-msgstr "Overfør eigarskap"
-
-msgid "Delete this theme"
-msgstr "Slett dette temaet"
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
 msgstr "Denne utvidinga har ingen versjonar."
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Disabled"
-msgstr "Slått av"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Køplass:</b> %(pos)s av %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2827,6 +2782,9 @@ msgstr "Sist oppdatert:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Listed Version:"
 msgstr "Oppført versjon:"
 
@@ -3151,10 +3109,6 @@ msgstr "Live-testing"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "Lette tema, vurderingslogg"
 
 msgid "Manage Version {0}"
 msgstr "Handsam versjon {0}"
@@ -4887,6 +4841,33 @@ msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bli betre på emoji {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5476,10 +5457,14 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+#, fuzzy
+msgid "Is locked by a reviewer"
 msgstr "Er låst av ein vurderar."
 
-msgid "Has auto-approval disabled flag set."
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5692,6 +5677,9 @@ msgstr "Synlegheit"
 
 msgid "Visible"
 msgstr "Synleg"
+
+msgid "View Statistics"
+msgstr "Vis statistikk"
 
 msgid "Average Daily Users"
 msgstr "Daglege brukarar i gjennomsnitt"

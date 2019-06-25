@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2019-05-07 10:49+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1729,14 +1729,6 @@ msgstr "Ikon harus dalam PNG atau JPG."
 msgid "Icons cannot be animated."
 msgstr "Icon tidak dapat dijadikan animasi."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Gambar tidak bisa lebih besar daripada %dKB."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
-
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Resolusi minimum gambar adalah selebar {0} piksel dan setinggi {1} piksel."
 
@@ -1751,6 +1743,9 @@ msgstr "Ikon harus persegi (sama lebar dan tingginya)."
 
 msgid "There was an error uploading your preview."
 msgstr "Terjadi kesalahan menggunggah pratinjau anda."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2393,14 +2388,8 @@ msgstr "Menyembunyikan pesan ada di versi sebelumnya dan tidak diindahkan"
 msgid "Top"
 msgstr "Teratas"
 
-msgid "Delete Theme"
-msgstr "Hapus tema"
-
 msgid "Delete Add-on"
 msgstr "Hapus Pengaya"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Menghapus tema anda akan menghapusnya sama sekali dari situs."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2411,9 +2400,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Masukkan teks berikut ini untuk mengkonfirmasi keputusan Anda: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Beritahu kami mengapa Anda menghapus tema Anda:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Beritahu kami mengapa Anda menghapus pengaya Anda:"
@@ -2454,39 +2440,11 @@ msgstr "Kelola Status & Versi"
 msgid "View Recent Changes"
 msgstr "Lihat Perubahan Baru-baru ini"
 
-msgid "Edit details on this theme's product page"
-msgstr "Sunting detailnya pada laman produk tema ini"
-
-msgid "View the popularity of this theme over time"
-msgstr "Lihat popularitas tema ini dari waktu ke waktu"
-
-msgid "View Statistics"
-msgstr "Tampilkan Statistik"
-
-msgid "Change the owner of this theme"
-msgstr "Ubah pemilik tema ini"
-
-msgid "Transfer Ownership"
-msgstr "Mentransfer Kepemilikan"
-
-msgid "Delete this theme"
-msgstr "Hapus tema ini"
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Pengaya ini kekurangan sejumlah informasi yang diperlukan sebelum dapat dikirim untuk dipublikasikan."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Pengaya ini tidak memiliki versi apa pun."
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Disabled"
-msgstr "Dimatikan"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Posisi antrean:</b> %(pos)s dari %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2867,6 +2825,9 @@ msgstr "Terakhir Diperbarui:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Tercantum di situs ini setelah melewati peninjauan kode. Pembaruan otomatis ditangani oleh situs ini."
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Listed Version:"
 msgstr "Versi Terdaftar:"
 
@@ -3192,9 +3153,6 @@ msgstr "Pengujian Langsung"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-msgid "Lightweight Theme editing has been disabled."
-msgstr "Pengeditan Tema Ringan telah dinonaktifkan."
 
 msgid "Manage Version {0}"
 msgstr "Mengelola Versi {0}"
@@ -4779,6 +4737,33 @@ msgstr "Lacak produktivitas {start_sub_heading}dengan {addon_name}{end_sub_headi
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tangkap cuplikan web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Hentikan pelacak pencarian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Temukan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Penampil berkas terkunci, ekstraksi untuk %s boleh jadi sedang berlangsung. Silakan coba lagi dalam waktu sekitar 5 menit."
@@ -5384,11 +5369,16 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+#, fuzzy
+msgid "Is locked by a reviewer"
 msgstr "Dikunci oleh peninjau."
 
-msgid "Has auto-approval disabled flag set."
+#, fuzzy
+msgid "Has auto-approval disabled flag set"
 msgstr "Memiliki set penandaan tidak aktif persetujuan otomatis."
+
+msgid "Is recommendable"
+msgstr ""
 
 msgid "Type"
 msgstr "Тип"
@@ -5594,6 +5584,9 @@ msgstr "Visibilitas"
 
 msgid "Visible"
 msgstr "Tampak"
+
+msgid "View Statistics"
+msgstr "Tampilkan Statistik"
 
 msgid "Average Daily Users"
 msgstr "Rata-rata Pengguna Harian"

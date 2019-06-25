@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1778,14 +1778,6 @@ msgstr "Ikonoek PNG edo JPG izan behar dute."
 msgid "Icons cannot be animated."
 msgstr "Ikonoak ezin dira animatuak izan."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr ""
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
-
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
@@ -1801,6 +1793,9 @@ msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Errorea gertatu da aurrebista igotzean."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2420,13 +2415,7 @@ msgstr ""
 msgid "Top"
 msgstr "Goialdean"
 
-msgid "Delete Theme"
-msgstr ""
-
 msgid "Delete Add-on"
-msgstr ""
-
-msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
 
 msgid ""
@@ -2435,9 +2424,6 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
-
-msgid "Please tell us why you are deleting your theme:"
 msgstr ""
 
 msgid "Please tell us why you are deleting your add-on:"
@@ -2480,41 +2466,12 @@ msgstr ""
 msgid "View Recent Changes"
 msgstr ""
 
-msgid "Edit details on this theme's product page"
-msgstr ""
-
-msgid "View the popularity of this theme over time"
-msgstr ""
-
-msgid "View Statistics"
-msgstr "Ikusi estatistikak"
-
-msgid "Change the owner of this theme"
-msgstr ""
-
-msgid "Transfer Ownership"
-msgstr ""
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "Ezabatu nire erabiltzaile-argazkia orain"
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 #, fuzzy
 msgid "This add-on doesn't have any versions."
 msgstr "Gehigarri hau ez da berrikusi oraindik."
-
-msgid "Status:"
-msgstr "Egoera:"
-
-msgid "Disabled"
-msgstr "Desgaituta"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2930,6 +2887,9 @@ msgstr ""
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
+msgid "Status:"
+msgstr "Egoera:"
+
 #, fuzzy
 msgid "Listed Version:"
 msgstr "Gehitu bertsioa"
@@ -3286,13 +3246,6 @@ msgstr "Ikusi zerrenda"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-# %1 is the review count
-# 80%
-# 100%
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "Moderatutako berrikuspenak (%s)"
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4869,6 +4822,30 @@ msgstr ""
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5477,10 +5454,13 @@ msgstr ""
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+msgid "Is locked by a reviewer"
 msgstr ""
 
-msgid "Has auto-approval disabled flag set."
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5719,6 +5699,9 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+msgid "View Statistics"
+msgstr "Ikusi estatistikak"
 
 msgid "Average Daily Users"
 msgstr "Eguneko batez besteko erabiltzaileak"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1809,14 +1809,6 @@ msgstr "Иконице морају бити или PNG или JPG формат�
 msgid "Icons cannot be animated."
 msgstr "Иконице не могу бити покретне."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Слике не могу бити веће од %dKB."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Слика мора бити широка тачно {0} пиксела и висока {1} пиксела."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Слика мора бити широка тачно {0} пиксела и висока {1} пиксела."
@@ -1834,6 +1826,9 @@ msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Дошло је до грешке приликом отпремања Вашег прегледа."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2471,14 +2466,8 @@ msgstr ""
 msgid "Top"
 msgstr "Врх"
 
-msgid "Delete Theme"
-msgstr "Избриши тему"
-
 msgid "Delete Add-on"
 msgstr "Избриши додатак"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Брисање Ваше теме ће је трајно уклонити са сајта."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2487,9 +2476,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Реците нам зашто бришете своју тему:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Реците нам зашто бришете свој додатак:"
@@ -2534,44 +2520,12 @@ msgstr "Управљање статуса и верзијама"
 msgid "View Recent Changes"
 msgstr "Погледајте најновије измене"
 
-#, fuzzy
-msgid "Edit details on this theme's product page"
-msgstr "Измените детаље о листингу ове теме."
-
-#, fuzzy
-msgid "View the popularity of this theme over time"
-msgstr "Погледајте популарност ове теме током времена."
-
-msgid "View Statistics"
-msgstr "Погледај статистику"
-
-#, fuzzy
-msgid "Change the owner of this theme"
-msgstr "Промени власника ове теме."
-
-msgid "Transfer Ownership"
-msgstr "Пренос власништва"
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "Избриши ову тему."
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 #, fuzzy
 msgid "This add-on doesn't have any versions."
 msgstr "Овај додатак није компатибилан са Вашом верзијом %(app)s-а."
-
-msgid "Status:"
-msgstr "Статус:"
-
-msgid "Disabled"
-msgstr "Онемогућен"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Ред позиције:</b> %(pos)s од %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2990,6 +2944,9 @@ msgstr "Последње ажурирање:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
+msgid "Status:"
+msgstr "Статус:"
+
 #, fuzzy
 msgid "Listed Version:"
 msgstr "Последња верзија:"
@@ -3344,10 +3301,6 @@ msgstr "Погледај листинг"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "Рецензија теме"
 
 msgid "Manage Version {0}"
 msgstr "Управљај верзијом {0}"
@@ -4926,6 +4879,30 @@ msgstr ""
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5550,10 +5527,13 @@ msgid "Risk breakdown not available."
 msgstr ""
 
 #, fuzzy
-msgid "Is locked by a reviewer."
+msgid "Is locked by a reviewer"
 msgstr "mој додатак је прегледан од стране уредника"
 
-msgid "Has auto-approval disabled flag set."
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5795,6 +5775,9 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+msgid "View Statistics"
+msgstr "Погледај статистику"
 
 msgid "Average Daily Users"
 msgstr "Просечани дневни корисници"

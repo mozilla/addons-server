@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2017-10-11 01:08+0000\n"
 "Last-Translator: Hadi <h.alshakhori@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1780,14 +1780,6 @@ msgstr "صيغة الأيقونات يجب أن تكون إما PNG أو JPG."
 msgid "Icons cannot be animated."
 msgstr "الأيقونات لا يمكن أن تكون متحركة."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "الصور لا يمكن أن تكون أكبر من %d ك.بايت."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "الصورة يجب أن تطابق {0} بكسل للعرض، و {1} بكسل للارتفاع."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "الصورة يجب أن تطابق {0} بكسل للعرض، و {1} بكسل للارتفاع."
@@ -1805,6 +1797,9 @@ msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "هناك خطأ في رفع المعاينة."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2437,13 +2432,7 @@ msgstr ""
 msgid "Top"
 msgstr "فوق"
 
-msgid "Delete Theme"
-msgstr ""
-
 msgid "Delete Add-on"
-msgstr ""
-
-msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
 
 msgid ""
@@ -2452,9 +2441,6 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
-
-msgid "Please tell us why you are deleting your theme:"
 msgstr ""
 
 msgid "Please tell us why you are deleting your add-on:"
@@ -2497,41 +2483,12 @@ msgstr ""
 msgid "View Recent Changes"
 msgstr ""
 
-msgid "Edit details on this theme's product page"
-msgstr ""
-
-msgid "View the popularity of this theme over time"
-msgstr ""
-
-msgid "View Statistics"
-msgstr "اعرض الإحصائيات"
-
-msgid "Change the owner of this theme"
-msgstr ""
-
-msgid "Transfer Ownership"
-msgstr ""
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "احذف صورتي الآن"
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 #, fuzzy
 msgid "This add-on doesn't have any versions."
 msgstr "هذه الإضافة غير متوافقة مع الإصدارة الحالية من %(app)s."
-
-msgid "Status:"
-msgstr "الحالة:"
-
-msgid "Disabled"
-msgstr "معطّلة"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2948,6 +2905,9 @@ msgstr ""
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
+msgid "Status:"
+msgstr "الحالة:"
+
 #, fuzzy
 msgid "Listed Version:"
 msgstr "الإصدارة الأخيرة:"
@@ -3299,10 +3259,6 @@ msgstr "View Listing"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "تعليق مُفصّل"
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4884,6 +4840,30 @@ msgstr ""
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5497,10 +5477,13 @@ msgid "Risk breakdown not available."
 msgstr ""
 
 #, fuzzy
-msgid "Is locked by a reviewer."
+msgid "Is locked by a reviewer"
 msgstr "عندما تراجع إضافتي بواسطة محرّر"
 
-msgid "Has auto-approval disabled flag set."
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5754,6 +5737,9 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+msgid "View Statistics"
+msgstr "اعرض الإحصائيات"
 
 msgid "Average Daily Users"
 msgstr "معدّل المستخدمين اليومين"

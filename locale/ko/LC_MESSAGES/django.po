@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2019-05-31 01:30+0000\n"
 "Last-Translator: Taegeon Lee <ash153311@gmail.com>\n"
 "Language-Team: none\n"
@@ -1709,14 +1709,6 @@ msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
 msgid "Icons cannot be animated."
 msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "이미지는 %dKB보다 작아야 합니다."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
@@ -1734,6 +1726,9 @@ msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2360,14 +2355,8 @@ msgstr ""
 msgid "Top"
 msgstr "최상위"
 
-msgid "Delete Theme"
-msgstr "테마 삭제"
-
 msgid "Delete Add-on"
 msgstr "부가 기능 삭제"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "테마를 삭제하면 사이트에서도 영원히 삭제됩니다."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2376,9 +2365,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "테마를 삭제하려는 이유를 설명해 주세요:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "부가 기능을 삭제하려는 이유를 설명해 주세요:"
@@ -2423,43 +2409,11 @@ msgstr "상태 및 버전 관리"
 msgid "View Recent Changes"
 msgstr "최근 변경 사항 보기"
 
-#, fuzzy
-msgid "Edit details on this theme's product page"
-msgstr "이 테마의 목록에 대한 상세 편집"
-
-#, fuzzy
-msgid "View the popularity of this theme over time"
-msgstr "이 테마의 전체 시간에 대비 인기도를 봅니다."
-
-msgid "View Statistics"
-msgstr "통계 보기"
-
-#, fuzzy
-msgid "Change the owner of this theme"
-msgstr "이 테마의 소유자를 변경합니다."
-
-msgid "Transfer Ownership"
-msgstr "소유권 이전"
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "이 테마 삭제하기."
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
 msgstr "이 부가 기능은 버전이 없습니다."
-
-msgid "Status:"
-msgstr "상태:"
-
-msgid "Disabled"
-msgstr "사용 안함"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>대기열 번호:</b> %(pos)s번 / %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2842,6 +2796,9 @@ msgstr "마지막 업데이트:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
+msgid "Status:"
+msgstr "상태:"
+
 #, fuzzy
 msgid "Listed Version:"
 msgstr "최신 버전:"
@@ -3182,10 +3139,6 @@ msgstr "목록 보기"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "가벼운 테마 검토 로그"
 
 msgid "Manage Version {0}"
 msgstr "버전 {0} 관리"
@@ -4754,6 +4707,30 @@ msgstr ""
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5370,10 +5347,14 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+#, fuzzy
+msgid "Is locked by a reviewer"
 msgstr "검토자에 의해 잠겼습니다."
 
-msgid "Has auto-approval disabled flag set."
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5600,6 +5581,9 @@ msgstr "표시"
 
 msgid "Visible"
 msgstr "보임"
+
+msgid "View Statistics"
+msgstr "통계 보기"
 
 msgid "Average Daily Users"
 msgstr "평균 일일 사용자 수"
