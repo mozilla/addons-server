@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2019-04-06 16:08+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1774,14 +1774,6 @@ msgstr "Simgeler PNG veya JPG olmalıdır."
 msgid "Icons cannot be animated."
 msgstr "Simgeler hareketli olamaz."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Resimler %d KB'den büyük olamaz."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
@@ -1799,6 +1791,9 @@ msgstr "Simge kare olmalıdır (aynı genişlik ve yükseklik)."
 
 msgid "There was an error uploading your preview."
 msgstr "Ön izlemenizi yüklerken bir hata oluştu."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2439,14 +2434,8 @@ msgstr "Önceki sürümde bulunan ve yoksayılan iletileri gizle"
 msgid "Top"
 msgstr ""
 
-msgid "Delete Theme"
-msgstr "Temayı sil"
-
 msgid "Delete Add-on"
 msgstr "Eklentiyi sil"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Temanızı silmek, onu siteden kalıcı olarak kaldırılacaktır."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2457,9 +2446,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Kararınızı onaylamak için şu metni yazın: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Temanızı neden sildiğinizi lütfen bize söyleyin:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Eklentinizi neden sildiğinizi lütfen bize söyleyin:"
@@ -2504,43 +2490,11 @@ msgstr "Durumu ve Sürümleri Yönet"
 msgid "View Recent Changes"
 msgstr "Son Değişikliklere Bak"
 
-#, fuzzy
-msgid "Edit details on this theme's product page"
-msgstr "Temanın listelenmesiyle ilgili ayrıntıları düzenle."
-
-#, fuzzy
-msgid "View the popularity of this theme over time"
-msgstr "Bu temanın zaman içindeki popülerliğine bak."
-
-msgid "View Statistics"
-msgstr "İstatistikleri Göster"
-
-#, fuzzy
-msgid "Change the owner of this theme"
-msgstr "Bu temanın sahibini değiştir."
-
-msgid "Transfer Ownership"
-msgstr "Sahiplik Aktarımı"
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "Bu temayı sil."
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
 msgstr "Bu eklentinin hiç sürümü yok."
-
-msgid "Status:"
-msgstr "Durum:"
-
-msgid "Disabled"
-msgstr "Devre dışı"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Sıra:</b> %(pos)s / %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2925,6 +2879,9 @@ msgstr "Son güncellenme:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Kod incelemesinden geçerek bu sitede listelenmiştir. Otomatik güncellemeler bu site tarafından ele alınmaktadır."
 
+msgid "Status:"
+msgstr "Durum:"
+
 msgid "Listed Version:"
 msgstr "Listelenen sürüm:"
 
@@ -3256,10 +3213,6 @@ msgstr "Listelemeyi gör"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "Hafif Temalar"
 
 msgid "Manage Version {0}"
 msgstr "{0} sürümünü yönet"
@@ -4846,6 +4799,33 @@ msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} sekme özelleştirm
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} reklamları engelleyin"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} reklamları engelleyin"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Videoları {start_sub_heading}{addon_name} ile{end_sub_heading} indirin"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5464,10 +5444,13 @@ msgid "Risk breakdown not available."
 msgstr ""
 
 #, fuzzy
-msgid "Is locked by a reviewer."
+msgid "Is locked by a reviewer"
 msgstr "Bu eklenti, bir yönetici tarafından devre dışı bırakılmıştır."
 
-msgid "Has auto-approval disabled flag set."
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5700,6 +5683,9 @@ msgstr "Görünürlük"
 
 msgid "Visible"
 msgstr "Görünür"
+
+msgid "View Statistics"
+msgstr "İstatistikleri Göster"
 
 msgid "Average Daily Users"
 msgstr "Ortalama Günlük Kullanıcı"

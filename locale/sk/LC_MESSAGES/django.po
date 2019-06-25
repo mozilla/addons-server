@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2019-03-15 17:33+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1703,14 +1703,6 @@ msgstr "Ikony musia byť vo formáte .png alebo .jpg."
 msgid "Icons cannot be animated."
 msgstr "Ikony nesmú byť animované."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Obrázky nemôžu byť väčšie ako %d kb."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Obrázok musí mať rozmery {0}x{1} bodov."
-
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
@@ -1725,6 +1717,9 @@ msgstr "Ikona musí byť štvorcová (rovnaká šírka a výška)."
 
 msgid "There was an error uploading your preview."
 msgstr "Pri odosielaní ukážky sa vyskytla chyba."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2341,14 +2336,8 @@ msgstr "Skryť správy ignorované v starších verziách"
 msgid "Top"
 msgstr "Prejsť hore"
 
-msgid "Delete Theme"
-msgstr "Odstrániť tému"
-
 msgid "Delete Add-on"
 msgstr "Odstrániť doplnok"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Odstránením vašej témy ju trvalo odstránite z tohto webu."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2357,9 +2346,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Pre potvrdenie svojho rozhodnutia zadajte nasledovný text: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Povedzte nám, prečo odstraňujete vašu tému vzhľadu:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Povedzte nám, prečo odstraňujete váš doplnok:"
@@ -2400,39 +2386,11 @@ msgstr "Správa stavu a verzií"
 msgid "View Recent Changes"
 msgstr "Zobraziť posledné zmeny"
 
-msgid "Edit details on this theme's product page"
-msgstr ""
-
-msgid "View the popularity of this theme over time"
-msgstr "Zobraziť popularitu tejto témy vzhľadu v čase"
-
-msgid "View Statistics"
-msgstr "Zobraziť štatistiky"
-
-msgid "Change the owner of this theme"
-msgstr "Zmeniť vlastníka tejto témy vzhľadu"
-
-msgid "Transfer Ownership"
-msgstr "Presun vlastníctva"
-
-msgid "Delete this theme"
-msgstr "Odstrániť túto tému vzhľadu"
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
 msgstr "Tento doplnok nemá žiadne verzie."
-
-msgid "Status:"
-msgstr "Stav:"
-
-msgid "Disabled"
-msgstr "Zakázaný"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Pozícia vo fronte:</b> %(pos)s z %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2807,6 +2765,9 @@ msgstr "Posledná aktualizácia:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
+msgid "Status:"
+msgstr "Stav:"
+
 msgid "Listed Version:"
 msgstr ""
 
@@ -3126,9 +3087,6 @@ msgid "Live Testing"
 msgstr ""
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
-
-msgid "Lightweight Theme editing has been disabled."
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4711,6 +4669,33 @@ msgstr "Prispôsobte si svoje karty {start_sub_heading}s doplnkom {addon_name}{e
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Preberajte videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Preberajte videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Preberajte videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5304,10 +5289,14 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+#, fuzzy
+msgid "Is locked by a reviewer"
+msgstr "môj doplnok bol skontrolovaný"
+
+msgid "Has auto-approval disabled flag set"
 msgstr ""
 
-msgid "Has auto-approval disabled flag set."
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5524,6 +5513,9 @@ msgstr "Viditeľnosť"
 
 msgid "Visible"
 msgstr "Viditeľný"
+
+msgid "View Statistics"
+msgstr "Zobraziť štatistiky"
 
 msgid "Average Daily Users"
 msgstr "Priemerný počet denných používateľov"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1713,14 +1713,6 @@ msgstr ""
 msgid "Icons cannot be animated."
 msgstr "Ikone ne mogu biti animirane."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Slike ne mogu biti veće od %dKB."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
@@ -1737,6 +1729,9 @@ msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Dogodila se greška pri učitavanju vašeg pregleda."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2365,14 +2360,8 @@ msgstr "Sakrijte poruke koje su prisutne u prethodnim verzijama i koje su ignori
 msgid "Top"
 msgstr ""
 
-msgid "Delete Theme"
-msgstr "Izbriši temu"
-
 msgid "Delete Add-on"
 msgstr "Izbriši dodatak"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Brisanje vaše teme će je automatski ukloniti sa stranice."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2383,9 +2372,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Unesite sljedeći tekst da potvrdite vašu odluku: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Molimo recite nam zašto brišete svoju temu:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Molimo recite nam zašto brišete vaš dodatak:"
@@ -2430,43 +2416,11 @@ msgstr "Upravljanje statusima i verzijama"
 msgid "View Recent Changes"
 msgstr "Prikaži nedavne promjene"
 
-#, fuzzy
-msgid "Edit details on this theme's product page"
-msgstr "Uredi detalje o ovom oglasu teme."
-
-#, fuzzy
-msgid "View the popularity of this theme over time"
-msgstr "Prikaži popularnost ove teme tokom vremena."
-
-msgid "View Statistics"
-msgstr "Prikaži statistiku"
-
-#, fuzzy
-msgid "Change the owner of this theme"
-msgstr "Promijeni vlasnika ove teme."
-
-msgid "Transfer Ownership"
-msgstr "Prijenos vlasništva"
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "Izbriši ovu temu."
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Ovom dodatku nedostaju neki podaci prije nego se može podnijeti za objavljivanje."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Ovaj dodatak nema nikakvu verziju."
-
-msgid "Status:"
-msgstr ""
-
-msgid "Disabled"
-msgstr ""
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Pozicija čekanja:</b> %(pos)s od %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2851,6 +2805,9 @@ msgstr ""
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Prikazan na ovoj stranici nakon prolaska pregleda koda. Automatska ažuriranja su podržana od ove stranice."
 
+msgid "Status:"
+msgstr ""
+
 msgid "Listed Version:"
 msgstr "Objavljena verzija:"
 
@@ -3172,9 +3129,6 @@ msgid "Live Testing"
 msgstr ""
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
-
-msgid "Lightweight Theme editing has been disabled."
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4908,6 +4862,33 @@ msgstr "Blokiranje reklama i zaštita privatnosti {start_sub_heading}sa {addon_n
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokiranje reklama i zaštita privatnosti {start_sub_heading}sa {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokiranje reklama i zaštita privatnosti {start_sub_heading}sa {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokiranje reklama i zaštita privatnosti {start_sub_heading}sa {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -5503,10 +5484,13 @@ msgstr ""
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+msgid "Is locked by a reviewer"
 msgstr ""
 
-msgid "Has auto-approval disabled flag set."
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
 msgstr ""
 
 msgid "Type"
@@ -5722,6 +5706,9 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+msgid "View Statistics"
+msgstr "Prikaži statistiku"
 
 msgid "Average Daily Users"
 msgstr ""

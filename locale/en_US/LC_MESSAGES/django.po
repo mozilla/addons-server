@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1821,14 +1821,6 @@ msgstr "Icons must be either PNG or JPG."
 msgid "Icons cannot be animated."
 msgstr "Icons cannot be animated."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Images cannot be larger than %dKB."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
@@ -1846,6 +1838,9 @@ msgstr "Icon must be square (same width and height)."
 
 msgid "There was an error uploading your preview."
 msgstr "There was an error uploading your preview."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2511,14 +2506,8 @@ msgstr "Hide messages present in previous version and ignored"
 msgid "Top"
 msgstr "Top"
 
-msgid "Delete Theme"
-msgstr "Delete Theme"
-
 msgid "Delete Add-on"
 msgstr "Delete Add-on"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Deleting your theme will permanently remove it from the site."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2530,9 +2519,6 @@ msgstr ""
 #, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Enter the following text confirm your decision: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Please tell us why you are deleting your theme:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Please tell us why you are deleting your add-on:"
@@ -2577,44 +2563,12 @@ msgstr "Manage Status & Versions"
 msgid "View Recent Changes"
 msgstr "View Recent Changes"
 
-#, fuzzy
-msgid "Edit details on this theme's product page"
-msgstr "Edit details about this theme's listing."
-
-#, fuzzy
-msgid "View the popularity of this theme over time"
-msgstr "View the popularity of this theme over time."
-
-msgid "View Statistics"
-msgstr "View Statistics"
-
-#, fuzzy
-msgid "Change the owner of this theme"
-msgstr "Change the owner of this theme."
-
-msgid "Transfer Ownership"
-msgstr "Transfer Ownership"
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "Delete this theme."
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "This add-on is missing some required information before it can be submitted for publication."
 
 #, fuzzy
 msgid "This add-on doesn't have any versions."
 msgstr "This add-on is not compatible with your version of %(app)s."
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Disabled"
-msgstr "Disabled"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Queue position:</b> %(pos)s of %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -3050,6 +3004,9 @@ msgstr "Last Updated:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listed on this site after passing code review. Automatic updates are handled by this site."
 
+msgid "Status:"
+msgstr "Status:"
+
 #, fuzzy
 msgid "Listed Version:"
 msgstr "Latest Version:"
@@ -3415,10 +3372,6 @@ msgstr "View Listing"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Temporarily install your extension in Firefox for live testing and debugging."
-
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "Lightweight Themes"
 
 msgid "Manage Version {0}"
 msgstr "Manage Version {0}"
@@ -5176,6 +5129,33 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr "Custom color schemes let you shade the web to your own liking."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr "Get a more advanced search page on Firefox for Android."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5813,11 +5793,15 @@ msgid "Risk breakdown not available."
 msgstr "Risk breakdown not available."
 
 #, fuzzy
-msgid "Is locked by a reviewer."
+msgid "Is locked by a reviewer"
 msgstr "my add-on is reviewed by an editor"
 
-msgid "Has auto-approval disabled flag set."
+#, fuzzy
+msgid "Has auto-approval disabled flag set"
 msgstr "Has auto-approval disabled flag set."
+
+msgid "Is recommendable"
+msgstr "Is recommendable"
 
 msgid "Type"
 msgstr "Type"
@@ -6060,6 +6044,9 @@ msgstr "Visibility"
 #, fuzzy
 msgid "Visible"
 msgstr "Visibility"
+
+msgid "View Statistics"
+msgstr "View Statistics"
 
 msgid "Average Daily Users"
 msgstr "Average Daily Users"

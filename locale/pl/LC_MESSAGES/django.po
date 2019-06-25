@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-04 11:47+0000\n"
+"POT-Creation-Date: 2019-06-25 10:57+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1748,14 +1748,6 @@ msgstr "Ikona musi być w formacie PNG lub JPG."
 msgid "Icons cannot be animated."
 msgstr "Nie można używać animowanych ikon."
 
-#, python-format
-msgid "Images cannot be larger than %dKB."
-msgstr "Plik graficzny nie może być większy niż %d KB."
-
-#. L10n: {0} is an image width (in pixels), {1} is a height.
-msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Obraz musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysokości."
-
 #, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Obraz musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysokości."
@@ -1773,6 +1765,9 @@ msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Wystąpił błąd podczas przesyłania obrazu."
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2408,14 +2403,8 @@ msgstr "Ukryj komunikaty obecne w poprzedniej wersji i zignorowane"
 msgid "Top"
 msgstr "Do góry"
 
-msgid "Delete Theme"
-msgstr "Usuń motyw"
-
 msgid "Delete Add-on"
 msgstr "Usuń dodatek"
-
-msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Skasowanie motywy spowoduje całkowite usunięcie go z witryny."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2426,9 +2415,6 @@ msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Wprowadź następujący tekst, aby potwierdzić swoją decyzję: {slug}"
-
-msgid "Please tell us why you are deleting your theme:"
-msgstr "Napisz nam, dlaczego usuwasz swój motyw:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Napisz nam, dlaczego usuwasz swój dodatek:"
@@ -2473,43 +2459,11 @@ msgstr "Zarządzanie statusem i wersjami"
 msgid "View Recent Changes"
 msgstr "Ostatnie zmiany"
 
-#, fuzzy
-msgid "Edit details on this theme's product page"
-msgstr "Edytuj szczegóły motywu."
-
-#, fuzzy
-msgid "View the popularity of this theme over time"
-msgstr "Zobacz popularność tego motywu w czasie."
-
-msgid "View Statistics"
-msgstr "Wyświetl statystyki"
-
-#, fuzzy
-msgid "Change the owner of this theme"
-msgstr "Zmień właściciela tego motywu."
-
-msgid "Transfer Ownership"
-msgstr "Zmiana właściciela"
-
-#, fuzzy
-msgid "Delete this theme"
-msgstr "Usuń ten motyw."
-
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "W tym dodatku brakuje pewnych informacji, które są wymagane przed przesłaniem do publikacji."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Ten dodatek nie ma żadnych wersji."
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Disabled"
-msgstr "wyłączony"
-
-#, python-format
-msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>Pozycja w kolejce:</b> %(pos)s z %(total)s"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2897,6 +2851,9 @@ msgstr "Ostatnia aktualizacja:"
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Wyświetlany w tej witrynie po pomyślnym sprawdzeniu kodu. Automatyczne aktualizacje są obsługiwane przez tę witrynę."
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Listed Version:"
 msgstr "Najnowsza wersja:"
 
@@ -3228,10 +3185,6 @@ msgstr "Strona dodatku"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
-
-#, fuzzy
-msgid "Lightweight Theme editing has been disabled."
-msgstr "Dziennik sprawdzania lekkich motywów"
 
 msgid "Manage Version {0}"
 msgstr "Zarządzanie wersją {0}"
@@ -4822,6 +4775,33 @@ msgstr "Śledź produktywność {start_sub_heading}przy użyciu dodatku {addon_n
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zarejestruj Internet {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zatrzymaj usługi śledzące wyszukiwanie {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Znajduj filmy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Przeglądarka plików jest zablokowana, może trwać wyodrębnianie pliku %s. Spróbuj ponownie za około 5 minut."
@@ -5438,11 +5418,16 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-msgid "Is locked by a reviewer."
+#, fuzzy
+msgid "Is locked by a reviewer"
 msgstr "Jest zablokowany przez recenzenta."
 
-msgid "Has auto-approval disabled flag set."
+#, fuzzy
+msgid "Has auto-approval disabled flag set"
 msgstr "Ma ustawioną flagę wyłączonego automatycznego zatwierdzania."
+
+msgid "Is recommendable"
+msgstr ""
 
 msgid "Type"
 msgstr "Typ"
@@ -5659,6 +5644,9 @@ msgstr "Widoczność"
 
 msgid "Visible"
 msgstr "Widoczny"
+
+msgid "View Statistics"
+msgstr "Wyświetl statystyki"
 
 msgid "Average Daily Users"
 msgstr "Średnia dzienna liczba użytkowników"
