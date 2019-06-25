@@ -37,3 +37,6 @@ importlib-metadata==0.18 \
 zipp==0.5.1 \
     --hash=sha256:8c1019c6aad13642199fbe458275ad6a84907634cc9f0989877ccc4a2840139d \
     --hash=sha256:ca943a7e809cc12257001ccfb99e3563da9af99d52f261725e96dfe0f9275bc3
+packaging==19.0 \
+    --hash=sha256:9e1cbf8c12b1f1ce0bb5344b8d7ecf66a6f8a6e91bcb0c84593ed6d3ab5c4ab3 \
+    --hash=sha256:0c98a5d0be38ed775798ece1b9727178c4469d9c3b4ada66e8e6b7849f8732af
