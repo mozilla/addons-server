@@ -471,6 +471,12 @@ class TestFileEntriesDiffSerializer(TestCase):
         (MagicMock(type='blob'), 'bmp-v4.bmp', 'image', 'image/bmp'),
         (MagicMock(type='blob'), 'bmp-v5.bmp', 'image', 'image/bmp'),
         (MagicMock(type='blob'), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
+        # This is testing that a tag listed at
+        # https://github.com/file/file/blob/master/magic/Magdir/sgml#L57
+        # doesn't lead to the file being detected as HTML, which was fixed
+        # in most recent libmagic versions.
+        (MagicMock(type='blob'), 'html-containing.json', 'text',
+                                 'application/json'),
     ]
 )
 def test_file_entries_serializer_category_type(
