@@ -123,8 +123,6 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
             addon = self.addon
             if addon.type == amo.ADDON_EXTENSION and addon.summary:
                 value = addon.summary
-            elif addon.type == amo.ADDON_PERSONA and addon.description:
-                value = addon.description
             else:
                 value = u''
         if html:

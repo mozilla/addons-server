@@ -11,7 +11,6 @@ from django_jinja import library
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.models import Addon
 from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.amo.templatetags.jinja_helpers import page_title
 from olympia.ratings.permissions import user_can_delete_rating
@@ -188,20 +187,7 @@ def all_distinct_files(context, version):
 
 @library.global_function
 def get_position(addon):
-    if addon.is_persona() and addon.is_pending():
-        qs = (Addon.objects.filter(status=amo.STATUS_PENDING,
-                                   type=amo.ADDON_PERSONA)
-              .no_transforms().order_by('created')
-              .values_list('id', flat=True))
-        id_ = addon.id
-        position = 0
-        for idx, addon_id in enumerate(qs, start=1):
-            if addon_id == id_:
-                position = idx
-                break
-        total = qs.count()
-        return {'pos': position, 'total': total}
-    elif addon.status in amo.VALID_ADDON_STATUSES:
+    if addon.status in amo.VALID_ADDON_STATUSES:
         # Look at all add-on versions which have files awaiting review.
         qs = Version.objects.filter(addon__disabled_by_user=False,
                                     files__status=amo.STATUS_AWAITING_REVIEW,

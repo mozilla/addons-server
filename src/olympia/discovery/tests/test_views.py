@@ -67,22 +67,6 @@ class DiscoveryTestMixin(object):
         self._check_disco_addon_version(
             result['addon']['current_version'], addon.current_version)
 
-    def _check_disco_theme(self, result, item, flat_name=False):
-        addon = item.addon
-        assert result['addon']['id'] == item.addon_id == addon.pk
-        if flat_name:
-            assert result['addon']['name'] == six.text_type(addon.name)
-        else:
-            assert result['addon']['name'] == {
-                'en-US': six.text_type(addon.name)}
-        assert result['addon']['slug'] == addon.slug
-        assert result['addon']['theme_data'] == addon.persona.theme_data
-
-        assert result['heading'] == item.heading
-        assert result['description'] == item.description
-        assert result['heading_text'] == item.heading_text
-        assert result['description_text'] == item.description_text
-
 
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
@@ -95,7 +79,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i in range(1, 8):
             if i % 3:
-                type_ = amo.ADDON_PERSONA
+                type_ = amo.ADDON_STATICTHEME
             else:
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
@@ -104,7 +88,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i in range(1, 8):
             if i % 3:
-                type_ = amo.ADDON_PERSONA
+                type_ = amo.ADDON_STATICTHEME
             else:
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
@@ -139,10 +123,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
-            if 'theme_data' in result['addon']:
-                self._check_disco_theme(result, discopane_items[i])
-            else:
-                self._check_disco_addon(result, discopane_items[i])
+            self._check_disco_addon(result, discopane_items[i])
 
     @override_settings(DRF_API_GATES={
         'v5': ('l10n_flat_input_output',)})
@@ -263,7 +244,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 
         for i in range(1, 8):
             if i % 3:
-                type_ = amo.ADDON_PERSONA
+                type_ = amo.ADDON_STATICTHEME
             else:
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
@@ -272,7 +253,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 
         for i in range(1, 8):
             if i % 3:
-                type_ = amo.ADDON_PERSONA
+                type_ = amo.ADDON_STATICTHEME
             else:
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
@@ -315,16 +296,15 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         assert response.data['count'] == len(discopane_items)
         assert response.data['results']
 
-        # personas aren't replaced by recommendations, so should be as before.
+        # themes aren't replaced by recommendations, so should be as before.
         new_discopane_items = replace_extensions(
             discopane_items, replacement_items)
         for i, result in enumerate(response.data['results']):
-            if 'theme_data' in result['addon']:
-                self._check_disco_theme(result, new_discopane_items[i])
+            self._check_disco_addon(result, new_discopane_items[i])
+            if result['addon']['type'] != 'extension':
                 # There aren't any theme recommendations.
                 assert result['is_recommendation'] is False
             else:
-                self._check_disco_addon(result, new_discopane_items[i])
                 assert result['is_recommendation'] is True
 
     def test_recommendations_with_override(self):

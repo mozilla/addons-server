@@ -526,8 +526,6 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_DICT_%s' % queue
             elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON] and queue:
                 reviewed_score_name = 'REVIEWED_LP_%s' % queue
-            elif addon.type == amo.ADDON_PERSONA:
-                reviewed_score_name = 'REVIEWED_PERSONA'
             elif addon.type == amo.ADDON_STATICTHEME:
                 reviewed_score_name = 'REVIEWED_STATICTHEME'
             elif addon.type == amo.ADDON_SEARCH and queue:

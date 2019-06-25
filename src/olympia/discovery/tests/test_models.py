@@ -199,23 +199,6 @@ class TestDiscoveryItem(TestCase):
             u'<blockquote>'
             u'Mÿ &lt;script&gt;alert(5)&lt;/script&gt;</blockquote>')
 
-    def test_description_non_custom_persona(self):
-        addon = addon_factory(type=amo.ADDON_PERSONA, description='')
-        item = DiscoveryItem.objects.create(addon=addon)
-        assert item.description == u''
-
-        addon.description = u'Mÿ Descrîption'
-        assert item.description == u'<blockquote>Mÿ Descrîption</blockquote>'
-
-    def test_description_non_custom_persona_xss(self):
-        addon = addon_factory(
-            type=amo.ADDON_PERSONA,
-            description=u'Mÿ <script>alert(6)</script>')
-        item = DiscoveryItem.objects.create(addon=addon)
-        assert item.description == (
-            u'<blockquote>'
-            u'Mÿ &lt;script&gt;alert(6)&lt;/script&gt;</blockquote>')
-
     def test_description_non_custom_fallback(self):
         item = DiscoveryItem.objects.create(addon=addon_factory(
             type=amo.ADDON_DICT))

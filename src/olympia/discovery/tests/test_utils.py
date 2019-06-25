@@ -165,14 +165,14 @@ def test_replace_extensions():
         DiscoveryItem(
             addon=addon_factory(), custom_addon_name=u'replace me tøø'),
         DiscoveryItem(
-            addon=addon_factory(type=amo.ADDON_PERSONA),
+            addon=addon_factory(type=amo.ADDON_STATICTHEME),
             custom_addon_name=u'ŋot me'),
         DiscoveryItem(
-            addon=addon_factory(type=amo.ADDON_PERSONA),
+            addon=addon_factory(type=amo.ADDON_STATICTHEME),
             custom_addon_name=u'ŋor me'),
         DiscoveryItem(addon=addon_factory(), custom_addon_name=u'probably me'),
         DiscoveryItem(
-            addon=addon_factory(type=amo.ADDON_PERSONA),
+            addon=addon_factory(type=amo.ADDON_STATICTHEME),
             custom_addon_name=u'safê')
     ]
     # Just 2 replacements
