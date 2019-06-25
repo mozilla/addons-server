@@ -11,7 +11,7 @@ from olympia.users.models import UserProfile
 
 from .acl import (
     action_allowed, check_addon_ownership, check_addons_reviewer,
-    check_ownership, check_personas_reviewer, check_static_theme_reviewer,
+    check_ownership, check_static_theme_reviewer,
     check_unlisted_addons_reviewer,
     is_reviewer, is_user_any_kind_of_reviewer, match_rules)
 
@@ -179,7 +179,7 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert not check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
-        assert not check_personas_reviewer(request)
+        assert not check_static_theme_reviewer(request)
         assert not is_user_any_kind_of_reviewer(request.user)
         assert not is_reviewer(request, self.addon)
         assert not is_reviewer(request, self.persona)
@@ -190,16 +190,6 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
-        assert not check_personas_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert is_user_any_kind_of_reviewer(request.user)
-
-    def test_perm_themes(self):
-        self.grant_permission(self.user, 'Personas:Review')
-        request = req_factory_factory('noop', user=self.user)
-        assert not check_addons_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert check_personas_reviewer(request)
         assert not check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
@@ -208,7 +198,6 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert not check_addons_reviewer(request)
         assert check_unlisted_addons_reviewer(request)
-        assert not check_personas_reviewer(request)
         assert not check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
@@ -217,7 +206,6 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert not check_addons_reviewer(request)
         assert not check_unlisted_addons_reviewer(request)
-        assert not check_personas_reviewer(request)
         assert check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
@@ -244,6 +232,7 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.addon)
         assert is_reviewer(request, self.statictheme)
+        assert check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_post_review(self):
@@ -252,7 +241,7 @@ class TestCheckReviewer(TestCase):
         assert is_user_any_kind_of_reviewer(request.user)
 
         assert not check_unlisted_addons_reviewer(request)
-        assert not check_personas_reviewer(request)
+        assert not check_static_theme_reviewer(request)
         assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.statictheme)
 
@@ -265,7 +254,7 @@ class TestCheckReviewer(TestCase):
         assert is_user_any_kind_of_reviewer(request.user)
 
         assert not check_unlisted_addons_reviewer(request)
-        assert not check_personas_reviewer(request)
+        assert not check_static_theme_reviewer(request)
         assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.statictheme)
 
