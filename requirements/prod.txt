@@ -186,9 +186,9 @@ django-extensions==2.1.9 \
 django-multidb-router==0.9 \
     --hash=sha256:38a006455fa1141a332029791863461c0b1f287b8c479b411b4d9f728e86e97a \
     --hash=sha256:d8096eff3a42743a795bb943260758d169bc78de61e12eeb0893d6dbfbae72d0
-django-post-request-task==0.2.0 \
-    --hash=sha256:b761beed705c18d6ee85642049d07ca9d7f936e3392c6d56a58c36a39e5e9803 \
-    --hash=sha256:7afe4c7418db8592a7b56391cbfe56a86008bc1b4622dd923573b6981ba1562c
+django-post-request-task==0.4.0 \
+    --hash=sha256:82d376ab7a1166b74a41a6099e7e1947fd8c4ec6706354511bb05800e3e2086d \
+    --hash=sha256:a8940209ca9cf5ce4824116a22d8de1739f418f2d3a7dab4243fd68cea9b623f
 django-statsd-mozilla==0.4.0 \
     --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
