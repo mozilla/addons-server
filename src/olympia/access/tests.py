@@ -51,7 +51,6 @@ def test_match_rules():
         'Stats:View',
         'CollectionStats:View',
         'Addons:Review',
-        'Personas:Review',
         'Users:Edit',
         'None:None',
     )
@@ -166,12 +165,11 @@ class TestHasPerm(TestCase):
 
 
 class TestCheckReviewer(TestCase):
-    fixtures = ['base/addon_3615', 'addons/persona']
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         super(TestCheckReviewer, self).setUp()
         self.user = UserProfile.objects.get()
-        self.persona = Addon.objects.get(pk=15663)
         self.addon = Addon.objects.get(pk=3615)
         self.statictheme = addon_factory(type=amo.ADDON_STATICTHEME)
 
@@ -182,7 +180,6 @@ class TestCheckReviewer(TestCase):
         assert not check_static_theme_reviewer(request)
         assert not is_user_any_kind_of_reviewer(request.user)
         assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.statictheme)
 
     def test_perm_addons(self):
@@ -210,26 +207,16 @@ class TestCheckReviewer(TestCase):
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_addon_reviewer(self):
-        """An addon reviewer is not necessarily a persona reviewer."""
+        """An addon reviewer is not necessarily a theme reviewer."""
         self.grant_permission(self.user, 'Addons:Review')
         request = req_factory_factory('noop', user=self.user)
-        assert not is_reviewer(request, self.persona)
         assert is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.statictheme)
-        assert is_user_any_kind_of_reviewer(request.user)
-
-    def test_is_reviewer_for_persona_reviewer(self):
-        self.grant_permission(self.user, 'Personas:Review')
-        request = req_factory_factory('noop', user=self.user)
-        assert is_reviewer(request, self.persona)
-        assert not is_reviewer(request, self.addon)
         assert not is_reviewer(request, self.statictheme)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_static_theme_reviewer(self):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         request = req_factory_factory('noop', user=self.user)
-        assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.addon)
         assert is_reviewer(request, self.statictheme)
         assert check_static_theme_reviewer(request)
@@ -242,7 +229,6 @@ class TestCheckReviewer(TestCase):
 
         assert not check_unlisted_addons_reviewer(request)
         assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.statictheme)
 
         assert check_addons_reviewer(request)
@@ -255,7 +241,6 @@ class TestCheckReviewer(TestCase):
 
         assert not check_unlisted_addons_reviewer(request)
         assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.persona)
         assert not is_reviewer(request, self.statictheme)
 
         assert check_addons_reviewer(request)
