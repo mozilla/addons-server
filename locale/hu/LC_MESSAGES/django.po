@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 14:51+0000\n"
+"PO-Revision-Date: 2019-06-25 14:56+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4722,7 +4722,7 @@ msgstr "Sötétítse el a webet {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
-msgstr ""
+msgstr "Az egyedi színsémák lehetővé teszik, hogy a saját ízlésének megfelelőre színezze a webet."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5355,7 +5355,7 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Az automatikus jóváhagyás letiltottnak van jelölve."
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Ajánlott"
 
 msgid "Type"
 msgstr "Típus"
