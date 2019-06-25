@@ -6,7 +6,11 @@
     {% set status_text = _('Invisible') %}
     {% set tooltip_text = status_tips['invisible'] %}
   {% else %}
-    {% set status_text = addon.STATUS_CHOICES[addon.status] %}
+    {% if addon.is_recommended and addon.status == amo.STATUS_APPROVED %}
+      {% set status_text = _("Approved and recommended") %}
+    {% else %}
+      {% set status_text = addon.get_status_display() %}
+    {% endif %}
     {% set tooltip_text = status_tips[addon.status] %}
   {% endif %}
   <a href="{{ url }}">

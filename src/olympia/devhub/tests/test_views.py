@@ -37,6 +37,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.lib.akismet.models import AkismetReport
@@ -499,12 +500,50 @@ class TestHome(TestCase):
             (amo.STATUS_DISABLED, amo.STATUS_APPROVED,
                 'Disabled by Mozilla')]
 
-        for addon_status, file_status, status_str in statuses:
-            latest_version = self.addon.find_latest_version(
-                amo.RELEASE_CHANNEL_LISTED)
-            file = latest_version.files.all()[0]
-            file.update(status=file_status)
+        latest_version = self.addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED)
+        latest_file = latest_version.files.all()[0]
 
+        for addon_status, file_status, status_str in statuses:
+            latest_file.update(status=file_status)
+            self.addon.update(status=addon_status)
+
+            doc = self.get_pq()
+            addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
+            assert addon_item.length == 1
+            assert (
+                addon_item.find('.DevHub-MyAddons-item-edit').attr('href') ==
+                self.addon.get_dev_url('edit'))
+            if self.addon.type != amo.ADDON_STATICTHEME:
+                assert self.addon.get_icon_url(64) in addon_item.html()
+            else:
+                assert self.addon.current_previews[0].thumbnail_url in (
+                    addon_item.html())
+
+            assert (
+                status_str ==
+                addon_item.find('.DevHub-MyAddons-VersionStatus').text())
+
+        Addon.objects.all().delete()
+        assert self.get_pq()(
+            '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
+
+    def test_my_addons_recommended(self):
+        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        latest_version = self.addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED)
+        latest_file = latest_version.files.all()[0]
+        latest_version.update(recommendation_approved=True)
+        statuses = [
+            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
+                'Awaiting Review'),
+            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+                'Approved and recommended'),
+            (amo.STATUS_DISABLED, amo.STATUS_APPROVED,
+                'Disabled by Mozilla')]
+
+        for addon_status, file_status, status_str in statuses:
+            latest_file.update(status=file_status)
             self.addon.update(status=addon_status)
 
             doc = self.get_pq()
