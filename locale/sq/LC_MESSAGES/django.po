@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-25 10:05+0000\n"
+"PO-Revision-Date: 2019-06-25 10:32+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -5220,7 +5220,7 @@ msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin vers
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Parametër i pavlefshëm [%s] - duhet të jetë një nga [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Këtij vlerësimi s’mund t’i vihesh shenjë, ngaqë nuk ka tekst shqyrtimi."
@@ -5446,7 +5446,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Parashqyrtoni Shtesa"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "E këshilluar: ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Tjetër Shqyrtim Pezull ({0})"
@@ -6339,10 +6339,10 @@ msgid "Activity Logs"
 msgstr "Regjistra Veprimtarie"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Jepni një adresë IPv4 ose IPv6 të vlefshme, p.sh., 127.0.0.1. Do të shndërrohet në një rrjet /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Mund të jepni vetëm një, ose një Adresë IP, ose një Rrjet."
 
 msgid "No user with that email."
 msgstr "S’ka përdorues me këtë email."
@@ -6357,10 +6357,10 @@ msgid "My Favorite Add-ons"
 msgstr "Shtesat e Mia të Parapëlqyera"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Jepni një interval rrjeti IPv6 ose IPv6 CIDR të vlefshëm, p.sh., 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Prej vendndodhjes tuaj janë parashtruar një numër shtesash që cenojnë rregullat tona. Adresa IP është bllokuar."
 
 msgid "Email Pattern"
 msgstr ""
@@ -6369,9 +6369,11 @@ msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Jepni ose përkatësi të plotë, ose email që duhet bllokuar, ose përdorni shenja të gjithëpushtetshme për përputhje me rregullsi të tjera. Për shembull, \"@*.mail.com\"\n"
+"Ju lutemi, mbani parasysh se nuk përfshijmë \"@\" në kërkim përputhjesh, ndaj këtë duhet ta bëni përmes rregullsisë."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "Adresa email që përdorët për llogarinë tuaj si zhvillues nuk lejohet për parashtrim shtesash."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
