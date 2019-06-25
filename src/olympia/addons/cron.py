@@ -113,7 +113,7 @@ def update_addon_appsupport():
     # Search providers don't list supported apps.
     has_app = Q(versions__apps__isnull=False) | Q(type=amo.ADDON_SEARCH)
     has_file = Q(versions__files__status__in=amo.VALID_FILE_STATUSES)
-    good = Q(has_app, has_file) | Q(type=amo.ADDON_PERSONA)
+    good = Q(has_app, has_file)
     ids = (Addon.objects.valid().distinct()
            .filter(newish, good).values_list('id', flat=True))
 
@@ -173,8 +173,7 @@ def deliver_hotness():
     hotness = (a-b) / b if a > 1000 and b > 1 else 0
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
-    all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
-                   .filter(status__in=amo.REVIEWED_STATUSES)
+    all_ids = list((Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
                    .values_list('id', flat=True)))
     now = datetime.now()
     one_week = now - timedelta(days=7)
