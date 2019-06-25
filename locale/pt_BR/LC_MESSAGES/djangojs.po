@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-03-18 13:57+0000\n"
+"PO-Revision-Date: 2019-06-25 14:12+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -727,7 +727,7 @@ msgstr[0] "<b>{0}</b> caractere restante"
 msgstr[1] "<b>{0}</b> caracteres restantes"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Este recurso foi temporariamente desabilitado para realizamos a manutenção do site. Por favor, volte mais tarde."
+msgstr "Este recurso foi temporariamente desativado enquanto realizamos uma manutenção no site. Tente novamente daqui a pouco."
 
 msgid "Remove this localization"
 msgstr "Remover essa localização"
