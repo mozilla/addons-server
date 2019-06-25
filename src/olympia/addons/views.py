@@ -401,7 +401,6 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             'modified',  # Needed for icon_url.
             'name_translations',  # Needed for... name.
             'default_locale',  # Needed for translations to work.
-            'persona',  # Needed for icon_url (sadly).
             'slug',  # Needed for url.
             'type',  # Needed to attach the Persona for icon_url (sadly).
         )

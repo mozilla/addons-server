@@ -1453,21 +1453,21 @@ class TestAddonSearchView(ESTestCase):
             return Category.from_static_category(static_category, True)
 
         addon_lwt = addon_factory(
-            slug='my-addon-lwt', name=u'My Addôn LWT',
-            category=get_category(amo.ADDON_PERSONA, 'holiday'),
-            type=amo.ADDON_PERSONA)
+            slug='my-addon-search', name=u'My Addôn Search',
+            category=get_category(amo.ADDON_SEARCH, 'music'),
+            type=amo.ADDON_SEARCH)
         addon_st = addon_factory(
             slug='my-addon-st', name=u'My Addôn ST',
-            category=get_category(amo.ADDON_STATICTHEME, 'holiday'),
+            category=get_category(amo.ADDON_STATICTHEME, 'music'),
             type=amo.ADDON_STATICTHEME)
 
         self.refresh()
 
         # Create some add-ons in a different category.
         addon_factory(
-            slug='different-addon-lwt', name=u'Diff Addôn LWT',
-            category=get_category(amo.ADDON_PERSONA, 'sports'),
-            type=amo.ADDON_PERSONA)
+            slug='different-addon-search', name=u'Diff Addôn Src',
+            category=get_category(amo.ADDON_SEARCH, 'sports'),
+            type=amo.ADDON_SEARCH)
         addon_factory(
             slug='different-addon-st', name=u'Diff Addôn ST',
             category=get_category(amo.ADDON_STATICTHEME, 'sports'),
@@ -1477,8 +1477,8 @@ class TestAddonSearchView(ESTestCase):
 
         # Search for add-ons in the first category. There should be two.
         data = self.perform_search(self.url, {'app': 'firefox',
-                                              'type': 'persona,statictheme',
-                                              'category': 'holiday'})
+                                              'type': 'search,statictheme',
+                                              'category': 'music'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         result_ids = (data['results'][0]['id'], data['results'][1]['id'])
@@ -1917,14 +1917,15 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             slug='my-addon', name=u'My Addôn', type=amo.ADDON_EXTENSION)
         addon2 = addon_factory(
             slug='my-second-addon', name=u'My second Addôn',
-            type=amo.ADDON_PERSONA)
+            type=amo.ADDON_STATICTHEME)
         addon_factory(slug='nonsense', name=u'Nope Nope Nope')
         addon_factory(
             slug='whocares', name=u'My xul theme', type=amo.ADDON_THEME)
         self.refresh()
 
+        # No db query.
         data = self.perform_search(
-            self.url, {'q': 'my', 'type': 'persona,extension'})  # No db query.
+            self.url, {'q': 'my', 'type': 'statictheme,extension'})
         assert 'count' not in data
         assert 'next' not in data
         assert 'prev' not in data
@@ -1969,8 +1970,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
     def test_get_queryset_excludes(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
                       popularity=666)
-        addon_factory(slug='my-persona', name=u'My Persona',
-                      type=amo.ADDON_PERSONA)
+        addon_factory(slug='my-theme', name=u'My Th€me',
+                      type=amo.ADDON_STATICTHEME)
         self.refresh()
 
         view = AddonAutoCompleteSearchView()
@@ -1979,7 +1980,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         includes = set((
             'default_locale', 'icon_type', 'id', 'is_recommended', 'modified',
-            'name_translations', 'persona', 'slug', 'type'))
+            'name_translations', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes
 
