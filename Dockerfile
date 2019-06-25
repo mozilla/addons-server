@@ -55,8 +55,8 @@ RUN mkdir -p /usr/local/share/GeoIP \
  && rm -f /tmp/GeoLite2-Country.mmdb.gz
 
 RUN apt-get update && apt-get -t buster install -y \
-        # For an up-to-date `file` and `libmagic-dev` library for better file
-        # detection.
+       # For an up-to-date `file` and `libmagic-dev` library for better file
+       # detection.
        file \
        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
