@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 13:47+0000\n"
+"PO-Revision-Date: 2019-06-25 14:09+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -574,7 +574,7 @@ msgid "Contributions for {addon}."
 msgstr "Contribuições para {addon}."
 
 msgid "{addon} disabled."
-msgstr "{addon} desabilitado."
+msgstr "{addon} desativado."
 
 msgid "{addon} enabled."
 msgstr "{addon} ativado."
@@ -821,7 +821,7 @@ msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} reativado."
 
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} desabilitado."
+msgstr "{addon} {version} desativado."
 
 msgid "{addon} {version} content approved."
 msgstr "{addon} {version} conteúdo aprovado."
@@ -896,7 +896,7 @@ msgid "Incomplete"
 msgstr "Incompleto"
 
 msgid "Disabled by Mozilla"
-msgstr "Desabilitado pela Mozilla"
+msgstr "Desativado pela Mozilla"
 
 msgid "Deleted"
 msgstr "Excluído"
@@ -1709,7 +1709,7 @@ msgid "User Reviews"
 msgstr "Análises de usuários"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "A extensão não pode ser excluída. Em seu lugar, desabilite-a."
+msgstr "A extensão não pode ser excluída. Em vez disso, a desative."
 
 msgid "Theme deleted."
 msgstr "Tema excluído."
@@ -1764,7 +1764,7 @@ msgstr "A última versão aprovada de uma extensão recomendada não pode ser ex
 
 #, python-format
 msgid "Version %s disabled."
-msgstr "Versão %s desabilitada."
+msgstr "Versão %s desativada."
 
 # %s is the version number, e.g. 3.2.
 #, python-format
@@ -2563,7 +2563,7 @@ msgid "Submit Version"
 msgstr "Submeter versão"
 
 msgid "Cancel and Disable Version"
-msgstr "Cancelar e desabilitar a versão"
+msgstr "Cancelar e desativar a versão"
 
 msgid "Describe Version"
 msgstr "Descrever a versão"
@@ -3346,7 +3346,7 @@ msgid "Delete Version"
 msgstr "Excluir versão"
 
 msgid "Disable Version"
-msgstr "Desabilitar a versão"
+msgstr "Desativar a versão"
 
 msgid "Hide Add-on"
 msgstr "Ocultar extensão"
@@ -5402,9 +5402,8 @@ msgstr "Estrutura de análise de riscos não disponível."
 msgid "Is locked by a reviewer"
 msgstr "Está bloqueado por um revisor"
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "O marcador de auto-aprovação está desabilitado."
+msgstr "O flag de aprovação automática foi desativado."
 
 msgid "Is recommendable"
 msgstr "É recomendável"
@@ -5891,10 +5890,10 @@ msgid "Force-enable add-on"
 msgstr "Forçar ativação da extensão"
 
 msgid "Disable Auto-Approval"
-msgstr "Desabilitar auto-aprovação"
+msgstr "Desativar aprovação automática"
 
 msgid "Enable Auto-Approval"
-msgstr "Habilitar auto-aprovação"
+msgstr "Ativar aprovação automática"
 
 msgid "Clear information request"
 msgstr "Limpar solicitação de informação"
