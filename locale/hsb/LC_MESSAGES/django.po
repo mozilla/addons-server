@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 14:08+0000\n"
+"PO-Revision-Date: 2019-06-25 15:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4723,7 +4723,7 @@ msgstr "Widejowa pomoc Android {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr "Někotre sydła maja ćežkosće, wideja na Firefox za Android wothrawać. Tute rozšěrjenje porjedźenje k dispoziciji steji."
+msgstr "Někotre sydła maja ćežkosće, wideja na Firefox za Android wothrawać. Tute rozšěrjenje porjedźenje k dispoziciji staja."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
