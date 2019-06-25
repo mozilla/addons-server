@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-04 11:47+0000\n"
-"PO-Revision-Date: 2019-06-25 10:32+0000\n"
+"PO-Revision-Date: 2019-06-25 10:35+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -4664,7 +4664,7 @@ msgstr "Shkarkoni media më lehtë {start_sub_heading}me {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Gëzojuni mbulimit për shkarkime shumërrjedhësh. Zbuloni vetvetiu lloje të ndryshëm media që mund të shkarkohen."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4692,7 +4692,7 @@ msgstr "Faqe të hijshme për syrin, {start_sub_heading}me {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Përshtatni nuanca drite dhe errësire për t’i bërë faqet web më të hijshme për syrin."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4716,7 +4716,7 @@ msgstr "Ndërroni pamjen e Firefox-it {start_sub_heading}me {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Hartoni me lehtësinë temën tuaj pamore për ta bërë Firefox-in të duket ashtu si ju pëlqen."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4740,7 +4740,7 @@ msgstr "Ndiqni çmime produktesh {start_sub_heading}me {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Merrni njoftim kur ulen çmimet për artikuj që ju interesojnë në Amazon, Best Buy, eBay, Home Depot, dhe Walmart."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6363,7 +6363,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Prej vendndodhjes tuaj janë parashtruar një numër shtesash që cenojnë rregullat tona. Adresa IP është bllokuar."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Rregullsi Email-i"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
