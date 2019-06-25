@@ -977,4 +977,39 @@ def test_get_raw_diff_cache():
 
         mocked_diff.assert_called_once()
 
-    assert (version.git_hash, original_version.git_hash) in repo._diff_cache
+    assert list(repo._diff_cache.keys()) == [
+        (version.git_hash, original_version.git_hash, False),
+    ]
+
+
+@pytest.mark.django_db
+def test_get_raw_diff_cache_unmodified_file():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    with mock.patch('olympia.lib.git.pygit2.Repository.diff') as mocked_diff:
+        repo.get_diff(
+            commit=version.git_hash,
+            parent=original_version.git_hash)
+
+        repo.get_diff(
+            commit=version.git_hash,
+            parent=original_version.git_hash,
+            pathspec=['manifest.json'])
+
+        assert mocked_diff.call_count == 2
+
+    assert list(repo._diff_cache.keys()) == [
+        # `get_diff` call without pathspec, not rendering unmodified files
+        (version.git_hash, original_version.git_hash, False),
+        # `get_diff` call with pathspec, rendering unmodified files
+        (version.git_hash, original_version.git_hash, True)
+    ]

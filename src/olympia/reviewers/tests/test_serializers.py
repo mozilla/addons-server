@@ -269,6 +269,9 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert set(data['entries'].keys()) == {
             'manifest.json', 'README.md', 'test.txt'}
 
+        # The API always renders a diff, even for unmodified files.
+        assert data['diff'] is not None
+
         # Unmodified file
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
@@ -307,10 +310,6 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert readme_data['path'] == u'README.md'
         assert readme_data['size'] is None
         assert readme_data['modified'] is None
-
-        # There is no difference for the selected file because we did not
-        # change it.
-        assert data['diff'] is None
 
     def test_serialize_deleted_file(self):
         parent_version = self.addon.current_version
@@ -443,6 +442,38 @@ class TestFileEntriesDiffSerializer(TestCase):
         # Since the directory is returned from git, it will have a real
         # modified timestamp.
         assert parent['modified'] is not None
+
+    def test_selected_file_unmodified(self):
+        parent_version = self.addon.current_version
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+        AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, parent_version=parent_version)
+
+        assert data['id'] == file.pk
+
+        # Unmodified file
+        manifest_data = data['entries']['manifest.json']
+        assert manifest_data['depth'] == 0
+        assert manifest_data['filename'] == u'manifest.json'
+        assert manifest_data['sha256'] == (
+            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631')
+        assert manifest_data['mimetype'] == 'application/json'
+        assert manifest_data['mime_category'] == 'text'
+        assert manifest_data['path'] == u'manifest.json'
+        assert manifest_data['size'] == 621
+        assert manifest_data['status'] == ''
+        assert isinstance(manifest_data['modified'], datetime)
+
+        assert data['diff'] is not None
 
 
 @pytest.mark.parametrize(

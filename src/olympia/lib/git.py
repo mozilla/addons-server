@@ -432,7 +432,7 @@ class AddonGitRepository(object):
             flags |= pygit2.GIT_DIFF_INCLUDE_UNMODIFIED
 
         try:
-            return diff_cache[(commit, parent)]
+            return diff_cache[(commit, parent, include_unmodifed)]
         except KeyError:
             if parent is None:
                 retval = self.get_root_tree(commit).diff_to_tree(
@@ -450,7 +450,7 @@ class AddonGitRepository(object):
                     flags=flags,
                     interhunk_lines=0)
 
-            diff_cache[(commit, parent)] = retval
+            diff_cache[(commit, parent, include_unmodifed)] = retval
             self._diff_cache = diff_cache
 
         return retval
