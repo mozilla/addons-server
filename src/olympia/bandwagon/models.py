@@ -93,10 +93,6 @@ class Collection(ModelBase):
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
-    all_personas = models.BooleanField(
-        default=False,
-        help_text='Does this collection only contain Themes?')
-
     addons = models.ManyToManyField(
         Addon, through='CollectionAddon', related_name='collections')
     author = models.ForeignKey(

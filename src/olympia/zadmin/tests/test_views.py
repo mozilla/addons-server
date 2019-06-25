@@ -292,7 +292,6 @@ class TestFeatures(TestCase):
             u'id': 80,
             u'slug': u'lolwut',
             u'name': u'WebDev',
-            u'all_personas': False
         }]
 
         response = self.client.get(self.url, {'q': 'something'})
@@ -308,7 +307,6 @@ class TestFeatures(TestCase):
             u'id': 80,
             u'slug': u'lolwut',
             u'name': u'WebDev',
-            u'all_personas': False
         }]
 
     def test_collection_json_not_admin(self):
