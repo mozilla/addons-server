@@ -211,10 +211,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.addon.addonuser_set.create(user=self.author)
 
         # Delete the add-on current version and approval info, leaving it
-        # nominated. Because we're in post-review we should pick it up and
-        # approve it anyway.
+        # nominated. Set its nomination date in the past and it should be
+        # picked up and auto-approved.
         AddonApprovalsCounter.objects.filter(addon=self.addon).get().delete()
         self.addon.current_version.delete()
+        self.version.update(nomination=self.days_ago(2))
         self.addon.update_status()
 
         call_command('auto_approve', '--dry-run')
@@ -297,7 +298,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'error': 1, 'is_locked': 0,
                            'has_auto_approval_disabled': 0,
-                           'is_recommendable': 0})
+                           'is_recommendable': 0,
+                           'should_be_delayed': 0})
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
@@ -421,7 +423,8 @@ class TestAutoApproveCommandTransactions(
 
         self._check_stats({'total': 2, 'error': 1, 'is_locked': 0,
                            'has_auto_approval_disabled': 0,
-                           'auto_approved': 1, 'is_recommendable': 0})
+                           'auto_approved': 1, 'is_recommendable': 0,
+                           'should_be_delayed': 0})
 
 
 class TestRecalculatePostReviewWeightsCommand(TestCase):
