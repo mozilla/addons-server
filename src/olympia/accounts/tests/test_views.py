@@ -602,11 +602,10 @@ class TestWithUser(TestCase):
     def test_addon_developer_should_redirect_for_two_factor_auth(self):
         self.create_switch('2fa-for-developers', active=True)
         self.user = user_factory()
-        # They have developed themes, but also an extension, so they will need
+        # They have developed a theme, but also an extension, so they will need
         # 2FA.
         addon_factory(users=[self.user])
         addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
-        addon_factory(users=[self.user], type=amo.ADDON_PERSONA)
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
@@ -644,7 +643,6 @@ class TestWithUser(TestCase):
         self.create_switch('2fa-for-developers', active=True)
         self.user = user_factory()
         addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
-        addon_factory(users=[self.user], type=amo.ADDON_PERSONA)
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
@@ -1434,7 +1432,7 @@ class TestAccountViewSetDelete(TestCase):
 
     def test_theme_developers_cant_delete(self):
         self.client.login_api(self.user)
-        addon = addon_factory(users=[self.user], type=amo.ADDON_PERSONA)
+        addon = addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
         assert self.user.is_developer and self.user.is_artist
 
         response = self.client.delete(self.url)

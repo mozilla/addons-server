@@ -10,7 +10,7 @@ from olympia import amo
 from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, CompatOverride,
-    CompatOverrideRange, Persona, Preview, ReplacementAddon)
+    CompatOverrideRange, Preview, ReplacementAddon)
 from olympia.addons.serializers import (
     AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
     CompatOverrideSerializer, ESAddonAutoCompleteSerializer, ESAddonSerializer,
@@ -286,7 +286,6 @@ class AddonSerializerOutputTestMixin(object):
         assert result['support_url'] == {
             'en-US': six.text_type(self.addon.support_url),
         }
-        assert 'theme_data' not in result
         assert set(result['tags']) == {'some_tag', 'some_other_tag'}
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
@@ -493,68 +492,6 @@ class AddonSerializerOutputTestMixin(object):
                 result = self.serialize()
         assert result['description'] == translated_descriptions['fr']
         assert result['homepage'] == translated_homepages['fr']
-
-    def test_persona_with_persona_id(self):
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-        persona = self.addon.persona
-        persona.persona_id = 42
-        persona.header = u'myheader.jpg'
-        persona.footer = u'myfooter.jpg'
-        persona.accentcolor = u'336699'
-        persona.textcolor = u'f0f0f0'
-        persona.author = u'Me-me-me-Myself'
-        persona.display_username = u'my-username'
-        persona.save()
-        assert not persona.is_new()
-
-        result = self.serialize()
-        assert result['theme_data'] == persona.theme_data
-
-    def test_persona(self):
-        self.addon = addon_factory(
-            name=u'My Personâ',
-            description=u'<script>alert(42)</script>My Personä description',
-            type=amo.ADDON_PERSONA)
-        persona = self.addon.persona
-        persona.persona_id = 0  # For "new" style Personas this is always 0.
-        persona.header = u'myheader.png'
-        persona.footer = u'myfooter.png'
-        persona.accentcolor = u'336699'
-        persona.textcolor = u'f0f0f0'
-        persona.author = u'Me-me-me-Myself'
-        persona.display_username = u'my-username'
-        persona.popularity = 123456
-        persona.save()
-        assert persona.is_new()
-
-        result = self.serialize()
-        assert result['theme_data'] == persona.theme_data
-        assert '<script>' not in result['theme_data']['description']
-        assert '&lt;script&gt;' in result['theme_data']['description']
-
-        assert result['average_daily_users'] == persona.popularity
-
-        assert 'weekly_downloads' not in result
-
-    def test_handle_persona_without_persona_data_in_db(self):
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-        Persona.objects.get(addon=self.addon).delete()
-        # .reload() does not clear self.addon.persona, so do it manually.
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        result = self.serialize()
-
-        assert result['id'] == self.addon.pk
-        assert result['type'] == 'persona'
-        # theme_data should be missing, which sucks, but is better than a 500.
-        assert 'theme_data' not in result
-        # icon url should just be a default icon instead of the Persona icon.
-        assert result['icon_url'] == (
-            'http://testserver/static/img/addon-icons/default-64.png')
-        assert result['icons'] == {
-            '32': 'http://testserver/static/img/addon-icons/default-32.png',
-            '64': 'http://testserver/static/img/addon-icons/default-64.png',
-            '128': 'http://testserver/static/img/addon-icons/default-128.png',
-        }
 
     def test_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})
@@ -1295,51 +1232,6 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
             with override_settings(DRF_API_GATES=gates):
                 result = self.serialize()
         assert result['name'] == translated_name['fr']
-
-    def test_icon_url_with_persona_id(self):
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-        persona = self.addon.persona
-        persona.persona_id = 42
-        persona.header = u'myheader.jpg'
-        persona.footer = u'myfooter.jpg'
-        persona.accentcolor = u'336699'
-        persona.textcolor = u'f0f0f0'
-        persona.author = u'Me-me-me-Myself'
-        persona.display_username = u'my-username'
-        persona.save()
-        assert not persona.is_new()
-
-        result = self.serialize()
-        assert (
-            set(result.keys()) ==
-            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url'}
-        )
-        assert result['type'] == 'persona'
-        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
-
-    def test_icon_url_persona_with_no_persona_id(self):
-        self.addon = addon_factory(
-            name=u'My Personâ',
-            description=u'<script>alert(42)</script>My Personä description',
-            type=amo.ADDON_PERSONA)
-        persona = self.addon.persona
-        persona.persona_id = 0  # For "new" style Personas this is always 0.
-        persona.header = u'myheader.png'
-        persona.footer = u'myfooter.png'
-        persona.accentcolor = u'336699'
-        persona.textcolor = u'f0f0f0'
-        persona.author = u'Me-me-me-Myself'
-        persona.display_username = u'my-username'
-        persona.save()
-        assert persona.is_new()
-
-        result = self.serialize()
-        assert (
-            set(result.keys()) ==
-            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url'}
-        )
-        assert result['type'] == 'persona'
-        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
 
 class TestAddonDeveloperSerializer(TestBaseUserSerializer):

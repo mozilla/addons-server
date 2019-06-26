@@ -39,8 +39,6 @@ ADDONS_POST_REVIEW = AclPermission('Addons', 'PostReview')
 ADDONS_CONTENT_REVIEW = AclPermission('Addons', 'ContentReview')
 # Can edit the message of the day in the reviewer tools.
 ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
-# Can review a background theme (persona).
-THEMES_REVIEW = AclPermission('Personas', 'Review')
 # Can review a static theme.
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 # Can review recommend(ed|able) add-ons

@@ -216,7 +216,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string|object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>`).
     :>json array tags: List containing the text of the tags set on the add-on.
-    :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
     :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.

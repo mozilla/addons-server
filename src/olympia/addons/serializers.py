@@ -27,7 +27,7 @@ from olympia.versions.models import (
     ApplicationsVersions, License, Version, VersionPreview)
 
 from .models import (
-    Addon, CompatOverride, Persona, Preview, ReplacementAddon, attach_tags)
+    Addon, CompatOverride, Preview, ReplacementAddon, attach_tags)
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -313,7 +313,6 @@ class AddonSerializer(serializers.ModelSerializer):
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
     tags = serializers.SerializerMethodField()
-    theme_data = serializers.SerializerMethodField()
     type = ReverseChoiceField(choices=list(amo.ADDON_TYPE_CHOICES_API.items()))
     url = serializers.SerializerMethodField()
 
@@ -356,7 +355,6 @@ class AddonSerializer(serializers.ModelSerializer):
             'support_email',
             'support_url',
             'tags',
-            'theme_data',
             'type',
             'url',
             'weekly_downloads'
@@ -366,23 +364,11 @@ class AddonSerializer(serializers.ModelSerializer):
         data = super(AddonSerializer, self).to_representation(obj)
         request = self.context.get('request', None)
 
-        if 'theme_data' in data and data['theme_data'] is None:
-            data.pop('theme_data')
         if ('request' in self.context and
                 'wrap_outgoing_links' in self.context['request'].GET):
             for key in ('homepage', 'support_url', 'contributions_url'):
                 if key in data:
                     data[key] = self.outgoingify(data[key])
-        if obj.type == amo.ADDON_PERSONA:
-            if 'weekly_downloads' in data:
-                # weekly_downloads don't make sense for lightweight themes.
-                data.pop('weekly_downloads')
-
-            if ('average_daily_users' in data and
-                    not self.is_broken_persona(obj)):
-                # In addition, their average_daily_users number must come from
-                # the popularity field of the attached Persona.
-                data['average_daily_users'] = obj.persona.popularity
         if request and is_gate_active(request, 'del-addons-created-field'):
             data.pop('created', None)
         return data
@@ -440,15 +426,10 @@ class AddonSerializer(serializers.ModelSerializer):
         return absolutify(reverse('reviewers.review', args=[obj.pk]))
 
     def get_icon_url(self, obj):
-        if self.is_broken_persona(obj):
-            return absolutify(obj.get_default_icon_url(64))
         return absolutify(obj.get_icon_url(64))
 
     def get_icons(self, obj):
-        if self.is_broken_persona(obj):
-            get_icon = obj.get_default_icon_url
-        else:
-            get_icon = obj.get_icon_url
+        get_icon = obj.get_icon_url
 
         return {str(size): absolutify(get_icon(size))
                 for size in amo.ADDON_ICON_SIZES}
@@ -460,35 +441,6 @@ class AddonSerializer(serializers.ModelSerializer):
             'count': obj.total_ratings,
             'text_count': obj.text_ratings_count,
         }
-
-    def get_theme_data(self, obj):
-        theme_data = None
-
-        if obj.type == amo.ADDON_PERSONA and not self.is_broken_persona(obj):
-            theme_data = obj.persona.theme_data
-        return theme_data
-
-    def is_broken_persona(self, obj):
-        """Find out if the object is a Persona and either is missing its
-        Persona instance or has a broken one.
-
-        Call this everytime something in the serializer is suceptible to call
-        something on the Persona instance, explicitly or not, to avoid 500
-        errors and/or SQL queries in ESAddonSerializer."""
-        try:
-            # Setting obj.persona = None in ESAddonSerializer.fake_object()
-            # below sadly isn't enough, so we work around it in that method by
-            # creating a Persona instance with a custom '_broken'
-            # attribute indicating that it should not be used.
-            if obj.type == amo.ADDON_PERSONA and (
-                    obj.persona is None or hasattr(obj.persona, '_broken')):
-                raise Persona.DoesNotExist
-        except Persona.DoesNotExist:
-            # We got a DoesNotExist exception, therefore the Persona does not
-            # exist or is broken.
-            return True
-        # Everything is fine, move on.
-        return False
 
 
 class AddonSerializerWithUnlistedData(AddonSerializer):
@@ -666,29 +618,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         obj.text_ratings_count = ratings.get('text_count')
 
         obj._is_featured = data.get('is_featured', False)
-
-        if data['type'] == amo.ADDON_PERSONA:
-            persona_data = data.get('persona')
-            if persona_data:
-                obj.persona = Persona(
-                    addon=obj,
-                    accentcolor=persona_data['accentcolor'],
-                    display_username=persona_data['author'],
-                    header=persona_data['header'],
-                    footer=persona_data['footer'],
-                    # "New" Persona do not have a persona_id, it's a relic from
-                    # old ones.
-                    persona_id=0 if persona_data['is_new'] else 42,
-                    textcolor=persona_data['textcolor'],
-                    popularity=data.get('average_daily_users'),
-                )
-            else:
-                # Sadly, although we can set obj.persona = None, this does not
-                # seem to prevent the query later on. So instead, work around
-                # it by creating a Persona instance with a custom attribute
-                # indicating that it should not be used.
-                obj.persona = Persona()
-                obj.persona._broken = True
 
         return obj
 

@@ -39,8 +39,7 @@
             "name": 831402,
             "created": "2010-02-12 13:52:05",
             "modified": "2010-09-13 00:39:36",
-            "addon_count": 6,
-            "all_personas": false
+            "addon_count": 6
         }
     },
     {
@@ -59,8 +58,7 @@
             "name": 831401,
             "created": "2010-02-12 13:52:05",
             "modified": "2010-09-13 00:39:36",
-            "addon_count": 1,
-            "all_personas": true
+            "addon_count": 1
         }
     },
     {
@@ -77,8 +75,7 @@
             "slug": "78c35f98-a376-b2bf-cd66-3512b4",
             "created": "2010-02-12 13:52:05",
             "modified": "2010-09-13 00:39:36",
-            "addon_count": 1,
-            "all_personas": true
+            "addon_count": 1
         }
     },
     {

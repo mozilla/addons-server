@@ -138,12 +138,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
-            if 'theme_data' in result['addon']:
-                self._check_disco_theme(
-                    result, discopane_items[i], flat_name=True)
-            else:
-                self._check_disco_addon(
-                    result, discopane_items[i], flat_name=True)
+            self._check_disco_addon(
+                result, discopane_items[i], flat_name=True)
 
     def test_list_unicode_locale(self):
         """Test that disco pane API still works in a locale with non-ascii
@@ -193,10 +189,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
-            if 'theme_data' in result['addon']:
-                self._check_disco_theme(result, discopane_items_china[i])
-            else:
-                self._check_disco_addon(result, discopane_items_china[i])
+            self._check_disco_addon(result, discopane_items_china[i])
 
     def test_invalid_edition_returns_default(self):
         response = self.client.get(
@@ -209,10 +202,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
-            if 'theme_data' in result['addon']:
-                self._check_disco_theme(result, discopane_items[i])
-            else:
-                self._check_disco_addon(result, discopane_items[i])
+            self._check_disco_addon(result, discopane_items[i])
 
     def test_with_wrap_outgoing_links(self):
         response = self.client.get(
@@ -226,10 +216,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
-            if 'theme_data' in result['addon']:
-                self._check_disco_theme(result, discopane_items[i])
-            else:
-                self._check_disco_addon(result, discopane_items[i])
+            self._check_disco_addon(result, discopane_items[i])
 
 
 @override_switch('disco-recommendations', active=True)
@@ -349,10 +336,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
-            if 'theme_data' in result['addon']:
-                self._check_disco_theme(result, discopane_items_china[i])
-            else:
-                self._check_disco_addon(result, discopane_items_china[i])
+            self._check_disco_addon(result, discopane_items_china[i])
 
 
 class TestDiscoveryItemViewSet(TestCase):

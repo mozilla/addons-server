@@ -86,7 +86,6 @@ def collections_json(request):
         data.append({'id': c.id,
                      'name': six.text_type(c.name),
                      'slug': six.text_type(c.slug),
-                     'all_personas': c.all_personas,
                      'url': c.get_url_path()})
     return data
 
