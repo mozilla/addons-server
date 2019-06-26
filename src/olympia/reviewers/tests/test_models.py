@@ -1648,6 +1648,63 @@ class TestAutoApprovalSummary(TestCase):
         disco_item.update(recommendable=True)
         assert AutoApprovalSummary.check_is_recommendable(self.version) is True
 
+    def test_check_should_be_delayed(self):
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
+        # Delete current_version, making self.version the first listed version
+        # submitted and add-on creation date recent.
+        self.addon.current_version.delete()
+        self.addon.update(created=datetime.now())
+        self.addon.update_status()
+
+        # First test with somehow no nomination date at all. The add-on
+        # creation date is used as a fallback, and it was created recently
+        # so it should be delayed.
+        assert self.version.nomination is None
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is True
+
+        # Still using the add-on creation date as fallback, if it's old enough
+        # it should not be delayed.
+        self.addon.update(created=self.days_ago(2))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
+        # Now add a recent nomination date. It should be delayed.
+        self.version.update(nomination=datetime.now() - timedelta(hours=22))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is True
+
+        # Update nomination date in the past, it should no longer be delayed.
+        self.version.update(nomination=self.days_ago(2))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
+    def test_check_should_be_delayed_langpacks_are_exempted(self):
+        self.addon.update(type=amo.ADDON_LPAPP)
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
+        # Delete current_version, making self.version the first listed version
+        # submitted and add-on creation date recent.
+        self.addon.current_version.delete()
+        self.addon.update(created=datetime.now())
+        self.addon.update_status()
+
+        assert self.version.nomination is None
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+        self.addon.update(created=self.days_ago(2))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+        self.version.update(nomination=datetime.now() - timedelta(hours=22))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+        self.version.update(nomination=self.days_ago(2))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1710,6 +1767,7 @@ class TestAutoApprovalSummary(TestCase):
             'has_auto_approval_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
+            'should_be_delayed': False,
         }
 
     def test_create_summary_no_files(self):
@@ -1723,9 +1781,10 @@ class TestAutoApprovalSummary(TestCase):
             version=self.version, is_locked=True)
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
-            'has_auto_approval_disabled': False,
+            'should_be_delayed': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1734,9 +1793,10 @@ class TestAutoApprovalSummary(TestCase):
             version=self.version, is_locked=True)
         info = summary.calculate_verdict()
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
-            'has_auto_approval_disabled': False,
+            'should_be_delayed': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1744,9 +1804,10 @@ class TestAutoApprovalSummary(TestCase):
         summary = AutoApprovalSummary.objects.create(version=self.version)
         info = summary.calculate_verdict()
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
-            'has_auto_approval_disabled': False,
+            'should_be_delayed': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1754,9 +1815,10 @@ class TestAutoApprovalSummary(TestCase):
         summary = AutoApprovalSummary.objects.create(version=self.version)
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
-            'has_auto_approval_disabled': False,
+            'should_be_delayed': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
@@ -1765,9 +1827,10 @@ class TestAutoApprovalSummary(TestCase):
             version=self.version, has_auto_approval_disabled=True)
         info = summary.calculate_verdict()
         assert info == {
+            'has_auto_approval_disabled': True,
             'is_locked': False,
             'is_recommendable': False,
-            'has_auto_approval_disabled': True,
+            'should_be_delayed': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1776,17 +1839,31 @@ class TestAutoApprovalSummary(TestCase):
             version=self.version, is_recommendable=True)
         info = summary.calculate_verdict()
         assert info == {
+            'has_auto_approval_disabled': False,
             'is_locked': False,
             'is_recommendable': True,
+            'should_be_delayed': False,
+        }
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
+
+    def test_calculate_verdict_should_be_delayed(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, should_be_delayed=True)
+        info = summary.calculate_verdict()
+        assert info == {
             'has_auto_approval_disabled': False,
+            'is_locked': False,
+            'is_recommendable': False,
+            'should_be_delayed': True,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):
         verdict_info = {
+            'has_auto_approval_disabled': True,
             'is_locked': True,
             'is_recommendable': True,
-            'has_auto_approval_disabled': True,
+            'should_be_delayed': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
@@ -1794,6 +1871,7 @@ class TestAutoApprovalSummary(TestCase):
             'Has auto-approval disabled flag set',
             'Is locked by a reviewer',
             'Is recommendable',
+            "Delayed because it's the first listed version",
         ]
 
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
