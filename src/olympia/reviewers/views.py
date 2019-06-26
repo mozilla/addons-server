@@ -815,7 +815,10 @@ def review(request, addon, channel=None):
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
     approvals_info = None
-    reports = None
+    reports = Paginator(
+        (AbuseReport.objects
+                    .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
+                    .order_by('-created')), 5).page(1)
     user_ratings = None
     if channel == amo.RELEASE_CHANNEL_LISTED:
         if was_auto_approved:
@@ -823,12 +826,6 @@ def review(request, addon, channel=None):
                 approvals_info = addon.addonapprovalscounter
             except AddonApprovalsCounter.DoesNotExist:
                 pass
-
-        developers = addon.listed_authors
-        reports = Paginator(
-            (AbuseReport.objects
-                        .filter(Q(addon=addon) | Q(user__in=developers))
-                        .order_by('-created')), 5).page(1)
         user_ratings = Paginator(
             (Rating.without_replies
                    .filter(addon=addon, rating__lte=3, body__isnull=False)
@@ -963,8 +960,7 @@ def review(request, addon, channel=None):
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes=user_changes_log, user_ratings=user_ratings,
-        version=version, was_auto_approved=was_auto_approved,
-        whiteboard_form=whiteboard_form,
+        version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)
 

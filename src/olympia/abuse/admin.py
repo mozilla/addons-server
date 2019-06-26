@@ -362,10 +362,6 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 (Rating.without_replies
                     .filter(addon=addon, rating__lte=3, body__isnull=False)
                     .order_by('-created')), 5).page(1),
-            'was_auto_approved': (
-                addon.current_version and
-                addon.current_version.was_auto_approved
-            ),
         }
         return template.render(context)
     addon_card.short_description = ''
