@@ -621,7 +621,7 @@ class AddonGitRepository(object):
 
         generate_unmodified_fake_diff = (
             not patch.delta.is_binary and
-            mime_category not in ('binary', 'image') and
+            mime_category == 'text' and
             pathspec is not None and
             patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
         )

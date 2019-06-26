@@ -52,7 +52,6 @@ from olympia.versions.tasks import extract_version_to_git
 from olympia.zadmin.models import get_config
 
 
-
 EMPTY_PNG = (
     b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08'
     b'\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00'
@@ -6040,7 +6039,8 @@ class TestReviewAddonVersionCompareViewSet(
         assert result['file']['download_url'] is None
 
     def test_dont_servererror_on_binary_file(self):
-        """https://github.com/mozilla/addons-server/issues/11712"""
+        """Regression test for
+        https://github.com/mozilla/addons-server/issues/11712"""
         new_version = version_factory(
             addon=self.addon, file_kw={
                 'filename': 'webextension_no_id.xpi',
