@@ -157,8 +157,7 @@
     </div>{# /addon-info #}
   </div>{# /addon-info-and-previews #}
 
-  {% if was_auto_approved %}
-  <div class="auto-approved-extra">
+  <div class="reports-and-ratings">
     {% if reports %}
       <h3><a href="{{ url('reviewers.abuse_reports', addon.slug)|absolutify }}">{{_('Abuse Reports ({num})')|format_html(num=reports.paginator.count|numberfmt) }}</a></h3>
       {% include "reviewers/includes/abuse_reports_list.html" %}
@@ -169,7 +168,6 @@
       {% include "reviewers/includes/user_ratings_list.html" %}
     {% endif %}
   </div>
-  {% endif %}
 
   {% if addon.has_per_version_previews %}
     <div id="addon-theme-previews-wrapper">
