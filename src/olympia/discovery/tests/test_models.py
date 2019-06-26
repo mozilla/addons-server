@@ -1,4 +1,4 @@
-import mock
+from unittest import mock
 
 from django.http import QueryDict
 from django.test.utils import override_settings
