@@ -105,7 +105,7 @@ class TestEmailBouncing(TestCase):
         out = mail.outbox[0]
         assert out.body == (
             self.bounce_reply % 'Undefined Error.')
-        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.subject == 'Re: your email to us'
         assert out.to == ['sender@example.com']
 
     def test_exception_because_invalid_token(self):
@@ -117,7 +117,7 @@ class TestEmailBouncing(TestCase):
             self.bounce_reply %
             'UUID found in email address TO: header but is not a valid token '
             '(5a0b8a83d501412589cc5d562334b46b).')
-        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.subject == 'Re: your email to us'
         assert out.to == ['sender@example.com']
 
     def test_exception_because_invalid_email(self):
@@ -133,7 +133,7 @@ class TestEmailBouncing(TestCase):
             self.bounce_reply %
             'TO: address does not contain activity email uuid ('
             'foobar@addons.mozilla.org).')
-        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.subject == 'Re: your email to us'
         assert out.to == ['sender@example.com']
 
     def test_exception_parser_because_malformed_message(self):
@@ -170,7 +170,7 @@ class TestEmailBouncing(TestCase):
         out = mail.outbox[0]
         assert ('This email address is not meant to receive emails '
                 'directly.') in out.body
-        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.subject == 'Re: your email to us'
         assert out.to == ['sender@example.com']
 
     @override_switch('activity-email-bouncing', active=False)

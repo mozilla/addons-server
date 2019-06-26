@@ -388,7 +388,7 @@ def bounce_mail(message, reason):
     body = (loader.get_template('activity/emails/bounce.txt').
             render({'reason': reason, 'SITE_URL': settings.SITE_URL}))
     send_mail(
-        'Re: %s' % message.get('Subject', 'your email to us'),
+        'Re: your email to us',
         body,
         recipient_list=[recipient['EmailAddress']],
         from_email=settings.ADDONS_EMAIL,
