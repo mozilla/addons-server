@@ -185,7 +185,7 @@ def dashboard(request):
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
             ugettext('Auto Approved Add-ons ({0})').format(
-                AutoApprovalSummary.get_auto_approved_queue(
+                Addon.objects.get_auto_approved_queue(
                     admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_auto_approved')
         ), (
@@ -202,7 +202,7 @@ def dashboard(request):
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
         sections[ugettext('Content Review')] = [(
             ugettext('Content Review ({0})').format(
-                AutoApprovalSummary.get_content_review_queue(
+                Addon.objects.get_content_review_queue(
                     admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_content_review')
         ), (
@@ -524,10 +524,10 @@ def queue_counts(admin_reviewer):
             ViewRecommendedQueue),
         'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
-            AutoApprovalSummary.get_auto_approved_queue(
+            Addon.objects.get_auto_approved_queue(
                 admin_reviewer=admin_reviewer).count),
         'content_review': (
-            AutoApprovalSummary.get_content_review_queue(
+            Addon.objects.get_content_review_queue(
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
@@ -609,11 +609,8 @@ def application_versions_json(request):
 @permission_or_tools_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     admin_reviewer = is_admin_reviewer(request)
-    qs = (
-        AutoApprovalSummary.get_content_review_queue(
-            admin_reviewer=admin_reviewer)
-        .select_related('addonapprovalscounter')
-        .order_by('addonapprovalscounter__last_content_review', 'created')
+    qs = Addon.objects.get_content_review_queue(
+        admin_reviewer=admin_reviewer
     )
     return _queue(request, ContentReviewTable, 'content_review',
                   qs=qs, SearchForm=None)
@@ -622,15 +619,8 @@ def queue_content_review(request):
 @permission_or_tools_view_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     admin_reviewer = is_admin_reviewer(request)
-    qs = (
-        AutoApprovalSummary.get_auto_approved_queue(
-            admin_reviewer=admin_reviewer)
-        .select_related(
-            'addonapprovalscounter', '_current_version__autoapprovalsummary')
-        .order_by(
-            '-_current_version__autoapprovalsummary__weight',
-            'addonapprovalscounter__last_human_review',
-            'created'))
+    qs = Addon.objects.get_auto_approved_queue(
+        admin_reviewer=admin_reviewer)
     return _queue(request, AutoApprovedTable, 'auto_approved',
                   qs=qs, SearchForm=None)
 
