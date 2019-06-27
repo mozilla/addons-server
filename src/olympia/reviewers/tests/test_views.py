@@ -4289,19 +4289,6 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert not doc('.abuse_reports')
-
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('.abuse_reports')
-
-        AutoApprovalSummary.objects.create(
-            verdict=amo.AUTO_APPROVED, version=self.version)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
         assert doc('.abuse_reports')
         expected = [
             'Target',
@@ -4328,9 +4315,6 @@ class TestReview(ReviewBase):
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
             country_code='DE')
         created_at = format_datetime(report.created)
-        AutoApprovalSummary.objects.create(
-            verdict=amo.AUTO_APPROVED, version=self.version)
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4368,19 +4352,6 @@ class TestReview(ReviewBase):
         Rating.objects.create(  # Review with high rating,, ignored.
             body=u'Qui platônem temporibus in', rating=5, addon=self.addon,
             user=user_factory())
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('.user_ratings')
-
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('.user_ratings')
-
-        AutoApprovalSummary.objects.create(
-            verdict=amo.AUTO_APPROVED, version=self.version)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)

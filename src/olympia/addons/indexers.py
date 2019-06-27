@@ -1,7 +1,5 @@
 import copy
 
-from django.core.exceptions import ObjectDoesNotExist
-
 import waffle
 
 import olympia.core.logger
@@ -325,44 +323,15 @@ class AddonIndexer(BaseSearchIndexer):
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         data['colors'] = None
-        if obj.type == amo.ADDON_PERSONA:
-            # Personas are compatible with all platforms. They don't have files
-            # so we have to fake the info to be consistent with the rest of the
-            # add-ons stored in ES.
-            data['platforms'] = [amo.PLATFORM_ALL.id]
-            try:
-                # Theme popularity is roughly equivalent to average daily users
-                # (the period is not the same and the methodology differs since
-                # themes don't have updates, but it's good enough).
-                data['average_daily_users'] = obj.persona.popularity
-                # 'weekly_downloads' field is used globally to sort, but
-                # for themes weekly_downloads don't make much sense, use
-                # popularity instead. To keep it comparable with extensions,
-                # multiply by 7. (FIXME: could we stop sorting by downloads,
-                # even stop exposing downloads numbers in API/pages outside of
-                # the statistic-specific pages?)
-                data['weekly_downloads'] = obj.persona.popularity * 7
-                data['persona'] = {
-                    'accentcolor': obj.persona.accentcolor,
-                    'author': obj.persona.display_username,
-                    'header': obj.persona.header,
-                    'footer': obj.persona.footer,
-                    'is_new': obj.persona.is_new(),
-                    'textcolor': obj.persona.textcolor,
-                }
-            except ObjectDoesNotExist:
-                # The instance won't have a persona while it's being created.
-                pass
-        else:
-            if obj.current_version:
-                data['platforms'] = [p.id for p in
-                                     obj.current_version.supported_platforms]
+        if obj.current_version:
+            data['platforms'] = [p.id for p in
+                                 obj.current_version.supported_platforms]
 
-            # Extract dominant colors from static themes.
-            if obj.type == amo.ADDON_STATICTHEME:
-                first_preview = obj.current_previews.first()
-                if first_preview:
-                    data['colors'] = first_preview.colors
+        # Extract dominant colors from static themes.
+        if obj.type == amo.ADDON_STATICTHEME:
+            first_preview = obj.current_previews.first()
+            if first_preview:
+                data['colors'] = first_preview.colors
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
         # Boost by the number of users on a logarithmic scale.

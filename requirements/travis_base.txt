@@ -7,9 +7,9 @@ wheel==0.33.4 \
 setuptools==41.0.1 \
     --hash=sha256:a222d126f5471598053c9a77f4b5d4f26eaa1f150ad6e01dcf1a42e185d05613 \
     --hash=sha256:c7769ce668c7a333d84e17fe8b524b1c45e7ee9f7908ad0a73e1eda7e6a5aebf
-tox==3.12.1 \
-    --hash=sha256:f5c8e446b51edd2ea97df31d4ded8c8b72e7d6c619519da6bb6084b9dd5770f9 \
-    --hash=sha256:f87fd33892a2df0950e5e034def9468988b8d008c7e9416be665fcc0dd45b14f
+tox==3.13.0 \
+    --hash=sha256:2316d3f56339173c6d45e600dabcfac6fbed7fff82a7d35f4107152e9191a766 \
+    --hash=sha256:66d9ccf81b383ab1edc1619410223eec0e046178304728797a850302092ed975
 
 # Dependencies of Tox
 virtualenv==16.6.1 \
@@ -37,3 +37,10 @@ importlib-metadata==0.18 \
 zipp==0.5.1 \
     --hash=sha256:8c1019c6aad13642199fbe458275ad6a84907634cc9f0989877ccc4a2840139d \
     --hash=sha256:ca943a7e809cc12257001ccfb99e3563da9af99d52f261725e96dfe0f9275bc3
+packaging==19.0 \
+    --hash=sha256:9e1cbf8c12b1f1ce0bb5344b8d7ecf66a6f8a6e91bcb0c84593ed6d3ab5c4ab3 \
+    --hash=sha256:0c98a5d0be38ed775798ece1b9727178c4469d9c3b4ada66e8e6b7849f8732af
+# pyparsing is required by packaging
+pyparsing==2.4.0 \
+    --hash=sha256:1873c03321fc118f4e9746baf201ff990ceb915f433f23b395f5580d1840cb2a \
+    --hash=sha256:9b6323ef4ab914af344ba97510e966d64ba91055d6b9afa6b30799340e89cc03

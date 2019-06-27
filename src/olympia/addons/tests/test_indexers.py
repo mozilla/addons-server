@@ -7,7 +7,7 @@ from olympia.addons.models import (
     Addon, Preview, attach_tags, attach_translations)
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import (
-    ESTestCase, TestCase, addon_factory, collection_factory, file_factory)
+    ESTestCase, TestCase, collection_factory, file_factory)
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
@@ -415,56 +415,6 @@ class TestAddonIndexer(TestCase):
                 [u'Let your browser eat your bananas'])
         assert (extracted['description_l10n_spanish'] ==
                 [u'Deje que su navegador coma sus plátanos'])
-
-    def test_extract_persona(self):
-        # Override self.addon with a persona.
-        self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
-        # It's a Persona, there should not be any files attached, and the
-        # indexer should not care.
-        assert self.addon.current_version.files.count() == 0
-
-        persona = self.addon.persona
-        persona.header = u'myheader.jpg'
-        persona.footer = u'myfooter.jpg'
-        persona.accentcolor = u'336699'
-        persona.textcolor = u'f0f0f0'
-        persona.author = u'Me-me-me-Myself'
-        persona.display_username = u'my-username'
-        persona.popularity = 1000
-        persona.save()
-        extracted = self._extract()
-        assert extracted['average_daily_users'] == persona.popularity
-        assert extracted['weekly_downloads'] == persona.popularity * 7
-        assert extracted['boost'] == float(persona.popularity ** .2) * 4
-        assert extracted['persona']['accentcolor'] == persona.accentcolor
-        # We need the author that will go in theme_data here, which is
-        # persona.display_username, not persona.author.
-        assert extracted['persona']['author'] == persona.display_username
-        assert extracted['persona']['header'] == persona.header
-        assert extracted['persona']['footer'] == persona.footer
-        assert extracted['persona']['is_new'] is False  # It has a persona_id.
-        assert extracted['persona']['textcolor'] == persona.textcolor
-
-        # Personas are always considered compatible with every platform, and
-        # almost all versions of all apps.
-        assert extracted['platforms'] == [amo.PLATFORM_ALL.id]
-        assert extracted['current_version']['compatible_apps'] == {
-            amo.ANDROID.id: {
-                'max': 9999000000200100,
-                'max_human': '9999',
-                'min': 11000000200100,
-                'min_human': '11.0',
-            },
-            amo.FIREFOX.id: {
-                'max': 9999000000200100,
-                'max_human': '9999',
-                'min': 4000000200100,
-                'min_human': '4.0',
-            },
-        }
-        self.addon = addon_factory(persona_id=0, type=amo.ADDON_PERSONA)
-        extracted = self._extract()
-        assert extracted['persona']['is_new'] is True  # No persona_id.
 
     def test_extract_previews(self):
         second_preview = Preview.objects.create(

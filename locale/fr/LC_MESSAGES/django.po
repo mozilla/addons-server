@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 09:43+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2019-06-26 11:34+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1777,7 +1777,7 @@ msgid "There was an error uploading your preview."
 msgstr "Une erreur est survenue pendant l’envoi de votre aperçu."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "La dernière version d’une extension recommandée ne peut être supprimée ou désactivée. Veuillez contacter les administrateurs d’AMO si vous avez besoin d’assistance pour cela."
 
 #, python-format
 msgid "Version %s disabled."
@@ -4759,7 +4759,7 @@ msgstr "Enregistrez le Web {start_sub_heading}avec {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
-msgstr ""
+msgstr "Les jeux de couleurs personnalisés vous permettent de donner au Web les nuances que vous aimez."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4768,7 +4768,7 @@ msgstr "Empêchez les traqueurs des pages de recherche de vous suivre {start_sub
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Obtenez une page de recherche plus perfectionnée dans Firefox pour Android."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4777,7 +4777,7 @@ msgstr "Trouvez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Certains sites rencontrent des difficultés à lire des vidéos dans Firefox pour Android. Cette extension fournit une solution."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6421,7 +6421,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "L’adresse électronique utilisée pour votre compte développeur n’est pas autorisée pour le dépôt de modules complémentaires."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

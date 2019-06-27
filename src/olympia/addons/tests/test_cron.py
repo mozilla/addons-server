@@ -20,20 +20,7 @@ from olympia.versions.models import Version
 
 
 class TestLastUpdated(TestCase):
-    fixtures = ['base/addon_3615', 'addons/listed', 'addons/persona']
-
-    def test_personas(self):
-        Addon.objects.update(
-            type=amo.ADDON_PERSONA, status=amo.STATUS_APPROVED)
-
-        cron.addon_last_updated()
-        for addon in Addon.objects.all():
-            assert addon.last_updated == addon.created
-
-        # Make sure it's stable.
-        cron.addon_last_updated()
-        for addon in Addon.objects.all():
-            assert addon.last_updated == addon.created
+    fixtures = ['base/addon_3615', 'addons/listed']
 
     def test_catchall(self):
         """Make sure the catch-all last_updated is stable and accurate."""
@@ -56,11 +43,11 @@ class TestLastUpdated(TestCase):
     def test_appsupport(self):
         ids = Addon.objects.values_list('id', flat=True)
         cron.update_appsupport(ids)
-        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 3  # ??
+        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 2
 
         # Run it again to test deletes.
         cron.update_appsupport(ids)
-        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 3  # ??
+        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 2
 
     def test_appsupport_listed(self):
         AppSupport.objects.all().delete()
@@ -430,7 +417,6 @@ class TestCleanupImageFiles(TestCase):
 
 class TestDeliverHotness(TestCase):
     def setUp(self):
-        self.persona = addon_factory(type=amo.ADDON_PERSONA)
         self.extension = addon_factory()
         self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         self.awaiting_review = addon_factory(status=amo.STATUS_NOMINATED)
@@ -448,7 +434,7 @@ class TestDeliverHotness(TestCase):
 
             )]
 
-        for obj in (self.persona, self.extension, self.static_theme,
+        for obj in (self.extension, self.static_theme,
                     self.awaiting_review):
             UpdateCount.objects.bulk_create([
                 UpdateCount(addon=obj, date=date, count=count)
@@ -458,9 +444,6 @@ class TestDeliverHotness(TestCase):
     @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
     def test_basic(self):
         cron.deliver_hotness()
-
-        # Personas are excluded
-        assert self.persona.reload().hotness == 0
 
         assert self.extension.reload().hotness == 1.652672126445855
         assert self.static_theme.reload().hotness == 1.652672126445855

@@ -513,20 +513,20 @@ class TestAbuse(TestCase):
         assert doc('.addon-info-and-previews .meta-rating td').text() == (
             'Rated 2 out of 5 stars 1 review')
         assert doc('.addon-info-and-previews .last-approval-date td').text()
-        assert doc('.auto-approved-extra')
-        assert doc('.auto-approved-extra h3').eq(0).text() == (
+        assert doc('.reports-and-ratings')
+        assert doc('.reports-and-ratings h3').eq(0).text() == (
             'Abuse Reports (2)')
-        assert doc('.auto-approved-extra h3').eq(1).text() == (
+        assert doc('.reports-and-ratings h3').eq(1).text() == (
             'Bad User Ratings (1)')
-        # 'addon-info-and-previews' and 'auto-approved-extra' are coming from a
+        # 'addon-info-and-previews' and 'reports-and-ratings' are coming from a
         # reviewer tools template and shouldn't contain any admin-specific
         # links. It also means that all links in it should be external, in
         # order to work when the admin is on a separate admin-only domain.
         assert len(doc('.addon-info-and-previews a[href]'))
         for link in doc('.addon-info-and-previews a[href]'):
             assert link.attrib['href'].startswith(settings.EXTERNAL_SITE_URL)
-        assert len(doc('.auto-approved-extra a[href]'))
-        for link in doc('.auto-approved-extra a[href]'):
+        assert len(doc('.reports-and-ratings a[href]'))
+        for link in doc('.reports-and-ratings a[href]'):
             assert link.attrib['href'].startswith(settings.EXTERNAL_SITE_URL)
 
     def test_detail_guid_report(self):
