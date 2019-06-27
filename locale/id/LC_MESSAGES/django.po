@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-27 07:20+0000\n"
+"PO-Revision-Date: 2019-06-27 10:08+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "tipe"
 
 #, fuzzy
 msgid "Users"
@@ -45,10 +45,10 @@ msgid "Distribution"
 msgstr "Deskripsi"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Negara pelapor"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Kutipan pesan"
 
 #, fuzzy, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -63,7 +63,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Laporan bug atau permintaan dukungan yang tidak pada tempatnya"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Diubah pada:"
 
 #, python-format
 msgid "By %(filter_title)s"
