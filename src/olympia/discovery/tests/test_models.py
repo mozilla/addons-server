@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+from unittest import mock
+
 from django.http import QueryDict
 from django.test.utils import override_settings
 
@@ -173,6 +174,20 @@ class TestDiscoveryItem(TestCase):
             custom_heading=('Fancy Héading {start_sub_heading}with '
                             '{addon_name}{end_sub_heading}.'))
         assert item.heading_text == 'Fancy Héading with Custôm Name.'
+
+    def test_heading_is_translated(self):
+        addon = addon_factory(slug='somé-slug', name='Sôme Name')
+        user = user_factory(display_name='Fløp')
+        addon.addonuser_set.create(user=user)
+        item = DiscoveryItem.objects.create(
+            addon=addon,
+            custom_addon_name='Custôm Name',
+            custom_heading=('Fancy Héading {start_sub_heading}with '
+                            '{addon_name}{end_sub_heading}.'))
+        with mock.patch('olympia.discovery.models.ugettext') as ugettext_mock:
+            ugettext_mock.return_value = f'Trans {item.custom_heading}'
+            assert item.heading_text == 'Trans Fancy Héading with Custôm Name.'
+            assert item.heading.startswith('Trans Fancy Héading <span>with ')
 
     def test_description_custom(self):
         addon = addon_factory(summary='Foo', description='Bar')
