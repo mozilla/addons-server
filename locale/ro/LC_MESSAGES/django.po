@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-27 17:12+0000\n"
+"PO-Revision-Date: 2019-06-27 17:16+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1500,8 +1500,8 @@ msgstr "Slugul nu poate fi „%(slug)s”. Te rugăm să alegi altul."
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Etichetă nevalidă: {0}"
-msgstr[1] "Etichete invalide: {0}"
-msgstr[2] "Etichete invalide: {0}"
+msgstr[1] "Etichete nevalide: {0}"
+msgstr[2] "Etichete nevalide: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
@@ -1654,7 +1654,7 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Categoriile nu pot fi modificate cât timp suplimentul este promovat."
 
 msgid "Invalid or corrupt add-on file."
-msgstr "Fișier de supliment invalid sau corupt."
+msgstr "Fișier de supliment nevalid sau corupt."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Am găsit cheia ta API pentru dezvoltatori în fișierul trimis. Pentru a-ți proteja contul, cheia va fi revocată."
@@ -4815,13 +4815,13 @@ msgstr "Denumire de fișier nevalidă în arhivă. Te rugăm să te asiguri că 
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr "Denumire de fișier invalidă în arhiva: {0}"
+msgstr "Denumire de fișier nevalidă în arhiva: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
 msgid "Invalid archive."
-msgstr "Arhivă invalidă."
+msgstr "Arhivă nevalidă."
 
 msgid "Could not find an add-on ID."
 msgstr "Nu s-a găsit un ID al suplimentului."
@@ -5989,7 +5989,7 @@ msgstr "Parametru \"%s\" invalid."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr "Combinație invalidă a parametrilor \"%s\" și \"%s\"."
+msgstr "Combinație nevalidă a parametrilor „%s” și „%s”."
 
 msgid "Return To AMO is currently disabled"
 msgstr "Întoarcerea pe AMO este dezactivată acum"
@@ -6002,7 +6002,7 @@ msgstr "Retur invalid către GUID AMO (nu este un supliment gestionat)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Combinație invalidă de parametri „%s\", „%s\" și „%s\"."
+msgstr "Combinație nevalidă a parametrilor „%s\", „%s\" și „%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "S-a depășit lungimea maximă de interogare."
