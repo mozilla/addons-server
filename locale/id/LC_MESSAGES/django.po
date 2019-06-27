@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-27 10:08+0000\n"
+"PO-Revision-Date: 2019-06-27 10:27+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -22,7 +22,6 @@ msgstr ""
 msgid "type"
 msgstr "tipe"
 
-#, fuzzy
 msgid "Users"
 msgstr "Pengguna"
 
@@ -32,17 +31,14 @@ msgstr "Pengaya"
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
 
-#, fuzzy
 msgid "creation date"
-msgstr "Panduan Moderasi"
+msgstr "tanggal pembuatan"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Pengaya Tak Terdaftar"
+msgstr "Pengguna / Pengaya"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Deskripsi"
+msgstr "Distribusi"
 
 msgid "Reporter's country"
 msgstr "Negara pelapor"
@@ -1298,17 +1294,14 @@ msgstr "Tema Statis"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Uji Keamanan"
+msgstr "Keamanan"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Kebijakan Privasi"
+msgstr "Privasi"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Kebijakan Pengembang"
+msgstr "Praktik Pengembangan"
 
 msgid "No Reputation"
 msgstr "Tanpa Reputasi"
@@ -4621,9 +4614,8 @@ msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{
 msgstr "Isi formulir secara otomatis {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan pengalaman membaca Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pengalaman membaca yang lebih baik {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
@@ -4697,18 +4689,16 @@ msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lakukan pencarian di Firefox {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ubah tampilan Firefox {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Memuat ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Simpan catatan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
@@ -4751,9 +4741,8 @@ msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Temukan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Bantuan video Android {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
@@ -5468,9 +5457,8 @@ msgstr "Peninjauan Pengaya"
 msgid "Recommended ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Peringkat Tinjauan ({0})"
+msgstr "Ulasan Tertunda Lainnya ({0})"
 
 msgid "Review Log"
 msgstr "Log Tinjauan"
@@ -6380,7 +6368,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr ""
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Pola Surel"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
