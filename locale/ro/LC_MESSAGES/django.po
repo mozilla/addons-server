@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-27 17:16+0000\n"
+"PO-Revision-Date: 2019-06-27 17:41+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -451,10 +451,10 @@ msgid "Another Body"
 msgstr "Alt corp"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr "Antet de autorizare invalid. Nu s-au furnizat acreditări."
+msgstr "Antet de autorizare nevalid. Nu s-au furnizat acreditări."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr "Antet de autorizare invalid. Șirul de acreditări nu trebuie să conțină spații."
+msgstr "Antet de autorizare nevalid. Șirul de acreditări nu trebuie să conțină spații."
 
 msgid "Signature has expired."
 msgstr "Semnătura a expirat."
@@ -466,7 +466,7 @@ msgid "Wrong type for one or more keys in payload"
 msgstr "Tip greșit al uneia sau al mai multor chei din sarcina utilă"
 
 msgid "Invalid JWT Token."
-msgstr "Jeton JWT invalid."
+msgstr "Jeton JWT nevalid."
 
 msgid "Invalid token or hash."
 msgstr "Jeton sau hash nevalid."
@@ -478,14 +478,14 @@ msgid "The field must have a length of at least {num} characters."
 msgstr "Câmpul trebuie să aibă o lungime de cel puțin {num} (de) caractere."
 
 msgid "The language code {lang_code} is invalid."
-msgstr "Codul limbii {lang_code} este invalid."
+msgstr "Codul limbii {lang_code} este nevalid."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Pk sau slug invalid(ă) „%s” - obiectul nu există."
+msgstr "Pk sau slug nevalid(ă) „%s” - obiectul nu există."
 
 msgid "Application Versions"
 msgstr "Versiunile aplicației"
@@ -1518,7 +1518,7 @@ msgstr[2] "Ai {0} de etichete în plus."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Toate etichetele trebuie să fie alcătuite din %s de caractere sau mai puțin după eliminarea caracterelor invalide."
+msgstr "Toate etichetele trebuie să fie alcătuite din %s de caractere sau mai puțin după eliminarea caracterelor nevalide."
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
@@ -1593,7 +1593,7 @@ msgid "View current"
 msgstr "Afișează versiunea curentă"
 
 msgid "Invalid version range."
-msgstr "Domeniu de versiune invalid."
+msgstr "Domeniu de versiune nevalid."
 
 msgid "Need at least one compatible application."
 msgstr "Necesită cel puțin o aplicație compatibilă."
@@ -5233,7 +5233,7 @@ msgstr "Nu poți posta mai mult de o recenzie pentru aceeași versiune a unui su
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr "Marcaj invalid [%s] - trebuie să fie unul dintre [%s]"
+msgstr "Marcaj nevalid [%s] - trebuie să fie unul dintre [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Această evaluare nu poate fi semnalată pentru că nu are text deloc."
@@ -5985,7 +5985,7 @@ msgstr[2] "Solicitări de informații expirate ({0})"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Parametru \"%s\" invalid."
+msgstr "Parametru „%s” nevalid."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
@@ -5995,10 +5995,10 @@ msgid "Return To AMO is currently disabled"
 msgstr "Întoarcerea pe AMO este dezactivată acum"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr "Retur invalid către GUID AMO (nu este în format base64url?)"
+msgstr "Retur nevalid către GUID AMO (nu este în format base64url?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr "Retur invalid către GUID AMO (nu este un supliment gestionat)"
+msgstr "Retur nevalid către GUID AMO (nu este un supliment gestionat)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -6034,7 +6034,7 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr "Te rugăm să specifici GUID-ul suplimentului tău în manifest dacă are mai mult de 64 de caractere."
 
 msgid "Invalid GUID in URL"
-msgstr "GUID invalid în URL"
+msgstr "GUID nevalid în URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Nu poți adăuga o versiune listată la acest supliment prin API din cauză că lipsesc metadate. Te rugăm să transmiți prin intermediul site-ului."
