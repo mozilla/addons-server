@@ -5,15 +5,19 @@ import zipfile
 import pytest
 import pygit2
 from unittest import mock
+from unittest.mock import MagicMock
 
+from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
 from olympia.lib.git import (
-    AddonGitRepository, TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX)
+    AddonGitRepository, TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX,
+    get_mime_type_for_blob)
 from olympia.files.utils import id_to_path
 
 
@@ -952,6 +956,40 @@ def test_get_diff_unmodified_file():
 
 
 @pytest.mark.django_db
+def test_get_diff_unmodified_file_binary_file():
+    addon = addon_factory(file_kw={'filename': 'https-everywhere.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'https-everywhere.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash,
+        pathspec=['manifest.json'])
+
+    assert len(changes) == 1
+    assert changes[0]['mode'] == ' '
+    assert changes[0]['hunks'][0]['header'] == '@@ -0 +0 @@'
+    assert all(
+        x['type'] == ' ' for x in changes[0]['hunks'][0]['changes'])
+
+    # Now Make sure we don't render a fake hunk for binary files such as images
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash,
+        pathspec=['icon16.png'])
+
+    assert len(changes) == 1
+    assert not changes[0]['hunks']
+
+
+@pytest.mark.django_db
 def test_get_raw_diff_cache():
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
@@ -1013,3 +1051,54 @@ def test_get_raw_diff_cache_unmodified_file():
         # `get_diff` call with pathspec, rendering unmodified files
         (version.git_hash, original_version.git_hash, True)
     ]
+
+
+@pytest.mark.parametrize(
+    'entry, filename, expected_category, expected_mimetype',
+    [
+        (MagicMock(type='blob'), 'blank.pdf', 'binary', 'application/pdf'),
+        (MagicMock(type='blob'), 'blank.txt', 'text', 'text/plain'),
+        (MagicMock(type='blob'), 'empty_bat.exe', 'binary',
+                                 'application/x-dosexec'),
+        (MagicMock(type='blob'), 'fff.gif', 'image', 'image/gif'),
+        (MagicMock(type='blob'), 'foo.css', 'text', 'text/css'),
+        (MagicMock(type='blob'), 'foo.html', 'text', 'text/html'),
+        (MagicMock(type='blob'), 'foo.js', 'text', 'text/javascript'),
+        (MagicMock(type='blob'), 'foo.py', 'text', 'text/x-python'),
+        (MagicMock(type='blob'), 'image.jpg', 'image', 'image/jpeg'),
+        (MagicMock(type='blob'), 'image.png', 'image', 'image/png'),
+        (MagicMock(type='blob'), 'search.xml', 'text', 'text/xml'),
+        (MagicMock(type='blob'), 'js_containing_png_data.js', 'text',
+                                 'text/javascript'),
+        (MagicMock(type='blob'), 'foo.json', 'text', 'application/json'),
+        (MagicMock(type='tree'), 'foo', 'directory',
+                                 'application/octet-stream'),
+        (MagicMock(type='blob'), 'image-svg-without-xml.svg', 'image',
+                                 'image/svg+xml'),
+        (MagicMock(type='blob'), 'bmp-v3.bmp', 'image', 'image/bmp'),
+        (MagicMock(type='blob'), 'bmp-v4.bmp', 'image', 'image/bmp'),
+        (MagicMock(type='blob'), 'bmp-v5.bmp', 'image', 'image/bmp'),
+        (MagicMock(type='blob'), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
+        # This is testing that a tag listed at
+        # https://github.com/file/file/blob/master/magic/Magdir/sgml#L57
+        # doesn't lead to the file being detected as HTML, which was fixed
+        # in most recent libmagic versions.
+        (MagicMock(type='blob'), 'html-containing.json', 'text',
+                                 'application/json'),
+    ]
+)
+def test_get_mime_type_for_blob(
+        entry, filename, expected_category, expected_mimetype):
+    root = os.path.join(
+        settings.ROOT,
+        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
+
+    if entry.type == 'tree':
+        mime, category = get_mime_type_for_blob(entry.type, filename, None)
+    else:
+        with open(os.path.join(root, filename), 'rb') as fobj:
+            mime, category = get_mime_type_for_blob(
+                entry.type, filename, force_bytes(fobj.read()))
+
+    assert mime == expected_mimetype
+    assert category == expected_category
