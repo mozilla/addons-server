@@ -613,38 +613,39 @@ class AddonGitRepository(object):
         # a diff view for an file. That way we increase performance for
         # reguar unittests and full-tree diffs.
 
-        tree = self.get_root_tree(commit)
-        blob_or_tree = tree[patch.delta.new_file.path]
-        actual_blob = self.git_repository[blob_or_tree.oid]
-        mime_category = get_mime_type_for_blob(
-            blob_or_tree.type, patch.delta.new_file.path, actual_blob)[1]
-
         generate_unmodified_fake_diff = (
             not patch.delta.is_binary and
-            mime_category == 'text' and
             pathspec is not None and
             patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
         )
 
         if generate_unmodified_fake_diff:
-            changes = [
-                {
-                    'content': line,
-                    'type': GIT_DIFF_LINE_CONTEXT,
-                    'old_line_number': lineno,
-                    'new_line_number': lineno,
-                }
-                for lineno, line in enumerate(actual_blob.data.split(b'\n'))
-            ]
+            tree = self.get_root_tree(commit)
+            blob_or_tree = tree[patch.delta.new_file.path]
+            actual_blob = self.git_repository[blob_or_tree.oid]
+            mime_category = get_mime_type_for_blob(
+                blob_or_tree.type, patch.delta.new_file.path, actual_blob)[1]
 
-            hunks.append({
-                'header': '@@ -0 +0 @@',
-                'old_start': 0,
-                'new_start': 0,
-                'old_lines': changes[-1]['old_line_number'],
-                'new_lines': changes[-1]['new_line_number'],
-                'changes': changes
-            })
+            if mime_category == 'text':
+                data = actual_blob.data
+                changes = [
+                    {
+                        'content': line,
+                        'type': GIT_DIFF_LINE_CONTEXT,
+                        'old_line_number': lineno,
+                        'new_line_number': lineno,
+                    }
+                    for lineno, line in enumerate(data.split(b'\n'))
+                ]
+
+                hunks.append({
+                    'header': '@@ -0 +0 @@',
+                    'old_start': 0,
+                    'new_start': 0,
+                    'old_lines': changes[-1]['old_line_number'],
+                    'new_lines': changes[-1]['new_line_number'],
+                    'changes': changes
+                })
 
         entry = {
             'path': patch.delta.new_file.path,
