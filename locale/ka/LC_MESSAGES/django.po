@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-27 12:30+0000\n"
+"PO-Revision-Date: 2019-06-27 12:38+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4701,16 +4701,15 @@ msgstr "გაუმჯობესებული საძიებო Android
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "უფრო მეტად მოსახერხებული ძიების გვერდი Firefox-ის Android-ვერსიაზე."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ვიდეოების მოძიება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ვიდეოების შეუფერხებელი ჩვენება Android-ზე {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "საიტების ნაწილს ხარვეზები აქვს ვიდეოების გაშვებისას Firefox-ში Android-ზე. ეს გაფართოება აგვარებს ამ პრობლემებს."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5318,16 +5317,14 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr "დაზიანების საშიშროება არაა."
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "შეჩერებული მიმომხილველის მიერ."
+msgstr "შეჩერებულია მიმომხილველის მიერ"
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "მონიშნულია, რომ ავტომატური მიღება გამორთულია."
+msgstr "მონიშნულია, რომ ავტომატური დადასტურება გამორთული აქვს"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "შესათავაზებელი"
 
 msgid "Type"
 msgstr "სახეობა"
