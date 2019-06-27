@@ -5,7 +5,6 @@ from collections import OrderedDict
 from datetime import datetime
 
 import pygit2
-import magic
 
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
@@ -25,36 +24,9 @@ from olympia.files.utils import get_sha256
 from olympia.files.models import File
 from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
-from olympia.lib.git import AddonGitRepository
+from olympia.lib.git import AddonGitRepository, get_mime_type_for_blob
 from olympia.lib import unicodehelper
 from olympia.lib.cache import cache_get_or_set
-
-
-# Sometime mimetypes get changed in libmagic so this is a (hopefully short)
-# list of mappings from old -> new types so that we stay compatible
-# with versions out there in the wild.
-MIMETYPE_COMPAT_MAPPING = {
-    # https://github.com/file/file/commit/cee2b49c
-    'application/xml': 'text/xml',
-    # Special case, for empty text files libmime reports
-    # application/x-empty for empty plain text files
-    # So, let's normalize this.
-    'application/x-empty': 'text/plain',
-    # See: https://github.com/mozilla/addons-server/issues/11382
-    'image/svg': 'image/svg+xml',
-    # See: https://github.com/mozilla/addons-server/issues/11383
-    'image/x-ms-bmp': 'image/bmp',
-    # See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textjavascript  # noqa
-    'application/javascript': 'text/javascript',
-}
-
-
-# Some official mimetypes belong to the `text` category, even though their
-# names don't include `text/`.
-MIMETYPE_CATEGORY_MAPPING = {
-    'application/json': 'text',
-    'application/xml': 'text',
-}
 
 
 class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
@@ -153,44 +125,8 @@ class FileEntriesSerializer(FileSerializer):
         return self._entries
 
     def get_entry_mime_type(self, entry, blob):
-        """Returns the mimetype and type category.
-
-        The type category can be ``image``, ``directory``, ``text`` or
-        ``binary``.
-        """
-        if entry.type == 'tree':
-            return 'application/octet-stream', 'directory'
-
-        # Hardcoding the maximum amount of bytes to read here
-        # until https://github.com/ahupp/python-magic/commit/50e8c856
-        # lands in a release and we can read that value from libmagic
-        # We're only reading the needed amount of content from the file to
-        # not exhaust/read the whole blob into memory again.
-        bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
-        mimetype = magic.from_buffer(bytes_, mime=True)
-
-        # Apply compatibility mappings
-        mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
-
-        # Try to find a more accurate "textual" mimetype.
-        if mimetype == 'text/plain':
-            # Allow text mimetypes to be more specific for readable files.
-            # `python-magic`/`libmagic` usually just returns plain/text but we
-            # should use actual types like text/css or text/javascript.
-            mimetype, _ = mimetypes.guess_type(entry.name)
-            # Re-apply compatibility mappings since `guess_type()` might return
-            # a completely different mimetype.
-            mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
-
-        known_type_cagegories = ('image', 'text')
-        default_type_category = 'binary'
-        # If mimetype has an explicit category, use it.
-        type_category = MIMETYPE_CATEGORY_MAPPING.get(
-            mimetype, mimetype.split('/')[0]
-        ) if mimetype else default_type_category
-
-        return (mimetype, default_type_category if type_category not in
-                known_type_cagegories else type_category)
+        return get_mime_type_for_blob(
+            tree_or_blob=entry.type, name=entry.name, blob=blob)
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)

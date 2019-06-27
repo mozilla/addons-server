@@ -52,6 +52,12 @@ from olympia.versions.tasks import extract_version_to_git
 from olympia.zadmin.models import get_config
 
 
+EMPTY_PNG = (
+    b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08'
+    b'\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00'
+    b'\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82')
+
+
 class TestRedirectsOldPaths(TestCase):
     def setUp(self):
         user = user_factory()
@@ -6031,6 +6037,43 @@ class TestReviewAddonVersionCompareViewSet(
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['file']['download_url'] is None
+
+    def test_dont_servererror_on_binary_file(self):
+        """Regression test for
+        https://github.com/mozilla/addons-server/issues/11712"""
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+        apply_changes(repo, new_version, EMPTY_PNG, 'foo.png')
+
+        next_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(next_version)
+        apply_changes(repo, next_version, EMPTY_PNG, 'foo.png')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': new_version.pk,
+            'pk': next_version.pk})
+
+        response = self.client.get(self.url + '?file=foo.png')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['file']['download_url']
 
 
 class TestDownloadGitFileView(TestCase):

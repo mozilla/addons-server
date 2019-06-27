@@ -1,18 +1,11 @@
 # -*- coding: utf-8 -*-
-import os
 from datetime import datetime
-
-import pytest
-
-from unittest.mock import MagicMock
 
 from rest_framework.exceptions import NotFound
 from rest_framework.test import APIRequestFactory
 from rest_framework.settings import api_settings
 
 from django.core.cache import cache
-from django.conf import settings
-from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.reviewers.serializers import (
@@ -474,61 +467,6 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert isinstance(manifest_data['modified'], datetime)
 
         assert data['diff'] is not None
-
-
-@pytest.mark.parametrize(
-    'entry, filename, expected_category, expected_mimetype',
-    [
-        (MagicMock(type='blob'), 'blank.pdf', 'binary', 'application/pdf'),
-        (MagicMock(type='blob'), 'blank.txt', 'text', 'text/plain'),
-        (MagicMock(type='blob'), 'empty_bat.exe', 'binary',
-                                 'application/x-dosexec'),
-        (MagicMock(type='blob'), 'fff.gif', 'image', 'image/gif'),
-        (MagicMock(type='blob'), 'foo.css', 'text', 'text/css'),
-        (MagicMock(type='blob'), 'foo.html', 'text', 'text/html'),
-        (MagicMock(type='blob'), 'foo.js', 'text', 'text/javascript'),
-        (MagicMock(type='blob'), 'foo.py', 'text', 'text/x-python'),
-        (MagicMock(type='blob'), 'image.jpg', 'image', 'image/jpeg'),
-        (MagicMock(type='blob'), 'image.png', 'image', 'image/png'),
-        (MagicMock(type='blob'), 'search.xml', 'text', 'text/xml'),
-        (MagicMock(type='blob'), 'js_containing_png_data.js', 'text',
-                                 'text/javascript'),
-        (MagicMock(type='blob'), 'foo.json', 'text', 'application/json'),
-        (MagicMock(type='tree'), 'foo', 'directory',
-                                 'application/octet-stream'),
-        (MagicMock(type='blob'), 'image-svg-without-xml.svg', 'image',
-                                 'image/svg+xml'),
-        (MagicMock(type='blob'), 'bmp-v3.bmp', 'image', 'image/bmp'),
-        (MagicMock(type='blob'), 'bmp-v4.bmp', 'image', 'image/bmp'),
-        (MagicMock(type='blob'), 'bmp-v5.bmp', 'image', 'image/bmp'),
-        (MagicMock(type='blob'), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
-        # This is testing that a tag listed at
-        # https://github.com/file/file/blob/master/magic/Magdir/sgml#L57
-        # doesn't lead to the file being detected as HTML, which was fixed
-        # in most recent libmagic versions.
-        (MagicMock(type='blob'), 'html-containing.json', 'text',
-                                 'application/json'),
-    ]
-)
-def test_file_entries_serializer_category_type(
-        entry, filename, expected_category, expected_mimetype):
-    serializer = FileEntriesSerializer()
-
-    entry.name = filename
-
-    root = os.path.join(
-        settings.ROOT,
-        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
-
-    if entry.type == 'tree':
-        mime, category = serializer.get_entry_mime_type(entry, None)
-    else:
-        with open(os.path.join(root, filename), 'rb') as fobj:
-            mime, category = serializer.get_entry_mime_type(
-                entry, force_bytes(fobj.read()))
-
-    assert mime == expected_mimetype
-    assert category == expected_category
 
 
 class TestAddonBrowseVersionSerializer(TestCase):
