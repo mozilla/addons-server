@@ -3,6 +3,8 @@ import os
 import tarfile
 import zipfile
 
+from urllib.parse import urlsplit
+
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -15,11 +17,9 @@ from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
-import six
 import waffle
 
 from rest_framework.exceptions import Throttled
-from six.moves.urllib_parse import urlsplit
 
 from olympia import amo
 from olympia.access import acl
@@ -525,11 +525,10 @@ class LicenseRadioSelect(forms.RadioSelect):
 
         if hasattr(license, 'url') and license.url:
             details = link % (license.url, ugettext('Details'))
-            context['label'] = mark_safe(
-                six.text_type(context['label']) + ' ' + details)
+            context['label'] = mark_safe(str(context['label']) + ' ' + details)
         if hasattr(license, 'icons'):
             context['attrs']['data-cc'] = license.icons
-        context['attrs']['data-name'] = six.text_type(license)
+        context['attrs']['data-name'] = str(license)
         return context
 
 
@@ -874,7 +873,7 @@ class BaseCompatFormSet(BaseModelFormSet):
             # hidden delete fields in the data attribute, cause that's used to
             # populate initial data for all forms, and would therefore make
             # those delete fields active again.
-            self.data = {k: v for k, v in six.iteritems(self.data)
+            self.data = {k: v for k, v in self.data.items()
                          if not k.endswith('-DELETE')}
             for form in self.forms:
                 form.data = self.data

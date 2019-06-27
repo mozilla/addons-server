@@ -7,7 +7,6 @@ from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 import waffle
-from six import text_type
 
 import olympia.core.logger
 
@@ -328,7 +327,7 @@ def fetch_existing_translations_from_addon(addon, properties):
     translation_ids = [id_ for id_ in translation_ids_gen if id_]
     # Just get all the values together to make it simplier
     return {
-        text_type(value)
+        str(value)
         for value in Translation.objects.filter(id__in=translation_ids)}
 
 

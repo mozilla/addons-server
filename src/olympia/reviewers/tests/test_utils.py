@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+from unittest import mock
+from unittest.mock import Mock, patch
 
 from django.conf import settings
 from django.core import mail
@@ -7,12 +9,9 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.utils import translation
 
-from unittest import mock
 import pytest
-import six
 import responses
 
-from unittest.mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -59,13 +58,13 @@ class TestViewExtensionQueueTable(TestCase):
         a = pq(self.table.render_addon_name(row))
 
         assert a.attr('href') == (
-            reverse('reviewers.review', args=[six.text_type(row.addon_slug)]))
+            reverse('reviewers.review', args=[str(row.addon_slug)]))
         assert a.text() == u"フォクすけといっしょ 0.12"
 
     def test_addon_type_id(self):
         row = Mock()
         row.addon_type_id = amo.ADDON_THEME
-        assert six.text_type(self.table.render_addon_type_id(row)) == (
+        assert str(self.table.render_addon_type_id(row)) == (
             u'Complete Theme')
 
     def test_waiting_time_in_days(self):
@@ -311,8 +310,7 @@ class TestReviewHelper(TestReviewHelperBase):
             helper = self.get_helper()
             actions = helper.actions
             for k, v in actions.items():
-                assert six.text_type(
-                    v['details']), "Missing details for: %s" % k
+                assert str(v['details']), "Missing details for: %s" % k
 
     def get_review_actions(
             self, addon_status, file_status, content_review_only=False):
@@ -457,7 +455,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.helper.set_data(self.get_data())
         context_data = self.helper.handler.get_context_data()
-        for template, context_key in six.iteritems(expected):
+        for template, context_key in expected.items():
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1

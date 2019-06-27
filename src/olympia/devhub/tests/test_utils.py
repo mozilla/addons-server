@@ -11,7 +11,6 @@ import pytest
 from waffle.testutils import override_switch
 
 from celery.result import AsyncResult
-from six import text_type
 
 from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
@@ -334,7 +333,7 @@ class TestGetAddonAkismetReports(UploadTest, TestCase):
         existing_data = utils.fetch_existing_translations_from_addon(
             addon, ('summary', 'name', 'description'))
         # check fetch_existing_translations_from_addon worked okay
-        assert existing_data == {text_type(addon.name), u'¡Ochó!'}
+        assert existing_data == {str(addon.name), u'¡Ochó!'}
         self.parse_addon_mock.return_value = {
             'description': {
                 'en-US': u'fóó',
@@ -373,7 +372,7 @@ class TestGetAddonAkismetReports(UploadTest, TestCase):
         existing_data = utils.fetch_existing_translations_from_addon(
             addon, ('summary', 'name', 'description'))
         # check fetch_existing_translations_from_addon worked okay
-        assert existing_data == {text_type(addon.name), u'¡Ochó!'}
+        assert existing_data == {str(addon.name), u'¡Ochó!'}
         cleaned_data = {
             'description': {
                 'en-US': u'fóó',

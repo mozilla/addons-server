@@ -12,11 +12,8 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
-from django.utils.encoding import (
-    force_bytes, force_text, python_2_unicode_compatible)
+from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
-
-import six
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
@@ -39,7 +36,6 @@ from olympia.lib.cache import memoize
 log = olympia.core.logger.getLogger('z.files')
 
 
-@python_2_unicode_compatible
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
@@ -92,7 +88,7 @@ class File(OnChangeMixin, ModelBase):
         db_table = 'files'
 
     def __str__(self):
-        return six.text_type(self.id)
+        return str(self.id)
 
     def get_platform_display(self):
         return force_text(amo.PLATFORMS[self.platform].name)
@@ -372,7 +368,7 @@ class File(OnChangeMixin, ModelBase):
             # Remove any duplicate permissions.
             permissions = set()
             permissions = [p for p in self._webext_permissions.permissions
-                           if isinstance(p, six.string_types) and not
+                           if isinstance(p, str) and not
                            (p in permissions or permissions.add(p))]
             return permissions
 
@@ -490,7 +486,6 @@ def track_file_status_change(file_):
     statsd.incr('file_status_change.all.status_{}'.format(file_.status))
 
 
-@python_2_unicode_compatible
 class FileUpload(ModelBase):
     """Created when a file is uploaded for validation/submission."""
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -520,7 +515,7 @@ class FileUpload(ModelBase):
         db_table = 'file_uploads'
 
     def __str__(self):
-        return six.text_type(self.uuid.hex)
+        return str(self.uuid.hex)
 
     def save(self, *args, **kw):
         if self.validation:
@@ -636,7 +631,7 @@ class FileValidation(ModelBase):
 
     @classmethod
     def from_json(cls, file, validation):
-        if isinstance(validation, six.string_types):
+        if isinstance(validation, str):
             validation = json.loads(validation)
 
         if 'metadata' in validation:
@@ -684,6 +679,6 @@ class WebextPermission(ModelBase):
 
 def nfd_str(u):
     """Uses NFD to normalize unicode strings."""
-    if isinstance(u, six.text_type):
+    if isinstance(u, str):
         return unicodedata.normalize('NFD', u).encode('utf-8')
     return u

@@ -2,10 +2,9 @@
 import base64
 import json
 from unittest import mock
-import six
 
 from os import path
-from six.moves.urllib_parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse
 
 from django import http
 from django.conf import settings
@@ -1150,7 +1149,7 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.content != original
         modified_json = json.loads(force_text(response.content))
         self.user = self.user.reload()
-        for prop, value in six.iteritems(self.update_data):
+        for prop, value in self.update_data.items():
             assert modified_json[prop] == value
             assert getattr(self.user, prop) == value
 
@@ -1175,7 +1174,7 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.content != original
         modified_json = json.loads(force_text(response.content))
         random_user = random_user.reload()
-        for prop, value in six.iteritems(self.update_data):
+        for prop, value in self.update_data.items():
             assert modified_json[prop] == value
             assert getattr(random_user, prop) == value
 

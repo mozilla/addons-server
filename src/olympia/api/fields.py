@@ -3,8 +3,6 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.encoding import smart_text
 from django.utils.translation import get_language, ugettext_lazy as _
 
-import six
-
 from rest_framework import fields, serializers
 
 from olympia.amo.utils import to_language
@@ -96,13 +94,11 @@ class TranslationSerializerField(fields.Field):
     def fetch_all_translations(self, obj, source, field):
         translations = field.__class__.objects.filter(
             id=field.id, localized_string__isnull=False)
-        return {to_language(trans.locale): six.text_type(trans)
+        return {to_language(trans.locale): str(trans)
                 for trans in translations} if translations else None
 
     def fetch_single_translation(self, obj, source, field, requested_language):
-        return (
-            {to_language(field.locale): six.text_type(field)} if field
-            else None)
+        return {to_language(field.locale): str(field)} if field else None
 
     def get_attribute(self, obj):
         source = self.source or self.field_name
@@ -128,7 +124,7 @@ class TranslationSerializerField(fields.Field):
         return val
 
     def to_internal_value(self, data):
-        if isinstance(data, six.string_types):
+        if isinstance(data, str):
             self.validate(data)
             return data.strip()
         elif isinstance(data, dict):
@@ -136,7 +132,7 @@ class TranslationSerializerField(fields.Field):
             for key, value in data.items():
                 data[key] = value and value.strip()
             return data
-        return six.text_type(data)
+        return str(data)
 
     def validate(self, value):
         if not self.flat and not isinstance(value, dict):
@@ -146,7 +142,7 @@ class TranslationSerializerField(fields.Field):
 
         value_too_short = True
 
-        if isinstance(value, six.string_types):
+        if isinstance(value, str):
             if self.min_length and len(value.strip()) >= self.min_length:
                 value_too_short = False
         else:

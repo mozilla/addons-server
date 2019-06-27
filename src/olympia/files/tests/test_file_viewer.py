@@ -11,7 +11,6 @@ from django.core.files.storage import default_storage as storage
 
 import flufl.lock
 import pytest
-import six
 
 from freezegun import freeze_time
 from unittest.mock import Mock, patch
@@ -485,17 +484,6 @@ class TestSafeZipFile(TestCase, amo.tests.AMOPaths):
         zip_file = SafeZip(self.xpi_path('langpack-localepicker'))
         assert zip_file.is_valid
         assert b'locale browser de' in zip_file.read('chrome.manifest')
-
-    @pytest.mark.skipif(
-        six.PY3,
-        reason='Python 3 seems to handle filenames in that zip just fine.')
-    def test_invalid_zip_encoding(self):
-        with pytest.raises(forms.ValidationError) as exc:
-            SafeZip(self.xpi_path('invalid-cp437-encoding.xpi'))
-
-        assert isinstance(exc.value, forms.ValidationError)
-        assert exc.value.message.endswith(
-            'Please make sure all filenames are utf-8 or latin1 encoded.')
 
     def test_not_secure(self):
         zip_file = SafeZip(self.xpi_path('extension'))

@@ -1,13 +1,12 @@
 from collections import defaultdict
+from urllib.parse import unquote_to_bytes
 
 from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext, ungettext
 
 import jinja2
-import six
 
 from django_jinja import library
-from six.moves.urllib.parse import unquote_to_bytes
 
 from olympia import amo
 from olympia.access import acl
@@ -71,7 +70,7 @@ def dev_files_status(files):
     for file in files:
         status_count[file.status] += 1
 
-    return [(count, six.text_type(choices[status])) for
+    return [(count, str(choices[status])) for
             (status, count) in status_count.items()]
 
 

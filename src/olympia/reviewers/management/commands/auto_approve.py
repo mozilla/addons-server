@@ -5,8 +5,6 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-import six
-
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -84,8 +82,8 @@ class Command(BaseCommand):
         try:
             with transaction.atomic():
                 log.info('Processing %s version %s...',
-                         six.text_type(version.addon.name),
-                         six.text_type(version.version))
+                         str(version.addon.name),
+                         str(version.version))
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)
                 self.stats.update({k: int(v) for k, v in info.items()})
@@ -100,8 +98,8 @@ class Command(BaseCommand):
                         ', '.join(summary.verdict_info_prettifier(info))
                     )
                 log.info('Auto Approval for %s version %s: %s',
-                         six.text_type(version.addon.name),
-                         six.text_type(version.version),
+                         str(version.addon.name),
+                         str(version.version),
                          verdict_string)
 
         # At this point, any exception should have rolled back the transaction,

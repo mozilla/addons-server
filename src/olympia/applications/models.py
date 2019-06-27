@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
@@ -7,7 +6,6 @@ from olympia.constants.applications import APPS_CHOICES
 from olympia.versions import compare
 
 
-@python_2_unicode_compatible
 class AppVersion(ModelBase):
     id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=APPS_CHOICES,

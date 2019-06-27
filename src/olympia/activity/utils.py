@@ -2,7 +2,7 @@ import re
 
 from datetime import datetime, timedelta
 from email.utils import formataddr
-from six.moves.html_parser import HTMLParser
+from html.parser import HTMLParser
 
 from django.conf import settings
 from django.forms import ValidationError

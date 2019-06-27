@@ -6,8 +6,6 @@ from django.http import Http404
 from django.test.client import RequestFactory
 from django.utils.encoding import force_text
 
-import six
-
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -153,26 +151,6 @@ class TestListedAddons(StatsTest):
         self._check_it(self.public_views_gen(format='json'), 200)
 
 
-if six.PY2:
-    # In Python 2, the csv module deals with bytes all the way. This is
-    # taken from https://docs.python.org/2/library/csv.html#csv-examples to
-    # deal with utf-8, allowing our tests to be a bit saner - they can pass
-    # unicode strings instead of bytes transparently.
-    def utf_8_encoder(unicode_csv_data):
-        for line in unicode_csv_data:
-            yield line.encode('utf-8')
-
-    def CSVDictReaderClass(data, **kwargs):
-        """csv.DictReader that deals with unicode data for Python 2."""
-        csv_reader = csv.DictReader(utf_8_encoder(data), **kwargs)
-        for row in csv_reader:
-            yield {
-                six.text_type(key, 'utf-8'): six.text_type(value, 'utf-8')
-                for key, value in row.iteritems()}
-else:
-    CSVDictReaderClass = csv.DictReader
-
-
 class ESStatsTest(StatsTest, amo.tests.ESTestCase):
     """Test class with some ES setup."""
 
@@ -192,11 +170,11 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
 
     def csv_eq(self, response, expected):
         content = force_text(response.content)
-        content_csv = CSVDictReaderClass(
+        content_csv = csv.DictReader(
             # Drop lines that are comments.
             filter(lambda row: row[0] != '#', content.splitlines()))
         expected = force_text(expected)
-        expected_csv = CSVDictReaderClass(
+        expected_csv = csv.DictReader(
             # Strip any extra spaces from the expected content.
             line.strip() for line in expected.splitlines())
         assert tuple(content_csv) == tuple(expected_csv)

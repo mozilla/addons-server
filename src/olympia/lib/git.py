@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from collections import namedtuple
 import uuid
 import os
 import shutil
 import tempfile
 import sys
 
-import six
+from collections import namedtuple
+
 import pygit2
 
 from django.conf import settings
@@ -389,7 +389,7 @@ class AddonGitRepository(object):
         """
         # When `commit` is a commit hash, e.g passed to us through the API
         # serializers we have to fetch the actual commit object to proceed.
-        if isinstance(commit, six.string_types):
+        if isinstance(commit, str):
             commit = self.git_repository.revparse_single(commit)
 
         return self.git_repository[commit.tree[EXTRACTED_PREFIX].oid]

@@ -1,11 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.http import QueryDict
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.html import conditional_escape, format_html
 from django.utils.translation import ugettext
-
-import six
 
 from olympia import amo
 from olympia.addons.models import Addon, update_search_index
@@ -13,7 +10,6 @@ from olympia.amo.models import ModelBase, OnChangeMixin
 from olympia.amo.templatetags.jinja_helpers import absolutify
 
 
-@python_2_unicode_compatible
 class DiscoveryItem(OnChangeMixin, ModelBase):
     RECOMMENDED = 'Recommended'
     PENDING_RECOMMENDATION = 'Pending Recommendation'
@@ -63,7 +59,7 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
                   'new versions will be reviewed for recommended status.')
 
     def __str__(self):
-        return six.text_type(self.addon)
+        return str(self.addon)
 
     def build_querystring(self):
         qs = QueryDict(mutable=True)
@@ -76,7 +72,7 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         return qs.urlencode()
 
     def _build_heading(self, html=False):
-        addon_name = six.text_type(self.custom_addon_name or self.addon.name)
+        addon_name = str(self.custom_addon_name or self.addon.name)
 
         if html:
             authors = u', '.join(

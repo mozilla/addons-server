@@ -1,9 +1,8 @@
 import os.path
+import io
 
 from django.conf import settings
 from django.core.management import call_command
-
-from six import StringIO
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.api.models import APIKey
@@ -20,7 +19,7 @@ class TestRevokeAPIKeys(TestCase):
         # The test csv does not contain an entry for this user.
         apikey = APIKey.new_jwt_credentials(user=user)
         old_secret = apikey.secret
-        stdout = StringIO()
+        stdout = io.StringIO()
         call_command('revoke_api_keys', self.csv_path, stdout=stdout)
         stdout.seek(0)
         output = stdout.readlines()
@@ -44,7 +43,7 @@ class TestRevokeAPIKeys(TestCase):
         apikey = APIKey.objects.create(
             key='user:{}:{}'.format(user.pk, '333'), secret=right_secret,
             user=user, is_active=None)  # inactive APIKey.
-        stdout = StringIO()
+        stdout = io.StringIO()
         call_command('revoke_api_keys', self.csv_path, stdout=stdout)
         stdout.seek(0)
         output = stdout.readlines()
@@ -68,7 +67,7 @@ class TestRevokeAPIKeys(TestCase):
         apikey = APIKey.objects.create(
             key='user:{}:{}'.format(user.pk, '666'), secret=right_secret,
             user=user, is_active=True)
-        stdout = StringIO()
+        stdout = io.StringIO()
         call_command('revoke_api_keys', self.csv_path, stdout=stdout)
         stdout.seek(0)
         output = stdout.readlines()
@@ -92,7 +91,7 @@ class TestRevokeAPIKeys(TestCase):
         apikey = APIKey.objects.create(
             key='user:{}:{}'.format(user.pk, '333'), secret=right_secret,
             user=user, is_active=True)
-        stdout = StringIO()
+        stdout = io.StringIO()
         call_command('revoke_api_keys', self.csv_path, stdout=stdout)
         stdout.seek(0)
         output = stdout.readlines()

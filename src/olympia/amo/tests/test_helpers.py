@@ -3,7 +3,8 @@ import mimetypes
 import os
 
 from datetime import datetime, timedelta
-from six.moves.urllib_parse import urljoin
+from urllib.parse import urljoin
+from unittest.mock import Mock, patch
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -14,7 +15,6 @@ from django.utils.encoding import force_bytes
 
 import pytest
 
-from unittest.mock import Mock, patch
 from pyquery import PyQuery
 
 import olympia

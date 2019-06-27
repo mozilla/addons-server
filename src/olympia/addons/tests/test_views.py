@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
 
+from unittest import mock
+
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlunquote
 
-from unittest import mock
 import pytest
-import six
 
 from elasticsearch import Elasticsearch
 from unittest.mock import patch
@@ -1654,10 +1654,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_text because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(
-            urlsafe_base64_encode(force_bytes(addon.guid)))
+        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_queries=1)
@@ -1674,19 +1671,14 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_text because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(
-            urlsafe_base64_encode(force_bytes(addon.guid)))
+        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400, expected_queries=1)
         assert data == [u'Invalid Return To AMO guid (not a curated add-on)']
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
-        # We need to keep force_text because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(urlsafe_base64_encode(b'foo@bar')[:-1])
+        param = 'rta:%s' % urlsafe_base64_encode(b'foo@bar')[:-1]
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
@@ -1717,10 +1709,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        # We need to keep force_text because urlsafe_base64_encode only starts
-        # returning a string from Django 2.2 onwards, before that a bytestring.
-        param = 'rta:%s' % force_text(
-            urlsafe_base64_encode(force_bytes(addon.guid)))
+        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
@@ -1782,7 +1771,7 @@ class TestAddonSearchView(ESTestCase):
         # Exclude addon1 and addon2 by pk.
         data = self.perform_search(
             self.url, {'exclude_addons': u','.join(
-                map(six.text_type, (addon2.pk, addon1.pk)))})
+                map(str, (addon2.pk, addon1.pk)))})
 
         assert len(data['results']) == 1
         assert data['count'] == 1
@@ -1791,7 +1780,7 @@ class TestAddonSearchView(ESTestCase):
         # Exclude addon1 by pk and addon3 by slug.
         data = self.perform_search(
             self.url, {'exclude_addons': u','.join(
-                (six.text_type(addon1.pk), addon3.slug))})
+                (str(addon1.pk), addon3.slug))})
 
         assert len(data['results']) == 1
         assert data['count'] == 1

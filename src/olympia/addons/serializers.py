@@ -2,8 +2,6 @@ import re
 
 from django.conf import settings
 
-import six
-
 from rest_framework import exceptions, serializers
 
 from olympia import amo
@@ -125,11 +123,11 @@ class LicenseSerializer(serializers.ModelSerializer):
             request = self.context.get('request', None)
             if request and request.method == 'GET' and 'lang' in request.GET:
                 # A single lang requested so return a flat string
-                return six.text_type(license_constant.name)
+                return str(license_constant.name)
             else:
                 # Otherwise mock the dict with the default lang.
                 lang = getattr(request, 'LANG', None) or settings.LANGUAGE_CODE
-                return {lang: six.text_type(license_constant.name)}
+                return {lang: str(license_constant.name)}
 
     def to_representation(self, instance):
         data = super(LicenseSerializer, self).to_representation(instance)
@@ -234,7 +232,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
             application = value[0]
             appversions = dict(zip(('min', 'max'), value[1:]))
         except ValueError as exc:
-            raise exceptions.ParseError(six.text_type(exc))
+            raise exceptions.ParseError(str(exc))
 
         version_qs = Version.objects.latest_public_compatible_with(
             application, appversions).filter(addon=addon)
@@ -375,7 +373,7 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def outgoingify(self, data):
         if data:
-            if isinstance(data, six.string_types):
+            if isinstance(data, str):
                 return get_outgoing_url(data)
             elif isinstance(data, dict):
                 return {key: get_outgoing_url(value) if value else None
@@ -726,7 +724,7 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
     def _get_collection_guids(self, user_id, collection_slug):
         try:
             get_args = {'slug': collection_slug, 'listed': True}
-            if isinstance(user_id, six.string_types) and not user_id.isdigit():
+            if isinstance(user_id, str) and not user_id.isdigit():
                 get_args.update(**{'author__username': user_id})
             else:
                 get_args.update(**{'author': user_id})

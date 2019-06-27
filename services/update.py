@@ -3,7 +3,7 @@ import sys
 
 from django.utils.encoding import force_bytes
 from email.utils import formatdate
-from six.moves.urllib.parse import parse_qsl
+from urllib.parse import parse_qsl
 from time import time
 
 from services.utils import (

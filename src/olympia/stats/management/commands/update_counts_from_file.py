@@ -7,8 +7,6 @@ from os import path, unlink
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-import six
-
 import olympia.core.logger
 
 from olympia import amo
@@ -230,7 +228,7 @@ class Command(BaseCommand):
         # The database field (TEXT), can hold up to 2^16 = 64k characters.
         # If the field is longer than that, we we drop the least used items
         # (with the lower count) until the field fits.
-        for addon_guid, update_count in six.iteritems(update_counts):
+        for addon_guid, update_count in update_counts.items():
             self.trim_field(update_count.locales)
             self.trim_field(update_count.versions)
 

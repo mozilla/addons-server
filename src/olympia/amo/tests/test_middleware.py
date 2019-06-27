@@ -3,7 +3,6 @@ from django import test
 from django.test.client import RequestFactory
 
 import pytest
-import six
 
 from unittest.mock import patch
 from pyquery import PyQuery as pq
@@ -77,28 +76,14 @@ def test_source_with_wrong_unicode_get():
     response = test.Client().get('/firefox/collections/mozmj/autumn/'
                                  '?source=firefoxsocialmedia\x14\x85')
     assert response.status_code == 302
-    # Django's behaviour for URLs containing unicode characters is different
-    # under Python 2 and 3. This is fine though, as browsers should send URLs
-    # urlencoded, and that's tested above in test_redirect_with_unicode_get().
-    # We just need to make sure we're not crashing on such URLs.
-    if six.PY2:
-        assert response['Location'].endswith('?source=firefoxsocialmedia%14')
-    else:
-        assert response['Location'].endswith(
-            '?source=firefoxsocialmedia%14%C3%82%C2%85')
+    assert response['Location'].endswith(
+        '?source=firefoxsocialmedia%14%C3%82%C2%85')
 
 
 def test_trailing_slash_middleware():
     response = test.Client().get(u'/en-US/about/?xxx=\xc3')
     assert response.status_code == 301
-    # Django's behaviour for URLs containing unicode characters is different
-    # under Python 2 and 3. This is fine though, as browsers should send URLs
-    # urlencoded, and that's tested above in test_redirect_with_unicode_get().
-    # We just need to make sure we're not crashing on such URLs.
-    if six.PY2:
-        assert response['Location'].endswith('/en-US/about?xxx=%C3%83')
-    else:
-        assert response['Location'].endswith('/en-US/about?xxx=%C3%83%C2%83')
+    assert response['Location'].endswith('/en-US/about?xxx=%C3%83%C2%83')
 
 
 class AdminMessageTest(TestCase):
@@ -140,7 +125,7 @@ def test_request_id_middleware(client):
     """Test that we add a request id to every response"""
     response = client.get(reverse('devhub.index'))
     assert response.status_code == 200
-    assert isinstance(response['X-AMO-Request-ID'], six.string_types)
+    assert isinstance(response['X-AMO-Request-ID'], str)
 
     # Test that we set `request.request_id` too
 

@@ -10,11 +10,9 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext
 
 import jinja2
-import six
 
 import olympia.core.logger
 
@@ -294,7 +292,6 @@ class SafeFormatter(string.Formatter):
         return jinja2.escape(obj), used_key
 
 
-@python_2_unicode_compatible
 class ActivityLog(ModelBase):
     TYPES = sorted(
         [(value.id, key)
@@ -361,18 +358,16 @@ class ActivityLog(ModelBase):
         serialize_me = []
 
         for arg in args:
-            if isinstance(arg, six.string_types):
+            if isinstance(arg, str):
                 serialize_me.append({'str': arg})
-            elif isinstance(arg, six.integer_types):
+            elif isinstance(arg, int):
                 serialize_me.append({'int': arg})
             elif isinstance(arg, tuple):
                 # Instead of passing an addon instance you can pass a tuple:
                 # (Addon, 3) for Addon with pk=3
-                serialize_me.append(
-                    dict(((six.text_type(arg[0]._meta), arg[1]),)))
+                serialize_me.append(dict(((str(arg[0]._meta), arg[1]),)))
             else:
-                serialize_me.append(
-                    dict(((six.text_type(arg._meta), arg.pk),)))
+                serialize_me.append(dict(((str(arg._meta), arg.pk),)))
 
         self._arguments = json.dumps(serialize_me)
 
@@ -483,7 +478,7 @@ class ActivityLog(ModelBase):
                 'file': file_,
                 'status': status,
             }
-            return self.f(six.text_type(format), *arguments, **kw)
+            return self.f(str(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'

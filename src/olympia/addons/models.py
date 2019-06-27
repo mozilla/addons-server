@@ -9,6 +9,7 @@ import time
 import uuid
 
 from datetime import datetime
+from urllib.parse import urlsplit
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -16,16 +17,13 @@ from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
-from django.utils.encoding import force_text, python_2_unicode_compatible
+from django.utils.encoding import force_text
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
-
-import six
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
-from six.moves.urllib_parse import urlsplit
 
 import olympia.core.logger
 
@@ -154,7 +152,7 @@ def clean_slug(instance, slug_field='slug'):
 class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
-        if isinstance(val, six.string_types) and not val.isdigit():
+        if isinstance(val, str) and not val.isdigit():
             return self.filter(slug=val)
         return self.filter(id=val)
 
@@ -271,7 +269,6 @@ class AddonManager(ManagerBase):
         return self.get_queryset().listed(app, *status)
 
 
-@python_2_unicode_compatible
 class Addon(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_ADDON
@@ -506,7 +503,7 @@ class Addon(OnChangeMixin, ModelBase):
             self._ratings.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
-                                six.text_type(self.guid), self)
+                                str(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
                         _current_version=None, modified=datetime.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
@@ -788,7 +785,7 @@ class Addon(OnChangeMixin, ModelBase):
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = {k: v for k, v in six.iteritems(updated) if v != ignore}
+            updated = {k: v for k, v in updated.items() if v != ignore}
 
         if updated:
             diff = [self._current_version, new_current_version]
@@ -1532,7 +1529,6 @@ class AddonReviewerFlags(ModelBase):
     notified_about_expiring_info_request = models.BooleanField(default=False)
 
 
-@python_2_unicode_compatible
 class Persona(models.Model):
     """Personas-specific additions to the add-on model."""
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
@@ -1564,7 +1560,7 @@ class Persona(models.Model):
         db_table = 'personas'
 
     def __str__(self):
-        return six.text_type(self.addon.name)
+        return str(self.addon.name)
 
     def is_new(self):
         return self.persona_id == 0
@@ -1673,15 +1669,15 @@ class Persona(models.Model):
 
         addon = self.addon
         return {
-            'id': six.text_type(self.addon.id),  # Personas dislikes ints
-            'name': six.text_type(addon.name),
+            'id': str(self.addon.id),  # Personas dislikes ints
+            'name': str(addon.name),
             'accentcolor': hexcolor(self.accentcolor),
             'textcolor': hexcolor(self.textcolor),
-            'category': (six.text_type(addon.all_categories[0].name) if
+            'category': (str(addon.all_categories[0].name) if
                          addon.all_categories else ''),
             # TODO: Change this to be `addons_users.user.display_name`.
             'author': self.display_username,
-            'description': (six.text_type(addon.description)
+            'description': (str(addon.description)
                             if addon.description is not None
                             else addon.description),
             'header': self.header_url,
@@ -1777,7 +1773,6 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
 
 
-@python_2_unicode_compatible
 class AddonApprovalsCounter(ModelBase):
     """Model holding a counter of the number of times a listed version
     belonging to an add-on has been approved by a human. Reset everytime a
@@ -1796,8 +1791,7 @@ class AddonApprovalsCounter(ModelBase):
     last_content_review = models.DateTimeField(null=True)
 
     def __str__(self):
-        return u'%s: %d' % (
-            six.text_type(self.pk), self.counter) if self.pk else u''
+        return u'%s: %d' % (str(self.pk), self.counter) if self.pk else u''
 
     @classmethod
     def increment_for_addon(cls, addon):
@@ -1839,7 +1833,6 @@ class AddonApprovalsCounter(ModelBase):
         return obj
 
 
-@python_2_unicode_compatible
 class DeniedGuid(ModelBase):
     id = PositiveAutoField(primary_key=True)
     guid = models.CharField(max_length=255, unique=True)
@@ -1852,7 +1845,6 @@ class DeniedGuid(ModelBase):
         return self.guid
 
 
-@python_2_unicode_compatible
 class Category(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     slug = SlugField(max_length=50, help_text='Used in Category URLs.')
@@ -1880,10 +1872,10 @@ class Category(OnChangeMixin, ModelBase):
             # We can't find the category in the constants dict. This shouldn't
             # happen, but just in case handle it by returning an empty string.
             value = ''
-        return six.text_type(value)
+        return str(value)
 
     def __str__(self):
-        return six.text_type(self.name)
+        return str(self.name)
 
     def get_url_path(self):
         try:
@@ -1954,7 +1946,6 @@ class AppSupport(ModelBase):
         unique_together = ('addon', 'app')
 
 
-@python_2_unicode_compatible
 class DeniedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
@@ -1969,7 +1960,6 @@ class DeniedSlug(ModelBase):
         return slug.isdigit() or cls.objects.filter(name=slug).exists()
 
 
-@python_2_unicode_compatible
 class FrozenAddon(models.Model):
     """Add-ons in this table never get a hotness score."""
     id = PositiveAutoField(primary_key=True)
@@ -1989,7 +1979,6 @@ def freezer(sender, instance, **kw):
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
 
 
-@python_2_unicode_compatible
 class CompatOverride(ModelBase):
     """Helps manage compat info for add-ons not hosted on AMO."""
     id = PositiveAutoField(primary_key=True)
@@ -2012,7 +2001,7 @@ class CompatOverride(ModelBase):
 
     def __str__(self):
         if self.addon:
-            return six.text_type(self.addon)
+            return str(self.addon)
         elif self.name:
             return '%s (%s)' % (self.name, self.guid)
         else:
@@ -2090,7 +2079,6 @@ class CompatOverrideRange(ModelBase):
         return {0: 'compatible', 1: 'incompatible'}[self.type]
 
 
-@python_2_unicode_compatible
 class IncompatibleVersions(ModelBase):
     """
     Denormalized table to join against for fast compat override filtering.

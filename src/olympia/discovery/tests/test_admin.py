@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import six
-
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
@@ -111,7 +109,7 @@ class TestDiscoveryAdmin(TestCase):
 
         response = self.client.post(
             self.detail_url, {
-                'addon': six.text_type(addon.pk),
+                'addon': str(addon.pk),
                 'custom_addon_name': u'Xäxâxàxaxaxa !',
                 'custom_heading': u'This heading is totally custom.',
                 'custom_description': u'This description is as well!',
@@ -144,7 +142,7 @@ class TestDiscoveryAdmin(TestCase):
         # Change add-on using the slug.
         response = self.client.post(
             self.detail_url,
-            {'addon': six.text_type(addon2.slug)}, follow=True)
+            {'addon': str(addon2.slug)}, follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -152,7 +150,7 @@ class TestDiscoveryAdmin(TestCase):
 
         # Change add-on using the id.
         response = self.client.post(
-            self.detail_url, {'addon': six.text_type(addon.pk)}, follow=True)
+            self.detail_url, {'addon': str(addon.pk)}, follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -182,7 +180,7 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing using an unknown id.
         response = self.client.post(
             self.detail_url,
-            {'addon': six.text_type(addon2.pk + 666)}, follow=True)
+            {'addon': str(addon2.pk + 666)}, follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -192,7 +190,7 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing using a non-public add-on id.
         addon3 = addon_factory(status=amo.STATUS_DISABLED)
         response = self.client.post(
-            self.detail_url, {'addon': six.text_type(addon3.pk)}, follow=True)
+            self.detail_url, {'addon': str(addon3.pk)}, follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -202,7 +200,7 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing to an add-on that is already used by another item.
         item2 = DiscoveryItem.objects.create(addon=addon2)
         response = self.client.post(
-            self.detail_url, {'addon': six.text_type(addon2.pk)}, follow=True)
+            self.detail_url, {'addon': str(addon2.pk)}, follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -243,7 +241,7 @@ class TestDiscoveryAdmin(TestCase):
         assert DiscoveryItem.objects.count() == 0
         response = self.client.post(
             self.add_url, {
-                'addon': six.text_type(addon.pk),
+                'addon': str(addon.pk),
                 'custom_addon_name': u'Xäxâxàxaxaxa !',
                 'custom_heading': u'This heading is totally custom.',
                 'custom_description': u'This description is as well!',
@@ -265,9 +263,9 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.get(self.add_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(
-            self.add_url, {
-                'addon': six.text_type(addon.pk),
-            }, follow=True)
+            self.add_url,
+            {'addon': str(addon.pk)},
+            follow=True)
         assert response.status_code == 403
         assert DiscoveryItem.objects.count() == 0
 
@@ -285,7 +283,7 @@ class TestDiscoveryAdmin(TestCase):
 
         response = self.client.post(
             self.detail_url, {
-                'addon': six.text_type(addon.pk),
+                'addon': str(addon.pk),
                 'custom_addon_name': u'Noooooô !',
                 'custom_heading': u'I should not be able to do this.',
                 'custom_description': u'This is wrong.',

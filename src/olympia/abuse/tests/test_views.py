@@ -5,7 +5,6 @@ from datetime import datetime
 from django.core import mail
 
 from unittest import mock
-import six
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -27,7 +26,7 @@ class AddonAbuseViewSetTestBase(object):
         raise NotImplementedError
 
     def check_report(self, report, text):
-        assert six.text_type(report) == text
+        assert str(report) == text
         assert report.country_code == 'ZZ'
         assert mail.outbox[0].subject == text
         self.check_reporter(report)
@@ -36,7 +35,7 @@ class AddonAbuseViewSetTestBase(object):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': six.text_type(addon.id), 'message': 'abuse!'},
+            data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
@@ -101,7 +100,7 @@ class AddonAbuseViewSetTestBase(object):
         addon = addon_factory(status=amo.STATUS_NULL)
         response = self.client.post(
             self.url,
-            data={'addon': six.text_type(addon.id), 'message': 'abuse!'},
+            data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
@@ -123,7 +122,7 @@ class AddonAbuseViewSetTestBase(object):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': six.text_type(addon.id),
+            data={'addon': str(addon.id),
                   'message': ''})
         assert response.status_code == 400
         assert json.loads(response.content) == {
@@ -133,7 +132,7 @@ class AddonAbuseViewSetTestBase(object):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': six.text_type(addon.id)})
+            data={'addon': str(addon.id)})
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'message': ['This field is required.']}
@@ -142,7 +141,7 @@ class AddonAbuseViewSetTestBase(object):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': six.text_type(addon.id), 'reason': 'broken'},
+            data={'addon': str(addon.id), 'reason': 'broken'},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
@@ -156,7 +155,7 @@ class AddonAbuseViewSetTestBase(object):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': six.text_type(addon.id), 'reason': 'broken',
+            data={'addon': str(addon.id), 'reason': 'broken',
                   'message': ''},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
@@ -172,13 +171,13 @@ class AddonAbuseViewSetTestBase(object):
         for x in range(20):
             response = self.client.post(
                 self.url,
-                data={'addon': six.text_type(addon.id), 'message': 'abuse!'},
+                data={'addon': str(addon.id), 'message': 'abuse!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201, x
 
         response = self.client.post(
             self.url,
-            data={'addon': six.text_type(addon.id), 'message': 'abuse!'},
+            data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 429
 
@@ -306,7 +305,7 @@ class UserAbuseViewSetTestBase(object):
         raise NotImplementedError
 
     def check_report(self, report, text):
-        assert six.text_type(report) == text
+        assert str(report) == text
         assert report.country_code == 'ZZ'
         assert mail.outbox[0].subject == text
         self.check_reporter(report)
@@ -315,7 +314,7 @@ class UserAbuseViewSetTestBase(object):
         user = user_factory()
         response = self.client.post(
             self.url,
-            data={'user': six.text_type(user.id), 'message': 'abuse!'},
+            data={'user': str(user.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
@@ -328,7 +327,7 @@ class UserAbuseViewSetTestBase(object):
         user = user_factory()
         response = self.client.post(
             self.url,
-            data={'user': six.text_type(user.username), 'message': 'abuse!'},
+            data={'user': str(user.username), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
@@ -349,7 +348,7 @@ class UserAbuseViewSetTestBase(object):
         user = user_factory()
         response = self.client.post(
             self.url,
-            data={'user': six.text_type(user.username), 'message': ''})
+            data={'user': str(user.username), 'message': ''})
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'message': ['This field may not be blank.']}
@@ -358,7 +357,7 @@ class UserAbuseViewSetTestBase(object):
         user = user_factory()
         response = self.client.post(
             self.url,
-            data={'user': six.text_type(user.username)})
+            data={'user': str(user.username)})
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'message': ['This field is required.']}
@@ -368,14 +367,14 @@ class UserAbuseViewSetTestBase(object):
         for x in range(20):
             response = self.client.post(
                 self.url,
-                data={'user': six.text_type(
+                data={'user': str(
                     user.username), 'message': 'abuse!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201, x
 
         response = self.client.post(
             self.url,
-            data={'user': six.text_type(user.username), 'message': 'abuse!'},
+            data={'user': str(user.username), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 429
 

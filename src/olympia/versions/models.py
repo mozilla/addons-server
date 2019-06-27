@@ -10,12 +10,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.db.models import Q
-from django.utils.encoding import force_text, python_2_unicode_compatible
+from django.utils.encoding import force_text
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
 import jinja2
-import six
 import waffle
 
 from django_extensions.db.fields.json import JSONField
@@ -118,7 +117,6 @@ class VersionCreateError(ValueError):
     pass
 
 
-@python_2_unicode_compatible
 class Version(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
@@ -759,7 +757,6 @@ class LicenseManager(ManagerBase):
             builtin__gt=0, creative_commons=cc).order_by('builtin')
 
 
-@python_2_unicode_compatible
 class License(ModelBase):
     OTHER = 0
 
@@ -785,7 +782,7 @@ class License(ModelBase):
 
     def __str__(self):
         license = self._constant or self
-        return six.text_type(license.name)
+        return str(license.name)
 
     @property
     def _constant(self):
@@ -796,7 +793,6 @@ models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='license_translations')
 
 
-@python_2_unicode_compatible
 class ApplicationsVersions(models.Model):
     id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
@@ -815,7 +811,7 @@ class ApplicationsVersions(models.Model):
         unique_together = (("application", "version"),)
 
     def get_application_display(self):
-        return six.text_type(amo.APPS_ALL[self.application].pretty)
+        return str(amo.APPS_ALL[self.application].pretty)
 
     def get_latest_application_version(self):
         return (

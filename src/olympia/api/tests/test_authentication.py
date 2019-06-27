@@ -3,6 +3,7 @@ import time
 
 from calendar import timegm
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django.conf import settings
 from django.core import signing
@@ -11,8 +12,6 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes
 
 import jwt
-from unittest import mock
-import six
 
 from freezegun import freeze_time
 from rest_framework.exceptions import AuthenticationFailed
@@ -77,8 +76,8 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
         issued_at = int(time.mktime(datetime.utcnow().timetuple()))
         payload = {
             'iss': api_key.key,
-            'iat': six.text_type(issued_at),
-            'exp': six.text_type(
+            'iat': str(issued_at),
+            'exp': str(
                 issued_at + settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME),
         }
         token = self.encode_token_payload(payload, api_key.secret)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import six
 
 from django.conf import settings
 from django.utils.encoding import smart_text
@@ -32,10 +31,7 @@ def decode_http_header_value(value):
     explicitly pass as bytes such as filenames for content-disposition or
     xsendfile headers.
     """
-    if six.PY3:
-        return value.encode('latin-1').decode('utf-8')
-    else:
-        return value.decode('utf-8')
+    return value.encode('latin-1').decode('utf-8')
 
 
 class TestViews(TestCase):

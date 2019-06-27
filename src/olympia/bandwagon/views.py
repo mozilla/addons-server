@@ -1,7 +1,5 @@
 from django.conf import settings
 
-import six
-
 from rest_framework import serializers
 from rest_framework.viewsets import ModelViewSet
 
@@ -129,7 +127,7 @@ class CollectionAddonViewSet(ModelViewSet):
         self.lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
         lookup_value = self.kwargs.get(self.lookup_url_kwarg)
         # if the lookup is not a number, its probably the slug instead.
-        if lookup_value and not six.text_type(lookup_value).isdigit():
+        if lookup_value and not str(lookup_value).isdigit():
             self.lookup_field = '%s__slug' % self.lookup_field
         return super(CollectionAddonViewSet, self).get_object()
 

@@ -19,7 +19,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
-from django.utils.encoding import force_text, python_2_unicode_compatible
+from django.utils.encoding import force_text
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -122,7 +122,6 @@ class UserManager(BaseUserManager, ManagerBase):
         return user
 
 
-@python_2_unicode_compatible
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
@@ -592,7 +591,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.collectionwatcher_set.values_list('collection', flat=True)
 
 
-@python_2_unicode_compatible
 class UserNotification(ModelBase):
     user = models.ForeignKey(
         UserProfile, related_name='notifications', on_delete=models.CASCADE)
@@ -615,7 +613,6 @@ class UserNotification(ModelBase):
                 enabled=self.enabled))
 
 
-@python_2_unicode_compatible
 class DeniedName(ModelBase):
     """Denied User usernames and display_names + Collections' names."""
     name = models.CharField(max_length=255, unique=True, default='')

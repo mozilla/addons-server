@@ -1,8 +1,7 @@
 from django import http
 
 from unittest import mock
-
-from six.moves.urllib_parse import quote
+from urllib.parse import quote
 
 from olympia.addons import decorators as dec
 from olympia.addons.models import Addon

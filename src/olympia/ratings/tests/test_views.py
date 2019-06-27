@@ -9,7 +9,6 @@ from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
 from unittest import mock
-import six
 
 from freezegun import freeze_time
 from rest_framework.exceptions import ErrorDetail
@@ -1196,8 +1195,7 @@ class TestRatingViewSetEdit(TestCase):
         assert response.status_code == 200
         self.rating.reload()
         assert response.data['id'] == self.rating.pk
-        assert response.data['body'] == six.text_type(
-            self.rating.body) == u'løl!'
+        assert response.data['body'] == str(self.rating.body) == u'løl!'
         assert response.data['score'] == self.rating.rating == 2
         assert response.data['version'] == {
             'id': self.rating.version.id,
@@ -1244,8 +1242,7 @@ class TestRatingViewSetEdit(TestCase):
         assert response.status_code == 200
         self.rating.reload()
         assert response.data['id'] == self.rating.pk
-        assert response.data['body'] == six.text_type(
-            self.rating.body) == u'løl!'
+        assert response.data['body'] == str(self.rating.body) == u'løl!'
         assert response.data['version'] == {
             'id': self.rating.version.id,
             'version': self.rating.version.version,
@@ -1289,11 +1286,11 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(self.url, {'score': 2, 'body': u'nó!'})
         assert response.status_code == 200
         self.rating.reload()
-        assert six.text_type(self.rating.body) == u'nó!'
+        assert str(self.rating.body) == u'nó!'
         response = self.client.patch(self.url, {'score': 3, 'body': u'yés!'})
         assert response.status_code == 200
         self.rating.reload()
-        assert six.text_type(self.rating.body) == u'yés!'
+        assert str(self.rating.body) == u'yés!'
 
     @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.ratings.utils.check_akismet_reports.delay')
@@ -1359,11 +1356,9 @@ class TestRatingViewSetPost(TestCase):
             'addon': self.addon.pk, 'body': u'test bodyé',
             'score': 5, 'version': self.addon.current_version.version})
         assert response.status_code == 400
-        error_string = (
-            ['Incorrect type. Expected pk value, received unicode.'] if six.PY2
-            else [ErrorDetail(
-                string='Incorrect type. Expected pk value, received str.',
-                code='incorrect_type')])
+        error_string = [ErrorDetail(
+            string='Incorrect type. Expected pk value, received str.',
+            code='incorrect_type')]
         assert response.data['version'] == error_string
 
     def test_post_logged_in(self):
@@ -1379,8 +1374,7 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
-        assert six.text_type(
-            review.body) == response.data['body'] == u'test bodyé'
+        assert str(review.body) == response.data['body'] == u'test bodyé'
         assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.reply_to is None
@@ -1415,8 +1409,7 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
-        assert six.text_type(
-            review.body) == response.data['body'] == cleaned_body
+        assert str(review.body) == response.data['body'] == cleaned_body
         assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.reply_to is None
@@ -1471,8 +1464,7 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
-        assert six.text_type(
-            review.body) == response.data['body'] == u'test bodyé'
+        assert str(review.body) == response.data['body'] == u'test bodyé'
         assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.reply_to is None
@@ -1706,8 +1698,7 @@ class TestRatingViewSetPost(TestCase):
             report_abuse_url = reverse_ns(self.abuse_report_url_name)
             response = self.client.post(
                 report_abuse_url,
-                data={'addon': six.text_type(
-                    self.addon.pk), 'message': 'lol!'},
+                data={'addon': str(self.addon.pk), 'message': 'lol!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201
 
@@ -1728,8 +1719,7 @@ class TestRatingViewSetPost(TestCase):
             # We can still report abuse, it's a different throttle.
             response = self.client.post(
                 report_abuse_url,
-                data={'addon': six.text_type(
-                    self.addon.pk), 'message': 'again!'},
+                data={'addon': str(self.addon.pk), 'message': 'again!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201
 
@@ -2047,8 +2037,7 @@ class TestRatingViewSetReply(TestCase):
         data = json.loads(force_text(response.content))
         assert Rating.objects.count() == 2
         existing_reply.reload()
-        assert six.text_type(
-            existing_reply.body) == data['body'] == u'My réply...'
+        assert str(existing_reply.body) == data['body'] == u'My réply...'
 
     def test_reply_if_an_existing_reply_was_deleted_updates_existing(self):
         self.addon_author = user_factory()
@@ -2068,8 +2057,7 @@ class TestRatingViewSetReply(TestCase):
         assert Rating.objects.count() == 2  # No longer deleted.
         assert Rating.unfiltered.count() == 2
         existing_reply.reload()
-        assert six.text_type(
-            existing_reply.body) == data['body'] == u'My réply...'
+        assert str(existing_reply.body) == data['body'] == u'My réply...'
         assert existing_reply.deleted is False
 
     def test_reply_disabled_addon(self):

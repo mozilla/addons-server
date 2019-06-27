@@ -4,8 +4,6 @@ from django.contrib.syndication.views import Feed
 from django.db.transaction import non_atomic_requests
 from django.utils.decorators import method_decorator
 
-import six
-
 
 class BaseFeed(Feed):
     """
@@ -43,5 +41,5 @@ class BaseFeed(Feed):
             'title'
         )
         if data and attname in problematic_keys:
-            data = re.sub(self.CONTROL_CHARS_REGEXP, '', six.text_type(data))
+            data = re.sub(self.CONTROL_CHARS_REGEXP, '', str(data))
         return data

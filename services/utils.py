@@ -8,7 +8,7 @@ import sys
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
-from six.moves.urllib.parse import urlencode
+from urllib.parse import urlencode
 
 from services.settings import settings
 

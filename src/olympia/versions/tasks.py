@@ -1,10 +1,9 @@
 from __future__ import division
 import operator
 import os
+import itertools
 
 from django.template import loader
-
-import six
 
 import olympia.core.logger
 
@@ -53,7 +52,7 @@ def _build_static_theme_preview_context(theme_manifest, file_):
                          .get('additional_backgrounds_tiling', []))
     additional_backgrounds = [
         AdditionalBackground(path, alignment, tiling, backgrounds.get(path))
-        for (path, alignment, tiling) in six.moves.zip_longest(
+        for (path, alignment, tiling) in itertools.zip_longest(
             additional_srcs, additional_alignments, additional_tiling)
         if path is not None]
     context.update(additional_backgrounds=additional_backgrounds)

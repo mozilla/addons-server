@@ -12,7 +12,6 @@ from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
-import six
 import waffle
 
 from django_statsd.clients import statsd
@@ -201,11 +200,10 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
                    else amo.THEME_FRAME_COLOR_DEFAULT)
     textcolor = '#%s' % (lwt.persona.textcolor or '000')
 
-    lwt_header = MULTIPLE_STOPS_REGEX.sub(
-        u'.', six.text_type(lwt.persona.header))
+    lwt_header = MULTIPLE_STOPS_REGEX.sub(u'.', str(lwt.persona.header))
     manifest = {
         "manifest_version": 2,
-        "name": six.text_type(lwt.name) or six.text_type(lwt.slug),
+        "name": str(lwt.name) or str(lwt.slug),
         "version": '1.0',
         "theme": {
             "images": {
@@ -218,7 +216,7 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
         }
     }
     if lwt.description:
-        manifest['description'] = six.text_type(lwt.description)
+        manifest['description'] = str(lwt.description)
 
     # build zip with manifest and background file
     with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
@@ -292,7 +290,7 @@ def build_webext_dictionary_from_legacy(addon, destination):
 
         manifest = {
             'manifest_version': 2,
-            'name': six.text_type(addon.name),
+            'name': str(addon.name),
             'browser_specific_settings': {
                 'gecko': {
                     'id': addon.guid,

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
-from unittest import mock
 import time
 
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from datetime import datetime
-from six.moves.urllib_parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse
+from unittest import mock
 
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory

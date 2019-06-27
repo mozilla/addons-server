@@ -2,7 +2,6 @@ from django.core.paginator import (
     EmptyPage, InvalidPage, PageNotAnInteger, Paginator)
 
 import pytest
-import six
 
 from unittest.mock import MagicMock, Mock
 
@@ -107,7 +106,7 @@ class TestSearchPaginator(TestCase):
         # unfortunately since `pytest.raises` won't check the exact
         # instance but also accepts parent exceptions inherited.
         assert (
-            six.text_type(exc.value) ==
+            str(exc.value) ==
             'That page number is too high for the current page size')
         assert isinstance(exc.value, InvalidPage)
 

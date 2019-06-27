@@ -1,6 +1,7 @@
 import copy
 import json
 import os
+import io
 import subprocess
 import tempfile
 import uuid
@@ -12,8 +13,6 @@ from datetime import datetime
 from django.conf import settings
 from django.db import transaction
 from django.utils.encoding import force_text
-
-import six
 
 from django_statsd.clients import statsd
 from PIL import Image
@@ -86,7 +85,7 @@ def encode_header(header_blob, file_ext):
             height = int(tree.get('height'))
             img_format = 'svg+xml'
         else:
-            with Image.open(six.BytesIO(header_blob)) as header_image:
+            with Image.open(io.BytesIO(header_blob)) as header_image:
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
         src = 'data:image/%s;base64,%s' % (
@@ -161,7 +160,7 @@ def process_color_value(prop, value):
     if isinstance(value, list) and len(value) == 3:
         return prop, u'rgb(%s,%s,%s)' % tuple(value)
     # strip out spaces because jquery.minicolors chokes on them
-    return prop, six.text_type(value).replace(' ', '')
+    return prop, str(value).replace(' ', '')
 
 
 def new_69_theme_properties_from_old(original):

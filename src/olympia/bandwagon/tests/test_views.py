@@ -6,8 +6,6 @@ import django.test
 from django.conf import settings
 from django.test.utils import override_settings
 
-import six
-
 from unittest.mock import patch
 from rest_framework.fields import empty
 from waffle.testutils import override_switch
@@ -239,7 +237,7 @@ class TestCollectionViewSetDetail(TestCase):
         addon_data = response.data['addons'][0]['addon']
         assert addon_data['id'] == addon.id
         assert isinstance(addon_data['name'], dict)
-        assert addon_data['name'] == {'en-US': six.text_type(addon.name)}
+        assert addon_data['name'] == {'en-US': str(addon.name)}
 
         # Now test the limit of addons returned
         self.collection.add_addon(addon_factory())
@@ -264,14 +262,14 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.data['id'] == self.collection.id
         addon_data = response.data['addons'][0]['addon']
         assert addon_data['id'] == addon.id
-        assert isinstance(addon_data['name']['en-US'], six.string_types)
-        assert addon_data['name'] == {'en-US': six.text_type(addon.name)}
-        assert isinstance(addon_data['homepage']['en-US'], six.string_types)
+        assert isinstance(addon_data['name']['en-US'], str)
+        assert addon_data['name'] == {'en-US': str(addon.name)}
+        assert isinstance(addon_data['homepage']['en-US'], str)
         assert addon_data['homepage'] == {
-            'en-US': get_outgoing_url(six.text_type(addon.homepage))}
-        assert isinstance(addon_data['support_url']['en-US'], six.string_types)
+            'en-US': get_outgoing_url(str(addon.homepage))}
+        assert isinstance(addon_data['support_url']['en-US'], str)
         assert addon_data['support_url'] == {
-            'en-US': get_outgoing_url(six.text_type(addon.support_url))}
+            'en-US': get_outgoing_url(str(addon.support_url))}
 
         overridden_api_gates = {
             'v5': ('l10n_flat_input_output',)}
@@ -282,14 +280,14 @@ class TestCollectionViewSetDetail(TestCase):
             assert response.data['id'] == self.collection.id
             addon_data = response.data['addons'][0]['addon']
             assert addon_data['id'] == addon.id
-            assert isinstance(addon_data['name'], six.string_types)
-            assert addon_data['name'] == six.text_type(addon.name)
-            assert isinstance(addon_data['homepage'], six.string_types)
+            assert isinstance(addon_data['name'], str)
+            assert addon_data['name'] == str(addon.name)
+            assert isinstance(addon_data['homepage'], str)
             assert addon_data['homepage'] == get_outgoing_url(
-                six.text_type(addon.homepage))
-            assert isinstance(addon_data['support_url'], six.string_types)
+                str(addon.homepage))
+            assert isinstance(addon_data['support_url'], str)
             assert addon_data['support_url'] == get_outgoing_url(
-                six.text_type(addon.support_url))
+                str(addon.support_url))
 
 
 class CollectionViewSetDataMixin(object):
@@ -319,7 +317,7 @@ class CollectionViewSetDataMixin(object):
         return self._user
 
     def check_data(self, collection, data, json):
-        for prop, value in six.iteritems(data):
+        for prop, value in data.items():
             assert json[prop] == value
 
         with self.activate('fr'):

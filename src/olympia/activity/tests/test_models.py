@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
 from uuid import UUID
 
-import six
-
 from unittest.mock import Mock
 from pyquery import PyQuery as pq
 
@@ -103,7 +101,7 @@ class TestActivityLog(TestCase):
         assert len(entries) == 1
         assert entries[0].arguments[0] == addon
         for x in ('Delicious Bookmarks', 'was created.'):
-            assert x in six.text_type(entries[0])
+            assert x in str(entries[0])
 
     def test_no_user(self):
         core.set_user(None)
@@ -133,7 +131,7 @@ class TestActivityLog(TestCase):
         ActivityLog.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
         entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
-        assert addon.get_url_path() in six.text_type(entries[0])
+        assert addon.get_url_path() in str(entries[0])
 
     def test_addon_log_unlisted_addon(self):
         addon = Addon.objects.get()
@@ -145,7 +143,7 @@ class TestActivityLog(TestCase):
         ActivityLog.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
         entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
-        assert url_path not in six.text_type(entries[0])
+        assert url_path not in str(entries[0])
 
     def test_fancy_rendering(self):
         """HTML for Rating, and Collection."""
@@ -192,7 +190,7 @@ class TestActivityLog(TestCase):
     def test_output(self):
         ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi there')
         entry = ActivityLog.objects.get()
-        assert six.text_type(entry) == 'hi there'
+        assert str(entry) == 'hi there'
 
     def test_user_log(self):
         request = self.request
@@ -220,7 +218,7 @@ class TestActivityLog(TestCase):
                            user=self.request.user)
         entries = ActivityLog.objects.for_version(version)
         assert len(entries) == 1
-        assert version.get_url_path() in six.text_type(entries[0])
+        assert version.get_url_path() in str(entries[0])
 
     def test_version_log_unlisted_addon(self):
         version = Version.objects.all()[0]
@@ -231,7 +229,7 @@ class TestActivityLog(TestCase):
                            user=self.request.user)
         entries = ActivityLog.objects.for_version(version)
         assert len(entries) == 1
-        assert url_path not in six.text_type(entries[0])
+        assert url_path not in str(entries[0])
 
     def test_version_log_transformer(self):
         addon = Addon.objects.get()
@@ -260,7 +258,7 @@ class TestActivityLog(TestCase):
         au = AddonUser(addon=addon, user=self.user)
         ActivityLog.create(
             amo.LOG.CHANGE_USER_WITH_ROLE, au.user,
-            six.text_type(au.get_role_display()), addon)
+            str(au.get_role_display()), addon)
         log = ActivityLog.objects.get()
 
         log_expected = ('Yolo role changed to Owner for <a href="/en-US/'
@@ -287,28 +285,28 @@ class TestActivityLog(TestCase):
             amo.LOG.CHANGE_STATUS, addon, amo.STATUS_APPROVED)
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
                     'Delicious Bookmarks</a> status changed to Approved.')
-        assert six.text_type(log) == expected
+        assert str(log) == expected
 
         log.arguments = [amo.STATUS_DISABLED, addon]
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
                     'Delicious Bookmarks</a> status changed to '
                     'Disabled by Mozilla.')
-        assert six.text_type(log) == expected
+        assert str(log) == expected
 
         log.arguments = [addon, amo.STATUS_REJECTED]
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
                     'Delicious Bookmarks</a> status changed to Rejected.')
-        assert six.text_type(log) == expected
+        assert str(log) == expected
 
         log.arguments = [addon, 666]
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
                     'Delicious Bookmarks</a> status changed to 666.')
-        assert six.text_type(log) == expected
+        assert str(log) == expected
 
         log.arguments = [addon, 'Some String']
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
                     'Delicious Bookmarks</a> status changed to Some String.')
-        assert six.text_type(log) == expected
+        assert str(log) == expected
 
 
 class TestActivityLogCount(TestCase):

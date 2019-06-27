@@ -1,11 +1,11 @@
 import os
+import io
 import socket
 import traceback
 
 from django.conf import settings
 
 import requests
-import six
 
 from kombu import Connection
 from PIL import Image
@@ -64,7 +64,7 @@ def libraries():
     libraries_results = []
     status = ''
     try:
-        Image.new('RGB', (16, 16)).save(six.BytesIO(), 'JPEG')
+        Image.new('RGB', (16, 16)).save(io.BytesIO(), 'JPEG')
         libraries_results.append(('PIL+JPEG', True, 'Got it!'))
     except Exception as e:
         msg = "Failed to create a jpeg image: %s" % e

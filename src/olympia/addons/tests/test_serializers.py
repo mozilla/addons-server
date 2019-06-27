@@ -2,8 +2,6 @@
 from django.test.utils import override_settings
 from django.utils.translation import override
 
-import six
-
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -221,9 +219,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['guid'] == self.addon.guid
         assert result['has_eula'] is False
         assert result['has_privacy_policy'] is False
-        assert result['homepage'] == {
-            'en-US': six.text_type(self.addon.homepage),
-        }
+        assert result['homepage'] == {'en-US': str(self.addon.homepage)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['icons'] == {
             '32': absolutify(self.addon.get_icon_url(32)),
@@ -283,9 +279,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
-        assert result['support_url'] == {
-            'en-US': six.text_type(self.addon.support_url),
-        }
+        assert result['support_url'] == {'en-US': str(self.addon.support_url)}
         assert set(result['tags']) == {'some_tag', 'some_other_tag'}
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
@@ -301,12 +295,12 @@ class AddonSerializerOutputTestMixin(object):
         self.request = APIRequestFactory().get('/', {'wrap_outgoing_links': 1})
         result = self.serialize()
         assert result['contributions_url'] == (
-            get_outgoing_url(six.text_type(self.addon.contributions)))
+            get_outgoing_url(str(self.addon.contributions)))
         assert result['homepage'] == {
-            'en-US': get_outgoing_url(six.text_type(self.addon.homepage)),
+            'en-US': get_outgoing_url(str(self.addon.homepage)),
         }
         assert result['support_url'] == {
-            'en-US': get_outgoing_url(six.text_type(self.addon.support_url)),
+            'en-US': get_outgoing_url(str(self.addon.support_url)),
         }
 
         # Try a single translation.
@@ -314,24 +308,24 @@ class AddonSerializerOutputTestMixin(object):
             'lang': 'en-US', 'wrap_outgoing_links': 1})
         result = self.serialize()
         assert result['contributions_url'] == (
-            get_outgoing_url(six.text_type(self.addon.contributions)))
+            get_outgoing_url(str(self.addon.contributions)))
         assert result['homepage'] == {
-            'en-US': get_outgoing_url(six.text_type(self.addon.homepage)),
+            'en-US': get_outgoing_url(str(self.addon.homepage)),
         }
         assert result['support_url'] == {
-            'en-US': get_outgoing_url(six.text_type(self.addon.support_url)),
+            'en-US': get_outgoing_url(str(self.addon.support_url)),
         }
         # And again, but with v3 style flat strings
         gates = {None: ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
         assert result['contributions_url'] == (
-            get_outgoing_url(six.text_type(self.addon.contributions)))
+            get_outgoing_url(str(self.addon.contributions)))
         assert result['homepage'] == (
-            get_outgoing_url(six.text_type(self.addon.homepage))
+            get_outgoing_url(str(self.addon.homepage))
         )
         assert result['support_url'] == (
-            get_outgoing_url(six.text_type(self.addon.support_url))
+            get_outgoing_url(str(self.addon.support_url))
         )
 
         # Try with empty strings/None. Annoyingly, contribution model field
@@ -1016,7 +1010,7 @@ class TestVersionSerializerOutput(TestCase):
         # A request with no ?lang gets you the site default l10n in a dict to
         # match how non-constant values are returned.
         assert result['name'] == {
-            'en-US': six.text_type(LICENSES_BY_BUILTIN[18].name)}
+            'en-US': str(LICENSES_BY_BUILTIN[18].name)}
 
         accept_request = APIRequestFactory().get('/')
         accept_request.LANG = 'de'
@@ -1024,13 +1018,13 @@ class TestVersionSerializerOutput(TestCase):
             context={'request': accept_request}).to_representation(license)
         # An Accept-Language should result in a different default though.
         assert result['name'] == {
-            'de': six.text_type(LICENSES_BY_BUILTIN[18].name)}
+            'de': str(LICENSES_BY_BUILTIN[18].name)}
 
         # But a requested lang returns a flat string
         lang_request = APIRequestFactory().get('/?lang=fr')
         result = LicenseSerializer(
             context={'request': lang_request}).to_representation(license)
-        assert result['name'] == six.text_type(LICENSES_BY_BUILTIN[18].name)
+        assert result['name'] == str(LICENSES_BY_BUILTIN[18].name)
 
     def test_file_webext_permissions(self):
         self.version = addon_factory().current_version
@@ -1200,7 +1194,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
             {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url'}
         )
         assert result['id'] == self.addon.pk
-        assert result['name'] == {'en-US': six.text_type(self.addon.name)}
+        assert result['name'] == {'en-US': str(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_recommended'] == self.addon.is_recommended is False
         assert result['type'] == 'extension'

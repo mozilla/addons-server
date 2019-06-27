@@ -10,8 +10,6 @@ from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 
-import six
-
 from django_statsd.clients import statsd
 from rest_framework.exceptions import NotFound
 
@@ -78,7 +76,7 @@ def handler404(request, exception=None, **kwargs):
     if request.is_api:
         # It's a v3+ api request
         return JsonResponse(
-            {'detail': six.text_type(NotFound.default_detail)}, status=404)
+            {'detail': str(NotFound.default_detail)}, status=404)
     # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
     # a mobile User Agent or when the mamo cookie is present.
     if request.META.get('X_IS_MOBILE_AGENTS') == '1':

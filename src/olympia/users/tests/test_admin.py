@@ -9,7 +9,6 @@ from django.test.utils import CaptureQueriesContext
 from django.utils.dateformat import DateFormat
 
 from unittest import mock
-import six
 
 from pyquery import PyQuery as pq
 
@@ -371,8 +370,7 @@ class TestUserAdmin(TestCase):
         addon = addon_factory()
 
         model_admin = UserAdmin(UserProfile, admin.site)
-        assert six.text_type(
-            model_admin.last_known_activity_time(self.user)) == ''
+        assert str(model_admin.last_known_activity_time(self.user)) == ''
 
         # Add various activities. They will be attached to whatever user is
         # set in the thread global at the time, so set that in advance.
@@ -396,7 +394,7 @@ class TestUserAdmin(TestCase):
             settings.DATETIME_FORMAT)
 
         assert (
-            six.text_type(model_admin.last_known_activity_time(self.user)) ==
+            str(model_admin.last_known_activity_time(self.user)) ==
             expected_result)
 
     def _call_related_content_method(self, method):

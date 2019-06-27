@@ -18,7 +18,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-import six
 import waffle
 
 from django_statsd.clients import statsd
@@ -463,19 +462,19 @@ def ownership(request, addon_id, addon):
             if action:
                 ActivityLog.create(
                     action, author.user,
-                    six.text_type(author.get_role_display()), addon)
+                    str(author.get_role_display()), addon)
             if (author._original_user_id and
                     author.user_id != author._original_user_id):
                 ActivityLog.create(
                     amo.LOG.REMOVE_USER_WITH_ROLE,
                     (UserProfile, author._original_user_id),
-                    six.text_type(author.get_role_display()), addon)
+                    str(author.get_role_display()), addon)
 
         for author in user_form.deleted_objects:
             author.delete()
             ActivityLog.create(
                 amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
-                six.text_type(author.get_role_display()), addon)
+                str(author.get_role_display()), addon)
             authors_emails.add(author.user.email)
             mail_user_changes(
                 author=author,
@@ -1556,8 +1555,8 @@ def _submit_finish(request, addon, version):
         # We can use locale-prefixed URLs because the submitter probably
         # speaks the same language by the time he/she reads the email.
         context = {
-            'addon_name': six.text_type(addon.name),
-            'app': six.text_type(request.APP.pretty),
+            'addon_name': str(addon.name),
+            'app': str(request.APP.pretty),
             'detail_url': absolutify(addon.get_url_path()),
             'version_url': absolutify(addon.get_dev_url('versions')),
             'edit_url': absolutify(addon.get_dev_url('edit')),

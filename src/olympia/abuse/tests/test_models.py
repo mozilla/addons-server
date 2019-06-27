@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
+from unittest import mock
+
 from django.conf import settings
 from django.core import mail
-
-from unittest import mock
-import six
 
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
 from olympia.amo.tests import addon_factory, TestCase
@@ -120,9 +119,7 @@ class TestAbuse(TestCase):
     def test_user(self):
         report = AbuseReport(user_id=999)
         report.send()
-        assert (
-            six.text_type(report) ==
-            u'[User] Abuse Report for regularuser التطب')
+        assert str(report) == u'[User] Abuse Report for regularuser التطب'
         assert (
             mail.outbox[0].subject ==
             u'[User] Abuse Report for regularuser التطب')
@@ -133,7 +130,7 @@ class TestAbuse(TestCase):
     def test_addon(self):
         report = AbuseReport(addon_id=3615)
         assert (
-            six.text_type(report) ==
+            str(report) ==
             u'[Extension] Abuse Report for Delicious Bookmarks')
         report.send()
         assert (
@@ -150,7 +147,7 @@ class TestAbuse(TestCase):
         with self.activate(locale='fr'):
             report = AbuseReport(addon_id=3615)
             assert (
-                six.text_type(report) ==
+                str(report) ==
                 u'[Extension] Abuse Report for Delicious Bookmarks')
             report.send()
         assert (
@@ -160,9 +157,7 @@ class TestAbuse(TestCase):
     def test_guid(self):
         report = AbuseReport(guid='foo@bar.org')
         report.send()
-        assert (
-            six.text_type(report) ==
-            u'[Addon] Abuse Report for foo@bar.org')
+        assert str(report) == u'[Addon] Abuse Report for foo@bar.org'
         assert (
             mail.outbox[0].subject ==
             u'[Addon] Abuse Report for foo@bar.org')

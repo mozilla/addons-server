@@ -14,7 +14,6 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.html import format_html
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-import six
 import waffle
 
 from corsheaders.conf import conf as corsheaders_conf
@@ -540,7 +539,7 @@ class ProfileView(APIView):
         account_viewset = AccountViewSet(
             request=request,
             permission_classes=self.permission_classes,
-            kwargs={'pk': six.text_type(self.request.user.pk)})
+            kwargs={'pk': str(self.request.user.pk)})
         account_viewset.format_kwarg = self.format_kwarg
         return account_viewset.retrieve(request)
 

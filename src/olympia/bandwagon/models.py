@@ -3,9 +3,6 @@ import uuid
 from datetime import datetime
 
 from django.db import connection, models
-from django.utils.encoding import python_2_unicode_compatible
-
-import six
 
 from olympia import activity, amo
 from olympia.access import acl
@@ -65,7 +62,6 @@ class CollectionManager(ManagerBase):
         return self.filter(author=user.pk)
 
 
-@python_2_unicode_compatible
 class Collection(ModelBase):
     id = PositiveAutoField(primary_key=True)
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
@@ -190,7 +186,7 @@ class Collection(ModelBase):
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))
 
-        for addon, comment in six.iteritems(comments):
+        for addon, comment in comments.items():
             try:
                 c = (CollectionAddon.objects.using('default')
                      .get(collection=self.id, addon=addon))
@@ -334,7 +330,6 @@ models.signals.post_delete.connect(CollectionAddon.post_delete,
                                    dispatch_uid='coll.post_delete')
 
 
-@python_2_unicode_compatible
 class FeaturedCollection(ModelBase):
     id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
