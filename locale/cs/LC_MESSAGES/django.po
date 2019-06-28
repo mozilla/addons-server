@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-28 15:49+0000\n"
+"PO-Revision-Date: 2019-06-28 15:51+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -6354,7 +6354,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Z vašeho umístění bylo odesláno více doplňků, které porušují naše pravidla. IP adresa byla zablokována."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Šablona e-mailové adresy"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
