@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-28 15:30+0000\n"
+"PO-Revision-Date: 2019-06-28 15:49+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5323,15 +5323,14 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr "Rozpis rizik není k dispozici."
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "Uzamčeno redaktorem."
+msgstr "Uzamčeno redaktorem"
 
 msgid "Has auto-approval disabled flag set"
-msgstr ""
+msgstr "Má nastaven příznak „Automatické schvalování zakázáno“"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Lze doporučovat"
 
 msgid "Type"
 msgstr "Typ"
