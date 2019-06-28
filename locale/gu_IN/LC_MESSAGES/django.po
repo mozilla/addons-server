@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-28 07:28+0000\n"
+"PO-Revision-Date: 2019-06-28 07:39+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -2323,9 +2323,8 @@ msgstr ""
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "આ ઍડ-ઑનની તમામ સમીક્ષાઓ જુઓ"
+msgstr "આ ઍડ-ઑનની નવી આવૃત્તિ અપલોડ કરો"
 
 msgid "New Version"
 msgstr ""
@@ -5406,9 +5405,8 @@ msgstr ""
 msgid "Add-on Information for {0}"
 msgstr "{0} માટે એડ-ઓન માહિતી"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "એડ-ઑન સમીક્ષા"
+msgstr "એડ-ઑન ક્રમાંક"
 
 msgid "Internal AMO ID"
 msgstr ""
