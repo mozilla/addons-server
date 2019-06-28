@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-27 10:27+0000\n"
+"PO-Revision-Date: 2019-06-28 01:47+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -54,9 +54,8 @@ msgstr "Teks yang dimasukkan telah ditandai sebagai spam."
 msgid "The %d selected reports have been marked as suspicious."
 msgstr ""
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Laporan bug atau permintaan dukungan yang tidak pada tempatnya"
+msgstr "Tandai laporan penyalahgunaan terpilih sebagai mencurigakan"
 
 msgid "Modified on:"
 msgstr "Diubah pada:"
@@ -1829,9 +1828,8 @@ msgstr "Setuju"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "or <a href=\"{0}\">Batal</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Informasi lebih lanjut mengenai lisensi Creative Commons"
+msgstr "Informasi lebih lanjut mengenai Akun Pengembang"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2791,12 +2789,8 @@ msgstr ""
 "Pengaya ditampilkan di galeri kami dan pengguna bisa\n"
 "                             menerima pembaruan otomatis."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
-"Pengaya anda dimatikan oleh administrator situs dan tidak\n"
-"                             lagi ditampilkan dalam galeri kami. Jika anda memiliki pertanyaan,\n"
-"                             silakan menghubungi amo-admins@mozilla.org."
+msgstr "Pengaya Anda dinonaktifkan oleh administrator situs dan tidak ditampilkan lagi di galeri kami. Jika Anda memiliki pertanyaan, silakan hubungi amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Pengaya Anda tidak akan disertakan dalam hasil pencarian, dan halaman daftar yang akan menunjukkan Anda menonaktifkannya. Versi pengajuan baru untuk daftar tidak akan diterima di negara ini."
@@ -4609,9 +4603,8 @@ msgid "A clever extension that helps you quickly understand what you’re agreei
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Isi formulir secara otomatis {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Periksa tata bahasa & ejaan secara otomatis {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4622,18 +4615,16 @@ msgid "Remove the clutter around text on web pages. Read with more clarity and e
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokir iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Blokir iklan & banyak lagi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Lebih mudah mengunduh media {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
