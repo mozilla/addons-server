@@ -100,7 +100,7 @@ class TestEmailBouncing(TestCase):
         log_mock.return_value = False
 
         # No exceptions thrown, but no log means something went wrong.
-        assert not add_email_to_activity_log_wrapper(self.email_text)
+        assert not add_email_to_activity_log_wrapper(self.email_text, 0)
         assert len(mail.outbox) == 1
         out = mail.outbox[0]
         assert out.body == (
@@ -110,7 +110,7 @@ class TestEmailBouncing(TestCase):
 
     def test_exception_because_invalid_token(self):
         # Fails because the token doesn't exist in ActivityToken.objects
-        assert not add_email_to_activity_log_wrapper(self.email_text)
+        assert not add_email_to_activity_log_wrapper(self.email_text, 0)
         assert len(mail.outbox) == 1
         out = mail.outbox[0]
         assert out.body == (
@@ -126,7 +126,7 @@ class TestEmailBouncing(TestCase):
         email_text['To'] = [{
             'EmailAddress': 'foobar@addons.mozilla.org',
             'FriendlyName': 'not a valid activity mail reply'}]
-        assert not add_email_to_activity_log_wrapper(email_text)
+        assert not add_email_to_activity_log_wrapper(email_text, 0)
         assert len(mail.outbox) == 1
         out = mail.outbox[0]
         assert out.body == (
@@ -137,12 +137,12 @@ class TestEmailBouncing(TestCase):
         assert out.to == ['sender@example.com']
 
     def test_exception_parser_because_malformed_message(self):
-        assert not add_email_to_activity_log_wrapper("blah de blah")
+        assert not add_email_to_activity_log_wrapper('blah de blah', 0)
         # No From or Reply means no bounce, alas.
         assert len(mail.outbox) == 0
 
     def _test_exception_in_parser_but_can_send_email(self, message):
-        assert not add_email_to_activity_log_wrapper(message)
+        assert not add_email_to_activity_log_wrapper(message, 0)
         assert len(mail.outbox) == 1
         assert mail.outbox[0].body == (
             self.bounce_reply % 'Invalid or malformed json message object.')
@@ -165,7 +165,7 @@ class TestEmailBouncing(TestCase):
         email_text['To'] = [{
             'EmailAddress': 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN,
             'FriendlyName': 'not a valid activity mail reply'}]
-        assert not add_email_to_activity_log_wrapper(email_text)
+        assert not add_email_to_activity_log_wrapper(email_text, 0)
         assert len(mail.outbox) == 1
         out = mail.outbox[0]
         assert ('This email address is not meant to receive emails '
@@ -176,9 +176,20 @@ class TestEmailBouncing(TestCase):
     @override_switch('activity-email-bouncing', active=False)
     def test_exception_but_bouncing_waffle_off(self):
         # Fails because the token doesn't exist in ActivityToken.objects
-        assert not add_email_to_activity_log_wrapper(self.email_text)
+        assert not add_email_to_activity_log_wrapper(self.email_text, 0)
         # But no bounce.
         assert len(mail.outbox) == 0
+
+    def test_exception_but_spammy(self):
+        # Fails because the token doesn't exist in ActivityToken.objects
+        assert not add_email_to_activity_log_wrapper(self.email_text, 10.0)
+        assert not add_email_to_activity_log_wrapper(self.email_text, 10)
+        assert not add_email_to_activity_log_wrapper(self.email_text, '10')
+        assert not add_email_to_activity_log_wrapper(self.email_text, 11.0)
+        # But no bounce.
+        assert len(mail.outbox) == 0
+        # but should be bounced if below the threshaold
+        assert not add_email_to_activity_log_wrapper(self.email_text, 9.9)
 
 
 class TestAddEmailToActivityLog(TestCase):
