@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-28 15:12+0000\n"
+"PO-Revision-Date: 2019-06-28 15:30+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1739,7 +1739,7 @@ msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat. Kontaktujte prosím administrátory AMO, pokud s tímto potřebujete pomoci."
 
 #, python-format
 msgid "Version %s disabled."
@@ -4708,19 +4708,19 @@ msgstr "Uživatelská barevná schémata vám umožňují vystínovat web podle 
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vylepšené vyhledávání na Androidu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Získejte pokročilejší stránku vyhledávání ve Firefoxu pro Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bezproblémové přehrávání videi na Androidu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Některé stránky mají potíže s přehráváním videí ve Firefoxu pro Android. Toto rozšíření poskytuje opravu."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
