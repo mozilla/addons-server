@@ -3,8 +3,6 @@ from django.contrib.auth.models import AnonymousUser
 from django.utils.http import urlquote
 from django.utils.translation import get_language, get_language_bidi, ugettext
 
-import waffle
-
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
