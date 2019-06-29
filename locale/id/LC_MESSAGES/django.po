@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-28 01:47+0000\n"
+"PO-Revision-Date: 2019-06-29 23:32+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4631,18 +4631,16 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mencari gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Simpan gambar dengan mudah {start_sub_heading}menggunakan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simpan laman web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ukur laman web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4653,18 +4651,16 @@ msgid "Get the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Perbesar gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Halaman nyaman dilihat {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kurangi pengalih perhatian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Blokir pengalih perhatian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
