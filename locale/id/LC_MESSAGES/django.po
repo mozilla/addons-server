@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-29 23:32+0000\n"
+"PO-Revision-Date: 2019-06-30 01:12+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5339,9 +5339,8 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "Dikunci oleh peninjau."
+msgstr "Dikunci oleh pengulas"
 
 #, fuzzy
 msgid "Has auto-approval disabled flag set"
