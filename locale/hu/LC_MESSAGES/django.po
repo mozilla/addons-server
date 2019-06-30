@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-28 16:13+0000\n"
+"PO-Revision-Date: 2019-06-30 12:45+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1750,7 +1750,7 @@ msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Az ajánlott kiegészítők legutóbbi jóváhagyott verzióját nem lehet törölni vagy letiltani. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha segítségre van szüksége."
 
 #, python-format
 msgid "Version %s disabled."
@@ -4730,12 +4730,11 @@ msgstr "Az androidos keresés fejlesztése {start_sub_heading}a(z) {addon_name} 
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Szerezzen egy fejlettebb keresési oldalt az androidos Firefoxhoz."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Keressen videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Androdios  videosúgó {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
@@ -5349,9 +5348,8 @@ msgstr "A kockázati bontás nem érhető el."
 msgid "Is locked by a reviewer"
 msgstr "Egy szerkesztő zárolta"
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "Az automatikus jóváhagyás letiltottnak van jelölve."
+msgstr "Az automatikus jóváhagyás letiltottnak van jelölve"
 
 msgid "Is recommendable"
 msgstr "Ajánlott"
