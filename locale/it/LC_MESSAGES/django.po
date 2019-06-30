@@ -5407,9 +5407,8 @@ msgstr "Analisi rischio non disponibile."
 msgid "Is locked by a reviewer"
 msgstr ""
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "Ha la spunta di approvazione automatica disattivata."
+msgstr ""
 
 msgid "Is recommendable"
 msgstr ""
