@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-30 02:25+0000\n"
+"PO-Revision-Date: 2019-06-30 02:51+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3812,7 +3812,7 @@ msgstr "Perlindungan pelacakan pencarian {start_sub_heading}dengan {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Hentikan pelacak ketika Anda mengeklik hasil pencarian Google dan Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4052,7 +4052,7 @@ msgstr "WhatsApp di web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Akses WhatsApp dari panel bilah alat Firefox untuk mendapatkan pemberitahuan lencana utas yang belum dibaca."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4777,10 +4777,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Tidak dapat mengurai berkas yang diunggah, kurang atau tak ada elemen <%s>"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: Galat keamanan XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Galat urai XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Tidak dapat mengurai berkas yang diunggah."
@@ -5335,7 +5335,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Perincian risiko tidak tersedia."
 
 msgid "Is locked by a reviewer"
 msgstr "Dikunci oleh pengulas"
@@ -5438,7 +5438,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Praulas Pengaya"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Disarankan ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Ulasan Tertunda Lainnya ({0})"
@@ -5937,7 +5937,7 @@ msgstr "Parameter \"%s\" tidak valid."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Kombinasi parameter \"%s\" dan \"%s\" tidak valid."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
@@ -6345,10 +6345,10 @@ msgid "My Favorite Add-ons"
 msgstr "Pengaya Fovorit Saya"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Masukkan rentang jaringan IPv6 atau IPv6 CIDR yang valid, misalnya 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Beberapa pengaya yang melanggar kebijakan kami telah dikirimkan dari lokasi Anda. Alamat IP telah diblokir."
 
 msgid "Email Pattern"
 msgstr "Pola Surel"
@@ -6359,7 +6359,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "Alamat surel yang Anda gunakan untuk akun pengembang tidak diizinkan untuk penyampaian pengaya."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
