@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-30 01:12+0000\n"
+"PO-Revision-Date: 2019-06-30 01:50+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -252,7 +252,7 @@ msgid "Error verifying input, please try again."
 msgstr "Salah memverifikasi pendaftaran, silakan coba lagi."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Masukkan jaringan IP4 atau IP6 yang valid."
 
 msgid "CIDR"
 msgstr "CIDR"
@@ -1630,7 +1630,7 @@ msgstr ""
 "eksternal. </Span>"
 
 msgid "Display Name"
-msgstr ""
+msgstr "Nama Tampilan"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan."
@@ -1820,7 +1820,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Saya telah membaca dan menerima Perjanjian, Aturan serta Kebijakan ini"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Akun Anda memerlukan nama tampilan agar para pengguna mengetahui asal-usul pengaya Anda. Tuliskan nama tampilan Anda di bawah."
 
 msgid "Accept"
 msgstr "Setuju"
@@ -3042,7 +3042,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Ketahui Praktik Terbaik"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Akan tercantum di situs ini setelah melewati peninjauan kode. Pembaruan otomatis ditangani oleh situs ini."
@@ -3134,7 +3134,7 @@ msgid "Live Testing"
 msgstr "Pengujian Langsung"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Pasang sementara ekstensi Anda di Firefox untuk pengujian dan pengawakutuan langsung."
 
 msgid "Manage Version {0}"
 msgstr "Mengelola Versi {0}"
@@ -4710,18 +4710,16 @@ msgid "Get notified when prices drop on items you're interested in at Amazon, Be
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tangkap cuplikan web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Gelapkan web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hentikan pelacak pencarian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Peningkatan pencarian Android {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
@@ -5436,9 +5434,8 @@ msgstr "Setujui Konten"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ini merekam persetujuan konten atas versi publik terakhir, tanpa memberi tahu pengembangnya. "
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Peninjauan Pengaya"
+msgstr "Praulas Pengaya"
 
 msgid "Recommended ({0})"
 msgstr ""
