@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-08 07:24+0000\n"
+"PO-Revision-Date: 2019-06-30 20:39+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -1784,7 +1784,7 @@ msgid "There was an error uploading your preview."
 msgstr "Si è verificato un errore durante il caricamento dell’anteprima."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "L’ultima versione approvata di un’estensione consigliata non può essere eliminata o disattivata. Per assistenza contatta un amministratore di AMO."
 
 #, python-format
 msgid "Version %s disabled."
@@ -4773,27 +4773,27 @@ msgstr "Ricevi un avviso quando i prezzi dei prodotti a cui sei interessato si a
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Oscura il Web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
-msgstr ""
+msgstr "Gli schemi di colore personalizzati ti consentono di stilizzare il Web come preferisci."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Sfrutta una ricerca migliorata su Android {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Ottieni una pagina di ricerca avanzata su Firefox per Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Gestisci meglio i video su Android {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Questa estensione risolve i problemi riscontrati con alcuni siti nel riprodurre i video su Firefox per Android."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5405,13 +5405,13 @@ msgid "Risk breakdown not available."
 msgstr "Analisi rischio non disponibile."
 
 msgid "Is locked by a reviewer"
-msgstr ""
+msgstr "Bloccato da un revisore"
 
 msgid "Has auto-approval disabled flag set"
-msgstr ""
+msgstr "È stato contrassegnato per la disattivazione dell’approvazione automatica"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "È idoneo per i consigliati"
 
 msgid "Type"
 msgstr "Tipologia"
