@@ -807,19 +807,18 @@ def review(request, addon, channel=None):
     approvals_info = None
     reports = Paginator(
         (AbuseReport.objects
-                    .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
-                    .order_by('-created')), 5).page(1)
-    user_ratings = None
+            .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
+            .order_by('-created')), 5).page(1)
+    user_ratings = Paginator(
+        (Rating.without_replies
+            .filter(addon=addon, rating__lte=3, body__isnull=False)
+            .order_by('-created')), 5).page(1)
     if channel == amo.RELEASE_CHANNEL_LISTED:
         if was_auto_approved:
             try:
                 approvals_info = addon.addonapprovalscounter
             except AddonApprovalsCounter.DoesNotExist:
                 pass
-        user_ratings = Paginator(
-            (Rating.without_replies
-                   .filter(addon=addon, rating__lte=3, body__isnull=False)
-                   .order_by('-created')), 5).page(1)
 
         if content_review_only:
             queue_type = 'content_review'
