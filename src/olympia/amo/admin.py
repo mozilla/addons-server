@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.admin.options import operator
 from django.core.exceptions import FieldDoesNotExist
 from django.db import models
+from django.db.models.constants import LOOKUP_SEP
 
 
 class CommaSearchInAdminMixin:
@@ -15,6 +16,23 @@ class CommaSearchInAdminMixin:
         return a foreign key.
         """
         return 'pk'
+
+    def lookup_needs_distinct(self, opts, lookup_path):
+        """
+        Return True if 'distinct()' should be used to query the given lookup
+        path. Used by get_search_results() as a replacement of the version used
+        by django, which doesn't consider our translation fields as needing
+        distinct (but they do).
+        """
+        rval = admin.utils.lookup_needs_distinct(opts, lookup_path)
+        lookup_fields = lookup_path.split(LOOKUP_SEP)
+        # Not pretty but looking up the actual field would require truly
+        # resolving the field name, walking to any relations we find up until
+        # the last one, that would be a lot of work for a simple edge case.
+        if any(field_name in lookup_fields for field_name in
+                ('localized_string', 'localized_string_clean')):
+            rval = True
+        return rval
 
     def get_search_results(self, request, queryset, search_term):
         """
@@ -94,7 +112,8 @@ class CommaSearchInAdminMixin:
                 filters.append(q_for_this_term)
 
             use_distinct |= any(
-                admin.utils.lookup_needs_distinct(self.opts, search_spec)
+                # Use our own lookup_needs_distinct(), not django's.
+                self.lookup_needs_distinct(self.opts, search_spec)
                 for search_spec in orm_lookups)
 
             if filters:
