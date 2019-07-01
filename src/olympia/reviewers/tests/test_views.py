@@ -664,7 +664,7 @@ class TestDashboard(TestCase):
         # auto-approved addons
         assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[9].text == 'Content Review (4)'
+        assert doc('.dashboard a')[9].text == 'Content Review (13)'
         # themes
         assert doc('.dashboard a')[11].text == 'New (1)'
         assert doc('.dashboard a')[12].text == 'Updates (1)'
@@ -2137,17 +2137,24 @@ class TestContentReviewQueue(QueueTest):
 
     def generate_files(self):
         """Generate add-ons needed for these tests."""
-        # Has not been auto-approved.
-        extra_addon = addon_factory(name=u'Extra Addôn 1')
+        # The extra_ addons should not appear in the queue.
+        # This first add-on has been content reviewed long ago.
+        extra_addon1 = addon_factory(name=u'Extra Addön 1')
         AutoApprovalSummary.objects.create(
-            version=extra_addon.current_version, verdict=amo.NOT_AUTO_APPROVED,
-        )
-        # Has not been auto-approved either, only dry run.
-        extra_addon2 = addon_factory(name=u'Extra Addôn 2')
+            version=extra_addon1.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon1, last_content_review=self.days_ago(370))
+
+        # This one is quite similar, except its last content review is even
+        # older..
+        extra_addon2 = addon_factory(name=u'Extra Addön 2')
         AutoApprovalSummary.objects.create(
             version=extra_addon2.current_version,
-            verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED,
-        )
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon2, last_content_review=self.days_ago(842))
+
         # Has been auto-approved, but that content has been approved by
         # a human already.
         extra_addon3 = addon_factory(name=u'Extra Addôn 3')
@@ -2169,27 +2176,20 @@ class TestContentReviewQueue(QueueTest):
         AddonReviewerFlags.objects.create(
             addon=extra_addon4, needs_admin_content_review=True)
 
-        # This first add-on has been content reviewed long ago.
-        addon1 = addon_factory(name=u'Addön 1')
-        AutoApprovalSummary.objects.create(
-            version=addon1.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=True)
-        AddonApprovalsCounter.objects.create(
-            addon=addon1, last_content_review=self.days_ago(370))
+        # Those should appear in the queue
+        # Has not been auto-approved.
+        addon1 = addon_factory(name=u'Addôn 1', created=self.days_ago(4))
 
-        # This one is quite similar, except its last content review is even
-        # older..
-        addon2 = addon_factory(name=u'Addön 1')
+        # Has not been auto-approved either, only dry run.
+        addon2 = addon_factory(name=u'Addôn 2', created=self.days_ago(3))
         AutoApprovalSummary.objects.create(
             version=addon2.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=True)
-        AddonApprovalsCounter.objects.create(
-            addon=addon2, last_content_review=self.days_ago(842))
+            verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED,
+        )
 
         # This one has never been content-reviewed. It has an
         # needs_admin_code_review flag, but that should not have any impact.
-        addon3 = addon_factory(name=u'Addön 2')
-        addon3.update(created=self.days_ago(2))
+        addon3 = addon_factory(name=u'Addön 3', created=self.days_ago(2))
         AutoApprovalSummary.objects.create(
             version=addon3.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
@@ -2200,8 +2200,7 @@ class TestContentReviewQueue(QueueTest):
 
         # This one has never been content reviewed either, and it does not even
         # have an AddonApprovalsCounter.
-        addon4 = addon_factory(name=u'Addön 3')
-        addon4.update(created=self.days_ago(1))
+        addon4 = addon_factory(name=u'Addön 4', created=self.days_ago(1))
         AutoApprovalSummary.objects.create(
             version=addon4.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
@@ -2209,7 +2208,7 @@ class TestContentReviewQueue(QueueTest):
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
-        self.expected_addons = [addon3, addon4]
+        self.expected_addons = [addon1, addon2, addon3, addon4]
 
     def test_only_viewable_with_specific_permission(self):
         # Regular addon reviewer does not have access.
@@ -2242,7 +2241,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=1, total_addons=2, total_queues=2,
+            'Content Review', tab_position=1, total_addons=4, total_queues=2,
             per_page=1)
 
     def test_queue_layout_admin(self):
@@ -2252,7 +2251,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=1, total_addons=3, total_queues=3)
+            'Content Review', tab_position=1, total_addons=5, total_queues=3)
 
 
 class TestPerformance(QueueTest):
