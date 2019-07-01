@@ -15,11 +15,15 @@ from django.utils.timezone import FixedOffset
 
 from olympia import amo
 from olympia.activity.models import DraftComment
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
-    VersionSerializer, FileSerializer, SimpleAddonSerializer)
+    VersionSerializer, FileSerializer, SimpleAddonSerializer,
+    SimpleVersionSerializer)
 from olympia.addons.models import AddonReviewerFlags
+from olympia.api.fields import SplitField
+from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
 from olympia.reviewers.models import CannedResponse
@@ -332,10 +336,20 @@ class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
 
 
 class DraftCommentSerializer(serializers.ModelSerializer):
+    user = SplitField(
+        serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
+        BaseUserSerializer())
+    version = SplitField(
+        serializers.PrimaryKeyRelatedField(
+            queryset=Version.unfiltered.all()),
+        SimpleVersionSerializer())
 
     class Meta:
         model = DraftComment
-        fields = ('comments',)
+        fields = (
+            'filename', 'lineno', 'comment',
+            'version', 'user'
+        )
 
 
 class CannedResponseSerializer(serializers.ModelSerializer):
