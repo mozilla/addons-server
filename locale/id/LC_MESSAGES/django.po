@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-28 01:47+0000\n"
+"PO-Revision-Date: 2019-06-30 02:51+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -252,7 +252,7 @@ msgid "Error verifying input, please try again."
 msgstr "Salah memverifikasi pendaftaran, silakan coba lagi."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Masukkan jaringan IP4 atau IP6 yang valid."
 
 msgid "CIDR"
 msgstr "CIDR"
@@ -1630,7 +1630,7 @@ msgstr ""
 "eksternal. </Span>"
 
 msgid "Display Name"
-msgstr ""
+msgstr "Nama Tampilan"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan."
@@ -1820,7 +1820,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Saya telah membaca dan menerima Perjanjian, Aturan serta Kebijakan ini"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Akun Anda memerlukan nama tampilan agar para pengguna mengetahui asal-usul pengaya Anda. Tuliskan nama tampilan Anda di bawah."
 
 msgid "Accept"
 msgstr "Setuju"
@@ -3042,7 +3042,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Ketahui Praktik Terbaik"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Akan tercantum di situs ini setelah melewati peninjauan kode. Pembaruan otomatis ditangani oleh situs ini."
@@ -3134,7 +3134,7 @@ msgid "Live Testing"
 msgstr "Pengujian Langsung"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Pasang sementara ekstensi Anda di Firefox untuk pengujian dan pengawakutuan langsung."
 
 msgid "Manage Version {0}"
 msgstr "Mengelola Versi {0}"
@@ -3437,7 +3437,7 @@ msgstr "Kelola kata sandi {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Sederhanakan dan sinkronkan seluruh log masuk situs Anda di berbagai perangkat dengan satu sandi untuk mengatur semuanya."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3652,7 +3652,7 @@ msgstr "Hindari pelacak licik dan pembatasan {start_sub_heading}dengan {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Samarkan navigasi dengan menyembunyikan identitas peramban dan sistem operasi Anda."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3812,7 +3812,7 @@ msgstr "Perlindungan pelacakan pencarian {start_sub_heading}dengan {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Hentikan pelacak ketika Anda mengeklik hasil pencarian Google dan Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4052,7 +4052,7 @@ msgstr "WhatsApp di web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Akses WhatsApp dari panel bilah alat Firefox untuk mendapatkan pemberitahuan lencana utas yang belum dibaca."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4631,18 +4631,16 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mencari gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Simpan gambar dengan mudah {start_sub_heading}menggunakan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simpan laman web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ukur laman web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4653,18 +4651,16 @@ msgid "Get the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Perbesar gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Halaman nyaman dilihat {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kurangi pengalih perhatian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Blokir pengalih perhatian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
@@ -4714,18 +4710,16 @@ msgid "Get notified when prices drop on items you're interested in at Amazon, Be
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tangkap cuplikan web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Gelapkan web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hentikan pelacak pencarian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Peningkatan pencarian Android {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
@@ -4783,10 +4777,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Tidak dapat mengurai berkas yang diunggah, kurang atau tak ada elemen <%s>"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: Galat keamanan XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Galat urai XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Tidak dapat mengurai berkas yang diunggah."
@@ -5341,11 +5335,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Perincian risiko tidak tersedia."
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "Dikunci oleh peninjau."
+msgstr "Dikunci oleh pengulas"
 
 #, fuzzy
 msgid "Has auto-approval disabled flag set"
@@ -5441,12 +5434,11 @@ msgstr "Setujui Konten"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ini merekam persetujuan konten atas versi publik terakhir, tanpa memberi tahu pengembangnya. "
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Peninjauan Pengaya"
+msgstr "Praulas Pengaya"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Disarankan ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Ulasan Tertunda Lainnya ({0})"
@@ -5945,7 +5937,7 @@ msgstr "Parameter \"%s\" tidak valid."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Kombinasi parameter \"%s\" dan \"%s\" tidak valid."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
@@ -6353,10 +6345,10 @@ msgid "My Favorite Add-ons"
 msgstr "Pengaya Fovorit Saya"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Masukkan rentang jaringan IPv6 atau IPv6 CIDR yang valid, misalnya 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Beberapa pengaya yang melanggar kebijakan kami telah dikirimkan dari lokasi Anda. Alamat IP telah diblokir."
 
 msgid "Email Pattern"
 msgstr "Pola Surel"
@@ -6367,7 +6359,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr ""
+msgstr "Alamat surel yang Anda gunakan untuk akun pengembang tidak diizinkan untuk penyampaian pengaya."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

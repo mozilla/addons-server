@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-27 17:41+0000\n"
+"PO-Revision-Date: 2019-06-30 19:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1626,10 +1626,10 @@ msgid "No"
 msgstr "Nu"
 
 msgid "You have not uploaded a source file."
-msgstr "Nu ai încărcat un fișier-sursă."
+msgstr "Nu ai încărcat un fișier sursă."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr "Fișier-sursă încărcat, dar ai indicat că nu este necesară nicio sursă."
+msgstr "Fișier sursă încărcat, dar ai indicat că nu este necesară nicio sursă."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Asigură-te că denumirea și rezumatul au împreună cel mult {limit_value} de caractere (au {show_value})."
@@ -1754,7 +1754,7 @@ msgid "There was an error uploading your preview."
 msgstr "A apărut o eroare la încărcarea previzualizării tale."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Ultima versiune aprobată a unei extensii recomandate nu poate fi ștearsă sau dezactivată. Te rugăm să contactezi administratorii AMO dacă ai nevoie de ajutor în acest sens."
 
 #, python-format
 msgid "Version %s disabled."
@@ -4734,7 +4734,7 @@ msgstr "Fă capturi pe web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
-msgstr ""
+msgstr "Paletele de culori personalizate îți permit să nuanțezi webul după bunul plac."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4743,7 +4743,7 @@ msgstr "Oprește elementele de urmărire a căutărilor {start_sub_heading}cu {a
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Obține o pagină de căutare mai avansată în Firefox pentru Android."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4752,7 +4752,7 @@ msgstr "Găsește videoclipuri {start_sub_heading}cu {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Unele site-uri întâmpină dificultăți la redarea videoclipurilor în Firefox pentru Android. Această extensie oferă o remediere."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
