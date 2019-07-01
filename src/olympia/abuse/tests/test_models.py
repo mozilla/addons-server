@@ -8,6 +8,7 @@ import six
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase
+from olympia.users.models import UserProfile
 
 
 class TestAbuse(TestCase):
@@ -119,7 +120,8 @@ class TestAbuse(TestCase):
         )
 
     def test_user(self):
-        report = AbuseReport.objects.create(user_id=999)
+        user = UserProfile.objects.get(pk=999)
+        report = AbuseReport.objects.create(user=user)
         report.send()
         assert (
             six.text_type(report) ==
@@ -127,7 +129,7 @@ class TestAbuse(TestCase):
         assert (
             mail.outbox[0].subject ==
             u'[User] Abuse Report for regularuser التطب')
-        assert 'user/999' in mail.outbox[0].body
+        assert user.get_admin_absolute_url() in mail.outbox[0].body
 
         assert mail.outbox[0].to == [settings.ABUSE_EMAIL]
 
@@ -160,7 +162,7 @@ class TestAbuse(TestCase):
         }
         report.send()
         expected_mail_body = (
-            """An anonymous user reported abuse for Delicious Bookmarks (http://testserver/en-US/admin/models/addons/addon/3615/change/).
+            """An anonymous user reported abuse for Delicious Bookmarks (%s).
 
 addon_name => Fôo
 addon_summary => Sûmmary
@@ -169,7 +171,7 @@ application => Firefox
 install_date => 2006-10-23 12:57:41
 reason => Damages computer and/or data
 
-""")
+""" % addon.get_admin_absolute_url())
         assert mail.outbox[0].body == expected_mail_body
 
     def test_type_unknown_addon_type(self):
