@@ -954,6 +954,11 @@ def test_get_diff_unmodified_file():
     assert all(
         x['type'] == ' ' for x in changes[0]['hunks'][0]['changes'])
 
+    # Make sure line numbers start at 1
+    # https://github.com/mozilla/addons-server/issues/11739
+    assert changes[0]['hunks'][0]['changes'][0]['new_line_number'] == 1
+    assert changes[0]['hunks'][0]['changes'][0]['old_line_number'] == 1
+
 
 @pytest.mark.django_db
 def test_get_diff_unmodified_file_binary_file():

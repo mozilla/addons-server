@@ -635,7 +635,7 @@ class AddonGitRepository(object):
                         'old_line_number': lineno,
                         'new_line_number': lineno,
                     }
-                    for lineno, line in enumerate(data.split(b'\n'))
+                    for lineno, line in enumerate(data.split(b'\n'), start=1)
                 ]
 
                 hunks.append({
