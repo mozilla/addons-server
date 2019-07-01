@@ -73,9 +73,11 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
 
     def _build_heading(self, html=False):
         addon_name = str(self.custom_addon_name or self.addon.name)
+        custom_heading = ugettext(
+            self.custom_heading) if self.custom_heading else None
 
         if html:
-            authors = u', '.join(
+            authors = ', '.join(
                 author.name for author in self.addon.listed_authors)
             url = absolutify(self.addon.get_url_path())
             # addons-frontend will add target and rel attributes to the <a>
@@ -86,25 +88,24 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
                 addon_link = format_html(
                     # The query string should not be encoded twice, so we add
                     # it to the template first, via '%'.
-                    u'<a href="{0}?%(query)s">{1} {2} {3}</a>' % {
+                    '<a href="{0}?%(query)s">{1} {2} {3}</a>' % {
                         'query': self.build_querystring()},
-                    url, addon_name, ugettext(u'by'), authors)
+                    url, addon_name, ugettext('by'), authors)
 
-                value = conditional_escape(
-                    ugettext(self.custom_heading)).replace(
-                        u'{start_sub_heading}', u'<span>').replace(
-                        u'{end_sub_heading}', u'</span>').replace(
-                        u'{addon_name}', addon_link)
+                value = conditional_escape(custom_heading).replace(
+                    '{start_sub_heading}', '<span>').replace(
+                    '{end_sub_heading}', '</span>').replace(
+                    '{addon_name}', addon_link)
             else:
                 value = format_html(
                     # The query string should not be encoded twice, so we add
                     # it to the template first, via '%'.
-                    u'{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
+                    '{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
                         'query': self.build_querystring()},
-                    addon_name, ugettext(u'by'), url, authors)
+                    addon_name, ugettext('by'), url, authors)
         else:
             if self.custom_heading:
-                value = self.custom_heading.replace(
+                value = custom_heading.replace(
                     '{start_sub_heading}', '').replace(
                     '{end_sub_heading}', '').replace(
                     '{addon_name}', addon_name)
