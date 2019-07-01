@@ -310,16 +310,13 @@ class AddonManager(ManagerBase):
         return qs
 
     def get_content_review_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been auto-approved and
-        need content review."""
-        success_verdict = amo.AUTO_APPROVED
+        """Return a queryset of Addon objects that need content review."""
         qs = (
-            self.get_queryset().public()
+            self.get_queryset().valid()
             # We don't want the default transformer.
             # See get_auto_approved_queue()
             .only_translations()
             .filter(
-                _current_version__autoapprovalsummary__verdict=success_verdict,
                 addonapprovalscounter__last_content_review=None
             )
             # We need those joins for the queue to work without making extra
