@@ -1981,7 +1981,17 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        self._test_results()
+        with self.assertNumQueries(23):
+            # 23 queries is a lot, but it used to be much much worse.
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 8 for various queue counts, including current one
+            # - 3 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 2 for my add-ons / my collection in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_results_weights(self):
         addon1 = addon_factory(name=u'Addôn 1')
@@ -2215,7 +2225,17 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        self._test_results()
+        with self.assertNumQueries(23):
+            # 23 queries is a lot, but it used to be much much worse.
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 8 for various queue counts, including current one
+            # - 3 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 2 for my add-ons / my collection in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_queue_layout(self):
         self.login_with_permission()

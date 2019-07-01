@@ -270,6 +270,78 @@ class AddonManager(ManagerBase):
         """
         return self.get_queryset().listed(app, *status)
 
+    def get_auto_approved_queue(self, admin_reviewer=False):
+        """Return a queryset of Addon objects that have been auto-approved but
+        not confirmed by a human yet."""
+        success_verdict = amo.AUTO_APPROVED
+        qs = (
+            self.get_queryset().public()
+            # We don't want the default transformer, it does too much, and
+            # crucially, it prevents the
+            # select_related('_current_version__autoapprovalsummary') from
+            # working, because it overrides the _current_version with the one
+            # it fetches. We want translations though.
+            .only_translations()
+            # We need those joins for the queue to work without making extra
+            # queries. `files` are fetched through a prefetch_related() since
+            # those are a many-to-one relation.
+            .select_related(
+                'addonapprovalscounter',
+                'addonreviewerflags',
+                '_current_version__autoapprovalsummary',
+            )
+            .prefetch_related(
+                '_current_version__files'
+            )
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict
+            )
+            .exclude(
+                _current_version__autoapprovalsummary__confirmed=True
+            )
+            .order_by(
+                '-_current_version__autoapprovalsummary__weight',
+                'addonapprovalscounter__last_human_review',
+                'created',
+            )
+        )
+        if not admin_reviewer:
+            qs = qs.exclude(addonreviewerflags__needs_admin_code_review=True)
+        return qs
+
+    def get_content_review_queue(self, admin_reviewer=False):
+        """Return a queryset of Addon objects that have been auto-approved and
+        need content review."""
+        success_verdict = amo.AUTO_APPROVED
+        qs = (
+            self.get_queryset().public()
+            # We don't want the default transformer.
+            # See get_auto_approved_queue()
+            .only_translations()
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict,
+                addonapprovalscounter__last_content_review=None
+            )
+            # We need those joins for the queue to work without making extra
+            # queries. See get_auto_approved_queue()
+            .select_related(
+                'addonapprovalscounter',
+                'addonreviewerflags',
+                '_current_version__autoapprovalsummary',
+            )
+            .prefetch_related(
+                '_current_version__files'
+            )
+            .order_by(
+                'addonapprovalscounter__last_content_review',
+                'created',
+            )
+        )
+        if not admin_reviewer:
+            qs = qs.exclude(
+                addonreviewerflags__needs_admin_content_review=True)
+        return qs
+
 
 @python_2_unicode_compatible
 class Addon(OnChangeMixin, ModelBase):
