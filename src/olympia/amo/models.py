@@ -16,7 +16,7 @@ import multidb.pinning
 
 import olympia.core.logger
 
-from olympia.amo.urlresolvers import resolve
+from olympia.amo.urlresolvers import resolve, reverse
 from olympia.translations.hold import save_translations
 
 from . import search
@@ -382,6 +382,20 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
             is_frontend = False
         site = settings.EXTERNAL_SITE_URL if is_frontend else settings.SITE_URL
         return urljoin(site, relative_url)
+
+    def get_admin_url_path(self):
+        """
+        Return the relative URL pointing to the instance admin change page.
+        """
+        urlname = 'admin:%s_%s_change' % (
+            self._meta.app_label, self._meta.model_name)
+        return reverse(urlname, args=(self.pk,))
+
+    def get_admin_absolute_url(self):
+        """
+        Return the absolute URL pointing to the instance admin change page.
+        """
+        return urljoin(settings.SITE_URL, self.get_admin_url_path())
 
     def serializable_reference(self):
         """Return a tuple with app label, model name and pk to be used when we

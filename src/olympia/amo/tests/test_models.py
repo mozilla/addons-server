@@ -181,6 +181,26 @@ class TestModelBase(TestCase):
             assert file.get_absolute_url(src='foo') == (
                 settings.SITE_URL + relative + '?src=foo')
 
+    def test_get_admin_url_path(self):
+        addon = Addon.objects.get(pk=3615)
+        expected_url_path = reverse(
+            'admin:addons_addon_change', args=(addon.pk,))
+        assert addon.get_admin_url_path() == expected_url_path
+
+    def test_get_admin_absolute_url(self):
+        addon = Addon.objects.get(pk=3615)
+        expected_url_path = reverse(
+            'admin:addons_addon_change', args=(addon.pk,))
+        with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):
+            # The normal case
+            assert addon.get_admin_absolute_url() == (
+                settings.SITE_URL + expected_url_path)
+        with override_settings(EXTERNAL_SITE_URL='https://example.com'):
+            # When an external site url has been set, it shouldn't matter since
+            # admin must not live there.
+            assert addon.get_admin_absolute_url() == (
+                settings.SITE_URL + expected_url_path)
+
 
 class BasePreviewMixin(object):
 
