@@ -34,6 +34,7 @@ REPLY_TO_PREFIX = 'reviewreply+'
 # Group for users that want a copy of all Activity Emails.
 ACTIVITY_MAIL_GROUP = 'Activity Mail CC'
 NOTIFICATIONS_FROM_EMAIL = 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN
+SOCKETLABS_SPAM_THRESHOLD = 10.0
 
 
 class ActivityEmailError(ValueError):
@@ -116,7 +117,7 @@ class ActivityEmailParser(object):
             % ', '.join(addresses))
 
 
-def add_email_to_activity_log_wrapper(message):
+def add_email_to_activity_log_wrapper(message, spam_rating):
     note = None
     # Strings all untranslated as we don't know the locale of the email sender.
     reason = 'Undefined Error.'
@@ -128,9 +129,17 @@ def add_email_to_activity_log_wrapper(message):
 
     if not note and waffle.switch_is_active('activity-email-bouncing'):
         try:
-            bounce_mail(message, reason)
-        except Exception:
-            log.error('Bouncing invalid email failed.')
+            spam_rating = float(spam_rating)
+        except ValueError:
+            spam_rating = 0.0
+        if spam_rating < SOCKETLABS_SPAM_THRESHOLD:
+            try:
+                bounce_mail(message, reason)
+            except Exception:
+                log.exception('Bouncing invalid email failed.')
+        else:
+            log.info(
+                f'Skipping email bounce because probable spam ({spam_rating})')
     return note
 
 

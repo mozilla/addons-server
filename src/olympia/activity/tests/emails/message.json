@@ -92,6 +92,6 @@
     "InboundRcptTo":"test@customerexample.com",
     "InboundIpAddress":"10.10.10.10",
     "ErrorLog":null,
-    "SpamScore":0,
+    "SpamScore":1.23,
     "SpamDetails":null
 }

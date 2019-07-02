@@ -117,6 +117,7 @@ def inbound_email(request):
         raise ParseError(
             detail='Message not present in the POST data.')
 
-    process_email.apply_async((message,))
+    spam_rating = request.data.get('SpamScore', 0.0)
+    process_email.apply_async((message, spam_rating))
     return Response(data=validation_response,
                     status=status.HTTP_201_CREATED)

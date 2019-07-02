@@ -11,7 +11,7 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 
 @task
 @use_primary_db
-def process_email(message, **kwargs):
+def process_email(message, spam_rating, **kwargs):
     """Parse emails and save activity log entry."""
     # Some emails (gmail, at least) come with Message-ID instead of MessageId.
     msg_id = message.get('MessageId')
@@ -29,7 +29,7 @@ def process_email(message, **kwargs):
         log.error('Already processed [%s], skipping' % msg_id)
         log.error(message)
         return
-    res = add_email_to_activity_log_wrapper(message)
+    res = add_email_to_activity_log_wrapper(message, spam_rating)
 
     if not res:
         log.error('Failed to save email.')
