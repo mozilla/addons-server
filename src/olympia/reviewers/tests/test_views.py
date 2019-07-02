@@ -4329,6 +4329,13 @@ class TestReview(ReviewBase):
 
         assert doc('.abuse_reports').text().split('\n') == expected
 
+    def test_abuse_reports_unlisted_addon(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_abuse_reports()
+
     def test_abuse_reports_developers(self):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
@@ -4357,6 +4364,13 @@ class TestReview(ReviewBase):
 
         assert doc('.abuse_reports').text().split('\n') == expected
 
+    def test_abuse_reports_developers_unlisted_addon(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_abuse_reports_developers()
+
     def test_user_ratings(self):
         user = user_factory()
         rating = Rating.objects.create(
@@ -4382,6 +4396,13 @@ class TestReview(ReviewBase):
                 user.name, created_at
             )
         )
+
+    def test_user_ratings_unlisted_addon(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_user_ratings()
 
     def test_data_value_attributes(self):
         AutoApprovalSummary.objects.create(
@@ -4870,39 +4891,6 @@ class TestWhiteboardDeleted(TestWhiteboard):
     def setUp(self):
         super(TestWhiteboardDeleted, self).setUp()
         self.addon.delete()
-
-
-class TestAbuseReports(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        addon = Addon.objects.get(pk=3615)
-        addon_developer = addon.listed_authors[0]
-        someone = UserProfile.objects.exclude(pk=addon_developer.pk)[0]
-        AbuseReport.objects.create(addon=addon, message=u'wôo')
-        AbuseReport.objects.create(addon=addon, message=u'yéah',
-                                   reporter=someone)
-        # Make a user abuse report to make sure it doesn't show up.
-        AbuseReport.objects.create(user=someone, message=u'hey nöw')
-        # Make a user abuse report for one of the add-on developers: it should
-        # show up.
-        AbuseReport.objects.create(user=addon_developer, message=u'bü!')
-
-    def test_abuse_reports_list(self):
-        assert self.client.login(email='admin@mozilla.com')
-        r = self.client.get(reverse('reviewers.abuse_reports', args=['a3615']))
-        assert r.status_code == 200
-        # We see the two abuse reports created in setUp.
-        assert len(r.context['reports']) == 3
-
-    def test_no_abuse_reports_link_for_unlisted_addons(self):
-        """Unlisted addons aren't public, and thus have no abuse reports."""
-        addon = Addon.objects.get(pk=3615)
-        self.make_addon_unlisted(addon)
-        self.client.login(email='admin@mozilla.com')
-        response = reverse('reviewers.review', args=[addon.slug])
-        abuse_report_url = reverse('reviewers.abuse_reports', args=['a3615'])
-        assert abuse_report_url not in response
 
 
 class TestLeaderboard(ReviewerTest):
