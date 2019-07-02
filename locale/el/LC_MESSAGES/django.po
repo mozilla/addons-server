@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2019-06-12 05:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -2822,6 +2822,10 @@ msgstr "Δημιουργία νέων διαπιστευτηρίων"
 msgid "Invisible"
 msgstr "Αόρατο"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Εγκεκριμένες αξιολογήσεις"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Παρακαλούμε ολοκληρώστε το πρόσθετό σας προσθέτοντας μια έκδοση ή τα μεταδεδομένα που λείπουν."
 
@@ -5389,6 +5393,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr ""
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

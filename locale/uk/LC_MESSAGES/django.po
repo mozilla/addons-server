@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2019-06-24 13:53+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -2779,6 +2779,10 @@ msgstr "Генерувати нові облікові дані"
 msgid "Invisible"
 msgstr "Невидимий"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Схвалені розгляди"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Будь ласка, завершіть ваш додаток, додаючи версію або відсутні метадані."
 
@@ -5342,6 +5346,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Встановлений прапорець вимкнення автосхвалення."
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2019-06-05 11:38+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -2693,6 +2693,10 @@ msgstr ""
 msgid "Invisible"
 msgstr "అదృశ్యం"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "ఆమోదించబడిన సమీక్షలు"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -5229,6 +5233,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr ""
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"
