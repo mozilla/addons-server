@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2019-06-09 01:15+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -2791,6 +2791,10 @@ msgstr "Gerar novas credenciais"
 msgid "Invisible"
 msgstr "Invisível"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Revisões aprovadas"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Por favor complete o seu extra, adicionando uma versão ou metadados em falta."
 
@@ -5375,6 +5379,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Tem a etiqueta de auto-aprovação desativada definida."
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

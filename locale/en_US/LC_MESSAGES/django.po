@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2975,6 +2975,10 @@ msgstr "Generate new credentials"
 msgid "Invisible"
 msgstr "Invisible"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Approved reviews"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Please complete your add-on by adding a version or missing metadata."
 
@@ -5802,6 +5806,9 @@ msgstr "Has auto-approval disabled flag set."
 
 msgid "Is recommendable"
 msgstr "Is recommendable"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Delayed because it's the first listed version"
 
 msgid "Type"
 msgstr "Type"
