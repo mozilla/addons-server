@@ -684,7 +684,22 @@ class IPNetworkUserRestriction(ModelBase):
         return True
 
 
-class EmailUserRestriction(ModelBase):
+class NormalizeEmailMixin:
+    @classmethod
+    def normalize_email(cls, email):
+        """
+        Normalize email by removing any dots and removing anything after the
+        first '+' in the local part.
+        """
+        local_part, _, domain = email.rpartition('@')
+        local_part = local_part.partition('+')[0].replace('.', '')
+        normalized_email = '%s@%s' % (local_part, domain)
+        if normalized_email != email:
+            log.info('Normalized email from %s to %s', email, normalized_email)
+        return normalized_email
+
+
+class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     email_pattern = models.CharField(
         _('Email Pattern'),
@@ -714,7 +729,7 @@ class EmailUserRestriction(ModelBase):
         if not request.user.is_authenticated:
             return False
 
-        return cls.allow_email(request.user.email)
+        return cls.allow_email(cls.normalize_email(request.user.email))
 
     @classmethod
     def allow_email(cls, email):
@@ -791,7 +806,8 @@ class IPReputationRestriction(ReputationRestrictionMixin):
         return cls.allow_reputation('ip', remote_addr)
 
 
-class EmailReputationRestriction(ReputationRestrictionMixin):
+class EmailReputationRestriction(
+        NormalizeEmailMixin, ReputationRestrictionMixin):
     error_message = EmailUserRestriction.error_message
 
     @classmethod
@@ -799,7 +815,8 @@ class EmailReputationRestriction(ReputationRestrictionMixin):
         if not request.user.is_authenticated:
             return False
 
-        return cls.allow_reputation('email', request.user.email)
+        return cls.allow_reputation('email', cls.normalize_email(
+            request.user.email))
 
 
 class DeveloperAgreementRestriction:

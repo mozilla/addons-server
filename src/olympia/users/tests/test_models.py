@@ -700,6 +700,22 @@ class TestEmailUserRestriction(TestCase):
         assert not EmailUserRestriction.allow_request(request)
         assert not EmailUserRestriction.allow_email(request.user.email)
 
+        request.user.update(email='foo+something@bar.com')
+        assert not EmailUserRestriction.allow_request(request)
+        # allow_email() works, because the normalization is happening in
+        # allow_request() itself.
+        assert EmailUserRestriction.allow_email(request.user.email)
+
+        request.user.update(email='f.oo+else@bar.com')
+        assert not EmailUserRestriction.allow_request(request)
+        # allow_email() works, because the normalization is happening in
+        # allow_request() itself.
+        assert EmailUserRestriction.allow_email(request.user.email)
+
+        request.user.update(email='foo.different+something@bar.com')
+        assert EmailUserRestriction.allow_request(request)
+        assert EmailUserRestriction.allow_email(request.user.email)
+
     def test_user_somehow_not_authenticated(self):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
@@ -855,6 +871,21 @@ class TestIPReputationRestriction(TestCase):
 class TestEmailReputationRestriction(TestIPReputationRestriction):
     expected_url = 'https://reputation.example.com/type/email/foo@bar.com'
     restriction_class = EmailReputationRestriction
+
+    def test_blocked_reputation_threshold_email_variant(self):
+        responses.add(
+            responses.GET, self.expected_url,
+            content_type='application/json',
+            json={'reputation': 45})
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='f.oo+something@bar.com')
+
+        # Still blocked as if it was foo@bar.com
+        assert not self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
 
 class TestUserEmailField(TestCase):
