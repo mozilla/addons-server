@@ -141,7 +141,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.now())
+            read_dev_agreement=datetime.now(), email='foo@bar.com')
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 403
@@ -149,7 +149,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_admin_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.now())
+            read_dev_agreement=datetime.now(), email='foo@bar.com')
         self.api_key = self.create_api_key(self.user, 'bar')
         self.make_admin(self.user)
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -1059,7 +1059,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
     def test_user_does_not_own_addon(self):
         self.create_version('3.0')
         self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.now())
+            read_dev_agreement=datetime.now(), email='foo@bar.com')
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 403
@@ -1068,7 +1068,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
     def test_admin_can_view(self):
         self.create_version('3.0')
         self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.now())
+            read_dev_agreement=datetime.now(), email='foo@bar.com')
         self.make_admin(self.user)
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.get(self.url(self.guid, '3.0'))
@@ -1110,7 +1110,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         # This will create a version for the add-on with guid @create-version
         # using a new user.
         self.user = UserProfile.objects.create(
-            read_dev_agreement=datetime.now())
+            read_dev_agreement=datetime.now(), email='foo@bar.com')
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.request('PUT', addon='@create-version', version='1.0')
         assert response.status_code == 201
