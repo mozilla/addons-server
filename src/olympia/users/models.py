@@ -748,6 +748,39 @@ class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
         return True
 
 
+class DisposableEmailDomainRestriction(ModelBase):
+    domain = models.CharField(
+        unique=True,
+        max_length=255,
+        help_text=_('Enter full disposable email domain that should be '
+                    'blocked. Wildcards are not supported: if you need those, '
+                    'or need to match against the entire email and not just '
+                    'the domain part, use "Email user restrictions" instead.'))
+
+    error_message = EmailUserRestriction.error_message
+
+    class Meta:
+        db_table = 'users_disposable_email_domain_restriction'
+
+    def __str__(self):
+        return str(self.domain)
+
+    @classmethod
+    def allow_request(cls, request):
+        """
+        Return whether the specified request should be allowed to submit
+        add-ons.
+        """
+        if not request.user.is_authenticated:
+            return False
+
+        email_domain = request.user.email.rsplit('@', maxsplit=1)[-1]
+
+        # Unlike EmailUserRestriction we can use .exists() directly. This
+        # allows us to have thousands of entries without perf issues.
+        return not cls.objects.filter(domain=email_domain).exists()
+
+
 class ReputationRestrictionMixin:
     reputation_threshold = 50
 

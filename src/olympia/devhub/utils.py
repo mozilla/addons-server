@@ -20,8 +20,9 @@ from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.users.models import (
-    DeveloperAgreementRestriction, EmailReputationRestriction,
-    EmailUserRestriction, IPNetworkUserRestriction, IPReputationRestriction
+    DeveloperAgreementRestriction, DisposableEmailDomainRestriction,
+    EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
+    IPReputationRestriction
 )
 from olympia.versions.compare import version_int
 from olympia.versions.utils import process_color_value
@@ -420,6 +421,7 @@ class UploadRestrictionChecker:
     # we only display one.
     restriction_classes = (
         DeveloperAgreementRestriction,
+        DisposableEmailDomainRestriction,
         EmailUserRestriction,
         IPNetworkUserRestriction,
         EmailReputationRestriction,
