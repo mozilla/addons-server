@@ -28,9 +28,9 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, generate_auth_id, EmailReputationRestriction,
-    EmailUserRestriction, IPNetworkUserRestriction, IPReputationRestriction,
-    UserEmailField, UserForeignKey, UserProfile)
+    DeniedName, DisposableEmailDomainRestriction, generate_auth_id,
+    EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
+    IPReputationRestriction, UserEmailField, UserForeignKey, UserProfile)
 from olympia.zadmin.models import set_config
 
 
@@ -679,6 +679,25 @@ class TestIPNetworkUserRestriction(TestCase):
             IPNetworkUserRestriction(network='::1/1218').full_clean()
         assert exc_info.value.messages[0] == (
             "'::1/1218' does not appear to be an IPv4 or IPv6 network")
+
+
+class TestDisposableEmailDomainRestriction(TestCase):
+    def test_email_allowed(self):
+        DisposableEmailDomainRestriction.objects.create(domain='bar.com')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='bar@foo.com')
+        assert DisposableEmailDomainRestriction.allow_request(request)
+
+    def test_email_domain_blocked(self):
+        DisposableEmailDomainRestriction.objects.create(domain='bar.com')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        assert not DisposableEmailDomainRestriction.allow_request(request)
+
+    def test_user_somehow_not_authenticated(self):
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        assert not DisposableEmailDomainRestriction.allow_request(request)
 
 
 class TestEmailUserRestriction(TestCase):

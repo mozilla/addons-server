@@ -117,10 +117,14 @@ DJANGO_PERMISSIONS_MAPPING.update({
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,
+
+    'users.add_disposableemaildomainrestriction,': ADMIN_ADVANCED,
     'users.add_emailuserrestriction': ADMIN_ADVANCED,
     'users.add_ipnetworkuserrestriction': ADMIN_ADVANCED,
+    'users.change_disposableemaildomainrestriction,': ADMIN_ADVANCED,
     'users.change_emailuserrestriction': ADMIN_ADVANCED,
     'users.change_ipnetworkuserrestriction': ADMIN_ADVANCED,
+    'users.delete_disposableemaildomainrestriction,': ADMIN_ADVANCED,
     'users.delete_emailuserrestriction': ADMIN_ADVANCED,
     'users.delete_ipnetworkuserrestriction': ADMIN_ADVANCED,
 
