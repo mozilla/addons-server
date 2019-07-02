@@ -136,7 +136,7 @@ def add_email_to_activity_log_wrapper(message, spam_rating):
             try:
                 bounce_mail(message, reason)
             except Exception:
-                log.error('Bouncing invalid email failed.')
+                log.exception('Bouncing invalid email failed.')
         else:
             log.info(
                 f'Skipping email bounce because probable spam ({spam_rating})')
