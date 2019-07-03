@@ -22,9 +22,9 @@ import olympia.core
 from olympia import activity, amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AddonCategory, AppSupport, Category, CompatOverride,
-    IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
-    attach_translations)
+    Addon, AddonApprovalsCounter, AddonCategory, AppSupport, Category,
+    CompatOverride, IncompatibleVersions, MigratedLWT, Persona, Preview,
+    attach_tags, attach_translations)
 from olympia.addons.utils import build_static_theme_xpi_from_lwt
 from olympia.bandwagon.models import CollectionAddon
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks, task
@@ -788,3 +788,18 @@ def repack_themes_for_69(addon_ids, **kw):
             log.debug('[FAIL] Theme repack for [%r]:', addon, exc_info=ex)
         finally:
             resume_all_tasks()
+
+
+@task
+@use_primary_db
+def content_approve_migrated_themes(ids, **kw):
+    log.info('[%s@None] Marking migrated static themes as content-reviewed %s.'
+             % (len(ids), ids))
+    addons = Addon.objects.filter(pk__in=ids)
+    for addon in addons:
+        try:
+            migrated_date = MigratedLWT.objects.get(static_theme=addon).created
+        except MigratedLWT.DoesNotExist:
+            continue
+        AddonApprovalsCounter.approve_content_for_addon(
+            addon=addon, now=migrated_date)
