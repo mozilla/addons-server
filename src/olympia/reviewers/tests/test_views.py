@@ -13,6 +13,8 @@ from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.db import connection, reset_queries
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import pytest
@@ -46,6 +48,8 @@ from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, CannedResponse, ReviewerScore, ReviewerSubscription,
     Whiteboard)
+from olympia.reviewers.utils import ContentReviewTable
+from olympia.reviewers.views import _queue
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -1335,6 +1339,66 @@ class TestQueueBasics(QueueTest):
         expected.append(reverse('reviewers.queue_expired_info_requests'))
         assert links == expected
 
+    @override_settings(DEBUG=True, LESS_PREPROCESS=False)
+    def test_queue_is_never_executing_the_full_query(self):
+        """Test that _queue() is paginating without accidentally executing the
+        full query."""
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        request = RequestFactory().get('/')
+        request.user = self.user
+        request.APP = amo.FIREFOX
+
+        self.generate_files()
+        qs = Addon.objects.all().no_transforms()
+
+        # Execute the queryset we're passing to the _queue() so that we have
+        # the exact query to compare to later (we can't use str(qs.query) to do
+        # that, it has subtle differences in representation because of the way
+        # params are passed for the lang=lang hack).
+        reset_queries()
+        list(qs)
+        assert len(connection.queries) == 1
+        full_query = connection.queries[0]['sql']
+
+        qs = qs.all()  # Trash queryset caching
+        reset_queries()
+        response = _queue(
+            request, ContentReviewTable, 'content_review', qs=qs,
+            SearchForm=None)
+        assert connection.queries
+        assert full_query not in [item['sql'] for item in connection.queries]
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#addon-queue tr.addon-row')) == qs.count()
+
+        request = RequestFactory().get('/', {'per_page': 2})
+        request.user = self.user
+        request.APP = amo.FIREFOX
+        qs = qs.all()  # Trash queryset caching
+        reset_queries()
+        response = _queue(
+            request, ContentReviewTable, 'content_review', qs=qs,
+            SearchForm=None)
+        assert connection.queries
+        assert full_query not in [item['sql'] for item in connection.queries]
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#addon-queue tr.addon-row')) == 2
+
+        request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
+        request.user = self.user
+        request.APP = amo.FIREFOX
+        qs = qs.all()  # Trash queryset caching
+        reset_queries()
+        response = _queue(
+            request, ContentReviewTable, 'content_review', qs=qs,
+            SearchForm=None)
+        assert connection.queries
+        assert full_query not in [item['sql'] for item in connection.queries]
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#addon-queue tr.addon-row')) == 2
+
 
 class TestThemePendingQueue(QueueTest):
 
@@ -1981,11 +2045,13 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(23):
-            # 23 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(24):
+            # 24 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 8 for various queue counts, including current one
+            # - 9 for various queue counts, including current one (
+            #     unfortunately duplicated because it appears in two completely
+            #     different places)
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
@@ -2224,11 +2290,13 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(23):
-            # 23 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(24):
+            # 24 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 8 for various queue counts, including current one
+            # - 9 for various queue counts, including current one (
+            #     unfortunately duplicated because it appears in two completely
+            #     different places)
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
