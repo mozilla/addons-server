@@ -13,7 +13,7 @@ import pytest
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.management.commands import process_addons
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter, MigratedLWT
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.files.models import FileValidation, WebextPermission
@@ -381,3 +381,45 @@ class TestResignAddonsForCose(TestCase):
         call_command('process_addons', task='resign_addons_for_cose')
 
         assert sign_file_mock.call_count == 5
+
+
+class TestContentApproveMigratedThemes(TestCase):
+    def test_basic(self):
+        # Pretend those 3 static themes were migrated. Only the first one
+        # should be marked as content approved by the command.
+        static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        static_theme_already_content_approved = addon_factory(
+            type=amo.ADDON_STATICTHEME)
+        static_theme_not_public = addon_factory(
+            type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
+        AddonApprovalsCounter.approve_content_for_addon(
+            static_theme_already_content_approved)
+        migrated_themes = [
+            static_theme,
+            static_theme_already_content_approved,
+            static_theme_not_public
+        ]
+        migration_date = self.days_ago(123)
+        for addon in migrated_themes:
+            MigratedLWT.objects.create(
+                static_theme=addon,
+                lightweight_theme=addon_factory(type=amo.ADDON_PERSONA),
+                created=migration_date)
+        # Add another that never went through migration, it was born that way.
+        non_migrated_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+
+        call_command('process_addons', task='content_approve_migrated_themes')
+
+        approvals_info = AddonApprovalsCounter.objects.get(addon=static_theme)
+        assert approvals_info.last_content_review == migration_date
+
+        approvals_info = AddonApprovalsCounter.objects.get(
+            addon=static_theme_already_content_approved)
+        assert approvals_info.last_content_review != migration_date
+        self.assertCloseToNow(approvals_info.last_content_review)
+
+        assert not AddonApprovalsCounter.objects.filter(
+            addon=non_migrated_theme).exists()
+
+        assert not AddonApprovalsCounter.objects.filter(
+            addon=static_theme_not_public).exists()
