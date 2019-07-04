@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-03 22:44+0000\n"
+"PO-Revision-Date: 2019-07-04 13:41+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3528,7 +3528,7 @@ msgstr "Aprecie favoritos visuais {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr "Acesse seus sites favoritos a partir de um painel quadriculado."
+msgstr "Acesse seus sites preferidos a partir de um painel quadriculado."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3832,7 +3832,7 @@ msgstr "Navegue na web com uma identidade disfarçada ─ como se estivesse nave
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Acesse seus sites favoritos, abas fechadas recentemente e mais — tudo de um lindo layout em ladrilhos."
+msgstr "Acesse seus sites preferidos, abas fechadas recentemente e muito mais — tudo de um lindo painel quadriculado."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3908,7 +3908,7 @@ msgstr "Bloqueie todos os pop-ups por padrão e, então, decida quais gostaria d
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalize os seus sites favoritos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Personalize os seus sites preferidos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
@@ -4144,7 +4144,7 @@ msgstr "Leia facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr "Confira todos seus canais RSS numa só página."
+msgstr "Confira seus canais RSS preferidos numa só página."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
