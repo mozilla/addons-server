@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-04 08:08+0000\n"
+"PO-Revision-Date: 2019-07-04 08:23+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -3008,7 +3008,7 @@ msgid "Add-on Developer Hub"
 msgstr "Trung tâm nhà phát triển tiện ích"
 
 msgid "Docs"
-msgstr ""
+msgstr "Tài liệu"
 
 msgid "Sign Out"
 msgstr "Đăng xuất"
@@ -3110,7 +3110,7 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr "Tùy chọn, nhập bất kỳ thông tin nào có thể hữu ích cho người đánh giá của tiện ích mở rộng này, chẳng hạn như thông tin tài khoản thử nghiệm."
 
 msgid "Source code"
-msgstr ""
+msgstr "Mã nguồn"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
@@ -3120,11 +3120,11 @@ msgstr "Tập tin {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Được tạo %(created)s và đã thay đổi thành %(status)s lúc %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Được tạo %(created)s và đã thay đổi thành %(status)s"
 
 msgid "Status & Versions"
 msgstr "Trạng thái & Phiên bản"
@@ -3136,7 +3136,7 @@ msgid "0 files"
 msgstr "0 tập tin"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Kích hoạt lại phiên bản"
 
 msgid "Review History"
 msgstr "Xem lại lịch sử"
@@ -3157,7 +3157,7 @@ msgid "Cancel Review Request"
 msgstr "Hủy bỏ Yêu cầu Xét duyệt"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Đang tải lịch sử đánh giá..."
 
 msgid "We had a problem retrieving review notes"
 msgstr ""
@@ -3185,17 +3185,17 @@ msgid "Listed versions"
 msgstr "Phiên bản được liệt kê"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Hiện tại trên AMO"
 
 # Header for a column in a table
 msgid "Validation"
 msgstr "Kiểm định"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Xóa/Tắt"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Phiên bản tiếp theo của tiện ích này"
 
 msgid "Other versions"
 msgstr "Phiên bản khác"
@@ -3215,33 +3215,35 @@ msgstr "Xóa phiên bản {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Bạn sắp xóa phiên bản hiện tại của tiện ích mở rộng. Điều này có thể khiến trạng thái tiện ích của bạn thay đổi hoặc danh sách của bạn mất khả năng hiển thị công khai, nếu đây là phiên bản công khai"
+" duy nhất của tiện ích."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Xóa phiên bản này sẽ xóa vĩnh viễn:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Quan trọng:</strong> Khi một phiên bản đã bị xóa, bạn không thể tải lên một phiên bản mới có cùng số phiên bản."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa phiên bản này?"
 
 msgid "Delete Version"
 msgstr "Xóa phiên bản"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Vô hiệu hóa phiên bản"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Ẩn tiện ích"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Ẩn tiện ích mở rộng của bạn sẽ ngăn không cho nó xuất hiện ở bất kỳ đâu trong thư viện của chúng tôi và sẽ ngăn người dùng nhận được cập nhật tự động."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Các tập tin đang chờ xem xét sẽ bị vô hiệu hóa và bạn sẽ cần phải tải lên các phiên bản mới."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Bạn có chắc chắn muốn ẩn tiện ích của mình không?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "Hủy yêu cầu đánh giá của bạn sẽ đánh dấu tiện ích của bạn chưa hoàn tất và mọi phiên bản đang chờ đánh giá sẽ bị vô hiệu hóa."
@@ -3354,11 +3356,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tải xuống video {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Hoạt động với YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope và hàng trăm trang web video khác."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4059,35 +4061,35 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Trích xuất liên kết {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Hiển thị ngay lập tức tất cả các liên kết từ một trang web trong các thẻ mới."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bỏ qua chuyển hướng & trình theo dõi {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Loại bỏ các trang chuyển hướng và các thông số theo dõi URL."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dừng trình theo dõi tìm kiếm {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Ngăn công cụ tìm kiếm biết bạn nhấp vào kết quả tìm kiếm nào."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tải xuống video YouTube {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Tải xuống video và/hoặc âm thanh."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4507,27 +4509,27 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Xem bức ảnh lớn {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "Với một cú click chuột, bạn có thể xem video trong toàn màn hình."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Giải phóng bộ nhớ {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Dừng lãng phí không gian bộ nhớ có giá trị với các thẻ không hoạt động."
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Lưu các trang web {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Lưu các trang hoàn chỉnh—hoặc chỉ một phần—trong một tập tin HTML."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
