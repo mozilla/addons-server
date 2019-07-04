@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-04 09:01+0000\n"
-"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
+"PO-Revision-Date: 2019-07-04 13:27+0000\n"
+"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,8 @@ msgstr "Tiện ích"
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
 
-#, fuzzy
 msgid "creation date"
-msgstr "Hướng dẫn kiểm duyệt"
+msgstr "ngày thành lập"
 
 msgid "User / Add-on"
 msgstr "Người dùng / Tiện ích"
@@ -820,25 +819,22 @@ msgstr "Yêu cầu thông tin đã bị xóa"
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "{addon} {version} yêu cầu xét duyệt."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr "Yêu cầu đánh giá add-on của quản trị viên"
 
 #, fuzzy
 msgid "{addon} {version} admin content-review requested."
 msgstr "{addon} {version} yêu cầu xét duyệt."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr "Yêu cầu xem xét nội dung của quản trị viên"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} yêu cầu xét duyệt."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Yêu cầu Xét duyệt Đầy đủ."
+msgstr "Yêu cầu đánh giá chủ đề của quản trị viên"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} đã được di chuyển từ một chủ đề nhẹ."
@@ -2708,13 +2704,13 @@ msgid ""
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Bạn không có bất kỳ xác thực API nào."
 
 msgid "Revoke"
 msgstr "Thu hồi"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
 
 msgid "Generate new credentials"
 msgstr ""
@@ -2775,7 +2771,7 @@ msgstr ""
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s trong %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
@@ -4867,9 +4863,8 @@ msgid "Reported Spam"
 msgstr "Thư rác được báo cáo"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Báo cáo lỗi"
+msgstr "Báo cáo không phải Spam"
 
 msgid "Not Reported"
 msgstr "Không có báo cáo"
@@ -4881,13 +4876,11 @@ msgid "View Rating on site"
 msgstr "Xem xếp hạng trên trang web"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Gửi lên một Giao diện Mới"
+msgstr "Báo cáo là không phải Spam đến Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Gửi lên một Giao diện Mới"
+msgstr "Báo cáo Spam đến Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -5331,9 +5324,8 @@ msgstr "Từ chối nhiều phiên bản"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Điều này sẽ từ chối các phiên bản công khai được chọn. Các ý kiến sẽ được gửi đến nhà phát triển."
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "Trả lời nhà phát triển của {0}"
+msgstr "Trả lời của người đánh giá"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr "Điều này sẽ gửi một thông điệp cho nhà phát triển. Bạn sẽ được thông báo khi họ trả lời."
