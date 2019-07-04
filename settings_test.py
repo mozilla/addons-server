@@ -8,6 +8,10 @@ INSTALLED_APPS += (
 )
 # Make sure the debug toolbar isn't used during the tests.
 INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
+MIDDLEWARE = tuple(
+    middleware for middleware in MIDDLEWARE
+    if middleware != 'debug_toolbar.middleware.DebugToolbarMiddleware'
+)
 
 # See settings.py for documentation:
 IN_TEST_SUITE = True

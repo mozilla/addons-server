@@ -104,7 +104,7 @@ def ratings_moderation_log(request):
         if form.cleaned_data['filter']:
             mod_log = mod_log.filter(action=form.cleaned_data['filter'].id)
 
-    pager = amo.utils.paginate(request, mod_log, 50)
+    pager = paginate(request, mod_log, 50)
 
     data = context(request, form=form, pager=pager)
 
@@ -470,11 +470,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     else:
         search_form = None
         is_searching = False
-    admin_reviewer = is_admin_reviewer(request)
 
     # Those restrictions will only work with our RawSQLModel, so we need to
     # make sure we're not dealing with a regular Django ORM queryset first.
     if hasattr(qs, 'sql_model'):
+        admin_reviewer = is_admin_reviewer(request)
         if not is_searching and not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
 
@@ -489,7 +489,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         per_page = REVIEWS_PER_PAGE
     if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
         per_page = REVIEWS_PER_PAGE
-    page = paginate(request, table.rows, per_page=per_page)
+    page = paginate(request, table.rows, per_page=per_page, count=qs.count())
     table.set_page(page)
     return render(request, 'reviewers/queue.html',
                   context(request, table=table, page=page, tab=tab,
@@ -900,7 +900,7 @@ def review(request, addon, channel=None):
     all_versions.sort(key=lambda v: v.created,
                       reverse=True)
 
-    pager = amo.utils.paginate(request, all_versions, 10)
+    pager = paginate(request, all_versions, 10)
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 

@@ -32,9 +32,11 @@ def _get_item_path(item):
 
 def _get_mtime(item):
     """Get a last-changed timestamp for development."""
-    if item.startswith(('//', 'http://', 'https://')):
-        return int(time.time())
-    return int(os.path.getmtime(find_static_path(item)))
+    if not item.startswith(('//', 'http://', 'https://')):
+        filename = find_static_path(item)
+        if filename:
+            return int(os.path.getmtime(filename))
+    return int(time.time())
 
 
 def _build_html(items, wrapping):
