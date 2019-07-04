@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-04 08:51+0000\n"
+"PO-Revision-Date: 2019-07-04 09:01+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -3341,11 +3341,11 @@ msgstr "Nhận ngay thông tin thời tiết toàn cầu ngay trong Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tùy biến thẻ {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "Chọn trang bạn nhìn thấy mỗi khi bạn mở một thẻ mới."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3373,107 +3373,107 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Quản lý mật khẩu {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Đơn giản hóa và đồng bộ tất cả các thông tin đăng nhập trang web khác nhau của bạn trên các thiết bị với một mật khẩu để thống trị tất cả."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Chặn quảng cáo {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Trình chặn quảng cáo nhẹ và hiệu quả. uBlock Origin thực thi hàng ngàn bộ lọc nội dung mà không chiếm nhiều bộ nhớ."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Cải thiện video {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Tận hưởng bộ tính năng mới của YouTube, như chế độ rạp chiếu phim, chặn quảng cáo, điều khiển tự động phát và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dễ dàng tìm thấy hình ảnh {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Đánh dấu bất kỳ văn bản nào và nhấp chuột phải để nhanh chóng thực hiện tìm kiếm hình ảnh."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Thưởng thức dấu trang trực quan {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Truy cập các trang web yêu thích của bạn từ một bố cục ô."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Truy cập kiến thức {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Tự động thêm sự kiện Britannica vào kết quả tìm kiếm của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Xóa quảng cáo của YouTube {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Chặn quảng cáo và chú thích gây phiền nhiễu xuất hiện trên YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Đọc mọi nơi {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Gửi các bài báo, câu chuyện, bài đăng trên blog và nhiều hơn nữa cho Kindle của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Màu cho các thẻ của bạn {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Sắp xếp các thẻ của bạn bằng cách nhóm màu dựa trên các mẫu URL."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ngăn chặn khai thác tiền điện tử {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Ngăn chặn các trang web độc hại sử dụng sức mạnh máy tính của bạn để khai thác tiền điện tử."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Kiểm tra ngữ pháp tự động {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Nhận trợ giúp về ngữ pháp bất cứ nơi nào bạn viết trên web—Truyền thông xã hội, email, tài liệu, v.v."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Kiểm tra thời gian toàn cầu {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Hiển thị thời gian trên toàn thế giới hiện tại trên thanh trạng thái của Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dịch dễ dàng {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Đánh dấu văn bản trên bất kỳ trang web nào—hay chọn toàn bộ trang của Google— để dịch ngay lập tức."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3485,19 +3485,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tùy chỉnh cử chỉ chuột {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Khám phá một cách mới để điều hướng với hơn 50 cử chỉ chuột hữu ích."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tối ưu hóa video {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Làm tối trang xung quanh trình phát video để có trải nghiệm xem tập trung."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3510,15 +3510,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tìm nội dung web bị thiếu  {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Trang bạn đang tìm kiếm không có sẵn? Tìm kiếm một phiên bản lưu trữ của nó."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tìm nội dung web bị thiếu {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3538,19 +3538,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Điều chỉnh chế độ xem kích thước trang {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Một cách đơn giản để điều chỉnh kích thước của bất kỳ văn bản nào của trang—hoặc thậm chí phóng to trang đó."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Chặn các trình theo dõi vô hình {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Dừng trình theo dõi của họ theo bạn và tìm hiểu thêm về chúng."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3562,11 +3562,12 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Lưu văn bản để sau {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
+"Ngừng viết điều tương tự lặp đi lặp lại! Nếu bạn thường xuyên sử dụng lại các cụm từ tương tự trong công việc hoặc các liên lạc khác, hãy lưu chúng trong Clippings và dễ dàng dán chúng khi cần."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
