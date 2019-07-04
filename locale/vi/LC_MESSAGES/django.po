@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-03 09:50+0000\n"
+"PO-Revision-Date: 2019-07-04 08:08+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "kiểu"
 
 msgid "Users"
 msgstr "Người dùng"
 
 msgid "Addons"
-msgstr ""
+msgstr "Tiện ích"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
@@ -49,21 +49,21 @@ msgstr "%d báo cáo được chọn đã được đánh dấu là hợp lệ."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d báo cáo được chọn đã được đánh dấu là đáng ngờ."
 
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Yêu cầu hỗ trợ hoặc báo cáo lỗi bị đặt nhầm"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Được chỉnh sửa lúc:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Bởi %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Tất cả"
 
 msgid "No links are allowed."
 msgstr "Không có liên kết được cho phép."
@@ -251,10 +251,10 @@ msgid "Error verifying input, please try again."
 msgstr "Lỗi khi xác minh dữ liệu vào, vui lòng thử lại."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Nhập mạng IP4 hoặc IP6 hợp lệ."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
@@ -459,7 +459,7 @@ msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "JWT Token không hợp lệ."
 
 msgid "Invalid token or hash."
 msgstr "Token hoặc hash không hợp lệ."
@@ -468,7 +468,7 @@ msgid "Email address not found."
 msgstr "Không tìm thấy địa chỉ email."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Trường phải có độ dài ít nhất {num} ký tự."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Mã ngôn ngữ {lang_code} không hợp lệ."
@@ -896,7 +896,7 @@ msgid "Extension"
 msgstr "Tiện ích"
 
 msgid "Complete Theme"
-msgstr ""
+msgstr "Chủ đề hoàn chỉnh"
 
 msgid "Dictionary"
 msgstr "Từ điển"
@@ -924,7 +924,7 @@ msgid "Extensions"
 msgstr "Tiện ích mở rộng"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "Các chủ đề hoàn chỉnh"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1587,7 +1587,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Phiên bản {version} đã được tải lên trước đó và đã bị xóa."
 
 msgid "Version {version} already exists."
 msgstr "Phiên bản {version} đã tồn tại."
@@ -1619,7 +1619,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Tên hiển thị"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
@@ -1677,7 +1677,7 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Chủ đề đã bị xóa."
 
 msgid "Add-on deleted."
 msgstr "Tiện ích đã được xóa."
@@ -1729,7 +1729,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Phiên bản %s đã bị vô hiệu hóa."
 
 #, python-format
 msgid "Version %s deleted."
@@ -1812,7 +1812,7 @@ msgid "Your account needs a display name set so users know who your add-on is co
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Chấp nhận"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "hoặc <a href=\"{0}\">Hủy bỏ</a>"
@@ -1825,7 +1825,7 @@ msgid "{0} Add-ons"
 msgstr "{0} Tiện ích"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Quay trở lại trang chủ DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -1842,7 +1842,7 @@ msgid "Documentation"
 msgstr "Tài liệu"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Phát triển tiện ích mở rộng"
 
 msgid "Developer Policies"
 msgstr "Chính sách nhà phát triển"
@@ -1872,23 +1872,23 @@ msgid "Search"
 msgstr "Tìm kiếm"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Sử dụng trường bên dưới để tải lên gói tiện ích của bạn."
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Sau khi tải lên, một loạt các kiểm tra xác thực tự động sẽ được chạy trên tập tin của bạn."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Bạn có muốn tiện ích của mình được phân phối trên trang web này không?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
 msgstr "Kết quả Kiểm định cho {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Kết quả xác thực"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Xác thực tại:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Hoạt động Gần đây cho Tiện ích của Tôi"
@@ -1986,19 +1986,19 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Chỉnh sửa trang sản phẩm"
 
 msgid "None"
 msgstr "Không"
 
 msgid "Preview"
-msgstr ""
+msgstr "Xem trước"
 
 msgid "Preview of listed version"
 msgstr "Xem trước phiên bản được liệt kê"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Xem trước vẫn đang được tạo - quay lại sau hoặc làm mới trang."
 
 msgid "Manage Authors & License"
 msgstr "Quản lí Tác giả & Giấy phép"
@@ -2163,7 +2163,7 @@ msgid ""
 msgstr ""
 
 msgid "View Source?"
-msgstr ""
+msgstr "Xem mã nguồn?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
@@ -2233,7 +2233,7 @@ msgstr "Được dùng trong trang chi tiết của tiện ích."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr "Sẽ là tiêu chuẩn trong các trang chi tiết tiện ích trong tương lai."
@@ -2242,10 +2242,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Tải lên một Biểu tượng Tùy biến..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Hỗ trợ PNG và JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Các biểu tượng phải là hình vuông và kích thước tối thiểu là 128x128 pixel."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Các biểu tượng sẽ được thay đổi kích thước thành 128x128 pixel nếu lớn hơn."
@@ -2254,7 +2254,7 @@ msgid "Screenshots"
 msgstr "Ảnh chụp màn hình"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Vui lòng cung cấp ít nhất một ảnh chụp màn hình của tiện ích mở rộng của bạn:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "Vui lòng cung cấp một chú thích cho ảnh chụp màn hình này:"
@@ -2263,13 +2263,13 @@ msgid "Add a Screenshot..."
 msgstr "Thêm một Ảnh chụp màn hình..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Hỗ trợ PNG và JPG, khuyến nghị PNG. Kích thước tối đa và được đề xuất cho ảnh chụp màn hình là 2400x1800 pixel."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Kích thước tối thiểu là 1000x750 và tỷ lệ bắt buộc là 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Có ảnh chụp màn hình trong trang sản phẩm của bạn làm tăng đáng kể cơ hội được cài đặt và được hiển thị trong trang chủ."
 
 msgid "Continue"
 msgstr "Tiếp tục"
@@ -2650,22 +2650,22 @@ msgid "Theme name"
 msgstr "Tên chủ đề"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Chọn một hình ảnh tiêu đề cho chủ đề của bạn"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "Chiều cao đề xuất: 200 pixel"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "Tối đa 6.9MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG hoặc GIF (không hoạt ảnh)"
 
 msgid "Aligned to top-right"
 msgstr ""
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Chọn một hình ảnh tiêu đề khác"
 
 msgid "Select colors for your theme"
 msgstr "Chọn màu cho chủ đề của bạn"
@@ -2680,10 +2680,10 @@ msgid "Uploading Theme"
 msgstr "Đang tải lên chủ đề"
 
 msgid "Finish Theme"
-msgstr ""
+msgstr "Kết thúc chủ đề"
 
 msgid "Back"
-msgstr ""
+msgstr "Quay lại"
 
 msgid "API Credentials"
 msgstr ""
@@ -2711,7 +2711,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "Thu hồi"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
@@ -2720,7 +2720,7 @@ msgid "Generate new credentials"
 msgstr ""
 
 msgid "Invisible"
-msgstr ""
+msgstr "Ẩn"
 
 msgid "Approved and recommended"
 msgstr "Đã phê duyệt và đã đề xuất"
@@ -2742,7 +2742,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "Được tạo:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
@@ -2781,13 +2781,13 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Phiên bản mới nhất:"
 
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Tải lên phiên bản mới"
 
 msgid "View All"
 msgstr "Xem Tất cả"
@@ -2805,10 +2805,10 @@ msgid "View Statistics Dashboard"
 msgstr "Hiển thị Bảng thống kê"
 
 msgid "Developer News"
-msgstr ""
+msgstr "Tin tức nhà phát triển"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Xem blog &#9658;"
 
 msgid "Pending information request:"
 msgstr "Yêu cầu thông tin đang chờ xử lý:"
@@ -2825,7 +2825,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Cho phép HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Một số HTML được hỗ trợ."
@@ -2909,10 +2909,10 @@ msgid "Get Your Add-on Featured"
 msgstr "Nhận tiện ích mở rộng của bạn"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Nút \"Nhận tiện ích mở rộng\""
 
 msgid "Legal"
-msgstr ""
+msgstr "Pháp lí"
 
 msgid "Report Trademark Abuse"
 msgstr "Báo cáo lạm dụng nhãn hiệu"
@@ -2930,10 +2930,10 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Tham gia với chúng tôi!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "Viết một số đoạn mã"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
@@ -2948,7 +2948,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "Tìm hiểu cách làm"
 
 msgid "Manage Your Add-on"
 msgstr "Quản lý tiện ích của bạn"
