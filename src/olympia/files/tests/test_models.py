@@ -11,6 +11,7 @@ from datetime import datetime
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
@@ -649,6 +650,10 @@ class TestParseXpi(TestCase):
         assert result['type'] == amo.ADDON_EXTENSION
 
     def test_parse_langpack(self):
+        with self.assertRaises(ValidationError):
+            result = self.parse(filename='langpack.xpi')
+
+        self.user.update(email='foo@mozilla.com')
         result = self.parse(filename='langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
         assert not result['is_restart_required']
