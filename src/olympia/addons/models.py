@@ -1899,12 +1899,14 @@ class AddonApprovalsCounter(ModelBase):
         return obj
 
     @classmethod
-    def approve_content_for_addon(cls, addon):
+    def approve_content_for_addon(cls, addon, now=None):
         """
         Set last_content_review for this addon.
         """
+        if now is None:
+            now = datetime.now()
         obj, created = cls.objects.update_or_create(
-            addon=addon, defaults={'last_content_review': datetime.now()})
+            addon=addon, defaults={'last_content_review': now})
         return obj
 
 
