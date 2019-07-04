@@ -952,7 +952,7 @@ def test_get_diff_unmodified_file():
     assert changes[0]['mode'] == ' '
     assert changes[0]['hunks'][0]['header'] == '@@ -0 +0 @@'
     assert all(
-        x['type'] == ' ' for x in changes[0]['hunks'][0]['changes'])
+        x['type'] == 'normal' for x in changes[0]['hunks'][0]['changes'])
 
     # Make sure line numbers start at 1
     # https://github.com/mozilla/addons-server/issues/11739
@@ -982,7 +982,7 @@ def test_get_diff_unmodified_file_binary_file():
     assert changes[0]['mode'] == ' '
     assert changes[0]['hunks'][0]['header'] == '@@ -0 +0 @@'
     assert all(
-        x['type'] == ' ' for x in changes[0]['hunks'][0]['changes'])
+        x['type'] == 'normal' for x in changes[0]['hunks'][0]['changes'])
 
     # Now Make sure we don't render a fake hunk for binary files such as images
     changes = repo.get_diff(

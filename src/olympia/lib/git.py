@@ -631,7 +631,7 @@ class AddonGitRepository(object):
                 changes = [
                     {
                         'content': line,
-                        'type': GIT_DIFF_LINE_CONTEXT,
+                        'type': GIT_DIFF_LINE_MAPPING[GIT_DIFF_LINE_CONTEXT],
                         'old_line_number': lineno,
                         'new_line_number': lineno,
                     }
