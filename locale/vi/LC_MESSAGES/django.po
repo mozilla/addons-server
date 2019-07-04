@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-04 08:23+0000\n"
+"PO-Revision-Date: 2019-07-04 08:51+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -136,7 +136,7 @@ msgid "Listed"
 msgstr "Liệt kê"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Đường dẫn tiện ích và bộ sưu tập cần kết thúc bằng \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
@@ -1548,10 +1548,10 @@ msgid "License text is required when choosing Other."
 msgstr "Cần có nội dung giấy phép khi chọn Khác."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Tiện ích mở rộng này có Thỏa thuận cấp phép người dùng cuối"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Vui lòng chỉ định Thỏa thuận cấp phép người dùng cuối của tiện ích mở rộng của bạn:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "Tiện ích này có một Chính sách Riêng tư"
@@ -1566,7 +1566,7 @@ msgid "Invalid or broken archive."
 msgstr "Gói lưu trữ không hợp lệ hoặc bị hỏng."
 
 msgid "View current"
-msgstr ""
+msgstr "Xem hiện tại"
 
 msgid "Invalid version range."
 msgstr "Khoảng phiên bản bất hợp lệ."
@@ -1791,25 +1791,25 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "Khóa API mới được tạo"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Đã thu hồi khóa API"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Tiện ích của tôi không khớp bất kì phân mục nào"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Thỏa thuận phân phối tiện ích Firefox"
 
 msgid "Review Policies and Rules"
 msgstr "Xem lại chính sách và quy tắc"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Tôi đã đọc và chấp nhận thỏa thuận này và các quy tắc và chính sách"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Tài khoản của bạn cần một tên hiển thị để người dùng biết ai là tiện ích mở rộng của bạn. Vui lòng nhập một cái bên dưới."
 
 msgid "Accept"
 msgstr "Chấp nhận"
@@ -2693,7 +2693,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr ""
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Giữ bí mật các khóa API của bạn và <strong>không bao giờ chia sẻ chúng với bất kỳ ai</strong>, kể cả những người đóng góp Mozilla."
 
 msgid "JWT issuer"
 msgstr ""
@@ -3175,11 +3175,12 @@ msgid "Listing visibility"
 msgstr "Danh sách hiển thị"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Hiển thị:{label_close} Hiển thị cho mọi người trên {site_url} và được bao gồm trong kết quả tìm kiếm và trang sản phẩm."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
+"{label_open}Ẩn:{label_close} Sẽ không đưa vào kết quả tìm kiếm và trang sản phẩm của nó sẽ cho biết bạn đã tắt nó. Đệ trình phiên bản mới cho sản phẩm sẽ không được chấp nhận ở trạng thái này."
 
 msgid "Listed versions"
 msgstr "Phiên bản được liệt kê"
@@ -3252,7 +3253,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Bạn có chắc chắn là bạn muốn hủy bỏ yêu cầu xét duyệt của mình không?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Tài liệu tiện ích :: Trung tâm nhà phát triển"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -3276,19 +3277,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tùy chỉnh các trang thẻ mới {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Thưởng thức một trang mới tuyệt đẹp với hình nền tùy chỉnh, thông tin thời tiết địa phương, và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dịch dễ dàng {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Đánh dấu bất kỳ văn bản nào, nhấp chuột phải và dịch ngay lập tức."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3300,11 +3301,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Chặn quảng cáo và bảo vệ quyền riêng tư {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Một thiết lập đơn giản cho phép bạn kiểm soát các quảng cáo bạn nhìn thấy và cách nó theo dõi bạn trên internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3316,27 +3317,27 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dừng việc Facebook theo dõi {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Cô lập danh tính Facebook của bạn thành một “ngăn chứa” riêng biệt, điều này khiến Facebook khó theo dõi các chuyển động của bạn trên web hơn."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Đơn giản hóa tìm kiếm {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Chỉ cần đánh dấu văn bản trên bất kỳ trang web nào để tìm kiếm cụm từ từ một loạt các công cụ."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Cập nhật thời tiết tức thì {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Nhận ngay thông tin thời tiết toàn cầu ngay trong Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
