@@ -45,7 +45,7 @@ def action_allowed_user(user, permission):
         for group in user.groups_list)
 
 
-def submission_allowed(user, parsed_addon_data):
+def experiments_submission_allowed(user, parsed_addon_data):
     """Experiments can only be submitted by the people with the right group.
 
     See bug 1220097.
@@ -53,6 +53,17 @@ def submission_allowed(user, parsed_addon_data):
     return (
         not parsed_addon_data.get('is_experiment', False) or
         action_allowed_user(user, amo.permissions.EXPERIMENTS_SUBMIT))
+
+
+def langpack_submission_allowed(user, parsed_addon_data):
+    """Language packs can only be submitted by people in the right group.
+
+    See https://github.com/mozilla/addons-server/issues/11788 and
+    https://github.com/mozilla/addons-server/issues/11793
+    """
+    return (
+        not parsed_addon_data.get('type') == amo.ADDON_LPAPP or
+        action_allowed_user(user, amo.permissions.LANGPACK_SUBMIT))
 
 
 def check_ownership(request, obj, require_owner=False, require_author=False,
