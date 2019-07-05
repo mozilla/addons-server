@@ -330,7 +330,6 @@ class AddonManager(ManagerBase):
                 '_current_version__files'
             )
             .order_by(
-                'addonapprovalscounter__last_content_review',
                 'created',
             )
         )

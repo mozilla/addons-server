@@ -3990,7 +3990,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         self.url = reverse(
             'reviewers.review', args=['content', self.addon.slug])
-        for action in ['confirm_auto_approved', 'reject_multiple_versions']:
+        for action in ['approve_content', 'reject_multiple_versions']:
             response = self.client.post(self.url, self.get_dict(action=action))
             assert response.status_code == 200  # Form error.
             # The add-on status must not change as non-admin reviewers are not
@@ -4034,7 +4034,7 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
 
-    def test_confirm_auto_approval_content_review(self):
+    def test_approve_content_content_review(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.url = reverse(
             'reviewers.review', args=['content', self.addon.slug])
@@ -4042,7 +4042,7 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 302
@@ -4068,7 +4068,7 @@ class TestReview(ReviewBase):
             addon=self.addon, needs_admin_content_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 200  # Form error
@@ -4086,7 +4086,7 @@ class TestReview(ReviewBase):
             addon=self.addon, needs_admin_code_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 302
@@ -4112,7 +4112,7 @@ class TestReview(ReviewBase):
             addon=self.addon, needs_admin_code_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 200  # Form error
@@ -4125,7 +4125,7 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_content_review=True)
         self.grant_permission(self.reviewer, 'Addons:PostReview')
-        for action in ['confirm_auto_approved', 'public', 'reject',
+        for action in ['approve_content', 'public', 'reject',
                        'reject_multiple_versions']:
             response = self.client.post(self.url, self.get_dict(action=action))
             assert response.status_code == 200  # Form error.
@@ -4200,7 +4200,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 302
@@ -4591,7 +4591,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
-            'confirm_auto_approved', 'reject_multiple_versions', 'reply',
+            'approve_content', 'reject_multiple_versions', 'reply',
             'super', 'comment']
         assert (
             [action[0] for action in response.context['actions']] ==
