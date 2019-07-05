@@ -61,12 +61,6 @@ def system_addon_submission_allowed(user, parsed_addon_data):
         user.email.endswith(u'@mozilla.com'))
 
 
-def langpacks_submission_allowed(user, parsed_addon_data):
-    return (
-        not parsed_addon_data.get('type') == amo.ADDON_LPAPP or
-        user.email.endswith('@mozilla.com'))
-
-
 def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
     return (
         not parsed_addon_data.get('is_mozilla_signed_extension') or

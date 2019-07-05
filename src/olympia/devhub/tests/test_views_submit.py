@@ -2289,6 +2289,34 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NOMINATED
 
+    def test_langpack_requires_permission(self):
+        self.upload = self.get_upload(
+            'webextension_langpack.xpi',
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+            }))
+
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        response = self.post(expected_status=200)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'You cannot submit a language pack')
+
+        self.grant_permission(
+            self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+
+        response = self.post(expected_status=302)
+
+        version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+
+        self.assert3xx(
+            response,
+            reverse(
+                'devhub.submit.version.source',
+                args=[self.addon.slug, version.pk]))
+
 
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
