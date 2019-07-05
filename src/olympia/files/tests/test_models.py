@@ -650,11 +650,12 @@ class TestParseXpi(TestCase):
         assert result['type'] == amo.ADDON_EXTENSION
 
     def test_parse_langpack(self):
+        # You can only submit language packs with the proper permission
         with self.assertRaises(ValidationError):
-            result = self.parse(filename='langpack.xpi')
+            result = self.parse(filename='webextension_langpack.xpi')
 
-        self.user.update(email='foo@mozilla.com')
-        result = self.parse(filename='langpack.xpi')
+        self.grant_permission(self.user, 'LanguagePack:Submit')
+        result = self.parse(filename='webextension_langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
         assert not result['is_restart_required']
 
@@ -1203,7 +1204,7 @@ class TestFileFromUpload(UploadTest):
         assert file_.filename.endswith('.xpi')
 
     def test_langpack_extension(self):
-        upload = self.upload('langpack.xpi')
+        upload = self.upload('webextension_langpack.xpi')
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
         assert file_.filename.endswith('.xpi')

@@ -77,6 +77,10 @@ DISCOVERY_EDIT = AclPermission('Discovery', 'Edit')
 # Can list/access abuse reports
 ABUSEREPORTS_EDIT = AclPermission('AbuseReports', 'Edit')
 
+# Can submit language packs. #11788 and #11793
+LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
+
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
