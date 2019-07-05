@@ -242,16 +242,17 @@ class AutoApprovedTable(ModernAddonQueueTable):
 
 
 class ContentReviewTable(AutoApprovedTable):
-    last_content_review = tables.DateTimeColumn(
-        verbose_name=_(u'Last Content Review'),
-        accessor='addonapprovalscounter.last_content_review')
+    last_updated = tables.DateTimeColumn(verbose_name=_(u'Last Updated'))
 
     class Meta(ReviewerQueueTable.Meta):
-        fields = ('addon_name', 'flags', 'last_content_review')
+        fields = ('addon_name', 'flags', 'last_updated')
         # Exclude base fields ReviewerQueueTable has that we don't want.
         exclude = ('addon_type_id', 'last_human_review', 'waiting_time_min',
                    'weight')
         orderable = False
+
+    def render_last_updated(self, value):
+        return naturaltime(value) if value else ''
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['content', record.slug])
