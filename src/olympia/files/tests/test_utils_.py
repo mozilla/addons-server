@@ -612,12 +612,14 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         }
         parsed_data = utils.ManifestJSONExtractor(
             '/fake_path.xpi', json.dumps(data)).parse()
+
         with self.assertRaises(ValidationError):
             # Regular users aren't allowed to submit langpacks.
             utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
 
-        # Shouldn't raise for mozilla users.
-        user.update(email='foo@mozilla.com')
+        # Shouldn't raise for users with proper permissions
+        self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+
         utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
 
 
