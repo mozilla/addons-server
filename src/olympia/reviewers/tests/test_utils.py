@@ -361,13 +361,22 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
-        expected = ['confirm_auto_approved', 'reject_multiple_versions',
+        expected = ['approve_content', 'reject_multiple_versions',
                     'reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED,
+            content_review_only=True).keys()) == expected
+
+    def test_actions_content_review_non_approved_addon(self):
+        # Content reviewers can also see add-ons before they are approved for
+        # the first time.
+        self.grant_permission(self.request.user, 'Addons:ContentReview')
+        expected = ['approve_content', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_AWAITING_REVIEW,
             content_review_only=True).keys()) == expected
 
     def test_actions_public_static_theme(self):
@@ -1250,7 +1259,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 2
 
-    def test_confirm_auto_approval_content_review(self):
+    def test_approve_content_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         self.setup_data(
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
@@ -1265,7 +1274,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.files.all()[0].status == (
             amo.STATUS_APPROVED)
 
-        self.helper.handler.confirm_auto_approved()
+        self.helper.handler.approve_content()
 
         summary.reload()
         assert summary.confirmed is None  # unchanged.
