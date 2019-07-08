@@ -56,6 +56,18 @@
     <h3 id="history">
       {{ _('Add-on History') }}
     </h3>
+    {% if deleted_addons %}
+    <div class="results">
+      <table class="item-history"><tr class="listing-header"><th>
+        {{ _('Previously deleted entries') }}:
+        {% for deleted in deleted_addons %}
+          {% set review_url = url('reviewers.review', 'unlisted', deleted.id)
+                              if unlisted else url('reviewers.review', deleted.id) %}
+          <a href="{{ review_url }}">{{ deleted.id }}</a>&nbsp;
+        {% endfor %}
+      </th></tr></table>
+    </div>
+    {% endif %}
     <div id="review-files-paginate">
       {% include "reviewers/includes/paginator_history.html"  %}
     </div>

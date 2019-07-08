@@ -32,7 +32,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, ReusedGUID)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -4641,6 +4641,43 @@ class TestReview(ReviewBase):
         self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
         assert DraftComment.objects.count() == 0
+
+    def test_reused_guid_from_previous_deleted_addon(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Previously deleted entries' not in response.content
+
+        old_one = addon_factory(status=amo.STATUS_DELETED)
+        old_two = addon_factory(status=amo.STATUS_DELETED)
+        ReusedGUID.objects.create(addon=old_one, guid='reuse@')
+        ReusedGUID.objects.create(addon=old_two, guid='reuse@')
+        self.addon.update(guid='reuse@')
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Previously deleted entries' in response.content
+        expected = [
+            (f'{old_one.id}', reverse('reviewers.review', args=[old_one.id])),
+            (f'{old_two.id}', reverse('reviewers.review', args=[old_two.id])),
+        ]
+        doc = pq(response.content)
+        check_links(
+            expected, doc('div.results table.item-history a'), verify=False)
+
+        self.make_addon_unlisted(self.addon)
+        self.login_as_admin()
+        response = self.client.get(
+            reverse('reviewers.review', args=['unlisted', self.addon.slug]))
+        assert response.status_code == 200
+        expected = [
+            (f'{old_one.id}', reverse(
+                'reviewers.review', args=['unlisted', old_one.id])),
+            (f'{old_two.id}', reverse(
+                'reviewers.review', args=['unlisted', old_two.id])),
+        ]
+        doc = pq(response.content)
+        check_links(
+            expected, doc('div.results table.item-history a'), verify=False)
 
 
 @override_flag('code-manager', active=True)
