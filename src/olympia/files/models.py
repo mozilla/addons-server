@@ -556,7 +556,7 @@ class FileUpload(ModelBase):
             loc += ext
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc),
-                 extra={'email': self.user.email})
+                 extra={'email': self.user.email or ''})
         if is_crx:
             hash_func = write_crx_as_xpi(chunks, loc)
         else:
