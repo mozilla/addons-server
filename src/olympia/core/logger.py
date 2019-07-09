@@ -24,10 +24,10 @@ class AmoLoggerAdapter(logging.LoggerAdapter):
         super(AmoLoggerAdapter, self).__init__(logger, extra or {})
 
     def process(self, msg, kwargs):
-        kwargs['extra'] = {
+        kwargs.setdefault('extra', {}).update({
             'REMOTE_ADDR': core.get_remote_addr() or '',
             'USERNAME': getattr(core.get_user(), 'username', None) or '<anon>'
-        }
+        })
         return msg, kwargs
 
 
