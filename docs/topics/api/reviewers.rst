@@ -343,6 +343,7 @@ These endpoints allow you to draft comments that can be submitted through the re
 .. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
 
     Delete a draft comment.
+
     :statuscode 204: The comment has been deleted successfully.
     :statuscode 404: The user doesn't have the permission to delete. This might happen when someone tries to delete a comment created by another reviewer or author.
 
@@ -353,5 +354,5 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string comments: The comment that is being drafted as part of a review.
     :<json string filename: The filename this comment is related to.
     :<json int lineno: The line number this comment is related to.
-    :statuscode 201: New comment has been created.
+    :statuscode 200: The comment has been updated.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
