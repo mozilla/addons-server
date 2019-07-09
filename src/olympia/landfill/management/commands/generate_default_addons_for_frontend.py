@@ -26,29 +26,32 @@ base_collections = [
     u'smarter-shopping',
     u'be-more-productive',
     u'watching-videos',
+    u'youtube-boosters',
+    u'feed-readers',
+    u'privacy-matters',
 ]
 
 #  Addons that exist in the carousel.
 #  Needs to be updated as the homepage is updated
 hero_addons = [
-    u'facebook-container'
-    u'midnight-lizard-quantum'
-    u'turbo-download-manager'
-    u'auth-helper'
-    u'ip-address-and-domain-info'
-    u'ublock-origin'
-    u'ghostery'
-    u'multi-account-containers'
-    u'transparent-standalone-image'
-    u'tabliss'
-    u'share-backported'
-    u'view-page-archive'
-    u'privacy-possum'
-    u'page-translate'
-    u'textmarkerpro'
-    u'forget_me_not'
-    u'groupspeeddial'
-    u'styl-us'
+    u'facebook-container',
+    u'midnight-lizard-quantum',
+    u'turbo-download-manager',
+    u'auth-helper',
+    u'ip-address-and-domain-info',
+    u'ublock-origin',
+    u'ghostery',
+    u'multi-account-containers',
+    u'transparent-standalone-image',
+    u'tabliss',
+    u'share-backported',
+    u'view-page-archive',
+    u'privacy-possum',
+    u'page-translate',
+    u'textmarkerpro',
+    u'forget_me_not',
+    u'groupspeeddial',
+    u'styl-us',
 ]
 
 
@@ -80,10 +83,10 @@ class Command(BaseCommand):
             serializer.create_featured_theme()
             serializer.create_featured_collections()
             serializer.create_featured_themes()
-            for addon in featured_collections:
+            for addon in base_collections:
                 serializer.create_a_named_collection_and_addon(
                     addon, author='mozilla')
-            for addon in base_collections:
+            for addon in hero_addons:
                 serializer.create_a_named_collection_and_addon(
                     addon, author='mozilla')
             for addon in hero_addons:

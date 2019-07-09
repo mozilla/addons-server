@@ -133,7 +133,7 @@ class DevHub(Base):
 
         _register_link_locator = (
             By.CSS_SELECTOR,
-            '.DevHub-Navigation-Register > a:nth-child(1)'
+            'li.show-on-desktop:nth-child(7) > a:nth-child(1)'
         )
         _sign_in_locator = (
             By.CSS_SELECTOR,
@@ -142,12 +142,14 @@ class DevHub(Base):
         _sign_out_locator = (By.CSS_SELECTOR, '.DevHub-Navigation-SignOut > a')
 
         def click_login(self):
+            self.selenium.find_element_by_id("djHideToolBarButton").click()
             self.find_element(*self._sign_in_locator).click()
             from pages.desktop.login import Login
 
             return Login(self.selenium, self.page.base_url)
 
         def register(self):
+            self.selenium.find_element_by_id("djHideToolBarButton").click()
             self.find_element(*self._register_link_locator).click()
 
         def click_sign_out(self):

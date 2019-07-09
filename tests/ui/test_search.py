@@ -88,14 +88,7 @@ def test_special_chars_dont_break_suggestions(base_url, selenium):
 def test_capitalization_has_same_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'Ui-Addon-Install'
-    suggestions = page.search.search_for(term, execute=False)
-    assert term == suggestions[0].name
     suggestions = page.search.search_for(term.capitalize(), execute=False)
-    # Sleep to let autocomplete update.
-    time.sleep(2)
-    assert term == suggestions[0].name
-    page = Home(selenium, base_url).open()
-    suggestions = page.search.search_for(term.lower(), execute=False)
     # Sleep to let autocomplete update.
     time.sleep(2)
     assert term == suggestions[0].name
@@ -127,6 +120,7 @@ def test_long_terms_dont_break_suggestions(base_url, selenium):
 
 
 @pytest.mark.nondestructive
+@pytest.mark.skip(reason='Search Behavior has changed')
 def test_blank_search_loads_results_page(base_url, selenium):
     page = Home(selenium, base_url).open()
     results = page.search.search_for('', execute=True)

@@ -11,7 +11,7 @@ class Base(Page):
 
     def __init__(self, selenium, base_url, locale='en-US', **kwargs):
         super(Base, self).__init__(
-            selenium, base_url, locale=locale, timeout=30, **kwargs)
+            selenium, base_url, locale=locale, timeout=10, **kwargs)
 
     def wait_for_page_to_load(self):
         self.wait.until(
