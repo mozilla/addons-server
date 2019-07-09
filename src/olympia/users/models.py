@@ -548,7 +548,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
-        log.debug(u'User (%s) logged in successfully' % user)
+        log.debug(u'User (%s) logged in successfully' % user,
+                  extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
