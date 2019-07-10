@@ -7,11 +7,12 @@ from itertools import cycle, islice
 from django.db.models.signals import post_save
 
 from olympia.addons.models import Addon, Persona, update_search_index
-from olympia.amo.utils import slugify
+from olympia.amo.utils import slugify, days_ago
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION, ADDON_PERSONA, ADDON_STATICTHEME, STATUS_APPROVED)
 from olympia.devhub.forms import icons
+from olympia.discovery.models import DiscoveryItem
 
 from .categories import generate_categories
 from .collection import generate_collection
@@ -122,7 +123,7 @@ def create_theme(name, **extra_kwargs):
     return theme
 
 
-def generate_themes(num, owner):
+def generate_themes(num, owner, **kwargs):
     """Generate `num` themes for the given `owner`."""
     # Disconnect this signal given that we issue a reindex at the end.
     post_save.disconnect(update_search_index, sender=Addon,
@@ -133,7 +134,7 @@ def generate_themes(num, owner):
     # Generate personas.
     for name, category in _yield_name_and_cat(
             num, app=FIREFOX, type=ADDON_PERSONA):
-        theme = create_theme(name=name)
+        theme = create_theme(name=name, **kwargs)
         generate_addon_user_and_category(theme, user, category)
         generate_theme_images(theme)
         generate_translations(theme)

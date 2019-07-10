@@ -133,7 +133,7 @@ class DevHub(Base):
 
         _register_link_locator = (
             By.CSS_SELECTOR,
-            'li.show-on-desktop:nth-child(7) > a:nth-child(1)'
+            '.DevHub-Navigation-Register > a:nth-child(1)'
         )
         _sign_in_locator = (
             By.CSS_SELECTOR,

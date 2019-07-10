@@ -131,7 +131,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             author = user_factory()
         try:
             user = UserProfile.objects.create(username=author, email=f'{author}@email.com')
-            user.id = 4757633
+            user.update(id=settings.TASK_USER_ID)
         except Exception:  # django.db.utils.IntegrityError
             # If the user is already made, use that same user,
             # if not use created user
@@ -147,7 +147,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             )
             addon.save()
         else:
-            author.id = 4757633
+            author.update(id=settings.TASK_USER_ID)
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 users=[UserProfile.objects.get(username=author.username)],
