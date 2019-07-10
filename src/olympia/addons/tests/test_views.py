@@ -27,7 +27,7 @@ from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.bandwagon.models import FeaturedCollection
+from olympia.bandwagon.models import FeaturedCollection, CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.discovery.models import DiscoveryItem
 from olympia.users.models import UserProfile
@@ -2582,7 +2582,8 @@ class TestReplacementAddonView(TestCase):
         collection = collection_factory(author=author)
         rep_addon2 = addon_factory()
         rep_addon3 = addon_factory()
-        collection.set_addons([rep_addon2.id, rep_addon3.id])
+        CollectionAddon.objects.create(addon=rep_addon2)
+        CollectionAddon.objects.create(addon=rep_addon3)
         ReplacementAddon.objects.create(
             guid='legacy2collection@moz',
             path=urlunquote(collection.get_url_path()))
