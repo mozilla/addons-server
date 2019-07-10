@@ -19,8 +19,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
-    VersionSerializer, FileSerializer, SimpleAddonSerializer,
-    SimpleVersionSerializer)
+    VersionSerializer, FileSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags
 from olympia.api.fields import SplitField
 from olympia.users.models import UserProfile
@@ -342,12 +341,12 @@ class DraftCommentSerializer(serializers.ModelSerializer):
     version = SplitField(
         serializers.PrimaryKeyRelatedField(
             queryset=Version.unfiltered.all()),
-        SimpleVersionSerializer())
+        VersionSerializer())
 
     class Meta:
         model = DraftComment
         fields = (
-            'filename', 'lineno', 'comment',
+            'id', 'filename', 'lineno', 'comment',
             'version', 'user'
         )
 

@@ -320,6 +320,7 @@ These endpoints allow you to draft comments that can be submitted through the re
 
     Retrieve existing draft comments for a specific version.
 
+    :>json int id: The id of the draft comment object.
     :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
     :>json string filename: The filename a specific comment is related to.
     :>json int lineno: The line number a specific comment is related to.
@@ -333,7 +334,7 @@ These endpoints allow you to draft comments that can be submitted through the re
 
     Create a draft comment for a specific version.
 
-    :<json string comments: The comment that is being drafted as part of a review.
+    :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The filename this comment is related to.
     :<json int lineno: The line number this comment is related to.
     :statuscode 201: New comment has been created.
@@ -351,7 +352,7 @@ These endpoints allow you to draft comments that can be submitted through the re
 
     Update a comment, it's filename or line number.
 
-    :<json string comments: The comment that is being drafted as part of a review.
+    :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The filename this comment is related to.
     :<json int lineno: The line number this comment is related to.
     :statuscode 200: The comment has been updated.
