@@ -5743,6 +5743,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         })
 
         response = self.client.post(url, data)
+        comment_id = response.json()['id']
         assert response.status_code == 201
 
         response = self.client.post(url, data)
@@ -5757,6 +5758,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
 
         assert response.json()['count'] == 2
         assert response.json()['results'][0] == {
+            'id': comment_id,
             'filename': 'manifest.json',
             'lineno': 20,
             'comment': 'Some really fancy comment',
