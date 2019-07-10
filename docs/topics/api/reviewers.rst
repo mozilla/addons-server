@@ -316,9 +316,20 @@ These endpoints allow you to draft comments that can be submitted through the re
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
+
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
-    Retrieve existing draft comments for a specific version.
+    Retrieve existing draft comments for a specific version. See :ref:`pagination <api-overview-pagination>` for more details.
+
+    :>json int count: The number of comments for this version.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`comments <reviewers-draft-comment-detail-object>`.
+
+
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
+
+    .. _reviewers-draft-comment-detail-object:
 
     :>json int id: The id of the draft comment object.
     :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
@@ -329,6 +340,7 @@ These endpoints allow you to draft comments that can be submitted through the re
     :>json string user.name: The name for an author.
     :>json string user.url: The link to the profile page for an author.
     :>json string user.username: The username for an author.
+
 
 .. http:post:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
@@ -341,12 +353,14 @@ These endpoints allow you to draft comments that can be submitted through the re
     :statuscode 400: An error occurred, check the `error` value in the JSON.
     :statuscode 403: The user doesn't have the permission to create a comment. This might happen (among other cases) when someone without permissions for unlisted versions tries to add a comment for an unlisted version (which shouldn't happen as the user doesn't see unlisted versions, but it's blocked here too).
 
+
 .. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
 
     Delete a draft comment.
 
     :statuscode 204: The comment has been deleted successfully.
     :statuscode 404: The user doesn't have the permission to delete. This might happen when someone tries to delete a comment created by another reviewer or author.
+
 
 .. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)
 
