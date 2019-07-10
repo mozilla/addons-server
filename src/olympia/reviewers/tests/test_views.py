@@ -5836,6 +5836,37 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.json()['lineno'] == 16
         assert response.json()['filename'] == 'new_manifest.json'
 
+    def test_draft_comment_lineno_filename_optional(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        data = {
+            'comment': 'Some really fancy comment',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        response = self.client.post(url, data)
+        comment_id = response.json()['id']
+
+        assert response.status_code == 201
+
+        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': comment_id
+        })
+
+        response = self.client.get(url)
+
+        assert response.json()['comment'] == 'Some really fancy comment'
+        assert response.json()['lineno'] is None
+        assert response.json()['filename'] is None
+
     def test_draft_comment_delete(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')

@@ -171,8 +171,8 @@ class DraftComment(ModelBase):
     id = PositiveAutoField(primary_key=True)
     version = models.ForeignKey(Version, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    filename = models.CharField(max_length=255)
-    lineno = models.PositiveIntegerField()
+    filename = models.CharField(max_length=255, null=True, blank=True)
+    lineno = models.PositiveIntegerField(null=True)
     comment = models.TextField()
 
     class Meta:
