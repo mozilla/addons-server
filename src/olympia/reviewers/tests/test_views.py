@@ -36,7 +36,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
-from olympia.addons.serializers import SimpleVersionSerializer
+from olympia.addons.serializers import VersionSerializer
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -5761,7 +5761,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
             'lineno': 20,
             'comment': 'Some really fancy comment',
             'version': json.loads(json.dumps(
-                SimpleVersionSerializer(self.version).data,
+                VersionSerializer(self.version).data,
                 cls=amo.utils.AMOJSONEncoder)),
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
