@@ -2837,9 +2837,8 @@ msgstr "Genera nuove credenziali"
 msgid "Invisible"
 msgstr "Invisibile"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "Revisioni approvate"
+msgstr ""
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Devi completare questo componente aggiuntivo inserendo un numero di versione o i metadati mancanti."
@@ -5418,7 +5417,7 @@ msgid "Is recommendable"
 msgstr "È idoneo per i consigliati"
 
 msgid "Delayed because it's the first listed version"
-msgstr "Ritardato perché è la prima versione elencata"
+msgstr ""
 
 msgid "Type"
 msgstr "Tipologia"
