@@ -712,8 +712,8 @@ class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
             ' Please note that we do not include "@" in the match so you '
             ' should do that in the pattern.'))
 
-    error_message = _('The email address you used for your developer account'
-                      ' is not allowed for add-on submission.')
+    error_message = _('The email address used for your account is not '
+                      'allowed for add-on submission.')
 
     class Meta:
         db_table = 'users_user_email_restriction'
