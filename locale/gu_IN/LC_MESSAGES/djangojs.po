@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-11 16:49+0000\n"
+"PO-Revision-Date: 2019-07-11 16:56+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -754,19 +754,19 @@ msgid "Notes for Reviewers"
 msgstr "સમીક્ષકો માટે નોંધો"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "કોઈ આવૃત્તિની નોંધો મળી નથી"
 
 msgid "Review Text"
-msgstr ""
+msgstr "લખાણની સમીક્ષા કરો"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "સમીક્ષાની નોંધો મળી"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "સરેરાશ સમીક્ષાઓ"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "સમીક્ષાઓની સંખ્યા"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
@@ -778,40 +778,40 @@ msgid "Flagged"
 msgstr "ચિહ્નિત"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "પ્રતિકૃતિ"
 
 msgid "Rejected"
-msgstr ""
+msgstr "નામંજૂર"
 
 msgid "Approved"
-msgstr ""
+msgstr "મંજૂર"
 
 msgid "No results found"
-msgstr ""
+msgstr "પરિણામો મળ્યા નથી"
 
 msgid "Theme"
-msgstr ""
+msgstr "થીમ"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "સમીક્ષક"
 
 msgid "Status"
-msgstr ""
+msgstr "સ્થિતિ"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "બધા પરીક્ષણો સફળતાપૂર્વક પસાર થયા."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "આ પરીક્ષણો થયા નહી."
 
 msgid "Tests"
-msgstr ""
+msgstr "પરીક્ષણો"
 
 msgid "Error"
-msgstr ""
+msgstr "ભૂલ"
 
 msgid "Warning"
-msgstr ""
+msgstr "ચેતવણી"
 
 msgid "{0} line {1} column {2}"
 msgstr ""
@@ -820,28 +820,28 @@ msgid "{0} line {1}"
 msgstr ""
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "ઍડ-ઑનને માન્યતા મળી શકી નહી."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "ઍડ-ઑનને માન્યતા મળી."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ભૂલ"
+msgstr[1] "{0} ભૂલો"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ચેતવણી"
+msgstr[1] "{0} ચેતવણીઓ"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} સૂચના"
+msgstr[1] "{0} સૂચનાઓ"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
 msgid "Internal server error"
-msgstr ""
+msgstr "આંતરિક સર્વરની ભૂલ"
