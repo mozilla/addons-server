@@ -17,21 +17,18 @@ from rest_framework import serializers
 
 import olympia.core.logger
 
-from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp, version_factory
+from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia import amo
-from olympia.addons.models import AddonUser, Preview, Addon, Persona
+from olympia.addons.models import AddonUser, Preview, Addon
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.utils import days_ago
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION,
-    ADDON_PERSONA,
-    STATUS_APPROVED
+    ADDON_PERSONA
 )
 from olympia.devhub.forms import icons
 from olympia.landfill.collection import generate_collection
-from olympia.landfill.generators import generate_themes, create_theme
-from olympia.landfill.user import generate_user
 from olympia.files.tests.test_file_viewer import get_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -130,7 +127,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
         if author is None:
             author = user_factory()
         try:
-            user = UserProfile.objects.create(username=author, email=f'{author}@email.com')
+            user = UserProfile.objects.create(
+                username=author, email=f'{author}@email.com'
+            )
             user.update(id=settings.TASK_USER_ID)
         except Exception:  # django.db.utils.IntegrityError
             # If the user is already made, use that same user,
@@ -141,8 +140,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 name=u'{}'.format(name),
                 slug=u'{}'.format(name),
                 version_kw={
-                'recommendation_approved': True,
-                'nomination': days_ago(6)
+                    'recommendation_approved': True,
+                    'nomination': days_ago(6)
                 }
             )
             addon.save()
@@ -154,8 +153,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 name=u'{}'.format(name),
                 slug=u'{}'.format(name),
                 version_kw={
-                'recommendation_approved': True,
-                'nomination': days_ago(6)
+                    'recommendation_approved': True,
+                    'nomination': days_ago(6)
                 }
             )
             addon.save()
@@ -300,8 +299,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 weekly_downloads=9999999,
                 developer_comments='This is a testing addon.',
                 version_kw={
-                'recommendation_approved': True,
-                'nomination': days_ago(6)
+                    'recommendation_approved': True,
+                    'nomination': days_ago(6)
                 },
             )
             addon.save()
@@ -382,7 +381,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 status=amo.STATUS_APPROVED,
                 type=ADDON_PERSONA,
                 file_kw={
-                'is_webextension': True
+                    'is_webextension': True
                 },
                 version_kw={
                     'recommendation_approved': True,
@@ -401,7 +400,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             author=UserProfile.objects.get(username=author),
             type=amo.COLLECTION_RECOMMENDED,
             name=name
-        )    
+        )
 
     def create_installable_addon(self):
         activate('en-US')

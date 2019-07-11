@@ -1,6 +1,5 @@
 import pytest
 
-from pages.desktop.categories import Categories
 from pages.desktop.extensions import Extensions
 from pages.desktop.home import Home
 

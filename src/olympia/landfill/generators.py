@@ -7,12 +7,11 @@ from itertools import cycle, islice
 from django.db.models.signals import post_save
 
 from olympia.addons.models import Addon, Persona, update_search_index
-from olympia.amo.utils import slugify, days_ago
+from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION, ADDON_PERSONA, ADDON_STATICTHEME, STATUS_APPROVED)
 from olympia.devhub.forms import icons
-from olympia.discovery.models import DiscoveryItem
 
 from .categories import generate_categories
 from .collection import generate_collection
