@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-11 17:08+0000\n"
+"PO-Revision-Date: 2019-07-11 17:15+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -520,13 +520,13 @@ msgid "{addon} was created."
 msgstr ""
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} ગુણધર્મો સંપાદિત કર્યું."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} વર્ણન સંપાદિત કર્યું."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "{addon}માટે સંપાદિત કરાયેલ શ્રેણીઓ."
 
 msgid "{0.name} ({1}) added to {addon}."
 msgstr ""
@@ -539,14 +539,14 @@ msgid "Contributions for {addon}."
 msgstr ""
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} નિષ્ક્રિય કરેલ છે."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} સક્રિય કરેલ છે."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "{addon} ની સ્થિતિ બદલાઈ ને {status}થઇ."
 
 msgid "{version} added to {addon}."
 msgstr ""
@@ -571,7 +571,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr ""
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "પ્રારંભિક મંજૂર"
 
 msgid "{addon} {version} rejected."
 msgstr ""
@@ -580,7 +580,7 @@ msgid "{addon} {version} retained."
 msgstr ""
 
 msgid "Retained"
-msgstr ""
+msgstr "જાળવી રાખ્યું"
 
 msgid "{addon} {version} escalated."
 msgstr ""
@@ -592,7 +592,7 @@ msgid "{addon} {version} review requested."
 msgstr ""
 
 msgid "Review requested"
-msgstr ""
+msgstr "સમીક્ષા વિનંતી"
 
 msgid "{addon} {version} more information requested."
 msgstr ""
@@ -607,10 +607,10 @@ msgid "The addon has been flagged for Admin Review.  It's still in our review qu
 msgstr ""
 
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "{addon} {version}પર ટિપ્પણી કરો."
 
 msgid "Commented"
-msgstr ""
+msgstr "ટિપ્પણી કરી"
 
 msgid "{tag} added to {addon}."
 msgstr ""
