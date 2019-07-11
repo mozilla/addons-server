@@ -1654,7 +1654,10 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
+        # We need to keep force_text because urlsafe_base64_encode only starts
+        # returning a string from Django 2.2 onwards, before that a bytestring.
+        param = 'rta:%s' % force_text(
+            urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_queries=1)
@@ -1671,14 +1674,19 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
+        # We need to keep force_text because urlsafe_base64_encode only starts
+        # returning a string from Django 2.2 onwards, before that a bytestring.
+        param = 'rta:%s' % force_text(
+            urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400, expected_queries=1)
         assert data == [u'Invalid Return To AMO guid (not a curated add-on)']
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
-        param = 'rta:%s' % urlsafe_base64_encode(b'foo@bar')[:-1]
+        # We need to keep force_text because urlsafe_base64_encode only starts
+        # returning a string from Django 2.2 onwards, before that a bytestring.
+        param = 'rta:%s' % force_text(urlsafe_base64_encode(b'foo@bar')[:-1])
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
@@ -1709,7 +1717,10 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        param = 'rta:%s' % urlsafe_base64_encode(force_bytes(addon.guid))
+        # We need to keep force_text because urlsafe_base64_encode only starts
+        # returning a string from Django 2.2 onwards, before that a bytestring.
+        param = 'rta:%s' % force_text(
+            urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
