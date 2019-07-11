@@ -612,7 +612,6 @@ class AddonGitRepository(object):
         # Unchanged files are *only* exposed in case of explicitly requesting
         # a diff view for an file. That way we increase performance for
         # reguar unittests and full-tree diffs.
-
         generate_unmodified_fake_diff = (
             not patch.delta.is_binary and
             pathspec is not None and
