@@ -114,7 +114,14 @@ def get_mime_type_for_blob(tree_or_blob, name, blob):
         # Allow text mimetypes to be more specific for readable files.
         # `python-magic`/`libmagic` usually just returns plain/text but we
         # should use actual types like text/css or text/javascript.
-        mimetype, _ = mimetypes.guess_type(name)
+        guessed_mimetype, _ = mimetypes.guess_type(name)
+
+        # If the file for some reason doesn't have a known file extension
+        # (could happen for text files like `README`, `LICENSE` etc)
+        # don't null the
+        if guessed_mimetype is not None:
+            mimetype = guessed_mimetype
+
         # Re-apply compatibility mappings since `guess_type()` might return
         # a completely different mimetype.
         mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
