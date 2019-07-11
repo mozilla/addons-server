@@ -41,6 +41,11 @@ class DevhubSubmission(Base):
         self.find_element(*self._bookmarks_categories_locator).click()
         self.find_element(*self._license_btn_locator).click()
         self.find_element(*self._submit_btn_locator).click()
+        self.wait.until(
+            lambda _: self.selenium.find_element(
+                *self._edit_submission_btn_locator
+                ).is_displayed()
+            )
         self.selenium.find_element(*self._edit_submission_btn_locator).click()
         from pages.desktop.manage_submissions import ManageSubmissions
         subs = ManageSubmissions(self.selenium, self.base_url)
