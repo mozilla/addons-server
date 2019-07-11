@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-11 16:31+0000\n"
+"PO-Revision-Date: 2019-07-11 16:49+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -53,8 +53,8 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "તમારી ઍડ-ઑન {0} ભૂલ સાથે નિષ્ફળ માન્યતા."
-msgstr[1] "તમારી ઍડ-ઓન {0} ભૂલો સાથે માન્યતા નિષ્ફળ."
+msgstr[0] "તમારું ઍડ-ઑન {0} ભૂલનાં કારણે માન્યતા માટે નિષ્ફળ રહ્યું."
+msgstr[1] "તમારું ઍડ-ઑન {0} ભૂલોનાં કારણે માન્યતા માટે નિષ્ફળ રહ્યું."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -77,7 +77,7 @@ msgid "Unexpected server error while validating."
 msgstr "માન્ય કરતી વખતે અનપેક્ષિત સર્વર ભૂલ."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "માન્ય કરવાનું સમાપ્ત કર્યું {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "તમારી ઍડ-ઑનની માન્યતા સમાપ્ત થઈ ગઈ છે, તેની જાતે સમીક્ષા કરવામાં આવશે."
@@ -364,7 +364,7 @@ msgid "Category Pages"
 msgstr ""
 
 msgid "Collections"
-msgstr ""
+msgstr "સંગ્રહો"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
@@ -406,7 +406,7 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "સરેરાશ ફાળો"
 
 msgid "Usage"
 msgstr "વપરાશ"
@@ -494,15 +494,15 @@ msgstr "ઍડ-ઑન આવૃત્તિઓ, છેલ્લા {0} દિવ
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "ઍડ-ઑન આવૃત્તિઓ {0} થી {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "ઍડ-ઑન સ્થિતિ, છેલ્લા {0} દિવસો"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "ઍડ-ઑન સ્થિતિ {0} થી {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -514,11 +514,11 @@ msgstr "{0} થી {1} માંથી સ્ત્રોતો ડાઉનલ�
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "યોગદાન, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} નું યોગદાન"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -530,11 +530,11 @@ msgstr "સાઇટ મેટ્રિક્સ {0} થી {1} સુધી"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "વપરાશમાં આવેલ ઍડ-ઑન્સ, છેલ્લા {0} દિવસો"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "વપરાશમાં આવેલ ઍડ-ઑન્સ {0} થી {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
@@ -562,11 +562,11 @@ msgstr "એડ-ઓન {0} થી {1} સુધી સુધારાશે"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "છેલ્લા {0} દિવસમાં, લખેલી સમીક્ષાઓ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} માં લખાયેલી સમીક્ષાઓ"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -602,11 +602,11 @@ msgstr "{0} થી {1} સુધીની રેટિંગ્સ"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "છેલ્લા {0} દિવસમાં, થયેલ વેચાણ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} સુધીમાં થયેલ વેચાણ"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
@@ -632,10 +632,10 @@ msgid "No data available."
 msgstr "કોઈ ડેટા ઉપલબ્ધ નથી."
 
 msgid "Date"
-msgstr ""
+msgstr "તારીખ"
 
 msgid "Other"
-msgstr ""
+msgstr "અન્ય"
 
 msgid "Select an application first"
 msgstr "પ્રથમ એપ્લિકેશન પસંદ કરો"
@@ -655,14 +655,14 @@ msgid "Accept and Install"
 msgstr "સ્વીકારો અને સ્થાપિત કરો"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} માં ઉમેરો"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "કોઈપણ રીતે {0} માટે સ્થાપિત કરો"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "{0} માટે કોઇપણ રીતે ડાઉનલોડ કરો"
 
 msgid "Not available for your platform"
 msgstr "તમારા પ્લેટફોર્મ માટે ઉપલબ્ધ નથી"
@@ -672,13 +672,13 @@ msgid "This add-on is not compatible with your version of {0}."
 msgstr "આ ઍડ-ઑન {0}તમારી આવૃત્તિ સાથે સુસંગત નથી."
 
 msgid "View other versions"
-msgstr ""
+msgstr "અન્ય આવૃત્તિઓ જુઓ"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "{app} {min} - {max} ની સાથે કામ કરે છે"
 
 msgid "Works with {app}"
-msgstr ""
+msgstr "{app} ની સાથે કામ કરે છે"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
@@ -697,22 +697,22 @@ msgstr ""
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} ફાઇલ"
+msgstr[1] "{files} ફાઇલ્સ"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} વપરાશકર્તા સમીક્ષા"
+msgstr[1] "{reviews} વપરાશકર્તા સમીક્ષાઓ"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "છબી ફેરફારની પ્રક્રિયા થઈ રહી છે"
 
 msgid "No results found."
-msgstr ""
+msgstr "કોઈ પરિણામો મળ્યા નથી."
 
 msgid "Loading..."
-msgstr ""
+msgstr "લોડ કરી રહ્યું છે..."
 
 #. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
@@ -730,7 +730,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "અમે વેબસાઇટ જાળવણી કરતી વખતે આ સુવિધા અસ્થાયી રૂપે અક્ષમ કરેલી છે. થોડીવાર પછી ફરી તપાસો."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "આ સ્થાનિકીકરણ દૂર કરો"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -748,10 +748,10 @@ msgid "Loading&hellip;"
 msgstr ""
 
 msgid "Version Notes"
-msgstr ""
+msgstr "આવૃત્તિની નોંધો"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "સમીક્ષકો માટે નોંધો"
 
 msgid "No version notes found"
 msgstr ""
