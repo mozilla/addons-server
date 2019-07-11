@@ -102,7 +102,7 @@ def ratings_moderation_log(request):
         if form.cleaned_data['filter']:
             mod_log = mod_log.filter(action=form.cleaned_data['filter'].id)
 
-    pager = amo.utils.paginate(request, mod_log, 50)
+    pager = paginate(request, mod_log, 50)
 
     data = context(request, form=form, pager=pager)
 
@@ -183,7 +183,7 @@ def dashboard(request):
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
             ugettext('Auto Approved Add-ons ({0})').format(
-                AutoApprovalSummary.get_auto_approved_queue(
+                Addon.objects.get_auto_approved_queue(
                     admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_auto_approved')
         ), (
@@ -200,7 +200,7 @@ def dashboard(request):
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
         sections[ugettext('Content Review')] = [(
             ugettext('Content Review ({0})').format(
-                AutoApprovalSummary.get_content_review_queue(
+                Addon.objects.get_content_review_queue(
                     admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_content_review')
         ), (
@@ -468,11 +468,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     else:
         search_form = None
         is_searching = False
-    admin_reviewer = is_admin_reviewer(request)
 
     # Those restrictions will only work with our RawSQLModel, so we need to
     # make sure we're not dealing with a regular Django ORM queryset first.
     if hasattr(qs, 'sql_model'):
+        admin_reviewer = is_admin_reviewer(request)
         if not is_searching and not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
 
@@ -487,7 +487,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         per_page = REVIEWS_PER_PAGE
     if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
         per_page = REVIEWS_PER_PAGE
-    page = paginate(request, table.rows, per_page=per_page)
+    page = paginate(request, table.rows, per_page=per_page, count=qs.count())
     table.set_page(page)
     return render(request, 'reviewers/queue.html',
                   context(request, table=table, page=page, tab=tab,
@@ -522,10 +522,10 @@ def queue_counts(admin_reviewer):
             ViewRecommendedQueue),
         'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
-            AutoApprovalSummary.get_auto_approved_queue(
+            Addon.objects.get_auto_approved_queue(
                 admin_reviewer=admin_reviewer).count),
         'content_review': (
-            AutoApprovalSummary.get_content_review_queue(
+            Addon.objects.get_content_review_queue(
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
@@ -607,11 +607,8 @@ def application_versions_json(request):
 @permission_or_tools_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     admin_reviewer = is_admin_reviewer(request)
-    qs = (
-        AutoApprovalSummary.get_content_review_queue(
-            admin_reviewer=admin_reviewer)
-        .select_related('addonapprovalscounter')
-        .order_by('addonapprovalscounter__last_content_review', 'created')
+    qs = Addon.objects.get_content_review_queue(
+        admin_reviewer=admin_reviewer
     )
     return _queue(request, ContentReviewTable, 'content_review',
                   qs=qs, SearchForm=None)
@@ -620,15 +617,8 @@ def queue_content_review(request):
 @permission_or_tools_view_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     admin_reviewer = is_admin_reviewer(request)
-    qs = (
-        AutoApprovalSummary.get_auto_approved_queue(
-            admin_reviewer=admin_reviewer)
-        .select_related(
-            'addonapprovalscounter', '_current_version__autoapprovalsummary')
-        .order_by(
-            '-_current_version__autoapprovalsummary__weight',
-            'addonapprovalscounter__last_human_review',
-            'created'))
+    qs = Addon.objects.get_auto_approved_queue(
+        admin_reviewer=admin_reviewer)
     return _queue(request, AutoApprovedTable, 'auto_approved',
                   qs=qs, SearchForm=None)
 
@@ -815,19 +805,18 @@ def review(request, addon, channel=None):
     approvals_info = None
     reports = Paginator(
         (AbuseReport.objects
-                    .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
-                    .order_by('-created')), 5).page(1)
-    user_ratings = None
+            .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
+            .order_by('-created')), 5).page(1)
+    user_ratings = Paginator(
+        (Rating.without_replies
+            .filter(addon=addon, rating__lte=3, body__isnull=False)
+            .order_by('-created')), 5).page(1)
     if channel == amo.RELEASE_CHANNEL_LISTED:
         if was_auto_approved:
             try:
                 approvals_info = addon.addonapprovalscounter
             except AddonApprovalsCounter.DoesNotExist:
                 pass
-        user_ratings = Paginator(
-            (Rating.without_replies
-                   .filter(addon=addon, rating__lte=3, body__isnull=False)
-                   .order_by('-created')), 5).page(1)
 
         if content_review_only:
             queue_type = 'content_review'
@@ -909,7 +898,7 @@ def review(request, addon, channel=None):
     all_versions.sort(key=lambda v: v.created,
                       reverse=True)
 
-    pager = amo.utils.paginate(request, all_versions, 10)
+    pager = paginate(request, all_versions, 10)
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 

@@ -114,12 +114,14 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    import debug_toolbar
+
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
-    urlpatterns.append(
-        url(
-            r'^%s/(?P<path>.*)$' % media_url,
+    urlpatterns.extend([
+        url(r'^%s/(?P<path>.*)$' % media_url,
             serve_static,
             {'document_root': settings.MEDIA_ROOT}),
-    )
+        url(r'__debug__/', include(debug_toolbar.urls)),
+    ])

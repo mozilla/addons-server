@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 15:04+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-07 19:46+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -965,14 +965,13 @@ msgid "Download Management"
 msgstr "Asefrek n usader"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Sader isiɣzaf Firefox izemren ad ɛiwnen deg ysider agbur web, aẓawan akked tvidyutin. Tzemreḍ daɣen ad tafeḍ isiɣzaf i usefrek n yisidar, beṭṭu n yifuyla, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox izemren ad ɛiwnen deg ysider agbur web, aẓawan akked tvidyutin. Tzemreḍ daɣen ad tafeḍ isiɣzaf i usefrek n yosadaren, beṭṭu n yifuyla, d wayen-nniḍen."
 
 msgid "Feeds, News & Blogging"
 msgstr "Isuddam, isallen & ublugi"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
-"Sader isiɣzaf Firefox ittekksen fouillis pour pouvoir rester à jouanexluḍ n yisefka deg yiẓeḍwa n tmetti, aqdaɛ n wayen yellan deg yiblugen, isuddam RSS, asenɣeṣ n ɛeyyu n wallen, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox ittekksen aexluḍ n yisefka deg yiẓeḍwa n tmetti, aqdaɛ n wayen yellan deg yiblugen, isuddam RSS, asenɣeṣ n ɛeyyu n wallen, d wayen-nniḍen."
 
 msgid "Games & Entertainment"
 msgstr "Uraren & Zhu"
@@ -2778,6 +2777,10 @@ msgstr "Sirew talɣut tamaynut n usesteb"
 
 msgid "Invisible"
 msgstr "Aruman"
+
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Iceggiren yettwasnetmen"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Ma ulac aɣilif, kemmel azegrir-ik s tmerna n lqem neɣ iɣefiseka ixuṣṣen."
@@ -5501,6 +5504,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr ""
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

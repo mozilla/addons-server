@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 15:35+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-02 10:43+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2794,6 +2794,9 @@ msgstr "Neue Daten erzeugen"
 msgid "Invisible"
 msgstr "Unsichtbar"
 
+msgid "Approved and recommended"
+msgstr "Freigeschaltet und empfohlen"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Vervollständigen Sie Ihr Add-on bitte, indem Sie eine Version oder fehlende Metadaten einfügen."
 
@@ -5359,6 +5362,9 @@ msgstr "Markierung „automatische Freischaltung deaktiviert“ ist gesetzt"
 
 msgid "Is recommendable"
 msgstr "Ist empfohlen"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Verzögert, weil es die erste aufgeführte Version ist"
 
 msgid "Type"
 msgstr "Typ"

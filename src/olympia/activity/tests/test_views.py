@@ -444,9 +444,10 @@ class TestEmailApi(TestCase):
     @mock.patch('olympia.activity.tasks.process_email.apply_async')
     def test_successful(self, _mock):
         req = self.get_request(
-            {'SecretKey': 'SOME SECRET KEY', 'Message': 'something'})
+            {'SecretKey': 'SOME SECRET KEY', 'Message': 'something',
+             'SpamScore': 4.56})
         res = inbound_email(req)
-        _mock.assert_called_with(('something',))
+        _mock.assert_called_with(('something', 4.56))
         assert res.status_code == 201
         res.render()
         assert res.content == b'"validation key"'

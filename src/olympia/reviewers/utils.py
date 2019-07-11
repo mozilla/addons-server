@@ -241,16 +241,17 @@ class AutoApprovedTable(ModernAddonQueueTable):
 
 
 class ContentReviewTable(AutoApprovedTable):
-    last_content_review = tables.DateTimeColumn(
-        verbose_name=_(u'Last Content Review'),
-        accessor='addonapprovalscounter.last_content_review')
+    last_updated = tables.DateTimeColumn(verbose_name=_(u'Last Updated'))
 
     class Meta(ReviewerQueueTable.Meta):
-        fields = ('addon_name', 'flags', 'last_content_review')
+        fields = ('addon_name', 'flags', 'last_updated')
         # Exclude base fields ReviewerQueueTable has that we don't want.
         exclude = ('addon_type_id', 'last_human_review', 'waiting_time_min',
                    'weight')
         orderable = False
+
+    def render_last_updated(self, value):
+        return naturaltime(value) if value else ''
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['content', record.slug])
@@ -339,11 +340,8 @@ class ReviewHelper(object):
         was_auto_approved_and_user_can_post_review = (
             self.addon.current_version and
             self.addon.current_version.was_auto_approved and
-            is_post_reviewer)
-        was_auto_approved_and_user_can_content_review = (
-            self.addon.current_version and
-            self.addon.current_version.was_auto_approved and
-            is_content_reviewer and self.content_review_only)
+            is_post_reviewer and
+            not self.content_review_only)
         is_unlisted_and_user_can_review_unlisted = (
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
@@ -353,9 +351,9 @@ class ReviewHelper(object):
             self.addon.status == amo.STATUS_APPROVED and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             is_post_reviewer)
-        is_public_and_listed_and_user_can_content_review = (
+        is_valid_and_listed_and_user_can_content_review = (
             self.version and
-            self.addon.status == amo.STATUS_APPROVED and
+            (self.addon.is_public() or self.addon.is_unreviewed()) and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             is_content_reviewer and self.content_review_only)
 
@@ -382,6 +380,19 @@ class ReviewHelper(object):
             'minimal': False,
             'available': actions['public']['available'],
         }
+        actions['approve_content'] = {
+            'method': self.handler.approve_content,
+            'label': _('Approve Content'),
+            'details': _('This records your approbation of the '
+                         'content of the latest public version, '
+                         'without notifying the developer.'),
+            'minimal': False,
+            'comments': False,
+            'available': (
+                reviewable_because_not_reserved_for_admins_or_user_is_admin and
+                is_valid_and_listed_and_user_can_content_review
+            ),
+        }
         actions['confirm_auto_approved'] = {
             'method': self.handler.confirm_auto_approved,
             'label': _('Confirm Approval'),
@@ -394,7 +405,6 @@ class ReviewHelper(object):
             'available': (
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
                 (was_auto_approved_and_user_can_post_review or
-                 was_auto_approved_and_user_can_content_review or
                  is_unlisted_and_user_can_review_unlisted))
         }
         actions['reject_multiple_versions'] = {
@@ -409,7 +419,7 @@ class ReviewHelper(object):
                 self.addon.type != amo.ADDON_STATICTHEME and
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
                 (is_public_and_listed_and_user_can_post_review or
-                 is_public_and_listed_and_user_can_content_review)
+                 is_valid_and_listed_and_user_can_content_review)
             )
         }
         actions['reply'] = {
@@ -439,15 +449,6 @@ class ReviewHelper(object):
             'available': True,
         }
 
-        # Small tweaks to labels and descriptions when in content review mode.
-        if self.content_review_only:
-            if 'confirm_auto_approved' in actions:
-                actions['confirm_auto_approved'].update({
-                    'label': _('Approve Content'),
-                    'details': _('This records your approbation of the '
-                                 'content of the latest public version, '
-                                 'without notifying the developer.'),
-                })
         return OrderedDict(
             ((key, action) for key, action in actions.items()
              if action['available'])
@@ -736,6 +737,36 @@ class ReviewBase(object):
         self.log_action(log_action_type)
         log.info(u'%s for %s' % (log_action_type.short, self.addon))
 
+    def approve_content(self):
+        """Approve content of an add-on."""
+        channel = self.version.channel
+        version = self.addon.current_version
+
+        # Content review only action.
+        assert self.content_review_only
+
+        # Doesn't make sense for unlisted versions.
+        assert channel == amo.RELEASE_CHANNEL_LISTED
+
+        # Like confirm auto approval, the approve content action should not
+        # show the comment box, so override the text in case the reviewer
+        # switched between actions and accidently submitted some comments from
+        # another action.
+        self.data['comments'] = ''
+
+        # When doing a content review, don't increment the approvals counter,
+        # just record the date of the content approval and log it.
+        AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
+        self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
+
+        # Assign reviewer incentive scores.
+        if self.request:
+            is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
+            ReviewerScore.award_points(
+                self.request.user, self.addon, self.addon.status,
+                version=version, post_review=is_post_review,
+                content_review=self.content_review_only)
+
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""
 
@@ -753,17 +784,10 @@ class ReviewBase(object):
         # so override the text in case the reviewer switched between actions
         # and accidently submitted some comments from another action.
         self.data['comments'] = ''
-        if self.content_review_only:
-            # If we're only doing a content review, then don't increment
-            # the counter, just record the date of the content approval
-            # and log it.
-            AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
-            self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
-        else:
-            if channel == amo.RELEASE_CHANNEL_LISTED:
-                version.autoapprovalsummary.update(confirmed=True)
-                AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-            self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
+        if channel == amo.RELEASE_CHANNEL_LISTED:
+            version.autoapprovalsummary.update(confirmed=True)
+            AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+        self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
         # Assign reviewer incentive scores.
         if self.request:

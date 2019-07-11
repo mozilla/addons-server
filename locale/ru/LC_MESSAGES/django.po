@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-26 16:20+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-04 06:40+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1747,7 +1747,7 @@ msgid "There was an error uploading your preview."
 msgstr "Ошибка при загрузке вашего предпросмотра."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Последняя утверждённая версия рекомендуемого расширения не может быть удалена или отключена. Пожалуйста, свяжитесь с администраторами AMO, если вам нужна помощь с этим."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2801,6 +2801,9 @@ msgstr "Создать новые полномочия"
 
 msgid "Invisible"
 msgstr "Невидимое"
+
+msgid "Approved and recommended"
+msgstr "Утверждённые и рекомендуемые"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Пожалуйста, завершите ваше дополнение, добавив версию или отсутствующие метаданные."
@@ -4735,31 +4738,28 @@ msgid "Get notified when prices drop on items you're interested in at Amazon, Be
 msgstr "Получайте уведомления при снижении цены на интересующие вас товары в Amazon, Best Buy, eBay, Home Depot и Walmart."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Фотографируйте Интернет {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Сделайте Интернет тёмным {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
-msgstr ""
+msgstr "Пользовательские цветовые схемы позволят вам затемнить Интернет по своему вкусу."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокируйте слежение за поиском {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Улучшите поиск на Android {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Сделайте поисковые страницы более продвинутыми в Firefox для Android."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Находите видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Исправьте воспроизведение видео на Android {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео в Firefox для Android. Это расширение исправляет эту проблему."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5374,7 +5374,10 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Установлен флаг отключения автоодобрения"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Рекомендуемое"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Отложено, так как это первая из указанных версий"
 
 msgid "Type"
 msgstr "Тип"

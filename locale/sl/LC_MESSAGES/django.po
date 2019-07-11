@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 15:07+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-11 07:55+0000\n"
+"Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -33,9 +33,8 @@ msgstr "datum nastanka"
 msgid "User / Add-on"
 msgstr "Uporabnik / Dodatek"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Opis"
+msgstr "Porazdelitev"
 
 msgid "Reporter's country"
 msgstr "Država prijavitelja"
@@ -1294,9 +1293,8 @@ msgstr "Varnost"
 msgid "Privacy"
 msgstr "Zasebnost"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Pravilniki za razvijalce"
+msgstr "Razvojne prakse"
 
 msgid "No Reputation"
 msgstr "Ni slovesa"
@@ -2791,6 +2789,9 @@ msgstr "Ustvari nova poverila"
 msgid "Invisible"
 msgstr "Neviden"
 
+msgid "Approved and recommended"
+msgstr "Odobreno in priporočeno"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Dokončajte objavo dodatka, tako da dodate različico ali manjkajoče metapodatke."
 
@@ -3743,7 +3744,7 @@ msgstr "Dodajte šifrirano varnost stranem, ki podpirajo HTTPS."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nakupujte in prihranite {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Nakupujte in prihranite {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -4627,7 +4628,7 @@ msgstr "Olajšajte si branje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr ""
+msgstr "Odstranite navlako okoli besedila na spletnih straneh. Berite jasneje in z manj napora."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4651,7 +4652,7 @@ msgstr "Preprosto shranjevanje slik {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
-msgstr ""
+msgstr "Prenesite slike s trenutnega zavihka."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4674,9 +4675,8 @@ msgid "Customize shades of light and dark to make web pages more visually pleasi
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zatemnite motnje {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Blokirajte moteča spletna mesta {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
@@ -4733,9 +4733,8 @@ msgid "Custom color schemes let you shade the web to your own liking."
 msgstr "Barvne sheme po meri vam omogočajo, da zasenčite splet po svojih željah."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ustavite sledilce iskalnikov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Izboljšano iskanje v Androidu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
@@ -4748,7 +4747,7 @@ msgstr "Najdite videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v Firefoxu za Android. Ta razširitev odpravlja težave."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5229,7 +5228,7 @@ msgstr "Iste različice dodatka ne morete oceniti večkrat."
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Neveljavna zastavica [%s] – mora biti ena od [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Te ocene ni mogoče prijaviti, ker ne vsebuje besedila."
@@ -5362,12 +5361,14 @@ msgstr "Razčlenitev tveganja ni na voljo."
 msgid "Is locked by a reviewer"
 msgstr "Zaklenil pregledovalec"
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "Samodejna odobritev je onemogočena."
+msgstr "Nastavljena zastavica „samodejna odobritev onemogočena“"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Je priporočljiv"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Zakasnjeno, ker je to prva navedena različica"
 
 msgid "Type"
 msgstr "Vrsta"
@@ -5472,9 +5473,8 @@ msgstr "Preglejte dodatke"
 msgid "Recommended ({0})"
 msgstr "Priporočeno ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Pregled ocene ({0})"
+msgstr "Drugi čakajoči na pregled ({0})"
 
 msgid "Review Log"
 msgstr "Dnevnik pregledov"
@@ -6418,7 +6418,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Z vaše lokacije je bilo poslano veliko število dodatkov, ki kršijo naše pravilnike. Naslov IP je bil blokiran."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Vzorec e-pošte"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"

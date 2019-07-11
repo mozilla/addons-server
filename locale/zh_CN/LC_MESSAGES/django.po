@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 13:04+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-10 03:34+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1759,16 +1759,16 @@ msgid "You must provide further details to proceed."
 msgstr "您必须提供进一步的详细信息才能继续。"
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "您的旧凭据已经废除并不再有效。请务必使用新凭据更新所有 API 客户端。"
+msgstr "您的旧凭据已经吊销并不再有效。请务必使用新凭据更新所有 API 客户端。"
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "您的旧凭据已被废除并且不再有效。"
+msgstr "您的旧凭据已被吊销并且不再有效。"
 
 msgid "New API key created"
 msgstr "新的 API 密钥已创建"
 
 msgid "API key revoked"
-msgstr "API密钥已废除"
+msgstr "API 密钥已吊销"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "我的附加组件不适合任何分类"
@@ -2679,16 +2679,19 @@ msgid "You don't have any API credentials."
 msgstr "您没有任何 API 凭据。"
 
 msgid "Revoke"
-msgstr "废除"
+msgstr "吊销"
 
 msgid "Revoke and regenerate credentials"
-msgstr "废除并重新生成凭据"
+msgstr "吊销并重新生成凭据"
 
 msgid "Generate new credentials"
 msgstr "生成新凭据"
 
 msgid "Invisible"
 msgstr "隐藏"
+
+msgid "Approved and recommended"
+msgstr "已核准并推荐"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "请添加版本或缺失的元数据以完成您的附加组件。"
@@ -5211,7 +5214,10 @@ msgid "Has auto-approval disabled flag set"
 msgstr "已设置禁用自动批准"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "可推荐"
+
+msgid "Delayed because it's the first listed version"
+msgstr "因为是首次上架的版本，已推迟"
 
 msgid "Type"
 msgstr "类型"

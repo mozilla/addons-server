@@ -23,7 +23,9 @@ class LazyRawSQLManager(object):
         self.__manager = None
 
     def __getattr__(self, name):
-        if not self.__manager:
+        # Careful here, we don't want to evaluate __manager by accident as this
+        # does a __len__(), which in turn does a COUNT(*) query!
+        if self.__manager is None:
             self.__manager = RawSQLManager(self.__sql_model_class())
         return getattr(self.__manager, name)
 

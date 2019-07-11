@@ -313,8 +313,8 @@ class TestEditAuthor(TestOwnership):
         assert response.context['user_form'].errors == [
             {},  # No errors in the first form
             {
-                'user': ['The email address you used for your developer '
-                         'account is not allowed for add-on submission.']
+                'user': ['The email address used for your account is not '
+                         'allowed for add-on submission.']
             }
         ]
 

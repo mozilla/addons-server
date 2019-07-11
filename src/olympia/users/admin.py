@@ -24,8 +24,8 @@ from olympia.zadmin.admin import related_content_link
 
 from . import forms
 from .models import (
-    DeniedName, GroupUser, UserProfile, IPNetworkUserRestriction,
-    EmailUserRestriction)
+    DeniedName, DisposableEmailDomainRestriction, EmailUserRestriction,
+    GroupUser, IPNetworkUserRestriction, UserProfile)
 
 
 class GroupUserInline(admin.TabularInline):
@@ -266,3 +266,9 @@ class IPNetworkUserRestrictionAdmin(admin.ModelAdmin):
 class EmailUserRestrictionAdmin(admin.ModelAdmin):
     list_display = ('email_pattern',)
     search_fields = ('^email_pattern',)
+
+
+@admin.register(DisposableEmailDomainRestriction)
+class DisposableEmailDomainRestrictionAdmin(admin.ModelAdmin):
+    list_display = ('domain',)
+    search_fields = ('^domain',)

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2018-09-24 01:47+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2712,6 +2712,10 @@ msgstr ""
 msgid "Invisible"
 msgstr "Invisible"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Reseñes aprobaes"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -5256,6 +5260,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr ""
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

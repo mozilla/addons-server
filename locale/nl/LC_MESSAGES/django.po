@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 12:23+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-02 11:28+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2778,6 +2778,9 @@ msgstr "Nieuwe referenties genereren"
 msgid "Invisible"
 msgstr "Onzichtbaar"
 
+msgid "Approved and recommended"
+msgstr "Goedgekeurd en aanbevolen"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Voltooi uw add-on door een versie of ontbrekende metagegevens toe te voegen."
 
@@ -5339,6 +5342,9 @@ msgstr "Heeft markering ‘automatische goedkeuring uitgeschakeld’"
 
 msgid "Is recommendable"
 msgstr "Is aan te bevelen"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Vertraagd omdat het de eerste versie in de lijst is"
 
 msgid "Type"
 msgstr "Type"

@@ -1212,38 +1212,6 @@ class AutoApprovalSummary(ModelBase):
             version=version, defaults=data)
         return instance, verdict_info
 
-    @classmethod
-    def get_auto_approved_queue(cls, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been auto-approved but
-        not confirmed by a human yet."""
-        success_verdict = amo.AUTO_APPROVED
-        qs = (
-            Addon.objects.public()
-            .filter(
-                _current_version__autoapprovalsummary__verdict=success_verdict)
-            .exclude(
-                _current_version__autoapprovalsummary__confirmed=True)
-        )
-        if not admin_reviewer:
-            qs = qs.exclude(addonreviewerflags__needs_admin_code_review=True)
-        return qs
-
-    @classmethod
-    def get_content_review_queue(cls, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been auto-approved and
-        need content review."""
-        success_verdict = amo.AUTO_APPROVED
-        qs = (
-            Addon.objects.public()
-            .filter(
-                _current_version__autoapprovalsummary__verdict=success_verdict,
-                addonapprovalscounter__last_content_review=None)
-        )
-        if not admin_reviewer:
-            qs = qs.exclude(
-                addonreviewerflags__needs_admin_content_review=True)
-        return qs
-
 
 class Whiteboard(ModelBase):
     addon = models.OneToOneField(

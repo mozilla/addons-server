@@ -26,9 +26,9 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, generate_auth_id, EmailReputationRestriction,
-    EmailUserRestriction, IPNetworkUserRestriction, IPReputationRestriction,
-    UserEmailField, UserForeignKey, UserProfile)
+    DeniedName, DisposableEmailDomainRestriction, generate_auth_id,
+    EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
+    IPReputationRestriction, UserEmailField, UserForeignKey, UserProfile)
 from olympia.zadmin.models import set_config
 
 
@@ -679,6 +679,25 @@ class TestIPNetworkUserRestriction(TestCase):
             "'::1/1218' does not appear to be an IPv4 or IPv6 network")
 
 
+class TestDisposableEmailDomainRestriction(TestCase):
+    def test_email_allowed(self):
+        DisposableEmailDomainRestriction.objects.create(domain='bar.com')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='bar@foo.com')
+        assert DisposableEmailDomainRestriction.allow_request(request)
+
+    def test_email_domain_blocked(self):
+        DisposableEmailDomainRestriction.objects.create(domain='bar.com')
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        assert not DisposableEmailDomainRestriction.allow_request(request)
+
+    def test_user_somehow_not_authenticated(self):
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        assert not DisposableEmailDomainRestriction.allow_request(request)
+
+
 class TestEmailUserRestriction(TestCase):
     def test_str(self):
         obj = EmailUserRestriction.objects.create(email_pattern='fôo@bar.com')
@@ -697,6 +716,22 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@bar.com')
         assert not EmailUserRestriction.allow_request(request)
         assert not EmailUserRestriction.allow_email(request.user.email)
+
+        request.user.update(email='foo+something@bar.com')
+        assert not EmailUserRestriction.allow_request(request)
+        # allow_email() works, because the normalization is happening in
+        # allow_request() itself.
+        assert EmailUserRestriction.allow_email(request.user.email)
+
+        request.user.update(email='f.oo+else@bar.com')
+        assert not EmailUserRestriction.allow_request(request)
+        # allow_email() works, because the normalization is happening in
+        # allow_request() itself.
+        assert EmailUserRestriction.allow_email(request.user.email)
+
+        request.user.update(email='foo.different+something@bar.com')
+        assert EmailUserRestriction.allow_request(request)
+        assert EmailUserRestriction.allow_email(request.user.email)
 
     def test_user_somehow_not_authenticated(self):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
@@ -853,6 +888,21 @@ class TestIPReputationRestriction(TestCase):
 class TestEmailReputationRestriction(TestIPReputationRestriction):
     expected_url = 'https://reputation.example.com/type/email/foo@bar.com'
     restriction_class = EmailReputationRestriction
+
+    def test_blocked_reputation_threshold_email_variant(self):
+        responses.add(
+            responses.GET, self.expected_url,
+            content_type='application/json',
+            json={'reputation': 45})
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = UserProfile(email='f.oo+something@bar.com')
+
+        # Still blocked as if it was foo@bar.com
+        assert not self.restriction_class.allow_request(request)
+        assert len(responses.calls) == 1
+        http_call = responses.calls[0].request
+        assert http_call.headers['Authorization'] == 'APIKey fancy_token'
+        assert http_call.url == self.expected_url
 
 
 class TestUserEmailField(TestCase):

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 13:44+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-02 11:02+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2712,6 +2712,9 @@ msgstr "產生新金鑰"
 msgid "Invisible"
 msgstr "不可見"
 
+msgid "Approved and recommended"
+msgstr "已通過審核並推薦"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "請新增版本或補完缺少的後設資料，來完成您的附加元件資訊填寫。"
 
@@ -4642,7 +4645,7 @@ msgstr "{addon_name} {start_sub_heading}幫助加強使用 Android 影片{end_su
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "某些網站無法在 Firefox for Android 上正常播放影片。此擴充套件可修正此問題。"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5238,7 +5241,10 @@ msgid "Has auto-approval disabled flag set"
 msgstr "設定了「關閉自動通過審核」旗標"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "可推薦"
+
+msgid "Delayed because it's the first listed version"
+msgstr "因為是首次上架的版本，已經推遲"
 
 msgid "Type"
 msgstr "類型"
@@ -6233,7 +6239,7 @@ msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "請輸入有效的 IPv6 或 IPv6 CIDR 網段，例如 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "您的所在位置有多套違反我們使用政策的附加元件。此 IP 已遭封鎖。"
 
 msgid "Email Pattern"
 msgstr "郵件模式"

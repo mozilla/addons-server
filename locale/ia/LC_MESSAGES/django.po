@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2019-06-04 20:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2768,6 +2768,10 @@ msgstr "Generar nove credentiales"
 msgid "Invisible"
 msgstr "Invisibile"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Revisiones approbate"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Per favor completa tu additivo per le metadatos o un version mancante."
 
@@ -5349,6 +5353,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Ha le signo del parametro de auto-approbation disactivate."
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

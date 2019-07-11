@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 15:29+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-03 08:26+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -2767,6 +2767,9 @@ msgstr "Generera nya autentiseringsuppgifter"
 msgid "Invisible"
 msgstr "Osynlig"
 
+msgid "Approved and recommended"
+msgstr "Godkänd och rekommenderad"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Komplettera ditt tillägg genom att lägga till en version eller saknad metadata."
 
@@ -5325,6 +5328,9 @@ msgstr "Har automatisk godkännande inaktiverad flagga satt"
 
 msgid "Is recommendable"
 msgstr "Kan rekommenderas"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Försenad eftersom det är den första listade versionen"
 
 msgid "Type"
 msgstr "Typ"

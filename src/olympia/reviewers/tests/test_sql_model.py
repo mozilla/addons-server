@@ -286,3 +286,10 @@ class TestSQLModel(TestCase):
         assert row.total == 1
         assert row.latest_product_date.timetuple()[0:3] == (
             datetime.utcnow().timetuple()[0:3])
+
+    def test_lazyness(self):
+        with self.assertNumQueries(0):
+            Summary.objects.count
+            Summary.objects.count  # A second time to test we're still lazy
+        with self.assertNumQueries(1):
+            Summary.objects.count()

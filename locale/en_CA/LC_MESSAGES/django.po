@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 13:16+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-02 11:44+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -2733,6 +2733,9 @@ msgstr "Generate new credentials"
 msgid "Invisible"
 msgstr "Invisible"
 
+msgid "Approved and recommended"
+msgstr "Approved and recommended"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Please complete your add-on by adding a version or missing metadata."
 
@@ -5281,6 +5284,9 @@ msgstr "Has auto-approval disabled flag set"
 
 msgid "Is recommendable"
 msgstr "Is recommendable"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Delayed because it’s the first listed version"
 
 msgid "Type"
 msgstr "Type"

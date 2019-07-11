@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-05-27 13:28+0000\n"
-"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-06-28 17:56+0000\n"
+"Last-Translator: Mangat veer Sagar <mnvsgr0@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,6 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#, fuzzy
 msgid "Users"
 msgstr "ਯੂਜ਼ਰ"
 
@@ -26,47 +25,43 @@ msgid "Addons"
 msgstr "ਐਡਆਨ"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "ਰਿਪੋਰਟਾਂ ਦੀ ਘੱਟੋ-ਘੱਟ ਗਿਣਤੀ (ਗਾਈਡ ਦੁਆਰਾ ਸਮੂਹਿਕ)"
 
-#, fuzzy
 msgid "creation date"
 msgstr "ਸੰਚਾਲਨ ਗਾਈਡ"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "ਅਸੂਚੀਬੱਧ ਐਡਆਨ"
+msgstr "ਯੂਜ਼ਰ / ਐਡਆਨ"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "ਵੇਰਵਾ"
+msgstr "ਵੰਡ"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "ਰਿਪੋਰਟਰ ਦਾ ਦੇਸ਼"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "ਸੁਨੇਹਾ ਐਕਸਰੇਟ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "ਦਰਜ ਕੀਤੀ ਗਈ ਟੈਕਸਟ ਨੂੰ ਸਪੈਮ ਦੇ ਰੂਪ ਵਿੱਚ ਫਲੈਗ ਕੀਤਾ ਗਿਆ ਹੈ।"
+msgstr "%d ਚੁਣੀਆਂ ਗਈਆਂ ਰਿਪੋਰਟਾਂ ਨੂੰ ਵੈਧ ਵਜੋਂ ਨਿਸ਼ਾਨਬੱਧ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d ਚੁਣੀਆਂ ਗਈਆਂ ਰਿਪੋਰਟਾਂ ਨੂੰ ਸ਼ੱਕੀ ਕਿਹਾ ਗਿਆ ਹੈ|"
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "ਗੁਆਚੀ ਬਗ ਰਿਪੋਰਟ ਜਾਂ ਸਹਿਯੋਗ ਬੇਨਤੀ"
+msgstr "ਚੁਣੀਆਂ ਹੋਈਆਂ ਦੁਰਵਿਹਾਰ ਸੰਬੰਧੀ ਰਿਪੋਰਟਾਂ ਨੂੰ ਸ਼ੱਕੀ ਕਿਹਾ ਗਿਆ ਹੈ"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "ਇਦੋਂ ਸੋਧ ਕੀਤੀ ਗਈ:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "%(filter_title)s ਮੁਤਾਬਕ"
 
 msgid "All"
-msgstr ""
+msgstr "ਸਭ"
 
 msgid "No links are allowed."
 msgstr "ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ।"
@@ -254,10 +249,10 @@ msgid "Error verifying input, please try again."
 msgstr "ਇੰਪੁੱਟ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਵਿੱਚ ਗਲਤੀ ਹੋਏ, ਤੇ ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "ਵੈਧ IP4 ਜਾਂ IP6 ਨੈੱਟਵਰਕ ਦਾਖਲ ਕਰੋ।"
 
 msgid "CIDR"
-msgstr ""
+msgstr "ਸੀਆਈਡੀਆਰ"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈੱਬਸਾਈਟ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ ਕਰ ਰਹੇ ਹਾਂ। ਅਸੀਂ ਥੋੜੇ ਸਮੇਂ ਵਿੱਚ ਪੂਰੀ ਸਮਰਥਾ ਨਾਲ ਵਾਪਸ ਆਵਾਂਗੇ।"
@@ -2728,6 +2723,10 @@ msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ
 
 msgid "Invisible"
 msgstr "ਅਦਿੱਖ"
+
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "ਮਨਜ਼ੂਰ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "ਮਿਹਰਬਾਨੀ ਕਰ ਕੇ ਕੋਈ ਵੰਨਗੀ ਜਾਂ ਗੁਆਚਿਆ ਹੋਇਆ ਮੇਟਾਡੇਟਾ ਜੋੜ ਕੇ ਆਪਣਾ ਐਡ-ਔਨ ਪੂਰਾ ਕਰੋ।"
@@ -5289,6 +5288,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਅਸਮਰਥਿਤ ਝੰਡੇ ਸੈਟ ਹੈ।"
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

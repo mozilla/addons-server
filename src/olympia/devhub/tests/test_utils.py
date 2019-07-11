@@ -519,6 +519,6 @@ class TestUploadRestrictionChecker(TestCase):
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
-            'The email address you used for your developer account is not '
+            'The email address used for your account is not '
             'allowed for add-on submission.'
         )

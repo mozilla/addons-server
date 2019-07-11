@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2018-09-04 18:55+0000\n"
-"Last-Translator: Mohammad Yahya <mohmmadyahyam@gmail.com>\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-06-28 07:39+0000\n"
+"Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -31,9 +31,8 @@ msgstr ""
 msgid "creation date"
 msgstr ""
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "મારા ઍડ-ઑન્સ"
+msgstr "વપરાશકર્તા / એડ-ઑન"
 
 msgid "Distribution"
 msgstr ""
@@ -71,9 +70,8 @@ msgstr "કોઇપણ લીંકને પરવાનગી નથી."
 msgid "This display name cannot be used."
 msgstr "આ પ્રદર્શનકર્તાનામ ઉપયોગમાં લઇ શકાય તેમ નથી."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "આ પ્રદર્શનકર્તાનામ ઉપયોગમાં લઇ શકાય તેમ નથી."
+msgstr "આ સમીક્ષક નામનો ઉપયોગ કરી શકાય તેમ નથી."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -1259,13 +1257,11 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#, fuzzy
 msgid "Privacy"
-msgstr "ગોપનીયતા નીતિ"
+msgstr "ગોપનીયતા"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "વિકાસકર્તાની ટિપ્પણીઓ"
+msgstr "વિકાસ પ્રથાઓ"
 
 msgid "No Reputation"
 msgstr ""
@@ -1820,9 +1816,8 @@ msgstr ""
 msgid "Extension Development"
 msgstr ""
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "વિકાસકર્તાની ટિપ્પણીઓ"
+msgstr "વિકાસકર્તા નીતિઓ"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -1992,9 +1987,8 @@ msgstr ""
 msgid "Additional Details"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "{0} માટે એડ-ઑન્સ"
+msgstr "{0} માટે વધારાની વિગતો"
 
 msgid "Tags"
 msgstr "ટૅગ્સ"
@@ -2039,9 +2033,8 @@ msgid "Describe Add-on"
 msgstr ""
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "આવૃત્તિ {0}"
+msgstr "વર્ણન {0}"
 
 msgid "Name and Summary"
 msgstr ""
@@ -2334,9 +2327,8 @@ msgstr ""
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "આ ઍડ-ઑનની તમામ સમીક્ષાઓ જુઓ"
+msgstr "આ ઍડ-ઑનની નવી આવૃત્તિ અપલોડ કરો"
 
 msgid "New Version"
 msgstr ""
@@ -2701,6 +2693,9 @@ msgid "Generate new credentials"
 msgstr ""
 
 msgid "Invisible"
+msgstr ""
+
+msgid "Approved and recommended"
 msgstr ""
 
 msgid "Please complete your add-on by adding a version or missing metadata."
@@ -5226,6 +5221,9 @@ msgstr ""
 msgid "Is recommendable"
 msgstr ""
 
+msgid "Delayed because it's the first listed version"
+msgstr ""
+
 msgid "Type"
 msgstr ""
 
@@ -5418,9 +5416,8 @@ msgstr ""
 msgid "Add-on Information for {0}"
 msgstr "{0} માટે એડ-ઓન માહિતી"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "એડ-ઑન સમીક્ષા"
+msgstr "એડ-ઑન ક્રમાંક"
 
 msgid "Internal AMO ID"
 msgstr ""

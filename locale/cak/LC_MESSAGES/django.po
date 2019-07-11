@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2780,6 +2780,10 @@ msgstr "Keb'an k'ak'a' wujil"
 msgid "Invisible"
 msgstr "Metz'etel"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "Ütz taq ejqalem"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Tatz'aqatisaj ri atz'aqat, rik'in natz'aqatisaj jun ruwäch o ri taq ichintzij nrajo' na."
 
@@ -5363,6 +5367,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Achupun retal ruyon-ütz-nitz'et."
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

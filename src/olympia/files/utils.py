@@ -1063,7 +1063,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         verify_mozilla_trademark(translations['name'], core.get_user())
 
     # Parse the file to get and validate package data with the addon.
-    if not acl.submission_allowed(user, xpi_info):
+    if not acl.experiments_submission_allowed(user, xpi_info):
         raise forms.ValidationError(
             ugettext(u'You cannot submit this type of add-on'))
 
@@ -1078,6 +1078,10 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     if not mozilla_signed_extension_submission_allowed(user, xpi_info):
         raise forms.ValidationError(
             ugettext(u'You cannot submit a Mozilla Signed Extension'))
+
+    if not acl.langpack_submission_allowed(user, xpi_info):
+        raise forms.ValidationError(
+            ugettext('You cannot submit a language pack'))
 
     return xpi_info
 

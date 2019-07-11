@@ -27,6 +27,8 @@ class TestAbuse(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.addon1 = addon_factory(guid='@guid1', name='Neo')
+        cls.addon1.name.__class__.objects.create(
+            id=cls.addon1.name_id, locale='fr', localized_string='Elu')
         cls.addon2 = addon_factory(guid='@guid2', name='Two')
         cls.addon3 = addon_factory(guid='@guid3', name='Three')
         cls.user = user_factory()

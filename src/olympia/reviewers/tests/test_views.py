@@ -14,6 +14,8 @@ from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.db import connection, reset_queries
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import pytest
@@ -45,10 +47,18 @@ from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, CannedResponse, ReviewerScore, ReviewerSubscription,
     Whiteboard)
+from olympia.reviewers.utils import ContentReviewTable
+from olympia.reviewers.views import _queue
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
 from olympia.zadmin.models import get_config
+
+
+EMPTY_PNG = (
+    b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08'
+    b'\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00'
+    b'\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82')
 
 
 class TestRedirectsOldPaths(TestCase):
@@ -657,7 +667,7 @@ class TestDashboard(TestCase):
         # auto-approved addons
         assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[9].text == 'Content Review (4)'
+        assert doc('.dashboard a')[9].text == 'Content Review (13)'
         # themes
         assert doc('.dashboard a')[11].text == 'New (1)'
         assert doc('.dashboard a')[12].text == 'Updates (1)'
@@ -1327,6 +1337,66 @@ class TestQueueBasics(QueueTest):
         expected.append(reverse('reviewers.queue_expired_info_requests'))
         assert links == expected
 
+    @override_settings(DEBUG=True, LESS_PREPROCESS=False)
+    def test_queue_is_never_executing_the_full_query(self):
+        """Test that _queue() is paginating without accidentally executing the
+        full query."""
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        request = RequestFactory().get('/')
+        request.user = self.user
+        request.APP = amo.FIREFOX
+
+        self.generate_files()
+        qs = Addon.objects.all().no_transforms()
+
+        # Execute the queryset we're passing to the _queue() so that we have
+        # the exact query to compare to later (we can't use str(qs.query) to do
+        # that, it has subtle differences in representation because of the way
+        # params are passed for the lang=lang hack).
+        reset_queries()
+        list(qs)
+        assert len(connection.queries) == 1
+        full_query = connection.queries[0]['sql']
+
+        qs = qs.all()  # Trash queryset caching
+        reset_queries()
+        response = _queue(
+            request, ContentReviewTable, 'content_review', qs=qs,
+            SearchForm=None)
+        assert connection.queries
+        assert full_query not in [item['sql'] for item in connection.queries]
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#addon-queue tr.addon-row')) == qs.count()
+
+        request = RequestFactory().get('/', {'per_page': 2})
+        request.user = self.user
+        request.APP = amo.FIREFOX
+        qs = qs.all()  # Trash queryset caching
+        reset_queries()
+        response = _queue(
+            request, ContentReviewTable, 'content_review', qs=qs,
+            SearchForm=None)
+        assert connection.queries
+        assert full_query not in [item['sql'] for item in connection.queries]
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#addon-queue tr.addon-row')) == 2
+
+        request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
+        request.user = self.user
+        request.APP = amo.FIREFOX
+        qs = qs.all()  # Trash queryset caching
+        reset_queries()
+        response = _queue(
+            request, ContentReviewTable, 'content_review', qs=qs,
+            SearchForm=None)
+        assert connection.queries
+        assert full_query not in [item['sql'] for item in connection.queries]
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#addon-queue tr.addon-row')) == 2
+
 
 class TestThemePendingQueue(QueueTest):
 
@@ -1973,7 +2043,19 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        self._test_results()
+        with self.assertNumQueries(24):
+            # 24 queries is a lot, but it used to be much much worse.
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 9 for various queue counts, including current one (
+            #     unfortunately duplicated because it appears in two completely
+            #     different places)
+            # - 3 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 2 for my add-ons / my collection in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_results_weights(self):
         addon1 = addon_factory(name=u'Addôn 1')
@@ -2119,17 +2201,24 @@ class TestContentReviewQueue(QueueTest):
 
     def generate_files(self):
         """Generate add-ons needed for these tests."""
-        # Has not been auto-approved.
-        extra_addon = addon_factory(name=u'Extra Addôn 1')
+        # The extra_ addons should not appear in the queue.
+        # This first add-on has been content reviewed long ago.
+        extra_addon1 = addon_factory(name=u'Extra Addön 1')
         AutoApprovalSummary.objects.create(
-            version=extra_addon.current_version, verdict=amo.NOT_AUTO_APPROVED,
-        )
-        # Has not been auto-approved either, only dry run.
-        extra_addon2 = addon_factory(name=u'Extra Addôn 2')
+            version=extra_addon1.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon1, last_content_review=self.days_ago(370))
+
+        # This one is quite similar, except its last content review is even
+        # older..
+        extra_addon2 = addon_factory(name=u'Extra Addön 2')
         AutoApprovalSummary.objects.create(
             version=extra_addon2.current_version,
-            verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED,
-        )
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon2, last_content_review=self.days_ago(842))
+
         # Has been auto-approved, but that content has been approved by
         # a human already.
         extra_addon3 = addon_factory(name=u'Extra Addôn 3')
@@ -2151,27 +2240,20 @@ class TestContentReviewQueue(QueueTest):
         AddonReviewerFlags.objects.create(
             addon=extra_addon4, needs_admin_content_review=True)
 
-        # This first add-on has been content reviewed long ago.
-        addon1 = addon_factory(name=u'Addön 1')
-        AutoApprovalSummary.objects.create(
-            version=addon1.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=True)
-        AddonApprovalsCounter.objects.create(
-            addon=addon1, last_content_review=self.days_ago(370))
+        # Those should appear in the queue
+        # Has not been auto-approved.
+        addon1 = addon_factory(name=u'Addôn 1', created=self.days_ago(4))
 
-        # This one is quite similar, except its last content review is even
-        # older..
-        addon2 = addon_factory(name=u'Addön 1')
+        # Has not been auto-approved either, only dry run.
+        addon2 = addon_factory(name=u'Addôn 2', created=self.days_ago(3))
         AutoApprovalSummary.objects.create(
             version=addon2.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=True)
-        AddonApprovalsCounter.objects.create(
-            addon=addon2, last_content_review=self.days_ago(842))
+            verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED,
+        )
 
         # This one has never been content-reviewed. It has an
         # needs_admin_code_review flag, but that should not have any impact.
-        addon3 = addon_factory(name=u'Addön 2')
-        addon3.update(created=self.days_ago(2))
+        addon3 = addon_factory(name=u'Addön 3', created=self.days_ago(2))
         AutoApprovalSummary.objects.create(
             version=addon3.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
@@ -2182,8 +2264,7 @@ class TestContentReviewQueue(QueueTest):
 
         # This one has never been content reviewed either, and it does not even
         # have an AddonApprovalsCounter.
-        addon4 = addon_factory(name=u'Addön 3')
-        addon4.update(created=self.days_ago(1))
+        addon4 = addon_factory(name=u'Addön 4', created=self.days_ago(1))
         AutoApprovalSummary.objects.create(
             version=addon4.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
@@ -2191,7 +2272,7 @@ class TestContentReviewQueue(QueueTest):
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
-        self.expected_addons = [addon3, addon4]
+        self.expected_addons = [addon1, addon2, addon3, addon4]
 
     def test_only_viewable_with_specific_permission(self):
         # Regular addon reviewer does not have access.
@@ -2207,14 +2288,26 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        self._test_results()
+        with self.assertNumQueries(24):
+            # 24 queries is a lot, but it used to be much much worse.
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 9 for various queue counts, including current one (
+            #     unfortunately duplicated because it appears in two completely
+            #     different places)
+            # - 3 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 2 for my add-ons / my collection in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_queue_layout(self):
         self.login_with_permission()
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=1, total_addons=2, total_queues=2,
+            'Content Review', tab_position=1, total_addons=4, total_queues=2,
             per_page=1)
 
     def test_queue_layout_admin(self):
@@ -2224,7 +2317,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=1, total_addons=3, total_queues=3)
+            'Content Review', tab_position=1, total_addons=5, total_queues=3)
 
 
 class TestPerformance(QueueTest):
@@ -3895,7 +3988,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         self.url = reverse(
             'reviewers.review', args=['content', self.addon.slug])
-        for action in ['confirm_auto_approved', 'reject_multiple_versions']:
+        for action in ['approve_content', 'reject_multiple_versions']:
             response = self.client.post(self.url, self.get_dict(action=action))
             assert response.status_code == 200  # Form error.
             # The add-on status must not change as non-admin reviewers are not
@@ -3939,7 +4032,7 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
 
-    def test_confirm_auto_approval_content_review(self):
+    def test_approve_content_content_review(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.url = reverse(
             'reviewers.review', args=['content', self.addon.slug])
@@ -3947,7 +4040,7 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 302
@@ -3973,7 +4066,7 @@ class TestReview(ReviewBase):
             addon=self.addon, needs_admin_content_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 200  # Form error
@@ -3991,7 +4084,7 @@ class TestReview(ReviewBase):
             addon=self.addon, needs_admin_code_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 302
@@ -4017,7 +4110,7 @@ class TestReview(ReviewBase):
             addon=self.addon, needs_admin_code_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 200  # Form error
@@ -4030,7 +4123,7 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_content_review=True)
         self.grant_permission(self.reviewer, 'Addons:PostReview')
-        for action in ['confirm_auto_approved', 'public', 'reject',
+        for action in ['approve_content', 'public', 'reject',
                        'reject_multiple_versions']:
             response = self.client.post(self.url, self.get_dict(action=action))
             assert response.status_code == 200  # Form error.
@@ -4105,7 +4198,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
+            'action': 'approve_content',
             'comments': 'ignore me this action does not support comments'
         })
         assert response.status_code == 302
@@ -4302,6 +4395,13 @@ class TestReview(ReviewBase):
 
         assert doc('.abuse_reports').text().split('\n') == expected
 
+    def test_abuse_reports_unlisted_addon(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_abuse_reports()
+
     def test_abuse_reports_developers(self):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
@@ -4330,6 +4430,13 @@ class TestReview(ReviewBase):
 
         assert doc('.abuse_reports').text().split('\n') == expected
 
+    def test_abuse_reports_developers_unlisted_addon(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_abuse_reports_developers()
+
     def test_user_ratings(self):
         user = user_factory()
         rating = Rating.objects.create(
@@ -4355,6 +4462,13 @@ class TestReview(ReviewBase):
                 user.name, created_at
             )
         )
+
+    def test_user_ratings_unlisted_addon(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
+        self.make_addon_unlisted(self.addon)
+        self.test_user_ratings()
 
     def test_data_value_attributes(self):
         AutoApprovalSummary.objects.create(
@@ -4475,7 +4589,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
-            'confirm_auto_approved', 'reject_multiple_versions', 'reply',
+            'approve_content', 'reject_multiple_versions', 'reply',
             'super', 'comment']
         assert (
             [action[0] for action in response.context['actions']] ==
@@ -4843,39 +4957,6 @@ class TestWhiteboardDeleted(TestWhiteboard):
     def setUp(self):
         super(TestWhiteboardDeleted, self).setUp()
         self.addon.delete()
-
-
-class TestAbuseReports(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        addon = Addon.objects.get(pk=3615)
-        addon_developer = addon.listed_authors[0]
-        someone = UserProfile.objects.exclude(pk=addon_developer.pk)[0]
-        AbuseReport.objects.create(addon=addon, message=u'wôo')
-        AbuseReport.objects.create(addon=addon, message=u'yéah',
-                                   reporter=someone)
-        # Make a user abuse report to make sure it doesn't show up.
-        AbuseReport.objects.create(user=someone, message=u'hey nöw')
-        # Make a user abuse report for one of the add-on developers: it should
-        # show up.
-        AbuseReport.objects.create(user=addon_developer, message=u'bü!')
-
-    def test_abuse_reports_list(self):
-        assert self.client.login(email='admin@mozilla.com')
-        r = self.client.get(reverse('reviewers.abuse_reports', args=['a3615']))
-        assert r.status_code == 200
-        # We see the two abuse reports created in setUp.
-        assert len(r.context['reports']) == 3
-
-    def test_no_abuse_reports_link_for_unlisted_addons(self):
-        """Unlisted addons aren't public, and thus have no abuse reports."""
-        addon = Addon.objects.get(pk=3615)
-        self.make_addon_unlisted(addon)
-        self.client.login(email='admin@mozilla.com')
-        response = reverse('reviewers.review', args=[addon.slug])
-        abuse_report_url = reverse('reviewers.abuse_reports', args=['a3615'])
-        assert abuse_report_url not in response
 
 
 class TestLeaderboard(ReviewerTest):
@@ -6000,6 +6081,43 @@ class TestReviewAddonVersionCompareViewSet(
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['file']['download_url'] is None
+
+    def test_dont_servererror_on_binary_file(self):
+        """Regression test for
+        https://github.com/mozilla/addons-server/issues/11712"""
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+        apply_changes(repo, new_version, EMPTY_PNG, 'foo.png')
+
+        next_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(next_version)
+        apply_changes(repo, next_version, EMPTY_PNG, 'foo.png')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': new_version.pk,
+            'pk': next_version.pk})
+
+        response = self.client.get(self.url + '?file=foo.png')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['file']['download_url']
 
 
 class TestDownloadGitFileView(TestCase):

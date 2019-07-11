@@ -547,7 +547,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
-        log.debug(u'User (%s) logged in successfully' % user)
+        log.debug(u'User (%s) logged in successfully' % user,
+                  extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
@@ -681,7 +682,22 @@ class IPNetworkUserRestriction(ModelBase):
         return True
 
 
-class EmailUserRestriction(ModelBase):
+class NormalizeEmailMixin:
+    @classmethod
+    def normalize_email(cls, email):
+        """
+        Normalize email by removing any dots and removing anything after the
+        first '+' in the local part.
+        """
+        local_part, _, domain = email.rpartition('@')
+        local_part = local_part.partition('+')[0].replace('.', '')
+        normalized_email = '%s@%s' % (local_part, domain)
+        if normalized_email != email:
+            log.info('Normalized email from %s to %s', email, normalized_email)
+        return normalized_email
+
+
+class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     email_pattern = models.CharField(
         _('Email Pattern'),
@@ -693,8 +709,8 @@ class EmailUserRestriction(ModelBase):
             ' Please note that we do not include "@" in the match so you '
             ' should do that in the pattern.'))
 
-    error_message = _('The email address you used for your developer account'
-                      ' is not allowed for add-on submission.')
+    error_message = _('The email address used for your account is not '
+                      'allowed for add-on submission.')
 
     class Meta:
         db_table = 'users_user_email_restriction'
@@ -711,7 +727,7 @@ class EmailUserRestriction(ModelBase):
         if not request.user.is_authenticated:
             return False
 
-        return cls.allow_email(request.user.email)
+        return cls.allow_email(cls.normalize_email(request.user.email))
 
     @classmethod
     def allow_email(cls, email):
@@ -728,6 +744,39 @@ class EmailUserRestriction(ModelBase):
                 return False
 
         return True
+
+
+class DisposableEmailDomainRestriction(ModelBase):
+    domain = models.CharField(
+        unique=True,
+        max_length=255,
+        help_text=_('Enter full disposable email domain that should be '
+                    'blocked. Wildcards are not supported: if you need those, '
+                    'or need to match against the entire email and not just '
+                    'the domain part, use "Email user restrictions" instead.'))
+
+    error_message = EmailUserRestriction.error_message
+
+    class Meta:
+        db_table = 'users_disposable_email_domain_restriction'
+
+    def __str__(self):
+        return str(self.domain)
+
+    @classmethod
+    def allow_request(cls, request):
+        """
+        Return whether the specified request should be allowed to submit
+        add-ons.
+        """
+        if not request.user.is_authenticated:
+            return False
+
+        email_domain = request.user.email.rsplit('@', maxsplit=1)[-1]
+
+        # Unlike EmailUserRestriction we can use .exists() directly. This
+        # allows us to have thousands of entries without perf issues.
+        return not cls.objects.filter(domain=email_domain).exists()
 
 
 class ReputationRestrictionMixin:
@@ -788,7 +837,8 @@ class IPReputationRestriction(ReputationRestrictionMixin):
         return cls.allow_reputation('ip', remote_addr)
 
 
-class EmailReputationRestriction(ReputationRestrictionMixin):
+class EmailReputationRestriction(
+        NormalizeEmailMixin, ReputationRestrictionMixin):
     error_message = EmailUserRestriction.error_message
 
     @classmethod
@@ -796,7 +846,8 @@ class EmailReputationRestriction(ReputationRestrictionMixin):
         if not request.user.is_authenticated:
             return False
 
-        return cls.allow_reputation('email', request.user.email)
+        return cls.allow_reputation('email', cls.normalize_email(
+            request.user.email))
 
 
 class DeveloperAgreementRestriction:

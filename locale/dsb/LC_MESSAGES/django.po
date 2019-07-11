@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 15:02+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-02 11:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2780,6 +2780,9 @@ msgstr "Nowe pśizjawjeńske daty twóriś"
 msgid "Invisible"
 msgstr "Njewidobny"
 
+msgid "Approved and recommended"
+msgstr "Pśizwólony a dopórucony"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Pšosym pśidajśo wersiju abo felujuce metadaty, aby swój dodank wudopołnił."
 
@@ -5341,6 +5344,9 @@ msgstr "Jo marku „awotmatiske pśizwólenje znjemóžnjone“ stajił"
 
 msgid "Is recommendable"
 msgstr "Jo dopórucujobne"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Zaźaržany, dokulaž jo prědna pódana wersija"
 
 msgid "Type"
 msgstr "Typ"

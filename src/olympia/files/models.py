@@ -550,7 +550,9 @@ class FileUpload(ModelBase):
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             loc += ext
 
-        log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
+        log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc),
+                 extra={'email': (self.user.email
+                                  if self.user and self.user.email else '')})
         if is_crx:
             hash_func = write_crx_as_xpi(chunks, loc)
         else:

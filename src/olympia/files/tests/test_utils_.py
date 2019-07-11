@@ -11,6 +11,7 @@ from unittest import mock
 
 from django import forms
 from django.conf import settings
+from django.forms import ValidationError
 
 import flufl.lock
 import lxml
@@ -20,7 +21,7 @@ from defusedxml.common import EntitiesForbidden, NotSupportedError
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils
@@ -354,64 +355,6 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
         assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
 
-    def test_langpack(self):
-        self.create_appversion('firefox', '60.0')
-        self.create_appversion('firefox', '60.*')
-        self.create_appversion('android', '60.0')
-        self.create_appversion('android', '60.*')
-
-        data = {
-            'applications': {
-                'gecko': {
-                    'strict_min_version': '>=60.0',
-                    'strict_max_version': '=60.*',
-                    'id': '@langp'
-                }
-            },
-            'langpack_id': 'foo'
-        }
-
-        parsed_data = self.parse(data)
-        assert parsed_data['type'] == amo.ADDON_LPAPP
-        assert parsed_data['strict_compatibility'] is True
-        assert parsed_data['is_webextension'] is True
-
-        apps = parsed_data['apps']
-        assert len(apps) == 1  # Langpacks are not compatible with android.
-        assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == '60.0'
-        assert apps[0].max.version == '60.*'
-
-    def test_dictionary(self):
-        self.create_appversion('firefox', '61.0')
-        data = {
-            'applications': {
-                'gecko': {
-                    'id': '@dict'
-                }
-            },
-            'dictionaries': {'en-US': '/path/to/en-US.dic'}
-        }
-
-        parsed_data = self.parse(data)
-        assert parsed_data['type'] == amo.ADDON_DICT
-        assert parsed_data['strict_compatibility'] is False
-        assert parsed_data['is_webextension'] is True
-        assert parsed_data['target_locale'] == 'en-US'
-
-        apps = parsed_data['apps']
-        assert len(apps) == 1  # Dictionaries are not compatible with android.
-        assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == '61.0'
-        assert apps[0].max.version == '*'
-
-    def test_broken_dictionary(self):
-        data = {
-            'dictionaries': {}
-        }
-        with self.assertRaises(forms.ValidationError):
-            self.parse(data)
-
     def test_extensions_dont_have_strict_compatibility(self):
         assert self.parse({})['strict_compatibility'] is False
 
@@ -566,6 +509,119 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
 
 
+class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
+    def test_parse_langpack(self):
+        self.create_appversion('firefox', '60.0')
+        self.create_appversion('firefox', '60.*')
+        self.create_appversion('android', '60.0')
+        self.create_appversion('android', '60.*')
+
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '>=60.0',
+                    'strict_max_version': '=60.*',
+                    'id': '@langp'
+                }
+            },
+            'langpack_id': 'foo'
+        }
+
+        parsed_data = utils.ManifestJSONExtractor(
+            '/fake_path', json.dumps(data)).parse()
+        assert parsed_data['type'] == amo.ADDON_LPAPP
+        assert parsed_data['strict_compatibility'] is True
+        assert parsed_data['is_webextension'] is True
+
+        apps = parsed_data['apps']
+        assert len(apps) == 1  # Langpacks are not compatible with android.
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '60.0'
+        assert apps[0].max.version == '60.*'
+
+    def test_parse_langpack_not_targeting_versions_explicitly(self):
+        data = {
+            'applications': {
+                'gecko': {
+                    'id': '@langp'
+                }
+            },
+            'langpack_id': 'foo'
+        }
+
+        parsed_data = utils.ManifestJSONExtractor(
+            '/fake_path', json.dumps(data)).parse()
+        assert parsed_data['type'] == amo.ADDON_LPAPP
+        assert parsed_data['strict_compatibility'] is True
+        assert parsed_data['is_webextension'] is True
+
+        apps = parsed_data['apps']
+        assert len(apps) == 1  # Langpacks are not compatible with android.
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '42.0'
+        # The linter should force the langpack to have a strict_max_version,
+        # so the value here doesn't matter much.
+        assert apps[0].max.version == '*'
+
+    def test_parse_dictionary(self):
+        self.create_appversion('firefox', '61.0')
+        data = {
+            'applications': {
+                'gecko': {
+                    'id': '@dict'
+                }
+            },
+            'dictionaries': {'en-US': '/path/to/en-US.dic'}
+        }
+
+        parsed_data = utils.ManifestJSONExtractor(
+            '/fake_path', json.dumps(data)).parse()
+        assert parsed_data['type'] == amo.ADDON_DICT
+        assert parsed_data['strict_compatibility'] is False
+        assert parsed_data['is_webextension'] is True
+        assert parsed_data['target_locale'] == 'en-US'
+
+        apps = parsed_data['apps']
+        assert len(apps) == 1  # Dictionaries are not compatible with android.
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '61.0'
+        assert apps[0].max.version == '*'
+
+    def test_parse_broken_dictionary(self):
+        data = {
+            'dictionaries': {}
+        }
+        with self.assertRaises(forms.ValidationError):
+            utils.ManifestJSONExtractor('/fake_path', json.dumps(data)).parse()
+
+    def test_check_xpi_info_langpack_submission_restrictions(self):
+        user = user_factory()
+        self.create_appversion('firefox', '60.0')
+        self.create_appversion('firefox', '60.*')
+
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '>=60.0',
+                    'strict_max_version': '=60.*',
+                    'id': '@langp'
+                }
+            },
+            'langpack_id': 'foo'
+        }
+        parsed_data = utils.ManifestJSONExtractor(
+            '/fake_path.xpi', json.dumps(data)).parse()
+
+        with self.assertRaises(ValidationError):
+            # Regular users aren't allowed to submit langpacks.
+            utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
+
+        # Shouldn't raise for users with proper permissions
+        self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+
+        utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
+
+
 class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     def parse(self, base_data):
         if 'theme' not in base_data.keys():
@@ -685,15 +741,6 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert apps[1].min.version == (
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-
-    def test_langpack(self):
-        pass  # Irrelevant for static themes.
-
-    def test_dictionary(self):
-        pass  # Irrelevant for static themes.
-
-    def test_broken_dictionary(self):
-        pass  # Irrelevant for static themes.
 
 
 @pytest.mark.parametrize('filename, expected_files', [

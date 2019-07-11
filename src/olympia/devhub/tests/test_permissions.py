@@ -2,7 +2,9 @@ from django.test import RequestFactory
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.devhub.permissions import IsSubmissionAllowedFor
-from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
+from olympia.users.models import (
+    DisposableEmailDomainRestriction, EmailUserRestriction,
+    IPNetworkUserRestriction)
 
 
 class TestIsSubmissionAllowedFor(TestCase):
@@ -29,6 +31,13 @@ class TestIsSubmissionAllowedFor(TestCase):
             'The Firefox Add-on Distribution Agreement also links to our '
             'Privacy Notice which explains how we handle your information.')
 
+    def test_has_permission_disposable_email(self):
+        DisposableEmailDomainRestriction.objects.create(domain='example.com')
+        assert not self.permission.has_permission(self.request, self.view)
+        assert self.permission.message == (
+            'The email address used for your account is not '
+            'allowed for add-on submission.')
+
     def test_has_permission_user_ip_restricted(self):
         self.request.META['REMOTE_ADDR'] = '127.0.0.1'
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
@@ -41,7 +50,7 @@ class TestIsSubmissionAllowedFor(TestCase):
         EmailUserRestriction.objects.create(email_pattern='test@example.com')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
-            'The email address you used for your developer account is not '
+            'The email address used for your account is not '
             'allowed for add-on submission.')
 
     def test_has_permission_both_user_ip_and_email_restricted(self):
@@ -50,5 +59,5 @@ class TestIsSubmissionAllowedFor(TestCase):
         EmailUserRestriction.objects.create(email_pattern='test@example.com')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
-            'The email address you used for your developer account is not '
+            'The email address used for your account is not '
             'allowed for add-on submission.')

@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 import uuid
 import os
+import io
 import shutil
 import tempfile
 import sys
+import mimetypes
 
 from collections import namedtuple
 
 import pygit2
+import magic
 
 from django.conf import settings
 from django.utils import translation
@@ -57,6 +60,74 @@ EXTRACTED_PREFIX = 'extracted'
 
 # Rename and copy threshold, 50% is the default git threshold
 SIMILARITY_THRESHOLD = 50
+
+
+# Sometime mimetypes get changed in libmagic so this is a (hopefully short)
+# list of mappings from old -> new types so that we stay compatible
+# with versions out there in the wild.
+MIMETYPE_COMPAT_MAPPING = {
+    # https://github.com/file/file/commit/cee2b49c
+    'application/xml': 'text/xml',
+    # Special case, for empty text files libmime reports
+    # application/x-empty for empty plain text files
+    # So, let's normalize this.
+    'application/x-empty': 'text/plain',
+    # See: https://github.com/mozilla/addons-server/issues/11382
+    'image/svg': 'image/svg+xml',
+    # See: https://github.com/mozilla/addons-server/issues/11383
+    'image/x-ms-bmp': 'image/bmp',
+    # See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textjavascript  # noqa
+    'application/javascript': 'text/javascript',
+}
+
+
+# Some official mimetypes belong to the `text` category, even though their
+# names don't include `text/`.
+MIMETYPE_CATEGORY_MAPPING = {
+    'application/json': 'text',
+    'application/xml': 'text',
+}
+
+
+def get_mime_type_for_blob(tree_or_blob, name, blob):
+    """Returns the mimetype and type category for a git blob.
+
+    The type category can be ``image``, ``directory``, ``text`` or
+    ``binary``.
+    """
+    if tree_or_blob == 'tree':
+        return 'application/octet-stream', 'directory'
+
+    # Hardcoding the maximum amount of bytes to read here
+    # until https://github.com/ahupp/python-magic/commit/50e8c856
+    # lands in a release and we can read that value from libmagic
+    # We're only reading the needed amount of content from the file to
+    # not exhaust/read the whole blob into memory again.
+    bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
+    mimetype = magic.from_buffer(bytes_, mime=True)
+
+    # Apply compatibility mappings
+    mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
+
+    # Try to find a more accurate "textual" mimetype.
+    if mimetype == 'text/plain':
+        # Allow text mimetypes to be more specific for readable files.
+        # `python-magic`/`libmagic` usually just returns plain/text but we
+        # should use actual types like text/css or text/javascript.
+        mimetype, _ = mimetypes.guess_type(name)
+        # Re-apply compatibility mappings since `guess_type()` might return
+        # a completely different mimetype.
+        mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
+
+    known_type_cagegories = ('image', 'text')
+    default_type_category = 'binary'
+    # If mimetype has an explicit category, use it.
+    type_category = MIMETYPE_CATEGORY_MAPPING.get(
+        mimetype, mimetype.split('/')[0]
+    ) if mimetype else default_type_category
+
+    return (mimetype, default_type_category if type_category not in
+            known_type_cagegories else type_category)
 
 
 class TemporaryWorktree(object):
@@ -541,36 +612,40 @@ class AddonGitRepository(object):
         # Unchanged files are *only* exposed in case of explicitly requesting
         # a diff view for an file. That way we increase performance for
         # reguar unittests and full-tree diffs.
+
         generate_unmodified_fake_diff = (
             not patch.delta.is_binary and
             pathspec is not None and
             patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
         )
+
         if generate_unmodified_fake_diff:
             tree = self.get_root_tree(commit)
-
             blob_or_tree = tree[patch.delta.new_file.path]
-
             actual_blob = self.git_repository[blob_or_tree.oid]
+            mime_category = get_mime_type_for_blob(
+                blob_or_tree.type, patch.delta.new_file.path, actual_blob)[1]
 
-            changes = [
-                {
-                    'content': line,
-                    'type': GIT_DIFF_LINE_CONTEXT,
-                    'old_line_number': lineno,
-                    'new_line_number': lineno,
-                }
-                for lineno, line in enumerate(actual_blob.data.split(b'\n'))
-            ]
+            if mime_category == 'text':
+                data = actual_blob.data
+                changes = [
+                    {
+                        'content': line,
+                        'type': GIT_DIFF_LINE_MAPPING[GIT_DIFF_LINE_CONTEXT],
+                        'old_line_number': lineno,
+                        'new_line_number': lineno,
+                    }
+                    for lineno, line in enumerate(data.split(b'\n'), start=1)
+                ]
 
-            hunks.append({
-                'header': '@@ -0 +0 @@',
-                'old_start': 0,
-                'new_start': 0,
-                'old_lines': changes[-1]['old_line_number'],
-                'new_lines': changes[-1]['new_line_number'],
-                'changes': changes
-            })
+                hunks.append({
+                    'header': '@@ -0 +0 @@',
+                    'old_start': 0,
+                    'new_start': 0,
+                    'old_lines': changes[-1]['old_line_number'],
+                    'new_lines': changes[-1]['new_line_number'],
+                    'changes': changes
+                })
 
         entry = {
             'path': patch.delta.new_file.path,

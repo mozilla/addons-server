@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-04 23:48+0000\n"
-"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-07 09:49+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1739,7 +1739,7 @@ msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat. Kontaktujte prosím administrátory AMO, pokud s tímto potřebujete pomoci."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1850,7 +1850,7 @@ msgstr "více doplňků..."
 
 # Plural in this context means many of the add-on type
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Workshop tvorby rozšíření"
 
 msgid "Documentation"
 msgstr "Dokumentace"
@@ -2776,6 +2776,9 @@ msgstr "Generovat nová pověření"
 
 msgid "Invisible"
 msgstr "Neviditelné"
+
+msgid "Approved and recommended"
+msgstr "Schválené a doporučené"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Doplňte prosím k vašemu doplňku verzi či chybějící metadata."
@@ -4700,27 +4703,27 @@ msgstr "Buďte upozorněni při poklesu cen u položek, o něž máte zájem na 
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ztmavte si web {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
-msgstr ""
+msgstr "Uživatelská barevná schémata vám umožňují vystínovat web podle svého gusta."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vylepšené vyhledávání na Androidu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Získejte pokročilejší stránku vyhledávání ve Firefoxu pro Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bezproblémové přehrávání videi na Androidu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Některé stránky mají potíže s přehráváním videí ve Firefoxu pro Android. Toto rozšíření poskytuje opravu."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5323,15 +5326,17 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr "Rozpis rizik není k dispozici."
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "Uzamčeno redaktorem."
+msgstr "Uzamčeno redaktorem"
 
 msgid "Has auto-approval disabled flag set"
-msgstr ""
+msgstr "Má nastaven příznak „Automatické schvalování zakázáno“"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Lze doporučovat"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Zpožděno pro kontrolu první zveřejněné verze"
 
 msgid "Type"
 msgstr "Typ"
@@ -6349,18 +6354,20 @@ msgid "My Favorite Add-ons"
 msgstr "Mé oblíbené doplňky"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Zadejte platný rozsah IPv6 adres nebo IPv6 CIDR, např. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Z vašeho umístění bylo odesláno více doplňků, které porušují naše pravidla. IP adresa byla zablokována."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Šablona e-mailové adresy"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Zadejte plný doménový název nebo e-mailovou adresu, která má být zablokována, nebo použijte glob-style wildcard jako vzor. Např. „@*.mail.com“\n"
+" Upozorňujeme, že znak zavináče „@“ do odpovídajících výsledků nezahrnujeme. Proto na něj ve svých vzorech nezapomeňte."
 
 msgid "The email address you used for your developer account is not allowed for add-on submission."
 msgstr "E-mailová adresa, kterou jste použili pro účet vývojáře, nemá povoleno odesílat doplňky."

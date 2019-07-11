@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
 "PO-Revision-Date: 2019-06-13 10:33+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -2758,6 +2758,10 @@ msgstr "新しい認証情報を生成"
 msgid "Invisible"
 msgstr "非表示"
 
+#, fuzzy
+msgid "Approved and recommended"
+msgstr "承認されたレビュー"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "バージョンあるいは漏れているメタデータを追加してアドオンを完成させてください。"
 
@@ -5334,6 +5338,9 @@ msgid "Has auto-approval disabled flag set"
 msgstr "自動承認無効フラグが設定されています。"
 
 msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Type"

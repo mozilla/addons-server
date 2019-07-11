@@ -3,8 +3,6 @@ from django.contrib.auth.models import AnonymousUser
 from django.utils.http import urlquote
 from django.utils.translation import get_language, get_language_bidi, ugettext
 
-import waffle
-
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
@@ -69,11 +67,9 @@ def global_settings(request):
         tools_links.append(
             {'text': ugettext('Submit a New Add-on'),
              'href': reverse('devhub.submit.agreement')})
-        no_more_lwt = waffle.switch_is_active('disable-lwt-uploads')
         tools_links.append(
             {'text': ugettext('Submit a New Theme'),
-             'href': reverse('devhub.submit.agreement' if no_more_lwt
-                             else 'devhub.themes.submit')})
+             'href': reverse('devhub.submit.agreement')})
         tools_links.append(
             {'text': ugettext('Developer Hub'),
              'href': reverse('devhub.index')})

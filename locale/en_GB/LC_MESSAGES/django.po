@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-26 22:36+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-08 23:25+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -2754,6 +2754,9 @@ msgstr "Generate new credentials"
 msgid "Invisible"
 msgstr "Invisible"
 
+msgid "Approved and recommended"
+msgstr "Approved and recommended"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Please complete your add-on by adding a version or missing metadata."
 
@@ -5310,6 +5313,9 @@ msgstr "Has auto-approval disabled flag set"
 
 msgid "Is recommendable"
 msgstr "Is recommendable"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Delayed because it's the first listed version"
 
 msgid "Type"
 msgstr "Type"

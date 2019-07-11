@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-25 10:57+0000\n"
-"PO-Revision-Date: 2019-06-25 15:05+0000\n"
+"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"PO-Revision-Date: 2019-07-02 11:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2778,6 +2778,9 @@ msgstr "Nowe daty tworić"
 msgid "Invisible"
 msgstr "Njewidźomny"
 
+msgid "Approved and recommended"
+msgstr "Schwaleny a doporučeny"
+
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Prošu přidajće wersiju abo falowace metadaty, zo byšće swój přidatk wudospołnił."
 
@@ -5340,6 +5343,9 @@ msgstr "Je marku „awtomatiske schwalenje znjemóžnjene“ stajił"
 
 msgid "Is recommendable"
 msgstr "Je doporučujomne"
+
+msgid "Delayed because it's the first listed version"
+msgstr "Zadźerženy, dokelž je prěnja podata wersija"
 
 msgid "Type"
 msgstr "Typ"

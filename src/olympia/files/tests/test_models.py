@@ -11,6 +11,7 @@ from datetime import datetime
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
@@ -649,7 +650,12 @@ class TestParseXpi(TestCase):
         assert result['type'] == amo.ADDON_EXTENSION
 
     def test_parse_langpack(self):
-        result = self.parse(filename='langpack.xpi')
+        # You can only submit language packs with the proper permission
+        with self.assertRaises(ValidationError):
+            result = self.parse(filename='webextension_langpack.xpi')
+
+        self.grant_permission(self.user, 'LanguagePack:Submit')
+        result = self.parse(filename='webextension_langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
         assert not result['is_restart_required']
 
@@ -1198,7 +1204,7 @@ class TestFileFromUpload(UploadTest):
         assert file_.filename.endswith('.xpi')
 
     def test_langpack_extension(self):
-        upload = self.upload('langpack.xpi')
+        upload = self.upload('webextension_langpack.xpi')
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
         assert file_.filename.endswith('.xpi')
