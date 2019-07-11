@@ -142,6 +142,8 @@ class DevHub(Base):
         _sign_out_locator = (By.CSS_SELECTOR, '.DevHub-Navigation-SignOut > a')
 
         def click_login(self):
+            # Click to hide the toolbar
+            # Could be removed for localdev so it may fail
             self.selenium.find_element_by_id("djHideToolBarButton").click()
             self.find_element(*self._sign_in_locator).click()
             from pages.desktop.login import Login
@@ -149,6 +151,8 @@ class DevHub(Base):
             return Login(self.selenium, self.page.base_url)
 
         def register(self):
+            # Click to hide the toolbar
+            # Could be removed for localdev so it may fail
             self.selenium.find_element_by_id("djHideToolBarButton").click()
             self.find_element(*self._register_link_locator).click()
 
