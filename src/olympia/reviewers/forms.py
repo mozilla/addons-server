@@ -376,9 +376,6 @@ class ReviewForm(forms.Form):
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()]
 
-        if self.initial.get('comments_draft'):
-            self.fields['comments'].initial = self.initial['comments_draft']
-
     @property
     def unreviewed_files(self):
         return (self.helper.version.unreviewed_files
