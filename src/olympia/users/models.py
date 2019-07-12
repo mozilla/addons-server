@@ -669,8 +669,9 @@ class IPNetworkUserRestriction(ModelBase):
         """
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
-            user_last_login_ip = ipaddress.ip_address(
-                request.user.last_login_ip)
+            if (request.user):
+                user_last_login_ip = ipaddress.ip_address(
+                    request.user.last_login_ip)
         except ValueError:
             # If we don't have a valid ip address, let's deny
             return False
