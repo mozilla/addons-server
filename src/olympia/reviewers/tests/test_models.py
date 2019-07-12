@@ -39,6 +39,9 @@ def create_search_ext(name, version_str, addon_status, file_status,
         addon=addon, version=version_str, defaults={'channel': channel})
     File.objects.create(version=version, filename=u"%s.xpi" % name,
                         platform=amo.PLATFORM_ALL.id, status=file_status)
+    if file_status == amo.STATUS_AWAITING_REVIEW:
+        AddonReviewerFlags.objects.update_or_create(
+            addon=addon, auto_approval_disabled=True)
     # Update status *after* there are files:
     addon = Addon.objects.get(pk=addon.id)
     addon.update(status=addon_status)
@@ -153,8 +156,11 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
         assert queue.flags == [('sources-provided', 'Sources provided')]
 
     def test_flags_webextension(self):
-        self.new_addon().find_latest_version(self.channel).all_files[0].update(
+        addon = self.new_addon()
+        addon.find_latest_version(self.channel).all_files[0].update(
             is_webextension=True)
+        AddonReviewerFlags.objects.update_or_create(
+            addon=addon, auto_approval_disabled=True)
 
         queue = self.Queue.objects.get()
         assert queue.flags == [('webextension', 'WebExtension')]
