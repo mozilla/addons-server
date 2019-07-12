@@ -122,7 +122,7 @@ def create_theme(name, **extra_kwargs):
     return theme
 
 
-def generate_themes(num, owner):
+def generate_themes(num, owner, **kwargs):
     """Generate `num` themes for the given `owner`."""
     # Disconnect this signal given that we issue a reindex at the end.
     post_save.disconnect(update_search_index, sender=Addon,
@@ -133,7 +133,7 @@ def generate_themes(num, owner):
     # Generate personas.
     for name, category in _yield_name_and_cat(
             num, app=FIREFOX, type=ADDON_PERSONA):
-        theme = create_theme(name=name)
+        theme = create_theme(name=name, **kwargs)
         generate_addon_user_and_category(theme, user, category)
         generate_theme_images(theme)
         generate_translations(theme)
