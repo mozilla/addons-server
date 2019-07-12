@@ -5727,7 +5727,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         ]
 
     def test_draft_comment_create_and_retrieve(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
@@ -5772,7 +5772,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         }
 
     def test_draft_comment_create_retrieve_and_update(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
@@ -5839,7 +5839,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.json()['filename'] == 'new_manifest.json'
 
     def test_draft_comment_lineno_filename_optional(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
@@ -5870,7 +5870,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.json()['filename'] is None
 
     def test_draft_comment_delete(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
@@ -5890,7 +5890,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert DraftComment.objects.first() is None
 
     def test_draft_comment_delete_not_comment_owner(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
 
         comment = DraftComment.objects.create(
@@ -5898,7 +5898,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
             lineno=0, filename='manifest.json')
 
         # Let's login as someone else who is also a reviewer
-        other_reviewer = UserProfile.objects.create(username='reviewer2')
+        other_reviewer = user_factory(username='reviewer2')
 
         # Let's give the user admin permissions which doesn't help
         self.grant_permission(other_reviewer, '*:*')
@@ -5915,7 +5915,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.status_code == 404
 
     def test_draft_comment_disabled_version_user_but_not_author(self):
-        user = UserProfile.objects.create(username='simpleuser')
+        user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
 
@@ -5934,7 +5934,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.status_code == 403
 
     def test_draft_comment_deleted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
         self.version.delete()
@@ -5954,7 +5954,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.status_code == 404
 
     def test_draft_comment_deleted_version_author(self):
-        user = UserProfile.objects.create(username='author')
+        user = user_factory(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
         self.version.delete()
@@ -5974,7 +5974,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.status_code == 404
 
     def test_draft_comment_deleted_version_user_but_not_author(self):
-        user = UserProfile.objects.create(username='simpleuser')
+        user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
 
@@ -5993,7 +5993,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.status_code == 404
 
     def test_draft_comment_unlisted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -6013,7 +6013,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.status_code == 403
 
     def test_draft_comment_unlisted_version_user_but_not_author(self):
-        user = UserProfile.objects.create(username='simpleuser')
+        user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
