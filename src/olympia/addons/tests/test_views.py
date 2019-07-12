@@ -2582,8 +2582,8 @@ class TestReplacementAddonView(TestCase):
         collection = collection_factory(author=author)
         rep_addon2 = addon_factory()
         rep_addon3 = addon_factory()
-        CollectionAddon.objects.create(addon=rep_addon2)
-        CollectionAddon.objects.create(addon=rep_addon3)
+        CollectionAddon.objects.create(addon=rep_addon2, collection=collection)
+        CollectionAddon.objects.create(addon=rep_addon3, collection=collection)
         ReplacementAddon.objects.create(
             guid='legacy2collection@moz',
             path=urlunquote(collection.get_url_path()))
