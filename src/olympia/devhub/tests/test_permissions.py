@@ -14,6 +14,7 @@ class TestIsSubmissionAllowedFor(TestCase):
         self.request = RequestFactory().post('/')
         self.request.user = user_factory(
             email='test@example.com', read_dev_agreement=self.days_ago(0))
+        self.request.user.update(last_login_ip='192.168.1.1')
 
     def test_has_permission_no_restrictions(self):
         assert self.permission.has_permission(self.request, self.view)
