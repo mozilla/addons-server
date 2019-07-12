@@ -118,13 +118,12 @@ def get_mime_type_for_blob(tree_or_blob, name, blob):
 
         # If the file for some reason doesn't have a known file extension
         # (could happen for text files like `README`, `LICENSE` etc)
-        # don't null the
+        # don't null the originally detected mimetype
         if guessed_mimetype is not None:
-            mimetype = guessed_mimetype
-
-        # Re-apply compatibility mappings since `guess_type()` might return
-        # a completely different mimetype.
-        mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
+            # Re-apply compatibility mappings since `guess_type()` might return
+            # a completely different mimetype.
+            mimetype = MIMETYPE_COMPAT_MAPPING.get(
+                guessed_mimetype, guessed_mimetype)
 
     known_type_cagegories = ('image', 'text')
     default_type_category = 'binary'
