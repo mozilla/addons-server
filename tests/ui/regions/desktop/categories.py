@@ -6,7 +6,6 @@ class Categories(Region):
 
     _root_locator = (By.CLASS_NAME, 'Categories')
     _categories_locator = (By.CLASS_NAME, 'Categories-item')
-    _mobile_categories_locator = (By.CLASS_NAME, 'LandingPage-button')
 
     @property
     def category_list(self):

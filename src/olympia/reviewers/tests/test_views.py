@@ -18,6 +18,8 @@ from django.db import connection, reset_queries
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+from rest_framework.test import APIRequestFactory
+
 import pytest
 
 from freezegun import freeze_time
@@ -29,9 +31,11 @@ from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
+from olympia.addons.serializers import VersionSerializer
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -4608,38 +4612,6 @@ class TestReview(ReviewBase):
                     args=[self.addon.current_version.id])
         )
 
-    @patch('olympia.reviewers.utils.sign_file')
-    def test_draft_comments_prefilled_for_reply(self, mock_sign_file):
-        DraftComment.objects.create(
-            comments='Fancy pancy review',
-            version=self.addon.current_version,
-            user=self.reviewer)
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('#id_comments').text() == 'Fancy pancy review'
-
-    @patch('olympia.reviewers.utils.sign_file')
-    def test_draft_comments_cleared_after_submission(self, mock_sign_file):
-        DraftComment.objects.create(
-            comments='Fancy pancy review',
-            version=self.addon.current_version,
-            user=self.reviewer)
-
-        response = self.client.post(self.url, {
-            'action': 'reply',
-            'comments': 'foobar'
-        })
-
-        assert response.status_code == 302
-        assert len(mail.outbox) == 1
-
-        # Draft comments don't take precedence over manual comments
-        assert 'foobar' in mail.outbox[0].body
-        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
-
-        assert DraftComment.objects.count() == 0
-
 
 @override_flag('code-manager', active=True)
 class TestCodeManagerLinks(ReviewBase):
@@ -5752,48 +5724,162 @@ class TestReviewAddonVersionViewSetList(TestCase):
             },
         ]
 
-    def test_draft_comment_patch_not_allowed(self):
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
-            'addon_pk': self.addon.pk,
-            'pk': self.version.pk
-        })
-
-        response = self.client.patch(url, {})
-        assert response.status_code == 405
-
-    def test_draft_comment(self):
-        user = UserProfile.objects.create(username='reviewer')
+    def test_draft_comment_create_and_retrieve(self):
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
         data = {
-            'comments': 'Some really fancy comment',
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
         }
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
         })
 
-        response = self.client.put(url, data)
-        assert response.status_code == 200
+        response = self.client.post(url, data)
+        comment_id = response.json()['id']
+        assert response.status_code == 201
 
-        draft_comment = DraftComment.objects.get()
-        assert draft_comment.version == self.version
-        assert draft_comment.comments == 'Some really fancy comment'
+        response = self.client.post(url, data)
+        assert response.status_code == 201
 
-    def test_draft_comment_delete(self):
-        user = UserProfile.objects.create(username='reviewer')
+        assert DraftComment.objects.count() == 2
+
+        response = self.client.get(url)
+
+        request = APIRequestFactory().get('/')
+        request.user = user
+
+        assert response.json()['count'] == 2
+        assert response.json()['results'][0] == {
+            'id': comment_id,
+            'filename': 'manifest.json',
+            'lineno': 20,
+            'comment': 'Some really fancy comment',
+            'version': json.loads(json.dumps(
+                VersionSerializer(self.version).data,
+                cls=amo.utils.AMOJSONEncoder)),
+            'user': json.loads(json.dumps(
+                BaseUserSerializer(
+                    user, context={'request': request}).data,
+                cls=amo.utils.AMOJSONEncoder))
+        }
+
+    def test_draft_comment_create_retrieve_and_update(self):
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        DraftComment.objects.create(
-            version=self.version, comments='test',
-            user=user)
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
+        })
+
+        response = self.client.post(url, data)
+        assert response.status_code == 201
+
+        comment = DraftComment.objects.first()
+
+        response = self.client.get(url)
+
+        assert response.json()['count'] == 1
+        assert (
+            response.json()['results'][0]['comment'] ==
+            'Some really fancy comment')
+
+        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': comment.pk
+        })
+
+        response = self.client.patch(url, {
+            'comment': 'Updated comment!'
+        })
+
+        assert response.status_code == 200
+
+        response = self.client.get(url)
+
+        assert response.json()['comment'] == 'Updated comment!'
+        assert response.json()['lineno'] == 20
+
+        response = self.client.patch(url, {
+            'lineno': 18
+        })
+
+        assert response.status_code == 200
+
+        response = self.client.get(url)
+
+        assert response.json()['lineno'] == 18
+
+        # Patch two fields at the same time
+        response = self.client.patch(url, {
+            'lineno': 16,
+            'filename': 'new_manifest.json'
+        })
+
+        assert response.status_code == 200
+        response = self.client.get(url)
+
+        assert response.json()['lineno'] == 16
+        assert response.json()['filename'] == 'new_manifest.json'
+
+    def test_draft_comment_lineno_filename_optional(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        data = {
+            'comment': 'Some really fancy comment',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        response = self.client.post(url, data)
+        comment_id = response.json()['id']
+
+        assert response.status_code == 201
+
+        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': comment_id
+        })
+
+        response = self.client.get(url)
+
+        assert response.json()['comment'] == 'Some really fancy comment'
+        assert response.json()['lineno'] is None
+        assert response.json()['filename'] is None
+
+    def test_draft_comment_delete(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        comment = DraftComment.objects.create(
+            version=self.version, comment='test', user=user,
+            lineno=0, filename='manifest.json')
+
+        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': comment.pk
         })
 
         response = self.client.delete(url)
@@ -5802,109 +5888,146 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert DraftComment.objects.first() is None
 
     def test_draft_comment_delete_not_comment_owner(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
 
-        DraftComment.objects.create(
-            version=self.version, comments='test',
-            user=user)
+        comment = DraftComment.objects.create(
+            version=self.version, comment='test', user=user,
+            lineno=0, filename='manifest.json')
 
         # Let's login as someone else who is also a reviewer
-        other_reviewer = UserProfile.objects.create(username='reviewer2')
+        other_reviewer = user_factory(username='reviewer2')
 
         # Let's give the user admin permissions which doesn't help
         self.grant_permission(other_reviewer, '*:*')
 
         self.client.login_api(other_reviewer)
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk,
+            'pk': comment.pk
         })
 
         response = self.client.delete(url)
         assert response.status_code == 404
 
     def test_draft_comment_disabled_version_user_but_not_author(self):
-        user = UserProfile.objects.create(username='simpleuser')
+        user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
         })
 
-        response = self.client.put(url, {'comments': 'test'})
+        response = self.client.post(url, data)
         assert response.status_code == 403
 
     def test_draft_comment_deleted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
         self.version.delete()
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
         })
 
-        response = self.client.put(url, {'comments': 'test'})
+        response = self.client.post(url, data)
         assert response.status_code == 404
 
     def test_draft_comment_deleted_version_author(self):
-        user = UserProfile.objects.create(username='author')
+        user = user_factory(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
         self.version.delete()
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
         })
 
-        response = self.client.put(url, {'comments': 'test'})
+        response = self.client.post(url, data)
         assert response.status_code == 404
 
     def test_draft_comment_deleted_version_user_but_not_author(self):
-        user = UserProfile.objects.create(username='simpleuser')
+        user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
         })
 
-        response = self.client.put(url, {'comments': 'test'})
+        response = self.client.post(url, data)
         assert response.status_code == 404
 
     def test_draft_comment_unlisted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
+        user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
         })
 
-        response = self.client.put(url, {'comments': 'test'})
-        assert response.status_code == 404
+        response = self.client.post(url, data)
+        assert response.status_code == 403
 
     def test_draft_comment_unlisted_version_user_but_not_author(self):
-        user = UserProfile.objects.create(username='simpleuser')
+        user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
             'addon_pk': self.addon.pk,
-            'pk': self.version.pk
+            'version_pk': self.version.pk
         })
 
-        response = self.client.put(url, {'comments': 'test'})
-        assert response.status_code == 404
+        response = self.client.post(url, data)
+        assert response.status_code == 403
 
 
 class TestReviewAddonVersionCompareViewSet(

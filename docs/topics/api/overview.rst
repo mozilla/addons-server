@@ -112,6 +112,8 @@ The response when returning ``HTTP 503 Service Unavailable`` in case of read-onl
 
 In case we are not in read-only mode everything should be back working as normal.
 
+.. _api-overview-pagination:
+
 ~~~~~~~~~~
 Pagination
 ~~~~~~~~~~

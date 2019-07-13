@@ -22,7 +22,7 @@ class Category(Base):
 
     class Header(Region):
 
-        _category_name_locator = (By.CLASS_NAME, 'CategoryHeader-name')
+        _category_name_locator = (By.CLASS_NAME, 'SearchContextCard-header')
 
         @property
         def name(self):
