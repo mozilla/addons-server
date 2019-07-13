@@ -669,7 +669,7 @@ class IPNetworkUserRestriction(ModelBase):
         """
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
-            if (request.user):
+            if request.user:
                 user_last_login_ip = ipaddress.ip_address(
                     request.user.last_login_ip)
         except ValueError:
@@ -683,7 +683,7 @@ class IPNetworkUserRestriction(ModelBase):
                user_last_login_ip in restriction.network):
                 log.info('Restricting request from %s %s, %s %s (%s)',
                          'ip', remote_addr,
-                         'user last login ip', user_last_login_ip,
+                         'last_login_ip', user_last_login_ip,
                          'network=%s' % restriction.network)
                 return False
 
