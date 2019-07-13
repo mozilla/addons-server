@@ -102,8 +102,8 @@ class FileEntriesSerializer(FileSerializer):
                     float(commit.commit_time),
                     commit_tzinfo)
 
-                mimetype, entry_mime_category = self.get_entry_mime_type(
-                    entry, blob)
+                mimetype, entry_mime_category = get_mime_type_for_blob(
+                    tree_or_blob=entry.type, name=entry.name, blob=blob)
 
                 result[path] = {
                     'depth': path.count(os.sep),
@@ -126,10 +126,6 @@ class FileEntriesSerializer(FileSerializer):
             60 * 60 * 24)
 
         return self._entries
-
-    def get_entry_mime_type(self, entry, blob):
-        return get_mime_type_for_blob(
-            tree_or_blob=entry.type, name=entry.name, blob=blob)
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
@@ -157,11 +153,21 @@ class FileEntriesSerializer(FileSerializer):
         blob_or_tree = tree[self.get_selected_file(obj)]
 
         if blob_or_tree.type == 'blob':
-            # TODO: Test if this is actually needed, historically it was
-            # because files inside a zip could have any encoding but I'm not
-            # sure if git unifies this to some degree (cgrebs)
-            return unicodehelper.decode(
-                self.git_repo[blob_or_tree.oid].read_raw())
+            blob = self.git_repo[blob_or_tree.oid]
+            mimetype, mime_category = get_mime_type_for_blob(
+                tree_or_blob='blob', name=blob_or_tree.name, blob=blob)
+
+            # Only return the raw data if we detect a file that contains text
+            # data that actually can be rendered.
+            if mime_category == 'text':
+                # Remove any BOM data if preset.
+                return unicodehelper.decode(
+                    self.git_repo[blob_or_tree.oid].read_raw())
+
+        # By default return an empty string.
+        # See https://github.com/mozilla/addons-server/issues/11782 for
+        # more explanation.
+        return ''
 
     def get_download_url(self, obj):
         commit = self._get_commit(obj)
