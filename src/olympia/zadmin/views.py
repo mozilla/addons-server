@@ -27,8 +27,7 @@ from olympia.versions.models import Version
 
 from .decorators import admin_required
 from .forms import (
-    AddonStatusForm, FeaturedCollectionFormSet, FileFormSet,
-    MonthlyPickFormSet)
+    AddonStatusForm, FeaturedCollectionFormSet, FileFormSet)
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -112,16 +111,6 @@ def features(request):
         messages.success(request, 'Changes successfully saved.')
         return redirect('zadmin.features')
     return render(request, 'zadmin/features.html', dict(form=form))
-
-
-@admin_required
-def monthly_pick(request):
-    form = MonthlyPickFormSet(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        messages.success(request, 'Changes successfully saved.')
-        return redirect('zadmin.monthly_pick')
-    return render(request, 'zadmin/monthly_pick.html', dict(form=form))
 
 
 @admin_required

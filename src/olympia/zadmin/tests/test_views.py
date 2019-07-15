@@ -20,7 +20,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
-from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
+from olympia.bandwagon.models import FeaturedCollection
 from olympia.files.models import File, FileUpload
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -97,80 +97,6 @@ class TestHomeAndIndex(TestCase):
         url = reverse('admin:logout')
         response = self.client.get(url, follow=False)
         self.assert3xx(response, '/', status_code=302)
-
-
-class TestMonthlyPick(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super(TestMonthlyPick, self).setUp()
-        assert self.client.login(email='admin@mozilla.com')
-        self.url = reverse('zadmin.monthly_pick')
-        addon = Addon.objects.get(pk=3615)
-        MonthlyPick.objects.create(addon=addon,
-                                   locale='zh-CN',
-                                   blurb="test data",
-                                   image="http://www.google.com")
-        self.f = self.client.get(self.url).context['form'].initial_forms[0]
-        self.initial = self.f.initial
-
-    def test_form_initial(self):
-        assert self.initial['addon'] == 3615
-        assert self.initial['locale'] == 'zh-CN'
-        assert self.initial['blurb'] == 'test data'
-        assert self.initial['image'] == 'http://www.google.com'
-
-    def test_success_insert(self):
-        dupe = initial(self.f)
-        del dupe['id']
-        dupe.update(locale='fr')
-        data = formset(initial(self.f), dupe, initial_count=1)
-        self.client.post(self.url, data)
-        assert MonthlyPick.objects.count() == 2
-        assert MonthlyPick.objects.all()[1].locale == 'fr'
-
-    def test_insert_no_image(self):
-        dupe = initial(self.f)
-        dupe.update(id='', image='', locale='en-US')
-        data = formset(initial(self.f), dupe, initial_count=1)
-        self.client.post(self.url, data)
-        assert MonthlyPick.objects.count() == 2
-        assert MonthlyPick.objects.all()[1].image == ''
-
-    def test_success_insert_no_locale(self):
-        dupe = initial(self.f)
-        del dupe['id']
-        del dupe['locale']
-        data = formset(initial(self.f), dupe, initial_count=1)
-        self.client.post(self.url, data)
-        assert MonthlyPick.objects.count() == 2
-        assert MonthlyPick.objects.all()[1].locale is None
-
-    def test_insert_long_blurb(self):
-        dupe = initial(self.f)
-        dupe.update(id='', blurb='x' * 201, locale='en-US')
-        data = formset(initial(self.f), dupe, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[1]['blurb'][0] == (
-            'Ensure this value has at most 200 characters (it has 201).')
-
-    def test_success_update(self):
-        d = initial(self.f)
-        d.update(locale='fr')
-        r = self.client.post(self.url, formset(d, initial_count=1))
-        assert r.status_code == 302
-        assert MonthlyPick.objects.all()[0].locale == 'fr'
-
-    def test_success_delete(self):
-        d = initial(self.f)
-        d.update(DELETE=True)
-        self.client.post(self.url, formset(d, initial_count=1))
-        assert MonthlyPick.objects.count() == 0
-
-    def test_require_login(self):
-        self.client.logout()
-        r = self.client.get(self.url)
-        assert r.status_code == 302
 
 
 class TestFeatures(TestCase):
@@ -556,7 +482,6 @@ class TestPerms(TestCase):
         self.assert_status(
             'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
-        self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
 
     def test_staff_user(self):
@@ -571,7 +496,6 @@ class TestPerms(TestCase):
         self.assert_status(
             'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
-        self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
 
     def test_unprivileged_user(self):
@@ -583,7 +507,6 @@ class TestPerms(TestCase):
         self.assert_status(
             'zadmin.download_file_upload', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
-        self.assert_status('zadmin.monthly_pick', 403)
         self.assert_status('zadmin.features', 403)
         # Anonymous users should also get a 403.
         self.client.logout()

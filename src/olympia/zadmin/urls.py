@@ -43,10 +43,6 @@ urlpatterns = [
         name='zadmin.collections_json'),
     url(r'^features/featured-collection$', views.featured_collection,
         name='zadmin.featured_collection'),
-
-    url(r'^monthly-pick$', views.monthly_pick,
-        name='zadmin.monthly_pick'),
-
     url(r'^elastic$', views.elastic, name='zadmin.elastic'),
     url(r'^mail$', views.mail, name='zadmin.mail'),
     url(r'^addon-search$', views.addon_search, name='zadmin.addon-search'),

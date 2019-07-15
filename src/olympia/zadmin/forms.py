@@ -9,7 +9,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
-    Collection, FeaturedCollection, MonthlyPick)
+    Collection, FeaturedCollection)
 from olympia.core.languages import LANGUAGE_MAPPING
 from olympia.files.models import File
 
@@ -65,24 +65,6 @@ FeaturedCollectionFormSet = modelformset_factory(
     FeaturedCollection,
     form=FeaturedCollectionForm, formset=BaseFeaturedCollectionFormSet,
     can_delete=True, extra=0)
-
-
-class MonthlyPickForm(forms.ModelForm):
-    image = forms.CharField(required=False)
-    blurb = forms.CharField(max_length=200,
-                            widget=forms.Textarea(attrs={'cols': 20,
-                                                         'rows': 2}))
-
-    class Meta:
-        model = MonthlyPick
-        widgets = {
-            'addon': forms.TextInput(),
-        }
-        fields = ('addon', 'image', 'blurb', 'locale')
-
-
-MonthlyPickFormSet = modelformset_factory(MonthlyPick, form=MonthlyPickForm,
-                                          can_delete=True, extra=0)
 
 
 class AddonStatusForm(ModelForm):
