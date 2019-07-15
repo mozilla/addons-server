@@ -1,11 +1,7 @@
 import uuid
 
-from datetime import datetime
-
-from django.db import connection, models
+from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-
-import six
 
 from olympia import activity, amo
 from olympia.access import acl
@@ -150,70 +146,11 @@ class Collection(ModelBase):
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
 
-    def set_addons(self, addon_ids, comments=None):
-        """Replace the current add-ons with a new list of add-on ids."""
-        if comments is None:
-            comments = {}
-        order = {a: idx for idx, a in enumerate(addon_ids)}
-
-        # Partition addon_ids into add/update/remove buckets.
-        existing = set(self.addons.using('default')
-                       .values_list('id', flat=True))
-        add, update = [], []
-        for addon in addon_ids:
-            bucket = update if addon in existing else add
-            bucket.append((addon, order[addon]))
-        remove = existing.difference(addon_ids)
-        now = datetime.now()
-
-        with connection.cursor() as cursor:
-            if remove:
-                cursor.execute("DELETE FROM addons_collections "
-                               "WHERE collection_id=%s AND addon_id IN (%s)" %
-                               (self.id, ','.join(map(str, remove))))
-                if self.listed:
-                    for addon in remove:
-                        activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION,
-                                            (Addon, addon), self)
-            if add:
-                insert = '(%s, %s, %s, NOW(), NOW())'
-                values = [insert % (a, self.id, idx) for a, idx in add]
-                cursor.execute("""
-                    INSERT INTO addons_collections
-                        (addon_id, collection_id, ordering, created, modified)
-                    VALUES %s""" % ','.join(values))
-                if self.listed:
-                    for addon_id, idx in add:
-                        activity.log_create(amo.LOG.ADD_TO_COLLECTION,
-                                            (Addon, addon_id), self)
-        for addon, ordering in update:
-            (CollectionAddon.objects.filter(collection=self.id, addon=addon)
-             .update(ordering=ordering, modified=now))
-
-        for addon, comment in six.iteritems(comments):
-            try:
-                c = (CollectionAddon.objects.using('default')
-                     .get(collection=self.id, addon=addon))
-            except CollectionAddon.DoesNotExist:
-                pass
-            else:
-                c.comments = comment
-                c.save(force_update=True)
-
-        self.save()
-
     def add_addon(self, addon):
-        "Adds an addon to the collection."
         CollectionAddon.objects.get_or_create(addon=addon, collection=self)
-        if self.listed:
-            activity.log_create(amo.LOG.ADD_TO_COLLECTION, addon, self)
-        self.save()  # To invalidate Collection.
 
     def remove_addon(self, addon):
         CollectionAddon.objects.filter(addon=addon, collection=self).delete()
-        if self.listed:
-            activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
-        self.save()  # To invalidate Collection.
 
     def owned_by(self, user):
         return user.id == self.author_id
@@ -305,18 +242,26 @@ class CollectionAddon(ModelBase):
     def post_save(sender, instance, **kwargs):
         """Update Collection.addon_count and reindex add-on if the collection
         is featured."""
-        from . import tasks
-        tasks.collection_meta.delay(instance.collection_id)
+        if kwargs.get('raw'):
+            return
+        if instance.collection.listed:
+            activity.log_create(
+                amo.LOG.ADD_TO_COLLECTION, instance.addon, instance.collection)
+        Collection.post_save(sender, instance.collection, **kwargs)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
-        CollectionAddon.post_save(sender, instance, **kwargs)
+        from . import tasks
+
+        if kwargs.get('raw'):
+            return
+        if instance.collection.listed:
+            activity.log_create(
+                amo.LOG.REMOVE_FROM_COLLECTION, instance.addon,
+                instance.collection)
+        tasks.collection_meta.delay(instance.collection.id)
+
         if instance.collection.is_featured():
-            # The helpers .add_addon() and .remove_addon() already call .save()
-            # on the collection, triggering update_featured_status() among
-            # other things. However, this only takes care of the add-ons
-            # present in the collection at the time, we also need to make sure
-            # to invalidate add-ons that have been removed.
             Collection.update_featured_status(
                 sender, instance.collection,
                 addons=[instance.addon.pk], **kwargs)

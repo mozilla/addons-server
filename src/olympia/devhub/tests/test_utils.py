@@ -484,6 +484,7 @@ class TestUploadRestrictionChecker(TestCase):
     def setUp(self):
         self.request = RequestFactory().get('/')
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.request.user.update(last_login_ip='192.168.1.1')
 
     def test_is_submission_allowed_pass(self):
         checker = utils.UploadRestrictionChecker(self.request)
@@ -520,6 +521,6 @@ class TestUploadRestrictionChecker(TestCase):
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
-            'The email address you used for your developer account is not '
+            'The email address used for your account is not '
             'allowed for add-on submission.'
         )

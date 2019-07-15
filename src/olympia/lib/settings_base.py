@@ -1483,6 +1483,7 @@ PS_BIN = '/bin/ps'
 
 # The maximum file size that is shown inside the file viewer.
 FILE_VIEWER_SIZE_LIMIT = 1048576
+
 # The maximum file size that you can have inside a zip file.
 FILE_UNZIP_SIZE_LIMIT = 104857600
 

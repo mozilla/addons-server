@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-06-21 13:47+0000\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
+"PO-Revision-Date: 2019-07-09 06:56+0000\n"
+"Last-Translator: Miro Rauhala <miro.rauhala.99@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid "Uploading {0}"
 msgstr "Siirretään {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Virhe {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
@@ -95,7 +95,7 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "Lisäosasi tarkistus suoritettiin ilman virheitä tai varoituksia."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Hakemuksesi allekirjoitetaan automaattisesti."
 
 msgid "WebExtension upgrade"
 msgstr "WebExtension-päivitys"
@@ -151,22 +151,22 @@ msgid "All Rights Reserved"
 msgstr "Kaikki oikeudet pidätetään"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Nimeä 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiKaupallinen 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiKaupallinen-EiMuutoksia 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiKaupallinen-JaaSamoin 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiMuutoksia 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-JaaSamoin 3.0"
 
 msgid "Your Theme's Name"
 msgstr "Teemasi nimi"

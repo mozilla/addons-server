@@ -548,7 +548,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
-        log.debug(u'User (%s) logged in successfully' % user)
+        log.debug(u'User (%s) logged in successfully' % user,
+                  extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
@@ -668,6 +669,9 @@ class IPNetworkUserRestriction(ModelBase):
         """
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
+            if request.user:
+                user_last_login_ip = ipaddress.ip_address(
+                    request.user.last_login_ip)
         except ValueError:
             # If we don't have a valid ip address, let's deny
             return False
@@ -675,9 +679,11 @@ class IPNetworkUserRestriction(ModelBase):
         restrictions = IPNetworkUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if remote_addr in restriction.network:
-                log.info('Restricting request from %s %s (%s)',
+            if (remote_addr in restriction.network or
+               user_last_login_ip in restriction.network):
+                log.info('Restricting request from %s %s, %s %s (%s)',
                          'ip', remote_addr,
+                         'last_login_ip', user_last_login_ip,
                          'network=%s' % restriction.network)
                 return False
 
@@ -711,8 +717,8 @@ class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
             ' Please note that we do not include "@" in the match so you '
             ' should do that in the pattern.'))
 
-    error_message = _('The email address you used for your developer account'
-                      ' is not allowed for add-on submission.')
+    error_message = _('The email address used for your account is not '
+                      'allowed for add-on submission.')
 
     class Meta:
         db_table = 'users_user_email_restriction'

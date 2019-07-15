@@ -114,10 +114,16 @@ def get_mime_type_for_blob(tree_or_blob, name, blob):
         # Allow text mimetypes to be more specific for readable files.
         # `python-magic`/`libmagic` usually just returns plain/text but we
         # should use actual types like text/css or text/javascript.
-        mimetype, _ = mimetypes.guess_type(name)
-        # Re-apply compatibility mappings since `guess_type()` might return
-        # a completely different mimetype.
-        mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
+        guessed_mimetype, _ = mimetypes.guess_type(name)
+
+        # If the file for some reason doesn't have a known file extension
+        # (could happen for text files like `README`, `LICENSE` etc)
+        # don't null the originally detected mimetype
+        if guessed_mimetype is not None:
+            # Re-apply compatibility mappings since `guess_type()` might return
+            # a completely different mimetype.
+            mimetype = MIMETYPE_COMPAT_MAPPING.get(
+                guessed_mimetype, guessed_mimetype)
 
     known_type_cagegories = ('image', 'text')
     default_type_category = 'binary'
@@ -612,7 +618,6 @@ class AddonGitRepository(object):
         # Unchanged files are *only* exposed in case of explicitly requesting
         # a diff view for an file. That way we increase performance for
         # reguar unittests and full-tree diffs.
-
         generate_unmodified_fake_diff = (
             not patch.delta.is_binary and
             pathspec is not None and

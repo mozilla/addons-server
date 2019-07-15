@@ -97,6 +97,10 @@ This endpoint allows you to list versions that can be used either for :ref:`brow
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
+        This endpoint is not paginated as normal, and instead will return all
+        results without obeying regular pagination parameters.
+
+
 If the user doesn't have ``AddonsReviewUnlisted`` permissions only listed versions are shown. Otherwise it can contain mixed listed and unlisted versions.
 
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/
@@ -289,6 +293,11 @@ This endpoint allows you to retrieve a list of canned responses.
 
     Retrieve canned responses
 
+    .. note::
+        Because this endpoint is not returning too much data it is not
+        paginated as normal, and instead will return all results without
+        obeying regular pagination parameters.
+
     :>json int id: The canned response id.
     :>json string title: The title of the canned response.
     :>json string response: The text that will be filled in as the response.
@@ -301,26 +310,64 @@ Drafting Comments
 
 These endpoints allow you to draft comments that can be submitted through the regular reviewer pages.
 
-Please note, that once a review is submitted the drafted comments are being cleared as well.
-
     .. note::
         Requires authentication and the current user to have ``ReviewerTools:View``
         permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
+
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
-    Retrieve an exising draft.
+    Retrieve existing draft comments for a specific version. See :ref:`pagination <api-overview-pagination>` for more details.
 
-    :>json string comments: The comment that is being drafted as part of a review.
+    :>json int count: The number of comments for this version.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`comments <reviewers-draft-comment-detail-object>`.
 
-.. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
-    Create or update a draft.
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
 
-    :<json string comments: The comment that is being drafted as part of a review.
+    .. _reviewers-draft-comment-detail-object:
 
-.. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
+    :>json int id: The id of the draft comment object.
+    :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
+    :>json string filename: The filename a specific comment is related to.
+    :>json int lineno: The line number a specific comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
+    :>json object version: Object holding the :ref:`version <version-detail-object>`.
+    :>json int user.id: The id for an author.
+    :>json string user.name: The name for an author.
+    :>json string user.url: The link to the profile page for an author.
+    :>json string user.username: The username for an author.
 
-    Delete a drafted comment.
+
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
+
+    Create a draft comment for a specific version.
+
+    :<json string comment: The comment that is being drafted as part of a review.
+    :<json string filename: The filename this comment is related to (optional).
+    :<json int lineno: The line number this comment is related to (optional). Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
+    :statuscode 201: New comment has been created.
+    :statuscode 400: An error occurred, check the `error` value in the JSON.
+    :statuscode 403: The user doesn't have the permission to create a comment. This might happen (among other cases) when someone without permissions for unlisted versions tries to add a comment for an unlisted version (which shouldn't happen as the user doesn't see unlisted versions, but it's blocked here too).
+
+
+.. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
+
+    Delete a draft comment.
+
+    :statuscode 204: The comment has been deleted successfully.
+    :statuscode 404: The user doesn't have the permission to delete. This might happen when someone tries to delete a comment created by another reviewer or author.
+
+
+.. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)
+
+    Update a comment, it's filename or line number.
+
+    :<json string comment: The comment that is being drafted as part of a review.
+    :<json string filename: The filename this comment is related to.
+    :<json int lineno: The line number this comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
+    :statuscode 200: The comment has been updated.
+    :statuscode 400: An error occurred, check the `error` value in the JSON.

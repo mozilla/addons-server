@@ -175,6 +175,11 @@ class TestFileEntriesSerializer(TestCase):
         key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
         assert cache.get(key) == data['entries']
 
+    def test_dont_render_content_binary_file(self):
+        file = self.addon.current_version.current_file
+        data = self.serialize(file, file='icons/link-48.png')
+        assert data['content'] == ''
+
 
 class TestFileEntriesDiffSerializer(TestCase):
     def setUp(self):

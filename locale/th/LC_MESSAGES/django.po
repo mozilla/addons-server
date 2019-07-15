@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-08 13:04+0000\n"
-"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
+"PO-Revision-Date: 2019-07-08 10:31+0000\n"
+"Last-Translator: Can <udomc.can@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -659,9 +659,8 @@ msgstr "เพิ่ม {0} {1} แล้ว"
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} ไม่ถูกแนะนำอีกต่อไป"
+msgstr "{addon} ได้รับสิทธิ์ใช้งานในขณะนี้ภายใต้ {0}"
 
 msgid "{addon} policy changed."
 msgstr "เปลี่ยนนโยบายของ {addon} แล้ว"
@@ -751,9 +750,8 @@ msgstr "เซ็น {file} แล้ว"
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} ถูกเอาออกจาก {collection}"
+msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
@@ -1294,7 +1292,6 @@ msgstr "นโยบายความเป็นส่วนตัว"
 msgid "Development Practices"
 msgstr "นโยบายนักพัฒนา"
 
-#, fuzzy
 msgid "No Reputation"
 msgstr "ชื่อเสียง"
 
@@ -1321,9 +1318,8 @@ msgstr ""
 msgid "Updated Legacy Add-on Review"
 msgstr "อัปเดตบทวิจารณ์ส่วนเสริมแล้ว"
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "พจนานุกรม"
+msgstr "บทวิจารณ์พจนานุกรมใหม่"
 
 msgid "Preliminary Dictionary Review"
 msgstr ""
@@ -1331,9 +1327,8 @@ msgstr ""
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "ชุดภาษา"
+msgstr "บทวิจารณ์ชุดภาษาใหม่"
 
 msgid "Preliminary Language Pack Review"
 msgstr ""
@@ -2836,9 +2831,8 @@ msgstr "ยังไม่ถูกตรวจสอบ"
 msgid "Unlisted Review Page"
 msgstr ""
 
-#, fuzzy
 msgid "Admin Manage"
-msgstr "หน้าผู้ดูแล"
+msgstr "จัดการผู้ดูแล"
 
 msgid "View Statistics Dashboard"
 msgstr "ดูแดชบอร์ดสถิติ"
