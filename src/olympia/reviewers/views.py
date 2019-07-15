@@ -22,7 +22,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import (
+    ListModelMixin, RetrieveModelMixin, CreateModelMixin, DestroyModelMixin,
+    UpdateModelMixin)
 
 import olympia.core.logger
 
@@ -42,8 +44,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer, GroupPermission,
-    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf,
-    ByHttpMethod)
+    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.discovery.models import DiscoveryItem
@@ -787,14 +788,6 @@ def review(request, addon, channel=None):
         'info_request': addon.pending_info_request,
     }
 
-    try:
-        comments_draft = version.draftcomment_set.get(user=request.user)
-    except (DraftComment.DoesNotExist, AttributeError):
-        comments_draft = None
-
-    form_initial['comments_draft'] = (
-        comments_draft.comments if comments_draft else '')
-
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
         content_review_only=content_review_only)
@@ -834,9 +827,6 @@ def review(request, addon, channel=None):
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
-
-        if comments_draft:
-            comments_draft.delete()
 
         amo.messages.success(
             request, ugettext('Review successfully processed.'))
@@ -898,6 +888,8 @@ def review(request, addon, channel=None):
     all_versions.sort(key=lambda v: v.created,
                       reverse=True)
 
+    deleted_addons = Addon.unfiltered.filter(reusedguid__guid=addon.guid)
+
     pager = paginate(request, all_versions, 10)
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
@@ -940,7 +932,8 @@ def review(request, addon, channel=None):
         actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        content_review_only=content_review_only, count=count, flags=flags,
+        content_review_only=content_review_only, count=count,
+        deleted_addons=deleted_addons, flags=flags,
         form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
         reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
@@ -1327,7 +1320,7 @@ class ReviewAddonVersionMixin(object):
 
         kwargs.setdefault(
             self.lookup_field,
-            self.kwargs[self.lookup_url_kwarg or self.lookup_field])
+            self.kwargs.get(self.lookup_url_kwarg or self.lookup_field))
 
         obj = get_object_or_404(qset, **kwargs)
 
@@ -1390,40 +1383,72 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         )
         return Response(serializer.data)
 
-    draft_comment_permissions = AnyOf(
+
+class ReviewAddonVersionDraftCommentViewSet(
+        RetrieveModelMixin, ListModelMixin, CreateModelMixin,
+        DestroyModelMixin, UpdateModelMixin, GenericViewSet):
+
+    permission_classes = [AnyOf(
         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
-    )
+    )]
 
-    @action(
-        detail=True,
-        methods=['get', 'put', 'delete'],
-        permission_classes=[ByHttpMethod({
-            'get': draft_comment_permissions,
-            'put': draft_comment_permissions,
-            'delete': draft_comment_permissions})
-        ])
-    def draft_comment(self, request, **kwargs):
-        version = self.get_object()
+    queryset = DraftComment.objects.all()
+    serializer_class = DraftCommentSerializer
 
-        if request.method == 'GET':
-            instance = get_object_or_404(
-                DraftComment, version=version, user=request.user)
-            serializer = DraftCommentSerializer(instance, data=request.data)
-            return Response(serializer.data)
-        elif request.method == 'DELETE':
-            instance = get_object_or_404(
-                DraftComment, version=version, user=request.user)
+    def check_object_permissions(self, request, obj):
+        """Check permissions against the parent add-on object."""
+        return super().check_object_permissions(request, obj.version.addon)
 
-            instance.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        elif request.method == 'PUT':
-            instance, _ = DraftComment.objects.get_or_create(
-                version=version, user=request.user)
-            serializer = DraftCommentSerializer(instance, data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data)
-        return Response(status=http.HTTP_405_METHOD_NOT_ALLOWED)
+    def _verify_object_permissions(self, object_to_verify, version):
+        """Verify permissions.
+
+        This method works for `Version` and `DraftComment` objects.
+        """
+        # If the instance is marked as deleted and the client is not allowed to
+        # see deleted instances, we want to return a 404, behaving as if it
+        # does not exist.
+        if version.deleted and not (
+                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+                has_object_permission(self.request, self, version.addon)):
+            raise http.Http404
+
+        # Now we can checking permissions
+        super().check_object_permissions(self.request, version.addon)
+
+    def get_object(self, **kwargs):
+        qset = self.filter_queryset(self.get_queryset())
+
+        kwargs.setdefault(
+            self.lookup_field,
+            self.kwargs.get(self.lookup_url_kwarg or self.lookup_field))
+
+        obj = get_object_or_404(qset, **kwargs)
+        self._verify_object_permissions(obj, obj.version)
+        return obj
+
+    def get_version_object(self):
+        version = get_object_or_404(
+            Version.objects.get_queryset().only_translations(),
+            pk=self.kwargs['version_pk'])
+        self._verify_object_permissions(version, version)
+        return version
+
+    def get_extra_comment_data(self):
+        return {
+            'version': self.get_version_object().pk,
+            'user': self.request.user.pk
+        }
+
+    def filter_queryset(self, qset):
+        qset = super().filter_queryset(qset)
+        return qset.filter(**self.get_extra_comment_data())
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        # Patch in `version` and `user` as those are required by the serializer
+        # and not provided by the API client as part of the POST data.
+        self.request.data.update(self.get_extra_comment_data())
+        return context
 
 
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,

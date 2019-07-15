@@ -30,7 +30,10 @@ class Categories(Base):
         def name(self):
             return self.find_element(*self._link_locator).text
 
-        def click(self):
-            self.find_element(*self._link_locator).click()
+        def click_it(self):
+            if self.find_element(*self._mobile_categories_locator):
+                self.find_element(*self._mobile_categories_locator).click()
+            else:
+                self.find_element(*self._link_locator).click()
             from pages.desktop.category import Category
             return Category(self.selenium, self.page)

@@ -740,6 +740,7 @@ class TestAPIAgreement(TestCase):
         super(TestAPIAgreement, self).setUp()
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
+        self.user.update(last_login_ip='192.168.1.1')
 
     def test_agreement_read(self):
         self.user.update(read_dev_agreement=self.days_ago(0))
@@ -886,6 +887,7 @@ class TestAPIKeyPage(TestCase):
         self.url = reverse('devhub.api_key')
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
+        self.user.update(last_login_ip='192.168.1.1')
 
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
@@ -1668,6 +1670,8 @@ class TestRedirects(TestCase):
         super(TestRedirects, self).setUp()
         self.base = reverse('devhub.index')
         assert self.client.login(email='admin@mozilla.com')
+        self.user = UserProfile.objects.get(email='admin@mozilla.com')
+        self.user.update(last_login_ip='192.168.1.1')
 
     def test_edit(self):
         url = self.base + 'addon/edit/3615'

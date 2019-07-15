@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-04-06 16:08+0000\n"
+"PO-Revision-Date: 2019-07-14 11:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -21,9 +21,8 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#, fuzzy
 msgid "Users"
-msgstr "Kullanıcı Adı"
+msgstr "Kullanıcılar"
 
 msgid "Addons"
 msgstr "Eklentiler"
@@ -31,17 +30,14 @@ msgstr "Eklentiler"
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
 
-#, fuzzy
 msgid "creation date"
-msgstr "Diğer Seçenekler:"
+msgstr "oluşturma tarihi"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Engellenen Eklentiler"
+msgstr "Kullanıcı / Eklenti"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Açıklama"
+msgstr "Dağıtım"
 
 msgid "Reporter's country"
 msgstr ""
@@ -49,9 +45,9 @@ msgstr ""
 msgid "Message excerpt"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Girilen metin spam olarak işaretlendi."
+msgstr "Seçilen %d rapor geçerli olarak işaretlendi."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
@@ -268,13 +264,11 @@ msgstr ""
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Web sitemizde bakım çalışması yapıldığından bazı özellikler geçici olarak devre dışı bırakılmıştır. Kısa süre içinde normal işleyişimize döneceğiz."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "En az bir sahibi olmalı."
+msgstr "En az bir yazdırılabilir karakter içermeli."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "En az bir sahibi olmalı."
+msgstr "Bu alanın en az bir harf veya rakam içerdiğinden emin olun."
 
 msgid "Not allowed"
 msgstr "İzin verilmiyor"
@@ -339,10 +333,10 @@ msgstr "Bulunamadı"
 #, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Üzgünüz, aradığınız sayfayı bulamadık.</h1><p>Talep ettiğiniz sayfa veya dosya sitemizde bulunamadı. Eski bir bağlantıya tıklamış veya adresi yanlış yazmış olabilirsiniz.</p><ul><li>Adresi elle "
 "yazdıysanız lütfen tekrar kontrol edin.</li><li>Başka bir sayfadaki bağlantıya tıkladıysanız lütfen<a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a> adresinden bize bildirin. Hangi "
@@ -394,8 +388,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Lütfen <strong>tüm kelimeleri</strong> aşağıya girin ve <strong>gerekirse kelimeleri boşlukla ayırın</strong>. </p> <p> Eğer kelimeyi okumak zorsa <a href=\"#\" id=\"recaptcha_different"
-"\">farklı kelimeler deneyebilir</a> veya onun yerine <a href=\"#\" id=\"recaptcha_audio\">farklı bir doğrulama türünü deneyebilirsiniz</a>. </p>"
+"<p> Lütfen <strong>tüm kelimeleri</strong> aşağıya girin ve <strong>gerekirse kelimeleri boşlukla ayırın</strong>. </p> <p> Eğer kelimeyi okumak zorsa <a href=\"#\" id=\"recaptcha_different\">farklı"
+" kelimeler deneyebilir</a> veya onun yerine <a href=\"#\" id=\"recaptcha_audio\">farklı bir doğrulama türünü deneyebilirsiniz</a>. </p>"
 
 msgid "Most Popular"
 msgstr "En Popüler"
@@ -482,13 +476,11 @@ msgstr "Yükte bir veya daha fazla anahtar için yanlış tür"
 msgid "Invalid JWT Token."
 msgstr "Geçersiz JWT jetonu."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Geçersiz arşiv."
+msgstr "Geçersiz token veya hash."
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "E-posta Adresi"
+msgstr "E-posta adresi bulunamadı."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Alan en az {num} karakter uzunluğunda olmalı."
@@ -527,8 +519,8 @@ msgstr "Sürümler"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "The text entered has been flagged as spam."
@@ -845,40 +837,34 @@ msgstr "İçerik reddedildi"
 msgid "{addon} information request altered or removed by admin."
 msgstr "Daha fazla bilgi istendi"
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Daha fazla bilgi istendi"
+msgstr "Bilgi isteği düzenlendi"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} bilgi isteği geliştirici tarafından yanıtlandı."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Daha fazla bilgi istendi"
+msgstr "Bilgi isteği kaldırıldı"
 
 #, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "{addon} {version} incelemesi talep edildi."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Süper inceleme talep edildi"
+msgstr "Yönetici eklenti incelemesi istendi"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} incelemesi talep edildi."
+msgstr "{addon} {version} yönetici içerik incelemesi istendi."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Süper inceleme talep edildi"
+msgstr "Yönetici içerik incelemesi istendi"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} incelemesi talep edildi."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "İnceleme talep edildi"
+msgstr "Yönetici tema incelemesi istendi"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} hafif bir temadan taşındı."
@@ -1326,13 +1312,11 @@ msgstr "Sabit Tema"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Güvenlik testleri"
+msgstr "Güvenlik"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Gizlilik Politikası"
+msgstr "Gizlilik"
 
 #, fuzzy
 msgid "Development Practices"
@@ -1418,21 +1402,17 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "Eklenti İçeriği İncelemesi"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Eklenti İncelemesi"
+msgstr "Eklenti İncelemesi (En Yüksek Risk)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Eklenti İnceleme Süreci"
+msgstr "Eklenti İncelemesi (Yüksek Risk)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Eklenti İncelemesi"
+msgstr "Eklenti İncelemesi (Orta Risk)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Eklenti İnceleme Süreci"
+msgstr "Eklenti İncelemesi (Düşük Risk)"
 
 msgid "Level 1"
 msgstr "1. Düzey"
@@ -1520,7 +1500,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Thunderbird ve SeaMonkey eklentileri artık addons.thunderbird.net adresinde listeleniyor. Mevcut hesabınızı kullanarak eklentilerinizi yeni sitede güncelleyebilirsiniz."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Yükseltmeye izin veriyoruz ve hatta öneriyoruz ama bu işlemi geri alamazsınız. Kullanıcılarınız bir kez WebExtension'ı yükledikten sonra eski nesil eklentiyi yükleyemezler."
 
 #, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
@@ -1620,9 +1600,8 @@ msgstr "Lütfen eklentinizin Gizlilik İlkeleri'ni belirtin:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Desteklenmeyen dosya türü. Lütfen bir {extensions} arşiv dosyası yükleyin."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Geçersiz arşiv."
+msgstr "Geçersiz veya bozuk arşiv."
 
 msgid "View current"
 msgstr "Şimdikini gör"
@@ -1639,9 +1618,8 @@ msgstr "Yüklemenizde bir sorun oluştu. Lütfen tekrar deneyin."
 msgid "Override failed validation"
 msgstr "Başarısız doğrulamayı geçersiz kıl"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "En az bir uyumlu uygulamaya ihtiyaç var."
+msgstr "En az bir uygulamanın seçilmesi gerekiyor."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr ""
@@ -1676,8 +1654,7 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -1686,9 +1663,8 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Eklentiniz öne çıkanlardayken kategoriler değiştirilemez."
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Geçersiz arşiv."
+msgstr "Geçersiz ya da bozulmuş eklenti dosyası."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2001,9 +1977,7 @@ msgstr ""
 "yüklemeyi düşünün."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 #, fuzzy
@@ -2098,16 +2072,14 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Eklenti Ayrıntıları"
+msgstr "Ek Ayrıntılar"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "{0} Eklenti Ayrıntıları"
+msgstr "{0} için Ek Ayrıntılar"
 
 # 100%
 msgid "Tags"
@@ -2156,9 +2128,9 @@ msgstr ""
 msgid "Describe Add-on"
 msgstr "Eklentinizi tanımlayın"
 
+#. {0} is the addon name
 # 75%
 # 100%
-#. {0} is the addon name
 #, fuzzy
 msgid "Describe {0}"
 msgstr "Eklentinizi tanımlayın"
@@ -2220,23 +2192,21 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Kategoriler, kullanıcıların eklentilerle göz atmasının başlıca yoludur. En çok görünebilirlik için eklentinizin işlevselliğine uyan herhangi birini seçin."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Eklentiniz bu uygulama için öne çıkarılmışken kategoriler değiştirilemez. Kategorilerinizi değiştirmenizi gerektiren bir sebep varsa lütfen <a href=\"mailto:%(email)s\">%(email)s</a> adresine e-"
-"posta gönderin."
+"Eklentiniz bu uygulama için öne çıkarılmışken kategoriler değiştirilemez. Kategorilerinizi değiştirmenizi gerektiren bir sebep varsa lütfen <a href=\"mailto:%(email)s\">%(email)s</a> adresine "
+"e-posta gönderin."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
-"Eklentiniz öne çıkarılmışken kategoriler değiştirilemez. Kategorilerinizi değiştirmenizi gerektiren bir sebep varsa lütfen <a href=\"mailto:%(email)s\">%(email)s</a> adresine e-posta gönderin."
+msgstr "Eklentiniz öne çıkarılmışken kategoriler değiştirilemez. Kategorilerinizi değiştirmenizi gerektiren bir sebep varsa lütfen <a href=\"mailto:%(email)s\">%(email)s</a> adresine e-posta gönderin."
 
 msgid "Email"
 msgstr "E-posta"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2357,9 +2327,8 @@ msgstr "PNG ve JPG desteklenir."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Simgeler kare ve en az 128x128 piksel boyutunda olmalıdır."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG ve JPG desteklenir. Simgeler daha büyükse 64x64 piksele yeniden boyutlandırılır."
+msgstr "Simgeler daha büyükse 128x128 piksele yeniden boyutlandırılır."
 
 msgid "Screenshots"
 msgstr "Ekran görüntüleri"
@@ -2708,8 +2677,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -2831,8 +2800,8 @@ msgstr "JWT sırrı"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -3168,8 +3137,8 @@ msgstr "Firefox’u özelleştirin"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
@@ -5123,8 +5092,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -5170,8 +5138,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "İncelemeler hakkında sıkça sorulan sorular"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5621,13 +5589,11 @@ msgstr ""
 msgid "Moderation Guide"
 msgstr "Diğer Seçenekler:"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Engellenen Eklentiler"
+msgstr "Listelenmeyen Eklentiler"
 
-#, fuzzy
 msgid "All Unlisted Add-ons"
-msgstr "Engellenen Eklentiler"
+msgstr "Tüm Listelenmeyen Eklentiler"
 
 msgid "Announcement"
 msgstr "Duyuru"
@@ -5635,9 +5601,8 @@ msgstr "Duyuru"
 msgid "Update message of the day"
 msgstr "Günün iletisini güncelle"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Daha fazla bilgi istendi"
+msgstr "Süresi Dolan Bilgi İstekleri ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Bilinmeyen bir hata oluştu"
@@ -5646,7 +5611,7 @@ msgid "Self-reviews are not allowed."
 msgstr ""
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "İnceleme başarıyla işlendi."
 
 msgid "Review lock limit reached"
 msgstr ""
@@ -5675,9 +5640,8 @@ msgstr "Suistimal Raporları"
 msgid "Add-on Information for {0}"
 msgstr "{0} Eklenti Bilgileri"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Eklenti"
+msgstr "Eklenti ID'si"
 
 msgid "Internal AMO ID"
 msgstr ""
@@ -5702,9 +5666,8 @@ msgstr "Ortalama Günlük Kullanıcı"
 msgid "View Privacy Policy"
 msgstr "Gizlilik Politikasını İncele"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Yeniden başlatma gerektirir"
+msgstr "Ödeme gerektirir"
 
 msgid "EULA"
 msgstr "EULA"
@@ -5774,9 +5737,8 @@ msgstr ""
 msgid "Log details"
 msgstr "Günlük detayları"
 
-#, fuzzy
 msgid "Review Author"
-msgstr "İnceleme Geçmişi"
+msgstr "İnceleme Yazarı"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -6220,8 +6182,8 @@ msgstr "{0} :: İstatistik Panosu"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "İstatistik Panosu :: {0} eklentileri"
 
-# %1 is an add-on name.
 #. {0} is an add-on name
+# %1 is an add-on name.
 msgid "Statistics for {0}"
 msgstr "{0} İstatistikleri"
 
@@ -6344,11 +6306,11 @@ msgstr "Harici kaynakları izleme hakkında..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6544,8 +6506,8 @@ msgid "The email address you used for your developer account is not allowed for 
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 #, fuzzy

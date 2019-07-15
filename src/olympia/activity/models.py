@@ -167,9 +167,11 @@ class DraftComment(ModelBase):
     This is being used by the commenting API by the code-manager.
     """
     id = PositiveAutoField(primary_key=True)
-    comments = models.TextField()
     version = models.ForeignKey(Version, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    filename = models.CharField(max_length=255, null=True, blank=True)
+    lineno = models.PositiveIntegerField(null=True)
+    comment = models.TextField()
 
     class Meta:
         db_table = 'log_activity_comment_draft'

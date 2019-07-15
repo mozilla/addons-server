@@ -635,34 +635,41 @@ class TestIPNetworkUserRestriction(TestCase):
 
     def test_allowed_ip4_address(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='192.168.0.5')
         IPNetworkUserRestriction.objects.create(network='192.168.1.0/28')
         assert IPNetworkUserRestriction.allow_request(request)
 
         request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
+        request.user = user_factory(last_login_ip='10.8.0.1')
         IPNetworkUserRestriction.objects.create(network='10.8.0.0/32')
         assert IPNetworkUserRestriction.allow_request(request)
 
     def test_blocked_ip4_32_subnet(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.8').get('/')
+        request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.8/32')
         assert not IPNetworkUserRestriction.allow_request(request)
 
     def test_allowed_ip4_28_subnet(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
+        request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
         assert IPNetworkUserRestriction.allow_request(request)
 
     def test_blocked_ip4_24_subnet(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
+        request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/24')
         assert not IPNetworkUserRestriction.allow_request(request)
 
     def test_blocked_ip4_address(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
         assert not IPNetworkUserRestriction.allow_request(request)
 
         request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
+        request.user = user_factory(last_login_ip='192.168.1.1')
         IPNetworkUserRestriction.objects.create(network='10.8.0.0/28')
         assert not IPNetworkUserRestriction.allow_request(request)
 
@@ -677,6 +684,12 @@ class TestIPNetworkUserRestriction(TestCase):
             IPNetworkUserRestriction(network='::1/1218').full_clean()
         assert exc_info.value.messages[0] == (
             "'::1/1218' does not appear to be an IPv4 or IPv6 network")
+
+    def test_blocked_user_login_ip(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.8').get('/')
+        request.user = user_factory(last_login_ip='192.168.1.1')
+        IPNetworkUserRestriction.objects.create(network='192.168.1.1/32')
+        assert not IPNetworkUserRestriction.allow_request(request)
 
 
 class TestDisposableEmailDomainRestriction(TestCase):

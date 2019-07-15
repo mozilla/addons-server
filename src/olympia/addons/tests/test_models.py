@@ -20,7 +20,7 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
     AppSupport, Category, CompatOverride, CompatOverrideRange, DeniedGuid,
     DeniedSlug, FrozenAddon, IncompatibleVersions, MigratedLWT, Persona,
-    Preview, track_addon_status_change)
+    Preview, ReusedGUID, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, version_factory)
@@ -2309,6 +2309,9 @@ class TestAddonFromUpload(UploadTest):
         deleted.reload()
         assert addon.guid == 'guid@xpi'
         assert deleted.guid == 'guid-reused-by-pk-%s' % addon.pk
+        assert ReusedGUID.objects.filter(guid='guid@xpi').count() == 1
+        assert ReusedGUID.objects.filter(guid='guid@xpi').last().addon == (
+            deleted)
 
     def test_old_soft_deleted_addons_and_upload_non_extension(self):
         """We used to just null out GUIDs on soft deleted addons. This test

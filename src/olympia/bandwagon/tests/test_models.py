@@ -1,4 +1,3 @@
-import random
 import uuid
 
 from unittest import mock
@@ -7,8 +6,7 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, collection_factory
-from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection)
+from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.users.models import UserProfile
 
 
@@ -60,38 +58,6 @@ class TestCollections(TestCase):
         c = Collection.objects.create(author=self.user)
         assert c.uuid
         assert isinstance(c.uuid, uuid.UUID)
-
-    def test_set_addons(self):
-        addons = list(Addon.objects.values_list('id', flat=True))
-        c = Collection.objects.create(author=self.user)
-
-        # Check insert.
-        random.shuffle(addons)
-        c.set_addons(addons)
-        assert get_addons(c) == addons
-        assert activitylog_count(amo.LOG.ADD_TO_COLLECTION) == len(addons)
-
-        # Check update.
-        random.shuffle(addons)
-        c.set_addons(addons)
-        assert get_addons(c) == addons
-
-        # Check delete.
-        delete_cnt = len(addons) - 1
-        addons = addons[:2]
-        c.set_addons(addons)
-        assert activitylog_count(amo.LOG.REMOVE_FROM_COLLECTION) == delete_cnt
-        assert get_addons(c) == addons
-        assert c.addons.count() == len(addons)
-
-    def test_set_addons_comment(self):
-        addons = list(Addon.objects.values_list('id', flat=True))
-        c = Collection.objects.create(author=self.user)
-
-        c.set_addons(addons, {addons[0]: 'This is a comment.'})
-        collection_addon = CollectionAddon.objects.get(collection=c,
-                                                       addon=addons[0])
-        assert collection_addon.comments == 'This is a comment.'
 
     def test_collection_meta(self):
         c = Collection.objects.create(author=self.user)
@@ -178,14 +144,11 @@ class TestFeaturedCollectionSignals(TestCase):
             [self.addon.pk, extra_addon.pk],)
         index_addons.delay.reset_mock()
 
-        # Removing an add-on needs 2 calls: one to reindex the add-ons that
-        # are still in the collection (again, we're not smart enough to realize
-        # it's not necessary) and one to reindex the add-on that has been
+        # Removing an add-on needs just reindexes the add-on that has been
         # removed.
         self.collection.remove_addon(extra_addon)
-        assert index_addons.delay.call_count == 2
+        assert index_addons.delay.call_count == 1
         assert index_addons.delay.call_args_list[0][0] == ([extra_addon.pk],)
-        assert index_addons.delay.call_args_list[1][0] == ([self.addon.pk],)
 
     def test_addon_added_to_featured_collection(self):
         FeaturedCollection.objects.create(

@@ -666,6 +666,9 @@ class IPNetworkUserRestriction(ModelBase):
         """
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
+            if request.user:
+                user_last_login_ip = ipaddress.ip_address(
+                    request.user.last_login_ip)
         except ValueError:
             # If we don't have a valid ip address, let's deny
             return False
@@ -673,9 +676,11 @@ class IPNetworkUserRestriction(ModelBase):
         restrictions = IPNetworkUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if remote_addr in restriction.network:
-                log.info('Restricting request from %s %s (%s)',
+            if (remote_addr in restriction.network or
+               user_last_login_ip in restriction.network):
+                log.info('Restricting request from %s %s, %s %s (%s)',
                          'ip', remote_addr,
+                         'last_login_ip', user_last_login_ip,
                          'network=%s' % restriction.network)
                 return False
 
