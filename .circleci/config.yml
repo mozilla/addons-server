@@ -102,6 +102,7 @@ jobs:
           name: Start container, verify it's running and start tests
           environment:
             MOZ_HEADLESS: 1
+            PYTEST_ADDOPTS: -k "test_devhub or test_install" -n 4 --reruns 1
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
