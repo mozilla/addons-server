@@ -224,8 +224,12 @@ class CombinedReviewQueueMixin:
 class ExtensionQueueMixin:
     def base_query(self):
         query = super().base_query()
-        types = _int_join(amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME])
-        query['where'].append(f'addons.addontype_id IN ({types})')
+        types = _int_join(
+            set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH} | {amo.ADDON_THEME})
+        query['where'].append(
+            f'((addons.addontype_id IN ({types}) '
+            'AND files.is_webextension = 0) '
+            'OR addons_addonreviewerflags.auto_approval_disabled = 1)')
         return query
 
 

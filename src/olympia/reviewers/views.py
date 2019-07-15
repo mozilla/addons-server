@@ -537,15 +537,7 @@ def queue_counts(admin_reviewer):
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
-    TableObj = view_table_factory(ViewExtensionQueue)
-    # Most WebExtensions are picked up by auto_approve cronjob, they don't need
-    # to appear in the queues, unless auto approvals have been disabled for
-    # them.
-    qs = TableObj.Meta.model.objects.all().filter_raw(
-        Q('addon_type_id !=', amo.ADDON_SEARCH,
-          'files.is_webextension =', False) |
-        Q('addons_addonreviewerflags.auto_approval_disabled =', True))
-    return _queue(request, TableObj, 'extension', qs=qs)
+    return _queue(request, view_table_factory(ViewExtensionQueue), 'extension')
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
