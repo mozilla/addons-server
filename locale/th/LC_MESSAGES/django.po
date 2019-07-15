@@ -751,7 +751,7 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} ถูกเอาออกจาก {collection}"
+msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
