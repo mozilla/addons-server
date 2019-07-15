@@ -890,6 +890,8 @@ def review(request, addon, channel=None):
     all_versions.sort(key=lambda v: v.created,
                       reverse=True)
 
+    deleted_addons = Addon.unfiltered.filter(reusedguid__guid=addon.guid)
+
     pager = paginate(request, all_versions, 10)
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
@@ -932,7 +934,8 @@ def review(request, addon, channel=None):
         actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        content_review_only=content_review_only, count=count, flags=flags,
+        content_review_only=content_review_only, count=count,
+        deleted_addons=deleted_addons, flags=flags,
         form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
         reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
