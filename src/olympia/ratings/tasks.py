@@ -1,6 +1,5 @@
 from datetime import datetime
 
-import six
 import waffle
 
 from django.db.models import Avg, Count, F
@@ -54,7 +53,7 @@ def update_denorm(*pairs, **kw):
 @task
 @use_primary_db
 def addon_rating_aggregates(addons, **kw):
-    if isinstance(addons, six.integer_types):  # Got passed a single addon id.
+    if isinstance(addons, int):  # Got passed a single addon id.
         addons = [addons]
     log.info('[%s@%s] Updating total reviews and average ratings.' %
              (len(addons), addon_rating_aggregates.rate_limit))

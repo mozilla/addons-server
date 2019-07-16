@@ -7,8 +7,6 @@ from django.db.models import Q
 from django.db.models.sql.query import AND, OR
 from django.utils.tree import Node
 
-from six import add_metaclass
-
 
 ORDER_PATTERN = re.compile(r'^[-+]?[a-zA-Z0-9_]+$')
 FIELD_PATTERN = re.compile(r'^[a-zA-Z0-9_\.]+$')
@@ -373,8 +371,7 @@ class RawSQLModelMeta(type):
         return cls
 
 
-@add_metaclass(RawSQLModelMeta)
-class RawSQLModel(object):
+class RawSQLModel(object, metaclass=RawSQLModelMeta):
     """Very minimal model-like object based on a SQL query.
 
     It supports barely enough for django-tables and the Django paginator.

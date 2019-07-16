@@ -4,6 +4,7 @@ import os
 import time
 
 from datetime import datetime, timedelta
+from unittest.mock import Mock, patch
 
 from django import forms
 from django.conf import settings
@@ -11,9 +12,6 @@ from django.core import mail
 from django.utils import translation
 
 import pytest
-import six
-
-from unittest.mock import Mock, patch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
@@ -2112,12 +2110,12 @@ class TestPersonaModel(TestCase):
             id_ = str(self.persona.addon.id)
 
             assert data['id'] == id_
-            assert data['name'] == six.text_type(self.persona.addon.name)
+            assert data['name'] == str(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
             assert data['category'] == 'Abstract'
             assert data['author'] == 'persona_author ®'
-            assert data['description'] == six.text_type(self.addon.description)
+            assert data['description'] == str(self.addon.description)
 
             assert data['headerURL'].startswith(
                 '%s%s/header.png?' % (user_media_url('addons'), id_))
@@ -2151,12 +2149,12 @@ class TestPersonaModel(TestCase):
             id_ = str(self.persona.addon.id)
 
             assert data['id'] == id_
-            assert data['name'] == six.text_type(self.persona.addon.name)
+            assert data['name'] == str(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
             assert data['category'] == 'Abstract'
             assert data['author'] == 'persona_author ®'
-            assert data['description'] == six.text_type(self.addon.description)
+            assert data['description'] == str(self.addon.description)
 
             assert data['headerURL'].startswith(
                 '%s%s/header.png?' % (user_media_url('addons'), id_))

@@ -2,10 +2,8 @@ from functools import partial, total_ordering
 
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
-from django.utils.encoding import python_2_unicode_compatible
 
 import bleach
-import six
 
 import olympia.core.logger
 
@@ -30,7 +28,6 @@ class TranslationManager(ManagerBase):
 
 
 @total_ordering
-@python_2_unicode_compatible
 class Translation(ModelBase):
     """
     Translation model.
@@ -53,7 +50,7 @@ class Translation(ModelBase):
 
     def __str__(self):
         return (
-            six.text_type(self.localized_string) if self.localized_string
+            str(self.localized_string) if self.localized_string
             else '')
 
     def __bool__(self):
@@ -166,7 +163,6 @@ class Translation(ModelBase):
         return trans
 
 
-@python_2_unicode_compatible
 class PurifiedTranslation(Translation):
     """Run the string through bleach to get a safe version."""
     allowed_tags = [
@@ -195,13 +191,13 @@ class PurifiedTranslation(Translation):
     def __str__(self):
         if not self.localized_string_clean:
             self.clean()
-        return six.text_type(self.localized_string_clean)
+        return str(self.localized_string_clean)
 
     def __html__(self):
-        return six.text_type(self)
+        return str(self)
 
     def __truncate__(self, length, killwords, end):
-        return utils.truncate(six.text_type(self), length, killwords, end)
+        return utils.truncate(str(self), length, killwords, end)
 
     def clean(self):
         from olympia.amo.utils import clean_nl
@@ -219,7 +215,7 @@ class PurifiedTranslation(Translation):
             tags=self.allowed_tags, attributes=self.allowed_attributes,
             filters=[linkify_filter])
 
-        return cleaner.clean(six.text_type(self.localized_string))
+        return cleaner.clean(str(self.localized_string))
 
 
 class LinkifiedTranslation(PurifiedTranslation):

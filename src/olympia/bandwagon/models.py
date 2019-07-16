@@ -1,7 +1,6 @@
 import uuid
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 from olympia import activity, amo
 from olympia.access import acl
@@ -61,7 +60,6 @@ class CollectionManager(ManagerBase):
         return self.filter(author=user.pk)
 
 
-@python_2_unicode_compatible
 class Collection(ModelBase):
     id = PositiveAutoField(primary_key=True)
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
@@ -279,7 +277,6 @@ models.signals.post_delete.connect(CollectionAddon.post_delete,
                                    dispatch_uid='coll.post_delete')
 
 
-@python_2_unicode_compatible
 class FeaturedCollection(ModelBase):
     id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,

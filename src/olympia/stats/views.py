@@ -1,6 +1,7 @@
 import csv
 import json
 import time
+import itertools
 
 from datetime import timedelta
 
@@ -11,10 +12,7 @@ from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.encoding import force_text
 
-import six
-
 from dateutil.parser import parse
-from six import moves
 
 import olympia.core.logger
 
@@ -171,7 +169,7 @@ def zip_overview(downloads, updates):
         except StopIteration:
             pass
 
-    series = six.moves.zip_longest(iterator(downloads), iterator(updates))
+    series = itertools.zip_longest(iterator(downloads), iterator(updates))
     for idx, (dl_count, up_count) in enumerate(series):
         yield {'date': start_date - timedelta(days=idx),
                'data': {'downloads': dl_count, 'updates': up_count}}
@@ -266,8 +264,8 @@ def flatten_applications(series):
                 app = amo.APP_GUIDS.get(app)
                 if not app:
                     continue
-                # six.text_type() to decode the gettext proxy.
-                appname = six.text_type(app.pretty)
+                # str() to decode the gettext proxy.
+                appname = str(app.pretty)
                 for ver, count in versions.items():
                     key = ' '.join([appname, ver])
                     new[key] = count
@@ -371,41 +369,6 @@ def fudge_headers(response, stats):
         patch_cache_control(response, max_age=seven_days)
 
 
-if six.PY2:
-    class CSVDictWriterClass(csv.DictWriter):
-        """A DictWriter that writes a unicode stream, because the python 2
-        csv module doesn't."""
-
-        def __init__(self, stream, fields, **kw):
-            # We have the csv module write into our buffer as bytes and then we
-            # dump the buffer to the real stream as unicode.
-            self.buffer = moves.cStringIO()
-            csv.DictWriter.__init__(self, self.buffer, fields, **kw)
-            self.stream = stream
-
-        def writeheader(self):
-            self.writerow(dict(zip(self.fieldnames, self.fieldnames)))
-
-        def try_encode(self, obj):
-            return obj.encode('utf-8') if isinstance(
-                obj, six.string_types) else obj
-
-        def writerow(self, rowdict):
-            row = self._dict_to_list(rowdict)
-            # Write to the buffer as ascii.
-            self.writer.writerow(map(self.try_encode, row))
-            # Dump the buffer to the real stream as utf-8.
-            self.stream.write(self.buffer.getvalue().decode('utf-8'))
-            # Clear the buffer.
-            self.buffer.truncate(0)
-
-        def writerows(self, rowdicts):
-            for rowdict in rowdicts:
-                self.writerow(rowdict)
-else:
-    CSVDictWriterClass = csv.DictWriter
-
-
 @allow_cross_site_request
 @non_atomic_requests
 def render_csv(request, addon, stats, fields,
@@ -416,7 +379,7 @@ def render_csv(request, addon, stats, fields,
     context = {'addon': addon, 'timestamp': ts, 'title': title,
                'show_disclaimer': show_disclaimer}
     response = render(request, 'stats/csv_header.txt', context)
-    writer = CSVDictWriterClass(
+    writer = csv.DictWriter(
         response, fields, restval=0, extrasaction='ignore')
     writer.writeheader()
     writer.writerows(stats)

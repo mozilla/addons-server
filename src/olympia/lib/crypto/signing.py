@@ -11,7 +11,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import force_bytes, force_text
 
 import requests
-import six
 import waffle
 
 from django_statsd.clients import statsd
@@ -175,7 +174,7 @@ def sign_file(file_obj):
             .format(file_obj.version.pk))
 
     # Sign the file. If there's any exception, we skip the rest.
-    cert_serial_num = six.text_type(call_signing(file_obj))
+    cert_serial_num = str(call_signing(file_obj))
 
     size = storage.size(file_obj.current_file_path)
 

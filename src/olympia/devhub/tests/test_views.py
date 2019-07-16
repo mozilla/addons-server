@@ -3,6 +3,7 @@ import json
 import os
 
 from datetime import datetime, timedelta
+from urllib.parse import urlencode
 
 from django.conf import settings
 from django.core import mail
@@ -17,7 +18,6 @@ import pytest
 import responses
 
 from pyquery import PyQuery as pq
-from six.moves.urllib_parse import urlencode
 from waffle.testutils import override_switch
 
 from olympia import amo, core

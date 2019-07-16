@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import NoReverseMatch
-from django.utils.encoding import python_2_unicode_compatible
 
 from olympia import activity, amo
 from olympia.amo.fields import PositiveAutoField
@@ -15,7 +14,6 @@ class TagManager(ManagerBase):
         return self.filter(denied=False)
 
 
-@python_2_unicode_compatible
 class Tag(ModelBase):
     id = PositiveAutoField(primary_key=True)
     tag_text = models.CharField(max_length=128)

@@ -8,7 +8,6 @@ from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 
 from unittest import mock
-import six
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -312,7 +311,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
-        assert six.text_type(self.addon.name) in msg, ("Unexpected: %r" % msg)
+        assert str(self.addon.name) in msg, ("Unexpected: %r" % msg)
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon_pending_version(self, hide_mock):
@@ -339,7 +338,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
-        assert six.text_type(self.addon.name) in msg, ("Unexpected: %r" % msg)
+        assert str(self.addon.name) in msg, ("Unexpected: %r" % msg)
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_disabling_addon_awaiting_review_disables_version(self, hide_mock):
@@ -372,7 +371,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_ENABLE.id
         msg = entry.to_string()
-        assert six.text_type(self.addon.name) in msg, ("Unexpected: %r" % msg)
+        assert str(self.addon.name) in msg, ("Unexpected: %r" % msg)
 
     def test_unprivileged_user_cant_disable_addon(self):
         self.addon.update(disabled_by_user=False)
@@ -693,8 +692,8 @@ class TestVersionEditDetails(TestVersionEditBase):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         version = self.get_version()
-        assert six.text_type(version.release_notes) == 'xx'
-        assert six.text_type(version.approval_notes) == 'yy'
+        assert str(version.release_notes) == 'xx'
+        assert str(version.approval_notes) == 'yy'
 
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
@@ -904,8 +903,8 @@ class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
         response = self.client.post(self.url, dd)
         assert response.status_code == 302
         version = Addon.objects.get(id=4594).current_version
-        assert six.text_type(version.release_notes) == 'xx'
-        assert six.text_type(version.approval_notes) == 'yy'
+        assert str(version.release_notes) == 'xx'
+        assert str(version.approval_notes) == 'yy'
 
     def test_no_compat(self):
         response = self.client.get(self.url)

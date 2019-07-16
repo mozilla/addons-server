@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
+import io
+
 from importlib import import_module
 
 from django.conf import settings
@@ -9,7 +11,6 @@ from django.test.utils import override_settings
 
 from unittest import mock
 import pytest
-import six
 
 
 def sample_cron_job(*args):
@@ -42,7 +43,7 @@ def test_cron_command_invalid_job():
 
 
 def test_cron_jobs_setting():
-    for name, path in six.iteritems(settings.CRON_JOBS):
+    for name, path in settings.CRON_JOBS.items():
         module = import_module(path)
         getattr(module, name)
 
@@ -54,7 +55,7 @@ def test_compress_assets_command_without_git():
 
     # Capture output to avoid it being logged and allow us to validate it
     # later if needed
-    out = six.StringIO()
+    out = io.StringIO()
     call_command('compress_assets', stdout=out)
 
     build_id_file = os.path.realpath(os.path.join(settings.ROOT, 'build.py'))
@@ -86,7 +87,7 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
 
     # Capture output to avoid it being logged and allow us to validate it
     # later if needed
-    out = six.StringIO()
+    out = io.StringIO()
 
     # Now run compress and collectstatic
     call_command('compress_assets', force=True, stdout=out)

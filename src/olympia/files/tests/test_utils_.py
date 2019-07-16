@@ -7,6 +7,7 @@ import time
 import zipfile
 
 from datetime import timedelta
+from unittest import mock
 
 from django import forms
 from django.conf import settings
@@ -14,9 +15,7 @@ from django.forms import ValidationError
 
 import flufl.lock
 import lxml
-from unittest import mock
 import pytest
-import six
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
 from waffle.testutils import override_switch
@@ -989,7 +988,7 @@ def test_parse_search_empty_shortname():
         utils.parse_search(fname)
 
     assert (
-        six.text_type(excinfo.value.message) ==
+        str(excinfo.value.message) ==
         'Could not parse uploaded file, missing or empty <ShortName> element')
 
 

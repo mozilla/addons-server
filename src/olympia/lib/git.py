@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collections import namedtuple
 import uuid
 import os
 import io
@@ -8,7 +7,8 @@ import tempfile
 import sys
 import mimetypes
 
-import six
+from collections import namedtuple
+
 import pygit2
 import magic
 
@@ -466,7 +466,7 @@ class AddonGitRepository(object):
         """
         # When `commit` is a commit hash, e.g passed to us through the API
         # serializers we have to fetch the actual commit object to proceed.
-        if isinstance(commit, six.string_types):
+        if isinstance(commit, str):
             commit = self.git_repository.revparse_single(commit)
 
         return self.git_repository[commit.tree[EXTRACTED_PREFIX].oid]

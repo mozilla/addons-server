@@ -13,7 +13,6 @@ from django.contrib.auth.management.commands.createsuperuser import (
     Command as CreateSuperUserCommand)
 from django.core import exceptions
 from django.core.management.base import CommandError
-from django.utils.six.moves import input
 from django.utils.text import capfirst
 
 from olympia.api.models import APIKey

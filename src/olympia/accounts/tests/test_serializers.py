@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.test.utils import override_settings
 
-import six
-
 from rest_framework import serializers
 from rest_framework.test import APIRequestFactory
 
@@ -97,7 +95,7 @@ class TestPublicUserProfileSerializer(TestCase):
     def test_basic(self):
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
-            assert data[prop] == six.text_type(val), prop
+            assert data[prop] == str(val), prop
         for prop, val in self.user_private_kwargs.items():
             assert prop not in data
         return data
@@ -211,10 +209,10 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
         self.grant_permission(self.user, 'Addons:PostReview')
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
-            assert data[prop] == six.text_type(val), prop
+            assert data[prop] == str(val), prop
         # We can also see private stuff, it's the same user.
         for prop, val in self.user_private_kwargs.items():
-            assert data[prop] == six.text_type(val), prop
+            assert data[prop] == str(val), prop
 
     def test_expose_fxa_edit_email_url(self):
         fxa_host = 'http://example.com'

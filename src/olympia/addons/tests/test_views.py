@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
 
+from unittest import mock
+
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlunquote
 
-from unittest import mock
 import pytest
-import six
 
 from elasticsearch import Elasticsearch
 from unittest.mock import patch
@@ -1782,7 +1782,7 @@ class TestAddonSearchView(ESTestCase):
         # Exclude addon1 and addon2 by pk.
         data = self.perform_search(
             self.url, {'exclude_addons': u','.join(
-                map(six.text_type, (addon2.pk, addon1.pk)))})
+                map(str, (addon2.pk, addon1.pk)))})
 
         assert len(data['results']) == 1
         assert data['count'] == 1
@@ -1791,7 +1791,7 @@ class TestAddonSearchView(ESTestCase):
         # Exclude addon1 by pk and addon3 by slug.
         data = self.perform_search(
             self.url, {'exclude_addons': u','.join(
-                (six.text_type(addon1.pk), addon3.slug))})
+                (str(addon1.pk), addon3.slug))})
 
         assert len(data['results']) == 1
         assert data['count'] == 1

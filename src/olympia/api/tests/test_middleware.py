@@ -1,9 +1,9 @@
+import io
+
 from gzip import GzipFile
+from unittest import mock
 
 from django.conf import settings
-
-from unittest import mock
-from six import BytesIO
 
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns
 from olympia.api.middleware import (
@@ -77,5 +77,5 @@ class TestGzipMiddleware(TestCase):
 
         assert len(response_gzipped.content) < len(response.content)
         ungzipped_content = GzipFile(
-            '', 'r', 0, BytesIO(response_gzipped.content)).read()
+            '', 'r', 0, io.BytesIO(response_gzipped.content)).read()
         assert ungzipped_content == response.content

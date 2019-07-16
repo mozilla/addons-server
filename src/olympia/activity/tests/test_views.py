@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
+import io
+from unittest import mock
 
 from django.test.utils import override_settings
-
-from unittest import mock
-import six
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
@@ -276,7 +275,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         rdata = response.data
         assert reply.pk == rdata['id']
         assert (
-            six.text_type(reply.details['comments']) == rdata['comments'] ==
+            str(reply.details['comments']) == rdata['comments'] ==
             u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
@@ -302,7 +301,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         rdata = response.data
         assert reply.pk == rdata['id']
         assert (
-            six.text_type(reply.details['comments']) == rdata['comments'] ==
+            str(reply.details['comments']) == rdata['comments'] ==
             u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
@@ -396,7 +395,7 @@ class TestEmailApi(TestCase):
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['CONTENT_LENGTH'] = len(datastr)
         req.META['CONTENT_TYPE'] = 'application/json'
-        req._stream = six.BytesIO(datastr)
+        req._stream = io.BytesIO(datastr)
         return req
 
     def get_validation_request(self, data):

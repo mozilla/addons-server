@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import date, datetime
+from urllib.parse import parse_qsl, urlparse
 
 from django.conf import settings
 from django.contrib import admin
@@ -9,7 +10,6 @@ from django.test import RequestFactory
 from django.urls import reverse
 
 from pyquery import PyQuery as pq
-from six.moves.urllib_parse import parse_qsl, urlparse
 
 from olympia import amo
 from olympia.abuse.admin import AbuseReportAdmin

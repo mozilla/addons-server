@@ -4,9 +4,6 @@ from django.contrib.gis.geoip2 import GeoIP2, GeoIP2Exception
 from django.core.validators import validate_ipv46_address
 from django.db import models
 from django.utils import translation
-from django.utils.encoding import python_2_unicode_compatible
-
-import six
 
 from extended_choices import Choices
 from geoip2.errors import GeoIP2Error
@@ -34,7 +31,6 @@ class AbuseReportManager(ManagerBase):
         return qs
 
 
-@python_2_unicode_compatible
 class AbuseReport(ModelBase):
     # Note: those choices don't need to be translated for now, the
     # human-readable values are only exposed in the admin.
@@ -188,8 +184,7 @@ class AbuseReport(ModelBase):
         )
         msg = '%s reported abuse for %s (%s).\n\n%s\n\n%s' % (
             user_name, target_name, target_url, metadata, self.message)
-        send_mail(
-            six.text_type(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
+        send_mail(str(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
 
     @property
     def metadata(self):

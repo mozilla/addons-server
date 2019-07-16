@@ -2,6 +2,8 @@ import json as jsonlib
 import os
 import random
 
+from urllib.parse import urljoin
+
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
@@ -14,14 +16,12 @@ from django.utils.translation import (
     get_language, to_locale, trim_whitespace, ugettext)
 
 import jinja2
-import six
 import waffle
 
 from babel.support import Format
 from django_jinja import library
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
-from six.moves.urllib_parse import urljoin
 
 from olympia.amo import urlresolvers, utils
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
@@ -38,7 +38,7 @@ library.global_function(utils.randslice)
 
 # Mark a lazy marked instance as safe but keep
 # it lazy
-mark_safe_lazy = lazy(mark_safe, six.text_type)
+mark_safe_lazy = lazy(mark_safe, str)
 
 
 @library.global_function
@@ -205,14 +205,14 @@ def strip_controls(s):
     """
     # Translation table of control characters.
     control_trans = dict((n, None) for n in range(32) if n not in [10, 13])
-    rv = six.text_type(s).translate(control_trans)
+    rv = str(s).translate(control_trans)
     return jinja2.Markup(rv) if isinstance(s, jinja2.Markup) else rv
 
 
 @library.filter
 def external_url(url):
     """Bounce a URL off outgoing.prod.mozaws.net."""
-    return urlresolvers.get_outgoing_url(six.text_type(url))
+    return urlresolvers.get_outgoing_url(str(url))
 
 
 @library.filter
@@ -227,7 +227,7 @@ def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
     from olympia.versions.models import License
-    if isinstance(license, six.integer_types):
+    if isinstance(license, int):
         if license in PERSONA_LICENSES_IDS:
             # Grab built-in license.
             license = PERSONA_LICENSES_IDS[license]

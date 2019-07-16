@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
+from unittest.mock import Mock
+
 from django.test import override_settings
 
-import six
-
-from unittest.mock import Mock
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -45,7 +44,7 @@ class TestBaseRatingSerializer(TestCase):
             'name': {'en-US': addon.name},
             'icon_url': absolutify(addon.get_icon_url(64)),
         }
-        assert result['body'] == six.text_type(self.rating.body)
+        assert result['body'] == str(self.rating.body)
         assert result['created'] == (
             self.rating.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['is_deleted'] is False
@@ -56,7 +55,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['reply'] is None
         assert result['user'] == {
             'id': self.user.pk,
-            'name': six.text_type(self.user.name),
+            'name': str(self.user.name),
             'url': None,
             'username': self.user.username,
         }
@@ -93,7 +92,7 @@ class TestBaseRatingSerializer(TestCase):
             'name': {'en-US': addon.name},
             'icon_url': absolutify(addon.get_icon_url(64)),
         }
-        assert result['body'] == six.text_type(self.rating.body)
+        assert result['body'] == str(self.rating.body)
         assert result['created'] == (
             self.rating.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['is_deleted'] is True
@@ -104,7 +103,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['reply'] is None
         assert result['user'] == {
             'id': self.user.pk,
-            'name': six.text_type(self.user.name),
+            'name': str(self.user.name),
             'url': None,
             'username': self.user.username,
         }
@@ -195,14 +194,14 @@ class TestBaseRatingSerializer(TestCase):
     def test_with_reply(self):
         def _test_reply(data):
             assert data['id'] == reply.pk
-            assert data['body'] == six.text_type(reply.body)
+            assert data['body'] == str(reply.body)
             assert data['created'] == (
                 reply.created.replace(microsecond=0).isoformat() + 'Z')
             assert data['is_deleted'] is False
             assert data['is_developer_reply'] is True
             assert data['user'] == {
                 'id': reply_user.pk,
-                'name': six.text_type(reply_user.name),
+                'name': str(reply_user.name),
                 # should be the profile for a developer
                 'url': absolutify(reply_user.get_url_path()),
                 'username': reply_user.username,
@@ -281,13 +280,13 @@ class TestBaseRatingSerializer(TestCase):
         assert 'rating' not in result['reply']
         assert 'reply' not in result['reply']
         assert result['reply']['id'] == reply.pk
-        assert result['reply']['body'] == six.text_type(reply.body)
+        assert result['reply']['body'] == str(reply.body)
         assert result['reply']['created'] == (
             reply.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['reply']['is_deleted'] is True
         assert result['reply']['user'] == {
             'id': reply_user.pk,
-            'name': six.text_type(reply_user.name),
+            'name': str(reply_user.name),
             'url': absolutify(reply_user.get_url_path()),
             'username': reply_user.username,
         }

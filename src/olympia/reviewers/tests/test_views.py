@@ -2,6 +2,7 @@
 import json
 import os
 import time
+from urllib.parse import parse_qs
 
 from collections import OrderedDict
 from datetime import datetime, timedelta
@@ -20,12 +21,10 @@ from django.test.utils import override_settings
 from rest_framework.test import APIRequestFactory
 
 import pytest
-import six
 
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
-from six.moves.urllib_parse import parse_qs
 from waffle.testutils import override_flag
 
 from olympia import amo, core, ratings
@@ -1061,7 +1060,7 @@ class QueueTest(ReviewerTest):
         results = OrderedDict()
         channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
-        for name, attrs in six.iteritems(files):
+        for name, attrs in files.items():
             if not subset or name in subset:
                 version_kw = attrs.get('version_kw', {})
                 version_kw.update(
@@ -1127,8 +1126,7 @@ class QueueTest(ReviewerTest):
         for idx, addon in enumerate(self.expected_addons):
             latest_version = self.get_addon_latest_version(addon)
             assert latest_version
-            name = '%s %s' % (six.text_type(addon.name),
-                              latest_version.version)
+            name = '%s %s' % (str(addon.name), latest_version.version)
             if self.channel_name == 'listed':
                 # We typically don't include the channel name if it's the
                 # default one, 'listed'.
@@ -1221,7 +1219,7 @@ class TestQueueBasics(QueueTest):
             2: '-addon_type_id',    # Type.
             3: 'waiting_time_min',  # Waiting Time.
         }
-        for idx, sort in six.iteritems(sorts):
+        for idx, sort in sorts.items():
             # Get column link.
             a = tr('th').eq(idx).find('a')
             # Update expected GET parameters with sort type.
@@ -2506,7 +2504,7 @@ class BaseTestQueueSearch(SearchTest):
         results = {}
         channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
-        for name, attrs in six.iteritems(files):
+        for name, attrs in files.items():
             if not subset or name in subset:
                 version_kw = attrs.get('version_kw', {})
                 version_kw.update(
@@ -4248,13 +4246,13 @@ class TestReview(ReviewBase):
         core.set_user(author.user)
         ActivityLog.create(
             amo.LOG.ADD_USER_WITH_ROLE, author.user,
-            six.text_type(author.get_role_display()), self.addon)
+            str(author.get_role_display()), self.addon)
         ActivityLog.create(
             amo.LOG.CHANGE_USER_WITH_ROLE, author.user,
-            six.text_type(author.get_role_display()), self.addon)
+            str(author.get_role_display()), self.addon)
         ActivityLog.create(
             amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
-            six.text_type(author.get_role_display()), self.addon)
+            str(author.get_role_display()), self.addon)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -5014,7 +5012,7 @@ class TestLeaderboard(ReviewerTest):
         assert get_cells() == (
             [users[2].name,
              users[1].name,
-             six.text_type(amo.REVIEWED_LEVELS[0]['name']),
+             str(amo.REVIEWED_LEVELS[0]['name']),
              users[0].name])
 
         self._award_points(users[0], 1)
@@ -5023,7 +5021,7 @@ class TestLeaderboard(ReviewerTest):
             [users[2].name,
              users[1].name,
              users[0].name,
-             six.text_type(amo.REVIEWED_LEVELS[0]['name'])])
+             str(amo.REVIEWED_LEVELS[0]['name'])])
 
         self._award_points(users[0], -1)
         self._award_points(users[2], (amo.REVIEWED_LEVELS[1]['points'] -
@@ -5031,9 +5029,9 @@ class TestLeaderboard(ReviewerTest):
 
         assert get_cells() == (
             [users[2].name,
-             six.text_type(amo.REVIEWED_LEVELS[1]['name']),
+             str(amo.REVIEWED_LEVELS[1]['name']),
              users[1].name,
-             six.text_type(amo.REVIEWED_LEVELS[0]['name']),
+             str(amo.REVIEWED_LEVELS[0]['name']),
              users[0].name])
 
 
@@ -5073,7 +5071,7 @@ class TestPolicyView(ReviewerTest):
             '{addon} :: EULA'.format(addon=self.addon.name))
         self.assertContains(response, u'End-User License Agreement')
         self.assertContains(response, u'Eulá!')
-        self.assertContains(response, six.text_type(self.review_url))
+        self.assertContains(response, str(self.review_url))
 
     def test_eula_with_channel(self):
         unlisted_review_url = reverse(
@@ -5089,7 +5087,7 @@ class TestPolicyView(ReviewerTest):
         response = self.client.get(self.eula_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, u'Eulá!')
-        self.assertContains(response, six.text_type(unlisted_review_url))
+        self.assertContains(response, str(unlisted_review_url))
 
     def test_privacy(self):
         assert not bool(self.addon.privacy_policy)
@@ -5106,7 +5104,7 @@ class TestPolicyView(ReviewerTest):
             '{addon} :: Privacy Policy'.format(addon=self.addon.name))
         self.assertContains(response, 'Privacy Policy')
         self.assertContains(response, u'Prívacy Pólicy?')
-        self.assertContains(response, six.text_type(self.review_url))
+        self.assertContains(response, str(self.review_url))
 
     def test_privacy_with_channel(self):
         unlisted_review_url = reverse(
@@ -5122,7 +5120,7 @@ class TestPolicyView(ReviewerTest):
         response = self.client.get(self.privacy_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, u'Prívacy Pólicy?')
-        self.assertContains(response, six.text_type(unlisted_review_url))
+        self.assertContains(response, str(unlisted_review_url))
 
 
 class TestAddonReviewerViewSet(TestCase):

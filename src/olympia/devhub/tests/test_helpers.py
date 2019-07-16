@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
+from urllib.parse import quote
+
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
 
 import pytest
-import six
 
 from unittest.mock import Mock
-from six.moves.urllib.parse import quote
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -60,7 +60,7 @@ def test_summarize_validation():
 
 def test_log_action_class():
     v = Mock()
-    for k, v in six.iteritems(amo.LOG_BY_ID):
+    for k, v in amo.LOG_BY_ID.items():
         if v.action_class is not None:
             cls = 'action-' + v.action_class
         else:
@@ -99,7 +99,7 @@ class TestDevFilesStatus(TestCase):
     def expect(self, expected):
         cnt, msg = jinja_helpers.dev_files_status([self.file])[0]
         assert cnt == 1
-        assert msg == six.text_type(expected)
+        assert msg == str(expected)
 
     def test_unreviewed_public(self):
         self.addon.status = amo.STATUS_APPROVED

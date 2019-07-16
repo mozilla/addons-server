@@ -3,7 +3,7 @@ import os
 import random
 
 from django.db import models
-from django.utils.encoding import force_text, python_2_unicode_compatible
+from django.utils.encoding import force_text
 
 from aesfield.field import AESField
 
@@ -21,7 +21,6 @@ API_KEY_TYPES = [
 ]
 
 
-@python_2_unicode_compatible
 class APIKey(ModelBase):
     """
     A developer's key/secret pair to access the API.

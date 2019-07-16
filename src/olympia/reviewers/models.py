@@ -8,10 +8,7 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
 from django.template import loader
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext, ugettext_lazy as _
-
-import six
 
 from django_extensions.db.fields.json import JSONField
 
@@ -74,7 +71,6 @@ def set_reviewing_cache(addon_id, user_id):
               amo.REVIEWER_VIEWING_INTERVAL * 2)
 
 
-@python_2_unicode_compatible
 class CannedResponse(ModelBase):
     id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255)
@@ -93,7 +89,7 @@ class CannedResponse(ModelBase):
         db_table = 'cannedresponses'
 
     def __str__(self):
-        return six.text_type(self.name)
+        return str(self.name)
 
 
 def get_flags(addon, version):
@@ -352,8 +348,7 @@ class ViewUnlistedAllList(RawSQLModel):
     @property
     def authors(self):
         ids = self._explode_concat(self._author_ids)
-        usernames = self._explode_concat(
-            self._author_usernames, cast=six.text_type)
+        usernames = self._explode_concat(self._author_usernames, cast=str)
         return list(set(zip(ids, usernames)))
 
 
@@ -816,7 +811,7 @@ class ReviewerScore(ModelBase):
             if user_level < 0:
                 level = ''
             else:
-                level = six.text_type(amo.REVIEWED_LEVELS[user_level]['name'])
+                level = str(amo.REVIEWED_LEVELS[user_level]['name'])
 
             scores.append({
                 'user_id': user_id,
@@ -843,7 +838,6 @@ class AutoApprovalNoValidationResultError(Exception):
     pass
 
 
-@python_2_unicode_compatible
 class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
     version = models.OneToOneField(
@@ -1223,7 +1217,6 @@ class AutoApprovalSummary(ModelBase):
         return instance, verdict_info
 
 
-@python_2_unicode_compatible
 class Whiteboard(ModelBase):
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, primary_key=True)

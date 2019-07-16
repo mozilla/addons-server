@@ -1,9 +1,8 @@
 import uuid
 
-from django.utils.encoding import force_text
+from urllib.parse import urlencode
 
-import six
-from six.moves.urllib_parse import urlencode
+from django.utils.encoding import force_text
 
 from pyquery import PyQuery as pq
 
@@ -231,8 +230,8 @@ class TestActivity(HubTest):
         self.log_creates(1)
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script>' not in six.text_type(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
+        assert '<script>' not in str(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in str(doc), 'XSS FTL'
 
     def test_xss_unlisted_addon(self):
         self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
@@ -242,53 +241,53 @@ class TestActivity(HubTest):
         self.log_creates(1)
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script>' not in six.text_type(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
+        assert '<script>' not in str(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in str(doc), 'XSS FTL'
 
     def test_xss_collections(self):
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script>' not in six.text_type(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
+        assert '<script>' not in str(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in str(doc), 'XSS FTL'
 
     def test_xss_collections_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script>' not in six.text_type(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
+        assert '<script>' not in str(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in str(doc), 'XSS FTL'
 
     def test_xss_tags(self):
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
+        assert '<script' not in str(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in str(doc('.item')), 'XSS FTL'
 
     def test_xss_tags_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
+        assert '<script' not in str(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in str(doc('.item')), 'XSS FTL'
 
     def test_xss_versions(self):
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
+        assert '<script' not in str(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in str(doc('.item')), 'XSS FTL'
 
     def test_xss_versions_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
+        assert '<script' not in str(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in str(doc('.item')), 'XSS FTL'
 
     def test_hidden(self):
         version = Version.objects.create(addon=self.addon)

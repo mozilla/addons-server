@@ -16,8 +16,6 @@ from unittest import mock
 import pytest
 import responses
 
-from six import text_type
-
 import olympia  # noqa
 
 from olympia import amo
@@ -493,7 +491,7 @@ class TestUserProfile(TestCase):
         addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
         addons = UserProfile.objects.get(id=2519).my_addons()
-        assert sorted(text_type(a.name) for a in addons) == [
+        assert sorted(str(a.name) for a in addons) == [
             addon1.name, addon2.name]
 
     def test_mobile_collection(self):

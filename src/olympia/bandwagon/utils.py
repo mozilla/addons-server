@@ -1,5 +1,4 @@
 import waffle
-from six import text_type
 
 from olympia.lib.akismet.models import AkismetReport
 from olympia.translations.models import Translation
@@ -18,7 +17,7 @@ def get_collection_akismet_reports(collection, user, user_agent, referrer,
     translation_ids = [id_ for id_ in translation_ids_gen if id_]
     # Just get all the values together to make it simplier
     existing_data = {
-        text_type(value)
+        str(value)
         for value in Translation.objects.filter(id__in=translation_ids)}
     reports = []
     for prop in properties:

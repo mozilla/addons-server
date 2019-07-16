@@ -1,10 +1,10 @@
 import json
 import uuid
+import io
 
 from django.core.management import call_command
 
 from unittest.mock import ANY, patch
-from six import StringIO
 
 from olympia.amo.tests import TestCase
 from olympia.users.management.commands.createsuperuser import (
@@ -45,7 +45,7 @@ class TestCreateSuperUser(TestCase):
         assert user.email == 'me@mozilla.org'
 
     def test_adds_supergroup(self):
-        out = StringIO()
+        out = io.StringIO()
         fxa_id = uuid.uuid4().hex
         call_command(
             'createsuperuser',

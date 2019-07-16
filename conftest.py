@@ -10,7 +10,6 @@ import warnings
 
 import pytest
 import responses
-import six
 
 
 @pytest.fixture(autouse=True)
@@ -137,11 +136,6 @@ def test_pre_setup(request, tmpdir, settings):
     from olympia.translations.hold import clean_translations
     from waffle.utils import get_cache as waffle_get_cache
     from waffle import models as waffle_models
-
-    # Ignore ResourceWarning for now. It's a Python 3 thing so it's done
-    # dynamically here.
-    if six.PY3:
-        warnings.filterwarnings('ignore', category=ResourceWarning)  # noqa
 
     # Clear all cache-instances. They'll be re-initialized by Django
     # This will make sure that our random `KEY_PREFIX` is applied

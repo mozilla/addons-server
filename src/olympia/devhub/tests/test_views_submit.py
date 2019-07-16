@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import io
 import stat
 import tarfile
 import zipfile
 
 from datetime import datetime, timedelta
+from urllib.parse import urlencode
 
 from django.conf import settings
 from django.core.files import temp
@@ -14,11 +16,8 @@ from django.test.utils import override_settings
 
 from unittest import mock
 import responses
-import six
 
 from pyquery import PyQuery as pq
-from six import text_type
-from six.moves.urllib_parse import urlencode
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -86,7 +85,7 @@ class TestSubmitBase(TestCase):
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
             tar_info = tarfile.TarInfo('foo')
             tar_info.size = len(data)
-            tar_file.addfile(tar_info, six.BytesIO(data))
+            tar_file.addfile(tar_info, io.BytesIO(data))
 
         source.seek(0)
         return source
@@ -1141,7 +1140,7 @@ class DetailsPageMixin(object):
         report = AkismetReport.objects.get()
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
-        assert text_type(self.addon.name) != u'spám'
+        assert str(self.addon.name) != u'spám'
 
         comment_check_mock.assert_called_once()
 
@@ -1159,7 +1158,7 @@ class DetailsPageMixin(object):
         report = AkismetReport.objects.get()
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
-        assert text_type(self.addon.name) == u'spám'
+        assert str(self.addon.name) == u'spám'
         assert b'spam' not in response.content
 
         comment_check_mock.assert_called_once()
@@ -1675,7 +1674,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.client.get(self.url)
         context = {
             'addon_name': 'Delicious Bookmarks',
-            'app': six.text_type(amo.FIREFOX.pretty),
+            'app': str(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
@@ -1692,7 +1691,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.client.get(self.url)
         context = {
             'addon_name': 'Delicious Bookmarks',
-            'app': six.text_type(amo.FIREFOX.pretty),
+            'app': str(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
@@ -1712,7 +1711,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.client.get(self.url)
         context = {
             'addon_name': 'Delicious Bookmarks',
-            'app': six.text_type(amo.FIREFOX.pretty),
+            'app': str(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
@@ -2091,7 +2090,7 @@ class VersionSubmitUploadMixin(object):
         assert doc('#theme-wizard').attr('data-version') == '3.0'
         assert doc('input#theme-name').attr('type') == 'hidden'
         assert doc('input#theme-name').attr('value') == (
-            six.text_type(self.addon.name))
+            str(self.addon.name))
         # Existing colors should be the default values for the fields
         assert doc('#frame').attr('value') == '#123456'
         assert doc('#tab_background_text').attr('value') == 'rgba(1,2,3,0.4)'
@@ -2152,7 +2151,7 @@ class VersionSubmitUploadMixin(object):
         assert doc('#theme-wizard').attr('data-version') == '3.0'
         assert doc('input#theme-name').attr('type') == 'hidden'
         assert doc('input#theme-name').attr('value') == (
-            six.text_type(self.addon.name))
+            str(self.addon.name))
         # Existing colors should be the default values for the fields
         assert doc('#frame').attr('value') == '#123456'
         assert doc('#tab_background_text').attr('value') == 'rgba(1,2,3,0.4)'
@@ -2514,9 +2513,9 @@ class TestVersionSubmitDetails(TestSubmitBase):
         # metadata is missing, name, slug, summary and category are required to
         # be present.
         data = {
-            'name': six.text_type(self.addon.name),
+            'name': str(self.addon.name),
             'slug': self.addon.slug,
-            'summary': six.text_type(self.addon.summary),
+            'summary': str(self.addon.summary),
 
             'form-0-categories': [22, 1],
             'form-0-application': 1,
@@ -2581,7 +2580,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         report = AkismetReport.objects.first()
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
-        assert text_type(self.addon.name) != u'spám'
+        assert str(self.addon.name) != u'spám'
         report = AkismetReport.objects.last()
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'
@@ -2605,7 +2604,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         report = AkismetReport.objects.first()
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
-        assert text_type(self.addon.name) == u'spám'  # It changed
+        assert str(self.addon.name) == u'spám'  # It changed
         report = AkismetReport.objects.last()
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'
@@ -2629,7 +2628,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         report = AkismetReport.objects.first()
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
-        assert text_type(self.addon.name) == u'spám'  # It changed
+        assert str(self.addon.name) == u'spám'  # It changed
         report = AkismetReport.objects.last()
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'

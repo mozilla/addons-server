@@ -1,11 +1,9 @@
 import re
 
 from collections import OrderedDict
-from six.moves.urllib.parse import unquote
+from urllib.parse import unquote
 
 from django.utils.translation import ugettext
-
-import six
 
 from bleach.linkifier import TLDS
 from rest_framework import serializers
@@ -232,8 +230,7 @@ class RatingSerializer(BaseRatingSerializer):
     def save(self, **kwargs):
         # Take a copy of the body before the save because we pass it to
         # maybe_check_with_akismet to confirm it changed.
-        pre_save_body = six.text_type(
-            self.instance.body) if self.instance else None
+        pre_save_body = str(self.instance.body) if self.instance else None
 
         instance = super(RatingSerializer, self).save(**kwargs)
 

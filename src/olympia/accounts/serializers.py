@@ -2,8 +2,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.utils.translation import ugettext
 
-import six
-
 from rest_framework import serializers
 
 import olympia.core.logger
@@ -108,7 +106,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
                          entrypoint='addons')
 
     def validate_biography(self, value):
-        if has_links(clean_nl(six.text_type(value))):
+        if has_links(clean_nl(str(value))):
             # There's some links, we don't want them.
             raise serializers.ValidationError(
                 ugettext(u'No links are allowed.'))

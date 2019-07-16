@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
+import io
+
+from unittest import mock
+from urllib.parse import urlencode
 
 from django.conf import settings
 from django.db import connection
 from django.test.utils import override_settings
-
-from unittest import mock
-import six
-from six import StringIO
-from six.moves.urllib_parse import urlencode
 
 from services import theme_update
 
@@ -23,7 +22,7 @@ class TestWSGIApplication(TestCase):
 
     def setUp(self):
         super(TestWSGIApplication, self).setUp()
-        self.environ = {'wsgi.input': StringIO()}
+        self.environ = {'wsgi.input': io.StringIO()}
         self.start_response = mock.Mock()
         self.urls = {
             '/themes/update-check/5': ['en-US', 5, None],
@@ -38,7 +37,7 @@ class TestWSGIApplication(TestCase):
         MigratedUpdate_mock.return_value.is_migrated = False
         LWThemeUpdate_mock.return_value.get_json.return_value = u'{"fo": "bá"}'
         # From AMO we consume the ID as the `addon_id`.
-        for path_info, call_args in six.iteritems(self.urls):
+        for path_info, call_args in self.urls.items():
             environ = dict(self.environ, PATH_INFO=path_info)
             response = theme_update.application(environ, self.start_response)
             # wsgi expects a bytestring, rather than unicode response.
@@ -49,7 +48,7 @@ class TestWSGIApplication(TestCase):
         # From getpersonas.com we append `?src=gp` so we know to consume
         # the ID as the `persona_id`.
         self.environ['QUERY_STRING'] = 'src=gp'
-        for path_info, call_args in six.iteritems(self.urls):
+        for path_info, call_args in self.urls.items():
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             call_args[2] = 'src=gp'
@@ -66,7 +65,7 @@ class TestWSGIApplication(TestCase):
         MigratedUpdate_mock.return_value.get_json.return_value = (
             u'{"foó": "ba"}')
         # From AMO we consume the ID as the `addon_id`.
-        for path_info, call_args in six.iteritems(self.urls):
+        for path_info, call_args in self.urls.items():
             environ = dict(self.environ, PATH_INFO=path_info)
             response = theme_update.application(environ, self.start_response)
             # wsgi expects a bytestring, rather than unicode response.
@@ -78,7 +77,7 @@ class TestWSGIApplication(TestCase):
         # From getpersonas.com we append `?src=gp` so we know to consume
         # the ID as the `persona_id`.
         self.environ['QUERY_STRING'] = 'src=gp'
-        for path_info, call_args in six.iteritems(self.urls):
+        for path_info, call_args in self.urls.items():
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             call_args[2] = 'src=gp'
@@ -110,7 +109,7 @@ class TestWSGIApplication(TestCase):
     def test_404_for_migrated_but_updates_disabled(
             self, LWThemeUpdate_mock, MigratedUpdate_mock):
         MigratedUpdate_mock.return_value.is_migrated = True
-        for path_info, call_args in six.iteritems(self.urls):
+        for path_info, call_args in self.urls.items():
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             assert not LWThemeUpdate_mock.called
@@ -142,7 +141,7 @@ class TestThemeUpdate(TestCase):
         }
 
     def check_good(self, data):
-        for k, v in six.iteritems(self.good):
+        for k, v in self.good.items():
             got = data[k]
             if k.endswith('URL'):
                 if k in ('detailURL', 'updateURL'):

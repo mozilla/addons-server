@@ -3,17 +3,16 @@ import json
 import os
 import shutil
 
+from urllib.parse import urlparse
+
 from django.conf import settings
 from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 from django.utils.http import http_date, quote_etag
 
-import six
-
 from unittest.mock import patch
 from pyquery import PyQuery as pq
-from six.moves.urllib_parse import urlparse
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -459,7 +458,7 @@ class TestFileViewer(FilesBase, TestCase):
         assert res.status_code == 200
 
     def test_unicode_unicode_tmp_path(self):
-        with override_settings(TMP_PATH=six.text_type(settings.TMP_PATH)):
+        with override_settings(TMP_PATH=str(settings.TMP_PATH)):
             self.test_unicode()
 
     def test_serve_no_token(self):

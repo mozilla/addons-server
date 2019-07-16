@@ -1,8 +1,6 @@
 """Tests related to the ``devhub.addons.owner`` view."""
 from django.core import mail
 
-import six
-
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -49,7 +47,7 @@ class TestEditPolicy(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         addon = self.get_addon()
-        assert six.text_type(addon.eula) == 'new eula'
+        assert str(addon.eula) == 'new eula'
         assert addon.eula.id == old_eula.id
 
     def test_delete_eula(self):
@@ -128,8 +126,8 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         license = self.get_version().license
-        assert six.text_type(license.text) == 'text'
-        assert six.text_type(license.name) == 'name'
+        assert str(license.text) == 'text'
+        assert str(license.name) == 'name'
         assert license.builtin == License.OTHER
 
     def test_success_edit_custom(self):
@@ -141,8 +139,8 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         license_two = self.get_version().license
-        assert six.text_type(license_two.text) == 'woo'
-        assert six.text_type(license_two.name) == 'name'
+        assert str(license_two.text) == 'woo'
+        assert str(license_two.name) == 'name'
         assert license_two.builtin == License.OTHER
         assert license_two.id == license_one.id
 
@@ -155,14 +153,14 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         license_two = self.get_version().license
-        assert six.text_type(license_two.text) == 'text'
-        assert six.text_type(license_two.name) == 'name'
+        assert str(license_two.text) == 'text'
+        assert str(license_two.name) == 'name'
         assert license_two.builtin == License.OTHER
         assert license_one != license_two
 
         # Make sure the old license wasn't edited.
         license = License.objects.get(builtin=1)
-        assert six.text_type(license.name) == 'bsd'
+        assert str(license.name) == 'bsd'
 
         data = self.formset(builtin=1)
         response = self.client.post(self.url, data)
@@ -182,8 +180,8 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         license = self.get_version().license
-        assert six.text_type(license.text) == 'text'
-        assert six.text_type(license.name) == 'Custom License'
+        assert str(license.text) == 'text'
+        assert str(license.name) == 'Custom License'
         assert license.builtin == License.OTHER
 
     def test_no_version(self):
@@ -196,11 +194,11 @@ class TestEditLicense(TestOwnership):
 
     def test_license_details_links(self):
         # Check that builtin licenses get details links.
-        doc = pq(six.text_type(LicenseForm(version=self.version)))
+        doc = pq(str(LicenseForm(version=self.version)))
         for license in License.objects.builtins():
             radio = 'input.license[value="%s"]' % license.builtin
             assert doc(radio).parent().text() == (
-                six.text_type(license.name) + ' Details')
+                str(license.name) + ' Details')
             assert doc(radio + '+ a').attr('href') == license.url
         assert doc('input[name=builtin]:last-child').parent().text() == 'Other'
 

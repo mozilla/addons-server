@@ -1,6 +1,6 @@
 import json
 from collections import OrderedDict
-from six.moves.urllib_parse import urljoin
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.utils.http import urlencode

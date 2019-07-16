@@ -7,7 +7,6 @@ from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
 
 from unittest import mock
-import six
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -116,15 +115,15 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert response.status_code == 200
         addon = self.get_addon()
 
-        assert six.text_type(addon.name) == data['name']
+        assert str(addon.name) == data['name']
         assert addon.name.id == old_name.id
 
-        assert six.text_type(addon.summary) == data['summary']
-        assert six.text_type(addon.slug) == data['slug']
+        assert str(addon.summary) == data['summary']
+        assert str(addon.slug) == data['slug']
 
         if self.listed:
             assert (
-                [six.text_type(t) for t in addon.tags.all()] ==
+                [str(t) for t in addon.tags.all()] ==
                 sorted(self.tags))
 
     def test_edit_slug_invalid(self):
@@ -175,13 +174,13 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert response.status_code == 200
         addon = self.get_addon()
 
-        assert six.text_type(addon.name) == data['name']
-        assert six.text_type(addon.summary) == data['summary']
-        assert six.text_type(addon.slug) == data['slug']
+        assert str(addon.name) == data['name']
+        assert str(addon.summary) == data['summary']
+        assert str(addon.slug) == data['slug']
 
         if self.listed:
             assert (
-                [six.text_type(t) for t in addon.tags.all()] ==
+                [str(t) for t in addon.tags.all()] ==
                 sorted(self.tags))
 
     def test_edit_name_required(self):
@@ -297,7 +296,7 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         response = self.client.get(self.url)
         doc_links = [
-            six.text_type(a.attrib['href'])
+            str(a.attrib['href'])
             for a in pq(response.content)('#edit-addon-nav').find('li a')]
         assert links == doc_links
 
@@ -348,9 +347,9 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         # And metadata was updated
         addon = self.get_addon()
-        assert six.text_type(addon.name) == data['name']
-        assert six.text_type(addon.summary) == data['summary']
-        assert six.text_type(addon.description) == data['description']
+        assert str(addon.name) == data['name']
+        assert str(addon.summary) == data['summary']
+        assert str(addon.description) == data['description']
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=False)
@@ -380,9 +379,9 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         # And metadata was updated
         addon = self.get_addon()
-        assert six.text_type(addon.name) == data['name']
-        assert six.text_type(addon.summary) == data['summary']
-        assert six.text_type(addon.description) == data['description']
+        assert str(addon.name) == data['name']
+        assert str(addon.summary) == data['summary']
+        assert str(addon.description) == data['description']
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=True)
@@ -422,10 +421,9 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         # And metadata was NOT updated
         addon = self.get_addon()
-        assert six.text_type(addon.name) == six.text_type(old_name)
-        assert six.text_type(addon.summary) == six.text_type(old_summary)
-        assert six.text_type(
-            addon.description) == six.text_type(old_description)
+        assert str(addon.name) == str(old_name)
+        assert str(addon.summary) == str(old_summary)
+        assert str(addon.description) == str(old_description)
 
     def test_edit_xss(self):
         """
@@ -602,7 +600,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         self.cat_initial['categories'] = [22, 1]
         data = self.get_dict()
         self.client.post(self.describe_edit_url, data)
-        assert six.text_type(self.get_addon().name) == data['name']
+        assert str(self.get_addon().name) == data['name']
 
     def test_edit_categories_no_disclaimer(self):
         """Ensure that there is a not disclaimer for non-creatured add-ons."""
@@ -745,7 +743,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         addon = self.get_addon()
 
         for k in data:
-            assert six.text_type(getattr(addon, k)) == data[k]
+            assert str(getattr(addon, k)) == data[k]
 
     def test_edit_support_optional_url(self):
         data = {
@@ -757,7 +755,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         addon = self.get_addon()
 
         for k in data:
-            assert six.text_type(getattr(addon, k)) == data[k]
+            assert str(getattr(addon, k)) == data[k]
 
     def test_edit_support_optional_email(self):
         data = {
@@ -769,7 +767,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         addon = self.get_addon()
 
         for k in data:
-            assert six.text_type(getattr(addon, k)) == data[k]
+            assert str(getattr(addon, k)) == data[k]
 
     @override_switch('content-optimization', active=True)
     def test_description_not_optional(self):
@@ -875,7 +873,7 @@ class TestEditMedia(BaseTestEdit):
         assert addon.get_icon_url(64).endswith('icons/default-64.png')
 
         for k in data:
-            assert six.text_type(getattr(addon, k)) == data[k]
+            assert str(getattr(addon, k)) == data[k]
 
     def test_edit_media_shows_proper_labels(self):
         """Regression test for
@@ -920,7 +918,7 @@ class TestEditMedia(BaseTestEdit):
         assert addon.get_icon_url(64).endswith('icons/appearance-64.png')
 
         for k in data:
-            assert six.text_type(getattr(addon, k)) == data[k]
+            assert str(getattr(addon, k)) == data[k]
 
     def test_edit_media_uploadedicon(self):
         img = get_image_path('mozilla.png')
@@ -1449,7 +1447,7 @@ class BaseTestEditAdditionalDetails(BaseTestEdit):
         addon = self.get_addon()
 
         for k in data:
-            assert six.text_type(getattr(addon, k)) == data[k]
+            assert str(getattr(addon, k)) == data[k]
 
     def test_edit_homepage_optional(self):
         data = {
@@ -1463,7 +1461,7 @@ class BaseTestEditAdditionalDetails(BaseTestEdit):
         addon = self.get_addon()
 
         for k in data:
-            assert six.text_type(getattr(addon, k)) == data[k]
+            assert str(getattr(addon, k)) == data[k]
 
 
 class TestEditAdditionalDetailsListed(BaseTestEditAdditionalDetails,
@@ -1477,7 +1475,7 @@ class TestEditAdditionalDetailsListed(BaseTestEditAdditionalDetails,
                  'You are missing ')
 
         data = {
-            'homepage': six.text_type(self.addon.homepage),
+            'homepage': str(self.addon.homepage),
             'default_locale': 'fr'
         }
         response = self.client.post(self.details_edit_url, data)
@@ -1568,11 +1566,9 @@ class TestEditTechnical(BaseTestEdit):
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
-                assert six.text_type(
-                    getattr(addon, k)) == six.text_type(data[k])
+                assert str(getattr(addon, k)) == str(data[k])
             elif k == 'whiteboard-public':
-                assert six.text_type(
-                    addon.whiteboard.public) == six.text_type(data[k])
+                assert str(addon.whiteboard.public) == str(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
@@ -1594,8 +1590,7 @@ class TestEditTechnical(BaseTestEdit):
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
-                assert six.text_type(
-                    getattr(addon, k)) == six.text_type(data[k])
+                assert str(getattr(addon, k)) == str(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
@@ -1726,7 +1721,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
         self._feature_addon()
         data = self.get_dict()
         self.client.post(self.describe_edit_url, data)
-        assert six.text_type(self.get_addon().name) == data['name']
+        assert str(self.get_addon().name) == data['name']
 
     def test_theme_preview_shown(self):
         response = self.client.get(self.url)

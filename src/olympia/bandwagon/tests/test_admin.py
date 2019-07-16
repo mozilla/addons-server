@@ -1,7 +1,5 @@
 from django.conf import settings
 
-import six
-
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -94,7 +92,7 @@ class TestCollectionAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert collection.slug in content
-        assert six.text_type(addon.name) in content
+        assert str(addon.name) in content
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
@@ -199,7 +197,7 @@ class TestCollectionAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert collection.slug in content
-        assert six.text_type(addon.name) in content
+        assert str(addon.name) in content
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
@@ -230,7 +228,7 @@ class TestCollectionAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert collection.slug in content
-        assert six.text_type(addon2.name) in content
+        assert str(addon2.name) in content
         assert CollectionAddon.objects.filter(
             collection=collection).count() == 1
 

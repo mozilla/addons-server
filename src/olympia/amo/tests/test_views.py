@@ -4,6 +4,8 @@ import re
 import sys
 
 from datetime import datetime, timedelta
+from unittest import mock
+from urllib.parse import urlparse
 
 import django
 from django import test
@@ -11,13 +13,11 @@ from django.conf import settings
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
-from unittest import mock
 import pytest
 
 from lxml import etree
 from unittest.mock import patch
 from pyquery import PyQuery as pq
-from six.moves.urllib_parse import urlparse
 
 from olympia import amo, core
 from olympia.access import acl

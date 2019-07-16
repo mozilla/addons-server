@@ -2,10 +2,7 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.dispatch import receiver
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-
-import six
 
 import olympia.core.logger
 
@@ -72,7 +69,6 @@ class WithoutRepliesRatingManager(ManagerBase):
         return qs.filter(reply_to__isnull=True)
 
 
-@python_2_unicode_compatible
 class Rating(ModelBase):
     RATING_CHOICES = (
         (None, _('None')),
@@ -126,7 +122,7 @@ class Rating(ModelBase):
         ordering = ('-created',)
 
     def __str__(self):
-        return truncate(six.text_type(self.body), 10)
+        return truncate(str(self.body), 10)
 
     def __init__(self, *args, **kwargs):
         user_responsible = kwargs.pop('user_responsible', None)
@@ -158,9 +154,9 @@ class Rating(ModelBase):
 
         activity.log_create(
             amo.LOG.APPROVE_RATING, self.addon, self, user=user, details=dict(
-                body=six.text_type(self.body),
+                body=str(self.body),
                 addon_id=self.addon.pk,
-                addon_title=six.text_type(self.addon.name),
+                addon_title=str(self.addon.name),
                 is_flagged=self.ratingflag_set.exists()))
         for flag in self.ratingflag_set.all():
             flag.delete()
@@ -185,9 +181,9 @@ class Rating(ModelBase):
             activity.log_create(
                 amo.LOG.DELETE_RATING, self.addon, self, user=user_responsible,
                 details={
-                    'body': six.text_type(self.body),
+                    'body': str(self.body),
                     'addon_id': self.addon.pk,
-                    'addon_title': six.text_type(self.addon.name),
+                    'addon_title': str(self.addon.name),
                     'is_flagged': self.ratingflag_set.exists()
                 }
             )
@@ -196,7 +192,7 @@ class Rating(ModelBase):
 
         log.info(u'Rating deleted: %s deleted id:%s by %s ("%s")',
                  user_responsible.name, self.pk, self.user.name,
-                 six.text_type(self.body))
+                 str(self.body))
         self.update(deleted=True, _signal=send_post_save_signal)
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).

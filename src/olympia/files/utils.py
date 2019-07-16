@@ -14,7 +14,6 @@ import tempfile
 import zipfile
 
 from datetime import datetime, timedelta
-from six import text_type
 
 from django import forms
 from django.conf import settings
@@ -27,7 +26,6 @@ from django.utils.translation import ugettext
 
 import flufl.lock
 import rdflib
-import six
 
 from xml.parsers.expat import ExpatError
 
@@ -86,7 +84,7 @@ def get_filepath(fileorpath):
     This supports various input formats, a path, a django `File` object,
     `olympia.files.File`, a `FileUpload` or just a regular file-like object.
     """
-    if isinstance(fileorpath, six.string_types):
+    if isinstance(fileorpath, str):
         return fileorpath
     elif isinstance(fileorpath, DjangoFile):
         return fileorpath
@@ -106,7 +104,7 @@ def id_to_path(pk):
     12 => 2/12/12
     123456 => 6/56/123456
     """
-    pk = six.text_type(pk)
+    pk = str(pk)
     path = [pk[-1]]
     if len(pk) >= 2:
         path.append(pk[-2:])
@@ -126,7 +124,7 @@ def get_file(fileorpath):
 
 
 def make_xpi(files):
-    file_obj = six.BytesIO()
+    file_obj = io.BytesIO()
     zip_file = zipfile.ZipFile(file_obj, 'w')
     for path, data in files.items():
         zip_file.writestr(path, data)
@@ -326,7 +324,7 @@ class RDFExtractor(object):
         match = list(self.rdf.objects(ctx, predicate=self.uri(name)))
         # These come back as rdflib.Literal, which subclasses unicode.
         if match:
-            return six.text_type(match[0])
+            return str(match[0])
 
     def apps(self):
         rv = []
@@ -802,7 +800,7 @@ class SafeZip(object):
         if type == 'jar':
             parts = path.split('!')
             for part in parts[:-1]:
-                jar = self.__class__(six.BytesIO(jar.zip_file.read(part)))
+                jar = self.__class__(io.BytesIO(jar.zip_file.read(part)))
             path = parts[-1]
         return jar.read(path[1:] if path.startswith('/') else path)
 
@@ -1269,7 +1267,7 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
     :param messages: A dictionary of messages, e.g the return value
                      of `extract_translations`.
     """
-    if not message or not isinstance(message, six.string_types):
+    if not message or not isinstance(message, str):
         # Don't even attempt to extract invalid data.
         # See https://github.com/mozilla/addons-server/issues/3067
         # for more details
@@ -1326,7 +1324,7 @@ def get_background_images(file_obj, theme_data, header_only=False):
     try:
         with zipfile.ZipFile(xpi, 'r') as source:
             for url in image_urls:
-                _, file_ext = os.path.splitext(text_type(url).lower())
+                _, file_ext = os.path.splitext(str(url).lower())
                 if file_ext not in amo.THEME_BACKGROUND_EXTS:
                     # Just extract image files.
                     continue

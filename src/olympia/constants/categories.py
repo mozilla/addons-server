@@ -4,10 +4,8 @@ import copy
 from functools import total_ordering
 
 from django.urls import reverse
-from django.utils.encoding import force_bytes, python_2_unicode_compatible
+from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext_lazy as _
-
-import six
 
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
@@ -16,7 +14,6 @@ from olympia.constants.base import (
 
 
 @total_ordering
-@python_2_unicode_compatible
 class StaticCategory(object):
     """Helper to populate `CATEGORIES` and provide some helpers.
 
@@ -33,7 +30,7 @@ class StaticCategory(object):
         object.__setattr__(self, 'description', description)
 
     def __str__(self):
-        return six.text_type(self.name)
+        return str(self.name)
 
     def __repr__(self):
         return '<%s: %s (%s)>' % (

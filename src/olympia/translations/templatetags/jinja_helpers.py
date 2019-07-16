@@ -6,7 +6,6 @@ from django.utils.translation.trans_real import to_language
 
 import bleach
 import jinja2
-import six
 
 from django_jinja import library
 
@@ -97,9 +96,9 @@ def clean(string, strip_all_html=False):
         string = string.__html__()
 
     if strip_all_html:
-        string = bleach.clean(six.text_type(string), tags=[], strip=True)
+        string = bleach.clean(str(string), tags=[], strip=True)
     else:
-        string = bleach.clean(six.text_type(string))
+        string = bleach.clean(str(string))
 
     return jinja2.Markup(clean_nl(string).strip())
 

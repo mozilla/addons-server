@@ -6,8 +6,6 @@ from unittest.mock import Mock, patch
 from django.test.client import RequestFactory
 from django.utils import translation
 
-import six
-
 from elasticsearch_dsl import Search
 from rest_framework import serializers
 from waffle.testutils import override_switch
@@ -519,20 +517,20 @@ class TestSearchParameterFilter(FilterTestsBase):
     def test_search_by_type_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(
-                data={'type': six.text_type(amo.ADDON_EXTENSION + 666)})
+                data={'type': str(amo.ADDON_EXTENSION + 666)})
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'type': 'nosuchtype'})
         assert context.exception.detail == ['Invalid "type" parameter.']
 
     def test_search_by_type_id(self):
-        qs = self._filter(data={'type': six.text_type(amo.ADDON_EXTENSION)})
+        qs = self._filter(data={'type': str(amo.ADDON_EXTENSION)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in filter_
 
-        qs = self._filter(data={'type': six.text_type(amo.ADDON_PERSONA)})
+        qs = self._filter(data={'type': str(amo.ADDON_PERSONA)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
@@ -561,20 +559,20 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'app': six.text_type(amo.FIREFOX.id + 666)})
+            self._filter(data={'app': str(amo.FIREFOX.id + 666)})
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'app': 'nosuchapp'})
         assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_app_id(self):
-        qs = self._filter(data={'app': six.text_type(amo.FIREFOX.id)})
+        qs = self._filter(data={'app': str(amo.FIREFOX.id)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert {'term': {'app': amo.FIREFOX.id}} in filter_
 
-        qs = self._filter(data={'app': six.text_type(amo.ANDROID.id)})
+        qs = self._filter(data={'app': str(amo.ANDROID.id)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
@@ -625,7 +623,7 @@ class TestSearchParameterFilter(FilterTestsBase):
     def test_search_by_platform_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(
-                data={'platform': six.text_type(amo.PLATFORM_WIN.id + 42)})
+                data={'platform': str(amo.PLATFORM_WIN.id + 42)})
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'platform': 'nosuchplatform'})
@@ -633,7 +631,7 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_platform_id(self):
         qs = self._filter(
-            data={'platform': six.text_type(amo.PLATFORM_WIN.id)})
+            data={'platform': str(amo.PLATFORM_WIN.id)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
@@ -641,7 +639,7 @@ class TestSearchParameterFilter(FilterTestsBase):
             amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in filter_
 
         qs = self._filter(
-            data={'platform': six.text_type(amo.PLATFORM_LINUX.id)})
+            data={'platform': str(amo.PLATFORM_LINUX.id)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']

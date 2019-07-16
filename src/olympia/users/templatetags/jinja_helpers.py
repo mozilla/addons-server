@@ -2,7 +2,6 @@ from django.utils.encoding import force_text
 from django.utils.translation import pgettext
 
 import jinja2
-import six
 
 from django_jinja import library
 
@@ -33,7 +32,7 @@ def users_list(users, size=None, max_text_length=None):
 
 
 def _user_link(user, max_text_length=None):
-    if isinstance(user, six.string_types):
+    if isinstance(user, str):
         return user
 
     if max_text_length and len(user.name) > max_text_length:

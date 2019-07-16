@@ -3,15 +3,14 @@ import os
 import shutil
 import tempfile
 from datetime import timedelta
+from unittest import mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils import translation
 
 import pytest
-import six
 from freezegun import freeze_time
-from unittest import mock
 
 from waffle.testutils import override_switch
 
@@ -330,7 +329,7 @@ class TestDistributionChoiceForm(TestCase):
             label = form.fields['channel'].choices[0][1]
 
             expected = 'On this site.'
-            label = six.text_type(label)
+            label = str(label)
             assert label.startswith(expected)
 
         with translation.override('de'):
@@ -338,7 +337,7 @@ class TestDistributionChoiceForm(TestCase):
             label = form.fields['channel'].choices[0][1]
 
             expected = 'Auf dieser Website.'
-            label = six.text_type(label)
+            label = str(label)
             assert label.startswith(expected)
 
 

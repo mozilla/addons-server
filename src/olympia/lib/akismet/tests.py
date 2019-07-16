@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
+from unittest import mock
 
 import django.contrib.messages as django_messages
 
@@ -8,10 +9,8 @@ from django.contrib import admin
 from django.test import RequestFactory
 from django.test.utils import override_settings
 
-from unittest import mock
 import pytest
 import responses
-import six
 
 from freezegun import freeze_time
 from pyquery import PyQuery as pq
@@ -225,7 +224,7 @@ class TestAkismetReportsAddon(BaseAkismetReportsModelTest, TestCase):
             'comment_author': user.name,
             'comment_author_email': user.email,
             'comment_author_url': user.homepage,
-            'comment_content': six.text_type(addon.name),
+            'comment_content': str(addon.name),
             'comment_date_gmt': time_now,
             'blog_charset': 'utf-8',
             'is_test': not settings.AKISMET_REAL_SUBMIT,
@@ -331,7 +330,7 @@ class TestAkismetAdmin(TestCase):
             [ham_report_not_already_submitted.pk], True)
         assert len(django_messages.get_messages(request)) == 1
         for message in django_messages.get_messages(request):
-            assert six.text_type(message) == (
+            assert str(message) == (
                 '1 Ham reports submitted as Spam; 5 reports ignored')
 
     @mock.patch('olympia.lib.akismet.admin.submit_to_akismet.delay')
@@ -351,7 +350,7 @@ class TestAkismetAdmin(TestCase):
             [r.id for r in spam_reports_not_already_submitted], False)
         assert len(django_messages.get_messages(request)) == 1
         for message in django_messages.get_messages(request):
-            assert six.text_type(message) == (
+            assert str(message) == (
                 '2 Spam reports submitted as Ham; 4 reports ignored')
 
     def test_submit_spam_button_on_ham_page(self):

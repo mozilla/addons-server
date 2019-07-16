@@ -3,6 +3,8 @@ import re
 import socket
 import uuid
 
+from urllib.parse import quote
+
 from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
@@ -19,7 +21,6 @@ from django.utils.encoding import force_text, iri_to_uri
 from django.utils.translation import activate, ugettext_lazy as _
 
 from rest_framework import permissions
-from six.moves.urllib.parse import quote
 
 import MySQLdb as mysql
 

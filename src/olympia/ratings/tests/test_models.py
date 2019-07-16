@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.core import mail
-
 from unittest import mock
-import six
+
+from django.core import mail
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -70,7 +69,7 @@ class TestRatingModel(TestCase):
         assert log_mock.info.call_args[0][1] == user_responsible.name
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == rating.user.name
-        assert log_mock.info.call_args[0][4] == six.text_type(rating.body)
+        assert log_mock.info.call_args[0][4] == str(rating.body)
 
     def test_hard_delete(self):
         # Hard deletion is only for tests, but it's still useful to make sure
@@ -151,7 +150,7 @@ class TestRatingModel(TestCase):
         assert log_mock.info.call_args[0][1] == moderator.name
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == rating.user.name
-        assert log_mock.info.call_args[0][4] == six.text_type(rating.body)
+        assert log_mock.info.call_args[0][4] == str(rating.body)
 
     def test_moderator_approve(self):
         moderator = user_factory()

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-import six
 
 import django
 
@@ -264,7 +263,7 @@ class TranslationTestCase(TestCase):
     def test_order_by_translations_query_uses_left_outer_join(self):
         translation.activate('de')
         qs = TranslatedModel.objects.all()
-        query = six.text_type(order_by_translation(qs, 'name').query)
+        query = str(order_by_translation(qs, 'name').query)
         # There should be 2 LEFT OUTER JOIN to find translations matching
         # current language and fallback.
         joins = re.findall('LEFT OUTER JOIN `translations`', query)
@@ -395,7 +394,7 @@ class TranslationTestCase(TestCase):
 
     def test_require_locale(self):
         obj = TranslatedModel.objects.get(pk=1)
-        assert six.text_type(obj.no_locale) == 'blammo'
+        assert str(obj.no_locale) == 'blammo'
         assert obj.no_locale.locale == 'en-US'
 
         # Switch the translation to a locale we wouldn't pick up by default.
@@ -403,7 +402,7 @@ class TranslationTestCase(TestCase):
         obj.no_locale.save()
 
         obj = TranslatedModel.objects.get(pk=1)
-        assert six.text_type(obj.no_locale) == 'blammo'
+        assert str(obj.no_locale) == 'blammo'
         assert obj.no_locale.locale == 'fr'
 
     def test_delete_set_null(self):
@@ -532,7 +531,7 @@ class TranslationMultiDbTests(TransactionTestCase):
 class PurifiedTranslationTest(TestCase):
 
     def test_output(self):
-        assert isinstance(PurifiedTranslation().__html__(), six.text_type)
+        assert isinstance(PurifiedTranslation().__html__(), str)
 
     def test_raw_text(self):
         s = u'   This is some text   '
@@ -642,12 +641,12 @@ def test_translation_unicode():
     def translation(s):
         return Translation(localized_string=s)
 
-    assert six.text_type(translation('hello')) == 'hello'
-    assert six.text_type(translation(None)) == ''
+    assert str(translation('hello')) == 'hello'
+    assert str(translation(None)) == ''
 
 
 def test_comparison_with_lazy():
-    lazy_u = lazy(lambda s: s, six.text_type)
+    lazy_u = lazy(lambda s: s, str)
     Translation(localized_string='xxx') == lazy_u('xxx')
     lazy_u('xxx') == Translation(localized_string='xxx')
 

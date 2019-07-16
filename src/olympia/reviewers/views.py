@@ -16,8 +16,6 @@ from django.utils.translation import ugettext
 from django.utils.http import urlquote
 from django.views.decorators.cache import never_cache
 
-import six
-
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 from rest_framework.decorators import action
@@ -532,7 +530,7 @@ def queue_counts(admin_reviewer):
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
-    return {queue: count() for (queue, count) in six.iteritems(counts)}
+    return {queue: count() for (queue, count) in counts.items()}
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
@@ -1009,7 +1007,7 @@ def queue_viewing(request):
 def queue_version_notes(request, addon_id):
     addon = get_object_or_404(Addon.objects, pk=addon_id)
     version = addon.latest_version
-    return {'release_notes': six.text_type(version.release_notes),
+    return {'release_notes': str(version.release_notes),
             'approval_notes': version.approval_notes}
 
 
