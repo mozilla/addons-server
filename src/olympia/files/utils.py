@@ -1027,7 +1027,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         else:
             deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
 
-        if addon and addon.guid != guid:
+        if addon and addon.guid.casefold() != guid.casefold():
             msg = ugettext(
                 'The add-on ID in your manifest.json or install.rdf (%s) '
                 'does not match the ID of your add-on on AMO (%s)')
