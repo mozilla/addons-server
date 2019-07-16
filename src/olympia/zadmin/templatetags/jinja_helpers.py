@@ -11,7 +11,6 @@ def admin_site_links():
             ('Search for add-ons by name or id',
              reverse('zadmin.addon-search')),
             ('Featured add-ons', reverse('zadmin.features')),
-            ('Monthly Pick', reverse('zadmin.monthly_pick')),
             ('Fake mail', reverse('zadmin.mail')),
             ('Replacement Addons', reverse(
                 'admin:addons_replacementaddon_changelist')),

@@ -301,15 +301,3 @@ models.signals.post_save.connect(FeaturedCollection.post_save_or_delete,
                                  sender=FeaturedCollection)
 models.signals.post_delete.connect(FeaturedCollection.post_save_or_delete,
                                    sender=FeaturedCollection)
-
-
-class MonthlyPick(ModelBase):
-    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    blurb = models.TextField()
-    image = models.URLField()
-    locale = models.CharField(
-        max_length=10, unique=True, null=True, blank=True,
-        default=None)
-
-    class Meta:
-        db_table = 'monthly_pick'
