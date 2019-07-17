@@ -85,7 +85,6 @@ def test_special_chars_dont_break_suggestions(base_url, selenium):
             break
         else:
             continue
-    
 
 
 @pytest.mark.nondestructive
