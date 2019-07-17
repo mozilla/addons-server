@@ -2276,7 +2276,7 @@ class TestContentReviewQueue(QueueTest):
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
 
         # Those should *not* appear in the queue
-        # Has not been auto-approved but themes are excluded.
+        # Has not been auto-approved but themes and langpacks are excluded.
         addon_factory(
             name=u'Theme 1', created=self.days_ago(4),
             type=amo.ADDON_STATICTHEME)
