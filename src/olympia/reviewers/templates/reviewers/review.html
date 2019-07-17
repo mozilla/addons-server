@@ -56,14 +56,14 @@
     <h3 id="history">
       {{ _('Add-on History') }}
     </h3>
-    {% if deleted_addons %}
+    {% if deleted_addon_ids %}
     <div class="results">
       <table class="item-history"><tr class="listing-header"><th>
         {{ _('Previously deleted entries') }}:
-        {% for deleted in deleted_addons %}
-          {% set review_url = url('reviewers.review', 'unlisted', deleted.id)
-                              if unlisted else url('reviewers.review', deleted.id) %}
-          <a href="{{ review_url }}">{{ deleted.id }}</a>&nbsp;
+        {% for deleted in deleted_addon_ids %}
+          {% set review_url = url('reviewers.review', 'unlisted', deleted)
+                              if unlisted else url('reviewers.review', deleted) %}
+          <a href="{{ review_url }}">{{ deleted }}</a>&nbsp;
         {% endfor %}
       </th></tr></table>
     </div>
