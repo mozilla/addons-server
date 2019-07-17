@@ -4619,8 +4619,12 @@ class TestReview(ReviewBase):
 
         old_one = addon_factory(status=amo.STATUS_DELETED)
         old_two = addon_factory(status=amo.STATUS_DELETED)
+        old_other = addon_factory(status=amo.STATUS_DELETED)
+        old_noguid = addon_factory(status=amo.STATUS_DELETED)
         ReusedGUID.objects.create(addon=old_one, guid='reuse@')
         ReusedGUID.objects.create(addon=old_two, guid='reuse@')
+        ReusedGUID.objects.create(addon=old_other, guid='other@')
+        ReusedGUID.objects.create(addon=old_noguid, guid='')
         self.addon.update(guid='reuse@')
 
         response = self.client.get(self.url)
@@ -4634,6 +4638,7 @@ class TestReview(ReviewBase):
         check_links(
             expected, doc('div.results table.item-history a'), verify=False)
 
+        # test unlisted review pages link to unlisted review pages
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
         response = self.client.get(
@@ -4648,6 +4653,16 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         check_links(
             expected, doc('div.results table.item-history a'), verify=False)
+
+        # make sure an empty guid isn't considered (e.g. search plugins)
+        self.addon.update(guid=None)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Previously deleted entries' not in response.content
+        self.addon.update(guid='')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Previously deleted entries' not in response.content
 
 
 @override_flag('code-manager', active=True)
