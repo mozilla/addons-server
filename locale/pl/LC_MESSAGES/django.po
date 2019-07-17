@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4905,6 +4905,10 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
 
 #, fuzzy
+msgid "You cannot submit a language pack"
+msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
+
+#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nieobsługiwany typ pliku, wczytaj plik spakowany {extensions}."
 
@@ -5484,14 +5488,21 @@ msgstr "Waga"
 msgid "Information Request Deadline"
 msgstr "Termin prośby o informacje"
 
-msgid "Last Content Review"
-msgstr "Ostatnie sprawdzenie zawartości"
+#, fuzzy
+msgid "Last Updated"
+msgstr "Ostatnia aktualizacja:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Spowoduje to zatwierdzenie, podpisanie i opublikowanie tej wersji. Komentarze zostaną wysłane do autora."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Spowoduje to odrzucenie tej wersji i usunięcie jej z kolejki. Komentarze zostaną wysłane do autora."
+
+msgid "Approve Content"
+msgstr "Zatwierdź zawartość"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Stanowi to potwierdzenie Twojej aprobaty dla zawartości najnowszej wersji publicznej bez powiadamiania autora."
 
 msgid "Confirm Approval"
 msgstr "Potwierdź zatwierdzenie"
@@ -5522,12 +5533,6 @@ msgstr "Komentarz"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Skomentuj tę wersję. Twój komentarz nie będzie widoczny dla autora."
-
-msgid "Approve Content"
-msgstr "Zatwierdź zawartość"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Stanowi to potwierdzenie Twojej aprobaty dla zawartości najnowszej wersji publicznej bez powiadamiania autora."
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -5843,6 +5848,10 @@ msgstr "Historia zmian użytkownika dodatku"
 
 msgid "Add-on History"
 msgstr "Historia dodatku"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "Poprzednia informacja"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6472,7 +6481,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 msgid ""

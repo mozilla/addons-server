@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5771,6 +5771,9 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
+msgid "You cannot submit a language pack"
+msgstr ""
+
 #, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
@@ -6449,8 +6452,8 @@ msgid "Information Request Deadline"
 msgstr "Zahtevane dodatne informacije"
 
 #, fuzzy
-msgid "Last Content Review"
-msgstr "Izvršiti recenziju"
+msgid "Last Updated"
+msgstr "Poslednje ažuriranje:"
 
 msgid ""
 "This will approve, sign, and publish this version. The comments will be sent "
@@ -6462,6 +6465,15 @@ msgid ""
 "This will reject this version and remove it from the queue. The comments "
 "will be sent to the developer."
 msgstr "Ovo će odbiti dodatak i ukloniti ga sa liste čekanja."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Dozvoli / odbij"
+
+msgid ""
+"This records your approbation of the content of the latest public version, "
+"without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Confirm Approval"
@@ -6516,15 +6528,6 @@ msgstr "Komentariši"
 msgid ""
 "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentarišite ovu verziju. Autor neće biti u mogućnosti da ga vidi."
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Dozvoli / odbij"
-
-msgid ""
-"This records your approbation of the content of the latest public version, "
-"without notifying the developer."
-msgstr ""
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -6871,6 +6874,10 @@ msgstr ""
 
 msgid "Add-on History"
 msgstr "Istorijat dodatka"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "Prethodna napomena"
 
 #, python-format
 msgid ""
@@ -7576,8 +7583,13 @@ msgid ""
 msgstr ""
 
 msgid ""
-"The email address you used for your developer account is not allowed for add-"
-"on submission."
+"The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not "
+"supported: if you need those, or need to match against the entire email and "
+"not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
 msgid ""
