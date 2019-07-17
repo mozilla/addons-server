@@ -769,8 +769,14 @@ class SafeZip(object):
 
         info_list = zip_file.infolist()
 
+        total_file_size = 0
         for info in info_list:
+            total_file_size += info.file_size
             archive_member_validator(self.source, info)
+
+        if total_file_size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
+            raise forms.ValidationError(ugettext(
+                'Uncompressed size is too large'))
 
         self.info_list = info_list
         self.zip_file = zip_file
