@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2019-06-04 20:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4835,6 +4835,10 @@ msgstr "Tu non pote inviar un additivo con un guid que fini in %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Tu non pote inviar un extension jam signate per Mozilla"
 
+#, fuzzy
+msgid "You cannot submit a language pack"
+msgstr "Tu non pote inviar un extension jam signate per Mozilla"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Typo de file non tractate, carga un file {extensions} supportate."
 
@@ -5403,14 +5407,21 @@ msgstr "Peso"
 msgid "Information Request Deadline"
 msgstr "Data limite del demanda de informationes"
 
-msgid "Last Content Review"
-msgstr "Ultime revision de contentos"
+#, fuzzy
+msgid "Last Updated"
+msgstr "Ultime actualisation:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto approbara, signara, e publicara iste version. Le commentos sera inviate al disveloppator."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Isto rejectara iste version e removera illo ex le cauda. Le commentos sera inviate al disveloppator."
+
+msgid "Approve Content"
+msgstr "Approbar le contento"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Isto registra tu approbation del contento del ultime version public, sin notificar le disveloppator."
 
 msgid "Confirm Approval"
 msgstr "Confirmar le approbation"
@@ -5441,12 +5452,6 @@ msgstr "Commento"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Face un commento sur iste version. The disveloppator non potera vider lo."
-
-msgid "Approve Content"
-msgstr "Approbar le contento"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Isto registra tu approbation del contento del ultime version public, sin notificar le disveloppator."
 
 msgid "Pre-Review Add-ons"
 msgstr "Pre-revider le additivos"
@@ -5756,6 +5761,10 @@ msgstr "Chronologia del modificationes de usator del additivo"
 
 msgid "Add-on History"
 msgstr "Chronologia del additivo"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "Note previe"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6379,8 +6388,14 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+#, fuzzy
+msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Le adresse email que tu ha usate pro tu conto de disveloppator non es consentite pro invio de additivos."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4830,6 +4830,10 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
 
 #, fuzzy
+msgid "You cannot submit a language pack"
+msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
+
+#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Jenis fail tidak disokong, sila muat naik fail arkib {extensions}."
 
@@ -5395,14 +5399,21 @@ msgstr "Pertimbangkan"
 msgid "Information Request Deadline"
 msgstr "Tarikh Akhir Permintaan Maklumat"
 
-msgid "Last Content Review"
-msgstr "Semakan Kandungan Terakhir"
+#, fuzzy
+msgid "Last Updated"
+msgstr "Kemaskini Terakhir:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ini akan meluluskan, menandatangani, dan menerbitkan versi ini. Komen akan dihantar kepada pembangun."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Ini akan menolak versi ini dan menyingkirkannya daripada baris gilir. Komen akan dihantar kepada pembangun."
+
+msgid "Approve Content"
+msgstr "Kandungan Lulus"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
 msgid "Confirm Approval"
 msgstr "Sahkan Kelulusan"
@@ -5433,12 +5444,6 @@ msgstr "Komen"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
-
-msgid "Approve Content"
-msgstr "Kandungan Lulus"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -5750,6 +5755,10 @@ msgstr "Sejarah perubahan pengguna add-on"
 
 msgid "Add-on History"
 msgstr "Sejarah Add-on"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "Nota dahulu"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6366,7 +6375,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 msgid ""
