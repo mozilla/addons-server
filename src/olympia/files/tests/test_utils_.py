@@ -12,6 +12,7 @@ from unittest import mock
 from django import forms
 from django.conf import settings
 from django.forms import ValidationError
+from django.test.utils import override_settings
 
 import flufl.lock
 import lxml
@@ -1185,3 +1186,13 @@ class TestGetBackgroundImages(TestCase):
 ])
 def test_id_to_path(value, expected):
     assert utils.id_to_path(value) == expected
+
+
+class TestSafeZip(TestCase):
+
+    def test_raises_validation_error_when_uncompressed_size_is_too_large(self):
+        with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
+            with pytest.raises(forms.ValidationError):
+                # total uncompressed size of this xpi is: 2269 bytes
+                utils.SafeZip(get_addon_file(
+                    'valid_firefox_and_thunderbird_addon.xpi'))
