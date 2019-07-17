@@ -528,7 +528,8 @@ class TestDashboard(TestCase):
                 addon=addon_factory(),
                 recommendation_approved=True,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW}).addon)
-        # Nominated and pending themes
+        # Nominated and pending themes, not being counted
+        # as per https://github.com/mozilla/addons-server/issues/11796
         addon_factory(
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
@@ -671,7 +672,7 @@ class TestDashboard(TestCase):
         # auto-approved addons
         assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[9].text == 'Content Review (13)'
+        assert doc('.dashboard a')[9].text == 'Content Review (11)'
         # themes
         assert doc('.dashboard a')[11].text == 'New (1)'
         assert doc('.dashboard a')[12].text == 'Updates (1)'
@@ -2273,6 +2274,16 @@ class TestContentReviewQueue(QueueTest):
             version=addon4.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
+
+        # Those should *not* appear in the queue
+        # Has not been auto-approved but themes and langpacks are excluded.
+        addon_factory(
+            name=u'Theme 1', created=self.days_ago(4),
+            type=amo.ADDON_STATICTHEME)
+
+        addon_factory(
+            name=u'Langpack 1', created=self.days_ago(4),
+            type=amo.ADDON_LPAPP)
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
