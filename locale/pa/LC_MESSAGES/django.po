@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4984,6 +4984,9 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
+msgid "You cannot submit a language pack"
+msgstr ""
+
 #, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
@@ -5573,8 +5576,8 @@ msgid "Information Request Deadline"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
 #, fuzzy
-msgid "Last Content Review"
-msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+msgid "Last Updated"
+msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਹੋਇਆ:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5582,6 +5585,13 @@ msgstr ""
 #, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "ਉਹ ਐਡ-ਆਨ ਨੂੰ ਰੱਦ ਅਤੇ ਇਸ ਨੂੰ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਹਟਾ ਦੇਣਗੇ।"
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Confirm Approval"
@@ -5619,13 +5629,6 @@ msgstr "ਟਿੱਪਣੀ"
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "ਇਸ ਵਰਜਨ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਲੇਖਕ ਇਸ ਨੂੰ ਨਹੀਂ ਵੇਖ ਸਕੇਗਾ।"
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -5968,6 +5971,10 @@ msgstr "ਐਡ-ਆਨ ਉਪਭੋਗੀ ਨੇ ਇਤਿਹਾਸ ਬਦਲਿ�
 
 msgid "Add-on History"
 msgstr "ਐਡ-ਆਨ ਇਤਿਹਾਸ"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "ਪਿਛਲਾ ਨੋਟ"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6607,7 +6614,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 #, fuzzy

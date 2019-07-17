@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2019-05-31 01:30+0000\n"
 "Last-Translator: Taegeon Lee <ash153311@gmail.com>\n"
 "Language-Team: none\n"
@@ -4834,6 +4834,10 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, fuzzy
+msgid "You cannot submit a language pack"
+msgstr "이런 종류의 부가 기능은 제출할 수 없음"
+
+#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "지원하지 않는 파일 형식입니다. {extensions} 압축 파일을 업로드 해 주십시오."
 
@@ -5407,14 +5411,22 @@ msgstr "무게"
 msgid "Information Request Deadline"
 msgstr "추가 정보 필요"
 
-msgid "Last Content Review"
-msgstr "마지막 콘텐츠 검토"
+#, fuzzy
+msgid "Last Updated"
+msgstr "마지막 업데이트:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "이 버전을 거부하고 대기열에서 삭제합니다. 의견이 개발자에게 보내집니다."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "승인 / 거부"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Confirm Approval"
@@ -5449,13 +5461,6 @@ msgstr "코멘트"
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "이 버전에 코멘트를 남겨주세요. 제작자는 코멘트를 볼 수 없습니다."
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "승인 / 거부"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -5792,6 +5797,10 @@ msgstr "부가 기능 사용자 변경 내역"
 
 msgid "Add-on History"
 msgstr "부가 기능 변경 내역"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "이전 메모"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6432,7 +6441,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 msgid ""
