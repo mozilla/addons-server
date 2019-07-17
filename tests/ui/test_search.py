@@ -82,6 +82,7 @@ def test_special_chars_dont_break_suggestions(base_url, selenium):
     for item in suggestions:
         if term in item.name:
             assert True
+            break
         else:
             continue
     
