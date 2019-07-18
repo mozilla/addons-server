@@ -82,6 +82,7 @@ def test_special_chars_dont_break_suggestions(base_url, selenium):
     results = [item.name for item in suggestions]
     assert term in results
 
+
 @pytest.mark.nondestructive
 def test_capitalization_has_same_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
