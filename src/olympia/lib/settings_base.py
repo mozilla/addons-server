@@ -1409,6 +1409,15 @@ CSP_STYLE_SRC = (
     PROD_CDN_HOST,
 )
 
+RESTRICTED_DOWNLOAD_CSP = {
+    'DEFAULT_SRC': "'none'",
+    'BASE_URI': "'none'",
+    'FORM_ACTION': "'none'",
+    'OBJECT_SRC': "'none'",
+    'FRAME_ANCESTORS': "'none'",
+    'REPORT_URI': CSP_REPORT_URI
+}
+
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
 # False on -dev and stage.
