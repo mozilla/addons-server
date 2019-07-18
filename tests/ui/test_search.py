@@ -79,13 +79,8 @@ def test_special_chars_dont_break_suggestions(base_url, selenium):
     term = 'Ui-Addon'
     special_chars_term = f'{term}%ç√®å'
     suggestions = page.search.search_for(special_chars_term, execute=False)
-    for item in suggestions:
-        if term in item.name:
-            assert True
-            break
-        else:
-            continue
-
+    results = [item.name for item in suggestions]
+    assert term in results
 
 @pytest.mark.nondestructive
 def test_capitalization_has_same_suggestions(base_url, selenium):
