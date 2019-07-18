@@ -493,7 +493,47 @@ class TestFileViewer(FilesBase, TestCase):
         res = self.client.get(self.files_serve(binary) + '?token=' + token)
         assert res.status_code == 200
         assert res['Content-Type'] == 'application/octet-stream'
-        assert 'X-Sendfile' in res
+
+        # Not sending through nginx but directly using djangos FileResponse
+        # to be able to restrict and test CSP related settings.
+        assert 'X-Sendfile' not in res
+        assert (
+            res['Content-Disposition'] ==
+            'attachment; filename="ar.dic"')
+
+        content = res.getvalue().decode('utf-8')
+        assert content.startswith(
+            '52726\n####الأدوات(واستثناءات)+الأفعال+الأسماء')
+
+    @override_settings(CSP_REPORT_ONLY=False)
+    def test_serve_respects_csp(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_redirect(binary))
+        assert res.status_code == 302
+        url = res['Location']
+        token = urlparse(url).query.split('=')[1]
+
+        res = self.client.get(self.files_serve(binary) + '?token=' + token)
+        assert res.status_code == 200
+        assert res['Content-Type'] == 'application/octet-stream'
+
+        # Make sure a default-src is set.
+        assert "default-src 'none'" in res['content-security-policy']
+        # Make sure things are as locked down as possible,
+        # as per https://bugzilla.mozilla.org/show_bug.cgi?id=1566954
+        assert "object-src 'none'" in res['content-security-policy']
+        assert "base-uri 'none'" in res['content-security-policy']
+        assert "form-action 'none'" in res['content-security-policy']
+        assert "frame-ancestors 'none'" in res['content-security-policy']
+
+        # The report-uri should be set.
+        assert "report-uri" in res['content-security-policy']
+
+        # Other properties that we defined by default aren't set
+        assert "style-src" not in res['content-security-policy']
+        assert "font-src" not in res['content-security-policy']
+        assert "frame-src" not in res['content-security-policy']
+        assert "child-src" not in res['content-security-policy']
 
     def test_serve_obj_not_exist(self):
         self.file_viewer.extract()
@@ -518,13 +558,6 @@ class TestFileViewer(FilesBase, TestCase):
 
         res = self.client.get(url)
         assert res.status_code == 403
-
-    def test_bounce(self):
-        self.file_viewer.extract()
-        res = self.client.get(self.files_redirect(binary), follow=True)
-        assert res.status_code == 200
-        assert res[settings.XSENDFILE_HEADER] == (
-            self.file_viewer.get_files().get(binary)['full'])
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):

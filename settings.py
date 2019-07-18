@@ -124,6 +124,7 @@ ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local', 'code-manager']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
+RESTRICTED_DOWNLOAD_CSP['REPORT_URI'] = CSP_REPORT_URI
 
 # Allow GA over http + www subdomain in local development.
 HTTP_GA_SRC = 'http://www.google-analytics.com'

@@ -6339,6 +6339,39 @@ class TestDownloadGitFileView(TestCase):
         assert content.startswith('{')
         assert '"manifest_version": 2' in content
 
+    @override_settings(CSP_REPORT_ONLY=False)
+    def test_download_respects_csp(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login(email=user.email)
+
+        url = reverse('reviewers.download_git_file', kwargs={
+            'version_id': self.version.pk,
+            'filename': 'manifest.json'
+        })
+
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+
+        # Make sure a default-src is set.
+        assert "default-src 'none'" in response['content-security-policy']
+        # Make sure things are as locked down as possible,
+        # as per https://bugzilla.mozilla.org/show_bug.cgi?id=1566954
+        assert "object-src 'none'" in response['content-security-policy']
+        assert "base-uri 'none'" in response['content-security-policy']
+        assert "form-action 'none'" in response['content-security-policy']
+        assert "frame-ancestors 'none'" in response['content-security-policy']
+
+        # The report-uri should be set.
+        assert "report-uri" in response['content-security-policy']
+
+        # Other properties that we defined by default aren't set
+        assert "style-src" not in response['content-security-policy']
+        assert "font-src" not in response['content-security-policy']
+        assert "frame-src" not in response['content-security-policy']
+        assert "child-src" not in response['content-security-policy']
+
     def test_download_emoji_filename(self):
         new_version = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})

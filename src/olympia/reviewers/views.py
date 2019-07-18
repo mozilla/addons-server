@@ -26,6 +26,8 @@ from rest_framework.mixins import (
     ListModelMixin, RetrieveModelMixin, CreateModelMixin, DestroyModelMixin,
     UpdateModelMixin)
 
+from csp.decorators import csp as set_csp
+
 import olympia.core.logger
 
 from olympia import amo
@@ -1159,6 +1161,7 @@ def theme_background_images(request, version_id):
 
 
 @login_required
+@set_csp(**settings.RESTRICTED_DOWNLOAD_CSP)
 def download_git_stored_file(request, version_id, filename):
     version = get_object_or_404(Version.unfiltered, id=int(version_id))
 
