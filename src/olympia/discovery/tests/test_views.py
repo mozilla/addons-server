@@ -379,3 +379,24 @@ class TestDiscoveryItemViewSet(TestCase):
         assert result['custom_description'] == (
             u'This time with a custom description')
         assert result['addon'] == {'guid': self.items[2].addon.guid}
+
+    def test_recommended(self):
+        with self.assertNumQueries(1):
+            response = self.client.get(self.url + '?recommended=true')
+        assert response.status_code == 200
+        assert len(response.data['results']) == 0
+
+        self.items[0].update(recommendable=True)
+        self.items[0].addon.current_version.update(
+            recommendation_approved=True)
+        self.items[2].update(recommendable=True)
+        self.items[2].addon.current_version.update(
+            recommendation_approved=True)
+        with self.assertNumQueries(1):
+            response = self.client.get(self.url + '?recommended=true')
+        assert response.status_code == 200
+        assert len(response.data['results']) == 2
+        assert response.data['results'][0]['addon']['guid'] == (
+            self.items[0].addon.guid)
+        assert response.data['results'][1]['addon']['guid'] == (
+            self.items[2].addon.guid)
