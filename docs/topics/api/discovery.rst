@@ -54,10 +54,12 @@ Editorial Content
 
 This endpoint allows you to fetch all editorial content for Discovery Pane
 Recommendations. This is used internally to generate .po files containing the
-strings the content team came up with.
+strings defined by the content team.  It is also used by TAAR service to obtain a list
+of appropriate add-ons to recommended.
 
  .. http:get:: /api/v4/discovery/editorial/
 
+    :query boolean recommended: Filter to only add-ons recommended by Mozilla.  Only ``recommended=true`` is supported.
     :>json array results: The array containing the results for this query. There is no pagination, all results are returned.
     :>json object results[].addon: A :ref:`add-on <addon-detail-object>` object for this item, but only containing one field: ``guid``.
     :>json string|null results[].custom_heading: The custom heading for this item, if any.
