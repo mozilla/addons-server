@@ -7,15 +7,15 @@ from .models import PrimaryHero
 
 
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
+    description = serializers.CharField(source='disco_addon.description')
     featured_image = serializers.SerializerMethodField()
     heading = serializers.CharField(source='disco_addon.heading')
-    description = serializers.CharField(source='disco_addon.description')
     addon = DiscoveryAddonSerializer(source='disco_addon.addon')
 
     class Meta:
         model = PrimaryHero
-        fields = ('addon', 'background_color', 'featured_image', 'heading',
-                  'description')
+        fields = ('addon', 'description', 'featured_image', 'gradient',
+                  'heading')
 
     def get_featured_image(self, obj):
         return absolutify(obj.image_path)

@@ -2,7 +2,7 @@ from olympia.amo.tests import addon_factory, TestCase
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
-from ..models import PrimaryHero
+from ..models import GRADIENT_START_COLOR, PrimaryHero
 from ..serializers import PrimaryHeroShelfSerializer
 
 
@@ -20,6 +20,9 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'featured_image': hero.image_path,
             'heading': 'Its a héading!',
             'description': '<blockquote>Summary</blockquote>',
-            'background_color': '#123456',
+            'gradient': {
+                'start': GRADIENT_START_COLOR,
+                'end': '#123456'
+            },
             'addon': DiscoveryAddonSerializer(instance=addon).data,
         }

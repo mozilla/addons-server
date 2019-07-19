@@ -10,3 +10,9 @@ class TestPrimaryHero(TestCase):
             image='foo.png')
         assert ph.image_path == (
             'http://testserver/static/img/hero/featured/foo.png')
+
+    def test_gradiant(self):
+        ph = PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            background_color='#112233')
+        assert ph.gradient == {'start': '#20123A', 'end': '#112233'}
