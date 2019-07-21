@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-07-17 12:32+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2019-07-21 12:10+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -4816,7 +4816,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
 
 msgid "You cannot submit a language pack"
-msgstr "Du kan inte skicka in ett språk paket"
+msgstr "Du kan inte skicka in ett språkpaket"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Filtypen stöds inte, vänligen ladda upp en fil som stöds {extensions}."
@@ -5734,9 +5734,8 @@ msgstr "Användarändringshistorik för tillägg"
 msgid "Add-on History"
 msgstr "Historik för tillägg"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Föregående anteckning"
+msgstr "Tidigare borttagna poster"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6359,14 +6358,15 @@ msgstr ""
 "Ange antingen fullständig domän eller e-post som ska blockeras eller använd  jokertecken i globaltyp för att matcha andra mönster. E.g \"@*.mail.com\"\n"
 " Observera att vi inte inkluderar \"@\" i matchningen så att du borde göra det i mönstret."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Den e-postadress du använde för ditt utvecklarkonto kan inte användas för att skicka in tillägg."
+msgstr "Den e-postadress du använde för ditt konto kan inte användas för att skicka in tillägg."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Ange fullständig e-postdomän som ska blockeras. Jokertecken stöds inte: om du behöver dessa eller måste matcha mot hela e-postadressen och inte bara domändelen, använd istället "
+"\"Användarbegränsningar för e-post\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
