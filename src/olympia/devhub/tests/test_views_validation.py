@@ -2,6 +2,7 @@
 import json
 import shutil
 
+from django import forms
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
@@ -110,6 +111,20 @@ class TestUploadErrors(BaseUploadTest):
         xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})
         assert xpi_info['guid'] == long_guid
 
+    def test_uuid_case_mismatch(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(guid='ThisIsAGUID')
+        upper_guid = addon.guid.upper()
+
+        with self.assertRaisesRegex(forms.ValidationError,
+                                    "does not match the ID of your add-on"
+                                    ) as e:
+            xpi_info = check_xpi_info({'guid': upper_guid,
+                                       'version': '1.0'},
+                                      addon=addon)
+        xpi_info = check_xpi_info({'guid': upper_guid,
+                                   'version': '1.0'})
+        assert xpi_info['guid'] == upper_guid
 
 class TestFileValidation(TestCase):
     fixtures = ['base/users', 'devhub/addon-validation-1']
