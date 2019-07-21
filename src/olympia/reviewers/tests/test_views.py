@@ -528,7 +528,8 @@ class TestDashboard(TestCase):
                 addon=addon_factory(),
                 recommendation_approved=True,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW}).addon)
-        # Nominated and pending themes
+        # Nominated and pending themes, not being counted
+        # as per https://github.com/mozilla/addons-server/issues/11796
         addon_factory(
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
@@ -671,7 +672,7 @@ class TestDashboard(TestCase):
         # auto-approved addons
         assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[9].text == 'Content Review (13)'
+        assert doc('.dashboard a')[9].text == 'Content Review (11)'
         # themes
         assert doc('.dashboard a')[11].text == 'New (1)'
         assert doc('.dashboard a')[12].text == 'Updates (1)'
@@ -2273,6 +2274,16 @@ class TestContentReviewQueue(QueueTest):
             version=addon4.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
+
+        # Those should *not* appear in the queue
+        # Has not been auto-approved but themes and langpacks are excluded.
+        addon_factory(
+            name=u'Theme 1', created=self.days_ago(4),
+            type=amo.ADDON_STATICTHEME)
+
+        addon_factory(
+            name=u'Langpack 1', created=self.days_ago(4),
+            type=amo.ADDON_LPAPP)
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
@@ -4619,8 +4630,12 @@ class TestReview(ReviewBase):
 
         old_one = addon_factory(status=amo.STATUS_DELETED)
         old_two = addon_factory(status=amo.STATUS_DELETED)
+        old_other = addon_factory(status=amo.STATUS_DELETED)
+        old_noguid = addon_factory(status=amo.STATUS_DELETED)
         ReusedGUID.objects.create(addon=old_one, guid='reuse@')
         ReusedGUID.objects.create(addon=old_two, guid='reuse@')
+        ReusedGUID.objects.create(addon=old_other, guid='other@')
+        ReusedGUID.objects.create(addon=old_noguid, guid='')
         self.addon.update(guid='reuse@')
 
         response = self.client.get(self.url)
@@ -4634,6 +4649,7 @@ class TestReview(ReviewBase):
         check_links(
             expected, doc('div.results table.item-history a'), verify=False)
 
+        # test unlisted review pages link to unlisted review pages
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
         response = self.client.get(
@@ -4648,6 +4664,16 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         check_links(
             expected, doc('div.results table.item-history a'), verify=False)
+
+        # make sure an empty guid isn't considered (e.g. search plugins)
+        self.addon.update(guid=None)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Previously deleted entries' not in response.content
+        self.addon.update(guid='')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Previously deleted entries' not in response.content
 
 
 @override_flag('code-manager', active=True)
@@ -6312,6 +6338,39 @@ class TestDownloadGitFileView(TestCase):
         content = response.content.decode('utf-8')
         assert content.startswith('{')
         assert '"manifest_version": 2' in content
+
+    @override_settings(CSP_REPORT_ONLY=False)
+    def test_download_respects_csp(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login(email=user.email)
+
+        url = reverse('reviewers.download_git_file', kwargs={
+            'version_id': self.version.pk,
+            'filename': 'manifest.json'
+        })
+
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+
+        # Make sure a default-src is set.
+        assert "default-src 'none'" in response['content-security-policy']
+        # Make sure things are as locked down as possible,
+        # as per https://bugzilla.mozilla.org/show_bug.cgi?id=1566954
+        assert "object-src 'none'" in response['content-security-policy']
+        assert "base-uri 'none'" in response['content-security-policy']
+        assert "form-action 'none'" in response['content-security-policy']
+        assert "frame-ancestors 'none'" in response['content-security-policy']
+
+        # The report-uri should be set.
+        assert "report-uri" in response['content-security-policy']
+
+        # Other properties that we defined by default aren't set
+        assert "style-src" not in response['content-security-policy']
+        assert "font-src" not in response['content-security-policy']
+        assert "frame-src" not in response['content-security-policy']
+        assert "child-src" not in response['content-security-policy']
 
     def test_download_emoji_filename(self):
         new_version = version_factory(

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-07 09:49+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-20 12:47+0000\n"
+"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4823,6 +4823,9 @@ msgstr "Nemůžete odeslat doplněk s GUID končícím %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
+msgid "You cannot submit a language pack"
+msgstr "Nemůžete odeslat jazykový balíček"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím podporovaný soubor typu {extensions}."
 
@@ -5386,14 +5389,20 @@ msgstr "Váha"
 msgid "Information Request Deadline"
 msgstr "Lhůta pro doplnění informací"
 
-msgid "Last Content Review"
-msgstr "Poslední kontrola obsahu"
+msgid "Last Updated"
+msgstr "Poslední aktualizace"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Komentáře budou odeslány vývojáři."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Tato verze bude zamítnuta a odstraněna z fronty na kontrolu. Komentáře budou zaslány vývojáři."
+
+msgid "Approve Content"
+msgstr "Schválit obsah"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
 msgid "Confirm Approval"
 msgstr "Potvrdit schválení"
@@ -5424,12 +5433,6 @@ msgstr "Komentář"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Přidejte komentář k této verzi. Vývojář jej neuvidí."
-
-msgid "Approve Content"
-msgstr "Schválit obsah"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
 msgid "Pre-Review Add-ons"
 msgstr "Předběžná kontrola doplňků"
@@ -5742,6 +5745,9 @@ msgstr "Historie změn doplňku uživatelem"
 
 msgid "Add-on History"
 msgstr "Historie doplňku"
+
+msgid "Previously deleted entries"
+msgstr "Dříve smazané položky"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6369,8 +6375,13 @@ msgstr ""
 "Zadejte plný doménový název nebo e-mailovou adresu, která má být zablokována, nebo použijte glob-style wildcard jako vzor. Např. „@*.mail.com“\n"
 " Upozorňujeme, že znak zavináče „@“ do odpovídajících výsledků nezahrnujeme. Proto na něj ve svých vzorech nezapomeňte."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "E-mailová adresa, kterou jste použili pro účet vývojáře, nemá povoleno odesílat doplňky."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "E-mailová adresa použitá pro váš účet nemá povoleno odesílat doplňky."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

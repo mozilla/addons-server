@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5016,6 +5016,9 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
+msgid "You cannot submit a language pack"
+msgstr ""
+
 #, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tipo de ficheiro não suportado, por favor envie um arquivo {extensions}."
@@ -5613,8 +5616,8 @@ msgid "Information Request Deadline"
 msgstr "Solicitada mais informação"
 
 #, fuzzy
-msgid "Last Content Review"
-msgstr "Submeter revisão"
+msgid "Last Updated"
+msgstr "Última atualização:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5622,6 +5625,13 @@ msgstr ""
 #, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Isto vai rejeitar o extra e removê-lo da fila de revisão."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Aprovar / Rejeitar"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Confirm Approval"
@@ -5663,13 +5673,6 @@ msgstr "Comentário"
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faça um comentário sobre esta versão. O autor não será capaz de o ver."
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Aprovar / Rejeitar"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -6012,6 +6015,10 @@ msgstr "Histórico de alterações do utilizador para o extra"
 
 msgid "Add-on History"
 msgstr "Histórico do extra"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "Nota anterior"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6656,7 +6663,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 #, fuzzy

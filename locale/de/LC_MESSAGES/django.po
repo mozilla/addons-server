@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-02 10:43+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-17 11:54+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4846,6 +4846,9 @@ msgstr "Sie können kein Add-on einreichen, dessen GUID auf „%s“ endet"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Sie können eine signierte Mozilla-Erweiterung nicht übermitteln"
 
+msgid "You cannot submit a language pack"
+msgstr "Sie können kein Sprachpaket einreichen"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nicht unterstützter Dateityp, bitte laden Sie eine unterstützte Datei hoch {extensions}."
 
@@ -5411,14 +5414,20 @@ msgstr "Gewicht"
 msgid "Information Request Deadline"
 msgstr "Termin für Informationsanforderung"
 
-msgid "Last Content Review"
-msgstr "Letzte Inhaltsüberprüfung"
+msgid "Last Updated"
+msgstr "Zuletzt aktualisiert"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Dadurch wird diese Version freigeschaltet, signiert und veröffentlicht. Die Kommentare werden an den Entwickler geschickt."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Dies lehnt diese Version ab und entfernt sie aus der Warteschlange für Überprüfungen. Die Kommentare werden an den Entwickler geschickt."
+
+msgid "Approve Content"
+msgstr "Inhalt annehmen"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Dadurch wird Ihre Zustimmung zum Inhalt der neuesten öffentlichen Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
 
 msgid "Confirm Approval"
 msgstr "Freischaltung bestätigt"
@@ -5449,12 +5458,6 @@ msgstr "Kommentar"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Geben Sie einen Kommentar zu dieser Version ab. Der Entwickler kann ihn nicht sehen."
-
-msgid "Approve Content"
-msgstr "Inhalt annehmen"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Dadurch wird Ihre Zustimmung zum Inhalt der neuesten öffentlichen Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
 
 msgid "Pre-Review Add-ons"
 msgstr "Add-ons vorab überprüfen"
@@ -5764,6 +5767,9 @@ msgstr "Änderungschronik der Add-on-Nutzer"
 
 msgid "Add-on History"
 msgstr "Add-on-Chronik"
+
+msgid "Previously deleted entries"
+msgstr "Zuvor gelöschte Einträge"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6388,8 +6394,15 @@ msgstr ""
 "Geben Sie entweder die vollständige Domain oder die E-Mail-Adresse ein, die blockiert werden soll, oder verwenden Sie  glob-artige Platzhalter, um andere Muster abzugleichen. Zum Beispiel „@*.mail.com“\n"
 "Bitte beachten Sie, dass wir kein „@“ in die Passung aufnehmen, also  sollten Sie es in das Muster aufnehmen."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "Die E-Mail-Adresse, die Sie für Ihr Entwicklerkonto verwendet haben, ist für die Übermittlung von Add-ons nicht zulässig."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "Die E-Mail-Adresse, die Sie für Ihr Konto verwendet haben, ist für die Übermittlung von Add-ons nicht zulässig."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+"Geben Sie die vollständige Einweg-E-Mail-Domain ein, die gesperrt werden soll. Platzhalter werden nicht unterstützt: Wenn Sie diese benötigen oder mit der gesamten E-Mail-Adresse und nicht nur mit "
+"dem Domain-Teil übereinstimmen müssen, verwenden Sie stattdessen „E-Mail-Benutzerbeschränkungen“."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

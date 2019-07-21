@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-02 11:02+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-17 12:02+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4745,6 +4745,9 @@ msgstr "您不得送出 GUID 結尾為「%s」的附加元件"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能上傳已由 Mozilla 簽署過的擴充套件"
 
+msgid "You cannot submit a language pack"
+msgstr "您不能上傳語言套件"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "不支援的檔案格式，請上傳支援的 {extensions} 格式檔案。"
 
@@ -5288,14 +5291,20 @@ msgstr "權重"
 msgid "Information Request Deadline"
 msgstr "資訊要求期限"
 
-msgid "Last Content Review"
-msgstr "上次內容審核"
+msgid "Last Updated"
+msgstr "最近更新於"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "將會通過審核、簽署、並發布此版本。將把留言傳送給開發者。"
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "將會退回此版本並從佇列移除，將傳送留言給開發者。"
+
+msgid "Approve Content"
+msgstr "核准內容"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "將紀錄您接受或拒絕最新公開版本內容，而無需通知開發者。"
 
 msgid "Confirm Approval"
 msgstr "確認批准"
@@ -5326,12 +5335,6 @@ msgstr "意見"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "為此版本加上留言，開發者不會看到。"
-
-msgid "Approve Content"
-msgstr "核准內容"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "將紀錄您接受或拒絕最新公開版本內容，而無需通知開發者。"
 
 msgid "Pre-Review Add-ons"
 msgstr "預先審核附加元件"
@@ -5640,6 +5643,9 @@ msgstr "附加元件使用者變更紀錄"
 
 msgid "Add-on History"
 msgstr "附加元件歷史"
+
+msgid "Previously deleted entries"
+msgstr "先前刪除的項目"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6249,8 +6255,13 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr "請輸入要封鎖的完整網域，或是使用 glob 風格的萬用字元來比對其他模式，例如「@*.mail.com」請注意，我們不會在比對時加入「@」，所以您應該在比對模式中加入此符號。"
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "您用於開發者帳號的電子郵件地址，不允許用來上架附加元件。"
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "您的帳號不允許用來上架附加元件。"
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

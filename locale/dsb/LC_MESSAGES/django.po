@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-02 11:35+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-18 12:28+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4828,6 +4828,9 @@ msgstr "Njamóžośo žeden dodank z GUID zapódaś, kótaryž kóńcy se na %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njamóžośo signěrowane rozšyrjenje Mozilla zapódaś"
 
+msgid "You cannot submit a language pack"
+msgstr "Njamóžośo rěcny pakśik zapódaś"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo pódpěranu dataju {extensions}."
 
@@ -5399,14 +5402,20 @@ msgstr "Wažnosć"
 msgid "Information Request Deadline"
 msgstr "Termin za pšosbu wó informacije"
 
-msgid "Last Content Review"
-msgstr "Slědne pśeglědanje wopśimjeśa"
+msgid "Last Updated"
+msgstr "Slědna aktualizacija"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To pśizwólijo, signěrujo a wózjawijo toś tu. wersiju. Komentary pósćelu se wuwijarjeju."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "To wótpokažo toś ten dodank a wótpórajo jen z cakańskego rěda. Komentary pósćelu se na wuwijarja."
+
+msgid "Approve Content"
+msgstr "Wopśimjeśe pśizwóliś"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "To wašo pśizwólenje wopśimjeśe nejnowšeje zjawneje wersije registrěrujo, mimo aby se wuwijaŕ informěrował."
 
 msgid "Confirm Approval"
 msgstr "Pśizwólenje wobkšuśiś"
@@ -5437,12 +5446,6 @@ msgstr "Komentar"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentěrujśo toś tu wersiju. Wuwijaŕ njamóžo to wiźeś."
-
-msgid "Approve Content"
-msgstr "Wopśimjeśe pśizwóliś"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "To wašo pśizwólenje wopśimjeśe nejnowšeje zjawneje wersije registrěrujo, mimo aby se wuwijaŕ informěrował."
 
 msgid "Pre-Review Add-ons"
 msgstr "Dodanki pśedpśeglědowaś"
@@ -5754,6 +5757,9 @@ msgstr "Historija změnow wužywarjow dodanka"
 
 msgid "Add-on History"
 msgstr "Historija dodanka"
+
+msgid "Previously deleted entries"
+msgstr "Do togo wulašowane zapiski"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6386,8 +6392,15 @@ msgstr ""
 "Zapódajśo pak dopołnu domenu pak e-mailowu adresu, kótaruž měła se blokěrowaś abo wužywajśo globowe zastupujuce symbole, aby drugim mustram wótpowědował, na pś. „@*.mail.com“.\n"
 "Pšosym źiwajśo na to, až „@“ do wótpowědowanja njezapśimujomy, wy měł jo pótakem do mustra zapśimjeś."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "E-mailowa adresa, kótaruž sćo wužył za wuwijarske konto, njejo dowólona za zapódawanje dodankow."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "E-mailowa adresa, kótaruž sćo wužył za swójo konto njejo dowólona za zapódawanje dodankow."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+"Zapódajśo dopołnu jadnorazowu e-mailowu domenu, kótaraž měła se blokěrowaś. Zastupujuce symbole se njepódpěraju: Jolic te trjebaśo, abo musyśo z cyłeju e-mailoweju adresu pśirownaś a nic jano z "
+"domenowym źělom, wužywajśo „e-mailowe wužywarske wobgranicowanja“ město togo."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

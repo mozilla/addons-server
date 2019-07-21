@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-10 17:28+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-21 12:41+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4896,6 +4896,9 @@ msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
 
+msgid "You cannot submit a language pack"
+msgstr "Impossibile caricare un language pack"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tipo di file non supportato. Estensioni file supportate: {extensions}."
 
@@ -5464,14 +5467,20 @@ msgstr "Peso"
 msgid "Information Request Deadline"
 msgstr "Scadenza richiesta informazioni"
 
-msgid "Last Content Review"
-msgstr "Ultima revisione dei contenuti"
+msgid "Last Updated"
+msgstr "Ultimo aggiornamento"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Questa azione rifiuterà l’attuale versione del componente aggiuntivo e lo rimuoverà dalla lista dei nuovi componenti aggiuntivi. Il commento verrà inviato allo sviluppatore."
+
+msgid "Approve Content"
+msgstr "Approva contenuti"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
 msgid "Confirm Approval"
 msgstr "Conferma approvazione"
@@ -5506,12 +5515,6 @@ msgstr "Commento"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Scrivi un commento su questa versione. L’autore non potrà leggerlo."
-
-msgid "Approve Content"
-msgstr "Approva contenuti"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
 msgid "Pre-Review Add-ons"
 msgstr "Pre-revisione dei componenti aggiuntivi"
@@ -5821,6 +5824,9 @@ msgstr "Cronologia modifiche utenti"
 
 msgid "Add-on History"
 msgstr "Cronologia componente aggiuntivo"
+
+msgid "Previously deleted entries"
+msgstr "Elementi precedentemente eliminati"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6450,8 +6456,15 @@ msgstr ""
 "Inserisci un dominio o email da bloccare, oppure usa metacaratteri con sintassi glob per altri pattern. Es. \"@*.mail.com\". Nota che il carattere \"@\" non è incluso nella corrispondenza, dunque "
 "devi includerlo tu nel pattern."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "L’indirizzo email che hai usato per il tuo account sviluppatore non è permesso per caricare i componenti aggiuntivi."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "L’indirizzo email del tuo account non possiede i permessi necessari per caricare componenti aggiuntivi."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+"Inserisci per intero il dominio email “usa e getta” da bloccare. I metacaratteri non sono supportati: per utilizzarli o per trovare corrispondenze con l’indirizzo email completo invece che con il "
+"solo dominio, usa “Restrizioni email utente”."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

@@ -76,12 +76,11 @@ def test_search_suggestion_term_is_higher(base_url, selenium):
 @pytest.mark.nondestructive
 def test_special_chars_dont_break_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
-    term = 'Ui-Addon-Install'
-    special_chars = u'%ç√®å'
-    suggestions = page.search.search_for(term, execute=False)
-    assert term == suggestions[0].name
-    suggestions = page.search.search_for(special_chars, execute=False)
-    assert term in suggestions[0].name
+    term = 'Ui-Addon'
+    special_chars_term = f'{term}%ç√®å'
+    suggestions = page.search.search_for(special_chars_term, execute=False)
+    results = [item.name for item in suggestions]
+    assert term in results
 
 
 @pytest.mark.nondestructive

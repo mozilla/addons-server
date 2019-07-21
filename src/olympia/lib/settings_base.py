@@ -1409,6 +1409,15 @@ CSP_STYLE_SRC = (
     PROD_CDN_HOST,
 )
 
+RESTRICTED_DOWNLOAD_CSP = {
+    'DEFAULT_SRC': "'none'",
+    'BASE_URI': "'none'",
+    'FORM_ACTION': "'none'",
+    'OBJECT_SRC': "'none'",
+    'FRAME_ANCESTORS': "'none'",
+    'REPORT_URI': CSP_REPORT_URI
+}
+
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
 # False on -dev and stage.
@@ -1441,6 +1450,7 @@ MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
+MAX_ZIP_UNCOMPRESSED_SIZE = 200 * 1024 * 1024
 
 # File uploads should have -rw-r--r-- permissions in order to be served by
 # nginx later one. The 0o prefix is intentional, this is an octal value.

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django import http, shortcuts
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
@@ -5,13 +6,15 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
 
+from csp.decorators import csp as set_csp
+
 import olympia.core.logger
 
 from olympia.access import acl
 from olympia.lib.cache import Message, Token
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import HttpResponseSendFile, render, urlparams
+from olympia.amo.utils import render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
 from olympia.files.file_viewer import extract_file
@@ -179,6 +182,7 @@ def redirect(request, viewer, key):
     return http.HttpResponseRedirect(url)
 
 
+@set_csp(**settings.RESTRICTED_DOWNLOAD_CSP)
 @file_view_token
 @non_atomic_requests
 def serve(request, viewer, key):
@@ -193,5 +197,10 @@ def serve(request, viewer, key):
                   key, list(files.keys())[:10], len(files.keys()),
                   viewer.file.id))
         raise http.Http404
-    return HttpResponseSendFile(request, obj['full'],
-                                content_type=obj['mimetype'])
+
+    fobj = open(obj['full'], 'rb')
+
+    response = http.FileResponse(
+        fobj, as_attachment=True, content_type=obj['mimetype'])
+
+    return response

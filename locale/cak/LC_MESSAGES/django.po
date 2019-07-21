@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4848,6 +4848,10 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
 #, fuzzy
+msgid "You cannot submit a language pack"
+msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
+
+#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Man yek'ul ta re taq ruwäch yakb'äl re', tajotob'a' jun yakb'äl rik'in rub'anikil {extensions}."
 
@@ -5417,14 +5421,21 @@ msgstr "Ralal"
 msgid "Information Request Deadline"
 msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
 
-msgid "Last Content Review"
-msgstr "Ruk'isib'äl Runik'oxik Rupam"
+#, fuzzy
+msgid "Last Updated"
+msgstr "Ruk'isib'äl k'exoj:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Re re' ütz xtutz'ët, xtujüx chuqa' xtrelesaj rutzijol ri ruwäch. Xkeruk'ül ri taq na'oj ri b'anonel."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Re re' xtuyüj re ruwäch re' chuqa' xtuyüj el pa kicholajem nik'oxïk. Xtitaq taq na'oj chi re r' b'anobnel."
+
+msgid "Approve Content"
+msgstr "Ütz Titz'et Rupam"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Re re' nutz'ib'aj ri ütz atz'etoj chi rij ri ruk'isib'äl ruwäch elesan rutzijol, akuchi' majun niya' rutzijol chi re ri b'anonel."
 
 msgid "Confirm Approval"
 msgstr "Tijikib'äx Ütz Tz'etoj"
@@ -5455,12 +5466,6 @@ msgstr "Tzijoxïk"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Tatzijoj rij re ruwäch re'. Man xtitikïr ta xtutz'ët ri b'anonel."
-
-msgid "Approve Content"
-msgstr "Ütz Titz'et Rupam"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Re re' nutz'ib'aj ri ütz atz'etoj chi rij ri ruk'isib'äl ruwäch elesan rutzijol, akuchi' majun niya' rutzijol chi re ri b'anonel."
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -5773,6 +5778,10 @@ msgstr "Jalon runatab'al rokisanel tz'aqat"
 
 msgid "Add-on History"
 msgstr "Runatab'al Tz'aqat"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "Jun kan ch'utitzijol"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6389,7 +6398,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 msgid ""

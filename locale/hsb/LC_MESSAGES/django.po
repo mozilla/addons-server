@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-02 11:35+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-17 19:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4826,6 +4826,9 @@ msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na %s kónči"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njemóžeće signowane rozšěrjenje Mozilla zapodać"
 
+msgid "You cannot submit a language pack"
+msgstr "Njemóžeće rěčny pakćik zapodać"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Njepodpěrany datajowy typ, prošu nahrajće podpěranu dataju {extensions}."
 
@@ -5398,14 +5401,20 @@ msgstr "Wažnosć"
 msgid "Information Request Deadline"
 msgstr "Termin za próstwu wo informacije"
 
-msgid "Last Content Review"
-msgstr "Poslednje přepruwowanje wobsaha"
+msgid "Last Updated"
+msgstr "Poslednja aktualizacija"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentary so wuwiwarjej pósćelu."
+
+msgid "Approve Content"
+msgstr "Wobsah schwalić"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "To waše schwalenje wobsaha najnowšeje zjawneje tuteje wersije registruje bjez toho, zo by so wuwiwar informował."
 
 msgid "Confirm Approval"
 msgstr "Schwalenje wobkrućić"
@@ -5436,12 +5445,6 @@ msgstr "Komentar"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
-
-msgid "Approve Content"
-msgstr "Wobsah schwalić"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "To waše schwalenje wobsaha najnowšeje zjawneje tuteje wersije registruje bjez toho, zo by so wuwiwar informował."
 
 msgid "Pre-Review Add-ons"
 msgstr "Přidatki předpřepruwować"
@@ -5753,6 +5756,9 @@ msgstr "Historija změnow wužiwarjow přidatka"
 
 msgid "Add-on History"
 msgstr "Historija přidatka"
+
+msgid "Previously deleted entries"
+msgstr "Do toho zhašane zapiski"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6385,8 +6391,15 @@ msgstr ""
 "Zapodajće pak dospołnu domenu pak e-mejlowu adresu, kotruž měła so blokować abo wužiwajće globowe zastupowace symbole, zo byšće druhim mustram wotpowědował, na př. „@*.mail.com“.\n"
 "Prošu dźiwajće na to, zo „@“ do wotpowědowanja njezapřijimamy, wy měł jo tuž do mustra zapřijeć."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "E-mejlowa adresa, kotruž sće za wuwiwarske konto wužił, za zapodawanje přidatkow dowolena njeje."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "E-mejlowa adresa, kotruž sće za swoje konto wužił, za zapodawanje přidatkow dowolena njeje."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+"Zapodajće dospołnu jónkróćnu e-mejlowu domenu, kotraž měła so blokować. Zastupowace symbole so njepodpěruja: Jeli te trjebaće, abo dyrbiće z cyłej e-mejlowej adresu přirunać a nic jenož z domenowym "
+"dźělom, wužiwajće „e-mejlowe wužiwarske wobmjezwanja“ město toho."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

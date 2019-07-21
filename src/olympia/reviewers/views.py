@@ -26,6 +26,8 @@ from rest_framework.mixins import (
     ListModelMixin, RetrieveModelMixin, CreateModelMixin, DestroyModelMixin,
     UpdateModelMixin)
 
+from csp.decorators import csp as set_csp
+
 import olympia.core.logger
 
 from olympia import amo
@@ -37,7 +39,7 @@ from olympia.activity.models import (
 from olympia.addons.decorators import (
     addon_view, addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, ReusedGUID)
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.urlresolvers import reverse
@@ -880,7 +882,9 @@ def review(request, addon, channel=None):
     all_versions.sort(key=lambda v: v.created,
                       reverse=True)
 
-    deleted_addons = Addon.unfiltered.filter(reusedguid__guid=addon.guid)
+    deleted_addon_ids = (
+        ReusedGUID.objects.filter(guid=addon.guid).values_list(
+            'addon_id', flat=True) if addon.guid else [])
 
     pager = paginate(request, all_versions, 10)
     num_pages = pager.paginator.num_pages
@@ -925,7 +929,7 @@ def review(request, addon, channel=None):
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         content_review_only=content_review_only, count=count,
-        deleted_addons=deleted_addons, flags=flags,
+        deleted_addon_ids=deleted_addon_ids, flags=flags,
         form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
         reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
@@ -1157,6 +1161,7 @@ def theme_background_images(request, version_id):
 
 
 @login_required
+@set_csp(**settings.RESTRICTED_DOWNLOAD_CSP)
 def download_git_stored_file(request, version_id, filename):
     version = get_object_or_404(Version.unfiltered, id=int(version_id))
 

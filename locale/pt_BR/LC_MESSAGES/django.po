@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-04 13:41+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-19 16:40+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4889,6 +4889,9 @@ msgstr "Você não pode enviar uma extensão com guid terminando em %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Você não pode submeter uma extensão assinada pela Mozilla"
 
+msgid "You cannot submit a language pack"
+msgstr "Você não pode enviar um pacote de idioma"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tipo de arquivo não suportado, envie um arquivo no formato {extensions}."
 
@@ -5459,14 +5462,20 @@ msgstr "Peso"
 msgid "Information Request Deadline"
 msgstr "Prazo para solicitação de informação"
 
-msgid "Last Content Review"
-msgstr "Última avaliação de conteúdo"
+msgid "Last Updated"
+msgstr "Última atualização"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto irá aprovar, assinar e publicar esta versão. Comentários serão enviados para o desenvolvedor."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Isto rejeitará esta versão da extensão e a removerá da fila. Os comentários serão enviados para o desenvolvedor."
+
+msgid "Approve Content"
+msgstr "Aprovar conteúdo"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Isso registra sua aprovação do conteúdo da última versão pública, sem notificar o desenvolvedor."
 
 msgid "Confirm Approval"
 msgstr "Confirmar aprovação"
@@ -5497,12 +5506,6 @@ msgstr "Comentário"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faça um comentário sobre esta versão. O desenvolvedor não poderá ver isto."
-
-msgid "Approve Content"
-msgstr "Aprovar conteúdo"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Isso registra sua aprovação do conteúdo da última versão pública, sem notificar o desenvolvedor."
 
 msgid "Pre-Review Add-ons"
 msgstr "Revisão prévia de extensões"
@@ -5824,6 +5827,9 @@ msgstr "Histórico de alterações de usuário da extensão"
 
 msgid "Add-on History"
 msgstr "Histórico da extensão"
+
+msgid "Previously deleted entries"
+msgstr "Itens anteriormente excluídos"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6459,8 +6465,15 @@ msgstr ""
 "Digite um domínio completo ou e-mail que deve ser bloqueado, ou use uma máscara estilo glob para corresponder a outros padrões. Por exemplo, \"@*.mail.com\"\n"
 "Note que não incluímos o \"@\" ao corresponder, por isso você deve incluir na máscara."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "O endereço de e-mail que você usou na sua conta de desenvolvedor não é aceita para enviar extensões."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "O endereço de e-mail usado na sua conta não é aceito para enviar extensões."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+"Digite o domínio completo de e-mails descartáveis que deve ser bloqueado. Caracteres curingas não são aceitos: se você precisar deles ou precisar bloquear um e-mail todo e não apenas a parte do "
+"domínio, em vez disso use \"Restrições de usuários de e-mail\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

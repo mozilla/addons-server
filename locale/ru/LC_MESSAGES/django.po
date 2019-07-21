@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-04 06:40+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-19 17:19+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4859,6 +4859,9 @@ msgstr "Вы не можете представить дополнение с gu
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
 
+msgid "You cannot submit a language pack"
+msgstr "Вы не можете представить языковой пакет"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите файл поддерживаемого типа {extensions}."
 
@@ -5427,14 +5430,20 @@ msgstr "Вес"
 msgid "Information Request Deadline"
 msgstr "Срок запроса информации"
 
-msgid "Last Content Review"
-msgstr "Последняя проверка содержимого"
+msgid "Last Updated"
+msgstr "Последнее обновление"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Это действие подтвердит, подпишет и опубликует эту версию. Разработчику будут отправлены комментарии."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Это действие отклонит эту версию и удалит её из очереди. Разработчику будут отправлены комментарии."
+
+msgid "Approve Content"
+msgstr "Одобрить содержимое"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
 
 msgid "Confirm Approval"
 msgstr "Подтвердить одобрение"
@@ -5465,12 +5474,6 @@ msgstr "Комментарий"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Прокомментируйте эту версию. Разработчик не сможет это увидеть."
-
-msgid "Approve Content"
-msgstr "Одобрить содержимое"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
 
 msgid "Pre-Review Add-ons"
 msgstr "Предпроверка дополнений"
@@ -5781,6 +5784,9 @@ msgstr "История изменений пользователя дополн�
 
 msgid "Add-on History"
 msgstr "История дополнения"
+
+msgid "Previously deleted entries"
+msgstr "Ранее удалённые записи"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6409,8 +6415,13 @@ msgstr ""
 "Введите полный домен или адрес электронной почты, который должен быть заблокирован, или используйте  звёздочки (glob-style wildcards) для задания шаблонов. Например, «@*.mail.com»\n"
 " Пожалуйста заметьте, что «@» не включается в совпадения, так что вам  необходимо делать это в шаблоне."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "Адрес электронной почты, используемый вами в аккаунте разработчика, не может быть использован для представления дополнений."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "Адрес электронной почты, используемый вами в аккаунте, не может быть использован для представления дополнений."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

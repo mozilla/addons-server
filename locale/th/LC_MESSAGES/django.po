@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-08 10:31+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-17 03:24+0000\n"
 "Last-Translator: Can <udomc.can@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -40,7 +40,7 @@ msgid "Distribution"
 msgstr "การแจกจ่าย"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "ประเทศของผู้แจ้งรายงาน"
 
 msgid "Message excerpt"
 msgstr ""
@@ -57,7 +57,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
 msgid "Modified on:"
-msgstr ""
+msgstr "แก้ไขเมื่อ:"
 
 #, python-format
 msgid "By %(filter_title)s"
@@ -1305,7 +1305,7 @@ msgid "Excellent (3)"
 msgstr "ดีเยี่ยม (3)"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "คะแนนผู้วิจารณ์ด้วยตนเอง"
 
 #, fuzzy
 msgid "New Legacy Add-on Review"
@@ -1420,7 +1420,7 @@ msgid "Request More Info"
 msgstr "ขอข้อมูลเพิ่มเติม"
 
 msgid "Flag"
-msgstr ""
+msgstr "ตั้งค่าสถานะ"
 
 msgid "Duplicate"
 msgstr "ทำซ้ำ"
@@ -2746,7 +2746,7 @@ msgid "Revoke and regenerate credentials"
 msgstr ""
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "สร้างข้อมูลรับรองใหม่"
 
 msgid "Invisible"
 msgstr "มองไม่เห็น"
@@ -3018,7 +3018,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "ดูวิธีปฏิบัติที่ดีที่สุด"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3174,7 +3174,7 @@ msgid "Close Review History"
 msgstr ""
 
 msgid "Not validated."
-msgstr ""
+msgstr "ไม่ผ่านการตรวจสอบ"
 
 msgid "Validate now."
 msgstr ""
@@ -4808,6 +4808,9 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
+msgid "You cannot submit a language pack"
+msgstr ""
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
@@ -5359,13 +5362,20 @@ msgid "Information Request Deadline"
 msgstr ""
 
 #, fuzzy
-msgid "Last Content Review"
-msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+msgid "Last Updated"
+msgstr "อัปเดตล่าสุด:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "อนุมัติ / ปฏิเสธ"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -5399,13 +5409,6 @@ msgid "Comment"
 msgstr "ความคิดเห็น"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "อนุมัติ / ปฏิเสธ"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 #, fuzzy
@@ -5735,6 +5738,9 @@ msgstr ""
 
 msgid "Add-on History"
 msgstr "ประวัติของส่วนเสริม"
+
+msgid "Previously deleted entries"
+msgstr ""
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6344,7 +6350,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 msgid ""

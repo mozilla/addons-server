@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2019-06-28 17:56+0000\n"
 "Last-Translator: Mangat veer Sagar <mnvsgr0@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4779,6 +4779,10 @@ msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆ�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
+#, fuzzy
+msgid "You cannot submit a language pack"
+msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "ਗ਼ੈਰਸਮਰਥਿਤ ਫਾਈਲ ਕਿਸਮ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮਰਥਿਤ ਫਾਈਲ {extensions} ਅਪਲੋਡ ਕਰੋੋ।"
 
@@ -5338,14 +5342,21 @@ msgstr "ਭਾਰ"
 msgid "Information Request Deadline"
 msgstr "ਜਾਣਕਾਰੀ ਬੇਨਤੀ ਦੀ ਆਖਰੀ ਤਾਰੀਖ"
 
-msgid "Last Content Review"
-msgstr "ਆਖਰੀ ਸਮਗਰੀ ਸਮੀਖਿਆ"
+#, fuzzy
+msgid "Last Updated"
+msgstr "ਆਖਰੀ ਵਾਰ ਨਵਿਆਇਆ ਗਿਆ:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "ਇਹ ਇਸ ਸੰਸਕਰਣ ਦੀ ਮਨਜ਼ੂਰੀ, ਹਸਤਾਖਰ ਅਤੇ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੇਗਾ। ਟਿੱਪਣੀ ਵਿਕਾਸਕਾਰ ਨੂੰ ਭੇਜੀ ਜਾਵੇਗੀ।"
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "ਇਹ ਇਸ ਸੰਸਕਰਣ ਨੂੰ ਅਸਵੀਕਾਰ ਕਰੇਗਾ ਅਤੇ ਇਸਨੂੰ ਕਤਾਰ ਵਿੱਚੋਂ ਹਟਾ ਦੇਵੇਗਾ। ਟਿੱਪਣੀ ਵਿਕਾਸਕਾਰ ਨੂੰ ਭੇਜੀ ਜਾਵੇਗੀ।"
+
+msgid "Approve Content"
+msgstr "ਸਮੱਗਰੀ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਦੀ ਸਮਗਰੀ ਦੀ ਤੁਹਾਡੀ ਅਨੁਮਤੀ ਨੂੰ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ।"
 
 msgid "Confirm Approval"
 msgstr "ਮਨਜ਼ੂਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
@@ -5376,12 +5387,6 @@ msgstr "ਟਿੱਪਣੀ"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "ਇਸ ਸੰਸਕਰਣ ਤੇ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਡਿਵੈਲਪਰ ਇਸ ਨੂੰ ਨਹੀਂ ਦੇਖ ਸਕੋਗੇ।"
-
-msgid "Approve Content"
-msgstr "ਸਮੱਗਰੀ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਦੀ ਸਮਗਰੀ ਦੀ ਤੁਹਾਡੀ ਅਨੁਮਤੀ ਨੂੰ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ।"
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -5693,6 +5698,10 @@ msgstr "ਐਡ-ਆਨ ਉਪਭੋਗੀ ਨੇ ਇਤਿਹਾਸ ਬਦਲਿ�
 
 msgid "Add-on History"
 msgstr "ਐਡ-ਆਨ ਇਤਿਹਾਸ"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "ਪਿਛਲਾ ਨੋਟ"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6310,7 +6319,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 msgid ""

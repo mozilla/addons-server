@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-02 11:44+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-17 14:08+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -4772,6 +4772,9 @@ msgstr "You cannot submit an add-on with a GUID ending %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "You cannot submit a Mozilla Signed Extension"
 
+msgid "You cannot submit a language pack"
+msgstr "You cannot submit a language pack"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Unsupported file type, please upload a supported file {extensions}."
 
@@ -5333,14 +5336,20 @@ msgstr "Weight"
 msgid "Information Request Deadline"
 msgstr "Information Request Deadline"
 
-msgid "Last Content Review"
-msgstr "Last Content Review"
+msgid "Last Updated"
+msgstr "Last Updated"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+
+msgid "Approve Content"
+msgstr "Approve Content"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "This records your approbation of the content of the latest public version, without notifying the developer."
 
 msgid "Confirm Approval"
 msgstr "Confirm Approval"
@@ -5371,12 +5380,6 @@ msgstr "Comment"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Make a comment on this version. The developer won’t be able to see this."
-
-msgid "Approve Content"
-msgstr "Approve Content"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "This records your approbation of the content of the latest public version, without notifying the developer."
 
 msgid "Pre-Review Add-ons"
 msgstr "Pre-Review Add-ons"
@@ -5686,6 +5689,9 @@ msgstr "Add-on user change history"
 
 msgid "Add-on History"
 msgstr "Add-on History"
+
+msgid "Previously deleted entries"
+msgstr "Previously deleted entries"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6308,8 +6314,15 @@ msgstr ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "The email address used for your account is not allowed for add-on submission."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use “Email user "
+"restrictions” instead."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

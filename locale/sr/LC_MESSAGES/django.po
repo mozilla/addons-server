@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5005,6 +5005,9 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
+msgid "You cannot submit a language pack"
+msgstr ""
+
 #, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Тип датотеке није подржан, молимо Вас да отпремите архиву датотеке {extensions}."
@@ -5590,8 +5593,8 @@ msgid "Information Request Deadline"
 msgstr "Захтеване додатне информације"
 
 #, fuzzy
-msgid "Last Content Review"
-msgstr "Извршити рецензију"
+msgid "Last Updated"
+msgstr "Последње ажурирање:"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5599,6 +5602,13 @@ msgstr ""
 #, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Ово ће одбити додатак и уклонити га са листе чекања."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Дозволи / одбиј"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Confirm Approval"
@@ -5638,13 +5648,6 @@ msgstr "Коментариши"
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Коментаришите ову верзију. Аутор неће бити у могућности да га види."
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Дозволи / одбиј"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
 
 #, fuzzy
 msgid "Pre-Review Add-ons"
@@ -5987,6 +5990,10 @@ msgstr ""
 
 msgid "Add-on History"
 msgstr "Историјат додатка"
+
+#, fuzzy
+msgid "Previously deleted entries"
+msgstr "Претходна напомена"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6625,7 +6632,12 @@ msgid ""
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
 msgstr ""
 
 msgid ""

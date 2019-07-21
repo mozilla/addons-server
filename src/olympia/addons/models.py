@@ -317,6 +317,11 @@ class AddonManager(ManagerBase):
             .filter(
                 addonapprovalscounter__last_content_review=None
             )
+            # Exclude themes and language packs. See
+            # https://github.com/mozilla/addons-server/issues/11796
+            .exclude(
+                type__in=(amo.ADDON_STATICTHEME, amo.ADDON_LPAPP)
+            )
             # We need those joins for the queue to work without making extra
             # queries. See get_auto_approved_queue()
             .select_related(

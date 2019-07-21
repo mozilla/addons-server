@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-02 14:40+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-19 07:23+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4841,6 +4841,9 @@ msgstr "Nem nyújthat be %s GUID-dal végződő kiegészítőt"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
 
+msgid "You cannot submit a language pack"
+msgstr "Nem küldhet be nyelvi csomagot"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nem támogatott fájltípus, töltsön fel egy támogatott fájlt: {extensions}."
 
@@ -5405,14 +5408,20 @@ msgstr "Súly"
 msgid "Information Request Deadline"
 msgstr "Információkérés határideje"
 
-msgid "Last Content Review"
-msgstr "Legutóbbi tartalomértékelés"
+msgid "Last Updated"
+msgstr "Utoljára frissítve"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ez jóváhagyja, aláírja és közzéteszi ezt a verziót. A megjegyzések elküldésre kerülnek a fejlesztőnek."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Ez elutasítja ezt a verziót, és eltávolítja a sorból. A megjegyzések elküldésre kerülnek a fejlesztőnek."
+
+msgid "Approve Content"
+msgstr "Tartalom jóváhagyása"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "Ez rögzíti, hogy jóváhagyta a legutóbbi nyilvános verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
 
 msgid "Confirm Approval"
 msgstr "Jóváhagyás megerősítése"
@@ -5443,12 +5452,6 @@ msgstr "Megjegyzés"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Tegyen egy megjegyzést erről a verzióról. A szerző nem fogja ezt látni."
-
-msgid "Approve Content"
-msgstr "Tartalom jóváhagyása"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Ez rögzíti, hogy jóváhagyta a legutóbbi nyilvános verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
 
 msgid "Pre-Review Add-ons"
 msgstr "Kiegészítők előzetes értékelése"
@@ -5764,6 +5767,9 @@ msgstr "Kiegészítő felhasználóváltozásának előzményei"
 
 msgid "Add-on History"
 msgstr "Kiegészítő előzményei"
+
+msgid "Previously deleted entries"
+msgstr "Korábban törölt bejegyzések"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6387,8 +6393,15 @@ msgstr ""
 "Adja meg a teljes tartományt vagy e-mailt, amelyet blokkolnia akar, vagy használjon glob-stílusú helyettesítő karaktereket a mintaillesztéshez. Például „@ *. mail.com”. Vegye figyelembe, hogy a „@” "
 "nem szerepel a mintaillesztésben, így ezt meg kell adnia mintában."
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "A fejlesztői fiókhoz használt e-mail cím nem használható kiegészítők beküldéséhez."
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "A fiókjához használt e-mail cím nem használható kiegészítők beküldéséhez."
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+"Adja meg a blokkolandó eldobható e-mailcímeket biztosító tartományt. A helyettesítő karakterek nem támogatottak: ha ezekre van szüksége, vagy a teljes e-mailre, és nem csak a domain részre szeretne "
+"egyezést megadni, akkor használja inkább az „E-mail felhasználói korlátozások” lehetőséget."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

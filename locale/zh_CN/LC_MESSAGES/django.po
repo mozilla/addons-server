@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-02 08:24+0000\n"
-"PO-Revision-Date: 2019-07-10 03:34+0000\n"
+"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"PO-Revision-Date: 2019-07-17 14:44+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4721,6 +4721,9 @@ msgstr "您提交的附加组件不能以 %s 作为 GUID 结尾"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能提交一个 Mozilla 签名的扩展"
 
+msgid "You cannot submit a language pack"
+msgstr "您不能提交语言包"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "不支持的文件格式，请上传一个支持的 {extensions} 格式文件。"
 
@@ -5261,14 +5264,20 @@ msgstr "加权"
 msgid "Information Request Deadline"
 msgstr "信息请求截止时间"
 
-msgid "Last Content Review"
-msgstr "上次内容审核"
+msgid "Last Updated"
+msgstr "最近更新于"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "这将拒绝此版本并将其从队列中移除。此评论将发送给其开发者。"
+
+msgid "Approve Content"
+msgstr "核准内容"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr "这将记录您为何认可最新公开版本的内容（不会通知开发者）。"
 
 msgid "Confirm Approval"
 msgstr "确认批准"
@@ -5299,12 +5308,6 @@ msgstr "评论"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "对此版本进行注释。其开发者不会看到这些。"
-
-msgid "Approve Content"
-msgstr "核准内容"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "这将记录您为何认可最新公开版本的内容（不会通知开发者）。"
 
 msgid "Pre-Review Add-ons"
 msgstr "预审核附加组件"
@@ -5613,6 +5616,9 @@ msgstr "附加组件用户变化历史记录"
 
 msgid "Add-on History"
 msgstr "附加组件历史"
+
+msgid "Previously deleted entries"
+msgstr "先前删除的项目"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6223,8 +6229,13 @@ msgstr ""
 "输入要屏蔽的完整域名或电子邮件，或者使用全局样式通配符来匹配其他模式。例如：“@*.mail.com”\n"
 "请注意，我们不在匹配中包含“@”，因此您应该在模式中这样做。"
 
-msgid "The email address you used for your developer account is not allowed for add-on submission."
-msgstr "您用于开发者账户的电子邮件地址不允许用于提交附加组件。"
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr "您的账户不允许用于提交附加组件。"
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr "输入要屏蔽的一次性邮箱的完整域。不支持通配符：如果您需要该特性，或需匹配整个电子邮件地址（不仅仅是域部分），请改用“电子邮件用户限制”。"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
