@@ -36,7 +36,9 @@ small number of shelves this endpoint is not paginated.
 .. http:get:: /api/v4/hero/primary/
 
     :>json array results: The array containing the results for this query.
-    :>json string results[].background_color: The background color used for the gradient.
+    :>json object results[].gradient: The background colors used for the gradient.
+    :>json string results[].gradient.start: The starting color for gradient - typically top or left.
+    :>json string results[].gradient.end: The ending color for gradient - typically bottom or right.
     :>json string results[].featured_image: The image used to illustrate the item.
     :>json string results[].heading: The heading for this item. May contain some HTML tags.
     :>json string|null results[].description: The description for this item, if any. May contain some HTML tags.
