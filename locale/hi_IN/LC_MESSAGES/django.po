@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-22 18:26+0000\n"
+"PO-Revision-Date: 2019-07-22 18:36+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -1008,7 +1008,7 @@ msgid "Shopping"
 msgstr "खरीदारी"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Firefox एक्सटेंशन डाउनलोड करें जो आपके ऑनलाइन शॉपिंग अनुभव को कूपन ढूँढने वाले, सौदा ढूँढने वाले, समीक्षा विश्लेषक, और अधिक के साथ बढ़ा सकते हैं।"
 
 msgid "Social & Communication"
 msgstr "सामाजिक व संचार"
@@ -1066,13 +1066,13 @@ msgid "Download Firefox extensions to surf safely and privately. Discover extens
 msgstr ""
 
 msgid "Social Networking"
-msgstr ""
+msgstr "सोशल नेटवर्किंग"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
 msgstr ""
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "स्पोर्ट्स एंड गेम्स"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
 msgstr ""
