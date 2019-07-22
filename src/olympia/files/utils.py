@@ -1023,11 +1023,11 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         current_user = core.get_user()
         if current_user:
             deleted_guid_clashes = Addon.unfiltered.exclude(
-                authors__id=current_user.id).filter(guid__regex=r'{}'
-                                                    .format(re.escape(guid)))
+                authors__id=current_user.id).filter(
+                guid__regex=r'{}'.format(re.escape(guid)))
         else:
-            deleted_guid_clashes = Addon.unfiltered.filter(guid__regex=r'{}'
-                                                           .format(re.escape(guid)))
+            deleted_guid_clashes = Addon.unfiltered.filter(
+                guid__regex=r'{}'.format(re.escape(guid)))
 
         if addon and addon.guid != guid:
             msg = ugettext(
@@ -1036,11 +1036,11 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             raise forms.ValidationError(msg % (guid, addon.guid))
         if (not addon and
             # Non-deleted add-ons.
-            (Addon.objects.filter(guid__regex=r'{}'
-                    .format(re.escape(guid))).exists() or
+            (Addon.objects.filter(
+                guid__regex=r'{}'.format(re.escape(guid))).exists() or
              # DeniedGuid objects for deletions for Mozilla disabled add-ons
-             DeniedGuid.objects.filter(guid__regex=r'{}'
-                     .format(re.escape(guid))).exists() or
+             DeniedGuid.objects.filter(
+                 guid__regex=r'{}'.format(re.escape(guid))).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):
             raise forms.ValidationError(ugettext('Duplicate add-on ID found.'))

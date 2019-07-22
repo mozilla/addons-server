@@ -117,14 +117,14 @@ class TestUploadErrors(BaseUploadTest):
         upper_guid = addon.guid.upper()
 
         with self.assertRaisesRegex(forms.ValidationError,
-                                    "does not match the ID of your add-on"
-                                    ) as e:
+                                    "does not match the ID of your add-on"):
             xpi_info = check_xpi_info({'guid': upper_guid,
                                        'version': '1.0'},
                                       addon=addon)
         xpi_info = check_xpi_info({'guid': upper_guid,
                                    'version': '1.0'})
         assert xpi_info['guid'] == upper_guid
+
 
 class TestFileValidation(TestCase):
     fixtures = ['base/users', 'devhub/addon-validation-1']
