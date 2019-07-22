@@ -1,0 +1,6499 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"PO-Revision-Date: 2018-11-02 15:00+0000\n"
+"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
+
+msgid "type"
+msgstr ""
+
+#, fuzzy
+msgid "Users"
+msgstr "ব্যবহারকারীর নাম"
+
+msgid "Addons"
+msgstr ""
+
+msgid "minimum reports count (grouped by guid)"
+msgstr ""
+
+#, fuzzy
+msgid "creation date"
+msgstr "নিয়ন্ত্রিত অ্যাড-অন রিভিউ"
+
+#, fuzzy
+msgid "User / Add-on"
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+#, fuzzy
+msgid "Distribution"
+msgstr "বর্ণনা"
+
+msgid "Reporter's country"
+msgstr ""
+
+msgid "Message excerpt"
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as valid."
+msgstr ""
+
+#, python-format
+msgid "The %d selected reports have been marked as suspicious."
+msgstr ""
+
+msgid "Mark selected abuse reports as suspicious"
+msgstr ""
+
+msgid "Modified on:"
+msgstr ""
+
+#, python-format
+msgid "By %(filter_title)s"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "No links are allowed."
+msgstr "কোন লিঙ্ক গ্রহণযোগ্য নয়।"
+
+msgid "This display name cannot be used."
+msgstr "প্রদর্শিত নামটি ব্যবহার করা সম্ভব নয়।"
+
+#, fuzzy
+msgid "This reviewer name cannot be used."
+msgstr "এই নামটি ব্যবহার করা যাবে না।"
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr ""
+
+msgid "Images must be either PNG or JPG."
+msgstr "ছবি অবশ্যই PNG অথবা JPG হতে হবে।"
+
+msgid "Images cannot be animated."
+msgstr "ছবি এনিমেটেড হতে পারবে না।"
+
+#, python-format
+msgid "Please use images smaller than %dMB."
+msgstr "অনুগ্রহ করে %dMB এর থেকে ছোট ছবি ব্যবহার করুন।"
+
+msgid "You are already logged in."
+msgstr "আপনি ইতোমধ্যেই লগ ইন অবস্থায় রয়েছেন।"
+
+msgid "Your login attempt could not be parsed. Please try again."
+msgstr "আপনার লগইন প্রচেষ্টা সফল হয়নি। অনুগ্রহপূর্বক আবার চেষ্টা করুন।"
+
+msgid "Your Firefox Account could not be found. Please try again."
+msgstr "আপনার ফায়ারফক্স অ্যাকাউন্টটি খুঁজে পাওয়া যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।"
+
+msgid "You could not be logged in. Please try again."
+msgstr "আপনি লগ ইন করতে পারেন নাই। অনুগ্রহ করে আবার চেস্টা করুন।"
+
+msgid "Need help?"
+msgstr "সাহায্য প্রয়োজন?"
+
+msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
+msgstr ""
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
+
+msgid "Review"
+msgstr "রিভিউ"
+
+msgid "Version {0}"
+msgstr "সংস্করণ {0}"
+
+msgid "Review note"
+msgstr "পর্যালোচনা নোট"
+
+msgid "Only latest versions of addons can have notes added."
+msgstr "শুধুমাত্র অ্যাডঅনসটির সর্বশেষ সংস্করণে যোগকৃত নোটগুলো থাকতে পারে।"
+
+msgid "Ratings"
+msgstr "রেটিংসমূহ"
+
+msgid "Status"
+msgstr "স্ট্যাটাস"
+
+msgid "- Add-on not on AMO -"
+msgstr ""
+
+msgid "Listed"
+msgstr "তালিকাভুক্ত"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
+
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr ""
+
+msgid "Awaiting Review"
+msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
+
+msgid "Rejected"
+msgstr "বাতিলকৃত"
+
+msgid "Approved"
+msgstr "অনুমোদিত"
+
+# যেহেতু এখানে {0} তারিখ বুঝানো হয়েছে...
+msgid "Added {0}"
+msgstr "{0} তে সংযুক্ত"
+
+#. {0} is the number of users.
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> জন ব্যবহারকারী"
+msgstr[1] "<strong>{0}</strong> জন ব্যবহারকারী"
+
+msgid "Hover to Preview"
+msgstr "প্রাকদর্শনের জন্য হোভার করুন"
+
+msgid "Add"
+msgstr "যোগ করুন"
+
+msgid "Edit"
+msgstr "সম্পাদনা করুন"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr "{1} তে {0} দ্বারা"
+
+msgid "Not yet rated"
+msgstr "এখনও রেট করা হয় নি"
+
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> জন ব্যবহারকারী"
+
+msgid "by"
+msgstr "দ্বারা"
+
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} দৈনিক ব্যবহারকারী"
+msgstr[1] ""
+
+msgid "Sort by:"
+msgstr "বাছাই দ্বারা:"
+
+msgid "More"
+msgstr "আরও"
+
+msgid "My Add-ons"
+msgstr "আমার অ্যাড-অনসমূহ"
+
+msgid "My Themes"
+msgstr "আমার থিমসমূহ"
+
+msgid "Tools"
+msgstr "টুলস"
+
+msgid "My Profile"
+msgstr "আমার প্রোফাইল"
+
+msgid "Account Settings"
+msgstr "অ্যাকাউন্ট সেটিংস"
+
+msgid "My Collections"
+msgstr "আমার সংগ্রহসমূহ"
+
+msgid "My Favorites"
+msgstr "আমার পছন্দসমূহ"
+
+msgid "Log out"
+msgstr "লগ আউট"
+
+msgid "Manage My Submissions"
+msgstr "আমার জমাকৃতগুলো নিয়ন্ত্রন করা"
+
+msgid "Submit a New Add-on"
+msgstr "নতুন অ্যাড-অন জমা দিন"
+
+msgid "Submit a New Theme"
+msgstr "নতুন থিম জমা দিন"
+
+msgid "Developer Hub"
+msgstr "ডেভেলপার হাব"
+
+msgid "Manage API Keys"
+msgstr "API কি ম্যানেজ করুন"
+
+msgid "Reviewer Tools"
+msgstr "পর্যালোচনাকারীদের টুলস"
+
+msgid "Admin Tools"
+msgstr "অ্যাডমিন টুলস"
+
+msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr ""
+
+msgid "Incorrect, please try again."
+msgstr "ভূল, অনুগ্রহ করে পুনরায় চেষ্টা করুন।"
+
+msgid "Error verifying input, please try again."
+msgstr "ইনপুট যাচাই করতে ব্যর্থ, অনুগ্রহ করে আবার চেস্টা করুন।"
+
+msgid "Enter a valid IP4 or IP6 network."
+msgstr ""
+
+msgid "CIDR"
+msgstr ""
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "অন্তত একজন মালিক থাকতে হবে।"
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "অন্তত একজন মালিক থাকতে হবে।"
+
+msgid "Not allowed"
+msgstr "অনুমোদিত নয়"
+
+#, fuzzy
+msgid "Oops! Not allowed."
+msgstr "অনুমোদিত নয়"
+
+#, fuzzy
+msgid "You tried to do something that you weren't allowed to."
+msgstr " <h1>ওহো! অনুমোদিত নয়।</h1> <p>আপনার অনুমোদন ছিল না যা কিছু আপনি চেষ্টা করেছেন।.</p> "
+
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
+"browser is not being hijacked by third parties."
+msgstr ""
+
+msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
+msgstr ""
+
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
+"parties."
+msgstr ""
+
+msgid "Page Not Found"
+msgstr "পাতা খুঁজে পাওয়া যায়নি"
+
+msgid "Firefox Add-ons"
+msgstr "Firefox Add-ons"
+
+msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
+msgstr ""
+
+msgid "Suggested Pages"
+msgstr ""
+
+msgid "Browse all extensions"
+msgstr "সকল এক্সটেনসন ব্রাউজ করুন"
+
+msgid "Browse all themes"
+msgstr "সকল থিম ব্রাউজ করুন"
+
+msgid "Add-ons Home Page"
+msgstr "অ্যাড-অন নীড় পাতা"
+
+#, python-format
+msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
+msgstr ""
+
+msgid "Not Found"
+msgstr "খুঁজে পাওয়া যায় নি"
+
+#, python-format
+msgid ""
+"<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+msgstr ""
+
+msgid "Oops"
+msgstr "ওহো"
+
+#, python-format
+msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr ""
+
+msgid "Some rights reserved"
+msgstr "কিছু কিছু অধিকার সংরক্ষিত"
+
+msgid "No results found"
+msgstr "কোন ফলাফল পাওয়া যায় নি"
+
+#. abbreviation of 'previous'
+msgid "Prev"
+msgstr "আগের"
+
+msgid "Next"
+msgstr "পরের"
+
+#, python-format
+msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
+msgstr "ফলাফলসূমহ <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
+
+msgid "Maintenance in progress"
+msgstr "রক্ষণাবেক্ষণের কাজ চলছে"
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
+msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দরুন এই ফিচার টি সাময়িক বন্ধ আছে। দয়া করে আপনার ব্রাউজার এর ব্যাক বাটন ব্যবহার করুন এবং কিছুক্ষণ পর আবার চেষ্টা করুন।"
+
+msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
+msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দরুন এই পেজের কিছু ফিচার সাময়িকভাবে বন্ধ আছে। দয়া করে কিছুক্ষন পর আবার চেষ্টা করুন।"
+
+msgid "Are you human?"
+msgstr "আপনি কি মানুষ?"
+
+msgid "What's this?"
+msgstr "এটা কী?"
+
+msgid ""
+"<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
+"different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
+msgstr ""
+
+msgid "Most Popular"
+msgstr "সবথেকে জনপ্রিয়"
+
+msgid "Top Rated"
+msgstr "শীর্ষস্থানীয়"
+
+msgid "Newest"
+msgstr "নতুন"
+
+# ডেলটা, selected হলো নির্বাচিত।
+msgid "Featured"
+msgstr "বৈশিষ্ট্যপূর্ণ"
+
+msgid "Explore"
+msgstr "ঘুরে বেড়ান"
+
+msgid "Categories"
+msgstr "বিষয়শ্রেণীসমূহ"
+
+#. This is a page range (e.g., Page 1 of 50).
+#, python-format
+msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "<a href=\"%(current_pg_url)s\">%(current_pg)s</a> এর <a href=\"%(last_pg_url)s\">%(last_pg)s</a> পাতা"
+
+msgid "Jump to first page"
+msgstr "প্রথম পাতায় যান"
+
+msgid "Previous"
+msgstr "পূর্বের"
+
+msgid "Jump to last page"
+msgstr "শেষ পাতায় ফিরে যান"
+
+#. First and second arguments are the result range (e.g., 1-20);
+#. third argument is the number of total results (e.g., 1,000).
+#, python-format
+msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
+msgstr "প্রদর্শিত <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
+
+msgid "Add-ons for {0}"
+msgstr "{0} জন্য অ্যাড-অন"
+
+msgid "Add-ons"
+msgstr "অ্যাড-অন"
+
+msgid "Custom License"
+msgstr "কাস্টম লাইসেন্স"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} আগে"
+
+msgid "Title"
+msgstr "শিরেনাম"
+
+msgid "Body"
+msgstr "বডি"
+
+msgid "Another Title"
+msgstr "অন্য শিরোনাম"
+
+msgid "Another Body"
+msgstr "অন্য বডি"
+
+msgid "Invalid Authorization header. No credentials provided."
+msgstr ""
+
+msgid "Invalid Authorization header. Credentials string should not contain spaces."
+msgstr ""
+
+msgid "Signature has expired."
+msgstr "স্বাক্ষর মেয়াদ উত্তীর্ণ হয়েছে।"
+
+msgid "Error decoding signature."
+msgstr "ভুল ডিকোডিং স্বাক্ষর।"
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
+
+msgid "Invalid JWT Token."
+msgstr "অবৈধ JWT টোকেন।"
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "অকার্যকর পদক্ষেপ।"
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "ইমেইল ঠিকানা"
+
+msgid "The field must have a length of at least {num} characters."
+msgstr "ফিল্ডের অবশ্যই ন্যূনতম {num} দৈর্ঘ্য আছে।"
+
+msgid "The language code {lang_code} is invalid."
+msgstr "{lang_code} ভাষা কোড অবৈধ।"
+
+msgid "You must provide an object of {lang-code:value}."
+msgstr ""
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
+
+msgid "Application Versions"
+msgstr "অ্যাপ্লিকেশন সংস্করণ"
+
+msgid "Acceptable versions for all applications on AMO."
+msgstr "AMO তে সব অ্যাপ্লিকেশনের জন্য গ্রহণযোগ্য সংস্করণ।"
+
+msgid "Valid Application Versions"
+msgstr "বৈধ অ্যাপ্লিকেশন সংস্করণ"
+
+msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
+msgstr ""
+
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr ""
+
+msgid "GUID"
+msgstr "GUID"
+
+msgid "Versions"
+msgstr "সংস্করণ"
+
+#, python-format
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
+msgstr ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
+
+#, fuzzy
+msgid "This custom URL is already in use by another one of your collections."
+msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
+
+#, fuzzy
+msgid "Name cannot be empty."
+msgstr "এই নামটি ব্যবহার করা যাবে না।"
+
+msgid "This name cannot be used."
+msgstr "এই নামটি ব্যবহার করা যাবে না।"
+
+msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#, fuzzy
+msgid "This custom URL cannot be used."
+msgstr "এই নামটি ব্যবহার করা যাবে না।"
+
+msgid "This add-on already belongs to the collection"
+msgstr "অ্যাড-অনটি ইতোমধ্যেই সংগ্রহে আছে"
+
+msgid "{addon} was created."
+msgstr "{addon} তৈরি করা হয়েছিল।"
+
+msgid "{addon} properties edited."
+msgstr "{addon} এর বৈশিষ্ট্যগুলো সম্পাদনা করা হয়েছে।"
+
+msgid "{addon} description edited."
+msgstr "{addon} এর বর্ণনা সম্পাদনা করা হয়েছে।"
+
+msgid "Categories edited for {addon}."
+msgstr "{addon} এর বিভাগ সম্পাদনা করা হয়েছে।"
+
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{addon} এ {0.name} ({1}) যুক্ত করা হয়েছে।"
+
+#. L10n: {0} is the user being removed, {1} is their role.
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{addon} হতে {0.name} ({1}) অপসারন করা হয়েছে।"
+
+msgid "Contributions for {addon}."
+msgstr "{addon} এর জন্য অনুদান।"
+
+msgid "{addon} disabled."
+msgstr "{addon} বন্ধ করা আছে।"
+
+msgid "{addon} enabled."
+msgstr "{addon} চালু করা আছে।"
+
+#. L10n: {status} is the status
+#, fuzzy
+msgid "{addon} status changed to {status}."
+msgstr "{addon} এর অবস্থা {0} এ পরিবর্তন করা হয়েছে।"
+
+msgid "{version} added to {addon}."
+msgstr "{addon} এ {version} যোগ করা হয়েছে।"
+
+msgid "{version} edited for {addon}."
+msgstr "{addon} এর {version} সম্পাদনা করা হয়েছে।"
+
+#. L10n: {0} is the version number
+msgid "Version {0} deleted from {addon}."
+msgstr "{addon} হতে {0} সংস্করণ মুছে ফেলা হয়েছে।"
+
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "{addon} এর {version} এ {0.name} ফাইল যোগ করা হয়েছে।"
+
+msgid "File {0} deleted from {version} of {addon}."
+msgstr " {addon} এর {version} হতে  {0} ফাইলটি মুছে ফেলা হয়েছে।"
+
+msgid "{addon} {version} approved."
+msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
+
+msgid "{addon} {version} given preliminary review."
+msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
+
+msgid "Preliminarily approved"
+msgstr "প্রাথমিকভাবে অনুমোদিত"
+
+msgid "{addon} {version} rejected."
+msgstr "{addon} এর {version} বাতিল করা হয়েছে।"
+
+msgid "{addon} {version} retained."
+msgstr "{addon} {version} বজায় রাখা হয়েছে।"
+
+msgid "Retained"
+msgstr "রাখা হয়েছে"
+
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version} বৃদ্ধি করা হয়েছে।"
+
+msgid "Super review requested"
+msgstr "সুপার পর্যালোচনার অনুরোধ করা হচ্ছে"
+
+msgid "{addon} {version} review requested."
+msgstr "{addon} এর {version} এর পর্যালোচনা অনুরোধ করা হয়েছে।"
+
+msgid "Review requested"
+msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে"
+
+msgid "{addon} {version} more information requested."
+msgstr "{addon} এর {version} এর জন্য আরও তথ্য চাওয়া হয়েছে।"
+
+msgid "More information requested"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+msgid "{addon} {version} super review requested."
+msgstr "{addon} {version} সুপার পর্যালোচনার অনুরোধ করা হচ্ছে।"
+
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
+
+msgid "Comment on {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+msgid "Commented"
+msgstr "মন্তব্য করা হয়েছে"
+
+msgid "{tag} added to {addon}."
+msgstr "{tag} যুক্ত হয়েছে {addon} তে।"
+
+msgid "{tag} removed from {addon}."
+msgstr "{addon} হতে {tag}  অপসারন করা হয়েছে।"
+
+msgid "{addon} added to {collection}."
+msgstr "{addon} টি {collection} এ যুক্ত করা হয়েছে।"
+
+msgid "{addon} removed from {collection}."
+msgstr "{addon} টি {collection} হতে অপসারণ করা হয়েছে।"
+
+#, fuzzy
+msgid "{rating} for {addon} written."
+msgstr " {addon}  এর জন্য {review} লেখা হয়েছে।"
+
+#. L10n: {0} is a category name.
+msgid "{addon} featured in {0}."
+msgstr "{addon} টি  {0} এ নির্বাচিত হয়েছে।"
+
+#. L10n: {0} is a category name.
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon} টি আর {0} তে নির্বাচিত নেই।"
+
+msgid "{addon} is now featured."
+msgstr "{addon} টি নির্বাচিত হয়েছে।"
+
+msgid "{addon} is no longer featured."
+msgstr "{addon} টি আর নির্বাচিত নেই।"
+
+#. L10n: {0} is the application, {1} is the version of the app
+msgid "{0} {1} added."
+msgstr "{0} {1} যোগ করা হয়েছে।"
+
+#. L10n: {0} is a user, {1} is their role
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "{addon} এর জন্য {0.name} এর পদবি পরিবর্তন করে {1} করা হয়েছে।"
+
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
+msgstr "{addon} এখন {0.name} এর অধীনে লাইসেন্স করা।"
+
+msgid "{addon} policy changed."
+msgstr "{addon} এর নীতিমালা পরিবর্তন হয়েছে।"
+
+msgid "{addon} icon changed."
+msgstr "{addon} এর আইকন পরিবর্তন হয়েছে।"
+
+#, fuzzy
+msgid "{rating} for {addon} approved."
+msgstr "{addon} এর {review} অনুমোদিত হয়েছে।"
+
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
+msgstr "{user} {addon} এর {review} অনুমোদন করেছে।"
+
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
+msgstr "{addon} এর জন্য পর্যালোচনা {review} মুছে ফেলা হয়েছে।"
+
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user} মুছে ফেলা {review} জন্য {addon}।"
+
+msgid "Application max version for {version} updated."
+msgstr "{version} এর জন্য অ্যাপ্লিকেশনের সর্বচ্চো সংস্করণ হালনাগাদ করা হয়েছে।"
+
+msgid "Authors emailed about compatibility of {version}."
+msgstr "রচয়িতা {version} এর সামঞ্জস্যতা সম্পর্কে ইমেইল করেছে।"
+
+msgid "Email sent to Author about add-on compatibility."
+msgstr "রচয়িতার কাছে অ্যাড-অনের সামঞ্জস্যতা সম্পর্কিত ইমেইল পাঠানো হয়েছে।"
+
+msgid "Password changed."
+msgstr "পাসওয়ার্ড পরিবর্তন করা হয়েছে।"
+
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version} অনুমোদিত হয়েছে কিন্তু সবার জন্য উন্মুক্ত হবার অপেক্ষায় আছে।"
+
+msgid "Approved but waiting"
+msgstr "অনুমোদিত হয়েছে তবে এখনও অপেক্ষমান রয়েছে"
+
+msgid "Account updated."
+msgstr "অ্যাকাউন্ট হালনাগাদ করা হয়েছে।"
+
+msgid "Created: {0}."
+msgstr "তৈরি করা হয়েছে: {0}।"
+
+msgid "Edited field: {2} set to: {0}."
+msgstr "সম্পাদিত ক্ষেত্র: {2} সেট টু: {0}। "
+
+msgid "Deleted: {1}."
+msgstr "মুছে ফেলা হয়েছে: {1}।"
+
+msgid "User {user} edited, reason: {1}"
+msgstr "{user} ব্যবহারকারী সম্পাদনা করেছে, কারন: {1}"
+
+msgid "User {user} anonymized."
+msgstr "{user} এর তথ্য গোপন করা হয়েছে।"
+
+msgid "User {user} restricted."
+msgstr "{user} এর প্রবেশের অনুমতি নেই।"
+
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "অ্যাডমিন {0} {user} এর কাজের রেকর্ড দেখেছেন।"
+
+#, fuzzy
+msgid "{rating} for {addon} updated."
+msgstr "{addon} এর {review} হালনাগাদ করা হয়েছে।"
+
+msgid "{addon} reviewed."
+msgstr "{addon} পর্যালোচনা করা হয়েছে।"
+
+#, fuzzy
+msgid "User {user} banned."
+msgstr "{user} এর তথ্য গোপন করা হয়েছে।"
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "{user} এর প্রবেশের অনুমতি নেই।"
+
+msgid "User {0.name} added to {group}."
+msgstr "{0.name} কে {group} এ যুক্ত করা হয়েছে।"
+
+msgid "User {0.name} removed from {group}."
+msgstr "{0.name} কে {group} থেকে অপসারন করা হয়েছে।"
+
+msgid "{addon} unlisted."
+msgstr "{addon} তালিকাবহির্ভূত।"
+
+msgid "{file} was signed."
+msgstr "{file} স্বাক্ষরিত।"
+
+#. L10n: {0} is the add-on GUID.
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
+
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+msgid "Developer Reply"
+msgstr "ডেভেলপারের উত্তর"
+
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+msgid "Reviewer Reply"
+msgstr "রিভিউয়ারের উত্তর"
+
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+msgid "Approval notes changed"
+msgstr "অনুমোদন নোট পরিবর্তিত"
+
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "সোর্স কোড"
+
+#, fuzzy
+msgid "Auto-Approval confirmed for {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+#, fuzzy
+msgid "Auto-Approval confirmed"
+msgstr "সর্বশেষ হালনাগাদকৃত"
+
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} এর {version} বাতিল করা হয়েছে।"
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} বৃদ্ধি করা হয়েছে।"
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
+
+#, fuzzy
+msgid "Content approved"
+msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} এর {version} বাতিল করা হয়েছে।"
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "বাতিল করা হয়েছে"
+
+#, fuzzy
+msgid "{addon} information request altered or removed by admin."
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+#, fuzzy
+msgid "Information request altered"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+#, fuzzy
+msgid "Information request cleared by developer on {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+#, fuzzy
+msgid "Information request removed"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} এর {version} এর পর্যালোচনা অনুরোধ করা হয়েছে।"
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "সুপার পর্যালোচনার অনুরোধ করা হচ্ছে"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} এর {version} এর পর্যালোচনা অনুরোধ করা হয়েছে।"
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "সুপার পর্যালোচনার অনুরোধ করা হচ্ছে"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} এর {version} এর পর্যালোচনা অনুরোধ করা হয়েছে।"
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে"
+
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
+
+msgid "Firefox"
+msgstr "ফায়ারফক্স"
+
+msgid "Thunderbird"
+msgstr "থান্ডারবার্ড"
+
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+msgid "Sunbird"
+msgstr "সানবার্ড"
+
+msgid "Mobile"
+msgstr "মোবাইল"
+
+msgid "Firefox for Android"
+msgstr "অ্যান্ড্রয়েড এর জন্য ফায়ারফক্স"
+
+msgid "Mozilla"
+msgstr "মজিলা"
+
+msgid "Unknown"
+msgstr "অজানা"
+
+msgid "Incomplete"
+msgstr "অসম্পূর্ণ"
+
+msgid "Disabled by Mozilla"
+msgstr "মজিলার দ্বারা বাতিল"
+
+msgid "Deleted"
+msgstr "অপসারন করা হয়েছে"
+
+msgid "Pending approval"
+msgstr "অনুমোদনের অপেক্ষায় আছে"
+
+msgid "Flagged for further review"
+msgstr "পরবর্তী রিভিউ এর জন্য ফ্লাগ করা হয়েছে"
+
+msgid "Unlisted"
+msgstr "তালিকাবহির্ভূত"
+
+msgid "Owner"
+msgstr "মালিক"
+
+msgid "Developer"
+msgstr "ডেভেলপার"
+
+msgid "Extension"
+msgstr "অতিরিক্ত"
+
+msgid "Complete Theme"
+msgstr "সম্পূর্ণ থিম"
+
+msgid "Dictionary"
+msgstr "ডিকশনারি"
+
+msgid "Search Engine"
+msgstr "অনুসন্ধান ইঞ্জিন"
+
+msgid "Language Pack (Application)"
+msgstr "ল্যাংগুয়েজ প্যাক (Application)"
+
+msgid "Language Pack (Add-on)"
+msgstr "ভাষার প্যাক (অ্যাড-অন)"
+
+msgid "Plugin"
+msgstr "প্লাগইন"
+
+msgid "Theme"
+msgstr "থিম"
+
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "থিম এর বিস্তারিত"
+
+msgid "Extensions"
+msgstr "এক্সটেনশন"
+
+msgid "Complete Themes"
+msgstr "সম্পূর্ণ থিম"
+
+msgid "Dictionaries"
+msgstr "ডিকশনারি"
+
+msgid "Search Tools"
+msgstr "অনুসন্ধান টুল"
+
+msgid "Language Packs (Application)"
+msgstr "ল্যাংগুয়েজ প্যাক (Application)"
+
+msgid "Language Packs (Add-on)"
+msgstr "ভাষার প্যাক (অ্যাড-অন)"
+
+msgid "Plugins"
+msgstr "প্লাগইন"
+
+msgid "Themes"
+msgstr "থিম"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "থিম এর বিস্তারিত"
+
+msgid "Alerts & Updates"
+msgstr "এলার্ট এবং হালনাগাদগুলো"
+
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
+msgid "Appearance"
+msgstr "রুপ"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
+
+msgid "Bookmarks"
+msgstr "বুকমার্কস"
+
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
+msgid "Download Management"
+msgstr "ব্যবস্থাপনা ডাউনলোড করুন"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
+
+msgid "Feeds, News & Blogging"
+msgstr "ফিড, নিউজ ও ব্লগিং"
+
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
+msgid "Games & Entertainment"
+msgstr "খেলাধুলা এবং ইন্টারটেইনমেন্ট"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
+
+msgid "Language Support"
+msgstr "ভাষা সমর্থন"
+
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
+msgid "Photos, Music & Videos"
+msgstr "ছবি, গান এবং ভিডিও সমূহ"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
+
+msgid "Privacy & Security"
+msgstr "গোপনীয়তা এবং নিরাপত্তা"
+
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
+msgid "Shopping"
+msgstr "কেনাকাটা"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
+
+msgid "Social & Communication"
+msgstr "সামাজিকতা এবং যোগাযোগ"
+
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
+msgid "Tabs"
+msgstr "ট্যাব"
+
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
+msgid "Web Development"
+msgstr "ওয়েব ডেভেলপমেন্ট"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "অন্যান্য"
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "ডিভাইস ফিচার্স ও লোকেশন"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "পরীক্ষামূলক"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "কর্মক্ষমতা"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "ছবি ও মিডিয়া"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "নিরাপত্তা ও ব্যক্তিস্বত্ত্ব"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "সামাজিক নেটওয়ার্কিং"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "স্পোর্টস ও গেম"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "ইউজার ইন্টারফেস"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Animals"
+msgstr "প্রাণীসমূহ"
+
+msgid "Compact"
+msgstr "সঙ্কুচিত"
+
+msgid "Large"
+msgstr "বড়"
+
+msgid "Miscellaneous"
+msgstr "বহুবিধ"
+
+msgid "Modern"
+msgstr "আধুনিক"
+
+# ডেলটা, selected হলো নির্বাচিত।
+msgid "Nature"
+msgstr "প্রকৃতি"
+
+msgid "OS Integration"
+msgstr "ওএস ইন্টিগ্রেশন"
+
+msgid "Retro"
+msgstr "রেট্রো"
+
+msgid "Sports"
+msgstr "খেলাধুলা"
+
+msgid "Abstract"
+msgstr "সারসংক্ষেপ"
+
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
+msgid "Causes"
+msgstr "কারণসমূহ"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
+
+msgid "Fashion"
+msgstr "ফ্যাশন"
+
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
+msgid "Film and TV"
+msgstr "ফ্লিম এবং টিভি"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
+
+msgid "Foxkeh"
+msgstr "ফক্সকে"
+
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
+msgid "Holiday"
+msgstr "ছুটির দিন"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
+
+msgid "Music"
+msgstr "গান"
+
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
+msgid "Scenery"
+msgstr "দৃশ্য"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
+
+msgid "Seasonal"
+msgstr "মৌসুমি"
+
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
+msgid "Solid"
+msgstr "কঠিন"
+
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
+msgid "Websites"
+msgstr "ওয়েবসাইট"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
+
+msgid "General"
+msgstr "সাধারন"
+
+msgid "Business"
+msgstr "ব্যবসা"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "অভিধান এবং ভাষা প্যাকসমূহ"
+
+msgid "Kids"
+msgstr "বাচ্চারা"
+
+msgid "Multiple Search"
+msgstr "বহুভাবে খোঁজা"
+
+msgid "News & Blogs"
+msgstr "সংবাদ এবং ব্লগসমূহ"
+
+msgid "Photos & Images"
+msgstr "ছবি ও ইমেজ"
+
+msgid "Shopping & E-Commerce"
+msgstr "কেনাকাটা ও ই-কর্মাস"
+
+msgid "Social & People"
+msgstr "সামাজিক ও জনগন"
+
+msgid "Travel"
+msgstr "ভ্রমণ"
+
+msgid "Video"
+msgstr "ভিডিও"
+
+msgid "All Rights Reserved"
+msgstr "সর্বস্বত্ব সংরক্ষিত"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Any"
+msgstr "যে কোনো"
+
+msgid "All Platforms"
+msgstr "সকল প্লাটফর্ম"
+
+msgid "Linux"
+msgstr "লিনাক্স"
+
+msgid "Mac OS X"
+msgstr "ম্যাক OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "উইন্ডোজ"
+
+msgid "Solaris"
+msgstr "সোলারিস"
+
+msgid "Android"
+msgstr "এনড্রয়েড"
+
+msgid "Add-on"
+msgstr "অ্যাড-অন"
+
+#, fuzzy
+msgid "Static Theme"
+msgstr "থিম সাবমিট করুন"
+
+msgid "Persona"
+msgstr "পারসোনা"
+
+#, fuzzy
+msgid "Security"
+msgstr "সুরক্ষাজনিত পরীক্ষাসমূহ"
+
+#, fuzzy
+msgid "Privacy"
+msgstr "গোপনীয়তার নীতি"
+
+#, fuzzy
+msgid "Development Practices"
+msgstr "ডেভেলপারদের খবর"
+
+#, fuzzy
+msgid "No Reputation"
+msgstr "রেজুলেশন"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
+msgid "Manual Reviewer Points"
+msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
+
+#, fuzzy
+msgid "New Legacy Add-on Review"
+msgstr "নতুন অ্যাড-অন পর্যালোচনা"
+
+msgid "Preliminary Add-on Review"
+msgstr "প্রাথমিক অ্যাড-অন পর্যালোচনা"
+
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
+msgstr "অ্যাড-অন পর্যালোচনা হালনাগাদ করা হয়েছে"
+
+msgid "New Dictionary Review"
+msgstr "নতুন অভিধান পর্যালোচনা"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+msgid "New Language Pack Review"
+msgstr "নতুন ভাষা প্যাক পর্যালোচনা"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr "থিম রিভিউ"
+
+#, fuzzy
+msgid "Theme (Static) Review"
+msgstr "থিম এর বিস্তারিত"
+
+msgid "New Search Provider Review"
+msgstr "নতুন অনুসন্ধান সরবরাহকারীর পর্যালোচনা"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr "নতুন সম্পূর্ণ থিম পর্যালোচনা"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "সম্পূর্ণ থিমের প্রাথমিক পর্যালোচনা"
+
+msgid "Updated Complete Theme Review"
+msgstr "সম্পূর্ণ থিম পর্যালোচনা হালনাগাদ করা হয়েছে"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "নিয়ন্ত্রিত অ্যাড-অন রিভিউ"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "পর্যালোচিত হয় নি"
+
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "এডমিন পর্যালোচনা"
+
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "এডমিন পর্যালোচনা"
+
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "এডমিন পর্যালোচনা"
+
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "এডমিন পর্যালোচনা"
+
+msgid "Level 1"
+msgstr "লেভেল ১"
+
+msgid "Level 2"
+msgstr "লেভেল 2"
+
+msgid "Level 3"
+msgstr "লেভেল ৩"
+
+msgid "Level 4"
+msgstr "লেভেল ৪"
+
+msgid "Level 5"
+msgstr "লেভেল 5"
+
+msgid "Level 6"
+msgstr "লেভেল 6"
+
+msgid "Level 7"
+msgstr "লেভেল 7"
+
+msgid "Level 8"
+msgstr "লেভেল 8"
+
+msgid "Level 9"
+msgstr "লেভেল 9"
+
+msgid "Request More Info"
+msgstr "আরো তথ্যের জন্য অনুরোধ করুন"
+
+msgid "Flag"
+msgstr "চিহ্ন"
+
+msgid "Duplicate"
+msgstr "নকল"
+
+msgid "Reject"
+msgstr "বাতিল"
+
+msgid "Approve"
+msgstr "অনুমোদন"
+
+msgid "Sexual or pornographic content"
+msgstr "যৌন অথবা পর্নোগ্রাফি সংশ্লিষ্ট বিষয়"
+
+msgid "Inappropriate or offensive content"
+msgstr "অনুপযুক্ত বা আপত্তিকর বিষয়বস্তু"
+
+msgid "Violence, war, or weaponry images"
+msgstr "সহিংসতা, যুদ্ধ, বা অস্ত্র সম্পর্কিত ছবি"
+
+msgid "Nazi or other hate content"
+msgstr "নাৎসি বা অন্যান্য ঘৃণ্য বিষয়বস্তু"
+
+msgid "Defamatory content"
+msgstr "মানহানিকর বিষয়বস্তু"
+
+msgid "Online gambling"
+msgstr "অনলাইন জুয়া"
+
+msgid "Spam content"
+msgstr "স্প্যাম বিষয়বস্তু"
+
+msgid "Low-quality, stretched, or blank image"
+msgstr "নিম্ন মানের, প্রসারিত, বা ফাঁকা ছবি"
+
+msgid "Header image alignment problem"
+msgstr "হেডার ইমেজের এলাইনমেন্টে সমস্যা"
+
+msgid "Core"
+msgstr "প্রধান"
+
+#, python-format
+msgid "Recent Changes for %s"
+msgstr "%s এর জন্য সাম্প্রতিক পরিবর্তন"
+
+msgid "Recent Changes for My Add-ons"
+msgstr "আমার অ্যাড-অন এর জন্য সাম্প্রতি পরিবর্তন"
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr ""
+
+msgid "This slug is already in use. Please choose another."
+msgstr "স্লাগটি ইতিমধ্যে ব্যবহৃত হয়েছে। অনুগ্রহ করে অন্য একটি নির্বাচন করুন।"
+
+#, fuzzy, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "স্লাগটি \"%s\" করা যাচ্ছে না। অনুগ্রহ করে অন্য একটি নির্বাচন করুন।"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "অকার্যকর ট্যাগ: {0}"
+msgstr[1] "অকার্যকর ট্যাগ: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" ট্যাগ বরাদ্দ এবং ব্যবহার করা যাবে না।"
+msgstr[1] "\"{0}\" ট্যাগ বরাদ্দ এবং ব্যবহার করা যাবে না।"
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "আপনার খুব বেশি {0} ট্যাগ হয়েছে।"
+msgstr[1] "আপনার খুব বেশি {0} ট্যাগ হয়েছে।"
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "অকার্যকর অক্ষর বাদ দেয়ার পরও সকল ট্যাগ %s অক্ষর বা তার কম হতে হবে।"
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
+msgstr[1] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "যেহেতু আপনার অ্যাড-অন এই অ্যাপলিকেশনের জন্য নির্বাচিত হয়েছে তাই বিষয়শ্রেণী পরিবর্তন করা যাবে না।"
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "আপনার কেবলমাত্র {0} টি বিষয়শ্রেণী রয়েছে।"
+msgstr[1] "আপনার কেবলমাত্র {0} টি বিষয়শ্রেণী রয়েছে।"
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "বিবিধ বিষয়শ্রেণী বাড়তি বিষয়শ্রেণীর সাথে মেশানো যাবে না।"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "পূর্বনির্ধারিত লোকেল পরিবর্তন করার পূর্বে আপনার অবশ্যই ঐ লোকেলে একটি নাম, সারসংক্ষেপ ও বিবরণ থাকতে হবে। আপনার %s বাদ পরেছে।"
+
+msgid "Must have at least one owner."
+msgstr "অন্তত একজন মালিক থাকতে হবে।"
+
+msgid "At least one author must be listed."
+msgstr "একজন লেখককে অবশ্যই তালিকা ভুক্ত হতে পারবেন।"
+
+msgid "An author can only be listed once."
+msgstr "একজন লেখক একবারই তালিকায় ঢুকতে পারবেন।"
+
+msgid "Slug incorrect."
+msgstr "স্লাগটি ভুল।"
+
+msgid "Details"
+msgstr "বিস্তারিত"
+
+msgid "What is your license's name?"
+msgstr "আপনার লাইসেন্সের নাম কি?"
+
+msgid "Provide the text of your license."
+msgstr "আপনার লাইসেন্স এ লিখিত লেখাটি দিন।"
+
+msgid "License text is required when choosing Other."
+msgstr ""
+
+msgid "This add-on has an End-User License Agreement"
+msgstr ""
+
+msgid "Please specify your add-on's End-User License Agreement:"
+msgstr "আপনার অ্যাড-অনের প্রান্তিক ব্যবহারকারী চুক্তিপত্র উল্লেখ করুনঃ"
+
+msgid "This add-on has a Privacy Policy"
+msgstr "এই অ্যাড-অনের একটি গোপনীয়তার নীতি রয়েছে"
+
+msgid "Please specify your add-on's Privacy Policy:"
+msgstr "অনুগ্রহ করে আপনার অ্যাড-অনের গোপনীয়তার নীতি উল্লেখ করুনঃ"
+
+msgid "Unsupported file type, please upload an archive file {extensions}."
+msgstr ""
+
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "অকার্যকর পদক্ষেপ।"
+
+msgid "View current"
+msgstr "বর্তমানটি দেখুন"
+
+msgid "Invalid version range."
+msgstr ""
+
+msgid "Need at least one compatible application."
+msgstr "অন্তত একটি উপযুক্ত অ্যাপ্লিকেশন দরকার।"
+
+msgid "There was an error with your upload. Please try again."
+msgstr ""
+
+msgid "Override failed validation"
+msgstr ""
+
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "অন্তত একটি উপযুক্ত অ্যাপ্লিকেশন দরকার।"
+
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} was uploaded before and deleted."
+msgstr ""
+
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
+
+msgid "Continue with existing upload instead?"
+msgstr ""
+
+msgid "Yes"
+msgstr "হ্যাঁ"
+
+msgid "No"
+msgstr "না"
+
+#, fuzzy
+msgid "You have not uploaded a source file."
+msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
+
+msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
+msgstr ""
+
+msgid ""
+"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
+"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgstr ""
+
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgstr ""
+
+msgid "Display Name"
+msgstr ""
+
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "যেহেতু আপনার অ্যাড-অন এই অ্যাপলিকেশনের জন্য নির্বাচিত হয়েছে তাই বিষয়শ্রেণী পরিবর্তন করা যাবে না।"
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "অকার্যকর পদক্ষেপ।"
+
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
+
+#, python-format
+msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr ""
+
+msgid "Updated"
+msgstr "হালনাগাদকৃত"
+
+msgid "Name"
+msgstr "নাম"
+
+msgid "Created"
+msgstr "তৈরী করা হয়েছে"
+
+msgid "Downloads"
+msgstr "ডাউনলোডসমূহ"
+
+msgid "Rating"
+msgstr "রেটিং"
+
+msgid "All My Add-ons"
+msgstr ""
+
+msgid "All Activity"
+msgstr "সকল কার্যক্রম"
+
+msgid "Add-on Updates"
+msgstr "এড-অন আপডেট"
+
+msgid "Add-on Status"
+msgstr "এড-অন স্ট্যাটাস"
+
+msgid "User Collections"
+msgstr "ব্যবহারকারীরর সংগ্রহসমূহ"
+
+msgid "User Reviews"
+msgstr "ব্যবহারকারীর পর্যালোচনা"
+
+msgid "Add-on cannot be deleted. Disable this add-on instead."
+msgstr ""
+
+msgid "Theme deleted."
+msgstr "থিম মুছে ফেলা হয়েছে।"
+
+msgid "Add-on deleted."
+msgstr "অ্যাড-অন মুছে ফেলা হয়েছে।"
+
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr ""
+
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr ""
+
+msgid "An author has a role changed on your add-on"
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr ""
+
+msgid "Changes successfully saved."
+msgstr "পরিবর্তনগুলো সফলতার সাথে সংরক্ষিত হয়েছে।"
+
+msgid "Validate Add-on"
+msgstr "বৈধ এড-অন"
+
+msgid "Icons must be either PNG or JPG."
+msgstr "আইকন অবশ্যই PNG অথবা JPG তে হতে হবে।"
+
+msgid "Icons cannot be animated."
+msgstr "আইকন এনিমেটেড হতে পারবে না।"
+
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr ""
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "ছবি অবশ্যই PNG অথবা JPG হতে হবে।"
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr ""
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
+
+msgid "There was an error uploading your preview."
+msgstr ""
+
+msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
+
+#, python-format
+msgid "Version %s disabled."
+msgstr "%s সংস্করণ নিষ্ক্রিয় করা হয়েছে।"
+
+#, python-format
+msgid "Version %s deleted."
+msgstr "%s সংস্করণ মুছে ফেলা হয়েছে।"
+
+#, python-format
+msgid "Version %s re-enabled."
+msgstr ""
+
+msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
+msgstr "টুলবারের টেক্সটের রং।"
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
+msgstr "টুলবারের টেক্সটের রং।"
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Review requested."
+msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে।"
+
+msgid "You must provide further details to proceed."
+msgstr ""
+
+msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
+msgstr ""
+
+msgid "Your old credentials were revoked and are no longer valid."
+msgstr ""
+
+msgid "New API key created"
+msgstr ""
+
+msgid "API key revoked"
+msgstr ""
+
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "আমার অ্যাড-অনটি কোন বিষয়শ্রেণীর সাথে মানায় না"
+
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
+
+msgid "Review Policies and Rules"
+msgstr "পর্যালোচনা নীতিগুলি ও নিয়মগুলি"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "Accept"
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "অথবা <a href=\"{0}\">বাতিল</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr ""
+
+msgid "Return to the DevHub homepage"
+msgstr ""
+
+#. Text in small tag is smaller and on its own line.
+msgid "<small>Add-on</small> Developer Hub"
+msgstr ""
+
+msgid "more add-ons..."
+msgstr ""
+
+#, fuzzy
+msgid "Extension Workshop"
+msgstr "এক্সটেনশন"
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Extension Development"
+msgstr ""
+
+#, fuzzy
+msgid "Developer Policies"
+msgstr "ডেভেলপারদের খবর"
+
+msgid "Add-on Validator"
+msgstr ""
+
+msgid "Development Add-ons"
+msgstr ""
+
+msgid "Community & Support"
+msgstr ""
+
+msgid "Add-ons Blog"
+msgstr ""
+
+msgid "Add-ons Forum"
+msgstr ""
+
+msgid "More Resources"
+msgstr ""
+
+msgid "Search Developer Docs"
+msgstr ""
+
+msgid "Search"
+msgstr "খোঁজা"
+
+msgid "Use the field below to upload your add-on package."
+msgstr ""
+
+msgid "After upload, a series of automated validation tests will be run on your file."
+msgstr ""
+
+msgid "Do you want your add-on to be distributed on this site?"
+msgstr ""
+
+#. first parameter is a filename like lorem-ipsum-1.0.2.xpi
+msgid "Validation Results for {0}"
+msgstr ""
+
+msgid "Validation Results"
+msgstr ""
+
+msgid "Validated at:"
+msgstr ""
+
+msgid "Recent Activity for My Add-ons"
+msgstr ""
+
+#. first parameter is the name of an Addon
+msgid "Recent Activity for {0}"
+msgstr ""
+
+#, python-format
+msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\"> %(ago)s </time> দ্বারা %(user)s"
+
+msgid "No results found."
+msgstr "ফলাফল পাওয়া যায় নি।"
+
+msgid "Refine Activity"
+msgstr ""
+
+msgid "Activity"
+msgstr "কার্যকলাপ"
+
+msgid "Subscribe to this feed"
+msgstr ""
+
+#, python-format
+msgid ""
+"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
+"this add-on."
+msgstr ""
+
+#, python-format
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+
+msgid "View and update application compatibility ranges"
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid "Update Compatibility"
+msgstr ""
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+
+msgid "Application"
+msgstr "অ্যাপ্লিকেশন"
+
+msgid "Supported Versions"
+msgstr ""
+
+msgid "Remove"
+msgstr "অপসারণ করুন"
+
+msgid "Add Another Application&hellip;"
+msgstr ""
+
+msgid "Save Changes"
+msgstr "পরিবর্তন সংরক্ষণ"
+
+msgid "or"
+msgstr "অথবা"
+
+msgid "Cancel"
+msgstr "বাতিল"
+
+msgid "Close"
+msgstr "বন্ধ"
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] "<b>{0}</b> টি অ্যাড-অন"
+msgstr[1] "<b>{0}</b> গুলো অ্যাড-অন"
+
+msgid "Recent Activity"
+msgstr ""
+
+#, python-format
+msgid "%(ago)s by %(user)s"
+msgstr ""
+
+msgid "Older activity for My Add-ons"
+msgstr ""
+
+#. {0} is an integer.
+msgid "<b>{0}</b> theme"
+msgid_plural "<b>{0}</b> themes"
+msgstr[0] "<b> {0} </b> থিম"
+msgstr[1] ""
+
+msgid "Edit Product Page"
+msgstr ""
+
+msgid "None"
+msgstr "কোনোটি নয়"
+
+msgid "Preview"
+msgstr "প্রাকদর্শন"
+
+#, fuzzy
+msgid "Preview of listed version"
+msgstr "অন্য সংস্করণসূমহ দেখুন"
+
+msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
+msgid "Manage Authors & License"
+msgstr ""
+
+msgid "Authors"
+msgstr "লেখক"
+
+msgid "About author roles"
+msgstr ""
+
+msgid ""
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
+msgstr ""
+
+#, fuzzy
+msgid "Additional Details"
+msgstr "অতিরিক্ত সামগ্রী"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "{0} জন্য অ্যাড-অন"
+
+msgid "Tags"
+msgstr "ট্যাগসমূহ"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr ""
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Contributions URL"
+msgstr "অবদানকরীদের URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr ""
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "হোমপেজ"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+msgid "Describe Add-on"
+msgstr "অ্যাড-অন ব্যাথ্যা করুন"
+
+#. {0} is the addon name
+#, fuzzy
+msgid "Describe {0}"
+msgstr "অ্যাড-অন ব্যাথ্যা করুন"
+
+#, fuzzy
+msgid "Name and Summary"
+msgstr "সারমর্ম"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "সারমর্ম"
+
+msgid "Add-on URL"
+msgstr "অ্যাড-অন URL"
+
+msgid "Choose a short, unique URL slug for your add-on."
+msgstr ""
+
+msgid "View Listing"
+msgstr ""
+
+#, fuzzy
+msgid "View Product Page"
+msgstr "প্রোফাইল দেখুন"
+
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr ""
+
+msgid "Description"
+msgstr "বর্ণনা"
+
+msgid "Experimental?"
+msgstr "পরীক্ষামূলক?"
+
+msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
+msgstr ""
+
+msgid "This add-on is experimental."
+msgstr "অ্যাড-অনটি পরীক্ষামূলক।"
+
+msgid "This add-on is ready for general use."
+msgstr ""
+
+msgid "Requires Payment?"
+msgstr "অর্থ প্রদান প্রয়োজন?"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
+msgstr ""
+
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
+msgstr ""
+
+#, python-format
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+
+msgid "Email"
+msgstr "ইমেইল"
+
+msgid ""
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
+msgstr ""
+
+msgid "Website"
+msgstr "ওয়েবসাইট"
+
+msgid ""
+"If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
+"listed add-ons."
+msgstr ""
+
+msgid "Images"
+msgstr "ছবিগুলো"
+
+msgid "Technical Details"
+msgstr ""
+
+#. {0} is an addon name
+msgid "Technical Details for {0}"
+msgstr ""
+
+msgid "Developer Comments"
+msgstr "ডেভলপারের মন্তব্যগুলো"
+
+msgid ""
+"Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
+"anticipated release date of a new version, etc. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "View Source?"
+msgstr "কোন উৎস?"
+
+msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "This add-on's source code is publicly viewable."
+msgstr ""
+
+msgid "No, this add-on's source code is not publicly viewable."
+msgstr ""
+
+msgid "Public Stats?"
+msgstr ""
+
+msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "This add-on's stats are publicly viewable."
+msgstr ""
+
+msgid "No, this add-on's stats are not publicly viewable."
+msgstr ""
+
+msgid "Universally unique identifier"
+msgstr ""
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
+msgstr ""
+
+msgid "Whiteboard"
+msgstr "সাদা বোর্ড"
+
+msgid ""
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
+msgstr ""
+
+msgid "Add-on Media for {0}"
+msgstr ""
+
+msgid "Add-on icon"
+msgstr ""
+
+msgid ""
+"Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
+"relevant for listed add-ons."
+msgstr ""
+
+msgid "Select an icon for your add-on:"
+msgstr ""
+
+#. The size of the icon
+msgid "32x32px"
+msgstr ""
+
+msgid "Used in listings of add-ons, like search results and featured add-ons."
+msgstr ""
+
+#. The size of the icon
+msgid "64x64px"
+msgstr ""
+
+msgid "Used in add-on detail pages."
+msgstr ""
+
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr ""
+
+msgid "Upload a Custom Icon..."
+msgstr ""
+
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+msgid "Icons will be resized to 128x128 pixels if larger."
+msgstr ""
+
+msgid "Screenshots"
+msgstr ""
+
+msgid "Please provide at least one screen shot of your add-on:"
+msgstr ""
+
+msgid "Please provide a caption for this screenshot:"
+msgstr ""
+
+msgid "Add a Screenshot..."
+msgstr ""
+
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr ""
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "চালিয়ে যান"
+
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr ""
+
+msgid "Can others make commercial use of your Add-on?"
+msgstr ""
+
+msgid "Can others create derivative works from your Add-on?"
+msgstr ""
+
+msgid "Yes, as long as they share alike"
+msgstr ""
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr ""
+
+msgid "Your Add-on will be released under the following license:"
+msgstr ""
+
+msgid "Select a different license."
+msgstr ""
+
+#, fuzzy
+msgid "More information on Creative Commons licenses"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+msgid "General Tests"
+msgstr "সাধারণ পরীক্ষাসমূহ"
+
+msgid "Security Tests"
+msgstr "সুরক্ষাজনিত পরীক্ষাসমূহ"
+
+msgid "Extension Tests"
+msgstr ""
+
+msgid "Localization Tests"
+msgstr ""
+
+msgid "Compatibility Tests"
+msgstr ""
+
+msgid "Hide messages not required for automated signing"
+msgstr ""
+
+msgid "Hide messages present in previous version and ignored"
+msgstr ""
+
+msgid "Top"
+msgstr "উপরে"
+
+msgid "Delete Add-on"
+msgstr "অ্যাড-অন মুছে ফেলুন"
+
+msgid ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+msgstr ""
+
+msgid "Enter the following text to confirm your decision: {slug}"
+msgstr ""
+
+msgid "Please tell us why you are deleting your add-on:"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Resume the submission process for this add-on"
+msgstr ""
+
+msgid "Resume"
+msgstr "পুনরায় আরম্ভ করুন"
+
+msgid "Delete this add-on."
+msgstr ""
+
+msgid "Delete"
+msgstr "মুছে ফেলুন"
+
+msgid "Edit details on this add-on's product page"
+msgstr ""
+
+#, fuzzy
+msgid "Upload a new version of this add-on"
+msgstr "এই অ্যাড-অনের সবগুলো পর্যালোচনা দেখুন"
+
+msgid "New Version"
+msgstr "নতুন সংস্করণ"
+
+msgid "Daily statistics on downloads and users"
+msgstr ""
+
+msgid "Statistics"
+msgstr "পরিসংখ্যান"
+
+msgid "Manage Status & Versions"
+msgstr ""
+
+msgid "View Recent Changes"
+msgstr ""
+
+msgid "This add-on is missing some required information before it can be submitted for publication."
+msgstr ""
+
+#, fuzzy
+msgid "This add-on doesn't have any versions."
+msgstr "এই অ্যাড-অনটি আপনার %(app)s এর সংস্করণের সঙ্গে সামঞ্জস্যপূর্ণ নয়।"
+
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
+msgstr[1] "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
+
+#. {0} is the number of active users.
+msgid "<strong>{0}</strong> active user"
+msgid_plural "<strong>{0}</strong> active users"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Submit a New Version"
+msgstr "নতুন সংস্করণ জমা দিন"
+
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "সারমর্ম:"
+
+msgid "required"
+msgstr "প্রয়োজনীয়"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
+
+msgid "Add-on URL:"
+msgstr "এড-অন URL:"
+
+msgid "Please use only letters, numbers, underscores, and dashes in your URL."
+msgstr ""
+
+msgid "Name:"
+msgstr "নাম:"
+
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
+msgid "Summary:"
+msgstr "সারমর্ম:"
+
+#, fuzzy
+msgid "Description:"
+msgstr "বর্ণনা"
+
+msgid "This add-on is experimental"
+msgstr "অ্যাড-অনটি পরীক্ষামূলক"
+
+msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
+msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "এই অ্যাড-অনের সবগুলো পর্যালোচনা দেখুন"
+
+msgid "Support email:"
+msgstr "সহায়তাকারী ইমেইল:"
+
+msgid "Support website:"
+msgstr "সহায়ক ওয়েবসাইট:"
+
+msgid "License:"
+msgstr "নিবন্ধণ:"
+
+msgid "Please choose a license appropriate for the rights you grant."
+msgstr ""
+
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
+msgstr ""
+
+msgid "Notes to Reviewer:"
+msgstr "পর্যালোকারীর নোট:"
+
+msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
+msgstr ""
+
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
+msgid "These notes will only be visible to you and our reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "নতুন সংস্করণ জমা দিন"
+
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "ইনস্টল বাতিল"
+
+msgid "Describe Version"
+msgstr "সংস্করণ ব্যাখ্যা করুন"
+
+msgid "Release Notes:"
+msgstr "রিলিজ নোট:"
+
+msgid "Let your users know what's new and what's changed in this version."
+msgstr ""
+
+msgid "These notes will appear on the detail page."
+msgstr ""
+
+msgid "How to Distribute this Version"
+msgstr ""
+
+msgid "More information on Add-on Distribution and Signing"
+msgstr ""
+
+msgid "Submission Complete"
+msgstr ""
+
+msgid "Version Submitted for Review"
+msgstr "সংস্করণ জমা দেওয়া হয়েছে পর্যালোচনার জন্য"
+
+#, fuzzy
+msgid "Preview of the version submitted"
+msgstr "সংস্করণের সাইনড"
+
+msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr ""
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "সংস্করণের সাইনড"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr ""
+
+msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
+msgstr ""
+
+msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
+msgstr ""
+
+msgid "Manage Listing"
+msgstr "তালিকা ম্যানেজ করুন"
+
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
+msgstr ""
+
+msgid "Edit version {0}"
+msgstr "সংস্করণ সম্পাদনা করুন {0}"
+
+msgid "Version Signed"
+msgstr "সংস্করণের সাইনড"
+
+msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr ""
+
+msgid "Download {0}"
+msgstr "{0} ডাউনলোড করুন"
+
+msgid "Go to My Submissions"
+msgstr "আমার জমার দিকে যান"
+
+#, fuzzy
+msgid "Source Code Upload"
+msgstr "সোর্স কোড"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr ""
+
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgstr ""
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr ""
+
+msgid "Do you use any of the following?"
+msgstr ""
+
+msgid "Code minifiers or obfuscators"
+msgstr ""
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr ""
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr ""
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr ""
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ""
+
+msgid "Your Submission Requires Source Code."
+msgstr ""
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ""
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ""
+
+msgid "A build script that executes all necessary technical steps."
+msgstr ""
+
+msgid "Operating system and build environment requirements."
+msgstr ""
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr ""
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+
+#, fuzzy
+msgid "How to Submit:"
+msgstr "জমা দিন"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr ""
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ""
+
+#, fuzzy
+msgid "Upload source code:"
+msgstr "সোর্স কোড"
+
+msgid "Add-on Distribution Agreement"
+msgstr ""
+
+msgid "Upload Add-on"
+msgstr "অ্যাড-অন আপলোড করুন"
+
+msgid "Where to Host Version"
+msgstr "হোস্ট সংস্করণ কোথায়"
+
+msgid "Change"
+msgstr "পরিবর্তন"
+
+msgid "Upload Version"
+msgstr "সংস্করণ আপলোড করুন"
+
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr ""
+
+msgid "Which applications is this version compatible with?"
+msgstr ""
+
+msgid "Administrative overrides"
+msgstr ""
+
+#, fuzzy
+msgid "Create a Theme Version"
+msgstr "একটি নতুন থিম তৈরী করুন"
+
+msgid "Create a Theme"
+msgstr "একটি থিম তৈরি করুন"
+
+msgid "Sign Add-on"
+msgstr "সাইন অ্যাড-অন"
+
+msgid "Theme generate"
+msgstr "থিম জেনারেট"
+
+msgid "Theme generator"
+msgstr "থিম জেনারেটর"
+
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
+#, fuzzy
+msgid "Theme name"
+msgstr "থিমের নাম"
+
+#, fuzzy
+msgid "Select a header image for your theme"
+msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
+
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr ""
+
+msgid "Select a different header image"
+msgstr ""
+
+#, fuzzy
+msgid "Select colors for your theme"
+msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
+
+msgid "optional"
+msgstr "ঐচ্ছিক"
+
+#, fuzzy
+msgid "Browser preview"
+msgstr "প্রাকদর্শনের জন্য হোভার করুন"
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "আসন্ন থিম সমূহ"
+
+#, fuzzy
+msgid "Finish Theme"
+msgstr "%s থিমগুলো"
+
+msgid "Back"
+msgstr ""
+
+msgid "API Credentials"
+msgstr ""
+
+#, python-format
+msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
+msgstr ""
+
+msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
+msgstr ""
+
+msgid "JWT issuer"
+msgstr ""
+
+msgid "JWT secret"
+msgstr "JWT গোপনীয়"
+
+#, python-format
+msgid ""
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
+msgstr ""
+
+msgid "You don't have any API credentials."
+msgstr ""
+
+msgid "Revoke"
+msgstr "বাতিল"
+
+msgid "Revoke and regenerate credentials"
+msgstr ""
+
+msgid "Generate new credentials"
+msgstr ""
+
+msgid "Invisible"
+msgstr "অদৃশ্য"
+
+msgid "Approved and recommended"
+msgstr ""
+
+msgid "Please complete your add-on by adding a version or missing metadata."
+msgstr ""
+
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
+msgstr ""
+
+msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
+msgstr ""
+
+msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
+msgstr ""
+
+msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Created:"
+msgstr "তৈরিকৃতঃ"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr "সর্বশেষ হালনাগাদ:"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
+msgstr ""
+
+msgid "Status:"
+msgstr "অবস্থা:"
+
+#, fuzzy
+msgid "Listed Version:"
+msgstr "সংস্করণ যোগ করুন"
+
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
+msgstr ""
+
+#, fuzzy
+msgid "Next Listed Version:"
+msgstr "সংস্করণ মুছে ফেলুন"
+
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
+msgstr ""
+
+msgid "Queues are not reviewed strictly in order"
+msgstr ""
+
+msgid "Queue Position:"
+msgstr ""
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr ""
+
+msgid "Signed for self-distribution. Updates are handled by you."
+msgstr ""
+
+msgid "Latest Version:"
+msgstr ""
+
+msgid "This is the newest uploaded unlisted version"
+msgstr ""
+
+msgid "Upload New Version"
+msgstr ""
+
+msgid "View All"
+msgstr "সব দেখুন"
+
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "পর্যালোচিত হয় নি"
+
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "ব্যবহারকারীর পর্যালোচনা"
+
+msgid "Admin Manage"
+msgstr "এডমিন ম্যানেজ করুন"
+
+msgid "View Statistics Dashboard"
+msgstr ""
+
+msgid "Developer News"
+msgstr "ডেভেলপারদের খবর"
+
+msgid "View the blog &#9658;"
+msgstr ""
+
+#, fuzzy
+msgid "Pending information request:"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+msgid "This request for information has been resolved"
+msgstr ""
+
+msgid "License"
+msgstr "লাইসেন্স"
+
+msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
+msgstr ""
+
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
+
+msgid "Some HTML supported."
+msgstr ""
+
+msgid "Remove this application"
+msgstr ""
+
+#. {0} is the maximum number of add-on categories allowed.                {1} is
+#. the application name.
+msgid "Select <b>up to {0}</b> {1} category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "End-User License Agreement"
+msgstr "এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট"
+
+msgid ""
+"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
+"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "গোপনীয়তার নীতি"
+
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
+msgstr ""
+
+msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
+msgstr ""
+
+msgid "Read more about the source code review policy."
+msgstr ""
+
+msgid "Latest News"
+msgstr ""
+
+msgid "Read more in our Blog"
+msgstr ""
+
+#, fuzzy
+msgid "Resources"
+msgstr "অতিরিক্ত সামগ্রী"
+
+#, fuzzy
+msgid "Porting"
+msgstr "রেটিং"
+
+msgid "Community"
+msgstr "কমিউনিটি"
+
+msgid "About"
+msgstr "সম্বন্ধে"
+
+msgid "Forum"
+msgstr "ফোরাম"
+
+msgid "Blog"
+msgstr "ব্লগ"
+
+msgid "Contact Us"
+msgstr "আমাদের সাথে যোগাযোগ করুন"
+
+msgid "Support"
+msgstr "সহায়তা"
+
+#, fuzzy
+msgid "Report Bug"
+msgstr "অপব্যবহার রিপোর্ট করুন"
+
+msgid "Site Status"
+msgstr "সাইট এর অবস্থা"
+
+msgid "Web-Ext: build & test extensions"
+msgstr ""
+
+msgid "Promote"
+msgstr ""
+
+#, fuzzy
+msgid "Get Your Add-on Featured"
+msgstr "আরও অ্যাড-অন"
+
+msgid "\"Get The Add-on\" button"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "অপব্যবহার রিপোর্ট করুন"
+
+msgid "Legal Notices"
+msgstr "আইনগত বিজ্ঞপ্তি"
+
+msgid "Contribute"
+msgstr "অবদান রাখুন"
+
+#, fuzzy
+msgid "Review Add-ons"
+msgstr "নতুন অ্যাড-অন"
+
+msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
+msgstr ""
+
+msgid "Join us!"
+msgstr ""
+
+msgid "Write Some Code"
+msgstr ""
+
+msgid "Help make add-ons better by contributing your coding skills."
+msgstr ""
+
+#, fuzzy
+msgid "Get started"
+msgstr "ধাপ 1। শুরু হয়েছে"
+
+#, fuzzy
+msgid "More Ways to Participate"
+msgstr "এই শিল্পীর আরও কাজ"
+
+msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
+msgstr ""
+
+msgid "See how"
+msgstr ""
+
+#, fuzzy
+msgid "Manage Your Add-on"
+msgstr "আরও অ্যাড-অন"
+
+msgid "Sign In to Edit and Update Your Add-on"
+msgstr ""
+
+msgid "Write one code base for many browsers"
+msgstr ""
+
+msgid ""
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
+
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "স্বাগতম, {0}"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
+msgstr "আরও জানুন"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
+
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
+#, fuzzy
+msgid "View All Submissions"
+msgstr "সকল সংস্করণগুলো দেখুন"
+
+msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
+msgstr ""
+
+msgid "Submit Your First Add-on"
+msgstr "আপনার প্রথম অ্যাড-অন জমা দিন"
+
+#, fuzzy
+msgid "Submit Your First Theme"
+msgstr "থিম সাবমিট করুন"
+
+#, fuzzy
+msgid "Add-on Developer Hub"
+msgstr "ডেভেলপার হাব"
+
+msgid "Docs"
+msgstr ""
+
+msgid "Sign Out"
+msgstr "সাইন আউট"
+
+msgid "No Photo"
+msgstr "কোন ছবি নেই"
+
+#, fuzzy
+msgid "User Photo"
+msgstr "কোন ছবি নেই"
+
+#, fuzzy, python-format
+msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
+msgstr "<a href=\"%(reg)s\">রেজিস্টার</a> অথবা <a href=\"%(login)s\">লগ ইন</a>"
+
+#, fuzzy
+msgid "Customize Firefox"
+msgstr "ফায়ারফক্সে যুক্ত করুন"
+
+#, python-format
+msgid ""
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
+msgstr ""
+
+msgid "Learn How to Make an Add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Port a Chrome Extension"
+msgstr "জনপ্রিয় এক্সটেনশনসমূহ"
+
+msgid ""
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgstr ""
+
+#, fuzzy
+msgid "Learn How"
+msgstr "আরও জানুন"
+
+#, fuzzy
+msgid "Publish Your Add-on"
+msgstr "এড-অন জমা দিন"
+
+msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgstr ""
+
+msgid "Sign In"
+msgstr "সাইন ইন"
+
+msgid "Web-Ext"
+msgstr ""
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr ""
+
+msgid "Automated code tests for your add-on."
+msgstr ""
+
+#, fuzzy
+msgid "Compatibility Test"
+msgstr "উপযুক্ত"
+
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr ""
+
+msgid "Live Testing"
+msgstr ""
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
+msgid "Manage Version {0}"
+msgstr ""
+
+#. {0} is an add-on name.
+msgid "Manage {0}"
+msgstr ""
+
+msgid "Files"
+msgstr "ফাইলগুলো"
+
+msgid "Version Notes"
+msgstr "সংস্করণ নোটসমূহ"
+
+msgid ""
+"Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
+"updating."
+msgstr ""
+
+msgid "Approval Status"
+msgstr ""
+
+msgid "Notes for Reviewers"
+msgstr ""
+
+msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
+msgstr ""
+
+msgid "Source code"
+msgstr "সোর্স কোড"
+
+msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
+msgstr ""
+
+msgid "File {file_id} ({platform})"
+msgstr ""
+
+#, python-format
+msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
+msgstr ""
+
+#, python-format
+msgid "Created on %(created)s and changed to %(status)s"
+msgstr ""
+
+msgid "Status & Versions"
+msgstr "অবস্থা এবং সংস্করণসমূহ"
+
+msgid "Edit this version"
+msgstr "ভার্সনটি সম্পাদনা করুন"
+
+msgid "0 files"
+msgstr ""
+
+msgid "Re-enable Version"
+msgstr ""
+
+msgid "Review History"
+msgstr "পর্যালোচনা ইতিহাস"
+
+#, fuzzy
+msgid "Close Review History"
+msgstr "পর্যালোচনা ইতিহাস"
+
+msgid "Not validated."
+msgstr ""
+
+msgid "Validate now."
+msgstr ""
+
+msgid "Request Review"
+msgstr "পর্যালোচনার অনুরোধ"
+
+msgid "Cancel Review Request"
+msgstr ""
+
+msgid "Loading Review History..."
+msgstr "পর্যালোচনা ইতিহাস লোড হচ্ছে..."
+
+msgid "We had a problem retrieving review notes"
+msgstr ""
+
+msgid "Load older..."
+msgstr "আগেরটা লোড হচ্ছে..."
+
+msgid "Leave a reply"
+msgstr "উত্তর দিন"
+
+msgid "Reply"
+msgstr "বার্তা"
+
+#, fuzzy
+msgid "Listing visibility"
+msgstr "দৃশ্যমানতা"
+
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
+msgstr ""
+
+msgid ""
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
+msgstr ""
+
+#, fuzzy
+msgid "Listed versions"
+msgstr "অন্য সংস্করণসূমহ দেখুন"
+
+msgid "Currently on AMO"
+msgstr ""
+
+msgid "Validation"
+msgstr ""
+
+msgid "Delete/Disable"
+msgstr ""
+
+msgid "Next version of this add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Other versions"
+msgstr "অন্য সংস্করণসূমহ দেখুন"
+
+#, fuzzy
+msgid "All versions"
+msgstr "সকল সংস্করণগুলো দেখুন"
+
+msgid "Upload a New Version"
+msgstr "নতুন সংস্করণ আপলোড করুন"
+
+msgid "Version"
+msgstr "সংস্করণ"
+
+msgid "Delete Version {version}"
+msgstr ""
+
+msgid ""
+"You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
+msgstr ""
+
+msgid "Deleting this version will permanently delete:"
+msgstr ""
+
+msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
+msgstr ""
+
+msgid "Are you sure you wish to delete this version?"
+msgstr ""
+
+msgid "Delete Version"
+msgstr "সংস্করণ মুছে ফেলুন"
+
+msgid "Disable Version"
+msgstr ""
+
+msgid "Hide Add-on"
+msgstr ""
+
+msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
+msgstr ""
+
+msgid "The files awaiting review will be disabled and you will need to upload new versions."
+msgstr ""
+
+msgid "Are you sure you wish to hide your add-on?"
+msgstr ""
+
+msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
+msgstr ""
+
+msgid "Are you sure you wish to cancel your review request?"
+msgstr ""
+
+msgid "Add-on Documentation :: Developer Hub"
+msgstr ""
+
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] ""
+msgstr[1] ""
+
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} টি সতর্কতা"
+msgstr[1] ""
+
+#. editorial content for the discovery pane.
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers and spying ads that follow you around the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Perform reverse image searches from an array of engines."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get instant global weather information right in Firefox."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Choose the page you see every time you open a new tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Dozens of amazing emojis for every occasion—always just a click away."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access your favorite sites from a tile layout."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically add Britannica facts to your search results."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block annoying ads and annotations from appearing on YouTube."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Send news articles, stories, blog posts, and more to your Kindle."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Organize your tabs by color grouping them based on URL patterns."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Display current worldwide times in Firefox's status bar."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy free access to 10+ million research papers."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Darken the page around video players for a focused viewing experience."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, python-format
+msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Simply hover over an image to magnify it."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically erase cookies after you close a tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers in their tracks and learn more about them."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get more screen space by removing ads from your web-based inbox."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage your open tabs in a tidy sidebar."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals you set."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Gain an additional layer of tracking protection as you browse the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Play videos by default in the highest quality, turn off annotations, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get a glimpse into who's tracking you with just a click."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Surf the web through self-defined proxy settings."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your viewing experience by adjusting video speed and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Add encrypted security to any site that supports HTTPS."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get the best coupons automatically applied to your shopping cart at checkout."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Change the way you surf Reddit by using tags and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Screenshot webpages, make edits, and share."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A superior Windows-only downloader tool."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find out who's tracking you and where they may be sharing your information."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Designate a custom home page for your new tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers when you click Google and Yandex search returns."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy thumbnail images alongside your search returns."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make the web easier on the eyes by darkening its display."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block all pop-ups by default, then decide which ones you'd like to open."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and access them across multiple devices."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Right-click and drag over links you want open in new tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block time-wasting sites so you can focus on the task at hand."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find and resolve broken bookmarks, duplicates, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get things done with a helpful to-do list that syncs across devices."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get in-depth engagement and traffic information for any website."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Applies a fresh and modern appearance to Wikipedia."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to get to things done—quicker."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Hide portions of the website you're viewing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Grab images from any website and download them."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Restrict access to inappropriate or undesired content with a filter."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Open a new tab to the right of your current tab, not at the end of the row."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily customize the built-in privacy settings in Firefox."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Go straight to the website you want to access without being redirected in between."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get expert German translations between English, French, Spanish, and other languages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Restrict Firefox from accessing websites you define."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage your productivity by working in set time intervals."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Check your favorite RSS feeds all in a single page."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enable night mode for a better viewing experience."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Reverse image search by leveraging the power of multiple search providers."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A better way to save bookmarks if you use multiple bookmark folders."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Strip away unnecessary formatting and copy just the plain text."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Convert an entire webpage to your preferred language—with the click of a button."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Instantly display all links from a webpage in new tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Strip away redirect pages and URL tracking parameters."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Prevent search engines from knowing what search results you click on."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Download video and/or audio."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Create general and website-specific notes to review later."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Clear your browser cache with a click or keystroke."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save bandwidth by just streaming the audio from YouTube clips."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Turn words into beautiful headlines and image overlay text."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Navigate to the secure version of a website if it's available."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop ads from appearing within your search results."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in to known websites automatically."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save entered data once and it will autofill next time."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Jump into private browsing mode with a click."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find what you're looking for within a specific domain."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Highlight text from any website and right-click to search YouTube for related media."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Load a random Wikipedia article each time you open a new tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Configure new tab pages to display custom background colors and images."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "For those moments when you need to fire lasers out of a cat."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily access your open tabs, bookmarks, and history."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop redirects so you can access the site you want—faster."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Adds show/hide ability to all password fields."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Focus on what you're watching by dimming everything but the video player."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Modify your bookmarks through an easily accessible panel."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in automatically to known websites."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A simple ad blocker focused on displaying just the content you want."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Only allow web content to run from sites you trust."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Take full control of the cookies you've accumulated while browsing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete browser history for websites you select."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Password-protect your personal bookmarks."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Simply click a button to close annoying pop-up overlays."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Harness the ability to download video and/or audio in multiple formats."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Learn where any website's server is geographically located. Be an informed web traveler."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Adjust browser audio settings with extreme clarity."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Defend yourself against the sneakiest trackers."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Organize your many open tabs in a vertical sidebar."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "With a mouse click you can watch videos in full screen glory."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Grab just images from your current tab."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get the benefits of strong password management."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize shades of light and dark to make web pages more visually pleasing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "List the websites you want the extension to block. Instant discipline!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find archived, dead, or otherwise disappeared web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily design your own visual themes to make Firefox look as you please."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Custom color schemes let you shade the web to your own liking."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get a more advanced search page on Firefox for Android."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr ""
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
+msgstr ""
+
+msgid "Cannot diff a version against itself"
+msgstr ""
+
+msgid "Could not parse the manifest file."
+msgstr ""
+
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr ""
+
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
+#, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
+msgstr ""
+
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
+msgid "Could not parse uploaded file."
+msgstr ""
+
+msgid "Unsupported archive type."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive: {0}"
+msgstr ""
+
+msgid "File exceeding size limit in archive: {0}"
+msgstr ""
+
+msgid "Uncompressed size is too large"
+msgstr ""
+
+msgid "Invalid archive."
+msgstr "অকার্যকর পদক্ষেপ।"
+
+msgid "Could not find an add-on ID."
+msgstr ""
+
+#, python-format
+msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr ""
+
+msgid "Duplicate add-on ID found."
+msgstr ""
+
+msgid "Version numbers should have fewer than 32 characters."
+msgstr ""
+
+msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
+msgstr ""
+
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "You cannot submit a language pack"
+msgstr ""
+
+msgid "Unsupported file type, please upload a supported file {extensions}."
+msgstr ""
+
+msgid "Unexpected error."
+msgstr ""
+
+#, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr ""
+
+msgid "Back to review"
+msgstr ""
+
+msgid "Back to add-on"
+msgstr "অ্যাড-অনে ফিরে যান"
+
+#, python-format
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
+msgstr ""
+
+msgid "File Compare :: Reviewer tools"
+msgstr ""
+
+msgid "File Viewer :: Reviewer tools"
+msgstr ""
+
+msgid "Validation failed:"
+msgstr ""
+
+msgid "File content not supported for syntax highlighting"
+msgstr ""
+
+#, python-format
+msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
+msgstr ""
+
+msgid "close"
+msgstr "বন্ধ"
+
+msgid "Go"
+msgstr "চলুন"
+
+msgid "Add-on file being processed, please wait."
+msgstr ""
+
+msgid "Fetching validation results..."
+msgstr ""
+
+msgid "Files:"
+msgstr "ফাইলগুলো:"
+
+msgid "Deleted files:"
+msgstr ""
+
+msgid "Hide known files"
+msgstr ""
+
+msgid "Tab stops:"
+msgstr ""
+
+msgid "Up file"
+msgstr "ফাইল আপ"
+
+msgid "Down file"
+msgstr "ডাউন ফাইল"
+
+msgid "Previous diff"
+msgstr ""
+
+msgid "Previous note"
+msgstr ""
+
+msgid "Next diff"
+msgstr ""
+
+msgid "Next note"
+msgstr ""
+
+msgid "Expand all"
+msgstr "সব প্রসারিত"
+
+msgid "Hide or unhide tree"
+msgstr ""
+
+msgid "Wrap or unwrap text"
+msgstr ""
+
+msgid "No files in the uploaded file."
+msgstr ""
+
+msgid "Fetching file."
+msgstr ""
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "সাইট এর অবস্থা"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "রিপোর্টের ধরন"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "বাগ রিপোর্ট করুন"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "এখনও রেট করা হয় নি"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "সংস্করণের সাইনড"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "মোবাইল সাইট দেখুন"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "নতুন ফাইল জমা দিন"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "নতুন ফাইল জমা দিন"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
+
+msgid "About Mozilla Add-ons"
+msgstr "মজিলা এড-অনস সমন্ধে"
+
+msgid "What is this website?"
+msgstr ""
+
+msgid ""
+"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
+"the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
+msgstr ""
+
+msgid "Who creates these add-ons?"
+msgstr ""
+
+msgid ""
+"The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+msgstr ""
+
+msgid "How do I keep up with what's happening at AMO?"
+msgstr ""
+
+msgid "There are several ways to find out the latest news from the world of add-ons:"
+msgstr ""
+
+#, python-format
+msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
+msgstr ""
+
+#, python-format
+msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
+msgstr ""
+
+#, python-format
+msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
+msgstr ""
+
+msgid "This sounds great! How can I get involved?"
+msgstr ""
+
+msgid "There are plenty of ways to get involved. If you're on the technical side:"
+msgstr ""
+
+#, python-format
+msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
+msgstr ""
+
+#, python-format
+msgid ""
+"If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
+"stability."
+msgstr ""
+
+#, python-format
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgstr ""
+
+msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
+msgstr ""
+
+msgid "Tell your friends! Let people know which add-ons you use."
+msgstr ""
+
+#, python-format
+msgid "Participate in our <a href=\"%(url)s\">forums</a>."
+msgstr ""
+
+msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
+msgstr ""
+
+msgid "I have a question"
+msgstr "আমার একটি প্রশ্ন অাছে"
+
+#, python-format
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgstr ""
+
+#, python-format
+msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
+msgstr ""
+
+msgid "Who works on this website?"
+msgstr ""
+
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
+msgstr ""
+
+msgid "Review Guidelines"
+msgstr "পর্যালোচনা নির্দেশিকা"
+
+msgid "Sections"
+msgstr "সেকশন সমূহ"
+
+msgid "Some tips for writing a great review"
+msgstr ""
+
+msgid "Frequently Asked Questions about Reviews"
+msgstr ""
+
+msgid ""
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
+msgstr ""
+
+msgid "Do:"
+msgstr "কর:"
+
+msgid "Write like you are telling a friend about your experience with the add-on."
+msgstr ""
+
+msgid "Keep reviews concise and easy to understand."
+msgstr ""
+
+msgid "Give specific and helpful details. For example:"
+msgstr ""
+
+msgid "Did the add-on work as you expected it to?"
+msgstr ""
+
+msgid "What features did you like or dislike?"
+msgstr ""
+
+msgid "Was it useful?"
+msgstr "এটা কি দরকারী ছিল?"
+
+msgid "Was it easy to use?"
+msgstr "ব্যবহার করার সহজ উপায় কোনটি ছিল?"
+
+msgid "Will you continue to use this add-on?"
+msgstr ""
+
+msgid "Take a moment to read your review before submitting it to minimize typos."
+msgstr ""
+
+msgid "Don’t:"
+msgstr "না:"
+
+msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
+msgstr ""
+
+msgid ""
+"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
+"section."
+msgstr ""
+
+msgid "Write reviews for add-ons which you have not personally used."
+msgstr ""
+
+msgid "Use profanity, sexual language or language that can be construed as hateful."
+msgstr ""
+
+msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
+msgstr ""
+
+msgid "Make false statements, disparage add-on authors or personally insult them."
+msgstr ""
+
+msgid "Include your own or anyone else’s email, phone number, or other personal details."
+msgstr ""
+
+msgid "Post reviews for an add-on you or your organization wrote or represent."
+msgstr ""
+
+msgid ""
+"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
+"add-on, or the add-on requires gathering data to function."
+msgstr ""
+
+msgid "How can I report a problematic review?"
+msgstr ""
+
+msgid ""
+"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
+"evaluate whether or not to delete the review or restore it back to the site."
+msgstr ""
+
+msgid "I’m an add-on author, can I respond to reviews?"
+msgstr ""
+
+#, python-format
+msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
+msgstr ""
+
+msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
+msgstr ""
+
+msgid ""
+"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
+"valid due to a new release of your add-on, we may consider deleting the review."
+msgstr ""
+
+#, fuzzy
+msgid "User"
+msgstr "ব্যবহারকারীর নাম"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "ইমেইল ঠিকানা"
+
+msgid "Spam or otherwise non-review content"
+msgstr ""
+
+msgid "Inappropriate language/dialog"
+msgstr ""
+
+msgid "Misplaced bug report or support request"
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr ""
+
+#, fuzzy
+msgid "This field is required."
+msgstr "পূরণ করা প্রয়োজন"
+
+#, fuzzy
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "আপনার থিমের ডিজাইন গৃহীত হলে আপনি এখান হতেই তা হালনাগাদ করতে পারবেন।"
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+msgid "You can't leave a review on your own add-on."
+msgstr ""
+
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
+
+#, python-format
+msgid "Invalid flag [%s] - must be one of [%s]"
+msgstr ""
+
+msgid "This rating can't be flagged because it has no review text."
+msgstr ""
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Rated {0} out of 5 stars"
+msgstr ""
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Approved reviews"
+msgstr ""
+
+msgid "Deleted reviews"
+msgstr ""
+
+msgid "View entries between"
+msgstr ""
+
+msgid "and"
+msgstr "এবং"
+
+msgid "Filter by type/action"
+msgstr ""
+
+msgid "containing"
+msgstr ""
+
+msgid "start"
+msgstr "শুরু"
+
+msgid "end"
+msgstr "শেষ"
+
+#. L10n: Description of what can be searched for
+#, fuzzy
+msgid "add-on, reviewer or comment"
+msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
+
+msgid "Search by add-on name / author email"
+msgstr ""
+
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "এডমিন পর্যালোচনা"
+
+msgid "yes"
+msgstr "হ্যাঁ"
+
+msgid "no"
+msgstr "না"
+
+msgid "Add-on Types"
+msgstr ""
+
+msgid "Search by add-on name / author email / guid"
+msgstr ""
+
+msgid "Max. Version"
+msgstr ""
+
+msgid "Select an application first"
+msgstr ""
+
+msgid "Comments:"
+msgstr "মন্তব্যগুলো:"
+
+msgid "Operating systems:"
+msgstr ""
+
+msgid "Applications:"
+msgstr ""
+
+msgid "Require developer to respond in less than…"
+msgstr ""
+
+#, fuzzy
+msgid "days"
+msgstr "7 দিন"
+
+msgid "Choose a canned response..."
+msgstr ""
+
+#, fuzzy
+msgid "Private Whiteboard"
+msgstr "সাদা বোর্ড"
+
+msgid "Keep review; remove flags"
+msgstr ""
+
+msgid "Skip for now"
+msgstr "এখকার জন্য স্কিপ করুন"
+
+msgid "Delete review"
+msgstr ""
+
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "পর্যালোচিত হয় নি"
+
+#, fuzzy
+msgid "Needs Admin Static Theme Review"
+msgstr "এডমিন পর্যালোচনা"
+
+msgid "Requires Restart"
+msgstr "পুনরায় চালু করা প্রয়োজন"
+
+msgid "More Information Requested"
+msgstr ""
+
+#, fuzzy
+msgid "Expired Information Request"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+msgid "Sources provided"
+msgstr ""
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Risk breakdown not available."
+msgstr ""
+
+msgid "Is locked by a reviewer"
+msgstr ""
+
+msgid "Has auto-approval disabled flag set"
+msgstr ""
+
+msgid "Is recommendable"
+msgstr ""
+
+msgid "Delayed because it's the first listed version"
+msgstr ""
+
+msgid "Type"
+msgstr "ধরণ"
+
+msgid "Waiting Time"
+msgstr ""
+
+msgid "Flags"
+msgstr ""
+
+msgid "moments ago"
+msgstr ""
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} মিনিট"
+msgstr[1] ""
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} ঘন্টা"
+msgstr[1] ""
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} দিন"
+msgstr[1] ""
+
+msgid "Last Review"
+msgstr ""
+
+msgid "Last Update"
+msgstr ""
+
+msgid "No Reviews"
+msgstr ""
+
+msgid "Weight"
+msgstr ""
+
+#, fuzzy
+msgid "Information Request Deadline"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+#, fuzzy
+msgid "Last Updated"
+msgstr "সর্বশেষ হালনাগাদ:"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "অনুমোদন / বাতিল"
+
+msgid "This records your approbation of the content of the latest public version, without notifying the developer."
+msgstr ""
+
+#, fuzzy
+msgid "Confirm Approval"
+msgstr "অনুমোদনের অপেক্ষায় আছে"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+#, fuzzy
+msgid "Reject Multiple Versions"
+msgstr "সংস্করণ মুছে ফেলুন"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr ""
+
+#, fuzzy
+msgid "Reviewer reply"
+msgstr "ডেভেলপারদের খবর"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr ""
+
+msgid "Request super-review"
+msgstr ""
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr ""
+
+msgid "Comment"
+msgstr "মন্তব্য করুন"
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Pre-Review Add-ons"
+msgstr "নতুন অ্যাড-অন"
+
+msgid "Recommended ({0})"
+msgstr ""
+
+#, fuzzy
+msgid "Other Pending Review ({0})"
+msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
+
+#, fuzzy
+msgid "Review Log"
+msgstr "পর্যালোচনা নোট"
+
+#, fuzzy
+msgid "Add-on Review Guide"
+msgstr "এডমিন পর্যালোচনা"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "{0} জন্য অ্যাড-অন"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Review Guide"
+msgstr "পর্যালোচনা নির্দেশিকা"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "পর্যালোচিত হয় নি"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+#, fuzzy
+msgid "New ({0})"
+msgstr "নতুন অ্যাড-অন ({0})"
+
+#, fuzzy
+msgid "Updates ({0})"
+msgstr "হালনাগাদ ({0})"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "থিম রিভিউ"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "নিয়ন্ত্রিত অ্যাড-অন রিভিউ"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Announcement"
+msgstr ""
+
+msgid "Update message of the day"
+msgstr ""
+
+#, fuzzy
+msgid "Expired Information Requests ({0})"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+msgid "An unknown error occurred"
+msgstr ""
+
+msgid "Self-reviews are not allowed."
+msgstr ""
+
+msgid "Review successfully processed."
+msgstr ""
+
+msgid "Review lock limit reached"
+msgstr ""
+
+msgid "{addon} :: EULA"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "এই অ্যাড-অনের একটি গোপনীয়তার নীতি রয়েছে"
+
+msgid "{addon} :: Abuse Reports"
+msgstr ""
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+msgid "Abuse Reports"
+msgstr "অপব্যবহারের রিপোর্ট"
+
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr "{0} এর জন্য অ্যাড-অনের তথ্য"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "অ্যাড-অন"
+
+msgid "Internal AMO ID"
+msgstr ""
+
+msgid "Works with"
+msgstr "কাজ করবে"
+
+msgid "Visibility"
+msgstr "দৃশ্যমানতা"
+
+msgid "Visible"
+msgstr "দৃশ্যমান"
+
+msgid "View Statistics"
+msgstr "পরিসংখ্যান দেখুন"
+
+msgid "Average Daily Users"
+msgstr "প্রতিদিন গড় ব্যবহারকারী"
+
+msgid "View Privacy Policy"
+msgstr "গোপনীয়তার নীতি দেখুন"
+
+#, fuzzy
+msgid "Requires Payment"
+msgstr "পুনরায় চালু করা প্রয়োজন"
+
+msgid "EULA"
+msgstr "EULA"
+
+msgid "View End-User License Agreement"
+msgstr "এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট দেখুন"
+
+#, fuzzy
+msgid "Last Approval Date"
+msgstr "সর্বশেষ হালনাগাদকৃত"
+
+#, fuzzy
+msgid "Abuse Reports ({num})"
+msgstr "অপব্যবহারের রিপোর্ট"
+
+#, fuzzy
+msgid "Bad User Ratings ({num})"
+msgstr "ব্যবহারকারীর পর্যালোচনা"
+
+#, fuzzy
+msgid "Theme Images"
+msgstr "থিমের নাম"
+
+#, fuzzy
+msgid "Rendered Preview"
+msgstr "প্রাকদর্শনের জন্য হোভার করুন"
+
+msgid "More about this add-on"
+msgstr "এই অ্যাড-অনটি সম্পর্কে আরও জানুন"
+
+msgid "Image Gallery"
+msgstr "ইমেজ গ্যালারি"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "এখানে দেখার মতো কিছু নেই!  ডেভেলপার কোনো বিবরণ অন্তর্ভুক্ত করেনি।"
+
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
+msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr "র‌্যাঙ্ক"
+
+msgid "Score"
+msgstr "স্কোর"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "ফিল্টার"
+
+msgid "Date"
+msgstr "তারিখ"
+
+msgid "Event"
+msgstr "ইভেন্ট"
+
+msgid "More details."
+msgstr "আরো বিস্তারিত।"
+
+msgid "No events found for this period."
+msgstr ""
+
+msgid "Log details"
+msgstr "লগ বিস্তারিত"
+
+#, fuzzy
+msgid "Review Author"
+msgstr "পর্যালোচনা ইতিহাস"
+
+#, python-format
+msgid "<dd>%(review_author)s</dd>"
+msgstr ""
+
+msgid "Add-on Title"
+msgstr "এড-অন শিরোনাম"
+
+msgid "Review Text"
+msgstr ""
+
+msgid "Review was flagged prior to deletion."
+msgstr ""
+
+msgid "Undelete"
+msgstr ""
+
+msgid "Save"
+msgstr "সংরক্ষণ করা"
+
+msgid "Add-on Reviewer Performance"
+msgstr ""
+
+msgid "View statistics for user"
+msgstr ""
+
+msgid "Range"
+msgstr "সীমানা"
+
+msgid "Your Reviews"
+msgstr ""
+
+msgid "By {user_name}"
+msgstr "{user_name} দ্বারা"
+
+msgid "Total Reviews"
+msgstr ""
+
+msgid "Active Contributors"
+msgstr "সক্রিয় অবদানকারী"
+
+msgid "This Month"
+msgstr "এই মাসে"
+
+msgid "This Year"
+msgstr "এই বছর"
+
+msgid "Monthly Performance"
+msgstr ""
+
+msgid "All-time Point Breakdown by Type"
+msgstr ""
+
+msgid "Total"
+msgstr "সর্বমোট"
+
+msgid "Month"
+msgstr "মাস"
+
+msgid "Year"
+msgstr "বছর"
+
+msgid "All-Time"
+msgstr "সব-সময়"
+
+msgid "Advanced Search"
+msgstr "উন্নত অনুসন্ধান করুন"
+
+msgid "clear search"
+msgstr "অনুসন্ধান পরিস্কার করুন"
+
+msgid "Process Reviews"
+msgstr ""
+
+msgid "Moderation actions:"
+msgstr ""
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr ""
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr ""
+
+msgid "All reviews have been moderated. Good work!"
+msgstr ""
+
+msgid "There are currently no add-ons of this type to review."
+msgstr ""
+
+msgid "Helpful Links:"
+msgstr ""
+
+msgid "Add-on Policy"
+msgstr ""
+
+#, fuzzy
+msgid "Reviewer's Guide"
+msgstr "পর্যালোচনা নির্দেশিকা"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "পর্যালোকারীর নোট:"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr ""
+
+msgid "Add-on user change history"
+msgstr ""
+
+msgid "Add-on History"
+msgstr ""
+
+msgid "Previously deleted entries"
+msgstr ""
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr ""
+
+msgid "(Confirmed)"
+msgstr ""
+
+msgid "Compatibility:"
+msgstr ""
+
+msgid "Additional sources:"
+msgstr ""
+
+msgid "Download files"
+msgstr ""
+
+msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
+msgstr ""
+
+msgid "Download"
+msgstr "ডাউনলোড"
+
+#, fuzzy
+msgid "Not Auto Approved Because"
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr ""
+
+msgid "This version has not been reviewed."
+msgstr ""
+
+msgid "Please select one or more versions in the list above."
+msgstr ""
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr ""
+
+msgid "Insert canned response..."
+msgstr ""
+
+msgid "Tested on:"
+msgstr ""
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+#, fuzzy
+msgid "Update whiteboards"
+msgstr "সাদা বোর্ড"
+
+#, fuzzy
+msgid "More Actions"
+msgstr "আরও অপশন:"
+
+msgid "Notify me about new listed versions"
+msgstr ""
+
+msgid "Force-disable add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Force-enable add-on"
+msgstr "মোবাইল এড-অনস"
+
+msgid "Disable Auto-Approval"
+msgstr ""
+
+#, fuzzy
+msgid "Enable Auto-Approval"
+msgstr "সর্বশেষ হালনাগাদকৃত"
+
+#, fuzzy
+msgid "Clear information request"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "এডমিন পর্যালোচনা"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "পর্যালোচিত হয় নি"
+
+#, fuzzy
+msgid "Clear Admin Static Theme Review Flag"
+msgstr "এডমিন পর্যালোচনা"
+
+msgid "(admin)"
+msgstr "(এডমিন)"
+
+msgid "Admin Page"
+msgstr "এডমিন পেজ"
+
+msgid "Review This Add-on"
+msgstr ""
+
+msgid "More Information"
+msgstr ""
+
+msgid "Resolution"
+msgstr "রেজুলেশন"
+
+msgid "Reviewer"
+msgstr ""
+
+msgid "Add-on has been deleted."
+msgstr ""
+
+msgid "Show Comments"
+msgstr "মন্তব্যসমূহ দেখান"
+
+msgid "Hide Comments"
+msgstr "মন্তব্য গোপন করুন"
+
+msgid "No reviews found for this period."
+msgstr ""
+
+msgid "Dismiss this announcement"
+msgstr ""
+
+msgid "Files in this version:"
+msgstr ""
+
+msgid "Contents"
+msgstr "বিষয়বস্তুসমূহ"
+
+msgid "Compare"
+msgstr "তুলনা"
+
+#, fuzzy
+msgid "Permissions:"
+msgstr "অনুমোদন"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr ""
+
+msgid "Older"
+msgstr "পুরাতন"
+
+msgid "Newer"
+msgstr "নতুন"
+
+msgid "Recent Points"
+msgstr ""
+
+msgid "No points awarded yet."
+msgstr ""
+
+msgid "Top Reviewers (past 7 days)"
+msgstr ""
+
+msgid "No top reviewers yet."
+msgstr ""
+
+msgid "All Time"
+msgstr "সব সময়"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr ""
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr ""
+
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[অবস্থা:%s]"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "হালনাগাদ ({0})"
+msgstr[1] ""
+
+#, fuzzy
+msgid "Rating Review ({0})"
+msgid_plural "Rating Reviews ({0})"
+msgstr[0] "পর্যালোচনার জন্য অপেক্ষা করছে"
+msgstr[1] "পর্যালোচনার জন্য অপেক্ষা করছে"
+
+#, fuzzy
+msgid "Auto Approved ({0})"
+msgid_plural "Auto Approved ({0})"
+msgstr[0] "{0} জন্য অ্যাড-অন"
+msgstr[1] "{0} জন্য অ্যাড-অন"
+
+#, fuzzy
+msgid "Expired Info Request ({0})"
+msgid_plural "Expired Info Requests ({0})"
+msgstr[0] "আরও তথ্য জানতে চাওয়া হয়েছে"
+msgstr[1] "আরও তথ্য জানতে চাওয়া হয়েছে"
+
+#, fuzzy, python-format
+msgid "Invalid \"%s\" parameter."
+msgstr "অকার্যকর পদক্ষেপ।"
+
+#, python-format
+msgid "Invalid combination of \"%s\" and \"%s\" parameters."
+msgstr ""
+
+msgid "Return To AMO is currently disabled"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not in base64url format?)"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not a curated add-on)"
+msgstr ""
+
+#, python-format
+msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgstr ""
+
+msgid "Maximum query length exceeded."
+msgstr ""
+
+msgid "Could not find add-on with guid \"{}\"."
+msgstr ""
+
+msgid "You do not own this addon."
+msgstr ""
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr ""
+
+#, python-format
+msgid "You cannot add versions to an addon that has status: %s."
+msgstr ""
+
+msgid "Version does not match the manifest file."
+msgstr ""
+
+#, python-format
+msgid "Version already exists. Latest version is: %s."
+msgstr ""
+
+msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
+
+msgid "Invalid GUID in URL"
+msgstr ""
+
+msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
+msgstr ""
+
+msgid "No uploaded file for that addon and version."
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "by Source"
+msgstr "সোর্স দ্বারা"
+
+msgid "Daily Users"
+msgstr "দৈনিক ব্যবহারকারী"
+
+msgid "by Add-on Version"
+msgstr "এড-অন ভার্সন"
+
+msgid "by Application"
+msgstr ""
+
+msgid "by Language"
+msgstr "ভাষা দ্বারা"
+
+msgid "by Platform"
+msgstr ""
+
+msgid "by Add-on Status"
+msgstr "এড-অন স্ট্যাটাস দ্বারা"
+
+msgid "Custom Date Range"
+msgstr ""
+
+msgid "From"
+msgstr "হইতে"
+
+msgid "To"
+msgstr "প্রতি"
+
+msgid "Update"
+msgstr "হালনাগাদ"
+
+msgid "Export"
+msgstr "এক্সপোর্ট"
+
+#. {0} is an add-on name, {1} is an app name (like Firefox)
+msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
+msgstr ""
+
+msgid "{0} :: Statistics Dashboard"
+msgstr ""
+
+msgid "Statistics Dashboard :: Add-ons for {0}"
+msgstr ""
+
+#. {0} is an add-on name
+msgid "Statistics for {0}"
+msgstr ""
+
+msgid "Statistics Dashboard"
+msgstr ""
+
+msgid "Controls:"
+msgstr ""
+
+msgid "reset zoom"
+msgstr ""
+
+msgid "Group by:"
+msgstr ""
+
+msgid "day"
+msgstr "দিন"
+
+msgid "week"
+msgstr "সপ্তাহ"
+
+msgid "month"
+msgstr "মাস"
+
+msgid "For last:"
+msgstr ""
+
+msgid "7 days"
+msgstr "7 দিন"
+
+msgid "30 days"
+msgstr "30 দিন"
+
+msgid "90 days"
+msgstr "90 দিন"
+
+msgid "365 days"
+msgstr "365 দিন"
+
+msgid "Custom..."
+msgstr "স্বনির্ধারিত..."
+
+msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
+msgstr ""
+
+msgid "Loading the latest data&hellip;"
+msgstr ""
+
+msgid "No data available."
+msgstr ""
+
+msgid "This dashboard is currently <b>public</b>."
+msgstr ""
+
+msgid "This dashboard is currently <b>private</b>."
+msgstr ""
+
+msgid "Change settings."
+msgstr "সেটিংস পরিবর্তন করুন।"
+
+msgid "Application usage by Date"
+msgstr ""
+
+msgid "Downloaded by Date"
+msgstr ""
+
+msgid "How are downloads counted?"
+msgstr ""
+
+msgid ""
+"<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
+"referring the download. </p>"
+msgstr ""
+
+msgid "User languages by Date"
+msgstr ""
+
+msgid "Platform usage by Date"
+msgstr ""
+
+msgid "<b>{0}</b> Downloads"
+msgstr ""
+
+msgid "Loading..."
+msgstr "লোডিং..."
+
+msgid "<b>{0}</b> Average Daily Users"
+msgstr ""
+
+msgid "Top Applications"
+msgstr ""
+
+msgid "See more applications&hellip;"
+msgstr ""
+
+msgid "Top Languages"
+msgstr ""
+
+msgid "See more languages&hellip;"
+msgstr ""
+
+msgid "Top Platforms"
+msgstr ""
+
+msgid "See more platforms&hellip;"
+msgstr ""
+
+msgid "Download sources by Date"
+msgstr ""
+
+msgid "About tracking external sources..."
+msgstr ""
+
+#, python-format
+msgid ""
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+msgstr ""
+
+msgid "Add-on Status by Date"
+msgstr ""
+
+msgid "Daily Users by Date"
+msgstr ""
+
+msgid "What are daily users?"
+msgstr ""
+
+msgid ""
+"<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
+"people using your theme by day. </p>"
+msgstr ""
+
+msgid ""
+"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
+"down by add-on version, operating system, add-on status, application, and locale. </p>"
+msgstr ""
+
+msgid "Application versions by Date"
+msgstr ""
+
+msgid "Mozilla Add-ons"
+msgstr "মজিলা অ্যাড-অন"
+
+msgid "Back to Add-ons"
+msgstr "অ্যাড-অনে ফিরে যান"
+
+msgid "Footer logo"
+msgstr "ফুটার লগো"
+
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
+msgstr "মোবাইল সাইট দেখুন"
+
+msgid "Report a bug"
+msgstr "বাগ রিপোর্ট করুন"
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+
+msgid "get to know <b>add-ons</b>"
+msgstr ""
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "ডাউনলোড করুন"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
+
+msgid "Other languages"
+msgstr "অন্যান্য ভাষা"
+
+msgid "Return to the {0} Add-ons homepage"
+msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
+
+msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> অ্যাড-অন"
+
+msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
+msgstr "<img alt=\"\" src=\"{0}\"> অ্যাড-অন"
+
+msgid "My Account"
+msgstr "আমার অ্যাকাউন্ট"
+
+msgid "Welcome, {0}"
+msgstr "স্বাগতম, {0}"
+
+#, python-format
+msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
+msgstr "<a href=\"%(reg)s\">রেজিস্টার</a> অথবা <a href=\"%(login)s\">লগ ইন</a>"
+
+msgid "Android Add-ons"
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+msgid "Required fields"
+msgstr "প্রয়োজনীয় স্থানসমুহ"
+
+msgid "(optional)"
+msgstr "(ঐচ্ছিক)"
+
+#. {0} is a language name, like 'French'
+#, python-format
+msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
+msgstr ""
+
+#, python-format
+msgid "%(title)s <em>&middot; %(lang)s</em>"
+msgstr ""
+
+msgid "Existing Locales"
+msgstr ""
+
+msgid "New Locales"
+msgstr ""
+
+#. {0} is a language name, like 'French'
+msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
+msgstr ""
+
+msgid "Discard Changes"
+msgstr "পরিবর্তনসমূহ বাতিল করুন"
+
+#. {0} is a language name, like 'French'
+msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
+msgstr ""
+
+msgid "Delete Locale"
+msgstr ""
+
+#, python-format
+msgid "The user \"%(user)s\" has been banned."
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned."
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
+msgid "Profile Photo"
+msgstr "প্রোফাইল ছবি"
+
+msgid "Collections"
+msgstr "সংগ্রহ"
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "কার্যকলাপ"
+
+msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
+msgstr ""
+
+msgid "You can only enter one, either IP Address or Network."
+msgstr ""
+
+msgid "No user with that email."
+msgstr ""
+
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "অ্যান্ড্রয়েড এর জন্য ফায়ারফক্স"
+
+msgid "My Mobile Add-ons"
+msgstr ""
+
+msgid "My Favorite Add-ons"
+msgstr "আমার পছন্দের অ্যাড-অনসমূহ"
+
+msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr ""
+
+msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgstr ""
+
+msgid "Email Pattern"
+msgstr ""
+
+msgid ""
+"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
+" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgstr ""
+
+msgid "The email address used for your account is not allowed for add-on submission."
+msgstr ""
+
+msgid ""
+"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
+"restrictions\" instead."
+msgstr ""
+
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+msgid "an add-on developer replies to my review"
+msgstr ""
+
+msgid "new add-ons or Firefox features are available"
+msgstr ""
+
+msgid "my add-on's compatibility is upgraded successfully"
+msgstr ""
+
+msgid "someone writes a review of my add-on"
+msgstr ""
+
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
+msgstr ""
+
+msgid "my add-on's compatibility cannot be upgraded"
+msgstr ""
+
+msgid "my add-on is reviewed by a reviewer"
+msgstr ""
+
+msgid "Mozilla needs to contact me about my individual add-on"
+msgstr ""
+
+msgid "User Notifications"
+msgstr ""
+
+#, fuzzy
+msgid "Ban"
+msgstr "এবং"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "উত্তরটি মুছুণ"
+
+msgctxt "user_list_others"
+msgid "others"
+msgstr ""
+
+msgid "{app} {min} and later"
+msgstr ""
+
+msgid "Deleted versions can`t be changed."
+msgstr ""
