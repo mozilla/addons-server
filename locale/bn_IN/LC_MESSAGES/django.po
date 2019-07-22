@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2017-04-03 06:13+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -4714,6 +4714,9 @@ msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 msgid "File exceeding size limit in archive: {0}"
+msgstr ""
+
+msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
