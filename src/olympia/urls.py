@@ -98,9 +98,6 @@ urlpatterns = [
     url(r'^addons/versions/(\d+)/?$',
         lambda r, id: redirect('addons.versions', id, permanent=True)),
 
-    url(r'^addons/versions/(\d+)/format:rss$',
-        lambda r, id: redirect('addons.versions.rss', id, permanent=True)),
-
     # Legacy redirect. Requires a view to get extra data not provided in URL.
     url(r'^versions/updateInfo/(?P<version_id>\d+)',
         version_views.update_info_redirect),
