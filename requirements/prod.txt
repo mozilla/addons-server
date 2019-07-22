@@ -103,8 +103,8 @@ Pillow==6.1.0 \
 PyJWT==1.7.1 \
     --hash=sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e \
     --hash=sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96
-SQLAlchemy==0.7.5 \
-    --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
+SQLAlchemy==1.3.6 \
+    --hash=sha256:217e7fc52199a05851eee9b6a0883190743c4fb9c8ac4313ccfceaffd852b0ff # pyup: ==0.7.5
 # amqp is required by kombu
 amqp==2.5.0 \
     --hash=sha256:aa4409446139676943a2eaa27d5f58caf750f4ca5a89f888c452afd86be6a67d \
