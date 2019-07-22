@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2019-05-31 01:30+0000\n"
 "Last-Translator: Taegeon Lee <ash153311@gmail.com>\n"
 "Language-Team: none\n"
@@ -4800,6 +4800,9 @@ msgstr "압축 파일내 잘못된 파일 이름: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "압축 파일내 파일 용량 제한 초과: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr ""
 
 msgid "Invalid archive."
 msgstr "잘못된 압축 파일입니다."

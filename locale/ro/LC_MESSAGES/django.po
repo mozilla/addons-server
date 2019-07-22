@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2018-11-11 17:52+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4826,6 +4826,9 @@ msgstr "Denumire de fișier nevalidă în arhiva: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr ""
 
 msgid "Invalid archive."
 msgstr "Arhivă nevalidă."

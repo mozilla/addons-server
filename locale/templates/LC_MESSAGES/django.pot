@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -173,11 +173,11 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/models.py:1824 src/olympia/constants/base.py:84
+#: src/olympia/addons/models.py:1829 src/olympia/constants/base.py:84
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2203
+#: src/olympia/addons/models.py:2208
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -351,7 +351,7 @@ msgstr ""
 msgid "Reviewer Tools"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py:85 src/olympia/reviewers/views.py:275
+#: src/olympia/amo/context_processors.py:85 src/olympia/reviewers/views.py:277
 msgid "Admin Tools"
 msgstr ""
 
@@ -1345,7 +1345,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/nav.html:40
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:11
 #: src/olympia/reviewers/templates/reviewers/performance.html:69
-#: src/olympia/reviewers/views.py:221
+#: src/olympia/reviewers/views.py:223
 msgid "Themes"
 msgstr ""
 
@@ -1533,9 +1533,9 @@ msgid ""
 "versions."
 msgstr ""
 
-#: src/olympia/constants/categories.py:206 src/olympia/reviewers/views.py:173
-#: src/olympia/reviewers/views.py:191 src/olympia/reviewers/views.py:208
-#: src/olympia/reviewers/views.py:228
+#: src/olympia/constants/categories.py:206 src/olympia/reviewers/views.py:175
+#: src/olympia/reviewers/views.py:193 src/olympia/reviewers/views.py:210
+#: src/olympia/reviewers/views.py:230
 msgid "Performance"
 msgstr ""
 
@@ -2273,7 +2273,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:717 src/olympia/files/utils.py:901
+#: src/olympia/devhub/forms.py:717 src/olympia/files/utils.py:907
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -4264,7 +4264,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
-#: src/olympia/reviewers/views.py:1140
+#: src/olympia/reviewers/views.py:1144
 msgid "End-User License Agreement"
 msgstr ""
 
@@ -4280,7 +4280,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:23
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:56
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:126
-#: src/olympia/reviewers/views.py:1148 src/olympia/templates/copyright.html:5
+#: src/olympia/reviewers/views.py:1152 src/olympia/templates/copyright.html:5
 msgid "Privacy Policy"
 msgstr ""
 
@@ -6856,8 +6856,8 @@ msgstr ""
 msgid "Cannot diff a version against itself"
 msgstr ""
 
-#: src/olympia/files/utils.py:402 src/olympia/files/utils.py:994
-#: src/olympia/files/utils.py:999
+#: src/olympia/files/utils.py:402 src/olympia/files/utils.py:1000
+#: src/olympia/files/utils.py:1005
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -6910,75 +6910,79 @@ msgstr ""
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:818
+#: src/olympia/files/utils.py:778
+msgid "Uncompressed size is too large"
+msgstr ""
+
+#: src/olympia/files/utils.py:824
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:1020
+#: src/olympia/files/utils.py:1026
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:1031
+#: src/olympia/files/utils.py:1037
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:1042
+#: src/olympia/files/utils.py:1048
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:1045
+#: src/olympia/files/utils.py:1051
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:1048
+#: src/olympia/files/utils.py:1054
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:1055
+#: src/olympia/files/utils.py:1061
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:1068
+#: src/olympia/files/utils.py:1074
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:1075
+#: src/olympia/files/utils.py:1081
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
-#: src/olympia/files/utils.py:1080
+#: src/olympia/files/utils.py:1086
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:1084
+#: src/olympia/files/utils.py:1090
 msgid "You cannot submit a language pack"
 msgstr ""
 
-#: src/olympia/files/utils.py:1119
+#: src/olympia/files/utils.py:1125
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:1126
+#: src/olympia/files/utils.py:1132
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:1130
+#: src/olympia/files/utils.py:1136
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/views.py:49
+#: src/olympia/files/views.py:52
 #: src/olympia/reviewers/templates/reviewers/policy_view.html:9
 msgid "Back to review"
 msgstr ""
 
-#: src/olympia/files/views.py:54
+#: src/olympia/files/views.py:57
 msgid "Back to add-on"
 msgstr ""
 
@@ -7822,131 +7826,131 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:160 src/olympia/reviewers/views.py:164
-#: src/olympia/reviewers/views.py:168
+#: src/olympia/reviewers/views.py:162 src/olympia/reviewers/views.py:166
+#: src/olympia/reviewers/views.py:170
 msgid "Pre-Review Add-ons"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:83
-#: src/olympia/reviewers/views.py:165
+#: src/olympia/reviewers/views.py:167
 msgid "Recommended ({0})"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:86
-#: src/olympia/reviewers/views.py:169
+#: src/olympia/reviewers/views.py:171
 msgid "Other Pending Review ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:176 src/olympia/reviewers/views.py:231
+#: src/olympia/reviewers/views.py:178 src/olympia/reviewers/views.py:233
 msgid "Review Log"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:179
+#: src/olympia/reviewers/views.py:181
 msgid "Add-on Review Guide"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:185
+#: src/olympia/reviewers/views.py:187
 msgid "Auto-Approved Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:186
+#: src/olympia/reviewers/views.py:188
 msgid "Auto Approved Add-ons ({0})"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/reviewlog.html:23
-#: src/olympia/reviewers/views.py:194
+#: src/olympia/reviewers/views.py:196
 msgid "Add-on Review Log"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:197 src/olympia/reviewers/views.py:257
+#: src/olympia/reviewers/views.py:199 src/olympia/reviewers/views.py:259
 msgid "Review Guide"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:202
+#: src/olympia/reviewers/views.py:204
 msgid "Content Review"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:122
-#: src/olympia/reviewers/views.py:203
+#: src/olympia/reviewers/views.py:205
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:92
-#: src/olympia/reviewers/views.py:222
+#: src/olympia/reviewers/views.py:224
 msgid "New ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:225
+#: src/olympia/reviewers/views.py:227
 msgid "Updates ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:234
+#: src/olympia/reviewers/views.py:236
 msgid "Theme Review Guide"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:240
+#: src/olympia/reviewers/views.py:242
 msgid "User Ratings Moderation"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:241
+#: src/olympia/reviewers/views.py:243
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog.html:4
-#: src/olympia/reviewers/views.py:245
+#: src/olympia/reviewers/views.py:247
 msgid "Moderated Review Log"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:248
+#: src/olympia/reviewers/views.py:250
 msgid "Moderation Guide"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:253
+#: src/olympia/reviewers/views.py:255
 msgid "Unlisted Add-ons"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:138
-#: src/olympia/reviewers/views.py:254
+#: src/olympia/reviewers/views.py:256
 msgid "All Unlisted Add-ons"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/includes/daily-message.html:4
-#: src/olympia/reviewers/views.py:262
+#: src/olympia/reviewers/views.py:264
 msgid "Announcement"
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/motd.html:8
-#: src/olympia/reviewers/views.py:263
+#: src/olympia/reviewers/views.py:265
 msgid "Update message of the day"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:277
+#: src/olympia/reviewers/views.py:279
 msgid "Expired Information Requests ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:580
+#: src/olympia/reviewers/views.py:582
 msgid "An unknown error occurred"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:775
+#: src/olympia/reviewers/views.py:777
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:824
+#: src/olympia/reviewers/views.py:826
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:975
+#: src/olympia/reviewers/views.py:979
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1139
+#: src/olympia/reviewers/views.py:1143
 msgid "{addon} :: EULA"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1147
+#: src/olympia/reviewers/views.py:1151
 msgid "{addon} :: Privacy Policy"
 msgstr ""
 

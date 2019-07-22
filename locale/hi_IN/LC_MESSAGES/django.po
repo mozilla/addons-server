@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2018-12-30 20:31+0000\n"
-"Last-Translator: Manzar Hasnain <manzarhasnain787@gmail.com>\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"PO-Revision-Date: 2019-07-19 18:51+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -245,7 +245,7 @@ msgstr "धनात्मक पूर्णांक"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "इस फ़ील्ड का उपयोग केवल बाहरी वेबसाइटों से लिंक करने के लिए किया जा सकता हैं। %(domain)s पर URL की अनुमति नहीं हैं।"
 
 msgid "Incorrect, please try again."
 msgstr "गलत, पुनः प्रयास करें।"
@@ -263,11 +263,10 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "वेबसाइट के रखरखाव के दौरान कुछ सुविधाएं अस्थायी रूप से अक्षम होती हैं। हम जल्द ही पूर्ण क्षमता पर वापस आ जाएंगे।"
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "कम से कम एक छापने योग्य अक्षर होना चाहिए।"
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "कम से कम एक मालिक होना चाहिए."
+msgstr "सुनिश्चित करें कि इस फ़ील्ड में कम से कम एक अक्षर या संख्या है।"
 
 msgid "Not allowed"
 msgstr "अनुमति नही है"
@@ -4727,6 +4726,9 @@ msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 msgid "File exceeding size limit in archive: {0}"
+msgstr ""
+
+msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."

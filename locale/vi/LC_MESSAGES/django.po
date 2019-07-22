@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2019-07-04 13:27+0000\n"
 "Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -4733,6 +4733,9 @@ msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 msgid "File exceeding size limit in archive: {0}"
+msgstr ""
+
+msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."

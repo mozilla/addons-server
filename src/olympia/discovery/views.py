@@ -87,6 +87,14 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
         'addon').order_by('pk')
     serializer_class = DiscoveryEditorialContentSerializer
 
+    def filter_queryset(self, qs):
+        qs = super().filter_queryset(qs)
+        if self.request.query_params.get('recommended', False) == 'true':
+            qs = qs.filter(**{
+                'recommendable': True,
+                'addon___current_version__recommendation_approved': True})
+        return qs
+
     def list(self, request, *args, **kwargs):
         # Ignore pagination (fetch all items!) but do wrap the data in a
         # `results` property to mimic what the rest of our APIs do.

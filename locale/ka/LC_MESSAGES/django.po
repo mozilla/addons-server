@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2019-07-07 19:16+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4783,6 +4783,9 @@ msgstr "ფაილის უმართებულო სახელი ა
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ფაილის მოცულობა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
+
+msgid "Uncompressed size is too large"
+msgstr ""
 
 msgid "Invalid archive."
 msgstr "უმართებულო არქივი."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4972,6 +4972,9 @@ msgstr "Неважећи назив датотеке у архиви: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Величина прелази ограничење величине у архиви: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr ""
 
 msgid "Invalid archive."
 msgstr "Неважећа архива."

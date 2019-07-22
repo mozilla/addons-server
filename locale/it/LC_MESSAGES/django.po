@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-07-10 17:28+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"PO-Revision-Date: 2019-07-21 12:41+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4868,6 +4868,9 @@ msgstr "Nome di file non valido nell’archivio: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File che supera la dimensione massima consentita nell’archivio: {0}"
 
+msgid "Uncompressed size is too large"
+msgstr ""
+
 msgid "Invalid archive."
 msgstr "Archivio non valido."
 
@@ -4900,9 +4903,8 @@ msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
+msgstr "Impossibile caricare un language pack"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tipo di file non supportato. Estensioni file supportate: {extensions}."
@@ -5473,9 +5475,8 @@ msgstr "Peso"
 msgid "Information Request Deadline"
 msgstr "Scadenza richiesta informazioni"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Ultimo aggiornamento:"
+msgstr "Ultimo aggiornamento"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
@@ -5832,9 +5833,8 @@ msgstr "Cronologia modifiche utenti"
 msgid "Add-on History"
 msgstr "Cronologia componente aggiuntivo"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Nota precedente"
+msgstr "Elementi precedentemente eliminati"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6464,14 +6464,15 @@ msgstr ""
 "Inserisci un dominio o email da bloccare, oppure usa metacaratteri con sintassi glob per altri pattern. Es. \"@*.mail.com\". Nota che il carattere \"@\" non è incluso nella corrispondenza, dunque "
 "devi includerlo tu nel pattern."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "L’indirizzo email che hai usato per il tuo account sviluppatore non è permesso per caricare i componenti aggiuntivi."
+msgstr "L’indirizzo email del tuo account non possiede i permessi necessari per caricare componenti aggiuntivi."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Inserisci per intero il dominio email “usa e getta” da bloccare. I metacaratteri non sono supportati: per utilizzarli o per trovare corrispondenze con l’indirizzo email completo invece che con il "
+"solo dominio, usa “Restrizioni email utente”."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "

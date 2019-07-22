@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-07-04 06:40+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"PO-Revision-Date: 2019-07-19 17:19+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4831,6 +4831,9 @@ msgstr "Недопустимое имя файла в архиве: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Размер файла в архиве превышает лимит: {0}"
 
+msgid "Uncompressed size is too large"
+msgstr ""
+
 msgid "Invalid archive."
 msgstr "Некорректный архив."
 
@@ -4863,9 +4866,8 @@ msgstr "Вы не можете представить дополнение с gu
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Вы не можете отправить расширение, подписанное Mozilla"
+msgstr "Вы не можете представить языковой пакет"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите файл поддерживаемого типа {extensions}."
@@ -5436,9 +5438,8 @@ msgstr "Вес"
 msgid "Information Request Deadline"
 msgstr "Срок запроса информации"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Последнее обновление:"
+msgstr "Последнее обновление"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Это действие подтвердит, подпишет и опубликует эту версию. Разработчику будут отправлены комментарии."
@@ -5792,9 +5793,8 @@ msgstr "История изменений пользователя дополн�
 msgid "Add-on History"
 msgstr "История дополнения"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Предыдущее примечание"
+msgstr "Ранее удалённые записи"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6423,9 +6423,8 @@ msgstr ""
 "Введите полный домен или адрес электронной почты, который должен быть заблокирован, или используйте  звёздочки (glob-style wildcards) для задания шаблонов. Например, «@*.mail.com»\n"
 " Пожалуйста заметьте, что «@» не включается в совпадения, так что вам  необходимо делать это в шаблоне."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Адрес электронной почты, используемый вами в аккаунте разработчика, не может быть использован для представления дополнений."
+msgstr "Адрес электронной почты, используемый вами в аккаунте, не может быть использован для представления дополнений."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

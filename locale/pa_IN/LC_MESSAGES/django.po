@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2019-06-28 17:56+0000\n"
 "Last-Translator: Mangat veer Sagar <mnvsgr0@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4746,6 +4746,9 @@ msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr ""
 
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"

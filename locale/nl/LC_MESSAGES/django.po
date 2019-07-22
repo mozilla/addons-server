@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-07-17 12:07+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"PO-Revision-Date: 2019-07-22 10:19+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4798,6 +4798,9 @@ msgstr "Ongeldige bestandsnaam in archief: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Te groot bestand in archief: {0}"
 
+msgid "Uncompressed size is too large"
+msgstr "Niet-gecomprimeerde omvang is te groot"
+
 msgid "Invalid archive."
 msgstr "Ongeldig archief."
 
@@ -4830,9 +4833,8 @@ msgstr "U kunt geen add-on indienen met een GUID die op %s eindigt"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
+msgstr "U kunt geen taalpakket indienen"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een ondersteund bestand {extensions}."
@@ -5396,9 +5398,8 @@ msgstr "Gewicht"
 msgid "Information Request Deadline"
 msgstr "Deadline voor verzoek om informatie"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Laatst bijgewerkt:"
+msgstr "Laatst bijgewerkt"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Hierdoor wordt deze versie goedgekeurd, ondertekend en gepubliceerd. De opmerkingen worden naar de ontwikkelaar gestuurd."
@@ -5751,9 +5752,8 @@ msgstr "Wijzigingsgeschiedenis van add-on-gebruiker"
 msgid "Add-on History"
 msgstr "Add-on-geschiedenis"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Voorgaande opmerking"
+msgstr "Eerder verwijderde ingaven"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6384,9 +6384,8 @@ msgstr ""
 "Voer een volledig domein of e-mailadres is dat moet worden geblokkeerd, of gebruik  glob-achtige wildcards die overeenkomen met andere patronen. Bijv. ‘@*mail.com’\n"
 " Merk op dat we ‘@’ niet in de opdracht opnemen, dus dat moet u  zelf doen in het patroon."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Het e-mailadres dat u voor uw ontwikkelaarsaccount hebt gebruikt is niet toegestaan voor het indienen van add-ons."
+msgstr "Het e-mailadres dat u voor uw account hebt gebruikt is niet toegestaan voor het indienen van add-ons."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

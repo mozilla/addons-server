@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-05-24 07:59+0000\n"
-"Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
+"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"PO-Revision-Date: 2019-07-19 18:36+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -62,10 +62,10 @@ msgstr[0] "&hellip;और {0} अधिक"
 msgstr[1] "&hellip;और {0} अधिक"
 
 msgid "See full validation report"
-msgstr "पूर्ण मान्यकरण रिपोर्ट देखें"
+msgstr "पूर्ण मान्यकरण रिपोर्ट देये"
 
 msgid "Validating {0}"
-msgstr "{0} कि पुष्ठी जरी है"
+msgstr "{0} कि पुष्ठी जारी है"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "आपका ऐड-ऑन अधिकतम आकार {0} से अधिक है."
@@ -96,7 +96,7 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "आपके ऐड-ऑन को बिना किसी त्रुटी या चेतावनी के मान्य कर दिया गया."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "आपका सबमिशन अपने आप हस्ताक्षरित हो जाएगा।"
 
 msgid "WebExtension upgrade"
 msgstr "WebExtension अपग्रेड"
@@ -105,7 +105,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "हम एक अपग्रेड कि अनुमति तथा प्रोत्साहन दे सकते हैं लेकिन आप इस प्रक्रिया को उलट नहीं सकते हैं. एक बार आपके उपयोगकर्ताओं के पास WebExtension स्थापित हो जाने बाद, वो कोई लीगेसी ऐड-ऑन इंस्टॉल नहीं कर पाएंगे."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "MDN पर एक पैतृक Firefox ऐड-ऑन पोर्ट कर रहें है"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "विस्तृत संस्करण नोट्स शामिल करें (यह अगले चरण में किया जा सकता है)."
@@ -319,7 +319,7 @@ msgid "Homepage Promo"
 msgstr "मुखपृष्ठ का प्रचार"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "मुखपृष्ठ प्रदर्शित किया गया"
 
 msgid "Homepage Up and Coming"
 msgstr "मुखपृष्ठ तैयार है और आ रहा है"
