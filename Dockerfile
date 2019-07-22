@@ -29,6 +29,7 @@ RUN apt-get update && apt-get -t stretch install -y \
         libffi-dev \
         libssl-dev \
         libmagic-dev \
+        libpcre3-dev \
         nodejs \
         # Git, because we're using git-checkout dependencies
         git \
