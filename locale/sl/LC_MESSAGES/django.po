@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-07-22 09:07+0000\n"
 "PO-Revision-Date: 2019-07-11 07:55+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -4820,6 +4820,9 @@ msgstr "Neveljavno ime datoteke v arhivu: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Datoteka v arhivu presega omejitev velikosti: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr ""
 
 msgid "Invalid archive."
 msgstr "Neveljaven arhiv."
