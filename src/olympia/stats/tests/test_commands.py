@@ -156,7 +156,7 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
     def test_update_locale(self):
         current_locales = [  # Taken from the language pack index.
             'ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'ast-ES', 'az',
-            'bb-BK', 'be', 'bg', 'br', 'bs', 'ca',
+            'bb-BK', 'be', 'bg', 'bn', 'br', 'bs', 'ca',
             'ca-valencia', 'cs', 'csb', 'cy', 'cy-GB', 'da', 'de', 'dsb', 'el',
             'en-GB', 'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
             'eu', 'fa', 'ff', 'fi', 'fj-FJ', 'fr', 'fur-IT', 'fy-NL', 'ga-IE',
