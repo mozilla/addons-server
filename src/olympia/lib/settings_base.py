@@ -1159,8 +1159,6 @@ CELERY_TASK_ROUTES = {
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
     # Reviewers
-    'olympia.reviewers.tasks.add_commentlog': {'queue': 'reviewers'},
-    'olympia.reviewers.tasks.add_versionlog': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.approve_rereview': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.reject_rereview': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.send_mail': {'queue': 'reviewers'},
