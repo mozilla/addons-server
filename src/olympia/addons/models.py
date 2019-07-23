@@ -62,6 +62,7 @@ log = olympia.core.logger.getLogger('z.addons')
 
 MAX_SLUG_INCREMENT = 999
 SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
+GUID_REUSE_FORMAT = 'guid-reused-by-pk-{}'
 
 
 def get_random_slug():
@@ -640,7 +641,7 @@ class Addon(OnChangeMixin, ModelBase):
         timer.log_interval('6.addon_save')
 
         if old_guid_addon:
-            old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
+            old_guid_addon.update(guid=GUID_REUSE_FORMAT.format(addon.pk))
             old_guid_addon.save()
             ReusedGUID.objects.create(addon=old_guid_addon, guid=guid)
         if user:
