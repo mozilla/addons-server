@@ -1,17 +1,15 @@
 pyinotify==0.9.6 \
     --hash=sha256:9c998a5d7606ca835065cdabc013ae6c66eb9ea76a00a1e3bc6e0cfe2b4f71f4
 # ipython / ipdb for easier debugging, supervisor to run services
-# Remove ipython<6 version restriction when we move to python 3, see
-# https://github.com/mozilla/addons-server/issues/5380
 ipdb==0.12 \
     --hash=sha256:dce2112557edfe759742ca2d0fee35c59c97b0cc7a05398b791079d78f1519ce
 ipython==7.6.1 \
     --hash=sha256:60bc55c2c1d287161191cc2469e73c116d9b634cff25fe214a43cba7cec94c79 \
-    --hash=sha256:11067ab11d98b1e6c7f0993506f7a5f8a91af420f7e82be6575fcb7a6ca372a0 # pyup: <6.0
+    --hash=sha256:11067ab11d98b1e6c7f0993506f7a5f8a91af420f7e82be6575fcb7a6ca372a0
 watchdog==0.9.0 \
     --hash=sha256:965f658d0732de3188211932aeb0bb457587f04f63ab4c1e33eab878e9de961d
 
-# Dependencies for IPython 5.5
+# Dependencies for IPython
 traitlets==4.3.2 \
     --hash=sha256:c6cb5e6f57c5a9bdaa40fa71ce7b4af30298fbab9ece9815b5d995ab6217c7d9 \
     --hash=sha256:9c4bd2d267b7153df9152698efb1050a5d84982d3384a37b2c1f7723ba3e7835
@@ -36,7 +34,7 @@ pickleshare==0.7.5 \
 prompt_toolkit==1.0.16 \
     --hash=sha256:1e71341526efa4b11bb44d323e687a5d9cef204aabe2907e3f0dc1534cda0ecc \
     --hash=sha256:955d81315bb7a049f19cd17d1a73f1a40861483260f7dffd825e98303a8bd6b6 \
-    --hash=sha256:c1cedd626e08b8ee830ee65897de754113ff3f3035880030c08b01674d85c5b4 # pyup: <2.0.0
+    --hash=sha256:c1cedd626e08b8ee830ee65897de754113ff3f3035880030c08b01674d85c5b4
 wcwidth==0.1.7 \
     --hash=sha256:f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c \
     --hash=sha256:3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e
