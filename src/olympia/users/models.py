@@ -494,7 +494,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # Status was already DISABLED so shouldn't fire watch_disabled again.
         for addon in addons_sole:
             addon.force_disable()
-        index_addons.delay(addon_ids - addon_joint_ids)
+        index_addons.delay(list(addon_ids - addon_joint_ids))
 
         # delete the other content associated with the user
         Collection.objects.filter(author__in=users).delete()
