@@ -329,6 +329,7 @@ v4 API changelog
 * 2019-05-23: changed the addons search API default sort when no query string is passed - now ``sort=recommended,downloads``.
   Also made ``recommended`` sort available generally to the addons search API.  https://github.com/mozilla/addons-server/issues/11432
 * 2019-06-27: removed ``sort`` parameter from addon autocomplete API.  https://github.com/mozilla/addons-server/issues/11664
+* 2019-07-25: added /hero/ endpoint to expose recommended addons and other content to frontend to allow customizable promos https://github.com/mozilla/addons-server/issues/11842.
 
 ----------------
 v5 API changelog
