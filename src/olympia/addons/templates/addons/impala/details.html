@@ -94,6 +94,9 @@
      so we can cache it all against the addon. #}
   <section class="primary addon-description-header">
     <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
+    {% if addon.type == 10 %}
+      <div id="theme-preview-details" style="background-image:url('{{ addon.current_previews[0].image_url }}')"></div>
+    {% endif %}
       <hgroup>
         {# L10n: {0} is an add-on name. #}
         <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon" alt="{{ _('Icon of {0}')|format_html(addon.name) }}">
