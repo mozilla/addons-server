@@ -19,12 +19,12 @@ class TestPrimaryHeroShelfViewSet(TestCase):
                 addon=addon_factory(),
                 custom_heading='Its a héading!'),
             image='foo.png',
-            background_color='#123456')
+            gradient_color='#123456')
         hero_b = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
                 addon=addon_factory()),
             image='baa.png',
-            background_color='#987654')
+            gradient_color='#987654')
 
         # The shelf isn't enabled so still won't show up
         response = self.client.get(self.url)

@@ -14,7 +14,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
                 addon=addon,
                 custom_heading='Its a héading!'),
             image='foo.png',
-            background_color='#123456')
+            gradient_color='#123456')
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data == {
             'featured_image': hero.image_path,

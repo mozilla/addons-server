@@ -3,7 +3,7 @@ CREATE TABLE `hero_primaryhero` (
     `created` datetime(6) NOT NULL,
     `modified` datetime(6) NOT NULL,
     `image` varchar(255) NOT NULL,
-    `background_color` varchar(7) NOT NULL,
+    `gradient_color` varchar(7) NOT NULL,
     `enabled` bool NOT NULL,
     `disco_addon_id` integer NOT NULL UNIQUE
 )

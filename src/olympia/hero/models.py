@@ -10,7 +10,7 @@ GRADIENT_START_COLOR = '#20123A'
 
 class PrimaryHero(ModelBase):
     image = models.CharField(max_length=255)
-    background_color = models.CharField(max_length=7)
+    gradient_color = models.CharField(max_length=7)
     enabled = models.BooleanField(db_index=True, null=False, default=False,)
     disco_addon = models.OneToOneField(DiscoveryItem, on_delete=models.CASCADE)
 
@@ -20,4 +20,4 @@ class PrimaryHero(ModelBase):
 
     @property
     def gradient(self):
-        return {'start': GRADIENT_START_COLOR, 'end': self.background_color}
+        return {'start': GRADIENT_START_COLOR, 'end': self.gradient_color}
