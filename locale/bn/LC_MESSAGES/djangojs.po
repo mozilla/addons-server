@@ -4,10 +4,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:08+0000\n"
-"PO-Revision-Date: 2018-12-03 14:35+0000\n"
-"Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
-"Language-Team: Bengali\n"
-"Language: bn_IN\n"
+"PO-Revision-Date: 2018-12-15 11:16+0000\n"
+"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,103 +17,103 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} স্টারসমূহ"
-msgstr[1] ""
+msgstr[0] "{0} তারকা"
+msgstr[1] "{0} তারকা"
 
 msgid "There was a problem contacting the server."
-msgstr "সার্ভারের সঙ্গে সংযোগে একটি সমস্যা পাওয়া গেছে।"
+msgstr "সার্ভারের সঙ্গে যোগাযোগ করতে সমস্যা হচ্ছে।"
 
 msgid "Select a file..."
-msgstr "একটি ফাইল নির্বাচন করুন..."
+msgstr "ফাইলটি নির্বাচন করুন..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "আপনার add-on গুলি .zip, .xpi, .jar অথবা .xml দিয়ে শেষ হবে"
+msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml সহ শেষ হতে হবে"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% পূর্ণ"
+msgstr "{0} % সম্পূর্ণ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} এর {1}"
 
 msgid "Cancel"
-msgstr "বাতিল করুন"
+msgstr "বাতিল"
 
 msgid "Uploading {0}"
-msgstr "আপলোড হচ্ছে {0}"
+msgstr "{0} আপলোডিং"
 
 msgid "Error with {0}"
-msgstr "{0} এর সঙ্গে ভুল"
+msgstr "{0} তে ত্রুটি"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "আপনার add-on টি অসফল হয়েছে {0} সমস্যার সঙ্গে।"
-msgstr[1] "আপনার add-on টি অসফল হয়েছে {0} সমস্যার সঙ্গে।"
+msgstr[0] "আপনার অ্যাড অন {0} ভুল সহ যাচাইকরণ ব্যর্থ হয়েছে।"
+msgstr[1] "আপনার অ্যাড অন {0} ভুল সহ যাচাইকরণ ব্যর্থ হয়েছে।"
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;এবং অরও {0}"
-msgstr[1] "&hellip;এবং আরও {0}"
+msgstr[0] "&hellip; এবং {0} আরও"
+msgstr[1] "&hellip;এবং {0} আরও"
 
 msgid "See full validation report"
-msgstr "ভালিডেশনের সম্পূর্ণ প্রতিবেদনটি পরুন"
+msgstr "পুরো ভ্যালিডেশন রিপোর্ট দেখুন"
 
 msgid "Validating {0}"
-msgstr "ভ্যালিডেট করা হচ্ছে {0}"
+msgstr "বৈধতা যাচাই {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "সার্ভার থেকে একটি খালি উত্তর পেয়েছেন; স্ট্যাটাস: {0}"
+msgstr "সার্ভার হতে একটি খালি প্রতিক্রিয়া এসেছে; অবস্থা : {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "অপ্রত্যাশিত সার্ভার ত্রুটি যাচাই করার সময়।"
+msgstr "যাচাইয়ের সময় অপ্রত্যাশিত সার্ভার ত্রুটি হয়েছে।"
 
 msgid "Finished validating {0}"
-msgstr "যাচাই করা শেষ হয়েছে {0}"
+msgstr "বৈধতা যাচাইকরণ শেষ {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "আপনার অ্যাড-অন যাচাইকরণের সময় পেরিয়ে গেছে, এটা ম্যানুয়ালি পর্যালোচনা করা হবে।"
+msgstr "আপনার অ্যাড অন বৈধতা সময় শেষ হয়েছে, এটা স্বয়ংক্রিয় ভাবে পর্যালোচনা করা হবে।"
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} সতর্কতা সহ যাচাই করা হয়েছে।"
-msgstr[1] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} সতর্কতাসমূহসহ যাচাই করা হয়েছে।"
+msgstr[1] "ত্রুটিবিহীন ভাবে এবং {0} সতর্কতাসহ আপনার অ্যাড-অনটি যাচাই করা হয়েছে।"
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} ম্যাসেজ সহ যাচাই করা হয়েছে।"
-msgstr[1] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} ম্যাসেজসমূহসহ যাচাই করা হয়েছে।"
+msgstr[0] "আপনার অ্যাডঅন কোন ভুল এবং {0} বার্তা ছাড়াই যাচাই হয়েছে।"
+msgstr[1] "আপনার অ্যাডঅন কোন ভুল এবং {0} টি বার্তা ছাড়াই যাচাই হয়েছে।"
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "আপনার অ্যাড-অন কোনো ত্রুটি বা সতর্কতা ছাড়াই যাচাই করা হয়েছে।"
+msgstr "আপনার অ্যাডঅন্সটি সমর্থিত হয়েছে কোনপ্রকার ভুল অথবা সাবধানবাণী ছাড়াই।"
 
 msgid "Your submission will be automatically signed."
-msgstr "আপনার সাবমিশন স্বয়ংক্রিয়ভাবে সাইন করা হয়েছে।"
+msgstr "আপনার জমা স্বয়ংক্রিয়ভাবে স্বাক্ষরিত হবে।"
 
 msgid "WebExtension upgrade"
-msgstr "WebExtension আপগ্রেড করুন"
+msgstr "WebExtension হালনাগাদ"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "আমরা একটি আপগ্রেডের অনুমুতি এবং সাহস দেবো কিন্তু আপনি এই প্রসেসটি থেকে ফেরত আস্তে পারবেন না। যখন আপনার ব্যবহারকারীদের WebExtension ইন্সটল হয়ে যাবে, তারা লেগাসি অ্যাড-অন ইন্সটল করতে পারবে না।"
+msgstr ""
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "MDN-এ Firefox অ্যাড-অনের একটি উত্তরাধিকার পোর্ট করুন"
+msgstr ""
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "বিস্তারিত সংস্করণের নোট প্রবেশ করান (পরবর্তী ধাপে এটা করা যায়)।"
+msgstr ""
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে পারে)।"
+msgstr ""
 
 msgid "Add-on submission checklist"
-msgstr "অ্যাড-অন জমা দেবার তালিকা"
+msgstr "অ্যাড-অন জমা দেওয়ার চেকলিস্ট"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "আপনার জমা চূড়ান্ত করার আগে নিচের বিষয়গুলো যাচাই করুন। এই পর্যালোচনা প্রক্রিয়া চলাকালীন সময় বিলম্ব বা বিভ্রান্তি হ্রাস করা হবে:"
@@ -124,94 +124,91 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "ভ্যালিডেশন প্রক্রিয়া তে পাওয়া গেছে এই ইসুস জেটা খারিজ হতে পারে:"
+msgstr "ভ্যালিডেশন প্রসেসে এইসব সমস্যা পাওয়া গেছে যার কারণে বাতিল হতে পারে:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr "আপনার ফাইলটি সর্বচ্চ আয়তন{0} ছাড়িয়ে গেছে।"
+msgstr ""
 
 msgid "You cancelled the upload."
-msgstr "আপনি আপলোডটি বাতিল করেছেন।"
+msgstr "আপনি আপলোড বাতিল করেছেন।"
 
 msgid "Images must be either PNG or JPG."
-msgstr "ছবিগুলোকে অবশ্যই হয় PNG বা JPG হতে হবে।"
+msgstr "চিত্রগুলি অবশ্যই PNG বা JPG হতে হবে।"
 
 msgid "Videos must be in WebM."
-msgstr "ভিডিও WebM হতে হবে।"
+msgstr "ভিডিও গুলো অবশ্যই WebM তে হতে হবে।"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
 
 msgid "All Rights Reserved"
-msgstr "সমস্ত অধিকার সংরক্ষিত"
+msgstr "সর্বসত্ত্ব সংরক্ষিত"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribuzione-Non Commerciale 3.0"
+msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr "আপনার থিমের নাম"
+msgstr "আপনারা থিমের নাম"
 
 msgid "Flagged for review"
-msgstr "রিভিউয়ের জন্য ফ্ল্যাগ করা হয়েছে"
+msgstr "পর্যালোচনার জন্য চিহ্নিত"
 
 msgid "Your input is required"
-msgstr "আপনার ইনপুট এর প্রয়োজন আছে"
+msgstr "আপনার ইনপুট দরকার"
 
 msgid "Marked for deletion"
 msgstr "মুছে ফেলার জন্য চিহ্নিত করা হয়েছে"
 
 msgid "Updating results&hellip;"
-msgstr "ফলাফল&hellip; আপডেট করা হচ্ছে"
+msgstr "ফলাফল আপডেট করা হচ্ছে &hellip;"
 
 msgid "Category"
-msgstr "শ্রেণীবিভাগ"
+msgstr "ক্যাটাগরি"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b>র জন্য থিম খুঁজুন"
+msgstr "<b>{0}</b>এর জন্য বিষয়বস্তু খুঁজুন"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> এর জন্য অ্যাপস খুঁজুন"
+msgstr "<b> {0} </b> এর জন্য অ্যাপস খুঁজুন"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> এর জন্য অ্যাড-অন খুঁজুন"
+msgstr "<b> {0} </b> এর জন্য অ্যাড-অন খুঁজুন"
 
 msgid "Use original"
 msgstr "আসল ব্যবহার করুন"
 
 msgid "Week of {0}"
-msgstr "{0} সপ্তাহে"
+msgstr "সপ্তাহের {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " ডাউনলোডসমূহ"
-msgstr[1] " ডাউনলোডসমূহ"
+msgstr[0] "{0} ডাউনলোড"
+msgstr[1] "{0} ডাউনলোড"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} ব্যবহারকারী"
 msgstr[1] "{0} ব্যবহারকারী"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} অ্যাড-অন"
@@ -220,14 +217,14 @@ msgstr[1] "{0} অ্যাড-অন"
 #, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} সংকলন"
-msgstr[1] "{0} সংকলন"
+msgstr[0] "{0} টি সংগ্রহ"
+msgstr[1] "{0} টি সংগ্রহ"
 
 #, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} পর্যালোচনা"
-msgstr[1] "{0} পর্যালোচনা"
+msgstr[0] "{0} টি পর্যালোচনা"
+msgstr[1] "{0} টি পর্যালোচনা"
 
 #, fuzzy
 msgid "{0} sale"
@@ -238,8 +235,8 @@ msgstr[1] "{0} টি বিক্রি"
 #, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} প্রত্যর্পণ"
-msgstr[1] "{0} প্রত্যর্পণ"
+msgstr[0] "{0} রিফান্ড"
+msgstr[1] "{0} রিফান্ড"
 
 #, fuzzy
 msgid "{0} install"
@@ -257,10 +254,10 @@ msgid "Amount, in USD"
 msgstr "USD তে পরিমান"
 
 msgid "Number of Contributions"
-msgstr "অবদানের সংখ্যা"
+msgstr "অবদানসমূহের পরিমান"
 
 msgid "More Info..."
-msgstr "আরও তথ্য..."
+msgstr "আরো তথ্য..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -270,19 +267,19 @@ msgid "Collections Created"
 msgstr "সংগ্রহ তৈরি করা হয়েছে"
 
 msgid "Add-ons in Use"
-msgstr "অ্যাড-অনস ব্যাবহৃত হচ্ছে"
+msgstr "ব্যবহৃত হচ্ছে এমন এডঅনস"
 
 msgid "Add-ons Created"
-msgstr "অ্যাড-অনস নির্মিত"
+msgstr "এড-অনস তৈরি করা হয়েছে"
 
 msgid "Add-ons Downloaded"
-msgstr "অ্যাড-অনস ডাউনলোড করা হল"
+msgstr "এড-অনস ডাউনলোড করা হয়েছে"
 
 msgid "Add-ons Updated"
-msgstr "অ্যাড-অন আপডেটে করা হয়েছে"
+msgstr "এড-অনস আপডেটে করা হয়েছে"
 
 msgid "Reviews Written"
-msgstr "রিভিউ লেখা হয়েছে"
+msgstr "পর্যালোচনা লিখেছেন"
 
 msgid "User Signups"
 msgstr "ব্যবহারকারীর সাইনআপ"
@@ -291,19 +288,19 @@ msgid "Subscribers"
 msgstr "গ্রাহকসমূহ"
 
 msgid "Ratings"
-msgstr "রেটিংস"
+msgstr "রেটিং"
 
 msgid "Sales"
-msgstr "বিক্রি"
+msgstr "বিক্রিগুলো"
 
 msgid "Installs"
-msgstr "ইনস্টলসমূহ"
+msgstr "ইন্সটলসমূহ"
 
 msgid "Unknown"
 msgstr "অজানা"
 
 msgid "Add-ons Manager"
-msgstr "Add-ons ম্যানেজার"
+msgstr "এড-অনস ম্যানেজার"
 
 msgid "Add-ons Manager Promo"
 msgstr "এড-অনস ম্যানেজার প্রমো"
@@ -315,7 +312,7 @@ msgid "Add-ons Manager Learn More"
 msgstr "এড-অনস ম্যানেজার সম্বন্ধে আরো জানুন"
 
 msgid "Search Suggestions"
-msgstr "প্রস্তাবগুলি সন্ধান করুন"
+msgstr "অনুসন্ধান প্রস্তাবনা"
 
 msgid "Search Results"
 msgstr "ফলাফলসমূহ খুঁজুন"
@@ -327,25 +324,25 @@ msgid "Homepage Featured"
 msgstr "হোমপেজ বৈশিষ্ট্যযুক্ত করা হয়েছে"
 
 msgid "Homepage Up and Coming"
-msgstr "হোমপেজ আপ এবং আসছে"
+msgstr "হোমপেইজ আসন্ন"
 
 msgid "Homepage Most Popular"
-msgstr "হোমপেজ সবথেকে বেশি জনপ্রিয়"
+msgstr "সবচেয়ে জনপ্রিয় হোমপেইজ"
 
 msgid "Detail Page"
 msgstr "পেজ এর বিস্তারিত"
 
 msgid "Detail Page (bottom)"
-msgstr "বিস্তৃত পেজ (নীচ)"
+msgstr "বিস্তারিত পৃষ্ঠা (নিচে)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "বিস্তৃত পেজ (ডেভেলপমেন্ট চ্যানেল)"
+msgstr "বিস্তারিত পৃষ্ঠায় (অগ্রগতি চ্যানেল)"
 
 msgid "Often Used With"
-msgstr "মাঝে মধ্যেই ব্যবহার করা হয়েছে"
+msgstr "প্রায়ই ব্যবহার"
 
 msgid "Others By Author"
-msgstr "বাকিগুলো লেখকের দ্বারা"
+msgstr "অন্যদের কাছে লেখক"
 
 msgid "Dependencies"
 msgstr "নির্ভরশীলতা"
@@ -357,13 +354,13 @@ msgid "Meet the Developer"
 msgstr "ডেভেলপারের সাথে পরিচিত হোন"
 
 msgid "User Profile"
-msgstr "ব্যবহারকারীর প্রোফাইল"
+msgstr "ব্যবহারকারীর প্রফাইল"
 
 msgid "Version History"
-msgstr "সংস্করণ ইতিহাস"
+msgstr "ভার্সন এর ইতিহাস"
 
 msgid "Sharing"
-msgstr "অংশীদারি"
+msgstr "শেয়ারিং"
 
 msgid "Category Pages"
 msgstr "ক্যাটেগরি পেজ"
@@ -372,86 +369,86 @@ msgid "Collections"
 msgstr "সংগ্রহসমূহ"
 
 msgid "Category Landing Featured Carousel"
-msgstr "বিভাগ ল্যান্ডিং বৈশিষ্ট্যযুক্ত ক্যারাউজেল"
+msgstr ""
 
 msgid "Category Landing Top Rated"
-msgstr "বিভাগ ল্যান্ডিং সর্বোচ্চ রেট হওয়া"
+msgstr ""
 
 msgid "Category Landing Most Popular"
-msgstr "বিভাগ ল্যান্ডিং সর্বোচ্চ জনপ্রিয়"
+msgstr ""
 
 msgid "Category Landing Recently Added"
-msgstr "বিভাগ ল্যান্ডিং সর্বশেষ যোগ করা হয়েছে"
+msgstr ""
 
 msgid "Browse Listing Featured Sort"
-msgstr "ব্রাউজ তালিকা বৈশিষ্ট্যযুক্ত ভাবে সাজানো"
+msgstr ""
 
 msgid "Browse Listing Users Sort"
-msgstr "ব্রাউজ তালিকা ব্যবহারকারীদের দ্বারা সাজানো"
+msgstr ""
 
 msgid "Browse Listing Rating Sort"
-msgstr "ব্রাউজ তালিকা রেট হিসেবে সাজানো"
+msgstr ""
 
 msgid "Browse Listing Created Sort"
-msgstr "ব্রাউজ তালিকা তৈরি করার জন্য সাজানো"
+msgstr ""
 
 msgid "Browse Listing Name Sort"
-msgstr "ব্রাউজ তালিকা নামের হিসেবে সাজানো"
+msgstr ""
 
 msgid "Browse Listing Popular Sort"
-msgstr "জনপ্রিয় সাজানোর তালিকা ব্রাউজ করুন"
+msgstr ""
 
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Listing Up এবং Coming Sort ব্রাউজ করুন"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "মোট অবদানের সংখ্যা"
 
 msgid "Average Contribution"
-msgstr "গড় অবদান"
+msgstr ""
 
 msgid "Usage"
 msgstr "ব্যবহার"
 
 msgid "Firefox"
-msgstr "Firefox"
+msgstr "ফায়ারফক্স"
 
 msgid "Mozilla"
-msgstr "Mozilla"
+msgstr "মজিলা"
 
 msgid "Thunderbird"
-msgstr "Thunderbird"
+msgstr "থান্ডারবার্ড"
 
 msgid "Sunbird"
-msgstr "Sunbird"
+msgstr "সানবার্ড"
 
 msgid "SeaMonkey"
-msgstr "SeaMonkey"
+msgstr "SeaMonkey "
 
 msgid "Fennec"
-msgstr "Fennec"
+msgstr "ফেনেক"
 
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "ডাউনলোডসমূহ এবং প্রত্যেকদিনের ব্যবহারকারী, শেষ {0} দিন"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "ডাউনলোডসমূহ এবং প্রত্যেকদিনের ব্যবহারকারী {0} থেকে {1} পর্যন্ত"
+msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "ইন্সটল এবং প্রতিদিনের ব্যবহারকারী, শেষ {0} দিন"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "ইন্সটল এবং ব্যবহারকারী {0} থেকে {1} অবধি"
+msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -467,15 +464,15 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "দৈনিক ব্যবহারকারী {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "গত {0} দিনের, আবেদন সমুহ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "আবেদন সমুহ {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -503,11 +500,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "শেষ {0} দিনে, অ্যাড-অন এর অবস্থা"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "অ্যাড-অন এর {0} থেকে {1} পর্যন্ত অবস্থা"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -519,7 +516,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "শেষ {0} দিনে অবদান"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -567,11 +564,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "গত {0} দিনগুলিতে, পর্যালোচনা লেখা হয়েছে"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "পর্যালোচনাগুলি লেখা হয়েছে {0} থেকে {1} এ"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -623,18 +620,18 @@ msgstr ""
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> শেষ {1} দিনগুলিতে"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> হতে {1} থেকে {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 
 msgid "No data available."
-msgstr "কোনও ডাটা উপলভ্য নেই।"
+msgstr "ডাটা নেই।"
 
 msgid "Date"
 msgstr "তারিখ"
@@ -657,33 +654,34 @@ msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr "গ্রহণ করুন এবং সংস্থাপন করুন"
+msgstr "গ্রহণ করুন এবং ইন্সটল করুন"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} এখানে যোগ করুন"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "{0} এর জন্য যেকোনভাবে ডাউনলোড করুন"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "{0} এর জন্য যেকোনভাবে ডাউনলোড করুন"
 
 msgid "Not available for your platform"
 msgstr ""
 
 #. L10n: {0} is an app name.
+#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
 
 msgid "View other versions"
-msgstr ""
+msgstr "অন্যান্য ভার্সনগুলো দেখুন"
 
 msgid "Works with {app} {min} - {max}"
 msgstr ""
 
 msgid "Works with {app}"
-msgstr "{app}-এর সঙ্গে কাজ করুন"
+msgstr "{app} এর সাথে কাজ করুন"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
@@ -692,7 +690,7 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr ""
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "পরিবর্তন সংরক্ষিত"
 
 msgid "Enter a new author's email address"
 msgstr ""
@@ -702,7 +700,7 @@ msgstr ""
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
+msgstr[0] "{files} ফাইল"
 msgstr[1] ""
 
 msgid "{reviews} user review"
@@ -717,25 +715,27 @@ msgid "No results found."
 msgstr "কোন ফলাফল পাওয়া যায়নি।"
 
 msgid "Loading..."
-msgstr "লোড হচ্ছে..."
+msgstr "লোডিং..."
 
 #. L10n: {0} is the number of characters entered.
+#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"
+msgstr[1] "{0} টি শব্দ বাকি আছে।"
 
 #. L10n: {0} is the number of characters left.
+#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"
+msgstr[1] "{0} টি শব্দ বাকি আছে।"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "আমরা ওয়েবসাইট রক্ষণাবেক্ষণের জন্য যখন এই বৈশিষ্ট্যটি অস্থায়ীভাবে নিষ্ক্রিয় করা হয়. একটু পরে আবার চেক করুন"
+msgstr "ওয়েবসাইটটির তত্বাবধানের জন্য এই ফিচারটি সাময়িকভাবে নিষ্ক্রিয় করা হয়েছে। অনুগ্রহপূর্বক কিছুক্ষণ পর পুনরায় চেষ্টা করুন।"
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "এই স্থানীয়করণ অপসারণ করুন"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -753,7 +753,7 @@ msgid "Loading&hellip;"
 msgstr ""
 
 msgid "Version Notes"
-msgstr ""
+msgstr "ভার্সন এর নোটসমূহ"
 
 msgid "Notes for Reviewers"
 msgstr ""
@@ -777,76 +777,76 @@ msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"
-msgstr ""
+msgstr "অনুরোধকৃত তখ্য"
 
 msgid "Flagged"
-msgstr "ফ্ল্যাগ করা হয়েছে"
+msgstr "ফ্লাগ করা হয়েছে"
 
 msgid "Duplicate"
 msgstr "নকল"
 
 msgid "Rejected"
-msgstr "প্রত্যাখ্যাত"
+msgstr "বাতিল করা হয়েছে"
 
 msgid "Approved"
-msgstr "অনুমোদিত"
+msgstr "অনুমোদিত"
 
 msgid "No results found"
-msgstr ""
+msgstr "কোন ফলাফল পাওয়া যায়নি"
 
 msgid "Theme"
-msgstr ""
+msgstr "থিম"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "রিভিউকারী"
 
 msgid "Status"
-msgstr ""
+msgstr "অবস্থা"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "সকল পরীক্ষায় সফলভাবে উত্তীর্ণ হয়েছে।"
 
 msgid "These tests were not run."
-msgstr "এই পরীক্ষাগুলো চালানো হয়নি।"
+msgstr ""
 
 msgid "Tests"
-msgstr "পরীক্ষা"
+msgstr "পরীক্ষাসমূহ"
 
 msgid "Error"
-msgstr "ত্রুটি"
+msgstr "ভূল"
 
 msgid "Warning"
-msgstr "সতর্কবার্তা"
+msgstr "সর্তকবার্তা"
 
 msgid "{0} line {1} column {2}"
-msgstr "{0} লাইন {1} কলম {2}"
+msgstr ""
 
 msgid "{0} line {1}"
-msgstr "{0} লাইন {1}"
+msgstr "{0} এর {1}"
 
 msgid "Add-on failed validation."
-msgstr "অ্যাড-অন যাচাইকরণে ব্যর্থ।"
+msgstr ""
 
 msgid "Add-on passed validation."
-msgstr "অ্যাড-অন যাচাইকরণে সার্থক।"
+msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} ত্রুটি..."
-msgstr[1] "{0} টি ত্রুটি"
+msgstr[0] "{0} টি ভুল"
+msgstr[1] ""
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} সতর্কতা"
-msgstr[1] "{0} সতর্কবার্তা"
+msgstr[0] "{0} টি সর্তকবার্তা"
+msgstr[1] ""
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} টি নটিশ"
-msgstr[1] "{0} নোটিশসমূহ"
+msgstr[1] ""
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "যাচাইকরণের কার্যকলাপ শেষ হয়নি বা ত্রুটির সাথে শেষ করা হয়েছে"
+msgstr ""
 
 msgid "Internal server error"
-msgstr "অন্তর্বর্তী সার্ভার ত্রুটি"
+msgstr ""
