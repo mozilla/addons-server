@@ -1,11 +1,9 @@
 import olympia.core.logger
 
-from olympia.activity.models import ActivityLog, CommentLog, VersionLog
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.reviewers.models import AutoApprovalSummary
-from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.task')
