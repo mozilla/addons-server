@@ -3,9 +3,9 @@ apipkg==1.5 \
     --hash=sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c \
     --hash=sha256:37228cda29411948b422fae072f57e31d3396d2ee1c9783775980ee9c9990af6
 # execnet is required by pytest-xdist
-execnet==1.6.0 \
-    --hash=sha256:027ee5d961afa01e97b90d6ccc34b4ed976702bc58e7f092b3c513ea288cb6d2 \
-    --hash=sha256:752a3786f17416d491f833a29217dda3ea4a471fc5269c492eebcee8cc4772d3
+execnet==1.6.1 \
+    --hash=sha256:64dcdc248d007060f6f6500e7c79a4f87ee692063e3ec51e9bebf30ef2ea21d7 \
+    --hash=sha256:dfd10a5663f94d1235e6fbee86bc53e2f89b6f15e031e7e6d9e4bb345bcd7e52
 # pathlib2 is used by pytest and ipython
 pathlib2==2.3.4 \
     --hash=sha256:2156525d6576d21c4dcaddfa427fae887ef89a7a9de5cbfe0728b3aafa78427e \
