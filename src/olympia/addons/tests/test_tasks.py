@@ -246,7 +246,7 @@ class TestAddStaticThemeFromLwt(TestCase):
         default_author = UserProfile.objects.get(
             email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
         default_category = (
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other'])
+            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_STATICTHEME]['other'])
         self._check_result(
             static_theme, [default_author], [], [default_category],
             licenses.LICENSE_COPYRIGHT_AR.builtin, [rating])

@@ -562,7 +562,7 @@ def add_static_theme_from_lwt(lwt):
         parsed_data=parsed_data)
 
     # Set category
-    static_theme_categories = CATEGORIES.get(amo.FIREFOX.id, []).get(
+    static_theme_categories = CATEGORIES.get(amo.THUNDERBIRD.id, []).get(
         amo.ADDON_STATICTHEME, [])
     lwt_category = (lwt.categories.all() or [None])[0]  # lwt only have 1 cat.
     lwt_category_slug = lwt_category.slug if lwt_category else 'other'
