@@ -101,5 +101,5 @@ def devhub_upload(devhub_login):
 
     """
     devhub = devhub_login
-    addon = devhub.upload_addon('ui-test_devhub_ext-1.0.xpi')
+    addon = devhub.upload_addon('ui-test_devhub_ext-1.0.zip')
     return addon.fill_addon_submission_form()
