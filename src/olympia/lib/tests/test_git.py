@@ -904,7 +904,8 @@ def test_get_diff_newline_both_no_newline():
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
     # And create another change that doesn't add a newline
-    apply_changes(repo, version, '{"id": "new random id"}', 'manifest.json')
+    apply_changes(
+        repo, version, '{"id": "new random id",\n"something": "foo"}', 'manifest.json')
 
     changes = repo.get_diff(
         commit=version.git_hash,
@@ -920,13 +921,14 @@ def test_get_diff_newline_both_no_newline():
     # The following structure represents a diff similar to this one
     #
     # diff --git a/manifest.json b/manifest.json
-    # index 72bd4f0..7a10251 100644
+    # index 72bd4f0..1f666c8 100644
     # --- a/manifest.json
     # +++ b/manifest.json
-    # @@ -1 +1 @@
+    # @@ -1 +1,2 @@
     # -{"id": "random"}
     # \ No newline at end of file
-    # +{"id": "new random id"}
+    # +{"id": "new random id",
+    # +"something": "foo"}
     # \ No newline at end of file
     assert hunk_changes == [
         {
@@ -941,14 +943,20 @@ def test_get_diff_newline_both_no_newline():
             'old_line_number': 1,
             'type': 'insert-eofnl'},
         {
-            'content': '{"id": "new random id"}',
+            'content': '{"id": "new random id",',
             'new_line_number': 1,
             'old_line_number': -1,
             'type': 'insert'
         },
         {
+            'content': '"something": "foo"}',
+            'new_line_number': 2,
+            'old_line_number': -1,
+            'type': 'insert'
+        },
+        {
             'content': '\n\\ No newline at end of file',
-            'new_line_number': 1,
+            'new_line_number': 2,
             'old_line_number': -1,
             'type': 'delete-eofnl'
         }
