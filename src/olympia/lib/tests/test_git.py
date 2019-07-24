@@ -905,12 +905,13 @@ def test_get_diff_newline_both_no_newline():
 
     # And create another change that doesn't add a newline
     apply_changes(
-        repo, version, '{"id": "new random id",\n"something": "foo"}', 'manifest.json')
+        repo, version,
+        '{"id": "new random id",\n"something": "foo"}',
+        'manifest.json')
 
     changes = repo.get_diff(
         commit=version.git_hash,
         parent=parent_version.git_hash)
-
 
     assert len(changes) == 1
     assert changes[0]['new_ending_new_line'] is False
