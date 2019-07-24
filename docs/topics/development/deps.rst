@@ -15,7 +15,7 @@ Next add the dependency you want to add to the relevant requirements file.
 
 Once you've done that you can run the requirements script::
 
-    ./scripts/hash_requirements.py <requirement-file>
+    hashin -r <requirements file> <dependency>
 
 This will add hashes and sort the requirements for you adding comments to
 show any package dependencies.
