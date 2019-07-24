@@ -242,7 +242,7 @@ def test_extract_and_commit_from_version_use_applied_author():
         author=user)
 
     output = _run_process('git log --format=full listed', repo)
-    assert 'Author: Fancy Test User <fancyuser@foo.bar>' in output
+    assert f'Author: User {user.id} <fancyuser@foo.bar>' in output
     assert (
         'Commit: Mozilla Add-ons Robot '
         '<addons-dev-automation+github@mozilla.com>'

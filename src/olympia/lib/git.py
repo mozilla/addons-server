@@ -365,7 +365,7 @@ class AddonGitRepository(object):
 
     def get_author(self, user=None):
         if user is not None:
-            author_name = user.name
+            author_name = f'User {user.id}'
             author_email = user.email
         else:
             author_name = 'Mozilla Add-ons Robot'
