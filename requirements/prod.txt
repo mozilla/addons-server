@@ -217,9 +217,9 @@ easy-thumbnails==2.6 \
 elasticsearch==5.5.3 \
     --hash=sha256:658380fd60bdaf746fef12958f0abc49063218ce93ee1ae4ca1fe6291c896433 \
     --hash=sha256:ae91b089f2f2b5b3daa04297949e5f805ab12d187218cb587273f472656fd250 # pyup: <6
-elasticsearch-dsl==5.4.0 \
-    --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
-    --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6
+elasticsearch-dsl==7.0.0 \
+    --hash=sha256:763fb28add254f2c3a1d071cd114466d8a27f640e02a874afba7b8a04147c094 \
+    --hash=sha256:2aedc2a4dbba9870249a57d1798ec29e44404619bded66ac920f5d6a1cbb6f22 # pyup: <6
 email-reply-parser==0.5.9 \
     --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 feedparser==5.2.1 \
