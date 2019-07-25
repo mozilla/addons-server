@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
+from olympia.hero.admin import PrimaryHeroInline
 
 
 # Popular locales, we typically don't want to show a string if it's not
@@ -72,12 +73,15 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         css = {
             'all': ('css/admin/discovery.css',)
         }
+    inlines = [PrimaryHeroInline]
     list_display = ('__str__', 'custom_addon_name', 'custom_heading',
-                    'position', 'position_china', 'recommended_status')
+                    'position', 'position_china', 'recommended_status',
+                    'primary_hero_shelf')
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
     readonly_fields = ('recommended_status', 'previews',)
     view_on_site = False
+    list_select_related = ('primaryhero',)
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         if db_field.name == 'addon':

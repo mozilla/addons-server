@@ -174,6 +174,11 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
             self.PENDING_RECOMMENDATION if self.recommendable else
             self.NOT_RECOMMENDED)
 
+    def primary_hero_shelf(self):
+        return (self.primaryhero.enabled if hasattr(self, 'primaryhero')
+                else None)
+    primary_hero_shelf.boolean = True
+
 
 @DiscoveryItem.on_change
 def watch_recommendable_changes(old_attr=None, new_attr=None, instance=None,

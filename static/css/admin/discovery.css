@@ -50,3 +50,21 @@
     content: attr(data-locale);
     display: block;
 }
+
+.dynamic-primaryhero .field-gradient_color ul,
+.dynamic-primaryhero .field-image ul {
+    list-style: square;
+}
+
+.dynamic-primaryhero .field-gradient_color li,
+.dynamic-primaryhero .field-image li {
+    display: inline-block;
+}
+
+.dynamic-primaryhero .field-gradient_color li div,
+.dynamic-primaryhero .field-image li div {
+    height: 9em;
+    width: 12em;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

@@ -117,6 +117,10 @@ DJANGO_PERMISSIONS_MAPPING.update({
 
     'files.change_file': ADMIN_ADVANCED,
 
+    'hero.add_primaryhero': DISCOVERY_EDIT,
+    'hero.change_primaryhero': DISCOVERY_EDIT,
+    'hero.delete_primaryhero': DISCOVERY_EDIT,
+
     'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
 
     'users.change_userprofile': USERS_EDIT,
