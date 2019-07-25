@@ -166,6 +166,24 @@ class AddonAbuseViewSetTestBase(object):
                           u'[Extension] Abuse Report for %s' % addon.name)
         assert report.message == ''
 
+    def test_message_length_limited(self):
+        addon = addon_factory()
+
+        response = self.client.post(
+            self.url,
+            data={'addon': str(addon.id),
+                  'message': 'a' * 10000})
+        assert response.status_code == 201
+
+        response = self.client.post(
+            self.url,
+            data={'addon': str(addon.id),
+                  'message': 'a' * 10001})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'message': ['Ensure this field has no more than 10000 characters.']
+        }
+
     def test_throttle(self):
         addon = addon_factory()
         for x in range(20):
