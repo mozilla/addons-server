@@ -38,7 +38,8 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     # 'message' has custom validation rules below depending on whether 'reason'
     # was provided or not. We need to not set it as required and allow blank at
     # the field level to make that work.
-    message = serializers.CharField(required=False, allow_blank=True)
+    message = serializers.CharField(
+        required=False, allow_blank=True, max_length=10000)
     app = ReverseChoiceField(
         choices=list((v.id, k) for k, v in amo.APPS.items()), required=False,
         source='application')
@@ -121,7 +122,8 @@ class UserAbuseReportSerializer(BaseAbuseReportSerializer):
     user = BaseUserSerializer(required=False)  # We validate it ourselves.
     # Unlike add-on reports, for user reports we don't have a 'reason' field so
     # the message is always required and can't be blank.
-    message = serializers.CharField(required=True, allow_blank=False)
+    message = serializers.CharField(
+        required=True, allow_blank=False, max_length=10000)
 
     class Meta:
         model = AbuseReport
