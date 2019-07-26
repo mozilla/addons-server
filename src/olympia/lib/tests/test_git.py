@@ -813,9 +813,17 @@ def test_get_diff_newline_old_file():
         parent=original_version.git_hash)
 
     assert len(changes) == 1
-
     assert changes[0]['new_ending_new_line'] is False
     assert changes[0]['old_ending_new_line'] is True
+
+    hunk_changes = changes[0]['hunks'][0]['changes']
+
+    assert hunk_changes[-1] == {
+        'content': '\n\\ No newline at end of file',
+        'type': 'delete-eofnl',
+        'old_line_number': -1,
+        'new_line_number': 1
+    }
 
 
 @pytest.mark.django_db
@@ -847,9 +855,31 @@ def test_get_diff_newline_new_file():
         parent=parent_version.git_hash)
 
     assert len(changes) == 1
-
     assert changes[0]['new_ending_new_line'] is True
     assert changes[0]['old_ending_new_line'] is False
+
+    hunk_changes = changes[0]['hunks'][0]['changes']
+
+    assert hunk_changes == [
+        {
+            'content': '{"id": "random"}',
+            'new_line_number': -1,
+            'old_line_number': 1,
+            'type': 'delete'
+        },
+        {
+            'content': '\n\\ No newline at end of file',
+            'new_line_number': -1,
+            'old_line_number': 1,
+            'type': 'insert-eofnl'
+        },
+        {
+            'content': '{"id": "random"}',
+            'new_line_number': 1,
+            'old_line_number': -1,
+            'type': 'insert'
+        }
+    ]
 
 
 @pytest.mark.django_db
@@ -873,17 +903,65 @@ def test_get_diff_newline_both_no_newline():
 
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
-    # Now we're adding it again
-    apply_changes(repo, version, '{"id": "new random id"}', 'manifest.json')
+    # And create another change that doesn't add a newline
+    apply_changes(
+        repo, version,
+        '{"id": "new random id",\n"something": "foo"}',
+        'manifest.json')
 
     changes = repo.get_diff(
         commit=version.git_hash,
         parent=parent_version.git_hash)
 
     assert len(changes) == 1
-
     assert changes[0]['new_ending_new_line'] is False
     assert changes[0]['old_ending_new_line'] is False
+
+    hunk_changes = changes[0]['hunks'][0]['changes']
+
+    # The following structure represents a diff similar to this one
+    #
+    # diff --git a/manifest.json b/manifest.json
+    # index 72bd4f0..1f666c8 100644
+    # --- a/manifest.json
+    # +++ b/manifest.json
+    # @@ -1 +1,2 @@
+    # -{"id": "random"}
+    # \ No newline at end of file
+    # +{"id": "new random id",
+    # +"something": "foo"}
+    # \ No newline at end of file
+    assert hunk_changes == [
+        {
+            'content': '{"id": "random"}',
+            'new_line_number': -1,
+            'old_line_number': 1,
+            'type': 'delete'
+        },
+        {
+            'content': '\n\\ No newline at end of file',
+            'new_line_number': -1,
+            'old_line_number': 1,
+            'type': 'insert-eofnl'},
+        {
+            'content': '{"id": "new random id",',
+            'new_line_number': 1,
+            'old_line_number': -1,
+            'type': 'insert'
+        },
+        {
+            'content': '"something": "foo"}',
+            'new_line_number': 2,
+            'old_line_number': -1,
+            'type': 'insert'
+        },
+        {
+            'content': '\n\\ No newline at end of file',
+            'new_line_number': 2,
+            'old_line_number': -1,
+            'type': 'delete-eofnl'
+        }
+    ]
 
 
 @pytest.mark.django_db
