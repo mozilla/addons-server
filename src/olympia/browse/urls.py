@@ -39,7 +39,10 @@ urlpatterns = [
     # Personas are now Themes.
     url('^personas/(?P<category>[^ /]+)?$',
         views.legacy_theme_redirects),
-    url('^themes/(?:(?P<category>[^ /]+)/)?$', views.personas,
+    url('^themes/(?:(?P<category>[^/]+)/)?$',
+        lambda r, category: redirect(
+            reverse('browse.static-themes',
+                    kwargs=({'category': category} if category else {}))),
         name='browse.personas'),
 
     # Themes are now Complete Themes.
@@ -51,10 +54,7 @@ urlpatterns = [
         ThemeCategoriesRss(), name='browse.themes.rss'),
 
     # This won't let you browse any themes but detail page needs the url.
-    url('^static-themes/(?:(?P<category>[^/]+)/)?$',
-        lambda r, category: redirect(
-            reverse('browse.personas',
-                    kwargs=({'category': category} if category else {}))),
+    url('^static-themes/(?:(?P<category>[^/]+)/)?$', views.staticthemes,
         name='browse.static-themes'),
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,

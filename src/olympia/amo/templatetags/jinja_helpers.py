@@ -26,6 +26,7 @@ from rest_framework.settings import api_settings
 
 from olympia import amo
 from olympia.amo import urlresolvers, utils
+from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
     _build_html, get_css_urls, get_js_urls)
@@ -387,6 +388,8 @@ def _side_nav(context, addon_type, cat):
         qs = qs.filter(application=request.APP.id)
     sort_key = attrgetter('weight', 'name')
     categories = sorted(qs.filter(type=addon_type), key=sort_key)
+    if addon_type == amo.ADDON_STATICTHEME:
+        categories = CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_STATICTHEME].values()
     if cat:
         base_url = cat.get_url_path()
     else:

@@ -16,6 +16,7 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
 from olympia.addons.utils import get_creatured_ids, get_featured_ids
 from olympia.addons.views import BaseFilter
+from olympia.constants.categories import CATEGORIES
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
@@ -233,6 +234,25 @@ def creatured(request, category):
                    'sorting': 'featured'})
 
 
+class ThemesFilter(BaseFilter):
+
+    opts = (('created', _(u'Recently Added')),
+            ('popular', _(u'Most Popular')),
+            ('rating', _(u'Top Rated')))
+
+    def filter(self, field):
+            return super(ThemesFilter, self).filter(field)
+
+    def filter_created(self):
+        return self.base_queryset.order_by('-created')
+
+    def filter_popular(self):
+        return self.base_queryset.order_by('-average_daily_users')
+
+    def filter_rating(self):
+        return self.base_queryset.order_by('-bayesian_rating')
+
+
 class PersonasFilter(BaseFilter):
 
     opts = (('up-and-coming', _(u'Up & Coming')),
@@ -258,10 +278,39 @@ class PersonasFilter(BaseFilter):
     def filter_rating(self):
         return self.base_queryset.order_by('-bayesian_rating')
 
+@non_atomic_requests
+def staticthemes(request, category=None):
+    TYPE = amo.ADDON_STATICTHEME
+
+    categories = CATEGORIES[amo.THUNDERBIRD.id][TYPE]
+    if category is not None:
+        q = Category.objects.filter(type=TYPE)
+        category = get_object_or_404(q, slug=category)
+
+    sort = request.GET.get('sort')
+    if not sort and category and category.count > 4:
+        return category_landing(request, category, amo.ADDON_STATICTHEME)
+
+    addons, filter = addon_listing(request, [TYPE])
+    sorting = filter.field
+    src = 'cb-btn-%s' % sorting
+    dl_src = 'cb-dl-%s' % sorting
+
+    if category:
+        addons = addons.filter(categories__id=category.id)
+
+    addons = amo.utils.paginate(request, addons, count=addons.count())
+    return render(request, 'browse/extensions.html',
+                  {'section': 'extensions', 'addon_type': TYPE,
+                   'categories': categories,
+                   'category': category, 'addons': addons,
+                   'filter': filter, 'sorting': sorting,
+                   'sort_opts': filter.opts, 'src': src,
+                   'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
 
 def personas_listing(request, category_slug=None):
     # Common pieces used by browse and search.
-    TYPE = amo.ADDON_PERSONA
+    TYPE = amo.ADDON_STATICTHEME
     qs = Category.objects.filter(type=TYPE)
     categories = sorted(qs, key=attrgetter('weight', 'name'))
 
@@ -289,8 +338,8 @@ def personas_listing(request, category_slug=None):
 
         base = base.filter(categories__id=cat.id)
 
-    filter_ = PersonasFilter(request, base, key='sort',
-                             default='up-and-coming')
+    filter_ = ThemesFilter(request, base, key='sort',
+                             default='popular')
     return categories, filter_, base, cat
 
 
@@ -305,17 +354,7 @@ def personas(request, category=None):
 
     categories, filter_, base, cat = listing
 
-    if filter_.field == 'up-and-coming':
-        # Almost hardcoding the number of element because performing
-        # `filter_.qs.count()` is a performance killer. We're still
-        # verifying the `base.count()` for the template switch below.
-        base_count = base.count()
-        count = (base_count if base_count < MIN_COUNT_FOR_LANDING
-                 else PAGINATE_PERSONAS_BY * settings.PERSONA_DEFAULT_PAGES)
-    else:
-        # Pass the count from base instead of letting it come from
-        # filter_.qs.count() since that would join against personas.
-        count = cat.count if cat else base.count()
+    count = cat.count if cat else base.count()
 
     addons = amo.utils.paginate(request, filter_.qs, PAGINATE_PERSONAS_BY,
                                 count=count)
