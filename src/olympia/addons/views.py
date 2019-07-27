@@ -130,6 +130,9 @@ def extension_detail(request, addon):
         'abuse_form': AbuseForm(request=request),
     }
 
+    if addon.type == amo.ADDON_STATICTHEME:
+        ctx['search_cat'] = 'themes'
+
     # details.html just returns the top half of the page for speed. The bottom
     # does a lot more queries we don't want on the initial page load.
     if request.is_ajax():

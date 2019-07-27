@@ -306,7 +306,7 @@ def staticthemes(request, category=None):
                    'category': category, 'addons': addons,
                    'filter': filter, 'sorting': sorting,
                    'sort_opts': filter.opts, 'src': src,
-                   'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
+                   'dl_src': dl_src, 'search_cat': 'themes'})
 
 def personas_listing(request, category_slug=None):
     # Common pieces used by browse and search.

@@ -32,7 +32,7 @@ def _personas(request):
     # as for Thunderbird, etc.
     initial.update(appver=None, platform=None)
 
-    form = ESSearchForm(initial, type=amo.ADDON_PERSONA)
+    form = ESSearchForm(initial, type=amo.ADDON_STATICTHEME)
     form.is_valid()
 
     qs = Addon.search_public()
@@ -48,7 +48,7 @@ def _personas(request):
     results = _filter_search(request, qs, form.cleaned_data, filters,
                              sorting=mapping,
                              sorting_default='-average_daily_users',
-                             types=[amo.ADDON_PERSONA])
+                             types=[amo.ADDON_STATICTHEME])
 
     form_data = form.cleaned_data.get('q', '')
 
@@ -174,7 +174,7 @@ class AddonSuggestionsAjax(SearchSuggestionsAjax):
 
 
 class PersonaSuggestionsAjax(SearchSuggestionsAjax):
-    types = [amo.ADDON_PERSONA]
+    types = [amo.ADDON_STATICTHEME]
 
 
 @json_view
@@ -229,9 +229,9 @@ def _build_suggestions(request, cat, suggester):
         cats = cats.filter(Q(application=request.APP.id) |
                            Q(type=amo.ADDON_SEARCH))
         if cat == 'themes':
-            cats = cats.filter(type=amo.ADDON_PERSONA)
+            cats = cats.filter(type=amo.ADDON_STATICTHEME)
         else:
-            cats = cats.exclude(type=amo.ADDON_PERSONA)
+            cats = cats.exclude(type=amo.ADDON_PERSONA).exclude(type=amo.ADDON_STATICTHEME)
 
         for c in cats:
             if not c.name:
@@ -338,7 +338,7 @@ def search(request, tag_name=None):
     if tag_name:
         form_data['tag'] = tag_name
 
-    if category == 'themes' or form_data.get('atype') == amo.ADDON_PERSONA:
+    if category == 'themes' or form_data.get('atype') == amo.ADDON_STATICTHEME:
         return _personas(request)
 
     sort, extra_sort = split_choices(form.sort_choices, 'created')
