@@ -72,24 +72,26 @@
     </div>
     {% endif %}
 
-  {% if submit_page in ['addon', 'version'] and waffle.switch('allow-static-theme-uploads') %}
-    {% if addon and addon.type == amo.ADDON_STATICTHEME %}
-        {% set wizard_url = url('devhub.submit.version.wizard', addon.slug, channel_param) %}
-    {% elif not addon %}
-        {% set wizard_url = url('devhub.submit.wizard', channel_param) %}
-    {% endif %}
-    {% if wizard_url %}
-    <div class="submission-buttons addon-create-theme-section">
-      <p></p>
-      <h3>{{ _('Create a Theme Version') }}</h3>
-      <p>
-        You can upload a finished theme using the upload option above,
-        or you can build it yourself using this tool.
-      </p>
-      <div>
-        <a class="button" id="wizardlink" href="{{ wizard_url }}">{{ _('Create a Theme') }}</a>
+  {% if waffle.switch('allow-theme-wizard') %}
+    {% if submit_page in ['addon', 'version'] and waffle.switch('allow-static-theme-uploads') %}
+      {% if addon and addon.type == amo.ADDON_STATICTHEME %}
+          {% set wizard_url = url('devhub.submit.version.wizard', addon.slug, channel_param) %}
+      {% elif not addon %}
+          {% set wizard_url = url('devhub.submit.wizard', channel_param) %}
+      {% endif %}
+      {% if wizard_url %}
+      <div class="submission-buttons addon-create-theme-section">
+        <p></p>
+        <h3>{{ _('Create a Theme Version') }}</h3>
+        <p>
+          You can upload a finished theme using the upload option above,
+          or you can build it yourself using this tool.
+        </p>
+        <div>
+          <a class="button" id="wizardlink" href="{{ wizard_url }}">{{ _('Create a Theme') }}</a>
+        </div>
       </div>
-    </div>
+      {% endif %}
     {% endif %}
   {% endif %}
 
