@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-28 11:56+0000\n"
+"PO-Revision-Date: 2019-07-28 15:12+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -28,7 +28,7 @@ msgid "Addons"
 msgstr "ส่วนเสริม"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "จำนวนรายงานขั้นต่ำ (จัดกลุ่มตาม guid)"
 
 msgid "creation date"
 msgstr "วันที่สร้าง"
@@ -43,18 +43,18 @@ msgid "Reporter's country"
 msgstr "ประเทศของผู้แจ้งรายงาน"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "ส่วนที่ตัดตอนมาของข้อความ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "ข้อความที่ป้อนถูกตั้งสถานะเป็นสแปม"
+msgstr "%d รายงานที่เลือกถูกทำเครื่องหมายว่าไม่ถูกต้อง"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d รายงานที่เลือกถูกทำเครื่องหมายว่าน่าสงสัย"
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "ทำเครื่องหมายรายงานการละเมิดที่เลือกว่าน่าสงสัย"
 
 msgid "Modified on:"
 msgstr "แก้ไขเมื่อ:"
