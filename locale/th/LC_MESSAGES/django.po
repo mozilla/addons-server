@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-28 15:12+0000\n"
+"PO-Revision-Date: 2019-07-28 15:18+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -261,9 +261,8 @@ msgstr "บางคุณสมบัติถูกปิดใช้งาน
 msgid "Must contain at least one printable character."
 msgstr "ต้องมีตัวอักษรที่พิมพ์ได้อย่างน้อยหนึ่งตัว"
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "ต้องมีเจ้าของอย่างน้อยหนึ่งคน"
+msgstr "ตรวจสอบให้แน่ใจว่าช่องกรอกนี้มีตัวอักษรหรือตัวเลขอย่างน้อยหนึ่งตัว"
 
 msgid "Not allowed"
 msgstr "ไม่อนุญาต"
@@ -317,7 +316,7 @@ msgstr "ถ้าคุณตามลิงก์มาจากที่ใด
 msgid "Not Found"
 msgstr "ไม่พบ"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -326,10 +325,10 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>เราขออภัย แต่เราไม่พบสิ่งที่คุณกำลังค้นหาอยู่</h1> <p>ไม่พบหน้าหรือไฟล์ที่คุณร้องขอบนเว็บไซต์ของเรา มันเป็นไปได้ว่าคุณคลิกลิงก์ซึ่งหมดอายุแล้ว หรือพิมพ์ที่อยู่ไม่ถูกต้อง</p> <ul> "
-"<li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> <li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรดแจ้งให้เราทราบที่ <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a> "
-"บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> <p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a "
-"href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> <li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> "
-"<li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
+"<li>ถ้าคุณใช้การพิมพ์ที่อยู่ โปรดตรวจสอบการสะกดอีกครั้ง</li> <li>ถ้าคุณตามลิงก์นี้มาจากที่ไหนสักแห่ง โปรด%(open_bug_link)sรายงานปัญหา%(close_bug_link)s บอกเราว่าคุณมาจากไหนและคุณกำลังมองหาอะไร "
+"และเราจะทำการแก้ไขให้ดีที่สุด</li> </ul> <p>หรือคุณสามารถกระโดดข้ามไปยังหน้าที่ได้รับความนิยมบนเว็บไซต์ของเรา</p> <ul> <li>คุณสนใจ<a href=\"%(rec)s\">รายการส่วนเสริมที่แนะนำ</a>?</li> "
+"<li>คุณต้องการที่จะ<a href=\"%(search)s\">ค้นหาสำหรับส่วนเสริม</a>? คุณอาจจะไปที่<a href=\"%(search)s\">หน้าค้นหา</a> หรือใช้ช่องค้นหาด้านบน</li> <li>ถ้าคุณต้องการจะไปที่จุดเริ่มต้น เพียงแค่ไปที่<a "
+"href=\"%(home)s\">หน้าแรกของส่วนเสริม</a> </li> </ul>"
 
 msgid "Oops"
 msgstr "อุ๊ปส์"
@@ -487,11 +486,11 @@ msgid "Valid Application Versions"
 msgstr "รุ่นแอปพลิเคชันที่ถูกต้อง"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
+msgstr "ส่วนเสริมที่ส่งไปยัง Mozilla จะต้องมีไฟล์กำกับพร้อมแอปพลิเคชันอย่างน้อยหนึ่งตัวที่รองรับ เฉพาะรุ่นที่อยู่ในรายการด้านล่างเท่านั้นที่อนุญาตสำหรับแอปพลิเคชันเหล่านี้"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "โปรดระวังว่า WebExtensions จะไม่ยอมรับ \"*\" ใน %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s"
 
 msgid "GUID"
 msgstr "GUID"
@@ -503,13 +502,13 @@ msgstr "รุ่น"
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
+msgstr "หากแอปพลิเคชันที่รองรับของคุณไม่ต้องการไฟล์กำกับ คุณยังคงต้องรวมไว้หนึ่งตามคุณสมบัติที่ต้องการที่ระบุไว้%(amo_manifests_mdn_link_open)sที่นี่%(amo_manifests_mdn_link_close)s"
 
 msgid "The text entered has been flagged as spam."
 msgstr "ข้อความที่ป้อนถูกตั้งสถานะเป็นสแปม"
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "URL ที่กำหนดเองนี้ถูกใช้งานกับชุดสะสมอื่นอยู่แล้ว"
 
 msgid "Name cannot be empty."
 msgstr "ชื่อไม่สามารถเว้นว่างได้"
@@ -518,7 +517,7 @@ msgid "This name cannot be used."
 msgstr "ไม่สามารถใช้ชื่อนี้"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "URL ที่กำหนดเองต้องประกอบไปด้วยตัวอักษร ตัวเลข ขีดล่าง หรือยัติภังค์"
 
 msgid "This custom URL cannot be used."
 msgstr "ไม่สามารถใช้ URL ที่กำหนดเองนี้"
@@ -578,7 +577,7 @@ msgid "{addon} {version} approved."
 msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} ได้รับการตรวจสอบเบื้องต้นแล้ว"
 
 msgid "Preliminarily approved"
 msgstr "อนุมัติเบื้องต้นแล้ว"
@@ -596,22 +595,22 @@ msgid "{addon} {version} escalated."
 msgstr "เลื่อนระดับ {addon} {version} แล้ว"
 
 msgid "Super review requested"
-msgstr ""
+msgstr "ร้องขอการพิจารณาขั้นสูงแล้ว"
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "ร้องขอการพิจารณา {addon} {version} แล้ว"
 
 msgid "Review requested"
 msgstr "ร้องขอการพิจารณาแล้ว"
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "ร้องขอข้อมูลเพิ่มเติมเกี่ยวกับ {addon} {version} แล้ว"
 
 msgid "More information requested"
 msgstr "ร้องขอข้อมูลเพิ่มเติมแล้ว"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "ร้องขอการพิจารณาขั้นสูง {addon} {version} แล้ว"
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
@@ -657,7 +656,7 @@ msgstr "เพิ่ม {0} {1} แล้ว"
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "บทบาท {0.name} ถูกเปลี่ยนเป็น {1} สำหรับ {addon}"
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} ได้รับสิทธิ์ใช้งานในขณะนี้ภายใต้ {0}"
@@ -681,7 +680,7 @@ msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} ได้ลบ {rating} สำหรับ {addon}"
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "อัปเดตเวอร์ชันสูงสุดของแอปพลิเคชันสำหรับ {version} แล้ว"
 
 msgid "Authors emailed about compatibility of {version}."
 msgstr ""
@@ -2267,7 +2266,7 @@ msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "โปรดระบุคำอธิบายสำหรับภาพหน้าจอนี้:"
 
 msgid "Add a Screenshot..."
 msgstr "เพิ่มภาพหน้าจอ..."
@@ -2330,7 +2329,7 @@ msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
 msgid "Top"
-msgstr ""
+msgstr "ด้านบน"
 
 msgid "Delete Add-on"
 msgstr "ลบส่วนเสริม"
@@ -3371,7 +3370,7 @@ msgstr "การปรับแต่งแท็บ {start_sub_heading}ด้�
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "เลือกหน้าเว็บที่คุณเห็นทุกครั้งที่คุณเปิดแท็บใหม่"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4056,7 +4055,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "เปิดใช้งานโหมดกลางคืนเพื่อประสบการณ์การรับชมที่ดียิ่งขึ้น"
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4108,7 +4107,7 @@ msgstr "หยุดตัวติดตามการค้นหา {start_s
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "ป้องกันไม่ให้โปรแกรมค้นหาทราบว่าคุณคลิกดูผลการค้นหาใด"
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4400,7 +4399,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "อนุญาตให้เนื้อหาเว็บเรียกใช้จากไซต์ที่คุณเชื่อถือเท่านั้น"
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5149,7 +5148,7 @@ msgid "Spam or otherwise non-review content"
 msgstr ""
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "ใช้ภาษาไม่เหมาะสม/dialog"
 
 msgid "Misplaced bug report or support request"
 msgstr ""
@@ -5222,7 +5221,7 @@ msgid "start"
 msgstr "เริ่มต้น"
 
 msgid "end"
-msgstr ""
+msgstr "จบ"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
@@ -5586,7 +5585,7 @@ msgid "Image Gallery"
 msgstr "คลังภาพ"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "ที่นี่ไม่มีอะไรให้ดู!  นักพัฒนายังไม่ได้ใส่รายละเอียดที่นี่"
 
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
@@ -5718,7 +5717,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr ""
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "ลิงก์ที่มีประโยชน์:"
 
 msgid "Add-on Policy"
 msgstr "นโยบายส่วนเสริม"
