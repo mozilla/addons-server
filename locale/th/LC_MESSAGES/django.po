@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2018-09-22 15:25+0000\n"
+"PO-Revision-Date: 2019-07-28 11:56+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -453,7 +453,7 @@ msgid "Error decoding signature."
 msgstr "เกิดข้อผิดพลาดในการถอดรหัสลายเซ็น"
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "ชนิดไม่ถูกต้องสำหรับคีย์อย่างน้อยหนึ่งคีย์ในส่วนข้อมูล"
 
 msgid "Invalid JWT Token."
 msgstr "โทเค็น JWT ไม่ถูกต้อง"
@@ -475,13 +475,13 @@ msgstr "คุณต้องระบุวัตถุของ {lang-code:val
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "pk หรือสลัก \"%s\" ไม่ถูกต้อง - วัตถุไม่มีอยู่"
 
 msgid "Application Versions"
 msgstr "รุ่นแอปพลิเคชัน"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "รุ่นที่ยอมรับได้สำหรับแอปพลิเคชันทั้งหมดบน AMO"
 
 msgid "Valid Application Versions"
 msgstr "รุ่นแอปพลิเคชันที่ถูกต้อง"
@@ -886,7 +886,7 @@ msgid "Pending approval"
 msgstr "กำลังรอการอนุมัติ"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "ตั้งค่าสถานะสำหรับตรวจทานภายหลังแล้ว"
 
 msgid "Unlisted"
 msgstr "ไม่แสดงรายการ"
@@ -1312,7 +1312,7 @@ msgid "New Legacy Add-on Review"
 msgstr "บทวิจารณ์ส่วนเสริมใหม่"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "บทวิจารณ์ส่วนเสริมเบื้องต้น"
 
 #, fuzzy
 msgid "Updated Legacy Add-on Review"
@@ -1322,7 +1322,7 @@ msgid "New Dictionary Review"
 msgstr "บทวิจารณ์พจนานุกรมใหม่"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "บทวิจารณ์พจนานุกรมเบื้องต้น"
 
 msgid "Updated Dictionary Review"
 msgstr ""
@@ -1331,10 +1331,10 @@ msgid "New Language Pack Review"
 msgstr "บทวิจารณ์ชุดภาษาใหม่"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "บทวิจารณ์ชุดภาษาเบื้องต้น"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "บทวิจารณ์ชุดภาษาที่อัปเดตแล้ว"
 
 msgid "Theme Review"
 msgstr "บทวิจารณ์ชุดตกแต่ง"
@@ -1360,7 +1360,7 @@ msgid "Preliminary Complete Theme Review"
 msgstr ""
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "บทวิจารณ์ชุดตกแต่งแบบสมบูรณ์ที่อัปเดตแล้ว"
 
 #, fuzzy
 msgid "Moderated Add-on Review"
