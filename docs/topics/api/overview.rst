@@ -330,6 +330,7 @@ v4 API changelog
   Also made ``recommended`` sort available generally to the addons search API.  https://github.com/mozilla/addons-server/issues/11432
 * 2019-06-27: removed ``sort`` parameter from addon autocomplete API.  https://github.com/mozilla/addons-server/issues/11664
 * 2019-07-25: added /hero/ endpoint to expose recommended addons and other content to frontend to allow customizable promos https://github.com/mozilla/addons-server/issues/11842.
+* 2019-08-01: added alias ``edition=MozillaOnline`` for ``edition=china`` in /discovery/ endpoint.
 
 ----------------
 v5 API changelog
