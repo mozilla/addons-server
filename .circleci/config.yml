@@ -85,6 +85,13 @@ jobs:
             - uitest-cache-{{ checksum "requirements/uitests.txt" }}
             - uitest-cache-
       - run:
+          name: Install python 3
+          command: |
+            sudo apt install software-properties-common
+            sudo add-apt-repository ppa:deadsnakes/ppa
+            sudo apt update
+            sudo apt install python3.7
+      - run:
           name: Install Docker Compose
           command: |
             # using curl to install for better ci -> local compatibility
