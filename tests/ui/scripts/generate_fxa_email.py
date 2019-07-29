@@ -6,5 +6,6 @@ def create_fxa_email():
     email = f"uitest-{id}@restmail.net"
     print(f"{email}")
 
+
 if __name__ == "__main__":
     create_fxa_email()
