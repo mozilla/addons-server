@@ -5,4 +5,4 @@ from .models import PrimaryHero
 
 class PrimaryHeroInline(admin.StackedInline):
     model = PrimaryHero
-    fields = ('image', 'gradient_color', 'enabled')
+    fields = ('image', 'gradient_color', 'is_external', 'enabled')

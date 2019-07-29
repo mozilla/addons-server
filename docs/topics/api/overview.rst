@@ -331,6 +331,7 @@ v4 API changelog
 * 2019-06-27: removed ``sort`` parameter from addon autocomplete API.  https://github.com/mozilla/addons-server/issues/11664
 * 2019-07-25: added /hero/ endpoint to expose recommended addons and other content to frontend to allow customizable promos https://github.com/mozilla/addons-server/issues/11842.
 * 2019-08-01: added alias ``edition=MozillaOnline`` for ``edition=china`` in /discovery/ endpoint.
+* 2019-08-08: add support for externally hosted addons to /hero/ endpoints.  https://github.com/mozilla/addons-server/issues/11882
 
 ----------------
 v5 API changelog
