@@ -3,11 +3,28 @@ from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.discovery.models import DiscoveryItem
+from olympia.hero.models import PrimaryHero
 
 
 class TestDiscoveryAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse('admin:discovery_discoveryitem_changelist')
+
+    def _get_heroform(self, item_id):
+        return {
+            "primaryhero-TOTAL_FORMS": "1",
+            "primaryhero-INITIAL_FORMS": "0",
+            "primaryhero-MIN_NUM_FORMS": "0",
+            "primaryhero-MAX_NUM_FORMS": "1",
+            "primaryhero-0-image": "",
+            "primaryhero-0-gradient_color": "",
+            "primaryhero-0-id": "",
+            "primaryhero-0-disco_addon": item_id,
+            "primaryhero-__prefix__-image": "",
+            "primaryhero-__prefix__-gradient_color": "",
+            "primaryhero-__prefix__-id": "",
+            "primaryhero-__prefix__-disco_addon": item_id,
+        }
 
     def test_can_see_discovery_module_in_admin_with_discovery_edit(self):
         user = user_factory()
@@ -25,7 +42,8 @@ class TestDiscoveryAdmin(TestCase):
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
-        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'))
+        itm = DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'))
+        PrimaryHero.objects.create(disco_addon=itm)
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
@@ -108,13 +126,15 @@ class TestDiscoveryAdmin(TestCase):
         assert DiscoveryItem._meta.get_field('addon').help_text in content
 
         response = self.client.post(
-            self.detail_url, {
+            self.detail_url,
+            dict(self._get_heroform(str(item.id)), **{
                 'addon': str(addon.pk),
                 'custom_addon_name': u'Xäxâxàxaxaxa !',
                 'custom_heading': u'This heading is totally custom.',
                 'custom_description': u'This description is as well!',
                 'recommendable': True,
-            }, follow=True)
+            }),
+            follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -123,6 +143,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_heading == u'This heading is totally custom.'
         assert item.custom_description == u'This description is as well!'
         assert item.recommendable is True
+        assert PrimaryHero.objects.count() == 0  # check we didn't add one.
 
     def test_can_change_addon_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
@@ -142,7 +163,9 @@ class TestDiscoveryAdmin(TestCase):
         # Change add-on using the slug.
         response = self.client.post(
             self.detail_url,
-            {'addon': str(addon2.slug)}, follow=True)
+            dict(self._get_heroform(str(item.id)), **{
+                'addon': str(addon2.slug)}),
+            follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -150,11 +173,94 @@ class TestDiscoveryAdmin(TestCase):
 
         # Change add-on using the id.
         response = self.client.post(
-            self.detail_url, {'addon': str(addon.pk)}, follow=True)
+            self.detail_url,
+            dict(self._get_heroform(str(item.id)), **{'addon': str(addon.pk)}),
+            follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
         assert item.addon == addon
+        assert PrimaryHero.objects.count() == 0  # check we didn't add one.
+
+    def test_can_edit_primary_hero_with_discovery_edit_permission(self):
+        addon = addon_factory(name=u'BarFöo')
+        item = DiscoveryItem.objects.create(addon=addon)
+        hero = PrimaryHero.objects.create(
+            disco_addon=item, gradient_color='#582ACB')
+        self.detail_url = reverse(
+            'admin:discovery_discoveryitem_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+        assert '#582ACB' in content
+
+        response = self.client.post(
+            self.detail_url, {
+                'addon': str(addon.pk),
+                'custom_addon_name': 'Xäxâxàxaxaxa !',
+                'recommendable': True,
+                'primaryhero-TOTAL_FORMS': '1',
+                'primaryhero-INITIAL_FORMS': '1',
+                'primaryhero-MIN_NUM_FORMS': '0',
+                'primaryhero-MAX_NUM_FORMS': '1',
+                'primaryhero-0-id': str(hero.pk),
+                'primaryhero-0-disco_addon': str(item.pk),
+                'primaryhero-0-gradient_color': '#054096',
+                'primaryhero-0-image': 'ladder.jpg',
+            }, follow=True)
+        assert response.status_code == 200
+        item.reload()
+        hero.reload()
+        assert DiscoveryItem.objects.count() == 1
+        assert PrimaryHero.objects.count() == 1
+        assert item.addon == addon
+        assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
+        assert item.recommendable is True
+        assert hero.gradient_color == '#054096'
+
+    def test_can_add_primary_hero_with_discovery_edit_permission(self):
+        addon = addon_factory(name=u'BarFöo')
+        item = DiscoveryItem.objects.create(addon=addon)
+        self.detail_url = reverse(
+            'admin:discovery_discoveryitem_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+        assert PrimaryHero.objects.count() == 0
+
+        response = self.client.post(
+            self.detail_url,
+            dict(self._get_heroform(str(item.pk)), **{
+                'addon': str(addon.pk),
+                'custom_addon_name': 'Xäxâxàxaxaxa !',
+                'recommendable': True,
+                'primaryhero-0-gradient_color': '#054096',
+                'primaryhero-0-image': 'ladder.jpg',
+            }),
+            follow=True)
+        assert response.status_code == 200
+        item.reload()
+        assert DiscoveryItem.objects.count() == 1
+        assert PrimaryHero.objects.count() == 1
+        assert item.addon == addon
+        assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
+        assert item.recommendable is True
+        hero = PrimaryHero.objects.last()
+        assert hero.image == 'ladder.jpg'
+        assert hero.gradient_color == '#054096'
+        assert hero.disco_addon == item
 
     def test_change_addon_errors(self):
         addon = addon_factory(name=u'BarFöo')
@@ -170,7 +276,9 @@ class TestDiscoveryAdmin(TestCase):
 
         # Try changing using an unknown slug.
         response = self.client.post(
-            self.detail_url, {'addon': u'gârbage'}, follow=True)
+            self.detail_url,
+            dict(self._get_heroform(str(item.id)), **{'addon': u'gârbage'}),
+            follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -180,7 +288,9 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing using an unknown id.
         response = self.client.post(
             self.detail_url,
-            {'addon': str(addon2.pk + 666)}, follow=True)
+            dict(self._get_heroform(str(item.id)), **{
+                'addon': str(addon2.pk + 666)}),
+            follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -190,7 +300,10 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing using a non-public add-on id.
         addon3 = addon_factory(status=amo.STATUS_DISABLED)
         response = self.client.post(
-            self.detail_url, {'addon': str(addon3.pk)}, follow=True)
+            self.detail_url,
+            dict(self._get_heroform(str(item.id)), **{
+                'addon': str(addon3.pk)}),
+            follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -200,7 +313,10 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing to an add-on that is already used by another item.
         item2 = DiscoveryItem.objects.create(addon=addon2)
         response = self.client.post(
-            self.detail_url, {'addon': str(addon2.pk)}, follow=True)
+            self.detail_url,
+            dict(self._get_heroform(str(item.id)), **{
+                'addon': str(addon2.pk)}),
+            follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -225,7 +341,9 @@ class TestDiscoveryAdmin(TestCase):
 
         # Can actually delete.
         response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+            self.delete_url,
+            dict(self._get_heroform(str(item.id)), **{'post': 'yes'}),
+            follow=True)
         assert response.status_code == 200
         assert not DiscoveryItem.objects.filter(pk=item.pk).exists()
 
@@ -240,12 +358,14 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 200
         assert DiscoveryItem.objects.count() == 0
         response = self.client.post(
-            self.add_url, {
+            self.add_url,
+            dict(self._get_heroform(''), **{
                 'addon': str(addon.pk),
                 'custom_addon_name': u'Xäxâxàxaxaxa !',
                 'custom_heading': u'This heading is totally custom.',
                 'custom_description': u'This description is as well!',
-            }, follow=True)
+            }),
+            follow=True)
         assert response.status_code == 200
         assert DiscoveryItem.objects.count() == 1
         item = DiscoveryItem.objects.get()
@@ -253,6 +373,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_addon_name == u'Xäxâxàxaxaxa !'
         assert item.custom_heading == u'This heading is totally custom.'
         assert item.custom_description == u'This description is as well!'
+        assert PrimaryHero.objects.count() == 0  # check we didn't add one.
 
     def test_can_not_add_without_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
