@@ -113,7 +113,7 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
-            export UITEST_FXA_EMAIL=$(python ./tests/ui/scripts/generate_fxa_email.py)
+            export UITEST_FXA_EMAIL=$(python3 ./tests/ui/scripts/generate_fxa_email.py)
             # Pull images
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml pull --quiet
             # Start Containers
