@@ -85,12 +85,8 @@ jobs:
             - uitest-cache-{{ checksum "requirements/uitests.txt" }}
             - uitest-cache-
       - run:
-          name: Install python 3
-          command: |
-            sudo apt install software-properties-common
-            sudo add-apt-repository ppa:deadsnakes/ppa
-            sudo apt update
-            sudo apt install python3.7
+          name: "Set Python Version"
+          command: pyenv global 3.7.0
       - run:
           name: Install Docker Compose
           command: |
@@ -113,7 +109,7 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
-            export UITEST_FXA_EMAIL=$(python3 ./tests/ui/scripts/generate_fxa_email.py)
+            export UITEST_FXA_EMAIL=$(python ./tests/ui/scripts/generate_fxa_email.py)
             # Pull images
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml pull --quiet
             # Start Containers
