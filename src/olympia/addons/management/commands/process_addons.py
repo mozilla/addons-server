@@ -24,7 +24,8 @@ from olympia.lib.crypto.tasks import sign_addons
 from olympia.ratings.tasks import (
     delete_armagaddon_ratings_for_addons, get_armagaddon_ratings_filters
 )
-from olympia.reviewers.tasks import recalculate_post_review_weight
+from olympia.reviewers.tasks import (
+    recalculate_post_review_weight, get_recalc_needed_filters)
 from olympia.versions.compare import version_int
 
 
@@ -42,6 +43,9 @@ tasks = {
             Q(**{current_autoapprovalsummary + 'verdict': amo.AUTO_APPROVED}) &
             ~Q(**{current_autoapprovalsummary + 'confirmed': True})
         ]},
+    'constantly_recalculate_post_review_weight': {
+        'method': recalculate_post_review_weight,
+        'qs': get_recalc_needed_filters()},
     'resign_addons_for_cose': {
         'method': sign_addons,
         'qs': [
