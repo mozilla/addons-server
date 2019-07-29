@@ -215,7 +215,7 @@ urlpatterns = decorate(use_primary_db, [
 #    url('^theme/submit/upload/'
 #        '(?P<upload_type>persona_header)$',
 #        views.ajax_upload_image, name='devhub.personas.upload_persona'),
-#    url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
+    url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     # Add-on SDK page
     url('builder$', lambda r: redirect(views.MDN_BASE)),
