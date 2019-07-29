@@ -2,9 +2,7 @@ import uuid
 
 
 def create_fxa_email():
-    id = uuid.uuid1()
-    email = f"uitest-{id}@restmail.net"
-    print(f"{email}")
+    print(f"uitest-{uuid.uuid1()}@restmail.net")
 
 
 if __name__ == "__main__":
