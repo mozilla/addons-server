@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.core import mail
 from django.core.management import call_command
@@ -15,6 +15,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.management.commands import process_addons
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, MigratedLWT, ReusedGUID, GUID_REUSE_FORMAT)
+from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.files.models import FileValidation, WebextPermission
@@ -225,6 +226,137 @@ class RecalculateWeightTestCase(TestCase):
         summary.reload()
         # Weight should be 10 because of average_daily_users / 10000.
         assert summary.weight == 10
+
+
+class ConstantlyRecalculateWeightTestCase(TestCase):
+    def test_affects_correct_addons(self):
+        # *not considered* - Non auto-approved add-on
+        addon_factory()
+
+        # *not considered* - Non auto-approved add-on that has an
+        # AutoApprovalSummary entry
+        AutoApprovalSummary.objects.create(
+            version=addon_factory().current_version,
+            verdict=amo.NOT_AUTO_APPROVED)
+
+        # *not considered* -Add-on with the current version not auto-approved
+        extra_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=extra_addon.current_version, verdict=amo.AUTO_APPROVED)
+        extra_addon.current_version.update(created=self.days_ago(1))
+        version_factory(addon=extra_addon)
+
+        # *not considered* - current version is auto-approved but doesn't
+        # have recent abuse reports or low ratings
+        auto_approved_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=auto_approved_addon.current_version,
+            verdict=amo.AUTO_APPROVED)
+
+        # *considered* - current version is auto-approved and
+        # has a recent rating with rating <= 3
+        auto_approved_addon1 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon1.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon1,
+            version=auto_approved_addon1.current_version,
+            rating=2, body='Apocalypse', user=user_factory()),
+
+        # *not considered* - current version is auto-approved but
+        # has a recent rating with rating > 3
+        auto_approved_addon2 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon2.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon2,
+            version=auto_approved_addon2.current_version,
+            rating=4, body='Apocalypse', user=user_factory()),
+
+        # *not considered* - current version is auto-approved but
+        # has a recent rating with rating > 3
+        auto_approved_addon3 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon3.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon3,
+            version=auto_approved_addon3.current_version,
+            rating=4, body='Apocalypse', user=user_factory()),
+
+        # *not considered* - current version is auto-approved but
+        # has a low rating that isn't recent enough
+        auto_approved_addon4 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon4.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified - timedelta(days=3),
+            addon=auto_approved_addon4,
+            version=auto_approved_addon4.current_version,
+            rating=1, body='Apocalypse', user=user_factory()),
+
+        # *considered* - current version is auto-approved and
+        # has a recent abuse report
+        auto_approved_addon5 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon5.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            addon=auto_approved_addon5,
+            created=summary.modified + timedelta(days=3))
+
+        # *not considered* - current version is auto-approved but
+        # has an abuse report that isn't recent enough
+        auto_approved_addon6 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon6.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            addon=auto_approved_addon6,
+            created=summary.modified - timedelta(days=3))
+
+        # *considered* - current version is auto-approved and
+        # has an abuse report through it's author that is recent enough
+        author = user_factory()
+        auto_approved_addon7 = addon_factory(users=[author])
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon7.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            user=author,
+            created=summary.modified + timedelta(days=3))
+
+        # *not considered* - current version is auto-approved and
+        # has an abuse report through it's author that is recent enough
+        # BUT the abuse report is deleted.
+        author = user_factory()
+        auto_approved_addon8 = addon_factory(users=[author])
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon8.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            user=author,
+            state=AbuseReport.STATES.DELETED,
+            created=summary.modified + timedelta(days=3))
+
+        with count_subtask_calls(
+                process_addons.recalculate_post_review_weight) as calls:
+            call_command(
+                'process_addons',
+                task='constantly_recalculate_post_review_weight')
+
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[
+            auto_approved_addon1.pk,
+            auto_approved_addon5.pk,
+            auto_approved_addon7.pk,
+        ]]
 
 
 class TestExtractWebextensionsToGitStorage(TestCase):
