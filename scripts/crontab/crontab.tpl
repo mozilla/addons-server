@@ -40,6 +40,8 @@ HOME=/tmp
 
 # Once per week
 1 9 * * 1 %(django)s review_reports
+0 15 * * 6 %(django)s process_addons --task=constantly_recalculate_post_review_weight
+
 
 # Do not put crons below this line
 
