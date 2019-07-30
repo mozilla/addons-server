@@ -1,5 +1,6 @@
 {% extends "devhub/base.html" %}
 
+{% from "devhub/includes/macros.html" import tip, some_html_tip %}
 
 {% set title = _('Manage Authors & License') %}
 
@@ -20,7 +21,6 @@
 <section id="edit-addon" class="primary devhub-form" role="main">
 <form method="post" class="item">
   {% csrf_token %}
-  {{ user_form.management_form }}
   <div class="item_wrapper">
     <table>
       <tr>
@@ -29,18 +29,43 @@
           <a id="what-are-roles" href="#">{{ _('About author roles') }}</a>
         </th>
         <td>
+          {{ user_form.management_form }}
           {{ user_form.non_form_errors() }}
-          <ul id="author_list">
+          <ul id="authors_confirmed" class="author_list">
           {% for form in user_form.forms %}
             <li class="author {{ 'initial' if not form.user.errors else '' }}">
               <span class="handle">&nbsp;</span>
               {{ form.user.errors }}
               {{ form.user }}
               {{ form.role }}
-              {{ form.listed }}{{ form.listed.label_tag() }}
+              {{ form.listed }}{{ form.listed.label_tag(label_suffix='') }}
               {{ form.id }}
               <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
               <span class="js-hidden position">{{ form.position }}</span>
+              <a href="#" class="remove">x</a>
+            </li>
+          {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th {% if not authors_pending_confirmation_form.forms %}class="invisible"{% endif %}>
+          {{ tip(_('Authors pending confirmation'),
+             _("Authors that have been added to this add-on but haven't confirmed.")) }}
+        </th>
+        <td>
+          {{ authors_pending_confirmation_form.management_form }}
+          {{ authors_pending_confirmation_form.non_form_errors() }}
+          <ul id="authors_pending_confirmation" class="author_list">
+          {% for form in authors_pending_confirmation_form.forms %}
+            <li class="author {{ 'initial' if not form.user.errors else '' }}">
+              {# No handle, we don't allow re-organizing authors pending confirmation as it doesn't make sense #}
+              {{ form.user.errors }}
+              {{ form.user }}
+              {{ form.role }}
+              {{ form.listed }}{{ form.listed.label_tag(label_suffix='') }}
+              {{ form.id }}
+              <span class="js-hidden delete">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
               <a href="#" class="remove">x</a>
             </li>
           {% endfor %}
@@ -57,15 +82,13 @@
   </div>
   <div class="listing-footer"><button type="submit">{{ _('Save Changes') }}</button></div>
 </form>
-{% with form=user_form.empty_form %}
+{% with form=authors_pending_confirmation_form.empty_form %}
 <ul id="user-form-template" class="hidden">
   <li class="blank">
-    <span class="handle">&nbsp;</span>
     {{ form.user }}
     {{ form.role }}
-    {{ form.listed }}{{ form.listed.label_tag() }}
+    {{ form.listed }}{{ form.listed.label_tag(label_suffix='') }}
     <span class="js-hidden">{{ form.DELETE }}{{ form.DELETE.label_tag() }}</span>
-    <span class="js-hidden position">{{ form.position }}</span>
     <a href="#" class="remove">x</a>
   </li>
 </ul>

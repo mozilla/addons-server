@@ -11,6 +11,11 @@ form .char-count:after,
     height: 0;
     visibility: hidden;
 }
+
+.invisible {
+    visibility: hidden;
+}
+
 /* @group Edit addon */
 #edit-addon .edit-addon-section {
     margin-bottom:3em;
@@ -465,26 +470,26 @@ form.new-addon-file label[for=id_is_sideload] {
 }
 
 /* @group Ownership */
-#author_list .author-email {
+.author_list .author-email {
     width: 220px;
     padding-right:20px;
 }
-#author_list {
+.author_list {
     padding-top: 4px;
 }
-#author_list li {
+.author_list li {
     padding: 8px 0;
     border-bottom: 1px dotted #ADD0DC;
 }
-#author_list .blank {
+.author_list li:last-of-type {
     border: 0;
 }
-#author_list li > label,
-#author_list li > input,
-#author_list li > select {
+.author_list li > label,
+.author_list li > input,
+.author_list li > select {
     margin-right: .5em;
 }
-#author_list .handle,
+.author_list .handle,
 #file-list .handle {
     width: 20px;
     height: 16px;
@@ -496,10 +501,11 @@ form.new-addon-file label[for=id_is_sideload] {
     display: block;
     float: left;
 }
-#author_list .blank * {
+.author_list .blank * {
     display: none;
 }
-#author_list .blank .author-email {
+.author_list .blank .author-email,
+#authors_pending_confirmation .author-email {
     display: inline;
     margin-left: 23px;
 }
