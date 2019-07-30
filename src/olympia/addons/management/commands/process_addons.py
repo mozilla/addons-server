@@ -52,8 +52,10 @@ def get_recalc_needed_filters():
         ) |
 
         # And check ratings that have a rating of 3 or less
-        Q(_current_version__ratings__created__gte=summary_modified,
-          _current_version__ratings__rating__lte=3)
+        Q(
+            _current_version__ratings__deleted=False,
+            _current_version__ratings__created__gte=summary_modified,
+            _current_version__ratings__rating__lte=3)
     ]
 
 
