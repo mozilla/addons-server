@@ -181,7 +181,9 @@ class AddonAbuseViewSetTestBase(object):
                   'message': 'a' * 10001})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'message': ['Ensure this field has no more than 10000 characters.']
+            'message': [
+                'Please ensure this field has no more than 10000 characters.'
+            ]
         }
 
     def test_throttle(self):
