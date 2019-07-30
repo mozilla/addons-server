@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
-from django.db.models import Q
+from django.db.models import Q, F
 
 from celery import chord, group
 
@@ -18,19 +18,43 @@ from olympia.addons.tasks import (
     recreate_theme_previews,
     repack_themes_for_69,
 )
+from olympia.abuse.models import AbuseReport
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.ratings.tasks import (
     delete_armagaddon_ratings_for_addons, get_armagaddon_ratings_filters
 )
-from olympia.reviewers.tasks import (
-    recalculate_post_review_weight, get_recalc_needed_filters)
+from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
 
 
 firefox_56_star = version_int('56.*')
 current_autoapprovalsummary = '_current_version__autoapprovalsummary__'
+
+
+def get_recalc_needed_filters():
+    summary_modified = F('_current_version__autoapprovalsummary__modified')
+    # We don't take deleted reports into account
+    valid_abuse_report_states = (
+        AbuseReport.STATES.UNTRIAGED, AbuseReport.STATES.VALID,
+        AbuseReport.STATES.SUSPICIOUS)
+    return [
+        # Only recalculate add-ons that received recent abuse reports
+        # possibly through their authors.
+        Q(
+            abuse_reports__state__in=valid_abuse_report_states,
+            abuse_reports__created__gte=summary_modified
+        ) |
+        Q(
+            authors__abuse_reports__state__in=valid_abuse_report_states,
+            authors__abuse_reports__created__gte=summary_modified
+        ) |
+
+        # And check ratings that have a rating of 3 or less
+        Q(_current_version__ratings__created__gte=summary_modified,
+          _current_version__ratings__rating__lte=3)
+    ]
 
 
 tasks = {
@@ -44,6 +68,9 @@ tasks = {
             ~Q(**{current_autoapprovalsummary + 'confirmed': True})
         ]},
     'constantly_recalculate_post_review_weight': {
+        # This re-calculates the whole post-review weight which can be costly
+        # so take that into account. We may want to optimize that later
+        # in case we notice things are slower than needed - cgrebs 20190730
         'method': recalculate_post_review_weight,
         'qs': get_recalc_needed_filters()},
     'resign_addons_for_cose': {
