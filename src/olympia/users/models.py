@@ -79,17 +79,32 @@ class UserForeignKey(models.ForeignKey):
 
 
 class UserEmailField(forms.EmailField):
-
     def clean(self, value):
         if value in validators.EMPTY_VALUES:
             raise forms.ValidationError(self.error_messages['required'])
         try:
-            return UserProfile.objects.get(email=value)
+            return UserProfile.objects.filter(deleted=False).get(email=value)
         except UserProfile.DoesNotExist:
             raise forms.ValidationError(ugettext('No user with that email.'))
 
     def widget_attrs(self, widget):
         return {'class': 'author-email'}
+
+    def get_bound_field(self, form, field_name):
+        return UserEmailBoundField(form, self, field_name)
+
+
+class UserEmailBoundField(forms.BoundField):
+    """A BoundField that treats disabled as readonly (enabling users to select
+    the text, not suffer from low contrast etc. The form field underneath
+    behaves normally and django will still ignore incoming data for it)."""
+
+    def build_widget_attrs(self, *args, **kwargs):
+        attrs = super().build_widget_attrs(*args, **kwargs)
+        if attrs.get('disabled'):
+            attrs.pop('disabled')
+            attrs['readonly'] = True
+        return attrs
 
 
 class UserManager(BaseUserManager, ManagerBase):

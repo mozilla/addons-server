@@ -30,7 +30,9 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
-from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.addons.decorators import addon_view_factory
+from olympia.addons.models import (
+    Addon, AddonReviewerFlags, AddonUser, AddonUserPendingConfirmation)
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -51,7 +53,7 @@ from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
-from olympia.users.models import DeveloperAgreementRestriction, UserProfile
+from olympia.users.models import DeveloperAgreementRestriction
 from olympia.versions.models import Version
 from olympia.versions.tasks import extract_version_source_to_git
 from olympia.versions.utils import get_next_version_number
@@ -401,14 +403,73 @@ def disable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
+# Can't use @dev_required, as the user is not a developer yet. This is also
+# why the function doesn't receive the addon_id parameter.
+@login_required
+@addon_view_factory(qs=Addon.objects.all)
+def invitation(request, addon):
+    try:
+        invitation = AddonUserPendingConfirmation.objects.get(
+            addon=addon, user=request.user)
+    except AddonUserPendingConfirmation.DoesNotExist:
+        # To be nice in case the user accidentally visited this page after
+        # having accepted an invite, redirect to the add-on base edit page.
+        # If they are an author, they will have access, otherwise will get the
+        # appropriate error.
+        return redirect(addon.get_dev_url())
+    if request.method == 'POST':
+        value = request.POST.get('accept')
+        if value == 'yes':
+            # There is a potential race condition on the position, but it's
+            # difficult to find a sensible value anyway. Should a position
+            # conflict happen, owners can easily fix it themselves.
+            last_position = AddonUser.objects.filter(
+                addon=invitation.addon).order_by('position').values_list(
+                'position', flat=True).last() or 0
+            AddonUser.objects.create(
+                addon=invitation.addon, user=invitation.user,
+                role=invitation.role, listed=invitation.listed,
+                position=last_position + 1)
+            messages.success(request, ugettext('Invitation accepted.'))
+            redirect_url = addon.get_dev_url()
+        else:
+            messages.success(request, ugettext('Invitation declined.'))
+            redirect_url = reverse('devhub.addons')
+        # Regardless of whether or not the invitation was accepted or not,
+        # it's now obsolete.
+        invitation.delete()
+        return redirect(redirect_url)
+    ctx = {
+        'addon': addon,
+        'invitation': invitation,
+    }
+    return render(request, 'devhub/addons/invitation.html', ctx)
+
+
 @dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
-    fs, ctx = [], {}
+    fs = []
+    ctx = {'addon': addon}
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
-    qs = AddonUser.objects.filter(addon=addon).order_by('position')
-    user_form = forms.AuthorFormSet(post_data, queryset=qs)
+    user_form = forms.AuthorFormSet(
+        post_data,
+        prefix='user_form',
+        queryset=AddonUser.objects.filter(addon=addon).order_by('position'),
+        form_kwargs={'addon': addon})
     fs.append(user_form)
+    ctx['user_form'] = user_form
+    # Authors pending confirmation (owner can still remove them before they
+    # accept).
+    authors_pending_confirmation_form = forms.AuthorWaitingConfirmationFormSet(
+        post_data,
+        prefix='authors_pending_confirmation',
+        queryset=AddonUserPendingConfirmation.objects.filter(
+            addon=addon).order_by('id'),
+        form_kwargs={'addon': addon})
+    fs.append(authors_pending_confirmation_form)
+    ctx['authors_pending_confirmation_form'] = (
+        authors_pending_confirmation_form)
     # Versions.
     license_form = forms.LicenseForm(post_data, version=addon.current_version)
     ctx.update(license_form.get_context())
@@ -417,80 +478,101 @@ def ownership(request, addon_id, addon):
     # Policy.
     if addon.type != amo.ADDON_STATICTHEME:
         policy_form = forms.PolicyForm(post_data, addon=addon)
-        ctx.update(policy_form=policy_form)
+        ctx['policy_form'] = policy_form
         fs.append(policy_form)
     else:
         policy_form = None
 
-    def mail_user_changes(author, title, template_part, recipients):
+    def mail_user_changes(author, title, template_part, recipients,
+                          extra_context=None):
         from olympia.amo.utils import send_mail
 
-        t = loader.get_template(
+        context_data = {
+            'author': author,
+            'addon': addon,
+            'domain': settings.DOMAIN,
+        }
+        if extra_context:
+            context_data.update(extra_context)
+        template = loader.get_template(
             'users/email/{part}.ltxt'.format(part=template_part))
-        send_mail(title,
-                  t.render({'author': author, 'addon': addon,
-                            'site_url': settings.SITE_URL}),
+        send_mail(title, template.render(context_data),
                   None, recipients, use_deny_list=False)
 
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        # Authors.
-        authors = user_form.save(commit=False)
-        addon_authors_emails = list(
-            addon.authors.values_list('email', flat=True))
-        authors_emails = set(addon_authors_emails +
-                             [author.user.email for author in authors])
-        for author in authors:
+    def process_author_changes(source_form, existing_authors_emails):
+        addon_users_to_process = source_form.save(commit=False)
+        for addon_user in addon_users_to_process:
             action = None
-            if not author.id or author.user_id != author._original_user_id:
+            addon_user.addon = addon
+            if not addon_user.pk:
                 action = amo.LOG.ADD_USER_WITH_ROLE
-                author.addon = addon
                 mail_user_changes(
-                    author=author,
+                    author=addon_user,
                     title=ugettext('An author has been added to your add-on'),
                     template_part='author_added',
-                    recipients=authors_emails)
-            elif author.role != author._original_role:
-                action = amo.LOG.CHANGE_USER_WITH_ROLE
-                title = ugettext('An author has a role changed on your add-on')
+                    recipients=existing_authors_emails)
                 mail_user_changes(
-                    author=author,
+                    author=addon_user,
+                    title=ugettext(
+                        'Author invitation for {addon_name}').format(
+                        addon_name=str(addon.name)),
+                    template_part='author_added_confirmation',
+                    recipients=[addon_user.user.email],
+                    extra_context={'author_confirmation_link': absolutify(
+                        reverse('devhub.addons.invitation', args=(addon.slug,))
+                    )})
+                messages.success(request, ugettext(
+                    'A confirmation email has been sent to {email}').format(
+                    email=addon_user.user.email))
+
+            elif addon_user.role != addon_user._original_role:
+                action = amo.LOG.CHANGE_USER_WITH_ROLE
+                title = ugettext(
+                    'An author role has been changed on your add-on')
+                recipients = list(
+                    set(existing_authors_emails + [addon_user.user.email])
+                )
+                mail_user_changes(
+                    author=addon_user,
                     title=title,
                     template_part='author_changed',
-                    recipients=authors_emails)
-
-            author.save()
+                    recipients=recipients)
+            addon_user.save()
             if action:
                 ActivityLog.create(
-                    action, author.user,
-                    str(author.get_role_display()), addon)
-            if (author._original_user_id and
-                    author.user_id != author._original_user_id):
-                ActivityLog.create(
-                    amo.LOG.REMOVE_USER_WITH_ROLE,
-                    (UserProfile, author._original_user_id),
-                    str(author.get_role_display()), addon)
-
-        for author in user_form.deleted_objects:
-            author.delete()
+                    action, addon_user.user,
+                    str(addon_user.get_role_display()), addon)
+        for addon_user in source_form.deleted_objects:
+            recipients = list(
+                set(existing_authors_emails + [addon_user.user.email])
+            )
             ActivityLog.create(
-                amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
-                str(author.get_role_display()), addon)
-            authors_emails.add(author.user.email)
+                amo.LOG.REMOVE_USER_WITH_ROLE, addon_user.user,
+                str(addon_user.get_role_display()), addon)
             mail_user_changes(
-                author=author,
+                author=addon_user,
                 title=ugettext('An author has been removed from your add-on'),
                 template_part='author_removed',
-                recipients=authors_emails)
+                recipients=recipients)
+            addon_user.delete()
 
+    if request.method == 'POST' and all([form.is_valid() for form in fs]):
         if license_form in fs:
             license_form.save()
         if policy_form and policy_form in fs:
             policy_form.save()
         messages.success(request, ugettext('Changes successfully saved.'))
 
+        existing_authors_emails = list(
+            addon.authors.values_list('email', flat=True))
+
+        process_author_changes(
+            authors_pending_confirmation_form, existing_authors_emails)
+        process_author_changes(
+            user_form, existing_authors_emails)
+
         return redirect(addon.get_dev_url('owner'))
 
-    ctx.update(addon=addon, user_form=user_form)
     return render(request, 'devhub/addons/owner.html', ctx)
 
 
