@@ -85,6 +85,9 @@ jobs:
             - uitest-cache-{{ checksum "requirements/uitests.txt" }}
             - uitest-cache-
       - run:
+          name: "Set Python Version"
+          command: pyenv global 3.7.0
+      - run:
           name: Install Docker Compose
           command: |
             # using curl to install for better ci -> local compatibility
@@ -106,9 +109,7 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
-            # Install UUID
-            sudo apt-get update -qqy && sudo apt-get -qqy install uuid
-            export UITEST_FXA_EMAIL=uitest-$(uuid)@restmail.net
+            export UITEST_FXA_EMAIL=$(python ./tests/ui/scripts/generate_fxa_email.py)
             # Pull images
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml pull --quiet
             # Start Containers
