@@ -2,8 +2,6 @@
 import json
 from datetime import datetime
 
-from django.core import mail
-
 from unittest import mock
 
 from olympia import amo
@@ -28,7 +26,6 @@ class AddonAbuseViewSetTestBase(object):
     def check_report(self, report, text):
         assert str(report) == text
         assert report.country_code == 'ZZ'
-        assert mail.outbox[0].subject == text
         self.check_reporter(report)
 
     def test_report_addon_by_id(self):
@@ -327,7 +324,6 @@ class UserAbuseViewSetTestBase(object):
     def check_report(self, report, text):
         assert str(report) == text
         assert report.country_code == 'ZZ'
-        assert mail.outbox[0].subject == text
         self.check_reporter(report)
 
     def test_report_user_id(self):

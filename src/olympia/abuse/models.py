@@ -11,7 +11,6 @@ from geoip2.errors import GeoIP2Error
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ManagerBase, ModelBase
-from olympia.amo.utils import send_mail
 from olympia.api.utils import APIChoicesWithNone
 from olympia.users.models import UserProfile
 
@@ -163,29 +162,6 @@ class AbuseReport(ModelBase):
         # saving already deleted objects.
         base_manager_name = 'unfiltered'
 
-    def send(self):
-        if self.reporter:
-            user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
-        else:
-            user_name = 'An anonymous user'
-
-        # Give a URL pointing to the admin for that report. If there is a
-        # target (add-on or user in database) we can point directly to the
-        # admin url for that object, otherwise we use the admin url of the
-        # report itself.
-        if self.target:
-            target_url = self.target.get_admin_absolute_url()
-            target_name = self.target.name
-        else:
-            target_url = self.get_admin_absolute_url()
-            target_name = self.guid
-        metadata = '\n'.join(
-            ['%s => %s' % (k, v) for k, v in self.metadata.items()]
-        )
-        msg = '%s reported abuse for %s (%s).\n\n%s\n\n%s' % (
-            user_name, target_name, target_url, metadata, self.message)
-        send_mail(str(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
-
     @property
     def metadata(self):
         """
@@ -210,12 +186,6 @@ class AbuseReport(ModelBase):
                     value = getattr(self, 'get_%s_display' % field_name)()
                 data[field_name] = value
         return data
-
-    def save(self, *args, **kwargs):
-        creation = not self.pk
-        super(AbuseReport, self).save(*args, **kwargs)
-        if creation:
-            self.send()
 
     def delete(self, *args, **kwargs):
         # AbuseReports are soft-deleted. Note that we keep relations, because
