@@ -2,8 +2,9 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.discovery.models import DiscoveryItem
 
-from ..models import PrimaryHero
-from ..serializers import PrimaryHeroShelfSerializer
+from ..models import PrimaryHero, SecondaryHero
+from ..serializers import (
+    PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
 
 
 class TestPrimaryHeroShelfViewSet(TestCase):
@@ -32,12 +33,20 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             image='external.png',
             gradient_color='#FABFAB',
             is_external=True)
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            image='wah.png',
+            gradient_color='#989898')
 
-        # The shelf isn't enabled so still won't show up
+        # The shelves aren't enabled so still won't show up
         response = self.client.get(self.url)
         assert response.json() == {'results': []}
 
-        PrimaryHero.objects.update(enabled=True)
+        hero_a.update(enabled=True)
+        hero_b.update(enabled=True)
+        hero_external.update(enabled=True)
+        # don't enable the 3rd PrimaryHero object
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json() == {
@@ -53,19 +62,59 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         }
 
 
+class TestSecondaryHeroShelfViewSet(TestCase):
+    def setUp(self):
+        self.url = reverse_ns('hero-secondary-list', api_version='v5')
+
+    def test_basic(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.json() == {'results': []}
+
+        hero_a = SecondaryHero.objects.create(
+            headline='Its a héadline!',
+            description='foo')
+        hero_b = SecondaryHero.objects.create(
+            headline='%^*',
+            description='',
+            cta_url='http://goo.gl',
+            cta_text='goozilla')
+        SecondaryHero.objects.create(
+            headline='dfdfd!',
+            description='dfdfd')
+
+        # The shelf isn't enabled so still won't show up
+        response = self.client.get(self.url)
+        assert response.json() == {'results': []}
+
+        hero_a.update(enabled=True)
+        hero_b.update(enabled=True)
+        # don't enable the 3rd PrimaryHero object
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.json() == {
+            'results': [
+                SecondaryHeroShelfSerializer(instance=hero_a).data,
+                SecondaryHeroShelfSerializer(instance=hero_b).data]}
+
+
 class TestHeroShelvesView(TestCase):
     def setUp(self):
         self.url = reverse_ns('hero-shelves', api_version='v5')
 
     def test_basic(self):
-        hero = PrimaryHero.objects.create(
+        phero = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            enabled=True)
+        shero = SecondaryHero.objects.create(
+            headline='headline', description='description',
             enabled=True)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json() == {
-            'primary': PrimaryHeroShelfSerializer(instance=hero).data,
+            'primary': PrimaryHeroShelfSerializer(instance=phero).data,
+            'secondary': SecondaryHeroShelfSerializer(instance=shero).data,
         }
 
     def test_shelf_randomness(self):

@@ -3,8 +3,10 @@ from olympia.amo.tests import addon_factory, TestCase
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
-from ..models import GRADIENT_START_COLOR, PrimaryHero
-from ..serializers import ExternalAddonSerializer, PrimaryHeroShelfSerializer
+from ..models import GRADIENT_START_COLOR, PrimaryHero, SecondaryHero
+from ..serializers import (
+    ExternalAddonSerializer, PrimaryHeroShelfSerializer,
+    SecondaryHeroShelfSerializer)
 
 
 class TestPrimaryHeroShelfSerializer(TestCase):
@@ -55,4 +57,26 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'homepage': {'en-US': str(addon.homepage)},
             'name': {'en-US': str(addon.name)},
             'type': 'extension',
+        }
+
+
+class TestSecondaryHeroShelfSerializer(TestCase):
+    def test_basic(self):
+        hero = SecondaryHero.objects.create(
+            headline='Its a héadline!', description='description')
+        data = SecondaryHeroShelfSerializer(instance=hero).data
+        assert data == {
+            'headline': 'Its a héadline!',
+            'description': 'description',
+            'cta': None,
+        }
+        hero.update(cta_url='/extensions/', cta_text='Go here')
+        data = SecondaryHeroShelfSerializer(instance=hero).data
+        assert data == {
+            'headline': 'Its a héadline!',
+            'description': 'description',
+            'cta': {
+                'url': 'http://testserver/extensions/',
+                'text': 'Go here',
+            },
         }

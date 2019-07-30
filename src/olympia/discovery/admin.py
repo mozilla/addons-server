@@ -7,7 +7,8 @@ from django.utils.safestring import mark_safe
 
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.admin import PrimaryHeroInline
+from olympia.hero.admin import PrimaryHeroInline, SecondaryHeroAdmin
+from olympia.hero.models import SecondaryHero
 
 
 # Popular locales, we typically don't want to show a string if it's not
@@ -114,4 +115,13 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         return format_html(u''.join(translations))
 
 
+class SecondaryHeroShelf(SecondaryHero):
+    """Just a proxy class to have all the hero shelf related objects in one
+    place under Discovery in django admin."""
+
+    class Meta(SecondaryHero.Meta):
+        proxy = True
+
+
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
+admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)

@@ -3,8 +3,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
-from .models import PrimaryHero
-from .serializers import PrimaryHeroShelfSerializer
+from .models import PrimaryHero, SecondaryHero
+from .serializers import (
+    PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
 
 
 class ShelfViewSet(ListModelMixin, GenericViewSet):
@@ -31,10 +32,17 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
     serializer_class = PrimaryHeroShelfSerializer
 
 
+class SecondaryHeroShelfViewSet(ShelfViewSet):
+    queryset = SecondaryHero.objects
+    serializer_class = SecondaryHeroShelfSerializer
+
+
 class HeroShelvesView(APIView):
     def get(self, request, format=None):
         output = {
             'primary': PrimaryHeroShelfViewSet(
+                request=request).get_one_random().data,
+            'secondary': SecondaryHeroShelfViewSet(
                 request=request).get_one_random().data,
         }
         return Response(output)
