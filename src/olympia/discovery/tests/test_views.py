@@ -175,9 +175,9 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         assert results[2]['addon']['id'] == discopane_items[5].addon_id
         assert results[3]['addon']['id'] == discopane_items[6].addon_id
 
-    def test_china_edition_list(self):
+    def test_china_edition_list(self, edition='china'):
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'edition': 'china'})
+            self.url, {'lang': 'en-US', 'edition': edition})
         assert response.data
 
         discopane_items_china = DiscoveryItem.objects.all().filter(
@@ -188,6 +188,10 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
             self._check_disco_addon(result, discopane_items_china[i])
+
+    def test_china_edition_alias_list(self, edition='china'):
+        self.test_china_edition_list(edition='MozillaOnline')
+        self.test_china_edition_list(edition='mozillaonline')
 
     def test_invalid_edition_returns_default(self):
         response = self.client.get(

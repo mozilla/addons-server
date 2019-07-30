@@ -1,8 +1,8 @@
 pyinotify==0.9.6 \
     --hash=sha256:9c998a5d7606ca835065cdabc013ae6c66eb9ea76a00a1e3bc6e0cfe2b4f71f4
 # ipython / ipdb for easier debugging, supervisor to run services
-ipdb==0.12 \
-    --hash=sha256:dce2112557edfe759742ca2d0fee35c59c97b0cc7a05398b791079d78f1519ce
+ipdb==0.12.1 \
+    --hash=sha256:68019ef3ae338f9d5b0e6a2b7f353ea7377c2f4e0437776d6072c55cb708e7fa
 ipython==7.7.0 \
     --hash=sha256:1d3a1692921e932751bc1a1f7bb96dc38671eeefdc66ed33ee4cbc57e92a410e \
     --hash=sha256:537cd0176ff6abd06ef3e23f2d0c4c2c8a4d9277b7451544c6cbf56d1c79a83d

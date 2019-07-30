@@ -2,8 +2,6 @@
 import json
 from datetime import datetime
 
-from django.core import mail
-
 from unittest import mock
 
 from olympia import amo
@@ -28,7 +26,6 @@ class AddonAbuseViewSetTestBase(object):
     def check_report(self, report, text):
         assert str(report) == text
         assert report.country_code == 'ZZ'
-        assert mail.outbox[0].subject == text
         self.check_reporter(report)
 
     def test_report_addon_by_id(self):
@@ -181,7 +178,9 @@ class AddonAbuseViewSetTestBase(object):
                   'message': 'a' * 10001})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'message': ['Ensure this field has no more than 10000 characters.']
+            'message': [
+                'Please ensure this field has no more than 10000 characters.'
+            ]
         }
 
     def test_throttle(self):
@@ -325,7 +324,6 @@ class UserAbuseViewSetTestBase(object):
     def check_report(self, report, text):
         assert str(report) == text
         assert report.country_code == 'ZZ'
-        assert mail.outbox[0].subject == text
         self.check_reporter(report)
 
     def test_report_user_id(self):

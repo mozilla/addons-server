@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from django.utils.translation import ugettext_lazy as _
+
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.accounts.serializers import BaseUserSerializer
@@ -31,6 +33,13 @@ class BaseAbuseReportSerializer(serializers.ModelSerializer):
 
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
+    error_messages = {
+        'max_length': _(
+            'Please ensure this field has no more than {max_length} '
+            'characters.'
+        )
+    }
+
     addon = serializers.SerializerMethodField()
     reason = ReverseChoiceField(
         choices=list(AbuseReport.REASONS.api_choices), required=False,
@@ -39,7 +48,8 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     # was provided or not. We need to not set it as required and allow blank at
     # the field level to make that work.
     message = serializers.CharField(
-        required=False, allow_blank=True, max_length=10000)
+        required=False, allow_blank=True, max_length=10000,
+        error_messages=error_messages)
     app = ReverseChoiceField(
         choices=list((v.id, k) for k, v in amo.APPS.items()), required=False,
         source='application')

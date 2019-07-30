@@ -123,15 +123,15 @@ billiard==3.6.0.0 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.9.197 \
-    --hash=sha256:01f1792838981191da87bed271f2b486841a282fcd78a3b5bac98e5b85c95ba8 \
-    --hash=sha256:0f1f796abf85e53a8a50b893cbeccd93ee081184453127b663da4b97d72aa0cc
+boto3==1.9.198 \
+    --hash=sha256:897d65775d8009adf5e680199b75f9f09f27c779a093c3d97929c924e723300c \
+    --hash=sha256:d4a09a2e221815c9ef770ceca2cdbf5a7f058d973cdbd85067fe98704f499d71
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.197 \
-    --hash=sha256:6e7c49014430f73ba6ab638d4ad313f8522b8185e476fe1a57ce9cd50c596062 \
-    --hash=sha256:78627966a280328e4a7018758e91e6413d5cae8387e08ab219e232689a92cb45
+botocore==1.12.198 \
+    --hash=sha256:5c0c2336be8076c27db7be05ede324f5df6b694b821859512e5368fbe7162273 \
+    --hash=sha256:769cd3b24ce9c483e9ec278528f0eb7874b4f31619af0e4644174201a08579fa
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -313,9 +313,9 @@ raven==6.10.0 \
 rdflib==4.2.2 \
     --hash=sha256:58d5994610105a457cff7fdfe3d683d87786c5028a45ae032982498a7e913d6f \
     --hash=sha256:da1df14552555c5c7715d8ce71c08f404c988c58a1ecd38552d0da4fc261280d
-redis==3.3.0 \
-    --hash=sha256:22b8b0041989d9002c04907466bc737cb6c3f6a77196315cf29205e13220836b \
-    --hash=sha256:73ced19326cb85f69eb0724005c3fc24eaf7a5b6c3b387bfb13e900e808078d0
+redis==3.3.2 \
+    --hash=sha256:067fd58d00c62145258bce0ef807ad605c3bc81795e8c883d5ed74688abb4f3d \
+    --hash=sha256:9d9daf304c2ad7ca9c82e8868a1ac09382b6b3a7d905ba497d2151157df8378c
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pytest-selenium, pyupio, safety
 requests==2.22.0 \
     --hash=sha256:11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4 \

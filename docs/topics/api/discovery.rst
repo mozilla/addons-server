@@ -34,7 +34,7 @@ Firefox (about:addons).
 .. http:get:: /api/v4/discovery/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string edition: Return content for a specific edition of Firefox.  Currently only ``china`` is supported.
+    :query string edition: Optionally return content for a specific edition of Firefox.  Currently only ``china`` (and the alias ``MozillaOnline``)  is supported.
     :query string telemetry-client-id: Optional sha256 hash of the telemetry client ID to be passed to the TAAR service to enable recommendations. Must be the hex value of a sha256 hash, otherwise it will be ignored.
     :>json int count: The number of results for this query.
     :>json array results: The array containing the results for this query.

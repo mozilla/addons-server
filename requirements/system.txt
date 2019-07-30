@@ -80,9 +80,9 @@ ndg-httpsclient==0.5.1 \
     --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4 \
     --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210
 # packaging is required by setuptools
-packaging==19.0 \
-    --hash=sha256:9e1cbf8c12b1f1ce0bb5344b8d7ecf66a6f8a6e91bcb0c84593ed6d3ab5c4ab3 \
-    --hash=sha256:0c98a5d0be38ed775798ece1b9727178c4469d9c3b4ada66e8e6b7849f8732af
+packaging==19.1 \
+    --hash=sha256:a7ac867b97fdc07ee80a8058fe4435ccd274ecc3b0ed61d852d7d53055528cf9 \
+    --hash=sha256:c491ca87294da7cc01902edbe30a5bc6c4c28172b5138ab4e4aa1b9d7bfaeafe
 pip==19.2.1 \
     --hash=sha256:258d702483dd749400aec59c23d638a5b2249ae28a0f478b6cab12ad45681a80 \
     --hash=sha256:80d7452630a67c1e7763b5f0a515690f2c1e9ad06dda48e0ae85b7fdf2f59d97
@@ -107,9 +107,9 @@ pyasn1==0.4.5 \
     --hash=sha256:9458d0273f95d035de4c0d5e0643f25daba330582cc71bb554fe6969c015042a \
     --hash=sha256:da2420fe13a9452d8ae97a0e478adde1dee153b11ba832a95b223a2ba01c10f7
 # pyparsing is required by packaging
-pyparsing==2.4.2a1 \
-    --hash=sha256:09b60ec311af02f93c66ab2cb65e3ca92c5cb5de5445894982ce9f0928b116f5 \
-    --hash=sha256:38181feb3a1278f464b7e1d0d647760f7ab08d93f654f886ff528946450adbab
+pyparsing==2.4.2 \
+    --hash=sha256:6f98a7b9397e206d78cc01df10131398f1c8b8510a2f4d97d9abd82e1aacdd80 \
+    --hash=sha256:d9338df12903bbf5d65a0e4e87c2161968b10d2e489652bb47001d82a9b028b4
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
 setuptools==41.0.1 \
     --hash=sha256:a222d126f5471598053c9a77f4b5d4f26eaa1f150ad6e01dcf1a42e185d05613 \

@@ -42,8 +42,6 @@ RUN apt-get update && apt-get -t stretch install -y \
         librsvg2-bin \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush \
-        # our makefile and ui-tests require uuid to be installed
-        uuid \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
         libmaxminddb-dev                 \
