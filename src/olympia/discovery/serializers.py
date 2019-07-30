@@ -64,8 +64,8 @@ class DiscoverySerializer(serializers.ModelSerializer):
         # If an object is ever returned without having a position set, that
         # means it's coming from the recommendation server, it wasn't an
         # editorial choice.
-        request = self.context.get('request')
-        if request and request.GET.get('edition') == 'china':
+        view = self.context.get('view')
+        if view and view.get_edition() == 'china':
             position_field = 'position_china'
         else:
             position_field = 'position'
