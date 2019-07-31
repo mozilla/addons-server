@@ -17,3 +17,10 @@ class YaraResult(ModelBase):
 
     class Meta:
         db_table = 'yara_results'
+
+    def add_match(self, rule, tags=[], meta={}):
+        self.matches.append({
+            'rule': rule,
+            'tags': tags,
+            'meta': meta,
+        })
