@@ -6,7 +6,6 @@ on module-level, they should instead be added to hooks or fixtures directly.
 """
 import os
 import uuid
-import warnings
 
 import pytest
 import responses
@@ -97,6 +96,59 @@ def pytest_configure(config):
     prefix_indexes(config)
 
 
+@pytest.fixture(scope='session')
+def celery_config():
+    """Use our default testing configuration but inject it with
+    reasonable defaults for no-rabbitmq-testing.
+
+    Primarily inspired by `celery.contrib.testing.app:DEFAULT_TEST_CONFIG`
+    and copied here for better documentation.
+    """
+    from olympia.amo.celery import app
+
+    config = dict(app.conf)
+    config.update({
+        'worker_hijack_root_logger': False,
+        'worker_log_color': False,
+        'accept_content': {'json'},
+        'enable_utc': True,
+        'timezone': 'UTC',
+        'broker_url': 'memory://',
+        'result_backend': 'cache+memory://',
+        'broker_heartbeat': 0,
+        'worker_pool': 'solo',
+        'worker_concurrency': 1,
+    })
+
+    return config
+
+
+@pytest.fixture(autouse=True)
+def start_celery_worker(
+        request, settings, celery_config, celery_session_worker,
+        transactional_db):
+    """Start a proper celery worker for tests marked with
+
+    ``celery_worker_test``
+    """
+    marker = request.node.get_closest_marker('celery_worker_test')
+
+    if marker:
+        settings.CELERY_TASK_ALWAYS_EAGER = False
+        celery_session_worker.reload()
+
+
+@pytest.fixture(scope='session')
+def celery_worker_pool():
+    return 'solo'
+
+
+@pytest.fixture
+def celery_manager(celery_session_app):
+    from celery.contrib.testing.manager import Manager
+    return Manager(celery_session_app)
+
+
 @pytest.fixture(autouse=True, scope='session')
 def instrument_jinja():
     """Make sure the "templates" list in a response is properly updated, even
@@ -128,7 +180,7 @@ def default_prefixer(settings):
     amo.urlresolvers.set_url_prefix(prefixer)
 
 
-@pytest.yield_fixture(autouse=True)
+@pytest.fixture(autouse=True)
 def test_pre_setup(request, tmpdir, settings):
     from django.core.cache import caches
     from django.utils import translation

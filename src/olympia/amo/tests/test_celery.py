@@ -1,11 +1,14 @@
+import time
 import datetime
 
 from datetime import timedelta
+from unittest import mock
 
+from django.core.cache import cache
 from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
 
-from unittest import mock
+import pytest
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
@@ -17,25 +20,57 @@ from olympia.amo.utils import utc_millesecs_from_epoch
 fake_task_func = mock.Mock()
 
 
-@task
-def fake_task(**kw):
+@task(ignore_result=False)
+def fake_task():
     fake_task_func()
+    return 'foobar'
 
 
+@task
+def default_task():
+    fake_task_func()
+    return 'foobar'
+
+
+@task(track_started=True, ignore_result=False)
+def sleeping_task():
+    time.sleep(0.3)
+
+
+@pytest.mark.celery_worker_test
+def test_celery_worker_test_runs_through_worker():
+    result = sleeping_task.delay()
+    assert result.state == 'PENDING'
+    time.sleep(0.1)
+    assert result.state == 'STARTED'
+    time.sleep(0.3)
+    assert result.state == 'SUCCESS'
+
+
+@pytest.mark.celery_worker_test
+def test_celery_default_ignore_result():
+    result = default_task.delay().get()
+    assert result is None
+
+
+@pytest.mark.celery_worker_test
+def test_celery_explicit_dont_ignore_result():
+    result = fake_task.delay().get()
+    assert result == 'foobar'
+
+
+@pytest.mark.celery_worker_test
+def test_start_task_timer():
+    result = fake_task.delay()
+    key = f'task_start_time.{result.id}'
+    result.get()
+    print(key)
+    res = cache.get(key)
+    assert res
+
+
+@pytest.mark.celery_worker_test
 class TestTaskTiming(TestCase):
-
-    def setUp(self):
-        patch = mock.patch('olympia.amo.celery.cache')
-        self.cache = patch.start()
-        self.addCleanup(patch.stop)
-
-        patch = mock.patch('olympia.amo.celery.statsd')
-        self.statsd = patch.start()
-        self.addCleanup(patch.stop)
-
-    def test_cache_start_time(self):
-        fake_task.delay()
-        assert self.cache.set.call_args[0][0].startswith('task_start_time')
 
     def test_track_run_time(self):
         minute_ago = datetime.datetime.now() - timedelta(minutes=1)
