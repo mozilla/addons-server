@@ -642,8 +642,8 @@ class Addon(OnChangeMixin, ModelBase):
 
         if old_guid_addon:
             old_guid_addon.update(guid=GUID_REUSE_FORMAT.format(addon.pk))
-            old_guid_addon.save()
             ReusedGUID.objects.create(addon=old_guid_addon, guid=guid)
+            log.debug(f'GUID {guid} reused by addon pk [{addon.pk}].')
         if user:
             AddonUser(addon=addon, user=user).save()
         timer.log_interval('7.end')
