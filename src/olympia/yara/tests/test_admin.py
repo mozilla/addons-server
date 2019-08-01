@@ -41,9 +41,9 @@ class TestYaraResultAdmin(TestCase):
             addon=addon,
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        r = YaraResult(version=version)
+        result = YaraResult(version=version)
 
-        assert self.admin.formatted_addon(r) == (
+        assert self.admin.formatted_addon(result) == (
             '<a href="{}">{} (version: {})</a>'.format(
                 reverse('reviewers.review', args=[addon.slug]),
                 addon.name,
@@ -52,43 +52,43 @@ class TestYaraResultAdmin(TestCase):
         )
 
     def test_formatted_addon_without_version(self):
-        r = YaraResult(version=None)
+        result = YaraResult(version=None)
 
-        assert self.admin.formatted_addon(r) == '-'
+        assert self.admin.formatted_addon(result) == '-'
 
     def test_listed_channel(self):
         version = version_factory(
             addon=addon_factory(),
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        r = YaraResult(version=version)
+        result = YaraResult(version=version)
 
-        assert self.admin.channel(r) == 'listed'
+        assert self.admin.channel(result) == 'listed'
 
     def test_unlisted_channel(self):
         version = version_factory(
             addon=addon_factory(),
             channel=amo.RELEASE_CHANNEL_UNLISTED
         )
-        r = YaraResult(version=version)
+        result = YaraResult(version=version)
 
-        assert self.admin.channel(r) == 'unlisted'
+        assert self.admin.channel(result) == 'unlisted'
 
     def test_channel_without_version(self):
-        r = YaraResult(version=None)
+        result = YaraResult(version=None)
 
-        assert self.admin.channel(r) == '-'
+        assert self.admin.channel(result) == '-'
 
     def test_formatted_matches(self):
-        r = YaraResult()
-        r.add_match(rule='some-rule')
+        result = YaraResult()
+        result.add_match(rule='some-rule')
 
-        assert self.admin.formatted_matches(r) == format_html(
+        assert self.admin.formatted_matches(result) == format_html(
             '<pre>{}</pre>',
-            json.dumps(r.matches, indent=4)
+            json.dumps(result.matches, indent=4)
         )
 
     def test_formatted_matches_without_matches(self):
-        r = YaraResult()
+        result = YaraResult()
 
-        assert self.admin.formatted_matches(r) == '<pre>[]</pre>'
+        assert self.admin.formatted_matches(result) == '<pre>[]</pre>'

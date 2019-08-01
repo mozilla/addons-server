@@ -12,6 +12,7 @@ from .models import YaraResult
 @admin.register(YaraResult)
 class YaraResultAdmin(admin.ModelAdmin):
     actions = None
+    view_on_site = False
 
     list_display = ('id', 'formatted_addon', 'channel', 'matched_rules')
     list_select_related = ('version',)
