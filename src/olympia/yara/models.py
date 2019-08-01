@@ -18,9 +18,9 @@ class YaraResult(ModelBase):
     class Meta:
         db_table = 'yara_results'
 
-    def add_match(self, rule, tags=[], meta={}):
+    def add_match(self, rule, tags=None, meta=None):
         self.matches.append({
             'rule': rule,
-            'tags': tags,
-            'meta': meta,
+            'tags': tags or [],
+            'meta': meta or {},
         })

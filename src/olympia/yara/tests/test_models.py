@@ -9,24 +9,24 @@ class TestYaraResult(TestCase):
         addon = addon_factory()
         upload = FileUpload.objects.create(addon=addon)
 
-        r = YaraResult.objects.create(upload=upload)
+        result = YaraResult.objects.create(upload=upload)
 
-        assert r.id is not None
-        assert r.upload == upload
-        assert r.matches == []
-        assert r.version is None
+        assert result.id is not None
+        assert result.upload == upload
+        assert result.matches == []
+        assert result.version is None
 
     def test_add_match(self):
         addon = addon_factory()
         upload = FileUpload.objects.create(addon=addon)
-        r = YaraResult.objects.create(upload=upload)
+        result = YaraResult.objects.create(upload=upload)
 
         rule = 'some-yara-rule'
         tags = ['foo']
         meta = {'description': 'some description for some-yara-rule'}
-        r.add_match(rule=rule, tags=tags, meta=meta)
+        result.add_match(rule=rule, tags=tags, meta=meta)
 
-        assert r.matches == [{
+        assert result.matches == [{
             'rule': rule,
             'tags': tags,
             'meta': meta,
