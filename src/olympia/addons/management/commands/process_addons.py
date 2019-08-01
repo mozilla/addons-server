@@ -74,6 +74,7 @@ tasks = {
         # so take that into account. We may want to optimize that later
         # in case we notice things are slower than needed - cgrebs 20190730
         'method': recalculate_post_review_weight,
+        'kwargs': {'only_current_version': True},
         'qs': get_recalc_needed_filters()},
     'resign_addons_for_cose': {
         'method': sign_addons,
