@@ -38,7 +38,21 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         assert response.json() == {'results': []}
 
         PrimaryHero.objects.update(enabled=True)
-        response = self.client.get(self.url)
+        with self.assertNumQueries(11):
+            # 11 queries:
+            # - 1 to fetch the primaryhero/discoveryitem items
+            # - 1 to fetch the add-ons (can't be joined with the previous one
+            #   because we want to hit the Addon transformer)
+            # - 1 to fetch add-ons translations
+            # - 1 to fetch add-ons categories
+            # - 1 to fetch add-ons current_version
+            # - 1 to fetch the versions translations
+            # - 1 to fetch the versions applications_versions
+            # - 1 to fetch the versions files
+            # - 1 to fetch the add-ons authors
+            # - 1 to fetch the add-ons personas
+            # - 1 to fetch the add-ons previews
+            response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
             'results': [
@@ -62,7 +76,21 @@ class TestHeroShelvesView(TestCase):
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
             enabled=True)
 
-        response = self.client.get(self.url)
+        with self.assertNumQueries(11):
+            # 11 queries:
+            # - 1 to fetch the primaryhero/discoveryitem items
+            # - 1 to fetch the add-ons (can't be joined with the previous one
+            #   because we want to hit the Addon transformer)
+            # - 1 to fetch add-ons translations
+            # - 1 to fetch add-ons categories
+            # - 1 to fetch add-ons current_version
+            # - 1 to fetch the versions translations
+            # - 1 to fetch the versions applications_versions
+            # - 1 to fetch the versions files
+            # - 1 to fetch the add-ons authors
+            # - 1 to fetch the add-ons personas
+            # - 1 to fetch the add-ons previews
+            response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
             'primary': PrimaryHeroShelfSerializer(instance=hero).data,
