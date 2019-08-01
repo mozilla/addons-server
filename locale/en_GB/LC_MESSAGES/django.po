@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-26 19:48+0000\n"
-"Last-Translator: Joe ST <joe@fbstj.net>\n"
+"PO-Revision-Date: 2019-08-01 14:46+0000\n"
+"Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
@@ -4804,9 +4804,8 @@ msgstr "You cannot submit an add-on with a guid ending %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "You cannot submit a Mozilla Signed Extension"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "You cannot submit a Mozilla Signed Extension"
+msgstr "You cannot submit a language pack"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Unsupported file type, please upload a supported file {extensions}."
@@ -5369,9 +5368,8 @@ msgstr "Weight"
 msgid "Information Request Deadline"
 msgstr "Information Request Deadline"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Last Updated:"
+msgstr "Last Updated"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
@@ -5724,9 +5722,8 @@ msgstr "Add-on user change history"
 msgid "Add-on History"
 msgstr "Add-on History"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Previous note"
+msgstr "Previously deleted entries"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6349,9 +6346,8 @@ msgstr ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "The email address you used for your developer account is not allowed for add-on submission."
+msgstr "The email address used for your account is not allowed for add-on submission."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
