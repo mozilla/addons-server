@@ -16,7 +16,7 @@ class TestYaraResultAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory()
-        self.grant_permission(self.user, '*:*')
+        self.grant_permission(self.user, 'Admin:Advanced')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:yara_yararesult_changelist')
 
