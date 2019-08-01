@@ -5,12 +5,12 @@ from olympia.yara.models import YaraResult
 
 
 class TestYaraResult(TestCase):
-    def create_fake_upload(self):
+    def create_file_upload(self):
         addon = addon_factory()
         return FileUpload.objects.create(addon=addon)
 
     def test_create(self):
-        upload = self.create_fake_upload()
+        upload = self.create_file_upload()
 
         result = YaraResult.objects.create(upload=upload)
 
@@ -20,7 +20,7 @@ class TestYaraResult(TestCase):
         assert result.version is None
 
     def test_add_match(self):
-        upload = self.create_fake_upload()
+        upload = self.create_file_upload()
         result = YaraResult.objects.create(upload=upload)
 
         rule = 'some-yara-rule'
@@ -35,7 +35,7 @@ class TestYaraResult(TestCase):
         }]
 
     def test_upload_constraint(self):
-        upload = self.create_fake_upload()
+        upload = self.create_file_upload()
         result = YaraResult.objects.create(upload=upload)
 
         upload.delete()
