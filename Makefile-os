@@ -76,6 +76,10 @@ djshell:
 dbshell:
 	docker-compose exec web ./manage.py dbshell
 
+.PHONY: reload-uwsgi
+reload-uwsgi:
+	docker-compose exec web uwsgi --reload /code/docker/artifacts/addons-server-uwsgi-master.pid
+
 # Run a make command in the container
 .PHONY: make
 make:
