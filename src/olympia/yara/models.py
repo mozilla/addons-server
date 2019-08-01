@@ -8,7 +8,8 @@ from olympia.files.models import FileUpload
 class YaraResult(ModelBase):
     upload = models.OneToOneField(FileUpload,
                                   related_name='yara_results',
-                                  on_delete=models.CASCADE)
+                                  on_delete=models.SET_NULL,
+                                  null=True)
     matches = JSONField(default=[])
     version = models.OneToOneField('versions.Version',
                                    related_name='yara_results',
