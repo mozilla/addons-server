@@ -25,3 +25,7 @@ class YaraResult(ModelBase):
             'tags': tags or [],
             'meta': meta or {},
         })
+
+    @property
+    def matched_rules(self):
+        return [match['rule'] for match in self.matches]
