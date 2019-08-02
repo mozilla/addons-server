@@ -1,3 +1,4 @@
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.discovery.models import DiscoveryItem
 
@@ -25,6 +26,12 @@ class TestPrimaryHeroShelfViewSet(TestCase):
                 addon=addon_factory()),
             image='baa.png',
             gradient_color='#987654')
+        hero_external = PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory(homepage='https://mozilla.org/')),
+            image='external.png',
+            gradient_color='#FABFAB',
+            is_external=True)
 
         # The shelf isn't enabled so still won't show up
         response = self.client.get(self.url)
@@ -36,7 +43,14 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         assert response.json() == {
             'results': [
                 PrimaryHeroShelfSerializer(instance=hero_a).data,
-                PrimaryHeroShelfSerializer(instance=hero_b).data]}
+                PrimaryHeroShelfSerializer(instance=hero_b).data,
+                PrimaryHeroShelfSerializer(instance=hero_external).data]}
+        # double check the different serializer representations
+        assert response.json()['results'][0]['addon']['url'] == (
+            absolutify(hero_a.disco_addon.addon.get_detail_url()))
+        assert response.json()['results'][2]['external']['homepage'] == {
+            'en-US': 'https://mozilla.org/'
+        }
 
 
 class TestHeroShelvesView(TestCase):
@@ -75,7 +89,7 @@ class TestHeroShelvesView(TestCase):
 
         found_ids = set()
         # check its not just returning the same add-on each time
-        for count in range(0, 11):
+        for count in range(0, 19):
             response = self.client.get(self.url)
             found_ids.add(response.json()['primary']['addon']['id'])
             if len(found_ids) == 3:

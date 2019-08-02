@@ -75,6 +75,7 @@ class PrimaryHero(ModelBase):
     enabled = models.BooleanField(db_index=True, null=False, default=False,)
     disco_addon = models.OneToOneField(
         DiscoveryItem, on_delete=models.CASCADE, null=False)
+    is_external = models.BooleanField(null=False, default=False)
 
     def __str__(self):
         return str(self.disco_addon)
@@ -88,8 +89,15 @@ class PrimaryHero(ModelBase):
         return {'start': GRADIENT_START_COLOR, 'end': self.gradient_color}
 
     def clean(self):
-        recommended = (self.disco_addon.recommended_status ==
-                       self.disco_addon.RECOMMENDED)
-        if self.enabled and not recommended:
-            raise ValidationError(
-                'Only recommended add-ons can be enabled for primary shelves.')
+        if self.is_external:
+            if self.enabled and not self.disco_addon.addon.homepage:
+                raise ValidationError(
+                    'External primary shelves need a homepage defined in '
+                    'addon details.')
+        else:
+            recommended = (self.disco_addon.recommended_status ==
+                           self.disco_addon.RECOMMENDED)
+            if self.enabled and not recommended:
+                raise ValidationError(
+                    'Only recommended add-ons can be enabled for non-external '
+                    'primary shelves.')

@@ -34,3 +34,17 @@ class TestPrimaryHero(TestCase):
             recommendation_approved=True)
         assert ph.disco_addon.recommended_status == ph.disco_addon.RECOMMENDED
         ph.clean()  # it raises if there's an error
+
+    def test_clean_external(self):
+        ph = PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            is_external=True)
+        assert not ph.enabled
+        ph.clean()  # it raises if there's an error
+        ph.enabled = True
+        with self.assertRaises(ValidationError):
+            ph.clean()
+
+        ph.disco_addon.addon.homepage = 'https://foobar.com/'
+        ph.disco_addon.addon.save()
+        ph.clean()  # it raises if there's an error
