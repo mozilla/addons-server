@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.discovery.models import DiscoveryItem
@@ -290,19 +289,6 @@ class TestDiscoveryAdmin(TestCase):
             self.detail_url,
             dict(self._get_heroform(str(item.id)), **{
                 'addon': str(addon2.pk + 666)}),
-            follow=True)
-        assert response.status_code == 200
-        assert not response.context_data['adminform'].form.is_valid()
-        assert 'addon' in response.context_data['adminform'].form.errors
-        item.reload()
-        assert item.addon == addon
-
-        # Try changing using a non-public add-on id.
-        addon3 = addon_factory(status=amo.STATUS_DISABLED)
-        response = self.client.post(
-            self.detail_url,
-            dict(self._get_heroform(str(item.id)), **{
-                'addon': str(addon3.pk)}),
             follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()

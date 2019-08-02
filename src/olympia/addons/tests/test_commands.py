@@ -345,6 +345,20 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             state=AbuseReport.STATES.DELETED,
             created=summary.modified + timedelta(days=3))
 
+        # *not considered* - current version is auto-approved and
+        # has a recent rating with rating <= 3
+        # but the rating is deleted.
+        auto_approved_addon9 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon9.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon9,
+            version=auto_approved_addon9.current_version,
+            deleted=True,
+            rating=2, body='Apocalypse', user=user_factory()),
+
         with count_subtask_calls(
                 process_addons.recalculate_post_review_weight) as calls:
             call_command(

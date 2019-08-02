@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-29 07:27+0000\n"
+"PO-Revision-Date: 2019-08-02 09:07+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -987,25 +987,28 @@ msgid "Games & Entertainment"
 msgstr "Ігри та розваги"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Завантажте розширення для Firefox, щоб покращити якість ваших розваг. Ця категорія включає розширення, що можуть покращити ігри, контролювати відтворення відео та інше."
 
 msgid "Language Support"
 msgstr "Підтримка мов та перекладів"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Завантажте розширення для Firefox, які пропонують мовні засоби, наприклад, перевірка правопису, тлумачення слів, переклад тексту, функція текст-у-мовлення та інші."
 
 msgid "Photos, Music & Videos"
 msgstr "Фото та мультимедіа"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
+"Завантажте розширення для Firefox, які покращують роботу з фото, музикою та відео. Розширення в цій категорії можуть змінювати аудіо та відео, виконувати зворотній пошук по зображенню та інше."
 
 msgid "Privacy & Security"
 msgstr "Конфіденційність та безпека"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Завантажте розширення для Firefox для безпечного і приватного перегляду. До цієї категорії входять розширення для блокування надокучливої реклами, захисту від стеження, керування перенаправленнями "
+"та інші."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
