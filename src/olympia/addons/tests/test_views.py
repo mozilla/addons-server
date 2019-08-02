@@ -18,7 +18,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.models import (
     Addon, AddonUser, Category, CompatOverride,
-    CompatOverrideRange, Persona, ReplacementAddon)
+    CompatOverrideRange, ReplacementAddon)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -36,7 +36,7 @@ from olympia.versions.models import ApplicationsVersions, AppVersion
 
 class TestStatus(TestCase):
     client_class = APITestClient
-    fixtures = ['base/addon_3615', 'addons/persona']
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         super(TestStatus, self).setUp()
@@ -46,12 +46,6 @@ class TestStatus(TestCase):
         assert self.addon.status == amo.STATUS_APPROVED
         self.url = reverse_ns(
             'addon-detail', api_version='v5', kwargs={'pk': self.addon.pk})
-
-        self.persona = Addon.objects.get(id=15663)
-        assert self.persona.status == amo.STATUS_APPROVED
-        self.persona_url = reverse_ns(
-            'addon-detail', api_version='v5',
-            kwargs={'pk': self.persona.pk})
 
     def test_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -80,25 +74,6 @@ class TestStatus(TestCase):
     def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
         assert self.client.get(self.url).status_code == 401
-
-    def test_persona(self):
-        for status in Persona.STATUS_CHOICES.keys():
-            if status == amo.STATUS_DELETED:
-                continue
-            self.persona.status = status
-            self.persona.save()
-            assert self.client.head(self.persona_url).status_code == (
-                200 if status in [amo.STATUS_APPROVED]
-                else 401)
-
-    def test_persona_disabled(self):
-        for status in Persona.STATUS_CHOICES.keys():
-            if status == amo.STATUS_DELETED:
-                continue
-            self.persona.status = status
-            self.persona.disabled_by_user = True
-            self.persona.save()
-            assert self.client.head(self.persona_url).status_code == 401
 
 
 class TestFindReplacement(TestCase):

@@ -44,7 +44,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons import indexers as addons_indexers
 from olympia.addons.models import (
-    Addon, AddonCategory, Category, Persona,
+    Addon, AddonCategory, Category,
     update_search_index as addon_update_search_index)
 from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
@@ -661,7 +661,6 @@ def addon_factory(
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
-    persona_id = kw.pop('persona_id', None)
     tags = kw.pop('tags', [])
     users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
@@ -703,14 +702,6 @@ def addon_factory(
 
     # Save 2.
     version = version_factory(file_kw, addon=addon, **version_kw)
-    if addon.type == amo.ADDON_PERSONA:
-        addon._current_version = version
-        persona_id = persona_id if persona_id is not None else addon.id
-
-        # Save 3.
-        Persona.objects.create(
-            addon=addon, popularity=addon.average_daily_users,
-            persona_id=persona_id)
 
     addon.update_version()
     addon.status = status

@@ -14,8 +14,6 @@ from django.utils.translation import ugettext
 
 import waffle
 
-from django_statsd.clients import statsd
-
 from olympia import amo
 from olympia.amo.utils import normalize_string, to_language
 from olympia.constants.categories import CATEGORIES_BY_ID
@@ -191,37 +189,6 @@ def get_addon_recommendations_invalid():
 
 
 MULTIPLE_STOPS_REGEX = re.compile(r'\.{2,}')
-
-
-@statsd.timer('addons.tasks.migrate_lwts_to_static_theme.build_xpi')
-def build_static_theme_xpi_from_lwt(lwt, upload_zip):
-    # create manifest
-    accentcolor = (('#%s' % lwt.persona.accentcolor) if lwt.persona.accentcolor
-                   else amo.THEME_FRAME_COLOR_DEFAULT)
-    textcolor = '#%s' % (lwt.persona.textcolor or '000')
-
-    lwt_header = MULTIPLE_STOPS_REGEX.sub(u'.', str(lwt.persona.header))
-    manifest = {
-        "manifest_version": 2,
-        "name": str(lwt.name) or str(lwt.slug),
-        "version": '1.0',
-        "theme": {
-            "images": {
-                "theme_frame": lwt_header
-            },
-            "colors": {
-                "frame": accentcolor,
-                "tab_background_text": textcolor
-            }
-        }
-    }
-    if lwt.description:
-        manifest['description'] = str(lwt.description)
-
-    # build zip with manifest and background file
-    with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
-        dest.writestr('manifest.json', json.dumps(manifest))
-        dest.write(lwt.persona.header_path, arcname=lwt_header)
 
 
 def build_webext_dictionary_from_legacy(addon, destination):

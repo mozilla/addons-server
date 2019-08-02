@@ -13,7 +13,6 @@ from olympia.addons.tasks import (
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
-    migrate_lwts_to_static_themes,
     migrate_webextensions_to_git_storage,
     recreate_theme_previews,
     repack_themes_for_69,
@@ -83,12 +82,6 @@ tasks = {
             Q(status=amo.STATUS_APPROVED,
               _current_version__created__lt=datetime(2019, 4, 5)) &
             ~Q(type=amo.ADDON_SEARCH)
-        ]
-    },
-    'migrate_lwt': {
-        'method': migrate_lwts_to_static_themes,
-        'qs': [
-            Q(type=amo.ADDON_PERSONA, status=amo.STATUS_APPROVED)
         ]
     },
     'delete_lwt': {

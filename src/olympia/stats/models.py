@@ -88,23 +88,6 @@ class ThemeUpdateCount(StatsSearchMixin, models.Model):
         db_table = 'theme_update_counts'
 
 
-class ThemeUpdateCountBulk(models.Model):
-    """Used by the update_theme_popularity_movers command for perf reasons.
-
-    First bulk inserting all the averages over the last week and last three
-    weeks in this table allows us to bulk update (instead of running an update
-    per Persona).
-
-    """
-    id = PositiveAutoField(primary_key=True)
-    persona_id = models.PositiveIntegerField()
-    popularity = models.PositiveIntegerField()
-    movers = models.FloatField()
-
-    class Meta:
-        db_table = 'theme_update_counts_bulk'
-
-
 class ThemeUserCount(StatsSearchMixin, models.Model):
     """Theme popularity (weekly average of users).
 
