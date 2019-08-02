@@ -76,3 +76,14 @@ class TestYaraResult(TestCase):
             result.add_match(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.matched_rules == [rule1, rule2]
+
+    def test_matched_rules_returns_unique_list(self):
+        result = self.create_yara_result()
+        rule1 = 'rule-1'
+        rule2 = 'rule-2'
+
+        for rule in [rule1, rule2, rule1, rule2]:
+            match = self.create_fake_yara_match(rule=rule)
+            result.add_match(rule=match.rule, tags=match.tags, meta=match.meta)
+
+        assert result.matched_rules == [rule1, rule2]
