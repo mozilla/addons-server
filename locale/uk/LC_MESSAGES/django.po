@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-08-02 09:07+0000\n"
+"PO-Revision-Date: 2019-08-02 11:42+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1011,19 +1011,21 @@ msgstr ""
 "та інші."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Завантажте розширення Firefox для пошуку і тлумачення. До цієї категорії входять розширення, що підсвічують і шукають текст, здійснюють пошук IP-адрес / доменів та інше."
 
 msgid "Shopping"
 msgstr "Покупки"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Завантажте розширення для Firefox, які можуть підвищити якість покупок в інтернеті за допомогою засобів знаходження купонів знижок, вигідних пропозицій, аналізу відгуків тощо."
 
 msgid "Social & Communication"
 msgstr "Соціальні"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
+"Завантажте розширення для Firefox, щоб вдосконалити обмін миттєвими повідомленнями і роботу з соціальними мережами. Ця категорія містить розширені сповіщення для вкладок, засоби завантаження відео "
+"та інше."
 
 msgid "Tabs"
 msgstr "Вкладки"

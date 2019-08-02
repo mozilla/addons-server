@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-31 14:19+0000\n"
+"PO-Revision-Date: 2019-08-02 11:55+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -957,13 +957,13 @@ msgid "Bookmarks"
 msgstr "書籤"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "下載可使用密碼保護書籤、檢查重複項目、尋找失效書籤等功能的擴充套件。"
 
 msgid "Download Management"
 msgstr "下載管理"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "安裝可幫助您下載網頁、音樂和影片內容的 Firefox 擴充套件。還可以找到管理下載項目、分享檔案等功能的附加元件。"
 
 msgid "Feeds, News & Blogging"
 msgstr "資訊來源、新聞、部落格"
@@ -4033,7 +4033,7 @@ msgstr "{addon_name} {start_sub_heading}Zero formatting{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "只複製純文字，清除不必要的格式設定。"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -4061,7 +4061,7 @@ msgstr "{addon_name} {start_sub_heading}防止搜尋追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "防止搜尋引擎知道您點擊的鏈結。"
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4205,7 +4205,7 @@ msgstr "{addon_name} {start_sub_heading}探索網站相關內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "在指定網域中搜尋您要找的內容。"
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"

@@ -21,6 +21,7 @@ and a single, randomly selected secondary hero shelf.
 
 .. http:get:: /api/v4/hero/
 
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
     :>json object secondary: A :ref:`primary hero shelf <primary-hero-shelf>`.
 
@@ -37,6 +38,7 @@ small number of shelves this endpoint is not paginated.
 
 .. http:get:: /api/v4/hero/primary/
 
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json array results: The array containing the results for this query.
     :>json object results[].gradient: The background colors used for the gradient.
     :>json string results[].gradient.start: The starting color for gradient - typically top or left.

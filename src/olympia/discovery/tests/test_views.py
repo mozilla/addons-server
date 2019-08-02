@@ -98,7 +98,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         with self.assertNumQueries(11):
             # 11 queries:
-            # - 1 to fetch the waffle switch 'disco-recommendations'
             # - 1 to fetch the discovery items
             # - 1 to fetch the add-ons (can't be joined with the previous one
             #   because we want to hit the Addon transformer)
