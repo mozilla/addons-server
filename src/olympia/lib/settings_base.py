@@ -1628,7 +1628,6 @@ STATICFILES_DIRS = (
 # Make sure to check overwrites in conftest.py if new settings are added
 # or changed.
 STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
-
 ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
 GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
 GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
@@ -1637,6 +1636,9 @@ SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 
 MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
 TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
+
+YARA_ROOT = env('YARA_ROOT', default=path('addons-yara'))
+YARA_RULES_FILEPATH = os.path.join(YARA_ROOT, 'rules', 'all_rules.yar')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
