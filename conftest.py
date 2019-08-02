@@ -125,8 +125,7 @@ def celery_config():
 
 @pytest.fixture(autouse=True)
 def start_celery_worker(
-        request, settings, celery_config, celery_session_worker,
-        transactional_db):
+        request, settings, celery_config, celery_session_worker):
     """Start a proper celery worker for tests marked with
 
     ``celery_worker_test``
@@ -136,17 +135,6 @@ def start_celery_worker(
     if marker:
         settings.CELERY_TASK_ALWAYS_EAGER = False
         celery_session_worker.reload()
-
-
-@pytest.fixture(scope='session')
-def celery_worker_pool():
-    return 'solo'
-
-
-@pytest.fixture
-def celery_manager(celery_session_app):
-    from celery.contrib.testing.manager import Manager
-    return Manager(celery_session_app)
 
 
 @pytest.fixture(autouse=True, scope='session')

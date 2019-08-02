@@ -118,7 +118,6 @@ def process_failure_signal(exception, traceback, sender, task_id,
 
 @task_prerun.connect
 def start_task_timer(task_id, task, **kw):
-    print('XXXXXXXXXXXXXXXXXXXXX start task timer', task_id, task)
     timer = TaskTimer()
     log.info('starting task timer; id={id}; name={name}; '
              'current_dt={current_dt}'
@@ -129,7 +128,6 @@ def start_task_timer(task_id, task, **kw):
     # tasks. Currently, stats indexing tasks run around 20-30 min.
     expiration = 60 * 60
     cache_key = timer.cache_key(task_id)
-    print('AAAAAAAAAAA', cache_key)
     cache.set(cache_key, timer.current_epoch_ms, expiration)
 
 
