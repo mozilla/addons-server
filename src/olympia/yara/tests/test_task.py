@@ -50,6 +50,19 @@ class TestRunYara(UploadTest, TestCase):
             },
         }
 
+    def test_run_no_matches_with_mocks(self):
+        upload = self.get_upload('webextension.xpi')
+        assert len(YaraResult.objects.all()) == 0
+
+        # This compiled rule will never match.
+        rules = yara.compile(source='rule always_false { condition: false }')
+        with mock.patch('yara.compile') as yara_compile_mock:
+            yara_compile_mock.return_value = rules
+            run_yara(upload.pk)
+
+        result = YaraResult.objects.all()[0]
+        assert result.matches == []
+
     def test_run_ignores_directories(self):
         upload = self.get_upload('webextension_signed_already.xpi')
         # This compiled rule will match for all files in the xpi.

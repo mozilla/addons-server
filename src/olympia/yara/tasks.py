@@ -1,9 +1,6 @@
-import os
-
 import yara
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
 
@@ -49,7 +46,7 @@ def run_yara(upload_pk):
         result.save()
 
         log.info('Ending yara task for FileUpload %s.', upload_pk)
-    except Exception as e:
+    except Exception:
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
         log.exception('Error in yara task for FileUpload %s.', upload_pk)
