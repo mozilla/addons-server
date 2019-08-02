@@ -1,3 +1,6 @@
+from django.db.transaction import non_atomic_requests
+from django.utils.decorators import classonlymethod
+
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,7 +15,11 @@ class ShelfViewSet(ListModelMixin, GenericViewSet):
     format_kwarg = None
 
     def get_queryset(self):
-        return super().get_queryset().filter(enabled=True)
+        qs = super().get_queryset()
+        qs = (qs.select_related('disco_addon')
+                .prefetch_related(
+                    'disco_addon__addon___current_version__previews'))
+        return qs.filter(enabled=True)
 
     def get_one_random(self):
         qs = self.filter_queryset(self.get_queryset()).order_by('?')
@@ -24,6 +31,11 @@ class ShelfViewSet(ListModelMixin, GenericViewSet):
 
         # Simulate pagination-like results, without actual pagination.
         return Response({'results': serializer.data})
+
+    @classonlymethod
+    def as_view(cls, actions=None, **initkwargs):
+        view = super().as_view(actions=actions, **initkwargs)
+        return non_atomic_requests(view)
 
 
 class PrimaryHeroShelfViewSet(ShelfViewSet):
@@ -38,3 +50,8 @@ class HeroShelvesView(APIView):
                 request=request).get_one_random().data,
         }
         return Response(output)
+
+    @classonlymethod
+    def as_view(cls, **initkwargs):
+        view = super().as_view(**initkwargs)
+        return non_atomic_requests(view)
