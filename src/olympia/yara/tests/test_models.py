@@ -4,10 +4,32 @@ from olympia.files.models import FileUpload
 from olympia.yara.models import YaraResult
 
 
+class FakeYaraMatch(object):
+
+    def __init__(self, rule, tags, meta):
+        self.rule = rule
+        self.tags = tags
+        self.meta = meta
+
+
 class TestYaraResult(TestCase):
     def create_file_upload(self):
         addon = addon_factory()
         return FileUpload.objects.create(addon=addon)
+
+    def create_fake_yara_match(self,
+                               rule='some-yara-rule',
+                               tags=None,
+                               description='some description'):
+        return FakeYaraMatch(
+            rule=rule,
+            tags=tags or [],
+            meta={'description': description}
+        )
+
+    def create_yara_result(self):
+        upload = self.create_file_upload()
+        return YaraResult.objects.create(upload=upload)
 
     def test_create(self):
         upload = self.create_file_upload()
@@ -20,18 +42,15 @@ class TestYaraResult(TestCase):
         assert result.version is None
 
     def test_add_match(self):
-        upload = self.create_file_upload()
-        result = YaraResult.objects.create(upload=upload)
+        result = self.create_yara_result()
+        match = self.create_fake_yara_match()
 
-        rule = 'some-yara-rule'
-        tags = ['foo']
-        meta = {'description': 'some description for some-yara-rule'}
-        result.add_match(rule=rule, tags=tags, meta=meta)
+        result.add_match(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.matches == [{
-            'rule': rule,
-            'tags': tags,
-            'meta': meta,
+            'rule': match.rule,
+            'tags': match.tags,
+            'meta': match.meta,
         }]
 
     def test_upload_constraint(self):
@@ -42,3 +61,18 @@ class TestYaraResult(TestCase):
         result.refresh_from_db()
 
         assert result.upload is None
+
+    def test_empty_matched_rules(self):
+        result = self.create_yara_result()
+        assert result.matched_rules == []
+
+    def test_matched_rules(self):
+        result = self.create_yara_result()
+        rule1 = 'rule-1'
+        rule2 = 'rule-2'
+
+        for rule in [rule1, rule2]:
+            match = self.create_fake_yara_match(rule=rule)
+            result.add_match(rule=match.rule, tags=match.tags, meta=match.meta)
+
+        assert result.matched_rules == [rule1, rule2]
