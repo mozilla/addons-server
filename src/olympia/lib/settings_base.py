@@ -482,6 +482,7 @@ INSTALLED_APPS = (
     'olympia.tags',
     'olympia.users',
     'olympia.versions',
+    'olympia.yara',
     'olympia.zadmin',
 
     # Third party apps
