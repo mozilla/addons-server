@@ -26,6 +26,13 @@ class TestYaraResultAdmin(TestCase):
         response = self.client.get(self.list_url)
         assert response.status_code == 200
 
+    def test_list_view_is_restricted(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403
+
     def test_has_add_permission(self):
         assert self.admin.has_add_permission(request=None) is False
 
