@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:08+0000\n"
-"PO-Revision-Date: 2019-08-04 20:03+0000\n"
-"Last-Translator: Sopor <sopor@hotmail.com>\n"
+"PO-Revision-Date: 2019-08-04 20:57+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -203,8 +203,8 @@ msgstr "Vecka för {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "{0} nedladdning"
-msgstr[1] "{0} nedladdningar"
+msgstr[0] "{0} hämtning"
+msgstr[1] "{0} hämtningar"
 
 msgid "{0} user"
 msgid_plural "{0} users"
@@ -242,7 +242,7 @@ msgstr[0] "{0} installation"
 msgstr[1] "{0} installationer"
 
 msgid "Downloads"
-msgstr "Nedladdningar"
+msgstr "Hämtningar"
 
 msgid "Daily Users"
 msgstr "Dagliga användare"
@@ -270,7 +270,7 @@ msgid "Add-ons Created"
 msgstr "Tillägg skapat"
 
 msgid "Add-ons Downloaded"
-msgstr "Tillägg nedladdat"
+msgstr "Hämtade tillägg"
 
 msgid "Add-ons Updated"
 msgstr "Tillägg uppdaterad"
@@ -537,11 +537,11 @@ msgstr "Tillägg i användning mellan {0} och {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Tillägg nedladdade de senaste {0} dagarna"
+msgstr "Hämtade tillägg de senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Tillägg nedladdade mellan {0} och {1}"
+msgstr "Hämtade tillägg mellan {0} och {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
