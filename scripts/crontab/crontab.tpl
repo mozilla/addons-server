@@ -8,7 +8,7 @@ HOME=/tmp
 # Every 5 minutes
 */5 * * * * %(django)s auto_approve
 
-#once per hour
+# Once per hour
 10 * * * * %(z_cron)s update_blog_posts
 15 * * * * %(django)s send_info_request_last_warning_notifications
 20 * * * * %(z_cron)s addon_last_updated
@@ -17,14 +17,16 @@ HOME=/tmp
 50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
 
-#twice per day
+# Twice per day
 35 18,6 * * * %(z_cron)s cleanup_image_files
 
-#once per day
+# Once per day
+1 6 * * * %(django)s clear_old_last_login_ip
+30 6 * * * %(z_cron)s deliver_hotness
 30 9 * * * %(z_cron)s update_user_ratings
 30 14 * * * %(z_cron)s category_totals
 0 22 * * * %(z_cron)s gc
-30 6 * * * %(z_cron)s deliver_hotness
+
 
 # Update ADI metrics from S3 once per day
 30 11 * * * %(django)s update_counts_from_file
