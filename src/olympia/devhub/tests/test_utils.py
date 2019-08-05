@@ -479,17 +479,20 @@ def test_wizard_unsupported_properties():
     assert properties == ['extrathing', 'extracolor', 'additionalBackground']
 
 
+@mock.patch('django_statsd.clients.statsd.incr')
 class TestUploadRestrictionChecker(TestCase):
     def setUp(self):
         self.request = RequestFactory().get('/')
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
 
-    def test_is_submission_allowed_pass(self):
+    def test_is_submission_allowed_pass(self, incr_mock):
         checker = utils.UploadRestrictionChecker(self.request)
         assert checker.is_submission_allowed()
+        incr_mock.assert_called_once_with(
+            'devhub.is_submission_allowed.success')
 
-    def test_is_submission_allowed_hasnt_read_agreement(self):
+    def test_is_submission_allowed_hasnt_read_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
@@ -499,13 +502,18 @@ class TestUploadRestrictionChecker(TestCase):
             'The Firefox Add-on Distribution Agreement also links to our '
             'Privacy Notice which explains how we handle your information.'
         )
+        incr_mock.assert_called_once_with(
+            'devhub.is_submission_allowed.failure')
 
-    def test_is_submission_allowed_bypassing_read_dev_agreement(self):
+    def test_is_submission_allowed_bypassing_read_dev_agreement(
+            self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
         checker = utils.UploadRestrictionChecker(self.request)
         assert checker.is_submission_allowed(check_dev_agreement=False)
+        incr_mock.assert_called_once_with(
+            'devhub.is_submission_allowed.success')
 
-    def test_is_submission_allowed_ip_restricted(self):
+    def test_is_submission_allowed_ip_restricted(self, incr_mock):
         IPNetworkUserRestriction.objects.create(network='127.0.0.0/24')
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
@@ -513,8 +521,10 @@ class TestUploadRestrictionChecker(TestCase):
             'Multiple add-ons violating our policies have been submitted '
             'from your location. The IP address has been blocked.'
         )
+        incr_mock.assert_called_once_with(
+            'devhub.is_submission_allowed.failure')
 
-    def test_is_submission_allowed_email_restricted(self):
+    def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(
             email_pattern=self.request.user.email)
         checker = utils.UploadRestrictionChecker(self.request)
@@ -523,3 +533,5 @@ class TestUploadRestrictionChecker(TestCase):
             'The email address used for your account is not '
             'allowed for add-on submission.'
         )
+        incr_mock.assert_called_once_with(
+            'devhub.is_submission_allowed.failure')
