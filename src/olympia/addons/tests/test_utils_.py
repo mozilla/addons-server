@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 from unittest import mock
-import os
 import pytest
 import tempfile
 import zipfile
@@ -15,7 +14,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.models import Category
 from olympia.addons.utils import (
-    build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy,
+    build_webext_dictionary_from_legacy,
     get_addon_recommendations, get_addon_recommendations_invalid,
     get_creatured_ids, get_featured_ids, is_outcome_recommended,
     TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
@@ -101,7 +100,7 @@ class TestGetFeaturedIds(TestCase):
                 'base/addon_3615', 'base/collections', 'base/featured',
                 'base/users']
 
-    no_locale = (1001, 1003, 2464, 7661, 15679)
+    no_locale = (1001, 1003, 2464, 7661)
     en_us_locale = (3481,)
     all_locales = no_locale + en_us_locale
     no_locale_type_one = (1001, 1003, 2464, 7661)
@@ -259,66 +258,6 @@ class TestGetAddonRecommendations(TestCase):
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
         assert not self.recommendation_server_mock.called
-
-
-class TestBuildStaticThemeXpiFromLwt(TestCase):
-    def setUp(self):
-        self.background_png = os.path.join(
-            settings.ROOT, 'src/olympia/versions/tests/static_themes/weta.png')
-
-    def test_lwt(self):
-        # Create our persona.
-        lwt = addon_factory(
-            type=amo.ADDON_PERSONA, persona_id=0, name=u'Amáze',
-            description=u'It does all d£ things')
-        lwt.persona.accentcolor, lwt.persona.textcolor = '123', '456789'
-        # Give it a background header file.
-        lwt.persona.header = 'weta.png'
-        lwt.persona.header_path = self.background_png  # It's a cached_property
-
-        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
-        build_static_theme_xpi_from_lwt(lwt, static_xpi)
-
-        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
-            manifest = force_text(xpi.read('manifest.json'))
-            manifest_json = json.loads(manifest)
-            assert manifest_json['name'] == u'Amáze'
-            assert manifest_json['description'] == u'It does all d£ things'
-            assert manifest_json['theme']['images']['theme_frame'] == (
-                u'weta.png')
-            assert manifest_json['theme']['colors']['frame'] == (
-                u'#123')
-            assert manifest_json['theme']['colors']['tab_background_text'] == (
-                u'#456789')
-            assert (xpi.read('weta.png') ==
-                    open(self.background_png, 'rb').read())
-
-    def test_lwt_missing_info(self):
-        # Create our persona.
-        lwt = addon_factory(
-            type=amo.ADDON_PERSONA, persona_id=0)
-        lwt.update(name='')
-        # Give it a background header file with multiple dots.
-        lwt.persona.header = 'weta......png'
-        lwt.persona.header_path = self.background_png  # It's a cached_property
-
-        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
-        build_static_theme_xpi_from_lwt(lwt, static_xpi)
-
-        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
-            manifest = force_text(xpi.read('manifest.json'))
-            manifest_json = json.loads(manifest)
-
-            assert manifest_json['name'] == lwt.slug
-            assert 'description' not in manifest_json.keys()
-            assert manifest_json['theme']['images']['theme_frame'] == (
-                u'weta.png')
-            assert manifest_json['theme']['colors']['frame'] == (
-                amo.THEME_FRAME_COLOR_DEFAULT)
-            assert manifest_json['theme']['colors']['tab_background_text'] == (
-                u'#000')
-            assert (xpi.read('weta.png') ==
-                    open(self.background_png, 'rb').read())
 
 
 class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):

@@ -29,8 +29,6 @@ HOME=/tmp
 # Update ADI metrics from S3 once per day
 30 11 * * * %(django)s update_counts_from_file
 00 12 * * * %(django)s download_counts_from_file
-15 12 * * * %(django)s theme_update_counts_from_file
-30 12 * * * %(django)s update_theme_popularity_movers
 
 # Once per day after metrics import is done
 30 12 * * * %(z_cron)s update_addon_download_totals

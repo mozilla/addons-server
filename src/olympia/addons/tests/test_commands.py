@@ -581,7 +581,8 @@ class TestContentApproveMigratedThemes(TestCase):
         for addon in migrated_themes:
             MigratedLWT.objects.create(
                 static_theme=addon,
-                lightweight_theme=addon_factory(type=amo.ADDON_PERSONA),
+                lightweight_theme_id=9999,
+                getpersonas_id=0,
                 created=migration_date)
         # Add another that never went through migration, it was born that way.
         non_migrated_theme = addon_factory(type=amo.ADDON_STATICTHEME)

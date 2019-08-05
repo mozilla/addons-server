@@ -11,51 +11,6 @@
         }
     },
     {
-        "pk": 15679,
-        "model": "addons.addon",
-        "fields": {
-            "slug": "15679",
-            "_current_version": 15679,
-            "last_updated": "2009-03-30 23:18:20",
-            "total_downloads": 0,
-            "disabled_by_user": 0,
-            "view_source": 0,
-            "guid": null,
-            "weekly_downloads": 8381,
-            "average_daily_users": 3661,
-            "bayesian_rating": 0.0,
-            "type": 9,
-            "public_stats": 0,
-            "status": 4,
-            "default_locale": "en-US",
-            "name": 590910,
-            "description": 590910,
-            "created": "2009-03-30 23:18:20",
-            "icon_type": "",
-            "modified": "2009-03-30 23:18:20",
-            "summary": null,
-            "total_ratings": 0
-        }
-    },
-    {
-        "pk": 575,
-        "model": "addons.persona",
-        "fields": {
-            "display_username": "ladygaga",
-            "popularity": 8381,
-            "footer": "Persona_Footer_UNI_GAGA_FINAL.jpg",
-            "movers": -0.11117283254862,
-            "author": "ladygaga",
-            "submit": "2009-03-30 21:26:59",
-            "accentcolor": "000000",
-            "header": "Persona_Header_UNI_GAGA_FINAL_2.jpg",
-            "textcolor": "ffffff",
-            "approve": "2009-03-30 23:18:20",
-            "persona_id": 830,
-            "addon": 15679
-        }
-    },
-    {
         "pk": 149351,
         "model": "translations.translation",
         "fields": {
@@ -314,16 +269,6 @@
         }
     },
     {
-        "pk": 15679,
-        "model": "versions.version",
-        "fields": {
-            "created": "2010-01-14 11:39:40",
-            "modified": "2010-01-14 11:40:45",
-            "version": "0",
-            "addon": 15679
-        }
-    },
-    {
         "pk": 91189,
         "model": "versions.version",
         "fields": {
@@ -453,16 +398,6 @@
             "version": 68019,
             "datestatuschanged": "2009-05-08 05:26:20",
             "size": 3072
-        }
-    },
-    {
-        "pk": 1043,
-        "model": "addons.appsupport",
-        "fields": {
-            "app": 1,
-            "addon": 15679,
-            "modified": "2010-10-01 22:09:39",
-            "created": "2010-10-01 22:09:39"
         }
     },
     {
