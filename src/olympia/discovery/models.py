@@ -31,7 +31,8 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         max_length=255, blank=True,
         help_text='Short text used in the header. Can contain the following '
                   'special tags: {start_sub_heading}, {addon_name}, '
-                  '{end_sub_heading}. Will be translated.')
+                  '{end_sub_heading}. Will be translated. '
+                  'Currently *not* visible to the user - #11817')
     custom_description = models.TextField(
         blank=True, help_text='Longer text used to describe an add-on. Should '
                               'not contain any HTML or special tags. Will be '
