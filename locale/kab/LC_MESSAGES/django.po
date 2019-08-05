@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2019-07-07 19:46+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,9 @@ msgid "The %d selected reports have been marked as suspicious."
 msgstr "%d n yineqqisen yettwafernen ttwacerḍen meckukit."
 
 msgid "Mark selected abuse reports as suspicious"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Modified on:"
@@ -138,53 +141,6 @@ msgstr "Abrid n uzegrir akked taggayt isra ad ifak s \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ISmawen n yizegrar ur zmiren ara ad gebren ticraḍ yettwasersen n Mozilla neɣ Firefox."
-
-msgid "Awaiting Review"
-msgstr "Acegger yettṛaǧun"
-
-msgid "Rejected"
-msgstr "Yettwagwi"
-
-msgid "Approved"
-msgstr "Yettwaqbel"
-
-msgid "Added {0}"
-msgstr "Yettwarna {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> aseqdac"
-msgstr[1] "<strong>{0}</strong> iseqdacen"
-
-msgid "Hover to Preview"
-msgstr "Srifeg s ufella akken ad d-sekneḍ"
-
-msgid "Add"
-msgstr "Rnu"
-
-msgid "Edit"
-msgstr "Ẓreg"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "sγuṛ {0} di {1}"
-
-msgid "Not yet rated"
-msgstr "Ur yettwasezmel ara"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> iseqdacen"
-
-msgid "by"
-msgstr "sγur"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} n iseqdacen n wass"
-msgstr[1] "{0} Iseqdacen n yal ass"
 
 msgid "Sort by:"
 msgstr "Smizzwer s:"
@@ -584,6 +540,9 @@ msgstr "Afaylu {0} yettwakkes si {version} n {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} yettwaqbel."
 
+msgid "Approved"
+msgstr "Yettwaqbel"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} acegger amezwaru yettwag."
 
@@ -592,6 +551,9 @@ msgstr "Yettwaqbel di tazwara"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} yettwagi."
+
+msgid "Rejected"
+msgstr "Yettwagwi"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} yettwaqbel."
@@ -867,6 +829,9 @@ msgstr "Arussin"
 
 msgid "Incomplete"
 msgstr "Arummid"
+
+msgid "Awaiting Review"
+msgstr "Acegger yettṛaǧun"
 
 msgid "Disabled by Mozilla"
 msgstr "Isens-it Mozilla"
@@ -2037,6 +2002,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Talqayt γef uzegrir"
 
+msgid "Edit"
+msgstr "Ẓreg"
+
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Talqayt n uzigrir i {0}"
@@ -2912,12 +2880,9 @@ msgstr[1] "Kren <b>arma d {0}</b> {1} n taggayin i uzegrir-agi:"
 msgid "End-User License Agreement"
 msgstr "Amtawa n uselkin n useqdac aneggaru"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"Yessefk iseqdacen ad qeblen amtawa n turagt n useqdac aneggaru (EULA) send ad sbedden azegrir inek. Amtawa EULA am-agi ad iḥaz amḍan n usider s waṭas. Ẓeṛ d akken yiwen n EULA ur imeɣri ara akked "
-"turagt n tengakt n uzegrir am GPL neɣ MPL. Ayagi yella kan i yizegrar yettwabedren dagi."
+#, fuzzy
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "MA ulac aɣilif, fren turgat ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ i tengalt inek aɣbalu. Urti-agi yettwaseqdac kan i yizegrar yettwasnen, yettwakelsen."
 
 msgid "Privacy Policy"
 msgstr "Tasertit n tbaḍnit"
@@ -3227,6 +3192,9 @@ msgstr "Teḍra-d tuccḍa deg awway n tezmilin n iceggiren"
 
 msgid "Load older..."
 msgstr "Sali-d akaram..."
+
+msgid "by"
+msgstr "sγur"
 
 msgid "Leave a reply"
 msgstr "Eǧǧ tiririt"
@@ -5398,6 +5366,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} acegger"
 msgstr[1] "{num} iceggiren"
+
+msgid "Not yet rated"
+msgstr "Ur yettwasezmel ara"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Yettwasezmel {0} ɣef 5 n yetran"

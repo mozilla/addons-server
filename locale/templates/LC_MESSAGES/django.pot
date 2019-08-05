@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,6 +61,10 @@ msgstr ""
 
 #: src/olympia/abuse/admin.py:400
 msgid "Mark selected abuse reports as suspicious"
+msgstr ""
+
+#: src/olympia/abuse/serializers.py:37
+msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 #: src/olympia/abuse/templates/admin/abuse/abusereport/date_hierarchy.html:5
@@ -173,97 +177,17 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/models.py:1829 src/olympia/constants/base.py:84
+#: src/olympia/addons/models.py:1627 src/olympia/constants/base.py:84
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2208
+#: src/olympia/addons/models.py:2006
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/utils.py:129
+#: src/olympia/addons/utils.py:127
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:13
-#: src/olympia/constants/base.py:24 src/olympia/constants/base.py:42
-msgid "Awaiting Review"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:15
-#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:36
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:38
-msgid "Rejected"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:17
-#: src/olympia/constants/activity.py:127 src/olympia/constants/base.py:25
-#: src/olympia/constants/base.py:43
-msgid "Approved"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:22
-msgid "Added {0}"
-msgstr ""
-
-#. {0} is the number of users.
-#: src/olympia/addons/templates/addons/persona_preview.html:27
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:41
-msgid "Hover to Preview"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:47
-#: src/olympia/addons/templates/addons/persona_preview.html:48
-#: src/olympia/addons/templates/addons/persona_preview.html:110
-msgid "Add"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:57
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:8
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:10
-#: src/olympia/devhub/templates/devhub/addons/edit/media.html:6
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:60
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:81
-#: src/olympia/reviewers/templates/reviewers/review.html:411
-msgid "Edit"
-msgstr ""
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#: src/olympia/addons/templates/addons/persona_preview.html:66
-msgid "by {0} on {1}"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:74
-#: src/olympia/ratings/templates/ratings/impala/reviews_link.html:12
-#: src/olympia/ratings/templates/ratings/reviews_link.html:17
-#: src/olympia/ratings/templatetags/jinja_helpers.py:14
-msgid "Not yet rated"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:77
-msgid "<b>{0}</b> users"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/persona_preview.html:95
-#: src/olympia/devhub/templates/devhub/versions/list.html:124
-#: src/olympia/discovery/models.py:93 src/olympia/discovery/models.py:105
-#: src/olympia/reviewers/templates/reviewers/review.html:33
-msgid "by"
-msgstr ""
-
-#. {0} is the number of users.
-#: src/olympia/addons/templates/addons/persona_preview.html:102
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html:2
 msgid "Sort by:"
@@ -862,6 +786,11 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
+#: src/olympia/constants/activity.py:127 src/olympia/constants/base.py:25
+#: src/olympia/constants/base.py:43
+msgid "Approved"
+msgstr ""
+
 #: src/olympia/constants/activity.py:137
 msgid "{addon} {version} given preliminary review."
 msgstr ""
@@ -872,6 +801,11 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:149
 msgid "{addon} {version} rejected."
+msgstr ""
+
+#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:36
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:38
+msgid "Rejected"
 msgstr ""
 
 #: src/olympia/constants/activity.py:160
@@ -1244,6 +1178,10 @@ msgstr ""
 
 #: src/olympia/constants/base.py:23
 msgid "Incomplete"
+msgstr ""
+
+#: src/olympia/constants/base.py:24 src/olympia/constants/base.py:42
+msgid "Awaiting Review"
 msgstr ""
 
 #: src/olympia/constants/base.py:26 src/olympia/constants/base.py:44
@@ -2394,7 +2332,7 @@ msgstr ""
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
-#: src/olympia/devhub/utils.py:104
+#: src/olympia/devhub/utils.py:105
 #, python-format
 msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated. "
@@ -2991,6 +2929,16 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:5
 msgid "Additional Details"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:8
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:10
+#: src/olympia/devhub/templates/devhub/addons/edit/media.html:6
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:60
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:81
+#: src/olympia/reviewers/templates/reviewers/review.html:411
+msgid "Edit"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:15
@@ -4270,21 +4218,18 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
-"Users will be required to accept the following End-User License Agreement "
-"(EULA) prior to installing your add-on. The presence of a EULA significantly "
-"affects the number of downloads an add-on receives. Please note that a EULA "
-"is not the same as a code license, such as the GPL or MPL.It is only relevant"
-" for listed add-ons."
+"Please note that a EULA is not the same as a code license, such as the GPL or"
+" MPL. It is only relevant for listed add-ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/policy_form.html:23
+#: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:56
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:126
 #: src/olympia/reviewers/views.py:1152 src/olympia/templates/copyright.html:5
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/policy_form.html:24
+#: src/olympia/devhub/templates/devhub/includes/policy_form.html:22
 msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy "
 "is required that explains what data is sent and how it is used. It is only "
@@ -4728,6 +4673,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:121
 msgid "Load older..."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html:124
+#: src/olympia/discovery/models.py:93 src/olympia/discovery/models.py:105
+#: src/olympia/reviewers/templates/reviewers/review.html:33
+msgid "by"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:133
@@ -7522,6 +7473,12 @@ msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
 
+#: src/olympia/ratings/templates/ratings/impala/reviews_link.html:12
+#: src/olympia/ratings/templates/ratings/reviews_link.html:17
+#: src/olympia/ratings/templatetags/jinja_helpers.py:14
+msgid "Not yet rated"
+msgstr ""
+
 #: src/olympia/ratings/templates/ratings/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -9083,29 +9040,29 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:558
+#: src/olympia/users/models.py:559
 msgid "My Mobile Add-ons"
 msgstr ""
 
-#: src/olympia/users/models.py:564
+#: src/olympia/users/models.py:565
 msgid "My Favorite Add-ons"
 msgstr ""
 
-#: src/olympia/users/models.py:648
+#: src/olympia/users/models.py:649
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:651
+#: src/olympia/users/models.py:652
 msgid ""
 "Multiple add-ons violating our policies have been submitted from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:708
+#: src/olympia/users/models.py:709
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:710
+#: src/olympia/users/models.py:711
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style "
 "wildcards to match other patterns. E.g \"@*.mail.com\"\n"
@@ -9113,18 +9070,18 @@ msgid ""
 " in the pattern."
 msgstr ""
 
-#: src/olympia/users/models.py:717
+#: src/olympia/users/models.py:718
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr ""
 
-#: src/olympia/users/models.py:758
+#: src/olympia/users/models.py:759
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:859
+#: src/olympia/users/models.py:860
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "

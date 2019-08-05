@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2018-09-24 01:47+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,6 +55,9 @@ msgid "The %d selected reports have been marked as suspicious."
 msgstr ""
 
 msgid "Mark selected abuse reports as suspicious"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Modified on:"
@@ -141,53 +144,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr ""
-
-msgid "Rejected"
-msgstr ""
-
-msgid "Approved"
-msgstr ""
-
-msgid "Added {0}"
-msgstr ""
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> usuariu"
-msgstr[1] "<strong>{0}</strong> usuarios"
-
-msgid "Hover to Preview"
-msgstr ""
-
-msgid "Add"
-msgstr ""
-
-msgid "Edit"
-msgstr ""
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Entá nun se valoró"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> usuarios"
-
-msgid "by"
-msgstr "por"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} usuariu diariu"
-msgstr[1] "{0} usuarios diarios"
 
 msgid "Sort by:"
 msgstr ""
@@ -572,6 +528,9 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
+msgid "Approved"
+msgstr ""
+
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -579,6 +538,9 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
+msgstr ""
+
+msgid "Rejected"
 msgstr ""
 
 msgid "{addon} {version} retained."
@@ -854,6 +816,9 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Incomplete"
+msgstr ""
+
+msgid "Awaiting Review"
 msgstr ""
 
 msgid "Disabled by Mozilla"
@@ -1999,6 +1964,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Fontes adicionales:"
 
+msgid "Edit"
+msgstr ""
+
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Recursos adicionales"
@@ -2834,9 +2802,7 @@ msgstr[1] ""
 msgid "End-User License Agreement"
 msgstr ""
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Privacy Policy"
@@ -3143,6 +3109,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "por"
 
 msgid "Leave a reply"
 msgstr ""
@@ -5146,6 +5115,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} reseña"
 msgstr[1] "{num} reseñes"
+
+msgid "Not yet rated"
+msgstr "Entá nun se valoró"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

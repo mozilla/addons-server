@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -59,6 +59,9 @@ msgstr "The %d selected reports have been marked as suspicious."
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Misplaced bug report or support request"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Please ensure this field has no more than {max_length} characters."
 
 msgid "Modified on:"
 msgstr "Modified on:"
@@ -148,54 +151,6 @@ msgstr "Addon and collection paths need to end with \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
-
-msgid "Awaiting Review"
-msgstr "Awaiting Review"
-
-msgid "Rejected"
-msgstr "Rejected"
-
-msgid "Approved"
-msgstr "Approved"
-
-msgid "Added {0}"
-msgstr "Added {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> user"
-msgstr[1] "<strong>{0}</strong> users"
-
-msgid "Hover to Preview"
-msgstr "Hover to Preview"
-
-msgid "Add"
-msgstr "Add"
-
-msgid "Edit"
-msgstr "Edit"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "by {0} on {1}"
-
-msgid "Not yet rated"
-msgstr "Not yet rated"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> users"
-
-msgid "by"
-msgstr "by"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Daily Users"
-msgstr[1] "Daily Users"
 
 msgid "Sort by:"
 msgstr "Sort by:"
@@ -611,6 +566,9 @@ msgstr "File {0} deleted from {version} of {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} approved."
 
+msgid "Approved"
+msgstr "Approved"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} given preliminary review."
 
@@ -619,6 +577,9 @@ msgstr "Preliminarily approved"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} rejected."
+
+msgid "Rejected"
+msgstr "Rejected"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} retained."
@@ -931,6 +892,9 @@ msgstr "Unknown"
 
 msgid "Incomplete"
 msgstr "Incomplete"
+
+msgid "Awaiting Review"
+msgstr "Awaiting Review"
 
 msgid "Disabled by Mozilla"
 msgstr "Disabled by Mozilla"
@@ -2161,6 +2125,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Add-on Details"
 
+msgid "Edit"
+msgstr "Edit"
+
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Add-on Details for {0}"
@@ -3109,12 +3076,9 @@ msgstr[1] "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
@@ -3467,6 +3431,9 @@ msgstr "We had a problem retrieving review notes"
 #, fuzzy
 msgid "Load older..."
 msgstr "Loading..."
+
+msgid "by"
+msgstr "by"
 
 #, fuzzy
 msgid "Leave a reply"
@@ -5681,6 +5648,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} review"
 msgstr[1] "{num} reviews"
+
+msgid "Not yet rated"
+msgstr "Not yet rated"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Rated {0} out of 5 stars"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,9 @@ msgstr ""
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Misplaced bug report or support request"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
 
 msgid "Modified on:"
 msgstr ""
@@ -146,53 +149,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr ""
-
-msgid "Rejected"
-msgstr ""
-
-msgid "Approved"
-msgstr ""
-
-msgid "Added {0}"
-msgstr ""
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Hover to Preview"
-msgstr ""
-
-msgid "Add"
-msgstr ""
-
-msgid "Edit"
-msgstr "Засварлах"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "{1}-ны өдөр {0}-р"
-
-msgid "Not yet rated"
-msgstr "Одоогоор үнэлгээ аваагүй"
-
-msgid "<b>{0}</b> users"
-msgstr ""
-
-msgid "by"
-msgstr "зохиогч"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Sort by:"
 msgstr "Эрэмбэлэлт:"
@@ -593,6 +549,9 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
+msgid "Approved"
+msgstr ""
+
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -600,6 +559,9 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
+msgstr ""
+
+msgid "Rejected"
 msgstr ""
 
 msgid "{addon} {version} retained."
@@ -887,6 +849,9 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Incomplete"
+msgstr ""
+
+msgid "Awaiting Review"
 msgstr ""
 
 msgid "Disabled by Mozilla"
@@ -2069,6 +2034,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Нэмэлт эх сурвалж"
 
+msgid "Edit"
+msgstr "Засварлах"
+
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
@@ -2937,9 +2905,7 @@ msgstr[1] ""
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Privacy Policy"
@@ -3263,6 +3229,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "зохиогч"
 
 msgid "Leave a reply"
 msgstr ""
@@ -5267,6 +5236,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Not yet rated"
+msgstr "Одоогоор үнэлгээ аваагүй"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

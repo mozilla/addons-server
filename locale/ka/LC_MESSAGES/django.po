@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2019-07-07 19:16+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,9 @@ msgstr "შერჩეული %d მოხსენება მოინი�
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "შერჩეული არამართებული მოხსენებების მონიშვნა საეჭვოდ"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
 
 msgid "Modified on:"
 msgstr "შესწორებული:"
@@ -138,53 +141,6 @@ msgstr "დამატებისა და კრებულის მის
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "დამატების სახელში Mozilla-ს ან Firefox-ის სავაჭრო ნიშნების გამოყენება დაუშვებელია."
-
-msgid "Awaiting Review"
-msgstr "ელოდება განხილვას"
-
-msgid "Rejected"
-msgstr "უარყოფილია"
-
-msgid "Approved"
-msgstr "მიღებულია"
-
-msgid "Added {0}"
-msgstr "დამატების თარიღი {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> მომხმარებელი"
-msgstr[1] "<strong>{0}</strong> მომხმარებელი"
-
-msgid "Hover to Preview"
-msgstr "წინასწარ სანახავად, გადაატარეთ ისარი ზედ"
-
-msgid "Add"
-msgstr "ჩადგმა"
-
-msgid "Edit"
-msgstr "ჩასწორება"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "{0}-სგან {1}-ზე"
-
-msgid "Not yet rated"
-msgstr "ჯერ არაა შეფასებული"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> მომხმარებელი"
-
-msgid "by"
-msgstr "ავტორი"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} მომხმარებელი დღეში"
-msgstr[1] "{0} მომხმარებელი დღეში"
 
 msgid "Sort by:"
 msgstr "დალაგება:"
@@ -581,6 +537,9 @@ msgstr "{addon}-ის {version}-იდან ფაილის {0} წაშ�
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} მიღებულია."
 
+msgid "Approved"
+msgstr "მიღებულია"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} გადაცემულია წინასწარი განხილვისთვის."
 
@@ -589,6 +548,9 @@ msgstr "წინასწარი ვარიანტი მიღებუ�
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} უარყოფილია."
+
+msgid "Rejected"
+msgstr "უარყოფილია"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} შეჩერებულია."
@@ -864,6 +826,9 @@ msgstr "უცნობი"
 
 msgid "Incomplete"
 msgstr "დაუსრულებელი"
+
+msgid "Awaiting Review"
+msgstr "ელოდება განხილვას"
 
 msgid "Disabled by Mozilla"
 msgstr "გამორთულია Mozilla-ს მიერ"
@@ -2038,6 +2003,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "დამატებითი მონაცემები"
 
+msgid "Edit"
+msgstr "ჩასწორება"
+
 msgid "Additional Details for {0}"
 msgstr "{0} – დამატებითი მონაცემები"
 
@@ -2894,12 +2862,9 @@ msgstr[1] "მიუთითეთ <b> არაუმეტეს {0}</b> {1} 
 msgid "End-User License Agreement"
 msgstr "მომხმარებლის სალიცენზიო შეთანხმება"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"მომხმარებლები ვალდებულნი არიან დაეთანხმონ სამომხმარებლო სალიცენზიო შეთანხმებას (EULA), დამატებების დასაყენებლად. EULA-ს მიღება მნიშვნელოვნად ზემოქმედებს ჩამოტვირთვების რაოდენობაზე. გთხოვთ "
-"გაითვალისწინოთ, რომ EULA არ არის კოდის ლიცენზია, როგორიც არის GPL, ან MPL. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+#, fuzzy
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "გთხოვთ მიუთითოთ პირველწყარო კოდზე, თქვენი უფლებების შესაბამისი ლიცენზია. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Privacy Policy"
 msgstr "პირადი მონაცემების დაცვის დებულება"
@@ -3216,6 +3181,9 @@ msgstr "ხარვეზებია განხილვის მონა�
 
 msgid "Load older..."
 msgstr "ძველი ჩატვირთვა..."
+
+msgid "by"
+msgstr "ავტორი"
 
 msgid "Leave a reply"
 msgstr "პასუხის დატოვება"
@@ -5218,6 +5186,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} მიმოხილვა"
 msgstr[1] "{num} მიმოხილვა"
+
+msgid "Not yet rated"
+msgstr "ჯერ არაა შეფასებული"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "{0} შეფასება 5 ვარსკვლავიდან"

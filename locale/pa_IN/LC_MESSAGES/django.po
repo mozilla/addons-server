@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2019-06-28 17:56+0000\n"
 "Last-Translator: Mangat veer Sagar <mnvsgr0@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,9 @@ msgstr "%d ਚੁਣੀਆਂ ਗਈਆਂ ਰਿਪੋਰਟਾਂ ਨੂੰ �
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "ਚੁਣੀਆਂ ਹੋਈਆਂ ਦੁਰਵਿਹਾਰ ਸੰਬੰਧੀ ਰਿਪੋਰਟਾਂ ਨੂੰ ਸ਼ੱਕੀ ਕਿਹਾ ਗਿਆ ਹੈ"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
 
 msgid "Modified on:"
 msgstr "ਇਦੋਂ ਸੋਧ ਕੀਤੀ ਗਈ:"
@@ -136,53 +139,6 @@ msgstr "ਐਡਆਨ ਅਤੇ ਕਲੈਕਸ਼ਨ ਪਾਥ ਨੂੰ \"/\" �
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ਐਡ-ਆਨ ਦੇ ਨਾਂ ਵਿੱਚ ਮੋਜ਼ੀਲਾ ਜਾਂ ਫਾਇਰਫਾਕਸ ਟ੍ਰੇਡਮਾਰਕ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਦੇ ਹਨ।"
-
-msgid "Awaiting Review"
-msgstr "ਪੜਤਾਲ ਦੀ ਉਡੀਕ"
-
-msgid "Rejected"
-msgstr "ਰੱਦ ਕੀਤਾ"
-
-msgid "Approved"
-msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
-
-msgid "Added {0}"
-msgstr "ਜੋੜਿਆ {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> ਵਰਤੋਂਕਾਰ"
-msgstr[1] "<strong>{0}</strong> ਵਰਤੋਂਕਾਰ"
-
-msgid "Hover to Preview"
-msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
-
-msgid "Add"
-msgstr "ਜੋੜੋ"
-
-msgid "Edit"
-msgstr "ਸੋਧੋ"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "{1} ਤੇ {0} ਵੱਲੋਂ"
-
-msgid "Not yet rated"
-msgstr "ਅਜੇ ਤੱਕ ਦਰਜਾਬੰਦੀ ਨਹੀਂ ਕੀਤੀ"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> ਵਰਤੋਂਕਾਰ"
-
-msgid "by"
-msgstr "ਵੱਲੋਂ"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
-msgstr[1] "{0} ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 msgid "Sort by:"
 msgstr "ਦੇ ਨਾਲ ਕ੍ਰਮਬੱਧ:"
@@ -575,6 +531,9 @@ msgstr "{addon}ਦੇ {version} ਤੋਂ File {0} ਹਟਾਈ।"
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
 
+msgid "Approved"
+msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
 
@@ -583,6 +542,9 @@ msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਵੀਕਾਰ ਹੋਇ�
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+
+msgid "Rejected"
+msgstr "ਰੱਦ ਕੀਤਾ"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ਰੱਖਿਆ।"
@@ -858,6 +820,9 @@ msgstr "ਅਣਪਛਾਤੇ"
 
 msgid "Incomplete"
 msgstr "ਅਧੂਰਾ"
+
+msgid "Awaiting Review"
+msgstr "ਪੜਤਾਲ ਦੀ ਉਡੀਕ"
 
 msgid "Disabled by Mozilla"
 msgstr "ਮੌਜੀਲਾ ਵੱਲੋਂ ਅਯੋਗ ਕੀਤਾ"
@@ -2006,6 +1971,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "ਹੋਰ ਵੇਰਵੇ"
 
+msgid "Edit"
+msgstr "ਸੋਧੋ"
+
 msgid "Additional Details for {0}"
 msgstr "{0} ਲਈ ਵਧੀਕ ਵੇਰਵਾ"
 
@@ -2847,12 +2815,9 @@ msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰ�
 msgid "End-User License Agreement"
 msgstr "ਅੰਤ-ਉਪਭੋਗੀ ਲਾਇਸੰਸ ਸਮਝੌਤਾ"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਸਥਾਪਿਤ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਅੰਤ-ਯੂਜ਼ਰ ਲਸੰਸ ਸਮਝੌਤੇ (EULA) ਨੂੰ ਸਵੀਕਾਰ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇਗੀ। EULA ਦੀ ਮੌਜੂਦਗੀ ਮਹੱਤਵਪੂਰਨ ਤੌਰ ਤੇ ਐਡਆਨ ਪ੍ਰਾਪਤ ਕਰਨ ਵਾਲੀਆਂ ਡਾਊਨਲੋਡਾਂ ਦੀ ਸੰਖਿਆ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਕਰਦੀ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਉ "
-"ਕਿ ਇੱਕ EULA ਕੋਡ ਲਾਈਸੈਂਸ ਵਾਂਗ ਨਹੀਂ ਹੈ, ਜਿਵੇਂ ਕਿ GPL ਜਾਂ MPL।ਇਹ ਸਿਰਫ ਸੂਚੀਬੱਧ ਐਡਆਨ ਲਈ ਸੰਬੰਧਿਤ ਹੈ।"
+#, fuzzy
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "ਤੁਹਾਡੇ ਵੱਲੋਂ ਆਪਣੇ ਸੋਰਸ ਕੋਡ ਨੂੰ ਦਿੱਤੇ ਅਧਿਕਾਰਾਂ ਦੇ ਅਨੁਕੂਲ ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਲਾਇਸੰਸ ਚੁਣੋ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Privacy Policy"
 msgstr "ਪਰਦੇਦਾਰੀ ਦੀ ਨੀਤੀ"
@@ -3160,6 +3125,9 @@ msgstr "ਸਮੀਖਿਆ ਨੋਟਸ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ �
 
 msgid "Load older..."
 msgstr "ਪੁਰਾਣੇ ਲੋਡ ਕਰੋ..."
+
+msgid "by"
+msgstr "ਵੱਲੋਂ"
 
 msgid "Leave a reply"
 msgstr "ਜਵਾਬ ਛੱਡਣਾ"
@@ -5172,6 +5140,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} ਸਮੀਖਿਆ"
 msgstr[1] "{num} ਸਮੀਖਿਆਵਾਂ"
+
+msgid "Not yet rated"
+msgstr "ਅਜੇ ਤੱਕ ਦਰਜਾਬੰਦੀ ਨਹੀਂ ਕੀਤੀ"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"

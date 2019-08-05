@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2019-07-14 11:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -56,6 +56,9 @@ msgstr ""
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Yanlış yere konmuş hata raporu veya destek isteği"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
 
 msgid "Modified on:"
 msgstr ""
@@ -143,53 +146,6 @@ msgstr "Eklenti ve koleksiyon yolları \"/\" ile bitmelidir"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Eklenti adlarında Mozilla ve Firefox tescilli markaları kullanılamaz."
-
-msgid "Awaiting Review"
-msgstr "İnceleme Bekliyor"
-
-msgid "Rejected"
-msgstr "Reddedildi."
-
-msgid "Approved"
-msgstr "Onaylandı"
-
-msgid "Added {0}"
-msgstr "{0} tarihinde eklendi"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> kullanıcı"
-msgstr[1] "<strong>{0}</strong> kullanıcı"
-
-msgid "Hover to Preview"
-msgstr "Ön izleme için üstüne gelin"
-
-msgid "Add"
-msgstr "Ekle"
-
-msgid "Edit"
-msgstr "Düzenle"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "{0} tarafından {1} tarihinde"
-
-msgid "Not yet rated"
-msgstr "Henüz puanlanmamış"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> kullanıcı"
-
-msgid "by"
-msgstr "geliştiren:"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Günlük {0} kullanıcı"
-msgstr[1] "Günlük {0} kullanıcı"
 
 msgid "Sort by:"
 msgstr "Sıralama:"
@@ -600,6 +556,9 @@ msgstr "{addon} {version} sürümünden {0} dosyası silindi."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} onaylandı."
 
+msgid "Approved"
+msgstr "Onaylandı"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ön incelemesi yapıldı."
 
@@ -608,6 +567,9 @@ msgstr "Ön onay verildi"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} reddedildi."
+
+msgid "Rejected"
+msgstr "Reddedildi."
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} tutuldu."
@@ -895,6 +857,9 @@ msgstr "Bilinmeyen"
 
 msgid "Incomplete"
 msgstr "Tamamlanmamış"
+
+msgid "Awaiting Review"
+msgstr "İnceleme Bekliyor"
 
 msgid "Disabled by Mozilla"
 msgstr "Mozilla tarafından devre dışı bırakıldı"
@@ -2078,6 +2043,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Ek Ayrıntılar"
 
+msgid "Edit"
+msgstr "Düzenle"
+
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
@@ -2953,9 +2921,7 @@ msgstr[1] "Bu eklenti için <b>en fazla {0}</b> {1} kategori seçin:"
 msgid "End-User License Agreement"
 msgstr "Son Kullanıcı Lisans Anlaşması"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Privacy Policy"
@@ -3277,6 +3243,9 @@ msgstr "İnceleme notları alınırken sorun yaşadık"
 
 msgid "Load older..."
 msgstr "Daha eskileri yükle..."
+
+msgid "by"
+msgstr "geliştiren:"
 
 msgid "Leave a reply"
 msgstr "Yanıt yaz"
@@ -5301,6 +5270,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} inceleme"
 msgstr[1] "{num} inceleme"
+
+msgid "Not yet rated"
+msgstr "Henüz puanlanmamış"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5 üzerinden {0} yıldız"

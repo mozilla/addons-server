@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,6 +58,9 @@ msgstr ""
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Rutzijol k'ayewal o ruk'utuxik to'ïk pa jun itzel k'ojlib'äl"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
 
 msgid "Modified on:"
 msgstr ""
@@ -145,53 +148,6 @@ msgstr "Ri kib'i' tz'aqat chuqa' mol k'o chi nikik'isb'ej rik'in \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Ri kib'i' tz'aqat man tikirel ta nikik'waj ketal ri Mozilla chuqa' Firefox."
-
-msgid "Awaiting Review"
-msgstr "Noyob'ëx Nik'oxïk"
-
-msgid "Rejected"
-msgstr "Xutun"
-
-msgid "Approved"
-msgstr "Juch'un"
-
-msgid "Added {0}"
-msgstr "Tz'aqatisan {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> okisanel"
-msgstr[1] "<strong>{0}</strong> okisanela'"
-
-msgid "Hover to Preview"
-msgstr "Tiq'axäx choy pa ruwi' richin Nab'ey Tzub'al"
-
-msgid "Add"
-msgstr "Titz'aqatisäx"
-
-msgid "Edit"
-msgstr "Tinuk'"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "ruma {0} pa {1}"
-
-msgid "Not yet rated"
-msgstr "K'a man ya'on ta rejqalem"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> okisanela'"
-
-msgid "by"
-msgstr "ruma"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} Q'ij chi Q'ij Okisanel"
-msgstr[1] "{0} Q'ij chi Qij Okisanela'"
 
 msgid "Sort by:"
 msgstr "Tichol chi:"
@@ -594,6 +550,9 @@ msgstr "Yakb'äl {0} xyuj pa {version} richin {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ya'on q'ij."
 
+msgid "Approved"
+msgstr "Juch'un"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} xuk'ül jun nab'ey runik'oxik."
 
@@ -602,6 +561,9 @@ msgstr "Nab'ey ya'on q'ij"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} xxutüx."
+
+msgid "Rejected"
+msgstr "Xutun"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} xk'am."
@@ -877,6 +839,9 @@ msgstr "Man etaman ta ruwäch"
 
 msgid "Incomplete"
 msgstr "Man tz'aqät ta"
+
+msgid "Awaiting Review"
+msgstr "Noyob'ëx Nik'oxïk"
 
 msgid "Disabled by Mozilla"
 msgstr "Xchup ruma Mozilla"
@@ -2041,6 +2006,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Kib'anikil Tz'aqat"
 
+msgid "Edit"
+msgstr "Tinuk'"
+
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Kib'anikil Rutz'aqat {0}"
@@ -2907,12 +2875,9 @@ msgstr[1] "Kecha' <b>k'a {0}</b> {1} ruwäch re tz'aqat re':"
 msgid "End-User License Agreement"
 msgstr "Rutununa'oj Ya'öl Q'ij richin K'ixib'äl Okisanel"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"Xtik'utüx chi ke ri okisanela' chi tikiya' kitzij chi rij ri Rujunamil Ya'oj Ruq'ij Ruk'isib'äl Okisanel (EULA rub'i' pan q'anchi') chuwäch nuyäk ri tz'aqat. Toq k'o re k'ultzij re' EULA nutz'ila' "
-"jarupe' taq kiqasaxik ri tz'aqat. Tanataj chi ri EULA man junam ta rik'in jun ruya'oj ruq'ij b'itz'ib' achi'el GPL o MPL.Okel xa xe pa cholajin tz'aqat."
+#, fuzzy
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "Tacha' jun ruk'amon ya'oj q'ij kichin ri taq ch'ojib'äl ye'ajikib'a' pa ri ruxe'el b'itz'ib'. Xa xe okel pa cholajin taq tz'aqat"
 
 msgid "Privacy Policy"
 msgstr "Ichinan na'oj"
@@ -3222,6 +3187,9 @@ msgstr "Xk'ulwachitäj jun k'ayewal toq yekol ri taq ruch'utitzijol nik'oxïk"
 
 msgid "Load older..."
 msgstr "Kesamajib'ëx e ojer..."
+
+msgid "by"
+msgstr "ruma"
 
 msgid "Leave a reply"
 msgstr "Titzolïx tzij"
@@ -5251,6 +5219,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} rejqalem"
 msgstr[1] "{num} taq ejqalem"
+
+msgid "Not yet rated"
+msgstr "K'a man ya'on ta rejqalem"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Ya'on {0} richin 5 ch'umil"

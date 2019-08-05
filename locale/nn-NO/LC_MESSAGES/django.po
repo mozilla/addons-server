@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-05 14:35+0000\n"
 "PO-Revision-Date: 2019-04-16 17:50+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,6 +56,9 @@ msgid "The %d selected reports have been marked as suspicious."
 msgstr ""
 
 msgid "Mark selected abuse reports as suspicious"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Modified on:"
@@ -142,53 +145,6 @@ msgstr "Søkesti for tillegg og samling må avsluttast med \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr "Ventar på vurdering"
-
-msgid "Rejected"
-msgstr "Avvist"
-
-msgid "Approved"
-msgstr "Godkjend"
-
-msgid "Added {0}"
-msgstr "Lagt til {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> brukar"
-msgstr[1] "<strong>{0}</strong> brukarar"
-
-msgid "Hover to Preview"
-msgstr "Hald musepeikaren over for å førehandsvise"
-
-msgid "Add"
-msgstr "Legg til"
-
-msgid "Edit"
-msgstr "Rediger"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "av {0} den {1}"
-
-msgid "Not yet rated"
-msgstr "Ikkje vurdert enno"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> brukarar"
-
-msgid "by"
-msgstr "av"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} dagleg brukar"
-msgstr[1] "{0} daglege brukarar"
 
 msgid "Sort by:"
 msgstr "Sorter etter:"
@@ -580,6 +536,9 @@ msgstr "Fila {0} sletta {version} av {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} godkjend."
 
+msgid "Approved"
+msgstr "Godkjend"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} er førebels vurdert."
 
@@ -588,6 +547,9 @@ msgstr "Førebels godkjend"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} avvist."
+
+msgid "Rejected"
+msgstr "Avvist"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} halden tilbake."
@@ -870,6 +832,9 @@ msgstr "Ukjend"
 
 msgid "Incomplete"
 msgstr "Ufullstendig"
+
+msgid "Awaiting Review"
+msgstr "Ventar på vurdering"
 
 msgid "Disabled by Mozilla"
 msgstr "Deaktiveret av Mozilla"
@@ -2035,6 +2000,9 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Utvidingsdetaljar"
 
+msgid "Edit"
+msgstr "Rediger"
+
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Utvidingsdetaljar for {0}"
@@ -2881,9 +2849,7 @@ msgstr[1] "Vel <b>opp til {0}</b> {1} kategoriar for denne utvidinga:"
 msgid "End-User License Agreement"
 msgstr "Sluttbrukarlisens"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Privacy Policy"
@@ -3196,6 +3162,9 @@ msgstr "Vi hadde eit problem med å hente vurderingsnotat"
 
 msgid "Load older..."
 msgstr "Last eldre…"
+
+msgid "by"
+msgstr "av"
 
 msgid "Leave a reply"
 msgstr "Legg att eit svar"
@@ -5352,6 +5321,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} vurdering"
 msgstr[1] "{num} vurderingar"
+
+msgid "Not yet rated"
+msgstr "Ikkje vurdert enno"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Vurdert til {0} av 5 stjerner"
