@@ -477,6 +477,7 @@ INSTALLED_APPS = (
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
+    'olympia.scanners',
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
