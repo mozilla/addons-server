@@ -42,6 +42,7 @@ from olympia.files.utils import (
 from olympia.files.tasks import repack_fileupload
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
+from olympia.scanners.tasks import run_customs
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -265,6 +266,17 @@ def handle_upload_validation_result(
     """Annotate a set of validation results and save them to the given
     FileUpload instance."""
     upload = FileUpload.objects.get(pk=upload_pk)
+
+    if results['errors'] == 0:
+        # Run customs. This cannot be asynchronous because we have no way to
+        # know whether the task will complete before we attach a `Version` to
+        # it later in the submission process... Because we cannot use `chord`
+        # reliably right now (requires Celery 4.2+), this task is actually not
+        # run as a task, it's a simple function call.
+        #
+        # TODO: use `run_customs` as a task in the submission chord once it is
+        # possible.
+        run_customs(upload.pk)
 
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no search plugin

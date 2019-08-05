@@ -35,6 +35,7 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.scanners.models import ScannersResult
 
 from .compare import version_dict, version_int
 
@@ -261,6 +262,14 @@ class Version(OnChangeMixin, ModelBase):
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
         version_uploaded.send(instance=version, sender=Version)
+
+        try:
+            ScannersResult.objects.filter(upload_id=upload.id).update(
+                version=version
+            )
+        except ScannersResult.DoesNotExist:
+            log.exception('Could not find ScannersResults for FileUpload %s',
+                          upload.id)
 
         # Extract this version into git repository
         transaction.on_commit(
