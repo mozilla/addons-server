@@ -165,22 +165,22 @@ class PermissionsTestMixin(object):
             'Addons:Review']
 
         # Multiple permissions
-        group.update(rules='Addons:Review,Personas:Review,Addons:Edit')
+        group.update(rules='Addons:Review,Addons:Edit')
         del self.user.groups_list
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+            'Addons:Edit', 'Addons:Review']
 
         # Change order to test sort
-        group.update(rules='Personas:Review,Addons:Review,Addons:Edit')
+        group.update(rules='Addons:Edit,Addons:Review')
         del self.user.groups_list
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+            'Addons:Edit', 'Addons:Review']
 
         # Add a second group membership to test duplicates
         group2 = Group.objects.create(name='b', rules='Foo:Bar,Addons:Edit')
         GroupUser.objects.create(group=group2, user=self.user)
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Foo:Bar', 'Personas:Review']
+            'Addons:Edit', 'Addons:Review', 'Foo:Bar']
 
 
 class TestUserProfileSerializer(TestPublicUserProfileSerializer,

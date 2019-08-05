@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
-    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
+    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_SEARCH,
     ADDON_SLUGS, ADDON_STATICTHEME, ADDON_THEME)
 
 
@@ -409,10 +409,6 @@ CATEGORIES_NO_APP = {
     },
 }
 
-CATEGORIES_NO_APP[ADDON_PERSONA] = {
-    slug: copy.copy(cat)
-    for slug, cat in CATEGORIES_NO_APP[ADDON_STATICTHEME].items()}
-
 for type_ in CATEGORIES_NO_APP:
     for slug, cat in CATEGORIES_NO_APP[type_].items():
         # Flatten some values and set them, avoiding immutability
@@ -494,23 +490,6 @@ CATEGORIES = {
         ADDON_LPAPP: {
             'general': 98,
         },
-        ADDON_PERSONA: {
-            'abstract': 100,
-            'causes': 120,
-            'fashion': 124,
-            'film-and-tv': 126,
-            'firefox': 108,
-            'foxkeh': 110,
-            'holiday': 128,
-            'music': 122,
-            'nature': 102,
-            'other': 114,
-            'scenery': 106,
-            'seasonal': 112,
-            'solid': 118,
-            'sports': 104,
-            'websites': 116,
-        }
     },
     ANDROID.id: {
         ADDON_EXTENSION: {

@@ -138,15 +138,15 @@ class TestModelBase(TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         addon.save()
 
-        # Make it a persona.
-        Addon.objects.get(id=addon.id).update(type=amo.ADDON_PERSONA)
+        # Make it a theme.
+        Addon.objects.get(id=addon.id).update(type=amo.ADDON_STATICTHEME)
 
         # Still an extension.
         assert addon.type == amo.ADDON_EXTENSION
 
-        # Reload. And it's magically now a persona.
-        assert addon.reload().type == amo.ADDON_PERSONA
-        assert addon.type == amo.ADDON_PERSONA
+        # Reload. And it's magically now a theme.
+        assert addon.reload().type == amo.ADDON_STATICTHEME
+        assert addon.type == amo.ADDON_STATICTHEME
 
     def test_get_unfiltered_manager(self):
         Addon.get_unfiltered_manager() == Addon.unfiltered

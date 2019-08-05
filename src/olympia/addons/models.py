@@ -167,17 +167,6 @@ class AddonQuerySet(BaseQuerySet):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.VALID_ADDON_STATUSES))
 
-    def valid_and_disabled_and_pending(self):
-        """
-        Get valid, pending, enabled and disabled add-ons.
-        Used to allow pending theme pages to still be viewed.
-        """
-        statuses = (list(amo.VALID_ADDON_STATUSES) +
-                    [amo.STATUS_DISABLED, amo.STATUS_PENDING])
-        return (self.filter(Q(status__in=statuses) | Q(disabled_by_user=True))
-                .exclude(type=amo.ADDON_EXTENSION,
-                         _current_version__isnull=True))
-
     def featured(self, app, lang=None, type=None):
         """
         Filter for all featured add-ons for an application in all locales.
@@ -246,13 +235,6 @@ class AddonManager(ManagerBase):
     def valid(self):
         """Get valid, enabled add-ons only"""
         return self.get_queryset().valid()
-
-    def valid_and_disabled_and_pending(self):
-        """
-        Get valid, pending, enabled and disabled add-ons.
-        Used to allow pending theme pages to still be viewed.
-        """
-        return self.get_queryset().valid_and_disabled_and_pending()
 
     def featured(self, app, lang=None, type=None):
         """
@@ -768,8 +750,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         If the add-on is not public, it can return a listed version awaiting
         review (since non-public add-ons should not have public versions)."""
-        if self.type == amo.ADDON_PERSONA:
-            return
         try:
             statuses = self.valid_file_statuses
             status_list = ','.join(map(str, statuses))
@@ -833,17 +813,6 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        if self.is_persona():
-            # Themes should only have a single version. So, if there is not
-            # current version set, we just need to copy over the latest version
-            # to current_version and we should never have to set it again.
-            if not self._current_version:
-                latest_version = self.find_latest_version(None)
-                if latest_version:
-                    self.update(_current_version=latest_version, _signal=False)
-                return True
-            return False
-
         new_current_version = self.find_latest_public_listed_version()
         updated = {}
         send_signal = False
@@ -931,9 +900,6 @@ class Addon(OnChangeMixin, ModelBase):
         """
         Returns the addon's icon url according to icon_type.
 
-        If it's a persona, it will return the icon_url of the associated
-        Persona instance.
-
         If it's a theme and there is no icon set, it will return the default
         theme icon.
 
@@ -989,7 +955,7 @@ class Addon(OnChangeMixin, ModelBase):
         self.reload()
 
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or
-                self.is_disabled or self.is_persona()):
+                self.is_disabled):
             self.update_version(ignore=ignore_version)
             return
 
@@ -1114,20 +1080,11 @@ class Addon(OnChangeMixin, ModelBase):
 
         addon_dict = {a.id: a for a in addons}
 
-        # Attach categories. This needs to be done before separating addons
-        # from personas, because Personas need categories for the theme_data
-        # JSON dump, rest of the add-ons need the first category to be
-        # displayed in detail page / API.
+        # Attach categories.
         Addon.attach_static_categories(addons, addon_dict=addon_dict)
-
         # Set _current_version and attach listed authors.
-        # Do this before splitting off personas and addons because
-        # it needs to be attached to both.
         Addon.attach_related_versions(addons, addon_dict=addon_dict)
         Addon.attach_listed_authors(addons, addon_dict=addon_dict)
-
-        addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
-
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
 
@@ -1181,9 +1138,6 @@ class Addon(OnChangeMixin, ModelBase):
                 latest_version.files.exists() and
                 not any(file.reviewed for file in latest_version.all_files))
 
-    def is_persona(self):
-        return self.type == amo.ADDON_PERSONA
-
     @property
     def is_disabled(self):
         """True if this Addon is disabled.
@@ -1235,12 +1189,6 @@ class Addon(OnChangeMixin, ModelBase):
             self.status == amo.STATUS_NULL and
             not self.has_complete_metadata() and
             self.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED))
-
-    def is_pending(self):
-        return self.status == amo.STATUS_PENDING
-
-    def is_rejected(self):
-        return self.status == amo.STATUS_REJECTED
 
     def can_be_deleted(self):
         return not self.is_deleted
@@ -1301,8 +1249,6 @@ class Addon(OnChangeMixin, ModelBase):
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_denied()
-        if self.is_persona:
-            return [], tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
@@ -1351,7 +1297,6 @@ class Addon(OnChangeMixin, ModelBase):
             Addon.objects.filter(
                 status=amo.STATUS_APPROVED,
                 versions__files__status=amo.STATUS_APPROVED)
-            .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
         stati = amo.VALID_ADDON_STATUSES
@@ -1360,9 +1305,7 @@ class Addon(OnChangeMixin, ModelBase):
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
-        personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
-                    .extra(select={'last_updated': 'created'}))
-        return {'public': public, 'exp': exp, 'personas': personas}
+        return {'public': public, 'exp': exp}
 
     @cached_property
     def all_categories(self):

@@ -24,7 +24,6 @@ from olympia.amo import urlresolvers, utils
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import TestCase, reverse_ns
 from olympia.amo.utils import ImageCheck
-from olympia.versions.models import License
 
 
 ADDONS_TEST_FILES = os.path.join(
@@ -329,87 +328,6 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     # Use PyQuery because the attributes could be rendered in any order.
     doc = PyQuery(res)
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
-
-
-class TestLicenseLink(TestCase):
-
-    def test_license_link(self):
-        mit = License.objects.create(
-            name='MIT/X11 License', builtin=6, url='http://m.it')
-        copyright = License.objects.create(
-            name='All Rights Reserved', icons='copyr', builtin=7)
-        cc = License.objects.create(
-            name='Creative Commons', url='http://cre.at', builtin=8,
-            some_rights=True, icons='cc-attrib cc-noncom cc-share')
-        cc.save()
-        expected = {
-            mit: (
-                '<ul class="license"><li class="text">'
-                '<a href="http://m.it">MIT/X11 License</a></li></ul>'),
-            copyright: (
-                '<ul class="license"><li class="icon copyr"></li>'
-                '<li class="text">All Rights Reserved</li></ul>'),
-            cc: (
-                '<ul class="license"><li class="icon cc-attrib"></li>'
-                '<li class="icon cc-noncom"></li><li class="icon cc-share">'
-                '</li><li class="text"><a href="http://cre.at" '
-                'title="Creative Commons">Some rights reserved</a></li></ul>'),
-        }
-        for lic, ex in expected.items():
-            res = render('{{ license_link(lic) }}', {'lic': lic})
-            res = ''.join([s.strip() for s in res.split('\n')])
-            assert res == ex
-
-    def test_theme_license_link(self):
-        s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_COPYRIGHT})
-
-        ul = PyQuery(s)('.license')
-        assert ul.find('.icon').length == 1
-        assert ul.find('.icon.copyr').length == 1
-
-        text = ul.find('.text')
-        assert text.find('a').length == 0
-        assert text.text() == 'All Rights Reserved'
-
-        s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_CC_BY_NC_SA})
-
-        ul = PyQuery(s)('.license')
-        assert ul.find('.icon').length == 3
-        assert ul.find('.icon.cc-attrib').length == 1
-        assert ul.find('.icon.cc-noncom').length == 1
-        assert ul.find('.icon.cc-share').length == 1
-
-        link = ul.find('.text a')
-        assert link.find('a').length == 0
-        assert link.text() == 'Some rights reserved'
-        assert link.attr('href') == amo.LICENSE_CC_BY_NC_SA.url
-
-    def test_license_link_xss(self):
-        mit = License.objects.create(
-            name='<script>', builtin=6, url='<script>')
-        copyright = License.objects.create(
-            name='<script>', icons='<script>', builtin=7)
-        cc = License.objects.create(
-            name='<script>', url='<script>', builtin=8,
-            some_rights=True, icons='<script> cc-noncom cc-share')
-        cc.save()
-        expected = {
-            mit: (
-                '<ul class="license"><li class="text">'
-                '<a href="&lt;script&gt;">&lt;script&gt;</a></li></ul>'),
-            copyright: (
-                '<ul class="license"><li class="icon &lt;script&gt;"></li>'
-                '<li class="text">&lt;script&gt;</li></ul>'),
-            cc: (
-                '<ul class="license"><li class="icon &lt;script&gt;"></li>'
-                '<li class="icon cc-noncom"></li><li class="icon cc-share">'
-                '</li><li class="text"><a href="&lt;script&gt;" '
-                'title="&lt;script&gt;">Some rights reserved</a></li></ul>'),
-        }
-        for lic, ex in expected.items():
-            res = render('{{ license_link(lic) }}', {'lic': lic})
-            res = ''.join([s.strip() for s in res.split('\n')])
-            assert res == ex
 
 
 def get_image_path(name):

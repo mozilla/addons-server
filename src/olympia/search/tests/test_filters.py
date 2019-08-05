@@ -530,11 +530,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in filter_
 
-        qs = self._filter(data={'type': str(amo.ADDON_PERSONA)})
+        qs = self._filter(data={'type': str(amo.ADDON_STATICTHEME)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in filter_
+        assert {'terms': {'type': [amo.ADDON_STATICTHEME]}} in filter_
 
     def test_search_by_type_string(self):
         qs = self._filter(data={'type': 'extension'})
@@ -543,18 +543,18 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in filter_
 
-        qs = self._filter(data={'type': 'persona'})
+        qs = self._filter(data={'type': 'statictheme'})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in filter_
+        assert {'terms': {'type': [amo.ADDON_STATICTHEME]}} in filter_
 
-        qs = self._filter(data={'type': 'persona,extension'})
+        qs = self._filter(data={'type': 'statictheme,extension'})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert (
-            {'terms': {'type': [amo.ADDON_PERSONA, amo.ADDON_EXTENSION]}}
+            {'terms': {'type': [amo.ADDON_STATICTHEME, amo.ADDON_EXTENSION]}}
             in filter_)
 
     def test_search_by_app_invalid(self):
@@ -713,11 +713,11 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_category_slug_multiple_types(self):
         category_a = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
-        category_b = CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['other']
+        category_b = CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other']
         qs = self._filter(data={
             'category': 'other',
             'app': 'firefox',
-            'type': 'extension,persona'
+            'type': 'extension,statictheme'
         })
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']

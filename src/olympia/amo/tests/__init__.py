@@ -46,7 +46,6 @@ from olympia.addons import indexers as addons_indexers
 from olympia.addons.models import (
     Addon, AddonCategory, Category,
     update_search_index as addon_update_search_index)
-from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import unindex_addons
@@ -687,12 +686,11 @@ def addon_factory(
         'created': when,
         'last_updated': when,
     }
-    if type_ != amo.ADDON_PERSONA and 'summary' not in kw:
-        # Assign a dummy summary if none was specified in keyword args, unless
-        # we're creating a Persona since they don't have summaries.
+    if 'summary' not in kw:
+        # Assign a dummy summary if none was specified in keyword args.
         kwargs['summary'] = u'Summary for %s' % name
-    if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
-        # Personas and search engines don't need guids
+    if type_ not in [amo.ADDON_SEARCH]:
+        # Search engines don't need guids
         kwargs['guid'] = kw.pop('guid', '{%s}' % str(uuid.uuid4()))
     kwargs.update(kw)
 
@@ -725,13 +723,6 @@ def addon_factory(
 
     # Save 4.
     addon.save()
-
-    if addon.type == amo.ADDON_PERSONA:
-        # Personas only have one version and signals.version_changed is never
-        # fired for them - instead it gets updated through a cron (!). We do
-        # need to get it right in some tests like the ui tests, so we call the
-        # task ourselves.
-        version_changed(addon.pk)
 
     # Potentially update is_public on authors
     [user.update_is_public() for user in users]
@@ -882,7 +873,7 @@ def version_factory(file_kw=None, **kw):
         ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=ver, min=av_min,
                                                    max=av_max)
-    if addon_type != amo.ADDON_PERSONA and file_kw is not False:
+    if file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     return ver

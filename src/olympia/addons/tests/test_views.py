@@ -51,10 +51,6 @@ class TestStatus(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         assert self.client.get(self.url).status_code == 401
 
-    def test_pending(self):
-        self.addon.update(status=amo.STATUS_PENDING)
-        assert self.client.get(self.url).status_code == 401
-
     def test_nominated(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
         assert self.client.get(self.url).status_code == 401
@@ -2156,28 +2152,6 @@ class TestAddonFeaturedView(TestCase):
         assert data['results'][1]['id'] == addon2.pk
 
     @patch('olympia.addons.views.get_creatured_ids')
-    def test_category_with_multiple_types(self, get_creatured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
-
-        response = self.client.get(self.url, {
-            'category': 'nature', 'app': 'firefox',
-            'type': 'persona,statictheme'
-        })
-        assert get_creatured_ids_mock.call_count == 2
-        assert get_creatured_ids_mock.call_args_list[0][0][0] == 102  # cat
-        assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
-        assert get_creatured_ids_mock.call_args_list[1][0][0] == 302  # cat
-        assert get_creatured_ids_mock.call_args_list[1][0][1] is None  # lang
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert data['results']
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
-
-    @patch('olympia.addons.views.get_creatured_ids')
     def test_category_with_lang(self, get_creatured_ids_mock):
         addon1 = addon_factory()
         addon2 = addon_factory()
@@ -2211,7 +2185,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
-        assert len(data) == 96
+        assert len(data) == 81
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -2240,7 +2214,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
-        assert len(data) == 96
+        assert len(data) == 81
 
         # some basic checks to verify integrity
         entry = data[0]

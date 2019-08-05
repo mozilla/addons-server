@@ -7,17 +7,7 @@
 {% endblock %}
 
 {% block stats_note %}
-  {% if addon.is_persona() %}
-    {% trans %}
-      <h2>What are daily users?</h2>
-      <p>
-        Themes installed from this site check for updates once per day. The total
-        number of these update pings is known as Active Daily Users, or
-        the total number of people using your theme by day.
-      </p>
-    {% endtrans %}
-  {% else %}
-    {% trans %}
+   {% trans %}
       <h2>What are daily users?</h2>
       <p>
         Add-ons downloaded from this site check for updates once per day. The total
@@ -26,5 +16,4 @@
         and locale.
       </p>
     {% endtrans %}
-  {% endif %}
 {% endblock %}

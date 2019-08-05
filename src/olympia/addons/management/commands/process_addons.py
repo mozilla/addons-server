@@ -10,7 +10,6 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
     content_approve_migrated_themes,
-    delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
     migrate_webextensions_to_git_storage,
@@ -85,16 +84,10 @@ tasks = {
             ~Q(type=amo.ADDON_SEARCH)
         ]
     },
-    'delete_lwt': {
-        'method': delete_addons,
-        'qs': [
-            Q(type=amo.ADDON_PERSONA)
-        ]
-    },
     'recreate_previews': {
         'method': recreate_previews,
         'qs': [
-            ~Q(type=amo.ADDON_PERSONA)
+            ~Q(type=amo.ADDON_STATICTHEME)
         ]
     },
     'recreate_theme_previews': {

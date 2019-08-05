@@ -24,8 +24,7 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.amo.utils import days_ago
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION,
-    ADDON_PERSONA
+    ADDON_EXTENSION, ADDON_STATICTHEME
 )
 from olympia.devhub.forms import icons
 from olympia.landfill.collection import generate_collection
@@ -107,7 +106,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(10):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
-                type=ADDON_PERSONA,
+                type=ADDON_STATICTHEME,
                 version_kw={
                     'recommendation_approved': True,
                     'nomination': days_ago(6)
@@ -322,7 +321,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         addon = addon_factory(
             status=amo.STATUS_APPROVED,
-            type=ADDON_PERSONA,
+            type=ADDON_STATICTHEME,
             average_daily_users=4242,
             users=[self.user],
             average_rating=5,
@@ -379,7 +378,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(6):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
-                type=ADDON_PERSONA,
+                type=ADDON_STATICTHEME,
                 file_kw={
                     'is_webextension': True
                 },

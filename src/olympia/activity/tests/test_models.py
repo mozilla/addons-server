@@ -293,9 +293,9 @@ class TestActivityLog(TestCase):
                     'Disabled by Mozilla.')
         assert str(log) == expected
 
-        log.arguments = [addon, amo.STATUS_REJECTED]
+        log.arguments = [addon, amo.STATUS_NULL]
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
-                    'Delicious Bookmarks</a> status changed to Rejected.')
+                    'Delicious Bookmarks</a> status changed to Incomplete.')
         assert str(log) == expected
 
         log.arguments = [addon, 666]

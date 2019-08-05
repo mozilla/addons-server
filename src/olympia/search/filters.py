@@ -235,13 +235,6 @@ class AddonTypeQueryParam(AddonQueryParam):
             return all([_value in self.valid_values for _value in value])
 
 
-class AddonStatusQueryParam(AddonQueryParam):
-    query_param = 'status'
-    reverse_dict = amo.STATUS_CHOICES_API_LOOKUP
-    valid_values = amo.STATUS_CHOICES_API
-    es_field = 'status'
-
-
 class AddonCategoryQueryParam(AddonQueryParam):
     query_param = 'category'
     es_field = 'category'

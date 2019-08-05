@@ -137,7 +137,9 @@ class Command(BaseCommand):
             Addon.unfiltered
             .exclude(status=amo.STATUS_NULL)
             .exclude(guid__isnull=True)
-            .exclude(type=amo.ADDON_PERSONA)
+            # Shouldn't be necessary to exclude _ADDON__PERSONA now but we've
+            # still got a huge number of deleted LWT in the database.
+            .exclude(type=9)
             .values_list('guid', 'id')))
 
         for group, filepath in group_filepaths:

@@ -52,8 +52,6 @@ from .utils import (
 
 log = olympia.core.logger.getLogger('z.addons')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
-addon_valid_disabled_pending_view = addon_view_factory(
-    qs=Addon.objects.valid_and_disabled_and_pending)
 
 
 class BaseFilter(object):

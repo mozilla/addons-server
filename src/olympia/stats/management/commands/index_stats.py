@@ -7,11 +7,9 @@ from celery import group
 
 import olympia.core.logger
 from olympia.amo.celery import create_chunked_tasks_signatures
-from olympia.stats.models import (
-    DownloadCount, ThemeUserCount, UpdateCount)
+from olympia.stats.models import DownloadCount, UpdateCount
 from olympia.stats.search import CHUNK_SIZE
-from olympia.stats.tasks import (
-    index_download_counts, index_theme_user_counts, index_update_counts)
+from olympia.stats.tasks import index_download_counts, index_update_counts
 
 
 log = olympia.core.logger.getLogger('z.stats')
@@ -44,8 +42,6 @@ def gather_index_stats_tasks(index, addons=None, dates=None):
             {'date': 'date'}),
         (DownloadCount.objects, index_download_counts,
             {'date': 'date'}),
-        (ThemeUserCount.objects, index_theme_user_counts,
-            {'date': 'date'})
     ]
 
     jobs = []

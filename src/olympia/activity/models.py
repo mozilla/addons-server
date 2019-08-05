@@ -455,11 +455,8 @@ class ActivityLog(ModelBase):
                 # Unfortunately, this action has been abused in the past and
                 # the non-addon argument could be a string or an int. If it's
                 # an int, we want to retrieve the string and translate it.
-                # Note that we use STATUS_CHOICES_PERSONA because it's a
-                # superset of STATUS_CHOICES_ADDON, and we need to handle all
-                # statuses.
-                if isinstance(arg, int) and arg in amo.STATUS_CHOICES_PERSONA:
-                    status = ugettext(amo.STATUS_CHOICES_PERSONA[arg])
+                if isinstance(arg, int) and arg in amo.STATUS_CHOICES_ADDON:
+                    status = ugettext(amo.STATUS_CHOICES_ADDON[arg])
                 else:
                     # It's not an int or not one of the choices, so assume it's
                     # a string or an unknown int we want to display as-is.

@@ -86,19 +86,3 @@ class ThemeUpdateCount(StatsSearchMixin, models.Model):
 
     class Meta:
         db_table = 'theme_update_counts'
-
-
-class ThemeUserCount(StatsSearchMixin, models.Model):
-    """Theme popularity (weekly average of users).
-
-    This is filled in by a cron job reading the popularity from the theme
-    (Persona).
-
-    """
-    addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'theme_user_counts'
-        index_together = ('date', 'addon')
