@@ -59,8 +59,10 @@ class DiscoveryTestMixin(object):
 
         assert result['heading'] == item.heading
         assert result['description'] == item.description
-        assert result['heading_text'] == item.heading_text
         assert result['description_text'] == item.description_text
+
+        # https://github.com/mozilla/addons-server/issues/11817
+        assert 'heading_text' not in result
 
         self._check_disco_addon_version(
             result['addon']['current_version'], addon.current_version)
