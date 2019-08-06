@@ -556,6 +556,21 @@ class Version(OnChangeMixin, ModelBase):
             v_id = version.id
             version.all_activity = al_dict.get(v_id, [])
 
+    @classmethod
+    def transformer_auto_approval(cls, versions):
+        if not versions:
+            return
+
+        ids = set(v.id for v in versions)
+
+        auto_approvable = set(
+            Version.objects.auto_approvable()
+            .filter(id__in=ids)
+            .values_list('id', flat=True))
+
+        for version in versions:
+            version.is_ready_for_auto_approval = version.pk in auto_approvable
+
     def disable_old_files(self):
         """
         Disable files from versions older than the current one and awaiting
@@ -594,7 +609,7 @@ class Version(OnChangeMixin, ModelBase):
         """A File is unreviewed if its status is amo.STATUS_AWAITING_REVIEW."""
         return self.files.filter(status=amo.STATUS_AWAITING_REVIEW)
 
-    @property
+    @cached_property
     def is_ready_for_auto_approval(self):
         """Return whether or not this version could be *considered* for
         auto-approval.
