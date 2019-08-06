@@ -354,7 +354,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_artist(self):
-        """Is this user a Personas Artist?"""
+        """Is this user a theme artist?"""
         return self.cached_developer_status['is_theme_developer']
 
     @use_primary_db

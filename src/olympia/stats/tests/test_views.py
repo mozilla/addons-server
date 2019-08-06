@@ -14,7 +14,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.stats import tasks, views
-from olympia.stats.models import DownloadCount, ThemeUserCount, UpdateCount
+from olympia.stats.models import DownloadCount, UpdateCount
 from olympia.users.models import UserProfile
 
 
@@ -26,21 +26,13 @@ class StatsTest(TestCase):
         super(StatsTest, self).setUp()
         # Default url_args to an addon and range with data.
         self.url_args = {'start': '20090601', 'end': '20090930', 'addon_id': 4}
-        self.url_args_theme = {'start': '20090601', 'end': '20090930',
-                               'addon_id': 6}
         # We use fixtures with fixed add-on pks. That causes the add-ons to be
         # in a weird state that we have to fix.
-        # For the persona (pk=6) the current_version needs to be set manually
-        # because otherwise the version can't be found, as it has no files.
-        # For the rest we simply add a version and it will automatically be
+        # We simply add a version and it will automatically be
         # picked up as the current_version.
-        persona_addon = Addon.objects.get(pk=6)
         version_factory(addon=Addon.objects.get(pk=4))
         version_factory(addon=Addon.objects.get(pk=5))
-        persona_version = version_factory(addon=persona_addon)
-        persona_addon.update(_current_version=persona_version)
-        Addon.objects.filter(id__in=(4, 5, 6)).update(
-            status=amo.STATUS_APPROVED)
+        Addon.objects.filter(id__in=(4, 5)).update(status=amo.STATUS_APPROVED)
         # Most tests don't care about permissions.
         self.login_as_admin()
 
@@ -164,8 +156,6 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
         tasks.index_update_counts(list(updates))
         downloads = DownloadCount.objects.values_list('id', flat=True)
         tasks.index_download_counts(list(downloads))
-        user_counts = ThemeUserCount.objects.values_list('id', flat=True)
-        tasks.index_theme_user_counts(list(user_counts))
         self.refresh('stats')
 
     def csv_eq(self, response, expected):
@@ -241,16 +231,13 @@ class TestCSVs(ESStatsTest):
                                  2009-06-01,10""")
 
     def test_usage_series(self):
-        for url_args in [self.url_args, self.url_args_theme]:
-            self.url_args = url_args
+        response = self.get_view_response('stats.usage_series',
+                                          group='month', format='csv')
 
-            response = self.get_view_response('stats.usage_series',
-                                              group='month', format='csv')
-
-            assert response.status_code == 200
-            self.csv_eq(response, """date,count
-                                     2009-06-02,1500
-                                     2009-06-01,1000""")
+        assert response.status_code == 200
+        self.csv_eq(response, """date,count
+                                 2009-06-02,1500
+                                 2009-06-01,1000""")
 
     def test_sources_series(self):
         response = self.get_view_response('stats.sources_series',
@@ -333,8 +320,6 @@ class TestCSVs(ESStatsTest):
     def test_usage_series_no_data(self):
         url_args = [
             {'start': '20010101', 'end': '20010130', 'addon_id': 4},
-            # Also test for themes.
-            {'start': '20010101', 'end': '20010130', 'addon_id': 6}
         ]
         for url_arg in url_args:
             self.url_args = url_arg
@@ -380,28 +365,22 @@ class TestLayout(StatsTest):
 class TestResponses(ESStatsTest):
 
     def test_usage_json(self):
-        for url_args in [self.url_args, self.url_args_theme]:
-            self.url_args = url_args
-
-            response = self.get_view_response(
-                'stats.usage_series', group='day', format='json')
-            assert response.status_code == 200
-            self.assertListEqual(json.loads(force_text(response.content)), [
-                {'count': 1500, 'date': '2009-06-02', 'end': '2009-06-02'},
-                {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
-            ])
+        response = self.get_view_response(
+            'stats.usage_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
+            {'count': 1500, 'date': '2009-06-02', 'end': '2009-06-02'},
+            {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
+        ])
 
     def test_usage_csv(self):
-        for url_args in [self.url_args, self.url_args_theme]:
-            self.url_args = url_args
-
-            response = self.get_view_response(
-                'stats.usage_series', group='day', format='csv')
-            assert response.status_code == 200
-            self.csv_eq(response,
-                        """date,count
-                           2009-06-02,1500
-                           2009-06-01,1000""")
+        response = self.get_view_response(
+            'stats.usage_series', group='day', format='csv')
+        assert response.status_code == 200
+        self.csv_eq(response,
+                    """date,count
+                       2009-06-02,1500
+                       2009-06-01,1000""")
 
     def test_usage_by_app_json(self):
         response = self.get_view_response(

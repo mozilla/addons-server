@@ -278,45 +278,6 @@ class TestAddonManager(TestCase):
             assert addon.status in amo.VALID_ADDON_STATUSES
             assert not addon.disabled_by_user
 
-    def test_valid_disabled_by_user(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(disabled_by_user=True)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == before
-
-    def test_valid_disabled_by_admin(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(status=amo.STATUS_DISABLED)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == before
-
-    def test_invalid_deleted(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(status=amo.STATUS_DELETED)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == (
-            before - 1)
-
-    def test_valid_disabled_pending(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        amo.tests.addon_factory(status=amo.STATUS_PENDING)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == (
-            before + 1)
-
-    def test_valid_disabled_version(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-
-        # Add-on, no version. Doesn't count.
-        addon = amo.tests.addon_factory()
-        addon.update(_current_version=None, _signal=False)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == before
-
-        # Theme, no version. Counts.
-        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        addon.update(_current_version=None, _signal=False)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == (
-            before + 1)
-
     def test_new_featured(self):
         addons = Addon.objects.featured(amo.FIREFOX)
         assert addons.count() == 2
@@ -569,11 +530,6 @@ class TestAddonModels(TestCase):
         # Delete another add-on, and make sure we don't have integrity errors
         # with unique constraints on fields that got nullified.
         self._delete(5299)
-
-    def test_delete_persona(self):
-        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        assert addon.guid is None  # Personas don't have GUIDs.
-        self._delete(addon.pk)
 
     @patch('olympia.addons.tasks.Preview.delete_preview_files')
     @patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
@@ -1771,23 +1727,6 @@ class TestAddonNomination(TestCase):
         self.check_nomination_reset_with_new_version(addon, nomination)
 
 
-class TestThemeDelete(TestCase):
-
-    def setUp(self):
-        super(TestThemeDelete, self).setUp()
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-
-        # Taking the creation and modified time back 1 day
-        self.addon.update(created=self.days_ago(1), modified=self.days_ago(1))
-
-    def test_remove_theme_update_m_time(self):
-        m_time_before = self.addon.modified
-        self.addon.delete('enough', 'no reason at all')
-        m_time_after = self.addon.modified
-
-        assert m_time_before != m_time_after
-
-
 class TestAddonDelete(TestCase):
 
     def test_cascades(self):
@@ -1984,18 +1923,6 @@ class TestBackupVersion(TestCase):
         assert not self.addon.current_version
         version.save()
         assert Addon.objects.get(pk=1865).current_version
-
-    def test_update_version_theme(self):
-        # Test versions do not get deleted when calling with theme.
-        self.addon.update(type=amo.ADDON_PERSONA)
-        assert not self.addon.update_version()
-        assert self.addon._current_version
-
-        # Test latest version copied to current version if no current version.
-        self.addon.update(_current_version=None, _signal=False)
-        assert self.addon.update_version()
-        assert self.addon._current_version == (
-            self.addon.find_latest_version(None))
 
 
 class TestCategoryModel(TestCase):

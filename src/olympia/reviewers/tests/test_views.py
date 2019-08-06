@@ -1155,9 +1155,9 @@ class TestQueueBasics(QueueTest):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-        # Persona reviewer doesn't have access either.
+        # Theme reviewer doesn't have access either.
         self.client.logout()
-        assert self.client.login(email='persona_reviewer@mozilla.com')
+        assert self.client.login(email='theme_reviewer@mozilla.com')
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -4973,7 +4973,7 @@ class TestLeaderboard(ReviewerTest):
         )
 
         users = (self.user,
-                 UserProfile.objects.get(email='persona_reviewer@mozilla.com'),
+                 UserProfile.objects.get(email='theme_reviewer@mozilla.com'),
                  other_reviewer)
 
         self._award_points(users[0], amo.REVIEWED_LEVELS[0]['points'] - 1)

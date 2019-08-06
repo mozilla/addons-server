@@ -235,7 +235,6 @@ class TestVersion(TestCase):
 
     def test_is_unreviewed(self):
         assert self._get_version(amo.STATUS_AWAITING_REVIEW).is_unreviewed
-        assert self._get_version(amo.STATUS_PENDING).is_unreviewed
         assert not self._get_version(amo.STATUS_APPROVED).is_unreviewed
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
@@ -388,7 +387,7 @@ class TestVersion(TestCase):
         # Types in NO_COMPAT are compatible by default.
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
-        addon.update(type=amo.ADDON_PERSONA)
+        addon.update(type=amo.ADDON_DICT)
         assert version.is_compatible_by_default
         assert version.is_compatible_app(amo.FIREFOX)
 

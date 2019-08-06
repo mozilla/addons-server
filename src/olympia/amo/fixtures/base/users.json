@@ -106,8 +106,8 @@
         "model": "users.userprofile",
         "fields": {
             "display_collections": false,
-            "email": "persona_reviewer@mozilla.com",
-            "username": "Persona Reviewer",
+            "email": "theme_reviewer@mozilla.com",
+            "username": "Theme Reviewer",
             "deleted": false,
             "created": "2010-10-19 13:02:25",
             "modified": "2010-11-16 10:51:34",
@@ -173,7 +173,7 @@
         "pk": 50005,
         "model": "access.group",
         "fields": {
-            "rules": "Personas:Review",
+            "rules": "Addons:ThemeReview",
             "modified": "2017-10-26 15:00:00",
             "name": "Reviewers: Themes",
             "created": "2012-01-27 12:41:00"

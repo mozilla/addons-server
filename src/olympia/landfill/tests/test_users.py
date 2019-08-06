@@ -16,7 +16,7 @@ class RatingsTests(TestCase):
 
     def test_generate_addon_user_and_category(self):
         user = UserProfile.objects.create(email=self.email)
-        category = Category.objects.create(type=amo.ADDON_PERSONA)
+        category = Category.objects.create(type=amo.ADDON_STATICTHEME)
         generate_addon_user_and_category(self.addon, user, category)
         assert AddonCategory.objects.all().count() == 1
         assert AddonUser.objects.all().count() == 1

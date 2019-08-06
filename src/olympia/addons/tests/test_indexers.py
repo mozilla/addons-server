@@ -58,7 +58,7 @@ class TestAddonIndexer(TestCase):
 
         # Fields that need to be present in the mapping, but might be skipped
         # for extraction because they can be null.
-        nullable_fields = ['persona']
+        nullable_fields = []
 
         # For each translated field that needs to be indexed, we store one
         # version for each language-specific analyzer we have.
@@ -101,11 +101,6 @@ class TestAddonIndexer(TestCase):
         name_translations = mapping_properties['name_translations']
         assert name_translations['properties']['lang']['index'] is False
         assert name_translations['properties']['string']['index'] is False
-
-        # Make sure nothing inside 'persona' is indexed, it's only there to be
-        # returned back to the API directly.
-        for field in mapping_properties['persona']['properties'].values():
-            assert field['index'] is False
 
         # Make sure current_version mapping is set.
         assert mapping_properties['current_version']['properties']

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-import time
 
 from django.core.files.storage import default_storage as storage
 from django.core.management.base import CommandError
@@ -375,44 +374,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
 
         # Make sure that we don't raise an error when logging
         cron.update_addon_download_totals()
-
-
-class TestCleanupImageFiles(TestCase):
-
-    @mock.patch('olympia.addons.cron.os')
-    def test_cleanup_image_files_exists(self, os_mock):
-        cron.cleanup_image_files()
-        assert os_mock.path.exists.called
-
-    @mock.patch('olympia.addons.cron.os.unlink')
-    @mock.patch('olympia.addons.cron.os.stat')
-    @mock.patch('olympia.addons.cron.os.listdir')
-    @mock.patch('olympia.addons.cron.os.path')
-    def test_cleanup_image_files_age(self, os_path_mock, os_listdir_mock,
-                                     os_stat_mock, os_unlink_mock):
-        os_path_mock.exists.return_value = True
-        os_listdir_mock.return_value = ['foo']
-
-        young = datetime.datetime.today() - datetime.timedelta(hours=10)
-        old = datetime.datetime.today() - datetime.timedelta(days=2)
-
-        # Don't delete too young files.
-        stat_mock = mock.Mock()
-        stat_mock.st_atime = time.mktime(young.timetuple())
-        os_stat_mock.return_value = stat_mock
-        cron.cleanup_image_files()
-        assert os_listdir_mock.called
-        assert os_stat_mock.called
-        assert not os_unlink_mock.called
-
-        # Delete old files.
-        stat_mock = mock.Mock()
-        stat_mock.st_atime = time.mktime(old.timetuple())
-        os_stat_mock.return_value = stat_mock
-        cron.cleanup_image_files()
-        assert os_listdir_mock.called
-        assert os_stat_mock.called
-        assert os_unlink_mock.called
 
 
 class TestDeliverHotness(TestCase):

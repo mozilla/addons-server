@@ -349,7 +349,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def compatible_apps(self):
-        # Dicts, search providers and personas don't have compatibility info.
+        # Dicts and search providers don't have compatibility info.
         # Fake one for them.
         if self.addon and self.addon.type in amo.NO_COMPAT:
             return {app: None for app in amo.APP_TYPE_SUPPORT[self.addon.type]}
@@ -567,8 +567,7 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
-                                     status__in=[amo.STATUS_AWAITING_REVIEW,
-                                                 amo.STATUS_PENDING])
+                                     status=amo.STATUS_AWAITING_REVIEW)
             # Use File.update so signals are triggered.
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)

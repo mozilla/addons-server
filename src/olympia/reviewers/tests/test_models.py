@@ -516,13 +516,10 @@ class TestReviewerScore(TestCase):
         }
         statuses = {
             amo.STATUS_NULL: None,
-            amo.STATUS_PENDING: None,
             amo.STATUS_NOMINATED: 'FULL',
             amo.STATUS_APPROVED: 'UPDATE',
             amo.STATUS_DISABLED: None,
             amo.STATUS_DELETED: None,
-            amo.STATUS_REJECTED: None,
-            amo.STATUS_REVIEW_PENDING: None,
         }
         for tk, tv in types.items():
             for sk, sv in statuses.items():
@@ -768,7 +765,7 @@ class TestReviewerScore(TestCase):
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards(self):
-        user2 = UserProfile.objects.get(email='persona_reviewer@mozilla.com')
+        user2 = UserProfile.objects.get(email='theme_reviewer@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_APPROVED)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
@@ -828,7 +825,7 @@ class TestReviewerScore(TestCase):
         last_user = users.pop(len(users) - 1)
         for u in users:
             self._give_points(user=u)
-        # Last user gets lower points by reviewing a persona.
+        # Last user gets lower points by reviewing a theme.
         addon = self.addon
         addon.type = amo.ADDON_STATICTHEME
         self._give_points(user=last_user, addon=addon)
@@ -860,7 +857,7 @@ class TestReviewerScore(TestCase):
         user2 = UserProfile.objects.create(
             username='otherreviewer', email='otherreviewer@mozilla.com')
         self.grant_permission(
-            user2, 'Personas:Review', name='Reviewers: Themes')
+            user2, 'Addons:ThemeReview', name='Reviewers: Themes')
         amo.REVIEWED_LEVELS[0]['points'] = 180
         self._give_points()
         self._give_points(status=amo.STATUS_APPROVED)

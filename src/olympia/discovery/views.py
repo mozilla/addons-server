@@ -62,7 +62,7 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
             if recommendations:
                 # if we got some recommendations then replace the
                 # extensions in the queryset with them.
-                # Leave the non-extensions (personas) alone.
+                # Leave the non-extensions (themes) alone.
                 qs = replace_extensions(qs, recommendations)
 
         return qs

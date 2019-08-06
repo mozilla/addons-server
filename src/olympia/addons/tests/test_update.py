@@ -212,7 +212,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         """
         If the addon status is public then you get a public version.
         """
-        self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
+        self.change_status(self.version_1_2_2, amo.STATUS_AWAITING_REVIEW)
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         version, file = self.get_update_instance(
@@ -236,7 +236,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         Check that we can downgrade, if 1.2.0 gets admin disabled
         and the oldest public version is now 1.1.3.
         """
-        self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
+        self.change_status(self.version_1_2_0, amo.STATUS_AWAITING_REVIEW)
         for v in Version.objects.filter(pk__gte=self.version_1_2_1):
             v.delete()
         version, file = self.get_update_instance(
@@ -251,8 +251,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         file version at that point. In this case, because the
         file is pending, we are looking for something public.
         """
-        self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
-        self.change_status(self.version_1_2_0, amo.STATUS_PENDING)
+        self.change_status(self.version_1_2_2, amo.STATUS_AWAITING_REVIEW)
+        self.change_status(self.version_1_2_0, amo.STATUS_AWAITING_REVIEW)
         self.change_version(self.version_1_2_0, '1.2beta')
 
         version, file = self.get_update_instance(

@@ -554,7 +554,7 @@ class TestResignAddonsForCose(TestCase):
         addon_factory(type=amo.ADDON_SEARCH, file_kw=file_kw)
         addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
         addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
-        addon_factory(status=amo.STATUS_REVIEW_PENDING, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
 
         call_command('process_addons', task='resign_addons_for_cose')
 

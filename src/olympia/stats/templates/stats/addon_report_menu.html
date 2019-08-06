@@ -1,6 +1,5 @@
 <nav id="side-nav" class="report-menu">
   <ul>
-    {% if not addon.is_persona() %}
       <li data-report="overview" data-layout="overview">
         <a href="{{ url('stats.overview', addon.slug) }}">{{ _('Overview') }}</a>
       </li>
@@ -12,11 +11,9 @@
           <a href="{{ url('stats.sources', addon.slug) }}">{{ _('by Source') }}</a>
         </li>
       </ul>
-    {% endif %}
     <li data-report="usage">
       <a href="{{ url('stats.usage', addon.slug) }}">{{ _('Daily Users') }}</a>
     </li>
-    {% if not addon.is_persona() %}
       <ul>
         <li data-report="versions">
           <a href="{{ url('stats.versions', addon.slug) }}">{{ _('by Add-on Version') }}</a>
@@ -34,6 +31,5 @@
           <a href="{{ url('stats.statuses', addon.slug) }}">{{ _('by Add-on Status') }}</a>
         </li>
       </ul>
-    {% endif %}
   </ul>
 </nav>
