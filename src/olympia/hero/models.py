@@ -101,3 +101,21 @@ class PrimaryHero(ModelBase):
                 raise ValidationError(
                     'Only recommended add-ons can be enabled for non-external '
                     'primary shelves.')
+
+
+class SecondaryHero(ModelBase):
+    headline = models.CharField(max_length=50, blank=False)
+    description = models.CharField(max_length=100, blank=False)
+    cta_url = models.CharField(max_length=255, blank=True)
+    cta_text = models.CharField(max_length=20, blank=True)
+    enabled = models.BooleanField(db_index=True, null=False, default=False)
+
+    def __str__(self):
+        return str(self.headline)
+
+    def clean(self):
+        both_or_neither = not (bool(self.cta_text) ^ bool(self.cta_url))
+        if self.enabled and not both_or_neither:
+            raise ValidationError(
+                'Both the call to action URL and text must be defined, or '
+                'neither, for enabled shelves.')

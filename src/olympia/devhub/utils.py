@@ -20,9 +20,7 @@ from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.users.models import (
-    DeveloperAgreementRestriction, DisposableEmailDomainRestriction,
-    EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
-    IPReputationRestriction
+    DeveloperAgreementRestriction, UserRestrictionHistory
 )
 from olympia.versions.compare import version_int
 from olympia.versions.utils import process_color_value
@@ -417,16 +415,11 @@ class UploadRestrictionChecker:
     After this method has been called, the error message to show the user if
     needed will be available through get_error_message()
     """
-    # Order matters if we want to show some error messages before others, as
-    # we only display one.
-    restriction_classes = (
-        DeveloperAgreementRestriction,
-        DisposableEmailDomainRestriction,
-        EmailUserRestriction,
-        IPNetworkUserRestriction,
-        EmailReputationRestriction,
-        IPReputationRestriction,
-    )
+    # We use UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES because it
+    # currently matches the order we want to check things. If that ever
+    # changes, keep RESTRICTION_CLASSES_CHOICES current order (to keep existing
+    # records intact) but change the `restriction_choices` definition below.
+    restriction_choices = UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES
 
     def __init__(self, request):
         self.request = request
@@ -442,13 +435,21 @@ class UploadRestrictionChecker:
         developer agreement page itself, where the developer hasn't validated
         the agreement yet but we want to do the other checks anyway.
         """
-        for cls in self.restriction_classes:
+        for restriction_number, cls in self.restriction_choices:
             if (check_dev_agreement is False and
                     cls == DeveloperAgreementRestriction):
                 continue
             allowed = cls.allow_request(self.request)
             if not allowed:
                 self.failed_restrictions.append(cls)
+                statsd.incr(
+                    'devhub.is_submission_allowed.%s.failure' % cls.__name__)
+                if self.request.user and self.request.user.is_authenticated:
+                    UserRestrictionHistory.objects.create(
+                        user=self.request.user,
+                        ip_address=self.request.META.get('REMOTE_ADDR', ''),
+                        last_login_ip=self.request.user.last_login_ip or '',
+                        restriction=restriction_number)
         suffix = 'success' if not self.failed_restrictions else 'failure'
         statsd.incr('devhub.is_submission_allowed.%s' % suffix)
         return not self.failed_restrictions
