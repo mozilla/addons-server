@@ -4,6 +4,7 @@ from django.contrib.admin.widgets import ForeignKeyRawIdWidget
 from django.utils import translation
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.db.models import Prefetch
 
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
@@ -81,7 +82,22 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
     readonly_fields = ('recommended_status', 'previews',)
     view_on_site = False
-    list_select_related = ('primaryhero',)
+
+    def get_queryset(self, request):
+        # Select `primaryhero` and `addon` as well as it's `_current_version`.
+        # We are forced to use `prefetch_related` to ensure transforms
+        # are being run, though, we only care about translations
+        qset = (
+            DiscoveryItem.objects.all()
+            .select_related('primaryhero')
+            .prefetch_related(
+                Prefetch(
+                    'addon',
+                    queryset=(
+                        Addon.unfiltered.all()
+                        .select_related('_current_version')
+                        .only_translations()))))
+        return qset
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         if db_field.name == 'addon':

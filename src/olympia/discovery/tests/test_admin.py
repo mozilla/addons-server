@@ -421,3 +421,37 @@ class TestDiscoveryAdmin(TestCase):
             self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert DiscoveryItem.objects.filter(pk=item.pk).exists()
+
+    def test_query_count(self):
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'))
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 2'))
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 3'))
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 4'))
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 5'))
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 6'))
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+
+        # 1. select current user
+        # 2. savepoint (because we're in tests)
+        # 3. select groups
+        # 4. pagination count
+        # 5. pagination count (double…)
+        # 6. select list of discovery items, ordered
+        # 7. prefetch add-ons
+        # 8. select translations for add-ons from 7.
+        # 9. savepoint (because we're in tests)
+        with self.assertNumQueries(9):
+            response = self.client.get(self.list_url, follow=True)
+
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 5'))
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr 6'))
+
+        # Ensure the count is stable
+        with self.assertNumQueries(9):
+            response = self.client.get(self.list_url, follow=True)
+
+        assert response.status_code == 200
