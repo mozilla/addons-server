@@ -4675,12 +4675,10 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Previously deleted entries' not in response.content
 
-    @patch('olympia.versions.models.Version.transformer')
-    def test_transformer_only_called_once(self, transform_mock):
-        response = self.client.get(self.url)
+    def test_basic_query_count(self):
+        with self.assertNumQueries(11):
+            response = self.client.get(self.url)
         assert response.status_code == 200
-
-        assert transform_mock.call_count == 1
 
 
 @override_flag('code-manager', active=True)
