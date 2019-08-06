@@ -110,7 +110,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             # - 1 to fetch the versions applications_versions
             # - 1 to fetch the versions files
             # - 1 to fetch the add-ons authors
-            # - 1 to fetch the add-ons personas
+            # - 1 to fetch the add-ons version previews (for static themes)
             # - 1 to fetch the add-ons previews
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
