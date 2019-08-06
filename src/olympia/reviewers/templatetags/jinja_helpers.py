@@ -19,16 +19,15 @@ from olympia.versions.models import Version
 
 @library.global_function
 def file_compare(file_obj, version):
-    # Compare this file to the one in the version with same platform
-    file_obj = version.files.filter(platform=file_obj.platform)
-    # If not there, just compare to all.
-    if not file_obj:
-        file_obj = version.files.filter(platform=amo.PLATFORM_ALL.id)
-    # At this point we've got no idea what Platform file to
-    # compare with, so just chose the first.
-    if not file_obj:
-        file_obj = version.files.all()
-    return file_obj[0]
+    files = version.all_files
+
+    for file in files:
+        if file.platform == file_obj.platform:
+            return file
+        elif file.platform == amo.PLATFORM_ALL.id:
+            return file
+
+    return files[0]
 
 
 @library.global_function
