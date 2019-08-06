@@ -96,7 +96,7 @@ ADDON_LPAPP = 5
 ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
-_ADDON__PERSONA = 9  # Deprecated - should only exist as STATUS_DELETED
+_ADDON_PERSONA = 9  # Deprecated - should only exist as STATUS_DELETED
 ADDON_STATICTHEME = 10
 
 # Addon type groupings.
@@ -113,7 +113,7 @@ ADDON_TYPE = {
     ADDON_LPAPP: _(u'Language Pack (Application)'),
     ADDON_LPADDON: _(u'Language Pack (Add-on)'),
     ADDON_PLUGIN: _(u'Plugin'),
-    _ADDON__PERSONA: _(u'Deprecated LWT'),
+    _ADDON_PERSONA: _(u'Deprecated LWT'),
     ADDON_STATICTHEME: _(u'Theme (Static)'),
 }
 
@@ -126,7 +126,7 @@ ADDON_TYPES = {
     ADDON_LPAPP: _(u'Language Packs (Application)'),
     ADDON_LPADDON: _(u'Language Packs (Add-on)'),
     ADDON_PLUGIN: _(u'Plugins'),
-    _ADDON__PERSONA: _(u'Deprecated LWTs'),
+    _ADDON_PERSONA: _(u'Deprecated LWTs'),
     ADDON_STATICTHEME: _(u'Themes (Static)'),
 }
 
@@ -138,7 +138,7 @@ ADDON_SEARCH_TYPES = [
     ADDON_DICT,
     ADDON_SEARCH,
     ADDON_LPAPP,
-    _ADDON__PERSONA,
+    _ADDON_PERSONA,
     ADDON_STATICTHEME,
 ]
 
@@ -166,7 +166,7 @@ ADDON_SLUGS_UPDATE = {
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
     ADDON_LPADDON: 'extension',
-    _ADDON__PERSONA: 'background-theme',
+    _ADDON_PERSONA: 'background-theme',
     ADDON_PLUGIN: 'plugin',
     ADDON_STATICTHEME: 'static-theme',
 }
@@ -180,7 +180,7 @@ ADDON_SEARCH_SLUGS = {
     'dictionary': ADDON_DICT,
     'search': ADDON_SEARCH,
     'language': ADDON_LPAPP,
-    'persona': _ADDON__PERSONA,
+    'persona': _ADDON_PERSONA,
     'statictheme': ADDON_STATICTHEME,
 }
 
@@ -190,7 +190,7 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_DICT: 'dictionary',
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'language',
-    _ADDON__PERSONA: 'persona',
+    _ADDON_PERSONA: 'persona',
     ADDON_STATICTHEME: 'statictheme',
 }
 
