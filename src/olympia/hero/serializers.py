@@ -5,7 +5,7 @@ from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
-from .models import PrimaryHero
+from .models import PrimaryHero, SecondaryHero
 
 
 class ExternalAddonSerializer(AddonSerializer):
@@ -33,3 +33,20 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
 
     def get_featured_image(self, obj):
         return absolutify(obj.image_path)
+
+
+class SecondaryHeroShelfSerializer(serializers.ModelSerializer):
+    cta = serializers.SerializerMethodField()
+
+    class Meta:
+        model = SecondaryHero
+        fields = ('headline', 'description', 'cta')
+
+    def get_cta(self, obj):
+        if obj.cta_url and obj.cta_text:
+            return {
+                'url': absolutify(obj.cta_url),
+                'text': obj.cta_text,
+            }
+        else:
+            return None

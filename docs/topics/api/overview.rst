@@ -333,6 +333,7 @@ v4 API changelog
 * 2019-08-01: added alias ``edition=MozillaOnline`` for ``edition=china`` in /discovery/ endpoint.
 * 2019-08-08: add support for externally hosted addons to /hero/ endpoints.  https://github.com/mozilla/addons-server/issues/11882
 * 2019-08-08: removed ``heading_text`` property from discovery api. https://github.com/mozilla/addons-server/issues/11817
+* 2019-08-08: add secondary shelf to /hero/ endpoint. https://github.com/mozilla/addons-server/issues/11779
 
 ----------------
 v5 API changelog

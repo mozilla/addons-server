@@ -2,7 +2,7 @@
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.models import PrimaryHero
+from olympia.hero.models import PrimaryHero, SecondaryHero
 
 
 class TestDiscoveryAdmin(TestCase):
@@ -455,3 +455,158 @@ class TestDiscoveryAdmin(TestCase):
             response = self.client.get(self.list_url, follow=True)
 
         assert response.status_code == 200
+
+
+class TestSecondaryHeroShelfAdmin(TestCase):
+    def setUp(self):
+        self.list_url = reverse(
+            'admin:discovery_secondaryheroshelf_changelist')
+        self.detail_url_name = 'admin:discovery_secondaryheroshelf_change'
+
+    def test_can_see_secondary_hero_module_in_admin_with_discovery_edit(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        self.list_url = django_reverse(
+            'admin:discovery_secondaryheroshelf_changelist')
+        assert self.list_url in response.content.decode('utf-8')
+
+    def test_can_list_with_discovery_edit_permission(self):
+        SecondaryHero.objects.create(headline='FooBâr')
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        assert 'FooBâr' in response.content.decode('utf-8')
+
+    def test_can_edit_with_discovery_edit_permission(self):
+        item = SecondaryHero.objects.create(headline='BarFöo')
+        detail_url = reverse(self.detail_url_name, args=(item.pk,))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+
+        response = self.client.post(
+            detail_url, {
+                'headline': 'This headline is ... something.',
+                'description': 'This description is as well!',
+            }, follow=True)
+        assert response.status_code == 200
+        item.reload()
+        assert SecondaryHero.objects.count() == 1
+        assert item.headline == 'This headline is ... something.'
+        assert item.description == 'This description is as well!'
+
+    def test_can_delete_with_discovery_edit_permission(self):
+        item = SecondaryHero.objects.create()
+        delete_url = reverse(
+            'admin:discovery_secondaryheroshelf_delete', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        # Can access delete confirmation page.
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+        assert SecondaryHero.objects.filter(pk=item.pk).exists()
+
+        # Can actually delete.
+        response = self.client.post(
+            delete_url,
+            {'post': 'yes'},
+            follow=True)
+        assert response.status_code == 200
+        assert not SecondaryHero.objects.filter(pk=item.pk).exists()
+
+    def test_can_add_with_discovery_edit_permission(self):
+        add_url = reverse('admin:discovery_secondaryheroshelf_add')
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(add_url, follow=True)
+        assert response.status_code == 200
+        assert SecondaryHero.objects.count() == 0
+        response = self.client.post(
+            add_url, {
+                'headline': 'This headline is ... something.',
+                'description': 'This description is as well!',
+            },
+            follow=True)
+        assert response.status_code == 200
+        assert SecondaryHero.objects.count() == 1
+        item = SecondaryHero.objects.get()
+        assert item.headline == 'This headline is ... something.'
+        assert item.description == 'This description is as well!'
+
+    def test_can_not_add_without_discovery_edit_permission(self):
+        add_url = reverse('admin:discovery_secondaryheroshelf_add')
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(add_url, follow=True)
+        assert response.status_code == 403
+        response = self.client.post(
+            add_url, {
+                'headline': 'This headline is ... something.',
+                'description': 'This description is as well!',
+            },
+            follow=True)
+        assert response.status_code == 403
+        assert SecondaryHero.objects.count() == 0
+
+    def test_can_not_edit_without_discovery_edit_permission(self):
+        item = SecondaryHero.objects.create()
+        detail_url = reverse(
+            'admin:discovery_secondaryheroshelf_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(detail_url, follow=True)
+        assert response.status_code == 403
+
+        response = self.client.post(
+            detail_url, {
+                'headline': 'I should not be able to do this.',
+                'description': 'This is wrong.',
+            }, follow=True)
+        assert response.status_code == 403
+        item.reload()
+        assert SecondaryHero.objects.count() == 1
+        assert item.headline == ''
+        assert item.description == ''
+
+    def test_can_not_delete_without_discovery_edit_permission(self):
+        item = SecondaryHero.objects.create()
+        delete_url = reverse(
+            'admin:discovery_secondaryheroshelf_delete', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        # Can not access delete confirmation page.
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 403
+        assert SecondaryHero.objects.filter(pk=item.pk).exists()
+
+        # Can not actually delete either.
+        response = self.client.post(
+            delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 403
+        assert SecondaryHero.objects.filter(pk=item.pk).exists()

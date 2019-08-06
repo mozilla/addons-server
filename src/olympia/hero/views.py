@@ -6,8 +6,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
-from .models import PrimaryHero
-from .serializers import PrimaryHeroShelfSerializer
+from .models import PrimaryHero, SecondaryHero
+from .serializers import (
+    PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
 
 
 class ShelfViewSet(ListModelMixin, GenericViewSet):
@@ -15,11 +16,7 @@ class ShelfViewSet(ListModelMixin, GenericViewSet):
     format_kwarg = None
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        qs = (qs.select_related('disco_addon')
-                .prefetch_related(
-                    'disco_addon__addon___current_version__previews'))
-        return qs.filter(enabled=True)
+        return super().get_queryset().filter(enabled=True)
 
     def get_one_random(self):
         qs = self.filter_queryset(self.get_queryset()).order_by('?')
@@ -42,11 +39,25 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
     queryset = PrimaryHero.objects
     serializer_class = PrimaryHeroShelfSerializer
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = (qs.select_related('disco_addon')
+                .prefetch_related(
+                    'disco_addon__addon___current_version__previews'))
+        return qs
+
+
+class SecondaryHeroShelfViewSet(ShelfViewSet):
+    queryset = SecondaryHero.objects
+    serializer_class = SecondaryHeroShelfSerializer
+
 
 class HeroShelvesView(APIView):
     def get(self, request, format=None):
         output = {
             'primary': PrimaryHeroShelfViewSet(
+                request=request).get_one_random().data,
+            'secondary': SecondaryHeroShelfViewSet(
                 request=request).get_one_random().data,
         }
         return Response(output)
