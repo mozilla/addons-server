@@ -841,7 +841,7 @@ def review(request, addon, channel=None):
     try:
         # Find the previously approved version to compare to.
         show_diff = version and (
-            addon.versions.all().exclude(id=version.id).filter(
+            addon.versions.exclude(id=version.id).filter(
                 # We're looking for a version that was either manually approved
                 # (either it has no auto approval summary, or it has one but
                 # with a negative verdict because it was locked by a reviewer
@@ -872,16 +872,11 @@ def review(request, addon, channel=None):
         Version.unfiltered
         .filter(addon=addon, channel=channel)
         .select_related('autoapprovalsummary')
-        .order_by('-created')
         .transform(Version.transformer_activity)
         .transform(Version.transformer_auto_approval)
         .prefetch_related(
             Prefetch(
                 'addon',
-                queryset=Addon.unfiltered.all().only_translations()))
-        .prefetch_related(
-            Prefetch(
-                'addon__current_version',
                 queryset=Addon.unfiltered.all().only_translations())))
 
     # We assume comments on old deleted versions are for listed versions.
@@ -889,8 +884,7 @@ def review(request, addon, channel=None):
     all_versions = (_get_comments_for_hard_deleted_versions(addon)
                     if channel == amo.RELEASE_CHANNEL_LISTED else [])
     all_versions.extend(versions)
-    all_versions.sort(key=lambda v: v.created,
-                      reverse=True)
+    all_versions.sort(key=lambda v: v.created)
 
     deleted_addon_ids = (
         ReusedGUID.objects.filter(guid=addon.guid).values_list(
