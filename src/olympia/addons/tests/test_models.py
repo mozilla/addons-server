@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-import time
 
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
@@ -19,15 +18,15 @@ from olympia.addons import models as addons_models
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
     AppSupport, Category, CompatOverride, CompatOverrideRange, DeniedGuid,
-    DeniedSlug, FrozenAddon, IncompatibleVersions, MigratedLWT, Persona,
+    DeniedSlug, FrozenAddon, IncompatibleVersions, MigratedLWT,
     Preview, ReusedGUID, track_addon_status_change)
-from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, version_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
-from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
@@ -233,7 +232,7 @@ class TestAddonManager(TestCase):
         assert self.addon in Addon.unfiltered.all()
 
     def test_featured(self):
-        assert Addon.objects.featured(amo.FIREFOX).count() == 3
+        assert Addon.objects.featured(amo.FIREFOX).count() == 2
 
     def test_listed(self):
         # We need this for the fixtures, but it messes up the tests.
@@ -241,7 +240,7 @@ class TestAddonManager(TestCase):
         # Now continue as normal.
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED)
-        assert len(q.all()) == 4
+        assert len(q.all()) == 3
 
         # Pick one of the listed addons.
         addon = Addon.objects.get(pk=2464)
@@ -251,20 +250,20 @@ class TestAddonManager(TestCase):
         addon.disabled_by_user = True
         addon.save()
 
-        # Should be 3 now, since the one is now disabled.
-        assert q.count() == 3
+        # Should be 2 now, since the one is now disabled.
+        assert q.count() == 2
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert q.count() == 3
+        assert q.count() == 2
         assert Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED,
-                                    amo.STATUS_NOMINATED).count() == 4
+                                    amo.STATUS_NOMINATED).count() == 3
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
-        assert q.count() == 3
+        assert q.count() == 2
 
     def test_public(self):
         for a in Addon.objects.public():
@@ -320,9 +319,9 @@ class TestAddonManager(TestCase):
 
     def test_new_featured(self):
         addons = Addon.objects.featured(amo.FIREFOX)
-        assert addons.count() == 3
+        assert addons.count() == 2
         assert sorted(x.id for x in addons) == (
-            [2464, 7661, 15679])
+            [2464, 7661])
         assert not Addon.objects.featured(amo.ANDROID).exists()
 
     def test_filter_for_many_to_many(self):
@@ -1802,8 +1801,6 @@ class TestAddonDelete(TestCase):
         AppSupport.objects.create(addon=addon, app=1)
         CompatOverride.objects.create(addon=addon)
         FrozenAddon.objects.create(addon=addon)
-        Persona.objects.create(addon=addon, persona_id=0)
-        Preview.objects.create(addon=addon)
 
         AddonLog.objects.create(
             addon=addon, activity_log=ActivityLog.objects.create(action=0))
@@ -1934,9 +1931,9 @@ class TestAddonModelsFeatured(TestCase):
 
     def _test_featured_random(self):
         featured = Addon.featured_random(amo.FIREFOX, 'en-US')
-        assert sorted(featured) == [1001, 1003, 2464, 3481, 7661, 15679]
+        assert sorted(featured) == [1001, 1003, 2464, 3481, 7661]
         featured = Addon.featured_random(amo.FIREFOX, 'fr')
-        assert sorted(featured) == [1001, 1003, 2464, 7661, 15679]
+        assert sorted(featured) == [1001, 1003, 2464, 7661]
         featured = Addon.featured_random(amo.ANDROID, 'en-US')
         assert featured == []
 
@@ -2028,181 +2025,6 @@ class TestCategoryModel(TestCase):
         assert category.name == u''
         with translation.override('fr'):
             assert category.name == u''
-
-
-class TestPersonaModel(TestCase):
-    fixtures = ['addons/persona']
-
-    def setUp(self):
-        super(TestPersonaModel, self).setUp()
-        self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        self.persona.header = 'header.png'
-        self.persona.footer = 'footer.png'
-        self.persona.popularity = 12345
-        self.persona.save()
-
-    def _expected_url(self, img_name, modified_suffix):
-        return '/15663/%s?modified=%s' % (img_name, modified_suffix)
-
-    def test_image_urls(self):
-        self.persona.persona_id = 0
-        self.persona.checksum = 'fakehash'
-        self.persona.save()
-        modified = 'fakehash'
-        assert self.persona.thumb_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.icon_url.endswith(
-            self._expected_url('icon.png', modified))
-        assert self.persona.preview_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.header_url.endswith(
-            self._expected_url('header.png', modified))
-        assert self.persona.footer_url.endswith(
-            self._expected_url('footer.png', modified))
-
-    def test_image_urls_no_checksum(self):
-        # AMO-uploaded themes have `persona_id=0`.
-        self.persona.persona_id = 0
-        self.persona.save()
-        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
-        assert self.persona.thumb_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.icon_url.endswith(
-            self._expected_url('icon.png', modified))
-        assert self.persona.preview_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.header_url.endswith(
-            self._expected_url('header.png', modified))
-        assert self.persona.footer_url.endswith(
-            self._expected_url('footer.png', modified))
-
-    def test_old_image_urls(self):
-        self.persona.addon.modified = None
-        modified = 0
-        assert self.persona.thumb_url.endswith(
-            self._expected_url('preview.jpg', modified))
-        assert self.persona.icon_url.endswith(
-            self._expected_url('preview_small.jpg', modified))
-        assert self.persona.preview_url.endswith(
-            self._expected_url('preview_large.jpg', modified))
-        assert self.persona.header_url.endswith(
-            self._expected_url('header.png', modified))
-        assert self.persona.footer_url.endswith(
-            self._expected_url('footer.png', modified))
-
-    def test_update_url(self):
-        with self.settings(LANGUAGE_CODE='fr', LANGUAGE_URL_MAP={}):
-            url_ = self.persona.update_url
-            assert url_.endswith('/fr/themes/update-check/15663')
-
-    def test_json_data(self):
-        self.persona.addon.all_categories = [
-            Category.from_static_category(CATEGORIES_BY_ID[100])
-        ]
-
-        with self.settings(LANGUAGE_CODE='fr',
-                           LANGUAGE_URL_MAP={},
-                           VAMO_URL='https://vamo',
-                           EXTERNAL_SITE_URL='https://omgsh.it'):
-            data = self.persona.theme_data
-
-            id_ = str(self.persona.addon.id)
-
-            assert data['id'] == id_
-            assert data['name'] == str(self.persona.addon.name)
-            assert data['accentcolor'] == '#8d8d97'
-            assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Abstract'
-            assert data['author'] == 'persona_author ®'
-            assert data['description'] == str(self.addon.description)
-
-            assert data['headerURL'].startswith(
-                '%s%s/header.png?' % (user_media_url('addons'), id_))
-            assert data['footerURL'].startswith(
-                '%s%s/footer.png?' % (user_media_url('addons'), id_))
-            assert data['previewURL'].startswith(
-                '%s%s/preview_large.jpg?' % (user_media_url('addons'), id_))
-            assert data['iconURL'].startswith(
-                '%s%s/preview_small.jpg?' % (user_media_url('addons'), id_))
-
-            assert data['detailURL'] == (
-                'https://omgsh.it%s' % self.persona.addon.get_url_path())
-            assert data['updateURL'] == (
-                'https://vamo/fr/themes/update-check/' + id_)
-            assert data['version'] == '1.0'
-
-    def test_json_data_new_persona(self):
-        self.persona.persona_id = 0  # Make this a "new" theme.
-        self.persona.save()
-
-        self.persona.addon.all_categories = [
-            Category.from_static_category(CATEGORIES_BY_ID[100])
-        ]
-
-        with self.settings(LANGUAGE_CODE='fr',
-                           LANGUAGE_URL_MAP={},
-                           VAMO_URL='https://vamo',
-                           EXTERNAL_SITE_URL='https://omgsh.it'):
-            data = self.persona.theme_data
-
-            id_ = str(self.persona.addon.id)
-
-            assert data['id'] == id_
-            assert data['name'] == str(self.persona.addon.name)
-            assert data['accentcolor'] == '#8d8d97'
-            assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Abstract'
-            assert data['author'] == 'persona_author ®'
-            assert data['description'] == str(self.addon.description)
-
-            assert data['headerURL'].startswith(
-                '%s%s/header.png?' % (user_media_url('addons'), id_))
-            assert data['footerURL'].startswith(
-                '%s%s/footer.png?' % (user_media_url('addons'), id_))
-            assert data['previewURL'].startswith(
-                '%s%s/preview.png?' % (user_media_url('addons'), id_))
-            assert data['iconURL'].startswith(
-                '%s%s/icon.png?' % (user_media_url('addons'), id_))
-
-            assert data['detailURL'] == (
-                'https://omgsh.it%s' % self.persona.addon.get_url_path())
-            assert data['updateURL'] == (
-                'https://vamo/fr/themes/update-check/' + id_)
-            assert data['version'] == '1.0'
-
-    def test_json_data_missing_colors(self):
-        self.persona.accentcolor = ''
-        self.persona.textcolor = ''
-        self.persona.save()
-
-        data = self.persona.theme_data
-        assert data['accentcolor'] is None
-        assert data['textcolor'] is None
-
-        self.persona.accentcolor = None
-        self.persona.textcolor = None
-        self.persona.save()
-
-        data = self.persona.theme_data
-        assert data['accentcolor'] is None
-        assert data['textcolor'] is None
-
-    def test_image_urls_without_footer(self):
-        self.persona.footer = ''
-        self.persona.save()
-        assert self.persona.footer_url == ''
-
-    def test_json_data_without_footer(self):
-        self.persona.footer = ''
-        self.persona.save()
-        data = self.persona.theme_data
-        assert data['footerURL'] == ''
-        assert data['footer'] == ''
-
-    def test_theme_data_with_null_description(self):
-        addon = addon_factory(type=amo.ADDON_PERSONA, description=None)
-        assert addon.persona.theme_data['description'] is None
 
 
 class TestPreviewModel(BasePreviewMixin, TestCase):
@@ -2992,18 +2814,14 @@ class TestAddonApprovalsCounter(TestCase):
 
 class TestMigratedLWTModel(TestCase):
     def setUp(self):
-        self.lwt = addon_factory(type=amo.ADDON_PERSONA)
-        self.lwt.persona.persona_id = 999
-        self.lwt.persona.save()
         self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         MigratedLWT.objects.create(
-            lightweight_theme=self.lwt,
+            lightweight_theme_id=666,
+            getpersonas_id=999,
             static_theme=self.static_theme)
 
     def test_addon_id_lookup(self):
-        match = MigratedLWT.objects.get(lightweight_theme=self.lwt)
-        assert match.static_theme == self.static_theme
-        match = MigratedLWT.objects.get(lightweight_theme_id=self.lwt.id)
+        match = MigratedLWT.objects.get(lightweight_theme_id=666)
         assert match.static_theme == self.static_theme
 
     def test_getpersonas_id_lookup(self):

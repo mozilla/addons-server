@@ -79,19 +79,6 @@
         }
     },
     {
-        "pk": 1004514,
-        "model": "bandwagon.collectionaddon",
-        "fields": {
-            "user": null,
-            "created": "2010-09-13 00:00:28",
-            "ordering": 0,
-            "modified": "2010-09-13 00:00:28",
-            "comments": null,
-            "collection": 56446,
-            "addon": 15679
-        }
-    },
-    {
         "pk": 1004515,
         "model": "bandwagon.collectionaddon",
         "fields": {

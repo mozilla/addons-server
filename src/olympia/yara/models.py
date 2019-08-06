@@ -28,4 +28,4 @@ class YaraResult(ModelBase):
 
     @property
     def matched_rules(self):
-        return [match['rule'] for match in self.matches]
+        return sorted({match['rule'] for match in self.matches})

@@ -1096,8 +1096,6 @@ CELERY_TASK_ROUTES = {
     # are routed to the priority queue.
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
-    'olympia.addons.tasks.save_theme': {'queue': 'priority'},
-    'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {
         'queue': 'priority'},
 
@@ -1138,7 +1136,6 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
 
     # Addons
-    'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
     'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},

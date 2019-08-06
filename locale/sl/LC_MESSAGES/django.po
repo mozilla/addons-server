@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-26 09:30+0000\n"
+"PO-Revision-Date: 2019-08-05 09:59+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4699,9 +4699,8 @@ msgid "Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Osvežite zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Ustvarjajte si zapiske {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
@@ -4816,7 +4815,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Datoteka v arhivu presega omejitev velikosti: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Nestisnjena velikost je prevelika"
 
 msgid "Invalid archive."
 msgstr "Neveljaven arhiv."

@@ -7,6 +7,7 @@ from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 import waffle
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 
@@ -448,6 +449,8 @@ class UploadRestrictionChecker:
             allowed = cls.allow_request(self.request)
             if not allowed:
                 self.failed_restrictions.append(cls)
+        suffix = 'success' if not self.failed_restrictions else 'failure'
+        statsd.incr('devhub.is_submission_allowed.%s' % suffix)
         return not self.failed_restrictions
 
     def get_error_message(self):
