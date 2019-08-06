@@ -7,7 +7,6 @@ from django.utils.safestring import mark_safe
 from django.db.models import Prefetch
 
 from olympia.addons.models import Addon
-from olympia.versions.models import Version
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import PrimaryHeroInline
 
