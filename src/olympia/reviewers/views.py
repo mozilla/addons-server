@@ -930,6 +930,10 @@ def review(request, addon, channel=None):
     user_changes_log = AddonLog.objects.filter(
         activity_log__action__in=user_changes_actions,
         addon=addon).order_by('id')
+
+    subscribed = ReviewerSubscription.objects.filter(
+        user=request.user, addon=addon).exists()
+
     ctx = context(
         request, actions=actions, actions_comments=actions_comments,
         actions_full=actions_full, addon=addon,
@@ -938,9 +942,7 @@ def review(request, addon, channel=None):
         content_review_only=content_review_only, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
         form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
-        reports=reports, show_diff=show_diff,
-        subscribed=ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon).exists(),
+        reports=reports, show_diff=show_diff, subscribed=subscribed,
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes=user_changes_log, user_ratings=user_ratings,
         version=version, whiteboard_form=whiteboard_form,

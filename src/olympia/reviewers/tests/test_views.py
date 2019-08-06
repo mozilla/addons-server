@@ -4676,7 +4676,10 @@ class TestReview(ReviewBase):
         assert b'Previously deleted entries' not in response.content
 
     def test_basic_query_count(self):
-        with self.assertNumQueries(11):
+        # Partially optimized by
+        # https://github.com/mozilla/addons-server/issues/11797
+        # documented here for futher optimization
+        with self.assertNumQueries(89):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
