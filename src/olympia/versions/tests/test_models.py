@@ -488,32 +488,40 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         assert not version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         version.files.all().update(
             status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
         version.update(channel=amo.RELEASE_CHANNEL_LISTED)
         assert version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         version.files.all().update(is_webextension=False)
         assert not version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         version.files.all().update(is_webextension=True)
         assert version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         # With the auto-approval disabled flag set, it's still considered
         # "ready", even though the auto_approve code won't approve it.
         AddonReviewerFlags.objects.create(
             addon=addon, auto_approval_disabled=False)
         assert version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         addon.update(type=amo.ADDON_THEME)
         assert not version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         addon.update(type=amo.ADDON_LPAPP)
         assert version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         addon.update(type=amo.ADDON_DICT)
         assert version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert not version.is_ready_for_auto_approval
@@ -525,6 +533,7 @@ class TestVersion(TestCase):
         version.files.all().update(
             status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
         assert version.is_ready_for_auto_approval
+        del version.is_ready_for_auto_approval
 
         addon.update(status=amo.STATUS_DISABLED)
         assert not version.is_ready_for_auto_approval
