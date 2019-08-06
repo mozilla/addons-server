@@ -17,14 +17,13 @@ class ExternalAddonSerializer(AddonSerializer):
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
     description = serializers.CharField(source='disco_addon.description')
     featured_image = serializers.SerializerMethodField()
-    heading = serializers.CharField(source='disco_addon.heading')
     addon = DiscoveryAddonSerializer(source='disco_addon.addon')
     external = ExternalAddonSerializer(source='disco_addon.addon')
 
     class Meta:
         model = PrimaryHero
         fields = ('addon', 'description', 'external', 'featured_image',
-                  'gradient', 'heading')
+                  'gradient')
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
