@@ -3995,31 +3995,28 @@ class TestReview(ReviewBase):
              u'choices.'])
 
     def test_admin_flagged_addon_actions_as_content_reviewer(self):
-        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_code_review=True)
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         self.url = reverse(
             'reviewers.review', args=['content', self.addon.slug])
-        for action in ['approve_content', 'reject_multiple_versions']:
-            response = self.client.post(self.url, self.get_dict(action=action))
-            assert response.status_code == 200  # Form error.
-            # The add-on status must not change as non-admin reviewers are not
-            # allowed to review admin-flagged add-ons.
-            addon = self.get_addon()
-            assert addon.status == amo.STATUS_NOMINATED
-            assert self.version == addon.current_version
-            assert addon.current_version.files.all()[0].status == (
-                amo.STATUS_AWAITING_REVIEW)
-            assert response.context['form'].errors['action'] == (
-                [u'Select a valid choice. %s is not one of the available '
-                 u'choices.' % action])
-            assert ActivityLog.objects.filter(
-                action=amo.LOG.APPROVE_CONTENT.id).count() == 0
-            assert ActivityLog.objects.filter(
-                action=amo.LOG.REJECT_CONTENT.id).count() == 0
+        response = self.client.post(
+            self.url, self.get_dict(action='approve_content'))
+        assert response.status_code == 302
+        summary.reload()
+        assert summary.confirmed is None  # We're only doing a content review.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 1
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).get()
+        assert a_log.details['version'] == self.addon.current_version.version
+        assert a_log.details['comments'] == ''
+        self.assert3xx(response, reverse('reviewers.queue_content_review'))
 
     def test_confirm_auto_approval_no_permission(self):
         AutoApprovalSummary.objects.create(
@@ -4079,50 +4076,6 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_content_review=True)
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        response = self.client.post(self.url, {
-            'action': 'approve_content',
-            'comments': 'ignore me this action does not support comments'
-        })
-        assert response.status_code == 200  # Form error
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.APPROVE_CONTENT.id).count() == 0
-
-    def test_can_contentreview_if_addon_has_sources_attached(self):
-        GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse(
-            'reviewers.review', args=['content', self.addon.slug])
-        summary = AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
-        self.addon.current_version.update(source='/path/to/fake/file.zip')
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True)
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        response = self.client.post(self.url, {
-            'action': 'approve_content',
-            'comments': 'ignore me this action does not support comments'
-        })
-        assert response.status_code == 302
-        summary.reload()
-        assert summary.confirmed is None  # We're only doing a content review.
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.APPROVE_CONTENT.id).count() == 1
-        a_log = ActivityLog.objects.filter(
-            action=amo.LOG.APPROVE_CONTENT.id).get()
-        assert a_log.details['version'] == self.addon.current_version.version
-        assert a_log.details['comments'] == ''
-        self.assert3xx(response, reverse('reviewers.queue_content_review'))
-
-    def test_cant_contentreview_if_addon_has_admin_flag_but_no_sources(self):
-        GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse(
-            'reviewers.review', args=['content', self.addon.slug])
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(self.url, {
             'action': 'approve_content',
