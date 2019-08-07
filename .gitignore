@@ -46,3 +46,6 @@ storage/guarded-addons/*
 storage/shared_storage/*
 supervisord.pid
 tmp/*
+
+# private projects
+addons-yara
