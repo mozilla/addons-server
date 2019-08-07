@@ -425,7 +425,8 @@ def wait_for_tasks(task_ids, max_wait=1, throw=True):
         while task_id not in _celery_task_results:
             if time_slept > max_wait:
                 if throw:
-                    raise AssertionError('waited too long for task to complete')
+                    raise AssertionError(
+                        f'Task didn\'t return in {max_wait} seconds')
                 else:
                     break
             time.sleep(0.05)

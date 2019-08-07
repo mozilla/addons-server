@@ -6,7 +6,6 @@ on module-level, they should instead be added to hooks or fixtures directly.
 """
 import os
 import uuid
-import threading
 
 import pytest
 import responses
@@ -113,7 +112,6 @@ def celery_config():
         result = {
             'status': status, 'retval': retval, 'task_id': task_id,
             'args': args, 'kwargs': kwargs, 'exc_info': exc_info,
-            'ident': threading.get_ident(),
             'task_name': task.name}
         _celery_task_returned(task_id, result)
 
