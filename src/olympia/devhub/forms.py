@@ -27,8 +27,8 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonReviewerFlags, AddonUser, Category,
-    DeniedSlug, Preview)
+    Addon, AddonCategory, AddonReviewerFlags, AddonUser,
+    AddonUserPendingConfirmation, Category, DeniedSlug, Preview)
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
@@ -437,15 +437,46 @@ class AuthorForm(forms.ModelForm):
     class Meta:
         model = AddonUser
         exclude = ('addon',)
+        # Note: AddonUser's user db field is a UserForeignKey(), which will
+        # expose the user email address in the form (and lookup users from the
+        # email submitted in the form data when adding/changing)
 
-    # Note: AddonUser's user db field is a UserForeignKey(), which will expose
-    # the user email address in the form (and lookup users from the email
-    # submitted in the form data when adding/changing)
+    def __init__(self, *args, **kwargs):
+        # addon should be passed through form_kwargs={'addon': addon} when
+        # initializing the formset.
+        self.addon = kwargs.pop('addon')
+        super().__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            # Clients are not allowed to change existing authors. If they want
+            # to do that, they need to remove the existing author and add a new
+            # one. This makes the confirmation system easier to manage.
+            self.fields['user'].disabled = True
+
+    def clean(self):
+        rval = super().clean()
+        if self._meta.model == AddonUser and (
+                self.instance is None or not self.instance.pk):
+            # This should never happen, the client is trying to add a user
+            # directly to AddonUser through the formset, they should have
+            # been added to AuthorWaitingConfirmation instead.
+            raise forms.ValidationError(
+                ugettext('Users can not be added directly'))
+        return rval
+
+
+class AuthorWaitingConfirmationForm(AuthorForm):
+    class Meta(AuthorForm.Meta):
+        model = AddonUserPendingConfirmation
 
     def clean_user(self):
         user = self.cleaned_data.get('user')
         if user and not EmailUserRestriction.allow_email(user.email):
             raise forms.ValidationError(EmailUserRestriction.error_message)
+
+        if user and self.addon.authors.filter(pk=user.pk).exists():
+            raise forms.ValidationError(
+                ugettext('An author can only be present once.'))
         return user
 
 
@@ -475,14 +506,28 @@ class BaseAuthorFormSet(BaseModelFormSet):
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
                 ugettext('At least one author must be listed.'))
+
+
+class BaseAuthorWaitingConfirmationFormSet(BaseModelFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+
+        # cleaned_data could be None if it's the empty extra form.
+        data = list(filter(None, [f.cleaned_data for f in self.forms
+                                  if not f.cleaned_data.get('DELETE', False)]))
         users = [d['user'].id for d in data]
-        if sorted(users) != sorted(set(users)):
+        if len(users) != len(set(users)):
             raise forms.ValidationError(
-                ugettext('An author can only be listed once.'))
+                ugettext('An author can only be present once.'))
 
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True, extra=0)
+
+AuthorWaitingConfirmationFormSet = modelformset_factory(
+    AddonUserPendingConfirmation, formset=BaseAuthorWaitingConfirmationFormSet,
+    form=AuthorWaitingConfirmationForm, can_delete=True, extra=0)
 
 
 class DeleteForm(forms.Form):
