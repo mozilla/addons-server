@@ -51,6 +51,11 @@ class SecondaryHeroShelfViewSet(ShelfViewSet):
     queryset = SecondaryHero.objects
     serializer_class = SecondaryHeroShelfSerializer
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.prefetch_related('modules')
+        return qs
+
 
 class HeroShelvesView(APIView):
     def get(self, request, format=None):
