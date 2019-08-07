@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:08+0000\n"
-"PO-Revision-Date: 2019-08-07 10:46+0000\n"
+"PO-Revision-Date: 2019-08-07 10:54+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -586,7 +586,7 @@ msgstr "Списъци, създадени от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "Абонати последните {0} дни"
+msgstr "Абонати последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
@@ -594,7 +594,7 @@ msgstr "Абонати от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "Оценки последните {0} дни"
+msgstr "Оценки последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
@@ -602,7 +602,7 @@ msgstr "Оценки от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr "Продажби за последните {0} дни"
+msgstr "Продажби за последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
@@ -610,7 +610,7 @@ msgstr "Продажби от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr "Инсталации последните {0} дни"
+msgstr "Инсталации последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -618,7 +618,7 @@ msgstr "Инсталации от {0} до {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> за последните {1} дни"
+msgstr "<b>{0}</b> за последните {1} дена"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
@@ -626,7 +626,7 @@ msgstr "<b>{0}</b> от {1} до {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "Средно <b>{0}</b> за последните {1} дни"
+msgstr "Средно <b>{0}</b> за последните {1} дена"
 
 msgid "No data available."
 msgstr "Няма данни"
