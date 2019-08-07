@@ -15,6 +15,13 @@ log = olympia.core.logger.getLogger('z.yara.task')
 
 @task
 def run_yara(upload_pk):
+    """
+    Apply a set of Yara rules on a FileUpload and store the results.
+
+    This task is intended to be run as part of the submission process only.
+    When a version is created from a FileUpload, the files are removed. In
+    addition, we usually delete old FileUpload entries after 180 days.
+    """
     log.info('Starting yara task for FileUpload %s.', upload_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
 
