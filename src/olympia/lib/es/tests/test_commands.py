@@ -1,9 +1,9 @@
-import threading
 import time
 import io
 
+import pytest
+
 from django.core import management
-from django.db import connection
 from django.test.testcases import TransactionTestCase
 
 from olympia.amo.tests import (
@@ -12,6 +12,7 @@ from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
 
+@pytest.mark.celery_worker_test
 class TestIndexCommand(ESTestCase):
     def setUp(self):
         super(TestIndexCommand, self).setUp()
@@ -79,39 +80,28 @@ class TestIndexCommand(ESTestCase):
         return items
 
     def _test_reindexation(self):
+        stdout = io.StringIO()
+
         # Current indices with aliases.
         old_indices = self.get_indices_aliases()
 
-        # This is to start a reindexation in the background.
-        class ReindexThread(threading.Thread):
-            def __init__(self):
-                self.stdout = io.StringIO()
-                super(ReindexThread, self).__init__()
+        # Start reindexation in the background
+        management.call_command('reindex', stdout=stdout)
 
-            def run(self):
-                # We need to wait at least a second, to make sure the alias
-                # name is going to be different, since we already create an
-                # alias in setUpClass.
-                time.sleep(1)
-                management.call_command('reindex', stdout=self.stdout)
-        t = ReindexThread()
-        t.start()
+        # Wait for the reindex to flag the database.
+        sleeping = 0
+        while not is_reindexing_amo() and sleeping < 5:
+            time.sleep(0.1)
+            sleeping += 0.1
 
-        # Wait for the reindex in the thread to flag the database.
-        # The database transaction isn't shared with the thread, so force the
-        # commit.
-        while t.is_alive() and not is_reindexing_amo():
-            connection._commit()
-            connection.clean_savepoints()
-
+        print('indexing started')
         # We should still be able to search in the foreground while the reindex
         # is being done in the background. We should also be able to index new
         # documents, and they should not be lost.
         old_addons_count = len(self.expected)
-        while t.is_alive() and len(self.expected) < old_addons_count + 3:
+        while is_reindexing_amo() and len(self.expected) < old_addons_count + 3:
+            print('lllllllllll', old_addons_count)
             self.expected.append(addon_factory())
-            connection._commit()
-            connection.clean_savepoints()
             self.refresh()
             self.check_results(self.expected)
 
@@ -119,14 +109,13 @@ class TestIndexCommand(ESTestCase):
             raise AssertionError('Could not index objects in foreground while '
                                  'reindexing in the background.')
 
-        t.join()  # Wait for the thread to finish.
-        t.stdout.seek(0)
-        stdout = t.stdout.read()
+        sleeping = 0
+        while sleeping < 5 and is_reindexing_amo():
+            time.sleep(1)
+            sleeping += 1
+
         assert 'Reindexation done' in stdout, stdout
 
-        # The reindexation is done, let's double check we have all our docs.
-        connection._commit()
-        connection.clean_savepoints()
         self.refresh()
         self.check_results(self.expected)
 
