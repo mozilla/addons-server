@@ -8,6 +8,8 @@ from . import views
 hero = SimpleRouter()
 hero.register('primary', views.PrimaryHeroShelfViewSet,
               basename='hero-primary')
+hero.register('secondary', views.SecondaryHeroShelfViewSet,
+              basename='hero-secondary')
 
 urlpatterns = [
     url(r'', include(hero.urls)),

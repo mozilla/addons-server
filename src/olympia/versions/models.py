@@ -349,7 +349,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def compatible_apps(self):
-        # Dicts, search providers and personas don't have compatibility info.
+        # Dicts and search providers don't have compatibility info.
         # Fake one for them.
         if self.addon and self.addon.type in amo.NO_COMPAT:
             return {app: None for app in amo.APP_TYPE_SUPPORT[self.addon.type]}
@@ -361,8 +361,7 @@ class Version(OnChangeMixin, ModelBase):
     @cached_property
     def _compatible_apps(self):
         """Get a mapping of {APP: ApplicationsVersions}."""
-        avs = self.apps.select_related('version')
-        return self._compat_map(avs)
+        return self._compat_map(self.apps.all())
 
     @cached_property
     def compatible_apps_ordered(self):
@@ -501,10 +500,10 @@ class Version(OnChangeMixin, ModelBase):
     def sources_provided(self):
         return bool(self.source)
 
-    @classmethod
-    def _compat_map(cls, avs):
+    def _compat_map(self, avs):
         apps = {}
         for av in avs:
+            av.version = self
             app_id = av.application
             if app_id in amo.APP_IDS:
                 apps[amo.APP_IDS[app_id]] = av
@@ -529,7 +528,8 @@ class Version(OnChangeMixin, ModelBase):
 
         for version in versions:
             v_id = version.id
-            version._compatible_apps = cls._compat_map(av_dict.get(v_id, []))
+            version._compatible_apps = version._compat_map(
+                av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
             for f in version.all_files:
                 f.version = version
@@ -567,8 +567,7 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
-                                     status__in=[amo.STATUS_AWAITING_REVIEW,
-                                                 amo.STATUS_PENDING])
+                                     status=amo.STATUS_AWAITING_REVIEW)
             # Use File.update so signals are triggered.
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)

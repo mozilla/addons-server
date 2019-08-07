@@ -20,7 +20,8 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tests.test_models import UploadTest
 from olympia.lib.akismet.models import AkismetReport
-from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
+from olympia.users.models import (
+    EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
 
 
 class TestAddonsLinterListed(UploadTest, TestCase):
@@ -479,17 +480,22 @@ def test_wizard_unsupported_properties():
     assert properties == ['extrathing', 'extracolor', 'additionalBackground']
 
 
+@mock.patch('django_statsd.clients.statsd.incr')
 class TestUploadRestrictionChecker(TestCase):
     def setUp(self):
-        self.request = RequestFactory().get('/')
+        self.request = RequestFactory(REMOTE_ADDR='10.0.0.1').get('/')
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
 
-    def test_is_submission_allowed_pass(self):
+    def test_is_submission_allowed_pass(self, incr_mock):
         checker = utils.UploadRestrictionChecker(self.request)
         assert checker.is_submission_allowed()
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.success',)
+        assert not UserRestrictionHistory.objects.exists()
 
-    def test_is_submission_allowed_hasnt_read_agreement(self):
+    def test_is_submission_allowed_hasnt_read_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
@@ -499,22 +505,51 @@ class TestUploadRestrictionChecker(TestCase):
             'The Firefox Add-on Distribution Agreement also links to our '
             'Privacy Notice which explains how we handle your information.'
         )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.DeveloperAgreementRestriction'
+            '.failure',)
+        assert incr_mock.call_args_list[1][0] == (
+            'devhub.is_submission_allowed.failure',)
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == (
+            'DeveloperAgreementRestriction')
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'
 
-    def test_is_submission_allowed_bypassing_read_dev_agreement(self):
+    def test_is_submission_allowed_bypassing_read_dev_agreement(
+            self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
         checker = utils.UploadRestrictionChecker(self.request)
         assert checker.is_submission_allowed(check_dev_agreement=False)
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.success',)
+        assert not UserRestrictionHistory.objects.exists()
 
-    def test_is_submission_allowed_ip_restricted(self):
-        IPNetworkUserRestriction.objects.create(network='127.0.0.0/24')
+    def test_is_submission_allowed_ip_restricted(self, incr_mock):
+        IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
             'Multiple add-ons violating our policies have been submitted '
             'from your location. The IP address has been blocked.'
         )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.IPNetworkUserRestriction.failure',)
+        assert incr_mock.call_args_list[1][0] == (
+            'devhub.is_submission_allowed.failure',)
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'IPNetworkUserRestriction'
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'
 
-    def test_is_submission_allowed_email_restricted(self):
+    def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(
             email_pattern=self.request.user.email)
         checker = utils.UploadRestrictionChecker(self.request)
@@ -523,3 +558,14 @@ class TestUploadRestrictionChecker(TestCase):
             'The email address used for your account is not '
             'allowed for add-on submission.'
         )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.EmailUserRestriction.failure',)
+        assert incr_mock.call_args_list[1][0] == (
+            'devhub.is_submission_allowed.failure',)
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'

@@ -228,17 +228,12 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-              lite  Preliminarily Reviewed
             public  Fully Reviewed
            deleted  Deleted
-           pending  Pending approval (Valid for themes only)
           disabled  Disabled by Mozilla
-          rejected  Rejected (Valid for themes only)
          nominated  Awaiting Full Review
         incomplete  Incomplete
         unreviewed  Awaiting Preliminary Review
-    lite-nominated  Preliminarily Reviewed and Awaiting Full Review
-    review-pending  Flagged for further review (Valid for themes only)
     ==============  ==========================================================
 
 
@@ -278,17 +273,17 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. note::
 
-        For backwards-compatibility reasons, the value for type of Theme
-        currently live on production addons.mozilla.org is ``persona``
-        (Lightweight Theme). ``theme`` refers to a deprecated XUL Complete Theme.
+        For backwards-compatibility reasons, the value for type of ``theme``
+        refers to a deprecated XUL Complete Theme.  ``persona`` are another
+        type of depreated theme.
         New webextension packaged non-dynamic themes are ``statictheme``.
 
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-             theme  Theme (Complete Theme, XUL-based)
+             theme  Depreated.  Theme (Complete Theme, XUL-based)
             search  Search Engine
-           persona  Theme (Lightweight Theme, persona)
+           persona  Deprecated.  Theme (Lightweight Theme, persona)
           language  Language Pack (Application)
          extension  Extension
         dictionary  Dictionary

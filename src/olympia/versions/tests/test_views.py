@@ -205,7 +205,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_locally(self.client.get(self.file_url))
 
     def test_unreviewed_addon(self):
-        self.addon.status = amo.STATUS_PENDING
+        self.addon.status = amo.STATUS_NULL
         self.addon.save()
         self.assert_served_locally(self.client.get(self.file_url))
 

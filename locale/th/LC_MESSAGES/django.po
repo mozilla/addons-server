@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-28 15:18+0000\n"
-"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
+"PO-Revision-Date: 2019-08-06 16:01+0000\n"
+"Last-Translator: Chengings <chengings@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -613,7 +613,7 @@ msgid "{addon} {version} super review requested."
 msgstr "ร้องขอการพิจารณาขั้นสูง {addon} {version} แล้ว"
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "ส่วนเสริมถูกปักธงไว้สำหรับการพิจารณาของผู้ดูแลแล้ว  ซึ่งยังคงอยู่ในคิวบทวิจารณ์ของเรา แต่จะต้องถูกตรวจสอบโดยผู้พิจารณาที่เป็นผู้ดูแล การพิจารณาอาจใช้เวลานานกว่าปกติ"
 
 msgid "Comment on {addon} {version}."
 msgstr "ความคิดเห็นบน {addon} {version}"
@@ -683,16 +683,16 @@ msgid "Application max version for {version} updated."
 msgstr "อัปเดตเวอร์ชันสูงสุดของแอปพลิเคชันสำหรับ {version} แล้ว"
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "ผู้สร้างเขียนอีเมลเกี่ยวกับความเข้ากันได้ของ {version} แล้ว"
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "ส่งอีเมลไปยังผู้สร้างเกี่ยวกับความเข้ากันได้ของส่วนเสริมแล้ว"
 
 msgid "Password changed."
 msgstr "เปลี่ยนรหัสผ่านแล้ว"
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} ได้รับการอนุมัติแล้ว แต่อยู่ระหว่างรอการเปิดเป็นแบบสาธารณะ"
 
 msgid "Approved but waiting"
 msgstr "อนุมัติแล้วแต่กำลังรอ"
@@ -747,13 +747,13 @@ msgstr "เซ็น {file} แล้ว"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "ID ส่วนเสริม {0} ที่มี GUID {1} ได้ถูกลบแล้ว"
 
 msgid "{addon} migrated from preliminary."
 msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "การตอบกลับโดยผู้พัฒนาบน {addon} {version}"
 
 msgid "Developer Reply"
 msgstr "การตอบกลับของนักพัฒนา"
@@ -1509,7 +1509,7 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ป้ายกำกับทั้งหมดต้องมีอย่างน้อย {0} อักขระ"
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "ไม่สามารถเปลี่ยนหมวดหมู่ได้ขณะที่ส่วนเสริมของคุณโดดเด่นสำหรับแอปพลิเคขันนี้"
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1517,11 +1517,11 @@ msgid_plural "You can have only {0} categories."
 msgstr[0] "คุณสามารถมีได้แค่ {0} หมวดหมู่"
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "หมวดหมู่เบ็ดเตล็ดไม่สามารถรวมกับหมวดหมู่อื่น ๆ เพิ่มเติมได้"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "โดเมน URL ต้องเป็นโดเมนที่อยู่ใน [%s] หรือโดเมนย่อย"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -1531,7 +1531,7 @@ msgid "Must have at least one owner."
 msgstr "ต้องมีเจ้าของอย่างน้อยหนึ่งคน"
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "ต้องระบุผู้สร้างลงในรายการอย่างน้อยหนึ่งคน"
 
 msgid "An author can only be listed once."
 msgstr "สามารถระบุผู้สร้างหนึ่งคนได้ครั้งเดียวเท่านั้น"
@@ -1546,10 +1546,10 @@ msgid "What is your license's name?"
 msgstr "ใบอนุญาตของคุณชื่ออะไร?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "ระบุข้อความใบอนุญาตของคุณ"
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "จำเป็นต้องระบุข้อความใบอนุญาตเมื่อเลือก อื่น ๆ"
 
 msgid "This add-on has an End-User License Agreement"
 msgstr ""
@@ -1580,7 +1580,7 @@ msgid "Need at least one compatible application."
 msgstr "ต้องมีแอปพลิเคชันที่เข้ากันได้อย่างน้อยหนึ่งตัว"
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "มีข้อผิดพลาดกับการอัปโหลดของคุณ โปรดลองอีกครั้ง"
 
 msgid "Override failed validation"
 msgstr ""
@@ -1731,7 +1731,7 @@ msgid "Icon must be square (same width and height)."
 msgstr "ไอคอนต้องเป็นสี่เหลี่ยมจัตุรัส (ความกว้างและความสูงเดียวกัน)"
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดการแสดงตัวอย่างของคุณ"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1812,10 +1812,10 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "นโยบายและกติกาสำหรับการวิจารณ์"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "ฉันได้อ่านและยอมรับข้อตกลงนี้ รวมทั้งกฎและนโยบาย"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
 msgstr ""
@@ -1888,7 +1888,7 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr ""
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "คุณต้องการเผยแพร่ส่วนเสริมของคุณลงบนไซต์นี้หรือไม่?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
@@ -2037,7 +2037,7 @@ msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "คั่นด้วยจุลภาค ขั้นต่ำ {0} ตัวอักษร"
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "ตัวอย่าง: dark, cinema, noir จำนวนจำกัดคือ 20"
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
@@ -2086,7 +2086,7 @@ msgid "Add-on URL"
 msgstr "URL ของส่วนเสริม"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "เลือกสลัก URL ที่สั้นและไม่ซ้ำกันสำหรับส่วนเสริมของคุณ"
 
 msgid "View Listing"
 msgstr "ดูรายการ"
@@ -2176,10 +2176,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr ""
 
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "ซอร์สโค้ดของส่วนเสริมนี้สามารถเห็นได้แบบสาธารณะ"
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "ซอร์สโค้ดของส่วนเสริมนี้ไม่สามารถเห็นได้แบบสาธารณะ"
 
 msgid "Public Stats?"
 msgstr "สถิติสาธารณะ?"
@@ -2188,13 +2188,13 @@ msgid "Whether the download and usage stats of your add-on can be displayed in o
 msgstr ""
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "สถิติของส่วนเสริมนี้สามารถเห็นได้แบบสาธารณะ"
 
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "ไม่ สถิติของส่วนเสริมนี้ไม่สามารถเห็นได้แบบสาธารณะ"
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "ตัวระบุที่ไม่ซ้ำกันระดับสากล"
 
 msgid "UUID"
 msgstr "UUID"

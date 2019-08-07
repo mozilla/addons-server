@@ -113,6 +113,20 @@ class TestReviewReports(object):
 
             self.reviewer5.delete()
 
+            # Search plugin (submitted before auto-approval was implemented)
+            search_plugin = addon_factory(type=4)
+            ReviewerScore.award_points(
+                self.reviewer3, search_plugin, amo.STATUS_APPROVED,
+                version=search_plugin.versions.all()[0], post_review=False,
+                content_review=True)
+
+            # Dictionary (submitted before auto-approval was implemented)
+            dictionary = addon_factory(type=3)
+            ReviewerScore.award_points(
+                self.reviewer3, dictionary, amo.STATUS_APPROVED,
+                version=dictionary.versions.all()[0], post_review=False,
+                content_review=True)
+
     def test_report_addon_reviewer(self):
         self.generate_review_data()
         command = Command()
@@ -172,11 +186,11 @@ class TestReviewReports(object):
             ('Weekly Content Reviews, 10 Reviews or More',
              ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
              ((u'Firefox user {}'.format(self.reviewer3.id),
-               u'', '120', u'12'),
+               u'', '140', u'14'),
               (u'Staff Content D', u'*', '-', u'10'))),
             ('Weekly Volunteer Contribution Ratio',
              ['Group', 'Add-ons Reviewed'],
-             ((u'All Reviewers', u'22'), (u'Volunteers', u'12'))),
+             ((u'All Reviewers', u'24'), (u'Volunteers', u'14'))),
             ('Quarterly contributions',
              ['Name', 'Points', 'Add-ons Reviewed'],
              # Empty here to cover edge-case, see below.
@@ -189,7 +203,7 @@ class TestReviewReports(object):
             expected[2] = ('Quarterly contributions',
                            ['Name', 'Points', 'Add-ons Reviewed'],
                            ((u'Firefox user {}'.format(self.reviewer3.id),
-                             u'120', u'12'),))
+                             u'140', u'14'),))
         assert data == expected
 
         html = command.generate_report_html('content', data)

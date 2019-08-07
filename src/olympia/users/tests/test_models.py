@@ -54,25 +54,6 @@ class TestUserProfile(TestCase):
         assert not user.is_addon_developer
         assert not user.is_artist
 
-    def test_is_artist(self):
-        user = user_factory()
-        assert not user.addonuser_set.exists()
-        assert not user.is_developer
-        assert not user.is_addon_developer
-        assert not user.is_artist
-
-        addon = addon_factory(users=[user], type=amo.ADDON_PERSONA)
-        del user.cached_developer_status  # it's a cached property.
-        assert user.is_developer
-        assert not user.is_addon_developer
-        assert user.is_artist
-
-        addon.delete()
-        del user.cached_developer_status
-        assert not user.is_developer
-        assert not user.is_addon_developer
-        assert not user.is_artist
-
     def test_is_artist_of_static_theme(self):
         user = user_factory()
         assert not user.addonuser_set.exists()

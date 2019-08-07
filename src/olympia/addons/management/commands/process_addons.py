@@ -10,10 +10,8 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
     content_approve_migrated_themes,
-    delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
-    migrate_lwts_to_static_themes,
     migrate_webextensions_to_git_storage,
     recreate_theme_previews,
     repack_themes_for_69,
@@ -74,6 +72,7 @@ tasks = {
         # so take that into account. We may want to optimize that later
         # in case we notice things are slower than needed - cgrebs 20190730
         'method': recalculate_post_review_weight,
+        'kwargs': {'only_current_version': True},
         'qs': get_recalc_needed_filters()},
     'resign_addons_for_cose': {
         'method': sign_addons,
@@ -85,22 +84,10 @@ tasks = {
             ~Q(type=amo.ADDON_SEARCH)
         ]
     },
-    'migrate_lwt': {
-        'method': migrate_lwts_to_static_themes,
-        'qs': [
-            Q(type=amo.ADDON_PERSONA, status=amo.STATUS_APPROVED)
-        ]
-    },
-    'delete_lwt': {
-        'method': delete_addons,
-        'qs': [
-            Q(type=amo.ADDON_PERSONA)
-        ]
-    },
     'recreate_previews': {
         'method': recreate_previews,
         'qs': [
-            ~Q(type=amo.ADDON_PERSONA)
+            ~Q(type=amo.ADDON_STATICTHEME)
         ]
     },
     'recreate_theme_previews': {

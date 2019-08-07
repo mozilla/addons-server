@@ -53,9 +53,8 @@ REVIEWED_DICT_UPDATE = 22
 REVIEWED_LP_FULL = 30
 _REVIEWED_LP_PRELIM = 31  # Deprecated for new reviews - no more prelim.
 REVIEWED_LP_UPDATE = 32
-REVIEWED_PERSONA = 40
+_REVIEWED_PERSONA = 40  # Deprecated - no more lWT.
 REVIEWED_STATICTHEME = 41
-# TODO: Leaving room for persona points based on queue.
 REVIEWED_SEARCH_FULL = 50
 _REVIEWED_SEARCH_PRELIM = 51  # Deprecated for new reviews - no more prelim.
 REVIEWED_SEARCH_UPDATE = 52
@@ -82,7 +81,7 @@ REVIEWED_CHOICES = {
     REVIEWED_LP_FULL: _('New Language Pack Review'),
     _REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
     REVIEWED_LP_UPDATE: _('Updated Language Pack Review'),
-    REVIEWED_PERSONA: _('Theme Review'),
+    _REVIEWED_PERSONA: _('Theme Review'),
     REVIEWED_STATICTHEME: _('Theme (Static) Review'),
     REVIEWED_SEARCH_FULL: _('New Search Provider Review'),
     _REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
@@ -114,7 +113,6 @@ REVIEWED_SCORES = {
     REVIEWED_DICT_UPDATE: 60,
     REVIEWED_LP_FULL: 60,
     REVIEWED_LP_UPDATE: 60,
-    REVIEWED_PERSONA: 5,
     REVIEWED_STATICTHEME: 5,
     REVIEWED_SEARCH_FULL: 30,
     REVIEWED_SEARCH_UPDATE: 30,

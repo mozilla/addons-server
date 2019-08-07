@@ -2,7 +2,7 @@
 from olympia.addons.models import Category
 from olympia.amo.tests import TestCase
 from olympia.constants.applications import APPS
-from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
+from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
 from olympia.constants.categories import CATEGORIES
 from olympia.landfill.categories import generate_categories
 
@@ -10,7 +10,7 @@ from olympia.landfill.categories import generate_categories
 class CategoriesTests(TestCase):
 
     def test_categories_themes_generation(self):
-        data = generate_categories(APPS['firefox'], ADDON_PERSONA)
+        data = generate_categories(APPS['firefox'], ADDON_STATICTHEME)
         assert len(data) == Category.objects.all().count()
         assert len(data) == 15
 

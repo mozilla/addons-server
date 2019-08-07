@@ -24,7 +24,6 @@ from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 
 from olympia.amo import urlresolvers, utils
-from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
     _build_html, get_css_urls, get_js_urls)
 
@@ -220,31 +219,6 @@ def shuffle(sequence):
     """Shuffle a sequence."""
     random.shuffle(sequence)
     return sequence
-
-
-@library.global_function
-def license_link(license):
-    """Link to a code license, including icon where applicable."""
-    # If passed in an integer, try to look up the License.
-    from olympia.versions.models import License
-    if isinstance(license, int):
-        if license in PERSONA_LICENSES_IDS:
-            # Grab built-in license.
-            license = PERSONA_LICENSES_IDS[license]
-        else:
-            # Grab custom license.
-            license = License.objects.filter(id=license)
-            if not license.exists():
-                return ''
-            license = license[0]
-    elif not license:
-        return ''
-
-    if not getattr(license, 'builtin', True):
-        return ugettext('Custom License')
-
-    template = loader.get_template('amo/license_link.html')
-    return jinja2.Markup(template.render({'license': license}))
 
 
 @library.global_function

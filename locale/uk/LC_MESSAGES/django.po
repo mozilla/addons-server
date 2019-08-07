@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-08-02 09:07+0000\n"
+"PO-Revision-Date: 2019-08-07 05:47+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1011,50 +1011,53 @@ msgstr ""
 "та інші."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Завантажте розширення Firefox для пошуку і тлумачення. До цієї категорії входять розширення, що підсвічують і шукають текст, здійснюють пошук IP-адрес / доменів та інше."
 
 msgid "Shopping"
 msgstr "Покупки"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Завантажте розширення для Firefox, які можуть підвищити якість покупок в інтернеті за допомогою засобів знаходження купонів знижок, вигідних пропозицій, аналізу відгуків тощо."
 
 msgid "Social & Communication"
 msgstr "Соціальні"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
+"Завантажте розширення для Firefox, щоб вдосконалити обмін миттєвими повідомленнями і роботу з соціальними мережами. Ця категорія містить розширені сповіщення для вкладок, засоби завантаження відео "
+"та інше."
 
 msgid "Tabs"
 msgstr "Вкладки"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Завантажте розширення Firefox для налаштування вкладок і сторінки нової вкладки. Знайдіть розширення, які можуть контролювати вкладки, змінювати спосіб взаємодії з ними, та інше."
 
 msgid "Web Development"
 msgstr "Інструменти розробника"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+"Завантажте розширення для Firefox, призначені для розширення можливостей інструментів для розробки. В цій категорії містяться розширення для GitHub, перемикання user agent, керування куками та інші."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Інше"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Завантажте розширення Firefox, які можуть бути непередбачувані й творчі, але корисні для різних незвичних завдань."
 
 msgid "Device Features & Location"
 msgstr "Функції пристрою і розташування"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Завантажте розширення, щоб збільшити можливості Firefox для Android. Виконуйте швидкий пошук, звільняйте системні ресурси, робіть нотатки та багато іншого."
 
 msgid "Experimental"
 msgstr "Експериментальні"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Завантажте розширення для Firefox, що постійно оновлюються і готові до публічного тестування. Ваші відгуки допомагають розробникам покращувати наступні версії."
 
 msgid "Performance"
 msgstr "Швидкодія"

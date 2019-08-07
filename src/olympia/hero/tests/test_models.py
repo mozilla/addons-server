@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.hero.models import PrimaryHero
+from olympia.hero.models import PrimaryHero, SecondaryHero
 from olympia.discovery.models import DiscoveryItem
 
 
@@ -47,4 +47,41 @@ class TestPrimaryHero(TestCase):
 
         ph.disco_addon.addon.homepage = 'https://foobar.com/'
         ph.disco_addon.addon.save()
+        ph.clean()  # it raises if there's an error
+
+
+class TestSecondaryHero(TestCase):
+    def test_str(self):
+        sh = SecondaryHero.objects.create(
+            headline='Its a héadline!', description='description')
+        assert str(sh) == 'Its a héadline!'
+
+    def test_clean(self):
+        ph = SecondaryHero.objects.create()
+        assert not ph.enabled
+        ph.clean()  # it raises if there's an error
+
+        # neither cta_url or cta_text are set, and that's okay.
+        ph.enabled = True
+        ph.clean()  # it raises if there's an error.
+
+        # just set the url without the text is invalid when enabled though.
+        ph.cta_url = 'http://goo.gl/'
+        with self.assertRaises(ValidationError):
+            ph.clean()
+        ph.cta_url = None
+        ph.cta_text = 'click it!'
+        with self.assertRaises(ValidationError):
+            ph.clean()
+        ph.cta_url = ''
+        with self.assertRaises(ValidationError):
+            ph.clean()
+
+        # No error if not enabled.
+        ph.enabled = False
+        ph.clean()  # it raises if there's an error
+
+        # And setting both is okay too.
+        ph.enabled = True
+        ph.cta_url = 'http://goo.gl'
         ph.clean()  # it raises if there's an error

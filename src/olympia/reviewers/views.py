@@ -77,18 +77,9 @@ from .decorators import (
     permission_or_tools_view_required, unlisted_addons_reviewer_required)
 
 
-def base_context(**kw):
+def context(**kw):
     ctx = {'motd': get_config('reviewers_review_motd')}
     ctx.update(kw)
-    return ctx
-
-
-def context(request, **kw):
-    admin_reviewer = is_admin_reviewer(request)
-    ctx = {
-        'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
-    }
-    ctx.update(base_context(**kw))
     return ctx
 
 
@@ -107,7 +98,7 @@ def ratings_moderation_log(request):
 
     pager = paginate(request, mod_log, 50)
 
-    data = context(request, form=form, pager=pager)
+    data = context(form=form, pager=pager)
 
     return render(request, 'reviewers/moderationlog.html', data)
 
@@ -139,7 +130,7 @@ def ratings_moderation_log_detail(request, id):
             review.undelete()
         return redirect('reviewers.ratings_moderation_log.detail', id)
 
-    data = context(request, log=log, can_undelete=can_undelete)
+    data = context(log=log, can_undelete=can_undelete)
     return render(request, 'reviewers/moderationlog_detail.html', data)
 
 
@@ -279,7 +270,7 @@ def dashboard(request):
                 expired.count())),
             reverse('reviewers.queue_expired_info_requests')
         )]
-    return render(request, 'reviewers/dashboard.html', base_context(**{
+    return render(request, 'reviewers/dashboard.html', context(**{
         # base_context includes motd.
         'sections': sections
     }))
@@ -339,8 +330,7 @@ def performance(request, user_id=False):
         }
     }
 
-    data = context(request,
-                   monthly_data=json.dumps(monthly_data),
+    data = context(monthly_data=json.dumps(monthly_data),
                    performance_month=performance_total['month'],
                    performance_year=performance_total['year'],
                    breakdown=breakdown, point_total=point_total,
@@ -429,7 +419,7 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
 def motd(request):
     form = None
     form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
-    data = context(request, form=form)
+    data = context(form=form)
     return render(request, 'reviewers/motd.html', data)
 
 
@@ -440,7 +430,7 @@ def save_motd(request):
     if form.is_valid():
         set_config('reviewers_review_motd', form.cleaned_data['motd'])
         return redirect(reverse('reviewers.motd'))
-    data = context(request, form=form)
+    data = context(form=form)
     return render(request, 'reviewers/motd.html', data)
 
 
@@ -472,10 +462,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         search_form = None
         is_searching = False
 
+    admin_reviewer = is_admin_reviewer(request)
+
     # Those restrictions will only work with our RawSQLModel, so we need to
     # make sure we're not dealing with a regular Django ORM queryset first.
     if hasattr(qs, 'sql_model'):
-        admin_reviewer = is_admin_reviewer(request)
         if not is_searching and not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
 
@@ -492,14 +483,18 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         per_page = REVIEWS_PER_PAGE
     page = paginate(request, table.rows, per_page=per_page, count=qs.count())
     table.set_page(page)
+
+    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
+
     return render(request, 'reviewers/queue.html',
-                  context(request, table=table, page=page, tab=tab,
+                  context(table=table, page=page, tab=tab,
                           search_form=search_form,
                           point_types=amo.REVIEWED_AMO,
-                          unlisted=unlisted))
+                          unlisted=unlisted,
+                          queue_counts=queue_counts))
 
 
-def queue_counts(admin_reviewer):
+def fetch_queue_counts(admin_reviewer):
     def construct_query_from_sql_model(sqlmodel):
         qs = sqlmodel.objects
 
@@ -583,11 +578,15 @@ def queue_moderated(request):
                     for e in reviews_formset.errors))
         return redirect(reverse('reviewers.queue_moderated'))
 
+    admin_reviewer = is_admin_reviewer(request)
+    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
+
     return render(request, 'reviewers/queue.html',
-                  context(request, reviews_formset=reviews_formset,
+                  context(reviews_formset=reviews_formset,
                           tab='moderated', page=page, flags=flags,
                           search_form=None,
-                          point_types=amo.REVIEWED_AMO))
+                          point_types=amo.REVIEWED_AMO,
+                          queue_counts=queue_counts))
 
 
 @any_reviewer_required
@@ -924,7 +923,7 @@ def review(request, addon, channel=None):
         activity_log__action__in=user_changes_actions,
         addon=addon).order_by('id')
     ctx = context(
-        request, actions=actions, actions_comments=actions_comments,
+        actions=actions, actions_comments=actions_comments,
         actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
@@ -1060,7 +1059,7 @@ def reviewlog(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
-    data = context(request, form=form, pager=pager)
+    data = context(form=form, pager=pager)
     return render(request, 'reviewers/reviewlog.html', data)
 
 
@@ -1071,14 +1070,15 @@ def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(
         Q(addon=addon) | Q(user__in=developers)).order_by('-created')
     reports = amo.utils.paginate(request, reports)
-    data = context(request, addon=addon, reports=reports)
+    data = context(addon=addon, reports=reports)
     return render(request, 'reviewers/abuse_reports.html', data)
 
 
 @any_reviewer_required
 def leaderboard(request):
-    return render(request, 'reviewers/leaderboard.html', context(
-        request, scores=ReviewerScore.all_users_by_score()))
+    return render(
+        request, 'reviewers/leaderboard.html',
+        context(scores=ReviewerScore.all_users_by_score()))
 
 
 # Permission checks for this view are done inside, depending on type of review

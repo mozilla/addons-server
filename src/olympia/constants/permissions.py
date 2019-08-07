@@ -114,6 +114,9 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'discovery.add_discoveryitem': DISCOVERY_EDIT,
     'discovery.change_discoveryitem': DISCOVERY_EDIT,
     'discovery.delete_discoveryitem': DISCOVERY_EDIT,
+    'discovery.add_secondaryheroshelf': DISCOVERY_EDIT,
+    'discovery.change_secondaryheroshelf': DISCOVERY_EDIT,
+    'discovery.delete_secondaryheroshelf': DISCOVERY_EDIT,
 
     'files.change_file': ADMIN_ADVANCED,
 
@@ -140,4 +143,6 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'ratings.delete_rating': ADMIN_ADVANCED,
 
     'versions.change_version': ADMIN_ADVANCED,
+
+    'yara.view_yararesult': ADMIN_ADVANCED,
 })

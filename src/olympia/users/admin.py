@@ -25,12 +25,22 @@ from olympia.zadmin.admin import related_content_link
 from . import forms
 from .models import (
     DeniedName, DisposableEmailDomainRestriction, EmailUserRestriction,
-    GroupUser, IPNetworkUserRestriction, UserProfile)
+    GroupUser, IPNetworkUserRestriction, UserProfile, UserRestrictionHistory)
 
 
 class GroupUserInline(admin.TabularInline):
     model = GroupUser
     raw_id_fields = ('user',)
+
+
+class UserRestrictionHistoryInline(admin.TabularInline):
+    model = UserRestrictionHistory
+    raw_id_fields = ('user',)
+    extra = 0
+    can_delete = False
+
+    def has_add_permission(self, request, obj):
+        return False
 
 
 @admin.register(UserProfile)
@@ -39,7 +49,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     search_fields = ('=id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
-    inlines = (GroupUserInline,)
+    inlines = (GroupUserInline, UserRestrictionHistoryInline)
     show_full_result_count = False  # Turn off to avoid the query.
 
     readonly_fields = ('id', 'picture_img', 'deleted', 'is_public',

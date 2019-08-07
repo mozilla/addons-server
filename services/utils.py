@@ -54,15 +54,6 @@ PLATFORM_NAMES_TO_CONSTANTS = {
     platform.api_name: platform.id for platform in PLATFORMS.values()
 }
 
-ADDON_SLUGS_UPDATE = {
-    1: 'extension',
-    2: 'theme',
-    3: 'extension',
-    4: 'search',
-    5: 'item',
-    6: 'extension',
-    7: 'plugin'}
-
 
 version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             \.(?P<minor1>\d+)      # minor1 (y in x.y)

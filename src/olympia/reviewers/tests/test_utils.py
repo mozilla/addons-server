@@ -28,7 +28,7 @@ from olympia.files.models import File
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ViewExtensionQueue)
 from olympia.reviewers.utils import (
-    PENDING_STATUSES, ReviewAddon, ReviewFiles, ReviewHelper,
+    ReviewAddon, ReviewFiles, ReviewHelper,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 from olympia.lib.crypto.tests.test_signing import (
@@ -272,7 +272,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.setup_type(amo.STATUS_NOMINATED) == 'extension_nominated'
 
     def test_type_pending(self):
-        assert self.setup_type(amo.STATUS_PENDING) == 'extension_pending'
         assert self.setup_type(amo.STATUS_NULL) == 'extension_pending'
         assert self.setup_type(amo.STATUS_APPROVED) == 'extension_pending'
         assert self.setup_type(amo.STATUS_DISABLED) == 'extension_pending'
@@ -1086,7 +1085,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'Tested' not in mail.outbox[0].body
 
     def test_pending_to_super_review(self):
-        for status in PENDING_STATUSES:
+        for status in (amo.STATUS_DISABLED, amo.STATUS_NULL):
             self.setup_data(status)
             self.helper.handler.process_super_review()
 

@@ -354,7 +354,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_artist(self):
-        """Is this user a Personas Artist?"""
+        """Is this user a theme artist?"""
         return self.cached_developer_status['is_theme_developer']
 
     @use_primary_db
@@ -875,6 +875,28 @@ class DeveloperAgreementRestriction:
             log.info('Restricting request from %s %s (%s)',
                      'developer', request.user.pk, 'agreement')
         return allowed
+
+
+class UserRestrictionHistory(ModelBase):
+    RESTRICTION_CLASSES_CHOICES = (
+        (0, DeveloperAgreementRestriction),
+        (1, DisposableEmailDomainRestriction),
+        (2, EmailUserRestriction),
+        (3, IPNetworkUserRestriction),
+        (4, EmailReputationRestriction),
+        (5, IPReputationRestriction),
+    )
+
+    user = models.ForeignKey(
+        UserProfile, related_name='restriction_history',
+        on_delete=models.CASCADE)
+    restriction = models.PositiveSmallIntegerField(
+        default=0, choices=tuple(
+            (num, klass.__name__) for num, klass in RESTRICTION_CLASSES_CHOICES
+        )
+    )
+    ip_address = models.CharField(default='', max_length=45)
+    last_login_ip = models.CharField(default='', max_length=45)
 
 
 class UserHistory(ModelBase):

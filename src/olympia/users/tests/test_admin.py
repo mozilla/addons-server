@@ -418,7 +418,7 @@ class TestUserAdmin(TestCase):
         addon_factory()
         another_user = user_factory()
         addon_factory(users=[self.user, another_user])
-        addon_factory(users=[self.user], status=amo.STATUS_PENDING)
+        addon_factory(users=[self.user], status=amo.STATUS_NOMINATED)
         addon_factory(users=[self.user], status=amo.STATUS_DELETED)
         addon_factory(users=[self.user],
                       version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})

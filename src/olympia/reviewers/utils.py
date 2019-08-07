@@ -33,10 +33,6 @@ from olympia.users.models import UserProfile
 log = olympia.core.logger.getLogger('z.mailer')
 
 
-PENDING_STATUSES = (amo.STATUS_DISABLED, amo.STATUS_NULL,
-                    amo.STATUS_PENDING, amo.STATUS_APPROVED)
-
-
 class ItemStateTable(object):
 
     def increment_item(self):
@@ -317,11 +313,7 @@ class ReviewHelper(object):
         )
         regular_content_review_is_allowed = (
             self.content_review_only and
-            not self.addon.needs_admin_content_review and
-            (
-                not self.addon.needs_admin_code_review or
-                self.version.source
-            ))
+            not self.addon.needs_admin_content_review)
         reviewable_because_not_reserved_for_admins_or_user_is_admin = (
             is_admin_tools_viewer or
             (

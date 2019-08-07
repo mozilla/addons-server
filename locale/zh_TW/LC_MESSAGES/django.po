@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-31 14:19+0000\n"
+"PO-Revision-Date: 2019-08-03 13:45+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -184,7 +184,7 @@ msgid_plural "{0} Daily Users"
 msgstr[0] "每日使用者 {0}"
 
 msgid "Sort by:"
-msgstr "排列依照："
+msgstr "排序依照:"
 
 msgid "More"
 msgstr "更多"
@@ -957,13 +957,13 @@ msgid "Bookmarks"
 msgstr "書籤"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "下載可使用密碼保護書籤、檢查重複項目、尋找失效書籤等功能的擴充套件。"
 
 msgid "Download Management"
 msgstr "下載管理"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "安裝可幫助您下載網頁、音樂和影片內容的 Firefox 擴充套件。還可以找到管理下載項目、分享檔案等功能的附加元件。"
 
 msgid "Feeds, News & Blogging"
 msgstr "資訊來源、新聞、部落格"
@@ -2507,7 +2507,7 @@ msgid "Manage Listing"
 msgstr "管理上架資訊"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含 minified、擾亂過、編譯過的的程式碼的話也可放入原始碼。"
+msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含 minified、擾亂過、編譯過的程式碼的話也可放入原始碼。"
 
 msgid "Edit version {0}"
 msgstr "編輯版本 {0}"
@@ -3364,7 +3364,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "uBlock Origin 是輕量而有效的廣告封鎖器，可套用數以千計的的內容過濾條件，而不花費太多記憶體。"
+msgstr "uBlock Origin 是輕量而有效的廣告封鎖器，可套用數以千計的內容過濾條件，而不花費太多記憶體。"
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4033,7 +4033,7 @@ msgstr "{addon_name} {start_sub_heading}Zero formatting{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "只複製純文字，清除不必要的格式設定。"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -4045,7 +4045,7 @@ msgstr "{addon_name} {start_sub_heading}抽出超連結{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "用新分頁即時顯示網頁中的所有鏈結。"
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4061,7 +4061,7 @@ msgstr "{addon_name} {start_sub_heading}防止搜尋追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "防止搜尋引擎知道您點擊的鏈結。"
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4085,7 +4085,7 @@ msgstr "{addon_name} {start_sub_heading}寫筆記{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "針對特定或所有網站留下筆記，供以後查看。"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4109,7 +4109,7 @@ msgstr "{addon_name} {start_sub_heading}強調文字{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "使用不同色彩與儲存選項來高度自訂文字強調器。"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4133,7 +4133,7 @@ msgstr "{addon_name} {start_sub_heading}將文字轉成圖片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "將文字轉化成漂亮的標題與覆蓋在圖片上的文字。"
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4173,7 +4173,7 @@ msgstr "{addon_name} {start_sub_heading}自動填寫表單{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "只要儲存一次輸入的資料，下次即可自動代填。"
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4189,7 +4189,7 @@ msgstr "{addon_name} {start_sub_heading}停止分頁綁架{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "不讓點擊的鏈結控制您目前的分頁，並載入您原本沒打算開的內容。"
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4197,7 +4197,7 @@ msgstr "{addon_name} {start_sub_heading}簡單使用維基百科{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "在任何網站反白文字，按右鍵即可快速在維基百科上搜尋相關條目。"
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4205,7 +4205,7 @@ msgstr "{addon_name} {start_sub_heading}探索網站相關內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "在指定網域中搜尋您要找的內容。"
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4213,7 +4213,7 @@ msgstr "{addon_name} {start_sub_heading}尋找影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "在任何網站反白文字，按右鍵即可快速在 YouTube 上搜尋相關媒體內容。"
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"

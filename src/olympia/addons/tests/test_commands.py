@@ -359,18 +359,49 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             deleted=True,
             rating=2, body='Apocalypse', user=user_factory()),
 
-        with count_subtask_calls(
-                process_addons.recalculate_post_review_weight) as calls:
-            call_command(
-                'process_addons',
-                task='constantly_recalculate_post_review_weight')
+        # *considered* - current version is auto-approved and
+        # has an abuse report through it's author that is recent enough
+        # Used to test that we only recalculate the weight for
+        # the most recent version
+        author = user_factory()
+        auto_approved_addon8 = addon_factory(
+            users=[author], version_kw={'version': '0.1'})
+
+        AutoApprovalSummary.objects.create(
+            version=auto_approved_addon8.current_version,
+            verdict=amo.AUTO_APPROVED)
+
+        # Let's create a new `current_version` and summary
+        current_version = version_factory(
+            addon=auto_approved_addon8, version='0.2')
+
+        summary = AutoApprovalSummary.objects.create(
+            version=current_version,
+            verdict=amo.AUTO_APPROVED)
+
+        AbuseReport.objects.create(
+            user=author,
+            created=summary.modified + timedelta(days=3))
+
+        mod = 'olympia.reviewers.tasks.AutoApprovalSummary.calculate_weight'
+        with mock.patch(mod) as calc_weight_mock:
+            with count_subtask_calls(
+                    process_addons.recalculate_post_review_weight) as calls:
+                call_command(
+                    'process_addons',
+                    task='constantly_recalculate_post_review_weight')
 
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [[
             auto_approved_addon1.pk,
             auto_approved_addon5.pk,
             auto_approved_addon7.pk,
+            auto_approved_addon8.pk,
         ]]
+
+        # Only 4 calls for each add-on, doesn't consider the extra version
+        # that got created for addon 8
+        assert calc_weight_mock.call_count == 4
 
 
 class TestExtractWebextensionsToGitStorage(TestCase):
@@ -523,7 +554,7 @@ class TestResignAddonsForCose(TestCase):
         addon_factory(type=amo.ADDON_SEARCH, file_kw=file_kw)
         addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
         addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
-        addon_factory(status=amo.STATUS_REVIEW_PENDING, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
 
         call_command('process_addons', task='resign_addons_for_cose')
 
@@ -550,7 +581,8 @@ class TestContentApproveMigratedThemes(TestCase):
         for addon in migrated_themes:
             MigratedLWT.objects.create(
                 static_theme=addon,
-                lightweight_theme=addon_factory(type=amo.ADDON_PERSONA),
+                lightweight_theme_id=9999,
+                getpersonas_id=0,
                 created=migration_date)
         # Add another that never went through migration, it was born that way.
         non_migrated_theme = addon_factory(type=amo.ADDON_STATICTHEME)

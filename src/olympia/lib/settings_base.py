@@ -627,7 +627,6 @@ MINIFY_BUNDLES = {
             'css/impala/search.less',
             'css/impala/suggestions.less',
             'css/node_lib/jquery.minicolors.css',
-            'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
             'css/impala/apps.less',
@@ -648,7 +647,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/developers.css',
             'css/zamboni/docs.less',
             'css/impala/developers.less',
-            'css/impala/personas.less',
             'css/devhub/listing.less',
             'css/devhub/popups.less',
             'css/devhub/compat.less',
@@ -751,10 +749,7 @@ MINIFY_BUNDLES = {
             'js/impala/abuse.js',
             'js/zamboni/ratings.js',
 
-            # Personas
             'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
 
             # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
@@ -844,15 +839,10 @@ MINIFY_BUNDLES = {
             # Browse listing pages
             'js/impala/listing.js',
 
-            # Personas
             'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
 
-            # Persona creation
             'js/common/upload-image.js',
             'js/node_lib/jquery.minicolors.js',
-            'js/impala/persona_creation.js',
 
             # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
@@ -887,10 +877,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/buttons.js',
             'js/lib/ui.lightbox.js',
 
-            # Personas
             'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
 
             'js/zamboni/debouncer.js',
             'js/lib/truncate.js',
@@ -1104,8 +1091,6 @@ CELERY_TASK_ROUTES = {
     # are routed to the priority queue.
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
-    'olympia.addons.tasks.save_theme': {'queue': 'priority'},
-    'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {
         'queue': 'priority'},
 
@@ -1146,8 +1131,6 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
 
     # Addons
-    'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
-    'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.update_incompatible_appversions': {
@@ -1199,7 +1182,6 @@ CELERY_TASK_ROUTES = {
     # Stats
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
 
     # Tags
@@ -1447,7 +1429,6 @@ MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
-MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
 MAX_ZIP_UNCOMPRESSED_SIZE = 200 * 1024 * 1024
 
@@ -1466,10 +1447,6 @@ NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
-
-# Performance for persona pagination, we hardcode the number of
-# available pages when the filter is up-and-coming.
-PERSONA_DEFAULT_PAGES = 10
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
@@ -1811,7 +1788,6 @@ CRON_JOBS = {
     'hide_disabled_files': 'olympia.addons.cron',
     'unhide_disabled_files': 'olympia.addons.cron',
     'deliver_hotness': 'olympia.addons.cron',
-    'cleanup_image_files': 'olympia.addons.cron',
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',

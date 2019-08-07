@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 import collections
 import itertools
-import json
 import os
-import posixpath
 import re
 import time
 import uuid
@@ -39,7 +37,7 @@ from olympia.amo.models import (
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    AMOJSONEncoder, StopWatch, attach_trans_dict, chunked,
+    StopWatch, attach_trans_dict, chunked,
     find_language, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.reviewers import REPUTATION_CHOICES
@@ -169,17 +167,6 @@ class AddonQuerySet(BaseQuerySet):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.VALID_ADDON_STATUSES))
 
-    def valid_and_disabled_and_pending(self):
-        """
-        Get valid, pending, enabled and disabled add-ons.
-        Used to allow pending theme pages to still be viewed.
-        """
-        statuses = (list(amo.VALID_ADDON_STATUSES) +
-                    [amo.STATUS_DISABLED, amo.STATUS_PENDING])
-        return (self.filter(Q(status__in=statuses) | Q(disabled_by_user=True))
-                .exclude(type=amo.ADDON_EXTENSION,
-                         _current_version__isnull=True))
-
     def featured(self, app, lang=None, type=None):
         """
         Filter for all featured add-ons for an application in all locales.
@@ -248,13 +235,6 @@ class AddonManager(ManagerBase):
     def valid(self):
         """Get valid, enabled add-ons only"""
         return self.get_queryset().valid()
-
-    def valid_and_disabled_and_pending(self):
-        """
-        Get valid, pending, enabled and disabled add-ons.
-        Used to allow pending theme pages to still be viewed.
-        """
-        return self.get_queryset().valid_and_disabled_and_pending()
 
     def featured(self, app, lang=None, type=None):
         """
@@ -456,9 +436,6 @@ class Addon(OnChangeMixin, ModelBase):
     def __init__(self, *args, **kw):
         super(Addon, self).__init__(*args, **kw)
 
-        if self.type == amo.ADDON_PERSONA:
-            self.STATUS_CHOICES = Persona.STATUS_CHOICES
-
     def save(self, **kw):
         self.clean_slug()
         super(Addon, self).save(**kw)
@@ -642,8 +619,9 @@ class Addon(OnChangeMixin, ModelBase):
 
         if old_guid_addon:
             old_guid_addon.update(guid=GUID_REUSE_FORMAT.format(addon.pk))
-            old_guid_addon.save()
             ReusedGUID.objects.create(addon=old_guid_addon, guid=guid)
+            log.debug(f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
+                      f'by addon [{addon.pk}].')
         if user:
             AddonUser(addon=addon, user=user).save()
         timer.log_interval('7.end')
@@ -772,8 +750,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         If the add-on is not public, it can return a listed version awaiting
         review (since non-public add-ons should not have public versions)."""
-        if self.type == amo.ADDON_PERSONA:
-            return
         try:
             statuses = self.valid_file_statuses
             status_list = ','.join(map(str, statuses))
@@ -837,17 +813,6 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        if self.is_persona():
-            # Themes should only have a single version. So, if there is not
-            # current version set, we just need to copy over the latest version
-            # to current_version and we should never have to set it again.
-            if not self._current_version:
-                latest_version = self.find_latest_version(None)
-                if latest_version:
-                    self.update(_current_version=latest_version, _signal=False)
-                return True
-            return False
-
         new_current_version = self.find_latest_public_listed_version()
         updated = {}
         send_signal = False
@@ -935,9 +900,6 @@ class Addon(OnChangeMixin, ModelBase):
         """
         Returns the addon's icon url according to icon_type.
 
-        If it's a persona, it will return the icon_url of the associated
-        Persona instance.
-
         If it's a theme and there is no icon set, it will return the default
         theme icon.
 
@@ -956,8 +918,6 @@ class Addon(OnChangeMixin, ModelBase):
             size = amo.ADDON_ICON_SIZES[0]
 
         # Figure out what to return for an image URL
-        if self.type == amo.ADDON_PERSONA:
-            return self.persona.icon_url
         if not self.icon_type:
             if self.type == amo.ADDON_THEME:
                 icon = amo.ADDON_ICONS[amo.ADDON_THEME]
@@ -995,7 +955,7 @@ class Addon(OnChangeMixin, ModelBase):
         self.reload()
 
         if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or
-                self.is_disabled or self.is_persona()):
+                self.is_disabled):
             self.update_version(ignore=ignore_version)
             return
 
@@ -1120,26 +1080,11 @@ class Addon(OnChangeMixin, ModelBase):
 
         addon_dict = {a.id: a for a in addons}
 
-        # Attach categories. This needs to be done before separating addons
-        # from personas, because Personas need categories for the theme_data
-        # JSON dump, rest of the add-ons need the first category to be
-        # displayed in detail page / API.
+        # Attach categories.
         Addon.attach_static_categories(addons, addon_dict=addon_dict)
-
         # Set _current_version and attach listed authors.
-        # Do this before splitting off personas and addons because
-        # it needs to be attached to both.
         Addon.attach_related_versions(addons, addon_dict=addon_dict)
         Addon.attach_listed_authors(addons, addon_dict=addon_dict)
-
-        personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
-        addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
-
-        # Persona-specific stuff
-        for persona in Persona.objects.filter(addon__in=personas):
-            addon = addon_dict[persona.addon_id]
-            addon.persona = persona
-
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
 
@@ -1193,9 +1138,6 @@ class Addon(OnChangeMixin, ModelBase):
                 latest_version.files.exists() and
                 not any(file.reviewed for file in latest_version.all_files))
 
-    def is_persona(self):
-        return self.type == amo.ADDON_PERSONA
-
     @property
     def is_disabled(self):
         """True if this Addon is disabled.
@@ -1247,12 +1189,6 @@ class Addon(OnChangeMixin, ModelBase):
             self.status == amo.STATUS_NULL and
             not self.has_complete_metadata() and
             self.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED))
-
-    def is_pending(self):
-        return self.status == amo.STATUS_PENDING
-
-    def is_rejected(self):
-        return self.status == amo.STATUS_REJECTED
 
     def can_be_deleted(self):
         return not self.is_deleted
@@ -1313,8 +1249,6 @@ class Addon(OnChangeMixin, ModelBase):
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_denied()
-        if self.is_persona:
-            return [], tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
@@ -1363,7 +1297,6 @@ class Addon(OnChangeMixin, ModelBase):
             Addon.objects.filter(
                 status=amo.STATUS_APPROVED,
                 versions__files__status=amo.STATUS_APPROVED)
-            .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
         stati = amo.VALID_ADDON_STATUSES
@@ -1372,9 +1305,7 @@ class Addon(OnChangeMixin, ModelBase):
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
-        personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
-                    .extra(select={'last_updated': 'created'}))
-        return {'public': public, 'exp': exp, 'personas': personas}
+        return {'public': public, 'exp': exp}
 
     @cached_property
     def all_categories(self):
@@ -1603,195 +1534,8 @@ class AddonReviewerFlags(ModelBase):
     notified_about_expiring_info_request = models.BooleanField(default=False)
 
 
-class Persona(models.Model):
-    """Personas-specific additions to the add-on model."""
-    STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
-
-    id = PositiveAutoField(primary_key=True)
-    addon = models.OneToOneField(Addon, null=True, on_delete=models.CASCADE)
-    persona_id = models.PositiveIntegerField(db_index=True)
-    # name: deprecated in favor of Addon model's name field
-    # description: deprecated, ditto
-    header = models.CharField(max_length=64, null=True)
-    footer = models.CharField(max_length=64, null=True)
-    accentcolor = models.CharField(max_length=10, null=True)
-    textcolor = models.CharField(max_length=10, null=True)
-    author = models.CharField(max_length=255, null=True)
-    display_username = models.CharField(max_length=255, null=True)
-    submit = models.DateTimeField(null=True)
-    approve = models.DateTimeField(null=True)
-    movers = models.FloatField(null=True, db_index=True)
-    popularity = models.IntegerField(null=False, default=0, db_index=True)
-    license = models.PositiveIntegerField(
-        choices=amo.PERSONA_LICENSES_CHOICES, null=True, blank=True)
-
-    # To spot duplicate submissions.
-    checksum = models.CharField(max_length=64, blank=True, default='')
-    dupe_persona = models.ForeignKey(
-        'self', null=True, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'personas'
-
-    def __str__(self):
-        return str(self.addon.name)
-
-    def is_new(self):
-        return self.persona_id == 0
-
-    def _image_url(self, filename):
-        host = jinja_helpers.user_media_url('addons')
-        image_url = posixpath.join(host, str(self.addon.id), filename or '')
-        if self.checksum:
-            modified = self.checksum[:8]
-        elif self.addon.modified is not None:
-            modified = int(time.mktime(self.addon.modified.timetuple()))
-        else:
-            modified = 0
-        return '%s?modified=%s' % (image_url, modified)
-
-    def _image_path(self, filename):
-        return os.path.join(jinja_helpers.user_media_path('addons'),
-                            str(self.addon.id), filename)
-
-    @cached_property
-    def thumb_url(self):
-        """
-        Handles deprecated GetPersonas URL.
-        In days of yore, preview.jpg used to be a separate image.
-        In modern days, we use the same image for big preview + thumb.
-        """
-        if self.is_new():
-            return self._image_url('preview.png')
-        else:
-            return self._image_url('preview.jpg')
-
-    @cached_property
-    def thumb_path(self):
-        """
-        Handles deprecated GetPersonas path.
-        In days of yore, preview.jpg used to be a separate image.
-        In modern days, we use the same image for big preview + thumb.
-        """
-        if self.is_new():
-            return self._image_path('preview.png')
-        else:
-            return self._image_path('preview.jpg')
-
-    @cached_property
-    def icon_url(self):
-        """URL to personas square preview."""
-        if self.is_new():
-            return self._image_url('icon.png')
-        else:
-            return self._image_url('preview_small.jpg')
-
-    @cached_property
-    def icon_path(self):
-        """Path to personas square preview."""
-        if self.is_new():
-            return self._image_path('icon.png')
-        else:
-            return self._image_path('preview_small.jpg')
-
-    @cached_property
-    def preview_url(self):
-        """URL to Persona's big, 680px, preview."""
-        if self.is_new():
-            return self._image_url('preview.png')
-        else:
-            return self._image_url('preview_large.jpg')
-
-    @cached_property
-    def preview_path(self):
-        """Path to Persona's big, 680px, preview."""
-        if self.is_new():
-            return self._image_path('preview.png')
-        else:
-            return self._image_path('preview_large.jpg')
-
-    @cached_property
-    def header_url(self):
-        return self._image_url(self.header)
-
-    @cached_property
-    def footer_url(self):
-        return self.footer and self._image_url(self.footer) or ''
-
-    @cached_property
-    def header_path(self):
-        return self._image_path(self.header)
-
-    @cached_property
-    def footer_path(self):
-        return self.footer and self._image_path(self.footer) or ''
-
-    @cached_property
-    def update_url(self):
-        locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
-        url = settings.VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
-        return url % {
-            'locale': locale or settings.LANGUAGE_CODE,
-            'id': self.addon.id
-        }
-
-    @cached_property
-    def theme_data(self):
-        """Theme JSON Data for Browser/extension preview."""
-        def hexcolor(color):
-            return ('#%s' % color) if color else None
-
-        addon = self.addon
-        return {
-            'id': str(self.addon.id),  # Personas dislikes ints
-            'name': str(addon.name),
-            'accentcolor': hexcolor(self.accentcolor),
-            'textcolor': hexcolor(self.textcolor),
-            'category': (str(addon.all_categories[0].name) if
-                         addon.all_categories else ''),
-            # TODO: Change this to be `addons_users.user.display_name`.
-            'author': self.display_username,
-            'description': (str(addon.description)
-                            if addon.description is not None
-                            else addon.description),
-            'header': self.header_url,
-            'footer': self.footer_url or '',
-            'headerURL': self.header_url,
-            'footerURL': self.footer_url or '',
-            'previewURL': self.preview_url,
-            'iconURL': self.icon_url,
-            'updateURL': self.update_url,
-            'detailURL': jinja_helpers.absolutify(self.addon.get_url_path()),
-            'version': '1.0'
-        }
-
-    @property
-    def json_data(self):
-        """Persona JSON Data for Browser/extension preview."""
-        return json.dumps(self.theme_data,
-                          separators=(',', ':'), cls=AMOJSONEncoder)
-
-    def authors_other_addons(self, app=None):
-        """
-        Return other addons by the author(s) of this addon,
-        optionally takes an app.
-        """
-        qs = (Addon.objects.valid()
-                           .exclude(id=self.addon.id)
-                           .filter(type=amo.ADDON_PERSONA))
-        return (qs.filter(addonuser__listed=True,
-                          authors__in=self.addon.listed_authors)
-                  .distinct())
-
-    @cached_property
-    def listed_authors(self):
-        return self.addon.listed_authors
-
-
 class MigratedLWT(OnChangeMixin, ModelBase):
-    lightweight_theme = models.ForeignKey(
-        Addon, unique=True, related_name='migrated_to_static_theme',
-        on_delete=models.CASCADE)
+    lightweight_theme_id = models.PositiveIntegerField()
     getpersonas_id = models.PositiveIntegerField(db_index=True)
     static_theme = models.ForeignKey(
         Addon, unique=True, related_name='migrated_from_lwt',
@@ -1799,10 +1543,6 @@ class MigratedLWT(OnChangeMixin, ModelBase):
 
     class Meta:
         db_table = 'migrated_personas'
-
-    def __init__(self, *args, **kw):
-        super(MigratedLWT, self).__init__(*args, **kw)
-        self.getpersonas_id = self.lightweight_theme.persona.persona_id
 
 
 class AddonCategory(models.Model):

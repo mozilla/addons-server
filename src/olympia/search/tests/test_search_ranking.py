@@ -99,9 +99,8 @@ class RankingScenariosMixin:
         # This data was taken from our production add-ons to test
         # a few search scenarios. (2018-01-25)
         # Note that it's important to set average_daily_users for extensions
-        # and weekly_downloads for themes (personas) in every case,  because it
-        # affects the ranking score and otherwise addon_factory() sets a random
-        # value.
+        # in every case, because it affects the ranking score and otherwise
+        # addon_factory() sets a random value.
         amo.tests.addon_factory(
             average_daily_users=18981,
             description=None,
