@@ -14,6 +14,7 @@ from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
 from olympia.amo.celery import task
 from olympia.amo.utils import utc_millesecs_from_epoch
+from olympia.amo.tests import wait_for_tasks
 
 
 fake_task_func = mock.Mock()
@@ -70,6 +71,12 @@ def test_celery_default_ignore_result():
 def test_celery_explicit_dont_ignore_result():
     result = fake_task.delay().get()
     assert result == 'foobar'
+
+
+@pytest.mark.celery_worker_test
+def test_wait_for_tasks():
+    result = fake_task.delay()
+    assert wait_for_tasks(result.id)['retval'] == 'foobar'
 
 
 @pytest.mark.celery_worker_test
@@ -134,25 +141,30 @@ class TestTaskQueued(TransactionTestCase):
         _stop_queuing_tasks()
 
     def test_not_queued_outside_request_response_cycle(self):
-        fake_task.delay()
+        wait_for_tasks(fake_task.delay())
         assert fake_task_func.call_count == 1
 
     def test_queued_inside_request_response_cycle(self):
         request_started.send(sender=self)
-        fake_task.delay()
+        result = fake_task.delay()
+        wait_for_tasks(result, throw=False)
         assert fake_task_func.call_count == 0
         request_finished.send_robust(sender=self)
+        wait_for_tasks(result, throw=False)
         assert fake_task_func.call_count == 1
 
     def test_no_dedupe_outside_request_response_cycle(self):
-        fake_task.delay()
-        fake_task.delay()
+        r1 = fake_task.delay()
+        r2 = fake_task.delay()
+        wait_for_tasks((r1, r2))
         assert fake_task_func.call_count == 2
 
     def test_dedupe_inside_request_response_cycle(self):
         request_started.send(sender=self)
-        fake_task.delay()
-        fake_task.delay()
+        r1 = fake_task.delay()
+        r2 = fake_task.delay()
+        wait_for_tasks((r1, r2), throw=False)
         assert fake_task_func.call_count == 0
         request_finished.send_robust(sender=self)
+        wait_for_tasks((r1, r2), throw=False)
         assert fake_task_func.call_count == 1

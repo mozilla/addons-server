@@ -80,6 +80,9 @@ ES_INDEX_SUFFIXES = {
     for key in settings.ES_INDEXES.keys()}
 
 
+_celery_task_results = {}
+
+
 def get_es_index_name(key):
     """Return the name of the actual index used in tests for a given key
     taken from settings.ES_INDEXES.
@@ -406,6 +409,31 @@ def activate_locale(locale=None, app=None):
     old_prefix.app = old_app
     set_url_prefix(old_prefix)
     translation.activate(old_locale)
+
+
+def _celery_task_returned(task_id, result):
+    _celery_task_results[task_id] = result
+
+
+def wait_for_tasks(task_ids, max_wait=1, throw=True):
+    if not isinstance(task_ids, (list, set, tuple)):
+        task_ids = [task_ids]
+
+    time_slept = 0
+
+    for task_id in task_ids:
+        while task_id not in _celery_task_results:
+            if time_slept > max_wait:
+                if throw:
+                    raise AssertionError('waited too long for task to complete')
+                else:
+                    break
+            time.sleep(0.05)
+            time_slept += 0.05
+
+    result = _celery_task_results.pop(task_id, None)
+
+    return result
 
 
 def grant_permission(user_obj, rules, name):
