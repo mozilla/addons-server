@@ -30,7 +30,6 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
-from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import (
     Addon, AddonReviewerFlags, AddonUser, AddonUserPendingConfirmation)
 from olympia.addons.views import BaseFilter
@@ -403,11 +402,13 @@ def disable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-# Can't use @dev_required, as the user is not a developer yet. This is also
-# why the function doesn't receive the addon_id parameter.
+# Can't use @dev_required, as the user is not a developer yet. Can't use
+# @addon_view_factory either, because it requires a developer for unlisted
+# add-ons. So we just @login_required and retrieve the addon ourselves in the
+# function.
 @login_required
-@addon_view_factory(qs=Addon.objects.all)
-def invitation(request, addon):
+def invitation(request, addon_id):
+    addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
     try:
         invitation = AddonUserPendingConfirmation.objects.get(
             addon=addon, user=request.user)
