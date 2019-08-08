@@ -1,9 +1,6 @@
 import itertools
 
 from datetime import datetime, timedelta
-from subprocess import PIPE, Popen
-
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import connection
 
@@ -13,7 +10,6 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import chunked
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
