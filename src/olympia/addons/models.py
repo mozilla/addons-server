@@ -1573,10 +1573,10 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     def __init__(self, *args, **kwargs):
         super(AddonUser, self).__init__(*args, **kwargs)
         self._original_role = self.role
-        self._original_user_id = self.user_id
 
     class Meta:
         db_table = 'addons_users'
+        unique_together = (('addon', 'user'),)
 
 
 @AddonUser.on_change
@@ -1585,6 +1585,28 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
     instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
+
+
+class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
+    id = PositiveAutoField(primary_key=True)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
+    user = UserForeignKey()
+    role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
+                                    choices=amo.AUTHOR_CHOICES)
+    listed = models.BooleanField(_(u'Listed'), default=True)
+    # Note: we don't bother with position for authors waiting confirmation,
+    # because it's impossible to properly reconcile it with the confirmed
+    # authors. Instead, authors waiting confirmation are displayed in the order
+    # they have been added, and when they are confirmed they end up in the
+    # last position by default.
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._original_role = self.role
+
+    class Meta:
+        db_table = 'addons_users_pending_confirmation'
+        unique_together = (('addon', 'user'),)
 
 
 class AddonApprovalsCounter(ModelBase):

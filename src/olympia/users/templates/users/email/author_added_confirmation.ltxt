@@ -1,0 +1,14 @@
+{% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans with addon_name=addon.name author_name=author.user.name domain=DOMAIN %}
+Greetings {{ author_name }},
+
+You have been invited to become an author of {{ addon_name }} on {{ domain }}. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.
+
+Click on the link below to respond if you want to be added as an author for {{ addon_name }}.
+
+{{ author_confirmation_link }}
+
+If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.
+
+Kind regards,
+The Mozilla Add-ons Team
+{% endblocktrans %}

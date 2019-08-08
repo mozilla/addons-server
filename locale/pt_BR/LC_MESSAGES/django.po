@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-22 13:54+0000\n"
+"PO-Revision-Date: 2019-08-08 01:48+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3724,11 +3724,11 @@ msgstr "Recarregue abas automaticamente com base nos intervalos de tempo que voc
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Separe suas vidas on-line {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Separe suas vidas online {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Distinga em privado suas múltiplas identidades on-line — trabalho, pessoal, etc. — através de abas destacadas com cores que separam seu rastro digital de cookies."
+msgstr "Diferencie com privacidade suas várias identidades online — trabalho, pessoal, etc. — através de abas destacadas com cores que separam seu rastro digital de cookies."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4809,7 +4809,7 @@ msgid "Problems decoding {0}."
 msgstr "Problemas ao decodificar {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "O arquivo não é visível on-line. Por favor, baixe o arquivo para visualizar seu conteúdo."
+msgstr "Este arquivo não é visível online. Baixe o arquivo para ver o conteúdo."
 
 msgid "This file is a directory."
 msgstr "Esse arquivo é um diretório."
@@ -5041,8 +5041,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"O addons.mozilla.org, comumente conhecido como \"AMO\", é o site oficial de extensões para softwares da Mozilla como o Firefox, Thunderbird e o SeaMonkey. As extensões te permitem adicionar novas "
-"funcionalidades e alterar a forma que o navegador e aplicação funcionam. Dê uma olhada em volta e explore as milhares de formas de personalizar o seu jeito de fazer as coisas on-line."
+"O addons.mozilla.org, normalmente conhecido como \"AMO\", é o site oficial da Mozilla de extensões para seus softwares, como Firefox, Thunderbird e SeaMonkey. Extensões permitem adicionar novas "
+"funcionalidades e alterar o funcionamento do navegador e outras aplicação. Dê uma olhada e explore as milhares de formas de personalizar o seu jeito de fazer as coisas online."
 
 msgid "Who creates these add-ons?"
 msgstr "Quem cria estas extensões?"
