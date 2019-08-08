@@ -4236,7 +4236,7 @@ class TestReview(ReviewBase):
         assert 'role changed to Owner for ' in user_changes[1].text
         assert '(Owner) removed from ' in user_changes[2].text
 
-    @override_settings(CELERY_ALWAYS_EAGER=True)
+    @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_not_run_eagerly(self, validate):
         """Tests that validation is not run in eager mode."""
@@ -4247,7 +4247,7 @@ class TestReview(ReviewBase):
 
         assert not validate.called
 
-    @override_settings(CELERY_ALWAYS_EAGER=False)
+    @override_settings(CELERY_TASK_ALWAYS_EAGER=False)
     @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_run(self, validate):
         """Tests that validation is run if necessary."""
@@ -4258,7 +4258,7 @@ class TestReview(ReviewBase):
 
         validate.assert_called_once_with(self.file)
 
-    @override_settings(CELERY_ALWAYS_EAGER=False)
+    @override_settings(CELERY_TASK_ALWAYS_EAGER=False)
     @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_not_run_again(self, validate):
         """Tests that validation is not run for files which have cached

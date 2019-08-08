@@ -75,7 +75,7 @@ class Command(BaseCommand):
         post_save.disconnect(update_search_index, sender=Addon,
                              dispatch_uid='addons.search.index')
 
-        with override_settings(CELERY_ALWAYS_EAGER=True):
+        with override_settings(CELERY_TASK_ALWAYS_EAGER=True):
             translation.activate('en-US')
             serializer = GenerateAddonsSerializer()
             serializer.create_generic_featured_addons()

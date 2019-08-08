@@ -2,8 +2,6 @@ import threading
 import time
 import io
 
-import pytest
-
 from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
@@ -14,7 +12,6 @@ from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
 
-@pytest.mark.celery_worker_test
 class TestIndexCommand(ESTestCase):
     def setUp(self):
         super(TestIndexCommand, self).setUp()
@@ -29,6 +26,10 @@ class TestIndexCommand(ESTestCase):
 
         self.addons = []
         self.expected = self.addons[:]
+        # Monkeypatch Celerys ".get()" inside async task error
+        # until https://github.com/celery/celery/issues/4661 (which isn't just
+        # about retries but a general regression) fixed.
+        self.patch('celery.app.task.denied_join_result')
 
     # Since this test plays with transactions, but we don't have (and don't
     # really want to have) a ESTransactionTestCase class, use the fixture setup
