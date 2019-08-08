@@ -18,11 +18,12 @@ x-env-mapping: &env
     - TERM=xterm-256color
     - UITEST_FXA_EMAIL
     - UITEST_FXA_PASSWORD=uitester
+    - CI=${CI}
 
 services:
   worker: &worker
     <<: *env
-    image: addons/addons-server:latest
+    image: addons-server:latest
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     entrypoint: ./scripts/start-docker.sh
     volumes:
