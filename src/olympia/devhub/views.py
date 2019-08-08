@@ -490,7 +490,7 @@ def ownership(request, addon_id, addon):
         context_data = {
             'author': author,
             'addon': addon,
-            'domain': settings.DOMAIN,
+            'DOMAIN': settings.DOMAIN,
         }
         if extra_context:
             context_data.update(extra_context)
