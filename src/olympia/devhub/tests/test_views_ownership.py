@@ -1,4 +1,5 @@
-"""Tests related to the ``devhub.addons.owner`` view."""
+"""Tests for ``devhub.views.ownership`` and ``devhub.views.invitation``."""
+from django.conf import settings
 from django.core import mail
 
 from pyquery import PyQuery as pq
@@ -327,6 +328,7 @@ class TestEditAuthor(TestOwnership):
             'Author invitation for Delicious Bookmarks')
         assert 'regular@mozilla.com' in author_confirmation_email.to
         assert invitation_url in author_confirmation_email.body
+        assert settings.DOMAIN in author_confirmation_email.body
 
     def test_impossible_to_add_to_authors_directly(self):
         additional_data = formset(
