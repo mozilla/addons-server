@@ -19,12 +19,12 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         hero_a = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
                 addon=addon_factory(),
-                custom_heading='Its a héading!'),
+                custom_description='Its a déscription!'),
             image='foo.png',
             gradient_color='#123456')
         hero_b = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory()),
+                addon=addon_factory(summary='fooo')),
             image='baa.png',
             gradient_color='#987654')
         hero_external = PrimaryHero.objects.create(
