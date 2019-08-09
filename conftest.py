@@ -134,6 +134,12 @@ def celery_config():
     return config
 
 
+@pytest.fixture
+def celery_app():
+    from olympia.amo.celery import app
+    return app
+
+
 @pytest.fixture(autouse=True)
 def start_celery_worker(
         request, settings, celery_config, celery_session_worker):
