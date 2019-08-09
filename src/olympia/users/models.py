@@ -166,6 +166,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     email_changed = models.DateTimeField(null=True, editable=False)
+    banned = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
     # Note: this is only used for API responses (thus addons-frontend) - all
@@ -469,7 +470,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         are never able to log back in.
         """
         self.delete_or_disable_related_content(delete=False)
-        return self.delete(keep_fxa_id_and_email=True)
+        return self.delete(ban_user=True)
 
     @classmethod
     def ban_and_disable_related_content_bulk(cls, users, move_files=False):
@@ -518,9 +519,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             user_responsible=core.get_user())
         # And then delete the users.
         for user in users:
-            user.delete(keep_fxa_id_and_email=True)
+            user.delete(ban_user=True)
 
-    def delete(self, hard=False, keep_fxa_id_and_email=False):
+    def delete(self, hard=False, ban_user=False):
         # Cache the values in case we do a hard delete and loose
         # reference to the user-id.
         picture_path = self.picture_path
@@ -529,9 +530,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if hard:
             super(UserProfile, self).delete()
         else:
-            if keep_fxa_id_and_email:
-                log.info(u'User (%s: <%s>) is being partially anonymized.' % (
-                    self, self.email))
+            if ban_user:
+                log.info(
+                    f'User ({self}: <{self.email}>) is being partially '
+                    'anonymized and banned.')
+                # We don't clear email or fxa_id when banning
+                self.banned = datetime.now()
             else:
                 log.info(u'User (%s: <%s>) is being anonymized.' % (
                     self, self.email))
