@@ -15,6 +15,7 @@ from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
+from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
@@ -30,8 +31,7 @@ from olympia.api.permissions import (
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
     AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
-    AddonCategoryQueryParam, AddonGuidQueryParam, AddonTypeQueryParam,
-    AutoCompleteSortFilter,
+    AddonCategoryQueryParam, AddonTypeQueryParam, AutoCompleteSortFilter,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
 from olympia.translations.query import order_by_translation
@@ -39,10 +39,10 @@ from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, CompatOverride, ReplacementAddon
+from .models import Addon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
+    AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import (
@@ -677,43 +677,17 @@ class ReplacementAddonView(ListAPIView):
     serializer_class = ReplacementAddonSerializer
 
 
-class CompatOverrideView(ListAPIView):
-    """This view is used by Firefox so it's performance-critical.
-
-    Every firefox client requests the list of overrides approx. once per day.
-    Firefox requests the overrides via a list of GUIDs which makes caching
-    hard because the variation of possible GUID combinations prevent us to
-    simply add some dumb-caching and requires us to resolve cache-misses.
+class CompatOverrideView(APIView):
+    """This view is used by Firefox but we don't have any more overrides so we
+    just return an empty response.  This api is v3 only.
     """
-
-    queryset = CompatOverride.objects.all()
-    serializer_class = CompatOverrideSerializer
 
     @classmethod
     def as_view(cls, **initkwargs):
-        """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(
-            super(CompatOverrideView, cls).as_view(**initkwargs))
+        return non_atomic_requests(super().as_view(**initkwargs))
 
-    def get_guids(self):
-        # Use the same Filter we use for AddonSearchView for consistency.
-        guid_filter = AddonGuidQueryParam(self.request)
-        return guid_filter.get_value()
-
-    def filter_queryset(self, queryset):
-        guids = self.get_guids()
-        if not guids:
-            raise exceptions.ParseError(
-                'Empty, or no, guid parameter provided.')
-        # Evaluate the queryset and cast it into a list.
-        # This will force Django to simply use len(queryset) instead of
-        # calling .count() on it and avoids an additional COUNT query.
-        # The amount of GUIDs we should get in real-life won't be paginated
-        # most of the time so it's safe to simply evaluate the query.
-        # The advantage here is that we are saving ourselves a `COUNT` query
-        # and these are expensive.
-        return list(queryset.filter(guid__in=guids).transform(
-            CompatOverride.transformer).order_by('-pk'))
+    def get(self, request, format=None):
+        return Response({'results': []})
 
 
 class AddonRecommendationView(AddonSearchView):

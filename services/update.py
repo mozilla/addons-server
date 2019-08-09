@@ -151,18 +151,6 @@ class Update(object):
                 data['d2c_min_version'] = version_int(d2c_min)
                 sql.append("AND appmax.version_int >= %(d2c_min_version)s ")
 
-            # Filter out versions found in compat overrides
-            sql.append("""AND
-                NOT versions.id IN (
-                SELECT version_id FROM incompatible_versions
-                WHERE app_id=%(app_id)s AND
-                  (min_app_version='0' AND
-                       max_app_version_int >= %(version_int)s) OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version='*') OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version_int >= %(version_int)s)) """)
-
         else:  # Not defined or 'strict'.
             sql.append('AND appmax.version_int >= %(version_int)s ')
 

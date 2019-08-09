@@ -17,8 +17,7 @@ from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
-    AppSupport, Category, CompatOverride, CompatOverrideRange, DeniedGuid,
-    DeniedSlug, FrozenAddon, IncompatibleVersions, MigratedLWT,
+    AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
     Preview, ReusedGUID, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
@@ -1738,7 +1737,6 @@ class TestAddonDelete(TestCase):
         AddonUser.objects.create(
             addon=addon, user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon, app=1)
-        CompatOverride.objects.create(addon=addon)
         FrozenAddon.objects.create(addon=addon)
 
         AddonLog.objects.create(
@@ -2467,201 +2465,6 @@ class TestLanguagePack(TestCase, amo.tests.AMOPaths):
                             filename=self.xpi_path('langpack-localepicker'),
                             status=amo.STATUS_APPROVED)
         assert self.addon.reload().get_localepicker() == ''
-
-
-class TestCompatOverride(TestCase):
-
-    def setUp(self):
-        super(TestCompatOverride, self).setUp()
-        self.app = amo.APP_IDS[1]
-
-        one = CompatOverride.objects.create(guid='one')
-        CompatOverrideRange.objects.create(compat=one, app=self.app.id)
-
-        two = CompatOverride.objects.create(guid='two')
-        CompatOverrideRange.objects.create(compat=two, app=self.app.id,
-                                           min_version='1', max_version='2')
-        CompatOverrideRange.objects.create(compat=two, app=self.app.id,
-                                           min_version='1', max_version='2',
-                                           min_app_version='3',
-                                           max_app_version='4')
-
-    def check(self, obj, **kw):
-        """Check that key/value pairs in kw match attributes of obj."""
-        for key, expected in kw.items():
-            actual = getattr(obj, key)
-            assert actual == expected
-
-    def test_override_type(self):
-        one = CompatOverride.objects.get(guid='one')
-
-        # The default is incompatible.
-        c = CompatOverrideRange.objects.create(compat=one, app=1)
-        assert c.override_type() == 'incompatible'
-
-        c = CompatOverrideRange.objects.create(compat=one, app=1, type=0)
-        assert c.override_type() == 'compatible'
-
-    def test_guid_match(self):
-        # We hook up the add-on automatically if we see a matching guid.
-        addon = Addon.objects.create(id=1, guid='oh yeah', type=1)
-        c = CompatOverride.objects.create(guid=addon.guid)
-        assert c.addon_id == addon.id
-
-        c = CompatOverride.objects.create(guid='something else')
-        assert c.addon is None
-
-    def test_transformer(self):
-        compats = list(CompatOverride.objects
-                       .transform(CompatOverride.transformer))
-        ranges = list(CompatOverrideRange.objects.all())
-        # If the transformer works then we won't have any more queries.
-        with self.assertNumQueries(0):
-            for c in compats:
-                assert c.compat_ranges == (
-                    [r for r in ranges if r.compat_id == c.id])
-
-    def test_collapsed_ranges(self):
-        # Test that we get back the right structures from collapsed_ranges().
-        c = CompatOverride.objects.get(guid='one')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 1
-        compat_range = r[0]
-        self.check(compat_range, type='incompatible', min='0', max='*')
-
-        assert len(compat_range.apps) == 1
-        self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
-
-    def test_collapsed_ranges_multiple_versions(self):
-        c = CompatOverride.objects.get(guid='one')
-        CompatOverrideRange.objects.create(compat=c, app=1,
-                                           min_version='1', max_version='2',
-                                           min_app_version='3',
-                                           max_app_version='3.*')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 2
-
-        self.check(r[0], type='incompatible', min='0', max='*')
-        assert len(r[0].apps) == 1
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
-
-        self.check(r[1], type='incompatible', min='1', max='2')
-        assert len(r[1].apps) == 1
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='3', max='3.*')
-
-    def test_collapsed_ranges_different_types(self):
-        # If the override ranges have different types they should be separate
-        # entries.
-        c = CompatOverride.objects.get(guid='one')
-        CompatOverrideRange.objects.create(compat=c, app=1, type=0,
-                                           min_app_version='3',
-                                           max_app_version='3.*')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 2
-
-        self.check(r[0], type='compatible', min='0', max='*')
-        assert len(r[0].apps) == 1
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='3', max='3.*')
-
-        self.check(r[1], type='incompatible', min='0', max='*')
-        assert len(r[1].apps) == 1
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
-
-    def test_collapsed_ranges_multiple_apps(self):
-        c = CompatOverride.objects.get(guid='two')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 1
-        compat_range = r[0]
-        self.check(compat_range, type='incompatible', min='1', max='2')
-
-        assert len(compat_range.apps) == 2
-        self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
-        self.check(compat_range.apps[1], app=amo.FIREFOX, min='3', max='4')
-
-    def test_collapsed_ranges_multiple_versions_and_apps(self):
-        c = CompatOverride.objects.get(guid='two')
-        CompatOverrideRange.objects.create(min_version='5', max_version='6',
-                                           compat=c, app=1)
-        r = c.collapsed_ranges()
-
-        assert len(r) == 2
-        self.check(r[0], type='incompatible', min='1', max='2')
-
-        assert len(r[0].apps) == 2
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
-        self.check(r[0].apps[1], app=amo.FIREFOX, min='3', max='4')
-
-        self.check(r[1], type='incompatible', min='5', max='6')
-        assert len(r[1].apps) == 1
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
-
-
-class TestIncompatibleVersions(TestCase):
-
-    def setUp(self):
-        super(TestIncompatibleVersions, self).setUp()
-        self.app = amo.APP_IDS[amo.FIREFOX.id]
-        self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
-
-    def test_signals_min(self):
-        assert IncompatibleVersions.objects.count() == 0
-
-        c = CompatOverride.objects.create(guid='r@b')
-        CompatOverrideRange.objects.create(compat=c, app=self.app.id,
-                                           min_version='0',
-                                           max_version='1.0')
-
-        # Test the max version matched.
-        version1 = Version.objects.create(id=2, addon=self.addon,
-                                          version='1.0')
-        assert IncompatibleVersions.objects.filter(
-            version=version1).count() == 1
-        assert IncompatibleVersions.objects.count() == 1
-
-        # Test the lower range.
-        version2 = Version.objects.create(id=1, addon=self.addon,
-                                          version='0.5')
-        assert IncompatibleVersions.objects.filter(
-            version=version2).count() == 1
-        assert IncompatibleVersions.objects.count() == 2
-
-        # Test delete signals.
-        version1.delete()
-        assert IncompatibleVersions.objects.count() == 1
-
-        version2.delete()
-        assert IncompatibleVersions.objects.count() == 0
-
-    def test_signals_max(self):
-        assert IncompatibleVersions.objects.count() == 0
-
-        c = CompatOverride.objects.create(guid='r@b')
-        CompatOverrideRange.objects.create(compat=c, app=self.app.id,
-                                           min_version='1.0',
-                                           max_version='*')
-
-        # Test the min_version matched.
-        version1 = Version.objects.create(addon=self.addon, version='1.0')
-        assert IncompatibleVersions.objects.filter(
-            version=version1).count() == 1
-        assert IncompatibleVersions.objects.count() == 1
-
-        # Test the upper range.
-        version2 = Version.objects.create(addon=self.addon, version='99.0')
-        assert IncompatibleVersions.objects.filter(
-            version=version2).count() == 1
-        assert IncompatibleVersions.objects.count() == 2
-
-        # Test delete signals.
-        version1.delete()
-        assert IncompatibleVersions.objects.count() == 1
-
-        version2.delete()
-        assert IncompatibleVersions.objects.count() == 0
 
 
 class TestAddonApprovalsCounter(TestCase):

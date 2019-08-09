@@ -37,7 +37,7 @@ from olympia.amo.models import (
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    StopWatch, attach_trans_dict, chunked,
+    StopWatch, attach_trans_dict,
     find_language, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.reviewers import REPUTATION_CHOICES
@@ -1817,154 +1817,6 @@ def freezer(sender, instance, **kw):
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
 
 
-class CompatOverride(ModelBase):
-    """Helps manage compat info for add-ons not hosted on AMO."""
-    id = PositiveAutoField(primary_key=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    guid = models.CharField(max_length=255, unique=True)
-    addon = models.ForeignKey(
-        Addon, blank=True, null=True, on_delete=models.CASCADE,
-        help_text='Fill this out to link an override to a hosted add-on')
-
-    class Meta:
-        db_table = 'compat_override'
-        unique_together = ('addon', 'guid')
-
-    def save(self, *args, **kw):
-        if not self.addon:
-            qs = Addon.objects.filter(guid=self.guid)
-            if qs:
-                self.addon = qs[0]
-        return super(CompatOverride, self).save(*args, **kw)
-
-    def __str__(self):
-        if self.addon:
-            return str(self.addon)
-        elif self.name:
-            return '%s (%s)' % (self.name, self.guid)
-        else:
-            return self.guid
-
-    @staticmethod
-    def transformer(overrides):
-        if not overrides:
-            return
-
-        id_map = {override.id: override for override in overrides}
-        qs = CompatOverrideRange.objects.filter(compat__in=id_map)
-
-        for compat_id, ranges in sorted_groupby(qs, 'compat_id'):
-            id_map[compat_id].compat_ranges = list(ranges)
-
-    # May be filled in by a transformer for performance.
-    @cached_property
-    def compat_ranges(self):
-        return list(self._compat_ranges.all())
-
-    def collapsed_ranges(self):
-        """Collapse identical version ranges into one entity."""
-        Range = collections.namedtuple('Range', 'type min max apps')
-        AppRange = collections.namedtuple('AppRange', 'app min max')
-        rv = []
-
-        def sort_key(x):
-            return (x.min_version, x.max_version, x.type)
-
-        for key, compats in sorted_groupby(self.compat_ranges, key=sort_key):
-            compats = list(compats)
-            first = compats[0]
-            item = Range(first.override_type(), first.min_version,
-                         first.max_version, [])
-            for compat in compats:
-                app = AppRange(amo.APPS_ALL[compat.app],
-                               compat.min_app_version, compat.max_app_version)
-                item.apps.append(app)
-            rv.append(item)
-        return rv
-
-
-OVERRIDE_TYPES = (
-    (0, 'Compatible (not supported)'),
-    (1, 'Incompatible'),
-)
-
-
-class CompatOverrideRange(ModelBase):
-    """App compatibility for a certain version range of a RemoteAddon."""
-    id = PositiveAutoField(primary_key=True)
-    compat = models.ForeignKey(
-        CompatOverride, related_name='_compat_ranges',
-        on_delete=models.CASCADE)
-    type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
-    min_version = models.CharField(
-        max_length=255, default='0',
-        help_text=u'If not "0", version is required to exist for the override'
-                  u' to take effect.')
-    max_version = models.CharField(
-        max_length=255, default='*',
-        help_text=u'If not "*", version is required to exist for the override'
-                  u' to take effect.')
-    app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
-                                      db_column='app_id')
-    min_app_version = models.CharField(max_length=255, default='0')
-    max_app_version = models.CharField(max_length=255, default='*')
-
-    class Meta:
-        db_table = 'compat_override_range'
-
-    def override_type(self):
-        """This is what Firefox wants to see in the XML output."""
-        return {0: 'compatible', 1: 'incompatible'}[self.type]
-
-
-class IncompatibleVersions(ModelBase):
-    """
-    Denormalized table to join against for fast compat override filtering.
-
-    This was created to be able to join against a specific version record since
-    the CompatOverrideRange can be wildcarded (e.g. 0 to *, or 1.0 to 1.*), and
-    addon versioning isn't as consistent as Firefox versioning to trust
-    `version_int` in all cases.  So extra logic needed to be provided for when
-    a particular version falls within the range of a compatibility override.
-    """
-    id = PositiveAutoField(primary_key=True)
-    version = models.ForeignKey(
-        Version, related_name='+', on_delete=models.CASCADE)
-    app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
-                                      db_column='app_id')
-    min_app_version = models.CharField(max_length=255, blank=True, default='0')
-    max_app_version = models.CharField(max_length=255, blank=True, default='*')
-    min_app_version_int = models.BigIntegerField(blank=True, null=True,
-                                                 editable=False, db_index=True)
-    max_app_version_int = models.BigIntegerField(blank=True, null=True,
-                                                 editable=False, db_index=True)
-
-    class Meta:
-        db_table = 'incompatible_versions'
-
-    def __str__(self):
-        return u'<IncompatibleVersion V:%s A:%s %s-%s>' % (
-            self.version.id, self.app.id, self.min_app_version,
-            self.max_app_version)
-
-    def save(self, *args, **kw):
-        self.min_app_version_int = version_int(self.min_app_version)
-        self.max_app_version_int = version_int(self.max_app_version)
-        return super(IncompatibleVersions, self).save(*args, **kw)
-
-
-def update_incompatible_versions(sender, instance, **kw):
-    if not instance.compat.addon_id:
-        return
-    if not instance.compat.addon.type == amo.ADDON_EXTENSION:
-        return
-
-    from . import tasks
-    versions = instance.compat.addon.versions.values_list('id', flat=True)
-    for chunk in chunked(versions, 50):
-        tasks.update_incompatible_appversions.delay(chunk)
-
-
 class ReplacementAddon(ModelBase):
     guid = models.CharField(max_length=255, unique=True, null=True)
     path = models.CharField(max_length=255, null=True,
@@ -1980,14 +1832,6 @@ class ReplacementAddon(ModelBase):
 
     def has_external_url(self):
         return self.path_is_external(self.path)
-
-
-models.signals.post_save.connect(update_incompatible_versions,
-                                 sender=CompatOverrideRange,
-                                 dispatch_uid='cor_update_incompatible')
-models.signals.post_delete.connect(update_incompatible_versions,
-                                   sender=CompatOverrideRange,
-                                   dispatch_uid='cor_update_incompatible')
 
 
 def track_new_status(sender, instance, *args, **kw):
