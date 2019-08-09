@@ -415,7 +415,7 @@ def _celery_task_returned(task_id, result):
     _celery_task_results[task_id] = result
 
 
-def wait_for_tasks(task_ids, max_wait=1, throw=True):
+def wait_for_tasks(task_ids, max_wait=1, throw=True, sleep_per_iteration=0.05):
     if not isinstance(task_ids, (list, set, tuple)):
         task_ids = [task_ids]
 
@@ -429,8 +429,8 @@ def wait_for_tasks(task_ids, max_wait=1, throw=True):
                         f'Task didn\'t return in {max_wait} seconds')
                 else:
                     break
-            time.sleep(0.05)
-            time_slept += 0.05
+            time.sleep(sleep_per_iteration)
+            time_slept += sleep_per_iteration
 
     result = _celery_task_results.pop(task_id, None)
 

@@ -35,25 +35,25 @@ def test_celery_routes_in_queues():
 
 
 @task(ignore_result=False)
-def fake_task():
+def fake_task_with_result():
     fake_task_func()
     return 'foobar'
 
 
 @task
-def default_task():
+def fake_task():
     fake_task_func()
     return 'foobar'
 
 
 @task(track_started=True, ignore_result=False)
-def sleeping_task():
-    time.sleep(0.3)
+def sleeping_task(time_to_sleep):
+    time.sleep(time_to_sleep)
 
 
 @pytest.mark.celery_worker_test
 def test_celery_worker_test_runs_through_worker():
-    result = sleeping_task.delay()
+    result = sleeping_task.delay(time_to_sleep=0.3)
     assert result.state == 'PENDING'
     time.sleep(0.1)
     assert result.state == 'STARTED'
@@ -63,26 +63,26 @@ def test_celery_worker_test_runs_through_worker():
 
 @pytest.mark.celery_worker_test
 def test_celery_default_ignore_result():
-    result = default_task.delay().get()
+    result = fake_task.delay().get()
     assert result is None
 
 
 @pytest.mark.celery_worker_test
 def test_celery_explicit_dont_ignore_result():
-    result = fake_task.delay().get()
+    result = fake_task_with_result.delay().get()
     assert result == 'foobar'
 
 
 @pytest.mark.celery_worker_test
 def test_wait_for_tasks():
-    result = fake_task.delay()
+    result = fake_task_with_result.delay()
     assert wait_for_tasks(result.id)['retval'] == 'foobar'
 
 
 @pytest.mark.celery_worker_test
 @mock.patch('olympia.amo.celery.cache')
 def test_start_task_timer(celery_cache):
-    result = fake_task.delay()
+    result = fake_task_with_result.delay()
     result.get()
 
     assert celery_cache.set.called
@@ -97,12 +97,12 @@ def test_track_run_time(celery_statsd, celery_cache):
     task_start = utc_millesecs_from_epoch(minute_ago)
     celery_cache.get.return_value = task_start
 
-    result = fake_task.delay()
+    result = fake_task_with_result.delay()
     result.get()
 
     approx_run_time = utc_millesecs_from_epoch() - task_start
     assert (celery_statsd.timing.call_args[0][0] ==
-            'tasks.olympia.amo.tests.test_celery.fake_task')
+            'tasks.olympia.amo.tests.test_celery.fake_task_with_result')
     actual_run_time = celery_statsd.timing.call_args[0][1]
 
     fuzz = 2000  # 2 seconds
