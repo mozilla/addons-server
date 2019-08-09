@@ -481,6 +481,8 @@ class AuthorWaitingConfirmationForm(AuthorForm):
 
             name_validators = user._meta.get_field('display_name').validators
             try:
+                if user.display_name is None:
+                    raise forms.ValidationError('')  # Caught below.
                 for validator in name_validators:
                     validator(user.display_name)
             except forms.ValidationError:
