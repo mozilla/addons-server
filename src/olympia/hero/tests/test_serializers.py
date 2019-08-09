@@ -11,18 +11,16 @@ from ..serializers import (
 
 class TestPrimaryHeroShelfSerializer(TestCase):
     def test_basic(self):
-        addon = addon_factory(summary='Summary')
+        addon = addon_factory()
         hero = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon,
-                custom_heading='Its a héading!'),
+                addon=addon, custom_description='Déscription'),
             image='foo.png',
             gradient_color='#123456')
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data == {
             'featured_image': hero.image_path,
-            'heading': 'Its a héading!',
-            'description': '<blockquote>Summary</blockquote>',
+            'description': '<blockquote>Déscription</blockquote>',
             'gradient': {
                 'start': GRADIENT_START_COLOR,
                 'end': '#123456'
@@ -35,15 +33,12 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             summary='Summary', homepage='https://foo.baa', version_kw={
                 'channel': amo.RELEASE_CHANNEL_UNLISTED})
         hero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
-                addon=addon,
-                custom_heading='Its a héading!'),
+            disco_addon=DiscoveryItem.objects.create(addon=addon),
             image='foo.png',
             gradient_color='#123456',
             is_external=True)
         assert PrimaryHeroShelfSerializer(instance=hero).data == {
             'featured_image': hero.image_path,
-            'heading': 'Its a héading!',
             'description': '<blockquote>Summary</blockquote>',
             'gradient': {
                 'start': GRADIENT_START_COLOR,

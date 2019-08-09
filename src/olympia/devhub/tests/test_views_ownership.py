@@ -1,4 +1,5 @@
-"""Tests related to the ``devhub.addons.owner`` view."""
+"""Tests for ``devhub.views.ownership`` and ``devhub.views.invitation``."""
+from django.conf import settings
 from django.core import mail
 
 from pyquery import PyQuery as pq
@@ -327,6 +328,7 @@ class TestEditAuthor(TestOwnership):
             'Author invitation for Delicious Bookmarks')
         assert 'regular@mozilla.com' in author_confirmation_email.to
         assert invitation_url in author_confirmation_email.body
+        assert settings.DOMAIN in author_confirmation_email.body
 
     def test_impossible_to_add_to_authors_directly(self):
         additional_data = formset(
@@ -702,6 +704,10 @@ class TestAuthorInvitation(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
+    def test_invited_by_pk(self):
+        self.url = reverse('devhub.addons.invitation', args=(self.addon.pk,))
+        self.test_invited()
+
     def test_post_accept(self):
         response = self.client.post(self.url, {'accept': 'yes'})
         self.assert3xx(response, self.addon.get_dev_url(), status_code=302)
@@ -724,3 +730,8 @@ class TestAuthorInvitation(TestCase):
         self.assert3xx(response, reverse('devhub.addons'), status_code=302)
         assert not AddonUserPendingConfirmation.objects.filter(
             pk=self.invitation.pk).exists()
+
+    def test_invitation_unlisted(self):
+        self.make_addon_unlisted(self.addon)
+        self.test_invited()
+        self.test_post_accept()

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-08-07 05:47+0000\n"
+"PO-Revision-Date: 2019-08-09 08:44+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1063,31 +1063,32 @@ msgid "Performance"
 msgstr "Швидкодія"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Завантажте розширення, які покращують швидкодію Firefox. Знайдіть розширення, які допомагають вам бути продуктивнішими й ефективнішими, блокуючи надокучливу рекламу та багато інших."
 
 msgid "Photos & Media"
 msgstr "Фото і медіа"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
+"Завантажте розширення Firefox для покращення роботи з фото і медіа. Ця категорія містить розширення для виконання реверсивного пошуку зображень, захоплення знімків екрану цілих сторінок та інші."
 
 msgid "Security & Privacy"
 msgstr "Безпека і приватність"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Завантажте розширення Firefox для безпечного і приватного перегляду. Дізнайтеся про розширення, які можуть зупиняти всюдисуще стеження і рекламу, легко очищати історію перегляду та інші."
 
 msgid "Social Networking"
 msgstr "Соціальні мережі"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Завантажте розширення Firefox для покращення роботи з популярними веб-сайтами, наприклад, YouTube, GitHub, Reddit та інших."
 
 msgid "Sports & Games"
 msgstr "Спорт та ігри"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Завантажте розширення для Firefox, які покращать ваші розваги за допомогою розширених інструментів потокового відео, оновлення про спорт та багато іншого."
 
 msgid "User Interface"
 msgstr "Інтерфейс користувача"

@@ -125,7 +125,6 @@ def celery_config():
         'enable_utc': True,
         'timezone': 'UTC',
         'broker_url': 'memory://',
-        'result_backend': 'cache+memory://',
         'broker_heartbeat': 0,
         'worker_pool': 'solo',
         'worker_concurrency': 1,
