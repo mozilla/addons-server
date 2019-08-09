@@ -138,7 +138,10 @@ def celery_config():
 @pytest.fixture(autouse=True)
 def start_celery_worker(
         request, settings, celery_config, celery_session_worker):
-    """Start a proper celery worker for tests marked with
+    """Start a celery worker for the whole testing session.
+
+    For all tests marked with `celery_worker_test` we will be setting
+    eager-mode to `False` to ensure tasks are being queued up properly.
 
     ``celery_worker_test``
     """
@@ -146,7 +149,6 @@ def start_celery_worker(
 
     if marker:
         settings.CELERY_TASK_ALWAYS_EAGER = False
-        celery_session_worker.reload()
 
 
 @pytest.fixture(autouse=True, scope='session')
