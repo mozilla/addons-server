@@ -418,7 +418,7 @@ def _site_nav(context):
 
     extensions = Category.objects.filter(
         application=request.APP.id, weight__gte=0, type=amo.ADDON_EXTENSION)
-    personas = Category.objects.filter(weight__gte=0, type=amo.ADDON_PERSONA)
+    personas = Category.objects.filter(weight__gte=0, type=amo.ADDON_STATICTHEME)
 
     ctx = dict(request=request, amo=amo,
                extensions=sorted_cats(extensions),

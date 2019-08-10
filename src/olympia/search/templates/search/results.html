@@ -66,7 +66,9 @@
     <section id="search-facets" class="secondary" role="complementary">
       <h2>{{ _('Filter Results') }}</h2>
       <ul class="facets island pjax-trigger">
+      {% if not search_placeholder %}
         {{ facet(_('Category'), 'category-facets', categories) }}
+      {% endif %}
         {% if versions or platforms %}
           <li id="compat-facets" class="facet">
             <h3>{{ _('Works with') }}</h3>

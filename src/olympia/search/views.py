@@ -66,7 +66,7 @@ def _personas(request):
         'query': form_data,
         'filter': filter,
         'search_placeholder': 'themes'}
-    return render(request, 'search/personas.html', context)
+    return render(request, 'search/results.html', context)
 
 
 class BaseAjaxSearch(object):

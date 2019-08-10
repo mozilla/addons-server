@@ -16,7 +16,6 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
 from olympia.addons.utils import get_creatured_ids, get_featured_ids
 from olympia.addons.views import BaseFilter
-from olympia.constants.categories import CATEGORIES
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
@@ -282,7 +281,7 @@ class PersonasFilter(BaseFilter):
 def staticthemes(request, category=None):
     TYPE = amo.ADDON_STATICTHEME
 
-    categories = CATEGORIES[amo.THUNDERBIRD.id][TYPE]
+    categories = Category.objects.filter(type=TYPE)
     if category is not None:
         q = Category.objects.filter(type=TYPE)
         category = get_object_or_404(q, slug=category)
