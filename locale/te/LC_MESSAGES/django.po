@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-08-11 09:10+0000\n"
+"PO-Revision-Date: 2019-08-11 09:24+0000\n"
 "Last-Translator: Sahithi <sahithi@swecha.net>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2961,13 +2961,13 @@ msgid "This is where you view and manage your add-ons and themes. To publish you
 msgstr ""
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "మీ మొదటి పొడిగింత సమర్పించండి"
 
 msgid "Submit Your First Theme"
 msgstr "మీ మొదటి అలంకారాన్ని సమర్పించండి"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "పొడిగింతల డెవలపర్ హబ్"
 
 msgid "Docs"
 msgstr "పత్రాలు"
@@ -2998,7 +2998,7 @@ msgid "Learn How to Make an Add-on"
 msgstr "పొడగింతలు ఎలా చేయాలో తెలుసుకోండి"
 
 msgid "Port a Chrome Extension"
-msgstr ""
+msgstr "Chrome పొడిగింతని పోర్ట్ చేయండి"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
@@ -3008,7 +3008,7 @@ msgid "Learn How"
 msgstr "ఎలాగో తెలుసుకోండి"
 
 msgid "Publish Your Add-on"
-msgstr ""
+msgstr "మీ పొడిగింతను ప్రచురించండి"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
@@ -3038,7 +3038,7 @@ msgid "Temporarily install your extension in Firefox for live testing and debugg
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "వెర్షన్ను నిర్వహించండి {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
@@ -4705,10 +4705,10 @@ msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "చెల్లని ఆర్కైవ్."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "పొడిగింత ఐడిని కనుగొనలేకపోయాము."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4837,7 +4837,7 @@ msgid "Reported Status"
 msgstr "నివేదిత స్థితి"
 
 msgid "Reported Spam"
-msgstr ""
+msgstr "లోపం నివేదించబడింది"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
@@ -5234,7 +5234,7 @@ msgid "Has auto-approval disabled flag set"
 msgstr ""
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "సిఫార్సు చేయబడింది"
 
 msgid "Delayed because it's the first listed version"
 msgstr ""
@@ -5958,7 +5958,7 @@ msgid "reset zoom"
 msgstr ""
 
 msgid "Group by:"
-msgstr ""
+msgstr "సమూహ ఆధారం:"
 
 msgid "day"
 msgstr "రోజు"
@@ -6009,7 +6009,7 @@ msgid "Application usage by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "తేదీ ద్వారా దింపుకోండి"
 
 msgid "How are downloads counted?"
 msgstr "దింపుకోళ్ళను ఎలా లెక్కిస్తారు?"
@@ -6023,7 +6023,7 @@ msgid "User languages by Date"
 msgstr "తేదీవారీ వాడుకరుల భాషలు"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "తేదీ ద్వారా వేదిక వినియోగం"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> దింపుకోళ్ళు"
@@ -6053,7 +6053,7 @@ msgid "See more platforms&hellip;"
 msgstr "మరిన్ని ప్లాట్‌ఫారాలను చూడండి&hellip;"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "తేదీ వారి మూలాలు దింపుకోండి"
 
 msgid "About tracking external sources..."
 msgstr ""
@@ -6096,7 +6096,7 @@ msgid "Back to Add-ons"
 msgstr "పొడిగింతకు తిరిగి వెళ్ళు"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "పాదపీఠిక చిహ్నం"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
