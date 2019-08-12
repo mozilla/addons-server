@@ -75,6 +75,34 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             'en-US': 'https://mozilla.org/'
         }
 
+    def test_all_param(self):
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=False)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 2
+
+        response = self.client.get(self.url + '?all=true')
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 3
+
 
 class TestSecondaryHeroShelfViewSet(TestCase):
     def setUp(self):
@@ -117,6 +145,28 @@ class TestSecondaryHeroShelfViewSet(TestCase):
             'results': [
                 SecondaryHeroShelfSerializer(instance=hero_a).data,
                 SecondaryHeroShelfSerializer(instance=hero_b).data]}
+
+    def test_all_param(self):
+        SecondaryHero.objects.create(
+            headline='dfdfd!',
+            description='dfdfd',
+            enabled=True)
+        SecondaryHero.objects.create(
+            headline='dfdfd!',
+            description='dfdfd',
+            enabled=True)
+        SecondaryHero.objects.create(
+            headline='dfdfd!',
+            description='dfdfd',
+            enabled=False)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 2
+
+        response = self.client.get(self.url + '?all=true')
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 3
 
 
 class TestHeroShelvesView(TestCase):

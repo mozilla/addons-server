@@ -508,14 +508,16 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
-# This needs to point to prod, because that's where the database lives. You can
+# These need to point to prod, because that's where the database lives. You can
 # change it locally to test the extraction process, but be careful not to
 # accidentally nuke translations when doing that!
 DISCOVERY_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v4/discovery/editorial/')
+SECONDARY_HERO_EDITORIAL_CONTENT_API = (
+    'https://addons.mozilla.org/api/v4/hero/secondary/?all=true')
 
 # Filename where the strings will be stored. Used in puente config below.
-DISCOVERY_EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
+EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
 
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction. The puente library expects this.
@@ -531,7 +533,7 @@ PUENTE = {
             # disco pane recommendations using jinja2 parser. It's not a real
             # template, but it uses jinja2 syntax for convenience, hence why
             # it's not in templates/ with a .html extension.
-            (DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2'),
+            (EDITORIAL_CONTENT_FILENAME, 'jinja2'),
 
             # Make sure we're parsing django-admin templates with the django
             # template extractor
