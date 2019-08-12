@@ -335,6 +335,7 @@ v4 API changelog
 * 2019-08-08: removed ``heading_text`` property from discovery api. https://github.com/mozilla/addons-server/issues/11817
 * 2019-08-08: add secondary shelf to /hero/ endpoint. https://github.com/mozilla/addons-server/issues/11779
 * 2019-08-15: dropped support for LWT specific statuses.
+* 2019-08-15: added promo modules to secondary hero shelves. https://github.com/mozilla/addons-server/issues/11780
 
 ----------------
 v5 API changelog

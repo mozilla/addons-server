@@ -57,8 +57,14 @@
 }
 
 .dynamic-primaryhero .field-gradient_color li,
-.dynamic-primaryhero .field-image li {
+.dynamic-primaryhero .field-image li,
+.dynamic-modules .field-icon li {
     display: inline-block;
+}
+
+.dynamic-modules .field-icon li {
+    margin: 0.5em;
+    vertical-align: top;
 }
 
 .dynamic-primaryhero .field-gradient_color li div,
@@ -67,4 +73,15 @@
     width: 12em;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.dynamic-modules .field-icon li div {
+    height: 3em;
+    width: 3em;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.dynamic-modules .field-icon li div label {
+    color: transparent;
 }
