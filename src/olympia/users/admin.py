@@ -36,8 +36,12 @@ class GroupUserInline(admin.TabularInline):
 class UserRestrictionHistoryInline(admin.TabularInline):
     model = UserRestrictionHistory
     raw_id_fields = ('user',)
+    readonly_fields = ('restriction', 'ip_address', 'user',
+                       'last_login_ip', 'created')
     extra = 0
     can_delete = False
+    view_on_site = False
+    verbose_name_plural = _('User Restriction History')
 
     def has_add_permission(self, request, obj):
         return False
