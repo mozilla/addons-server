@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-08-12 14:32+0000\n"
+"PO-Revision-Date: 2019-08-12 15:00+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "種類"
 
 msgid "Users"
 msgstr "ユーザー"
@@ -28,7 +28,7 @@ msgid "Addons"
 msgstr "アドオン"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "最低レポート数 (guid でグループ化)"
 
 msgid "creation date"
 msgstr "作成日"
@@ -40,10 +40,10 @@ msgid "Distribution"
 msgstr "ディストリビューション"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "報告者の国名"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "メッセージの抜粋"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -57,14 +57,14 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "選択された悪用レポートを疑わしいものとしてマーク"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "変更日時:"
 
 #, python-format
 msgid "By %(filter_title)s"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "すべて"
 
 msgid "No links are allowed."
 msgstr "リンクの使用は許可されていません。"
@@ -254,7 +254,7 @@ msgid "Enter a valid IP4 or IP6 network."
 msgstr ""
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "サイトメンテナンスの間、いくつかの機能が一時的に無効になっています。まもなく復旧する予定です。"
@@ -308,14 +308,14 @@ msgstr "すべてのテーマを見る"
 msgid "Add-ons Home Page"
 msgstr "アドオンホームページ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr "別の場所のリンクから移動してきた場合は、%(open_bug_link)s issue を登録%(close_bug_link)sし、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。"
 
 msgid "Not Found"
 msgstr "見つかりませんでした"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -323,10 +323,10 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが入力された可能性があります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> "
-"<li>別の場所のリンクから移動してきた場合は、<a href=\"https://github.com/mozilla/addons-server/issues/new/\">issue を登録</a> し、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> "
-"<p>あるいは、当サイト内の、いくつかの人気のあるページに移動してください。</p> <ul> <li><a href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味ありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href=\"%(search)s\">検索ページ</a> "
-"へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> </ul>"
+"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクをクリックしたか間違ったアドレスを入力した可能性があります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> "
+"<li>別の場所のリンクから移動してきた場合は、%(open_bug_link)s issue を登録%(close_bug_link)s し、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> <p>あるいは、当サイト内の、いくつかの人気のあるページに移動してください。</p> <ul> <li><a "
+"href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味はありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href=\"%(search)s\">検索ページ</a> へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a "
+"href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> </ul>"
 
 msgid "Oops"
 msgstr "申し訳ありません"
@@ -1275,9 +1275,8 @@ msgstr "セキュリティ"
 msgid "Privacy"
 msgstr "プライバシー"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "開発者ポリシー"
+msgstr "開発プラクティス"
 
 msgid "No Reputation"
 msgstr "評判がありません"
@@ -1454,9 +1453,8 @@ msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
 
-#, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "入力されたテキストはスパムとして扱われています。"
+msgstr "[{field}] \"{field}\" 内のテキストはスパムのフラグが付けられています。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
@@ -1545,9 +1543,8 @@ msgstr "このアドオンのプライバシーポリシーを指定してくだ
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "非対応のファイル形式です。アーカイブファイル {extensions} をアップロードしてください。"
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "不正なアーカイブです。"
+msgstr "不正または壊れたアーカイブです。"
 
 msgid "View current"
 msgstr "最新版を表示"
@@ -1603,7 +1600,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr "自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
 
 msgid "Display Name"
-msgstr ""
+msgstr "表示名"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "アドオンがおすすめに設定されている間はカテゴリーを変更できません。"
@@ -1693,16 +1690,14 @@ msgstr "アイコンは PNG か JPG 形式でなければなりません。"
 msgid "Icons cannot be animated."
 msgstr "アニメーションするアイコンは使用できません。"
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "画像は幅 {0}ピクセル、高さ {1} ピクセルでなければなりません。"
+msgstr "画像は幅 {0}ピクセル以上、高さ {1} ピクセル以上でなければなりません。"
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "画像の寸法は 4:3 の比率でなければなりません。"
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "画像は幅 {0}ピクセル、高さ {1} ピクセルでなければなりません。"
+msgstr "アイコンは幅と高さが {0}ピクセル以上でなければなりません。"
 
 msgid "Icon must be square (same width and height)."
 msgstr "アイコンは正方形 (縦横が同じサイズ) でなければなりません。"
@@ -1711,7 +1706,7 @@ msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "おすすめの拡張機能の最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
 #, python-format
 msgid "Version %s disabled."
@@ -1731,16 +1726,14 @@ msgstr "今回のアップロードは検証に失敗したため、完全な検
 msgid "Header area background"
 msgstr "ヘッダー領域の背景"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されるヘッダー領域の背景色。マニフェストの該当項目は accentcolor です。"
+msgstr "ヘッダー領域の背景色。ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されます。マニフェストの該当項目: frame"
 
 msgid "Header area text and icons"
 msgstr "ヘッダー領域の文字とアイコン"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "アクティブなタブを除く、ヘッダー領域内に表示される文字とアイコンの色。マニフェストの該当項目は textcolor です。"
+msgstr "アクティブなタブを除く、ヘッダー領域内に表示される文字とアイコンの色。マニフェストの該当項目: tab_background_text"
 
 msgid "Toolbar area background"
 msgstr "ツールバー領域の背景"
@@ -1751,9 +1744,8 @@ msgstr "ナビゲーションバー、ブックマークバー、選択された
 msgid "Toolbar area text and icons"
 msgstr "ツールバー領域の文字とアイコン"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "ツールバーとアクティブなタブ上の文字とアイコンの色。マニフェストの該当項目は toolbar_text です。"
+msgstr "ツールバー内の文字とアイコン、アクティブなタブの色。マニフェストの該当項目: bookmark_text"
 
 msgid "Toolbar field area background"
 msgstr "ツールバー入力領域の背景"
@@ -1798,7 +1790,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "この規約とルール・ポリシーを読み同意しました"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "拡張機能のユーザーがあなたのアドオンの出所を知ることができるように、アカウントに表示名を設定する必要があります。以下に入力してください。"
 
 msgid "Accept"
 msgstr "承認"
@@ -1806,9 +1798,8 @@ msgstr "承認"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "または <a href=\"{0}\">キャンセル</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Creative Commons ライセンスに関する詳しい情報"
+msgstr "開発者アカウントに関する詳しい情報"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -1825,9 +1816,8 @@ msgid "more add-ons..."
 msgstr "すべてのアドオン..."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "拡張機能"
+msgstr "拡張機能ワークショップ"
 
 msgid "Documentation"
 msgstr "ドキュメント"
@@ -1914,9 +1904,8 @@ msgstr "このアドオンは、%(app_name)s の最新版である <b>%(app_name
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">互換性情報を更新</a> <a href=\"%(version_url)s\" class=\"button\">新バージョンをアップロード</a> または <a href=\"#\" class=\"close\">無視</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "対応アプリケーションのバージョン範囲を表示または更新します。"
+msgstr "対応アプリケーションのバージョン範囲を表示または更新します"
 
 msgid "Compatibility"
 msgstr "互換性"
@@ -2052,9 +2041,8 @@ msgstr "アドオンの説明"
 msgid "Describe {0}"
 msgstr "{0} の説明"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "概要"
+msgstr "名前と概要"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2224,9 +2212,8 @@ msgstr "アドオンの詳細ページに表示されます。"
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "アドオンの詳細ページに表示されます。"
+msgstr "将来のアドオン詳細ページでは標準になるでしょう。"
 
 msgid "Upload a Custom Icon..."
 msgstr "独自のアイコンをアップロード..."
@@ -2385,9 +2372,8 @@ msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
 msgid "Submit a New Version"
 msgstr "新しいバージョンを登録"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "概要:"
+msgstr "名前と概要:"
 
 msgid "required"
 msgstr "必須"
@@ -4561,18 +4547,16 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}画像を検索"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 画像を簡単に保存"
 
 #. editorial content for the discovery pane.
 msgid "Grab just images from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ウェブページを計測"
 
 #. editorial content for the discovery pane.
 msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4583,90 +4567,80 @@ msgid "Get the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を拡大表示しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 目に優しいページ"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}邪魔なものを減らす"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 紛らわしいウェブサイトをブロック"
 
 #. editorial content for the discovery pane.
 msgid "List the websites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 死んだページを復活"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Firefoxを検索"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Firefox の見た目を変更"
 
 #. editorial content for the discovery pane.
 msgid "Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}タブを更新しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} メモを取る"
 
 #. editorial content for the discovery pane.
 msgid "Displays a sidebar that lets you keep notes per specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}検索広告を削除"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 音声検索"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}生産性を追跡"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 製品価格を追跡"
 
 #. editorial content for the discovery pane.
 msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ウェブを撮影しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ウェブをダークに"
 
 #. editorial content for the discovery pane.
 msgid "Custom color schemes let you shade the web to your own liking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}検索トラッカーを停止"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 検索を向上"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}動画を検索"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 動画のヘルプ"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
@@ -5372,7 +5346,7 @@ msgid "Pre-Review Add-ons"
 msgstr "レビュー前のアドオン"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "おすすめ ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "その他の保留中のレビュー ({0})"
@@ -6259,10 +6233,10 @@ msgid "Activity Logs"
 msgstr "アクティビティログ"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "有効な IPv4 または IPv6 アドレスを入力してください (例: 127.0.0.1)。これは、/32 ネットワークに変換されます。"
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "IP アドレスまたはネットワークを 1 つだけ入力できます。"
 
 msgid "No user with that email."
 msgstr "このメールアドレスを持つユーザーは存在しません。"
@@ -6277,7 +6251,7 @@ msgid "My Favorite Add-ons"
 msgstr "お気に入りのアドオン"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "有効な IPv6 または IPv6 CIDR ネットワーク範囲を入力してください (例: 127.0.0.1/28)。"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
