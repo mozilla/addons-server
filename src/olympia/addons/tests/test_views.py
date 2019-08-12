@@ -16,9 +16,7 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.models import (
-    Addon, AddonUser, Category, CompatOverride,
-    CompatOverrideRange, ReplacementAddon)
+from olympia.addons.models import Addon, AddonUser, Category, ReplacementAddon
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -2557,116 +2555,19 @@ class TestReplacementAddonView(TestCase):
 class TestCompatOverrideView(TestCase):
     """This view is used by Firefox directly and queried a lot.
 
-    That's why there are performance sensitive tests.
+    But now we don't have any CompatOverrides we just return an empty response.
     """
 
     client_class = APITestClient
 
-    def setUp(self):
-        self.addon = addon_factory(guid='extrabad@thing')
-        self.override_addon = CompatOverride.objects.create(
-            name='override with addon', guid=self.addon.guid, addon=self.addon)
-        CompatOverrideRange.objects.create(
-            compat=self.override_addon, app=amo.FIREFOX.id)
-        self.override_without = CompatOverride.objects.create(
-            name='override no addon', guid='bad@thing')
-        CompatOverrideRange.objects.create(
-            compat=self.override_without, app=amo.FIREFOX.id)
-
-    def test_single_guid(self):
+    def test_response(self):
         response = self.client.get(
-            reverse_ns('addon-compat-override'),
-            data={'guid': u'extrabad@thing'})
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert len(data['results']) == 1
-        result = data['results'][0]
-        assert result['addon_guid'] == 'extrabad@thing'
-        assert result['addon_id'] == self.addon.id
-        assert result['name'] == 'override with addon'
-
-    def test_multiple_guid(self):
-        response = self.client.get(
-            reverse_ns('addon-compat-override'),
+            reverse_ns('addon-compat-override', api_version='v3'),
             data={'guid': u'extrabad@thing,bad@thing'})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         results = data['results']
-        assert len(results) == 2
-
-        assert results[0]['addon_guid'] == 'bad@thing'
-        assert results[0]['addon_id'] is None
-        assert results[0]['name'] == 'override no addon'
-        assert results[1]['addon_guid'] == 'extrabad@thing'
-        assert results[1]['addon_id'] == self.addon.id
-        assert results[1]['name'] == 'override with addon'
-
-        # Throw in some random invalid guids too that will be ignored.
-        response = self.client.get(
-            reverse_ns('addon-compat-override'),
-            data={'guid': (
-                u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing')})
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        results = data['results']
-        assert len(results) == 2
-        assert results[0]['addon_guid'] == 'bad@thing'
-        assert results[1]['addon_guid'] == 'extrabad@thing'
-
-    def test_no_guid_param(self):
-        response = self.client.get(
-            reverse_ns('addon-compat-override'),
-            data={'guid': u'invalid@thing'})
-        # Searching for non-matching guids, it should be an empty 200 response.
-        assert response.status_code == 200
-        assert len(json.loads(force_text(response.content))['results']) == 0
-
-        response = self.client.get(
-            reverse_ns('addon-compat-override'), data={'guid': ''})
-        # Empty query is a 400 because a guid is required for overrides.
-        assert response.status_code == 400
-        assert b'Empty, or no, guid parameter provided.' in response.content
-
-        response = self.client.get(
-            reverse_ns('addon-compat-override'))
-        # And no guid param should be a 400 too
-        assert response.status_code == 400
-        assert b'Empty, or no, guid parameter provided.' in response.content
-
-    def test_performance_no_matching_guid(self):
-        # There is at least one query from the paginator, counting all objects
-        # We do not query on `compat_override` though if the count is 0.
-        with self.assertNumQueries(1):
-            response = self.client.get(
-                reverse_ns('addon-compat-override'),
-                data={'guid': u'unknownguid'})
-            assert response.status_code == 200
-            data = json.loads(force_text(response.content))
-            assert len(data['results']) == 0
-
-    def test_performance_matches_one_guid(self):
-        # 1. Query is querying compat_override
-        # 2. Query is adding CompatOverrideRange via the transformer
-        with self.assertNumQueries(2):
-            response = self.client.get(
-                reverse_ns('addon-compat-override'),
-                data={'guid': u'extrabad@thing'})
-            assert response.status_code == 200
-            data = json.loads(force_text(response.content))
-            assert len(data['results']) == 1
-
-    def test_performance_matches_multiple_guid(self):
-        # 1. Query is querying compat_override
-        # 2. Query is adding CompatOverrideRange via the transformer
-        with self.assertNumQueries(2):
-            response = self.client.get(
-                reverse_ns('addon-compat-override'),
-                data={'guid': (
-                    u'extrabad@thing,invalid@guid,notevenaguid$,'
-                    u'bad@thing')})
-            assert response.status_code == 200
-            data = json.loads(force_text(response.content))
-            assert len(data['results']) == 2
+        assert len(results) == 0
 
 
 class TestAddonRecommendationView(ESTestCase):

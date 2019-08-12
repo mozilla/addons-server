@@ -17,8 +17,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import (
-    Addon, AddonReviewerFlags, CompatOverride, CompatOverrideRange)
+from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
@@ -423,26 +422,6 @@ class TestVersion(TestCase):
         assert not version.is_compatible_app(amo.ANDROID)
         # An app that can't do d2c should also be False.
         assert not version.is_compatible_app(amo.UNKNOWN_APP)
-
-    def test_compat_override_app_versions(self):
-        addon = Addon.objects.get(id=3615)
-        version = version_factory(addon=addon)
-        co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
-                                           max_version=version.version,
-                                           min_app_version='10.0a1',
-                                           max_app_version='10.*')
-        assert version.compat_override_app_versions() == [('10.0a1', '10.*')]
-
-    def test_compat_override_app_versions_wildcard(self):
-        addon = Addon.objects.get(id=3615)
-        version = version_factory(addon=addon)
-        co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
-                                           max_version='*',
-                                           min_app_version='10.0a1',
-                                           max_app_version='10.*')
-        assert version.compat_override_app_versions() == [('10.0a1', '10.*')]
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == (

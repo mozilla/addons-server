@@ -10,8 +10,7 @@ from django.db import connection
 from services import update
 
 from olympia import amo
-from olympia.addons.models import (
-    Addon, CompatOverride, CompatOverrideRange, IncompatibleVersions)
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
@@ -373,16 +372,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
             '8.0-ignore': self.ver_1_3,
         }
 
-    def create_override(self, **kw):
-        co = CompatOverride.objects.create(
-            name='test', guid=self.addon.guid, addon=self.addon
-        )
-        default = dict(compat=co, app=self.app.id, min_version='0',
-                       max_version='*', min_app_version='0',
-                       max_app_version='*')
-        default.update(kw)
-        CompatOverrideRange.objects.create(**default)
-
     def update_files(self, **kw):
         for version in self.addon.versions.all():
             for file in version.files.all():
@@ -460,29 +449,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         })
         self.check(self.expected)
 
-    def test_extension_compat_override(self):
-        # Tests simple add-on (non-binary-components, non-strict) with a compat
-        # override.
-        self.create_override(min_version='1.3', max_version='1.3')
-        self.expected.update({
-            '6.0-normal': self.ver_1_2,
-            '7.0-normal': self.ver_1_2,
-            '8.0-normal': self.ver_1_2,
-        })
-        self.check(self.expected)
-
-    def test_binary_component_compat_override(self):
-        # Tests simple add-on (non-binary-components, non-strict) with a compat
-        # override.
-        self.update_files(binary_components=True)
-        self.create_override(min_version='1.3', max_version='1.3')
-        self.expected.update({
-            '6.0-normal': self.ver_1_2,
-            '7.0-normal': self.ver_1_2,
-            '8.0-normal': None,
-        })
-        self.check(self.expected)
-
     def test_strict_opt_in(self):
         # Tests add-on with opt-in strict compatibility
         self.update_files(strict_compatibility=True)
@@ -490,49 +456,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
             '8.0-normal': None,
         })
         self.check(self.expected)
-
-    def test_compat_override_max_addon_wildcard(self):
-        # Tests simple add-on (non-binary-components, non-strict) with a compat
-        # override that contains a max wildcard.
-        self.create_override(min_version='1.2', max_version='1.3',
-                             min_app_version='5.0', max_app_version='6.*')
-        self.expected.update({
-            '5.0-normal': self.ver_1_1,
-            '6.0-normal': self.ver_1_1,
-        })
-        self.check(self.expected)
-
-    def test_compat_override_max_app_wildcard(self):
-        # Tests simple add-on (non-binary-components, non-strict) with a compat
-        # override that contains a min/max wildcard for the app.
-
-        self.create_override(min_version='1.2', max_version='1.3')
-        self.expected.update({
-            '5.0-normal': self.ver_1_1,
-            '6.0-normal': self.ver_1_1,
-            '7.0-normal': self.ver_1_1,
-            '8.0-normal': self.ver_1_1,
-        })
-        self.check(self.expected)
-
-    def test_compat_override_both_wildcards(self):
-        # Tests simple add-on (non-binary-components, non-strict) with a compat
-        # override that contains a wildcard for both addon version and app
-        # version.
-
-        self.create_override(min_app_version='7.0', max_app_version='*')
-        self.expected.update({
-            '7.0-normal': None,
-            '8.0-normal': None,
-        })
-        self.check(self.expected)
-
-    def test_compat_override_invalid_version(self):
-        # Tests compat override range where version doesn't match our
-        # versioning scheme. This results in no versions being written to the
-        # incompatible_versions table.
-        self.create_override(min_version='ver1', max_version='ver2')
-        assert IncompatibleVersions.objects.all().count() == 0
 
     def test_min_max_version(self):
         # Tests the minimum requirement of the app maxVersion.

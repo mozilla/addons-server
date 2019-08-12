@@ -691,21 +691,6 @@ def inherit_nomination(sender, instance, **kw):
         instance.inherit_nomination()
 
 
-def update_incompatible_versions(sender, instance, **kw):
-    """
-    When a new version is added or deleted, send to task to update if it
-    matches any compat overrides.
-    """
-    try:
-        if not instance.addon.type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    from olympia.addons import tasks
-    tasks.update_incompatible_appversions.delay([instance.id])
-
-
 def cleanup_version(sender, instance, **kw):
     """On delete of the version object call the file delete and signals."""
     if kw.get('raw'):
@@ -737,17 +722,11 @@ models.signals.post_save.connect(
 models.signals.post_save.connect(
     inherit_nomination, sender=Version,
     dispatch_uid='version_inherit_nomination')
-models.signals.post_save.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
 
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version')
 models.signals.post_delete.connect(
     update_status, sender=Version, dispatch_uid='version_update_status')
-models.signals.post_delete.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
 
 
 class LicenseManager(ManagerBase):

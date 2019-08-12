@@ -336,6 +336,8 @@ v4 API changelog
 * 2019-08-08: add secondary shelf to /hero/ endpoint. https://github.com/mozilla/addons-server/issues/11779
 * 2019-08-15: dropped support for LWT specific statuses.
 * 2019-08-15: added promo modules to secondary hero shelves. https://github.com/mozilla/addons-server/issues/11780
+* 2019-08-15: removed /addons/compat-override/ from v4 and above.  Still exists in /v3/ but will always return an empty response. https://github.com/mozilla/addons-server/issues/12063
+
 
 ----------------
 v5 API changelog

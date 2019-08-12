@@ -1125,8 +1125,6 @@ CELERY_TASK_ROUTES = {
     # Addons
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.addons.tasks.update_incompatible_appversions': {
-        'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
 
     # API

@@ -123,26 +123,6 @@ class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
 
 
-class CompatOverrideRangeInline(admin.TabularInline):
-    model = models.CompatOverrideRange
-    # Exclude type since firefox only supports blocking right now.
-    exclude = ('type',)
-
-
-class CompatOverrideAdminForm(forms.ModelForm):
-
-    def clean(self):
-        if '_confirm' in self.data:
-            raise forms.ValidationError('Click "Save" to confirm changes.')
-        return self.cleaned_data
-
-
-class CompatOverrideAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addon',)
-    inlines = [CompatOverrideRangeInline]
-    form = CompatOverrideAdminForm
-
-
 class ReplacementAddonForm(forms.ModelForm):
     def clean_path(self):
         path = None
@@ -205,5 +185,4 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
 admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
-admin.site.register(models.CompatOverride, CompatOverrideAdmin)
 admin.site.register(models.ReplacementAddon, ReplacementAddonAdmin)
