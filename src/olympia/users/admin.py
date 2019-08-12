@@ -56,7 +56,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     inlines = (GroupUserInline, UserRestrictionHistoryInline)
     show_full_result_count = False  # Turn off to avoid the query.
 
-    readonly_fields = ('id', 'picture_img', 'deleted', 'is_public',
+    readonly_fields = ('id', 'picture_img', 'banned', 'deleted', 'is_public',
                        'last_login', 'last_login_ip', 'known_ip_adresses',
                        'last_known_activity_time', 'ratings_created',
                        'collections_created', 'addons_created', 'activity',
@@ -81,7 +81,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         }),
         ('Admin', {
             'fields': ('last_login', 'last_known_activity_time', 'activity',
-                       'last_login_ip', 'known_ip_adresses', 'notes', ),
+                       'last_login_ip', 'known_ip_adresses', 'banned', 'notes')
         }),
     )
 

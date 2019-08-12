@@ -119,6 +119,7 @@ class TestUserProfile(TestCase):
         user.ban_and_disable_related_content()
         user.reload()
         assert user.deleted
+        self.assertCloseToNow(user.banned)
         assert user.email == 'jbalogh@mozilla.com'
         assert user.auth_id
         assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
@@ -173,11 +174,13 @@ class TestUserProfile(TestCase):
         assert not storage.exists(user_multi.picture_path_original)
 
         assert user_sole.deleted
+        self.assertCloseToNow(user_sole.banned)
         assert user_sole.email == 'sole@foo.baa'
         assert user_sole.auth_id
         assert user_sole.fxa_id == '13579'
         assert user_sole.last_login_ip == '127.0.0.1'
         assert user_multi.deleted
+        self.assertCloseToNow(user_multi.banned)
         assert user_multi.email == 'multi@foo.baa'
         assert user_multi.auth_id
         assert user_multi.fxa_id == '24680'
