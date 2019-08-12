@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-08-12 14:15+0000\n"
+"PO-Revision-Date: 2019-08-12 14:32+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4125,7 +4125,7 @@ msgstr "さまざまな色と保存オプションで高度にカスタマイズ
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}世界中の音楽を楽しむ"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 世界中の音楽を楽しむ"
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
@@ -4133,7 +4133,7 @@ msgstr "世界中の 30,000 局以上のラジオ局にアクセスできます�
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}動画を視聴"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を視聴"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -4141,7 +4141,7 @@ msgstr "YouTube のクリップからオーディオをストリーミングす�
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}テキストを画像に変換"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} テキストを画像に変換"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
@@ -4149,7 +4149,7 @@ msgstr "単語を美しい見出しと画像オーバーレイのテキストに
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}安全にネットサーフィン"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 安全にネットサーフィン"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
@@ -4157,7 +4157,7 @@ msgstr "セキュリティで保護されたバージョンのウェブサイト
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}移動履歴を削除"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 移動履歴を削除"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -4165,7 +4165,7 @@ msgstr "ブラウザーの履歴が自動消去される前に、履歴を保持
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}検索広告を削除"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 検索広告を除去"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -4173,7 +4173,7 @@ msgstr "検索結果内に広告が表示されないようブロック。"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}パスワードを安全に管理"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} パスワードを安全に管理"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -4181,7 +4181,7 @@ msgstr "パスワードを安全に保存して、既知のウェブサイトに
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}フォームに自動入力"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} フォームに自動入力"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
@@ -4189,7 +4189,7 @@ msgstr "入力したデータを一度保存すると、次回から自動入力
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}プライベートブラウジング"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} プライベートブラウジング"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
@@ -4197,7 +4197,7 @@ msgstr "ワンクリックでプライベートブラウジングモードにジ
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}タブのハイジャックを阻止"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブのハイジャックを阻止"
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
@@ -4205,7 +4205,7 @@ msgstr "クリックしたリンクが現在のタブをコントロールして
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Wikipediaに簡単にアクセス"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Wikipedia に簡単にアクセス"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -4213,7 +4213,7 @@ msgstr "ウェブページのテキストを強調表示して右クリックす
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}サイト固有のコンテンツを検出"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} サイト固有のコンテンツを検出"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
@@ -4221,7 +4221,7 @@ msgstr "特定のドメイン内で必要なものを探します。"
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}動画を検索"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}動画を検索"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -4229,7 +4229,7 @@ msgstr "ウェブサイトのテキストを強調表示して右クリックす
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Amazonのメリットを利用"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Amazon のメリットを利用"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -4237,7 +4237,7 @@ msgstr "他のオンラインショップの商品ページを見ているとき
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}高度なタブ制御を実現"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 高度なタブ制御を実現"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -4245,7 +4245,7 @@ msgstr "豊富なタブコントロールオプション - 重複したタブを
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}ユニークな教育を受ける"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ユニークな教育を受ける"
 
 #. editorial content for the discovery pane.
 msgid "Load a random Wikipedia article each time you open a new tab."
@@ -4253,7 +4253,7 @@ msgstr "新しいタブを開くたびに Wikipedia の記事をランダムに�
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}新しいタブを変更"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 新しいタブを変更"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -4261,7 +4261,7 @@ msgstr "新しいタブページを設定して、カスタムの背景色と画
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}猫好きにはたまらない機能"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 猫好きにはたまらない機能"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
@@ -4269,7 +4269,7 @@ msgstr "新しいタブを開く度に可愛いキティに会えます。耳の
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}生産性を低下"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 生産性を低下"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -4277,7 +4277,7 @@ msgstr "猫からレーザー光線を発射する必要がある瞬間に。"
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Firefoxを検索"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Firefox を検索"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
@@ -4289,7 +4289,7 @@ msgstr "開いているタブが多すぎる？スクロールをスキップし
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}リダイレクトとトラッカーを阻止"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} リダイレクトとトラッカーを抑止"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -4297,7 +4297,7 @@ msgstr "リダイレクトを阻止して、必要なサイトに素早くアク
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}入力したパスワードを表示"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 入力したパスワードを表示"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
@@ -4305,7 +4305,7 @@ msgstr "すべてのパスワード欄に表示 / 非表示機能を追加。"
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}邪魔なものを減らす"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 邪魔なものを減らす"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
@@ -4313,7 +4313,7 @@ msgstr "動画プレーヤー以外の画面の明るさを調節して、観て
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}お気に入りを管理"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ブックマークを管理"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -4321,7 +4321,7 @@ msgstr "簡単にアクセスできるパネルからブックマークを変更
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}パスワードを安全に維持"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} パスワードを安全に保持"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -4333,7 +4333,7 @@ msgstr "必要なコンテンツの表示に焦点を合わせたシンプルな
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Amazonの価格履歴を追跡"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Amazon の価格履歴を追跡"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
@@ -4341,7 +4341,7 @@ msgstr "Amazon に掲載されている商品価格を追跡して、情報に�
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}安心して買い物をする"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 安心して買い物"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
@@ -4349,7 +4349,7 @@ msgstr "信頼性が審査されたサイトで買い物をしているかどう
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}生産性を追跡"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 生産性を追跡"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
@@ -4361,7 +4361,7 @@ msgstr "記事、動画、画像などのウェブコンテンツをクリップ
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}安全にネットサーフィン"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 安全にネットサーフィン"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
@@ -4369,7 +4369,7 @@ msgstr "信頼できるサイトのみのウェブコンテンツを実行。"
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Cookieを管理"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Cookie を管理"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
@@ -4377,7 +4377,7 @@ msgstr "閲覧中に蓄積した Cookie を完全管理。"
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}履歴を忘れさせる"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 履歴を忘れさせる"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
@@ -4385,7 +4385,7 @@ msgstr "選択したウェブサイトのブラウザー履歴を自動的に削
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}お気に入りを保護"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ブックマークを保護"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
@@ -4393,7 +4393,7 @@ msgstr "個人的なブックマークをパスワードで保護。"
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}IPアドレスの流出を阻止"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} IP アドレスの流出を阻止"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -4401,7 +4401,7 @@ msgstr "VPN を使ってますか？IP アドレスが漏れる可能性があ�
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}迷惑なオーバーレイを閉じる"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 迷惑なオーバーレイを閉じる"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
@@ -4409,7 +4409,7 @@ msgstr "ボタンをクリックするだけで、迷惑なポップアップオ
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}画像を調査"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 画像を調査"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
@@ -4417,7 +4417,7 @@ msgstr "ウェブ上で面白い画像を見つけた？TinEye でその発信�
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}効率化"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 効率化"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4429,7 +4429,7 @@ msgstr "動画や音声を複数の形式でダウンロードする機能を活
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}所在地を確認"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 所在地を確認"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
@@ -4437,7 +4437,7 @@ msgstr "ウェブサイトのサーバーの地理的所在地を確認。情報
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}うるさい音声を調整"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} うるさい音声を調整"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
@@ -4445,7 +4445,7 @@ msgstr "ウェブサイトの音量が小さ過ぎる？うるさ過ぎる？Sou
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}印刷前に編集"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 印刷前に編集"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
@@ -4453,7 +4453,7 @@ msgstr "広告や不快なコンテンツを削除すれば、印刷したウェ
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Amazonの価格履歴を追跡"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Amazon の価格履歴を追跡"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
@@ -4461,7 +4461,7 @@ msgstr "Amazon に掲載されている商品価格を追跡してアラート�
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}音声をマスター"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 音声をマスタリング"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
@@ -4484,9 +4484,8 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "トラッカーのブロック、よりスマートな暗号化、プライベート検索、その他の必須機能を備えて、より安心のセキュリティのもとで検索できます。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}検索をシンプルにしましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをシンプルに"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4494,66 +4493,58 @@ msgid "Organize your many open tabs in a vertical sidebar."
 msgstr "開いているタブをすっきりと整頓されたサイドバーで管理。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Cookieを管理"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Cookie を管理"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}Twitterを配信"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 大きな画像を表示"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}後で使用するためにテキストを保存しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 記憶を保存"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ウェブページを保存"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ウェブを撮影しましょう"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 無意味なものを切り取り"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}フォームに自動入力"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 自動的に文法＆スペルチェック"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}より快適な閲覧体験を実現"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 快適な閲覧環境を実現"
 
 #. editorial content for the discovery pane.
 msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
 
@@ -4562,9 +4553,8 @@ msgid "Not only block annoying ads, but protect yourself against malware and ad 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} メディアを簡単にダウンロード"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
