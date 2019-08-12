@@ -471,12 +471,24 @@ class AuthorWaitingConfirmationForm(AuthorForm):
 
     def clean_user(self):
         user = self.cleaned_data.get('user')
-        if user and not EmailUserRestriction.allow_email(user.email):
-            raise forms.ValidationError(EmailUserRestriction.error_message)
+        if user:
+            if not EmailUserRestriction.allow_email(user.email):
+                raise forms.ValidationError(EmailUserRestriction.error_message)
 
-        if user and self.addon.authors.filter(pk=user.pk).exists():
-            raise forms.ValidationError(
-                ugettext('An author can only be present once.'))
+            if self.addon.authors.filter(pk=user.pk).exists():
+                raise forms.ValidationError(
+                    ugettext('An author can only be present once.'))
+
+            name_validators = user._meta.get_field('display_name').validators
+            try:
+                if user.display_name is None:
+                    raise forms.ValidationError('')  # Caught below.
+                for validator in name_validators:
+                    validator(user.display_name)
+            except forms.ValidationError:
+                raise forms.ValidationError(ugettext(
+                    'The account needs a display name before it can be added '
+                    'as an author.'))
         return user
 
 
