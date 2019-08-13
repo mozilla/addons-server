@@ -1276,6 +1276,11 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
+        'parso': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
         'post_request_task': {
             'handlers': ['mozlog'],
             # Ignore INFO or DEBUG from post-request-task, it logs too much.
