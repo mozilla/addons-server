@@ -1,3 +1,5 @@
+from django.utils.translation import ugettext
+
 from rest_framework import serializers
 
 from olympia.addons.models import Addon
@@ -37,7 +39,7 @@ class CTAMixin():
         if obj.cta_url and obj.cta_text:
             return {
                 'url': absolutify(obj.cta_url),
-                'text': obj.cta_text,
+                'text': ugettext(obj.cta_text),
             }
         else:
             return None
@@ -45,18 +47,30 @@ class CTAMixin():
 
 class SecondaryHeroShelfModuleSerializer(CTAMixin,
                                          serializers.ModelSerializer):
-    cta = serializers.SerializerMethodField()
     icon = serializers.CharField(source='icon_url')
+    description = serializers.SerializerMethodField()
+    cta = serializers.SerializerMethodField()
 
     class Meta:
         model = SecondaryHeroModule
         fields = ('icon', 'description', 'cta')
 
+    def get_description(self, obj):
+        return ugettext(obj.description)
+
 
 class SecondaryHeroShelfSerializer(CTAMixin, serializers.ModelSerializer):
+    headline = serializers.SerializerMethodField()
+    description = serializers.SerializerMethodField()
     cta = serializers.SerializerMethodField()
     modules = SecondaryHeroShelfModuleSerializer(many=True)
 
     class Meta:
         model = SecondaryHero
         fields = ('headline', 'description', 'cta', 'modules')
+
+    def get_headline(self, obj):
+        return ugettext(obj.headline)
+
+    def get_description(self, obj):
+        return ugettext(obj.description)
