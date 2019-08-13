@@ -102,22 +102,26 @@ class PrimaryHero(ModelBase):
         return {'start': GRADIENT_START_COLOR, 'end': self.gradient_color}
 
     def clean(self):
-        if self.is_external:
-            if self.enabled and not self.disco_addon.addon.homepage:
+        super().clean()
+        if self.enabled:
+            if self.is_external and not self.disco_addon.addon.homepage:
                 raise ValidationError(
                     'External primary shelves need a homepage defined in '
                     'addon details.')
+            elif not self.is_external:
+                recommended = (self.disco_addon.recommended_status ==
+                               self.disco_addon.RECOMMENDED)
+                if not recommended:
+                    raise ValidationError(
+                        'Only recommended add-ons can be enabled for '
+                        'non-external primary shelves.')
         else:
-            recommended = (self.disco_addon.recommended_status ==
-                           self.disco_addon.RECOMMENDED)
-            if self.enabled and not recommended:
+            if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
                 raise ValidationError(
-                    'Only recommended add-ons can be enabled for non-external '
-                    'primary shelves.')
+                    'You can\'t disable the only enabled primary shelf.')
 
 
 class CTACheckMixin():
-
     def clean(self):
         super().clean()
         both_or_neither = not (bool(self.cta_text) ^ bool(self.cta_url))
@@ -136,6 +140,13 @@ class SecondaryHero(CTACheckMixin, ModelBase):
 
     def __str__(self):
         return str(self.headline)
+
+    def clean(self):
+        super().clean()
+        if not self.enabled:
+            if list(SecondaryHero.objects.filter(enabled=True)) == [self]:
+                raise ValidationError(
+                    'You can\'t disable the only enabled secondary shelf.')
 
 
 class SecondaryHeroModule(CTACheckMixin, ModelBase):
