@@ -408,6 +408,7 @@ CATEGORIES_NO_APP = {
         'general': StaticCategory(name=_(u'General'))
     },
 }
+
 CATEGORIES_NO_APP[_ADDON_PERSONA] = {
     slug: copy.copy(cat)
     for slug, cat in CATEGORIES_NO_APP[ADDON_STATICTHEME].items()}
@@ -493,6 +494,23 @@ CATEGORIES = {
         ADDON_LPAPP: {
             'general': 98,
         },
+        _ADDON_PERSONA: {
+            'abstract': 100,
+            'causes': 120,
+            'fashion': 124,
+            'film-and-tv': 126,
+            'firefox': 108,
+            'foxkeh': 110,
+            'holiday': 128,
+            'music': 122,
+            'nature': 102,
+            'other': 114,
+            'scenery': 106,
+            'seasonal': 112,
+            'solid': 118,
+            'sports': 104,
+            'websites': 116,
+        }
     },
     ANDROID.id: {
         ADDON_EXTENSION: {
@@ -527,8 +545,7 @@ CATEGORIES = {
         },
     },
 }
-CATEGORIES[FIREFOX.id][_ADDON_PERSONA] = copy.copy(
-    CATEGORIES[FIREFOX.id][ADDON_STATICTHEME])
+
 
 CATEGORIES_BY_ID = {}
 
