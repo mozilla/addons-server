@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-08-11 19:01+0000\n"
+"PO-Revision-Date: 2019-08-15 23:03+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1652,7 +1652,7 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr "თანაავტორის შემმუშავებლის API გასაღები ნაპოვნია წარდგენილ ფაილში. თქვენი დამატების უსაფრთხოებისთვის, ეს გასაღები გაუქმდება."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr "Mozilla-ს უსაფრთხოების განაცხადი: თქვენი AMO API მონაცემები გაუქმებულია"
+msgstr "Mozilla-ს უსაფრთხოების განაცხადი: თქვენი AMO API მონაცემები ძალადაკარგულია"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -1803,16 +1803,16 @@ msgid "You must provide further details to proceed."
 msgstr "გასაგრძელებლად, მეტი მონაცემების მითითებაა საჭირო."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "თქვენი ძველი მონაცემები გაუქმებულია და უკვე გამოუსადეგარია. განაახლეთ API კლიენტები, ახალი მონაცემებით."
+msgstr "თქვენი ძველი მონაცემები ძალადაკარგულია და უკვე გამოუსადეგარია. განაახლეთ API კლიენტები, ახალი მონაცემებით."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "თქვენი ძველი მონაცემები გაუქმებულია და მისი გამოყენება დაუშვებელია."
+msgstr "თქვენი ძველი მონაცემები ძალადაკარგულია და მისი გამოყენება დაუშვებელია."
 
 msgid "New API key created"
 msgstr "ახალი API გასაღები შექმნილია"
 
 msgid "API key revoked"
-msgstr "API გასაღები გაუქმებულია"
+msgstr "API გასაღები ძალადაკარგულია"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "ჩემი დამატება არცერთ კატეგორიას არ შეესაბამება"
@@ -2758,10 +2758,10 @@ msgid "You don't have any API credentials."
 msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
 
 msgid "Revoke"
-msgstr "გაუქმება"
+msgstr "უარყოფა"
 
 msgid "Revoke and regenerate credentials"
-msgstr "მონაცემების გაუქმება და ხელახლა შექმნა"
+msgstr "მონაცემების უარყოფა და ხელახლა შექმნა"
 
 msgid "Generate new credentials"
 msgstr "ახალი მონაცემების შექმნა"
