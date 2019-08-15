@@ -137,6 +137,7 @@ class SecondaryHeroShelf(SecondaryHero):
 
     class Meta(SecondaryHero.Meta):
         proxy = True
+        verbose_name_plural = 'secondary hero shelves'
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)

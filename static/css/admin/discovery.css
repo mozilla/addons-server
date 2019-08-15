@@ -51,20 +51,9 @@
     display: block;
 }
 
-.dynamic-primaryhero .field-gradient_color ul,
-.dynamic-primaryhero .field-image ul {
-    list-style: square;
-}
-
 .dynamic-primaryhero .field-gradient_color li,
-.dynamic-primaryhero .field-image li,
-.dynamic-modules .field-icon li {
+.dynamic-primaryhero .field-image li {
     display: inline-block;
-}
-
-.dynamic-modules .field-icon li {
-    margin: 0.5em;
-    vertical-align: top;
 }
 
 .dynamic-primaryhero .field-gradient_color li div,
@@ -75,13 +64,26 @@
     background-repeat: no-repeat;
 }
 
+.dynamic-modules .field-icon li {
+    display: inline-block;
+    margin: 0.25em;
+    vertical-align: top;
+    background-color: #EEEEEE;
+}
+
 .dynamic-modules .field-icon li div {
     height: 3em;
-    width: 3em;
+    width: 4.25em;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: right;
 }
 
 .dynamic-modules .field-icon li div label {
     color: transparent;
+    display: block;
+}
+
+.dynamic-modules .field-icon li:first-child div label {
+    color: black;
 }
