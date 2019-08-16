@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 20:37+0000\n"
+"PO-Revision-Date: 2019-08-16 21:10+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3608,11 +3608,11 @@ msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "გადაინახეთ ტექსტი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
-msgstr "შეწყვიტეთ ერთი და იმავეს განმეორებით წერა! თუ ხშირად გიწევთ ერთნაირი ფრაზების გამოყენება სამუშაოსთვის ან სხვა მიმოწერებისთვის, გადაინახეთ და მარტივად გამოიყენეთ, როცა დაგჭირდებათ."
+msgstr ""
+"გადაინახეთ ტექსტი. შეწყვიტეთ ერთი და იმავეს განმეორებით წერა! თუ ხშირად გიწევთ ერთნაირი ფრაზების გამოყენება სამუშაოსთვის ან სხვა მიმოწერებისთვის, გადაინახეთ და მარტივად გამოიყენეთ, როცა დაგჭირდებათ."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3635,9 +3635,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "აირიდეთ გაიძვერა მეთვალყურეები და შეზღუდვები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "მოინახულეთ გვერდები შეუმჩნევლად, ბრაუზერისა და საოპერაციო სისტემის მონაცემების შენიღბვით."
+msgstr "აირიდეთ ცნობისმოყვარე მეთვალყურეები და აკრძალვები. მოინახულეთ გვერდები შეუმჩნევლად, ბრაუზერისა და საოპერაციო სისტემის მონაცემების შენიღბვით."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3652,9 +3651,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "განაცალკევეთ თქვენი სხვადასხვა საქმიანობა ინტერნეტში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "უსაფრთხოდ გამიჯნეთ თქვენი ცალკეული ანგარიშები — სამუშაო, პირადი და ა. შ. — ფერადი ჩანართებით, რომლებიც გამოყოფს ერთმანეთისგან შესაბამის ფუნთუშებს."
+msgstr "გამიჯნეთ თქვენი მოქმედებები ინტერნეტში. უსაფრთხოდ განაცალკევეთ თქვენი ანგარიშები — სამუშაო, პირადი და ა. შ. — ფერადი ჩანართებით, რომლებიც გამოყოფს ერთმანეთისგან შესაბამის ფუნთუშებს."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3669,7 +3667,6 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "წაიკითხეთ ePub ფაილები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "გახსენით ePub ფაილები პირდაპირ Firefox-ში — მიუთითეთ შრიფტის, გვერდების ზომები და ა. შ."
 
@@ -3678,27 +3675,24 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "უკეთ მოირგეთ YouTube {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "გაუშვით ვიდეოები უმაღლეს ხარისხში, მოაცილეთ წარწერები და ა. შ."
+msgstr "გაუშვით YouTube-ვიდეოები უმაღლეს ხარისხში, მოაცილეთ წარწერები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "თვალი ადევნეთ მეთვალყურეებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "თვალი შეავლეთ თქვენი მეთვალყურეების მონაცემებს ერთი დაწკაპებით."
+msgstr "შეამოწმეთ მეთვალყურეები. თვალი შეავლეთ თქვენი მეთვალყურეების მონაცემებს ერთი დაწკაპებით."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "შეცვალეთ პროქსი სერვერი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "დაუკავშირდით ინტერნეტს პროქსის საკუთარი პარამეტრებით."
+msgstr "შეცვალეთ პროქსი-სერვერი და დაუკავშირდით ინტერნეტს საკუთარი მითითებული პარამეტრებით."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3713,9 +3707,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოინახულეთ გვერდები უსაფრთხოდ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "დაშიფრული დაცვა საიტებისთვის, რომლებზეც მხარდაჭერილია HTTPS."
+msgstr "დაშიფრული დაცვა საიტებისთვის, რომლებზეც მხარდაჭერილია HTTPS. მოინახულეთ გვერდები უსაფრთხოდ."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3758,14 +3751,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოინახულეთ გვერდები ვინაობის გაუმჟღავნებლად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "ეწვიეთ ვებგვერდებს შენიღბულად — ისე, თითქოს სხვა ქვეყანაში იმყოფებით."
+msgstr "მოინახულეთ საიტები ვინაობის გაუმხელად. ეწვიეთ ვებგვერდებს შენიღბულად — ისე, თითქოს სხვა ქვეყანაში იმყოფებით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "მიიღეთ წვდომა თქვენ რჩეულ საიტებზე, ბოლო დახურულ ჩანართებზე და ა. შ. — ყველაფერი ლამაზად დალაგებული ფილების სახით."
+msgstr "ისარგებლეთ სანიშნების გამოსახვით. მიიღეთ წვდომა თქვენ რჩეულ საიტებზე, ბოლო დახურულ ჩანართებზე და ა. შ. — ყველაფერი ლამაზად დალაგებული ფილების სახით."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
