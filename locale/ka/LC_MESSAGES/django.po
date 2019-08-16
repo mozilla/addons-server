@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 21:48+0000\n"
+"PO-Revision-Date: 2019-08-16 22:11+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3835,16 +3835,14 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "მოირგეთ თქვენი რჩეული საიტები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "შეცვალეთ ნებისმიერი საიტის იერსახე! ჩაანაცვლეთ ფერები, გვერდის ფონები და ა. შ."
+msgstr "შეცვალეთ ნებისმიერი საიტის იერსახე. ჩაანაცვლეთ ფერები, გვერდის ფონები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოირგეთ ახალი ჩანართის გვერდი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "ჩაასწორეთ ახალი ჩანართის გვერდი და გამოიტანეთ სასურველი რაოდენობის საიტები, აირჩიეთ ფონის სურათი და ა. შ."
 
@@ -3861,25 +3859,22 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "იხილეთ, თუ სად მიდიხართ ინტერნეტში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "მიიღეთ მონაცემები იმ ვებსაიტების ადგილმდებარეობის შესახებ, რომელთაც ნახულობთ. იყავით გათვითცნობიერებული მოგზაური."
+msgstr "შეიტყვეთ, თუ სად გადაადგილდებით ინტერნეტში. მიიღეთ მონაცემები იმ ვებსაიტების ადგილმდებარეობის შესახებ, რომელთაც ნახულობთ. იყავით გათვითცნობიერებული მოგზაური."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გააუმჯობესეთ ტექსტის კითხვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "გახადეთ ტექსტი კითხვა უფრო მოსახერხებელი, გარშემო არსებული უწესრიგობის მოცილებით."
+msgstr "გახადეთ ტექსტის კითხვა უფრო მოსახერხებელი. გამოკვეთეთ წასაკითხი მასალა, გარშემო არსებული უწესრიგობის მოცილებით."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "რამდენიმე ბმულის ერთიანად გახსნა {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "სასურველ ბმულებზე მარჯვენა წკაპით ან მაჩვენებლის გადატარებით, გახსენით ახალ ჩანართებში."
 
@@ -3896,9 +3891,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "გააუმჯობესეთ შედეგიანობა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "შეცვალეთ ახალი ჩანართის გვერდი და განათავსეთ სასურველი ფონი, მიუთითეთ ყოველდღიურად შესასრულებელი მიზნები და ა. შ."
+msgstr "აიმაღლეთ შედეგიანობა შთაგონებით. შეცვალეთ ახალი ჩანართის გვერდი და განათავსეთ სასურველი ფონი, მიუთითეთ ყოველდღიურად შესასრულებელი მიზნები და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3945,9 +3939,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "მოირგეთ YouTube {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "გაუშვით ვიდეოები ამომხტომ ფანჯრებში, რეკლამები იხილეთ მხოლოდ გამოწერილ არხებზე, გადაუღეთ სურათები ვიდეოებს და კიდევ ბევრი სხვა რამ."
+msgstr "შეიქმენით საკუთარი YouTube. გაუშვით ვიდეოები ამომხტომ ფანჯრებში, რეკლამები იხილეთ მხოლოდ გამოწერილ არხებზე, გადაუღეთ სურათები ვიდეოებს და კიდევ ბევრი სხვა რამ."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3962,7 +3955,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გააფორმეთ ვიკიპედია {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "მიუსადაგეთ ვიკიპედიას უახლესი და თანამედროვე იერსახე."
 
@@ -3971,9 +3963,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "იმუშავეთ მეტად სწრაფად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "გამოიყენეთ თაგვის ჟესტები, რომ ყველაფერი გააკეთოთ — გაცილებით სწრაფად."
+msgstr "გამოიყენეთ თაგვის ჟესტები, რომ ყველაფერი გააკეთოთ გაცილებით სწრაფად."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3989,7 +3980,7 @@ msgstr "სურათების ჩამოტვირთვა {start_sub
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "ჩამოტვირთეთ ვებსივრცეში მოძიებული სურათები."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4012,16 +4003,14 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოსპეთ არასასურველი და სარეკლამო შიგთავსი {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "გამოიყენეთ ელფოსტის მოხერხებული დროებითი მისამართები, დარჩით ამოუცნობი და აირიდეთ არასასურველი შიგთავსი."
+msgstr "მოსპეთ უსარგებლო წერილები. გამოიყენეთ ელფოსტის მოხერხებული დროებითი მისამართები, დარჩით ამოუცნობი და აირიდეთ არასასურველი შიგთავსი."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მარტივად ცვალეთ პირადულობის პარამეტრები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr "მარტივად მოირგეთ Firefox-ის პირადულობის პარამეტრები."
 
@@ -4030,7 +4019,6 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "სწრაფი თარგმნა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr "მიიღეთ თარგმანი მყისიერად, ტექსტის მონიშვნითა და ამომხტარ ღილაკზე დაწკაპებით."
 
@@ -4047,9 +4035,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "გამოიყენეთ WhatsApp ინტერნეტში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "მიიღეთ წვდომა WhatsApp-ზე Firefox-ის ხელსაწყოთა არეში, წაუკითხავი თემების შესახებ შეტყობინებების მისაღებად."
+msgstr "WhatsApp ვებსივრცეში. მიიღეთ წვდომა WhatsApp-ზე Firefox-ის ხელსაწყოთა არეში, წაუკითხავი თემების შესახებ შეტყობინებების მისაღებად."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4064,9 +4051,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "შექმენით შეზღუდულ საიტთა სია {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "აუკრძალეთ Firefox-ს მითითებულ ვებსაიტებთან წვდომა."
+msgstr "აუკრძალეთ Firefox-ს მითითებულ ვებსაიტებთან წვდომა. საუკეთესო საშუალება, თვითწესრიგისთვის."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4105,9 +4091,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "სანიშნების ადგილმდებარეობის მარტივი შერჩევა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "სანიშნების უფრო მარტივად შენახვა, მრავალი საქაღალდის არსებობისას."
+msgstr "სანიშნების უფრო მოსახერხებელი შენახვა, მრავალი საქაღალდის არსებობისას."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4126,7 +4111,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გამოყავით ბმულები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "საიტიდან ყველა ბმულის მყისიერად ჩვენება, ახალ ჩანართებში."
 
@@ -4135,9 +4119,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "აირიდეთ გადამისამართება და თვალყურის დევნება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "გადამისამართების გვერდებისა და URL-ბმულებიდან თვალის დევნების პარამეტრების მოცილება."
+msgstr "გადამისამართების გვერდებისა და URL-ბმულებიდან თვალის დევნების პარამეტრების მოცილება. მუშაობს ავტომატურად."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
