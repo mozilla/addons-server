@@ -10,7 +10,7 @@ jobs:
     - { env: TOXENV=codestyle }
     - { env: TOXENV=docs }
     - { env: TOXENV=assets }
-    - { env: TOXENV=es }
+    - { env: TOXENV=es-and-celery }
     - { env: TOXENV=addons-versions-files-ratings }
     - { env: TOXENV=devhub }
     - { env: TOXENV=reviewers-and-zadmin }
