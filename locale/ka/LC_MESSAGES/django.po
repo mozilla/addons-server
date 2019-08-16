@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 19:42+0000\n"
+"PO-Revision-Date: 2019-08-16 20:10+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1999,10 +1999,10 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr "მოწვევაზე თანხმობით დამატების ჩასწორების შესაძლებლობას მიიღებთ, ამასთან, შესაძლოა თქვენი სახელიც გამოჩნდეს ავტორთა ჩამონათვალში საიტზე. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "დაწკაპეთ მიღების ღილაკზე ქვემოთ დასადასტურებლად, რომ გსურთ დაემატოთ {addon_name} დამატების თანაავტორად."
 
 msgid "Decline"
-msgstr ""
+msgstr "უარყოფა"
 
 msgid "Manage Authors & License"
 msgstr "ავტორებისა და ლიცენზიის მართვა"
@@ -2014,7 +2014,7 @@ msgid "About author roles"
 msgstr "ავტორის მოვალეობის შესახებ"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "ავტორობის დადასტურების დაყოვნებული მოთხოვნა"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
