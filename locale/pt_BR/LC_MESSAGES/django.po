@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 19:52+0000\n"
+"PO-Revision-Date: 2019-08-16 19:59+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3456,7 +3456,7 @@ msgstr "Atualizações instantâneas do clima {start_sub_heading}com {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Atualizações instantâneas do clima do mundo todo."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4090,7 +4090,7 @@ msgstr "Baixe fotos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Baixe imagens que você encontra na web."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4295,7 +4295,7 @@ msgstr "Destaque texto {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Destaque texto em páginas web para salvar e acessar mais tarde."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4371,7 +4371,7 @@ msgstr "Navegue de modo privativo {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Pesquise com privacidade com apenas um clique."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4521,7 +4521,7 @@ msgstr "Monitore o histórico de preços da Amazon {start_sub_heading}com {addon
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Acompanhe o histórico de preços na Amazon. Tome decisões de compras bem informado."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4646,7 +4646,7 @@ msgstr "Monitore o histórico de preços da Amazon {start_sub_heading}com {addon
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Acompanhe o histórico de preços na Amazon. Tome decisões de compras espertas, recebendo alertas de alteração de preços de produtos da Amazon que você está interessado."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
