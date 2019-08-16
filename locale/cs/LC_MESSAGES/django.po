@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 18:53+0000\n"
+"PO-Revision-Date: 2019-08-16 19:09+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1487,12 +1487,11 @@ msgstr "Dříve, než změníte výchozí jazyk, musíte mít v tomto jazyce vyp
 msgid "Users can not be added directly"
 msgstr "Uživatelé nemohou být přidáni přímo"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Autor smí být v seznamu pouze jednou."
+msgstr "Autor může být uveden pouze jednou."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Před přidáním účtu jako autora musí být v účtu nastaveno zobrazované jméno."
 
 msgid "Must have at least one owner."
 msgstr "Musí být alespoň jeden vlastník."
@@ -1664,24 +1663,22 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Nesprávný název URL. Doplněk nebyl smazán."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Pozvání bylo přijato."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Pozvání bylo odmítnuto."
 
 msgid "An author has been added to your add-on"
 msgstr "Autor byl k vašem doplňku přidán"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Příspěvky pro doplněk {addon}."
-
-msgid "A confirmation email has been sent to {email}"
 msgstr ""
 
-#, fuzzy
+msgid "A confirmation email has been sent to {email}"
+msgstr "Na adresu {email} byl zaslán potvrzovací e-mail"
+
 msgid "An author role has been changed on your add-on"
-msgstr "U vašeho doplňku autor změnil roli"
+msgstr "Autor byl u vašeho doplňku změněn"
 
 msgid "An author has been removed from your add-on"
 msgstr "Autor byl u vašeho doplňku odebrán"
