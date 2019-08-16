@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-08-16 10:31+0000\n"
 "PO-Revision-Date: 2019-06-13 13:30+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,30 +149,6 @@ msgstr "Le videos debe esser in formato WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Iste thema es incompatibile con tu version de {0}"
-
-msgid "All Rights Reserved"
-msgstr "Tote le derectos es reservate"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Attribution 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Attribution-non commercial 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Attribution-NonCommercial-NoDerivs 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Attribution-NonCommercial-NoDerivs 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
-
-msgid "Your Theme's Name"
-msgstr "Le nomine de tu thema"
 
 msgid "Flagged for review"
 msgstr "Marcate pro revision"

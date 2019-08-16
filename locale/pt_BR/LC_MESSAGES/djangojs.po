@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-08-16 10:31+0000\n"
 "PO-Revision-Date: 2019-06-25 14:12+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,30 +147,6 @@ msgstr "Os vídeos devem ser WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Este tema não é compatível com a sua versão do {0}"
-
-msgid "All Rights Reserved"
-msgstr "Todos os direitos reservados"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Atribuição 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial-Vedada a criação de obras derivadas 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial-Compartilhamento pela mesma licença 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Atribuição-Vedada a criação de obras derivadas 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Atribuição-Compartilhamento pela mesma licença 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Nome do seu tema"
 
 msgid "Flagged for review"
 msgstr "Marcado para análise"

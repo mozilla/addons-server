@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
+"POT-Creation-Date: 2019-08-16 10:31+0000\n"
 "PO-Revision-Date: 2019-07-22 10:53+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -52,6 +52,9 @@ msgstr "已将 %d 条选定的报告标记为可疑。"
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "将选定的滥用报告标记为可疑"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
 
 msgid "Modified on:"
 msgstr "修改时间："
@@ -137,51 +140,6 @@ msgstr "附加组件和收集路径需要以“/”结尾"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加组件名称不得包含 Mozilla 或 Firefox 商标。"
-
-msgid "Awaiting Review"
-msgstr "等待审核"
-
-msgid "Rejected"
-msgstr "被退回"
-
-msgid "Approved"
-msgstr "已核准"
-
-msgid "Added {0}"
-msgstr "{0} 添加"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> 名用户"
-
-msgid "Hover to Preview"
-msgstr "鼠标移至上方预览"
-
-msgid "Add"
-msgstr "添加"
-
-msgid "Edit"
-msgstr "编辑"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "由 {0} 发表于 {1}"
-
-msgid "Not yet rated"
-msgstr "尚无评分"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> 位用户"
-
-msgid "by"
-msgstr "作者："
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "今日用户 {0} 名"
 
 msgid "Sort by:"
 msgstr "排序依照："
@@ -315,14 +273,15 @@ msgstr "找不到页面"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>非常抱歉，我们找不到您要找的内容。</h1> <p>您请求的页面或文件在我们的网站上没有找到。这可能是因为您点击了一个过期的链接，或者输入了不正确的网址。</p> <ul> <li>如果您是在地址栏里输入的网址，请检查一下确保没有拼写错误。</li> "
-"<li>如果您点击某个链接而来，可能是由于我们的疏忽，请%(open_bug_link)s填报问题%(close_bug_link)s。填报时请提及您是从哪个网址过来的、想访问什么内容，我们将修正此问题。</li> </ul> <p>要不转到网站其他地方逛逛吧。</p> <ul> <li>您对我们的<a href=\"%(rec)s\">精选附加组件</a>有兴趣吗？</li> "
-"<li>您想<a href=\"%(search)s\">搜索附加组件</a>吗？您可以转到<a href=\"%(search)s\">搜索页面</a>，或者就用上面的搜索框进行搜索。</li> <li>如果没有确定的目标，就从<a href=\"%(home)s\">附加组件首页</a>开始吧。</li> </ul>"
+"<h1>非常抱歉，我们找不到您要找的内容。</h1> <p>您请求的页面或文件在我们的网站上没有找到。这可能是因为您点击了一个过期的链接，或者输入了不正确的网址。</p> <ul> <li>如果您是在地址栏里输入的网址，请检"
+"查一下确保没有拼写错误。</li> <li>如果您点击某个链接而来，可能是由于我们的疏忽，请%(open_bug_link)s填报问题%(close_bug_link)s。填报时请提及您是从哪个网址过来的、想访问什么内容，我们将修正此问题。</"
+"li> </ul> <p>要不转到网站其他地方逛逛吧。</p> <ul> <li>您对我们的<a href=\"%(rec)s\">精选附加组件</a>有兴趣吗？</li> <li>您想<a href=\"%(search)s\">搜索附加组件</a>吗？您可以转到<a href=\"%(search)s"
+"\">搜索页面</a>，或者就用上面的搜索框进行搜索。</li> <li>如果没有确定的目标，就从<a href=\"%(home)s\">附加组件首页</a>开始吧。</li> </ul>"
 
 msgid "Oops"
 msgstr "哎呀"
@@ -330,9 +289,6 @@ msgstr "哎呀"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>啊呀！我们遇到一个错误。</h1> <p>我们会尽快修复它。</p> <p>您可以尝试刷新页面，或者返回<a href=\"%(home)s\">附加组件首页</a>。</p>"
-
-msgid "Some rights reserved"
-msgstr "保留部分权利"
 
 msgid "No results found"
 msgstr "找不到结果"
@@ -366,7 +322,9 @@ msgstr "这是什么？"
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr "<p> 请输入下方的<strong>所有文字</strong>，<strong>如有间隔应使用空格分开</strong>。</p> <p> 如果这很难阅读，您可以<a href=\"#\" id=\"recaptcha_different\">尝试下一组文字</a>或者<a href=\"#\" id=\"recaptcha_audio\">另一种验证方式</a>。</p>"
+msgstr ""
+"<p> 请输入下方的<strong>所有文字</strong>，<strong>如有间隔应使用空格分开</strong>。</p> <p> 如果这很难阅读，您可以<a href=\"#\" id=\"recaptcha_different\">尝试下一组文字</a>或者<a href=\"#\" id="
+"\"recaptcha_audio\">另一种验证方式</a>。</p>"
 
 msgid "Most Popular"
 msgstr "最热门"
@@ -414,9 +372,6 @@ msgstr "{0} 附加组件"
 
 msgid "Add-ons"
 msgstr "附加组件"
-
-msgid "Custom License"
-msgstr "自定义许可协议"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -495,8 +450,8 @@ msgstr "版本"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr "即便您所支持的应用程序本身不需要一个清单文件，您仍必须按%(amo_manifests_mdn_link_open)s这里%(amo_manifests_mdn_link_close)s的要求附上包含所有必要属性的清单文件。"
 
 msgid "The text entered has been flagged as spam."
@@ -571,6 +526,9 @@ msgstr "已经从 {addon} {version} 中删除文件 {0}。"
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} 已通过审核。"
 
+msgid "Approved"
+msgstr "已核准"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} 已提交初步审核。"
 
@@ -579,6 +537,9 @@ msgstr "已通过初步审核"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} 已被退回。"
+
+msgid "Rejected"
+msgstr "被退回"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} 已被保留。"
@@ -855,17 +816,14 @@ msgstr "未知"
 msgid "Incomplete"
 msgstr "未完成"
 
+msgid "Awaiting Review"
+msgstr "等待审核"
+
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
 msgid "Deleted"
 msgstr "已删除"
-
-msgid "Pending approval"
-msgstr "等待审核"
-
-msgid "Flagged for further review"
-msgstr "已标记进一步审核"
 
 msgid "Unlisted"
 msgstr "未上架"
@@ -898,8 +856,8 @@ msgstr "语言包（附加组件）"
 msgid "Plugin"
 msgstr "插件"
 
-msgid "Theme"
-msgstr "主题"
+msgid "Deprecated LWT"
+msgstr ""
 
 msgid "Theme (Static)"
 msgstr "主题 (静态)"
@@ -928,8 +886,8 @@ msgstr "语言包（附加组件）"
 msgid "Plugins"
 msgstr "插件"
 
-msgid "Themes"
-msgstr "主题"
+msgid "Deprecated LWTs"
+msgstr ""
 
 msgid "Themes (Static)"
 msgstr "主题 (静态)"
@@ -1497,14 +1455,21 @@ msgstr "网址域名必须是 [%s] 之一，或其子域。"
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "在您更改您的默认语言之前，您必须为那个语言环境输入名称、概述及描述。您目前没有输入 %s。"
 
+msgid "Users can not be added directly"
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "每位作者只能被列出一次。"
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr "至少要有一个所有者。"
 
 msgid "At least one author must be listed."
 msgstr "至少要列出一个作者。"
-
-msgid "An author can only be listed once."
-msgstr "每位作者只能被列出一次。"
 
 msgid "Slug incorrect."
 msgstr "Slug 不正确。"
@@ -1514,6 +1479,9 @@ msgstr "详情"
 
 msgid "What is your license's name?"
 msgstr "您的许可协议的名称是？"
+
+msgid "Custom License"
+msgstr "自定义许可协议"
 
 msgid "Provide the text of your license."
 msgstr "提供您许可协议的文字内容。"
@@ -1587,9 +1555,12 @@ msgstr "名称与摘要合计不得超过 {limit_value} 个字符（目前有 {s
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
-msgstr "在本网站上。<span class=\"helptext\">您提交的作品将在通过代码审核后，在本网站以及 Firefox 附加组件管理器中向无数用户展示。自动更新由本网站处理。此附加组件也将被纳入 Mozilla 的促销推广和竞赛之中。经过审核的文件也可以自行分发。</span>"
+msgstr ""
+"在本网站上。<span class=\"helptext\">您提交的作品将在通过代码审核后，在本网站以及 Firefox 附加组件管理器中向无数用户展示。自动更新由本网站处理。此附加组件也将被纳入 Mozilla 的促销推广和竞赛之中。经"
+"过审核的文件也可以自行分发。</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "我自己托管。<span class=\"helptext\">您的提交将被立即签名以供自行分发。更新应该由您通过 updateURL 或外部应用的更新来处理。</span>"
 
 msgid "Display Name"
@@ -1662,10 +1633,24 @@ msgstr "URL 名称不正确。主题未被删除。"
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL 名称不正确。附加组件未被删除。"
 
+msgid "Invitation accepted."
+msgstr ""
+
+msgid "Invitation declined."
+msgstr ""
+
 msgid "An author has been added to your add-on"
 msgstr "一个作者已被添加到您的附加组件"
 
-msgid "An author has a role changed on your add-on"
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "捐款给 {addon}。"
+
+msgid "A confirmation email has been sent to {email}"
+msgstr ""
+
+#, fuzzy
+msgid "An author role has been changed on your add-on"
 msgstr "您的附加组件的一个作者角色已更改"
 
 msgid "An author has been removed from your add-on"
@@ -1818,6 +1803,9 @@ msgstr "文档"
 msgid "Extension Development"
 msgstr "扩展开发"
 
+msgid "Themes"
+msgstr "主题"
+
 msgid "Developer Policies"
 msgstr "开发者政策"
 
@@ -1894,8 +1882,11 @@ msgid ""
 msgstr "此附加组件与 <b>%(app_name)s %(app_version)s</b>，最新的 %(app_name)s 正式版不兼容。请考虑更新您的附加组件兼容性信息，或者上传一份此附加组件的新版本。"
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">更新兼容性</a> <a href=\"%(version_url)s\" class=\"button\">上传新版本</a> or <a href=\"#\" class=\"close\">忽略</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">更新兼容性</a> <a href=\"%(version_url)s\" class=\"button\">上传新版本</a> or <a href=\"#\" class=\"close\">忽略</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "查看并更新应用程序兼容性范围"
@@ -1970,6 +1961,18 @@ msgstr "上架版本预览"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "正在生成预览 - 请稍后再回来，或刷新页面。"
 
+msgid "You have been invited to become an author of {addon_name}."
+msgstr ""
+
+msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
+msgstr ""
+
+msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "管理作者和许可协议"
 
@@ -1979,13 +1982,24 @@ msgstr "作者"
 msgid "About author roles"
 msgstr "关于作者角色"
 
+msgid "Authors pending confirmation"
+msgstr ""
+
+msgid "Authors that have been added to this add-on but haven't confirmed."
+msgstr ""
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
-msgstr "<p>附加组件可以有任意位作者，每位作者的身份有两种可选：</p> <ul> <li><b>所有者：</b>可以全面的管理附加组件的各项信息，包括添加和移除其他作者</li> <li><b>开发者：</b>可以全面的管理附加组件的各项信息，但不能添加和移除其他作者</li></ul>"
+msgstr ""
+"<p>附加组件可以有任意位作者，每位作者的身份有两种可选：</p> <ul> <li><b>所有者：</b>可以全面的管理附加组件的各项信息，包括添加和移除其他作者</li> <li><b>开发者：</b>可以全面的管理附加组件的各项信"
+"息，但不能添加和移除其他作者</li></ul>"
 
 msgid "Additional Details"
 msgstr "附加信息"
+
+msgid "Edit"
+msgstr "编辑"
 
 msgid "Additional Details for {0}"
 msgstr "{0} 的附加信息"
@@ -2091,7 +2105,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "分类是许多用户浏览附加组件的主要方式。选择任何符合您的附加组件功能的分类。"
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。如果您有理由需要修改其分类，请发送电子邮件到 <a href=\"mailto:%(email)s\">%(email)s</a>。"
 
 #, python-format
@@ -2102,8 +2117,8 @@ msgid "Email"
 msgstr "电子邮件"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr "如果您想显示一个电子邮件地址供支持请求，请在这里输入。如果您想对不同的语言显示不同的电子邮件地址，您也可以在这里添加多个语言的字段。此项仅与公开上架的附加组件相关。"
 
 msgid "Website"
@@ -2553,8 +2568,8 @@ msgid "Operating system and build environment requirements."
 msgstr "操作系统与构建环境要求。"
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr "构建过程中会使用到的任何程序的详细信息（包含需要使用的版本与安装步骤，例如：所用的 <span class=\"tech-emphasis\">node</span> 与 <span class=\"tech-emphasis\">npm</span> 的版本）。"
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -2671,8 +2686,8 @@ msgstr "JWT 私钥"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr "要执行 API 请求，发送一条 <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> 作为身份校验头。您需要按照 <a href=\"%(docs_url)s\">API 文档</a> 的要求，为每个请求生成一个 JWT。"
 
 msgid "You don't have any API credentials."
@@ -2810,10 +2825,9 @@ msgstr[0] "为此附加组件选择<b>至多 {0} 个</b> {1} 的分类："
 msgid "End-User License Agreement"
 msgstr "最终用户许可协议"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr "用户在安装您的附加组件之前，将被要求接受下列最终用户许可协议（EULA）。EULA 的存在会显著影响一个附加组件的下载量。请注意，EULA 与代码许可证（例如 GPL 或 MPL）不同。它只与上架的附加组件相关。"
+#, fuzzy
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "请选择一个许可协议，标明您对您的源代码授予的权利。此项只与上架的附加组件相关。"
 
 msgid "Privacy Policy"
 msgstr "隐私政策"
@@ -2992,9 +3006,11 @@ msgstr "定制 Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr "附加组件让超过数百万的 Firefox 用户能够增强自己的浏览体验。如果您了解 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 和 %(css_link_open)sCSS%(link_close)s，您已经具备了足够的技能来制作一个绝佳的附加组件。"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
+msgstr ""
+"附加组件让超过数百万的 Firefox 用户能够增强自己的浏览体验。如果您了解 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 和 %(css_link_open)sCSS%(link_close)s，您已经具备"
+"了足够的技能来制作一个绝佳的附加组件。"
 
 msgid "Learn How to Make an Add-on"
 msgstr "了解如何制作一个附加组件"
@@ -3042,8 +3058,8 @@ msgstr "在 Firefox 中临时安装您的扩展以进行实时测试和调试。
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "管理 {0}"
 
@@ -3122,6 +3138,9 @@ msgstr "我们检索审核说明时遇到问题"
 
 msgid "Load older..."
 msgstr "加载更早..."
+
+msgid "by"
+msgstr "作者："
 
 msgid "Leave a reply"
 msgstr "发表回复"
@@ -3210,14 +3229,14 @@ msgstr "您确定要撤销您的审核请求吗？"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "附加组件文档 :: 开发者中心"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 个错误"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
@@ -3259,7 +3278,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "广告拦截与隐私保护 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+#, fuzzy
+msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "简单安装后，您就能控制所看到的广告、限制您在互联网上被跟踪的情况。"
 
 #. editorial content for the discovery pane.
@@ -3275,7 +3295,8 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "停止 Facebook 追踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+#, fuzzy
+msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "将您的 Facebook 身份隔离于独立的“容器”中，使 Facebook 难以跟踪您在网络上的一举一动。"
 
 #. editorial content for the discovery pane.
@@ -3283,7 +3304,8 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "简化搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
+#, fuzzy
+msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "选中网页上的文本即可用多个搜索引擎快捷搜索。"
 
 #. editorial content for the discovery pane.
@@ -3291,8 +3313,8 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "实时天气预报 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get instant global weather information right in Firefox."
-msgstr "在 Firefox 中即时获取全球天气信息。"
+msgid "Instant weather updates from around the world."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3315,7 +3337,8 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+#, fuzzy
+msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "适用于 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等数百个视频网站。"
 
 #. editorial content for the discovery pane.
@@ -3323,7 +3346,8 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "增强您的 emoji 体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Dozens of amazing emojis for every occasion—always just a click away."
+#, fuzzy
+msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
 msgstr "适用于各种场合的大量精美 Emoji —— 尽在掌中。"
 
 #. editorial content for the discovery pane.
@@ -3331,7 +3355,8 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "管理密码 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+#, fuzzy
+msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
 msgstr "用一个密码轻松管理您的各种登录信息，并同步到所有设备。"
 
 #. editorial content for the discovery pane.
@@ -3339,7 +3364,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+#, fuzzy
+msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "一款轻量级又高效的广告拦截工具。uBlock Origin 能在不消耗大量内存的情况下执行上千条过滤规则。"
 
 #. editorial content for the discovery pane.
@@ -3363,7 +3389,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "享受可视化书签 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites from a tile layout."
+#, fuzzy
+msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
 msgstr "在磁贴布局下访问您最喜爱的网站。"
 
 #. editorial content for the discovery pane.
@@ -3427,7 +3454,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "轻松翻译 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+#, fuzzy
+msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
 msgstr "选中网页上的任何文本，或者选择整个网页，即时翻译。"
 
 #. editorial content for the discovery pane.
@@ -3435,7 +3463,8 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "触及学术智慧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy free access to 10+ million research papers."
+#, fuzzy
+msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "免费获取 1000 多万份研究论文。"
 
 #. editorial content for the discovery pane.
@@ -3443,7 +3472,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "自定义鼠标手势 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+#, fuzzy
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr "使用 50 多种实用的鼠标手势，发现上网的新方式。"
 
 #. editorial content for the discovery pane.
@@ -3480,7 +3510,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "放大图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply hover over an image to magnify it."
+#, fuzzy
+msgid "Hover over an image to magnify it."
 msgstr "将鼠标悬停在图像上，即刻将其放大。"
 
 #. editorial content for the discovery pane.
@@ -3512,7 +3543,8 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "保持干净的数字足迹 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+#, fuzzy
+msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "让 Firefox 对您选择的域名，忘记 Cookie 和本地存储等网站数据。"
 
 #. editorial content for the discovery pane.
@@ -3520,7 +3552,10 @@ msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "保存文本备稍后使用 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+#, fuzzy
+msgid ""
+"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
+"when needed."
 msgstr "不再重复写相同的东西！如果您经常在工作或其他通信中使用相同的短语，将它们保存到一个高级剪贴板，在需要时轻松粘贴。"
 
 #. editorial content for the discovery pane.
@@ -3544,7 +3579,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "避免狡猾跟踪器以及限制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+#, fuzzy
+msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "隐藏您的浏览器和操作系统的特征来伪装网上痕迹。"
 
 #. editorial content for the discovery pane.
@@ -3560,7 +3596,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "隔离您的在线身份 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#, fuzzy
+msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr "用不同颜色的标签页分隔不同组的 Cookie，区分您在不同用途的网上身份——工作用途、个人生活等。"
 
 #. editorial content for the discovery pane.
@@ -3576,7 +3613,8 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "阅读 ePub 电子书 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+#, fuzzy
+msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "在 Firefox 中阅览 ePub 文件—支持增加字体大小、调整页面尺寸等功能。"
 
 #. editorial content for the discovery pane.
@@ -3584,7 +3622,8 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "提升您的 YouTube 体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos by default in the highest quality, turn off annotations, and more."
+#, fuzzy
+msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "默认以最高质量播放视频、关闭注释等功能。"
 
 #. editorial content for the discovery pane.
@@ -3592,7 +3631,8 @@ msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "跟踪追踪器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get a glimpse into who's tracking you with just a click."
+#, fuzzy
+msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
 msgstr "只需点击一下，了解谁在跟踪您。"
 
 #. editorial content for the discovery pane.
@@ -3600,7 +3640,8 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "切换代理服务器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Surf the web through self-defined proxy settings."
+#, fuzzy
+msgid "Change your proxy server and surf the web through self-defined proxy settings."
 msgstr "通过自定义的代理服务器设置浏览网络。"
 
 #. editorial content for the discovery pane.
@@ -3616,7 +3657,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "安全浏览 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supports HTTPS."
+#, fuzzy
+msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "将安全加密应用到任何支持 HTTPS 的站点。"
 
 #. editorial content for the discovery pane.
@@ -3660,11 +3702,13 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "匿名网上冲浪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+#, fuzzy
+msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
 msgstr "使用伪装身份浏览网页——甚至好像您从其他国家/地区浏览。"
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+#, fuzzy
+msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
 msgstr "用华丽的磁贴呈现您喜爱的网站、最近关闭的标签页等等，好看又便捷。"
 
 #. editorial content for the discovery pane.
@@ -3688,7 +3732,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "强大的下载管理 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Check the state of your downloads through a status bar, download history page, and more."
+#, fuzzy
+msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "通过状态栏、下载历史页面等检查您的下载项状态。"
 
 #. editorial content for the discovery pane.
@@ -3704,7 +3749,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "搜索跟踪的防护 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop trackers when you click Google and Yandex search returns."
+#, fuzzy
+msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "拒绝点击 Google 和 Yandex 搜索结果时的跟踪器。"
 
 #. editorial content for the discovery pane.
@@ -3720,7 +3766,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "为搜索结果加入缩略图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy thumbnail images alongside your search returns."
+#, fuzzy
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "在返回的搜索结果旁欣赏缩略图。"
 
 #. editorial content for the discovery pane.
@@ -3744,7 +3791,8 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "定制出您喜欢的网站 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+#, fuzzy
+msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "改变任何网站的外观！调整颜色、更改网页背景等等。"
 
 #. editorial content for the discovery pane.
@@ -3752,7 +3800,8 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "定制您的新标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+#, fuzzy
+msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "编辑“新标签页”显示的磁贴数量、背景图像等。"
 
 #. editorial content for the discovery pane.
@@ -3768,7 +3817,8 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "了解您在网上去向何处 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get the country location for websites you visit. Be an informed internet traveler."
+#, fuzzy
+msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr "了解您所访问网站的地理归属（国家/地区）。"
 
 #. editorial content for the discovery pane.
@@ -3776,7 +3826,8 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr "增强您的阅读体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make the text you're reading more appealing by removing the clutter around it."
+#, fuzzy
+msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr "消除杂乱的周边内容，着重阅读主要内容。"
 
 #. editorial content for the discovery pane.
@@ -3784,7 +3835,8 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "快捷打开多个链接 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Right-click and drag over links you want open in new tabs."
+#, fuzzy
+msgid "Right-click and drag links you want open in new tabs."
 msgstr "右击并拖拽即可新建标签页打开链接。"
 
 #. editorial content for the discovery pane.
@@ -3800,7 +3852,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "激发生产力 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+#, fuzzy
+msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr "修改新标签页以显示漂亮的背景、设置您的每日关注等。"
 
 #. editorial content for the discovery pane.
@@ -3848,7 +3901,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "做自己的 YouTube {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+#, fuzzy
+msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "在弹出窗口中播放视频，只查看已订阅频道的广告，截取视频的截图等功能。"
 
 #. editorial content for the discovery pane.
@@ -3864,7 +3918,8 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "给维基百科换新装 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Applies a fresh and modern appearance to Wikipedia."
+#, fuzzy
+msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "为维基百科提供一个清新现代的外观。"
 
 #. editorial content for the discovery pane.
@@ -3872,7 +3927,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "高效工作 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to get to things done—quicker."
+#, fuzzy
+msgid "Use mouse gestures to get to things done quicker."
 msgstr "使用鼠标手势完成任务——更加快捷。"
 
 #. editorial content for the discovery pane.
@@ -3888,8 +3944,8 @@ msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "下载图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab images from any website and download them."
-msgstr "抓取并下载任何网站的图片文件。"
+msgid "Download images you find on the web."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3912,7 +3968,8 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "克服垃圾邮件 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+#, fuzzy
+msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr "使用聪明的临时邮箱来保持匿名、防范垃圾邮件。"
 
 #. editorial content for the discovery pane.
@@ -3920,7 +3977,8 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "更改您的隐私设置 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily customize the built-in privacy settings in Firefox."
+#, fuzzy
+msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr "轻松定制 Firefox 中内置的隐私设置。"
 
 #. editorial content for the discovery pane.
@@ -3928,7 +3986,8 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "即时翻译 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+#, fuzzy
+msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr "选中文本并单击弹出的按钮来即时翻译。"
 
 #. editorial content for the discovery pane.
@@ -3944,7 +4003,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "网页版 WhatsApp {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+#, fuzzy
+msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr "从 Firefox 的工具栏面板直接访问 WhatsApp，配有未读通知显示。"
 
 #. editorial content for the discovery pane.
@@ -3960,7 +4020,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "创建网站黑名单 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Restrict Firefox from accessing websites you define."
+#, fuzzy
+msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "限制 Firefox 访问您设定的网站。"
 
 #. editorial content for the discovery pane.
@@ -4000,7 +4061,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "轻松选择书签位置 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A better way to save bookmarks if you use multiple bookmark folders."
+#, fuzzy
+msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
 msgstr "一种更好的保存书签的方法，如果你使用多个书签文件夹。"
 
 #. editorial content for the discovery pane.
@@ -4020,7 +4082,8 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "提取链接 {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Instantly display all links from a webpage in new tabs."
+#, fuzzy
+msgid "Instantly display all links from a web page in new tabs."
 msgstr "在新标签页中即时显示网页中的所有链接。"
 
 #. editorial content for the discovery pane.
@@ -4028,7 +4091,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "跳过重定向和跟踪器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Strip away redirect pages and URL tracking parameters."
+#, fuzzy
+msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
 msgstr "剥除链接重定向和 URL 跟踪参数。"
 
 #. editorial content for the discovery pane.
@@ -4044,7 +4108,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "下载 YouTube 视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Download video and/or audio."
+#, fuzzy
+msgid "Download YouTube videos and/or audio."
 msgstr "下载视频和/或音频。"
 
 #. editorial content for the discovery pane.
@@ -4068,8 +4133,8 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "仿触摸滚动 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr "为台式机网页提供“按住拖拽”的滚动功能。"
+msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4084,15 +4149,16 @@ msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "突出文本 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr "享受高度可定制的文字荧光笔，多种颜色和保存选项。"
+msgid "Highlight text on web pages to save and access later."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "享受全球各地音乐 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 30,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "收听全球各地超过 30000 个广播电台。"
 
 #. editorial content for the discovery pane.
@@ -4116,7 +4182,8 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "安全网上冲浪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Navigate to the secure version of a website if it's available."
+#, fuzzy
+msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "导航到网站的安全版本（如果可用）。"
 
 #. editorial content for the discovery pane.
@@ -4124,7 +4191,8 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "删除你的浏览记录 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+#, fuzzy
+msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "指定几天后自动清除浏览器历史记录。"
 
 #. editorial content for the discovery pane.
@@ -4148,7 +4216,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "自动填写表单 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Save entered data once and it will autofill next time."
+#, fuzzy
+msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
 msgstr "保存输入的数据，只需输入一次，下次自动填写。"
 
 #. editorial content for the discovery pane.
@@ -4156,15 +4225,16 @@ msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "私密浏览 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Jump into private browsing mode with a click."
-msgstr "一键转入隐私浏览模式。"
+msgid "Search privately with just a click."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "遏制标签页劫持 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+#, fuzzy
+msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "拒绝点击的链接控制您的当前标签页和加载您并未寻求的内容。"
 
 #. editorial content for the discovery pane.
@@ -4172,7 +4242,8 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "快捷搜索 Wikipedia {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+#, fuzzy
+msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr "选中任何网页中的文本，单击右键即可选择在维基百科中搜索。"
 
 #. editorial content for the discovery pane.
@@ -4196,7 +4267,8 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "快速查看亚马逊商品 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+#, fuzzy
+msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr "在查看其他网上商店的产品页面时，单击一个按钮即可查看亚马逊上的同款货品（如果有）。"
 
 #. editorial content for the discovery pane.
@@ -4204,7 +4276,8 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "终极标签页控制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+#, fuzzy
+msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "如此多的标签页控制选项——关闭重复标签页、合并窗口、复制标签页标题等等。"
 
 #. editorial content for the discovery pane.
@@ -4212,7 +4285,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "维基百科大冒险 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Load a random Wikipedia article each time you open a new tab."
+#, fuzzy
+msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
 msgstr "每次您打开一个新标签页时，自动加载随机的维基百科条目。"
 
 #. editorial content for the discovery pane.
@@ -4244,7 +4318,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Firefox 大搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily access your open tabs, bookmarks, and history."
+#, fuzzy
+msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
 msgstr "轻松访问您打开的标签页、您的书签和历史记录。"
 
 #. editorial content for the discovery pane.
@@ -4300,15 +4375,16 @@ msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub
 msgstr "追踪 Amazon 历史价格 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr "跟踪亚马逊上的商品价格，助您作出更明智的选择。"
+msgid "Track Amazon pricing history. Make informed shopping decisions."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "放心购物 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+#, fuzzy
+msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr "为网站购物加一道防线，确保购物网站可以信赖。"
 
 #. editorial content for the discovery pane.
@@ -4316,11 +4392,13 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "追踪生产力 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+#, fuzzy
+msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
 msgstr "测算您在计算机或特定工作程序（如 Trello、JIRA、Basecamp、GitHub 等）上花费的时间。"
 
 #. editorial content for the discovery pane.
-msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+#, fuzzy
+msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr "剪辑并保存文章、视频、图像等网页内容，供个人项目或实时团队协作使用。"
 
 #. editorial content for the discovery pane.
@@ -4328,7 +4406,8 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "安全冲浪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Only allow web content to run from sites you trust."
+#, fuzzy
+msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "仅允许您信任的网站运行 Web 内容。"
 
 #. editorial content for the discovery pane.
@@ -4368,8 +4447,8 @@ msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "关闭恼人的覆盖层 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply click a button to close annoying pop-up overlays."
-msgstr "一键关闭烦人的悬浮窗。"
+msgid "Close annoying pop-ups with a simple click."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4404,7 +4483,8 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "解决恼人的音频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+#, fuzzy
+msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "网站上的音量太小了？或太吵了？SoundFixer 可以帮忙。"
 
 #. editorial content for the discovery pane.
@@ -4412,7 +4492,8 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "打印前编辑 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+#, fuzzy
+msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "非凡的视觉变化 — 对您想要打印的任何网页移除广告或令人讨厌的内容。"
 
 #. editorial content for the discovery pane.
@@ -4420,8 +4501,8 @@ msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub
 msgstr "追踪 Amazon 历史价格 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr "通过跟踪和接收 Amazon 上列出的产品的价格来做出明智的决定。"
+msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4444,7 +4525,8 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "掩盖你的踪迹 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+#, fuzzy
+msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr "通过跟踪器拦截、更智能的加密、专用搜索和其他基本功能进行更安全的搜索。"
 
 #. editorial content for the discovery pane.
@@ -4452,7 +4534,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "简化标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Organize your many open tabs in a vertical sidebar."
+#, fuzzy
+msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
 msgstr "在垂直侧栏中管理您打开的众多标签页。"
 
 #. editorial content for the discovery pane.
@@ -4468,7 +4551,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "查看大图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "With a mouse click you can watch videos in full screen glory."
+#, fuzzy
+msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr "轻点鼠标，全屏看视频。"
 
 #. editorial content for the discovery pane.
@@ -4492,7 +4576,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "干掉废话 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+#, fuzzy
+msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr "一个巧妙的扩展，可助您快速了解要接受的内容。"
 
 #. editorial content for the discovery pane.
@@ -4504,15 +4589,16 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "更好的阅读体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
-msgstr "网页去芜存菁。阅读更清晰、更轻松。"
+msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+#, fuzzy
+msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "不仅可以拦截恼人的广告，还可保护自己免受恶意软件和广告跟踪的侵害。"
 
 #. editorial content for the discovery pane.
@@ -4528,7 +4614,8 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "轻松保存图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab just images from your current tab."
+#, fuzzy
+msgid "Save images easily—just grab them from your current tab."
 msgstr "抓取当前标签页中的图片。"
 
 #. editorial content for the discovery pane.
@@ -4536,11 +4623,13 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "测量网页内容 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+#, fuzzy
+msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
 msgstr "在任一网页上绘制数字标尺，以检查网页元素的高度、宽度和对齐方式。"
 
 #. editorial content for the discovery pane.
-msgid "Get the benefits of strong password management."
+#, fuzzy
+msgid "Enjoy the benefits of strong password management."
 msgstr "享受密码管理器的强大好处。"
 
 #. editorial content for the discovery pane.
@@ -4556,7 +4645,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "屏蔽让人分心的网站 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "List the websites you want the extension to block. Instant discipline!"
+#, fuzzy
+msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "列出要扩展去屏蔽的网站。自律！"
 
 #. editorial content for the discovery pane.
@@ -4572,7 +4662,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "更改 Firefox 外观 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily design your own visual themes to make Firefox look as you please."
+#, fuzzy
+msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "轻松设计自己的视觉主题，让 Firefox 有你的个性。"
 
 #. editorial content for the discovery pane.
@@ -4580,8 +4671,8 @@ msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "作笔记 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Displays a sidebar that lets you keep notes per specific web pages."
-msgstr "显示一个侧栏，可让您根据特定网页作笔记。"
+msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4596,7 +4687,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "跟踪商品价格 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+#, fuzzy
+msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr "当 Amazon、Best Buy、eBay、Home Depot 和 Walmart 上感兴趣的商品价格下降时，您会收到通知。"
 
 #. editorial content for the discovery pane.
@@ -4604,8 +4696,8 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "网页黑暗模式 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Custom color schemes let you shade the web to your own liking."
-msgstr "自定义配色方案可让您根据自己的喜好对网页进行着色。"
+msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4865,7 +4957,9 @@ msgstr "这是个什么网站？"
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr "addons.mozilla.org，俗称“AMO”，是 Mozilla 官方的为 Mozilla 附加组件所设立的站点，服务如 Firefox、Thunderbird 和 SeaMonkey。附加组件可以增添或改变你使用浏览器或应用程序的功能或方式。四处逛逛，探索无数的方法来定制你的在线网络生活。"
+msgstr ""
+"addons.mozilla.org，俗称“AMO”，是 Mozilla 官方的为 Mozilla 附加组件所设立的站点，服务如 Firefox、Thunderbird 和 SeaMonkey。附加组件可以增添或改变你使用浏览器或应用程序的功能或方式。四处逛逛，探索无"
+"数的方法来定制你的在线网络生活。"
 
 msgid "Who creates these add-ons?"
 msgstr "谁创造了这些附加组件？"
@@ -4910,7 +5004,8 @@ msgid ""
 msgstr "如果你有附加组件开发经验，<a href=\"%(url)s\">成为一名附加组件审核员</a>吧！我们的审核员是有技术背景的附加组件粉丝，负责审查附加组件源代码的质量和稳定性。"
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr "帮助改进本网站。它是开源的，您可以填写bug和提交补丁。<a href=\"%(url)s\"> GitHub</a> 包含了我们目前所有的 bug，旧的 bug 可以在 Bugzilla 找到。"
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -4956,8 +5051,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "关于评论的常见问答"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr "附加组件评论是一个分享您对已经安装并且使用过的附加组件感受的方式。我们的评论审核团队有权拒绝和删除任何不遵守下列准则的评论。"
 
 msgid "Do:"
@@ -5099,6 +5194,9 @@ msgstr "选择“其他”作为标识原因时，必须提供一段简明解释
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} 条评价"
+
+msgid "Not yet rated"
+msgstr "尚无评分"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "评分{0}星，满分5星"
@@ -5785,6 +5883,9 @@ msgstr "全部时间"
 msgid "You have <span>{0}</span> points."
 msgstr "您有 <span>{0}</span> 点。"
 
+msgid "Theme"
+msgstr "主题"
+
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s 于 %(date)s [%(ip_address)s]"
@@ -5920,8 +6021,8 @@ msgstr "{0} :: 统计数据面板"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "统计数据面板 :: {0} 的附加组件"
 
-#. {0} is an add-on name
 # %1 is the name of a collection
+#. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "{0} 的统计数据"
 
@@ -6037,15 +6138,16 @@ msgstr "关于跟踪外部来源..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>跟踪外部来源</h2> <p> 如果您从外部网站（如您的博客或网站）链接到您附加组件的详细信息页面，或是直接链接到其文件，您可以附加一个参数以便跟踪这个页面上的额外下载来源。例如，下面的链接的来源将显示为您的博客：<dl> <dt>附加组件详细信息页面</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-"
-"blog</b></dd> <dt>直接文件链接</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> "
-"仅src开头为“external-”才会被跟踪，最长可达61个额外字符。任何在“external-”之后的文字可被作为描述来源，例如“external-blog”、“external-sidebar”、“external-campaign225”等。安全的URL允许使用以下字符： <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>跟踪外部来源</h2> <p> 如果您从外部网站（如您的博客或网站）链接到您附加组件的详细信息页面，或是直接链接到其文件，您可以附加一个参数以便跟踪这个页面上的额外下载来源。例如，下面的链接的来源将显示为"
+"您的博客：<dl> <dt>附加组件详细信息页面</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>直接文件链接</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/"
+"addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> 仅src开头为“external-”才会被跟踪，最长可达61个额外字符。任何在“external-”之后的文字可被作为描述来源，例如“external-blog”、“external-"
+"sidebar”、“external-campaign225”等。安全的URL允许使用以下字符： <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "依照日期统计的附加组件状态"
@@ -6057,14 +6159,10 @@ msgid "What are daily users?"
 msgstr "什么是每日用户量？"
 
 msgid ""
-"<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
-"people using your theme by day. </p>"
-msgstr "<h2>什么是每日用户量？</h2><p>从这个网站安装的主题每天都会检查一次更新。被检查更新的次数就视为每日活跃用户数，或者说是逐日统计的此主题的用户总数。</p>"
-
-msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr "<h2>什么是每日用户量？</h2> <p> 从本网站下载的附加组件会在每日检查更新。这些更新的请求数量将作为每日活跃用户数。每日用户量可以按照附加组件版本、操作系统、附加组件状态、应用程序以及地区语言划分。</p>"
+msgstr ""
+"<h2>什么是每日用户量？</h2> <p> 从本网站下载的附加组件会在每日检查更新。这些更新的请求数量将作为每日活跃用户数。每日用户量可以按照附加组件版本、操作系统、附加组件状态、应用程序以及地区语言划分。</p>"
 
 msgid "Application versions by Date"
 msgstr "依照日期统计的应用程序版本"
@@ -6090,7 +6188,9 @@ msgstr "报告缺陷"
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">注明</a>，否则本站的内容以 <br /><a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">知识共享 署名-相同方式 v3.0</a> 或任何更新版本授权。"
+msgstr ""
+"除非另有<a href=\"https://www.mozilla.org/about/legal/\">注明</a>，否则本站的内容以 <br /><a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">知识共享 署名-相同方式 v3.0</a> 或任何更新版本授"
+"权。"
 
 msgid "get to know <b>add-ons</b>"
 msgstr "认识 <b>附加组件</b>"
@@ -6174,6 +6274,10 @@ msgstr "您确定要移除所有的 <b>{0}</b> 翻译？此操作无法撤销。
 msgid "Delete Locale"
 msgstr "删除语言"
 
+#, fuzzy
+msgid "User Restriction History"
+msgstr "关闭审核历史"
+
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "用户“%(user)s”已被封禁。"
@@ -6241,8 +6345,8 @@ msgid ""
 msgstr "输入要屏蔽的一次性邮箱的完整域。不支持通配符：如果您需要该特性，或需匹配整个电子邮件地址（不仅仅是域部分），请改用“电子邮件用户限制”。"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
 msgid "an add-on developer replies to my review"
