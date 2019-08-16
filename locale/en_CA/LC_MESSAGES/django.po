@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 15:25+0000\n"
+"PO-Revision-Date: 2019-08-16 15:50+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -1482,7 +1482,7 @@ msgid "Details"
 msgstr "Details"
 
 msgid "What is your license's name?"
-msgstr "What is your license’s name?"
+msgstr "What is your licence’s name?"
 
 msgid "Custom License"
 msgstr "Custom License"
@@ -1985,7 +1985,7 @@ msgid "Authors pending confirmation"
 msgstr "Authors pending confirmation"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr "Authors that have been added to this add-on but haven't confirmed."
+msgstr "Authors that have been added to this add-on but haven’t confirmed."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2651,7 +2651,7 @@ msgid "Theme generator"
 msgstr "Theme generator"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr "Warning: the following manifest properties that your most recent version upload used in it’s manifest are unsupported in this wizard and will be ignored:"
 
 msgid "Theme name"
 msgstr "Theme name"
@@ -3185,7 +3185,7 @@ msgstr "{label_open}Visible:{label_close} Visible to everyone on {site_url} and 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won’t be included in search results, and its product page will indicate you disabled it. New version submissions for product won’t be accepted in this state."
 
 msgid "Listed versions"
 msgstr "Listed versions"
@@ -3645,7 +3645,7 @@ msgstr "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Track the trackers. Get a glimpse into who's tracking you with just a click."
+msgstr "Track the trackers. Get a glimpse into who’s tracking you with just a click."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3713,7 +3713,7 @@ msgstr "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgstr "Surf anonymously. Browse the web with disguised identity—even appear as if you’re browsing from another country."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
@@ -3829,7 +3829,7 @@ msgstr "Enhance your reading experience {start_sub_heading}with {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
+msgstr "Enhance your reading experience. Make the text you’re reading more appealing by removing the clutter around it."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3997,7 +3997,7 @@ msgstr "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgstr "WhatsApp on the web. Access WhatsApp from within Firefox’s toolbar panel to get badge notification of unread threads."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4169,7 +4169,7 @@ msgstr "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Automatically navigate to the secure version of a website if it's available."
+msgstr "Automatically navigate to the secure version of a website if it’s available."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4177,7 +4177,7 @@ msgstr "Delete your navigation history {start_sub_heading}with {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
+msgstr "Delete your navigation history. Specify a custom number of days to retain browser history before it’s automatically cleared."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4217,7 +4217,7 @@ msgstr "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgstr "Put an end to tab hijacking. Don’t let clicked links take control of your current tab and load content you didn’t ask for."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4249,7 +4249,7 @@ msgstr "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgstr "Gain an Amazon edge. When looking at product pages on other online shops, if it’s also available on Amazon you can simply click a button to check its Amazon listing."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4361,7 +4361,7 @@ msgstr "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgstr "Shop with confidence. This extension provides an extra check to ensure you’re shopping on a site that’s been vetted for reliability."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4473,7 +4473,7 @@ msgstr "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
+msgstr "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you’re interested in."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4625,7 +4625,7 @@ msgstr "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
+msgstr "Change your browser’s appearance. Easily design your own visual themes to make Firefox look as you please."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4649,7 +4649,7 @@ msgstr "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+msgstr "Track products and get notified when prices drop on items you’re interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
