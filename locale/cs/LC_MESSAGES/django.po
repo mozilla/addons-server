@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 20:44+0000\n"
+"PO-Revision-Date: 2019-08-16 21:51+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3381,7 +3381,7 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} zjednoduší vyhledáv�
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Zjednodušte vyhledávání: označte text na jakékoliv webové stránce a vyberte si vyhledávač, kterým jej chcete vyhledat."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3389,7 +3389,7 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám přinese aktuáln�
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Aktuální informace o počasí z celého světa."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
