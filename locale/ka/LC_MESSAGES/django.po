@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 20:10+0000\n"
+"PO-Revision-Date: 2019-08-16 20:32+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2017,7 +2017,7 @@ msgid "Authors pending confirmation"
 msgstr "ავტორობის დადასტურების დაყოვნებული მოთხოვნა"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "ავტორები, რომლებიც დაემატნენ ამ დამატებას დადასტურების გარეშე."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2888,9 +2888,8 @@ msgstr[1] "მიუთითეთ <b> არაუმეტეს {0}</b> {1} 
 msgid "End-User License Agreement"
 msgstr "მომხმარებლის სალიცენზიო შეთანხმება"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "გთხოვთ მიუთითოთ პირველწყარო კოდზე, თქვენი უფლებების შესაბამისი ლიცენზია. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+msgstr "გთხოვთ გაითვალისწინოთ, რომ EULA არაა იგივე, რაც კოდის ლიცენზია, GPL ან MPL. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Privacy Policy"
 msgstr "პირადი მონაცემების დაცვის დებულება"
@@ -3348,9 +3347,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "რეკლამების შეზღუდვა და პირადულობის დაცვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "მარტივი საშუალება, ინტერნეტში მოგზაურობისას სარეკლამო და თვალყურისმდევნელი შიგთავსის ასარიდებლად."
+msgstr "რეკლამის შეზღუდვა და პირადულობის დაცვა. მარტივი საშუალება, ინტერნეტში მოგზაურობისას სარეკლამო და თვალყურისმდევნელი შიგთავსის ასარიდებლად."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3365,18 +3363,16 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "აირიდეთ Facebook-ის თვალთვალი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "გამიჯნეთ თქვენი Facebook ვინაობა სხვა გვერდებისგან ცალკე „სათავსის“ საშუალებით, რაც გაურთულებს Facebook-ს ინტერნეტში თქვენს მოქმედებებზე თვალის მიდევნებას."
+msgstr "შეაჩერეთ Facebook-ის მეთვალყურეობა. გამიჯნეთ თქვენი Facebook-ვინაობა სხვა გვერდებისგან ცალკე „სათავსის“ საშუალებით, რაც გაურთულებს Facebook-ს ინტერნეტში თქვენს მოქმედებებზე თვალის მიდევნებას."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გაიმარტივეთ ძიება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "უბრალოდ მონიშნეთ ტექსტი ნებისმიერ ვებგვერდზე, მთელ რიგ საძიებო სისტემებში მოსანახად."
+msgstr "გაიმარტივეთ ძიება ტექსტის მონიშვნით ნებისმიერ ვებგვერდზე, მთელ რიგ საძიებო სისტემებში მოსანახად."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3384,7 +3380,7 @@ msgstr "იხილეთ მუდმივად განახლებუ�
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "ამინდის პროგნოზის მყისიერი განახლებები, მთელი მსოფლიოდან."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3407,34 +3403,30 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "მუშაობს ასობით ვიდეო-საიტთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა. შ."
+msgstr "ჩამოტვირთეთ ვიდეოები მარტივად. მუშაობს ასობით ვიდეო-საიტთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გაამრავალფეროვნეთ თქვენ ხელთ არსებული სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "ათეულობით სხვადასხვა სახის გამორჩეული სიცილაკი — ყოველთვის თქვენს თითებთან ახლოს."
+msgstr "გაიმრავალფეროვნეთ ემოციებით თამაში. ათეულობით სხვადასხვა სახის გამორჩეული სიცილაკი — ყოველთვის თქვენს თითებთან ახლოს."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "პაროლების მართვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "მარტივად დაასინქრონეთ სხვადასხვა ვებსაიტის ანგარიშების მონაცემები ყველა თქვენს მოწყობილობაზე, ერთი მთავარი პაროლის გამოყენებით."
+msgstr "პაროლების გამარტივებული მართვა. მარტივად დაასინქრონეთ სხვადასხვა ვებსაიტის ანგარიშების მონაცემები ყველა თქვენს მოწყობილობაზე, ერთი მთავარი პაროლის გამოყენებით."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
 
