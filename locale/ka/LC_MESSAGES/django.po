@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 20:32+0000\n"
+"PO-Revision-Date: 2019-08-16 20:37+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3451,9 +3451,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "ჩანიშნული საიტების სურთების სახით წარმოდგენა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "განათავსეთ რჩეული საიტები ფილების სახით."
+msgstr "ისარგებლეთ სანიშნების გამოსახვით. განათავსეთ რჩეული საიტები ფილების სახით."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3516,27 +3515,24 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "თარგმნეთ მარტივად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "მონიშნეთ ტექსტი ნებისმიერ გვერდზე — ან მონიშნეთ მთლიანად გვერდი — მყისიერად თარგმნისთვის."
+msgstr "მარტივი თარგმნა. მონიშნეთ ტექსტი ნებისმიერ გვერდზე — ან მონიშნეთ მთლიანად გვერდი — მყისიერად თარგმნისთვის."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გამოიყენეთ სამეცნიერო მასალები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "მიიღეთ წვდომა 10 მილიონზე მეტ სამეცნიერო კვლევის მასალებზე."
+msgstr "აკადემიური სიბრძნე ერთი ხელის გაწვდენაზე. მიიღეთ წვდომა 10 მილიონზე მეტ სამეცნიერო კვლევის მასალაზე."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოირგეთ თაგვის ჟესტები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "აღმოაჩინეთ გვერდებზე გადაადგილების ახალი შესაძლებლობები 50-ზე მეტი გამოსადეგი ჟესტით, თაგვის გამოყენებით."
+msgstr "მოირგეთ თაგვის ჟესტები. აღმოაჩინეთ გვერდებზე გადაადგილების ახალი შესაძლებლობები 50-ზე მეტი გამოსადეგი თაგვის მოძრაობით."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3572,7 +3568,6 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "სურათების გადიდება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
 msgstr "უბრალოდ, გადაატარეთ მაჩვენებელი სურათის გასადიდებლად."
 
@@ -3605,9 +3600,8 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "დატოვეთ სუფთა „ციფრული კვალი“ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Firefox არ დაიტოვებს ვებსაიტის ისეთ მონაცემებს, როგორიცაა ფუნთუშები და სხვა ადგილობრივად შენახულ მასალები, გარდა, თქვენ მიერ მითითებული საიტების."
+msgstr "ნუ დატოვებთ კვალს. Firefox არ დაიმახსოვრებს ვებსაიტის ისეთ მონაცემებს, როგორიცაა ფუნთუშები და სხვა ადგილობრივად შენახულ მასალები, გარდა, თქვენ მიერ მითითებული საიტების."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
