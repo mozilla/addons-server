@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 20:06+0000\n"
+"PO-Revision-Date: 2019-08-16 20:27+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3373,9 +3373,8 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Nenechte se sledovat Facebookem {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Uzamkněte svou Facebookovou identitu do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
+msgstr "Nenechte se sledovat Facebookem. Izolujte svou Facebookovou identitu do samostatného „kontejneru“ a zabraňte tak Facebooku, aby vás sledoval po celém internetu."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4446,7 +4445,7 @@ msgstr "Bezpečně si ukládejte hesla a na známých webech se přihlašujte au
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "S jednoduchých blokováním reklam uvidíte jen skutečný obsah, který chcete."
+msgstr "Jednoduchý blokátor reklam, díky němuž uvidíte jen obsah, který vidět chcete."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
