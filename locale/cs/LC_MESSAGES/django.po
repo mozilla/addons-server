@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 19:43+0000\n"
+"PO-Revision-Date: 2019-08-16 20:06+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1663,16 +1663,16 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Nesprávný název URL. Doplněk nebyl smazán."
 
 msgid "Invitation accepted."
-msgstr "Pozvání bylo přijato."
+msgstr "Nabídka byla přijata."
 
 msgid "Invitation declined."
-msgstr "Pozvání bylo odmítnuto."
+msgstr "Nabídka byla odmítnuta."
 
 msgid "An author has been added to your add-on"
 msgstr "Autor byl k vašem doplňku přidán"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Nabídka autorství pro doplněk {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Na adresu {email} byl zaslán potvrzovací e-mail"
@@ -2896,7 +2896,7 @@ msgid "End-User License Agreement"
 msgstr "Licenční smlouva s koncovým uživatelem"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Upozorňujeme, že Licenční smlouva s koncovým uživatelem není totožná s licencí vztahující se na kód, jako je např. GPL nebo MPL. Je relevantní pouze pro ovedené doplňky."
 
 msgid "Privacy Policy"
 msgstr "Zásady ochrany osobních údajů"
