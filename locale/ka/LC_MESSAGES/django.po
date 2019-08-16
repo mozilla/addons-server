@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 22:11+0000\n"
+"PO-Revision-Date: 2019-08-16 22:35+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4135,9 +4135,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "ჩამოტვირთეთ YouTube ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "ჩამოტვირთეთ ვიდეოები ან ხმოვანი ფაილები."
+msgstr "ჩამოტვირთეთ YouTube-ვიდეოები ან ხმოვანი ფაილები."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4161,7 +4160,7 @@ msgstr "ტელეფონის მსგავსი გადაადგ�
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "გვერდებზე გადაადგილება ტელეფონის მსგავსად, კომპიუტერზე. „ჩავლებით გადატანის“ შესაძლებლობები, თაგვის მოძრაობით."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4177,16 +4176,15 @@ msgstr "გამოყავით ტექსტი {start_sub_heading}{addon
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "ტექსტების მონიშვნა ვებგვერდებზე, გადასანახად და მოგვიანებით წვდომისთვის."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ისიამოვნეთ მუსიკით მთელი მსოფლიოდან {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "წვდომა 30,000-ზე მეტ რადიოსადგურთან მთელ მსოფლიოში."
+msgstr "ისიამოვნეთ მუსიკითა და 30,000-ზე მეტი რადიოსადგურთან წვდომით, მთელი მსოფლიოდან."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4209,18 +4207,16 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "უსაფრთხოდ ეწვიეთ გვერდებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "გამოიყენეთ ვებსაიტის უსაფრთხო ვერსია, როცა ხელმისაწვდომია."
+msgstr "გამოიყენეთ ვებსაიტის უსაფრთხო ვერსია, როცა კი ხელმისაწვდომია."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "წაშალეთ მონახულებული გვერდების ისტორია {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "მიუთითეთ, რამდენი დღით გსურთ ისტორიის შენარჩუნება, ავტომატურ გასუფთავებამდე."
+msgstr "წაშალეთ მონახულებული გვერდების მონაცემები. მიუთითეთ, რამდენი დღით გსურთ ისტორიის შენარჩუნება, ავტომატურ გასუფთავებამდე."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4243,9 +4239,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "შეავსეთ ველები ავტომატურად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "შეინახეთ ერთხელ შეტანილი მონაცემები და მომავალში თვითონვე შეივსება."
+msgstr "ისარგებლეთ ველების თვითშევსებით. შეინახეთ ერთხელ შეტანილი მონაცემები და მომავალში თვითონვე შეივსება."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4253,23 +4248,21 @@ msgstr "მოინახულეთ გვერდები პირად�
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "მოიძიეთ უსაფრთხოდ ერთი დაწკაპებით."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "თავი დაიცავით ჩანართების მიტაცებისგან {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "ნუ მისცემთ უფლება ბმულებს მათზე დაწკაპებისას დაიწყოს მიმდინარე ჩანართის მართვა და ჩატვირთოს ის შიგთავსი, რომელიც არ მოგითხოვიათ."
+msgstr "აკრძალეთ ჩანართების მიტაცება. ნუ მისცემთ უფლება ბმულებს მათზე დაწკაპებისას დაიწყოს მიმდინარე ჩანართის მართვა და ჩატვირთოს ის შიგთავსი, რომელიც არ მოგითხოვიათ."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მიიღეთ მარტივი წვდომა ვიკიპედიაზე {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr "დაიწყეთ ძიება ვიკიპედიაში მყისიერად, ნებისმიერ საიტზე ტექსტის მონიშვნითა და მარჯვენა დაწკაპებით."
 
@@ -4294,16 +4287,15 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "სწრაფი ძიება Amazon-ში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "შესაძენი საქონლის სხვა ინტერნეტ-მაღაზიებში თვალიერებისას, თუ იგი Amazon მაღაზიაშიცაა ხელმისაწვდომი, მარტივი დაწკაპებით შეგეძლებათ იხილოთ Amazon-ის ჩამონათვალში."
+msgstr ""
+"მიიღეთ მეტი სარგებელი Amazon-ისგან. შესაძენი საქონლის სხვა ინტერნეტ-მაღაზიებში თვალიერებისას, თუ იგი Amazon მაღაზიაშიცაა ხელმისაწვდომი, მარტივი დაწკაპებით შეგეძლებათ იხილოთ Amazon-ის ჩამონათვალში."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ჩანართების გაუმჯობესებული მართვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "უამრავი დამატებითი შესაძლებლობა ჩანართების მართვისას — ერთნაირი ჩანართების დახურვა, ფანჯრების გაერთიანება, ჩანართის დასახელების ასლის აღება და ა. შ."
 
@@ -4312,9 +4304,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "გაერთეთ უცნაური ამბების გაცნობით {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "ვიკიპედიიდან შემთხვევით შერჩეული სტატიის გამოტანა ახალი ჩანართის ყოველი გახსნისას."
+msgstr "ისიამოვნეთ უცნაური განათლებით. ვიკიპედიიდან შემთხვევით შერჩეული სტატიის გამოტანა ახალი ჩანართის ყოველი გახსნისას."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4345,9 +4336,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ძიება Firefox-ში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "მარტივი წვდომა გახსნილ ჩანართებთან, სანიშნებსა და ისტორიასთან."
+msgstr "მარტივი წვდომა Firefox-ში გახსნილ ჩანართებთან, სანიშნებსა და ისტორიასთან."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
