@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 22:35+0000\n"
+"PO-Revision-Date: 2019-08-16 22:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4393,25 +4393,23 @@ msgstr "Amazon-ის ფასების ისტორიისთვის
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "თვალი მიადევნეთ Amazon-ის ფასების ისტორიას. მიიღეთ შესყიდვის მართებული გადაწყვეტილებები."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "შეიძინეთ სასურველი საქონელი უსაფრთხოდ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "დამატებითი გადამოწმება, რომ მაღაზიის გვერდი რომელსაც ეწვიეთ არის დაცული, სანდო და საიმედო."
+msgstr "შეიძინეთ უსაფრთხოდ. დამატებითი გადამოწმება, რომ მაღაზიის გვერდი რომელსაც ეწვიეთ არის დაცული, სანდო და საიმედო."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "თვალი ადევნეთ შრომის ნაყოფიერებას {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთ ცალკეულ პროგრამებთან მუშაობის დრო, როგორციაა Trello, JIRA, Basecamp, GitHub და ა. შ."
+msgstr "თვალი ადევნეთ მუშაობის შედეგიანობას. გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთი ცალკეული პროგრამებით სარგებლობის დრო, როგორციაა Trello, JIRA, Basecamp, GitHub და ა. შ."
 
 #. editorial content for the discovery pane.
 #, fuzzy
