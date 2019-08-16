@@ -76,22 +76,22 @@ class TestClearOldLastLoginIp(TestCase):
     def test_basic(self):
         # Old but not deleted
         old_date = self.days_ago(366)
-        user1 = user_factory(last_login_ip='127.0.0.1')
-        user1.update(modified=old_date)
+        user1 = user_factory(last_login_ip='127.0.0.1', banned=old_date)
 
         # Deleted but recent
-        user2 = user_factory(last_login_ip='127.0.0.1', deleted=True)
+        user2 = user_factory(
+            last_login_ip='127.0.0.1', deleted=True, banned=self.days_ago(1))
 
         # Deleted and old: last_login_ip must be cleared.
-        user3 = user_factory(last_login_ip='127.0.0.1', deleted=True)
-        user3.update(modified=old_date)
+        user3 = user_factory(
+            last_login_ip='127.0.0.1', deleted=True, banned=old_date)
 
         call_command('clear_old_last_login_ip')
 
         user1.reload()
         assert user1.last_login_ip == '127.0.0.1'
         assert user1.deleted is False
-        assert user1.modified == old_date
+        assert user1.banned == old_date
 
         user2.reload()
         assert user2.last_login_ip == '127.0.0.1'
@@ -100,4 +100,4 @@ class TestClearOldLastLoginIp(TestCase):
         user3.reload()
         assert user3.last_login_ip == ''
         assert user3.deleted is True
-        assert user3.modified == old_date
+        assert user3.banned == old_date

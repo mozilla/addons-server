@@ -36,8 +36,12 @@ class GroupUserInline(admin.TabularInline):
 class UserRestrictionHistoryInline(admin.TabularInline):
     model = UserRestrictionHistory
     raw_id_fields = ('user',)
+    readonly_fields = ('restriction', 'ip_address', 'user',
+                       'last_login_ip', 'created')
     extra = 0
     can_delete = False
+    view_on_site = False
+    verbose_name_plural = _('User Restriction History')
 
     def has_add_permission(self, request, obj):
         return False
@@ -52,7 +56,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     inlines = (GroupUserInline, UserRestrictionHistoryInline)
     show_full_result_count = False  # Turn off to avoid the query.
 
-    readonly_fields = ('id', 'picture_img', 'deleted', 'is_public',
+    readonly_fields = ('id', 'picture_img', 'banned', 'deleted', 'is_public',
                        'last_login', 'last_login_ip', 'known_ip_adresses',
                        'last_known_activity_time', 'ratings_created',
                        'collections_created', 'addons_created', 'activity',
@@ -77,7 +81,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         }),
         ('Admin', {
             'fields': ('last_login', 'last_known_activity_time', 'activity',
-                       'last_login_ip', 'known_ip_adresses', 'notes', ),
+                       'last_login_ip', 'known_ip_adresses', 'banned', 'notes')
         }),
     )
 

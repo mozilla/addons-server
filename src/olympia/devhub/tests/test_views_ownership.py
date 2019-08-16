@@ -330,6 +330,54 @@ class TestEditAuthor(TestOwnership):
         assert invitation_url in author_confirmation_email.body
         assert settings.DOMAIN in author_confirmation_email.body
 
+    def test_cant_add_if_display_name_is_none(self):
+        regular = UserProfile.objects.get(email='regular@mozilla.com')
+        regular.update(display_name=None)
+        additional_data = formset(
+            {
+                'user': 'regular@mozilla.com',
+                'role': amo.AUTHOR_ROLE_DEV,
+                'listed': True
+            },
+            prefix='authors_pending_confirmation',
+            total_count=1,
+            initial_count=0)
+        data = self.build_form_data(additional_data)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['authors_pending_confirmation_form']
+        assert not form.is_valid()
+        assert form.errors == [
+            {
+                'user': ['The account needs a display name before it can be '
+                         'added as an author.']
+            }
+        ]
+
+    def test_cant_add_if_display_name_is_not_ok_for_a_developer(self):
+        regular = UserProfile.objects.get(email='regular@mozilla.com')
+        regular.update(display_name='1')
+        additional_data = formset(
+            {
+                'user': 'regular@mozilla.com',
+                'role': amo.AUTHOR_ROLE_DEV,
+                'listed': True
+            },
+            prefix='authors_pending_confirmation',
+            total_count=1,
+            initial_count=0)
+        data = self.build_form_data(additional_data)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['authors_pending_confirmation_form']
+        assert not form.is_valid()
+        assert form.errors == [
+            {
+                'user': ['The account needs a display name before it can be '
+                         'added as an author.']
+            }
+        ]
+
     def test_impossible_to_add_to_authors_directly(self):
         additional_data = formset(
             {

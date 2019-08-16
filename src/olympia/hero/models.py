@@ -17,6 +17,12 @@ GRADIENT_CHOICES = (
     ('#712290', 'PURPLE70'),
     ('#582ACB', 'VIOLET70'),
 )
+FEATURED_IMAGE_PATH = os.path.join(
+    settings.ROOT, 'static', 'img', 'hero', 'featured')
+MODULE_ICON_PATH = os.path.join(
+    settings.ROOT, 'static', 'img', 'hero', 'icons')
+FEATURED_IMAGE_URL = f'{settings.STATIC_URL}img/hero/featured/'
+MODULE_ICON_URL = f'{settings.STATIC_URL}img/hero/icons/'
 
 
 class GradientChoiceWidget(RadioSelect):
@@ -35,19 +41,26 @@ class GradientChoiceWidget(RadioSelect):
 class ImageChoiceWidget(RadioSelect):
     option_template_name = 'hero/image_option.html'
     option_inherits_attrs = True
+    image_url_base = FEATURED_IMAGE_URL
 
     def create_option(self, name, value, label, selected, index,
                       subindex=None, attrs=None):
-        attrs['image_url'] = f'{settings.STATIC_URL}img/hero/featured/{value}'
+        attrs['image_url'] = f'{self.image_url_base}{value}'
         return super().create_option(
             name=name, value=value, label=label, selected=selected,
             index=index, subindex=subindex, attrs=attrs)
 
 
-class FeaturedImageChoices:
+class IconChoiceWidget(ImageChoiceWidget):
+    image_url_base = MODULE_ICON_URL
+
+
+class DirImageChoices:
+    def __init__(self, path):
+        self.path = path
+
     def __iter__(self):
-        path = os.path.join(settings.ROOT, 'static', 'img', 'hero', 'featured')
-        self.os_iter = os.scandir(path)
+        self.os_iter = os.scandir(self.path)
         return self
 
     def __next__(self):
@@ -68,7 +81,7 @@ class WidgetCharField(models.CharField):
 
 class PrimaryHero(ModelBase):
     image = WidgetCharField(
-        choices=FeaturedImageChoices(),
+        choices=DirImageChoices(path=FEATURED_IMAGE_PATH),
         max_length=255, widget=ImageChoiceWidget)
     gradient_color = WidgetCharField(
         choices=GRADIENT_CHOICES, max_length=7, widget=GradientChoiceWidget)
@@ -81,8 +94,8 @@ class PrimaryHero(ModelBase):
         return str(self.disco_addon)
 
     @property
-    def image_path(self):
-        return f'{settings.STATIC_URL}img/hero/featured/{self.image}'
+    def image_url(self):
+        return f'{FEATURED_IMAGE_URL}{self.image}'
 
     @property
     def gradient(self):
@@ -103,7 +116,18 @@ class PrimaryHero(ModelBase):
                     'primary shelves.')
 
 
-class SecondaryHero(ModelBase):
+class CTACheckMixin():
+
+    def clean(self):
+        super().clean()
+        both_or_neither = not (bool(self.cta_text) ^ bool(self.cta_url))
+        if getattr(self, 'enabled', True) and not both_or_neither:
+            raise ValidationError(
+                'Both the call to action URL and text must be defined, or '
+                'neither, for enabled shelves.')
+
+
+class SecondaryHero(CTACheckMixin, ModelBase):
     headline = models.CharField(max_length=50, blank=False)
     description = models.CharField(max_length=100, blank=False)
     cta_url = models.CharField(max_length=255, blank=True)
@@ -113,9 +137,22 @@ class SecondaryHero(ModelBase):
     def __str__(self):
         return str(self.headline)
 
-    def clean(self):
-        both_or_neither = not (bool(self.cta_text) ^ bool(self.cta_url))
-        if self.enabled and not both_or_neither:
-            raise ValidationError(
-                'Both the call to action URL and text must be defined, or '
-                'neither, for enabled shelves.')
+
+class SecondaryHeroModule(CTACheckMixin, ModelBase):
+    icon = WidgetCharField(
+        choices=DirImageChoices(path=MODULE_ICON_PATH),
+        max_length=255, widget=IconChoiceWidget)
+    description = models.CharField(max_length=50, blank=False)
+    cta_url = models.CharField(max_length=255, blank=True)
+    cta_text = models.CharField(max_length=20, blank=True)
+    shelf = models.ForeignKey(
+        SecondaryHero, on_delete=models.CASCADE,
+        related_name='modules'
+    )
+
+    def __str__(self):
+        return str(self.description)
+
+    @property
+    def icon_url(self):
+        return f'{MODULE_ICON_URL}{self.icon}'

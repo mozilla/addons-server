@@ -2,7 +2,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.discovery.models import DiscoveryItem
 
-from ..models import PrimaryHero, SecondaryHero
+from ..models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 from ..serializers import (
     PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
 
@@ -96,15 +96,22 @@ class TestSecondaryHeroShelfViewSet(TestCase):
         SecondaryHero.objects.create(
             headline='dfdfd!',
             description='dfdfd')
+        SecondaryHeroModule.objects.create(shelf=hero_a)
+        SecondaryHeroModule.objects.create(shelf=hero_a)
+        SecondaryHeroModule.objects.create(shelf=hero_a)
 
-        # The shelf isn't enabled so still won't show up
+        # The shelves aren't enabled so won't show up.
         response = self.client.get(self.url)
         assert response.json() == {'results': []}
 
         hero_a.update(enabled=True)
         hero_b.update(enabled=True)
         # don't enable the 3rd PrimaryHero object
-        response = self.client.get(self.url)
+        with self.assertNumQueries(2):
+            # 2 queries:
+            # - 1 to fetch all SecondaryHero results
+            # - 1 to fetch all the SecondaryHeroModules
+            response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json() == {
             'results': [
@@ -123,11 +130,14 @@ class TestHeroShelvesView(TestCase):
         shero = SecondaryHero.objects.create(
             headline='headline', description='description',
             enabled=True)
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
 
-        with self.assertNumQueries(12):
-            # 12 queries:
-            # first 11 as TestPrimaryHeroShelfViewSet.test_basic above
-            # + 1 to fetch SecondaryHero result
+        with self.assertNumQueries(13):
+            # 13 queries:
+            # - 11 as TestPrimaryHeroShelfViewSet.test_basic above
+            # - 2 as TestSecondaryHeroShelfViewSet.test_basic above
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {
