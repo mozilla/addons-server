@@ -39,6 +39,7 @@ small number of shelves this endpoint is not paginated.
 .. http:get:: /api/v4/hero/primary/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean all: return all shelves - both enabled and disabled.  To be used internally to generate .po files containing the strings defined by the content team.
     :>json array results: The array containing the results for this query.
     :>json object results[].gradient: The background colors used for the gradient.
     :>json string results[].gradient.start: The starting color for gradient - typically top or left.
@@ -61,6 +62,8 @@ small number of shelves - and likely only one - this endpoint is not paginated.
 
 .. http:get:: /api/v4/hero/secondary/
 
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean all: return all shelves - both enabled and disabled.  To be used internally to generate .po files containing the strings defined by the content team.
     :>json array results: The array containing the results for this query.
     :>json string results[].headline: The headline for this item.
     :>json string results[].description: The description for this item.
