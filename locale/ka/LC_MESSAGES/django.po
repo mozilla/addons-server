@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 22:50+0000\n"
+"PO-Revision-Date: 2019-08-16 23:31+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4412,18 +4412,16 @@ msgid "Track productivity. Measure the amount of time you spend on the computer,
 msgstr "თვალი ადევნეთ მუშაობის შედეგიანობას. გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთი ცალკეული პროგრამებით სარგებლობის დრო, როგორციაა Trello, JIRA, Basecamp, GitHub და ა. შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "შეაგროვეთ და გადაინახეთ სტატიები, ვიდეოები, სურათები და ა.შ სამომავლო გამოყენებისთვის ცალკეული პროექტების შესამუშავებლად ან გუნდური მუშაობის დროს."
+msgstr "გადაინახეთ სასურველი მასალა. შეაგროვეთ სტატიები, ვიდეოები, სურათები და ა. შ. სამომავლო გამოყენებისთვის ცალკეული პროექტების შესამუშავებლად ან გუნდური სამუშაოსთვის."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "უსაფრთხოდ მოინახულეთ გვერდები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "მხოლოდ იმ საიტების შიგთავსის დაშვება, რომელთაც ენდობით."
+msgstr "მხოლოდ იმ საიტების შიგთავსის დაშვება, რომელთაც ენდობით. მოინახულეთ გვერდები უსაფრთხოდ."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4463,7 +4461,7 @@ msgstr "გამაღიზიანებელი გადაფარვ�
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "მოაცილეთ მომაბეზრებელი ამომხტომი ფანჯრები ერთი დაწკაპებით."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4498,18 +4496,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გაასწორეთ შემაწუხებელი ხმები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "ვებსაიტზე არსებული ხმა ზედმეტად დაბალია? ან ხმამაღალია? SoundFixer დაგეხმარებათ გამოსწორებაში."
+msgstr "გაასწორეთ გამაღიზიანებელი ხმები. ვებსაიტზე არსებული ხმა ზედმეტად დაბალია? ან ხმამაღალია? SoundFixer დაგეხმარებათ მოგვარებაში."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ჩასწორება ამობეჭდვამდე {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "შეიტანეთ განსაკუთრებული ცვლილებები — მოაცილეთ რეკლამები და არასასურველი შიგთავსი — ნებისმიერი ვებგვერდიდან, რომლის ამობეჭდვასაც აპირებთ."
+msgstr "ჩაასწორეთ გვერდები ამობეჭდვამდე. შეიტანეთ განსაკუთრებული ცვლილებები — მოაცილეთ რეკლამები და არასასურველი შიგთავსი — ნებისმიერი ვებგვერდიდან, რომლის ამობეჭდვასაც აპირებთ."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4517,7 +4513,7 @@ msgstr "თვალი ადევნეთ Amazon მაღაზიის �
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "თვალი ადევნეთ Amazon-ის ფასების ისტორიას. მიიღეთ ჭკვიანური გადაწყვეტილებები შეძენისას, Amazon-ზე არსებული სასურველი ნივთების ფასების ცვლილებების შესახებ ცნობების გაცნობით."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4540,7 +4536,6 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "დამალეთ კვალი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr "მოიძიეთ მეტად უსაფრთხოდ მეთვალყურეების შეზღუდვით, ჭკვიანური დაშიფვრით, დაცული ძიებითა და სხვა საშუალებებით."
 
@@ -4549,9 +4544,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოსახერხებელი ჩანართები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "განალაგეთ გახსნილი ჩანართები შვეულად, გვერდით ზოლზე."
+msgstr "გამარტივებული ჩანართები. განალაგეთ გახსნილი ჩანართები შვეულად, გვერდით ზოლზე."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4566,7 +4560,6 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "იხილეთ სრული ზომით {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr "თაგვის ერთი დაწკაპებით შეგიძლიათ უყუროთ ვიდეოებს სრულ ეკრანზე."
 
@@ -4591,9 +4584,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "მარტივად გადაწყვიტეთ გაუგებრობები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "ჭკვიანი გაფართოება, რომელიც დაგეხმარებათ სწრაფად გაარკვიოთ რას ეთანხმებით და რას არა."
+msgstr "მარტივად გაიარეთ უაზრო ხელშეკრულებები. ჭკვიანი გაფართოება, რომელიც დაგეხმარებათ სწრაფად გაარკვიოთ რას ეთანხმებით და რას არა."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
