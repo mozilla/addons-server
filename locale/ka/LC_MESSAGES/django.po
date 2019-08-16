@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 21:10+0000\n"
+"PO-Revision-Date: 2019-08-16 21:48+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3779,9 +3779,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "ჩამოტვირთვების მძლავრი მართვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "იხილეთ ჩამოტვირთვების მიმდინარეობა მდგომარეობის ზოლზე, ჩამოტვირთეთ ისტორიის გვერდი და ა. შ."
+msgstr "გააუმჯობესეთ ჩამოტვირთვების მართვა. იხილეთ ჩამოტვირთვების მიმდინარეობა მდგომარეობის ზოლზე, ჩამოტვირთეთ ისტორიის გვერდი და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3796,9 +3795,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "ძიებისას თვალის დევნებისგან დაცვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "შეზღუდეთ მეთვალყურეები Google და Yandex საძიებოებზე გადასვლისას."
+msgstr "შეზღუდეთ სარეკლამო მეთვალყურეები Google და Yandex საძიებოებზე გადასვლისას."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3813,9 +3811,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "სურათების დამატება ძიების შედეგებზე {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "იხილეთ სურათები, შედეგების გვერდით."
+msgstr "იხილეთ საიტების გამოსახულებები, მოძიებული შედეგების გვერდით."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
