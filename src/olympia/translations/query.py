@@ -41,6 +41,7 @@ def order_by_translation(qs, fieldname, model=None):
     # INNER JOINs)
     qs.query = qs.query.clone()
     qs.query.__class__ = TranslationQuery
+    qs.query.fallback_model = model
     t1 = qs.query.join(
         Join(field.remote_field.model._meta.db_table, model._meta.db_table,
              None, LOUTER, field, True),
@@ -99,8 +100,9 @@ class SQLCompiler(compiler.SQLCompiler):
 
         # fallback could be a string locale or a model field.
         params.append(translation_utils.get_language())
-        if hasattr(self.query.model, 'get_fallback'):
-            fallback = self.query.model.get_fallback()
+        model = getattr(self.query, 'fallback_model', self.query.model)
+        if hasattr(model, 'get_fallback'):
+            fallback = model.get_fallback()
         else:
             fallback = settings.LANGUAGE_CODE
         if not isinstance(fallback, models.Field):
@@ -110,15 +112,15 @@ class SQLCompiler(compiler.SQLCompiler):
         # Django had in query.tables, but that seems to be ok.
         for field, aliases in self.query.translation_aliases.items():
             t1, t2 = aliases
-            joins.append(self.join_with_locale(t1, None, old_map))
-            joins.append(self.join_with_locale(t2, fallback, old_map))
+            joins.append(self.join_with_locale(t1, None, old_map, model))
+            joins.append(self.join_with_locale(t2, fallback, old_map, model))
 
         if old_tables:
             self.query.tables = old_tables
         self.query.alias_map = old_map
         return joins, params
 
-    def join_with_locale(self, alias, fallback, alias_map):
+    def join_with_locale(self, alias, fallback, alias_map, model):
         # This is all lifted from the real sql.compiler.get_from_clause(),
         # except for the extra AND clause.  Fun project: fix Django to use Q
         # objects here instead of a bunch of strings.
@@ -132,7 +134,7 @@ class SQLCompiler(compiler.SQLCompiler):
             else ' %s' % join.table_alias)
 
         if isinstance(fallback, models.Field):
-            fallback_str = '%s.%s' % (qn(self.query.model._meta.db_table),
+            fallback_str = '%s.%s' % (qn(model._meta.db_table),
                                       qn(fallback.column))
         else:
             fallback_str = '%s'
