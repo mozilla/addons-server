@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 19:25+0000\n"
+"PO-Revision-Date: 2019-08-16 19:43+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1678,7 +1678,7 @@ msgid "A confirmation email has been sent to {email}"
 msgstr "Na adresu {email} byl zaslán potvrzovací e-mail"
 
 msgid "An author role has been changed on your add-on"
-msgstr "Autor byl u vašeho doplňku změněn"
+msgstr "Autorská role byla u vašeho doplňku změněna"
 
 msgid "An author has been removed from your add-on"
 msgstr "Autor byl u vašeho doplňku odebrán"
@@ -2012,13 +2012,13 @@ msgid "Authors"
 msgstr "Autoři"
 
 msgid "About author roles"
-msgstr "O uživatelských rolích"
+msgstr "O autorských rolích"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Autoři, u nichž se čeká na potvrzení"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autoři, kteří byli k tomuto doplňku přidáni, ale nepotvrdili se."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2895,9 +2895,8 @@ msgstr[2] "Zvolte <b>až {0}</b> kategorií pro aplikaci {1}, v které bude dopl
 msgid "End-User License Agreement"
 msgstr "Licenční smlouva s koncovým uživatelem"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Vyberte prosím vhodnou licenci vzhledem k právům, která chcete poskytnout ke svému zdrojovému kódu. Relevantní pouze pro zveřejněné doplňky."
+msgstr ""
 
 msgid "Privacy Policy"
 msgstr "Zásady ochrany osobních údajů"
