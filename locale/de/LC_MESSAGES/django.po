@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 17:13+0000\n"
+"PO-Revision-Date: 2019-08-16 17:14+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4723,9 +4723,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Verfolgen Sie Produktpreise {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Lassen Sie sich benachrichtigen, wenn die Preise auf Artikel fallen, die Sie bei Amazon, Best Buy, eBay, Home Depot und Walmart interessieren."
+msgstr "Verfolgen Sie Produkte und lassen Sie sich benachrichtigen, wenn die Preise auf Artikel fallen, die Sie bei Amazon, Best Buy, eBay, Home Depot und Walmart interessieren."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4733,7 +4732,7 @@ msgstr "Dunkeln Sie das Web ab {start_sub_heading}mit {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Dunkeln Sie das Web ab oder wählen Sie ein benutzerdefiniertes Farbschema, um das Internet visuell an Ihren Geschmack anzupassen."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6341,9 +6340,8 @@ msgstr "Sind Sie sicher, dass Sie alle <b>{0}</b> Übersetzungen entfernen möch
 msgid "Delete Locale"
 msgstr "Sprache löschen"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Chronik der Überprüfungen schließen"
+msgstr "Verlauf der Benutzereinschränkungen"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
