@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 20:27+0000\n"
+"PO-Revision-Date: 2019-08-16 20:44+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3356,9 +3356,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} blokuje reklamy a chrání vaše soukromí"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Nastavení zobrazovaných reklam a sledování na internetu nikdy nebylo tak jednoduché."
+msgstr "Blokování reklam a ochrana soukromí. Jednoduché nastavení vám umožní převzít kontrolu nad reklamami a nad tím, jak jste na internetu sledováni."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3381,9 +3380,8 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} zjednoduší vyhledávání"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Vyberte text na jakékoliv stránce a nechte ho vyhledat jako výraz v jakémkoliv vyhledávači."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3451,7 +3449,7 @@ msgstr "Vylepšete videa {start_sub_heading}pomocí {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Užijte si širokou paletu nových funkcí na YouTube, režim kina, blokování reklam, ovládání automatického přehrávání a další."
+msgstr "Užijte si sadu nových funkcí pro YouTube, jako je režim kino, blokování reklam, ovládání automatického přehrávání a mnoho dalšího."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
