@@ -330,12 +330,16 @@ def recreate_theme_previews(addon_ids, **kw):
 
 @task
 @use_primary_db
-def delete_addons(addon_ids, **kw):
-    log.info('[%s@%s] Deleting addons starting at id: %s...'
-             % (len(addon_ids), delete_addons.rate_limit, addon_ids[0]))
-    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
-    for addon in addons:
-        addon.delete(send_delete_email=False)
+def delete_addons(addon_ids, with_deleted=False, **kw):
+    log.info('[%s@%s] %sDeleting addons starting at id: %s...'
+             % ('Hard ' if with_deleted else '', len(addon_ids),
+                delete_addons.rate_limit, addon_ids[0]))
+    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
+    if with_deleted:
+        addons.delete()
+    else:
+        for addon in addons:
+            addon.delete(send_delete_email=False)
 
 
 @task
