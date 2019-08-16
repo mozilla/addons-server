@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 20:32+0000\n"
+"PO-Revision-Date: 2019-08-16 20:41+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1501,9 +1501,8 @@ msgstr "Antes de alterar o idioma padrão você deve ter um nome, resumo e descr
 msgid "Users can not be added directly"
 msgstr "Usuários não podem se adicionados diretamente"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Um autor pode ser listado somente uma vez."
+msgstr "Um autor só pode ser listado uma vez."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "A conta precisa de um nome de exibição antes de poder ser adicionada como um autor."
@@ -1690,14 +1689,12 @@ msgid "An author has been added to your add-on"
 msgstr "Foi adicionado um autor a sua extensão"
 
 # {addon} is an add-on name.
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Contribuições para {addon}."
+msgstr "Convite de autor de {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Um e-mail de confirmação foi enviado para {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
 msgstr "Foi alterado o papel de um autor da sua extensão"
 
@@ -2944,9 +2941,8 @@ msgstr[1] "Selecione <b>até {0}</b> categorias do {1} para esta extensão:"
 msgid "End-User License Agreement"
 msgstr "Acordo de Licença"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Por favor escolha uma licença apropriada para o seu código fonte. Isto é relevante apenas para complementos listados."
+msgstr "Note que uma licença de concordância do usuário final (EULA) não é o mesmo que uma licença de código, como GPL ou MPL. Só é relevante para extensões listadas."
 
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
@@ -3420,9 +3416,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Bloqueie anúncios e proteja sua privacidade {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Uma configuração simples permite que você obtenha controle sobre os anúncios exibidos e como você é rastreado na internet."
+msgstr "Bloqueio de anúncios e proteção de privacidade. Uma simples configuração permite assumir o controle sobre os anúncios que você vê e como você é rastreado na internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4592,7 +4587,7 @@ msgstr "Feche as sobreposições irritantes {start_sub_heading}com {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Feche pop-ups irritantes com um único clique."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4734,7 +4729,7 @@ msgstr "Melhore sua experiência de leitura {start_sub_heading}com {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Leia com mais facilidade e clareza. Remova a desordem em torno do texto em páginas web."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
