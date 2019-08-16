@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 17:50+0000\n"
+"PO-Revision-Date: 2019-08-16 18:04+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2210,7 +2210,7 @@ msgid "Upload a Custom Icon..."
 msgstr "అభిమత ప్రతీకాన్ని ఎక్కించండి..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG, JPG లకు కోడ్పాటు ఉంది."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
@@ -2234,7 +2234,7 @@ msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size 
 msgstr ""
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "కనిష్ఠ పరిమాణం 1000x750, 4:3 నిష్పత్తి అవసరం."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
