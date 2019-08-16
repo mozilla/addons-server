@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 22:19+0000\n"
+"PO-Revision-Date: 2019-08-16 22:38+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3429,7 +3429,7 @@ msgstr "Spravujte svá hesla {start_sub_heading}pomocí {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Zjednodušená správa hesel. Synchronizace přihlašovacích údajů napříč zařízeními prostřednictvím společného hesla."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
