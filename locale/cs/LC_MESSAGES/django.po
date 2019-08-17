@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 17:11+0000\n"
+"PO-Revision-Date: 2019-08-17 17:21+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4023,16 +4023,15 @@ msgstr "Upravte si své soukromí {start_sub_heading}pomocí {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Přímá cesta k přizpůsobení si vestavěných nastavení ochrany soukromí ve Firefoxu."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Okamžité překlady {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Nechte si v mžiku přeložit vybraný text kliknutím na kontextové tlačítko."
+msgstr "Získejte okamžitý překlad tak, že označíte text a klepnete na objevivší se tlačítko."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4047,9 +4046,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp ve Firefoxu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Přistupujte k aplikaci WhatsApp z nástrojové lišty Firefoxu a podle symbolu na tlačítku poznejte, jestli máte nepřečtená vlákna."
+msgstr "WhatsApp ve Firefoxu. Přistupujte k aplikaci WhatsApp z nástrojové lišty Firefoxu a podle symbolu na tlačítku poznejte, jestli máte nepřečtená vlákna."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4064,9 +4062,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Vytvořte si seznam pro blokování stránek {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Omezte Firefoxu přístup k webům, které mu určíte."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
