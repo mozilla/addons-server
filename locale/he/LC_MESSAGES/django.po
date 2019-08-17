@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 19:12+0000\n"
+"PO-Revision-Date: 2019-08-17 19:31+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -58,7 +58,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "סימון הדיווחים על שימוש לרעה שנבחרו כחשודים"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "נא לוודא ששדה זה לא כולל יותר מ־{max_length} תווים."
 
 msgid "Modified on:"
 msgstr "נערך ב:"
@@ -1488,7 +1488,7 @@ msgid "An author can only be present once."
 msgstr "יוצר יכול להופיע רק פעם אחת."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "החשבון זקוק לשם תצוגה לפני שניתן יהיה להוסיף אותו כיוצר."
 
 msgid "Must have at least one owner."
 msgstr "חייב להיות בבעלות של מישהו."
@@ -1662,10 +1662,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "שם הכתובת היה שגוי. התוספת לא נמחקה."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "ההזמנה אושרה."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "ההזמנה נדחתה."
 
 msgid "An author has been added to your add-on"
 msgstr "נוסף יוצר לתוספת שלך"
@@ -1674,7 +1674,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "הזמנת יוצר עבור {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "הודעת דוא״ל לאישור נשלחה אל {email}"
 
 msgid "An author role has been changed on your add-on"
 msgstr "התפקיד של אחד היוצרים השתנה בתוספת שלך"
@@ -1799,7 +1799,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "קראתי והסכם זה מקובל עלי לרבות הכללים והמדיניות"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "החשבון שלך זקוק שם לתצוגה כך שמשתמשים ידעו ממי התוספת שלך מגיעה. נא להזין אחד למטה."
 
 msgid "Accept"
 msgstr "הסכמה"
@@ -1992,7 +1992,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "התצוגה המקדימה עדיין נוצרת - נא לחזור בהמשך או לרענן את העמוד."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "הוזמנת להיות יוצר של {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr ""
@@ -2880,7 +2880,7 @@ msgid "End-User License Agreement"
 msgstr "הסכם רישיון למשתמש קצה"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "נא לשים לב ש־EULA (הסכם רישיון למשתמש קצה) אינו זהה לרישיון קוד, כמו GPL או MPL. תקף רק לתוספות מוצגות."
+msgstr "נא לשים לב כי EULA (הסכם רישיון למשתמש קצה) אינו זהה לרישיון קוד, כמו GPL או MPL. תקף רק לתוספות מוצגות."
 
 msgid "Privacy Policy"
 msgstr "מדיניות פרטיות"
@@ -4252,9 +4252,8 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "גלישה באופן בטוח {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "ניווט לגרסה המאובטחת של אתר, אם קיימת אחת כזאת."
+msgstr "ניווט אוטומטי לגרסה מאובטחת של אתר, אם קיימת אחת כזאת."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4286,9 +4285,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "מילוי טפסים באופן אוטומטי {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "שמירת נתונים שהוכנסו פעם אחת לצורך מילוי אוטומטי בפעם הבאה."
+msgstr "מילוי טפסים באופן אוטומטי. שמירת נתונים שהוכנסו פעם אחת לצורך מילוי אוטומטי בפעם הבאה."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4304,9 +4302,8 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "לא לאפשר לקישורים עליהם לחצת להשתלט על הלשונית הנוכחית שלך ולטעון תוכן שלא ביקשת."
+msgstr "לשים סוף לחטיפת לשוניות. לא לאפשר לקישורים עליהם לחצת להשתלט על הלשונית הנוכחית שלך ולטעון תוכן שלא ביקשת."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4314,7 +4311,7 @@ msgstr "גישה פשוטה לויקיפדיה {start_sub_heading}עם {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "ביצוע חיפוש בויקיפדיה על־ידי סימון טקסט בכל דף אינטרנט ולחיצה ימנית."
+msgstr "ביצוע חיפוש בויקיפדיה בקלות על־ידי סימון טקסט בכל דף אינטרנט ולחיצה ימנית."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4348,9 +4345,8 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "אפשרויות רבות של שליטה על לשוניות — סגירת לשוניות כפולות, מיזוג חלונות, העתקת כותרת הלשונית ועוד."
+msgstr "להנות משליטה על לשוניות — סגירת לשוניות כפולות, מיזוג חלונות, העתקת כותרת הלשונית ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4358,9 +4354,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "טעינת מאמר ויקיפדיה אקראי בכל פעם שלשונית חדשה נפתחת."
+msgstr "להנות מהשכלה מוזרה. טעינת מאמר ויקיפדיה אקראי בכל פעם שלשונית חדשה נפתחת."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4394,9 +4389,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "גישה קלה ללשוניות הפתוחות, סימניות והיסטוריה."
+msgstr "חיפוש ב־Firefox על־ידי קבלת גישה קלה ללשוניות הפתוחות, סימניות והיסטוריה."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4567,9 +4561,8 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "האם עוצמת השמע באתר שקטה מידי? חזקה מידי? SoundFixer יכול לעזור."
+msgstr "תיקון אודיו מעצבן. האם עוצמת השמע באתר שקטה מידי? חזקה מידי? SoundFixer יכול לעזור."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4618,9 +4611,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "פישוט לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "ארגון הלשוניות הפתוחות המרובות שלך בסרגל צד אנכי."
+msgstr "פישוט לשוניות. ארגון הלשוניות הפתוחות המרובות שלך בסרגל צד אנכי מסודר."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4682,9 +4674,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "חסימת פרסומות ועוד {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "לא רק לחסום פרסומות מעצבנות, אלא גם להגן על עצמך מפני נוזקה ומעקב אחר פרסומות."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4707,9 +4698,8 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "מדידת דפי אינטרנט {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "ציור סרגל דיגיטלי בכל דף אינטרנט כדי לבדוק גובה, רוחב ויישור של רכיבי הדף."
+msgstr "מדידת דפי אינטרנט. ציור סרגל דיגיטלי בכל דף אינטרנט כדי לבדוק גובה, רוחב ויישור של רכיבי הדף."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -6416,9 +6406,8 @@ msgstr "מחיקת שפה"
 # {0} is the add-on name
 # 84%
 # 100%
-#, fuzzy
 msgid "User Restriction History"
-msgstr "סגירת היסטורית סקירה"
+msgstr "היסטורית הגבלת משתמש"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
