@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 15:32+0000\n"
+"PO-Revision-Date: 2019-08-17 15:38+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3261,7 +3261,7 @@ msgstr "广告拦截与隐私保护 {start_sub_heading}就用 {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "广告拦截和隐私保护。简单安装后，您就能控制所看到的广告、限制您在互联网上被跟踪的情况。"
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3285,7 +3285,7 @@ msgstr "简化搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "简化搜索，选中网页上的文本即可用多个搜索引擎快捷搜索。"
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3317,7 +3317,7 @@ msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "轻松下载视频。适用于 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等数百个视频网站。"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3325,7 +3325,7 @@ msgstr "增强您的 emoji 体验 {start_sub_heading}就用 {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "您的 Emoji。适用于各种场合的大量精美 Emoji —— 尽在掌中。"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3341,7 +3341,7 @@ msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "一款轻量级又高效的广告拦截工具。uBlock Origin 能在不消耗大量内存的情况下执行上千条过滤规则。"
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3429,7 +3429,7 @@ msgstr "轻松翻译 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "轻松翻译。选中网页上的任何文本，或者选择整个网页，即时翻译。"
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3514,7 +3514,7 @@ msgstr "保持干净的数字足迹 {start_sub_heading}就用 {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "不留数字痕迹。让 Firefox 对您选择的域名，忘记 Cookie 和本地存储等网站数据。"
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
