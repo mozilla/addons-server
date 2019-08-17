@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 18:47+0000\n"
+"PO-Revision-Date: 2019-08-17 19:03+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4226,9 +4226,8 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} automatizuje vymazávání historie prohlížení"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Stanovte si počet dní, po které má být uchovávána historie prohlížení, než bude automaticky vymazána."
+msgstr "Vymazávejte svou historii prohlížení. Stanovte si počet dní, po které má být historie uchovávána, než bude automaticky vymazána."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4251,9 +4250,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Vyplňujte formuláře automaticky {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Zadané údaje si jednou uložte a příště se zadají automaticky."
+msgstr "Vyplňujte formuláře automaticky. Zadané údaje si jednou uložte a příště se zadají sami."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4261,7 +4259,7 @@ msgstr "Prohlížejte s větší mírou soukromí {start_sub_heading}pomocí {ad
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Vyhledávejte se zachováním soukromí pomocí jen jednoho kliknutí."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4277,9 +4275,8 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} poskytuje snadný přístup k Wikipedii"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Proveďte vyhledávání na Wikipedii prostým označením textu na libovolné stránce a klepnutím pravým tlačítkem myši."
+msgstr "Snadno vyhledávejte na Wikipedii prostým označením textu na libovolné stránce a klepnutím pravým tlačítkem myši."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
