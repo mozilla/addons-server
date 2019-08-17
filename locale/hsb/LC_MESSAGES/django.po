@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 21:29+0000\n"
+"PO-Revision-Date: 2019-08-17 21:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1665,16 +1665,14 @@ msgstr "Přeprošenje wotpokazane."
 msgid "An author has been added to your add-on"
 msgstr "Awtor je so wašemu přidatkej přidał"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Přinoški za {addon}."
+msgstr "Awtorowe přeprošenje za {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Wobkrućenska mejlka je so na {email} pósłała"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Awtor ma rólu, kotraž je so za waš přidatk změniła"
+msgstr "Awtorowa róla je so za waš přidatk změniła"
 
 msgid "An author has been removed from your add-on"
 msgstr "Awtor je so z wašeho přidatka wotstronił"
@@ -2013,7 +2011,7 @@ msgid "Authors pending confirmation"
 msgstr ""
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Awtorojo, kotřiž su so přidatkej přidali, ale njejsu sp wobkrućili."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3397,7 +3395,7 @@ msgstr "Hnydomne wjedrowe aktualizacije {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Hnydomne wjedrowe aktualizacije z cyłeho swěta."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3740,9 +3738,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Přehladujće wěsće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Přidajće sydłu, kotrež HTTPS podpěruje, zaklučowanu wěstotu."
+msgstr "Přidajće sydłu, kotrež HTTPS podpěruje, zaklučowanu wěstotu. Přehladujće wěsće."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4028,7 +4025,7 @@ msgstr "Sćehńće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Sćehńće wobrazy, kotrež we webje namakaće."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4309,7 +4306,7 @@ msgstr "Přehladujće priwatnje {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Pytajće priwatnje z jenož jednym kliknjenjom."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
