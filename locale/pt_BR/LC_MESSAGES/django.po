@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 15:32+0000\n"
+"PO-Revision-Date: 2019-08-17 15:34+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3488,16 +3488,14 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gerencie senhas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Simplifique e sincronize entre dispositivos todas as suas credenciais de sites bastando uma senha para protegê-las."
+msgstr "Gerenciamento de senhas simplificado. Sincronize todas as suas contas de acesso entre dispositivos com uma única senha para protegê-las."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Um bloqueador de anúncios leve e eficaz. O uBlock Origin impõe milhares de filtros de conteúdo sem ocupar muita memória."
 
@@ -3522,7 +3520,6 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Aprecie favoritos visuais {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
 msgstr "Acesse seus sites preferidos a partir de um painel quadriculado."
 
