@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 01:33+0000\n"
+"PO-Revision-Date: 2019-08-17 16:30+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3460,9 +3460,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Dopřejte si malebné záložky {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Přistupujte ke svým oblíbeným webům z rozložení dlaždic."
+msgstr "Dopřejte si malebné záložky. Přistupujte ke svým oblíbeným webům z rozložení dlaždic."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3525,27 +3524,24 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Překlady {start_sub_heading}s {addon_name}{end_sub_heading} nikdy nebyly jednodušší"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Vyberte text, nebo celou stránku, a nechte si ho okamžitě přeložit."
+msgstr "Překlady nikdy nebyly jednodušší. Označte na stránce text nebo vyberte celou stránku a nechte si to okamžitě přeložit."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Napíchněte se na akademické znalosti {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Mějte volný přístup k více než 10 milionům výzkumných prací."
+msgstr "Napíchněte se na akademické znalosti. Mějte volný přístup k více než 10 milionům výzkumných prací."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Používejte gesta myši {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Objevte nový způsob, jak provádět navigaci pomocí více než 50 užitečných gest myši."
+msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navigaci pomocí více než 50 užitečných gest myši."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3581,9 +3577,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zvětšete obrázky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "Jednoduše najeďte myší nad obrázek a zvětší se."
+msgstr "Potřebujete nějaký obrázek zvětšit? Jednoduše najeďte myší nad obrázek a zvětší se."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3614,20 +3609,20 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "{start_sub_heading}S {addon_name}{end_sub_heading} za sebou na internetu nezanecháte ani stopu"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Nechte Firefox zapomenout data jako cookies nebo obsah místního úložiště pro domény, které sami vyberete."
+msgstr "Zanechávejte za sebou čistou digitální stopu. Nechte Firefox zapomenout data jako cookies nebo obsah místního úložiště pro domény, které sami vyberete."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Uložte si text na později {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
-msgstr "Přestaňte psát totéž znovu a znovu! Pokud často používáte stejné fráze ve své práci nebo v jiné komunikaci, uložte je do Clippingsu a v případě potřeby je snadno vkládejte."
+msgstr ""
+"Uložte si text na později. Přestaňte psát totéž znovu a znovu! Pokud ve své práci nebo v jiné komunikaci často používáte stejné fráze, uložte je do Clippingsu a v případě potřeby je snadno "
+"vkládejte."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3650,9 +3645,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Vyhněte se nepříjemnému sledování a omezením {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Zamaskujte svou cestu internetem skrytím identity vašeho prohlížeče a operačního systému."
+msgstr "Vyhněte se nepříjemnému sledování a omezením. Zamaskujte svou cestu internetem skrytím identity vašeho prohlížeče a operačního systému."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3667,9 +3661,9 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Oddělte své online životy {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Odlište si své různé internetové identity – pracovní, osobní atd. – prostřednictvím barevně označených panelů, které rozdělují vaši digitální stopu ve formě cookies."
+msgstr ""
+"Oddělte své online životy. Odlište si své různé internetové identity – pracovní, osobní atd. – prostřednictvím barevně označených panelů, které rozdělují vaši digitální stopu ve formě cookies."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3684,18 +3678,16 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} přidá podporu pro formát ePub"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Dopřejte si soubory ePub přímo ve Firefoxu – zvětšete velikost písma, rozměry stránky apod."
+msgstr "Čtěte soubory ePub přímo ve Firefoxu – zvětšete velikost písma, rozměry stránky apod."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšete přehrávání videí na YouTube {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Přehrávejte videa standardně v nejvyšší kvalitě, vypněte poznámky apod."
+msgstr "Přehrávejte videa na YouTube standardně v nejvyšší kvalitě, vypněte poznámky apod."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
