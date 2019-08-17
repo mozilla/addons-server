@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 19:31+0000\n"
+"PO-Revision-Date: 2019-08-17 19:50+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1995,13 +1995,13 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "הוזמנת להיות יוצר של {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "אישור ההזמנה תעניק לך גישה לערוך את התוספת, ושמך עשוי להיות מוצג ברשימת היוצרים באתר. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "יש ללחוץ על כפתור האישור למטה כדי לאשר שברצונך להתווסף כיוצר עבור {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "דחייה"
 
 msgid "Manage Authors & License"
 msgstr "ניהול יוצרים ורשיונות"
@@ -2013,10 +2013,10 @@ msgid "About author roles"
 msgstr "על אודות תפקידי יוצרים"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "יוצרים הממתינים לאישור"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "יוצרים שנוספו לתוספת זו אך לא אישרו."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3382,7 +3382,7 @@ msgstr "עדכוני מזג אוויר מיידיים {start_sub_heading}עם {a
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "עדכוני מזג אוויר מיידיים מרחבי העולם."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3423,7 +3423,7 @@ msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "ניהול סיסמאות מפושט. סנכרון כל הכניסות שלך בין מכשירים באמצעות ססמה אחת ששולטת על כולם."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3625,6 +3625,8 @@ msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
 msgstr ""
+"שמירת טקסט למועד מאוחר יותר. הגיע הזמן להפסיק לכתוב את אותו הדבר שוב ושוב. אם יש לך שימוש חוזר תדיר באותם המשפטים בעבודה שלך או באמצעי תקשורת אחרים, ניתן לשמור אותם ב־Clippings ולהדביק אותם בקלות "
+"כשיהיה לך צורך."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3632,7 +3634,7 @@ msgstr "חסימת פרסומות בדוא״ל {start_sub_heading}עם {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "קבלת שטח מסך גדול יותר על־ידי הסרת פרסומות מתיבת הדואר הנכנס שלך."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3860,7 +3862,7 @@ msgstr "התאמה אישית של האתרים המועדפים עליך {start
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "התאמה אישית של המראה של כל אתר. שינוי צבעים, רקעים לדפים ועוד."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3928,7 +3930,7 @@ msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "חסימת אתרים שמבזבזים זמן כך שניתן להתמקד במשימה העומדת בפניך."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4778,7 +4780,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "קבלת דף חיפוש מתקדם יותר ב־Firefox עבור Android."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4787,7 +4789,7 @@ msgstr "חיפוש סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "ישנם אתרים שמתקשים בהפעלת סרטונים ב־Firefox עבור Android. הרחבה זו מספקת את התיקון."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4856,7 +4858,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "הקובץ חורג ממגבלת הגודל בארכיון: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "הגודל הלא דחוס גדול מדי"
 
 msgid "Invalid archive."
 msgstr "ארכיון שגוי."
