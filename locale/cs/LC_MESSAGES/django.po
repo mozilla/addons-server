@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 17:21+0000\n"
+"PO-Revision-Date: 2019-08-17 18:17+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4063,7 +4063,7 @@ msgstr "Vytvořte si seznam pro blokování stránek {start_sub_heading}pomocí 
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Omezte Firefoxu přístup k vámi určeným webům. Skvělý nástroj, jak na internetu projevovat sebedisciplínu."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4102,9 +4102,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám umožní snadno vybrat umístění záložek"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Lepší způsob ukládání záložek, pokud je máte uložené ve více složkách."
+msgstr "Efektivnější způsob ukládání záložek, pokud je ukládáte do více složek."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4123,7 +4122,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} umožňuje vypsat si všechny odkazy"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Ihned si zobrazte všechny odkazy ze stránky v nových panelech."
 
@@ -4132,9 +4130,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Vynechte přesměrování a sledovací prvky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Odstraňte přesměrování stránek a z URL sledovací parametry."
+msgstr "Odstraňte z odkazů parametry pro přesměrování stránek a sledování adres URL. Funguje automaticky."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4149,9 +4146,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám usnadní stahování videí z YouTube"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Stahujte videa nebo jen čistý zvuk."
+msgstr "Stahujte z YouTube videa nebo jen čistý zvuk."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
