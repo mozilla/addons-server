@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 16:30+0000\n"
+"PO-Revision-Date: 2019-08-17 16:52+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3694,18 +3694,16 @@ msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zjistěte, kdo vás sleduje, {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Nahlédněte pod pokličku tajemství, kdo se vás snaží na internetu sledovat."
+msgstr "Sledujte ty, co vás sledují. Jedním kliknutím se podívejte, kdo vás na internetu sleduje."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám umožní změnit proxy server."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Surfujte po webu skrze vlastní nastavení proxy serveru."
+msgstr "Změňte svůj proxy server a surfujte po webu skrze vlastní nastavení proxy serveru."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3720,9 +3718,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Brouzdejte bezpečně {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Přidejte šifrované zabezpečení každému webu, který podporuje protokol HTTPS."
+msgstr "Přidejte šifrované zabezpečení každému webu, který podporuje protokol HTTPS. Brouzdejte bezpečně."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3765,14 +3762,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Surfujte anonymně {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Procházejte web se změněnou identitou – dokonce se jevte, že brouzdáte z jiné země."
+msgstr "Surfujte anonymně. Procházejte web se změněnou identitou – dokonce se jevte, že brouzdáte z jiné země."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Přistupujte ke svým oblíbeným stránkám, nedávno zavřeným panelům a dalším věcem – to vše z nádherného rozložení dlaždic."
+msgstr "Dopřejte si malebné záložky. Přistupujte ke svým oblíbeným stránkám, nedávno zavřeným panelům a dalším věcem z nádherného rozložení dlaždic."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3795,9 +3790,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Robustní správa stahování {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Kontrolujte stav stahování skrze stavový řádek, stránku historie stahování a mnoho dalšího."
+msgstr "Robustní správa stahování. Kontrolujte stav stahování skrze stavový řádek, stránku historie stahování a nejen to."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3812,7 +3806,6 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} ochrání vaše soukromí při vyhledávání"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "Nenechte se sledovat při vyhledávání na Googlu nebo Yandexu."
 
@@ -3829,9 +3822,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} přidá obrázky k výsledkům vašeho vyhledávání."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Dopřejte si ke každému výsledku ve vyhledávači náhled."
+msgstr "Nechte si vedle výsledků vyhledávání zobrazovat náhledy daných stránek."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3854,16 +3846,14 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Přizpůsobte si své oblíbené webové stránky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Změňte vzhled libovolné webové stránky! Zaměňte barvy, pozadí stránek a další prvky."
+msgstr "Přizpůsobte si vzhled libovolné webové stránky! Zaměňte barvy, pozadí stránek a další prvky."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "Upravte si stránku nového panelu, aby zobrazovala vámi požadovaný počet dlaždic, obrázek na pozadí a další věci."
 
@@ -3880,9 +3870,8 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Poznejte, kam na Webu jdete {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Zjistěte, v jaké zemi se nachází navštívený web. Buďte informovaným internetovým cestovatelem."
+msgstr "Poznejte, kam na Webu jdete. Zjistěte, v jaké zemi se nachází navštívený web. Buďte informovaným internetovým cestovatelem."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
