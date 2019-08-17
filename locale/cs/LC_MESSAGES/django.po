@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 18:31+0000\n"
+"PO-Revision-Date: 2019-08-17 18:47+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4187,16 +4187,15 @@ msgstr "Zvýrazňujte text {start_sub_heading}pomocí {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Zvýrazněte text na webových stránkách pro jeho uložení a pozdější přístup."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vychutnejte si hudbu z celého světa {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Vyberte si z více než 30 000 rozhlasových stanic z celého světa."
+msgstr "Vychutnejte si hudbu z více než 30 000 rozhlasových stanic z celého světa."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4219,9 +4218,8 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Surfujte bezpečně {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Přejděte na zabezpečenou verzi webu, pokud je k dispozici."
+msgstr "Automaticky přejděte na zabezpečenou verzi webu, pokud je k dispozici."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
