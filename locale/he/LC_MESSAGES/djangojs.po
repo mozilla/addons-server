@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-06-19 19:07+0000\n"
-"Last-Translator: theicetrax <theicetrax@protonmail.com>\n"
+"PO-Revision-Date: 2019-08-17 19:00+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -709,13 +709,13 @@ msgid "{name} was viewing this page first."
 msgstr "{name} צפה בדף הזה ראשון."
 
 msgid "Receipt checked by app."
-msgstr "הקבלה נבדקה על ידי היישום."
+msgstr "הקבלה נבדקה על־ידי היישום."
 
 msgid "Receipt was not checked by app."
-msgstr "הקבלה לא נבדקה על ידי היישום."
+msgstr "הקבלה לא נבדקה על־ידי היישום."
 
 msgid "{name} was viewing this add-on first."
-msgstr "תוספת זו כבר נצפתה על ידי {name}."
+msgstr "תוספת זו כבר נצפתה על־ידי {name}."
 
 msgid "Loading&hellip;"
 msgstr "טעינה&hellip;"
