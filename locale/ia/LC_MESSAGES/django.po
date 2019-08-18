@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 17:09+0000\n"
+"PO-Revision-Date: 2019-08-18 17:26+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3522,18 +3522,16 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Attinge al cognoscentia academic {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Gaude del libere accesso a plus de 10 milliones de documentos de recerca."
+msgstr "Frue del cognoscentia academic. Gaude del libere accesso a plus de 10 milliones de documentos de recerca."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personalisa le gestos del mus {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Discoperir un nove maniera pro navigar con plus de 50 utile gestos del mus."
+msgstr "Gestos del mus personalisate. Discoperi un nove maniera pro navigar con plus de 50 utile gestos del mus."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3569,7 +3567,6 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Aggrandi imagines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
 msgstr "Simplemente passa le mus super un imagine pro aggrandir lo."
 
@@ -3602,22 +3599,20 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Lassa un pista digital munde {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Face si que Firefox oblida sito web e datos como le cookies e le local immagazinage, ma solo pro le dominios que tu elige."
+msgstr "Lassa un pista digital munde. Face in modo que Firefox oblida le datos del sitos web como le cookies e le immagazinage local, ma solo pro le dominios que tu selige."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Salva texto pro plus tarde {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
 msgstr ""
-"Stoppa le scriptura del mesme cosa ancora e ancora! Si tu frequentemente re-usa le mesme phrases in tu labor o in altere communicationes, salva los in Clippings e colla facilemente los quando "
-"necessari."
+"Salva texto pro plus tarde. Stoppa le scriptura del mesme cosa ancora e ancora! Si tu frequentemente re-usa le mesme phrases in tu labor o in altere communicationes, salva los in Clippings e colla "
+"los facilemente quando necessari."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3640,9 +3635,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Evita furtive traciatores e restrictiones {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Disguisa tu navigation per le copertura del identitate de tu navigator e de tu systema operative."
+msgstr "Evita traciatores furtive e restrictiones. Disguisa tu navigation per le copertura del identitate de tu navigator e de tu systema operative."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3657,9 +3651,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Separa tu identitates online {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Distingue reservatemente tu varie identitates online — labor, personal, et cetera.— con schedas codificate per color, que divide tu pista de cookies digital."
+msgstr "Separa tu vitas online. Distingue reservatemente tu varie identitates online: labor, personal et cetera; con schedas codificate per color, que divide tu pista de cookies digital."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
