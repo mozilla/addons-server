@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 19:03+0000\n"
+"PO-Revision-Date: 2019-08-18 01:12+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4266,9 +4266,8 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zaražte únosy panelu {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Nenechte kliknuté odkazy, aby převzaly kontrolu nad aktuálním panelem a aby načetly obsah, o který jste nežádali."
+msgstr "Skoncujte s únosy panelu. Nenechte kliknuté odkazy, aby převzaly kontrolu nad aktuálním panelem a aby načetly obsah, o který jste nežádali."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4299,9 +4298,8 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám umožní najít produkt na Amazonu"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Když se díváte na stránku nějakého produktu v jiném internetovém obchodě, můžete pouhým kliknutím na tlačítko zjistit, jestli je výrobek k dispozici i na Amazonu."
+msgstr "Získejte výhody Amazonu. Když se díváte na stránku nějakého produktu v jiném internetovém obchodě, můžete pouhým kliknutím na tlačítko zjistit, jestli je výrobek k dispozici i na Amazonu."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
