@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 11:20+0000\n"
+"PO-Revision-Date: 2019-08-18 16:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1482,9 +1482,8 @@ msgstr "Ante de cambiar tu localisation predefinite tu debe haber un nomine, sum
 msgid "Users can not be added directly"
 msgstr "Usatores non pote esser addite directemente"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Un autor pote ser listate solo un vice."
+msgstr "Un autor pote esser presente solo un vice."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Le conto besonia de un nomine a monstrar ante que illo pote esser addite como autor."
@@ -1667,16 +1666,14 @@ msgstr "Invitation declinate."
 msgid "An author has been added to your add-on"
 msgstr "Un autor ha essite addite a tu additivo"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Donationes pro {addon}."
+msgstr "Invitation de autor pro {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Un email de confirmation ha essite inviate a {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Un autor ha un rolo cambiate sur tu additivo"
+msgstr "Le rolo de un autor ha essite cambiate sur tu additivo"
 
 msgid "An author has been removed from your add-on"
 msgstr "Un autor ha essite removite ex tu additivo"
@@ -2887,9 +2884,8 @@ msgstr[1] "Elige <b>non plus de {0}</b> {1} categorias pro iste additivo:"
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Per favor elige un licentia appropriate pro le derectos que tu accorda sur tu codice fonte. Illo es pertinente solo al additivos listate."
+msgstr "Nota que un EULA non es le mesme cosa que un licentia de codification, tal como le GPL o MPL. Illo es pertinente solo al additivos listate."
 
 msgid "Privacy Policy"
 msgstr "Politica de confidentialitate"
@@ -3348,9 +3344,10 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Blocada del avisos publicitari & protection del confidentialitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Un simple configuration te pone in grado de prender controlo del avisos publicitari que tu vide e de como tu es traciate sur internet."
+msgstr ""
+"Blocada del avisos publicitari e protection del confidentialitate. Un simple configuration te pone in grado de prender controlo del avisos publicitari que tu vide e de como tu es traciate sur "
+"internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
