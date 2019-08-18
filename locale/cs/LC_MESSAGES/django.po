@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 01:29+0000\n"
+"PO-Revision-Date: 2019-08-18 01:53+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4403,39 +4403,36 @@ msgstr "Sledujte cenovou historii na Amazonu {start_sub_heading}díky {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Sledujte cenovou historii na Amazonu. Čiňte informovaná nákupní rozhodnutí."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nakupujte s důvěrou {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Dodatečná kontrola, která vám zaručí, že nakupujete na webu, jehož spolehlivost byla prověřena."
+msgstr "Nakupujte s důvěrou. Toto rozšíření zajišťuje dodatečnou kontrolu, která vám zaručí, že nakupujete na webu, jehož spolehlivost byla prověřena."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sledujte produktivitu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Změřte množství času, který strávíte u počítače nebo v konkrétních pracovních aplikacích jako jsou Trello, JIRA, Basecamp, GitHub a mnohé další."
+msgstr "Sledujte produktivitu. Změřte množství času, který strávíte u počítače nebo v konkrétních pracovních aplikacích jako jsou Trello, JIRA, Basecamp, GitHub a mnohé další."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Vystřihněte webový obsah, jako jsou články, videa, obrázky aj., abyste si ho uschovali pro použití v samostatných projektech nebo týmové spolupráci v reálném čase."
+msgstr ""
+"Uschovejte si své oblíbené věci z Webu. Vystřihněte obsah, jako jsou články, videa, obrázky aj., abyste si ho uschovali pro použití v samostatných projektech nebo týmové spolupráci v reálném čase."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Surfujte bezpečně {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Umožněte webovému obsahu se spustit pouze na stránkách, kterým důvěřujete."
+msgstr "Umožněte webovému obsahu se spustit pouze ze stránek, kterým důvěřujete. Surfujte bezpečně."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
