@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 16:15+0000\n"
-"Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
+"PO-Revision-Date: 2019-08-18 10:47+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1666,20 +1666,19 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Nepravilno ime spletnega naslova. Dodatek ni bil izbrisan."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Povabilo sprejeto."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Povabilo zavrnjeno."
 
 msgid "An author has been added to your add-on"
 msgstr "Vašemu dodatku je bil dodan avtor"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Prispevki za {addon}."
+msgstr "Povabilo avtorja za {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Potrditvena e-pošta je bila poslana na {email}"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -2912,9 +2911,8 @@ msgstr[3] "Izberite <b>do {0}</b> {1} kategorij za ta dodatek:"
 msgid "End-User License Agreement"
 msgstr "Licenčni dogovor za končnega uporabnika"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Izberite ustrezno licenco za pravice, ki jih podeljujete za svojo izvorno kodo. Velja samo za dodatke na seznamu."
+msgstr "Upoštevajte, da licenca EULA ni isto kot kodna licenca, kot sta GPL ali MPL. Pomembna je samo za dodatke na seznamu."
 
 msgid "Privacy Policy"
 msgstr "Izjava o zasebnosti"
@@ -3379,9 +3377,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Zavračanje oglasov in zaščita pred sledenjem {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Preprosto orodje, ki vam omogoča nadzor nad prikazanimi oglasi in sledenjem po internetu."
+msgstr "Blokiranje oglasov in zaščita zasebnosti. Preprosto orodje, ki vam omogoča nadzor nad prikazanimi oglasi in sledenjem po internetu."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3465,9 +3462,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Lahko in učinkovito blokiranje oglasov. uBlock Origin uporablja tisoče filtrov vsebin brez prekomerne porabe pomnilnika."
+msgstr "Učinkovito in lahko blokiranje oglasov. uBlock Origin uporablja tisoče filtrov vsebin brez prekomerne porabe pomnilnika."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3555,9 +3551,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Preprosti prevodi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Označite besedilo na katerikoli spletni strani – ali izberite celotno stran – za takojšen prevod."
+msgstr "Preprosti prevodi. Označite besedilo na katerikoli spletni strani – ali izberite celotno stran – za takojšen prevod."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3697,9 +3692,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Razmejite svoja spletna življenja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Zasebno razdelite svoje spletne identitete – službeno, osebno … – med raznobarvne zavihke, ki ločijo piškotke različnih spletnih življenj."
+msgstr "Ločite svoja spletna življenja. Zasebno razdelite svoje spletne identitete – službeno, osebno … – med raznobarvne zavihke, ki ločijo piškotke različnih spletnih življenj."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3732,9 +3726,8 @@ msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sledite sledilcem {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Z enim klikom si oglejte, kdo vam sledi."
+msgstr "Sledite sledilcem. Z enim klikom si oglejte, kdo vam sledi."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4104,9 +4097,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp na spletu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Uporabljajte WhatsApp neposredno iz orodne vrstice Firefoxa, ki vam prikazuje obvestila o neprebranih sporočilih."
+msgstr "WhatsApp na spletu. Uporabljajte WhatsApp neposredno iz orodne vrstice Firefoxa, ki vam prikazuje obvestila o neprebranih sporočilih."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4493,9 +4485,8 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Spremljajte svojo produktivnost {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Merite čas, ki ga preživite za računalnikom oziroma na določenih straneh, kot so Trello, JIRA, Basecamp, GitHub in številne druge."
+msgstr "Sledite produktivnosti. Merite čas, ki ga preživite za računalnikom oziroma na določenih straneh, kot so Trello, JIRA, Basecamp, GitHub in številne druge."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4549,7 +4540,7 @@ msgstr "Zaprite nadležne prekrivne elemente {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Zaprite nadležna pojavna okna s preprostim klikom."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
