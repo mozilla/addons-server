@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 10:32+0000\n"
+"PO-Revision-Date: 2019-08-18 10:45+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4725,7 +4725,7 @@ msgstr "Recupera paginas disparite {start_sub_heading}con {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Trova paginas web archivate, morte o alteremente disparite."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4733,7 +4733,7 @@ msgstr "Cambia l’e apparentia de Firefox {start_sub_heading}con {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Cambia apparentia a tu navigator. Designa facilemente tu proprie themas visual pro facer parer Firefox como te place."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4741,7 +4741,7 @@ msgstr "Prende notas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Mantene notas personal ubicunque sur le web. Usa simplemente un barra lateral a attacca tu notas sur paginas web specific."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4749,7 +4749,7 @@ msgstr "Usa le recerca vocal {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Usa le recognition de voce pro activar le cerca vocal sur Google, Yahoo e DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4757,7 +4757,7 @@ msgstr "Tracia le precios del productos {start_sub_heading}con {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Tracia le precios del productos e recipe avisos quando cade le precios de articulos cuje tu es interessate in Amazon, Best Buy, eBay, Home Depot e Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4765,7 +4765,7 @@ msgstr "Obscura le Web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Obscura le Web o selige un combination de colores personalisate pro visualisar internet a tu proprie gusto."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4773,7 +4773,7 @@ msgstr "Meliora le recerca sur Android {start_sub_heading}con {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Obtene un pagina de recerca plus avantiate sur Firefox pro Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4781,7 +4781,7 @@ msgstr "Auxilio video sur Android {start_sub_heading}con {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android. Iste extension forni un remedio."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
