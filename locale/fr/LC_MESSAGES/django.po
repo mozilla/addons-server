@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 22:22+0000\n"
+"PO-Revision-Date: 2019-08-18 13:19+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -884,7 +884,7 @@ msgid "Plugin"
 msgstr "Plugin"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "LWT obsolète"
 
 msgid "Theme (Static)"
 msgstr "Thème (statique)"
@@ -914,7 +914,7 @@ msgid "Plugins"
 msgstr "Plugins"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "LWT obsolètes"
 
 msgid "Themes (Static)"
 msgstr "Thèmes (statiques)"
@@ -1531,7 +1531,7 @@ msgid "An author can only be present once."
 msgstr "Un auteur ne peut être listé qu’une fois."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Le compte nécessite un nom à afficher avant de pouvoir être ajouté en tant qu’auteur."
 
 msgid "Must have at least one owner."
 msgstr "Au moins un propriétaire est nécessaire."
@@ -1717,7 +1717,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Contributions pour {addon}."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Un courriel de confirmation a été envoyé à {email}"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -2035,13 +2035,13 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "L’aperçu est toujours en cours de génération. Veuillez réessayer plus tard ou actualiser la page."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Vous avez été invité à devenir auteur de {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Si vous acceptez l’invitation, vous pourrez modifier le module complémentaire et afficher votre nom dans la liste des auteurs du site web."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Cliquez sur le bouton Accepter ci-dessous pour confirmer que vous souhaitez être ajouté en tant qu’auteur pour {addon_name}."
 
 msgid "Decline"
 msgstr "Refuser"
@@ -2059,7 +2059,7 @@ msgid "Authors pending confirmation"
 msgstr "Auteurs en attente de confirmation"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Les auteurs ajoutés à ce module mais qui n’ont pas confirmé."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3447,7 +3447,7 @@ msgstr "Soyez informé en temps réel de la météo {start_sub_heading}avec {add
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Mises à jour météorologiques instantanées du monde entier."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4269,7 +4269,7 @@ msgstr "Faites défiler comme sur votre mobile {start_sub_heading}avec {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Défilement semblable à celui d’un téléphone pour votre ordinateur de bureau. Mouvements de la souris de type « glisser-déposer »."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4285,7 +4285,7 @@ msgstr "Surlignez du texte {start_sub_heading}avec {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Mettez en surbrillance le texte sur les pages web pour l’enregistrer et y accéder ultérieurement."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4513,7 +4513,7 @@ msgstr "Surveillez l’historique des prix sur Amazon {start_sub_heading}avec {a
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Suivez l’historique des prix sur Amazon. Prenez des décisions d’achat éclairées."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4585,7 +4585,7 @@ msgstr "Supprimez les surcouches inutiles {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Fermez les fenêtres popup publicitaires intempestives d’un simple clic."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4639,7 +4639,7 @@ msgstr "Suivez l’historique des prix Amazon {start_sub_heading}avec {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Suivez l’historique des prix sur Amazon. Prenez des décisions d’achat éclairées en recevant des alertes sur les changements de prix des produits Amazon qui vous intéressent."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4727,7 +4727,7 @@ msgstr "Améliorez votre expérience de lecture {start_sub_heading}avec {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Lisez avec plus de clarté et de facilité. Supprimez le superflu autour du texte sur les pages web."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4809,7 +4809,7 @@ msgstr "Prenez des notes {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Conservez vos notes personnelles n’importe où sur le Web. Utilisez simplement une barre latérale pour associer vos notes à des pages web spécifiques."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4834,7 +4834,7 @@ msgstr "Rendez le web plus sombre {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Parcourez le Web avec un thème sombre ou sélectionnez votre jeu de couleurs préféré pour personnaliser Internet à votre goût."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6515,6 +6515,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Saisissez le domaine de messagerie jetable complet qui doit être bloqué. Les caractères génériques ne sont pas pris en charge : si vous en avez besoin, ou si vous souhaitez faire correspondre "
+"l’adresse électronique entière et pas seulement la partie de domaine, utilisez plutôt « Restrictions relatives aux usages du courrier électronique »."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
