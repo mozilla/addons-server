@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 09:55+0000\n"
+"PO-Revision-Date: 2019-08-18 10:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4575,7 +4575,7 @@ msgstr "Tracia chronologia del precio de Amazon {start_sub_heading}con {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Tracia le chronologia de precios de Amazon. Prende decisiones de compras intelligente per alertas de cambios precio de productos Amazon que te interessa."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4663,7 +4663,7 @@ msgstr "Meliora tu experientia de lectura {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Lege con plus claritate e facilitate. Remove le disordine circum le texto sur paginas web."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4671,7 +4671,7 @@ msgstr "Bloca le avisos publicitari {start_sub_heading}con {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Bloca avisos publicitari e obtene protection meliorate re malware e avisos publicitari traciante."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4679,7 +4679,7 @@ msgstr "Discarga medios plus facilemente {start_sub_heading}con {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Gaude del supporto de discargamento plure-filos. Detege automaticamente le differente typos de medios disponibile a discargar."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4696,7 +4696,7 @@ msgstr "Cerca paginas web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Mesura le paginas web. Tira un regula digital tra ulle paginas web pro verificar altitude, largessa, e alineamento del elementos del pagina."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4709,7 +4709,7 @@ msgstr "Rende belle le paginas {start_sub_heading}con {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Personalisa umbras de luce e obscuritate pro render le paginas web plus agradabile visualmente."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4717,7 +4717,7 @@ msgstr "Reduce le distractiones {start_sub_heading}con {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Bloca sitos web que distrahe. Simplemente lista le sitos que tu desira blocate per le extension. Disciplina instantanee!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
