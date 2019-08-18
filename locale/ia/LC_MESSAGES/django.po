@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 09:11+0000\n"
+"PO-Revision-Date: 2019-08-18 09:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1659,10 +1659,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Le nomine del URL esseva incorrecte. Le additivo non esseva delite."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Invitation acceptate."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Invitation declinate."
 
 msgid "An author has been added to your add-on"
 msgstr "Un autor ha essite addite a tu additivo"
@@ -1672,7 +1672,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Donationes pro {addon}."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Un email de confirmation ha essite inviate a {email}"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -1709,7 +1709,7 @@ msgid "There was an error uploading your preview."
 msgstr "Error durante le cargamento de tu vista preliminar."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Le ultime version approbate de un extension recommendate non pote esser delite o disactivate. Contacta le administratores de AMO si te besonia adjuta pro isto."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1793,7 +1793,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Io ha legite e accepta iste accordo e le regulas e politicas"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Il besonia definir un nomine a monstrar de tu conto, assi que le usatores sape ab ubi veni tu additivo. Insere uno infra."
 
 msgid "Accept"
 msgstr "Acceptar"
@@ -1987,16 +1987,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Le vista preliminar debe ancora esser generate - reveni plus tarde o refresca le pagina."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Tu ha essite invitate a devenir autor de {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur le sito web. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Clicca sur le button Acceptar infra pro confirmar que tu desira esser addite como autor pro {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Refusar"
 
 msgid "Manage Authors & License"
 msgstr "Gerer autores & licentia"
@@ -2008,10 +2008,10 @@ msgid "About author roles"
 msgstr "A proposito del rolos de autores"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Autores attendente confirmation"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autores que ha essite addite a iste additivo ma non ha confirmate."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
