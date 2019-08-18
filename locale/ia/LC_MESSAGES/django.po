@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 16:49+0000\n"
+"PO-Revision-Date: 2019-08-18 17:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3362,18 +3362,16 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Stoppa le traciamento de Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Isola tu identitate de Facebook in un separate “receptaculo” que rende plus dur pro Facebook traciar tu movimentos circum le web."
+msgstr "Cessar traciamento de Facebook. Isola tu identitate de Facebook in un “receptaculo” separate pro impedir a Facebook de traciar te circum le Web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Simplifica le recerca {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Basta poner in evidentia texto sur ulle pagina web pro recercar le phrase ex un serie de motores."
+msgstr "Simplifica le recerca per evidentiar texto sur ulle pagina web a cercar le phrase in un serie de motores."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3404,36 +3402,32 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Discarga videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Functiona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, e centenas de altere sitos de videos."
+msgstr "Discarga videos con facilitate. Functiona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, e centenas de altere sitos de videos."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Meliora tu uso de emojis {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Dozenas de stupende emojis pro cata occasiones - sempre solo un clic foras."
+msgstr "Dozenas de stupende emojis pro cata occasiones: sempre a portata de un clic."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gerer contrasignos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Simplifica e synchronisa tote le aperturas de session de tu plure sitos web trans diverse apparatos con un contrasigno pro gerer illos tote."
+msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu accessos sur plure apparatos con un sol contrasigno pro gerer illos tote."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloca le avisos publicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Un blocator de avisos publicitari legier e efficace. uBlock Origine applica milles de filtros de contento sin consummar trop memoria."
+msgstr "Un efficace e legier blocator de avisos publicitari. uBlock Origine applica milles de filtros de contento sin consummar trop memoria."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3456,9 +3450,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Gaude del marcapaginas visual {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Accede tu sitos consiliate ab un mappa de quadrellas."
+msgstr "Gaude le marcapaginas visual. Accede tu sitos consiliate ab un mappa de quadrellas."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3521,9 +3514,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Traduce in un baleno {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Pone in evidentia un fragmento de texto sur ulle paginas web — o elige le pagina integre — pro traducer instantaneemente."
+msgstr "Traductiones facile. Pone in evidentia un fragmento de texto sur ulle paginas web, o elige le pagina integre, pro traducer lo instantaneemente."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
