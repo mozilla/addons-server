@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 01:53+0000\n"
+"PO-Revision-Date: 2019-08-18 02:09+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4472,7 +4472,7 @@ msgstr "Zavřete otravné překryvné prvky {start_sub_heading}díky {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Zavřete otravná vyskakovací okna jedním prostým kliknutím."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4507,18 +4507,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Seřiďte správně zvuk {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Je hlasitost na webové stránce příliš nízká? Příliš vysoká? SoundFixer vám může pomoci."
+msgstr "Seřiďte správně zvuk. Je hlasitost na webové stránce příliš nízká? Příliš vysoká? SoundFixer vám může pomoci."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Proveďte před tiskem úpravy {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Proveďte mimořádné vizuální změny – odstraňte reklamy nebo odpudivý obsah – na každé webové stránce, kterou chcete vytisknout."
+msgstr "Upravte webovou stránku před jejím vytištěním. Proveďte rozsáhlé vizuální změny – odstraňte reklamy nebo odpudivý obsah – na každé webové stránce, kterou chcete vytisknout."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
