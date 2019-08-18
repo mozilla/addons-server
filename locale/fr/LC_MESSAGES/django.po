@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 13:19+0000\n"
+"PO-Revision-Date: 2019-08-16 14:58+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1526,7 +1526,6 @@ msgstr "Avant de changer votre langue par défaut vous devez avoir un nom, un r�
 msgid "Users can not be added directly"
 msgstr "Les utilisateurs ne peuvent pas être ajoutés directement"
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "Un auteur ne peut être listé qu’une fois."
 
@@ -1719,7 +1718,6 @@ msgstr "Contributions pour {addon}."
 msgid "A confirmation email has been sent to {email}"
 msgstr "Un courriel de confirmation a été envoyé à {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
 msgstr "Le rôle d’un auteur a été modifié sur votre module"
 
