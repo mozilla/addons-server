@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 07:53+0000\n"
+"PO-Revision-Date: 2019-08-19 08:00+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4425,23 +4425,22 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Houd productiviteit bij {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Meet de hoeveelheid tijd die u op de computer doorbrengt, of op specifieke werk-apps zoals Trello, JIRA, Basecamp, GitHub, en veel meer."
+msgstr "Volg productiviteit. Meet de hoeveelheid tijd die u op de computer doorbrengt, of op specifieke werk-apps zoals Trello, JIRA, Basecamp, GitHub, en veel meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Verzamel webinhoud zoals artikelen, video’s, afbeeldingen en meer om op te slaan en voor individuele projecten of realtime samenwerking in teamverband te gebruiken."
+msgstr ""
+"Bewaar uw favoriete zaken op het internet. Verzamel webinhoud zoals artikelen, video’s, afbeeldingen en meer om op te slaan en voor individuele projecten of realtime samenwerking in teamverband te "
+"gebruiken."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Surf veilig {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Laat alleen webinhoud uitvoeren van websites die u vertrouwt."
+msgstr "Laat alleen webinhoud uitvoeren van websites die u vertrouwt. Navigeer veilig."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4516,18 +4515,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verhelp storende audio {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Is het volume op een website te laag? Te hoog? SoundFixer kan helpen."
+msgstr "Fiks irritant geluid. Is het volume op een website te laag? Te hoog? SoundFixer kan helpen."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bewerk voor afdrukken {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Maak buitengewone visuele aanpassingen – verwijder advertenties of onsmakelijke inhoud – voor webpagina’s die u wilt afdrukken."
+msgstr "Bewerk een webpagina voordat u deze afdrukt. Maak buitengewone visuele aanpassingen – verwijder advertenties of onsmakelijke inhoud – voor webpagina’s die u wilt afdrukken."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4558,18 +4555,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wis uw sporen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Zoek met betere beveiliging via blokkering van trackers, slimmere versleuteling, privé zoeken en andere essentiële zaken."
+msgstr "Zoek met betere blokkering van trackers, slimme versleuteling, en andere privacyvoordelen."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vereenvoudig tabbladen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Beheer uw vele open tabbladen in een verticale zijbalk."
+msgstr "Vereenvoudig tabbladen. Organiseer uw vele open tabbladen in een nette verticale zijbalk."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4584,7 +4579,6 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Bekijk het grote geheel {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr "In een muisklik kunt u video’s in hun volle glorie op volledig scherm bekijken."
 
@@ -4609,9 +4603,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Negeer de onzin {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Een slimme extensie die u snel helpt te begrijpen waarmee u akkoord gaat."
+msgstr "Doorgrond de nonsens van typische TOS-overeenkomsten. Deze slimme extensie helpt u snel te begrijpen waarmee u akkoord gaat."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4630,9 +4623,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkeer advertenties en meer {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Blokkeer niet alleen vervelende advertenties, maar bescherm uzelf tegen malware en advertentietracking."
+msgstr "Blokkeer advertenties en krijg verbeterde bescherming tegen malware en advertentietracking."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4647,9 +4639,8 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sla eenvoudig afbeeldingen op {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Download eenvoudigweg afbeeldingen van uw huidige tabblad."
+msgstr "Sla afbeeldingen eenvoudig op – sleep ze eenvoudigweg van uw huidige tabblad."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
