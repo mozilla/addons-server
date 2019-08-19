@@ -23,6 +23,7 @@ from olympia.translations.models import (
     PurifiedTranslation, Translation, TranslationSequence)
 from olympia.translations.query import order_by_translation
 from olympia.translations.tests.testapp.models import (
+    ContainsManyToManyToTranslatedModel, ContainsTranslatedThrough,
     FancyModel, TranslatedModel, UntranslatedModel,
     TranslatedModelWithDefaultNull, TranslatedModelLinkedAsForeignKey)
 
@@ -289,6 +290,56 @@ class TranslationTestCase(TestCase):
 
             assert ids(order_by_translation(qs, 'name')) == expected
             assert ids(order_by_translation(qs, '-name')) == (
+                list(reversed(expected)))
+
+    def test_sorting_by_field_with_related_model(self):
+        # This time we sort a "regular" queryset through a relation that
+        # contains a translated field.
+        container = ContainsManyToManyToTranslatedModel.objects.create()
+        to_one = ContainsTranslatedThrough.objects.create(
+            container=container, target=TranslatedModel.objects.get(pk=1))
+        to_three = ContainsTranslatedThrough.objects.create(
+            container=container, target=TranslatedModel.objects.get(pk=3))
+        to_four = ContainsTranslatedThrough.objects.create(
+            container=container, target=TranslatedModel.objects.get(pk=4))
+
+        # We also add another TranslatedModel object that doesn't have a
+        # translation in 'en-US' or 'de'.
+        translation.activate('fr')
+        five = TranslatedModel.objects.create(
+            default_locale='fr', name='a français')
+        to_five = ContainsTranslatedThrough.objects.create(
+            container=container, target=five)
+
+        def get_queryset():
+            # FIXME: We force a join with TranslatedModel, because otherwise
+            # order_by_translation isn't smart enough to do it itself.
+            return ContainsTranslatedThrough.objects.filter(
+                target__name_id__gt=0)
+
+        # First, no fallback. The "five" instance is absent, because there is
+        # no translation matching 'de' or settings.LANGUAGE_CODE (en-US).
+        translation.activate('de')
+        qs = get_queryset()
+        expected = [to_one.pk, to_four.pk, to_three.pk]
+
+        assert ids(
+            order_by_translation(qs, 'name', TranslatedModel)) == expected
+        assert ids(order_by_translation(qs, '-name', TranslatedModel)) == (
+            list(reversed(expected)))
+
+        # Second, with fallback. This changes what translations are available,
+        # causing "to_five" to be found, and "to_three" to be higher, because
+        # we pick up its translation matching their default_locale.
+        field = TranslatedModel._meta.get_field('default_locale')
+        fallback = classmethod(lambda cls: field)
+        with patch.object(TranslatedModel, 'get_fallback',
+                          fallback, create=True):
+            qs = get_queryset()
+            expected = [to_five.pk, to_three.pk, to_one.pk, to_four.pk]
+            assert ids(
+                order_by_translation(qs, 'name', TranslatedModel)) == expected
+            assert ids(order_by_translation(qs, '-name', TranslatedModel)) == (
                 list(reversed(expected)))
 
     def test_new_purified_field(self):

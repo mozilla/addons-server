@@ -2276,14 +2276,17 @@ class TestContentReviewQueue(QueueTest):
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
 
         # Those should *not* appear in the queue
-        # Has not been auto-approved but themes and langpacks are excluded.
+        # Has not been auto-approved but themes, langpacks and search plugins
+        # are excluded.
         addon_factory(
             name=u'Theme 1', created=self.days_ago(4),
             type=amo.ADDON_STATICTHEME)
-
         addon_factory(
             name=u'Langpack 1', created=self.days_ago(4),
             type=amo.ADDON_LPAPP)
+        addon_factory(
+            name=u'search plugin 1', created=self.days_ago(4),
+            type=amo.ADDON_SEARCH)
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.

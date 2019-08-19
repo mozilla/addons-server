@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-08-16 10:31+0000\n"
 "PO-Revision-Date: 2019-06-14 15:17+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -151,30 +151,6 @@ msgstr "Videoclipurile trebuie să fie WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Această temă este incompatibilă cu versiunea ta de {0}"
-
-msgid "All Rights Reserved"
-msgstr "Toate drepturile rezervate"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Atribuire Creative Commons 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Atribuire Creative Commons-Necomercială 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Atribuire Creative Commons-Necomercială-Fără derivate 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Atribuire Creative Commons-Necomercială-Partajare similare 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Atribuire Creative Commons-Fără derivate 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Atribuire Creative Commons-Partajare similare 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Numele temei tale"
 
 msgid "Flagged for review"
 msgstr "Marcat pentru revizuire"
