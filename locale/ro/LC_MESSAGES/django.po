@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 13:29+0000\n"
+"PO-Revision-Date: 2019-08-19 13:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3467,9 +3467,8 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gestionează parolele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Simplifică-ți și sincronizează-ți pe dispozitive toate autentificările pe variate site-uri web cu o singură parolă care să le guverneze pe toate."
+msgstr "Gestionarea parolelor simplificată. Sincronizează-ți toate datele de autentificare pe mai multe dispozitive cu o parolă care le stăpânește pe toate."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
