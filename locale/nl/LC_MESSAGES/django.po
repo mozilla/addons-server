@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 08:00+0000\n"
+"PO-Revision-Date: 2019-08-19 09:22+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4647,14 +4647,12 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Meet webpagina’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Teken een digitale liniaal op elke webpagina om de hoogte, breedte en uitlijning van pagina-elementen te controleren."
+msgstr "Meet webpagina’s. Teken een digitale liniaal op elke webpagina om de hoogte, breedte en uitlijning van pagina-elementen te controleren."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Profiteer van sterk wachtwoordbeheer."
+msgstr "Geniet van de voordelen van sterk wachtwoordbeheer."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4669,9 +4667,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Blokkeer afleidende websites {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Maak een lijst van de websites die u de extensie wilt laten blokkeren. Onmiddellijke discipline!"
+msgstr "Blokkeer afleidende websites. Maak eenvoudig een lijst van de websites die u de extensie wilt laten blokkeren. Onmiddellijke discipline!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4686,9 +4683,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Wijzig het uiterlijk van Firefox {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Ontwerp eenvoudig uw eigen visuele thema’s om Firefox er uit te laten zien zoals u wilt."
+msgstr "Verander hoe uw browser er uit ziet. Ontwerp eenvoudig uw eigen visuele thema’s om Firefox er uit te laten zien zoals u wilt."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4711,9 +4707,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Houd productprijzen bij {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Ontvang een melding wanneer prijzen van artikelen waarin u bent geïnteresseerd bij Amazon, Best Buy, eBay, Home Depot en Walmart dalen."
+msgstr "Volg producten en ontvang een melding wanneer prijzen van artikelen waarin u bent geïnteresseerd bij Amazon, Best Buy, eBay, Home Depot en Walmart dalen."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6332,9 +6327,8 @@ msgstr "Weet u zeker dat u alle <b>{0}</b> vertalingen wilt verwijderen? Dit kan
 msgid "Delete Locale"
 msgstr "Locale verwijderen"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Beoordelingsgeschiedenis sluiten"
+msgstr "Geschiedenis gebruikersrestricties"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
