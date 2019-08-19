@@ -62,11 +62,6 @@ th {
     padding-left: 22px;
 }
 
-#features .collectionitem.personas-collection {
-    background: url(../../img/illustrations/themes.gif) no-repeat;
-    background-size: 18px;
-}
-
 .ui-autocomplete a b {
     color: #999;
     display: block;

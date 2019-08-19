@@ -1235,7 +1235,7 @@ function initCCLicense() {
                 licenseTxt = format('<a href="{0}">{1}</a>',
                                      url.attr('href'), licenseTxt);
             }
-            var $p = $('#persona-license');
+            var $p = $('#theme-license');
             $p.show().find('#cc-license').html(licenseTxt).attr('class', 'license icon ' + $license.data('cc'));
         }
     }
@@ -1258,7 +1258,7 @@ function initCCLicense() {
     });
     $('#submit-describe #license-list input[type=radio][name=license-builtin]').change(licenseChangeHandler);
 
-    $('#persona-license .select-license').click(_pd(function() {
+    $('#theme-license .select-license').click(_pd(function() {
         $('#license-list').toggle();
     }));
     licenseChangeHandler();
