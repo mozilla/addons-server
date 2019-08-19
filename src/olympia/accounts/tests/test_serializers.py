@@ -259,6 +259,7 @@ class TestUserProfileBasketSyncSerializer(TestCase):
     def test_basic(self):
         serializer = UserProfileBasketSyncSerializer(self.user)
         assert serializer.data == {
+            'deleted': False,
             'display_name': None,
             'email': self.user.email,
             'homepage': '',
@@ -271,6 +272,20 @@ class TestUserProfileBasketSyncSerializer(TestCase):
         self.user.update(display_name='Dîsplay Mé!')
         serializer = UserProfileBasketSyncSerializer(self.user)
         assert serializer.data['display_name'] == 'Dîsplay Mé!'
+
+    def test_deleted(self):
+        self.user.delete()
+        serializer = UserProfileBasketSyncSerializer(self.user)
+        assert serializer.data == {
+            'deleted': True,
+            'display_name': None,
+            'email': None,
+            'homepage': '',
+            'id': self.user.pk,
+            'last_login': self.user.last_login.replace(
+                microsecond=0).isoformat() + 'Z',
+            'location': ''
+        }
 
 
 class TestUserNotificationSerializer(TestCase):

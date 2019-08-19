@@ -262,6 +262,6 @@ class UserNotificationSerializer(serializers.Serializer):
 class UserProfileBasketSyncSerializer(UserProfileSerializer):
     class Meta(UserProfileSerializer.Meta):
         model = UserProfile
-        fields = ('id', 'display_name', 'email', 'homepage', 'last_login',
-                  'location')
+        fields = ('id', 'deleted', 'display_name', 'email', 'homepage',
+                  'last_login', 'location')
         read_only_fields = fields
