@@ -1317,6 +1317,7 @@ class TestAddonBasketSyncSerializer(TestCase):
         data = self.serialize()
         assert data['authors'] == [{
             'id': user1.pk,
+            'deleted': False,
             'display_name': '',
             'email': user1.email,
             'homepage': user1.homepage,
@@ -1324,6 +1325,7 @@ class TestAddonBasketSyncSerializer(TestCase):
             'location': user1.location
         }, {
             'id': user2.pk,
+            'deleted': False,
             'display_name': '',
             'email': user2.email,
             'homepage': user2.homepage,
