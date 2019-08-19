@@ -593,7 +593,6 @@ MINIFY_BUNDLES = {
             'css/impala/moz-tab.css',
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
-            'css/zamboni/themes.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -638,7 +637,6 @@ MINIFY_BUNDLES = {
             'css/impala/stats.less',
         ),
         'zamboni/discovery-pane': (
-            'css/zamboni/discovery-pane.css',
             'css/impala/promos.less',
             'css/legacy/jquery-lightbox.css',
         ),
@@ -882,13 +880,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/debouncer.js',
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
-
-            'js/zamboni/discovery_addons.js',
-            'js/zamboni/discovery_pane.js',
-        ),
-        'zamboni/discovery-video': (
-            'js/lib/popcorn-1.0.js',
-            'js/zamboni/discovery_video.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',

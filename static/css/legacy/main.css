@@ -2298,14 +2298,6 @@ ol.pagination + .num-results {
     margin: 0;
 }
 
-.separated-listing .item .persona-inner {
-    padding: 0;
-}
-
-.separated-listing .item .persona-large .persona-preview [data-browsertheme] {
-    height: 72px;
-}
-
 .separated-listing blockquote {
     margin-right: 11em;
     clear: left;

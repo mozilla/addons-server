@@ -1715,26 +1715,6 @@ html[xmlns] .clearfix {
 }
 /* END Thumbnails (like the personas browser) */
 
-/* Personas categories */
-.persona-categories li {
-    padding-left: 0.5em;
-    -moz-border-radius: 4px;
-    margin: 0.2em;
-    margin-left: 0;
-}
-
-/* Override .categories h3 to make this look like a normal h3. */
-.persona-categories h3 {
-    font-family: georgia, serif;
-    background: none;
-    color: #011234;
-    border: none;
-    font-size: 1.385em;
-    font-weight: normal;
-    padding-bottom: 0;
-}
-/* END Personas categories */
-
 .hide {
     display:none;
 }

@@ -1637,7 +1637,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
         content = doc('.addon-submission-process')
         assert content('#cc-chooser')  # cc license wizard
-        assert content('#persona-license')  # cc license result
+        assert content('#theme-license')  # cc license result
         assert content('#id_license-builtin')  # license list
         # There should be one license - 11 we added in setUp - and no 'other'.
         assert len(content('input.license')) == 1
