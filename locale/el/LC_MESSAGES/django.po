@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 10:56+0000\n"
+"PO-Revision-Date: 2019-08-19 11:33+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1531,9 +1531,8 @@ msgstr "Για να αλλάξετε την αρχική γλώσσα, θα πρ
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Οι προγραμματιστές μπορούν να εμφανίζονται μόνο μια φορά."
+msgstr "Ένα δημιουργός μπορεί να εμφανίζεται μόνο μια φορά."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
@@ -1715,16 +1714,14 @@ msgstr ""
 msgid "An author has been added to your add-on"
 msgstr "Ένας δημιουργός έχει προστεθεί από το πρόσθετό σας"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Συνεισφορές για το {addon}."
+msgstr "Πρόσκληση δημιουργού για το {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Ο ρόλος ενός δημιουργού έχει αλλάξει σε ένα πρόσθετό σας"
+msgstr "Ο ρόλος ενός δημιουργού έχει αλλάξει στο πρόσθετό σας"
 
 msgid "An author has been removed from your add-on"
 msgstr "Ένας δημιουργός έχει αφαιρεθεί από το πρόσθετό σας"
@@ -1849,9 +1846,8 @@ msgstr "Αποδοχή"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ή <a href=\"{0}\">Ακύρωση</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Περισσότερες πληροφορίες για τις άδειες Creative Commons"
+msgstr "Περισσότερες πληροφορίες για τους λογαριασμούς προγραμματιστών"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -4939,9 +4935,8 @@ msgstr "Δεν μπορείτε να υποβάλετε πρόσθετο, με �
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
+msgstr "Δεν μπορείτε να υποβάλετε ένα πακέτο γλώσσας"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Μη υποστηριζόμενος τύπος αρχείου, παρακαλούμε μεταφορτώστε ένα υποστηριζόμενο αρχείο {extensions}."
@@ -5855,9 +5850,8 @@ msgstr "Ιστορικό αλλαγής χρήστη προσθέτου"
 msgid "Add-on History"
 msgstr "Ιστορικό προσθέτου"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Προηγούμενη σημείωση"
+msgstr "Προηγουμένως διαγραμμένες καταχωρήσεις"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6419,9 +6413,8 @@ msgstr "Θέλετε σίγουρα να αφαιρέσετε όλες τις <b
 msgid "Delete Locale"
 msgstr "Διαγραφή γλώσσας"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Κλείσιμο ιστορικού αξιολόγησης"
+msgstr "Ιστορικό περιορισμού χρηστών"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
