@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 17:20+0000\n"
+"PO-Revision-Date: 2019-08-19 17:46+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4595,9 +4595,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Vynechte všechny ty nesmysly {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Inteligentní rozšíření, které vám pomůže rychle porozumět tomu, s čím že to souhlasíte."
+msgstr "Vynechte všechny ty nesmysly v Podmínkách poskytování služeb. Toto inteligentní rozšíření vám pomůže rychle porozumět tomu, s čím že se po vás chce, abyste souhlasili."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4609,7 +4608,7 @@ msgstr "Lepší zážitek ze čtení {start_sub_heading}díky {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Čtěte s větší snadností a soustředěním. Odstraňte rušivé elementy kolem textu na webových stránkách."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
