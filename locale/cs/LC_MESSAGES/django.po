@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 17:46+0000\n"
+"PO-Revision-Date: 2019-08-19 18:10+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4615,9 +4615,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy a další věci {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Nejen že blokuje otravné reklamy, ale také vás chrání před malwarem a sledováním prostřednictvím reklam."
+msgstr "Blokujte reklamy a získejte vylepšenou ochranu před malwarem a sledováním prostřednictvím reklam."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4632,23 +4631,20 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ukládejte obrázky snadno {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Odchyťte z aktuálního panelu jenom obrázky."
+msgstr "Ukládejte obrázky snadno – jednoduše si je vezměte z aktuálního panelu."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Měřte webové stránky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Nakreslete přes libovolnou webovou stránku digitální pravítko a zkontrolujte výšku, šířku a zarovnání prvků stránky."
+msgstr "Měřte webové stránky. Nakreslete přes libovolnou webovou stránku digitální pravítko a zkontrolujte výšku, šířku a zarovnání prvků stránky."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Využijte výhod správy silných hesel."
+msgstr "Užívejte výhod správy silných hesel."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4663,9 +4659,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Zablokujte rušivé webové stránky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Sestavte seznam webových stránek, které chcete, aby toto rozšíření blokovalo. Okamžitá poslušnost!"
+msgstr "Zablokujte rušivé webové stránky. Sestavte seznam webových stránek, které chcete, aby toto rozšíření blokovalo. Okamžitá poslušnost!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
