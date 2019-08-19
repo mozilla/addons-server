@@ -4695,7 +4695,7 @@ msgstr "Jobb olvasási élmény {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Olvasson tisztábban és könnyebben. Távolítsa el a rendetlenséget a weblapok szövege körül."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
