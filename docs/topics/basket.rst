@@ -79,7 +79,7 @@ Here is an example of the full json that would be sent for an add-on:
         "authors": [
             {
                 "id": 11263,
-                "deleted": False,
+                "deleted": false,
                 "display_name": "serses",
                 "email": "mozilla@virgule.net",
                 "homepage": "",
@@ -137,13 +137,13 @@ Here is an example of the full json that would be sent for an user:
 
 .. code-block:: json
 
-        {
-            "id": 11263,
-            "deleted": False,
-            "display_name": "serses",
-            "email": "mozilla@virgule.net",
-            "homepage": "",
-            "last_login": "2019-08-06T10:39:44Z",
-            "location": ""
-        }
+    {
+        "id": 11263,
+        "deleted": false,
+        "display_name": "serses",
+        "email": "mozilla@virgule.net",
+        "homepage": "",
+        "last_login": "2019-08-06T10:39:44Z",
+        "location": ""
+    }
 
