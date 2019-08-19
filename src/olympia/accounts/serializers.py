@@ -257,3 +257,11 @@ class UserNotificationSerializer(serializers.Serializer):
             # Not .update because some of the instances are new.
             instance.save()
         return instance
+
+
+class UserProfileBasketSyncSerializer(UserProfileSerializer):
+    class Meta(UserProfileSerializer.Meta):
+        model = UserProfile
+        fields = ('id', 'display_name', 'email', 'homepage', 'last_login',
+                  'location')
+        read_only_fields = fields

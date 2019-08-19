@@ -1,13 +1,20 @@
 import datetime
 
 from django.apps import apps
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.utils import translation
+
+import requests
+
+from waffle import switch_is_active
 
 import olympia.core.logger
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
 from olympia.amo.celery import task
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import get_email_backend
 from olympia.bandwagon.models import Collection
 from olympia.lib.akismet.models import AkismetReport
@@ -53,6 +60,7 @@ def set_modified_on_object(app_label, model_name, pk, **kw):
 
 @task
 def delete_logs(items, **kw):
+    from olympia.activity.models import ActivityLog
     log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
         action__in=amo.LOG_KEEP).delete()
@@ -71,3 +79,47 @@ def delete_anonymous_collections(items, **kw):
              (len(items), delete_anonymous_collections.rate_limit))
     Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS,
                               pk__in=items).delete()
+
+
+@task
+@use_primary_db
+def sync_object_to_basket(model_name, pk):
+    """
+    Celery task to sync an object (UserProfile or Addon instance) with Basket.
+    """
+    if not switch_is_active('basket-amo-sync'):
+        log.info(
+            'Not synchronizing %s %s with basket because "basket-amo-sync" '
+            'switch is off.', model_name, pk)
+        return
+    from olympia.accounts.serializers import UserProfileBasketSyncSerializer
+    from olympia.addons.serializers import AddonBasketSyncSerializer
+
+    # Note: whenever a AddonUser changes, we'll be sent the Addon to sync.
+    # That will include all known authors (make sure we're de-duping the
+    # calls correctly, in theory that should be handled by post-request-task).
+
+    serializers = {
+        'addon': AddonBasketSyncSerializer,
+        'userprofile': UserProfileBasketSyncSerializer,
+    }
+    serializer_class = serializers.get(model_name)
+    if not serializer_class:
+        raise ImproperlyConfigured(
+            'No serializer found to synchronise that model name with basket')
+    model = serializer_class.Meta.model
+    manager = getattr(model, 'unfiltered', model.objects)
+    try:
+        obj = manager.get(pk=pk)
+    except model.DoesNotExist:
+        log.exception(
+            'Not synchronizing %s %s with basket because it does not exist',
+            model_name, pk)
+        return
+    locale_to_use = getattr(obj, 'default_locale', settings.LANGUAGE_CODE)
+    with translation.override(locale_to_use):
+        serializer = serializer_class(obj)
+        data = serializer.data
+
+    basket_endpoint = '%s/amo-sync/%s/' % (settings.BASKET_URL, model_name)
+    requests.post(basket_endpoint, json=data)

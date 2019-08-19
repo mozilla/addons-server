@@ -9,10 +9,10 @@ from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Preview, ReplacementAddon)
 from olympia.addons.serializers import (
-    AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
-    ESAddonAutoCompleteSerializer, ESAddonSerializer,
-    LanguageToolsSerializer, LicenseSerializer, ReplacementAddonSerializer,
-    SimpleVersionSerializer, VersionSerializer)
+    AddonBasketSyncSerializer, AddonDeveloperSerializer, AddonSerializer,
+    AddonSerializerWithUnlistedData, ESAddonAutoCompleteSerializer,
+    ESAddonSerializer, LanguageToolsSerializer, LicenseSerializer,
+    ReplacementAddonSerializer, SimpleVersionSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     AddonAutoCompleteSearchView, AddonSearchView, AddonViewSet)
@@ -1238,6 +1238,98 @@ class TestAddonDeveloperSerializer(TestBaseUserSerializer):
         serialized = self.serialize()
         assert serialized['picture_url'] == absolutify(self.user.picture_url)
         assert '%s.png' % self.user.id in serialized['picture_url']
+
+
+class TestAddonBasketSyncSerializer(TestCase):
+    def serialize(self):
+        serializer = AddonBasketSyncSerializer(self.addon)
+        return serializer.to_representation(self.addon)
+
+    def test_basic(self):
+        category = Category.from_static_category(
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
+        category.save()
+        self.addon = addon_factory(category=category)
+        data = self.serialize()
+        expected_data = {
+            'authors': [],
+            'average_daily_users': self.addon.average_daily_users,
+            'categories': {'firefox': ['bookmarks']},
+            'current_version': {
+                'id': self.addon.current_version.pk,
+                'compatibility': {
+                    'firefox': {
+                        'min': '4.0.99',
+                        'max': '5.0.99',
+                    }
+                },
+                'is_strict_compatibility_enabled': False,
+                'version': self.addon.current_version.version,
+            },
+            'default_locale': 'en-US',
+            'guid': self.addon.guid,
+            'id': self.addon.pk,
+            'is_disabled': self.addon.is_disabled,
+            'is_recommended': self.addon.is_recommended,
+            'last_updated': self.addon.last_updated.replace(
+                microsecond=0).isoformat() + 'Z',
+            'latest_unlisted_version': None,
+            'name': str(self.addon.name),  # No translations.
+            'ratings': {
+                'average': 0.0,
+                'bayesian_average': 0.0,
+                'count': 0,
+                'text_count': 0
+            },
+            'slug': self.addon.slug,
+            'status': 'public',
+            'type': 'extension'
+        }
+        assert expected_data == data
+
+    def test_with_unlisted_version(self):
+        self.addon = addon_factory()
+        version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        data = self.serialize()
+        assert data['latest_unlisted_version'] == {
+            'id': version.pk,
+            'compatibility': {
+                'firefox': {
+                    'min': '4.0.99',
+                    'max': '5.0.99',
+                }
+            },
+            'is_strict_compatibility_enabled': False,
+            'version': version.version,
+        }
+
+    def test_non_listed_author(self):
+        self.addon = addon_factory()
+        user1 = user_factory()
+        user2 = user_factory()
+        AddonUser.objects.create(
+            addon=self.addon, user=user1, listed=True,
+            role=amo.AUTHOR_ROLE_OWNER, position=1)
+        AddonUser.objects.create(
+            addon=self.addon, user=user2, listed=False,
+            role=amo.AUTHOR_ROLE_DEV, position=2)
+        data = self.serialize()
+        assert data['authors'] == [{
+            'id': user1.pk,
+            'display_name': '',
+            'email': user1.email,
+            'homepage': user1.homepage,
+            'last_login': user1.last_login,
+            'location': user1.location
+        }, {
+            'id': user2.pk,
+            'display_name': '',
+            'email': user2.email,
+            'homepage': user2.homepage,
+            'last_login': user2.last_login,
+            'location': user2.location
+        }]
 
 
 class TestReplacementAddonSerializer(TestCase):
