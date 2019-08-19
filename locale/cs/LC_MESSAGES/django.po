@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 17:07+0000\n"
+"PO-Revision-Date: 2019-08-19 17:20+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4547,18 +4547,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zahlaďte za sebou stopy {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Vyhledávejte bezpečněji za pomoci blokování sledovacích prvků, sofistikovanějšího šifrování, anonymního hledání a dalších opatření."
+msgstr "Vyhledávejte za pomoci vylepšeného blokování sledovacích prvků, sofistikovaného šifrování a dalších opatření na ochranu soukromí."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zjednodušte si své panely {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Uspořádejte si velké množství otevřených panelů ve svislé postranní liště."
+msgstr "Zjednodušte si své panely. Uspořádejte si velké množství otevřených panelů ve svislé postranní liště."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4573,9 +4571,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Dívejte se na velký obraz {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Kliknutím myši můžete sledovat videa v celé kráse – na celé obrazovce."
+msgstr "Prostým kliknutím myši můžete sledovat videa v celé kráse – na celé obrazovce."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
