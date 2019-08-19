@@ -70,8 +70,7 @@ h1,
 hgroup h2.addon,
 hgroup h2.collection,
 .developer-hub header h2,
-.developer-hub #homepage h2,
-.personas-featured h3 {
+.developer-hub #homepage h2 {
   color: @default-font-color;
   font-size: 1.692rem;
   font-style: normal;
@@ -96,8 +95,7 @@ masthead.submit-theme,
   font-size: 1.75rem;
 }
 
-.primary header h2,
-.personas-featured h3 {
+.primary header h2 {
   margin: 0 0 15px;
 }
 
@@ -859,17 +857,6 @@ body:not(.home) .amo-header,
   text-overflow: ellipsis;
 }
 
-// Featured themes on home
-.home {
-  .hovercard.persona .persona-preview {
-    width: 150px;
-  }
-}
-
-.listing-grid.personas li {
-  height: 118px;
-}
-
 // Side nav on Home
 .home #side-nav {
   // pushed down to make room for more header
@@ -917,8 +904,7 @@ button.button,
 .button,
 a.button:link,
 a.button:visited,
-input:not(.upvotes):not(.downvotes)[type="submit"],
-.persona-install button {
+input:not(.upvotes):not(.downvotes)[type="submit"] {
   background: #5784bf;
   border: none;
   border-radius: 3px;
@@ -1547,20 +1533,6 @@ h3.author .transfer-ownership {
   h3 a {
     font-family: @primary-font;
   }
-
-  > ul.personas {
-    border: 0;
-  }
-
-  .persona-install {
-    border: 0;
-
-    .add {
-      background-image: none;
-      background-color: #57bd35;
-      text-shadow: none;
-    }
-  }
 }
 
 .secondary .submit-theme {
@@ -1571,18 +1543,9 @@ h3.author .transfer-ownership {
   }
 }
 
-.personas-home .intro {
-  font-size: 1.2em;
-}
-
-#featured-addons.featured.personas-home {
-  display: none;
-}
-
 // Theme Page
 .section > hgroup a,
-.article.prose a,
-#persona-side a {
+.article.prose a {
   color: @link-on-white-bg;
 }
 
@@ -1669,93 +1632,10 @@ h3.author .transfer-ownership {
   }
 }
 
-// Unified theme view
-.personas-featured .persona-list-3col {
-  border: 0;
-  min-height: 125px;
-  padding-bottom: 36px;
-}
-
-.restyle .persona.hovercard {
-  height: 100px;
-
-  &:focus,
-  &:hover {
-    height: 136px;
-    margin-bottom: -36px;
-  }
-
-  h3 {
-    padding-bottom: 0;
-  }
-
-  h4 {
-    clear: both;
-    font-size: 12px;
-
-    .author-names{
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-  }
-
-  a {
-    display: inline;
-  }
-}
-
-.persona-list-3col {
-  li {
-    border: 0;
-    display: inline;
-    overflow: hidden;
-    padding: 0.6em 0 0;
-    position: relative;
-
-    &:nth-of-type(3n) .persona.hovercard {
-      margin-right: 0;
-
-      .personas-featured {
-        &:hover,
-        &:focus {
-          margin-bottom: -14.5px;
-        }
-      }
-    }
-
-    &:nth-of-type(4n) .persona.hovercard {
-      clear: both;
-    }
-  }
-
-  .persona.hovercard {
-    margin-right: 34px;
-    width: 33.3%;
-
-    a {
-      padding: 0;
-    }
-
-    h3 {
-      max-width: 200px;
-    }
-  }
-}
-
 .category-landing {
   .addons-column {
-    ul.personas {
-      padding: 0;
-    }
-
     ul li {
       overflow: visible;
-
-      .persona a {
-        padding: 0;
-      }
     }
   }
 
@@ -1844,58 +1724,6 @@ h3.author .transfer-ownership {
   .more-versions a {
     color: #0996f8 !important; //need to override .disabled a[href] color: #888!important; rule
   }
-}
-
-.persona.hovercard {
-  max-width: 200px;
-
-  .persona-install {
-    border: 0;
-    display: none;
-    margin-top: 3px;
-    padding-bottom: 5px;
-    position: static;
-
-    button {
-      height: auto;
-      padding: 3px;
-    }
-  }
-
-  &:hover {
-    height: 100px;
-    margin-bottom: -22px;
-
-    .persona-install {
-      display: block;
-    }
-  }
-
-  h3 {
-    clear: none;
-    font-size: 14px;
-    margin: 0;
-    padding: 6px 0 3px;
-  }
-
-  .persona-preview {
-    float: none;
-  }
-}
-
-// This is used to override JS that tries to mess with these styles :'(
-.restyle .persona.hovercard a {
-  background: none !important;
-
-  .persona-preview [data-browsertheme] {
-    background: none;
-    border: 0 !important; // zamboni.css defines this as !important :-/
-  }
-}
-
-.personas-grid li {
-  height: auto;
-  width: auto;
 }
 
 .manage-button {
@@ -2041,43 +1869,6 @@ h3.author .transfer-ownership {
   overflow: auto;
 }
 
-#persona-summary {
-
-  .install,
-  .install-wrapper,
-  .install-persona,
-  p.warning,
-  .persona-inner {
-    padding: 0;
-  }
-
-  .widgets,
-  p {
-    clear: left;
-
-    .html-rtl & {
-      clear: right;
-    }
-  }
-
-  .install-wrapper {
-    float: left;
-
-    .html-rtl & {
-      float: right;
-    }
-  }
-
-  table {
-    margin-top: 15px;
-    width: 290px;
-
-    td {
-      width: 100%;
-    }
-  }
-}
-
 #review-box form {
   height: auto;
   min-height: 270px;
@@ -2124,32 +1915,6 @@ h3.author .transfer-ownership {
 
 .prettyform .listing-footer {
   background: none;
-}
-
-// Theme detail page
-#persona #more-personas .article {
-  padding: 0 10px 40px;
-
-  .persona.hovercard:nth-child(odd) {
-    clear: left;
-  }
-}
-
-#more-artist .persona.hovercard,
-#my-themes .persona.hovercard {
-  .persona-preview {
-    width: auto;
-  }
-}
-
-#more-artist .persona.hovercard {
-  margin-bottom: 0;
-  padding: 8px 9px 18px;
-
-  &:hover,
-  &:focus {
-    margin-bottom: -36px;
-  }
 }
 
 .restyle.statistics {

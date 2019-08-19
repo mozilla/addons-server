@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 12:53+0000\n"
+"PO-Revision-Date: 2019-08-19 11:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4214,7 +4214,7 @@ msgstr "Suwanje kaž na telefonje {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Kulenje kaž na telefonje za waš desktop. Skići pohib myški „hrabać a ćahnyć“."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4456,7 +4456,7 @@ msgstr "Slědujće płaćiznowej historiji Amazon {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Slědujće płaćiznowej historiji Amazon. Čińće fundowane rozsudy."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
