@@ -96,8 +96,9 @@ ADDON_LPAPP = 5
 ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
-_ADDON_PERSONA = 9  # Deprecated - should only exist as STATUS_DELETED
+_ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
 ADDON_STATICTHEME = 10
+_ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
 
 # Addon type groupings.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,

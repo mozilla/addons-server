@@ -18,6 +18,7 @@ from olympia.addons.tasks import (
     repack_themes_for_69,
 )
 from olympia.abuse.models import AbuseReport
+from olympia.constants.base import _ADDON_PERSONA, _ADDON_WEBAPP
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -153,8 +154,8 @@ tasks = {
             Q(type__in=(amo.ADDON_THEME,
                         amo.ADDON_LPADDON,
                         amo.ADDON_PLUGIN,
-                        9,  # ADDON_PERSONA,
-                        11,  # ADDON_WEBAPP,
+                        _ADDON_PERSONA,
+                        _ADDON_WEBAPP,
                         ))
         ],
         'allowed_kwargs': ('with_deleted',),
