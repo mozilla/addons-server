@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-18 14:47+0000\n"
+"PO-Revision-Date: 2019-08-19 07:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "type"
 
 msgid "Users"
 msgstr "Brûkers"
@@ -29,7 +29,7 @@ msgid "Addons"
 msgstr "Add-ons"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "minimum oantal rapporten (groepearre op guid)"
 
 msgid "creation date"
 msgstr "oanmaakdatum"
@@ -41,34 +41,34 @@ msgid "Distribution"
 msgstr "Sprieding"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Lân fan melder"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Uttreksel berjocht"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "De %d selektearre rapporten binne as jildich markearre."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "De %d selektearre rapporten binne as fertocht markearre."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Selektearre misbrûkrapporten as fertocht markearje"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Soargje derfoar dat dit fjild net mear as {max_length} tekens befettet."
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Wizige:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Per %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 msgid "No links are allowed."
 msgstr "Keppelingen binne net tastien."
@@ -80,7 +80,7 @@ msgid "This reviewer name cannot be used."
 msgstr "Dizze beoardielersnamme kin net brûkt wurde."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "It startsidefjild mei allinnich brûkt wurde foar keppelingen nei eksterne websites."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
@@ -112,7 +112,7 @@ msgstr "Untwikkelers fan add-ons of tema’s kinne harren account net fuortsmite
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Notifikaasje [%s] bestiet net"
 
 msgid "Review"
 msgstr "Beoardieling"
@@ -197,11 +197,11 @@ msgid "Admin Tools"
 msgstr "Behearark"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Posityf hiel getal"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Dit fjild mei allinnich brûkt wurde foar keppelingen nei eksterne websites. URL’s op %(domain)s binne net tastien."
 
 msgid "Incorrect, please try again."
 msgstr "Net krekt, probearje it opnij."
@@ -210,10 +210,10 @@ msgid "Error verifying input, please try again."
 msgstr "Flater by kontrolearjen ynfier, probearje it opnij."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Fier in jildich IP4- of IP6-netwurk yn."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
@@ -237,6 +237,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Jo sjogge dit berjocht omdat dizze HTTPS-website it ferstjoeren fan in ‘Referer header’ troch jo webbrowser fereasket, mar dizze net ferstjoerd is. Dizze header is om befeiligingsredenen fereaske om"
+" wis te wêzen dat jo browser net troch tredden hackt wurdt."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -3442,9 +3444,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Genietsje fan fisuele blêdwizers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Benaderje jo favorite websites fan in tegellayout út."
+msgstr "Genietsje fan fisuele blêdwizers. Benaderje jo favorite websites fan in tegelyndieling út."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3592,9 +3593,8 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Lit in skjin digitaal spoar nei {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Lit Firefox websitegegevens lykas cookies en lokale opslach ferjitte, mar allinnich foar keazen domeinen."
+msgstr "Lit in skjin digitaal spoar efter. Lit Firefox websitegegevens lykas cookies en lokale ûnthâld ferjitte, mar allinnich foar keazen domeinen."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4295,9 +4295,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Genietsje fan in frjemde edukaasje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Laad samar in Wikipedia-artikel yn elk nij ljepblêd."
+msgstr "Genietsje fan in aparte edukaasje. Laad samar in Wikipedia-artikel elke kear as jo in nij ljepblêd iepenje."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4808,9 +4807,8 @@ msgstr "Jo kinne gjin add-on yntsjinje mei in GUID dy't op %s einiget"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
+msgstr "Jo kinne gjin taalpakket yntsjinje"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Net-stipe bestânstype, laad in stipe bestân {extensions} op."
@@ -5376,9 +5374,8 @@ msgstr "Gewicht"
 msgid "Information Request Deadline"
 msgstr "Deadline foar fersyk om ynformaasje"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Lêst bywurke:"
+msgstr "Lêst bywurke"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Hjirtroch wurdt dizze ferzje goedkard, ûndertekene en publisearre. De opmerkingen wurde nei de ûntwikkeler stjoerd."
@@ -5733,9 +5730,8 @@ msgstr "Wizigingsskiednis fan add-onbrûker"
 msgid "Add-on History"
 msgstr "Add-onskiednis"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Foargeande opmerking"
+msgstr "Earder fuortsmiten ynjeftes"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
