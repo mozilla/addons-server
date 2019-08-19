@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 06:33+0000\n"
+"PO-Revision-Date: 2019-08-19 06:40+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2010,7 +2010,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr "Klik hieronder op de knop Accepteren om te bevestigen dat u wilt worden toegevoegd als schrijver voor {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Weigeren"
 
 msgid "Manage Authors & License"
 msgstr "Schrijvers en licentie beheren"
@@ -2022,10 +2022,10 @@ msgid "About author roles"
 msgstr "Over ontwikkelaarsfuncties"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Schrijvers wachtend op bevestiging"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Schrijvers die aan deze add-on zijn toegevoegd maar nog niet hebben bevestigd."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3403,7 +3403,7 @@ msgstr "Directe weerupdates {start_sub_heading}met {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Onmiddellijke weersupdates van over de hele wereld."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4036,7 +4036,7 @@ msgstr "Download afbeeldingen {start_sub_heading}met {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Download afbeeldingen die u op internet vindt."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4225,7 +4225,7 @@ msgstr "Scrollen als op een telefoon {start_sub_heading}met {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Scrollen als op uw telefoon voor uw desktop. Met ‘pakken-en-slepen’-muisbewegingen."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4241,7 +4241,7 @@ msgstr "Accentueer tekst {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Markeer tekst op webpagina’s om op te slaan en later te openen."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4317,7 +4317,7 @@ msgstr "Surf privé {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Zoek privé met slechts een klik."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4467,7 +4467,7 @@ msgstr "Houd het prijsverloop op Amazon bij {start_sub_heading}met {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Volg de geschiedenis van prijzen op Amazon. Neem geïnformeerde aankoopbeslissingen."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4539,7 +4539,7 @@ msgstr "Sluit vervelende overlays {start_sub_heading}met {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Sluit vervelende pop-ups met een simpele klik."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4593,7 +4593,7 @@ msgstr "Houd het prijsverloop op Amazon bij {start_sub_heading}met {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Volg de geschiedenis van prijzen op Amazon. Neem slimme aankoopbeslissingen, door waarschuwingen voor prijswijzigingen voor Amazon-producten waarin u bent geïnteresseerd te ontvangen."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4681,7 +4681,7 @@ msgstr "Een betere leeservaring {start_sub_heading}met {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Lees met meer duidelijkheid en gemak. Verwijder de rommel rond tekst op webpagina’s."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4763,7 +4763,7 @@ msgstr "Houd notities bij {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Bewaar persoonlijke aantekeningen overal op het internet. Gebruik gewoon een zijbalk om notities aan specifieke webpagina’s toe te voegen."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4788,7 +4788,7 @@ msgstr "Maak het web donker {start_sub_heading}met {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Maak het web donker of selecteer een aangepast kleurenschema om het internet visueel aan uw eigen smaak aan te passen."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
