@@ -121,5 +121,5 @@ def sync_object_to_basket(model_name, pk):
         serializer = serializer_class(obj)
         data = serializer.data
 
-    basket_endpoint = '%s/amo-sync/%s/' % (settings.BASKET_URL, model_name)
+    basket_endpoint = f'{settings.BASKET_URL}/amo-sync/{model_name}/'
     requests.post(basket_endpoint, json=data)
