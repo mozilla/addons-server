@@ -1829,11 +1829,7 @@ FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
 
-MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
-
 MIGRATED_LWT_UPDATES_ENABLED = True
-
-ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS = ('release+addons@mozilla.org',)
 
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
