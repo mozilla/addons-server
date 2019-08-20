@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 13:21+0000\n"
+"PO-Revision-Date: 2019-08-20 20:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3645,9 +3645,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Wobeńdźće lestne přesćěhowaki a wobmjezowanja {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Schowajće identitu swojeho wobhladowaka a dźěłoweho systema, zo byšće swoju nawigaciju zakrył."
+msgstr "Wobeńdźće zachribjetne přesćěhowaki a wobmjezowanja. Schowajće identitu swojeho wobhladowaka a dźěłoweho systema, zo byšće swoju nawigaciju zakrył."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3662,9 +3661,10 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Wotdźělće swoje žiwjenja online{start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Rozeznajće za škit priwatnosće mjez swojimi rozdźělnymi identitami online - dźěło, priwatne atd. - z přez barbu kodowanymi rajtarkami, kotrež wašu digitalnu plackowu ćěr rozdźěleja."
+msgstr ""
+"Dźělće swoje žiwjenje online. Rozeznajće za škit priwatnosće mjez swojimi rozdźělnymi identitami online - dźěło, priwatne atd. - z přez barbu kodowanymi rajtarkami, kotrež wašu digitalnu plackowu "
+"ćěr rozdźěleja."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3679,36 +3679,32 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Čitajće ePub-dataje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Wužiwajće ePub-dataje direktnje w Firefox - powyšće wulkosć pisma, wotměry strony a wjace."
+msgstr "Čitajće ePub-dataje direktnje w Firefox - powyšće wulkosć pisma, wotměry strony a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Polěpšće swoje dožiwjenje Youtube {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Wothrajće wideja po standardźe w najwyšej kwaliće, znjemóžńće přispomnjenki a wjace."
+msgstr "Wothrajće wideja YouTube po standardźe w najwyšej kwaliće, znjemóžńće přispomnjenki a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Slědujće přesćěhowakam {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Pohladajće z jenož jednom kliknjenjom, štóž was slědujeće."
+msgstr "Slědujće přesćěhowakam. Pohladajće z jenož jednom kliknjenjom, štóž wam slědujeće."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Změńće swój proksy-serwer {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Přehladujće web ze swójskimi proksy-nastajenjemi."
+msgstr "Změńće swój proksyserwer a přehladujće web ze swójskimi proksy-nastajenjemi."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3767,14 +3763,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Přehladujće anonymnje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Přehladujće web ze zakrytej identitu - samo, jeli to z druheho kraja činiće."
+msgstr "Přehladujće anonymnje. Přehladujće web ze zakrytej identitu - samo, jeli to z druheho kraja činiće."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Mějće přistup na swoje najlubše sydła, njedawno začinjene rajtarki a wjace - wšitko z wulkotneho kachličkeho napohlada."
+msgstr "Wužiwajće wizuelne zapołožki. Mějće přistup na swoje najlubše sydła, njedawno začinjene rajtarki a wjace - wšitko z wulkotneho kachličkeho napohlada."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
