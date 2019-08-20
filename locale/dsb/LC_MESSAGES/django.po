@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 13:31+0000\n"
+"PO-Revision-Date: 2019-08-20 13:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4533,7 +4533,7 @@ msgstr "Zacyńśo mólece zablendowanja {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Zacyńśo gramne wuskokujuce wokna z jadnorym kliknjenim."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4587,7 +4587,7 @@ msgstr "Slědujśo płaśiznowej historiji Amazon {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Slědujśo płaśiznowej historiji Amazon. Dostańśo zdźělenja wó změnach płaśiznow za produkty Amazon, za kótarež se zajmujośo, aby inteligentne rozsudy cynił."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4675,7 +4675,7 @@ msgstr "Lěpše cytańske dožywjenje {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Cytajśo z wěcej jasnosću a lažkosću. Wówónoźćo barłog wokoło teksta na webbokach."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4757,7 +4757,7 @@ msgstr "Cyńśo notice {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Wobchowajśo wósobinske notice wšuźi we webje. Wužywajśo jadnorje bocnicu, aby notice na wěstych webbokach pśidał."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4782,7 +4782,7 @@ msgstr "Cyńso web śamny {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Wóśamniśo web abo wubjeŕśo swójsku barwowu šemu, aby internet wizuelnje pó swójom słoźe pśiměrił."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
