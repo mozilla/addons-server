@@ -1,6 +1,6 @@
 from pypom import Region
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as expected
 from olympia.files.tests.test_file_viewer import get_file
 
@@ -74,19 +74,31 @@ class DevHub(Base):
         file_path = get_file(xpi)
         self.selenium.find_element(*self._submit_addon_btn_locator).click()
         # Accept agreement
-        try:
-            devhub_agreement = DevHubAgreement(
-                self.selenium, self.base_url
-            ).wait_for_page_to_load()
-        except TimeoutException:
-            # Do nothing, the agreement has already been excepted
-            pass
-        else:
-            devhub_agreement.accept_agreement()
-        self.selenium.find_element(*self._continue_sub_btn_locator).click()
+        agreement = False
+        count = 0
+        while agreement is not True and count < 5:
+            try:
+                devhub_agreement = DevHubAgreement(
+                    self.selenium, self.base_url
+                ).wait_for_page_to_load()
+            except TimeoutException:
+                # Do nothing, the agreement has already been excepted
+                pass
+            else:
+                try:
+                    devhub_agreement.accept_agreement()
+                    self.selenium.find_element(
+                        *self._continue_sub_btn_locator).click()
+                except NoSuchElementException as e:
+                    print(e)
+                    self.selenium.refresh
+                    count + 1
+                else:
+                    agreement = True
         # Upload
         upload_finished = False
-        while upload_finished is not True:
+        count = 0
+        while upload_finished is not True and count <= 5:
             try:
                 upload = self.selenium.find_element(
                     *self._upload_addon_locator)
@@ -99,8 +111,11 @@ class DevHub(Base):
                     *self._submit_upload_btn_locator).click()
             except TimeoutException:
                 upload_finished = False
-            except Exception:
-                raise Exception
+            except Exception as e:
+                self.selenium.refresh
+                if count == 5:
+                    raise e
+                count + 1
             else:
                 upload_finished = True
         # Submit no source code
