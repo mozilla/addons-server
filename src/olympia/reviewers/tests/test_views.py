@@ -5928,7 +5928,7 @@ class TestDraftCommentViewSet(TestCase):
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        canned_response =  CannedResponse.objects.create(
+        canned_response = CannedResponse.objects.create(
             name=u'Terms of services',
             response=u'doesn\'t regard our terms of services',
             category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
@@ -5957,7 +5957,7 @@ class TestDraftCommentViewSet(TestCase):
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        canned_response =  CannedResponse.objects.create(
+        canned_response = CannedResponse.objects.create(
             name=u'Terms of services',
             response=u'doesn\'t regard our terms of services',
             category=amo.CANNED_RESPONSE_CATEGORY_OTHER,

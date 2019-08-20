@@ -444,7 +444,7 @@ class TestDraftComment(TestCase):
             category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
             type=amo.CANNED_RESPONSE_TYPE_ADDON)
 
-        comment = DraftComment.objects.create(
+        DraftComment.objects.create(
             user=user, version=addon.current_version,
             canned_response=canned_response)
 

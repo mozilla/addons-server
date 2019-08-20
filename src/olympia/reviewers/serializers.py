@@ -341,7 +341,6 @@ class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
         pass
 
 
-
 class CannedResponseSerializer(serializers.ModelSerializer):
     # Title is actually more fitting than the internal "name"
     title = serializers.CharField(source='name')
