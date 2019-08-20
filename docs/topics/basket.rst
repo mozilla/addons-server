@@ -6,7 +6,7 @@ This documents what data we synchronize with `Basket <https://basket.readthedocs
 Triggers
 --------
 
-Every time a field that we're meant to synchronize on an object on changes, a full sync of the
+Every time a field that we're meant to synchronize on an object changes, a full sync of the
 object is triggered.
 
 A consequence of this is, since the relation between an addon and an user is part of the add-on
@@ -34,7 +34,7 @@ User Accounts
 .. http:post:: https://basket.mozilla.org/amo-sync/userprofile/
 
     :<json int id: The numeric user id.
-    :>json boolean deleted: Is the account deleted.
+    :<json boolean deleted: Is the account deleted.
     :<json string|null display_name: The name chosen by the user.
     :<json string email: Email address used by the user to login and create this account.
     :<json string|null last_login: The date of the last successful log in to the website.
@@ -64,7 +64,7 @@ Add-ons
     :<json float ratings.average: The average user rating for the add-on.
     :<json float ratings.bayesian_average: The bayesian average user rating for the add-on.
     :<json object categories: Object holding the categories the add-on belongs to.
-    :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
+    :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`, referenced by its ``app_name``. (Combine with the add-on ``type`` to determine the name of the category).
     :<json int average_daily_users: The average number of users for the add-on.
     :<json boolean is_recommended: Whether the add-on is recommended by Mozilla or not.
 
