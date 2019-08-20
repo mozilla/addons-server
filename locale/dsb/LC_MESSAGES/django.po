@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 13:13+0000\n"
+"PO-Revision-Date: 2019-08-20 13:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1991,16 +1991,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Pśeglěd se hyšći twóri - wrośćo se pózdźej abo aktualizěrujśo bok."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Su was pśepšosyli, awtor {addon_name} byś."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Akceptěrowanje pśepšosby wam pśistup ma wobźěłowanje dodanka dajo, a móžo wašo mě w lisćinje awtorow na websedle pokazaś."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Klikniśo na tłocašk „Akceptěrowaś“ dołojce, aby wobkšuśił, až cośo awtor {addon_name} byś."
 
 msgid "Decline"
-msgstr ""
+msgstr "Wótpokazaś"
 
 msgid "Manage Authors & License"
 msgstr "Awtorow a licencu zastojaś"
@@ -2012,10 +2012,10 @@ msgid "About author roles"
 msgstr "Wó awtorowych rolach"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Awtory, kótarež na wobkšuśenje cakaju"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Awtory, kótarež su se pśidali dodankoju, ale njejsu se wobkšuśili."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3399,7 +3399,7 @@ msgstr "Wjedrowe aktualizacije ned {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Wjedrowe aktualizacije ned z cełego swěta."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4030,7 +4030,7 @@ msgstr "Ześěgniśo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Ześěgniśo wobraze, kótarež we webje namakajośo."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4219,7 +4219,7 @@ msgstr "Kulanje ako na telefonje {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Kulanje ako na telefonje za waš desktop. Bitujo pógib myški „pópadnuś a śěgnuś“."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4235,7 +4235,7 @@ msgstr "Wuzwigniśo tekst {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Wuzwigniśo tekst na webbokach, aby jen składował a za póznjejšy pśistup."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4311,7 +4311,7 @@ msgstr "Pśeglědujśo priwatnje {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Pytajśo priwatnje z jano jadnym kliknjenim."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4461,7 +4461,7 @@ msgstr "Slědujśo płaśiznowej historiji Amazon {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Slědujśo płaśiznowej historiji Amazon. Cyńśo funděrowane rozsudy."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
