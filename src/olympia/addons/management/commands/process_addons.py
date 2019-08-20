@@ -10,6 +10,7 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
     content_approve_migrated_themes,
+    delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
     migrate_webextensions_to_git_storage,
@@ -17,6 +18,7 @@ from olympia.addons.tasks import (
     repack_themes_for_69,
 )
 from olympia.abuse.models import AbuseReport
+from olympia.constants.base import _ADDON_PERSONA, _ADDON_WEBAPP
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -145,7 +147,19 @@ tasks = {
         'qs': [Q(migrated_from_lwt__isnull=False,
                  type=amo.ADDON_STATICTHEME, status=amo.STATUS_APPROVED,
                  addonapprovalscounter__last_content_review__isnull=True)]
-    }
+    },
+    'delete_obsolete_addons': {
+        'method': delete_addons,
+        'qs': [
+            Q(type__in=(amo.ADDON_THEME,
+                        amo.ADDON_LPADDON,
+                        amo.ADDON_PLUGIN,
+                        _ADDON_PERSONA,
+                        _ADDON_WEBAPP,
+                        ))
+        ],
+        'allowed_kwargs': ('with_deleted',),
+    },
 }
 
 

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 15:38+0000\n"
+"PO-Revision-Date: 2019-08-19 16:13+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -54,7 +54,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "将选定的滥用报告标记为可疑"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "请确保此字段未超过 {max_length} 个字符。"
 
 msgid "Modified on:"
 msgstr "修改时间："
@@ -3596,7 +3596,7 @@ msgstr "跟踪追踪器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "剖析跟踪器。只需点击一下，了解谁在跟踪您。"
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3620,7 +3620,7 @@ msgstr "安全浏览 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "安全地浏览。将安全加密应用到任何支持 HTTPS 的站点。"
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3664,11 +3664,11 @@ msgstr "匿名网上冲浪 {start_sub_heading}就用 {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "匿名冲浪。使用伪装身份浏览网页——甚至好像您从其他国家/地区浏览。"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "享受视觉化书签。用华丽的磁贴呈现您喜爱的网站、最近关闭的标签页等等，好看又便捷。"
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3692,7 +3692,7 @@ msgstr "强大的下载管理 {start_sub_heading}就用 {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "强大的下载管理。通过状态栏、下载历史页面等检查您的下载项状态。"
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3708,7 +3708,7 @@ msgstr "搜索跟踪的防护 {start_sub_heading}就用 {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "拒绝点击 Google 和 Yandex 搜索结果时的广告跟踪器。"
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3724,7 +3724,7 @@ msgstr "为搜索结果加入缩略图 {start_sub_heading}就用 {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "在返回的搜索结果旁欣赏网站缩略图。"
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3748,7 +3748,7 @@ msgstr "定制出您喜欢的网站 {start_sub_heading}就用 {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "自定义任何网站的外观！调整颜色、更改网页背景等等。"
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3756,7 +3756,7 @@ msgstr "定制您的新标签页 {start_sub_heading}就用 {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "定制您的“新标签页”显示的磁贴数量、背景图像等。"
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3772,7 +3772,7 @@ msgstr "了解您在网上去向何处 {start_sub_heading}就用 {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "成为知情的旅行者。了解您所访问网站的地理归属（国家/地区）。"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3924,7 +3924,7 @@ msgstr "更改您的隐私设置 {start_sub_heading}就用 {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "直接定制 Firefox 中内置的隐私设置。"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4096,7 +4096,7 @@ msgstr "享受全球各地音乐 {start_sub_heading}就用 {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "享受来自全球超过 30000 多个电台的音乐。"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4168,7 +4168,7 @@ msgstr "遏制标签页劫持 {start_sub_heading}就用 {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "终结标签页劫持。拒绝点击的链接控制您的当前标签页和加载您并未寻求的内容。"
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4176,7 +4176,7 @@ msgstr "快捷搜索 Wikipedia {start_sub_heading}就用 {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "选中任何网页中的文本，单击右键即可选择在维基百科中轻松搜索。"
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4200,7 +4200,7 @@ msgstr "快速查看亚马逊商品 {start_sub_heading}就用 {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "购物更轻松。在查看其他网上商店的产品页面时，单击一个按钮即可查看亚马逊上的同款货品（如果有）。"
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4248,7 +4248,7 @@ msgstr "Firefox 大搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "轻松访问您 Firefox 打开的标签页、您的书签和历史记录。"
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4304,7 +4304,7 @@ msgstr "追踪 Amazon 历史价格 {start_sub_heading}就用 {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "追踪 Amazon 历史价格，做出明智的购物决策。"
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4416,7 +4416,7 @@ msgstr "打印前编辑 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "打印前编辑网页。非凡的视觉变化 — 对您想要打印的任何网页移除广告或令人讨厌的内容。"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4456,7 +4456,7 @@ msgstr "简化标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "简化标签页。在垂直侧栏中管理您打开的众多标签页。"
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4472,7 +4472,7 @@ msgstr "查看大图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "轻点鼠标，全屏看视频。"
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4532,7 +4532,7 @@ msgstr "轻松保存图片 {start_sub_heading}就用 {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "轻松保存图像 - 只需在当前标签页拖曳即可。"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"

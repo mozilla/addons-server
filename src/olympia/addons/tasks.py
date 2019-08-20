@@ -330,12 +330,29 @@ def recreate_theme_previews(addon_ids, **kw):
 
 @task
 @use_primary_db
-def delete_addons(addon_ids, **kw):
-    log.info('[%s@%s] Deleting addons starting at id: %s...'
-             % (len(addon_ids), delete_addons.rate_limit, addon_ids[0]))
-    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
-    for addon in addons:
-        addon.delete(send_delete_email=False)
+def delete_addons(addon_ids, with_deleted=False, **kw):
+    """Delete the given addon ids.
+
+    If `with_deleted=True` the delete is a hard delete - i.e. the addon record
+    and all linked records in other models are deleted from the database. We
+    use the queryset delete method to bypass Addon.delete().
+
+    If `with_deleted=False` Addon.delete() is called for each addon id, which
+    typically* soft deletes - i.e. some metadata and files are removed but the
+    records in the database persist, and the Addon.status is set to
+    STATUS_DELETED.  *Addon.delete() only does a hard-delete where the Addon
+    has no versions or files - and has never had any versions or files.
+    """
+    log.info('[%s@%s] %sDeleting addons starting at id: %s...'
+             % ('Hard ' if with_deleted else '', len(addon_ids),
+                delete_addons.rate_limit, addon_ids[0]))
+    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
+    if with_deleted:
+        # Call QuerySet.delete rather than Addon.delete.
+        addons.delete()
+    else:
+        for addon in addons:
+            addon.delete(send_delete_email=False)
 
 
 @task

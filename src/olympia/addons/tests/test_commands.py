@@ -650,3 +650,42 @@ def test_backfill_reused_guid():
         {'addon': multi_reuse_deleted_a.id, 'guid': 'multi@reuse'},
         {'addon': multi_reuse_deleted_b.id, 'guid': 'multi@reuse'},
     ]
+
+
+class TestDeleteObsoleteAddons(TestCase):
+    def setUp(self):
+        # Some add-ons that shouldn't be deleted
+        self.extension = addon_factory()
+        self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.dictionary = addon_factory(type=amo.ADDON_DICT)
+        # And some obsolete ones
+        addon_factory(type=amo.ADDON_THEME)
+        addon_factory().update(type=amo.ADDON_LPADDON)
+        addon_factory().update(type=amo.ADDON_PLUGIN)
+        addon_factory(type=9)  # _ADDON_PERSONA
+        addon_factory().update(type=11)  # webapp
+
+        assert Addon.unfiltered.count() == 8
+
+    def test_hard(self):
+        call_command(
+            'process_addons', task='delete_obsolete_addons', with_deleted=True)
+
+        assert Addon.unfiltered.count() == 3
+        assert Addon.unfiltered.get(id=self.extension.id)
+        assert Addon.unfiltered.get(id=self.static_theme.id)
+        assert Addon.unfiltered.get(id=self.dictionary.id)
+
+    def test_hard_with_already_deleted(self):
+        Addon.unfiltered.update(status=amo.STATUS_DELETED)
+        self.test_hard()
+
+    def test_normal(self):
+        call_command(
+            'process_addons', task='delete_obsolete_addons')
+
+        assert Addon.unfiltered.count() == 8
+        assert Addon.objects.count() == 3
+        assert Addon.objects.get(id=self.extension.id)
+        assert Addon.objects.get(id=self.static_theme.id)
+        assert Addon.objects.get(id=self.dictionary.id)

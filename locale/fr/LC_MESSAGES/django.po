@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 14:58+0000\n"
+"PO-Revision-Date: 2019-08-19 17:54+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -711,7 +711,7 @@ msgid "{addon} reviewed."
 msgstr "{addon} validé."
 
 msgid "User {user} banned."
-msgstr "Utilisateur ou utilisatrice {user} banni⋅e."
+msgstr "Utilisateur ou utilisatrice {user} banni·e."
 
 msgid "User {user} picture deleted."
 msgstr "L’image de {user} a été supprimée."
@@ -4034,9 +4034,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Personnalisez YouTube {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Affichez les vidéos dans une fenêtre popup, limitez les publicités aux chaînes auxquelles vous êtes abonné⋅e, prenez des captures d’écran et bien plus encore."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6450,7 +6449,7 @@ msgstr "Fermer l’historique de revue"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr "L’utilisateur ou utilisatrice « %(user)s » a été banni⋅e."
+msgstr "L’utilisateur ou utilisatrice « %(user)s » a été banni·e."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."

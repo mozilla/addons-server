@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 06:42+0000\n"
+"PO-Revision-Date: 2019-08-20 07:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3427,7 +3427,7 @@ msgstr "Bloca le avisos publicitari {start_sub_heading}con {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Un efficace e legier blocator de avisos publicitari. uBlock Origine applica milles de filtros de contento sin consummar trop memoria."
+msgstr "Un efficace e legier blocator de avisos publicitari. uBlock Origine applica milles de filtros al contentos sin consummar trop memoria."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
