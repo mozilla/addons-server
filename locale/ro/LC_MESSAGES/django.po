@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 06:25+0000\n"
+"PO-Revision-Date: 2019-08-20 06:46+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1501,7 +1501,6 @@ msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezum
 msgid "Users can not be added directly"
 msgstr "Utilizatorii nu pot fi adăugați direct"
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "Autorii pot fi listați numai o dată."
 
@@ -1687,14 +1686,12 @@ msgstr "Invitație refuzată."
 msgid "An author has been added to your add-on"
 msgstr "A fost adăugat un autor la suplimentul tău"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Contribuții pentru {addon}."
+msgstr "Invitație ca autor pentru {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "A fost trimis un mesaj e-mail de confirmare la {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
 msgstr "A fost modificat rolul unui autor în suplimentul tău"
 
@@ -2798,9 +2795,8 @@ msgstr "Generează acreditări noi"
 msgid "Invisible"
 msgstr "Invizibil"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "Recenzii aprobate"
+msgstr "Aprobate și recomandate"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Te rugăm să completezi suplimentul prin adăugarea unei versiuni sau a metadatelor care lipsesc."
@@ -3621,9 +3617,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mărește imaginile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "Pur și simplu treci cu mouse-ul peste o imagine pentru mărire."
+msgstr "Treci cu mouse-ul peste o imagine pentru mărire."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3654,20 +3649,20 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Lasă o urmă digitală curată {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Fă Firefox să uite datele site-urilor web, precum cookie-uri și stocare locală, dar numai pentru domeniile alese de tine."
+msgstr "Lasă urme digitale curate. Fă Firefox să uite datele site-urilor web, precum cookie-uri și stocare locală, dar numai pentru domeniile alese de tine."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Salvează text pentru mai târziu {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
-msgstr "Nu mai scrie același lucru iar și iar și iar! Dacă utilizezi frecvent aceleași fraze pentru lucru sau în alte comunicări, salvează-le în Clippings și lipește-le ușor când ai nevoie de ele."
+msgstr ""
+"Salvează text pentru mai târziu. Nu mai scrie același lucru iar și iar! Dacă reutilizezi frecvent aceleași fraze pentru lucru sau în alte comunicări, salvează-le în Clippings și lipește-le ușor la "
+"nevoie."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
