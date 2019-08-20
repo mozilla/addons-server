@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 08:48+0000\n"
+"PO-Revision-Date: 2019-08-20 08:54+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -1724,9 +1724,8 @@ msgstr ""
 msgid "A confirmation email has been sent to {email}"
 msgstr "Una email di conferma è stata inviata a {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "È stato modificato il ruolo di un autore per il componente aggiuntivo"
+msgstr ""
 
 msgid "An author has been removed from your add-on"
 msgstr "È stato rimosso un autore per il componente aggiuntivo"
@@ -3431,9 +3430,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Blocca le pubblicità e proteggi la privacy {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Una semplice impostazione ti permette di controllare gli annunci pubblicitari visualizzati e come ti tracciano su Internet."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3448,18 +3446,16 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Blocca il tracciamento di Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Isola la tua identità su Facebook grazie a un \"contenitore\" che rende più difficile al sito tracciare i tuoi movimenti sul Web."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Semplifica la ricerca {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Basta evidenziare un testo su una qualsiasi pagina web per cercarlo con differenti motori di ricerca."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3467,7 +3463,7 @@ msgstr "Aggiornamenti in tempo reale del meteo {start_sub_heading}con {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Aggiornamenti meteo in tempo reale da tutto il mondo."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3490,36 +3486,32 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funziona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centinaia di altri siti di video."
+msgstr "Scarica video con facilità. Funziona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centinaia di altri siti di video."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Arricchisci i tuoi testi di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Dozzine di bellissime emoji per ogni occasione, sempre a portata di clic."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gestisci le tue password {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Semplifica e mantieni sincronizzato l’accesso ai siti web da tutti i tuoi dispositivi: con una sola password puoi gestirli tutti."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Un adblocker leggero ed efficace. uBlock Origin applica migliaia di filtri ai contenuti senza consumare troppa memoria."
+msgstr "Un adblocker efficace e leggero. uBlock Origin applica migliaia di filtri ai contenuti senza consumare troppa memoria."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3542,9 +3534,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Mostra i segnalibri come riquadri {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Accedi ai tuoi siti preferiti attraverso comodi riquadri."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3607,27 +3598,24 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Traduci in un lampo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Evidenzia un frammento di testo su qualsiasi sito web, o seleziona l'intera pagina, per ottenere una traduzione istantanea."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Attingi alle conoscenze accademiche {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Accedi gratuitamente a più di dieci milioni di articoli di ricerca."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personalizza le azioni del mouse {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Scopri una nuova esperienza di navigazione con più di 50 pratiche azioni del mouse."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
