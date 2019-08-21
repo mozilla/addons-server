@@ -24,6 +24,7 @@ from olympia.amo.models import ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import CannedResponse
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import user_link
@@ -171,7 +172,10 @@ class DraftComment(ModelBase):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     filename = models.CharField(max_length=255, null=True, blank=True)
     lineno = models.PositiveIntegerField(null=True)
-    comment = models.TextField()
+    canned_response = models.ForeignKey(
+        CannedResponse, null=True, default=None,
+        on_delete=models.SET_DEFAULT)
+    comment = models.TextField(blank=True)
 
     class Meta:
         db_table = 'log_activity_comment_draft'
