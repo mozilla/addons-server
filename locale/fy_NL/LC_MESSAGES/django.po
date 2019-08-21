@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 07:30+0000\n"
+"PO-Revision-Date: 2019-08-20 12:07+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6298,9 +6298,8 @@ msgstr "Binne jo wis dat jo alle <b>{0}</b> oersettingen fuortsmite wolle? Dit k
 msgid "Delete Locale"
 msgstr "Taal fuortsmite"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Beoardielingsskiednis slute"
+msgstr "Skiednis brûkersrestriksjes"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."

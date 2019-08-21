@@ -729,8 +729,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT', url, expected_status=202)
 
     def test_throttling_ignored_for_special_users(self):
-        self.user.update(
-            email=settings.ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS[0])
+        self.grant_permission(
+            self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
         url = self.url(self.guid, '1.0')
         with freeze_time('2019-04-08 15:16:23.42'):
             for x in range(0, 60):

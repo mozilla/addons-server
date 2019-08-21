@@ -1,7 +1,6 @@
 import functools
 
 from django import forms
-from django.conf import settings
 from django.utils.translation import ugettext
 
 from rest_framework import status
@@ -107,11 +106,10 @@ class VersionView(APIView):
     )
 
     def check_throttles(self, request):
-        # Let users in ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS bypass throttles.
+        # Let users with LanguagePack:Submit permission bypass throttles.
         # Used by releng automated signing scripts so that they can sign a
         # bunch of langpacks at once.
-        if (request.user.is_authenticated and request.user.email
-                in settings.ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS):
+        if acl.action_allowed(request, amo.permissions.LANGPACK_SUBMIT):
             return
         super().check_throttles(request)
 

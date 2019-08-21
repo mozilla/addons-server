@@ -16,8 +16,8 @@ class TestPrimaryHero(TestCase):
     def test_gradiant(self):
         ph = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
-            gradient_color='#112233')
-        assert ph.gradient == {'start': '#20123A', 'end': '#112233'}
+            gradient_color='#C60184')
+        assert ph.gradient == {'start': 'ink-80', 'end': 'pink-70'}
 
     def test_clean(self):
         ph = PrimaryHero.objects.create(
