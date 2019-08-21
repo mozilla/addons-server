@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 08:49+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2019-08-21 07:45+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Contrassegna le segnalazioni di abuso selezionate come sospette"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Attenzione: il campo non deve contenere più di {max_length} caratteri."
 
 msgid "Modified on:"
 msgstr "Data di modifica:"
@@ -1532,10 +1532,10 @@ msgid "Users can not be added directly"
 msgstr "Impossibile aggiungere utenti direttamente"
 
 msgid "An author can only be present once."
-msgstr ""
+msgstr "Ogni autore può avere una sola presenza."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Per essere aggiunto come autore, l’account deve essere dotato di un nome di visualizzazione."
 
 msgid "Must have at least one owner."
 msgstr "Deve avere almeno un proprietario."
@@ -1719,13 +1719,13 @@ msgid "An author has been added to your add-on"
 msgstr "È stato aggiunto un autore per il componente aggiuntivo."
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Invito a un ruolo di autore di {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Una email di conferma è stata inviata a {email}"
 
 msgid "An author role has been changed on your add-on"
-msgstr ""
+msgstr "Uno dei ruoli di autore del tuo componente aggiuntivo è stato modificato"
 
 msgid "An author has been removed from your add-on"
 msgstr "È stato rimosso un autore per il componente aggiuntivo"
@@ -2044,10 +2044,10 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "Sei stato invitato a diventare un autore di {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Se accetti l’invito otterrai i permessi per modificare il componente aggiuntivo e mostrare il tuo nome nell’elenco autori sul sito web. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Fai clic sul pulsante Accetta di seguito per confermare che desideri essere aggiunto come autore per {addon_name}."
 
 msgid "Decline"
 msgstr "Declina"
@@ -2065,7 +2065,7 @@ msgid "Authors pending confirmation"
 msgstr "Autori con conferma in sospeso"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autori che sono stati aggiunti a questo componente aggiuntivo ma non hanno ancora accettato l’invito."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2961,7 +2961,7 @@ msgid "End-User License Agreement"
 msgstr "Licenza per l’utente finale"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Attenzione: l’accordo di licenza con l’utente finale (EULA) non equivale a una licenza software come GPL o MPL. Rilevante solo per i componenti aggiuntivi pubblici."
 
 msgid "Privacy Policy"
 msgstr "Informativa sulla privacy"
@@ -3431,7 +3431,7 @@ msgstr "Blocca le pubblicità e proteggi la privacy {start_sub_heading}con {addo
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Blocco annunci pubblicitari e protezione della privacy. Con semplici passaggi di configurazione potrai controllare gli annunci pubblicitari visualizzati e come ti tracciano su Internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3447,7 +3447,7 @@ msgstr "Blocca il tracciamento di Facebook {start_sub_heading}con {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Blocca il tracciamento di Facebook. Isola la tua identità su Facebook grazie a un “contenitore” che rende più difficile al sito tracciare i tuoi movimenti sul Web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3455,7 +3455,7 @@ msgstr "Semplifica la ricerca {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Semplifica la ricerca! Evidenzia una porzione di testo su una qualsiasi pagina web per cercarlo simultaneamente su più motori di ricerca."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3495,7 +3495,7 @@ msgstr "Arricchisci i tuoi testi di emoji {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Un nuovo livello di emoji. Dozzine di bellissime emoji per ogni occasione, sempre a portata di clic."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3503,7 +3503,7 @@ msgstr "Gestisci le tue password {start_sub_heading}con {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Gestione semplificata delle password. Mantieni sincronizzato l’accesso ai siti web da tutti i tuoi dispositivi: una password per gestirli tutti."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3535,7 +3535,7 @@ msgstr "Mostra i segnalibri come riquadri {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Nuova veste grafica per i segnalibri. Accedi ai tuoi siti preferiti da comodi riquadri."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3599,7 +3599,7 @@ msgstr "Traduci in un lampo {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Tradurre è facile! Evidenzia un frammento di testo su un qualsiasi sito web, o seleziona l’intera pagina, per ottenere una traduzione istantanea."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3607,7 +3607,7 @@ msgstr "Attingi alle conoscenze accademiche {start_sub_heading}con {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Attingi alla saggezza accademica. Accedi gratuitamente a più di dieci milioni di articoli di ricerca."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3615,7 +3615,7 @@ msgstr "Personalizza le azioni del mouse {start_sub_heading}con {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Personalizza le azioni del mouse. Scopri una nuova esperienza di navigazione con più di 50 pratici movimenti per il mouse."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
