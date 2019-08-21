@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 15:31+0000\n"
+"PO-Revision-Date: 2019-08-21 07:31+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1500,7 +1500,6 @@ msgstr "Az alapértelmezett nyelv módosítása előtt meg kell adnia a nevét, 
 msgid "Users can not be added directly"
 msgstr "A felhasználókat közvetlenül nem lehet felvenni"
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "Egy szerző csak egyszer szerepelhet."
 
@@ -2010,13 +2009,13 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Az előnézet előállítása még folyamatban van – jöjjön vissza később vagy frissítse az oldalt."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Meghívták, hogy a(z) {addon_name} szerzője legyen."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "A meghívó elfogadásával hozzáférést kaphat a kiegészítő szerkesztéséhez, és megjelenítheti a nevét a weboldalon a szerzők listájában. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Kattintson a lenti Elfogadás gombra, hogy megerősítse azt, hogy a(z) {addon_name} kiegészítő szerzője akar lenni."
 
 msgid "Decline"
 msgstr "Elutasítás"
@@ -2034,7 +2033,7 @@ msgid "Authors pending confirmation"
 msgstr "Megerősítendő szerzők"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Azok a szerzők, akiket hozzáadtak ehhez a kiegészítőhöz, de nem erősítették azt meg."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -4255,7 +4254,7 @@ msgstr "Szövegkiemelés {start_sub_heading}a(z) {addon_name} kiegészítővel{e
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Jelölje ki a weboldalak szövegét, hogy elmentse és később elérje azokat."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4607,7 +4606,7 @@ msgstr "Kövesse az Amazon árelőzményeit {start_sub_heading}a(z) {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Kövesse nyomon az Amazon árazási előzményeit. Okos vásárlási döntéseket hozhat azáltal, hogy árváltozási figyelmeztetéseket kap az Önt érdeklő termékekről az Amazonon."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4777,7 +4776,7 @@ msgstr "Jegyzeteljen {start_sub_heading}a(z) {addon_name} kiegészítővel{end_s
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Készítsen személyes jegyzeteket bárhol a weben. Csak használjon egy oldalsávot, és mellékeljen jegyzeteket az egyes weboldalakhoz."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4802,7 +4801,7 @@ msgstr "Sötétítse el a webet {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Állítsa sötétre a webet vagy válasszon egy egyéni színsémát, hogy vizuálisan az Ön ízlésének megfelelőre szabja az internetet."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
