@@ -48,4 +48,5 @@ supervisord.pid
 tmp/*
 
 # private projects
+private/
 addons-yara
