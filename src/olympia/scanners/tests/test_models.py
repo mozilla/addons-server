@@ -1,6 +1,6 @@
 from olympia.amo.tests import TestCase, addon_factory
 
-from olympia.constants.scanners import CUSTOMS
+from olympia.constants.scanners import CUSTOMS, WAT
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannersResult
 
@@ -24,3 +24,13 @@ class TestScannersResult(TestCase):
         assert result.scanner == CUSTOMS
         assert result.results == {}
         assert result.version is None
+
+    def test_create_different_entries_for_a_single_upload(self):
+        upload = self.create_file_upload()
+
+        customs_result = ScannersResult.objects.create(upload=upload,
+                                                       scanner=CUSTOMS)
+        wat_result = ScannersResult.objects.create(upload=upload, scanner=WAT)
+
+        assert customs_result.scanner == CUSTOMS
+        assert wat_result.scanner == WAT
