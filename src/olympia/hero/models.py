@@ -9,7 +9,7 @@ from olympia.amo.models import ModelBase
 from olympia.discovery.models import DiscoveryItem
 
 
-GRADIENT_START_COLOR = ('#2123A', 'ink-80')
+GRADIENT_START_COLOR = ('#20123A', 'ink-80')
 # Before changing these colors think about existing shelves.  We either need a
 # db migration to update them or define a default end color if they're invalid.
 GRADIENT_COLORS = {
