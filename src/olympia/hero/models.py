@@ -84,14 +84,14 @@ class WidgetCharField(models.CharField):
 class PrimaryHero(ModelBase):
     image = WidgetCharField(
         choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
-        widget=ImageChoiceWidget)
+        widget=ImageChoiceWidget, blank=True)
     gradient_color = WidgetCharField(
         choices=GRADIENT_COLORS.items(), max_length=7,
-        widget=GradientChoiceWidget)
-    enabled = models.BooleanField(db_index=True, null=False, default=False,)
+        widget=GradientChoiceWidget, blank=True)
+    enabled = models.BooleanField(db_index=True, default=False)
     disco_addon = models.OneToOneField(
         DiscoveryItem, on_delete=models.CASCADE, null=False)
-    is_external = models.BooleanField(null=False, default=False)
+    is_external = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.disco_addon)
@@ -108,22 +108,32 @@ class PrimaryHero(ModelBase):
 
     def clean(self):
         super().clean()
+        error_dict = {}
         if self.enabled:
+            if not self.gradient_color:
+                error_dict['gradient_color'] = ValidationError(
+                    'Gradient color is required for enabled shelves')
+            if not self.image:
+                error_dict['image'] = ValidationError(
+                    'A featured image is required for enabled shelves')
+
             if self.is_external and not self.disco_addon.addon.homepage:
-                raise ValidationError(
+                error_dict['is_external'] = ValidationError(
                     'External primary shelves need a homepage defined in '
                     'addon details.')
             elif not self.is_external:
                 recommended = (self.disco_addon.recommended_status ==
                                self.disco_addon.RECOMMENDED)
                 if not recommended:
-                    raise ValidationError(
+                    error_dict['enabled'] = ValidationError(
                         'Only recommended add-ons can be enabled for '
                         'non-external primary shelves.')
         else:
             if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
-                raise ValidationError(
+                error_dict['enabled'] = ValidationError(
                     'You can\'t disable the only enabled primary shelf.')
+        if error_dict:
+            raise ValidationError(error_dict)
 
 
 class CTACheckMixin():
