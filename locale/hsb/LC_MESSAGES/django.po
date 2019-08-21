@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-21 11:32+0000\n"
+"PO-Revision-Date: 2019-08-21 11:50+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4309,18 +4309,16 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Ultimatiwna rajtarkowa kontrola {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Tak wjele móžnosćow rajtarkoweho wodźenja - dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
+msgstr "Mějće ultimatiwnu kontrolu nad rajtarkami - dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wužiwajće dźiwne kubłanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Začitajće připadny nastawk Wikipedije kóždy raz, hdyž nowy rajtark wočinjeće."
+msgstr "Kubłanje hinak. Začitajće připadny nastawk Wikipedije kóždy raz, hdyž nowy rajtark wočinjeće."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4351,9 +4349,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Přepytujće Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Mějće lochki přistup na swoje wočinjene rajtarki, zapołožki a historiju."
+msgstr "Mějće lochki přistup na swoje wočinjene rajtarki, zapołožki a historiju, zo byšće Firefox přepytał."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4416,32 +4413,29 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Nakupujće z dowěru {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Přidatna kontrola, kotraž zawěsća, zo na spušćomnym sydle nakupujeće."
+msgstr "Nakupowanje z dowěru. Tute rozšěrjenje skići přidatnu kontrolu, kotraž zawěsća, zo na spušćomnym sydle nakupujeće."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wobkedźbujće produktiwnosć {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Měrće čas, kotryž při ličaku abo z wěstymi dźěłowymi nałoženjemi kaž Trello, JIRA, Basecamp, GitHub a wjele dalšich přebywaće."
+msgstr "Slědujće produktiwnosći. Měrće čas, kotryž při ličaku abo z wěstymi dźěłowymi nałoženjemi kaž Trello, JIRA, Basecamp, GitHub a wjele dalšich přebywaće."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Wutřihajće webwobsah kaž nastawki, wideja, wobrazy a wjace, zo byšće je za indiwiduelne projekty abo teamowe dźěło we woprawdźitym času składował a wužiwał."
+msgstr ""
+"Składujće swój najlubši wobsah we webje. Wutřihajće wobsah kaž nastawki, wideja, wobrazy a wjace, zo byšće je za indiwiduelne projekty abo teamowe dźěło we woprawdźitym času składował a wužiwał."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Přehladujće wěsće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Dowolće jenož, zo so webwobsah z dowěry hódnych sydłow wuwjedźe."
+msgstr "Dowolće jenož, zo so webwobsah z dowěry hódnych sydłow wuwjedźe. Přehladujće wěsće."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4516,18 +4510,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Porjedźće mylace awdio {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Je sylnosć zwuka na websydle přećicha? Přehłósna? SoundFixer móže pomhać."
+msgstr "Porjedźće mylace zynki. Je sylnosć zwuka na websydle přećicha? Přehłósna? SoundFixer móže pomhać."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Najprjedy wobdźěłać, potom ćišćeć {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Wotstrońće wabjenje abo grawoćiwy wobsah, zo byšće napohlad webstrony polěpšił, kotruž chceće ćišćeć."
+msgstr "Wobdźěłajće webstronu před ćišćenjom. Čińće skutkowne widźomne změny - wotstrońće wabjenje abo grawoćiwy wobsah, zo byšće napohlad webstrony polěpšił, kotruž chceće ćišćeć."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4558,18 +4550,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zamazajće swoje slědy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Pytajće z wjace wěstoty přez blokowanje přesćhěwakow, bóle inteligentne zaklučowanje, priwatne pytanje a druhe wažne wěcy."
+msgstr "Pytajće z polěpšenym blokowanjom přesćěhowakow přez blokowanje přesćhěwakow, inteligentnym zaklučowanjom a druhimi lěpšinami priwatnosće."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zjednorće rajtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Rjadujće swoje wjele wočinjenych rajtarkow w padorunej bóčnicy."
+msgstr "Zjednorće rajtarki. Rjadujće swoje wjele wočinjenych rajtarkow w padorunej bóčnicy."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4584,9 +4574,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Wobhladajće sej wulki wobraz {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Z kliknjenjom myški móžeće sej wideja w połnej pyše na wobrazowce wobhladać."
+msgstr "Z jednorym kliknjenjom myški móžeće sej wideja w połnej pyše na wobrazowce wobhladać."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
