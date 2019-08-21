@@ -64,6 +64,8 @@ class AMOTask(PostRequestTask):
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options)
 
+        print('APPLY ASYNC', self, args, kwargs, options)
+
         return super(AMOTask, self).apply_async(
             args=args, kwargs=kwargs, **options)
 

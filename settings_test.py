@@ -91,4 +91,5 @@ BASKET_API_KEY = 'testkey'
 
 CELERY_IMPORTS += (
     'olympia.amo.tests.test_celery',
+    'celery.contrib.testing.tasks',
 )

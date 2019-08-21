@@ -97,15 +97,16 @@ def pytest_configure(config):
 
 
 @pytest.fixture(scope='session')
-def celery_config():
-    """Use our default testing configuration but inject it with
-    reasonable defaults for no-rabbitmq-testing.
+def celery_session_app(request):
+    """Overwrite to make use of our own app definition.
 
-    Primarily inspired by `celery.contrib.testing.app:DEFAULT_TEST_CONFIG`
-    and copied here for better documentation.
+    This doesn't implement support for `celery_parameters` or
+    app trapping yet.
     """
     from olympia.amo.celery import app
     from olympia.amo.tests import _celery_task_returned
+
+    mark = request.node.get_closest_marker('celery')
 
     def _after_return_handler(
             task, status, retval, task_id, args, kwargs, exc_info):
@@ -117,32 +118,36 @@ def celery_config():
 
     annotations = {'*': {'after_return': _after_return_handler}}
 
-    config = dict(app.conf)
-    config.update({
-        'worker_hijack_root_logger': False,
-        'worker_log_color': False,
-        'accept_content': {'json'},
-        'enable_utc': True,
-        'timezone': 'UTC',
-        'broker_url': 'memory://',
-        'broker_heartbeat': 0,
-        'worker_pool': 'solo',
-        'worker_concurrency': 1,
-        'task_annotations': annotations
+    app.conf.update(**{
+        'CELERY_WORKER_HIJACK_ROOT_LOGGER': False,
+        'CELERY_WORKER_LOG_COLOR': False,
+        'CELERY_ACCEPT_CONTENT': {'json'},
+        'CELERY_ENABLE_UTC': True,
+        'CELERY_TIMEZONE': 'UTC',
+        'CELERY_BROKER_URL': 'memory://',
+        'CELERY_RESULT_BACKEND': 'cache+memory://',
+        'CELERY_BROKER_HEARTBEAT': 0,
+        'CELERY_WORKER_POOL': 'solo',
+        'CELERY_WORKER_CONCURRENCY': 1,
+        'CELERY_TASK_ANNOTATIONS': annotations
     })
 
-    return config
+    app.autodiscover_tasks(force=True)
 
+    print('XXXXXXXXXXXX', app.conf['broker_url'])
 
-@pytest.fixture
-def celery_app():
-    from olympia.amo.celery import app
-    return app
+    # Force re-import of all modules to make sure tasks are correctly
+    # registered
+    for module in app.conf.imports:
+        app.loader.import_task_module(module)
+
+    yield app
 
 
 @pytest.fixture(autouse=True)
 def start_celery_worker(
-        request, settings, celery_config, celery_session_worker):
+        request, settings, celery_config, celery_session_worker,
+        celery_session_app):
     """Start a celery worker for the whole testing session.
 
     For all tests marked with `celery_worker_test` we will be setting
@@ -151,9 +156,18 @@ def start_celery_worker(
     ``celery_worker_test``
     """
     marker = request.node.get_closest_marker('celery_worker_test')
+    _previous_eager_setting = settings.CELERY_TASK_ALWAYS_EAGER
 
+    print('WWWWWWWWWW', celery_session_worker.app.conf['broker_url'])
     if marker:
         settings.CELERY_TASK_ALWAYS_EAGER = False
+        celery_session_app.conf.CELERY_TASK_ALWAYS_EAGER = False
+
+    celery_session_worker.reload(reload=True)
+
+    yield
+
+    celery_session_app.conf.CELERY_TASK_ALWAYS_EAGER = _previous_eager_setting
 
 
 @pytest.fixture(autouse=True, scope='session')
