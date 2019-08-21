@@ -1685,7 +1685,7 @@ msgid "An author has been added to your add-on"
 msgstr "A kiegészítőhöz egy szerző hozzárendelésre került"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Szerzői meghívás a(z) {addon_name} kiegészítőhöz."
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Megerősítő e-mail elküldve ide: {email}"
