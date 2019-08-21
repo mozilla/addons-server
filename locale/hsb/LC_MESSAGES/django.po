@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-21 11:50+0000\n"
+"PO-Revision-Date: 2019-08-21 13:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4598,9 +4598,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Přeskočće njezmysł {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Inteligentne rozšěrjenje, kotrež wam pomha, spěšnje rozumić, do čehož zwoliće."
+msgstr "Předobudźće njezmysł typiskich wužiwanskich dojednanjow. Tute Inteligentne rozšěrjenjewam pomha, spěšnje rozumić, do čehož zwoliće."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4619,9 +4618,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujće wabjenje a wjace {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Blokujće nic jenož wobćežne wabjenje, ale škitajće so před škódnej softwaru a slědowanjom přez wabjenje."
+msgstr "Blokujće wabjenje a dóstańće polěpšny škit před škódnej softwaru a slědowanjom přez wabjenje."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4636,23 +4634,20 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pytajće wobrazy lochko {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Składujće jenož wobrazy ze swojeho aktualneho rajtarka."
+msgstr "Składujće wobrazy cyle lochko - hrabńće je ze swojeho aktualneho rajtarka."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Měrće webstrony {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Ćehńće digitalny lineal po webstronje, zo byšće wysokosć, šěrokosć a wusměrjenje elementow strony kontrolował."
+msgstr "Měrće webstrony. Rysujće digitalny lineal po webstronje, zo byšće wysokosć, šěrokosć a wusměrjenje elementow strony kontrolował."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Zwužitkujće sylne zarjadowanje hesłow."
+msgstr "Wužiwajće lěpšiny mócneho zarjadowanje hesłow."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4667,9 +4662,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Blokujće wotwobroćace so websydła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Nalistujće websydła, kotrež rozšěrjenje ma blokować. A to hnydom!"
+msgstr "Blokujće mylace websydła. Nalistujće websydła, kotrež rozšěrjenje ma blokować. A to hnydom!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4684,9 +4678,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Změńće napohlad Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Wuhotujće swoje wizuelne drasty, zo by Firefox tak wupadał, kaž wy chceće."
+msgstr "Změńće wonkowny napohlad swojeho wobhladowaka. Wuhotujće swoje wizuelne drasty, zo by Firefox tak wupadał, kaž wy chceće."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4709,9 +4702,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Slědujće produktowym płaćiznam {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Dóstańće zdźělenki, hdyž płaćizny artiklow spaduja, za kotrež na Amazon, Best Buy, eBay, Home Depot a Walmart zajimujeće."
+msgstr "Slědujće produktam a dóstańće zdźělenki, hdyž płaćizny artiklow spaduja, za kotrež na Amazon, Best Buy, eBay, Home Depot a Walmart zajimujeće."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6344,9 +6336,8 @@ msgstr "Chceće woprawdźe wšě přełožki za <b>{0}</b> wotstronić? To njeda
 msgid "Delete Locale"
 msgstr "Rěč zhašeć"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Historiju přepruwowanjow začinić"
+msgstr "Historija wužiwarskich wobmjezowanjow"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
