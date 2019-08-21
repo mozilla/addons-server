@@ -4,3 +4,7 @@ services:
   customs:
     build:
       context: ./private/addons-customs-scanner
+
+  wat:
+    build:
+      context: ./private/addons-wat

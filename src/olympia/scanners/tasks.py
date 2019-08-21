@@ -8,7 +8,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia.amo.celery import task
-from olympia.constants.scanners import SCANNERS, CUSTOMS
+from olympia.constants.scanners import SCANNERS, CUSTOMS, WAT
 from olympia.files.models import FileUpload
 
 from .models import ScannersResult
@@ -78,4 +78,21 @@ def run_customs(upload_pk):
         scanner=CUSTOMS,
         api_url=settings.CUSTOMS_API_URL,
         api_key=settings.CUSTOMS_API_KEY
+    )
+
+
+@task
+def run_wat(upload_pk):
+    """
+    Run the wat scanner on a FileUpload and store the results.
+
+    This task is intended to be run as part of the submission process only.
+    When a version is created from a FileUpload, the files are removed. In
+    addition, we usually delete old FileUpload entries after 180 days.
+    """
+    return run_scanner(
+        upload_pk,
+        scanner=WAT,
+        api_url=settings.WAT_API_URL,
+        api_key=settings.WAT_API_KEY
     )

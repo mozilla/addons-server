@@ -139,6 +139,8 @@ INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 # Sectools
 CUSTOMS_API_URL = 'http://customs:10101/'
 CUSTOMS_API_KEY = 'customssecret'
+WAT_API_URL = 'http://wat:10102/'
+WAT_API_KEY = 'watsecret'
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
