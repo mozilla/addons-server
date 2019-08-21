@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-21 11:12+0000\n"
+"PO-Revision-Date: 2019-08-21 11:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4031,9 +4031,8 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Wobstarajće sej hnydomne přełožki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Wuzběhńće tekst a klikńće na tłóčatko, zo byšće přistup na hnydomny přełožk měł, kotryž so zjewi."
+msgstr "Wuzběhńće tekst a klikńće na tłóčatko, kotrež so zjewi, zo byšće hnydomne přełožki dóstał."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4048,9 +4047,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp we webje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Wužiwajće WhatsApp ze symboloweje lajsty Firefox, zo byšće zdźělenki wo nječitanych nitkach dóstał."
+msgstr "WhatsApp we webje. Wužiwajće WhatsApp ze symboloweje lajsty Firefox, zo byšće zdźělenki wo nječitanych nitkach dóstał."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4065,9 +4063,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Wutworće blokowansku lisćinu za websydła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Wobarajće Firefox přistup na wěste websydła."
+msgstr "Wobarajće Firefox přistup na wěste websydła. Wulkotny nastroj za sebjedisciplinu online."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4106,9 +4103,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Wubjerće lochko městna zapołožkow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Lěpše wašnje zapołožki składować, jeli wjacore rjadowaki zapołožkow wužiwaće."
+msgstr "Eficientniše wašnje zapołožki składować, jeli wjacore rjadowaki zapołožkow wužiwaće."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4127,7 +4123,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ekstrahujće wotkazy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Pokazajće wšě wotkazy z webstrony direktnje w nowych rajtarkach."
 
@@ -4136,9 +4131,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Přeskočće dalesposrědkowanja a přesćěhowaki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Wotstrońće dalesposrědkowanja a URL-parametry za přesćěhowanje."
+msgstr "Wotstrońće strony dalesposrědkowanjow a URL-parametry za přesćěhowanje z webwotkazow. Funguje awtomatisce."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4153,9 +4147,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Sćehńće wideja Youtube {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Sćehńće widejo a/abo awdio."
+msgstr "Sćehńće wideja a/abo awdio YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4202,9 +4195,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Wužiwajće hudźbu z cyłeho swěta {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Poskajće 30.000+ radijowych stacijow z cyłeho swěta."
+msgstr "Słuchajće na hudźbu z 30.000+ radijowych stacijow z cyłeho swěta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4227,18 +4219,16 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Přehladujće wěsće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Wopytajće wěstu wersiju websydła, jeli k dispoziciji."
+msgstr "Wopytajće awtomatisce wěstu wersiju websydła, jeli k dispoziciji."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zhašejće swoju nawigacisku historiju {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Podajće kelko dnjow ma so historija wašeho wobhladowaka wobchować, prjedy hač so awtomatisce zhaša."
+msgstr "Zhašejće swoju přehladowansku historiju. Podajće kelko dnjow ma so historija wašeho wobhladowaka wobchować, prjedy hač so awtomatisce zhaša."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4261,9 +4251,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Wupjelńće formulary awtomatisce {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Składujće zapodate daty jedyn raz a budu so přichodny raz awtomatisce zapisować."
+msgstr "Wupjelńće formulary awtomatisce. Składujće zapodate daty jedyn raz a budu so přichodny raz awtomatisce zapisować."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4278,18 +4267,16 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zadźěwajće kaprowanju rajtarkow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Njedopušćće, zo kliknjene wotkazy kontrolu nad wašim aktualnym rajtarkom přewzać a njewitany wobsah začitać."
+msgstr "Čińće kaprowanju rajtarkow kónć. Njedopušćće, zo kliknjene wotkazy kontrolu nad wašim aktualnym rajtarkom přewzać a njewitany wobsah začitać."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mějće lochki přistup na Wikipediju {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Wuzběhńće prosće tekst na webstronje a klikńće z prawej tastu, zo byšće we Wikipediji pytał."
+msgstr "Wuzběhńće prosće tekst na webstronje a klikńće z prawej tastu, zo byšće prosće we Wikipediji pytał."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4312,9 +4299,10 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Docpějće lěpšiny na Amazon {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Hdyž sej produktowe strony w druhich wobchodach online wobhladujeće a jeli je tež na Amazon k dispoziciji, trjebaće jenož na tłóčatko kliknyć, zo byšće zapisk Amazon widźał."
+msgstr ""
+"Dobudźće sej lěpšinu pola Amazon. Hdyž sej produktowe strony w druhich wobchodach online wobhladujeće a jeli je tež na Amazon k dispoziciji, trjebaće jenož na tłóčatko kliknyć, zo byšće zapisk "
+"Amazon widźał."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
