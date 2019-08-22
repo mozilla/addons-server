@@ -7,16 +7,17 @@ from olympia.files.models import FileUpload
 
 
 class ScannersResult(ModelBase):
-    upload = models.OneToOneField(FileUpload,
-                                  related_name='scanners_results',
-                                  on_delete=models.SET_NULL,
-                                  null=True)
+    upload = models.ForeignKey(FileUpload,
+                               related_name='scanners_results',
+                               on_delete=models.SET_NULL,
+                               null=True)
     results = JSONField(default={})
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS)
-    version = models.OneToOneField('versions.Version',
-                                   related_name='scanners_results',
-                                   on_delete=models.CASCADE,
-                                   null=True)
+    version = models.ForeignKey('versions.Version',
+                                related_name='scanners_results',
+                                on_delete=models.CASCADE,
+                                null=True)
 
     class Meta:
         db_table = 'scanners_results'
+        unique_together = ('upload', 'scanner', 'version',)
