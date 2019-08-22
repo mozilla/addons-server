@@ -1546,6 +1546,100 @@ class TestAddonModels(TestCase):
         # but not when it's removed.
         assert not addon.is_recommended
 
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_field_changes_not_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.update(
+            average_rating=4.5, weekly_downloads=666, average_daily_users=999,
+            last_updated=self.days_ago(1), public_stats=True,
+            contributions='http://payme.example.com/',
+            is_experimental=True)
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+        addon.homepage = 'http://home.example.com/'
+        addon.description = 'Blâh Desc'
+        addon.summary = 'Blâh Sum'
+        addon.save()
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_field_changes_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.update(default_locale='es')
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+        sync_object_to_basket_mock.reset_mock()
+        addon.update(slug='some-fancy-slug')
+        addon = Addon.objects.get(pk=3615)
+        assert addon.slug == 'some-fancy-slug'
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+        sync_object_to_basket_mock.reset_mock()
+        addon.update(disabled_by_user=True)
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_name_changes_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.name = 'Blah'
+        addon.save()
+
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_deletion_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.delete()
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_add_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=addon, user=user)
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_change_not_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        extra_author = AddonUser.objects.create(addon=addon, user=user)
+
+        sync_object_to_basket_mock.reset_mock()
+        extra_author.update(role=amo.AUTHOR_ROLE_DEV, listed=False)
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_delete_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        extra_author = AddonUser.objects.create(addon=addon, user=user)
+
+        sync_object_to_basket_mock.reset_mock()
+        extra_author.delete()
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']

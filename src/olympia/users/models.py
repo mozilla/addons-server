@@ -936,19 +936,31 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
         old_attr = {}
     if new_attr is None:
         new_attr = {}
+    changes = {
+        x for x in new_attr
+        if not x.startswith('_') and new_attr[x] != old_attr.get(x)
+    }
+
     # Log email changes.
-    new_email, old_email = new_attr.get('email'), old_attr.get('email')
-    if old_email and new_email != old_email:
+    if 'email' in changes and new_attr['email'] is not None:
         log.debug('Creating user history for user: %s' % instance.pk)
-        UserHistory.objects.create(email=old_email, user_id=instance.pk)
+        UserHistory.objects.create(
+            email=old_attr.get('email'), user_id=instance.pk)
     # If username or display_name changes, reindex the user add-ons, if there
     # are any.
-    if (new_attr.get('username') != old_attr.get('username') or
-            new_attr.get('display_name') != old_attr.get('display_name')):
+    if 'username' in changes or 'display_name' in changes:
         from olympia.addons.tasks import index_addons
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
+
+    basket_relevant_changes = (
+        'deleted', 'display_name', 'email', 'homepage', 'last_login',
+        'location'
+    )
+    if any(field in changes for field in basket_relevant_changes):
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('userprofile', instance.pk)
 
 
 user_logged_in.connect(UserProfile.user_logged_in)

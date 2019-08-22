@@ -477,6 +477,7 @@ INSTALLED_APPS = (
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
+    'olympia.scanners',
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
@@ -508,14 +509,16 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
-# This needs to point to prod, because that's where the database lives. You can
+# These need to point to prod, because that's where the database lives. You can
 # change it locally to test the extraction process, but be careful not to
 # accidentally nuke translations when doing that!
 DISCOVERY_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v4/discovery/editorial/')
+SECONDARY_HERO_EDITORIAL_CONTENT_API = (
+    'https://addons.mozilla.org/api/v4/hero/secondary/?all=true')
 
 # Filename where the strings will be stored. Used in puente config below.
-DISCOVERY_EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
+EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
 
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction. The puente library expects this.
@@ -531,7 +534,7 @@ PUENTE = {
             # disco pane recommendations using jinja2 parser. It's not a real
             # template, but it uses jinja2 syntax for convenience, hence why
             # it's not in templates/ with a .html extension.
-            (DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2'),
+            (EDITORIAL_CONTENT_FILENAME, 'jinja2'),
 
             # Make sure we're parsing django-admin templates with the django
             # template extractor
@@ -593,7 +596,6 @@ MINIFY_BUNDLES = {
             'css/impala/moz-tab.css',
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
-            'css/zamboni/themes.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -638,7 +640,6 @@ MINIFY_BUNDLES = {
             'css/impala/stats.less',
         ),
         'zamboni/discovery-pane': (
-            'css/zamboni/discovery-pane.css',
             'css/impala/promos.less',
             'css/legacy/jquery-lightbox.css',
         ),
@@ -882,13 +883,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/debouncer.js',
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
-
-            'js/zamboni/discovery_addons.js',
-            'js/zamboni/discovery_pane.js',
-        ),
-        'zamboni/discovery-video': (
-            'js/lib/popcorn-1.0.js',
-            'js/zamboni/discovery_video.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
@@ -1835,11 +1829,7 @@ FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
 
-MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
-
 MIGRATED_LWT_UPDATES_ENABLED = True
-
-ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS = ('release+addons@mozilla.org',)
 
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)

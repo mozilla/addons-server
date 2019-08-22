@@ -257,16 +257,12 @@ var installButton = function() {
 
     // What kind of button are we dealing with?
     var unreviewed = $this.hasClass('unreviewed'),
-        persona = $this.hasClass('persona'),
         contrib = $this.hasClass('contrib'),
         eula = $this.hasClass('eula');
 
     // Drive the install button based on its type.
     if (eula || contrib) {
         versionsAndPlatforms();
-    } else if (persona && $.hasPersonas()) {
-        $button.removeClass('download').addClass('add').find('span').text(addto);
-        $button.personasButton();
     } else if (z.appMatchesUserAgent) {
         clickHijack();
         addToApp();

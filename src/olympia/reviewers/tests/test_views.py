@@ -53,6 +53,7 @@ from olympia.reviewers.models import (
     Whiteboard)
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
+from olympia.reviewers.serializers import CannedResponseSerializer
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -2276,14 +2277,17 @@ class TestContentReviewQueue(QueueTest):
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
 
         # Those should *not* appear in the queue
-        # Has not been auto-approved but themes and langpacks are excluded.
+        # Has not been auto-approved but themes, langpacks and search plugins
+        # are excluded.
         addon_factory(
             name=u'Theme 1', created=self.days_ago(4),
             type=amo.ADDON_STATICTHEME)
-
         addon_factory(
             name=u'Langpack 1', created=self.days_ago(4),
             type=amo.ADDON_LPAPP)
+        addon_factory(
+            name=u'search plugin 1', created=self.days_ago(4),
+            type=amo.ADDON_SEARCH)
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
@@ -5740,7 +5744,21 @@ class TestReviewAddonVersionViewSetList(TestCase):
             },
         ]
 
-    def test_draft_comment_create_and_retrieve(self):
+
+class TestDraftCommentViewSet(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super().setUp()
+
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+    def test_create_and_retrieve(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
@@ -5776,6 +5794,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
             'filename': 'manifest.json',
             'lineno': 20,
             'comment': 'Some really fancy comment',
+            'canned_response': None,
             'version': json.loads(json.dumps(
                 VersionSerializer(self.version).data,
                 cls=amo.utils.AMOJSONEncoder)),
@@ -5785,7 +5804,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
                 cls=amo.utils.AMOJSONEncoder))
         }
 
-    def test_draft_comment_create_retrieve_and_update(self):
+    def test_create_retrieve_and_update(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
@@ -5852,7 +5871,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.json()['lineno'] == 16
         assert response.json()['filename'] == 'new_manifest.json'
 
-    def test_draft_comment_lineno_filename_optional(self):
+    def test_draft_optional_fields(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
@@ -5882,8 +5901,9 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.json()['comment'] == 'Some really fancy comment'
         assert response.json()['lineno'] is None
         assert response.json()['filename'] is None
+        assert response.json()['canned_response'] is None
 
-    def test_draft_comment_delete(self):
+    def test_delete(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
@@ -5903,7 +5923,87 @@ class TestReviewAddonVersionViewSetList(TestCase):
 
         assert DraftComment.objects.first() is None
 
-    def test_draft_comment_delete_not_comment_owner(self):
+    def test_canned_response_and_comment_not_together(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        canned_response = CannedResponse.objects.create(
+            name=u'Terms of services',
+            response=u'doesn\'t regard our terms of services',
+            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
+            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+
+        data = {
+            'comment': 'Some really fancy comment',
+            'canned_response': canned_response.pk,
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+        })
+
+        response = self.client.post(url, data)
+        assert response.status_code == 400
+        assert (
+            str(response.data['comment'][0]) ==
+            "You can't submit a comment if `canned_response` is defined.")
+
+    def test_canned_response(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        canned_response = CannedResponse.objects.create(
+            name=u'Terms of services',
+            response=u'doesn\'t regard our terms of services',
+            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
+            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+
+        data = {
+            'canned_response': canned_response.pk,
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+        })
+
+        response = self.client.post(url, data)
+        comment_id = response.json()['id']
+
+        assert response.status_code == 201
+        assert DraftComment.objects.count() == 1
+
+        response = self.client.get(url)
+
+        request = APIRequestFactory().get('/')
+        request.user = user
+
+        assert response.json()['count'] == 1
+        assert response.json()['results'][0] == {
+            'id': comment_id,
+            'filename': 'manifest.json',
+            'lineno': 20,
+            'comment': '',
+            'canned_response': json.loads(json.dumps(
+                CannedResponseSerializer(canned_response).data,
+                cls=amo.utils.AMOJSONEncoder)),
+            'version': json.loads(json.dumps(
+                VersionSerializer(self.version).data,
+                cls=amo.utils.AMOJSONEncoder)),
+            'user': json.loads(json.dumps(
+                BaseUserSerializer(
+                    user, context={'request': request}).data,
+                cls=amo.utils.AMOJSONEncoder))
+        }
+
+    def test_delete_not_comment_owner(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
 
@@ -5928,7 +6028,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 404
 
-    def test_draft_comment_disabled_version_user_but_not_author(self):
+    def test_disabled_version_user_but_not_author(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -5947,7 +6047,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 403
 
-    def test_draft_comment_deleted_version_reviewer(self):
+    def test_deleted_version_reviewer(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
@@ -5967,7 +6067,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 404
 
-    def test_draft_comment_deleted_version_author(self):
+    def test_deleted_version_author(self):
         user = user_factory(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
@@ -5987,7 +6087,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 404
 
-    def test_draft_comment_deleted_version_user_but_not_author(self):
+    def test_deleted_version_user_but_not_author(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
@@ -6006,7 +6106,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 404
 
-    def test_draft_comment_unlisted_version_reviewer(self):
+    def test_unlisted_version_reviewer(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
@@ -6026,7 +6126,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 403
 
-    def test_draft_comment_unlisted_version_user_but_not_author(self):
+    def test_unlisted_version_user_but_not_author(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)

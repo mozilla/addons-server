@@ -76,9 +76,10 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             'all': ('css/admin/discovery.css',)
         }
     inlines = [PrimaryHeroInline]
-    list_display = ('__str__', 'custom_addon_name', 'custom_heading',
-                    'position', 'position_china', 'recommended_status',
-                    'primary_hero_shelf')
+    list_display = ('__str__', 'recommended_status', 'primary_hero_shelf',
+                    'custom_addon_name', 'custom_heading', 'position',
+                    'position_china',
+                    )
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
     readonly_fields = ('recommended_status', 'previews',)

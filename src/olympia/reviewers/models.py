@@ -412,11 +412,11 @@ class ReviewerSubscription(ModelBase):
                   use_deny_list=False)
 
 
-def send_notifications(signal=None, sender=None, **kw):
-    if sender.channel != amo.RELEASE_CHANNEL_LISTED:
+def send_notifications(sender=None, instance=None, signal=None, **kw):
+    if instance.channel != amo.RELEASE_CHANNEL_LISTED:
         return
 
-    subscribers = sender.addon.reviewersubscription_set.all()
+    subscribers = instance.addon.reviewersubscription_set.all()
 
     if not subscribers:
         return
@@ -427,7 +427,7 @@ def send_notifications(signal=None, sender=None, **kw):
             user and not user.deleted and user.email and
             acl.is_user_any_kind_of_reviewer(user))
         if is_reviewer:
-            subscriber.send_notification(sender)
+            subscriber.send_notification(instance)
 
 
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')

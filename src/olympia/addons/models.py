@@ -47,6 +47,7 @@ from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
@@ -296,12 +297,11 @@ class AddonManager(ManagerBase):
             # See get_auto_approved_queue()
             .only_translations()
             .filter(
-                addonapprovalscounter__last_content_review=None
-            )
-            # Exclude themes and language packs. See
-            # https://github.com/mozilla/addons-server/issues/11796
-            .exclude(
-                type__in=(amo.ADDON_STATICTHEME, amo.ADDON_LPAPP)
+                addonapprovalscounter__last_content_review=None,
+                # Only content review extensions and dictionaries. See
+                # https://github.com/mozilla/addons-server/issues/11796 &
+                # https://github.com/mozilla/addons-server/issues/12065
+                type__in=(amo.ADDON_EXTENSION, amo.ADDON_DICT),
             )
             # We need those joins for the queue to work without making extra
             # queries. See get_auto_approved_queue()
@@ -1510,6 +1510,43 @@ def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
             file_.hide_disabled_file()
 
 
+@Addon.on_change
+def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None,
+                  **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
+
+    changes = {
+        x for x in new_attr
+        if not x.startswith('_') and new_attr[x] != old_attr.get(x)
+    }
+    basket_relevant_changes = (
+        # Some changes are not tracked here:
+        # - Any authors changes (separate model)
+        # - Creation/Deletion of unlisted version (separate model)
+        # - Name change (separate model, not implemented yet)
+        # - Categories changes (separate model, ignored for now)
+        # - average_rating changes (ignored for now, happens too often)
+        # - average_daily_users changes (ignored for now, happens too often)
+        '_current_version', 'default_locale', 'slug', 'status',
+        'disabled_by_user',
+    )
+    if any(field in changes for field in basket_relevant_changes):
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.pk)
+
+
+@receiver(translation_saved, sender=Addon,
+          dispatch_uid='watch_addon_name_changes')
+def watch_addon_name_changes(sender=None, instance=None, **kw):
+    field_name = kw.get('field_name')
+    if instance and field_name == 'name':
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.pk)
+
+
 def attach_translations(addons):
     """Put all translations into a translations dict."""
     attach_trans_dict(Addon, addons)
@@ -1585,6 +1622,25 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
     instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
+
+
+def addon_user_sync(sender=None, instance=None, **kwargs):
+    # Basket doesn't care what role authors have or whether they are listed
+    # or not, it just needs to be updated whenever an author is added/removed.
+    created_or_deleted = 'created' not in kwargs or kwargs.get('created')
+    if created_or_deleted:
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.addon.pk)
+
+
+models.signals.post_delete.connect(addon_user_sync,
+                                   sender=AddonUser,
+                                   dispatch_uid='delete_addon_user_sync')
+
+
+models.signals.post_save.connect(addon_user_sync,
+                                 sender=AddonUser,
+                                 dispatch_uid='save_addon_user_sync')
 
 
 class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):

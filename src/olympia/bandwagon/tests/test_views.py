@@ -919,6 +919,37 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             self.client.get(self.url + '?sort=-name&lang=de'),
             self.addon_b, self.addon_c, self.addon_a)
 
+    def test_name_sorting_no_english(self):
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_a).update(
+            created=self.days_ago(1))
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_b).update(
+            created=self.days_ago(3))
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_c).update(
+            created=self.days_ago(2))
+
+        # Change all english translations to be Spanish instead, making sure we
+        # don't have translations in settings.LANGUAGE_CODE (en-US).
+        from olympia.translations.models import Translation
+        Translation.objects.filter(locale=settings.LANGUAGE_CODE, id__in=(
+            self.addon_a.name_id,
+            self.addon_b.name_id,
+            self.addon_c.name_id)).update(locale='es')
+
+        # Then give a valid default_locale to the addons, 'de' (they already
+        # all have a german translation)
+        self.addon_a.update(default_locale='de')
+        self.addon_b.update(default_locale='de')
+        self.addon_c.update(default_locale='de')
+
+        # Sort by name ascending, in French (should fall back to their
+        # default_locale, # German).
+        self.check_result_order(
+            self.client.get(self.url + '?sort=name&lang=fr'),
+            self.addon_a, self.addon_c, self.addon_b)
+
     def test_only_one_sort_parameter_supported(self):
         response = self.client.get(self.url + '?sort=popularity,name')
 

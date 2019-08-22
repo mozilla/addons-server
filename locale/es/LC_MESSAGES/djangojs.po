@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-08-16 10:31+0000\n"
 "PO-Revision-Date: 2019-02-21 17:27+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,30 +147,6 @@ msgstr "Los videos deben estar en el formato WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Este tema es incompatible con tu versión de {0}"
-
-msgid "All Rights Reserved"
-msgstr "Todos los derechos reservados"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Reconocimiento 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Reconocimiento-No Comercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Reconocimiento-No Comercial-No Derivadas 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Reconocimiento-No Derivadas 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
-
-msgid "Your Theme's Name"
-msgstr "El nombre de tu tema"
 
 msgid "Flagged for review"
 msgstr "Marcado para revisión"

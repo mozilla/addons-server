@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-08-16 10:31+0000\n"
 "PO-Revision-Date: 2019-02-01 13:40+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -139,30 +139,6 @@ msgstr "视频必须是 WebM 格式。"
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "这个主题与您所使用的 {0} 版本不兼容"
-
-msgid "All Rights Reserved"
-msgstr "保留所有权利"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "知识共享“署名 3.0”"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "知识共享“署名-非商业性使用 3.0”"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "知识共享“署名-非商业性使用-禁止演绎 3.0”"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "知识共享“署名-非商业性使用-相同方式共享 3.0”"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "知识共享“署名-禁止演绎 3.0”"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "知识共享“署名-相同方式共享 3.0”"
-
-msgid "Your Theme's Name"
-msgstr "您的主题名称"
 
 msgid "Flagged for review"
 msgstr "待审的评价"
