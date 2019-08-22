@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 10:39+0000\n"
+"PO-Revision-Date: 2019-08-22 17:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4619,7 +4619,7 @@ msgstr "Blokujće wabjenje a wjace {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Blokujće wabjenje a dóstańće polěpšny škit před škódnej softwaru a slědowanjom přez wabjenje."
+msgstr "Blokujće wabjenje a dóstańće polěpšeny škit před škódnej softwaru a slědowanjom přez wabjenje."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
