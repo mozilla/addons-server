@@ -104,42 +104,6 @@ def celery_session_app(request):
     app trapping yet.
     """
     from olympia.amo.celery import app
-    from olympia.amo.tests import _celery_task_returned
-
-    mark = request.node.get_closest_marker('celery')
-
-    def _after_return_handler(
-            task, status, retval, task_id, args, kwargs, exc_info):
-        result = {
-            'status': status, 'retval': retval, 'task_id': task_id,
-            'args': args, 'kwargs': kwargs, 'exc_info': exc_info,
-            'task_name': task.name}
-        _celery_task_returned(task_id, result)
-
-    annotations = {'*': {'after_return': _after_return_handler}}
-
-    app.conf.update(**{
-        'CELERY_WORKER_HIJACK_ROOT_LOGGER': False,
-        'CELERY_WORKER_LOG_COLOR': False,
-        'CELERY_ACCEPT_CONTENT': {'json'},
-        'CELERY_ENABLE_UTC': True,
-        'CELERY_TIMEZONE': 'UTC',
-        'CELERY_BROKER_URL': 'memory://',
-        'CELERY_RESULT_BACKEND': 'cache+memory://',
-        'CELERY_BROKER_HEARTBEAT': 0,
-        'CELERY_WORKER_POOL': 'solo',
-        'CELERY_WORKER_CONCURRENCY': 1,
-        'CELERY_TASK_ANNOTATIONS': annotations
-    })
-
-    app.autodiscover_tasks(force=True)
-
-    print('XXXXXXXXXXXX', app.conf['broker_url'])
-
-    # Force re-import of all modules to make sure tasks are correctly
-    # registered
-    for module in app.conf.imports:
-        app.loader.import_task_module(module)
 
     yield app
 
@@ -147,7 +111,7 @@ def celery_session_app(request):
 @pytest.fixture(autouse=True)
 def start_celery_worker(
         request, settings, celery_config, celery_session_worker,
-        celery_session_app):
+        celery_session_app, monkeypatch):
     """Start a celery worker for the whole testing session.
 
     For all tests marked with `celery_worker_test` we will be setting
@@ -158,10 +122,14 @@ def start_celery_worker(
     marker = request.node.get_closest_marker('celery_worker_test')
     _previous_eager_setting = settings.CELERY_TASK_ALWAYS_EAGER
 
-    print('WWWWWWWWWW', celery_session_worker.app.conf['broker_url'])
     if marker:
+        # Make sure to unset the celery broker url and result backend
+        # which are set by docker-compose and possibly other environments
+        monkeypatch.setenv('CELERY_BROKER_URL', '')
+        monkeypatch.setenv('CELERY_RESULT_BACKEND', '')
+        conf = celery_session_app.conf
         settings.CELERY_TASK_ALWAYS_EAGER = False
-        celery_session_app.conf.CELERY_TASK_ALWAYS_EAGER = False
+        conf.CELERY_TASK_ALWAYS_EAGER = conf.task_always_eager = False
 
     celery_session_worker.reload(reload=True)
 

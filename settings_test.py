@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from settings import *  # noqa
 
+
 # Make sure the apps needed to test translations and core are present.
 INSTALLED_APPS += (
     'olympia.translations.tests.testapp',
@@ -21,7 +22,6 @@ AUTHENTICATION_BACKENDS = (
     'olympia.users.backends.TestUserBackend',
 )
 
-CELERY_TASK_ALWAYS_EAGER = True
 DEBUG = False
 
 # We won't actually send an email.
@@ -89,7 +89,32 @@ PNGCRUSH_BIN = '/bin/true'
 
 BASKET_API_KEY = 'testkey'
 
+CELERY_TASK_ALWAYS_EAGER = True
+
 CELERY_IMPORTS += (
     'olympia.amo.tests.test_celery',
-    'celery.contrib.testing.tasks',
 )
+
+CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+CELERY_WORKER_LOG_COLOR = False
+CELERY_ACCEPT_CONTENT = {'json'}
+CELERY_ENABLE_UTC = True
+CELERY_TIMEZONE = 'UTC'
+CELERY_BROKER_URL = 'memory://'
+CELERY_RESULT_BACKEND = 'cache+memory://'
+CELERY_BROKER_HEARTBEAT = 0
+CELERY_WORKER_POOL = 'solo'
+CELERY_WORKER_CONCURRENCY = 1
+
+
+def _after_return_handler(
+        task, status, retval, task_id, args, kwargs, exc_info):
+    from olympia.amo.tests import _celery_task_returned
+    result = {
+        'status': status, 'retval': retval, 'task_id': task_id,
+        'args': args, 'kwargs': kwargs, 'exc_info': exc_info,
+        'task_name': task.name}
+    _celery_task_returned(task_id, result)
+
+
+CELERY_TASK_ANNOTATIONS = {'*': {'after_return': _after_return_handler}}

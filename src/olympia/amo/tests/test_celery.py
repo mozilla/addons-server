@@ -9,7 +9,6 @@ from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
 
 import pytest
-from celery import shared_task
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
@@ -33,6 +32,15 @@ def test_celery_routes_in_queues():
     queues_in_routes = set(
         [c['queue'] for c in settings.CELERY_TASK_ROUTES.values()])
     assert queues_in_queues == queues_in_routes
+
+
+@task(name='celery.ping')
+def ping():
+    """Simple task that just returns 'pong'.
+
+    This task is being used by celery worker tests.
+    """
+    return 'pong'
 
 
 @task(ignore_result=False)
@@ -70,8 +78,6 @@ def test_celery_default_ignore_result():
 
 @pytest.mark.celery_worker_test
 def test_celery_explicit_dont_ignore_result(celery_session_worker):
-    print('WWWWWWWWWWW', celery_session_worker, celery_session_worker.app,
-          'olympia.amo.tests.test_celery.fake_task_with_result' in celery_session_worker.app.tasks)
     result = fake_task_with_result.delay().get()
     assert result == 'foobar'
 
@@ -134,7 +140,7 @@ class TestTaskQueued(TransactionTestCase):
     """
 
     def setUp(self):
-        super(TestTaskQueued, self).setUp()
+        super().setUp()
         fake_task_func.reset_mock()
         _discard_tasks()
 
