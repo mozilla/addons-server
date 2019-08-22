@@ -81,11 +81,12 @@ class DevHub(Base):
                 devhub_agreement = DevHubAgreement(
                     self.selenium, self.base_url
                 ).wait_for_page_to_load()
+                devhub_agreement.accept_agreement()
             except TimeoutException:
                 # Do nothing, the agreement has already been excepted
                 pass
-            else:
-                devhub_agreement.accept_agreement()
+            except NoSuchElementException:
+                pass
             try:
                 self.selenium.find_element(
                     *self._continue_sub_btn_locator).click()
