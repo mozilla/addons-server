@@ -7,7 +7,7 @@ from django.db.models.fields import related
 from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
-from .hold import add_translation, make_key, save_translations
+from .hold import add_translation, save_translations
 from .widgets import TransInput, TransTextarea
 
 
@@ -83,7 +83,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
         # A new translation has been created and it might need to be saved.
         # This adds the translation to the queue of translation that need
         # to be saved for this instance.
-        add_translation(make_key(instance), translation)
+        add_translation(instance, translation, field=self.field)
         return translation
 
     def translation_from_dict(self, instance, lang, dict_):
@@ -284,4 +284,4 @@ def save_signal(sender, instance, **kw):
     on the model.
     """
     if not kw.get('raw'):
-        save_translations(make_key(instance))
+        save_translations(instance)

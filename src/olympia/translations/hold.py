@@ -1,21 +1,22 @@
 from threading import local
 
+import django.dispatch
+
 from django.core.signals import request_finished
 
 
 _to_save = local()
 
 
-def add_translation(key, translation):
+def add_translation(instance, translation, field=None):
     """
-    Queue a translation that needs to be saved for a particular object. To
-    generate the key, call make_key.
+    Queue a translation that needs to be saved for a particular instance.
     """
     if not hasattr(_to_save, 'translations'):
         _to_save.translations = {}
-
+    key = make_key(instance)
     _to_save.translations.setdefault(key, [])
-    _to_save.translations[key].append(translation)
+    _to_save.translations[key].append((field.name, translation))
 
 
 def clean_translations(sender, **kwargs):
@@ -31,18 +32,22 @@ def make_key(obj):
     return id(obj)
 
 
-def save_translations(key):
+def save_translations(instance):
     """
-    For a given key, save all the translations. The key is used to ensure that
-    we only save the translations for the given object (and not all of them).
-    Once saved, they will be deleted.
+    For a given instance, save all the translations in the queue and then
+    clear them from the queue.
     """
     if not hasattr(_to_save, 'translations'):
         return
 
-    for trans in _to_save.translations.get(key, []):
-        is_new = trans.autoid is None
-        trans.save(force_insert=is_new, force_update=not is_new)
+    key = make_key(instance)
+
+    for field_name, translation in _to_save.translations.get(key, []):
+        is_new = translation.autoid is None
+        translation.save(force_insert=is_new, force_update=not is_new)
+        translation_saved.send(
+            sender=instance.__class__, instance=instance,
+            field_name=field_name)
 
     if key in _to_save.translations:
         del _to_save.translations[key]
@@ -50,3 +55,5 @@ def save_translations(key):
 
 # Ensure that on request completion, we flush out any unsaved translations.
 request_finished.connect(clean_translations, dispatch_uid='clean_translations')
+
+translation_saved = django.dispatch.Signal()
