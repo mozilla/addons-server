@@ -76,7 +76,7 @@ class DevHub(Base):
         # Accept agreement
         agreement = False
         count = 0
-        while agreement is not True or count < 5:
+        while agreement is not True and count < 5:
             try:
                 devhub_agreement = DevHubAgreement(
                     self.selenium, self.base_url
@@ -85,20 +85,20 @@ class DevHub(Base):
                 # Do nothing, the agreement has already been excepted
                 pass
             else:
-                try:
-                    devhub_agreement.accept_agreement()
-                    self.selenium.find_element(
-                        *self._continue_sub_btn_locator).click()
-                except NoSuchElementException as e:
-                    print(e)
-                    self.selenium.refresh
-                    count + 1
-                else:
-                    agreement = True
+                devhub_agreement.accept_agreement()
+            try:
+                self.selenium.find_element(
+                    *self._continue_sub_btn_locator).click()
+            except NoSuchElementException as e:
+                print(e)
+                self.selenium.refresh
+                count + 1
+            else:
+                agreement = True
         # Upload
         upload_finished = False
         count = 0
-        while upload_finished is not True or count <= 5:
+        while upload_finished is not True and count <= 5:
             try:
                 upload = self.selenium.find_element(
                     *self._upload_addon_locator)
