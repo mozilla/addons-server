@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 12:50+0000\n"
+"PO-Revision-Date: 2019-08-22 17:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4560,9 +4560,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zjadnoŕśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Zastojśo swóje wjele wócynjonych rejtarkow we wertikalnej bocnicy."
+msgstr "Zjadnoŕśo rejtarki. Zastojśo swóje wjele wócynjonych rejtarkow w praktiskej wertikalnej bocnicy."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4577,9 +4576,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Woglědajśo se wjeliki wobraz {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Z kliknjenim myški móžośo se wideo w połnej kšasnosći na wobrazowce woglědaś."
+msgstr "Z jadnorym kliknjenim myški móžośo se wideo w połnej kšasnosći na wobrazowce woglědaś."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4602,9 +4600,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Pśeskócćo njezmysł {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Inteligentne rozšyrjenje, kótarež wam pomaga, spěšnje rozměś, do cogož zwolijośo."
+msgstr "Pśewiniśo njezmysł typiskich wužywańskich dojadnanjow. Toś to Inteligentne rozšyrjenje wam pomaga, malsnje rozměś, do cogož zwolijośo."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4623,9 +4620,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokěrujśo wabjenje a wjace {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Blokěrujśo nic jano gramne wabjenje, ale šćitajśo se pśed škódneju softwaru a slědowanim pśez wabjenje."
+msgstr "Blokěrujśo wabjenje a dostańśo pólěpšony šćit pśed škódneju softwaru a slědowanim pśez wabjenje."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4640,9 +4636,8 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pytajśo wobraze lažko {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Składujśo jano wobraze ze swójogo aktualnego rejtarka."
+msgstr "Składujśo wobraze cele lažko - pópadniśo je jadnorje ze swójogo aktualnego rejtarka."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
