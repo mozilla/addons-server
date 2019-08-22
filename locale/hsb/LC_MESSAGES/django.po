@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-21 13:26+0000\n"
+"PO-Revision-Date: 2019-08-22 10:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3358,7 +3358,7 @@ msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Blokowanje wabjenja a priwatnosć. Kontrolujće cyle jadnorje wabjenje, kotrež widźiće a kak wam w interneće slěduja."
+msgstr "Blokowanje wabjenja a škit priwatnosće. Kontrolujće cyle jednorje wabjenje, kotrež widźiće a kak wam w interneće slěduja."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
