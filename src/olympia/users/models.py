@@ -187,6 +187,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # newsletter
     basket_token = models.CharField(blank=True, default='', max_length=128)
 
+    bypass_upload_restrictions = models.BooleanField(default=False)
+
     reviewer_name = models.CharField(
         max_length=50, default='', null=True, blank=True,
         validators=[validators.MinLengthValidator(2)])

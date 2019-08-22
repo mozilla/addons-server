@@ -435,6 +435,9 @@ class UploadRestrictionChecker:
         developer agreement page itself, where the developer hasn't validated
         the agreement yet but we want to do the other checks anyway.
         """
+        if self.request.user and self.request.user.bypass_upload_restrictions:
+            return True
+
         for restriction_number, cls in self.restriction_choices:
             if (check_dev_agreement is False and
                     cls == DeveloperAgreementRestriction):
