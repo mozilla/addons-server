@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 10:18+0000\n"
+"PO-Revision-Date: 2019-08-22 10:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3430,7 +3430,7 @@ msgstr "Rjadujće hesła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Rjadowanje hesłw je zjednorjene. Synchronizujće wšě swoje rozdźělne přizjewjenja přez graty z jednym hesłom."
+msgstr "Rjadowanje hesłow je zjednorjene. Synchronizujće wšě swoje přizjewjenja přez graty z jednym hesłom."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3534,7 +3534,7 @@ msgstr "Wužiwajće akademisku wědu {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Akademiska wěda, tak zo móžeš ju dosahnyć. Mějće darmotny přistup na přez 10 milionow slědźerskich dźěłow."
+msgstr "Akademiska wěda k ruce. Mějće darmotny přistup na přez 10 milionow slědźerskich dźěłow."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
