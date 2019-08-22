@@ -47,6 +47,7 @@ from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
@@ -1533,6 +1534,15 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None,
         'disabled_by_user',
     )
     if any(field in changes for field in basket_relevant_changes):
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.pk)
+
+
+@receiver(translation_saved, sender=Addon,
+          dispatch_uid='watch_addon_name_changes')
+def watch_addon_name_changes(sender=None, instance=None, **kw):
+    field_name = kw.get('field_name')
+    if instance and field_name == 'name':
         from olympia.amo.tasks import sync_object_to_basket
         sync_object_to_basket.delay('addon', instance.pk)
 
