@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 12:26+0000\n"
+"PO-Revision-Date: 2019-08-22 12:50+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4269,18 +4269,16 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zajźujśo kaprowanjeju rejtarkow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Njepśiwdawaj, až kliknjone wótkaze kontrolu nad wašym aktualnym rejtarkom pśewześ a njewitane wopśimjeśe zacytaś."
+msgstr "Cyńśo kaprowanjeju kóńc. Njepśiwdawaj, až kliknjone wótkaze kontrolu nad wašym aktualnym rejtarkom pśewześ a njewitane wopśimjeśe zacytaś."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mějśo lažki pśistup k Wikipediji {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Wuzwigniśo jadnorje tekst na webboku a klikniśo z pšaweju tastu, aby we Wikipediji pytał."
+msgstr "Wuzwigniśo jadnorje tekst na webboku a klikniśo z pšaweju tastu, aby jadnorje we Wikipediji pytał."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4303,27 +4301,26 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Zawěsććo se lěpšyny na Amazon {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Gaž se produktowe boki w drugich wobchodach online woglědujośo a jolic produkt jo teke na Amazon k dispoziciji, trjebaśo jano na tłocašk kliknuś, aby zapisk Amazon wiźeł."
+msgstr ""
+"Dobydniśo sebje lěpšynu pla Amazon. Gaž se produktowe boki w drugich wobchodach online woglědujośo a jolic produkt jo teke na Amazon k dispoziciji, trjebaśo jano na tłocašk kliknuś, aby zapisk "
+"Amazon wiźeł."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ultimatiwna rejtarkowa kontrola {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Tak wjele móžnosćow rejtarkowego wóźenja - dwójne rejtarki zacyniś, wokna zjadnośiś, rejtarkowy titel kopěrowaś a wěcej."
+msgstr "Mějśo ultimatiwnu kontrolu nad rejtarkami - dwójne rejtarki zacyniś, wokna zjadnośiś, rejtarkowy titel kopěrowaś a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wužywajśo źiwne kubłanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Zacytajśo pśipadny nastawk Wikipedije kuždy raz, gaž nowy rejtark wócynjaśo."
+msgstr "Kubłanje hynac. Zacytajśo pśipadny nastawk Wikipedije kuždy raz, gaž nowy rejtark wócynjaśo."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4354,9 +4351,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pśepytujśo Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Mějśo lažki pśistup k swójim wócynjonym rejtarkam, cytańskim znamjenjam a historiji."
+msgstr "Mějśo lažki pśistup k swójim wócynjonym rejtarkam, cytańskim znamjenjam a historiji, aby Firefox pśepytał."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4419,32 +4415,29 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Nakupujśo z dowěru {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Pśidatna kontrola, kótaraž zawěsćujo, až na spušćobnem sedle nakupujośo."
+msgstr "Nakupowanje z dowěru. Pśidatna kontrola, kótaraž zawěsćujo, až na spušćobnem sedle nakupujośo."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wobglědujśo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Měŕśo cas, kótaryž pśi licadle abo z wěstymi źěłowymi nałoženjami ako Trello, JIRA, Basecamp, GitHub a wjele dalšnych pśebywaśo."
+msgstr "Slědujśo produktiwnosći. Měŕśo cas, kótaryž pśi licadle abo z wěstymi źěłowymi nałoženjami ako Trello, JIRA, Basecamp, GitHub a wjele dalšnych pśebywaśo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Wurězajśo webwopśimjeśe ako nastawki, wideo, wobraze a wěcej, aby je za indiwiduelne projekty abo teamowe źěło w napšawdnem casu składował a wužywał."
+msgstr ""
+"Składujśo swójo nejlubše wopśimjeśe we webje. Wurězajśo wopśimjeśe ako nastawki, wideo, wobraze a wěcej, aby je za indiwiduelne projekty abo teamowe źěło w napšawdnem casu składował a wužywał."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pśeglědujśo wěsće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Dowólśo jano, až se webwopśimjeśe z dowěry gódnych sedłow wuwjeźo."
+msgstr "Dowólśo jano, až se webwopśimjeśe z dowěry gódnych sedłow wuwjeźo. Pśeglědujśo wěsće."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4519,18 +4512,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pórěźćo mólece awdio {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Jo głosnosć na websedle pśeśicha? Pśegłosna? SoundFixer móžo pomagaś."
+msgstr "Pórěźćo mólece zuki. Jo głosnosć na websedle pśeśicha? Pśegłosna? SoundFixer móžo pomagaś."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nejpjerwjej wobźěłaś, pótom śišćaś {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Wótwónoźćo wabjenje abo njerědne wopśimjeśe, aby naglěd webboka pólěpšył, kótaryž cośo śišćaś."
+msgstr "Wobźěłajśo webbok pśed śišćanim. Gótujśo statkowne widobne změny - wótwónoźćo wabjenje abo njerědne wopśimjeśe, aby naglěd webboka pólěpšył, kótaryž cośo śišćaś."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4561,9 +4552,8 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zatrějśo swóje slědy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Pytajśo z wěcej wěstoty pśez blokěrowanje pśeslědowakow, wěcej inteligentne koděrowanje, priwatne pytanje a druge wažne wěcy."
+msgstr "Pytajśo z pólěpšonym blokěrowanim pśeslědowakow, inteligentnym koděrowanim a drugimi lěpšynami priwatnosći."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
