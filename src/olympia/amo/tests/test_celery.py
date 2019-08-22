@@ -126,6 +126,7 @@ class TestTaskQueued(CeleryWorkerTestCase, TransactionTestCase):
         _discard_tasks()
 
     def tearDown(self):
+        super().tearDown()
         fake_task_func.reset_mock()
         _discard_tasks()
         _stop_queuing_tasks()
