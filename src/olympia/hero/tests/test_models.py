@@ -19,9 +19,10 @@ class TestPrimaryHero(TestCase):
             gradient_color='#C60184')
         assert ph.gradient == {'start': 'ink-80', 'end': 'pink-70'}
 
-    def test_clean(self):
+    def test_clean_requires_recommended(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()))
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            gradient_color='#C60184', image='foo.png')
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -35,10 +36,10 @@ class TestPrimaryHero(TestCase):
         assert ph.disco_addon.recommended_status == ph.disco_addon.RECOMMENDED
         ph.clean()  # it raises if there's an error
 
-    def test_clean_external(self):
+    def test_clean_external_requires_homepage(self):
         ph = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
-            is_external=True)
+            is_external=True, gradient_color='#C60184', image='foo.png')
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -49,9 +50,39 @@ class TestPrimaryHero(TestCase):
         ph.disco_addon.addon.save()
         ph.clean()  # it raises if there's an error
 
+    def test_clean_gradient_and_image(self):
+        ph = PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()))
+        ph.disco_addon.update(recommendable=True)
+        ph.disco_addon.addon.current_version.update(
+            recommendation_approved=True)
+        assert not ph.enabled
+        ph.clean()  # it raises if there's an error
+        ph.enabled = True
+        with self.assertRaises(ValidationError) as ve:
+            ph.clean()
+        assert 'gradient_color' in ve.exception.error_dict
+        assert 'image' in ve.exception.error_dict
+
+        ph.update(image='foo.png')
+        with self.assertRaises(ValidationError) as ve:
+            ph.clean()
+        assert 'gradient_color' in ve.exception.error_dict
+        assert 'image' not in ve.exception.error_dict
+
+        ph.update(image='', gradient_color='#123456')
+        with self.assertRaises(ValidationError) as ve:
+            ph.clean()
+        assert 'gradient_color' not in ve.exception.error_dict
+        assert 'image' in ve.exception.error_dict
+
+        ph.update(image='baa.jpg')
+        ph.clean()  # it raises if there's an error
+
     def test_clean_only_enabled(self):
         hero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()))
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            gradient_color='#C60184', image='foo.png')
         hero.disco_addon.update(recommendable=True)
         hero.disco_addon.addon.current_version.update(
             recommendation_approved=True)
