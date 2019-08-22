@@ -76,7 +76,9 @@ class TestCeleryWorker(CeleryWorkerTestCase):
         result.get()
 
         assert celery_cache.set.called
-        assert celery_cache.set.call_args[0][0] == f'task_start_time.{result.id}'
+        assert (
+            celery_cache.set.call_args[0][0] ==
+            f'task_start_time.{result.id}')
 
     @mock.patch('olympia.amo.celery.cache')
     @mock.patch('olympia.amo.celery.statsd')
@@ -97,9 +99,12 @@ class TestCeleryWorker(CeleryWorkerTestCase):
         assert (actual_run_time >= (approx_run_time - fuzz) and
                 actual_run_time <= (approx_run_time + fuzz))
 
-        assert celery_cache.get.call_args[0][0] == f'task_start_time.{result.id}'
         assert (
-            celery_cache.delete.call_args[0][0] == f'task_start_time.{result.id}')
+            celery_cache.get.call_args[0][0] ==
+            f'task_start_time.{result.id}')
+        assert (
+            celery_cache.delete.call_args[0][0] ==
+            f'task_start_time.{result.id}')
 
     @mock.patch('olympia.amo.celery.cache')
     @mock.patch('olympia.amo.celery.statsd')

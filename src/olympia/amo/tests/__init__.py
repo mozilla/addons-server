@@ -985,6 +985,7 @@ class CeleryWorkerTestCase(TestCase):
     def tearDownClass(cls):
         try:
             cls.celery_worker.__exit__(None, None, None)
+            del cls.celery_worker
         finally:
             super().tearDownClass()
 
