@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-21 15:56+0000\n"
+"PO-Revision-Date: 2019-08-20 21:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3735,6 +3735,8 @@ msgstr "Separa le tue identità sul Web {start_sub_heading}con {addon_name}{end_
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
+"Separa le tue vite in rete. Mantieni separati i vari aspetti della tua vita online (lavoro, personale, ecc.) tramite schede colorate, dividendo in sessioni indipendenti le tracce che lasci con i "
+"cookie."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
