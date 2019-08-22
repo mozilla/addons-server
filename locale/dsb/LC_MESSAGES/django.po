@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 13:39+0000\n"
+"PO-Revision-Date: 2019-08-22 10:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1484,9 +1484,8 @@ msgstr "Nježli až změnjaśo swóju standardnu rěc, musyśo mě, zespominanje
 msgid "Users can not be added directly"
 msgstr "Wužywarje njedaju se direktnje pśidaś"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Awtor smějo jano jaden raz w lisćinje byś."
+msgstr "Awtor smějo se jano jaden raz pódaś."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Konto zwobraznjeńske mě trjeba, nježli až dajo se ako awtor pśidaś."
@@ -1667,9 +1666,8 @@ msgstr "Pśepšosba jo wótpokazana."
 msgid "An author has been added to your add-on"
 msgstr "Awtor jo se wašomu dodankoju pśidał"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Pósćiwanki za {addon}."
+msgstr "Awtorowa pśepšosba za {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Wobkšuśeńska mejlka jo se pósłała na {email}"
