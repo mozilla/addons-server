@@ -3,6 +3,7 @@ import os
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
 
 from olympia.amo.models import ModelBase
@@ -73,12 +74,18 @@ class DirImageChoices:
 class WidgetCharField(models.CharField):
     def __init__(self, *args, **kwargs):
         self.widget = kwargs.pop('widget', None)
+        self.blank_text = kwargs.pop('blank_text', 'No image selected')
         super().__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
         defaults = {'widget': self.widget}
         defaults.update(kwargs)
         return super().formfield(**defaults)
+
+    def get_choices(self, *args, **kwargs):
+        if kwargs.get('blank_choice', BLANK_CHOICE_DASH) == BLANK_CHOICE_DASH:
+            kwargs['blank_choice'] = [('', self.blank_text)]
+        return super().get_choices(*args, **kwargs)
 
 
 class PrimaryHero(ModelBase):
@@ -167,7 +174,7 @@ class SecondaryHero(CTACheckMixin, ModelBase):
 class SecondaryHeroModule(CTACheckMixin, ModelBase):
     icon = WidgetCharField(
         choices=DirImageChoices(path=MODULE_ICON_PATH),
-        max_length=255, widget=IconChoiceWidget)
+        max_length=255, widget=IconChoiceWidget, blank_text='Not selected')
     description = models.CharField(max_length=50, blank=False)
     cta_url = models.CharField(max_length=255, blank=True)
     cta_text = models.CharField(max_length=20, blank=True)
