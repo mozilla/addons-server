@@ -96,48 +96,6 @@ def pytest_configure(config):
     prefix_indexes(config)
 
 
-@pytest.fixture(scope='session')
-def celery_session_app(request):
-    """Overwrite to make use of our own app definition.
-
-    This doesn't implement support for `celery_parameters` or
-    app trapping yet.
-    """
-    from olympia.amo.celery import app
-
-    yield app
-
-
-@pytest.fixture(autouse=True)
-def start_celery_worker(
-        request, settings, celery_config, celery_session_worker,
-        celery_session_app, monkeypatch):
-    """Start a celery worker for the whole testing session.
-
-    For all tests marked with `celery_worker_test` we will be setting
-    eager-mode to `False` to ensure tasks are being queued up properly.
-
-    ``celery_worker_test``
-    """
-    marker = request.node.get_closest_marker('celery_worker_test')
-    _previous_eager_setting = settings.CELERY_TASK_ALWAYS_EAGER
-
-    if marker:
-        # Make sure to unset the celery broker url and result backend
-        # which are set by docker-compose and possibly other environments
-        monkeypatch.setenv('CELERY_BROKER_URL', '')
-        monkeypatch.setenv('CELERY_RESULT_BACKEND', '')
-        conf = celery_session_app.conf
-        settings.CELERY_TASK_ALWAYS_EAGER = False
-        conf.CELERY_TASK_ALWAYS_EAGER = conf.task_always_eager = False
-
-    celery_session_worker.reload(reload=True)
-
-    yield
-
-    celery_session_app.conf.CELERY_TASK_ALWAYS_EAGER = _previous_eager_setting
-
-
 @pytest.fixture(autouse=True, scope='session')
 def instrument_jinja():
     """Make sure the "templates" list in a response is properly updated, even

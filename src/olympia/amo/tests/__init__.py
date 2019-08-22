@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
 from urllib.parse import parse_qs, urlparse
+from unittest import mock
 from tempfile import NamedTemporaryFile
 
 from django import forms, test
@@ -27,8 +28,8 @@ from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
-from unittest import mock
 import pytest
+from celery.contrib.testing.worker import start_worker
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
@@ -40,6 +41,7 @@ from olympia.access.acl import check_ownership
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
+from olympia.amo.celery import app as celery_app
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons import indexers as addons_indexers
@@ -413,28 +415,6 @@ def activate_locale(locale=None, app=None):
 
 def _celery_task_returned(task_id, result):
     _celery_task_results[task_id] = result
-
-
-def wait_for_tasks(task_ids, max_wait=1, throw=True, sleep_per_iteration=0.05):
-    if not isinstance(task_ids, (list, set, tuple)):
-        task_ids = [task_ids]
-
-    time_slept = 0
-
-    for task_id in task_ids:
-        while task_id not in _celery_task_results:
-            if time_slept > max_wait:
-                if throw:
-                    raise AssertionError(
-                        f'Task didn\'t return in {max_wait} seconds')
-                else:
-                    break
-            time.sleep(sleep_per_iteration)
-            time_slept += sleep_per_iteration
-
-    result = _celery_task_results.pop(task_id, None)
-
-    return result
 
 
 def grant_permission(user_obj, rules, name):
@@ -987,6 +967,48 @@ class ESTestCaseWithAddons(ESTestCase):
             cls._addons = []
         finally:
             super(ESTestCaseWithAddons, cls).tearDownClass()
+
+
+@override_settings(CELERY_TASK_ALWAYS_EAGER=False)
+@pytest.mark.celery_worker_tests
+class CeleryWorkerTestCase(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        # Start up celery worker
+        cls.celery_worker = start_worker(app=celery_app, pool='solo')
+        cls.celery_worker.__enter__()
+
+    @classmethod
+    def tearDownClass(cls):
+        try:
+            cls.celery_worker.__exit__(None, None, None)
+        finally:
+            super().tearDownClass()
+
+    def wait_for_tasks(self, task_ids, max_wait=1, throw=True,
+                       sleep_per_iteration=0.05):
+        if not isinstance(task_ids, (list, set, tuple)):
+            task_ids = [task_ids]
+
+        time_slept = 0
+
+        for task_id in task_ids:
+            while task_id not in _celery_task_results:
+                if time_slept > max_wait:
+                    if throw:
+                        raise AssertionError(
+                            f'Task didn\'t return in {max_wait} seconds')
+                    else:
+                        break
+                time.sleep(sleep_per_iteration)
+                time_slept += sleep_per_iteration
+
+        result = _celery_task_results.pop(task_id, None)
+
+        return result
 
 
 class TestXss(TestCase):

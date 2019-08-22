@@ -89,24 +89,26 @@ PNGCRUSH_BIN = '/bin/true'
 
 BASKET_API_KEY = 'testkey'
 
+# By default all tests are run in always-eager mode. Use `CeleryWorkerTestCase`
+# to start an actual celery worker instead.
 CELERY_TASK_ALWAYS_EAGER = True
 
 CELERY_IMPORTS += (
     'olympia.amo.tests.test_celery',
 )
 
-CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+# Recommended test settings, as per `celery.contrib.testing.app`
 CELERY_WORKER_LOG_COLOR = False
-CELERY_ACCEPT_CONTENT = {'json'}
 CELERY_ENABLE_UTC = True
 CELERY_TIMEZONE = 'UTC'
 CELERY_BROKER_URL = 'memory://'
-CELERY_RESULT_BACKEND = 'redis://redis:6379/1'
 CELERY_BROKER_HEARTBEAT = 0
 CELERY_WORKER_POOL = 'solo'
 CELERY_WORKER_CONCURRENCY = 1
 
 
+# Enable us to track tasks that have been run and gather their details
+# Used by `wait_for_tasks` helper in `CeleryWorkerTestCase`
 def _after_return_handler(
         task, status, retval, task_id, args, kwargs, exc_info):
     from olympia.amo.tests import _celery_task_returned

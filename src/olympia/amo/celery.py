@@ -190,7 +190,7 @@ def resume_all_tasks():
     _send_tasks_and_stop_queuing()
 
 
-@task(name='celery.ping')
+@task(name='celery.ping', ignore_result=False)
 def ping():
     """Simple task that just returns 'pong'.
 
