@@ -8,9 +8,10 @@ from django.core.signals import request_finished
 _to_save = local()
 
 
-def add_translation(instance, translation, field=None):
+def add_translation(*, instance, translation, field):
     """
-    Queue a translation that needs to be saved for a particular instance.
+    Queue a `translation` that needs to be saved for a particular `field` on
+    `instance`.
     """
     if not hasattr(_to_save, 'translations'):
         _to_save.translations = {}

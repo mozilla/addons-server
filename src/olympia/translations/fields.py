@@ -83,7 +83,8 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
         # A new translation has been created and it might need to be saved.
         # This adds the translation to the queue of translation that need
         # to be saved for this instance.
-        add_translation(instance, translation, field=self.field)
+        add_translation(
+            instance=instance, translation=translation, field=self.field)
         return translation
 
     def translation_from_dict(self, instance, lang, dict_):
