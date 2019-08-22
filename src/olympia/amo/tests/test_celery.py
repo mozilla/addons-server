@@ -34,15 +34,6 @@ def test_celery_routes_in_queues():
     assert queues_in_queues == queues_in_routes
 
 
-@task(name='celery.ping')
-def ping():
-    """Simple task that just returns 'pong'.
-
-    This task is being used by celery worker tests.
-    """
-    return 'pong'
-
-
 @task(ignore_result=False)
 def fake_task_with_result():
     fake_task_func()
