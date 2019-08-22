@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 10:52+0000\n"
+"PO-Revision-Date: 2019-08-22 11:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3705,9 +3705,8 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Změńśo swój proksy-serwer {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Pśeglědujśo web ze swójskimi proksy-nastajenjami."
+msgstr "Změńśo swój proksyserwer a pśeglědujśo web ze swójskimi proksynastajenjami."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3766,14 +3765,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pśeglědujśo anonymnje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Pśeglědujśo web ze skryteju identitu - samo gaby to z drugego kraja cynił."
+msgstr "Pśeglědujśo anonymnje. Pśeglědujśo web ze skryteju identitu - samo gaby to z drugego kraja cynił."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Mějśo pśistup k swójim nejlubšym sedłam, njedawno zacynjonym rejtarkam a wěcej - wšykno z wjelicnego kachlickego naglěda."
+msgstr "Wužywajśo wizuelne cytańske znamjenja. Mějśo pśistup k swójim nejlubšym sedłam, njedawno zacynjonym rejtarkam a wěcej - wšykno z wjelicnego kachlickego naglěda."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3796,9 +3793,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Robustne zastojanje ześěgnjenjow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Doglědujśo status swójich ześěgnjenjow z pomocu statusoweje rědki, boka ześěgnjeńskeje historije a wěcej."
+msgstr "Robustne zastojanje ześěgnjenjow. Doglědujśo status swójich ześěgnjenjow z pomocu statusoweje rědki, boka ześěgnjeńskeje historije a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3813,9 +3809,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Pśeslědowański šćit pśi pytanju {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Blokěrujśo pśeslědowaki, gaž na pytańske wuslědki Google a Yandex kliknjośo."
+msgstr "Blokěrujśo wabjeńske pśeslědowaki, gaž na pytańske wuslědki Google a Yandex kliknjośo."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3830,9 +3825,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Pśidajśo pytańskim wuslědkam wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Wužywajśo miniaturki z pytańskimi wuslědkami."
+msgstr "Wužywajśo miniaturki websedłow z pytańskimi wuslědkami."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3855,18 +3849,16 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Pśiměŕśo swóje nejlubše websedła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Změńśo naglěd websedłow! Změńśo barwy, slězyny bokow a wěcej."
+msgstr "Pśiměŕśo naglěd websedłow. Změńśo barwy, slězyny bokow a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pśiměŕśo swój nowy rejtark {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Wobźěłajśo bok nowego rejtarka, aby swóju nejlubšu licbu kachlickow, slězynowy wobraz a wěcej zwobraznił."
+msgstr "Pśiměŕśo swój bok nowego rejtarka, aby nejlubšu licbu kachlickow, slězynowy wobraz a wěcej zwobraznił."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3881,27 +3873,24 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Zgóńśo, źož we webje dojźośo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Wobstarajśo se městno w kraju za websedła, ku kótarymž se woglědujośo. Buźćo informěrowany internetny drogowaŕ."
+msgstr "ZNajśo rutu we webje. Wobstarajśo se městno w kraju websedłow, ku kótarymž se woglědujośo. Buźćo informěrowany internetny drogowaŕ."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo swójo cytańske dožywjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Wótwónoźćo cajk wokoło teksta, kótaryž cytaśo, aby jen atraktiwnjejšy wugótował."
+msgstr "Pólěpšćo swójo cytańske dožywjenje. Wótwónoźćo cajk wokoło teksta, kótaryž cytaśo, aby jen atraktiwnjejšy wugótował."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wócyńśo někotare wótkaze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
-msgstr "Klikniśo z pšaweju tastu a śěgniśo kursor pó wótkazach, kótarež cośo w nowych rejtarkach wócyniś."
+msgstr "Klikniśo z pšaweju tastu a śěgniśo wótkaze, kótarež cośo w nowych rejtarkach wócyniś."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3916,9 +3905,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Inspirěrujśo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Změńśo swój bok nowego rejtarka, aby rědnu slězynu zwobraznił, swój fokus za źeń póstajił a wěcej."
+msgstr "Inspirěrujśo produktiwnosć. Změńśo swój bok nowego rejtarka, aby rědnu slězynu zwobraznił, swój fokus za źeń póstajił a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3965,9 +3953,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Pśiměŕśo swój Youtube {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Wótgrajśo wideo we wuskokujucem woknje, woglědajśo se wabjenje jano w aboněrowanych kanalach, gótujśo fota wobrazowki wideo a wjele wěcej."
+msgstr "Cyńśo jen k swójomu YouTube. Wótgrajśo wideo we wuskokujucem woknje, woglědajśo se wabjenje jano w aboněrowanych kanalach, gótujśo fota wobrazowki wideo a wjele wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3982,18 +3969,16 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Změńśo stil Wikipedije {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Dajo Wikipediji nowy a moderny naglěd."
+msgstr "Dajo Wikipediji nowy, moderny naglěd."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Źěłajśo malsnjej {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Wužywajśo gesty myški, aby źěło doscynił - a to malsnjej."
+msgstr "Wužywajśo gesty myški, aby wěcy malsnjej doscynił."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4032,27 +4017,24 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wójujśo pśeśiwo spamoju {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Wužywajśo praktiske nachylne e-mailowe adrese, aby anonymny wóstał a se spama wobinuł."
+msgstr "Dobydniśo spam. Wužywajśo praktiske nachylne e-mailowe adrese, aby anonymny wóstał a se spama wobinuł."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Změńśo swóju priwatnosć {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Pśiměŕśo lažko nastajenja priwatnosći, kótarež su integrěrowane w Firefox."
+msgstr "Direktna sćažka, aby wy nastajenja priwatnosći, kótarež su integrěrowane w Firefox , pśiměrił."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wobstarajśo se pśełožki ned {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Wuzwigniśo tekst a klikniśo na tłocašk, aby ned pśistup k pśełožkoju měł, kótaryž se zjawijo."
+msgstr "Wuzwigniśo tekst a klikniśo na tłocašk, kótaryž se zjawijo, aby ned pśistup k pśełožkam dostał."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4067,9 +4049,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp we webje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Wužywajśo WhatsApp ze symboloweje rědki Firefox, aby powěźeńki wó njecytanych nitkach dostał."
+msgstr "WhatsApp we webje. Wužywajśo WhatsApp ze symboloweje rědki Firefox, aby powěźeńki wó njecytanych nitkach dostał."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
