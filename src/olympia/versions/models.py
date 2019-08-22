@@ -260,7 +260,7 @@ class Version(OnChangeMixin, ModelBase):
         version.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
-        version_uploaded.send(sender=version)
+        version_uploaded.send(instance=version, sender=Version)
 
         # Extract this version into git repository
         transaction.on_commit(
@@ -700,21 +700,47 @@ def cleanup_version(sender, instance, **kw):
 
 
 @Version.on_change
-def watch_recommendation_changes(old_attr=None, new_attr=None, instance=None,
-                                 sender=None, **kwargs):
-    from olympia.addons.models import update_search_index
+def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None,
+                  **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
+    changes = {
+        x for x in new_attr
+        if not x.startswith('_') and new_attr[x] != old_attr.get(x)
+    }
 
-    if ('recommendation_approved' in old_attr or
-            'recommendation_approved' in new_attr):
-        old_value = old_attr.get('recommendation_approved')
-        new_value = new_attr.get('recommendation_approved')
-        if old_value != new_value:
-            # Update ES because Addon.is_recommended depends on it.
-            update_search_index(
-                sender=sender, instance=instance.addon, **kwargs)
+    if 'recommendation_approved' in changes:
+        from olympia.addons.models import update_search_index
+        # Update ES because Addon.is_recommended depends on it.
+        update_search_index(
+            sender=sender, instance=instance.addon, **kwargs)
+
+    if (instance.channel == amo.RELEASE_CHANNEL_UNLISTED and
+            'deleted' in changes) or 'recommendation_approved' in changes:
+        # Sync the related add-on to basket when recommendation_approved is
+        # changed or when an unlisted version is deleted. (When a listed
+        # version is deleted, watch_changes() in olympia.addon.models should
+        # take care of it (since _current_version will change).
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.addon.pk)
+
+
+def watch_new_unlisted_version(sender=None, instance=None, **kwargs):
+    # Sync the related add-on to basket when an unlisted version is uploaded.
+    # Listed version changes for `recommendation_approved` and unlisted version
+    # deletion is handled by watch_changes() above, and new version approval
+    # changes are handled by watch_changes() in olympia.addon.models (since
+    # _current_version will change).
+    # What's left here is unlisted version upload.
+    if instance and instance.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.addon.pk)
 
 
 version_uploaded = django.dispatch.Signal()
+version_uploaded.connect(watch_new_unlisted_version)
 models.signals.pre_save.connect(
     save_signal, sender=Version, dispatch_uid='version_translations')
 models.signals.post_save.connect(

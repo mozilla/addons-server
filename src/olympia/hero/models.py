@@ -9,14 +9,16 @@ from olympia.amo.models import ModelBase
 from olympia.discovery.models import DiscoveryItem
 
 
-GRADIENT_START_COLOR = '#20123A'
-GRADIENT_CHOICES = (
-    ('#054096', 'BLUE70'),
-    ('#068989', 'GREEN70'),
-    ('#C60184', 'PINK70'),
-    ('#712290', 'PURPLE70'),
-    ('#582ACB', 'VIOLET70'),
-)
+GRADIENT_START_COLOR = ('#20123A', 'ink-80')
+# Before changing these colors think about existing shelves.  We either need a
+# db migration to update them or define a default end color if they're invalid.
+GRADIENT_COLORS = {
+    '#054096': 'blue-70',
+    '#068989': 'green-70',
+    '#C60184': 'pink-70',
+    '#712290': 'purple-70',
+    '#582ACB': 'violet-70',
+}
 FEATURED_IMAGE_PATH = os.path.join(
     settings.ROOT, 'static', 'img', 'hero', 'featured')
 MODULE_ICON_PATH = os.path.join(
@@ -32,7 +34,7 @@ class GradientChoiceWidget(RadioSelect):
     def create_option(self, name, value, label, selected, index,
                       subindex=None, attrs=None):
         attrs['gradient_end_color'] = value
-        attrs['gradient_start_color'] = GRADIENT_START_COLOR
+        attrs['gradient_start_color'] = GRADIENT_START_COLOR[0]
         return super().create_option(
             name=name, value=value, label=label, selected=selected,
             index=index, subindex=subindex, attrs=attrs)
@@ -81,14 +83,15 @@ class WidgetCharField(models.CharField):
 
 class PrimaryHero(ModelBase):
     image = WidgetCharField(
-        choices=DirImageChoices(path=FEATURED_IMAGE_PATH),
-        max_length=255, widget=ImageChoiceWidget)
+        choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
+        widget=ImageChoiceWidget, blank=True)
     gradient_color = WidgetCharField(
-        choices=GRADIENT_CHOICES, max_length=7, widget=GradientChoiceWidget)
-    enabled = models.BooleanField(db_index=True, null=False, default=False,)
+        choices=GRADIENT_COLORS.items(), max_length=7,
+        widget=GradientChoiceWidget, blank=True)
+    enabled = models.BooleanField(db_index=True, default=False)
     disco_addon = models.OneToOneField(
         DiscoveryItem, on_delete=models.CASCADE, null=False)
-    is_external = models.BooleanField(null=False, default=False)
+    is_external = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.disco_addon)
@@ -99,26 +102,38 @@ class PrimaryHero(ModelBase):
 
     @property
     def gradient(self):
-        return {'start': GRADIENT_START_COLOR, 'end': self.gradient_color}
+        return {
+            'start': GRADIENT_START_COLOR[1],
+            'end': GRADIENT_COLORS.get(self.gradient_color)}
 
     def clean(self):
         super().clean()
+        error_dict = {}
         if self.enabled:
+            if not self.gradient_color:
+                error_dict['gradient_color'] = ValidationError(
+                    'Gradient color is required for enabled shelves')
+            if not self.image:
+                error_dict['image'] = ValidationError(
+                    'A featured image is required for enabled shelves')
+
             if self.is_external and not self.disco_addon.addon.homepage:
-                raise ValidationError(
+                error_dict['is_external'] = ValidationError(
                     'External primary shelves need a homepage defined in '
                     'addon details.')
             elif not self.is_external:
                 recommended = (self.disco_addon.recommended_status ==
                                self.disco_addon.RECOMMENDED)
                 if not recommended:
-                    raise ValidationError(
+                    error_dict['enabled'] = ValidationError(
                         'Only recommended add-ons can be enabled for '
                         'non-external primary shelves.')
         else:
             if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
-                raise ValidationError(
+                error_dict['enabled'] = ValidationError(
                     'You can\'t disable the only enabled primary shelf.')
+        if error_dict:
+            raise ValidationError(error_dict)
 
 
 class CTACheckMixin():
