@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 10:12+0000\n"
+"PO-Revision-Date: 2019-08-22 10:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1672,9 +1672,8 @@ msgstr "Awtorowa pśepšosba za {addon_name}"
 msgid "A confirmation email has been sent to {email}"
 msgstr "Wobkšuśeńska mejlka jo se pósłała na {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Awtor ma rolu, kótaraž jo se za waš dodank změniła"
+msgstr "Awtorowa rola jo se změniła za waš dodank"
 
 msgid "An author has been removed from your add-on"
 msgstr "Awtor jo se z wašogo dodanka wótpórał"
@@ -2898,9 +2897,8 @@ msgstr[3] "Wubjeŕśo <b>až do {0}</b> kategorijow nałoženja {1} za toś ten 
 msgid "End-User License Agreement"
 msgstr "Licencne dojadnanje za kóńcne wužywarje"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Pšosym wubjeŕśo licencu, kótaryž jo pśigódna za pšawa, kótarež dajośo za swój žrědłowy kod. To jo jano za nalicone dodanki relewantne."
+msgstr "Pšosym źiwajśo na to, až EULA to samske ako kodowa licenca njejo, ako na pśikład GPL abo MPL. Jo jano relewantna za nalicone dodanki."
 
 msgid "Privacy Policy"
 msgstr "Pšawidła priwatnosći"
@@ -3361,9 +3359,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Blokěrowanje wabjenja a šćit priwatnosći {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Z jadnorym nastajenim kontrolěrujośo wabjenje, kótarež wiźiśo a wašnju, kak wam w interneśe slěduju."
+msgstr "Blokěrowanje wabjenja a šćit priwatnosći. Kontrolěrujśo cele jadnorje wabjenje, kótarež wiźiśo a kak wam w interneśe slěduju."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3378,18 +3375,16 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Zajźujśo pśeslědowanjeju pśez Facebook {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera“, kótaryž Facebookoju póśěžujo, wašym pógibam we webje slědowaś."
+msgstr "Stopujśo slědowanje pśez Facebook. Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera“, kótaryž Facebookoju póśěžujo, wašym pógibam we webje slědowaś."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zjadnoŕśo pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Wuzwigniśo jadnorje tekst na někakem webboku, aby z pytnicu wuraz pytał."
+msgstr "Wuzwigniśo tekst na někakem webboku, aby pytanje wólažcył a wuraz z wjele pytnicami pytał."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3420,27 +3415,24 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ześěgniśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funkcioněrujo z YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stami drugich wideosedłow."
+msgstr "Ześěgniśo wideo z lažkosću. Funkcioněrujo z YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stami drugich wideosedłow."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo swójo emoźijowe graśe {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Dwanastki wjelicnych emoźijow za kuždu góźbu - pśecej jano jadno kliknjenje zdalone."
+msgstr "Dalšne emoźije. Dwanastki wjelicnych emoźijow za kuždu góźbu - pśecej jano jadno kliknjenje zdalone."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zastojśo gronidła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Zjadnorśo a synchronizěrujśo wše swóje rozdźělne pśizjawjenja websedłow pśez rědy z jadnym gronidłom."
+msgstr "Zastojanje gronidłow jo zjadnorjone. Synchronizěrujśo wše swóje pśizjawjenja pśez rědy z jadnym gronidłom."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3740,9 +3732,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pśeglědujśo wěsće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Pśidajśo sedłoju, kótarež HTTPS pódpěra, skoděrowanu wěstotu."
+msgstr "Pśidajśo sedłoju, kótarež HTTPS pódpěra, skoděrowanu wěstotu. Pśeglědujśo wěsće."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
