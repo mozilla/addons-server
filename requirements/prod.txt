@@ -129,9 +129,9 @@ boto3==1.9.213 \
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.214 \
-    --hash=sha256:1c357c8081f67797596eb28295cac38aa835cdb4ef6c69ede57e203359659d9c \
-    --hash=sha256:2b6e366cac12f7146542ac802ea62a6b46dfc92e9ee3eb75ba450949d5e10f71
+botocore==1.12.215 \
+    --hash=sha256:786573c94cd3ea1ec58de0102f0924c24bf23d6dfcd5232714c27807a59f6a2d \
+    --hash=sha256:ae74ede86f5fd3e3c5cb63f066c9dbb21df12af79ceeb068e1bcb04b076dbb78
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
