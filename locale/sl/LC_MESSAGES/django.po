@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 10:59+0000\n"
+"PO-Revision-Date: 2019-08-23 09:22+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3401,9 +3401,8 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Poenostavite iskanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Preprosto označite besedilo na katerikoli spletni strani in iščite z vrsto iskalnikov."
+msgstr "Poenostavite iskanje z označevanjem besedila na katerikoli spletni strani in iščite z vrsto iskalnikov."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3434,9 +3433,8 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Deluje z YouTubom, Facebookom, Vimeom, Twitchem, Dailymotionom, Periscopom in stotinami drugih strani."
+msgstr "Enostavno prenašajte videoposnetke. Deluje z YouTubom, Facebookom, Vimeom, Twitchem, Dailymotionom, Periscopom in stotinami drugih strani."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3452,9 +3450,8 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Upravljajte gesla {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Poenostavite in sinhronizirajte vse svoje spletne prijave med napravami z enim glavnim geslom."
+msgstr "Poenostavljeno upravljanje gesel. Sinhronizirajte vse svoje spletne prijave med napravami z enim glavnim geslom."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3637,9 +3634,8 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Zabrišite sledi svojega brskanja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Naj Firefox pozabi podatke spletnih mest, kot so piškotki in krajevna shramba, vendar samo za domene, ki jih določite."
+msgstr "Pustite čisto digitalno sled. Naj Firefox pozabi podatke spletnih mest, kot so piškotki in krajevna shramba, vendar samo za domene, ki jih določite."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3838,9 +3834,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Zaščita pred sledenjem pri iskanju {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Zaobidite sledilce, ko kliknete na Googlove ali Yandexove zadetke iskanja."
+msgstr "Zaobidite sledilce oglasov, ko kliknete na Googlove ali Yandexove zadetke iskanja."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3888,7 +3883,6 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Prilagodite si nov zavihek {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "Prilagodite si stran novega zavihka – določite število vrstic ploščic, sliko ozadja in drugo."
 
@@ -4029,7 +4023,7 @@ msgstr "Prenašajte slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Prenesite slike, ki jih najdete v spletu."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4293,9 +4287,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Samodejno izpolnite obrazce {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Vnesene podatke shranite enkrat in jih naslednjič samodejno izpolnite."
+msgstr "Samodejno izpolnite obrazce. Vnesene podatke shranite enkrat in jih naslednjič samodejno izpolnite."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
