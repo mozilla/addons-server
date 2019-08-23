@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-21 12:32+0000\n"
+"PO-Revision-Date: 2019-08-21 15:44+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4620,7 +4620,7 @@ msgstr "Copri le tue tracce {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Effettua le tue ricerche con il blocco avanzato degli elementi traccianti, la crittografia intelligente e altri benefici della privacy."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4628,7 +4628,7 @@ msgstr "Semplifica le schede {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Razionalizza le schede. Organizza le troppe schede aperte in una barra laterale ordinata."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4644,7 +4644,7 @@ msgstr "Divertimento a tutto schermo {start_sub_heading}con {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "Con un solo clic del mouse puoi guardare i video nello splendore dello schermo intero."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4680,7 +4680,7 @@ msgstr "Migliore esperienza di lettura {start_sub_heading}con {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Rimuovi gli elementi di disturbo intorno al testo delle pagine web per rendere la lettura più semplice e chiara."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4704,7 +4704,7 @@ msgstr "Salva facilmente le immagini {start_sub_heading}con {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Salva facilmente le immagini: basta afferrarle dalla scheda corrente."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
