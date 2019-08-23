@@ -237,6 +237,7 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert 'BarFöo' in content
+        assert 'No image selected' in content
         assert PrimaryHero.objects.count() == 0
 
         response = self.client.post(
@@ -572,6 +573,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert 'BarFöo' in content
+        assert 'Not selected' in content
 
         shelves = [
             {

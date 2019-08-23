@@ -82,6 +82,7 @@
 .dynamic-modules .field-icon li div label {
     color: transparent;
     display: block;
+    width: inherit;
 }
 
 .dynamic-modules .field-icon li:first-child div label {
