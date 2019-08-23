@@ -26,12 +26,19 @@ to if necessary.
     Except for the ``message``, all strings have a maximum length of 255 characters
     and should be truncated by the client where necessary.
 
+.. warning::
+
+    For ``addon_install_method`` and ``addon_install_source`` specifically,
+    if an unsupported value is sent, it will be silently changed to ``other``
+    instead of raising a 400 error.
+
 .. http:post:: /api/v4/abuse/report/addon/
 
     :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :<json string|null report_entry_point: The report entry point. The accepted values are documented in the :ref:`table below <abuse-report_entry_point-parameter>`.
     :<json string|null addon_install_method: The add-on install method. The accepted values are documented in the :ref:`table below <abuse-addon_install_method-parameter>`.
+    :<json string|null addon_install_source: The add-on install source. The accepted values are documented in the :ref:`table below <abuse-addon_install_source-parameter>`.
     :<json string|null addon_install_origin: The add-on install origin.
     :<json string|null addon_name: The add-on name in the locale used by the client.
     :<json string|null addon_signature: The add-on signature state. The accepted values are documented in the :ref:`table below <abuse-addon_signature-parameter>`.
@@ -57,6 +64,7 @@ to if necessary.
     :>json string message: The body/content of the abuse report.
     :>json string|null report_entry_point: The report entry point.
     :>json string|null addon_install_method: The add-on install method.
+    :>json string|null addon_install_source: The add-on install source.
     :>json string|null addon_install_origin: The add-on install origin.
     :>json string|null addon_name: The add-on name in the locale used by the client.
     :>json string|null addon_signature: The add-on signature state.
@@ -87,6 +95,10 @@ to if necessary.
 
  Accepted values for the ``addon_install_method`` parameter:
 
+  .. note::
+
+      This should match what is documented for ``addonsManager.install.extra_keys.method`` in `Firefox telemetry event definition <https://searchfox.org/mozilla-central/source/toolkit/components/telemetry/Events.yaml>`_. The values are normalized by being converted to lowercase with the ``:`` and ``-`` characters converted to ``_``. In addition, extra values are supported for backwards-compatibility purposes, since Firefox before version 70 merged source and method into the same value. If an unsupported value is sent for this parameter, it will be silently changed to special ``other`` instead of raising a 400 error.
+
  ===========================  =================================================
                        Value  Description
  ===========================  =================================================
@@ -98,11 +110,44 @@ to if necessary.
                drag_and_drop  Drag & Drop
                     sideload  Sideload
                     file_url  File URL
-           enterprise_policy  Enterprise Policy
+                         url  URL
+                       other  Other
+           enterprise_policy  Enterprise Policy (obsolete, for backwards-compatibility)
+                distribution  Included in build (obsolete, for backwards-compatibility)
+                system_addon  System Add-on (obsolete, for backwards-compatibility)
+             temporary_addon  Temporary Add-on (obsolete, for backwards-compatibility)
+                        sync  Sync (obsolete, for backwards-compatibility)
+ ===========================  =================================================
+
+.. _abuse-addon_install_source-parameter:
+
+ Accepted values for the ``addon_install_source`` parameter:
+
+  .. note::
+
+      This should match what is documented for ``addonsManager.install.extra_keys.method`` in `Firefox telemetry event definition <https://searchfox.org/mozilla-central/source/toolkit/components/telemetry/Events.yaml>`_. The values are normalized by being converted to lowercase with the ``:`` and ``-`` characters converted to ``_``. We support the additional ``other`` value as a catch-all. If an unsupported value is sent for this parameter, it will be silently changed to ``other`` instead of raising a 400 error.
+
+ ===========================  =================================================
+                       Value  Description
+ ===========================  =================================================
+               \about:addons  Add-ons Manager
+            \about:debugging  Add-ons Debugging
+          \about:preferences  Preferences
+                         amo  AMO
+                \app:profile  App Profile
+                       disco  Disco Pane
                 distribution  Included in build
-                system_addon  System Add-on
-             temporary_addon  Temporary Add-on
+                   extension  Extension
+           enterprise-policy  Enterprise Policy
+                    file-url  File URL
+                  gmp-plugin  GMP Plugin
+                    internal  Internal
+                      plugin  Plugin
+                       rtamo  Return To AMO
                         sync  Sync
+                system-addon  System Add-on
+             temporary-addon  Temporary Add-on
+                     unknown  Unknown
                        other  Other
  ===========================  =================================================
 

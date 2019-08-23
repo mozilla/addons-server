@@ -214,7 +214,7 @@ class AddonAbuseViewSetTestBase(object):
             'install_date': '2004-08-15T16:23:42',
             'reason': 'spam',
             'addon_install_origin': 'http://example.com/',
-            'addon_install_method': None,
+            'addon_install_method': 'url',
             'report_entry_point': None,
         }
         response = self.client.post(
@@ -240,7 +240,9 @@ class AddonAbuseViewSetTestBase(object):
         assert report.application_locale == data['lang']
         assert report.install_date == datetime(2004, 8, 15, 16, 23, 42)
         assert report.reason == 2  # Spam / Advertising
-        assert report.addon_install_method is None
+        assert report.addon_install_method == (
+            AbuseReport.ADDON_INSTALL_METHODS.URL)
+        assert report.addon_install_source is None
         assert report.report_entry_point is None
 
     def test_optional_fields_errors(self):
@@ -260,6 +262,7 @@ class AddonAbuseViewSetTestBase(object):
             'reason': 'Something not in reason choices',
             'addon_install_origin': 'u' * 256,
             'addon_install_method': 'Something not in install method choices',
+            'addon_install_source': 'Something not in install source choices',
             'report_entry_point': 'Something not in entrypoint choices',
         }
         response = self.client.post(
@@ -286,11 +289,33 @@ class AddonAbuseViewSetTestBase(object):
                 'instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z].'],
             'reason': [expected_choices_message % data['reason']],
             'addon_install_origin': [expected_max_length_message % 255],
-            'addon_install_method': [
-                expected_choices_message % data['addon_install_method']],
             'report_entry_point': [
                 expected_choices_message % data['report_entry_point']],
         }
+        # Note: addon_install_method and addon_install_source silently convert
+        # unknown values to "other", so the values submitted here, despite not
+        # being valid choices, aren't considered errors. See
+        # test_addon_unknown_install_source_and_method() below.
+
+    def test_addon_unknown_install_source_and_method(self):
+        data = {
+            'addon': '@mysteryaddon',
+            'message': 'This is abusé!',
+            'addon_install_method': 'something unexpected',
+            'addon_install_source': 'something unexpected indeed',
+        }
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 201, response.content
+
+        assert AbuseReport.objects.filter(guid=data['addon']).exists()
+        report = AbuseReport.objects.get(guid=data['addon'])
+        self.check_report(
+            report, u'[Addon] Abuse Report for %s' % data['addon'])
+        assert not report.addon  # Not an add-on in database, that's ok.
+        assert report.addon_install_method == (
+            AbuseReport.ADDON_INSTALL_METHODS.OTHER)
+        assert report.addon_install_source == (
+            AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
 
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
