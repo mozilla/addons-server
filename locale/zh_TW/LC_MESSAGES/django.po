@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-25 12:55+0000\n"
+"PO-Revision-Date: 2019-08-25 13:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1468,9 +1468,8 @@ msgstr "在您更動您的預設語系前，您必須為那個語系填入名稱
 msgid "Users can not be added directly"
 msgstr "無法直接新增使用者"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "每位作者只可被列出一次。"
+msgstr "每位作者只可列出一次。"
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "帳號需要先加入顯示名稱，才能被設定為作者。"
@@ -1649,14 +1648,12 @@ msgstr "已拒絕邀請函。"
 msgid "An author has been added to your add-on"
 msgstr "已為您的附加元件新增作者"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "{addon} 的募款。"
+msgstr "{addon_name} 作者邀請函"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "已將確認信發送至 {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
 msgstr "您的附加元件的某位作者的角色發生變更"
 
@@ -1691,7 +1688,7 @@ msgid "There was an error uploading your preview."
 msgstr "上傳擷圖的過程中發生錯誤。"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "無法刪除或停用最新通過審核版本的推薦擴充套件。若需要幫助，請聯絡 AMO 管理員。"
 
 #, python-format
 msgid "Version %s disabled."
@@ -1969,10 +1966,10 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "您已被邀請成為 {addon_name} 的作者。"
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "接受邀請函後，可讓您編輯此附加元件，並可能會在附加元件網站的「作者清單」中顯示您的名字。"
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "請點擊下方的「接受」按鈕，即可將您加入為 {addon_name} 的作者。"
 
 msgid "Decline"
 msgstr "拒絕"
@@ -1987,10 +1984,10 @@ msgid "About author roles"
 msgstr "關於作者"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "等待確認中的作者"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "已將作者加入此附加元件，但尚未確認。"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2835,9 +2832,8 @@ msgstr[0] "為此附加元件選擇<b>最多 {0} 個</b> {1} 分類："
 msgid "End-User License Agreement"
 msgstr "使用者授權合約"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "請選擇您的原始碼要使用哪個條款釋出，此欄位僅與公開上架的附加元件有關。"
+msgstr "請注意，EULA 與原始碼的授權條款（例如 GPL 或 MPL）不同。僅與公開上架的附加元件有關。"
 
 msgid "Privacy Policy"
 msgstr "隱私權保護政策"
@@ -4107,9 +4103,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "{addon_name} {start_sub_heading}下載 YouTube 影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "下載影音內容。"
+msgstr "下載 YouTube 影音內容。"
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6254,9 +6249,8 @@ msgstr "您確定要移除所有的 <b>{0}</b> 翻譯? 此動作無法復原。"
 msgid "Delete Locale"
 msgstr "刪除語系"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "關閉審查歷史"
+msgstr "使用者限制記錄"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
