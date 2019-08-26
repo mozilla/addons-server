@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 16:13+0000\n"
+"PO-Revision-Date: 2019-08-26 11:26+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1636,13 +1636,13 @@ msgid "An author has been added to your add-on"
 msgstr "一个作者已被添加到您的附加组件"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "{addon_name} 作者邀请函"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "验证邮件已发送到 {email}"
 
 msgid "An author role has been changed on your add-on"
-msgstr ""
+msgstr "您的附加组件的某位作者的角色发生变更"
 
 msgid "An author has been removed from your add-on"
 msgstr "一个作者已被从您的附加组件中移除"
@@ -1953,7 +1953,7 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "您被邀请成为 {addon_name} 的作者。"
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "接受邀请函后，可让您编辑此附加组件，并可能会在附加组件网站的“作者列表”中显示您的名字。"
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "点击下方接受按钮，来确认您要被添加为 {addon_name} 的作者。"
@@ -2811,7 +2811,7 @@ msgid "End-User License Agreement"
 msgstr "最终用户许可协议"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "请注意，EULA 与源代码许可证（如 GPL 或 MPL）不同。它仅与上架的附加组件相关。"
 
 msgid "Privacy Policy"
 msgstr "隐私政策"
@@ -6179,7 +6179,7 @@ msgid "Delete Locale"
 msgstr "删除语言"
 
 msgid "User Restriction History"
-msgstr ""
+msgstr "用户限制记录"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
