@@ -1587,6 +1587,17 @@ class TestAddonModels(TestCase):
             'addon', 3615)
 
     @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_name_changes_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.name = 'Blah'
+        addon.save()
+
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
     def test_addon_deletion_synced_to_basket(
             self, sync_object_to_basket_mock):
         addon = Addon.objects.get(id=3615)

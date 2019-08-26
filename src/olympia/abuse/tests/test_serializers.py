@@ -33,6 +33,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'message': 'bad stuff',
             'addon_install_method': None,
             'addon_install_origin': None,
+            'addon_install_source': None,
             'addon_name': None,
             'addon_signature': None,
             'addon_summary': None,
@@ -61,6 +62,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'message': 'bad stuff',
             'addon_install_method': None,
             'addon_install_origin': None,
+            'addon_install_source': None,
             'addon_name': None,
             'addon_signature': None,
             'addon_summary': None,
@@ -92,8 +94,9 @@ class TestAddonAbuseReportSerializer(TestCase):
         data = {
             'addon': '@someguid',
             'message': u'I am the messagê',
-            'addon_install_method': 'amwebapi',
+            'addon_install_method': 'url',
             'addon_install_origin': 'http://somewhere.com/',
+            'addon_install_source': 'amo',
             'addon_name': u'Fancy add-on nâme',
             'addon_signature': None,
             'addon_summary': u'A summary',
@@ -112,8 +115,9 @@ class TestAddonAbuseReportSerializer(TestCase):
             data, context=extra_context).to_internal_value(data)
         expected = {
             'addon': None,
-            'addon_install_method': AbuseReport.ADDON_INSTALL_METHODS.AMWEBAPI,
+            'addon_install_method': AbuseReport.ADDON_INSTALL_METHODS.URL,
             'addon_install_origin': 'http://somewhere.com/',
+            'addon_install_source': AbuseReport.ADDON_INSTALL_SOURCES.AMO,
             'addon_name': u'Fancy add-on nâme',
             'addon_signature': None,
             'addon_summary': 'A summary',

@@ -237,6 +237,7 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert 'BarFöo' in content
+        assert 'No image selected' in content
         assert PrimaryHero.objects.count() == 0
 
         response = self.client.post(
@@ -332,6 +333,51 @@ class TestDiscoveryAdmin(TestCase):
             follow=True)
         assert response.status_code == 200
         assert not DiscoveryItem.objects.filter(pk=item.pk).exists()
+
+    def test_can_delete_primary_hero_too(self):
+        item = DiscoveryItem.objects.create(addon=addon_factory())
+        shelf = PrimaryHero.objects.create(disco_addon=item)
+        self.delete_url = reverse(
+            'admin:discovery_discoveryitem_delete', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        # Can access delete confirmation page.
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 200
+        assert DiscoveryItem.objects.filter(pk=item.pk).exists()
+        assert PrimaryHero.objects.filter(pk=shelf.pk).exists()
+
+        # But not if the primary hero shelf is the only enabled shelf.
+        shelf.update(enabled=True)
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 403
+
+        # And can't actually delete either
+        response = self.client.post(
+            self.delete_url,
+            dict(self._get_heroform(str(item.id)), **{'post': 'yes'}),
+            follow=True)
+        assert response.status_code == 403
+        assert DiscoveryItem.objects.filter(pk=item.pk).exists()
+
+        # But if there's another enabled shelf we can now access the page.
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            enabled=True)
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 200
+
+        # Can actually delete too.
+        response = self.client.post(
+            self.delete_url,
+            dict(self._get_heroform(str(item.id)), **{'post': 'yes'}),
+            follow=True)
+        assert response.status_code == 200
+        assert not DiscoveryItem.objects.filter(pk=item.pk).exists()
+        assert not PrimaryHero.objects.filter(pk=shelf.pk).exists()
 
     def test_can_add_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
@@ -527,6 +573,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert 'BarFöo' in content
+        assert 'Not selected' in content
 
         shelves = [
             {
@@ -579,7 +626,25 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert response.status_code == 200
         assert SecondaryHero.objects.filter(pk=item.pk).exists()
 
-        # Can actually delete.
+        # But not if the shelf is the only enabled shelf
+        item.update(enabled=True)
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 403
+
+        # We can't actually delete either.
+        response = self.client.post(
+            delete_url,
+            dict(self._get_moduleform(item.pk, {}), post='yes'),
+            follow=True)
+        assert response.status_code == 403
+        assert SecondaryHero.objects.filter(pk=item.pk).exists()
+
+        # Add another enabled shelf and we should be okay to delete again
+        SecondaryHero.objects.create(enabled=True)
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+
+        # And can actually delete.
         response = self.client.post(
             delete_url,
             dict(self._get_moduleform(item.pk, {}), post='yes'),

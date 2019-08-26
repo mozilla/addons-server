@@ -18,6 +18,7 @@ from pyquery import PyQuery as pq
 
 from olympia.amo.models import use_primary_db
 from olympia.amo.tests import TestCase
+from olympia.translations.hold import translation_saved
 from olympia.translations.models import (
     LinkifiedTranslation, NoLinksNoMarkupTranslation,
     PurifiedTranslation, Translation, TranslationSequence)
@@ -180,16 +181,16 @@ class TranslationTestCase(TestCase):
         assert fresh_english.description.id == fresh_german.description.id
 
     def test_update_translation(self):
-        o = TranslatedModel.objects.get(pk=1)
-        translation_id = o.name.autoid
+        self.object = TranslatedModel.objects.get(pk=1)
+        translation_id = self.object.name.autoid
 
-        o.name = 'new name'
-        o.save()
+        self.object.name = 'new name'
+        self.object.save()
 
-        o = TranslatedModel.objects.get(pk=1)
-        self.trans_eq(o.name, 'new name', 'en-US')
+        self.object = TranslatedModel.objects.get(pk=1)
+        self.trans_eq(self.object.name, 'new name', 'en-US')
         # Make sure it was an update, not an insert.
-        assert o.name.autoid == translation_id
+        assert self.object.name.autoid == translation_id
 
     def test_create_with_dict(self):
         # Set translations with a dict.
@@ -215,7 +216,7 @@ class TranslationTestCase(TestCase):
 
     def test_update_with_dict(self):
         def get_model():
-            return TranslatedModel.objects.get(pk=m.pk)
+            return TranslatedModel.objects.get(pk=self.object.pk)
 
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui'}
@@ -223,9 +224,9 @@ class TranslationTestCase(TestCase):
         # Don't try checking that the model's name value is en-US.  It will be
         # one of the other locales, but we don't know which one.  You just set
         # the name to a dict, deal with it.
-        m = TranslatedModel.objects.create(name='some name')
-        m.name = strings
-        m.save()
+        self.object = TranslatedModel.objects.create(name='some name')
+        self.object.name = strings
+        self.object.save()
 
         # en-US was not touched.
         self.trans_eq(get_model().name, 'some name', 'en-US')
@@ -237,6 +238,38 @@ class TranslationTestCase(TestCase):
         # fr was added.
         translation.activate('fr')
         self.trans_eq(get_model().name, 'oui', 'fr')
+
+    def test_signal_is_sent(self):
+        self.call_count = 0
+
+        def handler(**kw):
+            self.call_count += 1
+            assert kw.get('instance') == self.object
+            assert kw.get('sender') == TranslatedModel
+            assert kw.get('field_name') == 'name'
+
+        translation_saved.connect(handler)
+        self.test_update_translation()
+        translation_saved.disconnect(handler)
+
+        assert self.call_count == 1
+
+    def test_signal_is_sent_with_dict(self):
+        self.call_count = 0
+        self.handler_instance = None
+
+        def handler(**kw):
+            self.call_count += 1
+            assert kw.get('sender') == TranslatedModel
+            self.handler_instance = kw.get('instance')
+            assert kw.get('field_name') == 'name'
+
+        translation_saved.connect(handler)
+        self.test_update_with_dict()
+        translation_saved.disconnect(handler)
+
+        assert self.call_count == 3
+        assert self.handler_instance == self.object  # Set by handler()
 
     def test_dict_bad_locale(self):
         m = TranslatedModel.objects.get(pk=1)

@@ -37,3 +37,9 @@ class SecondaryHeroAdmin(admin.ModelAdmin):
     list_display = ('headline', 'description', 'enabled')
     inlines = [SecondaryHeroModuleInline]
     view_on_site = False
+
+    def has_delete_permission(self, request, obj=None):
+        qs = self.get_queryset(request).filter(enabled=True)
+        if obj and list(qs) == [obj]:
+            return False
+        return super().has_delete_permission(request=request, obj=obj)

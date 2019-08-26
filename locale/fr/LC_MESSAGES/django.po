@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 17:01+0000\n"
+"PO-Revision-Date: 2019-08-24 10:01+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3936,7 +3936,7 @@ msgstr "Ouvrez plusieurs liens {start_sub_heading}avec {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "Ouvrez des liens dans un nouvel onglet en les faisant glisser après un clic droit."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
