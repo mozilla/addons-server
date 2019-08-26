@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-26 12:24+0000\n"
+"PO-Revision-Date: 2019-08-26 12:37+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4072,7 +4072,7 @@ msgstr "仿触摸滚动 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "桌面上类似手机的滚动操作。来试试“拖曳”风格的鼠标手势。"
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4584,7 +4584,7 @@ msgstr "作笔记 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "在网上无约束地作笔记。只需使用侧栏在特定网页上附加内容即可。"
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
