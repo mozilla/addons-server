@@ -2,7 +2,7 @@ ALTER TABLE `abuse_reports`
     MODIFY `created` datetime(6) NOT NULL,
     MODIFY `modified` datetime(6) NOT NULL,
     MODIFY `guid` varchar(255),
-    MODIFY `state` NOT NULL;
+    MODIFY `state` smallint(5) unsigned NOT NULL;
 
 ALTER TABLE `addons`
     MODIFY `addontype_id` int(10) unsigned NOT NULL,
@@ -20,9 +20,9 @@ ALTER TABLE `addons`
     MODIFY `inactive` tinyint(1) NOT NULL,
     MODIFY `modified` datetime(6) NOT NULL,
     MODIFY `name` int(10) unsigned,
-    MODIFY `last_updated` datetime(6) NOT NULL,
+    MODIFY `last_updated` datetime(6),
     MODIFY `privacypolicy` int(10) unsigned,
-    MODIFY `publicstate` tinyint(1) NOT NULL,
+    MODIFY `publicstats` tinyint(1) NOT NULL,
     MODIFY `requires_payment` tinyint(1) NOT NULL,
     MODIFY `status` int(10) unsigned NOT NULL,
     MODIFY `summary` int(10) unsigned,
@@ -32,5 +32,6 @@ ALTER TABLE `addons`
     MODIFY `totaldownloads` int(10) unsigned NOT NULL,
     MODIFY `totalreviews` int(10) unsigned NOT NULL,
     MODIFY `viewsource` tinyint(1) NOT NULL,
-    MODIFY `weeklydownloads` int(10) unsigned,
-    DROP `whiteboard`;
+    MODIFY `weeklydownloads` int(10) unsigned
+    , DROP `whiteboard`  /* Comment out this line if this fails locally */
+;
