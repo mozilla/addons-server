@@ -124,4 +124,8 @@ def sync_object_to_basket(model_name, pk):
         data = serializer.data
 
     basket_endpoint = f'{settings.BASKET_URL}/amo-sync/{model_name}/'
-    requests.post(basket_endpoint, json=data)
+    response = requests.post(
+        basket_endpoint, json=data, timeout=settings.BASKET_TIMEOUT,
+        headers={'x-api-key': settings.BASKET_API_KEY or ''})
+    # Explicitly raise for errors so that we see them in Sentry.
+    response.raise_for_status()
