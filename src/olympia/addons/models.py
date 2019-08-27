@@ -1634,7 +1634,7 @@ def addon_user_sync(sender=None, instance=None, **kwargs):
     # Basket doesn't care what role authors have or whether they are listed
     # or not, it just needs to be updated whenever an author is added/removed.
     created_or_deleted = 'created' not in kwargs or kwargs.get('created')
-    if created_or_deleted:
+    if created_or_deleted and instance.addon.status != amo.STATUS_DELETED:
         from olympia.amo.tasks import sync_object_to_basket
         log.info(
             'Triggering a sync of %s %s with basket because of %s change',
