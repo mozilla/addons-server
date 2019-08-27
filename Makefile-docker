@@ -1,5 +1,5 @@
 export PIP_COMMAND=pip3
-export PYTHON_COMMAND=
+export PYTHON_COMMAND=python3
 
 APP=src/olympia/
 
