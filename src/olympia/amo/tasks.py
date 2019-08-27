@@ -92,6 +92,8 @@ def sync_object_to_basket(model_name, pk):
             'Not synchronizing %s %s with basket because "basket-amo-sync" '
             'switch is off.', model_name, pk)
         return
+    else:
+        log.info('Synchronizing %s %s with basket.', model_name, pk)
     from olympia.accounts.serializers import UserProfileBasketSyncSerializer
     from olympia.addons.serializers import AddonBasketSyncSerializer
 
