@@ -1,5 +1,22 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":maintainLockFilesWeekly",
+    ":prNotPending"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": [
+        "*"
+      ],
+      "rangeStrategy": "pin"
+    },
+    {
+      "depTypeList": [
+        "engines",
+        "devDependencies"
+      ],
+      "rangeStrategy": "replace"
+    }
   ]
 }
