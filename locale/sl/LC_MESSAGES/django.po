@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-23 09:22+0000\n"
+"PO-Revision-Date: 2019-08-28 06:44+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -900,7 +900,7 @@ msgid "Plugins"
 msgstr "Vtičniki"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Zastareli LWT-ji"
 
 msgid "Themes (Static)"
 msgstr "Teme (statične)"
@@ -3564,9 +3564,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Prilagodite poteze z miško {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Odkrijte nov način brskanja s preko 50 uporabnimi potezami za miško."
+msgstr "Prilagodite miškine kretnje. Odkrijte nov način za krmarjenje s 50+ uporabnimi kretnjami miške."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4452,9 +4451,8 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Kupujte samozavestno {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Dodatno preverjanje, ali je stran, na kateri nakupujete, vredna zaupanja."
+msgstr "Nakupujte samozavestno. Ta razširitev omogoča dodatno preverjanje, da kupujete na spletnem mestu, katerega zanesljivost je bila preverjena."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4465,9 +4463,9 @@ msgid "Track productivity. Measure the amount of time you spend on the computer,
 msgstr "Sledite produktivnosti. Merite čas, ki ga preživite za računalnikom oziroma na določenih straneh, kot so Trello, JIRA, Basecamp, GitHub in številne druge."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Zbirajte spletno vsebino, kot so članki, videoposnetki in slike, in jih shranite za uporabo v posameznih projektih ali za ekipno delo v realnem času."
+msgstr ""
+"Shranite svoje najljubše stvari na spletu. Zbirajte spletno vsebino, kot so članki, videoposnetki in slike, in jih shranite za uporabo v posameznih projektih ali za ekipno delo v realnem času."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4591,9 +4589,8 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zakrijte svoje sledi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Iskanje z dodatno varnostjo – zavračanjem sledilcev, pametnim šifriranjem, zasebnim iskanjem in drugimi pomembnimi funkcijami."
+msgstr "Iskanje z izboljšanim zavračanjem sledilcev, pametnim šifriranjem in drugimi prednostmi zasebnosti."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4677,9 +4674,8 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Preprosto shranjevanje slik {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Prenesite slike s trenutnega zavihka."
+msgstr "Enostavno shranjevanje slik – prenesite jih s trenutnega zavihka."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
