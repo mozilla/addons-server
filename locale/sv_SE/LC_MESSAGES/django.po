@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-28 18:56+0000\n"
+"PO-Revision-Date: 2019-08-28 19:24+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4259,18 +4259,16 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stopp flikkapning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Låt inte klickade länkar ta kontroll över din aktuella flik och ladda innehåll som du inte bad om."
+msgstr "Stoppa kapningen av flikar. Låt inte klickade länkar ta kontroll över din nuvarande flik och ladda innehåll du inte begärde."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Enkel åtkomst till Wikipedia {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Utför en Wikipedia-sökning genom att helt enkelt markera text från vilken webbsida som helst och högerklicka."
+msgstr "Utför enkelt en Wikipedia-sökning genom att helt enkelt markera text från valfri webbsida och högerklicka."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4293,27 +4291,24 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Få en Amazon-kant {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "När du tittar på produktsidor på andra nätbutiker, om det också finns tillgängligt på Amazon kan du helt enkelt klicka på en knapp för att kontrollera dess Amazon-lista."
+msgstr "Få en Amazon-kant. Om du tittar på produktsidor på andra onlinebutiker, om det också finns tillgängligt på Amazon, kan du helt enkelt klicka på en knapp för att kontrollera Amazons lista."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Total flikkontroll {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Så många inställningar för flikkontroll—stäng dubbla flikar, slå samman fönster, kopiera fliktiteln med mera."
+msgstr "Njut av den ultimata flikkontrollen—stäng duplicerade flikar, slå samman fönster, kopiera flikens titel och mer."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Njut av en konstig utbildning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Ladda en slumpmässig Wikipedia-artikel varje gång du öppnar en ny flik."
+msgstr "Njut av en konstig utbildning. Ladda en slumpmässig Wikipedia-artikel varje gång du öppnar en ny flik."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4344,9 +4339,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sök i Firefox {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Enkel åtkomst till dina öppna flikar, bokmärken och historik."
+msgstr "Sök i Firefox genom att enkelt komma åt dina öppna flikar, bokmärken och historik."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4545,18 +4539,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dölj dina spår {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Sök med mer säkerhet med spårningsblockering, smartare kryptering, privat sökning och andra viktiga saker."
+msgstr "Sök med förbättrad tracker-blockering, smart kryptering och andra integritetsfördelar."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Förenkla flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Organisera flera öppna flikar i ett vertikalt sidofält."
+msgstr "Förenkla flikar. Organisera alla dina öppna flikar i ett snyggt vertikalt sidofält."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4571,9 +4563,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Se den stora bilden {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Med ett musklick kan du titta på videor i fullskärmsära."
+msgstr "Med ett enkelt musklick kan du titta på videor i fullskärmsläge."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4596,9 +4587,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Hoppa över nonsens {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "En smart utökning som hjälper dig att snabbt förstå vad du samtycker till."
+msgstr "Hoppa över nonsens i typiska TOS-avtal. Detta smarta tillägg hjälper dig att snabbt förstå vad du blir ombedd att acceptera."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4610,16 +4600,15 @@ msgstr "En bättre läsupplevelse {start_sub_heading}med {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Läs med mer tydlighet och lätthet. Ta bort röran runt text på webbsidor."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blockera annonser och mer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Blockerar inte bara irriterande annonser, men skyddar dig mot skadlig kod och annonsspårning."
+msgstr "Blockera annonser och få bättre skydd mot skadlig programvara och spårning av annonser."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4634,23 +4623,20 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Spara bilder enkelt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Hämta bara bilder från din nuvarande flik."
+msgstr "Spara bilder enkelt—ta dem från din nuvarande flik."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mäta på webbsidor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Rita en digital linjal över vilken webbsida som helst för att kontrollera höjd, bredd och justering av sidelement."
+msgstr "Mät webbsidor. Rita en digital linjal över alla webbsidor för att kontrollera sidelementets höjd, bredd och justering."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Få fördelarna med stark lösenordshantering."
+msgstr "Njut av fördelarna med stark lösenordshantering."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4665,9 +4651,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Blockera distraherande webbplatser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Ange de webbplatser du vill att tillägget ska blockera. Omedelbar disciplin!"
+msgstr "Blockera distraherande webbplatser. Lista bara de webbplatser du vill att tillägget ska blockera. Omedelbar disciplin!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4682,9 +4667,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Ändra hur Firefox ser ut {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Skapa enkelt dina egna visuella teman så att Firefox ser ut som du vill."
+msgstr "Ändra webbläsarens utseende. Designa enkelt dina egna visuella teman så att Firefox ser ut som du vill."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4692,7 +4676,7 @@ msgstr "Spara anteckningar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Spara personliga anteckningar var som helst på webben. Använd bara en sidofält för att bifoga anteckningar på specifika webbsidor."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4707,9 +4691,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Spåra produktpriser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Få besked när priserna sjunker på varor du är intresserad av på Amazon, Best Buy, eBay, Home Depot och Walmart."
+msgstr "Spåra produkter och få besked när priserna sjunker på artiklar du är intresserad av på Amazon, Best Buy, eBay, Home Depot och Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4717,7 +4700,7 @@ msgstr "Gör webben mörk {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Gör webben mörk eller välj ett anpassat färgschema för att visuellt skräddarsy internet efter din egen smak."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6320,9 +6303,8 @@ msgstr "Är du säker på att du vill ta bort alla <b>{0}</b> översättningar? 
 msgid "Delete Locale"
 msgstr "Ta bort språk"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Stäng granskningshistorik"
+msgstr "Användarbegränsningshistorik"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
