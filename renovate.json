@@ -2,7 +2,8 @@
   "extends": [
     "config:base",
     ":maintainLockFilesWeekly",
-    ":prNotPending"
+    ":prNotPending",
+    "docker:disable"
   ],
   "packageRules": [
     {
