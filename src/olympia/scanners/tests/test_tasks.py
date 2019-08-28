@@ -33,6 +33,7 @@ class TestRunScanner(UploadTest, TestCase):
 
         assert len(ScannersResult.objects.all()) == 0
 
+    @override_settings(SCANNER_TIMEOUT=123)
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.requests.post')
     def test_run_with_mocks(self, requests_mock):
@@ -52,7 +53,8 @@ class TestRunScanner(UploadTest, TestCase):
         requests_mock.assert_called_with(
             url=self.API_URL,
             files={'xpi': mock.ANY},
-            headers={'Authorization': 'Bearer {}'.format(self.API_KEY)}
+            headers={'Authorization': 'Bearer {}'.format(self.API_KEY)},
+            timeout=123
         )
         result = ScannersResult.objects.all()[0]
         assert result.upload == upload

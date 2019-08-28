@@ -45,7 +45,8 @@ def run_scanner(upload_pk, scanner, api_url, api_key):
             with open(upload.path, 'rb') as xpi:
                 response = requests.post(url=api_url,
                                          files={'xpi': xpi},
-                                         headers=headers)
+                                         headers=headers,
+                                         timeout=settings.SCANNER_TIMEOUT)
 
         results = response.json()
         if 'error' in results:

@@ -137,7 +137,7 @@ INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 
 # Sectools
-CUSTOMS_API_URL = 'http://host.docker.internal:10101/'
+CUSTOMS_API_URL = 'http://customs:10101/'
 CUSTOMS_API_KEY = 'customssecret'
 
 # If you have settings you want to overload, put them in a local_settings.py.
