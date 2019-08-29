@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-29 14:02+0000\n"
+"PO-Revision-Date: 2019-08-29 23:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4053,9 +4053,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Crea un lista de blocada de sitos web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Impedi a Firefox de acceder al sitos web que tu defini."
+msgstr "Impedi a Firefox de acceder al sitos web que tu prescribe. Un grande utensile pro exercitar autodisciplina online."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4260,9 +4259,8 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stoppa le sequestro del schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Impedi al ligamines cliccate de prender controlo de tu scheda active e de cargar contento que tu non demandava."
+msgstr "Stoppa le sequestro de schedas. Impedi al ligamines cliccate de prender controlo de tu scheda active e de cargar contento que tu non demandava."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4294,28 +4292,26 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Gania avantages sur Amazon {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
-"Quando tu recerca le paginas de un producto sur altere botecas online, si illo es alsi disponibile sur Amazon, tu pote simplemente cliccar un button pro consultar su lista de presentation de Amazon."
+"Obtene avantages de Amazon. Quando tu recerca le paginas de un producto sur altere botecas online, si illo es alsi disponibile sur Amazon, tu pote simplemente cliccar un button pro consultar su "
+"lista de presentation de Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Definitive controlo de schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Plure optiones de controlo de schedas — clauder schedas duplicate, miscer fenestras, copiar le titulo de scheda, e altero ancora."
+msgstr "Gaude plure optiones de controlo de schedas: claude schedas duplicate, misce fenestras, copia le titulo de scheda e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gaude de un education insolite {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Carga un articulo a caso de Wikipedia cata vice que tu aperi un nove scheda."
+msgstr "Amusa te e apprende per un nove didactica. Carga un articulo a caso de Wikipedia cata vice tu aperi un nove scheda."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4346,9 +4342,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Recerca in Firefox {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Accede facilemente a tu schedas aperte, marcapaginas e chronologia."
+msgstr "Cerca per Firefox sur tu schedas aperte, marcapaginas e chronologia."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4411,18 +4406,16 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Compra con fiducia {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Un extra verifica pro assecurar te que tu compra sur un sito que ha essite verificate pro fidelitate."
+msgstr "Compra sin timor. Iste extension forni un controlo ulterior pro facer compras solo sur sitos con fidelitate verificate."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tracia tu productivitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Mesura le quantitate de tempore que tu passa sur le computator, o sur specific applicationes de labor como Trello, JIRA, Basecamp, GitHub, e multe altere."
+msgstr "Mesura tu productivitate, le tempore que tu passa sur le computator o sur specific applicationes de labor como Trello, JIRA, Basecamp, GitHub, e multe altere."
 
 #. editorial content for the discovery pane.
 #, fuzzy
