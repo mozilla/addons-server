@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-29 06:51+0000\n"
+"PO-Revision-Date: 2019-08-29 06:58+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3843,9 +3843,8 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Personalisa tu nove schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Redige le pagina del nove schedas pro monstrar tu preferite numero de quadrellas, imagine de fundo, e altero ancora."
+msgstr "Personalisa le pagina del nove schedas pro monstrar tu preferite numero de quadrellas, imagine de fundo e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3860,27 +3859,24 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Sape ubi tu va sur le web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Obtene le position del pais pro le sitos web que tu visita. Que tu sia un viagiator de internet informate."
+msgstr "Discoperi ubi tu va in le Web. Recipe le position geographic del pais del sitos web que tu visita. Que tu es un viagiator de internet informate."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Meliora tu experientia de lectura {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Rende plus attrahente le texto que tu lege per le remotion del disordine circum illo."
+msgstr "Meliora tu experientia de lectura. Rende plus attrahente le texto que tu lege per le remotion del disordine circum illo."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Aperi plure ligamines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
-msgstr "Clicca dextre e trahe super le ligamines que tu desira aperir in nove schedas."
+msgstr "Clicca dextre e trahe in un nove scheda le ligamine que tu desira aperir."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
