@@ -2,6 +2,9 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
+# Run everything as olympia user, by default.
+USER olympia
+
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
 

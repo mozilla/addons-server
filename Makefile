@@ -14,3 +14,7 @@ help:
 	@$(MAKE) help_submake --no-print-directory
 
 	@echo "Check the Makefile to know exactly what each target is doing."
+
+# You probably want to put new commands in Makefile-docker rather than here -
+# unless they operate on multiple containers or are host-os specific, then
+# Makefile-os instead.

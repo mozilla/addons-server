@@ -1,6 +1,8 @@
 export PIP_COMMAND=pip3
 export PYTHON_COMMAND=python3
 
+APP=src/olympia/
+
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -61,16 +63,24 @@ help_redirect:
 
 .PHONY: help_submake
 help_submake:
-	@echo "Commands that are designed be run in the container:"
 	@echo "  initialize        to init the dependencies, the database, and assets"
 	@echo "  update            to update the dependencies, the database, and assets"
 	@echo "  initialize_db     to create a new database"
 	@echo "  populate_data     to populate a new database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
-	@echo "  update_deps       to update the pythondependencies"
+	@echo "  update_deps       to update the python and node dependencies"
 	@echo "  update_db         to run the database migrations"
 	@echo "  docs              to build the documentation"
 	@echo "  lint-codestyle    to lint the code"
+	@echo "  debug             to connect for debugging"
+	@echo "  djshell           to connect to django shell"
+	@echo "  dbshell           to connect to a database shell"
+	@echo "  test              to run the entire test suite"
+	@echo "  test_es           to run the ES tests"
+	@echo "  test_failed       to rerun the failed tests from the previous run"
+	@echo "  test_force_db     to run the entire test suite with a new database"
+	@echo "  test_no_es        to run all but the ES tests"
+	@echo "  tdd               to run the entire test suite, but stop on the first error"
 
 .PHONY: initialize_db
 initialize_db:
@@ -208,5 +218,45 @@ lint-codestyle:
 docs:
 	$(MAKE) -C docs html SPHINXOPTS='-nW'
 
+.PHONY: debug
+debug:
+	supervisorctl fg olympia
+
+.PHONY: djshell
+djshell:
+	$(PYTHON_COMMAND) ./manage.py shell_plus
+
+.PHONY: dbshell
+dbshell:
+	$(PYTHON_COMMAND) ./manage.py dbshell
+
 .PHONY: initialize
 initialize: update_deps initialize_db update_assets populate_data
+
+.PHONY: reload-uwsgi
+reload-uwsgi:
+	uwsgi --reload /code/docker/artifacts/addons-server-uwsgi-master.pid
+
+.PHONY: test
+test:
+	pytest $(APP) $(ARGS)
+
+.PHONY: test_es
+test_es:
+	pytest -m es_tests $(APP) $(ARGS)
+
+.PHONY: test_no_es
+test_no_es:
+	pytest -m "not es_tests" $(APP) $(ARGS)
+
+.PHONY: test_force_db
+test_force_db:
+	pytest --create-db $(APP) $(ARGS)
+
+.PHONY: tdd
+tdd:
+	pytest -x --pdb $(ARGS) $(APP)
+
+.PHONY: test_failed
+test_failed:
+	pytest --lf $(ARGS) $(APP)
