@@ -278,6 +278,7 @@ class Version(OnChangeMixin, ModelBase):
             )
         except ScannersResult.DoesNotExist:
             log.exception('Could not find ScannersResults for FileUpload %s',
+                          upload.id)
 
         # Extract this version into git repository
         transaction.on_commit(
