@@ -34,6 +34,7 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview, source_upload_path)
 from olympia.scanners.models import ScannersResult
+from olympia.yara.models import YaraResult
 
 
 pytestmark = pytest.mark.django_db
@@ -886,6 +887,24 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_does_not_raise_when_scanners_result_does_not_exist(self):
         Version.from_upload(self.upload,
                             self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
+
+    def test_set_version_to_yara_result(self):
+        yara_result = YaraResult.objects.create(upload=self.upload)
+        assert yara_result.version is None
+
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.selected_app],
+                                      amo.RELEASE_CHANNEL_LISTED,
+                                      parsed_data=self.dummy_parsed_data)
+
+        yara_result.refresh_from_db()
+        assert yara_result.version == version
+
+    def test_does_not_raise_when_yara_result_does_not_exist(self):
+        Version.from_upload(self.upload, self.addon,
                             [self.selected_app],
                             amo.RELEASE_CHANNEL_LISTED,
                             parsed_data=self.dummy_parsed_data)
