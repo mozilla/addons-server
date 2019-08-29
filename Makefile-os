@@ -21,8 +21,7 @@ update_docker:
 shell:
 	docker-compose exec web bash
 
-%:
-	# This directs any other recipe (command) to the web container's make.
+%: ## This directs any other recipe (command) to the web container's make.
 	docker-compose exec web make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 # You probably want to put new commands in Makefile-docker, unless they operate
