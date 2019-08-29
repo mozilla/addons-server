@@ -213,7 +213,7 @@ dbshell: ## connect to a database shell
 initialize: update_deps initialize_db update_assets populate_data ## init the dependencies, the database, and assets
 
 .PHONY: reload-uwsgi
-reload-uwsgi:
+reload-uwsgi: ## force django code reload
 	uwsgi --reload /code/docker/artifacts/addons-server-uwsgi-master.pid
 
 .PHONY: test
