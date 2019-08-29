@@ -5,20 +5,19 @@ help_redirect:
 .PHONY: help_submake
 help_submake:
 	@echo "Host only commands:"
-	@echo "  shell             to connect to a running addons-server docker shell"
-	@echo "  update_docker     to update all the docker images"
-	@echo "All other commands will be passed through to the docker 'web' container make:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile-os | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
 
 .PHONY: update_docker
-update_docker:
+update_docker: ## update all the docker images
 	docker-compose exec worker make update_deps
 	docker-compose exec web make update
 	docker-compose restart web
 	docker-compose restart worker
 
 .PHONY: shell
-shell:
+shell: ## connect to a running addons-server docker shell
 	docker-compose exec web bash
 
 %: ## This directs any other recipe (command) to the web container's make.
