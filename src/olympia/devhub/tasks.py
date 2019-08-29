@@ -5,7 +5,6 @@ import json
 import os
 import subprocess
 import tempfile
-import waffle
 
 from copy import deepcopy
 from decimal import Decimal
