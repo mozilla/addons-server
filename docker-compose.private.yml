@@ -1,0 +1,6 @@
+version: "2.3"
+
+services:
+  customs:
+    build:
+      context: ./private/addons-customs-scanner

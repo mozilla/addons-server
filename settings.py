@@ -136,6 +136,10 @@ INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 
+# Sectools
+CUSTOMS_API_URL = 'http://customs:10101/'
+CUSTOMS_API_KEY = 'customssecret'
+
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa

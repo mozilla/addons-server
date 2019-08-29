@@ -1094,6 +1094,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1842,3 +1843,8 @@ AKISMET_API_TIMEOUT = 5
 AKISMET_REAL_SUBMIT = False
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
+
+# Sectools
+SCANNER_TIMEOUT = 60  # seconds
+CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
+CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)

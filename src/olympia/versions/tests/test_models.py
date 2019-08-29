@@ -23,6 +23,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
+from olympia.constants.scanners import CUSTOMS
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
@@ -32,6 +33,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview, source_upload_path)
+from olympia.scanners.models import ScannersResult
 
 
 pytestmark = pytest.mark.django_db
@@ -866,6 +868,27 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # basket through version_uploaded signal, but only when
         # _current_version changes, which isn't the case here.
         assert sync_object_to_basket_mock.delay.call_count == 0
+
+    def test_set_version_to_scanners_result(self):
+        scanners_result = ScannersResult.objects.create(
+            upload=self.upload, scanner=CUSTOMS)
+        assert scanners_result.version is None
+
+        version = Version.from_upload(self.upload,
+                                      self.addon,
+                                      [self.selected_app],
+                                      amo.RELEASE_CHANNEL_LISTED,
+                                      parsed_data=self.dummy_parsed_data)
+
+        scanners_result.refresh_from_db()
+        assert scanners_result.version == version
+
+    def test_does_not_raise_when_scanners_result_does_not_exist(self):
+        Version.from_upload(self.upload,
+                            self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
 
 
 class TestExtensionVersionFromUploadTransactional(
