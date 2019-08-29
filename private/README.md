@@ -24,3 +24,14 @@ A waffle switch is used to enable/disable the `customs` Celery task:
 $ make shell
 $ [root@<docker>:/code#] ./manage.py waffle_switch enable-customs on
 ```
+
+## yara
+
+If you have access to `yara`, you should first clone it in `private/addons-yara`.
+
+A waffle switch is used to enable/disable the `yara` Celery task:
+
+```
+$ make shell
+$ [root@<docker>:/code#] ./manage.py waffle_switch enable-yara on
+```
