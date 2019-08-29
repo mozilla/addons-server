@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 12:46+0000\n"
+"PO-Revision-Date: 2019-08-29 23:52+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4213,9 +4213,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Descarcă videoclipuri YouTube {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Descarcă videoclipuri și/sau secvențe audio."
+msgstr "Descarcă clipuri video și/sau audio de pe YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4924,9 +4923,8 @@ msgstr "Nu poți trimite un supliment cu un GUID care se termină în %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nu poți trimite o extensie semnată de Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Nu poți trimite o extensie semnată de Mozilla"
+msgstr "Nu poți trimite un pachet lingvistic"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensions} cu suport."
@@ -5501,9 +5499,8 @@ msgstr "Greutate"
 msgid "Information Request Deadline"
 msgstr "Termen-limită pentru solicitări de informații"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Ultima actualizare:"
+msgstr "Ultima actualizare"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Această acțiune va aproba, semna și publica această versiune. Comentariile vor fi trimise dezvoltatorului."
@@ -5866,9 +5863,8 @@ msgstr "Istoricul modificărilor suplimentului de către utilizatori"
 msgid "Add-on History"
 msgstr "Istoricul suplimentului"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Nota anterioară"
+msgstr "Intrări șterse anterior"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6501,9 +6497,8 @@ msgstr ""
 "Introdu un domeniu sau o adresă de e-mail completă care să fie blocat(ă) sau folosește caractere de specificare globală cu sintaxă glob pentru corelare la alte modele. De ex. „@*.mail.com”\n"
 " Reține că nu includem caracterul „@” în corespondente, așa că  trebuie să îl incluzi tu în model."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Adresa de e-mail pe care ai folosit-o pentru contul de dezvoltator nu are permisiunea să trimită suplimente."
+msgstr "Adresa de e-mail pe care ai folosit-o pentru contul tău nu are permisiunea să trimită suplimente."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
