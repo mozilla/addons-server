@@ -529,6 +529,14 @@ class TestUploadRestrictionChecker(TestCase):
             'devhub.is_submission_allowed.success',)
         assert not UserRestrictionHistory.objects.exists()
 
+    def test_user_is_allowed_to_bypass_restrictions(self, incr_mock):
+        IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
+        self.request.user.update(bypass_upload_restrictions=True)
+        checker = utils.UploadRestrictionChecker(self.request)
+        assert checker.is_submission_allowed()
+        assert not UserRestrictionHistory.objects.exists()
+        assert incr_mock.call_count == 0
+
     def test_is_submission_allowed_ip_restricted(self, incr_mock):
         IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
         checker = utils.UploadRestrictionChecker(self.request)

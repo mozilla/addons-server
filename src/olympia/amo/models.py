@@ -340,7 +340,7 @@ class SaveUpdateMixin(object):
         # and throws an error.
         # https://docs.djangoproject.com/en/1.9/topics/db/examples/one_to_one/
         if hasattr(self._meta, 'translated_fields'):
-            save_translations(id(self))
+            save_translations(self)
         return super(SaveUpdateMixin, self).save(**kwargs)
 
 

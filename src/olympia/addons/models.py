@@ -47,6 +47,7 @@ from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
@@ -1534,6 +1535,21 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None,
     )
     if any(field in changes for field in basket_relevant_changes):
         from olympia.amo.tasks import sync_object_to_basket
+        log.info(
+            'Triggering a sync of %s %s with basket because of %s change',
+            'addon', instance.pk, 'attribute')
+        sync_object_to_basket.delay('addon', instance.pk)
+
+
+@receiver(translation_saved, sender=Addon,
+          dispatch_uid='watch_addon_name_changes')
+def watch_addon_name_changes(sender=None, instance=None, **kw):
+    field_name = kw.get('field_name')
+    if instance and field_name == 'name':
+        from olympia.amo.tasks import sync_object_to_basket
+        log.info(
+            'Triggering a sync of %s %s with basket because of %s change',
+            'addon', instance.pk, 'name')
         sync_object_to_basket.delay('addon', instance.pk)
 
 
@@ -1618,8 +1634,11 @@ def addon_user_sync(sender=None, instance=None, **kwargs):
     # Basket doesn't care what role authors have or whether they are listed
     # or not, it just needs to be updated whenever an author is added/removed.
     created_or_deleted = 'created' not in kwargs or kwargs.get('created')
-    if created_or_deleted:
+    if created_or_deleted and instance.addon.status != amo.STATUS_DELETED:
         from olympia.amo.tasks import sync_object_to_basket
+        log.info(
+            'Triggering a sync of %s %s with basket because of %s change',
+            'addon', instance.addon.pk, 'addonuser')
         sync_object_to_basket.delay('addon', instance.addon.pk)
 
 

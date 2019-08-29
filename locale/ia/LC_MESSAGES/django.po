@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 11:26+0000\n"
+"PO-Revision-Date: 2019-08-29 08:26+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3751,14 +3751,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navigation anonyme {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Naviga le web con identitate disguisate — appare mesmo como si tu explora ab un altere pais."
+msgstr "Naviga le Web anonyme. Con identitate disguisate: pare mesmo como si tu explora ab un altere pais."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Accede tu sitos favorite, schedas recentemente claudite, e altero ancora — toto per un splendide mappa de quadrellas."
+msgstr "Nove habito graphic pro marcapaginas! Accede tu sitos favorite, schedas recentemente claudite e altero ancora, per un splendide mappa de quadrellas."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3781,9 +3779,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Robuste gestion de discargamentos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Controla le stato de tu discargamentos per un barra de stato, discarga le chronologia del pagina, e altero ancora."
+msgstr "Gestion del discargamentos robuste. Controla per un barra de stato, discarga le chronologia del pagina e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3798,9 +3795,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Recerca con protection contra le traciamento {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Stoppa le traciatores quando tu clicca le retornos de recerca de Google o Yandex."
+msgstr "Stoppa le avisos publicitari traciante quando tu clicca sur le retornos del recercas de Google o Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3815,9 +3811,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Adde imagines al retornos del recercas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Gaude del imagines in miniatura al latere de tu retornos de recerca."
+msgstr "Gaude del imagines in miniatura del sitos web al latere de tu retornos de recerca."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3840,18 +3835,16 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Personalisa tu favorite sitos web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Cambia le apparentia de ulle sito web! Displacia colores, fundos de pagina, e altero ancora."
+msgstr "Personalisa le apparentia de ulle sito web. Displacia colores, fundos de pagina e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personalisa tu nove schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Redige le pagina del nove schedas pro monstrar tu preferite numero de quadrellas, imagine de fundo, e altero ancora."
+msgstr "Personalisa le pagina del nove schedas pro monstrar tu preferite numero de quadrellas, imagine de fundo e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3866,27 +3859,24 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Sape ubi tu va sur le web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Obtene le position del pais pro le sitos web que tu visita. Que tu sia un viagiator de internet informate."
+msgstr "Discoperi ubi tu va in le Web. Recipe le position geographic del pais del sitos web que tu visita. Que tu es un viagiator de internet informate."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Meliora tu experientia de lectura {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Rende plus attrahente le texto que tu lege per le remotion del disordine circum illo."
+msgstr "Meliora tu experientia de lectura. Rende plus attrahente le texto que tu lege per le remotion del disordine circum illo."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Aperi plure ligamines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
-msgstr "Clicca dextre e trahe super le ligamines que tu desira aperir in nove schedas."
+msgstr "Clicca dextre e trahe in un nove scheda le ligamine que tu desira aperir."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3967,7 +3957,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Modifica le apparentia de Wikipedia {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Applica un apparentia fresc e moderne a Wikipedia."
 
@@ -3976,9 +3965,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Labora plus veloce {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Usa le gestos del mus pro facer plus facilemente le cosas."
+msgstr "Usa le gestos del mus pro accelerar le actiones."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4017,27 +4005,24 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Controla le SPAM {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Usa ingeniose adresses de email temporari pro restar anonyme e evitar SPAM."
+msgstr "Conquire le SPAM. Usa ingeniose adresses de email temporari pro restar anonyme e evitar SPAM."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Modifica tu confidentialitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Personalisa facilemente le configurationes de confidentialitate integrate in Firefox."
+msgstr "Un via breve pro personalisar le configurationes de confidentialitate integrate in Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Obtene traductiones instantanee {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Accesso immediate al traduction per evidentiar le texto e cliccar le button que emerge."
+msgstr "Accesso immediate al traduction per evidentiar le texto e cliccar le button comparente."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4110,9 +4095,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Elige facilemente le locos del marcapaginas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Un maniera melior pro salvar marcapaginas si tu usa plure plicas de marcapaginas."
+msgstr "Un maniera plus efficiente pro reservar marcapaginas si tu los organisa in plure plicas."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4131,9 +4115,8 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Extrahe le ligamines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Monstra instantaneemente tote le ligamines ex un pagina web in nove schedas."
+msgstr "Monstra instantaneemente tote le ligamines de un pagina web in un nove schedas."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4157,9 +4140,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Discarga videos de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Discarga video o audio."
+msgstr "Discarga videos o audios de YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4206,9 +4188,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Gaude te le musica de tote le mundo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Accede a plus de 30.000 stationes radio de tote le globo."
+msgstr "Gaude te le musica ab plus de 30.000 stationes radio de tote le globo."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4231,18 +4212,16 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Naviga con securitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Naviga al version secur de un sito web si illo es disponibile."
+msgstr "Passa automaticamente al version secur de un sito web, si illo es disponibile."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dele tu chronologia de navigation {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Specifica un numero de dies personalisate pro retener le chronologia del navigator ante que illo es clarate automaticamente."
+msgstr "Dele le chronologia de tu navigation. Specifica un numero de dies personalisate pro retener le chronologia del navigator ante que illo es clarate automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4663,9 +4642,8 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Salva imagines facilemente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Prende solo imagines ex tu scheda actual."
+msgstr "Salva facilemente le imagines: basta los sasir ab le scheda actual."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4676,9 +4654,8 @@ msgid "Measure web pages. Draw a digital ruler across any web page to check heig
 msgstr "Mesura le paginas web. Tira un regula digital tra ulle paginas web pro verificar altitude, largessa, e alineamento del elementos del pagina."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Discoperi le avantages de un forte gestion del contrasignos."
+msgstr "Tote le avantages de un solide gestion del contrasignos."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6219,12 +6196,12 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Traciamento del fontes externe</h2> <p> Si tu liga a tu pagina de detalios del additivos o directemente a su file ex un sito externe, tal como tu blog o tu sito web, tu pote appender un "
-"parametro pro esser traciate como un altere fonte de discargamento sur iste pagina. Per exemplo, le sequente ligamines apparerea como surgente per tu blog: <dl> <dt>Pagina de detalios del "
-"additivos</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligamine directe al file</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Solo le parametros src que initia con \"external-\" sera traciate, non plus de "
-"61 characteres additional. Ulle texto post \"external-\" pote ser usate pro describer le fonte, tal como \"external-blog\", \"external-sidebar\", \"external-campaign225\", et cetera. Le sequente "
-"URL-safe characteres es consentite: <code>a-z A-Z - .  _ ~ %% +</code>"
+"<h2>Traciar fontes externe</h2> <p> Si tu insere in un sito externe (como tu blog o tu sito web) un ligamine al pagina de detalios de tu additivo, o un ligamine directe a su file, tu pote adjunger "
+"un parametro que essera traciate como un fonte de discargamento additional sur iste pagina. Per exemplo, le sequente ligamines apparerea como proveniente de tu blog: <dl> <dt>Pagina de detalios del "
+"additivo</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligamine directe al file</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Solo le parametros src que initia con \"external-\" essera traciate, con un "
+"maximo de 61 characteres additional. Le texto post \"external-\" pote esser usate pro describer le fonte, per exemplo \"external-blog\", \"external-sidebar\", \"external-campaign225\", et cetera. Le"
+" sequente characteres, secur pro uso in adresses URL, es permittite: <code>a-z A-Z - .  _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Stato del additivos per data"
@@ -6351,9 +6328,8 @@ msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pot
 msgid "Delete Locale"
 msgstr "Deler le localisation"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Clauder le chronologia del revision"
+msgstr "Chronologia del restrictiones del usator"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6410,6 +6386,8 @@ msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Insere un dominio o email a blocar, o usa  metacharacteres con syntaxe glob pro altere patronos. E.g \"@*.mail.com\"\n"
+" Nota que le character \"@\" non es includite in le concordantia, ergo tu  debe includer lo in le patrono."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Le adresse email de tu conto non es autorisate al invio de additivos."
@@ -6418,6 +6396,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Insere integremente le dominio email \"usa e jecta\" a blocar. Le metacharacteres non es supportate: si tu los besonia o pro trovar le concordantias con le adresse email complete, plus tosto que con"
+" le sol dominio, usa in vice le \"Restrictiones email del usator\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

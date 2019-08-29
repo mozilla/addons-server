@@ -187,6 +187,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # newsletter
     basket_token = models.CharField(blank=True, default='', max_length=128)
 
+    bypass_upload_restrictions = models.BooleanField(default=False)
+
     reviewer_name = models.CharField(
         max_length=50, default='', null=True, blank=True,
         validators=[validators.MinLengthValidator(2)])
@@ -960,6 +962,9 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
     )
     if any(field in changes for field in basket_relevant_changes):
         from olympia.amo.tasks import sync_object_to_basket
+        log.info(
+            'Triggering a sync of %s %s with basket because of %s change',
+            'userprofile', instance.pk, 'attribute')
         sync_object_to_basket.delay('userprofile', instance.pk)
 
 

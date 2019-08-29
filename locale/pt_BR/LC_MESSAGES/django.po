@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 14:37+0000\n"
+"PO-Revision-Date: 2019-08-28 20:49+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3584,9 +3584,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tradução fácil {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Selecione texto em qualquer página web — ou selecione a página inteira ─ para traduzir instantaneamente."
+msgstr "Traduções fáceis. Selecione texto em qualquer página web — ou selecione a página inteira ─ para traduzir instantaneamente."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3744,27 +3743,24 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Leia arquivos ePub {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Aproveite arquivos de formato ePub no Firefox — aumente o tamanho da fonte, dimensões das páginas e mais."
+msgstr "Leia arquivos de formato ePub no Firefox — aumente fontes de caracteres, dimensões das páginas e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Eleve sua experiência no YouTube {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Por padrão, reproduza vídeos em qualidade máxima, desligue anotações e mais."
+msgstr "Por padrão, reproduza vídeos do YouTube em qualidade máxima, desligue anotações e mais."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rastreie os rastreadores {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Veja quem está rastreando você com apenas um clique."
+msgstr "Acompanhe os rastreadores. Veja quem está rastreando você com apenas um clique."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3788,9 +3784,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navegue com segurança {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Adicione segurança criptografada a qualquer site que suporte HTTPS."
+msgstr "Adicione segurança criptografada a qualquer site que suporte HTTPS. Navegue com segurança."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3833,9 +3828,8 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navegue anonimamente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Navegue na web com uma identidade disfarçada ─ como se estivesse navegando de outro país."
+msgstr "Navegar anonimamente. Navegue na web com uma identidade disfarçada ─ pareça até estar navegando de outro país."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4108,18 +4102,16 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Modifique a sua privacidade {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Personalize facilmente as configurações de privacidade internas do Firefox."
+msgstr "Um caminho direto para personalizar as configurações de privacidade internas do Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Obtenha traduções instantâneas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Obtenha uma tradução instantânea selecionando um texto e clicando no botão que surgirá."
+msgstr "Obtenha traduções instantânea selecionando um texto e clicando no botão que aparece."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4312,9 +4304,8 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navegue com segurança {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Sempre navegue na versão segura de uma página se possível."
+msgstr "Navegue automaticamente na versão segura de um site, se estiver disponível."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5246,7 +5237,7 @@ msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Não escreva análises para extensões que você nunca chegou a usar."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Não use linguagem inadequada, de conteúdo sexual ou que pode ser considerada odiosa."
+msgstr "Usar palavrões, linguagem sexual ou linguagem que possa ser interpretada como odiosa."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "Incluir HTML, links, código fonte ou partes de código. As análises devem ser apenas texto."

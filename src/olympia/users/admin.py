@@ -81,7 +81,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         }),
         ('Admin', {
             'fields': ('last_login', 'last_known_activity_time', 'activity',
-                       'last_login_ip', 'known_ip_adresses', 'banned', 'notes')
+                       'last_login_ip', 'known_ip_adresses', 'banned', 'notes',
+                       'bypass_upload_restrictions')
         }),
     )
 

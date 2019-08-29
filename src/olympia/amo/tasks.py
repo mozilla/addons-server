@@ -92,6 +92,8 @@ def sync_object_to_basket(model_name, pk):
             'Not synchronizing %s %s with basket because "basket-amo-sync" '
             'switch is off.', model_name, pk)
         return
+    else:
+        log.info('Synchronizing %s %s with basket.', model_name, pk)
     from olympia.accounts.serializers import UserProfileBasketSyncSerializer
     from olympia.addons.serializers import AddonBasketSyncSerializer
 
@@ -122,4 +124,8 @@ def sync_object_to_basket(model_name, pk):
         data = serializer.data
 
     basket_endpoint = f'{settings.BASKET_URL}/amo-sync/{model_name}/'
-    requests.post(basket_endpoint, json=data)
+    response = requests.post(
+        basket_endpoint, json=data, timeout=settings.BASKET_TIMEOUT,
+        headers={'x-api-key': settings.BASKET_API_KEY or ''})
+    # Explicitly raise for errors so that we see them in Sentry.
+    response.raise_for_status()

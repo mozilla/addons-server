@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-21 07:38+0000\n"
+"PO-Revision-Date: 2019-08-28 09:35+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3543,9 +3543,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Könnyű fordítás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Jelöljön ki szöveget bármelyik weboldalon, vagy válassza ki az egész oldalt – és fordítsa le azonnal."
+msgstr "Könnyű fordítások. Jelöljön ki szöveget bármelyik weboldalon – vagy válassza ki az egész oldalt – és fordítsa le azonnal."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3561,9 +3560,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Egérgesztusok testreszabása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Fedezze fel a navigáció új módját több mint 50 hasznos egérgesztussal."
+msgstr "Szabja testre az egérgesztusokat. Fedezze fel a navigáció új módját több mint 50 hasznos egérgesztussal."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3599,9 +3597,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nagyítsa ki a képeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "Egyszerűen vigye az egeret a kép fölé a nagyításhoz."
+msgstr "Vigye az egeret a kép fölé a nagyításhoz."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3632,22 +3629,20 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Ne hagyjon digitális nyomot {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Felejtesse el a Firefoxszal a webhelyadatokat, mint a sütiket és a helyi tárolót, de csak azoknál az oldalaknál, amelyeket kiválaszt."
+msgstr "Hagyjon tiszta digitális lábnyomot. Felejtesse el a Firefoxszal a webhelyadatokat, mint a sütiket és a helyi tárolót, de csak azoknál az oldalaknál, amelyeket kiválaszt."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mentsen el szövegeket későbbre {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
 msgstr ""
-"Ne írja le ugyanazt újra és újra! Ha gyakran használja ugyanazokat a kifejezéseket a munkája, vagy más kommunikációja során, mentse el őket a Clippingsbe, és illessze be őket egyszerűen, ha "
-"kellenek."
+"Mentsen el szöveget későbbre. Ne írja le ugyanazt újra és újra! Ha gyakran használja ugyanazokat a kifejezéseket a munkája, vagy más kommunikációja során, mentse el őket a Clippingsbe, és illessze "
+"be őket egyszerűen, ha kellenek."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3687,9 +3682,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Válassza külön az online életeit {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Privát módon különböztösse meg az online személyiségeit – munka, személyes, stb. – színkódolt lapok segítségével, melyek felosztják a digitális sütilábnyomát."
+msgstr "Válassza szét az online életeit. Privát módon különböztesse meg az online személyiségeit – munka, személyes, stb. – színkódolt lapok segítségével, melyek felosztják a digitális sütilábnyomát."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3704,36 +3698,32 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Olvasson ePub fájlokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Élvezze az ePub fájlokat közvetlenül a Firefoxban – növelje a betűméretet, lapméretet és másokat."
+msgstr "Olvasson ePub fájlokat közvetlenül a Firefoxban – növelje a betűméretet, lapméretet és másokat."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Emelje új szintre YouTube élményét {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Játssza le a videókat alapértelmezetten a legmagasabb minőségben, kikapcsolt megjegyzésekkel, és egyebekkel."
+msgstr "Játssza le a YouTube videókat alapértelmezetten a legmagasabb minőségben, kikapcsolt megjegyzésekkel, és egyebekkel."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kövesse a követőket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Kapjon betekintést abba, hogy kik követik, egyetlen kattintással."
+msgstr "Kövesse a követőket. Kapjon betekintést abba, hogy kik követik, egyetlen kattintással."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cserélje le a proxy kiszolgálóját {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Böngéssze a webet a megadott proxy beálltásokkal."
+msgstr "Módosítsa a proxy kiszolgálóját, és böngéssze a webet az Ön által megadott proxy beállításokkal."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3748,9 +3738,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Böngésszen biztonságosan {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Titkosított biztonság hozzáadása bármely oldalhoz, amely támogatja a HTTPS-t."
+msgstr "Titkosított biztonság hozzáadása bármely oldalhoz, amely támogatja a HTTPS-t. Böngésszen biztonságosan."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3793,14 +3782,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Böngésszen névtelenül {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Böngésszen rejtett személyazonossággal az interneten – akár úgy is tűnhet, hogy másik országból böngészik."
+msgstr "Szörföljön névtelenül. Böngésszen rejtett személyazonossággal az interneten – akár úgy is tűnhet, hogy másik országból böngészik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Érje el a kedvenc oldalait, nemrég bezárt lapjait, és így tovább – egyetlen gyönyörű mozaikos elrendezésből."
+msgstr "Élvezze a vizuális könyvjelzőket. Érje el a kedvenc oldalait, nemrég bezárt lapjait, és így tovább – egyetlen gyönyörű mozaikos elrendezésből."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3823,9 +3810,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Robusztus letöltéskezelés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "A letöltések megtekintése egy állapotsoron, letöltési előzmények oldal, és még sok más."
+msgstr "Robusztus letöltéskezelés. A letöltések megtekintése egy állapotsoron, letöltési előzmények oldal, és még sok más."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3840,9 +3826,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Keresés közbeni követésvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Állítsa meg a követőket, ha Google és Yandex keresési eredményekre kattint."
+msgstr "Állítsa meg a reklámkövetőket, ha Google és Yandex keresési eredményekre kattint."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3857,9 +3842,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Képek hozzáadása a keresési eredményekhez {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Élvezze a bélyegképeket a keresési találatok mellett."
+msgstr "Élvezze a weboldalak bélyegképeit a keresési találatok mellett."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3882,18 +3866,16 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Szabja testre a kedvenc webhelyeit {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Módosítsa bármelyik weboldal kinézetét! Állítsa át a színeket, oldalhátteret, és így tovább."
+msgstr "Szabja testre bármely weboldal kinézetét! Állítsa át a színeket, oldalhátteret, és így tovább."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Az új lap oldal testreszabása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Módosítsa az új lap oldalt, hogy annyi csempét jelenítsen meg, amennyit szeretne, cserélje le a háttérképet, és így tovább."
+msgstr "Szabja testre az új lap oldalt, hogy annyi csempét jelenítsen meg, amennyit szeretne, cserélje le a háttérképet, és így tovább."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3908,25 +3890,22 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Tudja merre jár a weben {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Kérje le a meglátogatott weboldalak helyének országát. Legyen tájékozott internetes utazó."
+msgstr "Tudja meg, hogy merre jár a weben. Kérje le a meglátogatott weboldalak helyének országát. Legyen tájékozott internetes utazó."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Javítsa az olvasási élményét {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Tegye vonzóbbá az olvasott szöveget azáltal, hogy eltávolítja körülötte a rendetlenséget."
+msgstr "Javítsa az olvasási élményét. Tegye vonzóbbá az olvasott szöveget azáltal, hogy eltávolítja körülötte a rendetlenséget."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nyisson meg több hivatkozást {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Kattintson a jobb gombbal, és húzza át az új lapon megnyitandó hivatkozásokat."
 
@@ -4714,14 +4693,12 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mérje meg a weblapokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Rajzoljon egy digitális vonalzót bármely weboldalra, hogy megnézze az oldalelemek magasságát, szélességét és igazítását."
+msgstr "Mérje meg a weboldalakat. Rajzoljon egy digitális vonalzót bármely weboldalra, hogy megnézze az oldalelemek magasságát, szélességét és igazítását."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Szerezze meg az erős jelszókezelés előnyeit."
+msgstr "Élvezze az erős jelszókezelés előnyeit."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4778,9 +4755,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Kövesse a termékek árát {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Értesüljön róla, ha az Önt érdeklő termékek árai csökkennek az Amazonon, a Best Buyon, az eBayen, a Home Depotnál és a Walmartnál."
+msgstr "Kövessen termékeket, és értesüljön róla, ha az Önt érdeklő termékek árai csökkennek az Amazonon, a Best Buyon, az eBayen, a Home Depotnál és a Walmartnál."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6400,9 +6376,8 @@ msgstr "Biztosan el akarja távolítani az összes <b>{0}</b> fordítást? Az m�
 msgid "Delete Locale"
 msgstr "Területi beállítás törlése"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Értékelések előzményeinek bezárása"
+msgstr "Felhasználói korlátozások előzményei"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
