@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-29 06:58+0000\n"
+"PO-Revision-Date: 2019-08-29 08:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4221,9 +4221,8 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Naviga con securitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Naviga al version secur de un sito web si illo es disponibile."
+msgstr "Passa automaticamente al version secur de un sito web, si illo es disponibile."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4653,9 +4652,8 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Salva imagines facilemente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Prende solo imagines ex tu scheda actual."
+msgstr "Salva facilemente le imagines: basta los sasir ab le scheda actual."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4666,9 +4664,8 @@ msgid "Measure web pages. Draw a digital ruler across any web page to check heig
 msgstr "Mesura le paginas web. Tira un regula digital tra ulle paginas web pro verificar altitude, largessa, e alineamento del elementos del pagina."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Discoperi le avantages de un forte gestion del contrasignos."
+msgstr "Tote le avantages de un solide gestion del contrasignos."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6341,9 +6338,8 @@ msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pot
 msgid "Delete Locale"
 msgstr "Deler le localisation"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Clauder le chronologia del revision"
+msgstr "Chronologia del restrictiones del usator"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6410,6 +6406,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Insere integremente le dominio email \"usa e jecta\" a blocar. Le metacharacteres non es supportate: si tu los besonia o pro trovar le concordantias con le adresse email complete, plus tosto que con"
+" le sol dominio, usa in vice le \"Restrictiones email del usator\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
