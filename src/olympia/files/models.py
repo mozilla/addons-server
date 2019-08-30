@@ -9,6 +9,9 @@ import unicodedata
 import uuid
 import zipfile
 
+from urllib.parse import urljoin
+
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
@@ -588,6 +591,13 @@ class FileUpload(ModelBase):
 
     def generate_access_token(self):
         return binascii.hexlify(os.urandom(20)).decode()
+
+    def get_authenticated_download_url(self):
+        absolute_url = urljoin(
+            settings.EXTERNAL_SITE_URL,
+            reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex})
+        )
+        return '{}?access_token={}'.format(absolute_url, self.access_token)
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):

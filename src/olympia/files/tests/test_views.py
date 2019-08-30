@@ -23,6 +23,8 @@ from olympia.files.models import File
 from olympia.lib.cache import Message
 from olympia.users.models import UserProfile
 
+from .test_models import UploadTest
+
 
 files_fixtures = 'src/olympia/files/fixtures/files/'
 unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
@@ -728,3 +730,30 @@ class TestDiffViewer(FilesBase, TestCase):
             args=(self.files[0].id, self.files[2].id, 'file', 'install.js'))
 
         assert install_js_link == expected
+
+
+class TestServeFileUpload(UploadTest, TestCase):
+    def setUp(self):
+        super(TestServeFileUpload, self).setUp()
+
+        self.upload = self.get_upload('webextension.xpi')
+        self.url = reverse('files.serve_file_upload',
+                           args=[self.upload.uuid.hex])
+
+    def test_returns_error_when_no_access_token(self):
+        resp = self.client.get(self.url)
+
+        assert resp.status_code == 403
+
+    def test_returns_error_when_access_token_is_invalid(self):
+        resp = self.client.get('{}?access_token=nope'.format(self.url))
+
+        assert resp.status_code == 403
+
+    @override_settings(XSENDFILE=True)
+    def test_get(self):
+        resp = self.client.get(self.upload.get_authenticated_download_url())
+
+        assert resp.status_code == 200
+        assert resp['content-type'] == 'application/octet-stream'
+        assert resp[settings.XSENDFILE_HEADER] == self.upload.path
