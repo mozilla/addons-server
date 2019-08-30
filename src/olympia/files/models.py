@@ -1,3 +1,4 @@
+import binascii
 import hashlib
 import json
 import os
@@ -517,6 +518,7 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey(
         'addons.Addon', null=True, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=40, null=True)
 
     objects = ManagerBase()
 
@@ -537,6 +539,8 @@ class FileUpload(ModelBase):
         if self.validation:
             if self.load_validation()['errors'] == 0:
                 self.valid = True
+        if not self.access_token:
+            self.access_token = self.generate_access_token()
         super(FileUpload, self).save(*args, **kw)
 
     def add_file(self, chunks, filename, size):
@@ -581,6 +585,9 @@ class FileUpload(ModelBase):
         self.name = filename
         self.hash = 'sha256:%s' % hash_func.hexdigest()
         self.save()
+
+    def generate_access_token(self):
+        return binascii.hexlify(os.urandom(20)).decode()
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):
