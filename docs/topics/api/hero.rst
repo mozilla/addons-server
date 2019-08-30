@@ -67,12 +67,12 @@ small number of shelves - and likely only one - this endpoint is not paginated.
     :>json array results: The array containing the results for this query.
     :>json string results[].headline: The headline for this item.
     :>json string results[].description: The description for this item.
-    :>json object|null cta: The optional call to action link and text to be displayed with the item.
-    :>json string cta.url: The url the call to action would link to.
-    :>json string cta.text: The call to action text.
-    :>json array modules: The modules for this shelf.  Should always be 3.
-    :>json string modules[].icon: The icon used to illustrate the item.
-    :>json string modules[].description: The description for this item.
-    :>json object|null modules[].cta: The optional call to action link and text to be displayed with the item.
-    :>json string modules[].cta.url: The url the call to action would link to.
-    :>json string modules[].cta.text: The call to action text.
+    :>json object|null results[].cta: The optional call to action link and text to be displayed with the item.
+    :>json string results[].cta.url: The url the call to action would link to.
+    :>json string results[].cta.text: The call to action text.
+    :>json array results[].modules: The modules for this shelf.  Should always be 3.
+    :>json string results[].modules[].icon: The icon used to illustrate the item.
+    :>json string results[].modules[].description: The description for this item.
+    :>json object|null results[].modules[].cta: The optional call to action link and text to be displayed with the item.
+    :>json string results[].modules[].cta.url: The url the call to action would link to.
+    :>json string results[].modules[].cta.text: The call to action text.
