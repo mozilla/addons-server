@@ -279,6 +279,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
     r'^devhub\/email\/submission_api_key_revocation.txt',
+    r'^devhub\/email\/api_key_confirmation.ltxt',
 
     # Django specific templates
     r'^registration\/',
@@ -1648,6 +1649,11 @@ AES_KEYS = env.dict('AES_KEYS', default={})
 # their API key can live. When developers are creating auth tokens they cannot
 # set the expiration any longer than this.
 MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
+
+# Time in seconds before the email containing the link allowing developers to
+# see their api keys the first time they request one is sent. A value of None
+# means it's sent instantaneously.
+API_KEY_CONFIRMATION_DELAY = None
 
 # django-rest-framework-jwt settings:
 JWT_AUTH = {

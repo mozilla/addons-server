@@ -208,7 +208,7 @@ def decode_json(json_string):
 def send_mail(subject, message, from_email=None, recipient_list=None,
               use_deny_list=True, perm_setting=None, manage_url=None,
               headers=None, cc=None, real_email=False, html_message=None,
-              attachments=None, max_retries=3, reply_to=None):
+              attachments=None, max_retries=3, reply_to=None, countdown=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -273,6 +273,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             'max_retries': max_retries,
             'real_email': real_email,
             'reply_to': reply_to,
+            'countdown': countdown,
         }
         kwargs.update(options)
         # Email subject *must not* contain newlines
