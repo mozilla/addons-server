@@ -97,7 +97,7 @@ to if necessary.
 
   .. note::
 
-      This should match what is documented for ``addonsManager.install.extra_keys.method`` in `Firefox telemetry event definition <https://searchfox.org/mozilla-central/source/toolkit/components/telemetry/Events.yaml>`_. The values are normalized by being converted to lowercase with the ``:`` and ``-`` characters converted to ``_``. In addition, extra values are supported for backwards-compatibility purposes, since Firefox before version 70 merged source and method into the same value. If an unsupported value is sent for this parameter, it will be silently changed to special ``other`` instead of raising a 400 error.
+      This should match what is documented for ``addonsManager.install.extra_keys.method`` in `Firefox telemetry event definition <https://searchfox.org/mozilla-central/source/toolkit/components/telemetry/Events.yaml>`_ except that the values are normalized by being converted to lowercase with the ``:`` and ``-`` characters converted to ``_``. In addition, extra values are supported for backwards-compatibility purposes, since Firefox before version 70 merged source and method into the same value. If an unsupported value is sent for this parameter, it will be silently changed to special ``other`` instead of raising a 400 error.
 
  ===========================  =================================================
                        Value  Description
@@ -125,28 +125,28 @@ to if necessary.
 
   .. note::
 
-      This should match what is documented for ``addonsManager.install.extra_keys.method`` in `Firefox telemetry event definition <https://searchfox.org/mozilla-central/source/toolkit/components/telemetry/Events.yaml>`_. The values are normalized by being converted to lowercase with the ``:`` and ``-`` characters converted to ``_``. We support the additional ``other`` value as a catch-all. If an unsupported value is sent for this parameter, it will be silently changed to ``other`` instead of raising a 400 error.
+      This should match what is documented for ``addonsManager.install.extra_keys.method`` in `Firefox telemetry event definition <https://searchfox.org/mozilla-central/source/toolkit/components/telemetry/Events.yaml>`_ except that the values are normalized by being converted to lowercase with the ``:`` and ``-`` characters converted to ``_``. We support the additional ``other`` value as a catch-all. If an unsupported value is sent for this parameter, it will be silently changed to ``other`` instead of raising a 400 error.
 
  ===========================  =================================================
                        Value  Description
  ===========================  =================================================
-               \about:addons  Add-ons Manager
-            \about:debugging  Add-ons Debugging
-          \about:preferences  Preferences
+                about_addons  Add-ons Manager
+             about_debugging  Add-ons Debugging
+           about_preferences  Preferences
                          amo  AMO
-                \app:profile  App Profile
+                 app_profile  App Profile
                        disco  Disco Pane
                 distribution  Included in build
                    extension  Extension
-           enterprise-policy  Enterprise Policy
-                    file-url  File URL
-                  gmp-plugin  GMP Plugin
+           enterprise_policy  Enterprise Policy
+                    file_url  File URL
+                  gmp_plugin  GMP Plugin
                     internal  Internal
                       plugin  Plugin
                        rtamo  Return To AMO
                         sync  Sync
-                system-addon  System Add-on
-             temporary-addon  Temporary Add-on
+                system_addon  System Add-on
+             temporary_addon  Temporary Add-on
                      unknown  Unknown
                        other  Other
  ===========================  =================================================
