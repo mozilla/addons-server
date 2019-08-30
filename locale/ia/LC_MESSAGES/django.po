@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-29 23:51+0000\n"
+"PO-Revision-Date: 2019-08-30 00:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3939,9 +3939,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Rende tue YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Reproduce videos in un fenestra emergente, vide solo le avisos publicitari in le canales subscribite, prende videos, instantaneos de schermo e tanto altero ancora."
+msgstr "Personalisa YouTube. Reproduce videos in un fenestra emergente, vide solo le avisos publicitari in le canales subscribite, prende videos, instantaneos de schermo e multe altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4036,9 +4035,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp sur le web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Accede WhatsApp ab intra le quadro del barra del instrumentos de Firefox pro obtener le placa de notification del filos non legite."
+msgstr "Accede WhatsApp sur le web per le quadro del barra del instrumentos de Firefox pro obtener le placa de notification del filos non legite."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4121,9 +4119,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Salta re-directiones & traciatores {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Spolia le paginas del re-adresse e del parametros de traciamento del URL."
+msgstr "Spolia del ligamines web le paginas de re-adresse e le parametros de traciamento del URL. Functiona automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4242,9 +4239,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Plena le formularios automaticamente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Salva un vice le datos inserite e illo se completara automaticamente le vices sequente."
+msgstr "Plena automaticamente formularios. Salva un vice le datos inserite e illo se completara automaticamente le vices sequente."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4267,9 +4263,8 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Accede facilemente Wikipedia {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Exeque simplemente un recerca de Wikipedia per evidentiar texto ex ulle pagina web e cliccar dextre."
+msgstr "Exeque rapidemente un recerca de Wikipedia per evidentiar fragmentos de texto de ulle pagina web e cliccar dextre."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4418,9 +4413,8 @@ msgid "Track productivity. Measure the amount of time you spend on the computer,
 msgstr "Mesura tu productivitate, le tempore que tu passa sur le computator o sur specific applicationes de labor como Trello, JIRA, Basecamp, GitHub, e multe altere."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Retalia contento de web como articulos, videos, imagines, e altero ancora pro salvar e usar lo in projectos personal o in collaboration de equipa in real-time."
+msgstr "Salva tu contento favorite, retalia contento de web como articulos, videos, imagines, e altero ancora pro salvar e usar lo in projectos personal o in collaboration de equipa in real-time."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
