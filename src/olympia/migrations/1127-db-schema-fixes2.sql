@@ -4,7 +4,7 @@ ALTER TABLE `addons_users`
     MODIFY `role` smallint(6) NOT NULL,
     MODIFY `listed` tinyint(1) NOT NULL,
     MODIFY `position` int(11) NOT NULL,
-    DROP UNIQUE KEY `addon_id`,
+    DROP KEY `addon_id`,
     DROP KEY `user_id`,
     DROP KEY `listed`,
     DROP KEY `addon_user_listed_idx`,  /* (`addon_id`,`user_id`,`listed`) - note: no replacement */
@@ -35,7 +35,7 @@ ALTER TABLE `akismet_reports`
     DROP FOREIGN KEY `akismet_reports_collection_instance_id_fk_collections_id`,
     DROP FOREIGN KEY `akismet_reports_upload_instance_id_fk_file_uploads_id`,
     DROP FOREIGN KEY `akismet_reports_user_id_fk_users_id`;
-ALTER TABLE akismet_reports`
+ALTER TABLE `akismet_reports`
     ADD CONSTRAINT `akismet_reports_addon_instance_id_03f471af_fk_addons_id` FOREIGN KEY (`addon_instance_id`) REFERENCES `addons` (`id`),
     ADD CONSTRAINT `akismet_reports_collection_instance__2c06adf6_fk_collectio` FOREIGN KEY (`collection_instance_id`) REFERENCES `collections` (`id`),
     ADD CONSTRAINT `akismet_reports_upload_instance_id_c4530dc1_fk_file_uploads_id` FOREIGN KEY (`upload_instance_id`) REFERENCES `file_uploads` (`id`),
@@ -63,10 +63,10 @@ ALTER TABLE `applications_versions`
     DROP FOREIGN KEY `applications_versions_ibfk_6`,  /* `max` */
     DROP KEY `application_id`;
 ALTER TABLE `applications_versions`
-    ADD CONSTRAINT `applications_versions_version_id_9bf048e6_fk_versions_id` FOREIGN KEY (`version_id`) REFERENCES `versions` (`id`)
+    ADD CONSTRAINT `applications_versions_version_id_9bf048e6_fk_versions_id` FOREIGN KEY (`version_id`) REFERENCES `versions` (`id`),
     ADD CONSTRAINT `applications_versions_min_1c31b27c_fk_appversions_id` FOREIGN KEY (`min`) REFERENCES `appversions` (`id`),
     ADD CONSTRAINT `applications_versions_max_6e57db5a_fk_appversions_id` FOREIGN KEY (`max`) REFERENCES `appversions` (`id`),
-    ADD UNIQUE KEY `applications_versions_application_id_version_id_346c3b79_uniq` (`application_id`,`version_id`),
+    ADD UNIQUE KEY `applications_versions_application_id_version_id_346c3b79_uniq` (`application_id`,`version_id`);
 
 ALTER TABLE `appsupport`
     MODIFY `id` int(10) unsigned NOT NULL,
