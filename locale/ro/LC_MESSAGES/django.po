@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-30 00:11+0000\n"
+"PO-Revision-Date: 2019-09-01 00:08+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3066,7 +3066,7 @@ msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Act
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "Afișează toate propunerile trimise"
+msgstr "Vezi toate propunerile trimise"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Aici îți vezi și îți gestionezi suplimentele și temele. Ca să publici primul supliment, dă clic pe „Propune primul tău supliment” sau „Propune prima ta temă”."
