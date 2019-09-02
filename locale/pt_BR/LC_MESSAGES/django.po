@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-01 17:53+0000\n"
+"PO-Revision-Date: 2019-09-02 21:08+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3951,16 +3951,14 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr "Melhore sua experiência de leitura {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Torne o texto que você está lendo mais atraente removendo os elementos desnecessários que o rodeiam."
+msgstr "Aprimore sua experiência de leitura. Torne o texto que você está lendo mais atraente, removendo os elementos desnecessários que o rodeiam."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Abra múltiplos links {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Clique com o botão direito do mouse e arraste os links que você quer abrir em novas abas."
 
