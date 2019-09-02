@@ -4,25 +4,16 @@ ALTER TABLE `addons_users`
     MODIFY `role` smallint(6) NOT NULL,
     MODIFY `listed` tinyint(1) NOT NULL,
     MODIFY `position` int(11) NOT NULL,
-    DROP KEY `addon_id`,
-    DROP KEY `user_id`,
-    DROP KEY `listed`,
-    DROP KEY `addon_user_listed_idx`,  /* (`addon_id`,`user_id`,`listed`) - note: no replacement */
-    DROP KEY `addon_listed_idx`,  /* (`addon_id`,`listed`) - note: no replacement */
     DROP FOREIGN KEY `addons_users_ibfk_1`,  /* `addon_id` */
     DROP FOREIGN KEY `addons_users_ibfk_2`;  /* `user_id` */
 ALTER TABLE `addons_users`
-    ADD UNIQUE KEY `addons_users_addon_id_user_id_0665ad00_uniq` (`addon_id`,`user_id`),
-    ADD KEY `addons_users_user_id_411d394c` (`user_id`),
     ADD CONSTRAINT `addons_users_addon_id_cfbb3174_fk_addons_id` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`),
     ADD CONSTRAINT `addons_users_user_id_411d394c_fk_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 ALTER TABLE `addons_users_pending_confirmation`
-    DROP KEY `addons_users_pending_confirmation_user_id_3c4c2421_fk_users_id`,
     DROP FOREIGN KEY `addons_users_pending_confirmation_addon_id_9e12bbad_fk_addons_id`,
     DROP FOREIGN KEY `addons_users_pending_confirmation_user_id_3c4c2421_fk_users_id`;
 ALTER TABLE  `addons_users_pending_confirmation`
-    ADD KEY `addons_users_pending_confirmation_user_id_a9a86f72` (`user_id`),
     ADD CONSTRAINT `addons_users_pending_confirmation_addon_id_a28f2247_fk_addons_id` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`),
     ADD CONSTRAINT `addons_users_pending_confirmation_user_id_a9a86f72_fk_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
@@ -46,11 +37,8 @@ ALTER TABLE `api_key`
     MODIFY `created` datetime(6) NOT NULL,
     MODIFY `modified` datetime(6) NOT NULL,
     MODIFY `type` int(10) unsigned NOT NULL,
-    DROP KEY `user_id`,
-    DROP KEY `api_key_user_id`,
     DROP FOREIGN KEY `api_key_user_id`;
 ALTER TABLE `api_key`
-    ADD UNIQUE KEY `api_key_user_id_is_active_96918b5d_uniq` (`user_id`,`is_active`),
     ADD CONSTRAINT `api_key_user_id_2b8305f7_fk_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 ALTER TABLE `applications_versions`
@@ -60,13 +48,11 @@ ALTER TABLE `applications_versions`
     MODIFY `max` int(10) unsigned NOT NULL,
     DROP FOREIGN KEY `applications_versions_ibfk_4`,  /* `version_id` */
     DROP FOREIGN KEY `applications_versions_ibfk_5`,  /* `min` */
-    DROP FOREIGN KEY `applications_versions_ibfk_6`,  /* `max` */
-    DROP KEY `application_id`;
+    DROP FOREIGN KEY `applications_versions_ibfk_6`;  /* `max` */
 ALTER TABLE `applications_versions`
     ADD CONSTRAINT `applications_versions_version_id_9bf048e6_fk_versions_id` FOREIGN KEY (`version_id`) REFERENCES `versions` (`id`),
     ADD CONSTRAINT `applications_versions_min_1c31b27c_fk_appversions_id` FOREIGN KEY (`min`) REFERENCES `appversions` (`id`),
-    ADD CONSTRAINT `applications_versions_max_6e57db5a_fk_appversions_id` FOREIGN KEY (`max`) REFERENCES `appversions` (`id`),
-    ADD UNIQUE KEY `applications_versions_application_id_version_id_346c3b79_uniq` (`application_id`,`version_id`);
+    ADD CONSTRAINT `applications_versions_max_6e57db5a_fk_appversions_id` FOREIGN KEY (`max`) REFERENCES `appversions` (`id`);
 
 ALTER TABLE `appsupport`
     MODIFY `id` int(10) unsigned NOT NULL,
@@ -76,11 +62,8 @@ ALTER TABLE `appsupport`
     MODIFY `app_id` int(10) unsigned NOT NULL,
     MODIFY `min` bigint(20) DEFAULT NULL,
     MODIFY `max` bigint(20) DEFAULT NULL,
-    DROP KEY `addon_id`,  /* (`addon_id`,`app_id`), */
-    DROP KEY `app_id_refs_id_481ce338`,  /* (`app_id`)  note: there's the key, but no existing fk constraint */
-    DROP KEY `minmax_idx`;  /* (`addon_id`,`app_id`,`min`,`max`) note: no replacment */
+    DROP KEY `app_id_refs_id_481ce338`;  /* (`app_id`)  note: there's the key, but no existing fk constraint */
 ALTER TABLE `appsupport`
-    ADD UNIQUE KEY `appsupport_addon_id_app_id_8a82b814_uniq` (`addon_id`,`app_id`),
     ADD CONSTRAINT `appsupport_addon_id_a4820965_fk_addons_id` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`);
 
 ALTER TABLE `appversions`
@@ -89,13 +72,7 @@ ALTER TABLE `appversions`
     MODIFY `version` varchar(255) NOT NULL,
     MODIFY `version_int` bigint(20) NOT NULL,
     MODIFY `created` datetime(6) NOT NULL,
-    MODIFY `modified` datetime(6) NOT NULL,
-    DROP KEY `application_id`,  /* (`application_id`) */
-    DROP KEY `version`,  /* (`version`)  */
-    DROP KEY `version_int_idx`,  /* (`version_int`)*/
-    DROP KEY `application_id_2`;  /* (`application_id`,`version`), */
-ALTER TABLE `appversions`
-    ADD UNIQUE KEY `appversions_application_id_version_5fe961bc_uniq` (`application_id`,`version`);
+    MODIFY `modified` datetime(6) NOT NULL;
 
 ALTER TABLE `auth_group`
     MODIFY `name` varchar(150) NOT NULL;
@@ -146,12 +123,7 @@ ALTER TABLE `categories`
     MODIFY `modified` datetime(6) NOT NULL,
     MODIFY `count` int(11) NOT NULL,
     MODIFY `slug` varchar(50) NOT NULL,
-    MODIFY `misc` tinyint(1) NOT NULL,
-    DROP KEY `addontype_id`,
-    DROP KEY `application_id`,
-    DROP KEY `categories_slug`;
-ALTER TABLE `categories`
-    ADD KEY `categories_slug_9bedfe6b` (`slug`);
+    MODIFY `misc` tinyint(1) NOT NULL;
 
 ALTER TABLE `config`
     MODIFY `key` varchar(255) NOT NULL;
