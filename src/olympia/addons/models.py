@@ -1628,7 +1628,6 @@ class AddonCategory(models.Model):
                          name='category_addon_idx'),
             models.Index(fields=('feature', 'addon'),
                          name='feature_addon_idx'),
-            models.Index(fields=('disabled_by_user',), name='inactive'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('addon', 'category'),
