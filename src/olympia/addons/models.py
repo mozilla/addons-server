@@ -32,8 +32,8 @@ from olympia.addons.utils import (
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
-    BasePreview, BaseQuerySet, ManagerBase, ModelBase, OnChangeMixin,
-    SaveUpdateMixin, SlugField, manual_order)
+    BasePreview, BaseQuerySet, LongNameIndex, ManagerBase, ModelBase,
+    OnChangeMixin, SaveUpdateMixin, SlugField, manual_order)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -1722,9 +1722,9 @@ class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
         db_table = 'addons_users_pending_confirmation'
         unique_together = (('addon', 'user'),)
         indexes = [
-            models.Index(fields=('user',),
-                         name='addons_users_pending_confirmation_user_id_'
-                              '3c4c2421_fk_users_id'),
+            LongNameIndex(fields=('user',),
+                          name='addons_users_pending_confirmation_user_id_'
+                               '3c4c2421_fk_users_id'),
         ]
 
 
