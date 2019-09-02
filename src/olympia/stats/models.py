@@ -28,7 +28,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
     class Meta:
         db_table = 'download_counts'
         indexes = [
-            # FIXME: some of these might redundant.
+            # FIXME: some of these might redundant. See #5712
             models.Index(fields=('count',), name='count'),
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('addon', 'count'), name='addon_and_count'),
@@ -53,7 +53,7 @@ class UpdateCount(StatsSearchMixin, models.Model):
     class Meta:
         db_table = 'update_counts'
         indexes = [
-            # FIXME: some of these might redundant.
+            # FIXME: some of these might redundant. See #5712
             models.Index(fields=('count',), name='count'),
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('date',), name='date'),
