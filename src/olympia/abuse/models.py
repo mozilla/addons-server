@@ -96,7 +96,7 @@ class AbuseReport(ModelBase):
         ('ABOUT_DEBUGGING', 2, 'Add-ons Debugging'),
         ('ABOUT_PREFERENCES', 3, 'Preferences'),
         ('AMO', 4, 'AMO'),
-        ('APP:PROFILE', 5, 'app:profile'),
+        ('APP_PROFILE', 5, 'App Profile'),
         ('DISCO', 6, 'Disco Pane'),
         ('DISTRIBUTION', 7, 'Included in build'),
         ('EXTENSION', 8, 'Extension'),

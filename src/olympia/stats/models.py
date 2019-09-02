@@ -59,30 +59,3 @@ class UpdateCount(StatsSearchMixin, models.Model):
         # Additional indices on this table (on dev, stage and prod):
         # * KEY `addon_and_count` (`addon_id`,`count`)
         # * KEY `addon_date_idx` (`addon_id`,`date`)
-
-
-class ThemeUpdateCountManager(models.Manager):
-
-    def get_range_days_avg(self, start, end, *extra_fields):
-        """Return a a ValuesListQuerySet containing the addon_id and popularity
-        for each theme where popularity is the average number of users (count)
-        over the given range of days passed as start / end arguments.
-
-        If extra_fields are passed, then the list of fields is returned in the
-        queryset, inserted after addon_id but before popularity."""
-        return (self.values_list('addon_id', *extra_fields)
-                    .filter(date__range=[start, end])
-                    .annotate(avg=models.Avg('count')))
-
-
-class ThemeUpdateCount(StatsSearchMixin, models.Model):
-    """Daily users taken from the ADI data (coming from Hive)."""
-    id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    objects = ThemeUpdateCountManager()
-
-    class Meta:
-        db_table = 'theme_update_counts'

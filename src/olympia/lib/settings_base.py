@@ -1102,6 +1102,8 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
+    'olympia.yara.tasks.run_yara': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1634,7 +1636,7 @@ SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
 TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
 
-YARA_ROOT = env('YARA_ROOT', default=path('addons-yara'))
+YARA_ROOT = env('YARA_ROOT', default=path('private', 'addons-yara'))
 YARA_RULES_FILEPATH = os.path.join(YARA_ROOT, 'rules', 'all_rules.yar')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
@@ -1842,3 +1844,8 @@ AKISMET_API_TIMEOUT = 5
 AKISMET_REAL_SUBMIT = False
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
+
+# Sectools
+SCANNER_TIMEOUT = 60  # seconds
+CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
+CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)

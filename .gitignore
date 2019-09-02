@@ -48,4 +48,8 @@ supervisord.pid
 tmp/*
 
 # private projects
-addons-yara
+private/
+
+# do not ignore the following files
+!docker-compose.private.yml
+!private/README.md

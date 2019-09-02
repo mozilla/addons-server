@@ -1,6 +1,7 @@
 import yara
 
 from django.conf import settings
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 
@@ -31,25 +32,28 @@ def run_yara(upload_pk):
         return
 
     try:
-        rules = yara.compile(filepath=settings.YARA_RULES_FILEPATH)
-
         result = YaraResult()
         result.upload = upload
 
-        zip_file = SafeZip(source=upload.path)
-        for zip_info in zip_file.info_list:
-            if not zip_info.is_dir():
-                file_content = zip_file.read(zip_info).decode(errors='ignore')
-                for match in rules.match(data=file_content):
-                    # Add the filename to the meta dict.
-                    meta = {**match.meta, 'filename': zip_info.filename}
-                    result.add_match(
-                        rule=match.rule,
-                        tags=match.tags,
-                        meta=meta
-                    )
+        with statsd.timer('devhub.yara'):
+            rules = yara.compile(filepath=settings.YARA_RULES_FILEPATH)
 
-        zip_file.close()
+            zip_file = SafeZip(source=upload.path)
+            for zip_info in zip_file.info_list:
+                if not zip_info.is_dir():
+                    file_content = zip_file.read(zip_info).decode(
+                        errors='ignore'
+                    )
+                    for match in rules.match(data=file_content):
+                        # Add the filename to the meta dict.
+                        meta = {**match.meta, 'filename': zip_info.filename}
+                        result.add_match(
+                            rule=match.rule,
+                            tags=match.tags,
+                            meta=meta
+                        )
+            zip_file.close()
+
         result.save()
 
         log.info('Ending yara task for FileUpload %s.', upload_pk)

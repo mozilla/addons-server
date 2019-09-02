@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-20 12:46+0000\n"
+"PO-Revision-Date: 2019-09-01 00:08+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2918,9 +2918,8 @@ msgstr[2] "Selectează <b>până la {0}</b> {1} de categorii pentru acest suplim
 msgid "End-User License Agreement"
 msgstr "Acord de licență pentru utilizatorul final"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Te rugăm să alegi o licență corespunzătoare drepturilor pe care le acorzi asupra codului tău sursă. Are relevanță numai pentru suplimentele listate."
+msgstr "Te rugăm să reții că un ALUF nu este același cu o licență pentru cod, precum GPL sau MPL. Este relevant numai pentru suplimentele listate."
 
 msgid "Privacy Policy"
 msgstr "Politică de confidențialitate"
@@ -3067,7 +3066,7 @@ msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Act
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "Afișează toate propunerile trimise"
+msgstr "Vezi toate propunerile trimise"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Aici îți vezi și îți gestionezi suplimentele și temele. Ca să publici primul supliment, dă clic pe „Propune primul tău supliment” sau „Propune prima ta temă”."
@@ -3386,9 +3385,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Blocarea reclamelor și protecția datelor cu caracter personal {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "O configurare simplă îți permite să preiei controlul asupra reclamelor pe care le vezi și cum ești urmărit pe internet."
+msgstr "Blocarea de reclame și protecția vieții private. O configurare simplă îți permite să preiei controlul asupra reclamelor pe care le vezi și cum ești urmărit pe internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3403,18 +3401,16 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Oprește urmărirea Facebook {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Izolează-ți identitatea Facebook într-un „container” separat, ceea ce face mai greu pentru Facebook să-ți urmărească mișcările de pe web."
+msgstr "Oprește urmărirea practicată de Facebook. Izolează-ți identitatea Facebook într-un „container” separat, ceea ce face mai greu pentru Facebook să-ți urmărească mișcările de pe web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Simplifică căutările {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Doar evidențiezi text pe orice pagină web pentru a căuta expresia într-o gamă de motoare de căutare."
+msgstr "Simplifică căutarea evidențiind textul pe orice pagină web pentru a căuta expresia într-o gamă de motoare de căutare."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3445,18 +3441,16 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funcționează cu YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope și sute de alte site-uri video."
+msgstr "Descarcă videoclipuri cu ușurință. Funcționează cu YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope și sute de alte site-uri video."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Diversifică emojiurile folosite {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
+msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3471,9 +3465,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Un supliment mic și eficient de blocare a reclamelor. uBlock Origin aplică mii de filtre de conținut fără să mănânce prea multă memorie."
+msgstr "Un blocker de reclame de mărime redusă și eficient. uBlock Origin aplică mii de filtre pentru conținut fără să devoreze prea multă memorie."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3496,9 +3489,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Bucură-te de marcaje vizuale {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Să îți acceseze site-urile favorite dintr-un aranjament în dale."
+msgstr "Bucură-te de marcajele vizuale. Accesează-ți site-urile favorite dintr-un aranjament în dale."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3561,9 +3553,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Traduceri ușoare {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Evidențiază text pe orice pagină web—sau selectează toată pagina—pentru traducere instantanee."
+msgstr "Traduceri facile. Evidențiază text pe orice pagină web—sau selectează toată pagina—pentru traducere instantanee."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4213,9 +4204,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Descarcă videoclipuri YouTube {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Descarcă videoclipuri și/sau secvențe audio."
+msgstr "Descarcă clipuri video și/sau audio de pe YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4924,9 +4914,8 @@ msgstr "Nu poți trimite un supliment cu un GUID care se termină în %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nu poți trimite o extensie semnată de Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Nu poți trimite o extensie semnată de Mozilla"
+msgstr "Nu poți trimite un pachet lingvistic"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensions} cu suport."
@@ -5501,9 +5490,8 @@ msgstr "Greutate"
 msgid "Information Request Deadline"
 msgstr "Termen-limită pentru solicitări de informații"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Ultima actualizare:"
+msgstr "Ultima actualizare"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Această acțiune va aproba, semna și publica această versiune. Comentariile vor fi trimise dezvoltatorului."
@@ -5866,9 +5854,8 @@ msgstr "Istoricul modificărilor suplimentului de către utilizatori"
 msgid "Add-on History"
 msgstr "Istoricul suplimentului"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Nota anterioară"
+msgstr "Intrări șterse anterior"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6501,9 +6488,8 @@ msgstr ""
 "Introdu un domeniu sau o adresă de e-mail completă care să fie blocat(ă) sau folosește caractere de specificare globală cu sintaxă glob pentru corelare la alte modele. De ex. „@*.mail.com”\n"
 " Reține că nu includem caracterul „@” în corespondente, așa că  trebuie să îl incluzi tu în model."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Adresa de e-mail pe care ai folosit-o pentru contul de dezvoltator nu are permisiunea să trimită suplimente."
+msgstr "Adresa de e-mail pe care ai folosit-o pentru contul tău nu are permisiunea să trimită suplimente."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

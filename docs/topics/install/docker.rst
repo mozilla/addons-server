@@ -53,8 +53,8 @@ on your host machine::
     docker-compose pull  # Can take a while depending on your internet bandwidth.
     # Start up the containers
     docker-compose up -d
-    make initialize_docker  # Answer yes, and create your superuser when asked.
-    # On Windows you can substitute `make initialize_docker` for the command:
+    make initialize  # Answer yes, and create your superuser when asked.
+    # On Windows you can substitute `make initialize` for the command:
     docker-compose exec web make initialize
 
 .. note::

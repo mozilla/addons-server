@@ -85,3 +85,11 @@ class TestRunYara(UploadTest, TestCase):
         # This call should not raise even though there will be an error because
         # YARA_RULES_FILEPATH is configured with a wrong path.
         run_yara(upload.pk)
+
+    @mock.patch('olympia.yara.tasks.statsd.timer')
+    def test_calls_statsd_timer(self, timer_mock):
+        upload = self.get_upload('webextension.xpi')
+        run_yara(upload.pk)
+
+        assert timer_mock.called
+        timer_mock.assert_called_with('devhub.yara')
