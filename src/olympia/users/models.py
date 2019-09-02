@@ -195,6 +195,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     class Meta:
         db_table = 'users'
+        indexes = [
+            models.Index(fields=('created',), name='created'),
+            models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
+        ]
 
     def __init__(self, *args, **kw):
         super(UserProfile, self).__init__(*args, **kw)
@@ -622,6 +626,9 @@ class UserNotification(ModelBase):
 
     class Meta:
         db_table = 'users_notifications'
+        indexes = [
+            models.Index(fields=('user',), name='user_id'),
+        ]
 
     @property
     def notification(self):
@@ -929,6 +936,10 @@ class UserHistory(ModelBase):
     class Meta:
         db_table = 'users_history'
         ordering = ('-created',)
+        indexes = [
+            models.Index(fields=('email',), name='users_history_email'),
+            models.Index(fields=('user',), name='users_history_user_idx'),
+        ]
 
 
 @UserProfile.on_change

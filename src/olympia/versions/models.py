@@ -26,7 +26,7 @@ from olympia import activity, amo
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
-    BasePreview, ManagerBase, ModelBase, OnChangeMixin)
+    BasePreview, LongNameIndex, ManagerBase, ModelBase, OnChangeMixin)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -158,6 +158,12 @@ class Version(OnChangeMixin, ModelBase):
         # description
         base_manager_name = 'unfiltered'
         ordering = ['-created', '-modified']
+        indexes = [
+            models.Index(fields=('version_int',), name='version_int_idx'),
+            models.Index(fields=('addon_id',), name='addon_id'),
+            models.Index(fields=('release_notes',), name='versions_ibfk_2'),
+            models.Index(fields=('license_id',), name='license_id'),
+        ]
 
     def __init__(self, *args, **kwargs):
         super(Version, self).__init__(*args, **kwargs)
@@ -670,6 +676,12 @@ class VersionPreview(BasePreview, ModelBase):
     class Meta:
         db_table = 'version_previews'
         ordering = ('position', 'created')
+        indexes = [
+            LongNameIndex(fields=('version',),
+                          name='version_previews_version_id_fk_versions_id'),
+            models.Index(fields=('version', 'position', 'created'),
+                         name='version_position_created_idx'),
+        ]
 
     @cached_property
     def caption(self):
@@ -801,6 +813,9 @@ class License(ModelBase):
 
     class Meta:
         db_table = 'licenses'
+        indexes = [
+            models.Index(fields=('builtin',), name='builtin_idx')
+        ]
 
     def __str__(self):
         license = self._constant or self
