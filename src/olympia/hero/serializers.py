@@ -17,7 +17,7 @@ class ExternalAddonSerializer(AddonSerializer):
 
 
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
-    description = serializers.CharField(source='disco_addon.description')
+    description = serializers.CharField(source='disco_addon.description_text')
     featured_image = serializers.CharField(source='image_url')
     addon = DiscoveryAddonSerializer(source='disco_addon.addon')
     external = ExternalAddonSerializer(source='disco_addon.addon')
