@@ -454,13 +454,13 @@ class ReviewerScore(ModelBase):
         db_table = 'reviewer_scores'
         ordering = ('-created',)
         indexes = [
-            models.Index(fields=('addon_id',),
+            models.Index(fields=('addon',),
                          name='reviewer_scores_addon_id_fk'),
             models.Index(fields=('created',),
                          name='reviewer_scores_created_idx'),
-            models.Index(fields=('user_id',),
+            models.Index(fields=('user',),
                          name='reviewer_scores_user_id_idx'),
-            models.Index(fields=('version_id',),
+            models.Index(fields=('version',),
                          name='reviewer_scores_version_id'),
         ]
 

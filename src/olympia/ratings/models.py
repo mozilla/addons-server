@@ -125,7 +125,7 @@ class Rating(ModelBase):
             models.Index(fields=('user',), name='reviews_ibfk_2'),
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(
-                fields=('reply_to', 'is_latest', 'addon_id', 'created'),
+                fields=('reply_to', 'is_latest', 'addon', 'created'),
                 name='latest_reviews'),
         ]
         constraints = [
