@@ -17,8 +17,7 @@ ALTER TABLE `abuse_reports`
     MODIFY `addon_id` int(10) unsigned DEFAULT NULL,
     DROP FOREIGN KEY `reporter_id_refs_id_12d88e23`,
     DROP FOREIGN KEY `user_id_refs_id_12d88e23`,
-    DROP FOREIGN KEY `addon_id_refs_id_2b6ff2a7`,
-    DROP KEY `created_idx`;
+    DROP FOREIGN KEY `addon_id_refs_id_2b6ff2a7`;
 ALTER TABLE `abuse_reports`
     ADD CONSTRAINT `abuse_reports_addon_id_f15faa13_fk_addons_id` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`),
     ADD CONSTRAINT `abuse_reports_reporter_id_e5b6b72a_fk_users_id` FOREIGN KEY (`reporter_id`) REFERENCES `users` (`id`),
@@ -39,9 +38,7 @@ ALTER TABLE `addons`
     DROP FOREIGN KEY `addons_ibfk_8`,  /* privacypolicy */
     DROP FOREIGN KEY `addons_ibfk_9`,  /* supporturl */
     DROP FOREIGN KEY `addons_ibfk_10`,  /* supportemail */
-    DROP FOREIGN KEY `addons_ibfk_14`,  /* current_version */
-    DROP KEY `created_idx`,
-    DROP KEY `modified_idx`;
+    DROP FOREIGN KEY `addons_ibfk_14`;  /* current_version */
 ALTER TABLE `addons`
     ADD CONSTRAINT `addons_name_78bce5d2_fk_translations_id` FOREIGN KEY (`name`) REFERENCES `translations` (`id`),
     ADD CONSTRAINT `addons_homepage_f34e15ae_fk_translations_id` FOREIGN KEY (`homepage`) REFERENCES `translations` (`id`),

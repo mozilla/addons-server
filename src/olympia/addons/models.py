@@ -423,10 +423,12 @@ class Addon(OnChangeMixin, ModelBase):
         base_manager_name = 'unfiltered'
         indexes = [
             models.Index(fields=('bayesian_rating',), name='bayesianrating'),
+            models.Index(fields=('created',), name='created_idx'),
             models.Index(fields=('_current_version',), name='current_version'),
             models.Index(fields=('disabled_by_user',), name='inactive'),
             models.Index(fields=('hotness',), name='hotness_idx'),
             models.Index(fields=('last_updated',), name='last_updated'),
+            models.Index(fields=('modified',), name='modified_idx'),
             models.Index(fields=('status',), name='status'),
             models.Index(fields=('target_locale',), name='target_locale'),
             models.Index(fields=('type',), name='addontype_id'),
@@ -1905,12 +1907,12 @@ class AppSupport(ModelBase):
         indexes = [
             models.Index(fields=('addon', 'app', 'min', 'max'),
                          name='minmax_idx'),
+            models.Index(fields=('app',) name='app_id'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('addon', 'app'),
                                     name='addon_id'),
         ]
-
 
 class DeniedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')

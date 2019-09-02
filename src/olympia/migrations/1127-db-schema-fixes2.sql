@@ -61,8 +61,7 @@ ALTER TABLE `appsupport`
     MODIFY `addon_id` int(10) unsigned NOT NULL,
     MODIFY `app_id` int(10) unsigned NOT NULL,
     MODIFY `min` bigint(20) DEFAULT NULL,
-    MODIFY `max` bigint(20) DEFAULT NULL,
-    DROP KEY `app_id_refs_id_481ce338`;  /* (`app_id`)  note: there's the key, but no existing fk constraint */
+    MODIFY `max` bigint(20) DEFAULT NULL;
 ALTER TABLE `appsupport`
     ADD CONSTRAINT `appsupport_addon_id_a4820965_fk_addons_id` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`);
 

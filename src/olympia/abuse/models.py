@@ -197,6 +197,9 @@ class AbuseReport(ModelBase):
         # be unfiltered to prevent exceptions when dealing with relations or
         # saving already deleted objects.
         base_manager_name = 'unfiltered'
+        indexes = [
+            models.Index(fields=('created',), name='created_idx'),
+        ]
 
     @property
     def metadata(self):
