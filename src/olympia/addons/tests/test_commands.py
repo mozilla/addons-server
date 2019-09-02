@@ -122,6 +122,30 @@ def test_process_addons_limit_addons():
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 
 
+@freeze_time('2019-04-01')
+@pytest.mark.django_db
+def test_process_addons_batch_size():
+    addon_ids = [
+        addon_factory(status=amo.STATUS_APPROVED).id for _ in range(101)
+    ]
+    assert Addon.objects.count() == 101
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command('process_addons', task='recreate_previews')
+        assert len(calls) == 2
+        assert calls[0]['kwargs']['args'] == [addon_ids[:100]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[100:]]
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command(
+            'process_addons', task='recreate_previews',
+            **{'batch_size': 50})
+        assert len(calls) == 3
+        assert calls[0]['kwargs']['args'] == [addon_ids[:50]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[50:100]]
+        assert calls[2]['kwargs']['args'] == [addon_ids[100:]]
+
+
 class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
     def test_affects_only_public_webextensions(self):
         addon_factory()

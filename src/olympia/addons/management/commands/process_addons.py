@@ -205,6 +205,14 @@ class Command(BaseCommand):
             type=int,
             help='Only apply task to the first X addon ids.')
 
+        parser.add_argument(
+            '--batch-size',
+            action='store',
+            dest='batch_size',
+            type=int,
+            default=100,
+            help='Split the add-ons into X size chunks. Default 100.')
+
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -235,7 +243,7 @@ class Command(BaseCommand):
                     for arg in task['allowed_kwargs']})
             # All the remaining tasks go in one group.
             grouping = []
-            for chunk in chunked(pks, 100):
+            for chunk in chunked(pks, options.get('batch_size')):
                 grouping.append(
                     task['method'].subtask(args=[chunk], kwargs=kwargs))
 
