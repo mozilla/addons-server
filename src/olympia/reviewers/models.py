@@ -463,7 +463,6 @@ class ReviewerScore(ModelBase):
             models.Index(fields=('version_id',),
                          name='reviewer_scores_version_id'),
         ]
- 
 
     @classmethod
     def get_key(cls, key=None, invalidate=False):
