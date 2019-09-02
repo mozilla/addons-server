@@ -51,9 +51,9 @@ def sleeping_task(time_to_sleep):
 
 class TestCeleryWorker(CeleryWorkerTestCase):
     def test_celery_worker_test_runs_through_worker(self):
-        result = sleeping_task.delay(time_to_sleep=0.3)
+        result = sleeping_task.delay(time_to_sleep=0.5)
         assert result.state == 'PENDING'
-        time.sleep(0.1)
+        time.sleep(0.25)
         assert result.state == 'STARTED'
         time.sleep(0.3)
         assert result.state == 'SUCCESS'
