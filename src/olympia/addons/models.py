@@ -428,8 +428,6 @@ class Addon(OnChangeMixin, ModelBase):
             models.Index(fields=('hotness',), name='hotness_idx'),
             models.Index(fields=('last_updated',), name='last_updated'),
             models.Index(fields=('status',), name='status'),
-            models.Index(fields=('support_email',), name='supportemail'),
-            models.Index(fields=('support_url',), name='supporturl'),
             models.Index(fields=('target_locale',), name='target_locale'),
             models.Index(fields=('type',), name='addontype_id'),
             models.Index(fields=('weekly_downloads',),
