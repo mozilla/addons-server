@@ -351,7 +351,7 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The filename this comment is related to (optional).
     :<json int lineno: The line number this comment is related to (optional). Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int draft_comment.id: The id of the draft comment (optional).
+    :<json int canned_response: The id of the draft comment (optional).
     :statuscode 201: New comment has been created.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
     :statuscode 403: The user doesn't have the permission to create a comment. This might happen (among other cases) when someone without permissions for unlisted versions tries to add a comment for an unlisted version (which shouldn't happen as the user doesn't see unlisted versions, but it's blocked here too).
@@ -372,6 +372,6 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The filename this comment is related to.
     :<json int lineno: The line number this comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int draft_comment.id: The id of the draft comment (optional).
+    :<json int canned_response: The id of the draft comment (optional).
     :statuscode 200: The comment has been updated.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
