@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.crypto import constant_time_compare, get_random_string
 from django.utils.encoding import force_text
+from django.utils.translation import ugettext
 
 from aesfield.field import AESField
 
@@ -131,7 +132,7 @@ class APIKeyConfirmation(ModelBase):
             'domain': settings.DOMAIN,
         }
         return send_mail_jinja(
-            'Confirmation for developer API keys',
+            ugettext('Confirmation for developer API keys'),
             'devhub/email/api_key_confirmation.ltxt',
             context, recipient_list=[self.user.email],
             countdown=settings.API_KEY_CONFIRMATION_DELAY)
