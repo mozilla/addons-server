@@ -1,11 +1,12 @@
 from unittest import mock
 
+from django.core import mail
 from django.db import IntegrityError
 
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 
-from ..models import SYMMETRIC_JWT_TYPE, APIKey
+from ..models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 
 
 class TestAPIKey(TestCase):
@@ -75,3 +76,36 @@ class TestAPIKey(TestCase):
         active_key.update(created=self.days_ago(1))
         fetched_key = APIKey.get_jwt_key(user=self.user)
         assert fetched_key == active_key
+
+
+class TestAPIKeyConfirmation(TestCase):
+    def test_generate_token(self):
+        token = APIKeyConfirmation.generate_token()
+        assert len(token) == 20
+        assert token != APIKeyConfirmation.generate_token()
+        assert token != APIKeyConfirmation.generate_token()
+
+    def test_is_token_valid(self):
+        confirmation = APIKeyConfirmation()
+        confirmation.token = APIKeyConfirmation.generate_token()
+        assert confirmation.is_token_valid(confirmation.token)
+        assert not confirmation.is_token_valid(confirmation.token[:19])
+        assert not confirmation.is_token_valid(confirmation.token[1:])
+        assert not confirmation.is_token_valid('a' * 20)
+
+    def test_send_confirmation_email(self):
+        token = 'abcdefghijklmnopqrst'
+        confirmation = APIKeyConfirmation()
+        confirmation.token = token
+        confirmation.user = UserProfile(email='foo@bar.com', display_name='Fô')
+        assert len(mail.outbox) == 0
+        confirmation.send_confirmation_email()
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        expected_url = (
+            f'http://testserver/en-US/developers/addon/api/key/?token={token}'
+        )
+        assert message.to == ['foo@bar.com']
+        assert message.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
+        assert message.subject == 'Confirmation for developer API keys'
+        assert expected_url in message.body
