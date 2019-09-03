@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget
 from django.utils import translation
-from django.utils.html import format_html
+from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.db.models import Prefetch
 
@@ -128,8 +128,9 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         translations = []
         for locale in ('en-US', ) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
             with translation.override(locale):
-                translations.append(self.build_preview(obj, locale))
-        return format_html(u''.join(translations))
+                translations.append(
+                    conditional_escape(self.build_preview(obj, locale)))
+        return mark_safe(''.join(translations))
 
     def has_delete_permission(self, request, obj=None):
         qs = PrimaryHero.objects.filter(enabled=True)
