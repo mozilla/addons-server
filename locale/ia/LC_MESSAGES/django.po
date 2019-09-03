@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-03 22:08+0000\n"
+"PO-Revision-Date: 2019-09-03 23:12+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5037,7 +5037,7 @@ msgstr "Un bon loco pro initiar es <a href=\"%(sumo_url)s\">Supporto</a> Mozilla
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "Si tu realmente debe continger alcuno ex le equipa de Mozilla, per favor vide nostre pagina de<a href=\"%(url)s\"> informationes de contacto</a>."
+msgstr "Si tu realmente debe contactar un persona del equipa de Mozilla, per favor vide nostre pagina de <a href=\"%(url)s\">informationes de contacto</a>."
 
 msgid "Who works on this website?"
 msgstr "Qui labora sur iste sito web?"
@@ -6407,7 +6407,7 @@ msgid "my add-on is reviewed by a reviewer"
 msgstr "mi additivos es revidite per un revisor"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr "Mozilla debe continger me circa mi additivo personal"
+msgstr "Mozilla debe contactar me sur mi additivo individual"
 
 msgid "User Notifications"
 msgstr "Notificationes del usator"
