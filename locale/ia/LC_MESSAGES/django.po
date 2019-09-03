@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-30 00:00+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2019-09-03 14:51+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Marcar le seligite reportos de abuso como suspecte"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Attention que iste campo mais ha plus de {max_length} characteres."
+msgstr "Assecura te que iste campo non ha plus de {max_length} characteres."
 
 msgid "Modified on:"
 msgstr "Modificate sur:"
@@ -2730,7 +2730,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "Pro instructiones detaliate, consulta le <a href=\"%(docs_url)s\">documentation del API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantene secrete tu claves API e <strong>jammais comparti los con quicunque</strong>, includite collaboratores de Mozilla."
+msgstr "Mantene tu claves API secrete e <strong>non divulga los jammais a alcuno</strong>, non mesmo a collaboratores de Mozilla."
 
 msgid "JWT issuer"
 msgstr "Emissor del JWT"
