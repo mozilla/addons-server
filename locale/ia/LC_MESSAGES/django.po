@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-03 23:12+0000\n"
+"PO-Revision-Date: 2019-09-03 23:53+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -648,10 +648,10 @@ msgid "Application max version for {version} updated."
 msgstr "Version maximal del application actualisate al {version}."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Email inviate al autores circa le compatibilitate del {version}."
+msgstr "Le autores ha recipite un message sur le compatibilitate de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Email inviate al autor circa le compatibilitate del additivo."
+msgstr "Le autor ha recipite un message sur le compatibilitate del additivo."
 
 msgid "Password changed."
 msgstr "Contrasigno cambiate."
@@ -2055,7 +2055,7 @@ msgid "Default Locale"
 msgstr "Local predefinite"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Le informationes circa tu additivo es displicate in iste localisation a minus que tu supplanta lo con un traduction specific pro le loco. Illo es pertinente solo pro le additivos listate."
+msgstr "Le informationes sur tu additivo es monstrate in iste lingua a minus que tu lo supplanta lo con un traduction specific. Illo es relevante solmente pro le additivos listate."
 
 msgid "Homepage"
 msgstr "Pagina principal"
@@ -2541,7 +2541,7 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr "Tu ha finite! Iste version sera disponibile sur nostre sito a breve."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Tu ha finite! Iste version ha essite submittite pro revision. Tu sera notificate quando le revision ha essite completate, o si nostre revisores ha ulle questiones circa tu submission."
+msgstr "Tu ha finite! Iste version ha essite submittite pro revision. Tu recipera un notification quando le revision ha essite completate, o si nostre revisores ha questiones sur tu submission."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Tu lista de presentation habera plus successo per le addition de un detaliate description. Rende tu lista de presentation preste pro le publication:"
@@ -2902,7 +2902,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Per favor include instructiones sur como reproducer le file final del additivo, o in un file README o le Notas pro le revisor de iste version."
 
 msgid "Read more about the source code review policy."
-msgstr "Leger plus circa le regulamento de revision del codice fonte."
+msgstr "Leger plus sur le politica de revision del codice fonte."
 
 msgid "Latest News"
 msgstr "Ultime novas"
@@ -3134,8 +3134,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informationes circa cambiamentos in iste version, nove functionalitates, note defectos e altere utile informationes specific pro iste publication/version. Iste informationes es alsi monstrate in le "
-"Gestor de additivos durante le actualisation."
+"Informationes sur cambiamentos in iste version, nove functionalitates, defectos cognoscite, e altere informationes utile concernente iste edition/version. Iste informationes es etiam monstrate in le"
+" Gestor de additivos durante le actualisation."
 
 msgid "Approval Status"
 msgstr "Stato del approbation"
@@ -3592,7 +3592,7 @@ msgstr "Bloca le traciatores invisibile {start_sub_heading}con {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr "Stoppa le traciatores durante lor tracias e apprende altero circa illos."
+msgstr "Bloca le traciatores e apprende plus sur illos."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3948,7 +3948,7 @@ msgstr "Explora le traffico del sito web {start_sub_heading}con {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr "Obtene informationes involvente in profunditate e circa le traffico pro ulle sito web."
+msgstr "Obtene informationes detaliate sur le ingagiamento e le traffico de qualcunque sito web."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
