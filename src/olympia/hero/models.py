@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
 
-from olympia.amo.models import ModelBase
+from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.discovery.models import DiscoveryItem
 
 
@@ -158,7 +158,13 @@ class SecondaryHero(CTACheckMixin, ModelBase):
     description = models.CharField(max_length=100, blank=False)
     cta_url = models.CharField(max_length=255, blank=True)
     cta_text = models.CharField(max_length=20, blank=True)
-    enabled = models.BooleanField(db_index=True, null=False, default=False)
+    enabled = models.BooleanField(null=False, default=False)
+
+    class Meta(ModelBase.Meta):
+        indexes = [
+            LongNameIndex(fields=('enabled',),
+                          name='hero_secondaryhero_enabled_1a9ea03c'),
+        ]
 
     def __str__(self):
         return str(self.headline)

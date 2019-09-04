@@ -1727,11 +1727,15 @@ class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users_pending_confirmation'
-        unique_together = (('addon', 'user'),)
         indexes = [
             LongNameIndex(fields=('user',),
                           name='addons_users_pending_confirmation_user_id_'
                                '3c4c2421_fk_users_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'user'),
+                                    name='addons_users_pending_confirmation_'
+                                         'addon_id_user_id_38e3bb32_uniq'),
         ]
 
 

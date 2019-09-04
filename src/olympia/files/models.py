@@ -67,7 +67,7 @@ class File(OnChangeMixin, ModelBase):
     # The `binary_components` field is used to store the flag from
     # amo-validator when it finds "binary-components" in the chrome manifest
     # file, used for default to compatible.
-    binary_components = models.BooleanField(default=False, db_index=True)
+    binary_components = models.BooleanField(default=False)
     # Serial number of the certificate use for the signature.
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
@@ -86,6 +86,15 @@ class File(OnChangeMixin, ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
+        indexes = [
+            models.Index(fields=('created', 'version'),
+                         name='created_idx'),
+            models.Index(fields=('binary_components',), name='files_cedd2560'),
+            models.Index(fields=('datestatuschanged', 'version'),
+                         name='statuschanged_idx'),
+            models.Index(fields=('platform',), name='platform_id'),
+            models.Index(fields=('status',), name='status'),
+        ]
 
     def __str__(self):
         return str(self.id)
@@ -513,6 +522,13 @@ class FileUpload(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
+        indexes = [
+            models.Index(fields=('compat_with_app',),
+                         name='file_uploads_afe99c5e'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('uuid',), name='uuid'),
+        ]
 
     def __str__(self):
         return str(self.uuid.hex)
