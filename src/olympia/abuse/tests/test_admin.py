@@ -20,6 +20,7 @@ from olympia.amo.tests import (
 )
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
+from olympia.versions.models import VersionPreview
 
 
 class TestAbuse(TestCase):
@@ -530,6 +531,14 @@ class TestAbuse(TestCase):
         assert len(doc('.reports-and-ratings a[href]'))
         for link in doc('.reports-and-ratings a[href]'):
             assert link.attrib['href'].startswith(settings.EXTERNAL_SITE_URL)
+        return response
+
+    def test_detail_static_theme_report(self):
+        self.addon1.update(type=amo.ADDON_STATICTHEME)
+        VersionPreview.objects.create(version=self.addon1.current_version)
+        response = self.test_detail_addon_report()
+        doc = pq(response.content)
+        assert doc('#addon-theme-previews-wrapper img')
 
     def test_detail_guid_report(self):
         self.detail_url = reverse(
