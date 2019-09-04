@@ -1914,6 +1914,7 @@ class AppSupport(ModelBase):
                                     name='addon_id'),
         ]
 
+
 class DeniedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
