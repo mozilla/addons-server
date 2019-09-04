@@ -1588,9 +1588,6 @@ class MigratedLWT(OnChangeMixin, ModelBase):
         db_table = 'migrated_personas'
         indexes = [
             LongNameIndex(
-                fields=('lightweight_theme_id',),
-                name='migrated_personas_lightweight_theme_id_fk_addons_id'),
-            LongNameIndex(
                 fields=('static_theme',),
                 name='migrated_personas_static_theme_id_fk_addons_id'),
             LongNameIndex(
