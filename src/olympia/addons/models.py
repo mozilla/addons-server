@@ -1907,7 +1907,7 @@ class AppSupport(ModelBase):
         indexes = [
             models.Index(fields=('addon', 'app', 'min', 'max'),
                          name='minmax_idx'),
-            models.Index(fields=('app',) name='app_id'),
+            models.Index(fields=('app',), name='app_id'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('addon', 'app'),
