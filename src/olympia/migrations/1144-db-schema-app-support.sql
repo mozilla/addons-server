@@ -1,5 +1,5 @@
 ALTER TABLE `appsupport`
-    MODIFY `id` int(10) unsigned NOT NULL,
+    MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT
     MODIFY `created` datetime(6) NOT NULL,
     MODIFY `modified` datetime(6) NOT NULL,
     MODIFY `addon_id` int(10) unsigned NOT NULL,

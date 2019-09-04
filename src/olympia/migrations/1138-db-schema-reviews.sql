@@ -1,7 +1,7 @@
 ALTER TABLE `reviews`
     MODIFY `created` datetime(6) NOT NULL,
     MODIFY `modified` datetime(6) NOT NULL,
-    MODIFY `id` int(10) unsigned NOT NULL,
+    MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     MODIFY `version_id` int(10) unsigned DEFAULT NULL,
     MODIFY `user_id` int(11) NOT NULL,
     MODIFY `reply_to` int(10) unsigned DEFAULT NULL,

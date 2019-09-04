@@ -1,5 +1,5 @@
 ALTER TABLE `categories`
-    MODIFY `id` int(10) unsigned NOT NULL,
+    MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     MODIFY `addontype_id` int(10) unsigned NOT NULL,
     MODIFY `application_id` int(10) unsigned DEFAULT NULL,
     MODIFY `weight` int(11) NOT NULL,

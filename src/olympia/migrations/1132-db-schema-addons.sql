@@ -24,7 +24,11 @@ ALTER TABLE `addons`
     ADD CONSTRAINT `addons_supporturl_1101e07c_fk_translations_id` FOREIGN KEY (`supporturl`) REFERENCES `translations` (`id`),
     ADD CONSTRAINT `addons_supportemail_da41fe48_fk_translations_id` FOREIGN KEY (`supportemail`) REFERENCES `translations` (`id`),
     ADD CONSTRAINT `addons_current_version_5a2c8cb3_fk_versions_id` FOREIGN KEY (`current_version`) REFERENCES `versions` (`id`),
+    DROP KEY `supportemail`,
+    DROP KEY `supporturl`;
+ALTER TABLE `addons`
     ADD UNIQUE KEY `supportemail` (`supportemail`),
+    ADD UNIQUE KEY `supporturl` (`supporturl`),
     ADD UNIQUE KEY `homepage` (`homepage`),
     ADD UNIQUE KEY `description` (`description`),
     ADD UNIQUE KEY `summary` (`summary`),
