@@ -4340,6 +4340,7 @@ class TestReview(ReviewBase):
             reason=AbuseReport.REASONS.POLICY,
             addon_install_origin='https://example.com/',
             addon_install_method=AbuseReport.ADDON_INSTALL_METHODS.LINK,
+            addon_install_source=AbuseReport.ADDON_INSTALL_SOURCES.UNKNOWN,
             report_entry_point=AbuseReport.REPORT_ENTRY_POINTS.MENU,
         )
         created_at = format_datetime(report.created)
@@ -4358,7 +4359,9 @@ class TestReview(ReviewBase):
             'Public 42.0',
             'Firefox for Android fr_FR Løst OS 20040922',
             '1\xa0day ago',
-            'https://example.com/ Direct link',
+            'https://example.com/',
+            'Method: Direct link',
+            'Source: Unknown',
             'Hateful, violent, or illegal content',
             created_at,
             'anonymous [FR]',
@@ -4393,7 +4396,6 @@ class TestReview(ReviewBase):
             'Reporter',
             'regularuser التطب',
             'Firefox',
-            'None',
             'None',
             created_at,
             'anonymous [DE]',
