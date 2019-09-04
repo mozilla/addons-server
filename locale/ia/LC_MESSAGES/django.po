@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-03 23:53+0000\n"
+"PO-Revision-Date: 2019-09-04 00:17+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -259,7 +259,7 @@ msgid "Suggested Pages"
 msgstr "Paginas suggerite"
 
 msgid "Browse all extensions"
-msgstr "Naviga trans tote le extensiones"
+msgstr "Explora tote le extensiones"
 
 msgid "Browse all themes"
 msgstr "Naviga per tote le themas"
@@ -3419,7 +3419,7 @@ msgstr "Gerer contrasignos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu accessos sur plure apparatos con un sol contrasigno pro gerer illos tote."
+msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu accessos sur plure apparatos con un sol contrasigno pro gerer los tote."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3507,7 +3507,7 @@ msgstr "Controla tempore global {start_sub_heading}con {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr "Monstra le tempore currente per tote le mundo in le barra de stato de Firefox."
+msgstr "Monstra le hora currente de tote le mundo in le barra de stato de Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4112,7 +4112,7 @@ msgstr "Extrahe le ligamines {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Monstra instantaneemente tote le ligamines de un pagina web in un nove schedas."
+msgstr "Monstra instantaneemente tote le ligamines de un pagina web in nove schedas."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6302,7 +6302,7 @@ msgstr "Refusar le modificationes"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pote ser disfacite."
+msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pote esser disfacite."
 
 msgid "Delete Locale"
 msgstr "Deler le localisation"
