@@ -234,7 +234,17 @@ class CollectionAddon(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'addons_collections'
-        unique_together = (('addon', 'collection'),)
+        indexes = [
+            models.Index(fields=('collection', 'created'),
+                         name='created_idx'),
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('collection',), name='collection_id'),
+            models.Index(fields=('user',), name='user_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'collection'),
+                                    name='addon_id_2'),
+        ]
 
     @staticmethod
     def post_save(sender, instance, **kwargs):

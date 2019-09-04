@@ -844,8 +844,11 @@ class ApplicationsVersions(models.Model):
         on_delete=models.CASCADE)
 
     class Meta:
-        db_table = u'applications_versions'
-        unique_together = (("application", "version"),)
+        db_table = 'applications_versions'
+        constraints = [
+            models.UniqueConstraint(fields=('application', 'version'),
+                                    name='application_id'),
+        ]
 
     def get_application_display(self):
         return str(amo.APPS_ALL[self.application].pretty)
