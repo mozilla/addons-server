@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-28 05:46+0000\n"
+"PO-Revision-Date: 2019-08-30 17:07+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -497,7 +497,7 @@ msgstr "{0.name} ({1}) დამატებულია {addon}-ში."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) ამოღებულია {addon}-ის ავტორებიდან."
+msgstr "{0.name} ({1}) მოცილებულია {addon}-ის ავტორებიდან."
 
 msgid "Contributions for {addon}."
 msgstr "შემოწირულობა {addon}-სთვის."
@@ -2780,7 +2780,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "თქვენი დამატება შეტანილია ჩვენს გალერეაში და მომხმარებლები იღებენ ავტომატურ განახლებებს."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "თქვენი დამატება შეზღუდულია საიტის მმართველის მიერ და ამოღებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.com."
+msgstr "თქვენი დამატება შეზღუდულია საიტის მმართველის მიერ და მოცილებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "თქვენი დამატება არ გამოჩნდება ძიების შედეგებში, მის გვერდზე კი მიეთითება, რომ არაა ხელმისაწვდომი. ასეთ შემთხვევაში, წარდგენილი ახალი ვერსიები არ მიიღება."

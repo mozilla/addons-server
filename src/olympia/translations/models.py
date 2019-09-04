@@ -46,7 +46,9 @@ class Translation(ModelBase):
 
     class Meta:
         db_table = 'translations'
-        unique_together = ('id', 'locale')
+        constraints = [
+            models.UniqueConstraint(fields=('id', 'locale'), name='id'),
+        ]
 
     def __str__(self):
         return (

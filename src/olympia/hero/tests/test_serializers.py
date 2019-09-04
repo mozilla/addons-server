@@ -22,7 +22,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         assert data == {
             'featured_image': (
                 'http://testserver/static/img/hero/featured/foo.png'),
-            'description': '<blockquote>Déscription</blockquote>',
+            'description': 'Déscription',
             'gradient': {
                 'start': GRADIENT_START_COLOR[1],
                 'end': 'green-70'
@@ -42,7 +42,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         assert PrimaryHeroShelfSerializer(instance=hero).data == {
             'featured_image': (
                 'http://testserver/static/img/hero/featured/foo.png'),
-            'description': '<blockquote>Summary</blockquote>',
+            'description': 'Summary',
             'gradient': {
                 'start': GRADIENT_START_COLOR[1],
                 'end': 'green-70'

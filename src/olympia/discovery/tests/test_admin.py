@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from pyquery import PyQuery as pq
+
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.discovery.models import DiscoveryItem
@@ -143,6 +145,47 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_description == u'This description is as well!'
         assert item.recommendable is True
         assert PrimaryHero.objects.count() == 0  # check we didn't add one.
+
+    def test_translations_interpolation(self):
+        addon = addon_factory(
+            name='{bar}', users=[user_factory(display_name='{foo}')]
+        )
+        item = DiscoveryItem.objects.create(addon=addon)
+        self.detail_url = reverse(
+            'admin:discovery_discoveryitem_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        previews_content = doc('.field-previews').text()
+        assert '{bar}' in previews_content
+        assert '{foo}' in previews_content
+
+        item.update(custom_addon_name='{abc}')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        previews_content = doc('.field-previews').text()
+        assert '{bar}' in previews_content  # in description
+        assert '{foo}' in previews_content  # in heading
+        assert '{abc}' in previews_content  # in heading
+
+        item.update(custom_heading='{def}', custom_description='{ghi}')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        previews_content = doc('.field-previews').text()
+        assert '{bar}' not in previews_content  # overridden
+        assert '{foo}' not in previews_content  # overridden
+        assert '{abc}' not in previews_content  # overridden
+        assert '{def}' in previews_content
+        assert '{ghi}' in previews_content
 
     def test_can_change_addon_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')

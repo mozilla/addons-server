@@ -1605,13 +1605,21 @@ class AddonReviewerFlags(ModelBase):
 
 class MigratedLWT(OnChangeMixin, ModelBase):
     lightweight_theme_id = models.PositiveIntegerField()
-    getpersonas_id = models.PositiveIntegerField(db_index=True)
+    getpersonas_id = models.PositiveIntegerField()
     static_theme = models.ForeignKey(
         Addon, unique=True, related_name='migrated_from_lwt',
         on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'migrated_personas'
+        indexes = [
+            LongNameIndex(
+                fields=('static_theme',),
+                name='migrated_personas_static_theme_id_fk_addons_id'),
+            LongNameIndex(
+                fields=('getpersonas_id',),
+                name='migrated_personas_getpersonas_id'),
+        ]
 
 
 class AddonCategory(models.Model):
@@ -1882,6 +1890,12 @@ class Preview(BasePreview, ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
+        indexes = [
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('caption',), name='previews_ibfk_2'),
+            models.Index(fields=('addon', 'position', 'created'),
+                         name='addon_position_created_idx'),
+        ]
 
 
 dbsignals.pre_save.connect(save_signal, sender=Preview,

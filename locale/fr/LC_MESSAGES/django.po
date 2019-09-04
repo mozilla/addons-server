@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-24 10:01+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2019-09-03 19:36+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1712,7 +1712,7 @@ msgid "An author has been added to your add-on"
 msgstr "Un auteur a été ajouté à votre module"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Invitation de l'auteur pour {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Un courriel de confirmation a été envoyé à {email}"
@@ -2942,7 +2942,7 @@ msgid "End-User License Agreement"
 msgstr "Contrat de licence d’utilisateur final"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Veuillez noter qu'un CLUF n’est pas la même chose qu’une licence de code, telle que GPL ou MPL. Cela concerne uniquement les modules listés."
 
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
@@ -3408,7 +3408,7 @@ msgstr "Bloquez les publicités et protégez votre vie privée {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Blocage des publicités et protection de la vie privée. Une simple configuration vous permet de contrôler les publicités que vous voyez et les traces que vous laissez sur Internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3464,7 +3464,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Télécharger des vidéos facilement. Fonctionne avec YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope et des centaines d'autres sites de vidéos."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3480,7 +3480,7 @@ msgstr "Gérez vos mots de passe {start_sub_heading}avec {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Gestion des mots de passe simplifiée. Synchronisez tous vos identifiants sur vos appareils avec un mot de passe pour les gouverner tous."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3592,7 +3592,7 @@ msgstr "Personnalisez les mouvements de votre souris {start_sub_heading}avec {ad
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Personnaliser les gestes de la souris. Découvrez une nouvelle façon de naviguer avec plus de 50 gestes de souris ergonomiques."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
