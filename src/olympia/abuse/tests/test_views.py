@@ -301,7 +301,7 @@ class AddonAbuseViewSetTestBase(object):
         data = {
             'addon': '@mysteryaddon',
             'message': 'This is abusé!',
-            'addon_install_method': 'something unexpected',
+            'addon_install_method': 'something unexpected' * 15,
             'addon_install_source': 'something unexpected indeed',
         }
         response = self.client.post(self.url, data=data)
@@ -312,6 +312,27 @@ class AddonAbuseViewSetTestBase(object):
         self.check_report(
             report, u'[Addon] Abuse Report for %s' % data['addon'])
         assert not report.addon  # Not an add-on in database, that's ok.
+        assert report.addon_install_method == (
+            AbuseReport.ADDON_INSTALL_METHODS.OTHER)
+        assert report.addon_install_source == (
+            AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
+
+    def test_addon_unknown_install_source_and_method_not_string(self):
+        addon = addon_factory()
+        data = {
+            'addon': str(addon.pk),
+            'message': 'This is abusé!',
+            'addon_install_method': 42,
+            'addon_install_source': 53,
+        }
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 201, response.content
+
+        assert AbuseReport.objects.filter(guid=addon.guid).exists()
+        report = AbuseReport.objects.get(addon=addon)
+        self.check_report(
+            report, u'[Extension] Abuse Report for %s' % addon.name)
+        assert report.addon == addon
         assert report.addon_install_method == (
             AbuseReport.ADDON_INSTALL_METHODS.OTHER)
         assert report.addon_install_source == (
