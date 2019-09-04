@@ -119,7 +119,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         value = data[field_name]
         if value not in reversed_choices:
             log.warning('Unknown abuse report %s value submitted: %s',
-                        field_name, data[field_name])
+                        field_name, str(data[field_name])[:255])
             value = 'other'
         return value
 
