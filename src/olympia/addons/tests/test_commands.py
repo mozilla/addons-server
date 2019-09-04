@@ -1,3 +1,4 @@
+import random
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 
@@ -122,13 +123,13 @@ def test_process_addons_limit_addons():
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 
 
-@freeze_time('2019-04-01')
 @pytest.mark.django_db
-def test_process_addons_batch_size():
+@mock.patch.object(process_addons.Command, 'get_pks')
+def test_process_addons_batch_size(mock_get_pks):
     addon_ids = [
-        addon_factory(status=amo.STATUS_APPROVED).id for _ in range(101)
+        random.randrange(1000) for _ in range(101)
     ]
-    assert Addon.objects.count() == 101
+    mock_get_pks.return_value = addon_ids
 
     with count_subtask_calls(process_addons.recreate_previews) as calls:
         call_command('process_addons', task='recreate_previews')

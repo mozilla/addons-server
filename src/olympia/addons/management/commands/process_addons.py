@@ -213,6 +213,14 @@ class Command(BaseCommand):
             default=100,
             help='Split the add-ons into X size chunks. Default 100.')
 
+    def get_pks(self, manager, q_objects, distinct=False):
+        pks = (manager.filter(q_objects)
+                      .values_list('pk', flat=True)
+                      .order_by('id'))
+        if distinct:
+            pks = pks.distinct()
+        return pks
+
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -225,11 +233,8 @@ class Command(BaseCommand):
         if options.get('ids'):
             ids_list = options.get('ids').split(',')
             addon_manager = addon_manager.filter(id__in=ids_list)
-        pks = (addon_manager.filter(*task['qs'])
-                            .values_list('pk', flat=True)
-                            .order_by('id'))
-        if task.get('distinct'):
-            pks = pks.distinct()
+        pks = self.get_pks(
+            addon_manager, *task['qs'], distinct=task.get('distinct'))
         if options.get('limit'):
             pks = pks[:options.get('limit')]
         if 'pre' in task:
