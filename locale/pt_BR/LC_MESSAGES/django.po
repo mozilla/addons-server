@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-05 14:26+0000\n"
+"PO-Revision-Date: 2019-09-05 15:00+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4715,9 +4715,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloqueie anúncios e outras coisas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Não apenas bloqueie propaganda chata, mas proteja-se de código malicioso e rastreamento em anúncios."
+msgstr "Bloqueie propaganda e obtenha proteção aprimorada contra malware e rastreamento de anúncios."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4732,18 +4731,16 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Salve imagens facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Apanhe somente as imagens da aba atual."
+msgstr "Salve imagens facilmente — basta arrastá-las da aba atual."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Meça páginas web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Desenhe uma régua digital em qualquer página web para verificar altura, largura e alinhamento de elementos na página."
+msgstr "Meça páginas. Desenhe uma régua digital em qualquer página web para verificar altura, largura e alinhamento de elementos na página."
 
 #. editorial content for the discovery pane.
 #, fuzzy
