@@ -51,7 +51,10 @@ class ActivityLogToken(ModelBase):
 
     class Meta:
         db_table = 'log_activity_tokens'
-        unique_together = ('version', 'user')
+        constraints = [
+            models.UniqueConstraint(fields=('version', 'user'),
+                                    name='version_id'),
+        ]
 
     def is_expired(self):
         return self.use_count >= MAX_TOKEN_USE_COUNT
@@ -314,6 +317,10 @@ class ActivityLog(ModelBase):
     class Meta:
         db_table = 'log_activity'
         ordering = ('-created',)
+        indexes = [
+            models.Index(fields=('action',), name='log_activity_1bd4707b'),
+            models.Index(fields=('created',), name='created_idx'),
+        ]
 
     def f(self, *args, **kw):
         """Calls SafeFormatter.format and returns a Markup string."""

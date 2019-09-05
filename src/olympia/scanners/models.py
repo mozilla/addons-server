@@ -20,4 +20,8 @@ class ScannersResult(ModelBase):
 
     class Meta:
         db_table = 'scanners_results'
-        unique_together = ('upload', 'scanner', 'version',)
+        constraints = [
+            models.UniqueConstraint(fields=('upload', 'scanner', 'version'),
+                                    name='scanners_results_upload_id_scanner_'
+                                         'version_id_ad9eb8a6_uniq'),
+        ]
