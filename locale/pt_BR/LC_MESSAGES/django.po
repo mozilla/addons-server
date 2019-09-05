@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-02 21:08+0000\n"
+"PO-Revision-Date: 2019-09-05 14:26+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6452,9 +6452,8 @@ msgstr "Deseja realmente remover todas as traduções de <b>{0}</b>? Isso não p
 msgid "Delete Locale"
 msgstr "Excluir idioma"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Fechar histórico de revisões"
+msgstr "Histórico de restrições do usuário"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
