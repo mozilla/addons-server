@@ -352,20 +352,13 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string filename: The filename this comment is related to (optional).
     :<json int lineno: The line number this comment is related to (optional). Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
     :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
-    :>json int id: The id of the draft comment object.
-    :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
-    :>json string|null filename: The filename a specific comment is related to.
-    :>json int|null lineno: The line number a specific comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :>json object version: Object holding the :ref:`version <version-detail-object>`.
-    :>json int user.id: The id for an author.
-    :>json string user.name: The name for an author.
-    :>json string user.username: The username for an author.
-    :>json string|null user.url: The link to the profile page for an author.
-    :>json object|null canned_response: Object holding the :ref:`canned response <reviewers-canned-response-detail>` if set.
 
     :statuscode 201: New comment has been created.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
     :statuscode 403: The user doesn't have the permission to create a comment. This might happen (among other cases) when someone without permissions for unlisted versions tries to add a comment for an unlisted version (which shouldn't happen as the user doesn't see unlisted versions, but it's blocked here too).
+
+    **Response**
+        In case of successful creation, the response is a :ref:`draft comment object<reviewers-draft-comment-detail-object>`.
 
 .. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/(int:comment_id)/
 
@@ -383,16 +376,9 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string filename: The filename this comment is related to.
     :<json int lineno: The line number this comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
     :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
-    :>json int id: The id of the draft comment object.
-    :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
-    :>json string|null filename: The filename a specific comment is related to.
-    :>json int|null lineno: The line number a specific comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :>json object version: Object holding the :ref:`version <version-detail-object>`.
-    :>json int user.id: The id for an author.
-    :>json string user.name: The name for an author.
-    :>json string user.username: The username for an author.
-    :>json string|null user.url: The link to the profile page for an author.
-    :>json object|null canned_response: Object holding the :ref:`canned response <reviewers-canned-response-detail>` if set.
 
     :statuscode 200: The comment has been updated.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
+
+    **Response**
+        In case of successful creation, the response is a :ref:`draft comment object<reviewers-draft-comment-detail-object>`.
