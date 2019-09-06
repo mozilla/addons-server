@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2018-12-15 11:16+0000\n"
-"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
+"PO-Revision-Date: 2019-06-22 12:52+0000\n"
+"Last-Translator: 12345jitu67890 <12345jitu67890@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -24,10 +24,10 @@ msgid "There was a problem contacting the server."
 msgstr "সার্ভারের সঙ্গে যোগাযোগ করতে সমস্যা হচ্ছে।"
 
 msgid "Select a file..."
-msgstr "ফাইলটি নির্বাচন করুন..."
+msgstr "ফাইল নির্বাচন করুন..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml সহ শেষ হতে হবে"
+msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml দিয়ে শেষ হতে হবে"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "{0} তে ত্রুটি"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "দয়া করে লিনটিং জাতীয় কোনো সমস্যা থাকলে Github এ রিপোর্ট করুন"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
