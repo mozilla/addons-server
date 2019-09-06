@@ -22,10 +22,10 @@ exemptLabels:
 exemptProjects: true
 
 # Set to true to ignore issues in a milestone (defaults to false)
-exemptMilestones: false
+exemptMilestones: true
 
 # Set to true to ignore issues with an assignee (defaults to false)
-exemptAssignees: false
+exemptAssignees: true
 
 # Label to use when marking as stale
 staleLabel: "state: stale"
