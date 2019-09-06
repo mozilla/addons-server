@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-06 20:45+0000\n"
+"PO-Revision-Date: 2019-09-06 23:06+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3730,7 +3730,7 @@ msgstr "Lisez des fichiers ePub {start_sub_heading}avec {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Lisez les fichiers ePub directement dans Firefox et adaptez-les à vos préférences : augmentez la taille de la police, les dimensions de la page, etc."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3738,7 +3738,7 @@ msgstr "Faites évoluer votre expérience utilisateur YouTube {start_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Lisez toujours les vidéos YouTube dans les meilleures conditions : qualité la plus élevée, annotations désactivées, etc."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3746,7 +3746,7 @@ msgstr "Traquez les traqueurs {start_sub_heading}avec {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Traquez les traqueurs. D’un simple clic, affichez des informations sur les traqueurs qui vous espionnent."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3770,7 +3770,7 @@ msgstr "Naviguez en toute sécurité {start_sub_heading}avec {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Ajoutez une couche de sécurité chiffrée aux sites qui prennent en charge le protocole HTTPS. Naviguez en toute sécurité."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3814,11 +3814,11 @@ msgstr "Surfez de façon anonyme {start_sub_heading}avec {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Surfez anonymement. Naviguez sur le Web avec une identité d’emprunt — vous pouvez même faire croire que vous vous connectez à partir d’un autre pays."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Profitez des marque-pages visuels. Un ensemble de tuiles élégant et efficace vous permet d’accéder à vos sites préférés, aux onglets fermés récemment, etc."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3858,7 +3858,7 @@ msgstr "Empêchez les moteurs de recherche de vous pister {start_sub_heading}ave
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Bloquez les traqueurs publicitaires chaque fois que vous cliquez sur un résultat de recherche Google ou Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
