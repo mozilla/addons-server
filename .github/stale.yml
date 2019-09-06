@@ -16,6 +16,9 @@ exemptLabels:
   - "contrib: good first bug"
   - "contrib: welcome"
   - "component: security"
+  - "state: blocked"
+  - "state: blocked by upstream"
+  - "state: pull request ready"
   - "neverstale"
 
 # Set to true to ignore issues in a project (defaults to false)
