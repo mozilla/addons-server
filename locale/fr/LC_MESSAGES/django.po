@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-03 19:36+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2019-09-06 20:45+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3424,7 +3424,7 @@ msgstr "Empêchez Facebook de vous pister {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Empêchez le pistage par Facebook. Isolez votre identité Facebook dans un « conteneur » distinct pour empêcher Facebook de vous suivre sur le Web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3488,7 +3488,7 @@ msgstr "Bloquez les publicités {start_sub_heading}avec {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Bloqueur de publicités poids plume et très efficace, uBlock Origin applique des milliers de filtres de contenu tout en consommant très peu de mémoire."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3512,7 +3512,7 @@ msgstr "Profitez de marques-pages visuels {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Profitez des marque-pages visuels. Accédez à vos sites préférés à partir d’une disposition en mosaïque."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3576,7 +3576,7 @@ msgstr "Traduisez facilement {start_sub_heading}avec {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Traductions faciles. Sélectionnez du texte dans une page web (ou la page entière) et obtenez sa traduction instantanément."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3584,7 +3584,7 @@ msgstr "Profitez de connaissances de niveau universitaire {start_sub_heading}ave
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Les connaissances universitaires à portée de main. Accédez gratuitement à plus de 10 millions d’articles de recherche."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3630,7 +3630,7 @@ msgstr "Agrandissez les images {start_sub_heading}avec {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Hover over an image to magnify it."
-msgstr ""
+msgstr "Survolez une image pour l’agrandir."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3673,6 +3673,8 @@ msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
 msgstr ""
+"Enregistrez du texte pour plus tard. Arrêtez d’écrire la même chose encore et encore. Si vous réutilisez fréquemment les mêmes phrases dans votre travail ou vos autres communications, enregistrez-"
+"les dans Clippings et collez-les facilement selon vos besoins."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
