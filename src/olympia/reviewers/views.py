@@ -1442,6 +1442,7 @@ class ReviewAddonVersionDraftCommentViewSet(
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
+        context['version'] = self.get_version_object()
         # Patch in `version` and `user` as those are required by the serializer
         # and not provided by the API client as part of the POST data.
         self.request.data.update(self.get_extra_comment_data())

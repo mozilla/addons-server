@@ -35,7 +35,6 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, ReusedGUID)
-from olympia.addons.serializers import VersionSerializer
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -53,7 +52,8 @@ from olympia.reviewers.models import (
     Whiteboard)
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
-from olympia.reviewers.serializers import CannedResponseSerializer
+from olympia.reviewers.serializers import (
+    CannedResponseSerializer, AddonBrowseVersionSerializer)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -5757,6 +5757,8 @@ class TestDraftCommentViewSet(TestCase):
             name=u'My Addôn', slug='my-addon',
             file_kw={'filename': 'webextension_no_id.xpi'})
 
+        extract_version_to_git(self.addon.current_version.pk)
+
         self.version = self.addon.current_version
         self.version.refresh_from_db()
 
@@ -5798,7 +5800,7 @@ class TestDraftCommentViewSet(TestCase):
             'comment': 'Some really fancy comment',
             'canned_response': None,
             'version': json.loads(json.dumps(
-                VersionSerializer(self.version).data,
+                AddonBrowseVersionSerializer(self.version).data,
                 cls=amo.utils.AMOJSONEncoder)),
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
@@ -5997,7 +5999,7 @@ class TestDraftCommentViewSet(TestCase):
                 CannedResponseSerializer(canned_response).data,
                 cls=amo.utils.AMOJSONEncoder)),
             'version': json.loads(json.dumps(
-                VersionSerializer(self.version).data,
+                AddonBrowseVersionSerializer(self.version).data,
                 cls=amo.utils.AMOJSONEncoder)),
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
