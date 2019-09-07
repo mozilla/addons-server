@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-06 23:06+0000\n"
+"PO-Revision-Date: 2019-09-07 22:26+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3874,7 +3874,7 @@ msgstr "Ajoutez des images à vos résultats de recherche {start_sub_heading}ave
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Associez les vignettes des sites web à vos résultats de recherche."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3898,7 +3898,7 @@ msgstr "Personnalisez vos sites web favoris {start_sub_heading}avec {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Personnalisez l’apparence de n’importe quel site web. Changez les couleurs, le fond des pages, etc."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
