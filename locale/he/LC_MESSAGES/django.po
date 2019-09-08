@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 19:50+0000\n"
+"PO-Revision-Date: 2019-09-08 17:44+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3176,13 +3176,13 @@ msgid "Re-enable Version"
 msgstr "הפעלת גרסה זו מחדש"
 
 msgid "Review History"
-msgstr "היסטורית סקירה"
+msgstr "היסטוריית סקירה"
 
 # {0} is the add-on name
 # 84%
 # 100%
 msgid "Close Review History"
-msgstr "סגירת היסטורית סקירה"
+msgstr "סגירת היסטוריית סקירה"
 
 msgid "Not validated."
 msgstr "ללא בדיקת אימות."
@@ -4259,7 +4259,7 @@ msgstr "ניווט אוטומטי לגרסה מאובטחת של אתר, אם ק
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "מחיקת היסטורית הניווט שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "מחיקת היסטוריית הניווט שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -4498,7 +4498,7 @@ msgstr "לשכוח מההיסטוריה {start_sub_heading}עם {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr "מחיקה אוטומטית של היסטורית הדפדפן עבור אתרים נבחרים."
+msgstr "מחיקה אוטומטית של היסטוריית הדפדפן עבור אתרים נבחרים."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -6409,7 +6409,7 @@ msgstr "מחיקת שפה"
 # 84%
 # 100%
 msgid "User Restriction History"
-msgstr "היסטורית הגבלת משתמש"
+msgstr "היסטוריית הגבלת משתמש"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
