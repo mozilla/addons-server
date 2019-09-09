@@ -1,3 +1,9 @@
+/* There are some old entries in previews which have a caption that point to non-existant translations, need to NULL the captions them to add the missing constraint */
+UPDATE `previews`
+    LEFT JOIN `translations` ON `previews`.`caption` = `translations`.`id`
+    SET `previews`.`caption`=NULL
+    WHERE `translations`.`id` IS NULL AND `previews`.`caption` IS NOT NULL;
+
 ALTER TABLE `previews`
     DROP FOREIGN KEY `previews_ibfk_1`,
     DROP FOREIGN KEY `previews_ibfk_2`,
