@@ -1,6 +1,15 @@
 version: "2.3"
 
 services:
+  web:
+    depends_on:
+      - customs
+      - wat
+
   customs:
     build:
       context: ./private/addons-customs-scanner
+
+  wat:
+    build:
+      context: ./private/addons-wat

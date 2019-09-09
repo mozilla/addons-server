@@ -3,10 +3,10 @@ from unittest import mock
 from django.test.utils import override_settings
 
 from olympia.amo.tests import TestCase
-from olympia.constants.scanners import CUSTOMS
+from olympia.constants.scanners import CUSTOMS, WAT
 from olympia.files.tests.test_models import UploadTest
 from olympia.scanners.models import ScannersResult
-from olympia.scanners.tasks import run_scanner, run_customs
+from olympia.scanners.tasks import run_scanner, run_customs, run_wat
 
 
 class TestRunScanner(UploadTest, TestCase):
@@ -124,5 +124,23 @@ class TestRunCustoms(TestCase):
         assert run_scanner_mock.called
         run_scanner_mock.assert_called_once_with(upload_pk,
                                                  scanner=CUSTOMS,
+                                                 api_url=self.API_URL,
+                                                 api_key=self.API_KEY)
+
+
+class TestRunWat(TestCase):
+    API_URL = 'http://wat.example.org'
+    API_KEY = 'some-api-key'
+
+    @override_settings(WAT_API_URL=API_URL, WAT_API_KEY=API_KEY)
+    @mock.patch('olympia.scanners.tasks.run_scanner')
+    def test_calls_run_scanner_with_mock(self, run_scanner_mock):
+        upload_pk = 1234
+
+        run_wat(upload_pk)
+
+        assert run_scanner_mock.called
+        run_scanner_mock.assert_called_once_with(upload_pk,
+                                                 scanner=WAT,
                                                  api_url=self.API_URL,
                                                  api_key=self.API_KEY)
