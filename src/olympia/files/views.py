@@ -210,6 +210,10 @@ def serve(request, viewer, key):
 
 
 def serve_file_upload(request, uuid):
+    """
+    This is to serve file uploads using authenticated download URLs. This is
+    currently used by the "scanner" services.
+    """
     upload = shortcuts.get_object_or_404(FileUpload, uuid=uuid)
     access_token = request.GET.get('access_token')
 

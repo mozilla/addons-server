@@ -1,4 +1,3 @@
-import binascii
 import hashlib
 import json
 import os
@@ -16,6 +15,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
 
@@ -590,9 +590,15 @@ class FileUpload(ModelBase):
         self.save()
 
     def generate_access_token(self):
-        return binascii.hexlify(os.urandom(20)).decode()
+        """
+        Returns an access token used to secure download URLs.
+        """
+        return get_random_string(20)
 
     def get_authenticated_download_url(self):
+        """
+        Returns a download URL containing an access token bound to this file.
+        """
         absolute_url = urljoin(
             settings.EXTERNAL_SITE_URL,
             reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex})
