@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-05-31 01:30+0000\n"
 "Last-Translator: Taegeon Lee <ash153311@gmail.com>\n"
 "Language-Team: none\n"
@@ -437,6 +437,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "추가 정보 필요"
 
 msgid "Application Versions"
 msgstr "애플리케이션 버전"
@@ -1767,9 +1771,6 @@ msgstr "검토가 요청되었습니다."
 msgid "You must provide further details to proceed."
 msgstr ""
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
@@ -2755,6 +2756,13 @@ msgid ""
 "\">API documentation</a>."
 msgstr ""
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "API 자격 증명이 없습니다."
 
@@ -2763,6 +2771,10 @@ msgstr "취소"
 
 msgid "Revoke and regenerate credentials"
 msgstr "취소하고 자격 증명 다시 생성"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "새 자격 증명 생성"
 
 msgid "Generate new credentials"
 msgstr "새 자격 증명 생성"
@@ -5380,6 +5392,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "종류"
 
@@ -5937,6 +5952,13 @@ msgstr "코멘트 숨김"
 
 msgid "No reviews found for this period."
 msgstr "기간 내 제출된 검토 항목이 없습니다."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "판매처별"
 
 msgid "Dismiss this announcement"
 msgstr "알림 무시하기"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-03-21 16:17+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -428,6 +428,9 @@ msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
+
+msgid "Confirmation for developer API keys"
 msgstr ""
 
 msgid "Application Versions"
@@ -1771,9 +1774,6 @@ msgstr "Angen adolygiad."
 msgid "You must provide further details to proceed."
 msgstr ""
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
@@ -2751,6 +2751,13 @@ msgid ""
 "\">API documentation</a>."
 msgstr ""
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr ""
 
@@ -2758,6 +2765,9 @@ msgid "Revoke"
 msgstr ""
 
 msgid "Revoke and regenerate credentials"
+msgstr ""
+
+msgid "Confirm and generate new credentials"
 msgstr ""
 
 msgid "Generate new credentials"
@@ -5328,6 +5338,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr ""
 
@@ -5873,6 +5886,13 @@ msgstr ""
 
 msgid "No reviews found for this period."
 msgstr ""
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "Adnoddau"
 
 msgid "Dismiss this announcement"
 msgstr ""

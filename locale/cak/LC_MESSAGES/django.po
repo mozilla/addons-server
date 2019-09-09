@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -441,6 +441,10 @@ msgstr "K'o chi naya' jun ruwachinaq {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Man okel ta pk o slug \"%s\" - man k'o ta ri wachinäq."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Ch'aqa' chik etamab'äl chi rij ri taq Ruya'öl Q'ij Creative Commons"
 
 msgid "Application Versions"
 msgstr "Taq Ruwäch Chokoy"
@@ -1777,9 +1781,6 @@ msgstr "Xk'utüx nik'oxïk."
 msgid "You must provide further details to proceed."
 msgstr "K'o chi naya' ch'aqa' chik rub'anikil richin nisamajïx chik el."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik. Tajikib'a' chi ye'ak'ëx ronojel ri taq API winäq kik'in ri k'ak'a' taq wujil."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik."
 
@@ -2766,6 +2767,13 @@ msgstr ""
 "Richin ye'ab'än API taq k'utunïk, tataqa' jun <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> achi'el rub'anikil b'i'aj richin niya' q'ij. K'o chi nab'än jun JWT toq natäq jun k'utunïk, achi'el "
 "nitzijöx pa <a href=\"%(docs_url)s\">API wujinem</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Man k'o ta API awujil."
 
@@ -2774,6 +2782,10 @@ msgstr "Tiyuj"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Ketzolïx chuqa' keb'an taq wujil"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Keb'an k'ak'a' wujil"
 
 msgid "Generate new credentials"
 msgstr "Keb'an k'ak'a' wujil"
@@ -5444,6 +5456,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Ruwäch"
 
@@ -5968,6 +5983,13 @@ msgstr "Ke'ewäx Ka'i' Oxi' Na'oj"
 
 msgid "No reviews found for this period."
 msgstr "Majun nik'oxïk xe'ilitäj pa re q'ijul re'."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "chi Ruxe'el"
 
 msgid "Dismiss this announcement"
 msgstr "Titz'apïx re rutzijol re'"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -448,6 +448,10 @@ msgstr "Należy określić obiekt {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Nieprawidłowy pk lub ciąg słów „%s” — obiekt nie istnieje."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Więcej informacji o licencji Creative Commons"
 
 msgid "Application Versions"
 msgstr "Wersje programu"
@@ -1804,9 +1808,6 @@ msgstr "Poproszono o sprawdzenie."
 msgid "You must provide further details to proceed."
 msgstr "Aby kontynuować, należy podać dalsze szczegóły."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Twoje stare poświadczenia zostały odwołane i nie są już ważne. Zaktualizuj wszystkie klienty API przy użyciu nowych poświadczeń."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Twoje stare poświadczenia zostały odwołane i nie są już ważne."
 
@@ -2806,6 +2807,13 @@ msgstr ""
 "Aby tworzyć żądania API, wyślij <a href=\"%(jwt_url)s\">token internetowy JSON (JWT)</a> jako nagłówek autoryzacji. Nagłówek JWT będzie trzeba generować dla każdego żądania zgodnie z wyjaśnieniem w "
 "<a href=\"%(docs_url)s\">dokumentacji interfejsu API</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Nie masz poświadczeń API."
 
@@ -2814,6 +2822,10 @@ msgstr "Odwołaj"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Odwołaj i wygeneruj ponownie poświadczenia"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Wygeneruj nowe poświadczenia"
 
 msgid "Generate new credentials"
 msgstr "Wygeneruj nowe poświadczenia"
@@ -5507,6 +5519,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Typ"
 
@@ -6037,6 +6052,13 @@ msgstr "Ukryj komentarze"
 
 msgid "No reviews found for this period."
 msgstr "W tym okresie nie znaleziono żadnych zdarzeń."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "wg źródła"
 
 msgid "Dismiss this announcement"
 msgstr "Zamknij komunikat"

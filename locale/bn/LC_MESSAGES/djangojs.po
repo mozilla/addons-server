@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-06-22 12:52+0000\n"
 "Last-Translator: 12345jitu67890 <12345jitu67890@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-08-12 15:00+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -434,6 +434,10 @@ msgstr "{lang-code:value} のオブジェクトを提供してください。"
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "不正な pk もしくはスラグ「%s」です - オブジェクトが存在しません。"
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "開発者アカウントに関する詳しい情報"
 
 msgid "Application Versions"
 msgstr "アプリケーションのバージョン"
@@ -1757,9 +1761,6 @@ msgstr "審査が申請されました。"
 msgid "You must provide further details to proceed."
 msgstr "続けるにはさらに詳しい情報を提供してください。"
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "あなたの古い認証情報は取り消されたため、使用できなくなりました。新しい認証情報ですべての API クライアントを更新してください。"
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "あなたの古い認証情報は取り消されているため正当ではありません。"
 
@@ -2731,6 +2732,13 @@ msgstr ""
 "API リクエストを行うには、認証ヘッダーとして <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> を送信します。<a href=\"%(docs_url)s\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を"
 "生成する必要があります。"
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "あなたは API 認証情報を持っていません。"
 
@@ -2739,6 +2747,10 @@ msgstr "取り消す"
 
 msgid "Revoke and regenerate credentials"
 msgstr "認証情報を取り消して再生成"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "新しい認証情報を生成"
 
 msgid "Generate new credentials"
 msgstr "新しい認証情報を生成"
@@ -5382,6 +5394,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "種類"
 
@@ -5899,6 +5914,13 @@ msgstr "コメントを隠す"
 
 msgid "No reviews found for this period."
 msgstr "この期間に審査が行われたアドオンはありません。"
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "参照元別"
 
 msgid "Dismiss this announcement"
 msgstr "このお知らせを削除"
