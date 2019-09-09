@@ -3382,6 +3382,22 @@ class TestReview(ReviewBase):
         elem = doc('#enable_auto_approval')[0]
         assert 'hidden' in elem.getparent().attrib.get('class', '')
 
+        # Still present for dictionaries
+        self.addon.update(type=amo.ADDON_DICT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#disable_auto_approval')
+        assert doc('#enable_auto_approval')
+
+        # And search plugins
+        self.addon.update(type=amo.ADDON_SEARCH)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#disable_auto_approval')
+        assert doc('#enable_auto_approval')
+
         # Both of them should be absent on static themes, which are not
         # auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
