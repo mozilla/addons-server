@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-09 18:52+0000\n"
+"PO-Revision-Date: 2019-09-09 19:06+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -441,9 +441,8 @@ msgstr "Você precisa fornecer um objeto de {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk ou slug \"%s\" inválidos - objeto não existe."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Mais informações sobre Contas do Desenvolvedor"
+msgstr "Confirmação para chaves de API do desenvolvedor"
 
 msgid "Application Versions"
 msgstr "Versões da aplicação"
@@ -2810,7 +2809,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Clique no botão de confirmação abaixo para gerar credenciais de API para o usuário <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Um link de confirmação será enviado para seu endereço de e-mail. Após a confirmação, você encontrará suas chaves de API nesta página."
 
 msgid "You don't have any API credentials."
 msgstr "Você não tem nenhuma credencial de API."
@@ -2821,9 +2820,8 @@ msgstr "Revogar"
 msgid "Revoke and regenerate credentials"
 msgstr "Revogue e regenere as credenciais"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Gerar novas credenciais"
+msgstr "Confirmar e gerar novas credenciais"
 
 msgid "Generate new credentials"
 msgstr "Gerar novas credenciais"
@@ -4444,9 +4442,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pesquise o Firefox {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Acesse facilmente suas abas abertas, favoritos e histórico."
+msgstr "Pesquise no Firefox acessando facilmente suas abas abertas, favoritos e histórico."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4517,9 +4514,8 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Monitore a produtividade {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Crie estatísticas do tempo que gasta no computador, ou em aplicativos específicos como Trello, JIRA, Basecamp, Github e muitos outros."
+msgstr "Acompanhe a produtividade. Crie estatísticas do tempo que gasta no computador, ou em aplicativos específicos como Trello, JIRA, Basecamp, Github e muitos outros."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5471,7 +5467,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Adiado porque é a primeira versão listada"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Você não pode enviar um comentário se `canned_response` estiver definido."
 
 msgid "Type"
 msgstr "Tipo"
@@ -6009,9 +6005,8 @@ msgstr "Não foram encontradas análises nesse período."
 msgid "Method:"
 msgstr "Método:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "por Origem"
+msgstr "Origem:"
 
 msgid "Dismiss this announcement"
 msgstr "Descartar esse anúncio"
