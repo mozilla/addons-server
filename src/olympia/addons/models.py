@@ -1896,7 +1896,6 @@ class Preview(BasePreview, ModelBase):
         ordering = ('position', 'created')
         indexes = [
             models.Index(fields=('addon',), name='addon_id'),
-            models.Index(fields=('caption',), name='previews_ibfk_2'),
             models.Index(fields=('addon', 'position', 'created'),
                          name='addon_position_created_idx'),
         ]
