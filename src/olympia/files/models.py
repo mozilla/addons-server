@@ -8,10 +8,14 @@ import unicodedata
 import uuid
 import zipfile
 
+from urllib.parse import urljoin
+
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
 
@@ -517,6 +521,7 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey(
         'addons.Addon', null=True, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=40, null=True)
 
     objects = ManagerBase()
 
@@ -537,6 +542,8 @@ class FileUpload(ModelBase):
         if self.validation:
             if self.load_validation()['errors'] == 0:
                 self.valid = True
+        if not self.access_token:
+            self.access_token = self.generate_access_token()
         super(FileUpload, self).save(*args, **kw)
 
     def add_file(self, chunks, filename, size):
@@ -581,6 +588,22 @@ class FileUpload(ModelBase):
         self.name = filename
         self.hash = 'sha256:%s' % hash_func.hexdigest()
         self.save()
+
+    def generate_access_token(self):
+        """
+        Returns an access token used to secure download URLs.
+        """
+        return get_random_string(40)
+
+    def get_authenticated_download_url(self):
+        """
+        Returns a download URL containing an access token bound to this file.
+        """
+        absolute_url = urljoin(
+            settings.EXTERNAL_SITE_URL,
+            reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex})
+        )
+        return '{}?access_token={}'.format(absolute_url, self.access_token)
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):
