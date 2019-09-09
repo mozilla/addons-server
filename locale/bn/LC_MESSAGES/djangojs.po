@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-06-22 12:52+0000\n"
-"Last-Translator: 12345jitu67890 <12345jitu67890@gmail.com>\n"
+"PO-Revision-Date: 2018-07-21 17:47+0000\n"
+"Last-Translator: Rajan Dey <feb17rajandey@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -384,7 +384,7 @@ msgid "Total Amount Contributed"
 msgstr "মোট অবদানের সংখ্যা"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "গড় অবদান"
 
 msgid "Usage"
 msgstr "ব্যবহার"
@@ -428,15 +428,15 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "ডাউনলোডসমূহ, গত {0} দিন"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "ডাউনলোডসমূহ {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "দৈনিক ব্যবহারকারীগণ, গত {0} দিন"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
@@ -464,15 +464,15 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "{0} থেকে {1} পর্যন্ত ভাষা"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "অ্যাড-অন সংস্করণ, শেষ {0} দিনে"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "অ্যাড-অন সংস্করণ {0} থেকে {1} পর্যন্ত"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -488,7 +488,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "ডাইনলোডের সোর্স {০} থেকে {১}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -496,7 +496,7 @@ msgstr "শেষ {0} দিনে অবদান"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "{0} থেকে {1} পর্যন্ত অবদান"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
