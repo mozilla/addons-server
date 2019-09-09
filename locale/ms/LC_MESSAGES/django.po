@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -438,6 +438,10 @@ msgstr "Anda perlu beri objek kepada {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk atau slug tidak sah \"%s\" - objek tidak wujud."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Maklumat lanjut tentang lesen Creative Commons"
 
 msgid "Application Versions"
 msgstr "Versi Aplikasi"
@@ -1767,9 +1771,6 @@ msgstr "Perlu semakan."
 msgid "You must provide further details to proceed."
 msgstr "Anda perlu sediakan butiran lanjut untuk meneruskan."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Kelayakan anda yang lama telah dimansuhkan dan tidak lagi sah. Pastikan anda maklumkan semua pelanggan API dengan kelayakan anda yang baru."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Kelayakan anda yang lama telah dimansuhkan dan tidak lagi sah."
 
@@ -2746,6 +2747,13 @@ msgstr ""
 "Untuk membuat permintaan API, hantar <a href=\"%(jwt_url)s\">Token Web (JWT)</a> sebagai pengepala autoriti. Anda perlu menjana JWT bagi setiap permintaan seperti yang dijelaskan dalam <a href="
 "\"%(docs_url)s\">dokumentasi</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Anda tidak ada sebarang kelayakan API."
 
@@ -2754,6 +2762,10 @@ msgstr "Mansuh"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Mansuh dan jana semula kelayakan"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Jana semula kelayakan baru"
 
 msgid "Generate new credentials"
 msgstr "Jana semula kelayakan baru"
@@ -5429,6 +5441,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Jenis"
 
@@ -5949,6 +5964,13 @@ msgstr "Sorok Komen"
 
 msgid "No reviews found for this period."
 msgstr "Tiada semakan ditemukan dalam tempoh ini."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "mengikut Sumber"
 
 msgid "Dismiss this announcement"
 msgstr "Abaikan pengumuman ini"

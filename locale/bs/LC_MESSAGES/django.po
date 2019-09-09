@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -423,6 +423,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Više informacija o Creative Commons licencama"
 
 msgid "Application Versions"
 msgstr ""
@@ -1767,9 +1771,6 @@ msgstr ""
 msgid "You must provide further details to proceed."
 msgstr "Morate dati dodatne detalje da biste nastavili."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Vaši stariji akreditivi su poništeni i nisu više važeći. Obavezno ažurirajte sve API klijente novim akreditivima."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Vaši stariji akreditivi su poništeni i nisu više važeći."
 
@@ -2759,6 +2760,13 @@ msgstr ""
 "Da napravite API zahtjev, pošaljite <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> kao zaglavlje autorizacije. Trebat ćete generisati JWT za svaki zahtjev kao što je objašnjeno u <a href="
 "\"%(docs_url)s\">API dokumentaciji</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Nemate nikakvih API akreditiva."
 
@@ -2767,6 +2775,10 @@ msgstr ""
 
 msgid "Revoke and regenerate credentials"
 msgstr "Poništite i obnovite akreditive"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Generišite nove akreditive"
 
 msgid "Generate new credentials"
 msgstr "Generišite nove akreditive"
@@ -5511,6 +5523,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr ""
 
@@ -6037,6 +6052,13 @@ msgstr ""
 
 msgid "No reviews found for this period."
 msgstr ""
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "Izvorni kod"
 
 msgid "Dismiss this announcement"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -453,6 +453,10 @@ msgstr "You must provide an object of {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Invalid pk or slug \"%s\" - object does not exist."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "More information requested"
 
 msgid "Application Versions"
 msgstr "Application Versions"
@@ -1889,9 +1893,6 @@ msgstr "Review requested"
 msgid "You must provide further details to proceed."
 msgstr "Review requested.  You must provide further details to proceed."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Your old credentials were revoked and are no longer valid."
 
@@ -2960,6 +2961,13 @@ msgstr ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
 "\">API documentation</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+
 msgid "You don't have any API credentials."
 msgstr "You don't have any API credentials."
 
@@ -2968,6 +2976,10 @@ msgstr "Revoke"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Revoke and regenerate credentials"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Generate new credentials"
 
 msgid "Generate new credentials"
 msgstr "Generate new credentials"
@@ -5886,6 +5898,9 @@ msgstr "Is recommendable"
 msgid "Delayed because it's the first listed version"
 msgstr "Delayed because it's the first listed version"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "You can't submit a comment if `canned_response` is defined."
+
 msgid "Type"
 msgstr "Type"
 
@@ -6463,6 +6478,13 @@ msgstr "Hide Comments"
 
 msgid "No reviews found for this period."
 msgstr "No reviews found for this period."
+
+msgid "Method:"
+msgstr "Method:"
+
+#, fuzzy
+msgid "Source:"
+msgstr "by Source"
 
 msgid "Dismiss this announcement"
 msgstr "Dismiss this announcement"

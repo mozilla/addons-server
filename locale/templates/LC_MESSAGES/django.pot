@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: src/olympia/abuse/admin.py:42 src/olympia/users/admin.py:212
+#: src/olympia/abuse/admin.py:42 src/olympia/users/admin.py:213
 msgid "Addons"
 msgstr ""
 
@@ -33,37 +33,37 @@ msgstr ""
 msgid "creation date"
 msgstr ""
 
-#: src/olympia/abuse/admin.py:340
+#: src/olympia/abuse/admin.py:342
 msgid "User / Add-on"
 msgstr ""
 
-#: src/olympia/abuse/admin.py:371
+#: src/olympia/abuse/admin.py:374
 msgid "Distribution"
 msgstr ""
 
-#: src/olympia/abuse/admin.py:375
+#: src/olympia/abuse/admin.py:378
 msgid "Reporter's country"
 msgstr ""
 
-#: src/olympia/abuse/admin.py:379
+#: src/olympia/abuse/admin.py:382
 msgid "Message excerpt"
 msgstr ""
 
-#: src/olympia/abuse/admin.py:388
+#: src/olympia/abuse/admin.py:391
 #, python-format
 msgid "The %d selected reports have been marked as valid."
 msgstr ""
 
-#: src/olympia/abuse/admin.py:398
+#: src/olympia/abuse/admin.py:401
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
 msgstr ""
 
-#: src/olympia/abuse/admin.py:400
+#: src/olympia/abuse/admin.py:403
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:37
+#: src/olympia/abuse/serializers.py:42
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
@@ -143,11 +143,11 @@ msgstr ""
 msgid "Notification [%s] does not exist"
 msgstr ""
 
-#: src/olympia/activity/models.py:418
+#: src/olympia/activity/models.py:429
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py:421
+#: src/olympia/activity/models.py:432
 #: src/olympia/devhub/templates/devhub/versions/list.html:36
 msgid "Version {0}"
 msgstr ""
@@ -160,7 +160,7 @@ msgstr ""
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
-#: src/olympia/addons/admin.py:75 src/olympia/users/admin.py:216
+#: src/olympia/addons/admin.py:75 src/olympia/users/admin.py:217
 msgid "Ratings"
 msgstr ""
 
@@ -177,12 +177,12 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/models.py:1570 src/olympia/addons/models.py:1596
+#: src/olympia/addons/models.py:1656 src/olympia/addons/models.py:1717
 #: src/olympia/constants/base.py:67
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:1823
+#: src/olympia/addons/models.py:1972
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -266,7 +266,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:77
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:40
-#: src/olympia/devhub/views.py:1817
+#: src/olympia/devhub/views.py:1843
 msgid "Manage API Keys"
 msgstr ""
 
@@ -637,6 +637,10 @@ msgstr ""
 #: src/olympia/api/fields.py:308
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
+
+#: src/olympia/api/models.py:141
+msgid "Confirmation for developer API keys"
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html:3
@@ -1197,76 +1201,76 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#: src/olympia/constants/base.py:109
+#: src/olympia/constants/base.py:110
 msgid "Extension"
 msgstr ""
 
-#: src/olympia/constants/base.py:110
+#: src/olympia/constants/base.py:111
 msgid "Complete Theme"
 msgstr ""
 
-#: src/olympia/constants/base.py:111
+#: src/olympia/constants/base.py:112
 msgid "Dictionary"
 msgstr ""
 
-#: src/olympia/constants/base.py:112
+#: src/olympia/constants/base.py:113
 msgid "Search Engine"
 msgstr ""
 
-#: src/olympia/constants/base.py:113
+#: src/olympia/constants/base.py:114
 msgid "Language Pack (Application)"
 msgstr ""
 
-#: src/olympia/constants/base.py:114
+#: src/olympia/constants/base.py:115
 msgid "Language Pack (Add-on)"
 msgstr ""
 
-#: src/olympia/constants/base.py:115
+#: src/olympia/constants/base.py:116
 msgid "Plugin"
 msgstr ""
 
-#: src/olympia/constants/base.py:116
+#: src/olympia/constants/base.py:117
 msgid "Deprecated LWT"
 msgstr ""
 
-#: src/olympia/constants/base.py:117
+#: src/olympia/constants/base.py:118
 msgid "Theme (Static)"
 msgstr ""
 
-#: src/olympia/constants/base.py:122
+#: src/olympia/constants/base.py:123
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:10
 msgid "Extensions"
 msgstr ""
 
-#: src/olympia/constants/base.py:123
+#: src/olympia/constants/base.py:124
 msgid "Complete Themes"
 msgstr ""
 
-#: src/olympia/constants/base.py:124
+#: src/olympia/constants/base.py:125
 msgid "Dictionaries"
 msgstr ""
 
-#: src/olympia/constants/base.py:125 src/olympia/constants/categories.py:140
+#: src/olympia/constants/base.py:126 src/olympia/constants/categories.py:140
 msgid "Search Tools"
 msgstr ""
 
-#: src/olympia/constants/base.py:126
+#: src/olympia/constants/base.py:127
 msgid "Language Packs (Application)"
 msgstr ""
 
-#: src/olympia/constants/base.py:127
+#: src/olympia/constants/base.py:128
 msgid "Language Packs (Add-on)"
 msgstr ""
 
-#: src/olympia/constants/base.py:128
+#: src/olympia/constants/base.py:129
 msgid "Plugins"
 msgstr ""
 
-#: src/olympia/constants/base.py:129
+#: src/olympia/constants/base.py:130
 msgid "Deprecated LWTs"
 msgstr ""
 
-#: src/olympia/constants/base.py:130
+#: src/olympia/constants/base.py:131
 msgid "Themes (Static)"
 msgstr ""
 
@@ -2303,23 +2307,23 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:166
+#: src/olympia/devhub/tasks.py:169
 msgid "Invalid or corrupt add-on file."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:377
+#: src/olympia/devhub/tasks.py:402
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:382
+#: src/olympia/devhub/tasks.py:407
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:697
+#: src/olympia/devhub/tasks.py:722
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -2563,21 +2567,15 @@ msgstr ""
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1794
-msgid ""
-"Your old credentials were revoked and are no longer valid. Be sure to update "
-"all API clients with the new credentials."
-msgstr ""
-
-#: src/olympia/devhub/views.py:1811
+#: src/olympia/devhub/views.py:1810
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1825
+#: src/olympia/devhub/views.py:1856
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1836
+#: src/olympia/devhub/views.py:1867
 msgid "API key revoked"
 msgstr ""
 
@@ -4025,7 +4023,7 @@ msgstr ""
 msgid "API Credentials"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/api/key.html:19
+#: src/olympia/devhub/templates/devhub/api/key.html:20
 #, python-format
 msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
@@ -4038,15 +4036,15 @@ msgid ""
 "including Mozilla contributors."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/api/key.html:31
+#: src/olympia/devhub/templates/devhub/api/key.html:30
 msgid "JWT issuer"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/api/key.html:35
+#: src/olympia/devhub/templates/devhub/api/key.html:34
 msgid "JWT secret"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/api/key.html:40
+#: src/olympia/devhub/templates/devhub/api/key.html:39
 #, python-format
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a>"
@@ -4055,18 +4053,35 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:50
+#, python-format
+msgid ""
+"Please click the confirm button below to generate API credentials for user "
+"<strong>%(name)s</strong>."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/api/key.html:57
+msgid ""
+"A confirmation link will be sent to your email address. After confirmation "
+"you will find your API keys on this page."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/api/key.html:64
 msgid "You don't have any API credentials."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/api/key.html:60
+#: src/olympia/devhub/templates/devhub/api/key.html:74
 msgid "Revoke"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/api/key.html:63
+#: src/olympia/devhub/templates/devhub/api/key.html:77
 msgid "Revoke and regenerate credentials"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/api/key.html:67
+#: src/olympia/devhub/templates/devhub/api/key.html:82
+msgid "Confirm and generate new credentials"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/api/key.html:87
 msgid "Generate new credentials"
 msgstr ""
 
@@ -7481,19 +7496,19 @@ msgstr ""
 msgid "IP Address"
 msgstr ""
 
-#: src/olympia/ratings/models.py:312
+#: src/olympia/ratings/models.py:324
 msgid "Spam or otherwise non-review content"
 msgstr ""
 
-#: src/olympia/ratings/models.py:313
+#: src/olympia/ratings/models.py:325
 msgid "Inappropriate language/dialog"
 msgstr ""
 
-#: src/olympia/ratings/models.py:314
+#: src/olympia/ratings/models.py:326
 msgid "Misplaced bug report or support request"
 msgstr ""
 
-#: src/olympia/ratings/models.py:315
+#: src/olympia/ratings/models.py:327
 msgid "Other (please specify)"
 msgstr ""
 
@@ -7704,24 +7719,28 @@ msgstr ""
 msgid "WebExtension"
 msgstr ""
 
-#: src/olympia/reviewers/models.py:979
+#: src/olympia/reviewers/models.py:989
 msgid "Risk breakdown not available."
 msgstr ""
 
-#: src/olympia/reviewers/models.py:1064
+#: src/olympia/reviewers/models.py:1074
 msgid "Is locked by a reviewer"
 msgstr ""
 
-#: src/olympia/reviewers/models.py:1065
+#: src/olympia/reviewers/models.py:1075
 msgid "Has auto-approval disabled flag set"
 msgstr ""
 
-#: src/olympia/reviewers/models.py:1067
+#: src/olympia/reviewers/models.py:1077
 msgid "Is recommendable"
 msgstr ""
 
-#: src/olympia/reviewers/models.py:1068
+#: src/olympia/reviewers/models.py:1078
 msgid "Delayed because it's the first listed version"
+msgstr ""
+
+#: src/olympia/reviewers/serializers.py:381
+msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
 #: src/olympia/reviewers/utils.py:51
@@ -8463,6 +8482,14 @@ msgstr ""
 msgid "No reviews found for this period."
 msgstr ""
 
+#: src/olympia/reviewers/templates/reviewers/includes/abuse_reports_list.html:44
+msgid "Method:"
+msgstr ""
+
+#: src/olympia/reviewers/templates/reviewers/includes/abuse_reports_list.html:47
+msgid "Source:"
+msgstr ""
+
 #: src/olympia/reviewers/templates/reviewers/includes/daily-message.html:6
 msgid "Dismiss this announcement"
 msgstr ""
@@ -8537,7 +8564,7 @@ msgid "Rejected or Unreviewed"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:44
-#: src/olympia/versions/models.py:444
+#: src/olympia/versions/models.py:468
 #, python-format
 msgid "[status:%s]"
 msgstr ""
@@ -8598,53 +8625,53 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-#: src/olympia/signing/views.py:52
+#: src/olympia/signing/views.py:51
 msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
-#: src/olympia/signing/views.py:71
+#: src/olympia/signing/views.py:70
 msgid "You do not own this addon."
 msgstr ""
 
-#: src/olympia/signing/views.py:155
+#: src/olympia/signing/views.py:153
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
-#: src/olympia/signing/views.py:162
+#: src/olympia/signing/views.py:160
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:171
+#: src/olympia/signing/views.py:169
 msgid "Version does not match the manifest file."
 msgstr ""
 
-#: src/olympia/signing/views.py:177
+#: src/olympia/signing/views.py:175
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:189
+#: src/olympia/signing/views.py:187
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
-#: src/olympia/signing/views.py:197
+#: src/olympia/signing/views.py:195
 msgid ""
 "Please specify your Add-on GUID in the manifest if it's longer than 64 "
 "characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:204
+#: src/olympia/signing/views.py:202
 msgid "Invalid GUID in URL"
 msgstr ""
 
-#: src/olympia/signing/views.py:231
+#: src/olympia/signing/views.py:229
 msgid ""
 "You cannot add a listed version to this addon via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:262
+#: src/olympia/signing/views.py:260
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
@@ -9066,34 +9093,34 @@ msgstr ""
 msgid "User Restriction History"
 msgstr ""
 
-#: src/olympia/users/admin.py:149
+#: src/olympia/users/admin.py:150
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
-#: src/olympia/users/admin.py:167
+#: src/olympia/users/admin.py:168
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
-#: src/olympia/users/admin.py:180
+#: src/olympia/users/admin.py:181
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
-#: src/olympia/users/admin.py:181
+#: src/olympia/users/admin.py:182
 msgid "Ban selected users"
 msgstr ""
 
-#: src/olympia/users/admin.py:185
+#: src/olympia/users/admin.py:186
 msgid "Profile Photo"
 msgstr ""
 
-#: src/olympia/users/admin.py:207
+#: src/olympia/users/admin.py:208
 msgid "Collections"
 msgstr ""
 
-#: src/olympia/users/admin.py:220
+#: src/olympia/users/admin.py:221
 msgid "Activity Logs"
 msgstr ""
 
@@ -9111,33 +9138,33 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#: src/olympia/users/models.py:396
+#: src/olympia/users/models.py:402
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:578
+#: src/olympia/users/models.py:584
 msgid "My Mobile Add-ons"
 msgstr ""
 
-#: src/olympia/users/models.py:584
+#: src/olympia/users/models.py:590
 msgid "My Favorite Add-ons"
 msgstr ""
 
-#: src/olympia/users/models.py:668
+#: src/olympia/users/models.py:677
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:671
+#: src/olympia/users/models.py:680
 msgid ""
 "Multiple add-ons violating our policies have been submitted from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:728
+#: src/olympia/users/models.py:737
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:730
+#: src/olympia/users/models.py:739
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style "
 "wildcards to match other patterns. E.g \"@*.mail.com\"\n"
@@ -9145,18 +9172,18 @@ msgid ""
 " in the pattern."
 msgstr ""
 
-#: src/olympia/users/models.py:737
+#: src/olympia/users/models.py:746
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr ""
 
-#: src/olympia/users/models.py:778
+#: src/olympia/users/models.py:787
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:879
+#: src/olympia/users/models.py:888
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -9215,7 +9242,7 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/versions/models.py:806
+#: src/olympia/versions/models.py:868
 msgid "{app} {min} and later"
 msgstr ""
 
