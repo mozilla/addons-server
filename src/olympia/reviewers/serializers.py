@@ -361,7 +361,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
     version = SplitField(
         serializers.PrimaryKeyRelatedField(
             queryset=Version.unfiltered.all()),
-        VersionSerializer())
+        AddonBrowseVersionSerializer())
     canned_response = SplitField(
         serializers.PrimaryKeyRelatedField(
             queryset=CannedResponse.objects.all(),
@@ -374,6 +374,12 @@ class DraftCommentSerializer(serializers.ModelSerializer):
             'id', 'filename', 'lineno', 'comment',
             'version', 'user', 'canned_response'
         )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the instance for `AddonBrowseVersionSerializer` which requires
+        # on `instance` being set correctly.
+        self.fields['version'].output.instance = self.context['version']
 
     def validate(self, data):
         if data.get('comment') and data.get('canned_response'):
