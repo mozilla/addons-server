@@ -1034,7 +1034,7 @@ class TestFileUpload(UploadTest):
 
     def test_generate_access_token(self):
         upload = FileUpload()
-        assert len(upload.generate_access_token()) == 40
+        assert len(upload.generate_access_token()) == 20
 
     def test_get_authenticated_download_url(self):
         access_token = 'some-access-token'
