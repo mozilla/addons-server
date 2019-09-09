@@ -593,7 +593,7 @@ class FileUpload(ModelBase):
         """
         Returns an access token used to secure download URLs.
         """
-        return get_random_string(20)
+        return get_random_string(40)
 
     def get_authenticated_download_url(self):
         """
