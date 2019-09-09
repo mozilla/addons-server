@@ -488,7 +488,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "ডাইনলোডের সোর্স {০} থেকে {১}"
+msgstr "ডাইনলোডের সোর্স {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
