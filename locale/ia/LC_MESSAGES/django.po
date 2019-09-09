@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-09 19:51+0000\n"
+"PO-Revision-Date: 2019-09-09 20:15+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -430,9 +430,8 @@ msgstr "Tu debe fornir un objecto de {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "\"%s\" non es un pk o supernomine valide - le objecto non existe."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Altere informationes sur Creative Commons licenses"
+msgstr "Confirmation pro le claves API de disveloppator"
 
 msgid "Application Versions"
 msgstr "Versiones del application"
@@ -2763,9 +2762,8 @@ msgstr "Revocar"
 msgid "Revoke and regenerate credentials"
 msgstr "Revocar e regenerar credentiales"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Generar nove credentiales"
+msgstr "Confirma e genera nove credentiales"
 
 msgid "Generate new credentials"
 msgstr "Generar nove credentiales"
@@ -5881,9 +5879,8 @@ msgstr "Nulle revisiones trovate pro iste periodo."
 msgid "Method:"
 msgstr "Methodo:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "per fonte"
+msgstr "Fonte:"
 
 msgid "Dismiss this announcement"
 msgstr "Dimitte iste annuncio"
