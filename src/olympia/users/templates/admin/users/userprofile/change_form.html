@@ -14,6 +14,12 @@
                  <button formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
                          type="submit">{% trans "Ban" %}</button>
              {% endif %}
+             {% if has_users_edit_permission %}
+                 <button formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
+                         type="submit">{% trans "Ban" %}</button>
+                 <button formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
+                         type="submit">{% trans "Reset API Key" %}</button>
+             {% endif %}
              <button formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
                      type="submit">{% trans "Delete picture" %}</button>
         </div>
