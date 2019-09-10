@@ -52,8 +52,10 @@ class TestRunScanner(UploadTest, TestCase):
         assert requests_mock.called
         requests_mock.assert_called_with(
             url=self.API_URL,
-            files={'xpi': mock.ANY},
-            headers={'Authorization': 'Bearer {}'.format(self.API_KEY)},
+            json={
+                'api_key': self.API_KEY,
+                'download_url': upload.get_authenticated_download_url(),
+            },
             timeout=123
         )
         result = ScannersResult.objects.all()[0]

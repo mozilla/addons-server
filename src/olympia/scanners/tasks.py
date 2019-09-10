@@ -33,22 +33,27 @@ def run_scanner(upload_pk, scanner, api_url, api_key):
 
     try:
         if not os.path.exists(upload.path):
-            raise ValueError('Path "{}" is not a file or directory or does '
-                             'not exist.' .format(upload.path))
+            raise ValueError('File "{}" does not exist.' .format(upload.path))
 
         result = ScannersResult()
         result.upload = upload
         result.scanner = scanner
 
         with statsd.timer('devhub.{}'.format(scanner_name)):
-            headers = {'Authorization': 'Bearer {}'.format(api_key)}
-            with open(upload.path, 'rb') as xpi:
-                response = requests.post(url=api_url,
-                                         files={'xpi': xpi},
-                                         headers=headers,
-                                         timeout=settings.SCANNER_TIMEOUT)
+            json_payload = {
+                'api_key': api_key,
+                'download_url': upload.get_authenticated_download_url(),
+            }
+            response = requests.post(url=api_url,
+                                     json=json_payload,
+                                     timeout=settings.SCANNER_TIMEOUT)
 
-        results = response.json()
+        try:
+            results = response.json()
+        except ValueError:
+            # Log the response body when JSON decoding has failed.
+            raise ValueError(response.text)
+
         if 'error' in results:
             raise ValueError(results)
 

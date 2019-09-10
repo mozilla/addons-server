@@ -9,7 +9,17 @@ services:
   customs:
     build:
       context: ./private/addons-customs-scanner
+    environment:
+      - ALLOWED_ORIGIN=http://olympia.test
+      - PORT=10101
+    links:
+      - "nginx:olympia.test"
 
   wat:
     build:
       context: ./private/addons-wat
+    environment:
+      - ALLOWED_ORIGIN=http://olympia.test
+      - PORT=10102
+    links:
+      - "nginx:olympia.test"
