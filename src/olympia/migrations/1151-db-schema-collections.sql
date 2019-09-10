@@ -15,7 +15,7 @@ ALTER TABLE `collections`
     DROP FOREIGN KEY `collections_ibfk_7`,  /* `author_id` */
     ADD CONSTRAINT `collections_author_id_c9323760_fk_users_id` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`),
     ADD CONSTRAINT `collections_description_64108f9e_fk_translations_id` FOREIGN KEY (`description`) REFERENCES `translations` (`id`),
-    ADD CONSTRAINT `collections_name_c898e2c4_fk_translations_id` FOREIGN KEY (`name`) REFERENCES `translations` (`id`);*/
+    ADD CONSTRAINT `collections_name_c898e2c4_fk_translations_id` FOREIGN KEY (`name`) REFERENCES `translations` (`id`);
 
 ALTER TABLE `collections`
     ADD UNIQUE KEY `name` (`name`),
