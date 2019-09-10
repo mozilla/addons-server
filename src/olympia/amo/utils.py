@@ -746,7 +746,9 @@ class HttpResponseSendFile(HttpResponse):
     def __init__(self, request, path, content=None, status=None,
                  content_type='application/octet-stream', etag=None):
         self.request = request
-        self.path = path
+        # We normalize the path because if it contains dots, nginx will flag
+        # the URI as unsafe when XSENDFILE is used.
+        self.path = os.path.normpath(path)
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
         header_path = self.path

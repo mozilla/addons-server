@@ -59,9 +59,6 @@ ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968
 
-# Set to True if we're allowed to use X-SENDFILE.
-XSENDFILE = False
-
 ALLOW_SELF_REVIEWS = True
 
 AES_KEYS = {
