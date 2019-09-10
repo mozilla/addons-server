@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2018-11-02 15:00+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -428,6 +428,10 @@ msgstr ""
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
+
 msgid "Application Versions"
 msgstr "অ্যাপ্লিকেশন সংস্করণ"
 
@@ -724,9 +728,8 @@ msgstr ""
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
 
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "মন্তব্য করুন {addon} {version}।"
+msgstr ""
 
 msgid "Developer Reply"
 msgstr "ডেভেলপারের উত্তর"
@@ -1807,9 +1810,6 @@ msgstr "পর্যালোচনার জন্য অনুরোধ কর
 msgid "You must provide further details to proceed."
 msgstr ""
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
@@ -2783,6 +2783,13 @@ msgid ""
 "\">API documentation</a>."
 msgstr ""
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr ""
 
@@ -2790,6 +2797,9 @@ msgid "Revoke"
 msgstr "বাতিল"
 
 msgid "Revoke and regenerate credentials"
+msgstr ""
+
+msgid "Confirm and generate new credentials"
 msgstr ""
 
 msgid "Generate new credentials"
@@ -5387,6 +5397,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "ধরণ"
 
@@ -5947,6 +5960,13 @@ msgstr "মন্তব্য গোপন করুন"
 
 msgid "No reviews found for this period."
 msgstr ""
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "সোর্স দ্বারা"
 
 msgid "Dismiss this announcement"
 msgstr ""

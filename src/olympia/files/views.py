@@ -1,6 +1,8 @@
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django import http, shortcuts
 from django.db.transaction import non_atomic_requests
+from django.utils.crypto import constant_time_compare
 from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -14,11 +16,12 @@ from olympia.access import acl
 from olympia.lib.cache import Message, Token
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import render, urlparams
+from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
 from olympia.files.file_viewer import extract_file
 
+from .models import FileUpload
 from . import forms
 
 
@@ -204,3 +207,24 @@ def serve(request, viewer, key):
         fobj, as_attachment=True, content_type=obj['mimetype'])
 
     return response
+
+
+def serve_file_upload(request, uuid):
+    """
+    This is to serve file uploads using authenticated download URLs. This is
+    currently used by the "scanner" services.
+    """
+    upload = shortcuts.get_object_or_404(FileUpload, uuid=uuid)
+    access_token = request.GET.get('access_token')
+
+    if not access_token:
+        log.error('Denying access to %s, no token.' % upload.id)
+        raise PermissionDenied
+
+    if not constant_time_compare(access_token, upload.access_token):
+        log.error('Denying access to %s, token invalid.' % upload.id)
+        raise PermissionDenied
+
+    return HttpResponseSendFile(request,
+                                upload.path,
+                                content_type='application/octet-stream')

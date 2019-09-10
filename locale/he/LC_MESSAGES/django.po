@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-17 19:50+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 15:33+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -430,6 +430,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "מידע נוסף על חשבונות מפתחים"
 
 msgid "Application Versions"
 msgstr "גרסאות יישום"
@@ -1774,9 +1778,6 @@ msgstr "נשלחה בקשה לסקירה."
 msgid "You must provide further details to proceed."
 msgstr "עליך לספק פרטים נוספים כדי להמשיך."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "פרטי הגישה הקודמים שלך נשללו ואינם תקפים עוד. נא לעדכן את כל לקוחות ה־API בפרטי הגישה החדשים."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "פרטי הזיהוי הישנים שלך נשללו ואינם תקפים עוד."
 
@@ -2740,6 +2741,13 @@ msgid ""
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr "כדי להגיש בקשות API, יש לשלוח <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> בתור כותרת האימות. יהיה עליך לייצר JWT לכל בקשה כפי שמסובר ב<a href=\"%(docs_url)s\">תיעוד ה־API</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "אין לך פרטי גישה כלשהם ל־API."
 
@@ -2748,6 +2756,10 @@ msgstr "שלילה"
 
 msgid "Revoke and regenerate credentials"
 msgstr "שלילה ויצירת פרטי גישה חדשים"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "יצירת פרטי גישה חדשים"
 
 msgid "Generate new credentials"
 msgstr "יצירת פרטי גישה חדשים"
@@ -3176,13 +3188,13 @@ msgid "Re-enable Version"
 msgstr "הפעלת גרסה זו מחדש"
 
 msgid "Review History"
-msgstr "היסטורית סקירה"
+msgstr "היסטוריית סקירה"
 
 # {0} is the add-on name
 # 84%
 # 100%
 msgid "Close Review History"
-msgstr "סגירת היסטורית סקירה"
+msgstr "סגירת היסטוריית סקירה"
 
 msgid "Not validated."
 msgstr "ללא בדיקת אימות."
@@ -4259,7 +4271,7 @@ msgstr "ניווט אוטומטי לגרסה מאובטחת של אתר, אם ק
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "מחיקת היסטורית הניווט שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "מחיקת היסטוריית הניווט שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -4498,7 +4510,7 @@ msgstr "לשכוח מההיסטוריה {start_sub_heading}עם {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr "מחיקה אוטומטית של היסטורית הדפדפן עבור אתרים נבחרים."
+msgstr "מחיקה אוטומטית של היסטוריית הדפדפן עבור אתרים נבחרים."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5417,6 +5429,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "סוג"
 
@@ -5962,6 +5977,12 @@ msgstr "הסתרת תגובות"
 msgid "No reviews found for this period."
 msgstr "לא נמצאו סקירות בטווח זה."
 
+msgid "Method:"
+msgstr ""
+
+msgid "Source:"
+msgstr "מקור:"
+
 msgid "Dismiss this announcement"
 msgstr "התעלמות מהכרזה זו"
 
@@ -6409,7 +6430,7 @@ msgstr "מחיקת שפה"
 # 84%
 # 100%
 msgid "User Restriction History"
-msgstr "היסטורית הגבלת משתמש"
+msgstr "היסטוריית הגבלת משתמש"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."

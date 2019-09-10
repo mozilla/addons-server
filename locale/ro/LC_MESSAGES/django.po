@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-01 00:08+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-10 04:32+0000\n"
+"Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -399,10 +399,10 @@ msgid "Another Body"
 msgstr "Alt corp"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr "Antet de autorizare nevalid. Nu s-au furnizat acreditări."
+msgstr "Antet de autorizare nevalid. Nu s-au furnizat date de autentificare."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr "Antet de autorizare nevalid. Șirul de acreditări nu trebuie să conțină spații."
+msgstr "Antet de autorizare nevalid. Șirul datelor de autentificare nu trebuie să conțină spații."
 
 msgid "Signature has expired."
 msgstr "Semnătura a expirat."
@@ -434,6 +434,10 @@ msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk sau slug nevalid(ă) „%s” - obiectul nu există."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Mai multe informații despre conturile de dezvoltatori"
 
 msgid "Application Versions"
 msgstr "Versiunile aplicației"
@@ -1623,7 +1627,7 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr "Am găsit în fișierul trimis cheia API pentru dezvoltatori aparținând unui coautor. Pentru a-ți proteja suplimentul, cheia va fi revocată."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr "Notificare de securitate Mozilla: Acreditările tale AMO API au fost revocate"
+msgstr "Notificare de securitate Mozilla: Datele tale de autentificare AMO API au fost revocate"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -1785,11 +1789,8 @@ msgstr "Recenzie solicitată."
 msgid "You must provide further details to proceed."
 msgstr "Trebuie să furnizezi detalii suplimentare pentru a continua."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Dacă acreditările tale anterioare au fost revocate sau nu mai sunt valabile. Asigură-te că actualizezi toți clienții API cu acreditările noi."
-
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "Acreditările tale anterioare au fost revocate și nu mai sunt valabile."
+msgstr "Datele tale anterioare de autentificare au fost revocate și nu mai sunt valide."
 
 msgid "New API key created"
 msgstr "Cheie API nouă creată"
@@ -2757,7 +2758,7 @@ msgid "Back"
 msgstr "Înapoi"
 
 msgid "API Credentials"
-msgstr "Acreditări API"
+msgstr "Date de autentificare API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2780,6 +2781,13 @@ msgstr ""
 "Pentru cereri API, trimite un <a href=\"%(jwt_url)s\">jeton web JSON (JWT)</a> ca antet al autorizației. Va trebui să generezi un JWT pentru fiecare cerere, conform explicațiilor din <a "
 "href=\"%(docs_url)s\">documentația API</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Dă clic pe butonul de confirmare de mai jos pentru a genera date de autentificare API pentru utilizatorul <strong>%(name)s</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Ți se va trimite pe adresa de e-mail un link de confirmare. După confirmare, îți vei găsi cheile API pe această pagină."
+
 msgid "You don't have any API credentials."
 msgstr "Nu ai nicio acreditare API."
 
@@ -2787,10 +2795,13 @@ msgid "Revoke"
 msgstr "Revocă"
 
 msgid "Revoke and regenerate credentials"
-msgstr "Revocă și regenerează acreditările"
+msgstr "Revocă și regenerează datele de autentificare"
+
+msgid "Confirm and generate new credentials"
+msgstr "Confirmă și generează date de autentificare noi"
 
 msgid "Generate new credentials"
-msgstr "Generează acreditări noi"
+msgstr "Generează date de autentificare noi"
 
 msgid "Invisible"
 msgstr "Invizibil"
@@ -5442,6 +5453,9 @@ msgstr "Se recomandă"
 msgid "Delayed because it's the first listed version"
 msgstr "Întârziere din cauză că este prima versiune listată"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "Nu poți trimite un comentariu dacă este definit`canned_response`."
+
 msgid "Type"
 msgstr "Tip"
 
@@ -5975,6 +5989,13 @@ msgstr "Ascunde comentariile"
 msgid "No reviews found for this period."
 msgstr "Nu s-a găsit nicio recenzie pentru această perioadă."
 
+msgid "Method:"
+msgstr "Metodă:"
+
+#, fuzzy
+msgid "Source:"
+msgstr "după sursă"
+
 msgid "Dismiss this announcement"
 msgstr "Respinge acest anunț"
 
@@ -6495,6 +6516,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Introdu un domeniu de e-mail complet, de unică folosință, care să fie blocat. Nu se acceptă caractere generice: Dacă ai nevoie de ele sau dacă trebuie să corelezi toată adresa de e-mail și nu numai "
+"partea de domeniu, folosește în schimb „Restricții utilizator de e-mail”."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

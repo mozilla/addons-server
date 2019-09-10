@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-28 19:24+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 16:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -428,6 +428,9 @@ msgstr "Du måste ge ett objekt med {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Ogiltig pk eller slugg \"%s\" - objektet finns inte."
+
+msgid "Confirmation for developer API keys"
+msgstr "Bekräftelse för API-nycklar för utvecklare"
 
 msgid "Application Versions"
 msgstr "Applikationsversioner"
@@ -1750,9 +1753,6 @@ msgstr "Granskning begärd."
 msgid "You must provide further details to proceed."
 msgstr "Du måste ange ytterligare detaljer för att gå vidare."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Dina gamla autentiseringsuppgifter har återkallats och är inte längre giltiga. Var noga med att uppdatera alla API-klienter med nya uppgifter."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Dina gamla inloggningsuppgifter har återkallats och är inte längre giltiga."
 
@@ -2750,6 +2750,13 @@ msgstr ""
 "För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a "
 "href=\"%(docs_url)s\">API-dokumentationen</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Klicka på bekräfta-knappen nedan för att generera API-referenser för användaren <strong>%(name)s</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "En bekräftelselänk skickas till din e-postadress. Efter bekräftelse hittar du dina API-nycklar på den här sidan."
+
 msgid "You don't have any API credentials."
 msgstr "Du har inte några API-inloggningsuppgifter."
 
@@ -2758,6 +2765,9 @@ msgstr "Återkalla"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Återkalla och regenerera autentiseringsuppgifter"
+
+msgid "Confirm and generate new credentials"
+msgstr "Bekräfta och generera nya referenser"
 
 msgid "Generate new credentials"
 msgstr "Generera nya autentiseringsuppgifter"
@@ -5342,6 +5352,9 @@ msgstr "Kan rekommenderas"
 msgid "Delayed because it's the first listed version"
 msgstr "Försenad eftersom det är den första listade versionen"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "Du kan inte skicka en kommentar om `canned_response` är definierat."
+
 msgid "Type"
 msgstr "Typ"
 
@@ -5861,6 +5874,12 @@ msgstr "Dölj kommentarer"
 
 msgid "No reviews found for this period."
 msgstr "Inga granskningar funna för denna period."
+
+msgid "Method:"
+msgstr "Metod:"
+
+msgid "Source:"
+msgstr "Källa:"
 
 msgid "Dismiss this announcement"
 msgstr "Avfärda detta meddelande"

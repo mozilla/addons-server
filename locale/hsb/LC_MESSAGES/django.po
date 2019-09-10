@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 17:30+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 15:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -428,6 +428,9 @@ msgstr "Dyrbiće objekt za {lang-code:value} podać."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Njepłaćiwy pk abo njepłaćiwe adresowe mjeno „%s“ - objekt njeeksistuje."
+
+msgid "Confirmation for developer API keys"
+msgstr "Wobkrućenje za wuwiwarske API-kluče"
 
 msgid "Application Versions"
 msgstr "Nałoženske wersije"
@@ -1763,9 +1766,6 @@ msgstr "Přepruwowanje je so požadało."
 msgid "You must provide further details to proceed."
 msgstr "Dyrbiće dalše podrobnosće podać, zo byšće pokročował."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Waše stare daty su so wotwołali a hižo płaćiwe njejsu. Zaktualizujće na kóždy pad wšě API-klienty z nowymi datami."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Waše stare přizjewjenske daty su so wotwołali a hižo płaćiwe njejsu."
 
@@ -2757,6 +2757,13 @@ msgstr ""
 "Zo byšće API-naprašowanja stajił, pósćelće <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> jako awtorizowansku hłowu. Dyrbiće JWT za kóžde naprašowanje tworić, kaž so to w<a href=\"%(docs_url)s"
 "\">API-dokumentaciji</a> wujasnja."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Prošu klikńće na wobkrućenske tłóčatko deleka, zo byšće přizjewjenske informacije API za wužiwarja <strong>%(name)s</strong> wutworił."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Wobkrućenski wotkaz so na wašu e-mejlowu adresu pósćele. Po wobkrućenju namakaće swoje API-kluče na tutej stronje."
+
 msgid "You don't have any API credentials."
 msgstr "Nimaće přizjewjenske daty API."
 
@@ -2765,6 +2772,9 @@ msgstr "Wotwołać"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Daty wotwołać a znowa tworić"
+
+msgid "Confirm and generate new credentials"
+msgstr "Nowe přizjewjenske informacije wobkrućić a wutworić"
 
 msgid "Generate new credentials"
 msgstr "Nowe daty tworić"
@@ -5357,6 +5367,9 @@ msgstr "Je doporučujomne"
 msgid "Delayed because it's the first listed version"
 msgstr "Zadźerženy, dokelž je prěnja podata wersija"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "NJemóžeće komentar wotpósłać, jeli ‚canned_response‘ je definowany."
+
 msgid "Type"
 msgstr "Typ"
 
@@ -5885,6 +5898,12 @@ msgstr "Komentary schować"
 
 msgid "No reviews found for this period."
 msgstr "Žane pohódnoćenja za tutón čas namakane."
+
+msgid "Method:"
+msgstr "Metoda:"
+
+msgid "Source:"
+msgstr "Žórło:"
 
 msgid "Dismiss this announcement"
 msgstr "Tute připowědźenje zaćisnyć"

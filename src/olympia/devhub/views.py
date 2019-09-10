@@ -38,7 +38,7 @@ from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import MenuItem, escape_all, render, send_mail
-from olympia.api.models import APIKey
+from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
@@ -1787,35 +1787,66 @@ def api_key(request):
     except APIKey.DoesNotExist:
         credentials = None
 
-    if request.method == 'POST' and request.POST.get('action') == 'generate':
-        if credentials:
-            log.info('JWT key was made inactive: {}'.format(credentials))
+    try:
+        confirmation = APIKeyConfirmation.objects.get(
+            user=request.user)
+    except APIKeyConfirmation.DoesNotExist:
+        confirmation = None
+
+    if request.method == 'POST':
+        has_confirmed_or_is_confirming = confirmation and (
+            confirmation.confirmed_once or confirmation.is_token_valid(
+                request.POST.get('confirmation_token'))
+        )
+
+        # Revoking credentials happens regardless of action, if there were
+        # credentials in the first place.
+        if (credentials and
+                request.POST.get('action') in ('revoke', 'generate')):
             credentials.update(is_active=None)
-            msg = _(
-                'Your old credentials were revoked and are no longer valid. '
-                'Be sure to update all API clients with the new credentials.')
+            log.info('revoking JWT key for user: {}, {}'
+                     .format(request.user.id, credentials))
+            send_key_revoked_email(request.user.email, credentials.key)
+            msg = ugettext(
+                'Your old credentials were revoked and are no longer valid.')
             messages.success(request, msg)
 
-        new_credentials = APIKey.new_jwt_credentials(request.user)
-        log.info('new JWT key created: {}'.format(new_credentials))
+        # If trying to generate with no confirmation instance, we don't
+        # generate the keys immediately but instead send you an email to
+        # confirm the generation of the key. This should only happen once per
+        # user, unless the instance is deleted by admins to reset the process
+        # for that user.
+        if confirmation is None and request.POST.get('action') == 'generate':
+            confirmation = APIKeyConfirmation.objects.create(
+                user=request.user, token=APIKeyConfirmation.generate_token())
+            confirmation.send_confirmation_email()
+        # If you have a confirmation instance, you need to either have it
+        # confirmed once already or have the valid token proving you received
+        # the email.
+        elif (has_confirmed_or_is_confirming and
+              request.POST.get('action') == 'generate'):
+            confirmation.update(confirmed_once=True)
+            new_credentials = APIKey.new_jwt_credentials(request.user)
+            log.info('new JWT key created: {}'.format(new_credentials))
+            send_key_change_email(request.user.email, new_credentials.key)
+        else:
+            # If we land here, either confirmation token is invalid, or action
+            # is invalid, or state is outdated (like user trying to revoke but
+            # there are already no credentials).
+            # We can just pass and let the redirect happen.
+            pass
 
-        send_key_change_email(request.user.email, new_credentials.key)
-
+        # In any case, redirect after POST.
         return redirect(reverse('devhub.api_key'))
 
-    if request.method == 'POST' and request.POST.get('action') == 'revoke':
-        credentials.update(is_active=None)
-        log.info('revoking JWT key for user: {}, {}'
-                 .format(request.user.id, credentials))
-        send_key_revoked_email(request.user.email, credentials.key)
-        msg = ugettext(
-            'Your old credentials were revoked and are no longer valid.')
-        messages.success(request, msg)
-        return redirect(reverse('devhub.api_key'))
+    context_data = {
+        'title': ugettext('Manage API Keys'),
+        'credentials': credentials,
+        'confirmation': confirmation,
+        'token': request.GET.get('token')  # For confirmation step.
+    }
 
-    return render(request, 'devhub/api/key.html',
-                  {'title': ugettext('Manage API Keys'),
-                   'credentials': credentials})
+    return render(request, 'devhub/api/key.html', context_data)
 
 
 def send_key_change_email(to_email, key):

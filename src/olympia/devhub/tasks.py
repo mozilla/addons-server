@@ -43,7 +43,7 @@ from olympia.files.utils import (
 from olympia.files.tasks import repack_fileupload
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
-from olympia.scanners.tasks import run_customs
+from olympia.scanners.tasks import run_customs, run_wat
 from olympia.yara.tasks import run_yara
 
 
@@ -277,7 +277,7 @@ def handle_upload_validation_result(
         # run as a task, it's a simple function call.
         #
         # TODO: use `run_yara` as a task in the submission chord once it is
-        # possible.
+        # possible. See: https://github.com/mozilla/addons-server/issues/12216
         run_yara(upload.pk)
 
     if waffle.switch_is_active('enable-customs') and results['errors'] == 0:
@@ -288,8 +288,19 @@ def handle_upload_validation_result(
         # run as a task, it's a simple function call.
         #
         # TODO: use `run_customs` as a task in the submission chord once it is
-        # possible.
+        # possible. See: https://github.com/mozilla/addons-server/issues/12217
         run_customs(upload.pk)
+
+    if waffle.switch_is_active('enable-wat') and results['errors'] == 0:
+        # Run wat. This cannot be asynchronous because we have no way to know
+        # whether the task will complete before we attach a `Version` to it
+        # later in the submission process... Because we cannot use `chord`
+        # reliably right now (requires Celery 4.2+), this task is actually not
+        # run as a task, it's a simple function call.
+        #
+        # TODO: use `run_wat` as a task in the submission chord once it is
+        # possible. See: https://github.com/mozilla/addons-server/issues/12224
+        run_wat(upload.pk)
 
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no search plugin

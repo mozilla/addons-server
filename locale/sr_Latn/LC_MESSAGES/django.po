@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -514,6 +514,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Zahtevane dodatne informacije"
 
 msgid "Application Versions"
 msgstr "Verzije aplikacije"
@@ -2100,11 +2104,6 @@ msgstr "Zahtevana recenzija"
 msgid "You must provide further details to proceed."
 msgstr ""
 
-msgid ""
-"Your old credentials were revoked and are no longer valid. Be sure to update "
-"all API clients with the new credentials."
-msgstr ""
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
@@ -3283,6 +3282,17 @@ msgid ""
 "request as explained in the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
+#, python-format
+msgid ""
+"Please click the confirm button below to generate API credentials for user "
+"<strong>%(name)s</strong>."
+msgstr ""
+
+msgid ""
+"A confirmation link will be sent to your email address. After confirmation "
+"you will find your API keys on this page."
+msgstr ""
+
 #, fuzzy
 msgid "You don't have any API credentials."
 msgstr "Nemam nalog."
@@ -3291,6 +3301,9 @@ msgid "Revoke"
 msgstr ""
 
 msgid "Revoke and regenerate credentials"
+msgstr ""
+
+msgid "Confirm and generate new credentials"
 msgstr ""
 
 msgid "Generate new credentials"
@@ -6446,6 +6459,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Tip"
 
@@ -7067,6 +7083,13 @@ msgstr "Sakrij komentare"
 
 msgid "No reviews found for this period."
 msgstr "Nije pronađena ni jedna recenzija za ovaj period."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "po izvoru"
 
 msgid "Dismiss this announcement"
 msgstr "Odbaci ovu najavu"

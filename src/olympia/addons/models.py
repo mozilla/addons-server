@@ -32,8 +32,8 @@ from olympia.addons.utils import (
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
-    BasePreview, BaseQuerySet, ManagerBase, ModelBase, OnChangeMixin,
-    SaveUpdateMixin, SlugField, manual_order)
+    BasePreview, BaseQuerySet, LongNameIndex, ManagerBase, ModelBase,
+    OnChangeMixin, SaveUpdateMixin, SlugField, manual_order)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -336,7 +336,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     type = models.PositiveIntegerField(
         choices=amo.ADDON_TYPE.items(), db_column='addontype_id',
-        default=amo.ADDON_EXTENSION)
+        default=amo.ADDON_EXTENSION, db_index=True)
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES.items(), db_index=True, default=amo.STATUS_NULL)
     icon_type = models.CharField(max_length=25, blank=True,
@@ -421,13 +421,39 @@ class Addon(OnChangeMixin, ModelBase):
         # include_deleted to False by default, so filtering is enabled by
         # default.
         base_manager_name = 'unfiltered'
-        index_together = [
-            ['weekly_downloads', 'type'],
-            ['created', 'type'],
-            ['bayesian_rating', 'type'],
-            ['last_updated', 'type'],
-            ['average_daily_users', 'type'],
-            ['type', 'status', 'disabled_by_user'],
+        indexes = [
+            models.Index(fields=('bayesian_rating',), name='bayesianrating'),
+            models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('_current_version',), name='current_version'),
+            models.Index(fields=('disabled_by_user',), name='inactive'),
+            models.Index(fields=('hotness',), name='hotness_idx'),
+            models.Index(fields=('last_updated',), name='last_updated'),
+            models.Index(fields=('modified',), name='modified_idx'),
+            models.Index(fields=('status',), name='status'),
+            models.Index(fields=('target_locale',), name='target_locale'),
+            models.Index(fields=('type',), name='addontype_id'),
+            models.Index(fields=('weekly_downloads',),
+                         name='weeklydownloads_idx'),
+
+            models.Index(fields=('average_daily_users', 'type'),
+                         name='adus_type_idx'),
+            models.Index(fields=('bayesian_rating', 'type'),
+                         name='rating_type_idx'),
+            models.Index(fields=('created', 'type'),
+                         name='created_type_idx'),
+            models.Index(fields=('last_updated', 'type'),
+                         name='last_updated_type_idx'),
+            models.Index(fields=('modified', 'type'),
+                         name='modified_type_idx'),
+            models.Index(fields=('type', 'status', 'disabled_by_user'),
+                         name='type_status_inactive_idx'),
+            models.Index(fields=('weekly_downloads', 'type'),
+                         name='downloads_type_idx'),
+            models.Index(fields=('type', 'status', 'disabled_by_user',
+                                 '_current_version'),
+                         name='visible_idx'),
+            models.Index(fields=('name', 'status', 'type'),
+                         name='name_2'),
         ]
 
     def __str__(self):
@@ -1579,13 +1605,21 @@ class AddonReviewerFlags(ModelBase):
 
 class MigratedLWT(OnChangeMixin, ModelBase):
     lightweight_theme_id = models.PositiveIntegerField()
-    getpersonas_id = models.PositiveIntegerField(db_index=True)
+    getpersonas_id = models.PositiveIntegerField()
     static_theme = models.ForeignKey(
         Addon, unique=True, related_name='migrated_from_lwt',
         on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'migrated_personas'
+        indexes = [
+            LongNameIndex(
+                fields=('static_theme',),
+                name='migrated_personas_static_theme_id_fk_addons_id'),
+            LongNameIndex(
+                fields=('getpersonas_id',),
+                name='migrated_personas_getpersonas_id'),
+        ]
 
 
 class AddonCategory(models.Model):
@@ -1597,7 +1631,16 @@ class AddonCategory(models.Model):
 
     class Meta:
         db_table = 'addons_categories'
-        unique_together = ('addon', 'category')
+        indexes = [
+            models.Index(fields=('category', 'addon'),
+                         name='category_addon_idx'),
+            models.Index(fields=('feature', 'addon'),
+                         name='feature_addon_idx'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'category'),
+                                    name='addon_id'),
+        ]
 
     @classmethod
     def creatured_random(cls, category, lang):
@@ -1619,7 +1662,20 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
-        unique_together = (('addon', 'user'),)
+        indexes = [
+            models.Index(fields=('user',),
+                         name='user_id'),
+            models.Index(fields=('listed',),
+                         name='listed'),
+            models.Index(fields=('addon', 'user', 'listed'),
+                         name='addon_user_listed_idx'),
+            models.Index(fields=('addon', 'listed'),
+                         name='addon_listed_idx'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'user'),
+                                    name='addon_id'),
+        ]
 
 
 @AddonUser.on_change
@@ -1671,7 +1727,16 @@ class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users_pending_confirmation'
-        unique_together = (('addon', 'user'),)
+        indexes = [
+            LongNameIndex(fields=('user',),
+                          name='addons_users_pending_confirmation_user_id_'
+                               '3c4c2421_fk_users_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'user'),
+                                    name='addons_users_pending_confirmation_'
+                                         'addon_id_user_id_38e3bb32_uniq'),
+        ]
 
 
 class AddonApprovalsCounter(ModelBase):
@@ -1766,6 +1831,11 @@ class Category(OnChangeMixin, ModelBase):
     class Meta:
         db_table = 'categories'
         verbose_name_plural = 'Categories'
+        indexes = [
+            models.Index(fields=('type',), name='addontype_id'),
+            models.Index(fields=('application',), name='application_id'),
+            models.Index(fields=('slug',), name='categories_slug'),
+        ]
 
     @property
     def name(self):
@@ -1824,6 +1894,11 @@ class Preview(BasePreview, ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
+        indexes = [
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon', 'position', 'created'),
+                         name='addon_position_created_idx'),
+        ]
 
 
 dbsignals.pre_save.connect(save_signal, sender=Preview,
@@ -1846,7 +1921,15 @@ class AppSupport(ModelBase):
 
     class Meta:
         db_table = 'appsupport'
-        unique_together = ('addon', 'app')
+        indexes = [
+            models.Index(fields=('addon', 'app', 'min', 'max'),
+                         name='minmax_idx'),
+            models.Index(fields=('app',), name='app_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'app'),
+                                    name='addon_id'),
+        ]
 
 
 class DeniedSlug(ModelBase):

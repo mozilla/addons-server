@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-08-09 08:44+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -435,6 +435,10 @@ msgstr "Ви повинні вказати об'єкт для {lang-code:value}.
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Недійсний pk або slug \"%s\" - об'єкт не існує."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Докладніше про обліковий запис розробника"
 
 msgid "Application Versions"
 msgstr "Версії програми"
@@ -1775,9 +1779,6 @@ msgstr "Запитано перевірку."
 msgid "You must provide further details to proceed."
 msgstr "Для продовження ви повинні надати наступну інформацію."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Ваші старі облікові дані були відкликані й більше недійсні. Переконайтеся, що всі клієнти API мають нові облікові дані."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Ваші старі облікові дані були відкликані і більше не дійсні."
 
@@ -2773,6 +2774,13 @@ msgstr ""
 "Для здійснення запитів API, надішліть <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> в якості заголовку авторизації. Вам потрібно згенерувати JWT для кожного запиту, як описано у <a href="
 "\"%(docs_url)s\">API документації</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "У вас немає жодних облікових даних API."
 
@@ -2781,6 +2789,10 @@ msgstr "Відкликати"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Відкликати й генерувати облікові дані"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Генерувати нові облікові дані"
 
 msgid "Generate new credentials"
 msgstr "Генерувати нові облікові дані"
@@ -5438,6 +5450,9 @@ msgstr "Рекомендований"
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Тип"
 
@@ -5961,6 +5976,13 @@ msgstr "Приховати коментарі"
 
 msgid "No reviews found for this period."
 msgstr "Не знайдено відгуків для цього періоду."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "за джерелом"
 
 msgid "Dismiss this announcement"
 msgstr "Ігнорувати це оголошення"

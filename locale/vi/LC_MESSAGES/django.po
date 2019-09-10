@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-07-04 13:27+0000\n"
 "Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -50,9 +50,8 @@ msgstr "%d báo cáo được chọn đã được đánh dấu là hợp lệ."
 msgid "The %d selected reports have been marked as suspicious."
 msgstr "%d báo cáo được chọn đã được đánh dấu là đáng ngờ."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Yêu cầu hỗ trợ hoặc báo cáo lỗi bị đặt nhầm"
+msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
@@ -431,6 +430,10 @@ msgstr "Bạn phải cung cấp một đối tượng của {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Thông tin thêm về tài khoản nhà phát triển"
+
 msgid "Application Versions"
 msgstr "Phiên bản Ứng dụng"
 
@@ -773,23 +776,20 @@ msgstr "Yêu cầu thông tin đã bị xóa bởi nhà phát triển trên {add
 msgid "Information request removed"
 msgstr "Yêu cầu thông tin đã bị xóa"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr ""
 
 msgid "Admin add-on-review requested"
 msgstr "Yêu cầu đánh giá add-on của quản trị viên"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr ""
 
 msgid "Admin content-review requested"
 msgstr "Yêu cầu xem xét nội dung của quản trị viên"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr ""
 
 msgid "Admin theme-review requested"
 msgstr "Yêu cầu đánh giá chủ đề của quản trị viên"
@@ -1477,9 +1477,8 @@ msgstr "Trước khi thay đổi bản địa mặc định, bạn phải có t�
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Một tác giả chỉ có thể được liệt kê một lần."
+msgstr ""
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
@@ -1659,9 +1658,8 @@ msgstr ""
 msgid "An author has been added to your add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Đóng góp cho {addon}."
+msgstr ""
 
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
@@ -1757,9 +1755,6 @@ msgid "Review requested."
 msgstr "Yêu cầu đánh giá."
 
 msgid "You must provide further details to proceed."
-msgstr ""
-
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
 
 msgid "Your old credentials were revoked and are no longer valid."
@@ -2709,6 +2704,13 @@ msgid ""
 "\">API documentation</a>."
 msgstr ""
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Bạn không có bất kỳ xác thực API nào."
 
@@ -2716,6 +2718,10 @@ msgid "Revoke"
 msgstr "Thu hồi"
 
 msgid "Revoke and regenerate credentials"
+msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
 msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
 
 msgid "Generate new credentials"
@@ -3307,9 +3313,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Chặn quảng cáo và bảo vệ quyền riêng tư {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Một thiết lập đơn giản cho phép bạn kiểm soát các quảng cáo bạn nhìn thấy và cách nó theo dõi bạn trên internet."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3324,18 +3329,16 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Dừng việc Facebook theo dõi {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Cô lập danh tính Facebook của bạn thành một “ngăn chứa” riêng biệt, điều này khiến Facebook khó theo dõi các chuyển động của bạn trên web hơn."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Đơn giản hóa tìm kiếm {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Chỉ cần đánh dấu văn bản trên bất kỳ trang web nào để tìm kiếm cụm từ từ một loạt các công cụ."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3366,9 +3369,8 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tải xuống video {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Hoạt động với YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope và hàng trăm trang web video khác."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3383,18 +3385,16 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Quản lý mật khẩu {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Đơn giản hóa và đồng bộ tất cả các thông tin đăng nhập trang web khác nhau của bạn trên các thiết bị với một mật khẩu để thống trị tất cả."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Chặn quảng cáo {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Trình chặn quảng cáo nhẹ và hiệu quả. uBlock Origin thực thi hàng ngàn bộ lọc nội dung mà không chiếm nhiều bộ nhớ."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3417,9 +3417,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Thưởng thức dấu trang trực quan {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Truy cập các trang web yêu thích của bạn từ một bố cục ô."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3482,9 +3481,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dịch dễ dàng {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Đánh dấu văn bản trên bất kỳ trang web nào—hay chọn toàn bộ trang của Google— để dịch ngay lập tức."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3499,9 +3497,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Tùy chỉnh cử chỉ chuột {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Khám phá một cách mới để điều hướng với hơn 50 cử chỉ chuột hữu ích."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3577,12 +3574,10 @@ msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Lưu văn bản để sau {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
 msgstr ""
-"Ngừng viết điều tương tự lặp đi lặp lại! Nếu bạn thường xuyên sử dụng lại các cụm từ tương tự trong công việc hoặc các liên lạc khác, hãy lưu chúng trong Clippings và dễ dàng dán chúng khi cần."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4081,18 +4076,16 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Trích xuất liên kết {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Hiển thị ngay lập tức tất cả các liên kết từ một trang web trong các thẻ mới."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bỏ qua chuyển hướng & trình theo dõi {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Loại bỏ các trang chuyển hướng và các thông số theo dõi URL."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4107,9 +4100,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Tải xuống video YouTube {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Tải xuống video và/hoặc âm thanh."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4532,9 +4524,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Xem bức ảnh lớn {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Với một cú click chuột, bạn có thể xem video trong toàn màn hình."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5294,6 +5285,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Kiểu"
 
@@ -5336,9 +5330,8 @@ msgstr ""
 msgid "Information Request Deadline"
 msgstr "Thời hạn yêu cầu thông tin"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Cập nhật lần cuối:"
+msgstr ""
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5382,9 +5375,8 @@ msgstr "Bình luận"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Đánh giá tiện ích mở rộng"
+msgstr ""
 
 msgid "Recommended ({0})"
 msgstr ""
@@ -5816,6 +5808,13 @@ msgstr "Ẩn bình luận"
 msgid "No reviews found for this period."
 msgstr "Không tìm thấy đánh giá nào trong khoảng thời gian này."
 
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "theo Nguồn"
+
 msgid "Dismiss this announcement"
 msgstr "Bỏ thông báo này"
 
@@ -6245,9 +6244,8 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Đóng lịch sử đánh giá"
+msgstr ""
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."

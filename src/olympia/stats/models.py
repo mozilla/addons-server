@@ -19,34 +19,31 @@ class StatsSearchMixin(SearchMixin):
 
 class DownloadCount(StatsSearchMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
-    # has an index `addon_id` on this column...
     addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
 
-    # has an index named `count` in dev, stage and prod
-    count = models.PositiveIntegerField(db_index=True)
+    count = models.PositiveIntegerField()
     date = models.DateField()
     sources = JSONField(db_column='src', null=True)
 
     class Meta:
         db_table = 'download_counts'
-
-        # additional indices on this table (in dev, stage and prod):
-        # * KEY `addon_and_count` (`addon_id`,`count`)
-        # * KEY `addon_date_idx` (`addon_id`,`date`)
-
-        # in our (dev, stage and prod) database:
-        # UNIQUE KEY `date_2` (`date`,`addon_id`)
-        unique_together = ('date', 'addon')
+        indexes = [
+            # FIXME: some of these might redundant. See #5712
+            models.Index(fields=('count',), name='count'),
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon', 'count'), name='addon_and_count'),
+            models.Index(fields=('addon', 'date'), name='addon_date_idx')
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=['date', 'addon'], name='date_2'),
+        ]
 
 
 class UpdateCount(StatsSearchMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
-    # Has an index `addon_id` in our dev, stage and prod database
     addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
-    # Has an index named `count` in our dev, stage and prod database
-    count = models.PositiveIntegerField(db_index=True)
-    # Has an index named `date` in our dev, stage and prod database
-    date = models.DateField(db_index=True)
+    count = models.PositiveIntegerField()
+    date = models.DateField()
     versions = JSONField(db_column='version', null=True)
     statuses = JSONField(db_column='status', null=True)
     applications = JSONField(db_column='application', null=True)
@@ -55,7 +52,11 @@ class UpdateCount(StatsSearchMixin, models.Model):
 
     class Meta:
         db_table = 'update_counts'
-
-        # Additional indices on this table (on dev, stage and prod):
-        # * KEY `addon_and_count` (`addon_id`,`count`)
-        # * KEY `addon_date_idx` (`addon_id`,`date`)
+        indexes = [
+            # FIXME: some of these might redundant. See #5712
+            models.Index(fields=('count',), name='count'),
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('date',), name='date'),
+            models.Index(fields=('addon', 'count'), name='addon_and_count'),
+            models.Index(fields=('addon', 'date'), name='addon_date_idx')
+        ]

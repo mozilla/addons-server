@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-09-01 17:53+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 19:06+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -440,6 +440,9 @@ msgstr "Você precisa fornecer um objeto de {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk ou slug \"%s\" inválidos - objeto não existe."
+
+msgid "Confirmation for developer API keys"
+msgstr "Confirmação para chaves de API do desenvolvedor"
 
 msgid "Application Versions"
 msgstr "Versões da aplicação"
@@ -1789,9 +1792,6 @@ msgstr "Análise solicitada."
 msgid "You must provide further details to proceed."
 msgstr "Você deve fornecer mais detalhes para prosseguir."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "As suas credenciais antigas foram revogadas e já não são válidas. Atualize todos os clientes da API com as novas credenciais."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Suas credenciais antigas foram revogadas e deixaram de ser válidas."
 
@@ -2804,6 +2804,13 @@ msgstr ""
 "Para fazer requisições via API, envie o<a href=\"%(jwt_url)s\"> JSON Web Token (JWT)</a> como cabeçalho de autorização. Você precisará gerar um JWT para cada requisição como explicado na <a "
 "href=\"%(docs_url)s\">documentação da API</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Clique no botão de confirmação abaixo para gerar credenciais de API para o usuário <strong>%(name)s</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Um link de confirmação será enviado para seu endereço de e-mail. Após a confirmação, você encontrará suas chaves de API nesta página."
+
 msgid "You don't have any API credentials."
 msgstr "Você não tem nenhuma credencial de API."
 
@@ -2812,6 +2819,9 @@ msgstr "Revogar"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Revogue e regenere as credenciais"
+
+msgid "Confirm and generate new credentials"
+msgstr "Confirmar e gerar novas credenciais"
 
 msgid "Generate new credentials"
 msgstr "Gerar novas credenciais"
@@ -3592,9 +3602,8 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Toque sabedoria acadêmica {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Desfrute de acesso gratuito a mais de 10 milhões de artigos acadêmicos."
+msgstr "Tenha contato com a sabedoria acadêmica. Acesse gratuitamente mais de 10 milhões de artigos acadêmicos."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3672,21 +3681,20 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Deixe um rastro digital limpo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Faça com que o Firefox esqueça dados de sites, como cookies e armazenamento local, mas somente dos domínios de sua escolha."
+msgstr "Deixe um rastro digital limpo. Faça com que o Firefox esqueça dados de sites, como cookies e armazenamento local, mas somente dos domínios de sua escolha."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Salve texto para ler mais tarde {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
 msgstr ""
-"Pare de escrever a mesma coisa várias vezes! Caso você usa com frequência as mesmas frases no seu trabalho ou outras comunicações, salve as frases no Clippings e as cole facilmente quando preciso."
+"Salve texto para usar depois. Pare de escrever a mesma coisa várias vezes! Se você usa com frequência as mesmas frases no seu trabalho ou em outras comunicações, salve as frases em recortes e as "
+"cole facilmente quando precisar."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3709,9 +3717,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Evite rastreadores espiões e restrições {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Disfarce sua navegação encobrindo a identidade do seu navegador e sistema operacional."
+msgstr "Evite restrições e rastreadores traiçoeiros. Disfarce sua navegação encobrindo a identidade do seu navegador e do sistema operacional."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3726,9 +3733,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Separe suas vidas online {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Diferencie com privacidade suas várias identidades online — trabalho, pessoal, etc. — através de abas destacadas com cores que separam seu rastro digital de cookies."
+msgstr "Separe suas vidas online. Diferencie com privacidade suas várias identidades online — trabalho, pessoal, etc. — por abas destacadas com cores que separam seu rastro digital de cookies."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3767,9 +3773,8 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Mude seu servidor proxy {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Navegue na web através de configurações de proxy que você mesmo definiu."
+msgstr "Altere seu servidor proxy e navegue na web por meio de configurações de proxy autodefinidas."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3951,16 +3956,14 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr "Melhore sua experiência de leitura {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Torne o texto que você está lendo mais atraente removendo os elementos desnecessários que o rodeiam."
+msgstr "Aprimore sua experiência de leitura. Torne o texto que você está lendo mais atraente, removendo os elementos desnecessários que o rodeiam."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Abra múltiplos links {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Clique com o botão direito do mouse e arraste os links que você quer abrir em novas abas."
 
@@ -4439,9 +4442,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pesquise o Firefox {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Acesse facilmente suas abas abertas, favoritos e histórico."
+msgstr "Pesquise no Firefox acessando facilmente suas abas abertas, favoritos e histórico."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4512,9 +4514,8 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Monitore a produtividade {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Crie estatísticas do tempo que gasta no computador, ou em aplicativos específicos como Trello, JIRA, Basecamp, Github e muitos outros."
+msgstr "Acompanhe a produtividade. Crie estatísticas do tempo que gasta no computador, ou em aplicativos específicos como Trello, JIRA, Basecamp, Github e muitos outros."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4717,9 +4718,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloqueie anúncios e outras coisas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Não apenas bloqueie propaganda chata, mas proteja-se de código malicioso e rastreamento em anúncios."
+msgstr "Bloqueie propaganda e obtenha proteção aprimorada contra malware e rastreamento de anúncios."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4734,18 +4734,16 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Salve imagens facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Apanhe somente as imagens da aba atual."
+msgstr "Salve imagens facilmente — basta arrastá-las da aba atual."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Meça páginas web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Desenhe uma régua digital em qualquer página web para verificar altura, largura e alinhamento de elementos na página."
+msgstr "Meça páginas. Desenhe uma régua digital em qualquer página web para verificar altura, largura e alinhamento de elementos na página."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5468,6 +5466,9 @@ msgstr "É recomendável"
 msgid "Delayed because it's the first listed version"
 msgstr "Adiado porque é a primeira versão listada"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "Você não pode enviar um comentário se `canned_response` estiver definido."
+
 msgid "Type"
 msgstr "Tipo"
 
@@ -6001,6 +6002,12 @@ msgstr "Ocultar comentários"
 msgid "No reviews found for this period."
 msgstr "Não foram encontradas análises nesse período."
 
+msgid "Method:"
+msgstr "Método:"
+
+msgid "Source:"
+msgstr "Origem:"
+
 msgid "Dismiss this announcement"
 msgstr "Descartar esse anúncio"
 
@@ -6454,9 +6461,8 @@ msgstr "Deseja realmente remover todas as traduções de <b>{0}</b>? Isso não p
 msgid "Delete Locale"
 msgstr "Excluir idioma"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Fechar histórico de revisões"
+msgstr "Histórico de restrições do usuário"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."

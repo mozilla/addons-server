@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 15:50+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 16:59+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -427,6 +427,9 @@ msgstr "You must provide an object of {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Invalid pk or slug “%s” - object does not exist."
+
+msgid "Confirmation for developer API keys"
+msgstr "Confirmation for developer API keys"
 
 msgid "Application Versions"
 msgstr "Application Versions"
@@ -1744,9 +1747,6 @@ msgstr "Review requested."
 msgid "You must provide further details to proceed."
 msgstr "You must provide further details to proceed."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Your old credentials were revoked and are no longer valid."
 
@@ -2716,6 +2716,13 @@ msgstr ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You’ll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+
 msgid "You don't have any API credentials."
 msgstr "You don’t have any API credentials."
 
@@ -2724,6 +2731,9 @@ msgstr "Revoke"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Revoke and regenerate credentials"
+
+msgid "Confirm and generate new credentials"
+msgstr "Confirm and generate new credentials"
 
 msgid "Generate new credentials"
 msgstr "Generate new credentials"
@@ -5298,6 +5308,9 @@ msgstr "Is recommendable"
 msgid "Delayed because it's the first listed version"
 msgstr "Delayed because it’s the first listed version"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "You can't submit a comment if `canned_response` is defined."
+
 msgid "Type"
 msgstr "Type"
 
@@ -5817,6 +5830,12 @@ msgstr "Hide Comments"
 
 msgid "No reviews found for this period."
 msgstr "No reviews found for this period."
+
+msgid "Method:"
+msgstr "Method:"
+
+msgid "Source:"
+msgstr "Source:"
 
 msgid "Dismiss this announcement"
 msgstr "Dismiss this announcement"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -849,11 +849,11 @@ msgstr ""
 msgid "Works with {app}"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:277
+#: static/js/zamboni/buttons.js:273
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:321
+#: static/js/zamboni/buttons.js:317
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
 " plugin."

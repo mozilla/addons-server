@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-30 00:00+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 20:15+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -55,7 +55,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Marcar le seligite reportos de abuso como suspecte"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Attention que iste campo mais ha plus de {max_length} characteres."
+msgstr "Assecura te que iste campo non ha plus de {max_length} characteres."
 
 msgid "Modified on:"
 msgstr "Modificate sur:"
@@ -259,7 +259,7 @@ msgid "Suggested Pages"
 msgstr "Paginas suggerite"
 
 msgid "Browse all extensions"
-msgstr "Naviga trans tote le extensiones"
+msgstr "Explora tote le extensiones"
 
 msgid "Browse all themes"
 msgstr "Naviga per tote le themas"
@@ -415,7 +415,7 @@ msgid "Invalid token or hash."
 msgstr "Token o hash non valide."
 
 msgid "Email address not found."
-msgstr "Adresse de email non trovate."
+msgstr "Adresse de e-mail non trovate."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Le campo debe haber un longitude de al minus {num} characteres."
@@ -429,6 +429,9 @@ msgstr "Tu debe fornir un objecto de {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "\"%s\" non es un pk o supernomine valide - le objecto non existe."
+
+msgid "Confirmation for developer API keys"
+msgstr "Confirmation pro le claves API de disveloppator"
 
 msgid "Application Versions"
 msgstr "Versiones del application"
@@ -648,10 +651,10 @@ msgid "Application max version for {version} updated."
 msgstr "Version maximal del application actualisate al {version}."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Email inviate al autores circa le compatibilitate del {version}."
+msgstr "Le autores ha recipite un message sur le compatibilitate de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Email inviate al autor circa le compatibilitate del additivo."
+msgstr "Le autor ha recipite un message sur le compatibilitate del additivo."
 
 msgid "Password changed."
 msgstr "Contrasigno cambiate."
@@ -1765,9 +1768,6 @@ msgstr "Revision demandate."
 msgid "You must provide further details to proceed."
 msgstr "Tu debe fornir altere detalios pro continuar."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Tu vetere credentiales esseva revocate e non es plus valide. Verifica de actualisar tote le clientes API con le nove credentiales."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Tu vetere credentiales esseva revocate e non es plus valide."
 
@@ -2055,7 +2055,7 @@ msgid "Default Locale"
 msgstr "Local predefinite"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Le informationes circa tu additivo es displicate in iste localisation a minus que tu supplanta lo con un traduction specific pro le loco. Illo es pertinente solo pro le additivos listate."
+msgstr "Le informationes sur tu additivo es monstrate in iste lingua a minus que tu lo supplanta lo con un traduction specific. Illo es relevante solmente pro le additivos listate."
 
 msgid "Homepage"
 msgstr "Pagina principal"
@@ -2151,8 +2151,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"Si tu vole monstrar un adresse email pro demandas de supporto, insere lo ci. Si tu ha differente adresses pro cata lingua le multiple traductiones de iste campo pote esser addite. Illo es pertinente"
-" solo pro le additivos listate."
+"Si tu vole monstrar un adresse de e-mail pro demandas de supporto, insere lo ci. Si tu ha differente adresses pro cata lingua, es possibile adder plure traductiones de iste campo. Illo es relevante "
+"solmente pro le additivos listate."
 
 msgid "Website"
 msgstr "Sito web"
@@ -2541,7 +2541,7 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr "Tu ha finite! Iste version sera disponibile sur nostre sito a breve."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Tu ha finite! Iste version ha essite submittite pro revision. Tu sera notificate quando le revision ha essite completate, o si nostre revisores ha ulle questiones circa tu submission."
+msgstr "Tu ha finite! Iste version ha essite submittite pro revision. Tu recipera un notification quando le revision ha essite completate, o si nostre revisores ha questiones sur tu submission."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Tu lista de presentation habera plus successo per le addition de un detaliate description. Rende tu lista de presentation preste pro le publication:"
@@ -2730,7 +2730,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "Pro instructiones detaliate, consulta le <a href=\"%(docs_url)s\">documentation del API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantene secrete tu claves API e <strong>jammais comparti los con quicunque</strong>, includite collaboratores de Mozilla."
+msgstr "Mantene tu claves API secrete e <strong>non divulga los jammais a alcuno</strong>, non mesmo a collaboratores de Mozilla."
 
 msgid "JWT issuer"
 msgstr "Emissor del JWT"
@@ -2746,6 +2746,13 @@ msgstr ""
 "Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a "
 "href=\"%(docs_url)s\">Documentation API</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Clicca sur le button de confirmation infra pro generar credentiales API pro le usator <strong>%(name)s</strong>."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "A ligamine de confirmation essera inviate a tu adresse email. Post le confirmation tu trovara tu claves API sur iste pagina."
+
 msgid "You don't have any API credentials."
 msgstr "Tu non ha ulle credentiales API."
 
@@ -2754,6 +2761,9 @@ msgstr "Revocar"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Revocar e regenerar credentiales"
+
+msgid "Confirm and generate new credentials"
+msgstr "Confirma e genera nove credentiales"
 
 msgid "Generate new credentials"
 msgstr "Generar nove credentiales"
@@ -2902,7 +2912,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Per favor include instructiones sur como reproducer le file final del additivo, o in un file README o le Notas pro le revisor de iste version."
 
 msgid "Read more about the source code review policy."
-msgstr "Leger plus circa le regulamento de revision del codice fonte."
+msgstr "Leger plus sur le politica de revision del codice fonte."
 
 msgid "Latest News"
 msgstr "Ultime novas"
@@ -3134,8 +3144,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informationes circa cambiamentos in iste version, nove functionalitates, note defectos e altere utile informationes specific pro iste publication/version. Iste informationes es alsi monstrate in le "
-"Gestor de additivos durante le actualisation."
+"Informationes sur cambiamentos in iste version, nove functionalitates, defectos cognoscite, e altere informationes utile concernente iste edition/version. Iste informationes es etiam monstrate in le"
+" Gestor de additivos durante le actualisation."
 
 msgid "Approval Status"
 msgstr "Stato del approbation"
@@ -3419,7 +3429,7 @@ msgstr "Gerer contrasignos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu accessos sur plure apparatos con un sol contrasigno pro gerer illos tote."
+msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu accessos sur plure apparatos con un sol contrasigno pro gerer los tote."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3507,7 +3517,7 @@ msgstr "Controla tempore global {start_sub_heading}con {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr "Monstra le tempore currente per tote le mundo in le barra de stato de Firefox."
+msgstr "Monstra le hora currente de tote le mundo in le barra de stato de Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3592,7 +3602,7 @@ msgstr "Bloca le traciatores invisibile {start_sub_heading}con {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr "Stoppa le traciatores durante lor tracias e apprende altero circa illos."
+msgstr "Bloca le traciatores e apprende plus sur illos."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3948,7 +3958,7 @@ msgstr "Explora le traffico del sito web {start_sub_heading}con {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr "Obtene informationes involvente in profunditate e circa le traffico pro ulle sito web."
+msgstr "Obtene informationes detaliate sur le ingagiamento e le traffico de qualcunque sito web."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4004,7 +4014,7 @@ msgstr "Controla le SPAM {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Conquire le SPAM. Usa ingeniose adresses de email temporari pro restar anonyme e evitar SPAM."
+msgstr "Conquire le spam. Usa ingeniose adresses de e-mail temporari pro restar anonyme e evitar le spam."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4112,7 +4122,7 @@ msgstr "Extrahe le ligamines {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Monstra instantaneemente tote le ligamines de un pagina web in un nove schedas."
+msgstr "Monstra instantaneemente tote le ligamines de un pagina web in nove schedas."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5037,7 +5047,7 @@ msgstr "Un bon loco pro initiar es <a href=\"%(sumo_url)s\">Supporto</a> Mozilla
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "Si tu realmente debe continger alcuno ex le equipa de Mozilla, per favor vide nostre pagina de<a href=\"%(url)s\"> informationes de contacto</a>."
+msgstr "Si tu realmente debe contactar un persona del equipa de Mozilla, per favor vide nostre pagina de <a href=\"%(url)s\">informationes de contacto</a>."
 
 msgid "Who works on this website?"
 msgstr "Qui labora sur iste sito web?"
@@ -5342,6 +5352,9 @@ msgstr "Il es recommendabile"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Retardate perque il es le prime version listate"
+
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "Tu non pote inviar un commento si `canned_response` es definite."
 
 msgid "Type"
 msgstr "Typo"
@@ -5863,6 +5876,12 @@ msgstr "Celar le commentos"
 msgid "No reviews found for this period."
 msgstr "Nulle revisiones trovate pro iste periodo."
 
+msgid "Method:"
+msgstr "Methodo:"
+
+msgid "Source:"
+msgstr "Fonte:"
+
 msgid "Dismiss this announcement"
 msgstr "Dimitte iste annuncio"
 
@@ -6302,7 +6321,7 @@ msgstr "Refusar le modificationes"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pote ser disfacite."
+msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pote esser disfacite."
 
 msgid "Delete Locale"
 msgstr "Deler le localisation"
@@ -6369,14 +6388,14 @@ msgstr ""
 " Nota que le character \"@\" non es includite in le concordantia, ergo tu  debe includer lo in le patrono."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Le adresse email de tu conto non es autorisate al invio de additivos."
+msgstr "Le adresse de e-mail de tu conto non es autorisate pro le submission de additivos."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Insere integremente le dominio email \"usa e jecta\" a blocar. Le metacharacteres non es supportate: si tu los besonia o pro trovar le concordantias con le adresse email complete, plus tosto que con"
-" le sol dominio, usa in vice le \"Restrictiones email del usator\"."
+"Insere le complete dominio de e-mail jectabile a blocar. Le metacharacteres non es supportate: si tu los require, o si tu vole facer corresponder le adresse de e-mail integre e non solmente le parte"
+" de dominio, usa \"Restrictiones de e-mail del usator\" in loco de isto."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -6407,7 +6426,7 @@ msgid "my add-on is reviewed by a reviewer"
 msgstr "mi additivos es revidite per un revisor"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr "Mozilla debe continger me circa mi additivo personal"
+msgstr "Mozilla debe contactar me sur mi additivo individual"
 
 msgid "User Notifications"
 msgstr "Notificationes del usator"

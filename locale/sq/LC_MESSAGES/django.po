@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-26 12:24+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-08 08:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -246,8 +246,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"Këtë mesazh po e shihni ngaqë ky sajt lyp një cookie CSRF, kur parashtrohen formularë. Kjo cookie është e domosdoshme për arsye sigurie, për të bërë të mundur që shfletuesi juaj të mos komprometohet"
-" nga palë të treta."
+"Këtë mesazh po e shihni ngaqë ky sajt lyp një cookie CSRF, kur parashtrohen formularë. Kjo cookie është e domosdoshme për arsye sigurie, për të bërë të mundur që shfletuesi juaj të mos "
+"komprometohet nga palë të treta."
 
 msgid "Page Not Found"
 msgstr "S’u Gjet Faqe"
@@ -281,17 +281,17 @@ msgstr "S’u Gjet"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Na ndjeni, por s’e gjejmë dot çfarë po kërkonit.</h1> <p> Faqja ose kartela që kërkuat s’u gjet te sajti ynë. Mundet që klikuat në një lidhje të vjetruar, ose e shkruat pasaktësisht. </p> <ul> "
 "<li>Nëse adresën e shkruat ju, ju lutemi, kontrolloni sërish drejtshkrimin.</li> <li> Nëse ndoqët një lidhje nga diku gjetkë, ju lutemi, %(open_bug_link)sna e bëni të ditur%(close_bug_link)s. "
 "Tregonani aty se prej nga mbërritët dhe se për çfarë po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim. </li> </ul> <p>Ose mundeni të hidheni te disa faqe popullore te sajti ynë.</p> <ul> "
 "<li>Ju intereson një <a href=\"%(rec)s\">listë shtesash të zgjedhura</a>?</li> <li> Doni të <a href=\"%(search)s\">kërkoni për shtesa</a>? Mund të hidheni te <a href=\"%(search)s\">faqja e "
-"kërkimeve</a> ose just use ose thjesht përdorni kutinë e kërkimeve më sipër. </li> <li> Nëse parapëlqeni t’ia nisni nga e para, thjesht shkoni te <a href=\"%(home)s\">faqja hyrëse e shtesave</a>. "
-"</li> </ul>"
+"kërkimeve</a> ose just use ose thjesht përdorni kutinë e kërkimeve më sipër. </li> <li> Nëse parapëlqeni t’ia nisni nga e para, thjesht shkoni te <a href=\"%(home)s\">faqja hyrëse e shtesave</a>. </"
+"li> </ul>"
 
 msgid "Oops"
 msgstr "Oh"
@@ -436,6 +436,10 @@ msgstr "Duhet të furnizoni një objekt {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk ose identifikues i pavlefshëm \"%s\" - objekti nuk ekziston."
 
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Më tepër të dhëna rreth Llogarish Zhvilluesish"
+
 msgid "Application Versions"
 msgstr "Versione Aplikacionesh"
 
@@ -462,11 +466,11 @@ msgstr "Versione"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Po qe se aplikacioni juaj nuk kërkon domosdo një kartelë manifest, prapë duhet ta përfshini një të tillë me vetitë e domosdoshme, siç tregohet "
-"%(amo_manifests_mdn_link_open)skëtu%(amo_manifests_mdn_link_close)s."
+"Po qe se aplikacioni juaj nuk kërkon domosdo një kartelë manifest, prapë duhet ta përfshini një të tillë me vetitë e domosdoshme, siç tregohet %(amo_manifests_mdn_link_open)skëtu"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "The text entered has been flagged as spam."
 msgstr "Tekstit të dhënë i është vënë shenjë si mesazh i padëshiruar."
@@ -1584,7 +1588,8 @@ msgstr ""
 "Në këtë sajt. <span class=\"helptext\">Parashtrimi juaj do të paraqitet në këtë sajt dhe te Përgjegjësi i Shtesave në Firefox, për miliona përdorues, pasi të kalojë shqyrtimin e kodit. Për "
 "përditësime të vetvetishme kujdeset ky sajt. Kjo shtesë do të kihet parasysh për promovime dhe konkurse nga Mozilla. Është e mundur edhe vetë-shpërndarja e kartelave të shqyrtuara.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Nga vetë ju. <span class=\"helptext\">Parashtrimi juaj do të nënshkruhet menjëherë për vetë-shpërndarje. Përditësimet do të duhek t’i bëni ju vetë, përmes një updateURL ose përditësime të jashtme "
 "aplikacioni.</span>"
@@ -1769,9 +1774,6 @@ msgstr "Është kërkuar shqyrtim."
 msgid "You must provide further details to proceed."
 msgstr "Që të vazhdohet, duhet të jepni hollësi të mëtejshme."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Kredencialet tuaja të vjetra janë shfuqizuar dhe s’janë më të vlefshme. Sigurohumi të përditësoni me kredencialet e reja krejt klientët tuaj për API."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Kredencialet tuaja të dikurshme janë shfuqizuar dhe nuk janë më të vlefshme."
 
@@ -1906,14 +1908,16 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Kjo shtesë është e papërputhshme me <b>%(app_name)s %(app_version)s</b>, hedhja më e re në qarkullim e %(app_name)s-it. Ju lutemi, shihni mundësinë e përditësimit të të dhënave të përputhshmërisë së"
-" shtesës suaj, ose të ngarkimit të një versioni më të ri të kësaj shtese."
+"Kjo shtesë është e papërputhshme me <b>%(app_name)s %(app_version)s</b>, hedhja më e re në qarkullim e %(app_name)s-it. Ju lutemi, shihni mundësinë e përditësimit të të dhënave të përputhshmërisë "
+"së shtesës suaj, ose të ngarkimit të një versioni më të ri të kësaj shtese."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Përputhshmëri Përditësimi</a> <a href=\"%(version_url)s\" class=\"button\">Ngarkoni Version të Ri</a> ose <a href=\"#\""
-" class=\"close\">Shpërfilleni</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Përputhshmëri Përditësimi</a> <a href=\"%(version_url)s\" class=\"button\">Ngarkoni Version të Ri</a> ose <a href=\"#"
+"\" class=\"close\">Shpërfilleni</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Shihni dhe përditësoni intervalet e përputhshmërisë së aplikacionit"
@@ -2140,7 +2144,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Kategoritë janë rruga parësore përmes të cilës përdoruesit shfletojnë për shtesa. Zgjidhni cilëndo që i përshtatet funksioneve të shtesës suaj për ekspozim sa më të madh."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Kategoritë s’mund të ndryshohen, ndërkohë që shtesa juaj është e zgjedhur për këtë aplikacion. Ju lutemi, dërgoni email te <a href=\"mailto:%(email)s\">%(email)s</a>, nëse ka ndonjë arsye që ju bën "
 "të modifikoni kategoritë tuaja."
@@ -2155,8 +2160,8 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Nëse dëshironi të shfaqni një adresë email për çështje asistence, jepeni këtu. Nëse keni adresa të ndryshme për çdo gjuhë, mund të shtohen përkthime të kësaj fushe. Kjo vlen vetëm për shtesa të "
 "paraqitura."
@@ -2231,8 +2236,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Tabela është vendi për t’u dhënë shqyrtuesve të dhëna që lidhen me shtesën tuaj, cilido qoftë versioni. Përdoreni për të ofruar rrugë për testimin e shtesës, dhe çfarëdo të dhënash shtesë që mund të"
-" hyjnë në punë. Tabelën mund ta përpunojnë gjithashtu edhe shqyrtuesit."
+"Tabela është vendi për t’u dhënë shqyrtuesve të dhëna që lidhen me shtesën tuaj, cilido qoftë versioni. Përdoreni për të ofruar rrugë për testimin e shtesës, dhe çfarëdo të dhënash shtesë që mund "
+"të hyjnë në punë. Tabelën mund ta përpunojnë gjithashtu edhe shqyrtuesit."
 
 msgid "Add-on Media for {0}"
 msgstr "Media Shtese për {0}"
@@ -2244,8 +2249,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Ngarkoni një ikonë për shtesën tuaj ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku shfaqet shtesa juaj. Figurat e ngarkuara duhet të jenë në një nga llojet vijuese për figura: .png, .jpg."
-" Kjo vlen vetëm për shtesa të shfaqura."
+"Ngarkoni një ikonë për shtesën tuaj ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku shfaqet shtesa juaj. Figurat e ngarkuara duhet të jenë në një nga llojet vijuese për figura: .png, ."
+"jpg. Kjo vlen vetëm për shtesa të shfaqura."
 
 msgid "Select an icon for your add-on:"
 msgstr "Përzgjidhni për shtesën tuaj një ikonë:"
@@ -2439,8 +2444,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"Kujdes: keni vlera emër/përmbledhje në gjuhë të tjera që do të qethen automatikisht që të hyjnë brenda kufirit prej %(max_length)s shenjash.  Që të përpunoni këto, shkoni te Përpunoni Faqe Produkti,"
-" pasi të jetë plotësuar procesi i parashtrimeve."
+"Kujdes: keni vlera emër/përmbledhje në gjuhë të tjera që do të qethen automatikisht që të hyjnë brenda kufirit prej %(max_length)s shenjash.  Që të përpunoni këto, shkoni te Përpunoni Faqe "
+"Produkti, pasi të jetë plotësuar procesi i parashtrimeve."
 
 msgid "Add-on URL:"
 msgstr "URL Shtese:"
@@ -2626,8 +2631,8 @@ msgid "Operating system and build environment requirements."
 msgstr "Domosdoshmëri për sistemin operativ dhe mjedisin e montimit."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 "Hollësi (përfshi version të domosdoshëm dhe udhëzime instalimi), të çfarëdo programesh të përdorur në procesin e montimit (për shembull: version për <span class=\"tech-emphasis\">node</span> dhe "
 "<span class=\"tech-emphasis\">npm</span> të përdorur)."
@@ -2748,11 +2753,18 @@ msgstr "E fshehtë JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Për të bërë kërkesa API, dërgoni një <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> si krye autorizimi. Do t’ju duhet të prodhoni një JWT për çdo kërkesë, siç shpjegohet te <a "
-"href=\"%(docs_url)s\">dokumentimi i API-it</a>."
+"Për të bërë kërkesa API, dërgoni një <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> si krye autorizimi. Do t’ju duhet të prodhoni një JWT për çdo kërkesë, siç shpjegohet te <a href=\"%(docs_url)s"
+"\">dokumentimi i API-it</a>."
+
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
 
 msgid "You don't have any API credentials."
 msgstr "S’keni kredenciale API."
@@ -2762,6 +2774,10 @@ msgstr "Shfuqizoje"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Shfuqizoji dhe riprodhoji kredencialet"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Prodho kredenciale të reja"
 
 msgid "Generate new credentials"
 msgstr "Prodho kredenciale të reja"
@@ -3011,8 +3027,8 @@ msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
 "between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
-"Me API-n WebExtensions, është e lehtë të krijohen zgjerime që, ne vetëm pak ndryshime, do të xhirojnë në Firefox, Chrome, Opera, dhe Edge. Mësoni më tepër mbi dallimet në zhvillimin e zgjerimeve mes"
-" katër shfletuesve më të mëdhenj dhe se si mund ta bëni zgjerimin tuaj të kalueshëm për shfletues të ndryshëm."
+"Me API-n WebExtensions, është e lehtë të krijohen zgjerime që, ne vetëm pak ndryshime, do të xhirojnë në Firefox, Chrome, Opera, dhe Edge. Mësoni më tepër mbi dallimet në zhvillimin e zgjerimeve "
+"mes katër shfletuesve më të mëdhenj dhe se si mund ta bëni zgjerimin tuaj të kalueshëm për shfletues të ndryshëm."
 
 msgid "View Best Practices for Cross-Browser Development"
 msgstr "Shihni Praktikat Më të Mira për Zhvillim Për Shumë Shfletues"
@@ -3075,8 +3091,8 @@ msgstr "Përshtateni Firefox-in"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Shtesat u lejojnë miliona përdoruesve të Firefox-it të zgjerojnë punën e shfletuesit të tyre. Nëse dini %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, dhe "
 "%(css_link_open)sCSS%(link_close)s, keni tashmë krejt aftësitë e nevojshme për të krijuar një shtesë të fuqishme."
@@ -3130,8 +3146,8 @@ msgstr "Instalojeni përkohësisht zgjerimin tuaj në Firefox për testim dhe di
 msgid "Manage Version {0}"
 msgstr "Administroni Versionin {0}"
 
-#. {0} is an add-on name.
 # %1$s is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Administroni {0}"
 
@@ -3232,8 +3248,8 @@ msgstr "{label_open}E dukshme:{label_close} E dukshme për këdo te {site_url} d
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}E padukshme:{label_close} S’do të përfshihet në përfundime kërkimesh, dhe faqja për të do të tregojë që e keni çaktivizuar. Nën këtë gjendje, nuk do të pranohen për paraqitje parashtrime"
-" versionesh të reja."
+"{label_open}E padukshme:{label_close} S’do të përfshihet në përfundime kërkimesh, dhe faqja për të do të tregojë që e keni çaktivizuar. Nën këtë gjendje, nuk do të pranohen për paraqitje "
+"parashtrime versionesh të reja."
 
 msgid "Listed versions"
 msgstr "Versione publike"
@@ -3309,15 +3325,15 @@ msgstr "Jeni i sigurt se dëshironi të anulohet kërkesa juaj për shqyrtim?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentim Shtesash :: Qendra e Zhvilluesve"
 
-#. L10n: first parameter is the number of errors
 # %1$s is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} gabim"
 msgstr[1] "{0} gabime"
 
-#. L10n: first parameter is the number of warnings
 # %1$s is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
@@ -3665,9 +3681,10 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Ndani jetët tuaja internetore, {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Bëjini, privatisht, të dallueshëm identitetet tuaja internetore - atë të punës, atë personal, etj. - përmes skedash me ngjyra, çka e ndan në pjesë gjurmën tuaj dixhitale prej cookie-ve."
+msgstr ""
+"Ndani nga njëra-tjetra jetët tuaja internetore. Bëjini, privatisht, të dallueshëm identitetet tuaja internetore - atë të punës, atë personal, etj. - përmes skedash me ngjyra, çka e ndan në pjesë "
+"gjurmën tuaj dixhitale të cookie-ve."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3682,36 +3699,32 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Lexoni kartela ePub {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Shijoni kartela ePub drejt e në Firefox - zmadhoni madhësinë e shkronjave, përmasa faqesh, etj."
+msgstr "Lexoni kartela ePub drejt e në Firefox - zmadhoni madhësinë e shkronjave, përmasa faqesh, etj."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Përmirësoni shfrytëzimin tuaj të YoutTube-it {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Videot luajini, si parazgjedhje, në cilësinë më të lartë, çaktivizoni shënime në to, etj."
+msgstr "Luani video YouTube, si parazgjedhje, në cilësinë më të lartë, çaktivizoni shënime në to, etj."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gjurmoni ata që ju gjurmojnë, {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Merrni, me vetëm një klikim,  një ide se cilët ju gjurmojnë."
+msgstr "Gjurmoni gjurmuesit. Merrni, me vetëm një klikim, një ide se cilët ju gjurmojnë."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ndërroni shërbyesin tuaj ndërmjetës {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Shfletoni në internet përmes rregullimesh të vetëpërkufizuara ndërmjetësi."
+msgstr "Ndryshoni shërbyesin tuaj ndërmjetës dhe shfletoni në internet përmes rregullimesh të vetëpërkufizuara ndërmjetësi."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3726,9 +3739,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shfletoni të parrezikuar, {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Shtoni siguri fshehtëzimi në cilindo sajt që mbulon HTTPS-në."
+msgstr "Shtoni siguri të fshehtëzuar në cilindo sajt që mbulon HTTPS-në. Shfletoni të siguruar."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3771,14 +3783,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shfletoni anonimisht {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Shfletoni në internet me një identitet të maskuar - shfaquni madje edhe sikur po shfletoni nga një tjetër vend."
+msgstr "Shfletoni në mënyrë anonime. Shfletoni në internet me një identitet të maskuar - shfaquni madje edhe sikur po shfletoni nga një tjetër vend."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Hyni te sajtet tuaj të parapëlqyer, skeda të mbyllura së fundi, etj, - gjithçka prej një skeme të hijshme mozaik."
+msgstr "Shijoni faqerojtës pamorë. Hyni te sajtet tuaj të parapëlqyer, skeda të mbyllura së fundi, etj, - gjithçka prej një skeme të hijshme mozaik."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3801,9 +3811,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Administrim i fuqishëm shkarkimesh {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Kontrolloni gjendjen e shkarkimeve tuaja përmes një shtylle gjendjesh, faqe historiku shkarkimesh, etj."
+msgstr "Administrim i fuqishëm shkarkimesh. Kontrolloni gjendjen e shkarkimeve tuaja përmes një shtylle gjendjesh, faqe historiku shkarkimesh, etj."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3818,9 +3827,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Mbrojtje e kërkimeve nga gjurmimi {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Ndalini gjurmuesit, kur klikoni përfundime kërkimesh me Google dhe Yandex."
+msgstr "Ndalini gjurmues reklamash, kur klikoni përfundime kërkimesh me Google dhe Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3835,9 +3843,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Shtojuni figura përfundimeve të kërkimit {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Shijoni figura miniaturë përgjatë përfundimesh të kërkimeve tuaja."
+msgstr "Shijoni figura miniaturë sajtesh, tok me përfundimet e kërkimeve tuaja."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3860,18 +3867,16 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Përshtatni sajtet që parapëlqeni {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Ndryshoni pamjen e cilitdo sajt web! Ndërroni ngjyra, sfonde faqesh, etj."
+msgstr "Ndryshoni pamjen e cilitdo sajt web. Ndërroni ngjyra, sfonde faqesh, etj."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Përshtatni ç’hapet kur hapni skedën tuaj të re {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Përpunoni skedën për faqe të reja, që të shfaqë numër kuadrateve që doni, figurë sfondi që doni, etj."
+msgstr "Përpunoni skedën për faqe të reja, që të shfaqë aq kuadrate sa doni, figurë sfondi që doni, etj."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3886,25 +3891,22 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Njihni se ku shkoni në internet {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Merrni shtetin vendndodhje për sajtet që vizitoni. Jini një udhëtar interneti i informuar."
+msgstr "Njihni ku shkoni në internet. Merrni shtetin vendndodhje për sajtet që vizitoni. Jini një udhëtar interneti i informuar."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Përmirësoni leximin tuaj {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Bëjeni tekstin që po lexoni më tërheqës, duke i hequr rrëmujën që e rrethon."
+msgstr "Thelloni leximin tuaj. Bëjeni tekstin që po lexoni më tërheqës, duke i hequr rrëmujën që e rrethon."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hapni disa lidhje njëherësh {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Djathtasklikoni mbi lidhje dhe tërhiqini që të hapen në skeda të reja ato që doni."
 
@@ -3921,9 +3923,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Frymëzoni prodhimshmëri {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Modifikojeni faqen tuaj për skeda të reja që të shfaqë një sfond shumë të bukur, caktoni fokusin tuaj ditor, etj."
+msgstr "Frymëzoni prodhimtarinë. Modifikojeni faqen tuaj për skeda të reja që të shfaqë një sfond shumë të bukur, caktoni fokusin tuaj ditor, etj."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3970,9 +3971,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Bëjeni tuajën {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Luajini videot në një dritare flluskë, shihni reklamat vetëm nga kanalet ku jeni pajtuar, bëni foto ekrani të videove, dhe plot gjëra të tjera."
+msgstr "Bëjeni YouTube-in tuaj. Luajini videot në një dritare flluskë, shihni reklamat vetëm nga kanalet ku jeni pajtuar, bëni foto ekrani të videove, dhe plot gjëra të tjera."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3987,7 +3987,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stilizoni Wikipedia-n {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Aplikon mbi Wikipedia-n një pamje të freskët dhe moderne."
 
@@ -3996,9 +3995,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Punoni më shpejt {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Përdorni gjeste miu për të bërë gjëra - më shpejt."
+msgstr "Përdorni gjeste miu për t’i bërë gjërat më shpejt."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4037,27 +4035,24 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mposhtni mesazhet e padëshiruar {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Përdorni adresa email të mençura të përkohshme për të qenë anonim dhe për të shmangur mesazhe të padëshiruar."
+msgstr "Dilini fitimtar mbi mesazhet e padëshiruar. Përdorni adresa email të mençura të përkohshme për të qenë anonim dhe për të shmangur mesazhe të padëshiruar."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ndryshoni privatësinë tuaj {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Përshtatni me lehtësi rregullimet e e brendshme të privatësisë në Firefox."
+msgstr "Një shteg i drejtpërdrejtë për përshtatjen e rregullimeve të brendshme të privatësisë në Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Merrni përkthime të atypëratyshme {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Përdorni përkthim të menjëhershëm, përmes theksimit të tekstit dhe klikimit të butoni që shfaqet."
+msgstr "Merrni përkthim të menjëhershëm, përmes theksimit të tekstit dhe klikimit të butoni që shfaqet."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4072,9 +4067,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp në web {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Përdoreni WhatsApp-in që nga paneli i Firefox-it për të marrë njoftime rrjedhash të palexuara."
+msgstr "WhatsApp në internet. Përdoreni WhatsApp-in që nga paneli i Firefox-it për të marrë njoftime rrjedhash të palexuara."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4089,9 +4083,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Krijoni një listë bllokimesh sajti {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Kufizojini Firefox-it hyrjen në sajtet që caktoni ju."
+msgstr "Kufizojini Firefox-it hyrjen në sajtet që caktoni ju. Një mjet i goditur për të ushtruar vetë-disiplinë internetore."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4130,9 +4123,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Përzgjidhni me lehtësi vendndodhje faqerojtësish {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Një rrugë më e mirë për ruajtjen e faqerojtësve, nëse përdorni dosje të shumta faqerojtësish."
+msgstr "Një rrugë më efikase për ruajtjen e faqerojtësve, nëse përdorni dosje të shumta faqerojtësish."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4151,7 +4143,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Përftoni lidhje {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Shfaqini aty për aty në skeda të reja krejt lidhjet prej një faqeje."
 
@@ -4160,9 +4151,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Anashkaloni ridrejtime & gjurmues {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Hiqni qafe faqe ridrejtimesh dhe parametra gjurmimi në URL."
+msgstr "Hiqni qafe faqe ridrejtimesh dhe parametra gjurmimi në URL prej lidhjesh web. Funksionon vetvetiu."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4177,9 +4167,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Shkarkoni video YouTube {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Shkarkoni video dhe/ose audio."
+msgstr "Shkarkoni video dhe/ose audio YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4226,9 +4215,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Shijoni muzikë nga anembanë bota {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Përdorni më shumë se 30 mijë stacione radio nga anembanë globi."
+msgstr "Shijoni muzikë prej më shumë se 30 mijë stacionesh radio nga anembanë globi."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4251,18 +4239,16 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shfletoni të parrezikuar {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Kaloni te versioni i sigurt i një sajti, në pastë."
+msgstr "Kaloni automatikisht te versioni i sigurt i një sajti, në pastë."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Fshini historikun tuaj të shfletimit {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Përcaktoni një numër ditësh sipas dëshirës, për mbajtje të historikut të shfletimit, përpara se ai të zbrazet automatikisht."
+msgstr "Fshini historikun tuaj të shfletimit. Përcaktoni një numër ditësh sipas dëshirës, për mbajtje të historikut të shfletimit, përpara se ai të zbrazet automatikisht."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4285,9 +4271,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Plotësojini formularët automatikisht {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Ruajini një herë të dhënat që jepni dhe do të vetëplotësohen herës tjetër."
+msgstr "Plotësoni formularë automatikisht. Ruajini një herë të dhënat që jepni dhe do të vetëplotësohen herës tjetër."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4302,16 +4287,14 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ndalni grabitje fokusi në një skedë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Mos lejoni që lidhje të klikuara të marrin kontrollin e fokusit te skeda juaj atë çast dhe të ngarkojnë lëndë të cilën s’e keni kërkuar."
+msgstr "Ndalni grabitjen e skedave. Mos lejoni që lidhje të klikuara të marrin kontrollin e fokusit te skeda juaj atë çast dhe të ngarkojnë lëndë të cilën s’e keni kërkuar."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hyni lehtësisht në Wikipedia {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr "Kryeni një kërkim në Wikipedia thjesht duke theksuar tekst nga cilado faqe web dhe duke e djathtasklikuar."
 
@@ -4336,27 +4319,25 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Ndiqni Historik Çmimesh Në Amazon {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Kur shihni në faqe produktesh në shitore të tjera internetore, nëse gjendet edhe në Amazon, mundeni thjesht të klikoni një buton që të shihni ç’ka në Amazon për të."
+msgstr ""
+"Përfitoni një avantazh në Amazon. Kur shihni në faqe produktesh në shitore të tjera internetore, nëse gjendet edhe në Amazon, mundeni thjesht të klikoni një buton që të shihni ç’ka në Amazon për të."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kontroll përfundimtar i skedave {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Kaq shumë mundësi kontrolli skedash - mbyllni skeda të përsëdytura, përzieni dritare, kopjoni titull skede, etj."
+msgstr "Shijoni kontroll përfundimtar mbi skedat - mbyllni skeda të përsëdytura, përzieni dritare, kopjoni titull skede, etj."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shijoni një arsimim të çuditshëm {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Ngarkoni një artikull Wikipedia kuturu, sa herë që hapni një skedë të re."
+msgstr "Shijoni edukim të çuditshëm. Ngarkoni një artikull Wikipedia kuturu, sa herë që hapni një skedë të re."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4387,9 +4368,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kërkoni në Firefox {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Hyni lehtësisht në skeda tuajat të hapura, faqerojtës dhe historik."
+msgstr "Kërkoni në Firefox duke hyrë lehtësisht në skeda tuajat të hapura, faqerojtës dhe historik."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4452,32 +4432,30 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Blini me vetëbesim {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Një kontroll ekstra për t’u siguruar se po blini në një sajt që është ekzaminuar për besueshmëri."
+msgstr "Blini me vetëbesim. Ky zgjerim furnizon një kontroll ekstra për t’u siguruar se po blini në një sajt që është ekzaminuar për besueshmëri."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ndiqni prodhimshmërinë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Matni sasinë e kohës që shpenzoni në kompjuter, ose në punën me aplikacione të tillë si Trello, JIRA, Basecamp, GitHub, dhe shumë të tjerë."
+msgstr "Ndiqni prodhimtarinë. Matni sasinë e kohës që shpenzoni në kompjuter, ose në punën me aplikacione të tillë si Trello, JIRA, Basecamp, GitHub, dhe shumë të tjerë."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Prini lëndë web, fjala vjen, artikuj, video, figura, etj, për t’i ruajtur dhe përdorur për projekte individuale ose për bashkëpunim të atypëratyshëm brenda një ekipi."
+msgstr ""
+"Ruani gjërat tuaja të parapëlqyera në web. Prini lëndë web, fjala vjen, artikuj, video, figura, etj, për t’i ruajtur dhe përdorur për projekte individuale ose për bashkëpunim të atypëratyshëm "
+"brenda një ekipi."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shfletoni më mënyrë të sigurt {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Lejoni xhirim lënde web vetëm prej sajtesh të cilëve u zini besë."
+msgstr "Lejoni xhirim lënde web vetëm prej sajtesh të cilëve u zini besë. Shfletoni të siguruar."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4552,18 +4530,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ndreqni audio bezdisëse {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "A është shumë i ulët volumi në një sajt? Shumë i lartë? SoundFixer mund t’ju ndihmojë."
+msgstr "Ndreqni punën e zërit. A është shumë i ulët volumi në një sajt? Shumë i lartë? SoundFixer mund t’ju ndihmojë."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Përpunojeni përpara shtypjesh {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Bëni ndryshime të jashtëzakonshme pamore - hiqni reklama ose lëndë pa kripë - nga cilado faqe web që doni të shtypni."
+msgstr "Përpunoni një faqe web përpara se ta shtypni. Bëni ndryshime të jashtëzakonshme pamore - hiqni reklama ose lëndë pa kripë - nga cilado faqe web që doni të shtypni."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4594,18 +4570,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mbuloni gjurmët tuaja {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Kërkoni me më tepër siguri, përmes bllokimit të gjurmuesve, fshehtëzimi të mençur, kërkimesh private, dhe të tjera gjëra thelbësore."
+msgstr "Kërkoni me më tepër siguri, përmes bllokimit të gjurmuesve, fshehtëzimit të mençur, kërkimesh private, dhe të tjera përfitime privatësie."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Thjeshtoni kërkimin {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Sistemojini skedat tuaja të shumta të hapura në një anështyllë vertikale."
+msgstr "Thjeshtoni punën me skedat. Sistemojini skedat tuaja të shumta të hapura në një anështyllë vertikale."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4620,9 +4594,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Shihni pamjen më të plotë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Me një klikim të miut mund t’i shihni videot në shkëlqimin e plotë."
+msgstr "Me një klikim të thjeshtë të miut mund t’i shihni videot në shkëlqimin e plotë të mënyrës sa krejt ekrani."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4645,9 +4618,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Çani përmes gjërash pa kuptim {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Një zgjerim i mençur që ju ndihmon të kuptoni shpejt me çfarë po bini dakord."
+msgstr "I bini shkurt përmes broçkullave të marrëveshjeve të zakonshme TOS. Ky zgjerim i mençur ju ndihmon të kuptoni shpejt se ç’ju kërkohet të bini dakord."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4666,9 +4638,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bllokoni reklama & më tepër {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Jo thjesht bllokoni reklama bezdisëse, por mbroni vetëm kundrejt malware-i dhe gjrumimesh."
+msgstr "Bllokoni reklama bezdisëse dhe përfitoni mbrojtje të thelluar kundrejt malware-i dhe gjurmimesh nga reklama."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4683,21 +4654,18 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ruajini lehtësisht figurat {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Përlani thjesht figurat prej skedës tuaj të atëçastshme."
+msgstr "Ruajini lehtë figurat - thjesht përlajini prej skedës tuaj të atëçastshme."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bëni matje faqesh web {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Shfaqni një vizore dixhitale përmes cilësdo faqe web, që të matni lartësinë, gjerësinë dhe drejtimin e elementëve të faqes."
+msgstr "Matni faqe web. Shfaqni një vizore dixhitale përmes cilësdo faqe web, që të matni lartësinë, gjerësinë dhe drejtimin e elementëve të faqes."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
 msgstr "Shijoni përfitimet nga administrim i fuqishëm i fjalëkalimeve."
 
@@ -4714,9 +4682,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Bllokoni sajte shpërqendruese {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Radhitni sajtet që dëshironi të bllokohen nga zgjerimi. Disiplinë aty për aty!"
+msgstr "Bllokoni sajte që ju shpërqendrojnë. Thjesht radhitni sajtet që dëshironi të bllokohen nga zgjerimi. Disiplinë aty për aty!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4731,9 +4698,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Ndërroni pamjen e Firefox-it {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Hartoni me lehtësinë temën tuaj pamore për ta bërë Firefox-in të duket ashtu si ju pëlqen."
+msgstr "Ndryshoni pamjen e shfletuesit tuaj. Hartoni me lehtësinë temën tuaj pamore për ta bërë Firefox-in të duket ashtu si ju pëlqen."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4756,9 +4722,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Ndiqni çmime produktesh {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Merrni njoftim kur ulen çmimet për artikuj që ju interesojnë në Amazon, Best Buy, eBay, Home Depot, dhe Walmart."
+msgstr "Ndiqni produkte dhe merrni njoftim kur ulen çmimet për artikuj që ju interesojnë në Amazon, Best Buy, eBay, Home Depot, dhe Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4885,9 +4850,8 @@ msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
+msgstr "S’mund të parashtroni një paketë gjuhësore"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë {extensions} që mbulohet."
@@ -5079,7 +5043,8 @@ msgstr ""
 "cilësinë dhe qëndrueshmërinë e kodit."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Ndihmoni në përmirësimin e këtij sajti. Është me burim të hapët, dhe mund të depozitoni të meta dhe të parashtroni arnime për të. <a href=\"%(url)s\"> GitHub</a> përmban krejt të metat e tanishme, "
 "të meta të dikurshme mund të gjenden në Bugzilla."
@@ -5127,8 +5092,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Pyetje të Bëra Shpesh rreth Shqyrtimeve"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Shqyrtimet e shtesave janë një rrugë që t’u bëni të ditur të tjerëve mendimin tuaj mbi shtesat që instaloni dhe përdorni. Ekipi ynë i moderimit të shqyrtimeve të shtesave ruan të drejtën të hedhë "
 "poshtë ose heqë çfarëdo shqyrtimi që s’përputhet me këto udhëzime."
@@ -5198,8 +5163,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Të kritikojë një shtesë mbi diçka për të cilën shtesa është krijuar të bëjë. Për shembull, lënia e një shqyrtimi negativ për një shtesë që shfaq reklama ose që lyp grumbullim të dhënash, në një kohë"
-" që shtesa për këtë është hartuar. ose shtesa lyp grumbullim të dhënash që të funksionojë."
+"Të kritikojë një shtesë mbi diçka për të cilën shtesa është krijuar të bëjë. Për shembull, lënia e një shqyrtimi negativ për një shtesë që shfaq reklama ose që lyp grumbullim të dhënash, në një "
+"kohë që shtesa për këtë është hartuar. ose shtesa lyp grumbullim të dhënash që të funksionojë."
 
 msgid "How can I report a problematic review?"
 msgstr "Si të njoftoj për një shqyrtim problematik?"
@@ -5410,6 +5375,9 @@ msgstr "Është e rekomandueshme"
 msgid "Delayed because it's the first listed version"
 msgstr "E vonuar ngaqë është versioni i parë i paraqitur në listë"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Lloj"
 
@@ -5455,9 +5423,8 @@ msgstr "Peshë"
 msgid "Information Request Deadline"
 msgstr "Afat Kërkese të Dhënash"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Përditësuar Së Fundi:"
+msgstr "Përditësuar Së Fundi Më"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Kështu do të miratohet, nënshkruhet dhe publikohet ky version. Komentet do t’i dërgohen zhvilluesit."
@@ -5810,9 +5777,8 @@ msgstr "Historik ndryshimes përdoruesi shtese"
 msgid "Add-on History"
 msgstr "Historik Shtese"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Shënimi i mëparshëm"
+msgstr "Zëra të fshirë më herët"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -5931,6 +5897,13 @@ msgstr "Fshihi Komentet"
 
 msgid "No reviews found for this period."
 msgstr "S’u gjetën shqyrtime për këtë periudhë."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "sipas Burimesh"
 
 msgid "Dismiss this announcement"
 msgstr "Hidhe tej këtë njoftim"
@@ -6236,18 +6209,17 @@ msgstr "Si të ndiqni burime të jashtme…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Lidhja e burimeve të jashtme</h2> <p> Nëse keni krijuar lidhje për te faqja e hollësive të shtesës suaj, ose drejt e te kartela e saj, prej një sajti të jashtëm, të tillë si blogu ose sajti "
 "juaj, mund të shtoni te kjo faqe një parametër që të ndiqet si burim shtesë shkarkimesh. Për shembull, lidhjet vijuese do të shfaqeshin si burime nga blogu juaj: <dl> <dt>Faqe e Hollësive të "
-"Shtesës</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lidhje e Drejtpërdrejtë Kartele</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Do të ndiqen vetëm parametrat që fillojnë me \"external-\", deri në 61 shenja "
-"shtesë. Për të përshkruar burimin, mund të përdoret çfarëdo teksti pas \"external-\", të tillë si \"external-blog\", \"external-anështyllë\", \"external-fushata225\", etj. Lejohen shenjat vijuese që"
-" s’janë problem për URL-të: <code>a-z A-Z - . _ ~ %% +</code>"
+"Shtesës</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lidhje e Drejtpërdrejtë Kartele</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-"
+"latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Do të ndiqen vetëm parametrat që fillojnë me \"external-\", deri në 61 shenja shtesë. Për të përshkruar burimin, mund të përdoret çfarëdo teksti "
+"pas \"external-\", të tillë si \"external-blog\", \"external-anështyllë\", \"external-fushata225\", etj. Lejohen shenjat vijuese që s’janë problem për URL-të: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Gjendje Shtese sipas Datash"
@@ -6376,9 +6348,8 @@ msgstr "Jeni i sigurt se doni të hiqen krejt përkthimet për <b>{0}</b>? Kjo s
 msgid "Delete Locale"
 msgstr "Fshije Vendoren"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Mbylle Historikun e Shqyrtimeve"
+msgstr "Historik Kufizimesh Përdoruesi"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6438,9 +6409,8 @@ msgstr ""
 "Jepni ose përkatësi të plotë, ose email që duhet bllokuar, ose përdorni shenja të gjithëpushtetshme për përputhje me rregullsi të tjera. Për shembull, \"@*.mail.com\"\n"
 "Ju lutemi, mbani parasysh se nuk përfshijmë \"@\" në kërkim përputhjesh, ndaj këtë duhet ta bëni përmes rregullsisë."
 
-#, fuzzy
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Adresa email që përdorët për llogarinë tuaj si zhvillues nuk lejohet për parashtrim shtesash."
+msgstr "Adresa email e përdorur për llogarinë tuaj nuk lejohet për parashtrim shtesash."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
@@ -6448,11 +6418,11 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
-"Para se t’ia filloni, ju lutemi lexoni dhe pranoni Marrëveshjen mbi Shpërndarjen e Shtesave të Firefox-it, si dhe Rregullat tona mbi Shqyrtimet. Marrëveshja mbi Shpërndarjen e Shtesave të Firefox-it"
-" përmban edhe lidhje për te Shënimet tona mbi Privatësinë, ku shpjegohet se si i trajtojmë të dhënat tuaja."
+"Para se t’ia filloni, ju lutemi lexoni dhe pranoni Marrëveshjen mbi Shpërndarjen e Shtesave të Firefox-it, si dhe Rregullat tona mbi Shqyrtimet. Marrëveshja mbi Shpërndarjen e Shtesave të Firefox-"
+"it përmban edhe lidhje për te Shënimet tona mbi Privatësinë, ku shpjegohet se si i trajtojmë të dhënat tuaja."
 
 msgid "an add-on developer replies to my review"
 msgstr "një zhvillues shtese i përgjigjet shqyrtimit tim"

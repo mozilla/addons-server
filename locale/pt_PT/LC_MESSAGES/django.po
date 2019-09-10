@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-06-09 01:15+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -433,6 +433,10 @@ msgstr "Deve providenciar um objeto de {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk ou identificador inválidos \"%s\" - o objeto não existe."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Mais informação sobre as licenças Creative Commons"
 
 msgid "Application Versions"
 msgstr "Versões da aplicação"
@@ -1783,9 +1787,6 @@ msgstr "Revisão solicitada."
 msgid "You must provide further details to proceed."
 msgstr "Tem de providenciar detalhes adicionais para proceder."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "As suas credenciais antigas foram revogadas e já não são válidas. Atualize todos os clientes da API com as novas credenciais."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "As suas credenciais antigas foram revogadas e já não são válidas."
 
@@ -2777,6 +2778,13 @@ msgstr ""
 "Para fazer pedidos à API, envie um <a href=\"%(jwt_url)s\">Token Web JSON (JWT)</a> como o cabeçalho da autorização. Precisa de gerar um JWT para cada pedido tal como é explicado na <a href="
 "\"%(docs_url)s\">documentação da API</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Não possui quaisquer credenciais da API."
 
@@ -2785,6 +2793,10 @@ msgstr "Revogar"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Revogar e regenerar credenciais"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Gerar novas credenciais"
 
 msgid "Generate new credentials"
 msgstr "Gerar novas credenciais"
@@ -5465,6 +5477,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Tipo"
 
@@ -5989,6 +6004,13 @@ msgstr "Ocultar comentários"
 
 msgid "No reviews found for this period."
 msgstr "Nenhuma revisão encontrada para este período."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "por fonte"
 
 msgid "Dismiss this announcement"
 msgstr "Dispensar este anúncio"

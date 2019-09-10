@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-16 17:14+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 13:07+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -439,6 +439,9 @@ msgstr "Sie müssen ein Objekt für {lang-code:value} angeben."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Ungültiger pk oder Adressname „%s“ – Objekt existiert nicht."
+
+msgid "Confirmation for developer API keys"
+msgstr "Bestätigung für Entwickler-API-Schlüssel"
 
 msgid "Application Versions"
 msgstr "Anwendungs-Versionen"
@@ -1789,9 +1792,6 @@ msgstr "Überprüfung angefordert."
 msgid "You must provide further details to proceed."
 msgstr "Sie müssen weitere Details angeben, um fortzufahren."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Ihre alten Daten wurden widerrufen und sind nicht mehr gültig. Aktualisieren Sie unbedingt alle API-Clients mit den neuen Daten."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Ihre alten Daten wurden widerrufen und sind nicht mehr gültig."
 
@@ -2777,6 +2777,13 @@ msgstr ""
 "Um API-Anfragen zu stellen, senden Sie einen <a href=\"%(jwt_url)s\">JSON-Web-Token (JWT)</a> als Autorisierungs-Header. Sie müssen für jede Anfrage einen JWT erzeugen, wie in der <a "
 "href=\"%(docs_url)s\">API-Dokumentation</a> beschrieben."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Klicken Sie auf die folgende Schaltfläche „Bestätigen“, um API-Anmeldeinformationen für den Benutzer <strong>%(name)s</strong> zu generieren."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Ein Bestätigungslink wird an Ihre E-Mail-Adresse gesendet. Nach der Bestätigung finden Sie Ihre API-Schlüssel auf dieser Seite."
+
 msgid "You don't have any API credentials."
 msgstr "Sie haben keine API-Daten."
 
@@ -2785,6 +2792,9 @@ msgstr "Widerrufen"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Daten widerrufen und neu erzeugen"
+
+msgid "Confirm and generate new credentials"
+msgstr "Bestätigen und neue Anmeldeinformationen generieren"
 
 msgid "Generate new credentials"
 msgstr "Neue Daten erzeugen"
@@ -5377,6 +5387,9 @@ msgstr "Ist empfohlen"
 msgid "Delayed because it's the first listed version"
 msgstr "Verzögert, weil es die erste aufgeführte Version ist"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "Sie können keinen Kommentar abgeben, wenn „canned_response“ definiert ist."
+
 msgid "Type"
 msgstr "Typ"
 
@@ -5896,6 +5909,12 @@ msgstr "Kommentare ausblenden"
 
 msgid "No reviews found for this period."
 msgstr "Keine Überprüfungen für diesen Zeitraum gefunden."
+
+msgid "Method:"
+msgstr "Methode:"
+
+msgid "Source:"
+msgstr "Quelle:"
 
 msgid "Dismiss this announcement"
 msgstr "Diese Ankündigung verwerfen"

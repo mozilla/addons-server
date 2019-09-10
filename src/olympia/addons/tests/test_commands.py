@@ -1,3 +1,4 @@
+import random
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 
@@ -120,6 +121,30 @@ def test_process_addons_limit_addons():
         call_command('process_addons', task='resign_addons_for_cose', limit=2)
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
+
+
+@pytest.mark.django_db
+@mock.patch.object(process_addons.Command, 'get_pks')
+def test_process_addons_batch_size(mock_get_pks):
+    addon_ids = [
+        random.randrange(1000) for _ in range(101)
+    ]
+    mock_get_pks.return_value = addon_ids
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command('process_addons', task='recreate_previews')
+        assert len(calls) == 2
+        assert calls[0]['kwargs']['args'] == [addon_ids[:100]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[100:]]
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command(
+            'process_addons', task='recreate_previews',
+            **{'batch_size': 50})
+        assert len(calls) == 3
+        assert calls[0]['kwargs']['args'] == [addon_ids[:50]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[50:100]]
+        assert calls[2]['kwargs']['args'] == [addon_ids[100:]]
 
 
 class TestAddDynamicThemeTagForThemeApiCommand(TestCase):

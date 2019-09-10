@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-19 09:22+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-10 07:11+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -440,6 +440,9 @@ msgstr "U dient een object van {lang-code:value} op te geven."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Ongeldige pk of identificator ‘%s’ - object bestaat niet."
+
+msgid "Confirmation for developer API keys"
+msgstr "Bevestiging voor API-sleutels voor ontwikkelaars"
 
 msgid "Application Versions"
 msgstr "Toepassingsversies"
@@ -1776,9 +1779,6 @@ msgstr "Beoordeling aangevraagd."
 msgid "You must provide further details to proceed."
 msgstr "U moet meer details opgeven om verder te gaan."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Uw oude referenties zijn ingetrokken en niet meer geldig. Zorg ervoor dat u alle API-clients bijwerkt met de nieuwe referenties."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Uw oude referenties zijn ingetrokken en niet meer geldig."
 
@@ -2761,6 +2761,13 @@ msgstr ""
 "Stuur een <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> als de autorisatieheader om API-aanvragen te doen. U dient voor elke aanvraag een JWT te genereren, zoals uitgelegd in de <a "
 "href=\"%(docs_url)s\">API-documentatie</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Klik hieronder op de knop Bevestigen om nieuwe API-sleutels voor gebruiker <strong>%(name)s</strong> te genereren."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Er zal een bevestigingskoppeling naar uw e-mailadres worden verzonden. Na bevestiging vindt u uw API-sleutels op deze pagina."
+
 msgid "You don't have any API credentials."
 msgstr "U hebt geen API-referenties."
 
@@ -2769,6 +2776,9 @@ msgstr "Intrekken"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Referenties intrekken en opnieuw genereren"
+
+msgid "Confirm and generate new credentials"
+msgstr "Bevestigen en nieuwe referenties genereren"
 
 msgid "Generate new credentials"
 msgstr "Nieuwe referenties genereren"
@@ -5357,6 +5367,9 @@ msgstr "Is aan te bevelen"
 msgid "Delayed because it's the first listed version"
 msgstr "Vertraagd omdat het de eerste versie in de lijst is"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "U kunt geen commentaar indienen als ‘canned_response’ is gedefinieerd."
+
 msgid "Type"
 msgstr "Type"
 
@@ -5879,6 +5892,12 @@ msgstr "Opmerkingen verbergen"
 
 msgid "No reviews found for this period."
 msgstr "Geen beoordelingen in deze periode gevonden."
+
+msgid "Method:"
+msgstr "Methode:"
+
+msgid "Source:"
+msgstr "Bron:"
 
 msgid "Dismiss this announcement"
 msgstr "Deze aankondiging verwijderen"

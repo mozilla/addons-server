@@ -32,7 +32,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
+from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
@@ -899,14 +899,15 @@ class TestAPIKeyPage(TestCase):
         response = self.client.get(reverse('devhub.api_key'))
         self.assert3xx(response, reverse('devhub.api_key_agreement'))
 
-    def test_view_without_credentials(self):
+    def test_view_without_credentials_not_confirmed_yet(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         submit = doc('#generate-key')
         assert submit.text() == 'Generate new credentials'
         inputs = doc('.api-input input')
-        assert len(inputs) == 0, 'Inputs should be hidden before keys exist'
+        assert len(inputs) == 0, 'Inputs should be absent before keys exist'
+        assert not doc('input[name=confirmation_token]')
 
     def test_view_with_credentials(self):
         APIKey.objects.create(user=self.user,
@@ -922,20 +923,127 @@ class TestAPIKeyPage(TestCase):
         key_input = doc('.key-input input').val()
         assert key_input == 'some-jwt-key'
 
-    def test_create_new_credentials(self):
+    def test_view_without_credentials_confirmation_requested_no_token(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=False)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Since confirmation has already been requested, there shouldn't be
+        # any buttons on the page if no token was passed in the URL - the user
+        # needs to follow the link in the email to continue.
+        assert not doc('input[name=confirmation_token]')
+        assert not doc('input[name=action]')
+
+    def test_view_without_credentials_confirmation_requested_with_token(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='secrettoken', confirmed_once=False)
+        self.url += '?token=secrettoken'
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('input[name=confirmation_token]')) == 1
+        token_input = doc('input[name=confirmation_token]')[0]
+        assert token_input.value == 'secrettoken'
+        submit = doc('#generate-key')
+        assert submit.text() == 'Confirm and generate new credentials'
+
+    def test_view_no_credentials_has_been_confirmed_once(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=True)
+        # Should look similar to when there are no credentials and no
+        # confirmation has been requested yet, the post action is where it
+        # will differ.
+        self.test_view_without_credentials_not_confirmed_yet()
+
+    def test_create_new_credentials_has_been_confirmed_once(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=True)
         patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
         with patch as mock_creator:
             response = self.client.post(self.url, data={'action': 'generate'})
         mock_creator.assert_called_with(self.user)
 
-        email = mail.outbox[0]
         assert len(mail.outbox) == 1
-        assert email.to == [self.user.email]
-        assert reverse('devhub.api_key') in email.body
+        message = mail.outbox[0]
+        assert message.to == [self.user.email]
+        assert message.subject == 'New API key created'
+        assert reverse('devhub.api_key') in message.body
 
         self.assert3xx(response, self.url)
 
-    def test_delete_and_recreate_credentials(self):
+    def test_create_new_credentials_confirming_with_token(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='secrettoken', confirmed_once=False)
+        patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
+        with patch as mock_creator:
+            response = self.client.post(self.url, data={
+                'action': 'generate', 'confirmation_token': 'secrettoken'
+            })
+        mock_creator.assert_called_with(self.user)
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.user.email]
+        assert message.subject == 'New API key created'
+        assert reverse('devhub.api_key') in message.body
+
+        confirmation.reload()
+        assert confirmation.confirmed_once
+
+        self.assert3xx(response, self.url)
+
+    def test_create_new_credentials_not_confirmed_yet(self):
+        assert not APIKey.objects.filter(user=self.user).exists()
+        assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
+        response = self.client.post(self.url, data={'action': 'generate'})
+        self.assert3xx(response, self.url)
+
+        # Since there was no credentials are no confirmation yet, this should
+        # create a confirmation, send an email with the token, but not create
+        # credentials yet.
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.user.email]
+        assert not APIKey.objects.filter(user=self.user).exists()
+        assert APIKeyConfirmation.objects.filter(user=self.user).exists()
+        confirmation = APIKeyConfirmation.objects.filter(user=self.user).get()
+        assert confirmation.token
+        assert not confirmation.confirmed_once
+        token = confirmation.token
+        expected_url = (
+            f'http://testserver/en-US/developers/addon/api/key/?token={token}'
+        )
+        assert message.subject == 'Confirmation for developer API keys'
+        assert expected_url in message.body
+
+    def test_create_new_credentials_confirmation_exists_no_token_passed(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=False)
+        response = self.client.post(self.url, data={'action': 'generate'})
+        assert len(mail.outbox) == 0
+        assert not APIKey.objects.filter(user=self.user).exists()
+        confirmation.reload()
+        assert not confirmation.confirmed_once  # Unchanged
+        self.assert3xx(response, self.url)
+
+    def test_create_new_credentials_confirmation_exists_token_is_wrong(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='sometoken', confirmed_once=False)
+        response = self.client.post(self.url, data={
+            'action': 'generate', 'confirmation_token': 'wrong'
+        })
+        # Nothing should have happened, the user will just be redirect to the
+        # page.
+        assert len(mail.outbox) == 0
+        assert not APIKey.objects.filter(user=self.user).exists()
+        confirmation.reload()
+        assert not confirmation.confirmed_once
+        self.assert3xx(response, self.url)
+
+    def test_delete_and_recreate_credentials_has_been_confirmed_once(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=True)
         old_key = APIKey.objects.create(user=self.user,
                                         type=SYMMETRIC_JWT_TYPE,
                                         key='some-jwt-key',
@@ -949,6 +1057,38 @@ class TestAPIKeyPage(TestCase):
         new_key = APIKey.get_jwt_key(user=self.user)
         assert new_key.key != old_key.key
         assert new_key.secret != old_key.secret
+
+    def test_delete_and_recreate_credentials_has_not_been_confirmed_yet(self):
+        old_key = APIKey.objects.create(user=self.user,
+                                        type=SYMMETRIC_JWT_TYPE,
+                                        key='some-jwt-key',
+                                        secret='some-jwt-secret')
+        response = self.client.post(self.url, data={'action': 'generate'})
+        self.assert3xx(response, self.url)
+
+        old_key = APIKey.objects.get(pk=old_key.pk)
+        assert old_key.is_active is None
+
+        # Since there was no confirmation, this should create a one, send an
+        # email with the token, but not create credentials yet. (Would happen
+        # for an user that had api keys from before we introduced confirmation
+        # mechanism, but decided to regenerate).
+        assert len(mail.outbox) == 2  # 2 because of key revocation email.
+        assert 'revoked' in mail.outbox[0].body
+        message = mail.outbox[1]
+        assert message.to == [self.user.email]
+        assert not APIKey.objects.filter(
+            user=self.user, is_active=True).exists()
+        assert APIKeyConfirmation.objects.filter(user=self.user).exists()
+        confirmation = APIKeyConfirmation.objects.filter(user=self.user).get()
+        assert confirmation.token
+        assert not confirmation.confirmed_once
+        token = confirmation.token
+        expected_url = (
+            f'http://testserver/en-US/developers/addon/api/key/?token={token}'
+        )
+        assert message.subject == 'Confirmation for developer API keys'
+        assert expected_url in message.body
 
     def test_delete_credentials(self):
         old_key = APIKey.objects.create(user=self.user,

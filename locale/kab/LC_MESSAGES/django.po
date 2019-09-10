@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-07-07 19:46+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -431,6 +431,10 @@ msgstr "Yessefk ad tmuddeḍ xaṛsum taɣawsa {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Tasarut tamezwarut neɣ asulay ilulen \"%s\" mačči d ameɣtu. Taɣawsa ulmac-itt."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Ugar n telɣut ɣef turagin Creative Commons"
 
 msgid "Application Versions"
 msgstr "Ileqman n usnas"
@@ -1775,9 +1779,6 @@ msgstr "Aceggir yettwasuter."
 msgid "You must provide further details to proceed."
 msgstr "Ilaq ugar n talγut akken ad tkemleḍ."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Talɣut inek taqbuṛt n usesteb ttwaḥwin udiɣ zemren ur ttilin ara d imeɣta. Ma ulac aɣilif, leqqem akk imsaɣen inek API s telɣut tamaynut n usesteb."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Talɣut inek n usesteb tettwaḥwi ihi ur tezgi d tameɣtut."
 
@@ -2771,6 +2772,13 @@ msgstr ""
 "Akken ad tegeḍ tuttriwin AP, azen <a href=\"%(jwt_url)s\">Ajiṭun JSON Web</a> deg uqerru n tsiregt. Ilaq-ak ad tsirweḍ JWT i yal tuttra, am akken i d-yettwammel deg <a href=\"%(docs_url)s\">tsemlit "
 "API</a>."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Ur ɣur-k ara talɣut n usesteb API."
 
@@ -2779,6 +2787,10 @@ msgstr "Ḥwi"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Ḥwi sakin sirew talɣut n usesteb"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Sirew talɣut tamaynut n usesteb"
 
 msgid "Generate new credentials"
 msgstr "Sirew talɣut tamaynut n usesteb"
@@ -5535,6 +5547,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Anaw"
 
@@ -6061,6 +6076,13 @@ msgstr "Ffer iwenniten"
 
 msgid "No reviews found for this period."
 msgstr "Ulac iceggiren yettwafen di twala-agi."
+
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "s uɣbalu"
 
 msgid "Dismiss this announcement"
 msgstr "Agi alɣu-a"

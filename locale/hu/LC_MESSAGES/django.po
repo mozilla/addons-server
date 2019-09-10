@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-28 09:35+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 13:43+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -435,6 +435,10 @@ msgstr "Meg kell adnia egy {lang-code:value} objektumot."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Érvénytelen pk vagy SEO URL: „%s” – az objektum nem létezik."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "További információk a fejlesztői fiókokról"
 
 msgid "Application Versions"
 msgstr "Alkalmazásverziók"
@@ -1783,9 +1787,6 @@ msgstr "Értékelés kérve."
 msgid "You must provide further details to proceed."
 msgstr "További részleteket kell megadnia a továbblépéshez."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Régi hitelesítő adatait visszavonták és már nem érvényesek. Győződjön meg minden API ügyfél új hitelesítő adatokkal való frissítéséről."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Régi hitelesítő adatait visszavonták, és már nem érvényesek."
 
@@ -2771,6 +2772,13 @@ msgstr ""
 "API kéréshez küldjön egy <a href=\"%(jwt_url)s\">JSON Web Tokent (JWT),</a> az autorizációs fejlécben. Egy JWT-t kell generálnia minden egyes kéréshez, ahogy azt az <a href=\"%(docs_url)s\">API "
 "dokumentáció</a> elmagyarázza."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr "Nem rendelkezik API hitelesítő adatokkal."
 
@@ -2779,6 +2787,10 @@ msgstr "Visszavonás"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Hitelesítő adatok visszavonása és újra létrehozása"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Új hitelesítő adatok létrehozása"
 
 msgid "Generate new credentials"
 msgstr "Új hitelesítő adatok létrehozása"
@@ -5408,6 +5420,9 @@ msgstr "Ajánlott"
 msgid "Delayed because it's the first listed version"
 msgstr "Késleltetetve, mert ez az első listázott verzió"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Típus"
 
@@ -5933,6 +5948,13 @@ msgstr "Hozzászólások elrejtése"
 
 msgid "No reviews found for this period."
 msgstr "Nincsenek értékelések ebben az időszakban."
+
+msgid "Method:"
+msgstr "Módszer:"
+
+#, fuzzy
+msgid "Source:"
+msgstr "Forrás szerint"
 
 msgid "Dismiss this announcement"
 msgstr "Bejelentés elvetése"

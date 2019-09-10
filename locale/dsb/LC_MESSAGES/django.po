@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-22 17:37+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 15:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -430,6 +430,9 @@ msgstr "Musyśo objekt za {lang-code:value} pódaś."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Njepłaśiwy pk abo njepłaśiwe adresowe mě „%s“ - objekt njeeksistěrujo."
+
+msgid "Confirmation for developer API keys"
+msgstr "Wobkšuśenje za wuwijarske API-kluce"
 
 msgid "Application Versions"
 msgstr "Nałožeńske wersije"
@@ -1765,9 +1768,6 @@ msgstr "Pśeglědowanje jo se pominało."
 msgid "You must provide further details to proceed."
 msgstr "Musyśo dalšne drobnostki pódaś, aby pókšacował."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Waše stare pśizjawjeńske daty su se wótwołali a njejsu wěcej płaśiwe. Aktualizěrujśo na kuždy pad wšykne API-klienty z nowymi datami."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Waše stare pśizjawjeńske daty su se wótwołali a njejsu wěcej płaśiwe."
 
@@ -2759,6 +2759,13 @@ msgstr ""
 "Aby API-napšašowanja stajił, pósćelśo <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ako awtorizěrowańsku głowu. Musyśo JWT za kužde napšašowanje twóriś, ako se to w<a href=\"%(docs_url)s\">API-"
 "dokumentaciji</a> wujasnjujo."
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "Pšosym klikniśo na wobkšuśeński tłocašk dołojce, aby pśizjawjeńske informacije API za wužywarja <strong>%(name)s</strong> napórał."
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "Wobkšuśeński wótkaz se na wašu e-mejlowu adresu pósćelo. Pó wobkšuśenju namakajośo swóje API-kluce na toś tom boku."
+
 msgid "You don't have any API credentials."
 msgstr "Njamaśo pśizjawjeńske daty API."
 
@@ -2767,6 +2774,9 @@ msgstr "Wótwołaś"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Pśizjawjeńske daty wótwołaś a znowego twóriś"
+
+msgid "Confirm and generate new credentials"
+msgstr "Nowe pśizjawjeńske informacije wobkšuśiś a napóraś"
 
 msgid "Generate new credentials"
 msgstr "Nowe pśizjawjeńske daty twóriś"
@@ -5358,6 +5368,9 @@ msgstr "Jo dopórucujobne"
 msgid "Delayed because it's the first listed version"
 msgstr "Zaźaržany, dokulaž jo prědna pódana wersija"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "Njamóžośo komentar wótpósłaś, jolic ‚canned_response‘ jo definěrowany."
+
 msgid "Type"
 msgstr "Typ"
 
@@ -5886,6 +5899,12 @@ msgstr "Komentary schowaś"
 
 msgid "No reviews found for this period."
 msgstr "Žedne pógódnośenja za toś ten cas namakane."
+
+msgid "Method:"
+msgstr "Metoda:"
+
+msgid "Source:"
+msgstr "Žrědło:"
 
 msgid "Dismiss this announcement"
 msgstr "Toś to pśipowěźenje zachyśiś"

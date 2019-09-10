@@ -208,7 +208,7 @@ def decode_json(json_string):
 def send_mail(subject, message, from_email=None, recipient_list=None,
               use_deny_list=True, perm_setting=None, manage_url=None,
               headers=None, cc=None, real_email=False, html_message=None,
-              attachments=None, max_retries=3, reply_to=None):
+              attachments=None, max_retries=3, reply_to=None, countdown=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -273,6 +273,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             'max_retries': max_retries,
             'real_email': real_email,
             'reply_to': reply_to,
+            'countdown': countdown,
         }
         kwargs.update(options)
         # Email subject *must not* contain newlines
@@ -745,7 +746,9 @@ class HttpResponseSendFile(HttpResponse):
     def __init__(self, request, path, content=None, status=None,
                  content_type='application/octet-stream', etag=None):
         self.request = request
-        self.path = path
+        # We normalize the path because if it contains dots, nginx will flag
+        # the URI as unsafe when XSENDFILE is used.
+        self.path = os.path.normpath(path)
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
         header_path = self.path

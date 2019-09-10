@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-08-16 10:31+0000\n"
-"PO-Revision-Date: 2019-08-27 08:36+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-09-09 22:39+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -422,6 +422,9 @@ msgstr "您必须提供一个 {lang-code:value} 的对象。"
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "无效的 pk 或 slug \"%s\" - 对象不存在。"
+
+msgid "Confirmation for developer API keys"
+msgstr "确认开发者 API 密钥"
 
 msgid "Application Versions"
 msgstr "应用程序版本"
@@ -1734,9 +1737,6 @@ msgstr "已请求审核。"
 msgid "You must provide further details to proceed."
 msgstr "您必须提供进一步的详细信息才能继续。"
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "您的旧凭据已经吊销并不再有效。请务必使用新凭据更新所有 API 客户端。"
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "您的旧凭据已被吊销并且不再有效。"
 
@@ -2675,6 +2675,13 @@ msgid ""
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr "要执行 API 请求，发送一条 <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> 作为身份校验头。您需要按照 <a href=\"%(docs_url)s\">API 文档</a> 的要求，为每个请求生成一个 JWT。"
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "请点击下方的确认按钮，为用户 <strong>%(name)s</strong> 生成 API 密钥。"
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "确认链接将发送到您的电子邮件地址。确认后，您将在此页面找到您的 API 密钥。"
+
 msgid "You don't have any API credentials."
 msgstr "您没有任何 API 凭据。"
 
@@ -2683,6 +2690,9 @@ msgstr "吊销"
 
 msgid "Revoke and regenerate credentials"
 msgstr "吊销并重新生成凭据"
+
+msgid "Confirm and generate new credentials"
+msgstr "确认并生成新密钥"
 
 msgid "Generate new credentials"
 msgstr "生成新凭据"
@@ -5231,6 +5241,9 @@ msgstr "可推荐"
 msgid "Delayed because it's the first listed version"
 msgstr "因为是首次上架的版本，已推迟"
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "若定义了“canned_response”，则无法提交评论。"
+
 msgid "Type"
 msgstr "类型"
 
@@ -5746,6 +5759,12 @@ msgstr "隐藏意见"
 
 msgid "No reviews found for this period."
 msgstr "在此时间段内没有审核。"
+
+msgid "Method:"
+msgstr "方法："
+
+msgid "Source:"
+msgstr "来源："
 
 msgid "Dismiss this announcement"
 msgstr "忽略此公告"
