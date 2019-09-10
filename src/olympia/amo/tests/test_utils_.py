@@ -16,8 +16,8 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    attach_trans_dict, extract_colors_from_image, get_locale_from_lang,
-    pngcrush_image, utc_millesecs_from_epoch, walkfiles)
+    HttpResponseSendFile, attach_trans_dict, extract_colors_from_image,
+    get_locale_from_lang, pngcrush_image, utc_millesecs_from_epoch, walkfiles)
 
 
 pytestmark = pytest.mark.django_db
@@ -241,3 +241,10 @@ def test_extract_colors_from_image():
         {'h': 40, 'l': 201, 'ratio': 0.05934128722434598, 's': 83}
     ]
     assert extract_colors_from_image(path) == expected
+
+
+class TestHttpResponseSendFile(TestCase):
+    def test_normalizes_path(self):
+        path = '/some/../path/'
+        resp = HttpResponseSendFile(request=None, path=path)
+        assert resp.path == os.path.normpath(path)
