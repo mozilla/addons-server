@@ -4651,6 +4651,84 @@ class TestReview(ReviewBase):
         assert b'Previously deleted entries' not in response.content
 
 
+class TestAbuseReportsView(ReviewerTest):
+    def setUp(self):
+        self.addon_developer = user_factory()
+        self.addon = addon_factory(name='Flôp', users=[self.addon_developer])
+        self.url = reverse('reviewers.abuse_reports', args=[self.addon.slug])
+        self.login_as_reviewer()
+
+    def test_abuse_reports(self):
+        report = AbuseReport.objects.create(
+            addon=self.addon,
+            message='Et mël mazim ludus.',
+            country_code='FR',
+            client_id='4815162342',
+            addon_name='Unused here',
+            addon_summary='Not used either',
+            addon_version='42.0',
+            addon_signature=AbuseReport.ADDON_SIGNATURES.UNSIGNED,
+            application=amo.ANDROID.id,
+            application_locale='fr_FR',
+            operating_system='Løst OS',
+            operating_system_version='20040922',
+            install_date=self.days_ago(1),
+            reason=AbuseReport.REASONS.POLICY,
+            addon_install_origin='https://example.com/',
+            addon_install_method=AbuseReport.ADDON_INSTALL_METHODS.LINK,
+            addon_install_source=AbuseReport.ADDON_INSTALL_SOURCES.UNKNOWN,
+            report_entry_point=AbuseReport.REPORT_ENTRY_POINTS.MENU,
+        )
+        created_at = format_datetime(report.created)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.abuse_reports')) == 1
+        expected = [
+            'Target',
+            'Application',
+            'Install date',
+            'Install origin',
+            'Category',
+            'Date',
+            'Reporter',
+            'Flôp 42.0',
+            'Firefox for Android fr_FR Løst OS 20040922',
+            '1\xa0day ago',
+            'https://example.com/',
+            'Method: Direct link',
+            'Source: Unknown',
+            'Hateful, violent, or illegal content',
+            created_at,
+            'anonymous [FR]',
+            'Et mël mazim ludus.',
+        ]
+
+        assert doc('.abuse_reports').text().split('\n') == expected
+
+    def test_queries(self):
+        AbuseReport.objects.create(addon=self.addon, message='One')
+        AbuseReport.objects.create(addon=self.addon, message='Two')
+        AbuseReport.objects.create(addon=self.addon, message='Three')
+        AbuseReport.objects.create(user=self.addon_developer, message='Four')
+        with self.assertNumQueries(21):
+            # - 2 savepoint/release savepoint
+            # - 2 for user and groups
+            # - 1 for the add-on
+            # - 1 for its translations
+            # - 7 for the add-on default transformer
+            # - 1 for reviewer motd config
+            # - 1 for site notice config
+            # - 2 for add-ons from logged in user and its collections
+            # - 1 for abuse reports count (pagination)
+            # - 1 for the abuse reports
+            # - 2 for the add-on and its translations (duplicate, but it's
+            #     coming from the abuse reports queryset, annoying to get rid
+            #     of)
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+
+
 @override_flag('code-manager', active=True)
 class TestCodeManagerLinks(ReviewBase):
 

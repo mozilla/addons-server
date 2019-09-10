@@ -1218,7 +1218,7 @@ class Addon(OnChangeMixin, ModelBase):
         return not self.is_deleted
 
     def has_listed_versions(self):
-        return self.versions.filter(
+        return self.current_version or self.versions.filter(
             channel=amo.RELEASE_CHANNEL_LISTED).exists()
 
     def has_unlisted_versions(self):

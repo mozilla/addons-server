@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext
@@ -792,6 +792,15 @@ def review(request, addon, channel=None):
     reports = Paginator(
         (AbuseReport.objects
             .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
+            .select_related('user')
+            .prefetch_related(
+                # Should only need translations for addons on abuse reports,
+                # so let's prefetch the add-on with them and avoid repeating
+                # a ton of potentially duplicate queries with all the useless
+                # Addon transforms.
+                Prefetch(
+                    'addon', queryset=Addon.objects.all().only_translations())
+            )
             .order_by('-created')), 5).page(1)
     user_ratings = Paginator(
         (Rating.without_replies
@@ -1068,9 +1077,13 @@ def reviewlog(request):
 def abuse_reports(request, addon):
     developers = addon.listed_authors
     reports = AbuseReport.objects.filter(
-        Q(addon=addon) | Q(user__in=developers)).order_by('-created')
+        Q(addon=addon) | Q(user__in=developers)
+    ).select_related('user').prefetch_related(
+        # See review(): we only need the add-on objects and their translations.
+        Prefetch('addon', queryset=Addon.objects.all().only_translations()),
+    ).order_by('-created')
     reports = amo.utils.paginate(request, reports)
-    data = context(addon=addon, reports=reports)
+    data = context(addon=addon, reports=reports, version=addon.current_version)
     return render(request, 'reviewers/abuse_reports.html', data)
 
 
