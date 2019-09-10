@@ -865,7 +865,7 @@ class Addon(OnChangeMixin, ModelBase):
         latest = True
 
         if request is not None:
-            user_agent = request.META.get('HTTP_USER_AGENT')
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
             version_match = re.search(r'Thunderbird/(\d+\.\d+(a\d+)?)', user_agent)
             if version_match is not None:
                 app_version_int = version_int(version_match.group(1))
