@@ -650,6 +650,12 @@ class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
     keep = True
 
 
+class ADMIN_API_KEY_RESET(_LOG):
+    id = 155
+    format = _(u'User {user} api key reset.')
+    admin_event = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
