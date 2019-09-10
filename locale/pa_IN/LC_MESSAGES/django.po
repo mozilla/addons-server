@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-10 04:21+0000\n"
+"PO-Revision-Date: 2019-09-10 04:49+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1672,7 +1672,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "{addon} ਲਈ ਯੋਗਦਾਨ।"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "ਤਸਦੀਕੀ ਈਮੇਲ {email} ਨੂੰ ਭੇਜੀ ਗਈ ਹੈ"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -1992,7 +1992,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "ਇਨਕਾਰ"
 
 msgid "Manage Authors & License"
 msgstr "ਲੇਖਕਾਂ ਅਤੇ ਲਾਇਸੰਸ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
@@ -5510,7 +5510,7 @@ msgid "Pre-Review Add-ons"
 msgstr "ਐਡਆਨ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
 
 #, fuzzy
 msgid "Other Pending Review ({0})"
@@ -6439,7 +6439,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr ""
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "ਈਮੇਲ ਤਰਤੀਬ"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
