@@ -10,10 +10,6 @@
               They have to be *after* the other submit buttons, otherwise they
               could become the default submit button of the page
              {% endcomment %}
-             {% if can_ban %}
-                 <button formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
-                         type="submit">{% trans "Ban" %}</button>
-             {% endif %}
              {% if has_users_edit_permission %}
                  <button formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
                          type="submit">{% trans "Ban" %}</button>
