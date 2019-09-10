@@ -336,11 +336,11 @@ class Addon(OnChangeMixin, ModelBase):
 
     type = models.PositiveIntegerField(
         choices=amo.ADDON_TYPE.items(), db_column='addontype_id',
-        default=amo.ADDON_EXTENSION, db_index=True)
+        default=amo.ADDON_EXTENSION)
     status = models.PositiveIntegerField(
-        choices=STATUS_CHOICES.items(), db_index=True, default=amo.STATUS_NULL)
-    icon_type = models.CharField(max_length=25, blank=True,
-                                 db_column='icontype')
+        choices=STATUS_CHOICES.items(), default=amo.STATUS_NULL)
+    icon_type = models.CharField(
+        max_length=25, blank=True, db_column='icontype')
     icon_hash = models.CharField(max_length=8, blank=True, null=True)
     homepage = TranslatedField()
     support_email = TranslatedField(db_column='supportemail')
@@ -352,33 +352,31 @@ class Addon(OnChangeMixin, ModelBase):
     eula = PurifiedField()
     privacy_policy = PurifiedField(db_column='privacypolicy')
 
-    average_rating = models.FloatField(max_length=255, default=0, null=True,
-                                       db_column='averagerating')
-    bayesian_rating = models.FloatField(default=0, db_index=True,
-                                        db_column='bayesianrating')
-    total_ratings = models.PositiveIntegerField(default=0,
-                                                db_column='totalreviews')
+    average_rating = models.FloatField(
+        max_length=255, default=0, null=True, db_column='averagerating')
+    bayesian_rating = models.FloatField(
+        default=0, db_column='bayesianrating')
+    total_ratings = models.PositiveIntegerField(
+        default=0, db_column='totalreviews')
     text_ratings_count = models.PositiveIntegerField(
         default=0, db_column='textreviewscount')
     weekly_downloads = models.PositiveIntegerField(
-        default=0, db_column='weeklydownloads', db_index=True)
+        default=0, db_column='weeklydownloads')
     total_downloads = models.PositiveIntegerField(
         default=0, db_column='totaldownloads')
-    hotness = models.FloatField(default=0, db_index=True)
+    hotness = models.FloatField(default=0)
 
     average_daily_users = models.PositiveIntegerField(default=0)
 
     last_updated = models.DateTimeField(
-        db_index=True, null=True,
-        help_text='Last time this add-on had a file/version update')
+        null=True, help_text='Last time this add-on had a file/version update')
 
-    disabled_by_user = models.BooleanField(default=False, db_index=True,
-                                           db_column='inactive')
+    disabled_by_user = models.BooleanField(default=False, db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
 
     target_locale = models.CharField(
-        max_length=255, db_index=True, blank=True, null=True,
+        max_length=255, blank=True, null=True,
         help_text='For dictionaries and language packs. Identifies the '
                   'language and, optionally, region that this add-on is '
                   'written for. Examples: en-US, fr, and de-AT')
@@ -1663,8 +1661,6 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     class Meta:
         db_table = 'addons_users'
         indexes = [
-            models.Index(fields=('user',),
-                         name='user_id'),
             models.Index(fields=('listed',),
                          name='listed'),
             models.Index(fields=('addon', 'user', 'listed'),
@@ -1727,11 +1723,6 @@ class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users_pending_confirmation'
-        indexes = [
-            LongNameIndex(fields=('user',),
-                          name='addons_users_pending_confirmation_user_id_'
-                               '3c4c2421_fk_users_id'),
-        ]
         constraints = [
             models.UniqueConstraint(fields=('addon', 'user'),
                                     name='addons_users_pending_confirmation_'
@@ -1924,7 +1915,7 @@ class AppSupport(ModelBase):
         indexes = [
             models.Index(fields=('addon', 'app', 'min', 'max'),
                          name='minmax_idx'),
-            models.Index(fields=('app',), name='app_id'),
+            models.Index(fields=('app',), name='app_id_refs_id_481ce338'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('addon', 'app'),
