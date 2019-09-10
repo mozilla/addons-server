@@ -105,6 +105,7 @@ CELERY_BROKER_URL = 'memory://'
 CELERY_BROKER_HEARTBEAT = 0
 CELERY_WORKER_POOL = 'solo'
 CELERY_WORKER_CONCURRENCY = 1
+CELERY_WORKER_SEND_TASK_EVENTS = True
 
 
 # Enable us to track tasks that have been run and gather their details

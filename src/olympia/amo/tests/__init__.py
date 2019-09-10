@@ -4,6 +4,7 @@ import random
 import shutil
 import socket
 import struct
+import sys
 import time
 import uuid
 from contextlib import contextmanager
@@ -973,7 +974,9 @@ class CeleryWorkerTestCase(TestCase):
         super().setUpClass()
 
         # Start up celery worker
-        cls.celery_worker = start_worker(app=celery_app, pool='solo')
+        cls.celery_worker = start_worker(
+            app=celery_app, pool='solo',
+            logfile=sys.stdout)
         cls.celery_worker.__enter__()
 
     @classmethod
