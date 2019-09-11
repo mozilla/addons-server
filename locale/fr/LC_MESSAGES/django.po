@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-11 13:49+0000\n"
-"Last-Translator: corentin.jacquet <corentin.jacquet@telecomnancy.net>\n"
+"PO-Revision-Date: 2019-09-11 14:40+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2805,10 +2805,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Cliquez sur le bouton de confirmation pour générer une clé d’API pour l’utilisateur <strong>%(name)s</strong>"
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Un lien de confirmation vous sera envoyé par courrier électronique. Après confirmation, vous trouverez vos clés d’API sur cette page."
 
 msgid "You don't have any API credentials."
 msgstr "Vous n’avez aucune information permettant de vous authentifier avec l’API."
@@ -3728,6 +3728,8 @@ msgstr "Séparez vos différentes identités numériques {start_sub_heading}avec
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
+"Séparez vos vies numériques. Différenciez vos identités en ligne (professionnelle, personnelle, loisirs, etc.) en utilisant des onglets colorés qui vous aident à brouiller les pistes en conservant "
+"vos cookies séparément."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3767,7 +3769,7 @@ msgstr "Modifiez votre serveur proxy {start_sub_heading}avec {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Modifiez votre serveur proxy et surfez avec les paramètres de proxy de votre choix."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3919,7 +3921,7 @@ msgstr "Personnalisez votre page Nouvel onglet {start_sub_heading}avec {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Personnalisez votre page nouvel onglet pour afficher un nombre donné de tuiles, un fond personnalisé, etc."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3935,7 +3937,7 @@ msgstr "Orientez-vous sur le Web {start_sub_heading}avec {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Sachez où vous allez sur le Web. Découvrez le pays d’origine des sites que vous visitez. Voyagez sur la toile en touriste avisé·e."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4039,7 +4041,7 @@ msgstr "Travaillez plus rapidement {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Utilisez des gestes de la souris pour accomplir vos tâches plus rapidement."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4079,7 +4081,7 @@ msgstr "Luttez efficacement contre le spam {start_sub_heading}avec {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Repoussez le spam. Utilisez d’astucieuses adresses électroniques temporaires pour rester anonyme et éviter les spams."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4095,7 +4097,7 @@ msgstr "Obtenez des traductions instantanées {start_sub_heading}avec {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Obtenez des traductions instantanées en sélectionnant du texte puis en cliquant sur le bouton qui apparaît."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
