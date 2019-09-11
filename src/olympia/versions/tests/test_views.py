@@ -355,7 +355,6 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_locally(self.client.get(url), file_=f)
 
 
-@override_settings(XSENDFILE=True)
 class TestDownloadSource(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 

@@ -5,6 +5,7 @@ import tempfile
 
 from django.conf import settings
 from django.utils.functional import cached_property
+from django.utils.http import quote_etag
 
 import freezegun
 from unittest import mock
@@ -247,4 +248,9 @@ class TestHttpResponseSendFile(TestCase):
     def test_normalizes_path(self):
         path = '/some/../path/'
         resp = HttpResponseSendFile(request=None, path=path)
-        assert resp.path == os.path.normpath(path)
+        assert resp[settings.XSENDFILE_HEADER] == os.path.normpath(path)
+
+    def test_adds_etag_header(self):
+        etag = '123'
+        resp = HttpResponseSendFile(request=None, path='/', etag=etag)
+        assert resp['ETag'] == quote_etag(etag)

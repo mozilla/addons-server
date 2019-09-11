@@ -745,38 +745,16 @@ class HttpResponseSendFile(HttpResponse):
 
     def __init__(self, request, path, content=None, status=None,
                  content_type='application/octet-stream', etag=None):
-        self.request = request
-        # We normalize the path because if it contains dots, nginx will flag
-        # the URI as unsafe when XSENDFILE is used.
-        self.path = os.path.normpath(path)
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
-        header_path = self.path
-        if isinstance(header_path, str):
-            header_path = header_path.encode('utf8')
-        if settings.XSENDFILE:
-            self[settings.XSENDFILE_HEADER] = header_path
+        # We normalize the path because if it contains dots, nginx will flag
+        # the URI as unsafe.
+        self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
         if etag:
             self['ETag'] = quote_etag(etag)
 
     def __iter__(self):
-        if settings.XSENDFILE:
-            return iter([])
-
-        chunk = 4096
-        fp = open(self.path, 'rb')
-        if 'wsgi.file_wrapper' in self.request.META:
-            return self.request.META['wsgi.file_wrapper'](fp, chunk)
-        else:
-            self['Content-Length'] = os.path.getsize(self.path)
-
-            def wrapper():
-                while True:
-                    data = fp.read(chunk)
-                    if not data:
-                        break
-                    yield data
-            return wrapper()
+        return iter([])
 
 
 def cache_ns_key(namespace, increment=False):
