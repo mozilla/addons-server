@@ -17,7 +17,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    HttpResponseSendFile, attach_trans_dict, extract_colors_from_image,
+    HttpResponseXSendFile, attach_trans_dict, extract_colors_from_image,
     get_locale_from_lang, pngcrush_image, utc_millesecs_from_epoch, walkfiles)
 
 
@@ -244,13 +244,13 @@ def test_extract_colors_from_image():
     assert extract_colors_from_image(path) == expected
 
 
-class TestHttpResponseSendFile(TestCase):
+class TestHttpResponseXSendFile(TestCase):
     def test_normalizes_path(self):
         path = '/some/../path/'
-        resp = HttpResponseSendFile(request=None, path=path)
+        resp = HttpResponseXSendFile(request=None, path=path)
         assert resp[settings.XSENDFILE_HEADER] == os.path.normpath(path)
 
     def test_adds_etag_header(self):
         etag = '123'
-        resp = HttpResponseSendFile(request=None, path='/', etag=etag)
+        resp = HttpResponseXSendFile(request=None, path='/', etag=etag)
         assert resp['ETag'] == quote_etag(etag)

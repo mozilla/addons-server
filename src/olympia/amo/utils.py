@@ -741,12 +741,12 @@ def get_locale_from_lang(lang):
     return Locale.parse(translation.to_locale(lang))
 
 
-class HttpResponseSendFile(HttpResponse):
+class HttpResponseXSendFile(HttpResponse):
 
     def __init__(self, request, path, content=None, status=None,
                  content_type='application/octet-stream', etag=None):
-        super(HttpResponseSendFile, self).__init__('', status=status,
-                                                   content_type=content_type)
+        super(HttpResponseXSendFile, self).__init__('', status=status,
+                                                    content_type=content_type)
         # We normalize the path because if it contains dots, nginx will flag
         # the URI as unsafe.
         self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
