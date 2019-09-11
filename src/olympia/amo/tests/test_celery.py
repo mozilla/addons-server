@@ -9,6 +9,7 @@ from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
+from celery import states as celery_states
 
 from olympia.amo.celery import task
 from olympia.amo.utils import utc_millesecs_from_epoch
@@ -52,11 +53,13 @@ def sleeping_task(time_to_sleep):
 class TestCeleryWorker(CeleryWorkerTestCase):
     def test_celery_worker_test_runs_through_worker(self):
         result = sleeping_task.delay(time_to_sleep=0.5)
-        assert result.state == 'PENDING'
-        time.sleep(0.25)
-        assert result.state == 'STARTED'
-        time.sleep(0.3)
-        assert result.state == 'SUCCESS'
+        assert result.state == celery_states.PENDING
+
+        # First the task will have the `STARTED` state
+        self.assert_result_tasks_has_state([result], celery_states.STARTED)
+
+        # and then eventually `SUCCESS`
+        self.assert_result_tasks_has_state([result], celery_states.SUCCESS)
 
     def test_celery_default_ignore_result(self):
         result = fake_task.delay().get()

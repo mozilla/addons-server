@@ -30,7 +30,9 @@ from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
 import pytest
+from celery import states as celery_states
 from celery.contrib.testing.worker import start_worker
+from celery.contrib.testing.manager import Manager as CeleryTestManager
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
@@ -987,6 +989,11 @@ class CeleryWorkerTestCase(TestCase):
         finally:
             super().tearDownClass()
 
+    def setUp(self):
+        super().setUp()
+
+        self.manager = CeleryTestManager(celery_app, block_timeout=10.0)
+
     def wait_for_tasks(self, task_ids, max_wait=1, throw=True,
                        sleep_per_iteration=0.05):
         if not isinstance(task_ids, (list, set, tuple)):
@@ -1008,6 +1015,16 @@ class CeleryWorkerTestCase(TestCase):
         result = _celery_task_results.pop(task_id, None)
 
         return result
+
+    def assert_result_tasks_has_state(self, async_results, states, interval=0.5):
+        desc = f'waiting for tasks to be {states.join(",")}'
+
+        def _is_result_task_started(results, **kwargs):
+            return all(result.state in states for result in results)
+
+        return self.manager.assert_task_state_from_result(
+            _is_result_task_started, async_results, interval=interval,
+            desc=desc, max_retries=10)
 
 
 class TestXss(TestCase):
