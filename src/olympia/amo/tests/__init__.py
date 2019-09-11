@@ -30,7 +30,6 @@ from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
 import pytest
-from celery import states as celery_states
 from celery.contrib.testing.worker import start_worker
 from celery.contrib.testing.manager import Manager as CeleryTestManager
 from dateutil.parser import parse as dateutil_parser
@@ -1016,14 +1015,14 @@ class CeleryWorkerTestCase(TestCase):
 
         return result
 
-    def assert_result_tasks_has_state(self, async_results, states, interval=0.5):
+    def assert_result_tasks_has_state(self, results, states, interval=0.5):
         desc = f'waiting for tasks to be {states.join(",")}'
 
         def _is_result_task_started(results, **kwargs):
             return all(result.state in states for result in results)
 
         return self.manager.assert_task_state_from_result(
-            _is_result_task_started, async_results, interval=interval,
+            _is_result_task_started, results, interval=interval,
             desc=desc, max_retries=10)
 
 
