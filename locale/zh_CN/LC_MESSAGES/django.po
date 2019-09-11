@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-09 22:39+0000\n"
-"Last-Translator: passionforlife <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2019-09-11 13:39+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Addons"
 msgstr "附加组件"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr "最低报告数（按 GUID 分组）"
+msgstr "最小报告数量（按 GUID 分组）"
 
 msgid "creation date"
 msgstr "创建日期"
@@ -203,16 +203,16 @@ msgid "Incorrect, please try again."
 msgstr "不正确，请重试。"
 
 msgid "Error verifying input, please try again."
-msgstr "验证输入出错，请重试。"
+msgstr "验证输入内容时出错，请再试一次。"
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr "请输入有效的 IP4 或 IP6 网络。"
+msgstr "请输入有效的 IPv4 或 IPv6 网段。"
 
 msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "在我们进行网站维护时，某些功能会被暂时禁用。我们将很快恢复全部功能。"
+msgstr "在我们进行网站维护时，某些功能会被暂时禁用。我们将尽快复原。"
 
 msgid "Must contain at least one printable character."
 msgstr "至少须包含一个可打印字符。"
@@ -287,7 +287,7 @@ msgstr "哎呀"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>啊呀！我们遇到一个错误。</h1> <p>我们会尽快修复它。</p> <p>您可以尝试刷新页面，或者返回<a href=\"%(home)s\">附加组件首页</a>。</p>"
+msgstr "<h1>喔喔！发生问题了。</h1> <p>我们会尽快修复。</p> <p>您可以尝试刷新页面，或者返回<a href=\"%(home)s\">附加组件首页</a>。</p>"
 
 msgid "No results found"
 msgstr "找不到结果"
@@ -321,7 +321,7 @@ msgstr "这是什么？"
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr "<p> 请输入下方的<strong>所有文字</strong>，<strong>如有间隔应使用空格分开</strong>。</p> <p> 如果这很难阅读，您可以<a href=\"#\" id=\"recaptcha_different\">尝试下一组文字</a>或者<a href=\"#\" id=\"recaptcha_audio\">另一种验证方式</a>。</p>"
+msgstr "<p> 请输入下方的<strong>所有文字</strong>，<strong>如有间隔请使用空格分开</strong>。</p> <p> 如果看不清或很难阅读，您可以<a href=\"#\" id=\"recaptcha_different\">换一组文字</a>或者<a href=\"#\" id=\"recaptcha_audio\">改用别的验证方式</a>。</p>"
 
 msgid "Most Popular"
 msgstr "最热门"
@@ -3516,7 +3516,7 @@ msgstr "拦截隐形跟踪器 {start_sub_heading}就用 {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr "阻止跟踪器的跟踪，还能了解有关它们的更多信息。"
+msgstr "帮你摆脱网络跟踪，看清有谁在跟踪你。"
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
