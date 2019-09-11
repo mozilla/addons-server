@@ -5,7 +5,6 @@ from django.conf import settings
 from django.utils.encoding import smart_text
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.test.utils import override_settings
 from django.utils.http import urlquote
 
 from unittest import mock
