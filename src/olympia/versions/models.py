@@ -161,7 +161,6 @@ class Version(OnChangeMixin, ModelBase):
         indexes = [
             models.Index(fields=('version_int',), name='version_int_idx'),
             models.Index(fields=('addon',), name='addon_id'),
-            models.Index(fields=('release_notes',), name='versions_ibfk_2'),
             models.Index(fields=('license',), name='license_id'),
         ]
 
