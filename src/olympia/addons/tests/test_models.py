@@ -1735,7 +1735,7 @@ class TestHasListedAndUnlistedVersions(TestCase):
     def test_has_listed_versions_current_version_shortcut(self):
         # We shouldn't even do a exists() query if the add-on has a
         # current_version.
-        self.addon._current_version = Version()
+        self.addon._current_version_id = 123
         assert self.addon.has_listed_versions()
 
 

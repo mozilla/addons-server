@@ -2812,6 +2812,7 @@ class TestReview(ReviewBase):
 
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.update_version()
         assert self.client.head(self.url).status_code == 404
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.head(self.url).status_code == 200
@@ -5820,8 +5821,8 @@ class TestReviewAddonVersionViewSetList(TestCase):
             addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         # We have a .only() and .no_transforms or .only_translations
-        # querysets which reduces the amount of queries to "only" 11
-        with self.assertNumQueries(11):
+        # querysets which reduces the amount of queries to "only" 10
+        with self.assertNumQueries(10):
             response = self.client.get(self.url)
 
         assert response.status_code == 200
