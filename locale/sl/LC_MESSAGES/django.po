@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-11 09:11+0000\n"
+"PO-Revision-Date: 2019-09-11 09:19+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1561,7 +1561,7 @@ msgid "Need to select at least one application."
 msgstr "Izbrati je treba vsaj en program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "V zadnjem času ste naložili preveč datotek. Poskusite znova čez nekaj časa."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Različica {version} je bila v preteklosti že naložena in izbrisana."
@@ -1997,7 +1997,7 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "Povabljeni ste, da postanete avtor dodatka {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "S sprejemom povabila boste dobili dostop za urejanje dodatka, vaše ime pa se bo morda prikazalo na spletni strani na seznamu avtorjev. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Kliknite gumb Sprejmi in potrdite, da želite biti dodani kot avtor za {addon_name}."
@@ -2018,7 +2018,7 @@ msgid "Authors pending confirmation"
 msgstr ""
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Avtorji, ki so bili dodani k temu dodatku, vendar dodajanja niso potrdili."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2770,7 +2770,7 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Kliknite spodnji gumb za potrditev, da ustvarite poverilnice API za uporabnika <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr ""
@@ -2784,9 +2784,8 @@ msgstr "Prekliči"
 msgid "Revoke and regenerate credentials"
 msgstr "Prekliči in ponovno ustvari poverila"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Ustvari nova poverila"
+msgstr "Potrdi in ustvari nove poverilnice"
 
 msgid "Generate new credentials"
 msgstr "Ustvari nova poverila"
@@ -4180,9 +4179,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Prenašajte videoposnetke z YouTube {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Prenašajte video ali zvočne posnetke."
+msgstr "Prenašajte videoposnetke ali zvočne posnetke z YouTuba."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4342,18 +4340,16 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Popoln nadzor nad zavihki {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Kopica možnosti za upravljanje zavihkov – zapiranje podvojenih zavihkov, združevanje oken, kopiranje naslova zavihka in še mnogo več."
+msgstr "Imejte popoln nadzor nad zavihki – zapiranje podvojenih zavihkov, združevanje oken, kopiranje naslova zavihka in še mnogo več."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Splošno se izobrazite {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Naloži naključni članek na Wikipediji, vsakič ko odprete nov zavihek."
+msgstr "Bodite deležni čudne izobrazbe. Naloži naključen članek na Wikipediji v vsakem novem zavihku."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5399,7 +5395,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Zakasnjeno, ker je to prva navedena različica"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Ne morete objaviti komentarja, če je določen 'canned_response'."
 
 msgid "Type"
 msgstr "Vrsta"
@@ -5937,11 +5933,10 @@ msgid "No reviews found for this period."
 msgstr "Za to obdobje ni najti pregledov."
 
 msgid "Method:"
-msgstr ""
+msgstr "Metoda:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "po izvoru"
+msgstr "Vir:"
 
 msgid "Dismiss this announcement"
 msgstr "Opusti to objavo"
@@ -6406,9 +6401,8 @@ msgstr "Res želite odstraniti vse prevode v jezik <b>{0}</b>? Izbrisa ni mogoč
 msgid "Delete Locale"
 msgstr "Izbriši lokalno nastavitev"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Zapri zgodovino pregledov"
+msgstr "Zgodovina omejitev uporabnika"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
