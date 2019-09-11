@@ -1732,6 +1732,12 @@ class TestHasListedAndUnlistedVersions(TestCase):
         assert self.addon.has_listed_versions()
         assert self.addon.has_unlisted_versions()
 
+    def test_has_listed_versions_current_version_shortcut(self):
+        # We shouldn't even do a exists() query if the add-on has a
+        # current_version.
+        self.addon._current_version_id = 123
+        assert self.addon.has_listed_versions()
+
 
 class TestAddonNomination(TestCase):
     fixtures = ['base/addon_3615']
