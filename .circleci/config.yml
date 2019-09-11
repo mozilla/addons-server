@@ -36,7 +36,7 @@ jobs:
       - build_and_push_container_image:
           image_tag: latest
           dockerfile: "Dockerfile.deploy"
-  
+
   build-tag:
     machine: true
     working_directory: ~/addons-server
@@ -45,7 +45,7 @@ jobs:
       - build_and_push_container_image:
           image_tag: "${CIRCLE_TAG}"
           dockerfile: "Dockerfile.deploy"
-  
+
   integration_test:
     working_directory: ~/addons-server
     machine:
@@ -183,4 +183,5 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
-      - integration_test
+      # Disabled because those tests are being moved to a different place
+      # - integration_test
