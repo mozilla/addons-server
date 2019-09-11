@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-11 09:19+0000\n"
+"PO-Revision-Date: 2019-09-11 10:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2773,7 +2773,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Kliknite spodnji gumb za potrditev, da ustvarite poverilnice API za uporabnika <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Na vaš e-poštni naslov bo poslana potrditvena povezava. Po potrditvi boste dobili svoje ključe API na tej strani."
 
 msgid "You don't have any API credentials."
 msgstr "Nimate poveril API."
