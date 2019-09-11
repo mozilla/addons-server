@@ -416,12 +416,12 @@ class ManifestJSONExtractor(object):
         """Get `AppVersion`s for the application."""
         type_ = self.type
         if type_ == amo.ADDON_LPAPP:
-            # Langpack are only compatible with Firefox desktop at the moment.
+            # Langpack are only compatible with Thunderbird desktop at the moment.
             # https://github.com/mozilla/addons-server/issues/8381
             # They are all strictly compatible with a specific version, so
             # the default min version here doesn't matter much.
             apps = (
-                (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
+                (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD),
             )
         elif type_ == amo.ADDON_STATICTHEME:
             # Static themes are only compatible with Thunderbird >= 60.
