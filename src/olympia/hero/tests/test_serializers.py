@@ -17,7 +17,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             disco_addon=DiscoveryItem.objects.create(
                 addon=addon, custom_description='Déscription'),
             image='foo.png',
-            gradient_color='#068989')
+            gradient_color='#008787')
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data == {
             'featured_image': (
@@ -25,7 +25,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'description': 'Déscription',
             'gradient': {
                 'start': GRADIENT_START_COLOR[1],
-                'end': 'green-70'
+                'end': 'color-green-70'
             },
             'addon': DiscoveryAddonSerializer(instance=addon).data,
         }
@@ -37,7 +37,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         hero = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon),
             image='foo.png',
-            gradient_color='#068989',
+            gradient_color='#008787',
             is_external=True)
         assert PrimaryHeroShelfSerializer(instance=hero).data == {
             'featured_image': (
@@ -45,7 +45,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'description': 'Summary',
             'gradient': {
                 'start': GRADIENT_START_COLOR[1],
-                'end': 'green-70'
+                'end': 'color-green-70'
             },
             'external': ExternalAddonSerializer(instance=addon).data,
         }

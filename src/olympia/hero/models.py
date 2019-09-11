@@ -10,15 +10,15 @@ from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.discovery.models import DiscoveryItem
 
 
-GRADIENT_START_COLOR = ('#20123A', 'ink-80')
+GRADIENT_START_COLOR = ('#20123A', 'color-ink-80')
 # Before changing these colors think about existing shelves.  We either need a
 # db migration to update them or define a default end color if they're invalid.
 GRADIENT_COLORS = {
-    '#054096': 'blue-70',
-    '#068989': 'green-70',
-    '#C60184': 'pink-70',
-    '#712290': 'purple-70',
-    '#582ACB': 'violet-70',
+    '#054096': 'color-blue-70',
+    '#008787': 'color-green-70',
+    '#C60084': 'color-pink-70',
+    '#722291': 'color-purple-70',
+    '#592ACB': 'color-violet-70',
 }
 FEATURED_IMAGE_PATH = os.path.join(
     settings.ROOT, 'static', 'img', 'hero', 'featured')
