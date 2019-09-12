@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2018-07-21 17:47+0000\n"
+"PO-Revision-Date: 2018-10-19 14:01+0000\n"
 "Last-Translator: Rajan Dey <feb17rajandey@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
@@ -190,31 +190,26 @@ msgid_plural "{0} add-ons"
 msgstr[0] "{0} অ্যাড-অন"
 msgstr[1] "{0} অ্যাড-অন"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} টি সংগ্রহ"
 msgstr[1] "{0} টি সংগ্রহ"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} টি পর্যালোচনা"
 msgstr[1] "{0} টি পর্যালোচনা"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} টি বিক্রি"
 msgstr[1] "{0} টি বিক্রি"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} রিফান্ড"
 msgstr[1] "{0} রিফান্ড"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} টি ইন্সটল"
@@ -646,9 +641,8 @@ msgid "Not available for your platform"
 msgstr ""
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
+msgstr ""
 
 msgid "View other versions"
 msgstr "অন্যান্য ভার্সনগুলো দেখুন"
@@ -694,14 +688,12 @@ msgid "Loading..."
 msgstr "লোডিং..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"
-msgstr[1] "{0} টি শব্দ বাকি আছে।"
+msgstr[0] ""
+msgstr[1] ""
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"

@@ -76,8 +76,6 @@ NEW_FEATURES = True
 
 ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
-XSENDFILE_HEADER = 'X-Accel-Redirect'
-
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:

@@ -24,6 +24,11 @@ urlpatterns = [
     url(r'^browse/(?P<file_id>\d+)/', include(file_patterns)),
     url(r'^compare/(?P<one_id>\d+)\.{3}(?P<two_id>\d+)/',
         include(compare_patterns)),
-    url(r'^uploads/(?P<uuid>[0-9a-f]{32})/', views.serve_file_upload,
+]
+
+# This set of URL patterns is not included under `/files/` in
+# `src/olympia/urls.py`:
+upload_patterns = [
+    url(r'^file/(?P<uuid>[0-9a-f]{32})/', views.serve_file_upload,
         name='files.serve_file_upload'),
 ]
