@@ -12,7 +12,7 @@ from olympia.addons.decorators import (
     addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import HttpResponseSendFile, render, urlparams
+from olympia.amo.utils import HttpResponseXSendFile, render, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -65,7 +65,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         if (is_appropriate_reviewer(addon, channel) or
                 acl.check_addon_ownership(
                     request, addon, dev=True, ignore_disabled=True)):
-            return HttpResponseSendFile(
+            return HttpResponseXSendFile(
                 request, file_.guarded_file_path,
                 content_type='application/x-xpinstall')
         else:
@@ -79,7 +79,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         if (acl.check_unlisted_addons_reviewer(request) or
                 acl.check_addon_ownership(
                     request, addon, dev=True, ignore_disabled=True)):
-            return HttpResponseSendFile(
+            return HttpResponseXSendFile(
                 request, file_.file_path,
                 content_type='application/x-xpinstall')
         else:
@@ -133,7 +133,7 @@ def download_source(request, version_id):
     else:
         if not owner_or_unlisted_reviewer(request, version.addon):
             raise http.Http404  # Not listed, not owner or unlisted reviewer.
-    res = HttpResponseSendFile(request, version.source.path)
+    res = HttpResponseXSendFile(request, version.source.path)
     path = version.source.path
     if not isinstance(path, str):
         path = path.decode('utf8')

@@ -750,7 +750,6 @@ class TestServeFileUpload(UploadTest, TestCase):
 
         assert resp.status_code == 403
 
-    @override_settings(XSENDFILE=True)
     def test_get(self):
         resp = self.client.get(self.upload.get_authenticated_download_url())
 
