@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-11 14:40+0000\n"
-"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
+"PO-Revision-Date: 2019-09-11 20:57+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -447,9 +447,8 @@ msgstr "Vous devez spécifier un objet {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Clé primaire ou identifiant généré « %s » invalide. L’objet n’existe pas."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Informations supplémentaires sur les comptes de développeur"
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Versions des logiciels"
@@ -2819,9 +2818,8 @@ msgstr "Révoquer"
 msgid "Revoke and regenerate credentials"
 msgstr "Révoquer et régénérer les informations d’authentification"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Générer de nouvelles informations d’authentification"
+msgstr ""
 
 msgid "Generate new credentials"
 msgstr "Générer de nouvelles informations d’authentification"
@@ -3484,7 +3482,7 @@ msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Enrichissez votre collection d’émoticônes. Des dizaines d’émoticônes fantastiques pour toutes les occasions — toujours à portée de clic."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5946,9 +5944,8 @@ msgstr "Pas de revue trouvée pour cette période."
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "par source"
+msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "Rejeter cette annonce"
