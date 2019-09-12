@@ -1806,7 +1806,8 @@ class DeniedGuid(ModelBase):
 
 class Category(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
-    slug = SlugField(max_length=50, help_text='Used in Category URLs.')
+    slug = SlugField(
+        max_length=50, help_text='Used in Category URLs.', db_index=False)
     type = models.PositiveIntegerField(db_column='addontype_id',
                                        choices=do_dictsort(amo.ADDON_TYPE))
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
