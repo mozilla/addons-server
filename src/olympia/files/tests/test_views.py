@@ -756,3 +756,11 @@ class TestServeFileUpload(UploadTest, TestCase):
         assert resp.status_code == 200
         assert resp['content-type'] == 'application/octet-stream'
         assert resp[settings.XSENDFILE_HEADER] == self.upload.path
+
+    def test_returns_410_when_upload_path_is_falsey(self):
+        self.upload.path = ''
+        self.upload.save()
+
+        resp = self.client.get(self.upload.get_authenticated_download_url())
+
+        assert resp.status_code == 410
