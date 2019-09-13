@@ -971,32 +971,29 @@ class ESTestCaseWithAddons(ESTestCase):
 @pytest.mark.celery_worker_tests
 class CeleryWorkerTestCase(TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUp(self):
+        super().setUp()
 
         # Explicitly reset the event-loop to force the worker to re-initialize
         # on startup.
         set_event_loop(None)
 
         # Start up celery worker
-        cls.celery_worker = start_worker(
+        self.celery_worker = start_worker(
             app=celery_app, pool='solo',
             logfile=sys.stdout)
-        cls.celery_worker.__enter__()
+        self.celery_worker.__enter__()
 
-    @classmethod
-    def tearDownClass(cls):
-        try:
-            cls.celery_worker.__exit__(None, None, None)
-            del cls.celery_worker
-        finally:
-            super().tearDownClass()
-
-    def setUp(self):
-        super().setUp()
-
+        # Initialite the celery test manager that allows us to inspect
+        # various aspects of the worker or queues
         self.manager = CeleryTestManager(celery_app, block_timeout=10.0)
+
+    def tearDown(self):
+        try:
+            self.celery_worker.__exit__(None, None, None)
+            del self.celery_worker
+        finally:
+            super().tearDown()
 
     def wait_for_tasks(self, task_ids, max_wait=1, throw=True,
                        sleep_per_iteration=0.05):
