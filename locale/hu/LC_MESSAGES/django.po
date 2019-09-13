@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-09 13:43+0000\n"
+"PO-Revision-Date: 2019-09-13 07:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2774,10 +2774,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Kattintson lent a megerősítés gombra, hogy előállítsa az API hitelesítő adatokat a(z) <strong>%(name)s</strong> felhasználóhoz."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Egy megerősítő hivatkozás lesz elküldve az e-mail címére. A megerősítés után ezen az oldalon fogja találni az API kulcsait."
 
 msgid "You don't have any API credentials."
 msgstr "Nem rendelkezik API hitelesítő adatokkal."
@@ -5421,7 +5421,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Késleltetetve, mert ez az első listázott verzió"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Nem küldhet megjegyzést, ha a „canned_response” be van állítva."
 
 msgid "Type"
 msgstr "Típus"
