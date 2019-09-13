@@ -32,6 +32,7 @@ from django.utils.encoding import force_str, force_text
 import pytest
 from celery.contrib.testing.worker import start_worker
 from celery.contrib.testing.manager import Manager as CeleryTestManager
+from kombu.asynchronous.hub import set_event_loop
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
@@ -973,6 +974,10 @@ class CeleryWorkerTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+
+        # Explicitly reset the event-loop to force the worker to re-initialize
+        # on startup.
+        set_event_loop(None)
 
         # Start up celery worker
         cls.celery_worker = start_worker(
