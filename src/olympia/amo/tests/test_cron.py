@@ -12,9 +12,9 @@ from olympia.lib.akismet.models import AkismetReport
 class TestGC(TestCase):
     def test_file_uploads_deletion(self, storage_mock):
         fu_new = FileUpload.objects.create(path='/tmp/new', name='new')
-        fu_new.update(created=self.days_ago(178))
+        fu_new.update(created=self.days_ago(6))
         fu_old = FileUpload.objects.create(path='/tmp/old', name='old')
-        fu_old.update(created=self.days_ago(181))
+        fu_old.update(created=self.days_ago(8))
 
         gc()
 
@@ -24,7 +24,7 @@ class TestGC(TestCase):
 
     def test_file_uploads_deletion_no_path_somehow(self, storage_mock):
         fu_old = FileUpload.objects.create(path='', name='foo')
-        fu_old.update(created=self.days_ago(181))
+        fu_old.update(created=self.days_ago(8))
 
         gc()
 
@@ -35,7 +35,7 @@ class TestGC(TestCase):
         fu_older = FileUpload.objects.create(path='/tmp/older', name='older')
         fu_older.update(created=self.days_ago(300))
         fu_old = FileUpload.objects.create(path='/tmp/old', name='old')
-        fu_old.update(created=self.days_ago(181))
+        fu_old.update(created=self.days_ago(8))
 
         storage_mock.delete.side_effect = OSError
 

@@ -16,7 +16,7 @@ from olympia.access import acl
 from olympia.lib.cache import Message, Token
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import HttpResponseSendFile, render, urlparams
+from olympia.amo.utils import HttpResponseXSendFile, render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
 from olympia.files.file_viewer import extract_file
@@ -225,6 +225,6 @@ def serve_file_upload(request, uuid):
         log.error('Denying access to %s, token invalid.' % upload.id)
         raise PermissionDenied
 
-    return HttpResponseSendFile(request,
-                                upload.path,
-                                content_type='application/octet-stream')
+    return HttpResponseXSendFile(request,
+                                 upload.path,
+                                 content_type='application/octet-stream')

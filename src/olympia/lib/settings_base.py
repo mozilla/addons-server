@@ -1458,8 +1458,7 @@ VALIDATOR_MESSAGE_LIMIT = 500
 # Feature flags
 UNLINK_SITE_STATS = True
 
-# Set to True if we're allowed to use X-SENDFILE.
-XSENDFILE = True
+# See: https://www.nginx.com/resources/wiki/start/topics/examples/xsendfile/
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 MOBILE_COOKIE = 'mamo'

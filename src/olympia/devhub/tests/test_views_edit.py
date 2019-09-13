@@ -304,6 +304,15 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.addon.find_latest_version(None).files.update(is_webextension=True)
         self.test_nav_links()
 
+    def test_nav_links_uri_match(self):
+        self.get_addon().update(slug='모질라')
+
+        response = self.client.get(self.get_addon().get_dev_url())
+        selected_link = (pq(response.content)('#edit-addon-nav').find('li')
+                         .hasClass('selected'))
+
+        assert selected_link is True
+
     def _feature_addon(self, addon_id=3615):
         c_addon = CollectionAddon.objects.create(
             addon_id=addon_id, collection=Collection.objects.create())

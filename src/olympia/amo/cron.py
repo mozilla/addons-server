@@ -52,7 +52,7 @@ def gc(test_result=True):
 
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(
-        created__lte=days_ago(180)).order_by('id')
+        created__lte=days_ago(7)).order_by('id')
     for file_upload in stale_uploads:
         log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
                   .format(uuid=file_upload.uuid, path=file_upload.path))
