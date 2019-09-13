@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-12 22:51+0000\n"
+"PO-Revision-Date: 2019-09-13 13:58+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4516,9 +4516,8 @@ msgid "Track productivity. Measure the amount of time you spend on the computer,
 msgstr "Acompanhe a produtividade. Crie estatísticas do tempo que gasta no computador, ou em aplicativos específicos como Trello, JIRA, Basecamp, Github e muitos outros."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Recorte conteúdo como artigos, vídeos, imagens e mais para usa-los em projetos individuais ou em colaboração em tempo real com seu time."
+msgstr "Salve suas coisas preferidas na web. Recorte conteúdo como artigos, vídeos, imagens e muito mais para salvar e usar em projetos individuais ou em colaboração em equipe em tempo real."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
