@@ -88,13 +88,13 @@ class AddonAdmin(admin.ModelAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
         if lookup_field == 'pk':
-            addon = get_object_or_404(Addon.objects.all(), id=object_id)
+            addon = get_object_or_404(Addon.unfiltered.all(), id=object_id)
         else:
             try:
                 if lookup_field == 'slug':
-                    addon = Addon.objects.all().get(slug=object_id)
+                    addon = Addon.unfiltered.all().get(slug=object_id)
                 elif lookup_field == 'guid':
-                    addon = Addon.objects.all().get(guid=object_id)
+                    addon = Addon.unfiltered.all().get(guid=object_id)
             except Addon.DoesNotExist:
                 raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().
