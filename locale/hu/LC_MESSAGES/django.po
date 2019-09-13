@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-13 07:04+0000\n"
+"PO-Revision-Date: 2019-09-13 07:42+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -436,9 +436,8 @@ msgstr "Meg kell adnia egy {lang-code:value} objektumot."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Érvénytelen pk vagy SEO URL: „%s” – az objektum nem létezik."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "További információk a fejlesztői fiókokról"
+msgstr "Megerősítés a fejlesztői API kulcsokhoz"
 
 msgid "Application Versions"
 msgstr "Alkalmazásverziók"
@@ -2788,9 +2787,8 @@ msgstr "Visszavonás"
 msgid "Revoke and regenerate credentials"
 msgstr "Hitelesítő adatok visszavonása és újra létrehozása"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Új hitelesítő adatok létrehozása"
+msgstr "Megerősítés és új hitelesítő adatok előállítása"
 
 msgid "Generate new credentials"
 msgstr "Új hitelesítő adatok létrehozása"
@@ -3490,9 +3488,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Élvezze a vizuális könyvjelzőket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Érje el kedvenc oldalait csempeszerű elrendezésben."
+msgstr "Élvezze a vizuális könyvjelzőket. Érje el kedvenc oldalait csempeszerű elrendezésben."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3563,9 +3560,8 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Hasznosítsa a tudományos ismereteket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Élvezze a szabad hozzáférést a több mint 10 millió tudományos cikkhez."
+msgstr "Aknázza ki a tudományos bölcsességet. Élvezze a szabad hozzáférést a több mint 10 millió tudományos cikkhez."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3677,9 +3673,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Blokkolja az alattomos követőket és korlátozásokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Álcázza a navigációját a böngészője és operációs rendszere személyazonosságának elrejtésével."
+msgstr "Kerülje el az alattomos követőket és korlátozásokat. Álcázza a navigációját a böngészője és operációs rendszere személyazonosságának elrejtésével."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3934,9 +3929,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Inspirálja a produktivitást {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Módosítsa az új lap oldalt, hogy egy szép hátteret jelenítsen meg, állítsa be a napi fókuszát, és így tovább."
+msgstr "Inspiráljon hatékonyságot. Módosítsa az új lap oldalt, hogy egy szép hátteret jelenítsen meg, állítsa be a napi fókuszát, és így tovább."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3983,9 +3977,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Tegye sajátjáva a YouTube-ot {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Videolejátszás felugró ablakban, reklámok megjelenítése csak a feliratkozott csatornákon, képernyőképek készítése a videókból, és még sok minden más."
+msgstr "Tegye sajátjává a YouTube-ot. Videolejátszás felugró ablakban, reklámok megjelenítése csak a feliratkozott csatornákon, képernyőképek készítése a videókból, és még sok minden más."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4000,7 +3993,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Csinosítsa a Wikipédiát {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Friss és modern megjelenést biztosít a Wikipédiának."
 
@@ -4009,7 +4001,6 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dolgozzon gyorsabban {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
 msgstr "Használjon egérgesztusokat a dolgok gyorsabb elvégzéséhez."
 
@@ -4050,9 +4041,8 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Győzze le a levélszemetet {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Használjon okos ideiglenes címeket, hogy névtelen maradjon, és elkerülje a levélszemetet."
+msgstr "Győzze le a levélszemetet. Használjon okos ideiglenes címeket, hogy névtelen maradjon, és elkerülje a levélszemetet."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5952,9 +5942,8 @@ msgstr "Nincsenek értékelések ebben az időszakban."
 msgid "Method:"
 msgstr "Módszer:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "Forrás szerint"
+msgstr "Forrás:"
 
 msgid "Dismiss this announcement"
 msgstr "Bejelentés elvetése"
