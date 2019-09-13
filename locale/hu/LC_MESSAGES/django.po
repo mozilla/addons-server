@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-13 08:51+0000\n"
+"PO-Revision-Date: 2019-09-13 08:52+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4685,9 +4685,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Blokkolja a zavaró weboldalakat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Sorolja fel azokat a webhelyeket, amelyeket blokkolni akar a kiegészítővel. Azonnali fegyelem!"
+msgstr "Blokkolja a figyelmet elterelő weboldalakat. Csak sorolja fel azokat a webhelyeket, amelyeket blokkolni akar a kiegészítővel. Azonnali fegyelem!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4702,9 +4701,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Módosítsa a Firefox kinézetét {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Tervezzen saját vizuális témákat, hogy úgy nézzen ki a Firefox, ahogyan csak szeretné."
+msgstr "Módosítsa a böngésző megjelenését. Tervezzen saját vizuális témákat, hogy úgy nézzen ki a Firefox, ahogyan csak szeretné."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
