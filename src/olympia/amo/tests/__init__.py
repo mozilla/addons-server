@@ -971,29 +971,32 @@ class ESTestCaseWithAddons(ESTestCase):
 @pytest.mark.celery_worker_tests
 class CeleryWorkerTestCase(TestCase):
 
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # Explicitly reset the event-loop to force the worker to re-initialize
         # on startup.
         set_event_loop(None)
 
         # Start up celery worker
-        self.celery_worker = start_worker(
+        cls.celery_worker = start_worker(
             app=celery_app, pool='solo',
             logfile=sys.stdout)
-        self.celery_worker.__enter__()
+        cls.celery_worker.__enter__()
 
-        # Initialite the celery test manager that allows us to inspect
-        # various aspects of the worker or queues
-        self.manager = CeleryTestManager(celery_app, block_timeout=10.0)
-
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         try:
-            self.celery_worker.__exit__(None, None, None)
-            del self.celery_worker
+            cls.celery_worker.__exit__(None, None, None)
+            del cls.celery_worker
         finally:
-            super().tearDown()
+            super().tearDownClass()
+
+    def setUp(self):
+        super().setUp()
+
+        self.manager = CeleryTestManager(celery_app, block_timeout=10.0)
 
     def wait_for_tasks(self, task_ids, max_wait=1, throw=True,
                        sleep_per_iteration=0.05):
@@ -1021,7 +1024,11 @@ class CeleryWorkerTestCase(TestCase):
         desc = f'waiting for tasks to be {states.join(",")}'
 
         def _is_result_task_started(results, **kwargs):
-            return all(result.state in states for result in results)
+            contain_states = [result.state in states for result in results]
+
+            print('XXXXXXXXXX', contain_states, states, results)
+
+            return all(contain_states)
 
         return self.manager.assert_task_state_from_result(
             _is_result_task_started, results, interval=interval,
