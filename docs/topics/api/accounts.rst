@@ -68,6 +68,7 @@ If you have `Users:Edit` permission you will see these extra fields for all user
     :>json boolean is_verified: The user has been verified via FirefoxAccounts.
     :>json array permissions: A list of the additional :ref:`permissions <account-permissions>` this user has.
     :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
+    :>json object site_status: The :ref:`site status <site-status-object>` - exposed here as a convenience to avoid an extra api call for logged in users.
 
 
     :statuscode 200: account found.

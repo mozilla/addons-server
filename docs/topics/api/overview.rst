@@ -89,6 +89,8 @@ constants are as follows:
     ========================  =========================================================
 
 
+.. _api-overview-maintainance:
+
 ~~~~~~~~~~~~~~~~~
 Maintainance Mode
 ~~~~~~~~~~~~~~~~~
@@ -111,6 +113,7 @@ The response when returning ``HTTP 503 Service Unavailable`` in case of read-onl
     }
 
 In case we are not in read-only mode everything should be back working as normal.
+To check if the site is in read-only mode before submitting a response the :ref:`site status api<api-site-status>` can be checked.
 
 .. _api-overview-pagination:
 
@@ -246,6 +249,25 @@ specified.
 
 .. _api-versions-list:
 
+
+-----------
+Site Status
+-----------
+
+.. _`api-site-status`:
+
+This special endpoint just returns if the site is in read only mode, and if there is a site notice currently in effect.
+See :ref:`maintainance mode <api-overview-maintainance>` for mode details of when the site is read only and how requests are affected.
+
+
+.. http:get:: /api/v4/site/
+
+    .. _site-status-object:
+
+    :>json boolean read_only: Is the site in read-only mode.
+    :>json string notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
+
+
 ------------
 API Versions
 ------------
@@ -340,7 +362,7 @@ v4 API changelog
 * 2019-08-15: added promo modules to secondary hero shelves. https://github.com/mozilla/addons-server/issues/11780
 * 2019-08-15: removed /addons/compat-override/ from v4 and above.  Still exists in /v3/ but will always return an empty response. https://github.com/mozilla/addons-server/issues/12063
 * 2019-08-22: added ``canned_response`` property to draft comment api. https://github.com/mozilla/addons-server/issues/11807
-
+* 2019-09-19: added /site/ endpoint to expose read-only mode and any site notice.  Also added the same response to the /accounts/account/ non-public response as a convenience for logged in users. https://github.com/mozilla/addons-server/issues/11493)
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

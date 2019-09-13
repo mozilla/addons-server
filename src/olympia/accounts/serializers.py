@@ -13,6 +13,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     clean_nl, has_links, ImageCheck,
     subscribe_newsletter, unsubscribe_newsletter, urlparams)
+from olympia.api.serializers import SiteStatusSerializer
 from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMorePrintableCharacterAPIValidator
 from olympia.users import notifications
@@ -79,12 +80,13 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     reviewer_name = serializers.CharField(
         min_length=2, max_length=50, allow_blank=True,
         validators=[OneOrMorePrintableCharacterAPIValidator()])
+    site_status = SiteStatusSerializer(source='*')
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
             'deleted', 'display_name', 'email', 'fxa_edit_email_url',
             'last_login', 'last_login_ip', 'permissions', 'picture_upload',
-            'read_dev_agreement', 'reviewer_name', 'username'
+            'read_dev_agreement', 'reviewer_name', 'site_status', 'username'
         )
         writeable_fields = (
             'biography', 'display_name', 'homepage', 'location', 'occupation',
