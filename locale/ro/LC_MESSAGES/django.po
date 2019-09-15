@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-14 14:09+0000\n"
+"PO-Revision-Date: 2019-09-15 12:26+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -54,7 +54,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Marchează rapoartele de abuz selectate ca suspecte"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Asigurați-vă că acest câmp nu are mai mult de {max_length} de caractere."
+msgstr "Te rugăm să te asiguri că acest câmp nu are mai mult de {max_length} de caractere."
 
 msgid "Modified on:"
 msgstr "Modificat la:"
@@ -436,9 +436,8 @@ msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk sau slug nevalid(ă) „%s” - obiectul nu există."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Mai multe informații despre conturile de dezvoltatori"
+msgstr "Confirmare pentru cheile API de dezvoltator"
 
 msgid "Application Versions"
 msgstr "Versiunile aplicației"
@@ -4575,7 +4574,7 @@ msgstr "Pur și simplu tragi text, imagini sau linkuri ca să execuți acțiuni 
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr "Bucură-te de posibilitatea de a descărca videoclipuri și/sau secvențe audio în diferite formate."
+msgstr "Bucură-te de posibilitatea de a descărca clipuri video și/sau audio în mai multe formate."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
