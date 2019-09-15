@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-14 15:55+0000\n"
+"PO-Revision-Date: 2019-09-15 20:55+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4045,7 +4045,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Estilo Wikipédia {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Aplica um tema original e moderno ao site Wikipedia."
 
@@ -4054,9 +4053,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Trabalhe mais rápido {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Use gestos do mouse para executar as coisas mais rapidamente."
+msgstr "Use gestos do mouse para fazer coisas mais rápido."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
