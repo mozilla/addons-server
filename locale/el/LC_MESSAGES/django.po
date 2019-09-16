@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-13 08:45+0000\n"
+"PO-Revision-Date: 2019-09-16 16:44+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -443,9 +443,8 @@ msgstr "Πρέπει να παρέχετε ένα αντικείμενο του 
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Άκυρο pk ή slug \"%s\" - το αντικείμενο δεν υπάρχει."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Περισσότερες πληροφορίες για τους λογαριασμούς προγραμματιστών"
+msgstr "Επιβεβαίωση για κλειδιά API προγραμματιστών"
 
 msgid "Application Versions"
 msgstr "Εκδόσεις εφαρμογής"
@@ -2817,9 +2816,8 @@ msgstr "Ανάκληση"
 msgid "Revoke and regenerate credentials"
 msgstr "Ανάκληση και εκ νέου δημιουργία διαπιστευτηρίων"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Δημιουργία νέων διαπιστευτηρίων"
+msgstr "Επιβεβαίωση και δημιουργία νέων διαπιστευτηρίων"
 
 msgid "Generate new credentials"
 msgstr "Δημιουργία νέων διαπιστευτηρίων"
@@ -3650,9 +3648,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Μεγέθυνση εικόνων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "Απλά μετακινήστε τον κέρσορα σε μια εικόνα για μεγέθυνση."
+msgstr "Μετακινήστε τον κέρσορα πάνω σε μια εικόνα για μεγέθυνση."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4245,9 +4242,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Λήψη βίντεο YouTube {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Λήψη βίντεο και/ή ήχου."
+msgstr "Λήψη βίντεο και/ή ήχου YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5989,9 +5985,8 @@ msgstr "Δεν βρέθηκαν αξιολογήσεις γι' αυτή την �
 msgid "Method:"
 msgstr "Μέθοδος:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "κατά πηγή"
+msgstr "Πηγή:"
 
 msgid "Dismiss this announcement"
 msgstr "Απομάκρυνση αυτής της ανακοίνωσης"
