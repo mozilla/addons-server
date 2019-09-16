@@ -71,11 +71,11 @@ class BaseAuthenticationView(TestCase, PatchMixin,
 @override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
 class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
 
-    class LoginStartView(views.LoginStartBaseView):
+    class LoginStartView(views.LoginStartView):
         DEFAULT_FXA_CONFIG_NAME = 'current-config'
 
     def setUp(self):
-        super(TestLoginStartBaseView, self).setUp()
+        super().setUp()
         self.endpoint(self.LoginStartView, r'^login/start/')
         self.url = '/en-US/firefox/login/start/'
         self.initialize_session({})
@@ -388,6 +388,9 @@ class TestWithUser(TestCase):
         self.user = AnonymousUser()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
+
+    def get_fxa_config(self, request):
+        return settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
 
     @views.with_user(format='json')
     def fn(*args, **kwargs):
