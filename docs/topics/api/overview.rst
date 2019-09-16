@@ -113,7 +113,7 @@ The response when returning ``HTTP 503 Service Unavailable`` in case of read-onl
     }
 
 In case we are not in read-only mode everything should be back working as normal.
-To check if the site is in read-only mode before submitting a response the :ref:`site status api<api-site-status>` can be checked.
+To check if the site is in read-only mode before submitting a response, the :ref:`site status api<api-site-status>` can be called.
 
 .. _api-overview-pagination:
 
