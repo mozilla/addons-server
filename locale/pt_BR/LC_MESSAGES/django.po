@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-16 19:48+0000\n"
+"PO-Revision-Date: 2019-09-16 21:49+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4311,9 +4311,8 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Exclua o seu histórico de navegação {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Especifique um número de dias que o histórico do navegador deve ser mantido antes de ser automaticamente apagado."
+msgstr "Apague seu histórico de navegação. Especifique um número de dias de histórico do navegador a ser mantido antes de ser automaticamente removido."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4336,9 +4335,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Preencha formulários automaticamente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Salve um texto digitado apenas uma vez e preencha automaticamente na próxima vez."
+msgstr "Preencha formulários automaticamente. Salve dados digitados apenas uma vez e serão preenchidos automaticamente na próxima vez."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
