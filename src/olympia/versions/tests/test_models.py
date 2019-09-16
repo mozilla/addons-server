@@ -779,16 +779,19 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             ['all'])
 
     def test_platform_files_created(self):
-        assert storage.exists(self.upload.path)
-        with storage.open(self.upload.path) as file_:
+        path = self.upload.path
+        assert storage.exists(path)
+        with storage.open(path) as file_:
             uploaded_hash = hashlib.sha256(file_.read()).hexdigest()
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
         version = Version.from_upload(
             self.upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)
-        assert not storage.exists(self.upload.path), (
+        assert not storage.exists(path), (
             "Expected original upload to move but it still exists.")
+        # set path to empty string (default db value) when deleted
+        assert self.upload.path == ''
         files = version.all_files
         assert len(files) == 1
         assert sorted([f.platform for f in files]) == [amo.PLATFORM_ALL.id]

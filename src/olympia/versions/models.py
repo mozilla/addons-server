@@ -265,8 +265,12 @@ class Version(OnChangeMixin, ModelBase):
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
+
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
+        upload.path = ''
+        upload.save()
+
         version_uploaded.send(instance=version, sender=Version)
 
         try:
