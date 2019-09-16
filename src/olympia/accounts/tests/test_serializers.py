@@ -15,6 +15,7 @@ from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.amo.utils import urlparams
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
+from olympia.zadmin.models import Config, set_config
 
 
 class TestBaseUserSerializer(TestCase):
@@ -249,6 +250,35 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
                 serializer.validate_homepage(u'http://{}'.format(domain))
             # It should not raise when value is allowed.
             assert serializer.validate_homepage(allowed_url) == allowed_url
+
+    def test_site_status(self):
+        data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': False,
+            'notice': None,
+        }
+
+        set_config('site_notice', 'THIS is NOT Á TEST!')
+        data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': False,
+            'notice': 'THIS is NOT Á TEST!',
+        }
+
+        with override_settings(READ_ONLY=True):
+            data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': True,
+            'notice': 'THIS is NOT Á TEST!',
+        }
+
+        Config.objects.get(key='site_notice').delete()
+        with override_settings(READ_ONLY=True):
+            data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': True,
+            'notice': None,
+        }
 
 
 class TestUserProfileBasketSyncSerializer(TestCase):

@@ -14,6 +14,11 @@ services_patterns = [
     url(r'^500', views.handler500),
 ]
 
+api_patterns = [
+    url(r'^site/$', views.SiteStatusView.as_view(),
+        name='amo-site-status'),
+]
+
 urlpatterns = [
     url(r'^robots\.txt$', views.robots, name='robots.txt'),
     url(r'^contribute\.json$', views.contribute, name='contribute.json'),
