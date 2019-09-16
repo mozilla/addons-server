@@ -256,7 +256,7 @@ Site Status
 
 .. _`api-site-status`:
 
-This special endpoint just returns if the site is in read only mode, and if there is a site notice currently in effect.
+This special endpoint returns if the site is in read only mode, and if there is a site notice currently in effect.
 See :ref:`maintainance mode <api-overview-maintainance>` for more details of when the site is read only and how requests are affected.
 
 
@@ -265,7 +265,7 @@ See :ref:`maintainance mode <api-overview-maintainance>` for more details of whe
     .. _site-status-object:
 
     :>json boolean read_only: Whether the site in read-only mode.
-    :>json string notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
+    :>json string|null notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
 
 
 ------------

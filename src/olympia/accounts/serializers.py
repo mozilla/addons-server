@@ -80,6 +80,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     reviewer_name = serializers.CharField(
         min_length=2, max_length=50, allow_blank=True,
         validators=[OneOrMorePrintableCharacterAPIValidator()])
+    # Just Need to specify any field for the source - '*' is the entire obj.
     site_status = SiteStatusSerializer(source='*')
 
     class Meta(PublicUserProfileSerializer.Meta):
