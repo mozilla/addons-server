@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-16 16:44+0000\n"
+"PO-Revision-Date: 2019-09-16 23:36+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5357,7 +5357,7 @@ msgid "start"
 msgstr "από"
 
 msgid "end"
-msgstr "εως"
+msgstr "έως"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
