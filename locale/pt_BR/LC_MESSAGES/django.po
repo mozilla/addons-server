@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-15 20:55+0000\n"
+"PO-Revision-Date: 2019-09-16 18:51+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4770,9 +4770,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Mude o visual do Firefox {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Desenha facilmente seu próprio tema visual para fazer o Firefox aparentar como lhe agrada."
+msgstr "Mude a aparência do seu navegador. Crie seus próprios temas facilmente para deixar o Firefox com o visual que você deseja."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4795,9 +4794,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Acompanhe preços de produtos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Seja notificado quando caírem os preços de itens que você está interessado na Amazon, Best Buy, eBay, Home Depot e Walmart."
+msgstr "Acompanhe produtos e seja notificado quando caírem os preços de itens que você está interessado na Amazon, Best Buy, eBay, Home Depot e Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
