@@ -264,7 +264,7 @@ See :ref:`maintainance mode <api-overview-maintainance>` for more details of whe
 
     .. _site-status-object:
 
-    :>json boolean read_only: Is the site in read-only mode.
+    :>json boolean read_only: Whether the site in read-only mode.
     :>json string notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
 
 
