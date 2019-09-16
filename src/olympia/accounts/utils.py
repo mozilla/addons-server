@@ -32,22 +32,29 @@ def fxa_config(request):
     config = {camel_case(key): value
               for key, value in settings.FXA_CONFIG['default'].items()
               if key != 'client_secret'}
+    request.session.setdefault('fxa_state', generate_fxa_state())
+
+    config.update(**{
+        'contentHost': settings.FXA_CONTENT_HOST,
+        'oauthHost': settings.FXA_OAUTH_HOST,
+        'profileHost': settings.FXA_PROFILE_HOST,
+        'scope': 'profile',
+        'state': request.session['fxa_state'],
+    })
     if request.user.is_authenticated:
         config['email'] = request.user.email
-    request.session.setdefault('fxa_state', generate_fxa_state())
-    config['state'] = request.session['fxa_state']
     return config
 
 
 def fxa_login_url(config, state, next_path=None, action=None,
                   force_two_factor=False, request=None):
     if next_path and _is_safe_url(next_path, request):
-        state += u':' + force_text(
-            urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(u'=')
+        state += ':' + force_text(
+            urlsafe_b64encode(next_path.encode('utf-8'))).rstrip('=')
     query = {
         'client_id': config['client_id'],
         'redirect_url': config['redirect_url'],
-        'scope': config['scope'],
+        'scope': 'profile',
         'state': state,
     }
     if action is not None:
@@ -57,7 +64,7 @@ def fxa_login_url(config, state, next_path=None, action=None,
         # assurance level >= 2 which corresponds to requiring 2FA.
         query['acr_values'] = 'AAL2'
     return '{host}/authorization?{query}'.format(
-        host=config['oauth_host'], query=urlencode(query))
+        host=settings.FXA_OAUTH_HOST, query=urlencode(query))
 
 
 def default_fxa_register_url(request):

@@ -40,16 +40,12 @@ from olympia.users.utils import UnsubscribeCode
 
 
 FXA_CONFIG = {
-    'oauth_host': 'https://accounts.firefox.com/v1',
     'client_id': 'amodefault',
     'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
-    'scope': 'profile',
 }
 SKIP_REDIRECT_FXA_CONFIG = {
-    'oauth_host': 'https://accounts.firefox.com/v1',
     'client_id': 'amodefault',
     'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
-    'scope': 'profile',
     'skip_register_redirect': True,
 }
 
@@ -69,6 +65,7 @@ class BaseAuthenticationView(TestCase, PatchMixin,
 
 
 @override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/v1')
 class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
 
     class LoginStartView(views.LoginStartView):
@@ -627,7 +624,7 @@ class TestWithUser(TestCase):
             scheme=url.scheme, netloc=url.netloc, path=url.path)
         fxa_config = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
         assert base == '{host}{path}'.format(
-            host=fxa_config['oauth_host'],
+            host=settings.FXA_OAUTH_HOST,
             path='/authorization')
         query = parse_qs(url.query)
         next_path = base64.urlsafe_b64encode(b'/a/path/?').rstrip(b'=')
@@ -636,7 +633,7 @@ class TestWithUser(TestCase):
             'action': ['signin'],
             'client_id': [fxa_config['client_id']],
             'redirect_url': [fxa_config['redirect_url']],
-            'scope': [fxa_config['scope']],
+            'scope': ['profile'],
             'state': ['some-blob:{next_path}'.format(
                 next_path=force_text(next_path))],
         }

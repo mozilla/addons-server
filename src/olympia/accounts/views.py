@@ -323,15 +323,15 @@ class FxAConfigMixin(object):
     ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
 
     def get_config_name(self, request):
-        return request.GET.get('config', self.DEFAULT_FXA_CONFIG_NAME)
-
-    def get_fxa_config(self, request):
-        config_name = self.get_config_name(request)
+        config_name = request.GET.get('config', self.DEFAULT_FXA_CONFIG_NAME)
         if config_name not in self.ALLOWED_FXA_CONFIGS:
             log.info('Using default FxA config instead of {}'.format(
                 config_name))
             config_name = self.DEFAULT_FXA_CONFIG_NAME
-        return settings.FXA_CONFIG[config_name]
+        return config_name
+
+    def get_fxa_config(self, request):
+        return settings.FXA_CONFIG[self.get_config_name(request)]
 
 
 class LoginStartView(FxAConfigMixin, APIView):
