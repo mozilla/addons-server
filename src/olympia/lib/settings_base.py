@@ -1782,6 +1782,9 @@ SHELL_PLUS_POST_IMPORTS = (
     ('olympia', 'amo'),
 )
 
+FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
+FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
+FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 

@@ -213,21 +213,13 @@ def parse_next_path(state_parts, request=None):
     return next_path
 
 
-def with_user(format, config=None):
+def with_user(format):
 
     def outer(fn):
         @functools.wraps(fn)
         @use_primary_db
         def inner(self, request):
-            if config is None:
-                if hasattr(self, 'get_fxa_config'):
-                    fxa_config = self.get_fxa_config(request)
-                else:
-                    fxa_config = (
-                        settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
-            else:
-                fxa_config = config
-
+            fxa_config = self.get_fxa_config(request)
             if request.method == 'GET':
                 data = request.query_params
             else:
@@ -327,23 +319,22 @@ def add_api_token_to_response(response, user):
 
 
 class FxAConfigMixin(object):
+    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
+    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
 
     def get_config_name(self, request):
-        return request.GET.get('config', self.DEFAULT_FXA_CONFIG_NAME)
-
-    def get_allowed_configs(self):
-        return getattr(
-            self, 'ALLOWED_FXA_CONFIGS', [self.DEFAULT_FXA_CONFIG_NAME])
+        config_name = request.GET.get('config', self.DEFAULT_FXA_CONFIG_NAME)
+        if config_name not in self.ALLOWED_FXA_CONFIGS:
+            log.info('Using default FxA config instead of {}'.format(
+                config_name))
+            config_name = self.DEFAULT_FXA_CONFIG_NAME
+        return config_name
 
     def get_fxa_config(self, request):
-        config_name = self.get_config_name(request)
-        if config_name in self.get_allowed_configs():
-            return settings.FXA_CONFIG[config_name]
-        log.info('Using default FxA config instead of {}'.format(config_name))
-        return settings.FXA_CONFIG[self.DEFAULT_FXA_CONFIG_NAME]
+        return settings.FXA_CONFIG[self.get_config_name(request)]
 
 
-class LoginStartBaseView(FxAConfigMixin, APIView):
+class LoginStartView(FxAConfigMixin, APIView):
 
     def get(self, request):
         request.session.setdefault('fxa_state', generate_fxa_state())
@@ -358,14 +349,7 @@ class LoginStartBaseView(FxAConfigMixin, APIView):
         )
 
 
-class LoginStartView(LoginStartBaseView):
-    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
-    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
-
-
 class AuthenticateView(FxAConfigMixin, APIView):
-    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
-    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
 
     authentication_classes = (SessionAuthentication,)
 
@@ -376,13 +360,11 @@ class AuthenticateView(FxAConfigMixin, APIView):
         # logging them on.
         if user is None:
             user = register_user(self.__class__, request, identity)
-            fxa_config = self.get_fxa_config(request)
-            if fxa_config.get('skip_register_redirect') is not True:
-                edit_page = reverse('users.edit')
-                if _is_safe_url(next_path, request):
-                    next_path = f'{edit_page}?to={quote_plus(next_path)}'
-                else:
-                    next_path = edit_page
+            edit_page = reverse('users.edit')
+            if _is_safe_url(next_path, request):
+                next_path = f'{edit_page}?to={quote_plus(next_path)}'
+            else:
+                next_path = edit_page
             response = safe_redirect(next_path, 'register', request)
         else:
             login_user(self.__class__, request, user, identity)

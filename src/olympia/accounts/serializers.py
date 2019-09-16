@@ -103,7 +103,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
 
     def get_fxa_edit_email_url(self, user):
         base_url = '{}/settings'.format(
-            settings.FXA_CONFIG['default']['content_host']
+            settings.FXA_CONTENT_HOST
         )
         return urlparams(base_url, uid=user.fxa_id, email=user.email,
                          entrypoint='addons')
