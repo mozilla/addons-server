@@ -12,9 +12,12 @@ from django.views.decorators.cache import never_cache
 
 from django_statsd.clients import statsd
 from rest_framework.exceptions import NotFound
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from olympia import amo
 from olympia.amo.utils import render
+from olympia.api.serializers import SiteStatusSerializer
 
 from . import monitors
 
@@ -131,3 +134,15 @@ def _frontend_view(*args, **kwargs):
 def frontend_view(*args, **kwargs):
     """Wrap _frontend_view so we can mock it in tests."""
     return _frontend_view(*args, **kwargs)
+
+
+class SiteStatusView(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        return non_atomic_requests(super().as_view(**initkwargs))
+
+    def get(self, request, format=None):
+        return Response(SiteStatusSerializer(object()).data)
