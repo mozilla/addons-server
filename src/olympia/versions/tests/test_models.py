@@ -135,6 +135,41 @@ class TestVersionManager(TestCase):
             extra_compatible_version_1, extra_compatible_version_2]
         assert list(qs) == expected_versions
 
+    def test_version_hidden_from_related_manager_after_deletion(self):
+        """Test that a version that has been deleted should be hidden from the
+        reverse relations, unless using the specific unfiltered_for_relations
+        manager."""
+
+        addon = addon_factory()
+        version = addon.current_version
+        assert addon.versions.get() == version
+
+        # Deleted Version should be hidden from the reverse relation manager.
+        version.delete()
+        addon = Addon.objects.get(pk=addon.pk)
+        assert addon.versions.count() == 0
+
+        # But we should be able to see it using unfiltered_for_relations.
+        addon.versions(manager='unfiltered_for_relations').count() == 1
+        addon.versions(manager='unfiltered_for_relations').get() == version
+
+    def test_version_still_accessible_from_foreign_key_after_deletion(self):
+        """Test that a version that has been deleted should still be accessible
+        from a foreign key."""
+
+        version = addon_factory().current_version
+        # We use VersionPreview as atm those are kept around, but any other
+        # model that has a FK to Version and isn't deleted when a Version is
+        # soft-deleted would work.
+        version_preview = VersionPreview.objects.create(version=version)
+        assert version_preview.version == version
+
+        # Deleted Version should *not* prevent the version from being
+        # accessible using the FK.
+        version.delete()
+        version_preview = VersionPreview.objects.get(pk=version_preview.pk)
+        assert version_preview.version == version
+
 
 class TestVersion(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
