@@ -40,12 +40,14 @@ addons:
       - librsvg2-bin
       - pngcrush
       - uuid
+      - rabbitmq-server
 
 services:
   - mysql
   - memcached
   - elasticsearch
   - redis
+  - rabbitmq
 
 before_install:
   - mysql -e 'create database olympia;'

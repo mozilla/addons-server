@@ -95,14 +95,21 @@ CELERY_IMPORTS += (
 )
 
 # Recommended test settings, as per `celery.contrib.testing.app`
-CELERY_WORKER_LOG_COLOR = False
 CELERY_ENABLE_UTC = True
 CELERY_TIMEZONE = 'UTC'
-CELERY_BROKER_URL = 'memory://'
+
 CELERY_BROKER_HEARTBEAT = 0
+#CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/olympia'
+CELERY_BROKER_URL = 'memory://'
+CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
+CELERY_BROKER_HEARTBEAT = 60 * 15
+
+CELERY_TASK_DEFAULT_QUEUE = 'default'
+
 CELERY_WORKER_POOL = 'solo'
 CELERY_WORKER_CONCURRENCY = 1
 CELERY_WORKER_SEND_TASK_EVENTS = True
+CELERY_WORKER_LOG_COLOR = False
 
 
 # Enable us to track tasks that have been run and gather their details

@@ -1024,6 +1024,9 @@ class CeleryWorkerTestCase(TestCase):
         desc = f'waiting for tasks to be {states.join(",")}'
 
         def _is_result_task_started(results, **kwargs):
+            # Clear out any result caches we may have dangling around
+            [result.forget() for result in results]
+
             contain_states = [result.state in states for result in results]
 
             print('XXXXXXXXXX', contain_states, states, results)
