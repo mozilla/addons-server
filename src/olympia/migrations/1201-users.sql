@@ -17,5 +17,5 @@ ALTER TABLE `users`
     CHANGE COLUMN `occupation` `occupation` VARCHAR (255) NOT NULL,
     CHANGE COLUMN `password` `password` VARCHAR (128) NOT NULL,
     CHANGE COLUMN `public` `public` TINYINT (1) NOT NULL,
-    CHANGE COLUMN `read_dev_agreement` `read_dev_agreement` DATETIME (6) DEFAULT NULL,
-    CHANGE COLUMN `username` `username` VARCHAR (255) NOT NULL;
+    CHANGE COLUMN `read_dev_agreement` `read_dev_agreement` DATETIME (6) DEFAULT NULL;
+    /*CHANGE COLUMN `username` `username` VARCHAR (255) NOT NULL;*/
