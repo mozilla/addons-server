@@ -3037,59 +3037,6 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-    def generate_deleted_versions(self):
-        self.addon = addon_factory(version_kw={
-            'version': '1.0', 'created': self.days_ago(1)})
-        self.url = reverse('reviewers.review', args=[self.addon.slug])
-
-        versions = ({'version': '0.1', 'action': 'comment',
-                     'comments': 'millenium hand and shrimp'},
-                    {'version': '0.1', 'action': 'public',
-                     'comments': 'buggrit'},
-                    {'version': '0.2', 'action': 'comment',
-                     'comments': 'I told em'},
-                    {'version': '0.3'})
-
-        for i, version_data in enumerate(versions):
-            version = version_factory(
-                addon=self.addon, version=version_data['version'],
-                created=self.days_ago(-i),
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-
-            if 'action' in version_data:
-                data = {'action': version_data['action'],
-                        'operating_systems': 'win',
-                        'applications': 'something',
-                        'comments': version_data['comments']}
-                self.client.post(self.url, data)
-                version.delete(hard=True)
-
-        self.addon.current_version.delete(hard=True)
-
-    @patch('olympia.reviewers.utils.sign_file')
-    def test_item_history_deleted(self, mock_sign):
-        self.generate_deleted_versions()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        table = pq(response.content)('#review-files')
-
-        # Check the history for all versions.
-        ths = table.children('tr > th')
-        assert ths.length == 3  # The 2 with the same number will be coalesced.
-        assert '0.1' in ths.eq(0).text()
-        assert '0.2' in ths.eq(1).text()
-        assert '0.3' in ths.eq(2).text()
-        for idx in range(2):
-            assert 'Deleted' in ths.eq(idx).text()
-
-        bodies = table.children('.listing-body')
-        assert 'millenium hand and shrimp' in bodies.eq(0).text()
-        assert 'buggrit' in bodies.eq(0).text()
-        assert 'I told em' in bodies.eq(1).text()
-
-        assert mock_sign.called
-
     def test_item_history_compat_ordered(self):
         """ Make sure that apps in compatibility are ordered. """
         av = AppVersion.objects.all()[0]
