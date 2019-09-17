@@ -75,7 +75,7 @@
   <div class="results">
     <div class="results-inner">
       <table id="review-files" class="item-history">
-        {% for version in pager.object_list|reverse %}
+        {% for version in pager.object_list %}
         <tr class="listing-header">
           <th colspan="2">
             {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
