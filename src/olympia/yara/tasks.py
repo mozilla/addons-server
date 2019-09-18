@@ -56,8 +56,10 @@ def run_yara(upload_pk):
 
         result.save()
 
+        statsd.incr('devhub.yara.success')
         log.info('Ending yara task for FileUpload %s.', upload_pk)
     except Exception:
+        statsd.incr('devhub.yara.failure')
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
         log.exception('Error in yara task for FileUpload %s.', upload_pk)

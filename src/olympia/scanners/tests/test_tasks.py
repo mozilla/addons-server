@@ -35,8 +35,9 @@ class TestRunScanner(UploadTest, TestCase):
 
     @override_settings(SCANNER_TIMEOUT=123)
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
+    @mock.patch('olympia.yara.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
-    def test_run_with_mocks(self, requests_mock):
+    def test_run_with_mocks(self, requests_mock, incr_mock):
         upload = self.get_upload('webextension.xpi')
         scanner_data = {'some': 'results'}
         requests_mock.return_value = self.create_response(data=scanner_data)
@@ -62,6 +63,10 @@ class TestRunScanner(UploadTest, TestCase):
         assert result.upload == upload
         assert result.scanner == self.FAKE_SCANNER
         assert result.results == scanner_data
+        scanner_name = dict(self.MOCK_SCANNERS).get(self.FAKE_SCANNER)
+        assert incr_mock.called
+        incr_mock.assert_called_with(
+            'devhub.{}.success'.format(scanner_name))
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.requests.post')
@@ -81,7 +86,9 @@ class TestRunScanner(UploadTest, TestCase):
         assert requests_mock.called
         assert len(ScannersResult.objects.all()) == 0
 
-    def test_run_does_not_raise(self):
+    @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
+    @mock.patch('olympia.yara.tasks.statsd.incr')
+    def test_run_does_not_raise(self, incr_mock):
         upload = self.get_upload('webextension.xpi')
 
         # This call should not raise even though there will be an error because
@@ -92,6 +99,11 @@ class TestRunScanner(UploadTest, TestCase):
             api_url=None,
             api_key='does-not-matter'
         )
+
+        scanner_name = dict(self.MOCK_SCANNERS).get(self.FAKE_SCANNER)
+        assert incr_mock.called
+        incr_mock.assert_called_with(
+            'devhub.{}.failure'.format(scanner_name))
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.statsd.timer')
