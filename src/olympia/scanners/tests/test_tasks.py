@@ -11,7 +11,7 @@ from olympia.scanners.tasks import run_scanner, run_customs, run_wat
 
 class TestRunScanner(UploadTest, TestCase):
     FAKE_SCANNER = 1
-    MOCK_SCANNERS = [(FAKE_SCANNER, 'fake-scanner'), ]
+    MOCK_SCANNERS = {FAKE_SCANNER: 'fake-scanner'}
     API_URL = 'http://scanner.example.org'
     API_KEY = 'api-key'
 
@@ -63,7 +63,7 @@ class TestRunScanner(UploadTest, TestCase):
         assert result.upload == upload
         assert result.scanner == self.FAKE_SCANNER
         assert result.results == scanner_data
-        scanner_name = dict(self.MOCK_SCANNERS).get(self.FAKE_SCANNER)
+        scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
         assert incr_mock.called
         incr_mock.assert_called_with(
             'devhub.{}.success'.format(scanner_name))
@@ -100,7 +100,7 @@ class TestRunScanner(UploadTest, TestCase):
             api_key='does-not-matter'
         )
 
-        scanner_name = dict(self.MOCK_SCANNERS).get(self.FAKE_SCANNER)
+        scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
         assert incr_mock.called
         incr_mock.assert_called_with(
             'devhub.{}.failure'.format(scanner_name))
@@ -120,7 +120,7 @@ class TestRunScanner(UploadTest, TestCase):
         )
 
         assert timer_mock.called
-        scanner_name = dict(self.MOCK_SCANNERS).get(self.FAKE_SCANNER)
+        scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
         timer_mock.assert_called_with('devhub.{}'.format(scanner_name))
 
 

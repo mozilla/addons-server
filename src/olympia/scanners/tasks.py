@@ -20,7 +20,7 @@ def run_scanner(upload_pk, scanner, api_url, api_key):
     """
     Run a scanner on a FileUpload via RPC and store the results.
     """
-    scanner_name = dict(SCANNERS).get(scanner)
+    scanner_name = SCANNERS.get(scanner)
     log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name,
              upload_pk)
 
