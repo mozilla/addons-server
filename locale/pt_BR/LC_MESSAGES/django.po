@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-18 14:18+0000\n"
+"PO-Revision-Date: 2019-09-18 16:29+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -458,7 +458,7 @@ msgstr "Extensões submetidas necessitam ter um arquivo manifest com pelo menos 
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Por favor, esteja ciente de que a WebExtensions não aceitará um \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Esteja ciente que WebExtensions não aceitam um \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -3742,7 +3742,7 @@ msgstr "Impeça rastreadores {start_sub_heading}com {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr "Ganhe uma camada adicional de proteção contra rastreamento enquanto navega a web."
+msgstr "Ganhe uma camada adicional de proteção contra rastreamento enquanto navega na web."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4240,7 +4240,7 @@ msgstr "Faça anotações {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr "Crie notas gerais ou específicas a websites para revisar depois."
+msgstr "Crie notas gerais ou específicas por site para revisar depois."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
