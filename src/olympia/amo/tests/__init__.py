@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
 from urllib.parse import parse_qs, urlparse
+from unittest import mock
 from tempfile import NamedTemporaryFile
 
 from django import forms, test
@@ -27,7 +28,6 @@ from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
-from unittest import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
@@ -358,10 +358,13 @@ ES_patchers = [
 
 
 def start_es_mocks():
-    # Before starting to mock, stop them first. That way we ensure we're not
-    # trying to mock over an existing mock, which would be problematic since
-    # we use spec=True.
-    stop_es_mocks()
+    # Before starting to mock, assert that none of the patches are actually
+    # active. That way we ensure we're not trying to mock over an existing
+    # mock, which would be problematic since we use spec=True.
+    for patch in ES_patchers:
+        if patch._active_patches:
+            raise AssertionError(f'Active patches found for {patch}')
+
     for patch in ES_patchers:
         patch.start()
 
@@ -420,16 +423,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         self.client = self.client_class()
-
-    @classmethod
-    def setUpClass(cls):
-        start_es_mocks()
-        super(TestCase, cls).setUpClass()
-
-    @classmethod
-    def tearDownClass(cls):
-        stop_es_mocks()
-        super(TestCase, cls).tearDownClass()
 
     def trans_eq(self, trans, localized_string, locale):
         assert trans.id
@@ -885,12 +878,10 @@ class ESTestCase(TestCase):
     def get_index_name(cls, key):
         return get_es_index_name(key)
 
-    def setUp(self):
-        stop_es_mocks()
-        super(ESTestCase, self).setUp()
-
     @classmethod
     def setUpClass(cls):
+        # Stop the mock temporarily, the pytest fixture will start them
+        # right before each test.
         stop_es_mocks()
         cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
         cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
@@ -900,11 +891,15 @@ class ESTestCase(TestCase):
         }
         super(ESTestCase, cls).setUpClass()
 
+    def setUp(self):
+        # Stop the mocks again, we stopped them in `setUpClass` but our
+        # generic pytest fixture started the mocks in the meantime
+        stop_es_mocks()
+        super(ESTestCase, self).setUp()
+
     @classmethod
     def setUpTestData(cls):
-        stop_es_mocks()
         setup_es_test_data(cls.es)
-
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod

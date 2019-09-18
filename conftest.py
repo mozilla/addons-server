@@ -6,7 +6,6 @@ on module-level, they should instead be added to hooks or fixtures directly.
 """
 import os
 import uuid
-import warnings
 
 import pytest
 import responses
@@ -128,7 +127,7 @@ def default_prefixer(settings):
     amo.urlresolvers.set_url_prefix(prefixer)
 
 
-@pytest.yield_fixture(autouse=True)
+@pytest.fixture(autouse=True)
 def test_pre_setup(request, tmpdir, settings):
     from django.core.cache import caches
     from django.utils import translation

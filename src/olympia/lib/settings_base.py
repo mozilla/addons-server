@@ -1043,6 +1043,14 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+# When testing, we always want tasks to raise exceptions. Good for sanity.
+CELERY_TASK_EAGER_PROPAGATES = True
+
+# Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
+# The task can catch that and recover but should exit ASAP. Note that there is
+# a separate, shorter timeout for validation tasks.
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
+
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
@@ -1191,14 +1199,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
 }
-
-# When testing, we always want tasks to raise exceptions. Good for sanity.
-CELERY_TASK_EAGER_PROPAGATES = True
-
-# Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
-# The task can catch that and recover but should exit ASAP. Note that there is
-# a separate, shorter timeout for validation tasks.
-CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # See PEP 391 for formatting help.
 LOGGING = {
