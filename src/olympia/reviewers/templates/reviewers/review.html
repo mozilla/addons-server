@@ -75,7 +75,8 @@
   <div class="results">
     <div class="results-inner">
       <table id="review-files" class="item-history">
-        {% for version in pager.object_list %}
+        {# We're paginating by newest first, but want to display the current page by oldest first #}
+        {% for version in pager.object_list|reverse %}
         <tr class="listing-header">
           <th colspan="2">
             {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
