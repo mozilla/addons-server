@@ -19,7 +19,8 @@ class TestRunYara(UploadTest, TestCase):
 
         assert not yara_compile_mock.called
 
-    def test_run_with_mocks(self):
+    @mock.patch('olympia.yara.tasks.statsd.incr')
+    def test_run_with_mocks(self, incr_mock):
         upload = self.get_upload('webextension.xpi')
         assert len(YaraResult.objects.all()) == 0
 
@@ -49,6 +50,8 @@ class TestRunYara(UploadTest, TestCase):
                 'filename': 'manifest.json'
             },
         }
+        assert incr_mock.called
+        incr_mock.assert_called_with('devhub.yara.success')
 
     def test_run_no_matches_with_mocks(self):
         upload = self.get_upload('webextension.xpi')
@@ -79,16 +82,21 @@ class TestRunYara(UploadTest, TestCase):
         assert len(result.matches) == 3
 
     @override_settings(YARA_RULES_FILEPATH='unknown/path/to/rules.yar')
-    def test_run_does_not_raise(self):
+    @mock.patch('olympia.yara.tasks.statsd.incr')
+    def test_run_does_not_raise(self, incr_mock):
         upload = self.get_upload('webextension.xpi')
 
         # This call should not raise even though there will be an error because
         # YARA_RULES_FILEPATH is configured with a wrong path.
         run_yara(upload.pk)
 
+        assert incr_mock.called
+        incr_mock.assert_called_with('devhub.yara.failure')
+
     @mock.patch('olympia.yara.tasks.statsd.timer')
     def test_calls_statsd_timer(self, timer_mock):
         upload = self.get_upload('webextension.xpi')
+
         run_yara(upload.pk)
 
         assert timer_mock.called

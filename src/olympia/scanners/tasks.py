@@ -60,9 +60,11 @@ def run_scanner(upload_pk, scanner, api_url, api_key):
         result.results = results
         result.save()
 
+        statsd.incr('devhub.{}.success'.format(scanner_name))
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
                  upload_pk)
     except Exception:
+        statsd.incr('devhub.{}.failure'.format(scanner_name))
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
         log.exception('Error in scanner "%s" task for FileUpload %s.',
