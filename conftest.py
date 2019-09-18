@@ -96,59 +96,6 @@ def pytest_configure(config):
     prefix_indexes(config)
 
 
-@pytest.fixture(scope='session')
-def celery_config():
-    """Use our default testing configuration but inject it with
-    reasonable defaults for no-rabbitmq-testing.
-
-    Primarily inspired by `celery.contrib.testing.app:DEFAULT_TEST_CONFIG`
-    and copied here for better documentation.
-    """
-    from olympia.amo.celery import app
-    from olympia.amo.tests import _celery_task_returned
-
-    def _after_return_handler(
-            task, status, retval, task_id, args, kwargs, exc_info):
-        result = {
-            'status': status, 'retval': retval, 'task_id': task_id,
-            'args': args, 'kwargs': kwargs, 'exc_info': exc_info,
-            'task_name': task.name}
-        _celery_task_returned(task_id, result)
-
-    annotations = {'*': {'after_return': _after_return_handler}}
-
-    config = dict(app.conf)
-    config.update({
-        'worker_hijack_root_logger': False,
-        'worker_log_color': False,
-        'accept_content': {'json'},
-        'enable_utc': True,
-        'timezone': 'UTC',
-        'broker_url': 'memory://',
-        'result_backend': 'cache+memory://',
-        'broker_heartbeat': 0,
-        'worker_pool': 'solo',
-        'worker_concurrency': 1,
-        'task_annotations': annotations
-    })
-
-    return config
-
-
-@pytest.fixture(autouse=True)
-def start_celery_worker(
-        request, settings, celery_config, celery_session_worker):
-    """Start a proper celery worker for tests marked with
-
-    ``celery_worker_test``
-    """
-    marker = request.node.get_closest_marker('celery_worker_test')
-
-    if marker:
-        settings.CELERY_TASK_ALWAYS_EAGER = False
-        celery_session_worker.reload()
-
-
 @pytest.fixture(autouse=True, scope='session')
 def instrument_jinja():
     """Make sure the "templates" list in a response is properly updated, even

@@ -236,7 +236,6 @@ class TestSQLModel(TestCase):
                             Q('product =', 'life jacket') |
                             Q('product =', 'snake skin jacket'),
                             'category =', 'safety')))
-        # print qs.as_sql()
         assert sorted([r.product for r in qs]) == ['life jacket']
 
     def test_having_gte(self):

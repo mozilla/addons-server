@@ -8,13 +8,11 @@ from django.conf import settings
 from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
 
-import pytest
-
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
+from olympia.amo.tests import TestCase
 from olympia.amo.celery import task
 from olympia.amo.utils import utc_millesecs_from_epoch
-from olympia.amo.tests import wait_for_tasks
 
 
 fake_task_func = mock.Mock()
@@ -35,95 +33,67 @@ def test_celery_routes_in_queues():
 
 
 @task(ignore_result=False)
-def fake_task():
+def fake_task_with_result():
     fake_task_func()
     return 'foobar'
 
 
 @task
-def default_task():
+def fake_task():
     fake_task_func()
     return 'foobar'
 
 
 @task(track_started=True, ignore_result=False)
-def sleeping_task():
-    time.sleep(0.3)
+def sleeping_task(time_to_sleep):
+    time.sleep(time_to_sleep)
 
 
-@pytest.mark.celery_worker_test
-def test_celery_worker_test_runs_through_worker():
-    result = sleeping_task.delay()
-    assert result.state == 'PENDING'
-    time.sleep(0.1)
-    assert result.state == 'STARTED'
-    time.sleep(0.3)
-    assert result.state == 'SUCCESS'
+class TestCeleryWorker(TestCase):
+    @mock.patch('olympia.amo.celery.cache')
+    def test_start_task_timer(self, celery_cache):
+        result = fake_task_with_result.delay()
+        result.get()
+
+        assert celery_cache.set.called
+        assert (
+            celery_cache.set.call_args[0][0] ==
+            f'task_start_time.{result.id}')
+
+    @mock.patch('olympia.amo.celery.cache')
+    @mock.patch('olympia.amo.celery.statsd')
+    def test_track_run_time(self, celery_statsd, celery_cache):
+        minute_ago = datetime.datetime.now() - timedelta(minutes=1)
+        task_start = utc_millesecs_from_epoch(minute_ago)
+        celery_cache.get.return_value = task_start
+
+        result = fake_task_with_result.delay()
+        result.get()
+
+        approx_run_time = utc_millesecs_from_epoch() - task_start
+        assert (celery_statsd.timing.call_args[0][0] ==
+                'tasks.olympia.amo.tests.test_celery.fake_task_with_result')
+        actual_run_time = celery_statsd.timing.call_args[0][1]
+
+        fuzz = 2000  # 2 seconds
+        assert (actual_run_time >= (approx_run_time - fuzz) and
+                actual_run_time <= (approx_run_time + fuzz))
+
+        assert (
+            celery_cache.get.call_args[0][0] ==
+            f'task_start_time.{result.id}')
+        assert (
+            celery_cache.delete.call_args[0][0] ==
+            f'task_start_time.{result.id}')
+
+    @mock.patch('olympia.amo.celery.cache')
+    @mock.patch('olympia.amo.celery.statsd')
+    def test_handle_cache_miss_for_stats(self, celery_cache, celery_statsd):
+        celery_cache.get.return_value = None  # cache miss
+        fake_task.delay()
+        assert not celery_statsd.timing.called
 
 
-@pytest.mark.celery_worker_test
-def test_celery_default_ignore_result():
-    result = default_task.delay().get()
-    assert result is None
-
-
-@pytest.mark.celery_worker_test
-def test_celery_explicit_dont_ignore_result():
-    result = fake_task.delay().get()
-    assert result == 'foobar'
-
-
-@pytest.mark.celery_worker_test
-def test_wait_for_tasks():
-    result = fake_task.delay()
-    assert wait_for_tasks(result.id)['retval'] == 'foobar'
-
-
-@pytest.mark.celery_worker_test
-@mock.patch('olympia.amo.celery.cache')
-def test_start_task_timer(celery_cache):
-    result = fake_task.delay()
-    result.get()
-
-    assert celery_cache.set.called
-    assert celery_cache.set.call_args[0][0] == f'task_start_time.{result.id}'
-
-
-@pytest.mark.celery_worker_test
-@mock.patch('olympia.amo.celery.cache')
-@mock.patch('olympia.amo.celery.statsd')
-def test_track_run_time(celery_statsd, celery_cache):
-    minute_ago = datetime.datetime.now() - timedelta(minutes=1)
-    task_start = utc_millesecs_from_epoch(minute_ago)
-    celery_cache.get.return_value = task_start
-
-    result = fake_task.delay()
-    result.get()
-
-    approx_run_time = utc_millesecs_from_epoch() - task_start
-    assert (celery_statsd.timing.call_args[0][0] ==
-            'tasks.olympia.amo.tests.test_celery.fake_task')
-    actual_run_time = celery_statsd.timing.call_args[0][1]
-
-    fuzz = 2000  # 2 seconds
-    assert (actual_run_time >= (approx_run_time - fuzz) and
-            actual_run_time <= (approx_run_time + fuzz))
-
-    assert celery_cache.get.call_args[0][0] == f'task_start_time.{result.id}'
-    assert (
-        celery_cache.delete.call_args[0][0] == f'task_start_time.{result.id}')
-
-
-@pytest.mark.celery_worker_test
-@mock.patch('olympia.amo.celery.cache')
-@mock.patch('olympia.amo.celery.statsd')
-def test_handle_cache_miss_for_stats(celery_cache, celery_statsd):
-    celery_cache.get.return_value = None  # cache miss
-    fake_task.delay()
-    assert not celery_statsd.timing.called
-
-
-@pytest.mark.celery_worker_test
 class TestTaskQueued(TransactionTestCase):
     """Test that tasks are queued and only triggered when a request finishes.
 
@@ -131,40 +101,36 @@ class TestTaskQueued(TransactionTestCase):
     """
 
     def setUp(self):
-        super(TestTaskQueued, self).setUp()
+        super().setUp()
         fake_task_func.reset_mock()
         _discard_tasks()
 
     def tearDown(self):
+        super().tearDown()
         fake_task_func.reset_mock()
         _discard_tasks()
         _stop_queuing_tasks()
 
     def test_not_queued_outside_request_response_cycle(self):
-        wait_for_tasks(fake_task.delay())
+        fake_task.delay()
         assert fake_task_func.call_count == 1
 
     def test_queued_inside_request_response_cycle(self):
         request_started.send(sender=self)
-        result = fake_task.delay()
-        wait_for_tasks(result, throw=False)
+        fake_task.delay()
         assert fake_task_func.call_count == 0
         request_finished.send_robust(sender=self)
-        wait_for_tasks(result, throw=False)
         assert fake_task_func.call_count == 1
 
     def test_no_dedupe_outside_request_response_cycle(self):
-        r1 = fake_task.delay()
-        r2 = fake_task.delay()
-        wait_for_tasks((r1, r2))
+        fake_task.delay()
+        fake_task.delay()
         assert fake_task_func.call_count == 2
 
     def test_dedupe_inside_request_response_cycle(self):
         request_started.send(sender=self)
-        r1 = fake_task.delay()
-        r2 = fake_task.delay()
-        wait_for_tasks((r1, r2), throw=False)
+        fake_task.delay()
+        fake_task.delay()
         assert fake_task_func.call_count == 0
         request_finished.send_robust(sender=self)
-        wait_for_tasks((r1, r2), throw=False)
         assert fake_task_func.call_count == 1

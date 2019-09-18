@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
 from urllib.parse import parse_qs, urlparse
+from unittest import mock
 from tempfile import NamedTemporaryFile
 
 from django import forms, test
@@ -27,7 +28,6 @@ from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
-from unittest import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
@@ -78,9 +78,6 @@ translation.activate('en-us')
 ES_INDEX_SUFFIXES = {
     key: timestamp_index('')
     for key in settings.ES_INDEXES.keys()}
-
-
-_celery_task_results = {}
 
 
 def get_es_index_name(key):
@@ -361,10 +358,13 @@ ES_patchers = [
 
 
 def start_es_mocks():
-    # Before starting to mock, stop them first. That way we ensure we're not
-    # trying to mock over an existing mock, which would be problematic since
-    # we use spec=True.
-    stop_es_mocks()
+    # Before starting to mock, assert that none of the patches are actually
+    # active. That way we ensure we're not trying to mock over an existing
+    # mock, which would be problematic since we use spec=True.
+    for patch in ES_patchers:
+        if patch._active_patches:
+            raise AssertionError(f'Active patches found for {patch}')
+
     for patch in ES_patchers:
         patch.start()
 
@@ -411,32 +411,6 @@ def activate_locale(locale=None, app=None):
     translation.activate(old_locale)
 
 
-def _celery_task_returned(task_id, result):
-    _celery_task_results[task_id] = result
-
-
-def wait_for_tasks(task_ids, max_wait=1, throw=True):
-    if not isinstance(task_ids, (list, set, tuple)):
-        task_ids = [task_ids]
-
-    time_slept = 0
-
-    for task_id in task_ids:
-        while task_id not in _celery_task_results:
-            if time_slept > max_wait:
-                if throw:
-                    raise AssertionError(
-                        f'Task didn\'t return in {max_wait} seconds')
-                else:
-                    break
-            time.sleep(0.05)
-            time_slept += 0.05
-
-    result = _celery_task_results.pop(task_id, None)
-
-    return result
-
-
 def grant_permission(user_obj, rules, name):
     group = Group.objects.create(name=name, rules=rules)
     GroupUser.objects.create(group=group, user=user_obj)
@@ -449,16 +423,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         self.client = self.client_class()
-
-    @classmethod
-    def setUpClass(cls):
-        start_es_mocks()
-        super(TestCase, cls).setUpClass()
-
-    @classmethod
-    def tearDownClass(cls):
-        stop_es_mocks()
-        super(TestCase, cls).tearDownClass()
 
     def trans_eq(self, trans, localized_string, locale):
         assert trans.id
@@ -914,12 +878,10 @@ class ESTestCase(TestCase):
     def get_index_name(cls, key):
         return get_es_index_name(key)
 
-    def setUp(self):
-        stop_es_mocks()
-        super(ESTestCase, self).setUp()
-
     @classmethod
     def setUpClass(cls):
+        # Stop the mock temporarily, the pytest fixture will start them
+        # right before each test.
         stop_es_mocks()
         cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
         cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
@@ -929,11 +891,15 @@ class ESTestCase(TestCase):
         }
         super(ESTestCase, cls).setUpClass()
 
+    def setUp(self):
+        # Stop the mocks again, we stopped them in `setUpClass` but our
+        # generic pytest fixture started the mocks in the meantime
+        stop_es_mocks()
+        super(ESTestCase, self).setUp()
+
     @classmethod
     def setUpTestData(cls):
-        stop_es_mocks()
         setup_es_test_data(cls.es)
-
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod

@@ -64,15 +64,14 @@ class AMOTask(PostRequestTask):
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options)
 
-        return super(AMOTask, self).apply_async(
-            args=args, kwargs=kwargs, **options)
+        return super().apply_async(args=args, kwargs=kwargs, **options)
 
     def apply(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options)
 
-        return super(AMOTask, self).apply(args=args, kwargs=kwargs, **options)
+        return super().apply(args=args, kwargs=kwargs, **options)
 
 
 app = Celery('olympia', task_cls=AMOTask)
