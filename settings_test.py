@@ -93,35 +93,3 @@ CELERY_TASK_ALWAYS_EAGER = True
 CELERY_IMPORTS += (
     'olympia.amo.tests.test_celery',
 )
-
-# Recommended test settings, as per `celery.contrib.testing.app`
-CELERY_ENABLE_UTC = True
-CELERY_TIMEZONE = 'UTC'
-
-CELERY_BROKER_HEARTBEAT = 0
-#CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/olympia'
-CELERY_BROKER_URL = 'memory://'
-CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
-CELERY_BROKER_HEARTBEAT = 60 * 15
-
-CELERY_TASK_DEFAULT_QUEUE = 'default'
-
-CELERY_WORKER_POOL = 'solo'
-CELERY_WORKER_CONCURRENCY = 1
-CELERY_WORKER_SEND_TASK_EVENTS = True
-CELERY_WORKER_LOG_COLOR = False
-
-
-# Enable us to track tasks that have been run and gather their details
-# Used by `wait_for_tasks` helper in `CeleryWorkerTestCase`
-def _after_return_handler(
-        task, status, retval, task_id, args, kwargs, exc_info):
-    from olympia.amo.tests import _celery_task_returned
-    result = {
-        'status': status, 'retval': retval, 'task_id': task_id,
-        'args': args, 'kwargs': kwargs, 'exc_info': exc_info,
-        'task_name': task.name}
-    _celery_task_returned(task_id, result)
-
-
-CELERY_TASK_ANNOTATIONS = {'*': {'after_return': _after_return_handler}}

@@ -30,9 +30,6 @@ from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
 import pytest
-from celery.contrib.testing.worker import start_worker
-from celery.contrib.testing.manager import Manager as CeleryTestManager
-from kombu.asynchronous.hub import set_event_loop
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
@@ -44,7 +41,6 @@ from olympia.access.acl import check_ownership
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
-from olympia.amo.celery import app as celery_app
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons import indexers as addons_indexers
@@ -83,9 +79,6 @@ translation.activate('en-us')
 ES_INDEX_SUFFIXES = {
     key: timestamp_index('')
     for key in settings.ES_INDEXES.keys()}
-
-
-_celery_task_results = {}
 
 
 def get_es_index_name(key):
@@ -417,10 +410,6 @@ def activate_locale(locale=None, app=None):
     old_prefix.app = old_app
     set_url_prefix(old_prefix)
     translation.activate(old_locale)
-
-
-def _celery_task_returned(task_id, result):
-    _celery_task_results[task_id] = result
 
 
 def grant_permission(user_obj, rules, name):
@@ -965,77 +954,6 @@ class ESTestCaseWithAddons(ESTestCase):
             cls._addons = []
         finally:
             super(ESTestCaseWithAddons, cls).tearDownClass()
-
-
-@override_settings(CELERY_TASK_ALWAYS_EAGER=False)
-@pytest.mark.celery_worker_tests
-class CeleryWorkerTestCase(TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-
-        # Explicitly reset the event-loop to force the worker to re-initialize
-        # on startup.
-        set_event_loop(None)
-
-        # Start up celery worker
-        cls.celery_worker = start_worker(
-            app=celery_app, pool='solo',
-            logfile=sys.stdout)
-        cls.celery_worker.__enter__()
-
-    @classmethod
-    def tearDownClass(cls):
-        try:
-            cls.celery_worker.__exit__(None, None, None)
-            del cls.celery_worker
-        finally:
-            super().tearDownClass()
-
-    def setUp(self):
-        super().setUp()
-
-        self.manager = CeleryTestManager(celery_app, block_timeout=10.0)
-
-    def wait_for_tasks(self, task_ids, max_wait=1, throw=True,
-                       sleep_per_iteration=0.05):
-        if not isinstance(task_ids, (list, set, tuple)):
-            task_ids = [task_ids]
-
-        time_slept = 0
-
-        for task_id in task_ids:
-            while task_id not in _celery_task_results:
-                if time_slept > max_wait:
-                    if throw:
-                        raise AssertionError(
-                            f'Task didn\'t return in {max_wait} seconds')
-                    else:
-                        break
-                time.sleep(sleep_per_iteration)
-                time_slept += sleep_per_iteration
-
-        result = _celery_task_results.pop(task_id, None)
-
-        return result
-
-    def assert_result_tasks_has_state(self, results, states, interval=0.5):
-        desc = f'waiting for tasks to be {states.join(",")}'
-
-        def _is_result_task_started(results, **kwargs):
-            # Clear out any result caches we may have dangling around
-            [result.forget() for result in results]
-
-            contain_states = [result.state in states for result in results]
-
-            print('XXXXXXXXXX', contain_states, states, results)
-
-            return all(contain_states)
-
-        return self.manager.assert_task_state_from_result(
-            _is_result_task_started, results, interval=interval,
-            desc=desc, max_retries=10)
 
 
 class TestXss(TestCase):
