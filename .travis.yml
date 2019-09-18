@@ -10,7 +10,7 @@ jobs:
     - { env: TOXENV=codestyle }
     - { env: TOXENV=docs }
     - { env: TOXENV=assets }
-    - { env: TOXENV=es-and-celery }
+    - { env: TOXENV=es }
     - { env: TOXENV=addons-versions-files-ratings }
     - { env: TOXENV=devhub }
     - { env: TOXENV=reviewers-and-zadmin }
@@ -40,14 +40,12 @@ addons:
       - librsvg2-bin
       - pngcrush
       - uuid
-      - rabbitmq-server
 
 services:
   - mysql
   - memcached
   - elasticsearch
   - redis
-  - rabbitmq
 
 before_install:
   - mysql -e 'create database olympia;'

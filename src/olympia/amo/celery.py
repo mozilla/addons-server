@@ -188,12 +188,3 @@ def pause_all_tasks():
 
 def resume_all_tasks():
     _send_tasks_and_stop_queuing()
-
-
-@task(name='celery.ping', ignore_result=False)
-def ping():
-    """Simple task that just returns 'pong'.
-
-    This task is being used by celery worker tests.
-    """
-    return 'pong'
