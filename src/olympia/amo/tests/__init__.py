@@ -4,7 +4,6 @@ import random
 import shutil
 import socket
 import struct
-import sys
 import time
 import uuid
 from contextlib import contextmanager
