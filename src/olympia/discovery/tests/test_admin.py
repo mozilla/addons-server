@@ -228,7 +228,7 @@ class TestDiscoveryAdmin(TestCase):
         addon = addon_factory(name=u'BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
         hero = PrimaryHero.objects.create(
-            disco_addon=item, gradient_color='#582ACB')
+            disco_addon=item, gradient_color='#592ACB')
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
@@ -240,7 +240,7 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 200
         content = response.content.decode('utf-8')
         assert 'BarFöo' in content
-        assert '#582ACB' in content
+        assert '#592ACB' in content
 
         response = self.client.post(
             self.detail_url, {

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-12 22:51+0000\n"
+"PO-Revision-Date: 2019-09-17 16:36+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3879,9 +3879,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Pesquise com proteção contra rastreamento {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Bloqueie rastreadores quando clicar nos resultados de pesquisa do Google e Yandex."
+msgstr "Bloqueie rastreadores de anúncios quando clicar em resultados de pesquisas do Google e do Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3930,9 +3929,8 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Personalize sua nova aba {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Edite a aba da nova página para exibir o número de ladrilhos de sua preferência, imagem de fundo e mais."
+msgstr "Personalize a página de nova aba para exibir um número preferido de quadros, imagem de fundo e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4045,7 +4043,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Estilo Wikipédia {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Aplica um tema original e moderno ao site Wikipedia."
 
@@ -4054,9 +4051,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Trabalhe mais rápido {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Use gestos do mouse para executar as coisas mais rapidamente."
+msgstr "Use gestos do mouse para fazer coisas mais rápido."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4313,9 +4309,8 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Exclua o seu histórico de navegação {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Especifique um número de dias que o histórico do navegador deve ser mantido antes de ser automaticamente apagado."
+msgstr "Apague seu histórico de navegação. Especifique um número de dias de histórico do navegador a ser mantido antes de ser automaticamente removido."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4338,9 +4333,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Preencha formulários automaticamente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Salve um texto digitado apenas uma vez e preencha automaticamente na próxima vez."
+msgstr "Preencha formulários automaticamente. Salve dados digitados apenas uma vez e serão preenchidos automaticamente na próxima vez."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4398,18 +4392,16 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Controle totalmente as abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Mutas opções de controle de abas—feche abas duplicadas, unifique janelas, copie o título de abas e mais."
+msgstr "Aproveite o melhor em controle de abas ─ feche abas duplicadas, unifique janelas, copie o título de abas e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Desfrute de uma educação estranha {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Carregue aleatoriamente um artigo da Wikipedia sempre que abrir uma nova aba."
+msgstr "Aproveite uma educação inesperada. Carregue um artigo aleatório da Wikipédia sempre que abrir uma nova aba."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4516,18 +4508,16 @@ msgid "Track productivity. Measure the amount of time you spend on the computer,
 msgstr "Acompanhe a produtividade. Crie estatísticas do tempo que gasta no computador, ou em aplicativos específicos como Trello, JIRA, Basecamp, Github e muitos outros."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Recorte conteúdo como artigos, vídeos, imagens e mais para usa-los em projetos individuais ou em colaboração em tempo real com seu time."
+msgstr "Salve suas coisas preferidas na web. Recorte conteúdo como artigos, vídeos, imagens e muito mais para salvar e usar em projetos individuais ou em colaboração em equipe em tempo real."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navegue com segurança {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Somente permita execução de conteúdo web em sites que você confia."
+msgstr "Somente permita a execução de conteúdo web em sites que você confia. Navegue com segurança."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4602,18 +4592,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Livre-se de sons irritantes {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "O volume no site está muito baixo? Muito alto? O SoundFixer pode ajudar."
+msgstr "Regule áudios incômodos. O volume no site está muito baixo? Muito alto? O SoundFixer pode ajudar."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Edite antes de imprimir {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Faça mudanças visuais extraordinárias—remova propagandas ou conteúdo indesejado—em qualquer página que você deseja imprimir."
+msgstr "Edite uma página web antes de imprimir. Faça mudanças visuais extraordinárias — remova anúncios ou conteúdo indesejado — em qualquer página que você queira imprimir."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4644,18 +4632,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Esconda seus rastros {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Realize pesquisas mais seguras com bloqueio de rastreadores, criptografia inteligente, pesquisa privativas e outros fatores essenciais."
+msgstr "Pesquise com bloqueio aprimorado contra rastreadores, criptografia inteligente e outros benefícios de privacidade."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Simplifique abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Organize suas muitas abas abertas em um painel lateral."
+msgstr "Simplifique e organize suas muitas abas abertas em um painel lateral vertical."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4670,9 +4656,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Veja a situação como um todo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Com um clique do mouse você pode assistir vídeos em tela cheia."
+msgstr "Com um simples clique do mouse você pode assistir vídeos em tela inteira."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4744,9 +4729,8 @@ msgid "Measure web pages. Draw a digital ruler across any web page to check heig
 msgstr "Meça páginas. Desenhe uma régua digital em qualquer página web para verificar altura, largura e alinhamento de elementos na página."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
-msgstr "Receba os benefícios de gerenciamento de senhas fortes."
+msgstr "Aproveite os benefícios de gerenciamento de senhas fortes."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4761,9 +4745,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Bloqueie sites distrativos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Liste os sites que deseja que a extensão bloqueie. Disciplina instantânea!"
+msgstr "Bloqueie sites que o distraem. Simplesmente liste os sites que deseja que a extensão bloqueie. Disciplina instantânea!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4778,9 +4761,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Mude o visual do Firefox {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Desenha facilmente seu próprio tema visual para fazer o Firefox aparentar como lhe agrada."
+msgstr "Mude a aparência do seu navegador. Crie seus próprios temas facilmente para deixar o Firefox com o visual que você deseja."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4803,9 +4785,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Acompanhe preços de produtos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Seja notificado quando caírem os preços de itens que você está interessado na Amazon, Best Buy, eBay, Home Depot e Walmart."
+msgstr "Acompanhe produtos e seja notificado quando caírem os preços de itens que você está interessado na Amazon, Best Buy, eBay, Home Depot e Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"

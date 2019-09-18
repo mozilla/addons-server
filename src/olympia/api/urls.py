@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 
+from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.addons.api_urls import addons_v3, addons_v4
 from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
@@ -24,6 +25,7 @@ v4_api_urls = [
     url(r'^ratings/', include(ratings_v4.urls)),
     url(r'^reviewers/', include('olympia.reviewers.api_urls')),
     url(r'^', include('olympia.signing.urls')),
+    url(r'^', include(amo_api_patterns)),
     url(r'^hero/', include('olympia.hero.urls')),
 ]
 

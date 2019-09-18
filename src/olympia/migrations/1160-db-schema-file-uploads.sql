@@ -8,6 +8,7 @@ ALTER TABLE `file_uploads`
     MODIFY `compat_with_appver_id` int(10) unsigned DEFAULT NULL,
     MODIFY `automated_signing` tinyint(1) NOT NULL,
     MODIFY `addon_id` int(10) unsigned DEFAULT NULL,
+    ADD COLUMN `access_token` varchar(40) DEFAULT NULL, /* from migration 1177 */
     DROP KEY `file_uploads_9a93262a`,  /* (`compat_with_appver_id`),*/
     DROP FOREIGN KEY `compat_with_appver_id_refs_id_3747a309`,  /* (`compat_with_appver_id`) REFERENCES `appversions` (`id`), */
     ADD KEY `file_uploads_compat_with_appver_id_d3fafb87_fk_appversions_id` (`compat_with_appver_id`),

@@ -97,6 +97,20 @@ class VersionManager(ManagerBase):
         return qs
 
 
+class UnfilteredVersionManagerForRelations(VersionManager):
+    """Like VersionManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of Versions like this:
+    <Addon>.versions(manager=unfiltered_for_relations).all(), for when you want
+    to use the related manager but need to include deleted versions.
+
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations() is
+    defined in Version for this to work.
+    """
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
+
+
 def source_upload_path(instance, filename):
     # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS
     # because we already checked for that in
@@ -151,6 +165,10 @@ class Version(OnChangeMixin, ModelBase):
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
+
+    # See UnfilteredVersionManagerForRelations() docstring for usage of this
+    # special manager.
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations()
 
     class Meta(ModelBase.Meta):
         db_table = 'versions'
@@ -265,8 +283,12 @@ class Version(OnChangeMixin, ModelBase):
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
+
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
+        upload.path = ''
+        upload.save()
+
         version_uploaded.send(instance=version, sender=Version)
 
         try:
