@@ -64,6 +64,9 @@ class AbuseReport(ModelBase):
         ('OTHER', 127, 'Other'),
     )
 
+    # https://searchfox.org
+    # /mozilla-central/source/toolkit/components/telemetry/Events.yaml#122-131
+    # Firefox submits values in lowercase, with '-' and ':' changed to '_'.
     ADDON_INSTALL_METHODS = APIChoicesWithNone(
         ('AMWEBAPI', 1, 'Add-on Manager Web API'),
         ('LINK', 2, 'Direct link'),
@@ -72,12 +75,42 @@ class AbuseReport(ModelBase):
         ('MANAGEMENT_WEBEXT_API', 5, 'Webext management API'),
         ('DRAG_AND_DROP', 6, 'Drag & Drop'),
         ('SIDELOAD', 7, 'Sideload'),
+        # Values between 8 and 13 are obsolete, we use to merge
+        # install source and method into addon_install_method before deciding
+        # to split the two like Firefox does, so these 6 values are only kept
+        # for backwards-compatibility with older reports and older versions of
+        # Firefox that still only submit that.
         ('FILE_URL', 8, 'File URL'),
         ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
         ('DISTRIBUTION', 10, 'Included in build'),
         ('SYSTEM_ADDON', 11, 'System Add-on'),
         ('TEMPORARY_ADDON', 12, 'Temporary Add-on'),
         ('SYNC', 13, 'Sync'),
+        # Back to normal values.
+        ('URL', 14, 'URL'),
+        # Our own catch-all. The serializer expects it to be called "OTHER".
+        ('OTHER', 127, 'Other'),
+    )
+    ADDON_INSTALL_SOURCES = APIChoicesWithNone(
+        ('ABOUT_ADDONS', 1, 'Add-ons Manager'),
+        ('ABOUT_DEBUGGING', 2, 'Add-ons Debugging'),
+        ('ABOUT_PREFERENCES', 3, 'Preferences'),
+        ('AMO', 4, 'AMO'),
+        ('APP_PROFILE', 5, 'App Profile'),
+        ('DISCO', 6, 'Disco Pane'),
+        ('DISTRIBUTION', 7, 'Included in build'),
+        ('EXTENSION', 8, 'Extension'),
+        ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
+        ('FILE_URL', 10, 'File URL'),
+        ('GMP_PLUGIN', 11, 'GMP Plugin'),
+        ('INTERNAL', 12, 'Internal'),
+        ('PLUGIN', 13, 'Plugin'),
+        ('RTAMO', 14, 'Return to AMO'),
+        ('SYNC', 15, 'Sync'),
+        ('SYSTEM_ADDON', 16, 'System Add-on'),
+        ('TEMPORARY_ADDON', 17, 'Temporary Add-on'),
+        ('UNKNOWN', 18, 'Unknown'),
+        # Our own catch-all. The serializer expects it to be called "OTHER".
         ('OTHER', 127, 'Other'),
     )
     REPORT_ENTRY_POINTS = APIChoicesWithNone(
@@ -148,6 +181,9 @@ class AbuseReport(ModelBase):
     addon_install_method = models.PositiveSmallIntegerField(
         default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True,
         null=True)
+    addon_install_source = models.PositiveSmallIntegerField(
+        default=None, choices=ADDON_INSTALL_SOURCES.choices, blank=True,
+        null=True)
     report_entry_point = models.PositiveSmallIntegerField(
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True,
         null=True)
@@ -161,6 +197,9 @@ class AbuseReport(ModelBase):
         # be unfiltered to prevent exceptions when dealing with relations or
         # saving already deleted objects.
         base_manager_name = 'unfiltered'
+        indexes = [
+            models.Index(fields=('created',), name='created_idx'),
+        ]
 
     @property
     def metadata(self):

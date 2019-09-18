@@ -1,13 +1,17 @@
 from collections import defaultdict
 from datetime import datetime
 
+from django.conf import settings
+
 from elasticsearch_dsl.response.hit import Hit
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+
+from olympia.zadmin.models import get_config
 
 from .fields import ESTranslationSerializerField, TranslationSerializerField
 
 
-class BaseESSerializer(ModelSerializer):
+class BaseESSerializer(serializers.ModelSerializer):
     """
     A base deserializer that handles ElasticSearch data for a specific model.
 
@@ -84,3 +88,12 @@ class BaseESSerializer(ModelSerializer):
                 self.fields[field_name].attach_translations(
                     obj, data, field_name)
         return obj
+
+
+class SiteStatusSerializer(serializers.BaseSerializer):
+
+    def to_representation(self, obj):
+        return {
+            'read_only': settings.READ_ONLY,
+            'notice': get_config('site_notice'),
+        }

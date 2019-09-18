@@ -26,7 +26,7 @@ from olympia import activity, amo
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
-    BasePreview, ManagerBase, ModelBase, OnChangeMixin)
+    BasePreview, LongNameIndex, ManagerBase, ModelBase, OnChangeMixin)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -35,6 +35,8 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.scanners.models import ScannersResult
+from olympia.yara.models import YaraResult
 
 from .compare import version_dict, version_int
 
@@ -95,6 +97,20 @@ class VersionManager(ManagerBase):
         return qs
 
 
+class UnfilteredVersionManagerForRelations(VersionManager):
+    """Like VersionManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of Versions like this:
+    <Addon>.versions(manager=unfiltered_for_relations).all(), for when you want
+    to use the related manager but need to include deleted versions.
+
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations() is
+    defined in Version for this to work.
+    """
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
+
+
 def source_upload_path(instance, filename):
     # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS
     # because we already checked for that in
@@ -150,12 +166,21 @@ class Version(OnChangeMixin, ModelBase):
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
 
+    # See UnfilteredVersionManagerForRelations() docstring for usage of this
+    # special manager.
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations()
+
     class Meta(ModelBase.Meta):
         db_table = 'versions'
         # This is very important: please read the lengthy comment in Addon.Meta
         # description
         base_manager_name = 'unfiltered'
         ordering = ['-created', '-modified']
+        indexes = [
+            models.Index(fields=('version_int',), name='version_int_idx'),
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('license',), name='license_id'),
+        ]
 
     def __init__(self, *args, **kwargs):
         super(Version, self).__init__(*args, **kwargs)
@@ -258,9 +283,29 @@ class Version(OnChangeMixin, ModelBase):
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
+
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
-        version_uploaded.send(sender=version)
+        upload.path = ''
+        upload.save()
+
+        version_uploaded.send(instance=version, sender=Version)
+
+        try:
+            yara_result = YaraResult.objects.get(upload_id=upload.id)
+            yara_result.version = version
+            yara_result.save()
+        except YaraResult.DoesNotExist:
+            log.exception('Could not find a YaraResult for FileUpload %s',
+                          upload.id)
+
+        try:
+            ScannersResult.objects.filter(upload_id=upload.id).update(
+                version=version
+            )
+        except ScannersResult.DoesNotExist:
+            log.exception('Could not find ScannersResults for FileUpload %s',
+                          upload.id)
 
         # Extract this version into git repository
         transaction.on_commit(
@@ -652,6 +697,12 @@ class VersionPreview(BasePreview, ModelBase):
     class Meta:
         db_table = 'version_previews'
         ordering = ('position', 'created')
+        indexes = [
+            LongNameIndex(fields=('version',),
+                          name='version_previews_version_id_fk_versions_id'),
+            models.Index(fields=('version', 'position', 'created'),
+                         name='version_position_created_idx'),
+        ]
 
     @cached_property
     def caption(self):
@@ -691,21 +742,6 @@ def inherit_nomination(sender, instance, **kw):
         instance.inherit_nomination()
 
 
-def update_incompatible_versions(sender, instance, **kw):
-    """
-    When a new version is added or deleted, send to task to update if it
-    matches any compat overrides.
-    """
-    try:
-        if not instance.addon.type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    from olympia.addons import tasks
-    tasks.update_incompatible_appversions.delay([instance.id])
-
-
 def cleanup_version(sender, instance, **kw):
     """On delete of the version object call the file delete and signals."""
     if kw.get('raw'):
@@ -715,21 +751,47 @@ def cleanup_version(sender, instance, **kw):
 
 
 @Version.on_change
-def watch_recommendation_changes(old_attr=None, new_attr=None, instance=None,
-                                 sender=None, **kwargs):
-    from olympia.addons.models import update_search_index
+def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None,
+                  **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
+    changes = {
+        x for x in new_attr
+        if not x.startswith('_') and new_attr[x] != old_attr.get(x)
+    }
 
-    if ('recommendation_approved' in old_attr or
-            'recommendation_approved' in new_attr):
-        old_value = old_attr.get('recommendation_approved')
-        new_value = new_attr.get('recommendation_approved')
-        if old_value != new_value:
-            # Update ES because Addon.is_recommended depends on it.
-            update_search_index(
-                sender=sender, instance=instance.addon, **kwargs)
+    if 'recommendation_approved' in changes:
+        from olympia.addons.models import update_search_index
+        # Update ES because Addon.is_recommended depends on it.
+        update_search_index(
+            sender=sender, instance=instance.addon, **kwargs)
+
+    if (instance.channel == amo.RELEASE_CHANNEL_UNLISTED and
+            'deleted' in changes) or 'recommendation_approved' in changes:
+        # Sync the related add-on to basket when recommendation_approved is
+        # changed or when an unlisted version is deleted. (When a listed
+        # version is deleted, watch_changes() in olympia.addon.models should
+        # take care of it (since _current_version will change).
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.addon.pk)
+
+
+def watch_new_unlisted_version(sender=None, instance=None, **kwargs):
+    # Sync the related add-on to basket when an unlisted version is uploaded.
+    # Listed version changes for `recommendation_approved` and unlisted version
+    # deletion is handled by watch_changes() above, and new version approval
+    # changes are handled by watch_changes() in olympia.addon.models (since
+    # _current_version will change).
+    # What's left here is unlisted version upload.
+    if instance and instance.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.addon.pk)
 
 
 version_uploaded = django.dispatch.Signal()
+version_uploaded.connect(watch_new_unlisted_version)
 models.signals.pre_save.connect(
     save_signal, sender=Version, dispatch_uid='version_translations')
 models.signals.post_save.connect(
@@ -737,17 +799,11 @@ models.signals.post_save.connect(
 models.signals.post_save.connect(
     inherit_nomination, sender=Version,
     dispatch_uid='version_inherit_nomination')
-models.signals.post_save.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
 
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version')
 models.signals.post_delete.connect(
     update_status, sender=Version, dispatch_uid='version_update_status')
-models.signals.post_delete.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
 
 
 class LicenseManager(ManagerBase):
@@ -778,6 +834,9 @@ class License(ModelBase):
 
     class Meta:
         db_table = 'licenses'
+        indexes = [
+            models.Index(fields=('builtin',), name='builtin_idx')
+        ]
 
     def __str__(self):
         license = self._constant or self
@@ -806,8 +865,11 @@ class ApplicationsVersions(models.Model):
         on_delete=models.CASCADE)
 
     class Meta:
-        db_table = u'applications_versions'
-        unique_together = (("application", "version"),)
+        db_table = 'applications_versions'
+        constraints = [
+            models.UniqueConstraint(fields=('application', 'version'),
+                                    name='application_id'),
+        ]
 
     def get_application_display(self):
         return str(amo.APPS_ALL[self.application].pretty)

@@ -24,6 +24,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
@@ -1019,6 +1020,32 @@ class TestFileUpload(UploadTest):
         upload = self.get_upload('recurse.zip')
         assert upload.path.endswith('.xpi')
         storage.delete(upload.path)
+
+    def test_generate_access_token_on_save(self):
+        upload = FileUpload()
+        assert not upload.access_token
+        upload.save()
+        assert upload.access_token
+
+    def test_access_token_is_not_changed_if_already_set(self):
+        access_token = 'some-access-token'
+        upload = FileUpload.objects.create(access_token=access_token)
+        assert upload.access_token == access_token
+
+    def test_generate_access_token(self):
+        upload = FileUpload()
+        assert len(upload.generate_access_token()) == 40
+
+    def test_get_authenticated_download_url(self):
+        access_token = 'some-access-token'
+        upload = FileUpload.objects.create(access_token=access_token)
+        site_url = 'https://example.com'
+        relative_url = reverse('files.serve_file_upload',
+                               kwargs={'uuid': upload.uuid.hex})
+        expected_url = '{}?access_token={}'.format(site_url + relative_url,
+                                                   access_token)
+        with override_settings(EXTERNAL_SITE_URL=site_url):
+            assert upload.get_authenticated_download_url() == expected_url
 
 
 def test_file_upload_passed_all_validations_processing():

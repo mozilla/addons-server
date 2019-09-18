@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2018-09-18 00:42+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,30 +145,6 @@ msgstr "Los vídeos han tar en WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Esti tema ye incompatible cola to versión de {0}"
-
-msgid "All Rights Reserved"
-msgstr "Tolos drechos reservaos"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Reconocencia 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Reconocencia-NonComercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Reconocencia-NonComercial-EnsinObresDerivaes 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Reconocencia-NonComercial-CompartirIgual 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Reconocencia-EnsinObresDerivaes 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Reconocencia-CompartirIgual 3.0"
-
-msgid "Your Theme's Name"
-msgstr "El nome del tema"
 
 msgid "Flagged for review"
 msgstr ""

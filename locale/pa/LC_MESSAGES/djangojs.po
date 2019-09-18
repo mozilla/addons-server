@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,30 +144,6 @@ msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀ�
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
-
-msgid "All Rights Reserved"
-msgstr "ਸਭ ਹੱਕ ਰਾਖਵੇ ਹਨ"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "ਕਰੀਏਟਿਵ-ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ-ਕਮਰਸ਼ੀਅਲ 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਨੋਨ ਡਰਾਈਵ 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਸ਼ੇਅਰ-ਅਲਾਈਕ 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੌਨ ਡਰਾਈਵ 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸੇਅਰ ਅਲਾਈਕ 3.0"
-
-msgid "Your Theme's Name"
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਮ"
 
 msgid "Flagged for review"
 msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"

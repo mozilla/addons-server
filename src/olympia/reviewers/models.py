@@ -412,11 +412,11 @@ class ReviewerSubscription(ModelBase):
                   use_deny_list=False)
 
 
-def send_notifications(signal=None, sender=None, **kw):
-    if sender.channel != amo.RELEASE_CHANNEL_LISTED:
+def send_notifications(sender=None, instance=None, signal=None, **kw):
+    if instance.channel != amo.RELEASE_CHANNEL_LISTED:
         return
 
-    subscribers = sender.addon.reviewersubscription_set.all()
+    subscribers = instance.addon.reviewersubscription_set.all()
 
     if not subscribers:
         return
@@ -427,7 +427,7 @@ def send_notifications(signal=None, sender=None, **kw):
             user and not user.deleted and user.email and
             acl.is_user_any_kind_of_reviewer(user))
         if is_reviewer:
-            subscriber.send_notification(sender)
+            subscriber.send_notification(instance)
 
 
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
@@ -453,6 +453,16 @@ class ReviewerScore(ModelBase):
     class Meta:
         db_table = 'reviewer_scores'
         ordering = ('-created',)
+        indexes = [
+            models.Index(fields=('addon',),
+                         name='reviewer_scores_addon_id_fk'),
+            models.Index(fields=('created',),
+                         name='reviewer_scores_created_idx'),
+            models.Index(fields=('user',),
+                         name='reviewer_scores_user_id_idx'),
+            models.Index(fields=('version',),
+                         name='reviewer_scores_version_id'),
+        ]
 
     @classmethod
     def get_key(cls, key=None, invalidate=False):

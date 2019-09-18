@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-02-01 22:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,30 +157,6 @@ msgstr "Wideo muse we formaśe WebM byś."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Toś ta drastwa njejo kompatibelna z wašeju wersiju {0}"
-
-msgid "All Rights Reserved"
-msgstr "Wšykne pšawa wuměnjone"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Mě wašeje drastwy"
 
 msgid "Flagged for review"
 msgstr "Za pśeglědowanje markěrowany"

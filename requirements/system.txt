@@ -10,9 +10,9 @@ appdirs==1.4.3 \
 asn1crypto==0.24.0 \
     --hash=sha256:2f1adbb7546ed199e3c90ef23ec95c5cf3585bac7d11fb7eb562a3fe89c64e87 \
     --hash=sha256:9d5c20441baf0cb60a4ac34cc447c6c189024b6b4c6cd7877034f4965c464e49
-certifi==2019.6.16 \
-    --hash=sha256:046832c04d4e752f37383b628bc601a7ea7211496b4638f6514d0e5b9acc4939 \
-    --hash=sha256:945e3ba63a0b9f577b1395204e13c3a231f9bc0223888be653286534e5873695
+certifi==2019.9.11 \
+    --hash=sha256:e4f3620cfea4f83eedc95b24abd9cd56f3c4b146dd0177e83a21b4eb49e21e50 \
+    --hash=sha256:fd7c7c74727ddcf00e9acd26bba8da604ffec95bf1c2144e67aff7a8b50e6cef
 # cffi is required by cryptography
 cffi==1.12.3 \
     --hash=sha256:041c81822e9f84b1d9c401182e174996f0bae9991f33725d059b771744290774 \
@@ -61,12 +61,6 @@ cryptography==2.7 \
     --hash=sha256:e6347742ac8f35ded4a46ff835c60e68c22a536a8ae5c4422966d06946b6d4c6 \
     --hash=sha256:f27d93f0139a3c056172ebb5d4f9056e770fdf0206c2f422ff2ebbad142e09ed \
     --hash=sha256:f57b76e46a58b63d1c6375017f4564a28f19a5ca912691fd2e4261b3414b618d
-# enum34 is required by cryptography, docker-compose, flake8
-enum34==1.1.6 \
-    --hash=sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79 \
-    --hash=sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1 \
-    --hash=sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850 \
-    --hash=sha256:644837f692e5f550741432dd3f223bbb9852018674981b1664e5dc339387588a
 # idna is required by cryptography
 idna==2.8 \
     --hash=sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c \
@@ -83,37 +77,37 @@ ndg-httpsclient==0.5.1 \
 packaging==19.1 \
     --hash=sha256:a7ac867b97fdc07ee80a8058fe4435ccd274ecc3b0ed61d852d7d53055528cf9 \
     --hash=sha256:c491ca87294da7cc01902edbe30a5bc6c4c28172b5138ab4e4aa1b9d7bfaeafe
-pip==19.2.1 \
-    --hash=sha256:258d702483dd749400aec59c23d638a5b2249ae28a0f478b6cab12ad45681a80 \
-    --hash=sha256:80d7452630a67c1e7763b5f0a515690f2c1e9ad06dda48e0ae85b7fdf2f59d97
+pip==19.2.3 \
+    --hash=sha256:340a0ba40fdeb16413914c0fcd8e0b4ebb0bf39a900ec80e11c05d836c05103f \
+    --hash=sha256:e7a31f147974362e6c82d84b91c7f2bdf57e4d3163d3d454e6c3e71944d67135
 pyOpenSSL==19.0.0 \
     --hash=sha256:c727930ad54b10fc157015014b666f2d8b41f70c0d03e83ab67624fd3dd5d1e6 \
     --hash=sha256:aeca66338f6de19d1aa46ed634c3b9ae519a64b458f8468aec688e7e3c20f200
 # pycparser is required by cffi
 pycparser==2.19 \
     --hash=sha256:a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3
-pyasn1==0.4.6 \
-    --hash=sha256:0c444a3482c5f5c7fab93567761324f77045ede002362171e12acdd400ea50e0 \
-    --hash=sha256:27e919f274d96829d9c78455eacf6a2253c9fd44979e5f880b672b524161366d \
-    --hash=sha256:3bb81821d47b17146049e7574ab4bf1e315eb7aead30efe5d6a9ca422c9710be \
-    --hash=sha256:3f8b11ba9fde9aeb56882589896cf9c7c8f4d5630f5e83abec1d80d1ef37b28b \
-    --hash=sha256:40f307cb9e351bf54b5cf956a85e02a42d4f881dac79ce7d0b736acb2adab0e5 \
-    --hash=sha256:54734028b18e1d625a788d9846479ce088f10015db9ffb1abdd406d82b68b600 \
-    --hash=sha256:5616c045d1eb934fecc0162bc2b9bd2c8935d4a3c4642c3ccd96fb1528b1f218 \
-    --hash=sha256:5eb6dbc1191dc8a18da9d3ee4c3133909e3cfd0967d434dee958e737c1ca0bb7 \
-    --hash=sha256:72f5f934852f4722e769ec9a4dd20d6fa206a78186bab2aadf27753a222892f6 \
-    --hash=sha256:86ddc0f9a9062f111e70de780c5eb6d5d726f44809fafaa0af7a534ed66fc7c1 \
-    --hash=sha256:b17f6696f920dc712a4dc5c711b1abd623d80531910e1455c70a6cb85ffb6332 \
-    --hash=sha256:b773d5c9196ffbc3a1e13bdf909d446cad80a039aa3340bcad72f395b76ebc86 \
-    --hash=sha256:f8dda822e63df09237acd8f88940c68c1964076e5d9a906cbf385d71ec1a4006
+pyasn1==0.4.7 \
+    --hash=sha256:1321d4b2f051410fe7302bb1619903d30b24ba1451d019c11d242d11b2a35444 \
+    --hash=sha256:2860a047f666afd23b197a65f33145313511c368ce919b2d9b1853ffd3e9d32d \
+    --hash=sha256:2919babd43b3b44247c23201b71072c0c65a636daa595cad5bcd276094dbfc2d \
+    --hash=sha256:437a23121602c0bb6c65320b27e31e334ffd73a9ca5c6c075b66b6270b1a8184 \
+    --hash=sha256:5a89df3c62688261e27439d5715fd0d3ca6bf7bf1067e2171642e92aff17e817 \
+    --hash=sha256:62cdade8b5530f0b185e09855dd422bc05c0bbff6b72ff61381c09dac7befd8c \
+    --hash=sha256:67a43aec85f4ea96e72a7b22227ba7a45cf03b7297e1a53418be164bbf68335e \
+    --hash=sha256:813b198c169e9442f340743f77093435bf3e1de8d1731f3abc45d44afba17556 \
+    --hash=sha256:96c44b5604e7674e53e27fce98f3fc68821d9546151b98842c27b533122649da \
+    --hash=sha256:a9495356ca1d66ed197a0f72b41eb1823cf7ea8b5bd07191673e8147aecf8604 \
+    --hash=sha256:bcac468e38d16e94fee4c8f76eef1feb9a06a911e93465f2351a4140fa66d303 \
+    --hash=sha256:c39d11c72f0e5e71faa35c8c8ef5ee9b810ec99a3c64f05133f1325fe5636bba \
+    --hash=sha256:f124185ccc1c1c5e782aa58d46bc28be279673a482334d70de6735d05d8b4b10
 # pyparsing is required by packaging
 pyparsing==2.4.2 \
     --hash=sha256:6f98a7b9397e206d78cc01df10131398f1c8b8510a2f4d97d9abd82e1aacdd80 \
     --hash=sha256:d9338df12903bbf5d65a0e4e87c2161968b10d2e489652bb47001d82a9b028b4
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==41.0.1 \
-    --hash=sha256:a222d126f5471598053c9a77f4b5d4f26eaa1f150ad6e01dcf1a42e185d05613 \
-    --hash=sha256:c7769ce668c7a333d84e17fe8b524b1c45e7ee9f7908ad0a73e1eda7e6a5aebf
+setuptools==41.2.0 \
+    --hash=sha256:4380abcf2a4ffd1a5ba22d687c6d690dce83b2b51c70e9c6d09f7e8c7e8040dc \
+    --hash=sha256:66b86bbae7cc7ac2e867f52dc08a6bd064d938bac59dfec71b9b565dd36d6012
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
 six==1.12.0 \
     --hash=sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c \

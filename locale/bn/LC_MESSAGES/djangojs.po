@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
-"PO-Revision-Date: 2018-12-15 11:16+0000\n"
-"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2018-10-19 14:01+0000\n"
+"Last-Translator: Rajan Dey <feb17rajandey@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -24,10 +24,10 @@ msgid "There was a problem contacting the server."
 msgstr "সার্ভারের সঙ্গে যোগাযোগ করতে সমস্যা হচ্ছে।"
 
 msgid "Select a file..."
-msgstr "ফাইলটি নির্বাচন করুন..."
+msgstr "ফাইল নির্বাচন করুন..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml সহ শেষ হতে হবে"
+msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml দিয়ে শেষ হতে হবে"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "{0} তে ত্রুটি"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "দয়া করে লিনটিং জাতীয় কোনো সমস্যা থাকলে Github এ রিপোর্ট করুন"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -145,30 +145,6 @@ msgstr "ভিডিও গুলো অবশ্যই WebM তে হতে �
 msgid "This theme is incompatible with your version of {0}"
 msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
 
-msgid "All Rights Reserved"
-msgstr "সর্বসত্ত্ব সংরক্ষিত"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "আপনারা থিমের নাম"
-
 msgid "Flagged for review"
 msgstr "পর্যালোচনার জন্য চিহ্নিত"
 
@@ -214,31 +190,26 @@ msgid_plural "{0} add-ons"
 msgstr[0] "{0} অ্যাড-অন"
 msgstr[1] "{0} অ্যাড-অন"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} টি সংগ্রহ"
 msgstr[1] "{0} টি সংগ্রহ"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} টি পর্যালোচনা"
 msgstr[1] "{0} টি পর্যালোচনা"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} টি বিক্রি"
 msgstr[1] "{0} টি বিক্রি"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} রিফান্ড"
 msgstr[1] "{0} রিফান্ড"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} টি ইন্সটল"
@@ -408,7 +379,7 @@ msgid "Total Amount Contributed"
 msgstr "মোট অবদানের সংখ্যা"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "গড় অবদান"
 
 msgid "Usage"
 msgstr "ব্যবহার"
@@ -452,15 +423,15 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "ডাউনলোডসমূহ, গত {0} দিন"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "ডাউনলোডসমূহ {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "দৈনিক ব্যবহারকারীগণ, গত {0} দিন"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
@@ -488,15 +459,15 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "{0} থেকে {1} পর্যন্ত ভাষা"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "অ্যাড-অন সংস্করণ, শেষ {0} দিনে"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "অ্যাড-অন সংস্করণ {0} থেকে {1} পর্যন্ত"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -512,7 +483,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "ডাইনলোডের সোর্স {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -520,7 +491,7 @@ msgstr "শেষ {0} দিনে অবদান"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "{0} থেকে {1} পর্যন্ত অবদান"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -670,9 +641,8 @@ msgid "Not available for your platform"
 msgstr ""
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
+msgstr ""
 
 msgid "View other versions"
 msgstr "অন্যান্য ভার্সনগুলো দেখুন"
@@ -718,14 +688,12 @@ msgid "Loading..."
 msgstr "লোডিং..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"
-msgstr[1] "{0} টি শব্দ বাকি আছে।"
+msgstr[0] ""
+msgstr[1] ""
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"

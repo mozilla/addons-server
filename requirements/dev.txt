@@ -3,13 +3,22 @@ pyinotify==0.9.6 \
 # ipython / ipdb for easier debugging, supervisor to run services
 ipdb==0.12.2 \
     --hash=sha256:473fdd798a099765f093231a8b1fabfa95b0b682fce12de0c74b61a4b4d8ee57
-ipython==7.7.0 \
-    --hash=sha256:1d3a1692921e932751bc1a1f7bb96dc38671eeefdc66ed33ee4cbc57e92a410e \
-    --hash=sha256:537cd0176ff6abd06ef3e23f2d0c4c2c8a4d9277b7451544c6cbf56d1c79a83d
+ipython==7.8.0 \
+    --hash=sha256:c4ab005921641e40a68e405e286e7a1fcc464497e14d81b6914b4fd95e5dee9b \
+    --hash=sha256:dd76831f065f17bddd7eaa5c781f5ea32de5ef217592cf019e34043b56895aa1
 watchdog==0.9.0 \
     --hash=sha256:965f658d0732de3188211932aeb0bb457587f04f63ab4c1e33eab878e9de961d
 
 # Dependencies for IPython
+parso==0.5.1 \
+    --hash=sha256:63854233e1fadb5da97f2744b6b24346d2750b85965e7e399bec1620232797dc \
+    --hash=sha256:666b0ee4a7a1220f65d367617f2cd3ffddff3e205f3f16a0284df30e774c2a9c
+jedi==0.15.1 \
+    --hash=sha256:786b6c3d80e2f06fd77162a07fed81b8baa22dde5d62896a790a331d6ac21a27 \
+    --hash=sha256:ba859c74fa3c966a22f2aeebe1b74ee27e2a462f56d3f5f7ca4a59af61bfe42e
+backcall==0.1.0 \
+    --hash=sha256:38ecd85be2c1e78f77fd91700c76e14667dc21e2713b63876c0eb901196e01e4 \
+    --hash=sha256:bbbf4b1e5cd2bdb08f915895b51081c041bac22394fdfcfdfbe9f14b77c08bf2
 traitlets==4.3.2 \
     --hash=sha256:c6cb5e6f57c5a9bdaa40fa71ce7b4af30298fbab9ece9815b5d995ab6217c7d9 \
     --hash=sha256:9c4bd2d267b7153df9152698efb1050a5d84982d3384a37b2c1f7723ba3e7835
@@ -44,8 +53,9 @@ isort==4.3.21 \
     --hash=sha256:54da7e92468955c4fceacd0c86bd0ec997b0e1ee80d97f67c35a78b719dccab1 \
     --hash=sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd
 # meld3 is required by supervisor
-meld3==1.0.2 \
-    --hash=sha256:b28a9bfac342aadb4557aa144bea9f8e6208bfb0596190570d10a892d35ff7dc
+meld3==2.0.0 \
+    --hash=sha256:1efda676264490db2e30bfb81b27a918cc6d9c2de6d609491aa43410b9537eb9 \
+    --hash=sha256:a78cdcb6c0342b7ac82d900b584bd918ef72f86b60cdbf04754f840c070eb20c
 # temporarily switched to supervisor master to get python3 support. see dev_without_hash.txt
 # supervisor==3.3.5 \
 #    --hash=sha256:1b4d6d2e551dcb49e928cfffea857b8cca6b64a4a8fb755dcf86addf62866af0

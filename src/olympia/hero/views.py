@@ -16,7 +16,10 @@ class ShelfViewSet(ListModelMixin, GenericViewSet):
     format_kwarg = None
 
     def get_queryset(self):
-        return super().get_queryset().filter(enabled=True)
+        qs = super().get_queryset()
+        if not self.request.GET.get('all', '').lower() == 'true':
+            qs = qs.filter(enabled=True)
+        return qs
 
     def get_one_random(self):
         qs = self.filter_queryset(self.get_queryset()).order_by('?')
@@ -50,6 +53,11 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
 class SecondaryHeroShelfViewSet(ShelfViewSet):
     queryset = SecondaryHero.objects
     serializer_class = SecondaryHeroShelfSerializer
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.prefetch_related('modules')
+        return qs
 
 
 class HeroShelvesView(APIView):

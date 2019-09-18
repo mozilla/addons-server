@@ -75,6 +75,7 @@
   <div class="results">
     <div class="results-inner">
       <table id="review-files" class="item-history">
+        {# We're paginating by newest first, but want to display the current page by oldest first #}
         {% for version in pager.object_list|reverse %}
         <tr class="listing-header">
           <th colspan="2">
@@ -334,7 +335,7 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
-        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) %}
+        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_SEARCH) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"

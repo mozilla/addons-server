@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:07+0000\n"
-"PO-Revision-Date: 2019-07-09 17:01+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"PO-Revision-Date: 2019-08-20 16:59+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -53,12 +53,15 @@ msgstr ""
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
-msgid "Modified on:"
+msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
+
+msgid "Modified on:"
+msgstr "సవరించిన తేదీ:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "%(filter_title)s ద్వారా"
 
 msgid "All"
 msgstr "అన్నీ"
@@ -137,53 +140,6 @@ msgstr "పొడిగింతల మరియు సేకరణ మార్
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "పొడగింతల పేర్లలో Mozilla లేదా Firefox ట్రేడ్‌మార్కులు ఉండకూడదు."
 
-msgid "Awaiting Review"
-msgstr "సమీక్ష కోసం వేచి ఉంది"
-
-msgid "Rejected"
-msgstr "తిరస్కరించబడినది"
-
-msgid "Approved"
-msgstr "ఆమోదించబడింది"
-
-msgid "Added {0}"
-msgstr "చేర్చబడింది {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> వాడుకరి"
-msgstr[1] "<strong>{0}</strong> వాడుకరులు"
-
-msgid "Hover to Preview"
-msgstr "మునుజూడడానికి హోవర్ చేయండి"
-
-msgid "Add"
-msgstr "జోడించు"
-
-msgid "Edit"
-msgstr "సవరణ"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "{1} పై {0} ద్వారా"
-
-msgid "Not yet rated"
-msgstr "ఇంకా రేటు చేయలేదు"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> వాడుకరులు"
-
-msgid "by"
-msgstr "ద్వారా"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} రోజువారీ వాడుకరి"
-msgstr[1] "{0} రోజువారీ వాడుకరులు"
-
 msgid "Sort by:"
 msgstr "దీని ద్వారా క్రమబద్ధీకరించు:"
 
@@ -252,7 +208,7 @@ msgid "Enter a valid IP4 or IP6 network."
 msgstr ""
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -328,9 +284,6 @@ msgstr "అయ్యో"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-
-msgid "Some rights reserved"
-msgstr "కొన్ని హక్కులు రిజర్వు చేయబడ్డాయి"
 
 msgid "No results found"
 msgstr "ఫలితాలు కనుగొనబడలేదు"
@@ -410,9 +363,6 @@ msgstr "{0} కోసం పొడిగింతలు"
 msgid "Add-ons"
 msgstr "పొడిగింతలు"
 
-msgid "Custom License"
-msgstr "అభిమత లైసెన్సు"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} క్రితం"
@@ -465,6 +415,10 @@ msgstr "మీరు తప్పనిసరిగా {lang-code:value} వం�
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "చెల్లని pk లేదా స్లగ్ \"%s\" - వస్తువు ఉనికిలో లేదు."
+
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "డెవలపర్ ఖాతాలపై మరింత సమాచారం"
 
 msgid "Application Versions"
 msgstr "అనువర్తనపు వెర్షన్లు"
@@ -566,6 +520,9 @@ msgstr "{addon} యొక్క {version} నుండి {0} ఫైలు �
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ఆమోదించబడింది."
 
+msgid "Approved"
+msgstr "ఆమోదించబడింది"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ఇచ్చిన ప్రాథమిక సమీక్ష."
 
@@ -574,6 +531,9 @@ msgstr "ప్రాథమిక సమీక్ష"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} తిరస్కరించబడింది."
+
+msgid "Rejected"
+msgstr "తిరస్కరించబడినది"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} నిలుపుకుంది."
@@ -850,17 +810,14 @@ msgstr "తెలియని"
 msgid "Incomplete"
 msgstr "అసంపూర్తి"
 
+msgid "Awaiting Review"
+msgstr "సమీక్ష కోసం వేచి ఉంది"
+
 msgid "Disabled by Mozilla"
 msgstr "మొజిల్లాచే అచేతనించబడింది"
 
 msgid "Deleted"
 msgstr "తొలగించబడింది"
-
-msgid "Pending approval"
-msgstr "ఆమోదం కొరకు వేచివుంది"
-
-msgid "Flagged for further review"
-msgstr "తదుపరి సమీక్ష కోసం ఫ్లాగ్ చేయబడింది"
 
 msgid "Unlisted"
 msgstr "జాబితాచేయని"
@@ -892,8 +849,8 @@ msgstr "భాషా ప్యాక్ (పొడిగింత)"
 msgid "Plugin"
 msgstr "ప్లగిన్"
 
-msgid "Theme"
-msgstr "అలంకారం"
+msgid "Deprecated LWT"
+msgstr ""
 
 msgid "Theme (Static)"
 msgstr "అలంకారం (అచలం)"
@@ -919,8 +876,8 @@ msgstr "భాషా ప్యాకులు (పొడిగింత)"
 msgid "Plugins"
 msgstr "ప్లగిన్లు"
 
-msgid "Themes"
-msgstr "అలంకారాలు"
+msgid "Deprecated LWTs"
+msgstr ""
 
 msgid "Themes (Static)"
 msgstr "అలంకారాలు (అచలం)"
@@ -1278,13 +1235,13 @@ msgid "Manual Reviewer Points"
 msgstr "మానవీయ సమీక్షకుల బిందువులు"
 
 msgid "New Legacy Add-on Review"
-msgstr ""
+msgstr "కొత్త లెగసీ పొడిగింత సమీక్ష"
 
 msgid "Preliminary Add-on Review"
 msgstr "ప్రాథమిక పొడగింత సమీక్ష"
 
 msgid "Updated Legacy Add-on Review"
-msgstr ""
+msgstr "నవీకరించబడిన లెగసీ పొడిగింత సమీక్ష"
 
 msgid "New Dictionary Review"
 msgstr "కొత్త నిఘంటువు సమీక్ష"
@@ -1317,13 +1274,13 @@ msgid "Preliminary Search Provider Review"
 msgstr "ప్రాధమిక శోధన ప్రదాత సమీక్ష"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "క్రొత్త శోధన ప్రదాత సమీక్ష"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "కొత్త పూర్తి అలంకారం సమీక్ష"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "ప్రాథమిక పూర్తి అలంకారం సమీక్ష"
 
 msgid "Updated Complete Theme Review"
 msgstr ""
@@ -1338,10 +1295,10 @@ msgid "Add-on Content Review"
 msgstr "పొడిగింత విషయం సమీక్ష"
 
 msgid "Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "పొడిగింత సమీక్ష (అత్యధిక ప్రమాదం)"
 
 msgid "Add-on Review (High Risk)"
-msgstr ""
+msgstr "పొడిగింత సమీక్ష (అధిక ప్రమాదం)"
 
 msgid "Add-on Review (Medium Risk)"
 msgstr ""
@@ -1493,14 +1450,20 @@ msgstr "URL డొమెయిను [%s]కి సంబంధించిన�
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "మీ అప్రమేయ లొకేలును మార్చడానికి ముందు మీకు ఆ భాషలో ఒక పేరు, సారాంశం, వివరణ ఉండాలి. మీరు %s‌ను మర్చిపోయారు."
 
+msgid "Users can not be added directly"
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "ఒక రచయిత ఒకసారి మాత్రమే ఉండగలరు."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr "కనీసం ఒక యజమాని ఉండాలి."
 
 msgid "At least one author must be listed."
 msgstr "కనీసం ఒక రచయిత తప్పనిసరిగా జాబితా చేయబడాలి."
-
-msgid "An author can only be listed once."
-msgstr "ఒక రచయిత ఒకసారి మాత్రమే జాబితా చేయగలరు."
 
 msgid "Slug incorrect."
 msgstr "తప్పు స్లగ్."
@@ -1510,6 +1473,9 @@ msgstr "వివరాలు"
 
 msgid "What is your license's name?"
 msgstr "మీ లైసెన్స్ పేరు ఏమిటి?"
+
+msgid "Custom License"
+msgstr "అభిమత లైసెన్సు"
 
 msgid "Provide the text of your license."
 msgstr "మీ లైసెన్స్ యొక్క టెక్స్ట్ ను అందించండి."
@@ -1590,7 +1556,7 @@ msgid ""
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "ప్రదర్శన పేరు"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
@@ -1659,10 +1625,23 @@ msgstr "URL పేరు సరైనది కాదు. అలంకార�
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL పేరు సరైనది కాదు. పొడిగింత తొలగించబడలేదు."
 
+msgid "Invitation accepted."
+msgstr ""
+
+msgid "Invitation declined."
+msgstr ""
+
 msgid "An author has been added to your add-on"
 msgstr "మీ పొడిగింతకు ఒక రచయిత జోడించబడ్డారు"
 
-msgid "An author has a role changed on your add-on"
+msgid "Author invitation for {addon_name}"
+msgstr ""
+
+msgid "A confirmation email has been sent to {email}"
+msgstr ""
+
+#, fuzzy
+msgid "An author role has been changed on your add-on"
 msgstr "మీ పొడిగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
 
 msgid "An author has been removed from your add-on"
@@ -1755,9 +1734,6 @@ msgstr "సమీక్ష అభ్యర్థించబడింది."
 msgid "You must provide further details to proceed."
 msgstr "కొనసాగడానికి మీరు మరిన్ని వివరాలను అందించాలి."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
@@ -1813,6 +1789,9 @@ msgstr "పత్రావళి"
 
 msgid "Extension Development"
 msgstr "పొడగింతల డెవలప్‌మెంట్"
+
+msgid "Themes"
+msgstr "అలంకారాలు"
 
 msgid "Developer Policies"
 msgstr "డెవలపర్ విధానాలు"
@@ -1954,7 +1933,7 @@ msgstr[0] "<b>{0}</b> అలంకారం"
 msgstr[1] "<b>{0}</b> అలంకారాలు"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "ఉత్పత్తి పేజీని సవరించండి"
 
 msgid "None"
 msgstr "ఏదీకాదు"
@@ -1968,6 +1947,18 @@ msgstr ""
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
+msgid "You have been invited to become an author of {addon_name}."
+msgstr ""
+
+msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
+msgstr ""
+
+msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "రచయితలు & లైసెన్సులు నిర్వహించండి"
 
@@ -1977,6 +1968,12 @@ msgstr "రచయితలు"
 msgid "About author roles"
 msgstr "రచయిత పాత్రల గురించి"
 
+msgid "Authors pending confirmation"
+msgstr ""
+
+msgid "Authors that have been added to this add-on but haven't confirmed."
+msgstr ""
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
@@ -1984,6 +1981,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "అదనపు వివరాలు"
+
+msgid "Edit"
+msgstr "సవరణ"
 
 msgid "Additional Details for {0}"
 msgstr "{0} కొరకు అదనపు వివరాలు"
@@ -2213,7 +2213,7 @@ msgid "Upload a Custom Icon..."
 msgstr "అభిమత ప్రతీకాన్ని ఎక్కించండి..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG, JPG లకు కోడ్పాటు ఉంది."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
@@ -2237,7 +2237,7 @@ msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size 
 msgstr ""
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "కనిష్ఠ పరిమాణం 1000x750, 4:3 నిష్పత్తి అవసరం."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
@@ -2606,10 +2606,10 @@ msgid "Create a Theme"
 msgstr "అలంకారం సృష్టించు"
 
 msgid "Sign Add-on"
-msgstr ""
+msgstr "పొడిగింతని ప్రవేశించూ"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "అలంకార ఉత్పత్తి"
 
 msgid "Theme generator"
 msgstr "అలంకార జనకం"
@@ -2633,7 +2633,7 @@ msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG లేదా GIF (యానిమేట్ చేయబడనిది)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "కుడి-ఎగువకు విలీనం చేయబడింది"
 
 msgid "Select a different header image"
 msgstr "వేరొక హెడర్ చిత్రాన్ని ఎంచుకోండి"
@@ -2657,7 +2657,7 @@ msgid "Back"
 msgstr "వెనుకకు"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "API ఆధారాలు"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2678,6 +2678,13 @@ msgid ""
 "\">API documentation</a>."
 msgstr ""
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
+
 msgid "You don't have any API credentials."
 msgstr ""
 
@@ -2685,6 +2692,9 @@ msgid "Revoke"
 msgstr "ఉపసంహరించు"
 
 msgid "Revoke and regenerate credentials"
+msgstr ""
+
+msgid "Confirm and generate new credentials"
 msgstr ""
 
 msgid "Generate new credentials"
@@ -2814,9 +2824,7 @@ msgstr[1] ""
 msgid "End-User License Agreement"
 msgstr "అంతిమ-వాడుకరి లైసెన్సు ఒప్పందపత్రం"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Privacy Policy"
@@ -2952,7 +2960,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "ఉత్తమ పద్ధతులు చూడండి"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -2965,13 +2973,13 @@ msgid "This is where you view and manage your add-ons and themes. To publish you
 msgstr ""
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "మీ మొదటి పొడిగింత సమర్పించండి"
 
 msgid "Submit Your First Theme"
 msgstr "మీ మొదటి అలంకారాన్ని సమర్పించండి"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "పొడిగింతల డెవలపర్ హబ్"
 
 msgid "Docs"
 msgstr "పత్రాలు"
@@ -3002,7 +3010,7 @@ msgid "Learn How to Make an Add-on"
 msgstr "పొడగింతలు ఎలా చేయాలో తెలుసుకోండి"
 
 msgid "Port a Chrome Extension"
-msgstr ""
+msgstr "Chrome పొడిగింతని పోర్ట్ చేయండి"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
@@ -3012,7 +3020,7 @@ msgid "Learn How"
 msgstr "ఎలాగో తెలుసుకోండి"
 
 msgid "Publish Your Add-on"
-msgstr ""
+msgstr "మీ పొడిగింతను ప్రచురించండి"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
@@ -3042,7 +3050,7 @@ msgid "Temporarily install your extension in Firefox for live testing and debugg
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "వెర్షన్ను నిర్వహించండి {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
@@ -3123,6 +3131,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "పాతదాన్ని లోడ్ చేయి..."
+
+msgid "by"
+msgstr "ద్వారా"
 
 msgid "Leave a reply"
 msgstr "సమాధానం ఇవ్వూ"
@@ -3259,7 +3270,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "{start_sub_heading} {addon_name}తో {end_sub_heading} ప్రకటనల నిరోధం & గోప్యతా సంరక్షణ"
 
 #. editorial content for the discovery pane.
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3275,7 +3286,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3283,7 +3294,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3291,7 +3302,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant global weather information right in Firefox."
+msgid "Instant weather updates from around the world."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3315,7 +3326,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3323,7 +3334,7 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Dozens of amazing emojis for every occasion—always just a click away."
+msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3331,7 +3342,7 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3339,7 +3350,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3363,7 +3374,7 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites from a tile layout."
+msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3427,7 +3438,7 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3435,7 +3446,7 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy free access to 10+ million research papers."
+msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3443,7 +3454,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3480,7 +3491,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Simply hover over an image to magnify it."
+msgid "Hover over an image to magnify it."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3512,7 +3523,7 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3520,7 +3531,9 @@ msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+msgid ""
+"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
+"when needed."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3544,7 +3557,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3560,7 +3573,7 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3576,7 +3589,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3584,7 +3597,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Play videos by default in the highest quality, turn off annotations, and more."
+msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3592,7 +3605,7 @@ msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get a glimpse into who's tracking you with just a click."
+msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3600,7 +3613,7 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Surf the web through self-defined proxy settings."
+msgid "Change your proxy server and surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3616,7 +3629,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supports HTTPS."
+msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3660,11 +3673,11 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3688,7 +3701,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3704,7 +3717,7 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Stop trackers when you click Google and Yandex search returns."
+msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3720,7 +3733,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy thumbnail images alongside your search returns."
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3744,7 +3757,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3752,7 +3765,7 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3768,7 +3781,7 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3776,7 +3789,7 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3784,7 +3797,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Right-click and drag over links you want open in new tabs."
+msgid "Right-click and drag links you want open in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3800,7 +3813,7 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3848,7 +3861,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3864,7 +3877,7 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Applies a fresh and modern appearance to Wikipedia."
+msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3872,7 +3885,7 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to get to things done—quicker."
+msgid "Use mouse gestures to get to things done quicker."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3888,7 +3901,7 @@ msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Grab images from any website and download them."
+msgid "Download images you find on the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3912,7 +3925,7 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3920,7 +3933,7 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Easily customize the built-in privacy settings in Firefox."
+msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3928,7 +3941,7 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3944,7 +3957,7 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3960,7 +3973,7 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Restrict Firefox from accessing websites you define."
+msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4000,7 +4013,7 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "A better way to save bookmarks if you use multiple bookmark folders."
+msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4020,7 +4033,7 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Instantly display all links from a webpage in new tabs."
+msgid "Instantly display all links from a web page in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4028,7 +4041,7 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Strip away redirect pages and URL tracking parameters."
+msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4044,7 +4057,7 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Download video and/or audio."
+msgid "Download YouTube videos and/or audio."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4068,7 +4081,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4084,7 +4097,7 @@ msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgid "Highlight text on web pages to save and access later."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4092,7 +4105,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 30,000+ radio stations from all over the globe."
+msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4116,7 +4129,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Navigate to the secure version of a website if it's available."
+msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4124,7 +4137,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4148,7 +4161,7 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save entered data once and it will autofill next time."
+msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4156,7 +4169,7 @@ msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Jump into private browsing mode with a click."
+msgid "Search privately with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4164,7 +4177,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4172,7 +4185,7 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4196,7 +4209,7 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4204,7 +4217,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4212,7 +4225,7 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Load a random Wikipedia article each time you open a new tab."
+msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4244,7 +4257,7 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Easily access your open tabs, bookmarks, and history."
+msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4300,7 +4313,7 @@ msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make informed shopping decisions."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4308,7 +4321,7 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4316,11 +4329,11 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4328,7 +4341,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Only allow web content to run from sites you trust."
+msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4368,7 +4381,7 @@ msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_head
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Simply click a button to close annoying pop-up overlays."
+msgid "Close annoying pop-ups with a simple click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4404,7 +4417,7 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4412,7 +4425,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4420,7 +4433,7 @@ msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4444,7 +4457,7 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4452,7 +4465,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Organize your many open tabs in a vertical sidebar."
+#, fuzzy
+msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
 msgstr "మీకు చాలా ట్యాబుల తెరిచివుంటే వాటిని నిలువు పక్కపట్టీలో నిర్వహించుకోండి."
 
 #. editorial content for the discovery pane.
@@ -4468,7 +4482,7 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "With a mouse click you can watch videos in full screen glory."
+msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4492,30 +4506,27 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}తో {end_sub_heading} ప్రకటనల నిరోధం & గోప్యతా సంరక్షణ"
-
-#. editorial content for the discovery pane.
-msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4533,7 +4544,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
 
 #. editorial content for the discovery pane.
-msgid "Grab just images from your current tab."
+msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4542,11 +4553,11 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
 
 #. editorial content for the discovery pane.
-msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get the benefits of strong password management."
+msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4564,7 +4575,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
 
 #. editorial content for the discovery pane.
-msgid "List the websites you want the extension to block. Instant discipline!"
+msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4582,7 +4593,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
 
 #. editorial content for the discovery pane.
-msgid "Easily design your own visual themes to make Firefox look as you please."
+msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4591,7 +4602,7 @@ msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
 
 #. editorial content for the discovery pane.
-msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4609,7 +4620,7 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "{start_sub_heading} {addon_name}తో {end_sub_heading} ప్రకటనల నిరోధం & గోప్యతా సంరక్షణ"
 
 #. editorial content for the discovery pane.
-msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4618,7 +4629,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
 
 #. editorial content for the discovery pane.
-msgid "Custom color schemes let you shade the web to your own liking."
+msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4709,10 +4720,10 @@ msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "చెల్లని ఆర్కైవ్."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "పొడిగింత ఐడిని కనుగొనలేకపోయాము."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4841,7 +4852,7 @@ msgid "Reported Status"
 msgstr "నివేదిత స్థితి"
 
 msgid "Reported Spam"
-msgstr ""
+msgstr "లోపం నివేదించబడింది"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
@@ -5119,6 +5130,9 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} సమీక్ష"
 msgstr[1] "{num} సమీక్షలు"
 
+msgid "Not yet rated"
+msgstr "ఇంకా రేటు చేయలేదు"
+
 msgid "Rated {0} out of 5 stars"
 msgstr ""
 
@@ -5239,9 +5253,12 @@ msgid "Has auto-approval disabled flag set"
 msgstr ""
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "సిఫార్సు చేయబడింది"
 
 msgid "Delayed because it's the first listed version"
+msgstr ""
+
+msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
 msgid "Type"
@@ -5289,9 +5306,8 @@ msgstr "బరువు"
 msgid "Information Request Deadline"
 msgstr "సమాచార అభ్యర్ధన కాలపరిమితి"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "చివరిగా నవీకరించబడింది:"
+msgstr "చివరిగా తాజాకరణ"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5644,9 +5660,8 @@ msgstr ""
 msgid "Add-on History"
 msgstr "పొడగింత చరిత్ర"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "మునుపటి గమనిక"
+msgstr ""
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -5766,6 +5781,13 @@ msgstr "వ్యాఖ్యలను దాచు"
 msgid "No reviews found for this period."
 msgstr ""
 
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "మూల ద్వారా"
+
 msgid "Dismiss this announcement"
 msgstr "ఈ ప్రకటనను తీసివేయండి"
 
@@ -5809,6 +5831,9 @@ msgstr "అన్ని సమయాలలో"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr ""
+
+msgid "Theme"
+msgstr "అలంకారం"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5963,7 +5988,7 @@ msgid "reset zoom"
 msgstr ""
 
 msgid "Group by:"
-msgstr ""
+msgstr "సమూహ ఆధారం:"
 
 msgid "day"
 msgstr "రోజు"
@@ -6014,7 +6039,7 @@ msgid "Application usage by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "తేదీ ద్వారా దింపుకోండి"
 
 msgid "How are downloads counted?"
 msgstr "దింపుకోళ్ళను ఎలా లెక్కిస్తారు?"
@@ -6028,7 +6053,7 @@ msgid "User languages by Date"
 msgstr "తేదీవారీ వాడుకరుల భాషలు"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "తేదీ ద్వారా వేదిక వినియోగం"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> దింపుకోళ్ళు"
@@ -6058,7 +6083,7 @@ msgid "See more platforms&hellip;"
 msgstr "మరిన్ని ప్లాట్‌ఫారాలను చూడండి&hellip;"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "తేదీ వారి మూలాలు దింపుకోండి"
 
 msgid "About tracking external sources..."
 msgstr ""
@@ -6082,11 +6107,6 @@ msgid "What are daily users?"
 msgstr "రోజువారీ వాడుకరులు అంటే ఏమిటి?"
 
 msgid ""
-"<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
-"people using your theme by day. </p>"
-msgstr ""
-
-msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
@@ -6101,7 +6121,7 @@ msgid "Back to Add-ons"
 msgstr "పొడిగింతకు తిరిగి వెళ్ళు"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "పాదపీఠిక చిహ్నం"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
@@ -6197,6 +6217,9 @@ msgstr ""
 
 msgid "Delete Locale"
 msgstr "లొకేల్‌ను తొలగించండి"
+
+msgid "User Restriction History"
+msgstr "వాడుకరి నియంత్రణ చరిత్ర"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."

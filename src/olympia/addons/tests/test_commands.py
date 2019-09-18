@@ -1,3 +1,4 @@
+import random
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 
@@ -120,6 +121,30 @@ def test_process_addons_limit_addons():
         call_command('process_addons', task='resign_addons_for_cose', limit=2)
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
+
+
+@pytest.mark.django_db
+@mock.patch.object(process_addons.Command, 'get_pks')
+def test_process_addons_batch_size(mock_get_pks):
+    addon_ids = [
+        random.randrange(1000) for _ in range(101)
+    ]
+    mock_get_pks.return_value = addon_ids
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command('process_addons', task='recreate_previews')
+        assert len(calls) == 2
+        assert calls[0]['kwargs']['args'] == [addon_ids[:100]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[100:]]
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command(
+            'process_addons', task='recreate_previews',
+            **{'batch_size': 50})
+        assert len(calls) == 3
+        assert calls[0]['kwargs']['args'] == [addon_ids[:50]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[50:100]]
+        assert calls[2]['kwargs']['args'] == [addon_ids[100:]]
 
 
 class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
@@ -650,3 +675,42 @@ def test_backfill_reused_guid():
         {'addon': multi_reuse_deleted_a.id, 'guid': 'multi@reuse'},
         {'addon': multi_reuse_deleted_b.id, 'guid': 'multi@reuse'},
     ]
+
+
+class TestDeleteObsoleteAddons(TestCase):
+    def setUp(self):
+        # Some add-ons that shouldn't be deleted
+        self.extension = addon_factory()
+        self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.dictionary = addon_factory(type=amo.ADDON_DICT)
+        # And some obsolete ones
+        addon_factory(type=amo.ADDON_THEME)
+        addon_factory().update(type=amo.ADDON_LPADDON)
+        addon_factory().update(type=amo.ADDON_PLUGIN)
+        addon_factory(type=9)  # _ADDON_PERSONA
+        addon_factory().update(type=11)  # webapp
+
+        assert Addon.unfiltered.count() == 8
+
+    def test_hard(self):
+        call_command(
+            'process_addons', task='delete_obsolete_addons', with_deleted=True)
+
+        assert Addon.unfiltered.count() == 3
+        assert Addon.unfiltered.get(id=self.extension.id)
+        assert Addon.unfiltered.get(id=self.static_theme.id)
+        assert Addon.unfiltered.get(id=self.dictionary.id)
+
+    def test_hard_with_already_deleted(self):
+        Addon.unfiltered.update(status=amo.STATUS_DELETED)
+        self.test_hard()
+
+    def test_normal(self):
+        call_command(
+            'process_addons', task='delete_obsolete_addons')
+
+        assert Addon.unfiltered.count() == 8
+        assert Addon.objects.count() == 3
+        assert Addon.objects.get(id=self.extension.id)
+        assert Addon.objects.get(id=self.static_theme.id)
+        assert Addon.objects.get(id=self.dictionary.id)

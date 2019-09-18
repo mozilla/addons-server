@@ -2,10 +2,15 @@ from rest_framework import serializers
 
 from django.utils.translation import ugettext_lazy as _
 
+import olympia.core.logger
+
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.api.fields import ReverseChoiceField
+
+
+log = olympia.core.logger.getLogger('z.abuse')
 
 
 class BaseAbuseReportSerializer(serializers.ModelSerializer):
@@ -63,6 +68,9 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     addon_install_method = ReverseChoiceField(
         choices=list(AbuseReport.ADDON_INSTALL_METHODS.api_choices),
         required=False, allow_null=True)
+    addon_install_source = ReverseChoiceField(
+        choices=list(AbuseReport.ADDON_INSTALL_SOURCES.api_choices),
+        required=False, allow_null=True)
     addon_signature = ReverseChoiceField(
         choices=list(AbuseReport.ADDON_SIGNATURES.api_choices),
         required=False, allow_null=True)
@@ -73,6 +81,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             'addon',
             'addon_install_method',
             'addon_install_origin',
+            'addon_install_source',
             'addon_name',
             'addon_signature',
             'addon_summary',
@@ -105,7 +114,28 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
                 })
         return data
 
+    def handle_unknown_install_method_or_source(self, data, field_name):
+        reversed_choices = self.fields[field_name].reversed_choices
+        value = data[field_name]
+        if value not in reversed_choices:
+            log.warning('Unknown abuse report %s value submitted: %s',
+                        field_name, str(data[field_name])[:255])
+            value = 'other'
+        return value
+
     def to_internal_value(self, data):
+        # We want to accept unknown incoming data for `addon_install_method`
+        # and `addon_install_source`, we have to transform it here, we can't
+        # do it in a custom validation method because validation would be
+        # skipped entirely if the value is not a valid choice.
+        if 'addon_install_method' in data:
+            data['addon_install_method'] = (
+                self.handle_unknown_install_method_or_source(
+                    data, 'addon_install_method'))
+        if 'addon_install_source' in data:
+            data['addon_install_source'] = (
+                self.handle_unknown_install_method_or_source(
+                    data, 'addon_install_source'))
         self.validate_target(data, 'addon')
         view = self.context.get('view')
         output = view.get_guid_and_addon()

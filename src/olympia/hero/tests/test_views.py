@@ -2,7 +2,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.discovery.models import DiscoveryItem
 
-from ..models import PrimaryHero, SecondaryHero
+from ..models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 from ..serializers import (
     PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
 
@@ -19,12 +19,12 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         hero_a = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
                 addon=addon_factory(),
-                custom_heading='Its a héading!'),
+                custom_description='Its a déscription!'),
             image='foo.png',
             gradient_color='#123456')
         hero_b = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory()),
+                addon=addon_factory(summary='fooo')),
             image='baa.png',
             gradient_color='#987654')
         hero_external = PrimaryHero.objects.create(
@@ -75,6 +75,34 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             'en-US': 'https://mozilla.org/'
         }
 
+    def test_all_param(self):
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=False)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 2
+
+        response = self.client.get(self.url + '?all=true')
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 3
+
 
 class TestSecondaryHeroShelfViewSet(TestCase):
     def setUp(self):
@@ -96,20 +124,49 @@ class TestSecondaryHeroShelfViewSet(TestCase):
         SecondaryHero.objects.create(
             headline='dfdfd!',
             description='dfdfd')
+        SecondaryHeroModule.objects.create(shelf=hero_a)
+        SecondaryHeroModule.objects.create(shelf=hero_a)
+        SecondaryHeroModule.objects.create(shelf=hero_a)
 
-        # The shelf isn't enabled so still won't show up
+        # The shelves aren't enabled so won't show up.
         response = self.client.get(self.url)
         assert response.json() == {'results': []}
 
         hero_a.update(enabled=True)
         hero_b.update(enabled=True)
         # don't enable the 3rd PrimaryHero object
-        response = self.client.get(self.url)
+        with self.assertNumQueries(2):
+            # 2 queries:
+            # - 1 to fetch all SecondaryHero results
+            # - 1 to fetch all the SecondaryHeroModules
+            response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json() == {
             'results': [
                 SecondaryHeroShelfSerializer(instance=hero_a).data,
                 SecondaryHeroShelfSerializer(instance=hero_b).data]}
+
+    def test_all_param(self):
+        SecondaryHero.objects.create(
+            headline='dfdfd!',
+            description='dfdfd',
+            enabled=True)
+        SecondaryHero.objects.create(
+            headline='dfdfd!',
+            description='dfdfd',
+            enabled=True)
+        SecondaryHero.objects.create(
+            headline='dfdfd!',
+            description='dfdfd',
+            enabled=False)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 2
+
+        response = self.client.get(self.url + '?all=true')
+        assert response.status_code == 200
+        assert len(response.json()['results']) == 3
 
 
 class TestHeroShelvesView(TestCase):
@@ -123,11 +180,14 @@ class TestHeroShelvesView(TestCase):
         shero = SecondaryHero.objects.create(
             headline='headline', description='description',
             enabled=True)
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
+        SecondaryHeroModule.objects.create(shelf=shero)
 
-        with self.assertNumQueries(12):
-            # 12 queries:
-            # first 11 as TestPrimaryHeroShelfViewSet.test_basic above
-            # + 1 to fetch SecondaryHero result
+        with self.assertNumQueries(13):
+            # 13 queries:
+            # - 11 as TestPrimaryHeroShelfViewSet.test_basic above
+            # - 2 as TestSecondaryHeroShelfViewSet.test_basic above
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         assert response.json() == {

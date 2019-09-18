@@ -207,6 +207,20 @@ class TestAddonAdmin(TestCase):
         response = self.client.get(detail_url_by_guid, follow=True)
         self.assert3xx(response, detail_url_final, 301)
 
+    def test_can_edit_deleted_addon(self):
+        addon = addon_factory(guid='@foo')
+        addon.delete()
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
 
 class TestReplacementAddonList(TestCase):
     def setUp(self):

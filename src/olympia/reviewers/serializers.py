@@ -12,6 +12,7 @@ from rest_framework.exceptions import NotFound
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
+from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.activity.models import DraftComment
@@ -340,23 +341,6 @@ class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
         pass
 
 
-class DraftCommentSerializer(serializers.ModelSerializer):
-    user = SplitField(
-        serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
-        BaseUserSerializer())
-    version = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=Version.unfiltered.all()),
-        VersionSerializer())
-
-    class Meta:
-        model = DraftComment
-        fields = (
-            'id', 'filename', 'lineno', 'comment',
-            'version', 'user'
-        )
-
-
 class CannedResponseSerializer(serializers.ModelSerializer):
     # Title is actually more fitting than the internal "name"
     title = serializers.CharField(source='name')
@@ -368,3 +352,39 @@ class CannedResponseSerializer(serializers.ModelSerializer):
 
     def get_category(self, obj):
         return amo.CANNED_RESPONSE_CATEGORY_CHOICES[obj.category]
+
+
+class DraftCommentSerializer(serializers.ModelSerializer):
+    user = SplitField(
+        serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
+        BaseUserSerializer())
+    version = SplitField(
+        serializers.PrimaryKeyRelatedField(
+            queryset=Version.unfiltered.all()),
+        AddonBrowseVersionSerializer())
+    canned_response = SplitField(
+        serializers.PrimaryKeyRelatedField(
+            queryset=CannedResponse.objects.all(),
+            required=False),
+        CannedResponseSerializer())
+
+    class Meta:
+        model = DraftComment
+        fields = (
+            'id', 'filename', 'lineno', 'comment',
+            'version', 'user', 'canned_response'
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the instance for `AddonBrowseVersionSerializer` which requires
+        # on `instance` being set correctly.
+        self.fields['version'].output.instance = self.context['version']
+
+    def validate(self, data):
+        if data.get('comment') and data.get('canned_response'):
+            raise serializers.ValidationError(
+                {'comment': ugettext(
+                    'You can\'t submit a comment if `canned_response` is '
+                    'defined.')})
+        return data

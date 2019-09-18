@@ -162,12 +162,5 @@ $(function () {
     if ($('#webext-permissions').exists())
         $('#webext-permissions').modal('.webext-permissions', { width: '500px' });
 
-    // Show add-on ID when icon is clicked
-    if ($("#addon[data-id], #persona[data-id]").exists()) {
-        $("#addon .icon").click(function() {
-            window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
-        });
-    }
-
     $('#abuse-modal').modal('#report-abuse', {delegate: '#page'});
 });

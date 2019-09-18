@@ -3,7 +3,8 @@ from olympia.amo.tests import addon_factory, TestCase
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
-from ..models import GRADIENT_START_COLOR, PrimaryHero, SecondaryHero
+from ..models import (
+    GRADIENT_START_COLOR, PrimaryHero, SecondaryHero, SecondaryHeroModule)
 from ..serializers import (
     ExternalAddonSerializer, PrimaryHeroShelfSerializer,
     SecondaryHeroShelfSerializer)
@@ -11,21 +12,20 @@ from ..serializers import (
 
 class TestPrimaryHeroShelfSerializer(TestCase):
     def test_basic(self):
-        addon = addon_factory(summary='Summary')
+        addon = addon_factory()
         hero = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon,
-                custom_heading='Its a héading!'),
+                addon=addon, custom_description='Déscription'),
             image='foo.png',
-            gradient_color='#123456')
+            gradient_color='#008787')
         data = PrimaryHeroShelfSerializer(instance=hero).data
         assert data == {
-            'featured_image': hero.image_path,
-            'heading': 'Its a héading!',
-            'description': '<blockquote>Summary</blockquote>',
+            'featured_image': (
+                'http://testserver/static/img/hero/featured/foo.png'),
+            'description': 'Déscription',
             'gradient': {
-                'start': GRADIENT_START_COLOR,
-                'end': '#123456'
+                'start': GRADIENT_START_COLOR[1],
+                'end': 'color-green-70'
             },
             'addon': DiscoveryAddonSerializer(instance=addon).data,
         }
@@ -35,19 +35,17 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             summary='Summary', homepage='https://foo.baa', version_kw={
                 'channel': amo.RELEASE_CHANNEL_UNLISTED})
         hero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
-                addon=addon,
-                custom_heading='Its a héading!'),
+            disco_addon=DiscoveryItem.objects.create(addon=addon),
             image='foo.png',
-            gradient_color='#123456',
+            gradient_color='#008787',
             is_external=True)
         assert PrimaryHeroShelfSerializer(instance=hero).data == {
-            'featured_image': hero.image_path,
-            'heading': 'Its a héading!',
-            'description': '<blockquote>Summary</blockquote>',
+            'featured_image': (
+                'http://testserver/static/img/hero/featured/foo.png'),
+            'description': 'Summary',
             'gradient': {
-                'start': GRADIENT_START_COLOR,
-                'end': '#123456'
+                'start': GRADIENT_START_COLOR[1],
+                'end': 'color-green-70'
             },
             'external': ExternalAddonSerializer(instance=addon).data,
         }
@@ -69,6 +67,7 @@ class TestSecondaryHeroShelfSerializer(TestCase):
             'headline': 'Its a héadline!',
             'description': 'description',
             'cta': None,
+            'modules': [],
         }
         hero.update(cta_url='/extensions/', cta_text='Go here')
         data = SecondaryHeroShelfSerializer(instance=hero).data
@@ -79,4 +78,43 @@ class TestSecondaryHeroShelfSerializer(TestCase):
                 'url': 'http://testserver/extensions/',
                 'text': 'Go here',
             },
+            'modules': [],
+        }
+
+    def test_with_modules(self):
+        hero = SecondaryHero.objects.create()
+        promos = [
+            SecondaryHeroModule.objects.create(
+                description='It does things!', shelf=hero, icon='a.svg'),
+            SecondaryHeroModule.objects.create(
+                shelf=hero, cta_url='/extensions/', cta_text='Go here',
+                icon='b.svg'),
+            SecondaryHeroModule.objects.create(
+                shelf=hero, icon='c.svg'),
+        ]
+        data = SecondaryHeroShelfSerializer(instance=hero).data
+        assert data == {
+            'headline': '',
+            'description': '',
+            'cta': None,
+            'modules': [
+                {
+                    'description': promos[0].description,
+                    'icon': 'http://testserver/static/img/hero/icons/a.svg',
+                    'cta': None,
+                },
+                {
+                    'description': '',
+                    'icon': 'http://testserver/static/img/hero/icons/b.svg',
+                    'cta': {
+                        'url': 'http://testserver/extensions/',
+                        'text': 'Go here',
+                    },
+                },
+                {
+                    'description': '',
+                    'icon': 'http://testserver/static/img/hero/icons/c.svg',
+                    'cta': None,
+                },
+            ],
         }

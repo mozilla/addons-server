@@ -5,7 +5,8 @@ from django.conf import settings
 from rest_framework import exceptions, serializers
 
 from olympia import amo
-from olympia.accounts.serializers import BaseUserSerializer
+from olympia.accounts.serializers import (
+    BaseUserSerializer, UserProfileBasketSyncSerializer)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import (
@@ -24,8 +25,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions, License, Version, VersionPreview)
 
-from .models import (
-    Addon, CompatOverride, Preview, ReplacementAddon, attach_tags)
+from .models import Addon, Preview, ReplacementAddon, attach_tags
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -704,6 +704,36 @@ class LanguageToolsSerializer(AddonSerializer):
         return data
 
 
+class VersionBasketSerializer(SimpleVersionSerializer):
+    class Meta:
+        model = Version
+        fields = ('id', 'compatibility', 'is_strict_compatibility_enabled',
+                  'version')
+
+
+class AddonBasketSyncSerializer(AddonSerializerWithUnlistedData):
+    # We want to send all authors to basket, not just listed ones, and have
+    # the full basket-specific serialization.
+    authors = UserProfileBasketSyncSerializer(many=True)
+    name = serializers.SerializerMethodField()
+    latest_unlisted_version = VersionBasketSerializer()
+    current_version = VersionBasketSerializer()
+
+    class Meta:
+        model = Addon
+        fields = ('authors', 'average_daily_users', 'categories',
+                  'current_version', 'default_locale', 'guid', 'id',
+                  'is_disabled', 'is_recommended', 'last_updated',
+                  'latest_unlisted_version', 'name', 'ratings', 'slug',
+                  'status', 'type')
+        read_only_fields = fields
+
+    def get_name(self, obj):
+        # Basket doesn't want translations, we run the serialization task under
+        # the add-on default locale so we can just return the name as string.
+        return str(obj.name)
+
+
 class ReplacementAddonSerializer(serializers.ModelSerializer):
     replacement = serializers.SerializerMethodField()
     ADDON_PATH_REGEX = r"""/addon/(?P<addon_id>[^/<>"']+)/$"""
@@ -748,30 +778,3 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
             return self._get_collection_guids(
                 coll_match.group('user_id'), coll_match.group('coll_slug'))
         return []
-
-
-class CompatOverrideSerializer(serializers.ModelSerializer):
-
-    class VersionRangeSerializer(serializers.Serializer):
-        class ApplicationSerializer(serializers.Serializer):
-            name = serializers.CharField(source='app.pretty')
-            id = serializers.IntegerField(source='app.id')
-            min_version = serializers.CharField(source='min')
-            max_version = serializers.CharField(source='max')
-            guid = serializers.CharField(source='app.guid')
-
-        addon_min_version = serializers.CharField(source='min')
-        addon_max_version = serializers.CharField(source='max')
-        applications = ApplicationSerializer(source='apps', many=True)
-
-    addon_id = serializers.IntegerField()
-    addon_guid = serializers.CharField(source='guid')
-    version_ranges = VersionRangeSerializer(
-        source='collapsed_ranges', many=True)
-
-    class Meta:
-        model = CompatOverride
-        fields = ('addon_id', 'addon_guid', 'name', 'version_ranges')
-
-    def get_addon_id(self, obj):
-        return obj.addon_id

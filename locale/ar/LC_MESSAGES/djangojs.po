@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2018-09-06 08:37+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -164,30 +164,6 @@ msgstr "يجب أن تكون الڤديوهات بنسق WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "هذه السِمة غير متوافقة مع إصدارتك من {0}"
-
-msgid "All Rights Reserved"
-msgstr "جميع الحقوق محفوظة"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Your Theme's Name"
-msgstr "اسم السمة"
 
 msgid "Flagged for review"
 msgstr "عليه علامة لمراجعته"

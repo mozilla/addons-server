@@ -123,8 +123,13 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'hero.add_primaryhero': DISCOVERY_EDIT,
     'hero.change_primaryhero': DISCOVERY_EDIT,
     'hero.delete_primaryhero': DISCOVERY_EDIT,
+    'hero.add_secondaryheromodule': DISCOVERY_EDIT,
+    'hero.change_secondaryheromodule': DISCOVERY_EDIT,
+    'hero.delete_secondaryheromodule': DISCOVERY_EDIT,
 
     'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
+
+    'scanners.view_scannersresult': ADMIN_ADVANCED,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,

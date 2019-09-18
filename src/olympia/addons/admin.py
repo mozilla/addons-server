@@ -88,13 +88,13 @@ class AddonAdmin(admin.ModelAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
         if lookup_field == 'pk':
-            addon = get_object_or_404(Addon.objects.all(), id=object_id)
+            addon = get_object_or_404(Addon.unfiltered.all(), id=object_id)
         else:
             try:
                 if lookup_field == 'slug':
-                    addon = Addon.objects.all().get(slug=object_id)
+                    addon = Addon.unfiltered.all().get(slug=object_id)
                 elif lookup_field == 'guid':
-                    addon = Addon.objects.all().get(guid=object_id)
+                    addon = Addon.unfiltered.all().get(guid=object_id)
             except Addon.DoesNotExist:
                 raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().
@@ -121,26 +121,6 @@ class FeatureAdmin(admin.ModelAdmin):
 
 class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
-
-
-class CompatOverrideRangeInline(admin.TabularInline):
-    model = models.CompatOverrideRange
-    # Exclude type since firefox only supports blocking right now.
-    exclude = ('type',)
-
-
-class CompatOverrideAdminForm(forms.ModelForm):
-
-    def clean(self):
-        if '_confirm' in self.data:
-            raise forms.ValidationError('Click "Save" to confirm changes.')
-        return self.cleaned_data
-
-
-class CompatOverrideAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addon',)
-    inlines = [CompatOverrideRangeInline]
-    form = CompatOverrideAdminForm
 
 
 class ReplacementAddonForm(forms.ModelForm):
@@ -205,5 +185,4 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
 admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
-admin.site.register(models.CompatOverride, CompatOverrideAdmin)
 admin.site.register(models.ReplacementAddon, ReplacementAddonAdmin)

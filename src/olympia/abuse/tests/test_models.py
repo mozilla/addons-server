@@ -80,6 +80,7 @@ class TestAbuse(TestCase):
             (11, 'System Add-on'),
             (12, 'Temporary Add-on'),
             (13, 'Sync'),
+            (14, 'URL'),
             (127, 'Other')
         )
 
@@ -98,6 +99,53 @@ class TestAbuse(TestCase):
             (11, 'system_addon'),
             (12, 'temporary_addon'),
             (13, 'sync'),
+            (14, 'url'),
+            (127, 'other')
+        )
+
+        assert AbuseReport.ADDON_INSTALL_SOURCES.choices == (
+            (None, 'None'),
+            (1, 'Add-ons Manager'),
+            (2, 'Add-ons Debugging'),
+            (3, 'Preferences'),
+            (4, 'AMO'),
+            (5, 'App Profile'),
+            (6, 'Disco Pane'),
+            (7, 'Included in build'),
+            (8, 'Extension'),
+            (9, 'Enterprise Policy'),
+            (10, 'File URL'),
+            (11, 'GMP Plugin'),
+            (12, 'Internal'),
+            (13, 'Plugin'),
+            (14, 'Return to AMO'),
+            (15, 'Sync'),
+            (16, 'System Add-on'),
+            (17, 'Temporary Add-on'),
+            (18, 'Unknown'),
+            (127, 'Other')
+        )
+
+        assert AbuseReport.ADDON_INSTALL_SOURCES.api_choices == (
+            (None, None),
+            (1, 'about_addons'),
+            (2, 'about_debugging'),
+            (3, 'about_preferences'),
+            (4, 'amo'),
+            (5, 'app_profile'),
+            (6, 'disco'),
+            (7, 'distribution'),
+            (8, 'extension'),
+            (9, 'enterprise_policy'),
+            (10, 'file_url'),
+            (11, 'gmp_plugin'),
+            (12, 'internal'),
+            (13, 'plugin'),
+            (14, 'rtamo'),
+            (15, 'sync'),
+            (16, 'system_addon'),
+            (17, 'temporary_addon'),
+            (18, 'unknown'),
             (127, 'other')
         )
 

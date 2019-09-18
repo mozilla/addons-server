@@ -8,10 +8,14 @@ import unicodedata
 import uuid
 import zipfile
 
+from urllib.parse import urljoin
+
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
 
@@ -67,7 +71,7 @@ class File(OnChangeMixin, ModelBase):
     # The `binary_components` field is used to store the flag from
     # amo-validator when it finds "binary-components" in the chrome manifest
     # file, used for default to compatible.
-    binary_components = models.BooleanField(default=False, db_index=True)
+    binary_components = models.BooleanField(default=False)
     # Serial number of the certificate use for the signature.
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
@@ -86,6 +90,15 @@ class File(OnChangeMixin, ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
+        indexes = [
+            models.Index(fields=('created', 'version'),
+                         name='created_idx'),
+            models.Index(fields=('binary_components',), name='files_cedd2560'),
+            models.Index(fields=('datestatuschanged', 'version'),
+                         name='statuschanged_idx'),
+            models.Index(fields=('platform',), name='platform_id'),
+            models.Index(fields=('status',), name='status'),
+        ]
 
     def __str__(self):
         return str(self.id)
@@ -508,11 +521,19 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey(
         'addons.Addon', null=True, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=40, null=True)
 
     objects = ManagerBase()
 
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
+        indexes = [
+            models.Index(fields=('compat_with_app',),
+                         name='file_uploads_afe99c5e'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('uuid',), name='uuid'),
+        ]
 
     def __str__(self):
         return str(self.uuid.hex)
@@ -521,6 +542,8 @@ class FileUpload(ModelBase):
         if self.validation:
             if self.load_validation()['errors'] == 0:
                 self.valid = True
+        if not self.access_token:
+            self.access_token = self.generate_access_token()
         super(FileUpload, self).save(*args, **kw)
 
     def add_file(self, chunks, filename, size):
@@ -565,6 +588,22 @@ class FileUpload(ModelBase):
         self.name = filename
         self.hash = 'sha256:%s' % hash_func.hexdigest()
         self.save()
+
+    def generate_access_token(self):
+        """
+        Returns an access token used to secure download URLs.
+        """
+        return get_random_string(40)
+
+    def get_authenticated_download_url(self):
+        """
+        Returns a download URL containing an access token bound to this file.
+        """
+        absolute_url = urljoin(
+            settings.EXTERNAL_SITE_URL,
+            reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex})
+        )
+        return '{}?access_token={}'.format(absolute_url, self.access_token)
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):

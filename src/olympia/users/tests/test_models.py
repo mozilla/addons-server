@@ -119,6 +119,7 @@ class TestUserProfile(TestCase):
         user.ban_and_disable_related_content()
         user.reload()
         assert user.deleted
+        self.assertCloseToNow(user.banned)
         assert user.email == 'jbalogh@mozilla.com'
         assert user.auth_id
         assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
@@ -173,11 +174,13 @@ class TestUserProfile(TestCase):
         assert not storage.exists(user_multi.picture_path_original)
 
         assert user_sole.deleted
+        self.assertCloseToNow(user_sole.banned)
         assert user_sole.email == 'sole@foo.baa'
         assert user_sole.auth_id
         assert user_sole.fxa_id == '13579'
         assert user_sole.last_login_ip == '127.0.0.1'
         assert user_multi.deleted
+        self.assertCloseToNow(user_multi.banned)
         assert user_multi.email == 'multi@foo.baa'
         assert user_multi.auth_id
         assert user_multi.fxa_id == '24680'
@@ -597,6 +600,41 @@ class TestUserProfile(TestCase):
 
         addon.delete()
         assert not user.reload().is_public
+
+    @mock.patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_user_field_changes_not_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        user = UserProfile.objects.get(id=4043307)
+        # Note that basket_token is for newsletters, and is irrelevant here.
+        user.update(
+            basket_token='FOO', fxa_id='BAR', is_public=True,
+            read_dev_agreement=self.days_ago(42), notes='Blah',
+            biography='Something', auth_id=12345)
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+    @mock.patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_user_field_changes_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        user = UserProfile.objects.get(id=4043307)
+        user.update(last_login=self.days_ago(0))
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'userprofile', 4043307)
+
+        sync_object_to_basket_mock.reset_mock()
+        user.update(display_name='Fôoo')
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'userprofile', 4043307)
+
+    @mock.patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_user_deletion_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        user = UserProfile.objects.get(id=4043307)
+        user.delete()
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'userprofile', 4043307)
 
 
 class TestDeniedName(TestCase):

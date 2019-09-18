@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-04-24 23:08+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -150,30 +150,6 @@ msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Δεν είναι συμβατό αυτό το θέμα με την έκδοση του {0} που έχετε"
-
-msgid "All Rights Reserved"
-msgstr "Με την επιφύλαξη παντός δικαιώματος"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Όνομα θέματος"
 
 msgid "Flagged for review"
 msgstr "Επισημάνθηκε για αξιολόγηση"

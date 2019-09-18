@@ -24,9 +24,11 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, get_random_slug
 from olympia.amo.tests import (
-    TestCase, WithDynamicEndpointsAndTransactions, check_links, reverse_ns)
+    APITestClient, TestCase, WithDynamicEndpointsAndTransactions, check_links,
+    reverse_ns)
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
+from olympia.zadmin.models import set_config
 
 
 @pytest.mark.django_db
@@ -443,3 +445,27 @@ class TestVersion(TestCase):
             sys.version_info.major, sys.version_info.minor)
         assert content['django'] == '%s.%s' % (
             django.VERSION[0], django.VERSION[1])
+
+
+class TestSiteStatusAPI(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse_ns('amo-site-status')
+
+    def test_response(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.data == {
+            'read_only': False,
+            'notice': None,
+        }
+
+        set_config('site_notice', 'THIS is NOT Á TEST!')
+        with override_settings(READ_ONLY=True):
+            response = self.client.get(self.url)
+        assert response.data == {
+            'read_only': True,
+            'notice': 'THIS is NOT Á TEST!',
+        }

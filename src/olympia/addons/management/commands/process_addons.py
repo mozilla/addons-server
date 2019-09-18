@@ -10,6 +10,7 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
     content_approve_migrated_themes,
+    delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
     migrate_webextensions_to_git_storage,
@@ -17,6 +18,7 @@ from olympia.addons.tasks import (
     repack_themes_for_69,
 )
 from olympia.abuse.models import AbuseReport
+from olympia.constants.base import _ADDON_PERSONA, _ADDON_WEBAPP
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -145,7 +147,19 @@ tasks = {
         'qs': [Q(migrated_from_lwt__isnull=False,
                  type=amo.ADDON_STATICTHEME, status=amo.STATUS_APPROVED,
                  addonapprovalscounter__last_content_review__isnull=True)]
-    }
+    },
+    'delete_obsolete_addons': {
+        'method': delete_addons,
+        'qs': [
+            Q(type__in=(amo.ADDON_THEME,
+                        amo.ADDON_LPADDON,
+                        amo.ADDON_PLUGIN,
+                        _ADDON_PERSONA,
+                        _ADDON_WEBAPP,
+                        ))
+        ],
+        'allowed_kwargs': ('with_deleted',),
+    },
 }
 
 
@@ -191,6 +205,22 @@ class Command(BaseCommand):
             type=int,
             help='Only apply task to the first X addon ids.')
 
+        parser.add_argument(
+            '--batch-size',
+            action='store',
+            dest='batch_size',
+            type=int,
+            default=100,
+            help='Split the add-ons into X size chunks. Default 100.')
+
+    def get_pks(self, manager, q_objects, distinct=False):
+        pks = (manager.filter(q_objects)
+                      .values_list('pk', flat=True)
+                      .order_by('id'))
+        if distinct:
+            pks = pks.distinct()
+        return pks
+
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -203,11 +233,8 @@ class Command(BaseCommand):
         if options.get('ids'):
             ids_list = options.get('ids').split(',')
             addon_manager = addon_manager.filter(id__in=ids_list)
-        pks = (addon_manager.filter(*task['qs'])
-                            .values_list('pk', flat=True)
-                            .order_by('id'))
-        if task.get('distinct'):
-            pks = pks.distinct()
+        pks = self.get_pks(
+            addon_manager, *task['qs'], distinct=task.get('distinct'))
         if options.get('limit'):
             pks = pks[:options.get('limit')]
         if 'pre' in task:
@@ -221,7 +248,7 @@ class Command(BaseCommand):
                     for arg in task['allowed_kwargs']})
             # All the remaining tasks go in one group.
             grouping = []
-            for chunk in chunked(pks, 100):
+            for chunk in chunked(pks, options.get('batch_size')):
                 grouping.append(
                     task['method'].subtask(args=[chunk], kwargs=kwargs))
 

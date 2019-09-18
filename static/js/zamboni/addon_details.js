@@ -3,13 +3,6 @@
 /* general initialization */
 $(document).ready(function() {
 
-    // Personas are not impalacized yet!
-    if ($("#persona[data-id]").length) {
-        $(".addon .icon").click(function() {
-            window.location.hash = "id=" + $("#persona").attr("data-id");
-        })
-    }
-
     if ($('#addon.primary').length == 0) return;
 
     var lb_baseurl = z.static_url+'img/jquery-lightbox/';

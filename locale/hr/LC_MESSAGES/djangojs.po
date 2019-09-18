@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-03-22 09:12+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -154,30 +154,6 @@ msgstr "Video mora biti u WebM formatu."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tema nije kompatibilna sa vašom verzijom {0}"
-
-msgid "All Rights Reserved"
-msgstr "Sva prava pridržana"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-Nekomercijalno 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-Nekomercijalno-Bez prerade 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-Nekomercijalno-dijeli po istim uvjetima 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-Bez prerade 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-dijeli po istim uvjetima 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Naziv vaše teme"
 
 msgid "Flagged for review"
 msgstr "Označeno za pregled"

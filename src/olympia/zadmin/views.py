@@ -19,7 +19,7 @@ from olympia.amo import messages, search
 from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.mail import DevEmailBackend
-from olympia.amo.utils import HttpResponseSendFile, render
+from olympia.amo.utils import HttpResponseXSendFile, render
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.stats.search import get_mappings as get_stats_mappings
@@ -241,8 +241,8 @@ def addon_manage(request, addon):
 def download_file_upload(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
 
-    return HttpResponseSendFile(request, upload.path,
-                                content_type='application/octet-stream')
+    return HttpResponseXSendFile(request, upload.path,
+                                 content_type='application/octet-stream')
 
 
 @admin.site.admin_view

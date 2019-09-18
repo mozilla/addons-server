@@ -24,6 +24,7 @@ from olympia.amo.models import ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import CannedResponse
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import user_link
@@ -50,7 +51,10 @@ class ActivityLogToken(ModelBase):
 
     class Meta:
         db_table = 'log_activity_tokens'
-        unique_together = ('version', 'user')
+        constraints = [
+            models.UniqueConstraint(fields=('version', 'user'),
+                                    name='version_id'),
+        ]
 
     def is_expired(self):
         return self.use_count >= MAX_TOKEN_USE_COUNT
@@ -171,7 +175,10 @@ class DraftComment(ModelBase):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     filename = models.CharField(max_length=255, null=True, blank=True)
     lineno = models.PositiveIntegerField(null=True)
-    comment = models.TextField()
+    canned_response = models.ForeignKey(
+        CannedResponse, null=True, default=None,
+        on_delete=models.SET_DEFAULT)
+    comment = models.TextField(blank=True)
 
     class Meta:
         db_table = 'log_activity_comment_draft'
@@ -300,7 +307,7 @@ class ActivityLog(ModelBase):
          for key, value in constants.activity.LOG_BY_ID.items()])
     user = models.ForeignKey(
         'users.UserProfile', null=True, on_delete=models.SET_NULL)
-    action = models.SmallIntegerField(choices=TYPES, db_index=True)
+    action = models.SmallIntegerField(choices=TYPES)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')
     objects = ActivityLogManager()
@@ -310,6 +317,10 @@ class ActivityLog(ModelBase):
     class Meta:
         db_table = 'log_activity'
         ordering = ('-created',)
+        indexes = [
+            models.Index(fields=('action',), name='log_activity_1bd4707b'),
+            models.Index(fields=('created',), name='created_idx'),
+        ]
 
     def f(self, *args, **kw):
         """Calls SafeFormatter.format and returns a Markup string."""

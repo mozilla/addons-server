@@ -59,9 +59,6 @@ ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968
 
-# Set to True if we're allowed to use X-SENDFILE.
-XSENDFILE = False
-
 ALLOW_SELF_REVIEWS = True
 
 AES_KEYS = {
@@ -135,6 +132,12 @@ CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
+
+# Sectools
+CUSTOMS_API_URL = 'http://customs:10101/'
+CUSTOMS_API_KEY = 'customssecret'
+WAT_API_URL = 'http://wat:10102/'
+WAT_API_KEY = 'watsecret'
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

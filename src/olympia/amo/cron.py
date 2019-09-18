@@ -1,9 +1,6 @@
 import itertools
 
 from datetime import datetime, timedelta
-from subprocess import PIPE, Popen
-
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import connection
 
@@ -13,7 +10,6 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import chunked
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
@@ -54,36 +50,9 @@ def gc(test_result=True):
     # Incomplete addons cannot be deleted here because when an addon is
     # rejected during a review it is marked as incomplete. See bug 670295.
 
-    log.debug('Cleaning up test results extraction cache.')
-    # lol at check for '/'
-    if settings.MEDIA_ROOT and settings.MEDIA_ROOT != '/':
-        cmd = ('find', settings.MEDIA_ROOT, '-maxdepth', '1', '-name',
-               'validate-*', '-mtime', '+7', '-type', 'd',
-               '-exec', 'rm', '-rf', "{}", ';')
-
-        output = Popen(cmd, stdout=PIPE).communicate()[0]
-
-        for line in output.split(b'\n'):
-            log.debug(line)
-
-    else:
-        log.warning('MEDIA_ROOT not defined.')
-
-    USERPICS_PATH = user_media_path('userpics')
-    if USERPICS_PATH:
-        log.debug('Cleaning up uncompressed userpics.')
-
-        cmd = ('find', USERPICS_PATH,
-               '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
-               '-exec', 'rm', '{}', ';')
-        output = Popen(cmd, stdout=PIPE).communicate()[0]
-
-        for line in output.split(b'\n'):
-            log.debug(line)
-
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(
-        created__lte=days_ago(180)).order_by('id')
+        created__lte=days_ago(7)).order_by('id')
     for file_upload in stale_uploads:
         log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
                   .format(uuid=file_upload.uuid, path=file_upload.path))

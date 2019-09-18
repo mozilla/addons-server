@@ -55,3 +55,14 @@ models.signals.pre_save.connect(
     save_signal,
     sender=TranslatedModelWithDefaultNull,
     dispatch_uid='testapp_translatedmodelwithdefaultnull')
+
+
+class ContainsManyToManyToTranslatedModel(ModelBase):
+    things = models.ManyToManyField(
+        TranslatedModel, through='ContainsTranslatedThrough')
+
+
+class ContainsTranslatedThrough(ModelBase):
+    container = models.ForeignKey(
+        ContainsManyToManyToTranslatedModel, on_delete=models.CASCADE)
+    target = models.ForeignKey(TranslatedModel, on_delete=models.CASCADE)

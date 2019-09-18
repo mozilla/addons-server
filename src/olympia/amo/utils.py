@@ -208,7 +208,7 @@ def decode_json(json_string):
 def send_mail(subject, message, from_email=None, recipient_list=None,
               use_deny_list=True, perm_setting=None, manage_url=None,
               headers=None, cc=None, real_email=False, html_message=None,
-              attachments=None, max_retries=3, reply_to=None):
+              attachments=None, max_retries=3, reply_to=None, countdown=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -273,6 +273,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             'max_retries': max_retries,
             'real_email': real_email,
             'reply_to': reply_to,
+            'countdown': countdown,
         }
         kwargs.update(options)
         # Email subject *must not* contain newlines
@@ -740,40 +741,20 @@ def get_locale_from_lang(lang):
     return Locale.parse(translation.to_locale(lang))
 
 
-class HttpResponseSendFile(HttpResponse):
+class HttpResponseXSendFile(HttpResponse):
 
     def __init__(self, request, path, content=None, status=None,
                  content_type='application/octet-stream', etag=None):
-        self.request = request
-        self.path = path
-        super(HttpResponseSendFile, self).__init__('', status=status,
-                                                   content_type=content_type)
-        header_path = self.path
-        if isinstance(header_path, str):
-            header_path = header_path.encode('utf8')
-        if settings.XSENDFILE:
-            self[settings.XSENDFILE_HEADER] = header_path
+        super(HttpResponseXSendFile, self).__init__('', status=status,
+                                                    content_type=content_type)
+        # We normalize the path because if it contains dots, nginx will flag
+        # the URI as unsafe.
+        self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
         if etag:
             self['ETag'] = quote_etag(etag)
 
     def __iter__(self):
-        if settings.XSENDFILE:
-            return iter([])
-
-        chunk = 4096
-        fp = open(self.path, 'rb')
-        if 'wsgi.file_wrapper' in self.request.META:
-            return self.request.META['wsgi.file_wrapper'](fp, chunk)
-        else:
-            self['Content-Length'] = os.path.getsize(self.path)
-
-            def wrapper():
-                while True:
-                    data = fp.read(chunk)
-                    if not data:
-                        break
-                    yield data
-            return wrapper()
+        return iter([])
 
 
 def cache_ns_key(namespace, increment=False):

@@ -82,8 +82,7 @@ class Collection(ModelBase):
 
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id',
-                                              blank=True, null=True,
-                                              db_index=True)
+                                              blank=True, null=True)
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
@@ -97,7 +96,17 @@ class Collection(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'collections'
-        unique_together = (('author', 'slug'),)
+        indexes = [
+            models.Index(fields=('application',), name='application_id'),
+            models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('listed',), name='listed'),
+            models.Index(fields=('slug',), name='slug_idx'),
+            models.Index(fields=('type',), name='type_idx'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('author', 'slug'),
+                                    name='author_id'),
+        ]
 
     def __str__(self):
         return u'%s (%s)' % (self.name, self.addon_count)
@@ -234,7 +243,17 @@ class CollectionAddon(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'addons_collections'
-        unique_together = (('addon', 'collection'),)
+        indexes = [
+            models.Index(fields=('collection', 'created'),
+                         name='created_idx'),
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('collection',), name='collection_id'),
+            models.Index(fields=('user',), name='user_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('addon', 'collection'),
+                                    name='addon_id_2'),
+        ]
 
     @staticmethod
     def post_save(sender, instance, **kwargs):
@@ -286,6 +305,9 @@ class FeaturedCollection(ModelBase):
 
     class Meta:
         db_table = 'featured_collections'
+        indexes = [
+            models.Index(fields=('application',), name='application_id_idx'),
+        ]
 
     def __str__(self):
         return u'%s (%s: %s)' % (self.collection, self.application,

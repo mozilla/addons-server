@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-05-19 03:45+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,30 +139,6 @@ msgstr "วิดีโอต้องเป็นแบบ WebM"
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
-
-msgid "All Rights Reserved"
-msgstr "สงวนลิขสิทธิ์"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons แบบแสดงที่มา 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons แบบแสดงที่มา ไม่ใช้เพื่อการค้า 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons แบบแสดงที่มา ไม่ใช้เพื่อการค้า ไม่ดัดแปลง 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons แบบแสดงที่มา ไม่ใช้เพื่อการค้า อนุญาตแบบเดียวกัน 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons แบบแสดงที่มา ไม่ดัดแปลง 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons แบบแสดงที่มา อนุญาตแบบเดียวกัน 3.0"
-
-msgid "Your Theme's Name"
-msgstr "ชื่อชุดตกแต่งของคุณ"
 
 msgid "Flagged for review"
 msgstr "ปักธงสำหรับการวิจารณ์"

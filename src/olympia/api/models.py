@@ -2,13 +2,19 @@ import binascii
 import os
 import random
 
+from django.conf import settings
 from django.db import models
+from django.utils.crypto import constant_time_compare, get_random_string
 from django.utils.encoding import force_text
+from django.utils.translation import ugettext
 
 from aesfield.field import AESField
 
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
+from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import send_mail_jinja
 from olympia.users.models import UserProfile
 
 
@@ -43,7 +49,13 @@ class APIKey(ModelBase):
 
     class Meta:
         db_table = 'api_key'
-        unique_together = (('user', 'is_active'),)
+        indexes = [
+            models.Index(fields=('user',), name='api_key_user_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('user', 'is_active'),
+                                    name='user_id'),
+        ]
 
     def __str__(self):
         return (
@@ -101,3 +113,38 @@ class APIKey(ModelBase):
                 '{} is too short; secrets must be longer than 32 bytes'
                 .format(byte_length))
         return force_text(binascii.b2a_hex(os.urandom(byte_length)))
+
+
+class APIKeyConfirmation(ModelBase):
+    user = models.OneToOneField(
+        UserProfile, primary_key=True, on_delete=models.CASCADE)
+    token = models.CharField(max_length=20)
+    confirmed_once = models.BooleanField(default=False)
+
+    @staticmethod
+    def generate_token():
+        """
+        Generate token for API Key Confirmation mechanism.
+
+        Returns a random 20 characters string (using a-z, A-Z, 0-9 characters).
+        """
+        return get_random_string(20)
+
+    def send_confirmation_email(self):
+        context = {
+            'api_key_confirmation_link': (
+                absolutify(reverse('devhub.api_key')) + f'?token={self.token}'
+            ),
+            'domain': settings.DOMAIN,
+        }
+        return send_mail_jinja(
+            ugettext('Confirmation for developer API keys'),
+            'devhub/email/api_key_confirmation.ltxt',
+            context, recipient_list=[self.user.email],
+            countdown=settings.API_KEY_CONFIRMATION_DELAY)
+
+    def is_token_valid(self, token):
+        """
+        Compare token passed in argument with the one on the instance.
+        """
+        return constant_time_compare(self.token, token)

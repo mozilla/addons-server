@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-22 09:08+0000\n"
+"POT-Creation-Date: 2019-09-09 10:10+0000\n"
 "PO-Revision-Date: 2019-01-04 17:45+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,30 +146,6 @@ msgstr "Videolar WebM olmalıdır."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Bu tema sizin {0} sürümünüzle uyumlu değil"
-
-msgid "All Rights Reserved"
-msgstr "Tüm hakları saklıdır"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Temanızın Adı"
 
 msgid "Flagged for review"
 msgstr "İnceleme için işaretlendi"

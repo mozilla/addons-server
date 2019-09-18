@@ -5,7 +5,6 @@ from django.conf import settings
 from django.utils.encoding import smart_text
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.test.utils import override_settings
 from django.utils.http import urlquote
 
 from unittest import mock
@@ -355,7 +354,6 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_locally(self.client.get(url), file_=f)
 
 
-@override_settings(XSENDFILE=True)
 class TestDownloadSource(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 

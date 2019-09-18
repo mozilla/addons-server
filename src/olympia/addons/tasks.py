@@ -15,8 +15,7 @@ import olympia.core
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AppSupport,
-    CompatOverride, IncompatibleVersions, MigratedLWT, Preview,
+    Addon, AddonApprovalsCounter, AppSupport, MigratedLWT, Preview,
     attach_tags, attach_translations)
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks, task
 from olympia.amo.decorators import use_primary_db
@@ -28,7 +27,7 @@ from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
-    generate_static_theme_preview, Version, VersionPreview)
+    generate_static_theme_preview, VersionPreview)
 from olympia.versions.utils import (
     new_69_theme_properties_from_old, new_theme_version_with_69_properties)
 
@@ -154,86 +153,6 @@ def unindex_addons(ids, **kw):
     for addon in ids:
         log.info('Removing addon [%s] from search index.' % addon)
         Addon.unindex(addon)
-
-
-@task
-def update_incompatible_appversions(data, **kw):
-    """Updates the incompatible_versions table for this version."""
-    log.info('Updating incompatible_versions for %s versions.' % len(data))
-
-    addon_ids = set()
-
-    for version_id in data:
-        # This is here to handle both post_save and post_delete hooks.
-        IncompatibleVersions.objects.filter(version=version_id).delete()
-
-        try:
-            version = Version.objects.get(pk=version_id)
-        except Version.DoesNotExist:
-            log.info('Version ID [%d] not found. Incompatible versions were '
-                     'cleared.' % version_id)
-            return
-
-        addon_ids.add(version.addon_id)
-
-        try:
-            compat = CompatOverride.objects.get(addon=version.addon)
-        except CompatOverride.DoesNotExist:
-            log.info('Compat override for addon with version ID [%d] not '
-                     'found. Incompatible versions were cleared.' % version_id)
-            return
-
-        app_ranges = []
-        ranges = compat.collapsed_ranges()
-
-        for range in ranges:
-            if range.min == '0' and range.max == '*':
-                # Wildcard range, add all app ranges
-                app_ranges.extend(range.apps)
-            else:
-                # Since we can't rely on add-on version numbers, get the min
-                # and max ID values and find versions whose ID is within those
-                # ranges, being careful with wildcards.
-                min_id = max_id = None
-
-                if range.min == '0':
-                    versions = (Version.objects.filter(addon=version.addon_id)
-                                .order_by('id')
-                                .values_list('id', flat=True)[:1])
-                    if versions:
-                        min_id = versions[0]
-                else:
-                    try:
-                        min_id = Version.objects.get(addon=version.addon_id,
-                                                     version=range.min).id
-                    except Version.DoesNotExist:
-                        pass
-
-                if range.max == '*':
-                    versions = (Version.objects.filter(addon=version.addon_id)
-                                .order_by('-id')
-                                .values_list('id', flat=True)[:1])
-                    if versions:
-                        max_id = versions[0]
-                else:
-                    try:
-                        max_id = Version.objects.get(addon=version.addon_id,
-                                                     version=range.max).id
-                    except Version.DoesNotExist:
-                        pass
-
-                if min_id and max_id:
-                    if min_id <= version.id <= max_id:
-                        app_ranges.extend(range.apps)
-
-        for app_range in app_ranges:
-            IncompatibleVersions.objects.create(version=version,
-                                                app=app_range.app.id,
-                                                min_app_version=app_range.min,
-                                                max_app_version=app_range.max)
-            log.info('Added incompatible version for version ID [%d]: '
-                     'app:%d, %s -> %s' % (version_id, app_range.app.id,
-                                           app_range.min, app_range.max))
 
 
 def make_checksum(header_path):
@@ -411,12 +330,29 @@ def recreate_theme_previews(addon_ids, **kw):
 
 @task
 @use_primary_db
-def delete_addons(addon_ids, **kw):
-    log.info('[%s@%s] Deleting addons starting at id: %s...'
-             % (len(addon_ids), delete_addons.rate_limit, addon_ids[0]))
-    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
-    for addon in addons:
-        addon.delete(send_delete_email=False)
+def delete_addons(addon_ids, with_deleted=False, **kw):
+    """Delete the given addon ids.
+
+    If `with_deleted=True` the delete is a hard delete - i.e. the addon record
+    and all linked records in other models are deleted from the database. We
+    use the queryset delete method to bypass Addon.delete().
+
+    If `with_deleted=False` Addon.delete() is called for each addon id, which
+    typically* soft deletes - i.e. some metadata and files are removed but the
+    records in the database persist, and the Addon.status is set to
+    STATUS_DELETED.  *Addon.delete() only does a hard-delete where the Addon
+    has no versions or files - and has never had any versions or files.
+    """
+    log.info('[%s@%s] %sDeleting addons starting at id: %s...'
+             % ('Hard ' if with_deleted else '', len(addon_ids),
+                delete_addons.rate_limit, addon_ids[0]))
+    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
+    if with_deleted:
+        # Call QuerySet.delete rather than Addon.delete.
+        addons.delete()
+    else:
+        for addon in addons:
+            addon.delete(send_delete_email=False)
 
 
 @task

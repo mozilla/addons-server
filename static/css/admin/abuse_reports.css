@@ -31,3 +31,16 @@ form ul.user_ratings {
     margin-left: 0;
     padding-left: 0;
 }
+.screenshot.thumbnail {
+    border: 3px solid #C9E8F3;
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    height: 150px;
+    width: 200px;
+}
+.screenshot.thumbnail img {
+    display: block;
+    max-height: 150px;
+    max-width: 200px;
+}

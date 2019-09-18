@@ -2,14 +2,14 @@ from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget
 from django.utils import translation
-from django.utils.html import format_html
+from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.db.models import Prefetch
 
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import PrimaryHeroInline, SecondaryHeroAdmin
-from olympia.hero.models import SecondaryHero
+from olympia.hero.models import PrimaryHero, SecondaryHero
 
 
 # Popular locales, we typically don't want to show a string if it's not
@@ -76,9 +76,10 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             'all': ('css/admin/discovery.css',)
         }
     inlines = [PrimaryHeroInline]
-    list_display = ('__str__', 'custom_addon_name', 'custom_heading',
-                    'position', 'position_china', 'recommended_status',
-                    'primary_hero_shelf')
+    list_display = ('__str__', 'recommended_status', 'primary_hero_shelf',
+                    'custom_addon_name', 'custom_heading', 'position',
+                    'position_china',
+                    )
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
     readonly_fields = ('recommended_status', 'previews',)
@@ -127,8 +128,15 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         translations = []
         for locale in ('en-US', ) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
             with translation.override(locale):
-                translations.append(self.build_preview(obj, locale))
-        return format_html(u''.join(translations))
+                translations.append(
+                    conditional_escape(self.build_preview(obj, locale)))
+        return mark_safe(''.join(translations))
+
+    def has_delete_permission(self, request, obj=None):
+        qs = PrimaryHero.objects.filter(enabled=True)
+        if obj and list(qs) == [getattr(obj, 'primaryhero', None)]:
+            return False
+        return super().has_delete_permission(request=request, obj=obj)
 
 
 class SecondaryHeroShelf(SecondaryHero):
@@ -137,6 +145,7 @@ class SecondaryHeroShelf(SecondaryHero):
 
     class Meta(SecondaryHero.Meta):
         proxy = True
+        verbose_name_plural = 'secondary hero shelves'
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
