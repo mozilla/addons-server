@@ -3016,6 +3016,33 @@ class TestReview(ReviewBase):
             assert ((reviewer_name == self.reviewer.name) or
                     (reviewer_name == self.other_reviewer.name))
 
+    def test_item_history_pagination(self):
+        addon = self.addons['Public']
+        addon.current_version.update(created=self.days_ago(366))
+        for i in range(0, 10):
+            # Add versions 1.0 to 1.9
+            version_factory(
+                addon=addon, version=f'1.{i}', created=self.days_ago(365 - i))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        table = doc('#review-files')
+        ths = table.children('tr > th')
+        assert ths.length == 10
+        # Original version should not be there any more, it's on the second
+        # page. Versions on the page should be displayed in chronological order
+        assert '1.0' in ths.eq(0).text()
+        assert '1.1' in ths.eq(1).text()
+        assert '1.9' in ths.eq(9).text()
+
+        response = self.client.get(self.url, {'page': 2})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        table = doc('#review-files')
+        ths = table.children('tr > th')
+        assert ths.length == 1
+        assert '0.1' in ths.eq(0).text()
+
     def test_item_history_with_unlisted_versions_too(self):
         # Throw in an unlisted version to be ignored.
         version_factory(

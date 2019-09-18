@@ -833,6 +833,9 @@ def review(request, addon, channel=None):
     # the comments form).
     actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
+    # Queryset to be paginated for versions. We use the default ordering to get
+    # most recently created first (Note that the template displays each page
+    # in reverse order, older first).
     versions_qs = (
         # We want to load all Versions, even deleted ones, while using the
         # addon.versions related manager to get `addon` property pre-cached on
@@ -840,7 +843,6 @@ def review(request, addon, channel=None):
         addon.versions(manager='unfiltered_for_relations')
              .filter(channel=channel)
              .select_related('autoapprovalsummary')
-             .order_by('created')
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
              .transform(Version.transformer_activity)
