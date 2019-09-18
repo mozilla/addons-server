@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-18 20:31+0000\n"
+"PO-Revision-Date: 2019-09-18 20:41+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -427,9 +427,8 @@ msgstr "You must provide an object of {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Invalid pk or slug \"%s\" - object does not exist."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "More information on Developer Accounts"
+msgstr "Confirmation for developer API keys"
 
 msgid "Application Versions"
 msgstr "Application Versions"
@@ -2754,9 +2753,8 @@ msgstr "Revoke"
 msgid "Revoke and regenerate credentials"
 msgstr "Revoke and regenerate credentials"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Generate new credentials"
+msgstr "Confirm and generate new credentials"
 
 msgid "Generate new credentials"
 msgstr "Generate new credentials"
@@ -5865,9 +5863,8 @@ msgstr "No reviews found for this period."
 msgid "Method:"
 msgstr "Method:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "by Source"
+msgstr "Source:"
 
 msgid "Dismiss this announcement"
 msgstr "Dismiss this announcement"
