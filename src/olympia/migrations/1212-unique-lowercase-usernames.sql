@@ -1,5 +1,5 @@
 /* Create a table with all usernames that have duplicates in lowercase. */
-CREATE TABLE `duplicate_usernames`
+CREATE TEMPORARY TABLE `duplicate_usernames`
     SELECT LOWER(`username`) AS `username` FROM `users`
         GROUP BY LOWER(`username`) HAVING COUNT(*) > 1;
 /* Update the username for all users in that table that have a username and lowercase username not being equal. */
