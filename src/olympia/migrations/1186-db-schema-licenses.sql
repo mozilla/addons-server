@@ -11,7 +11,7 @@ ALTER TABLE `licenses`
     DROP KEY `text`,
     DROP KEY `name`,
     ADD UNIQUE KEY `name` (`name`),
-    ADD UNIQUE KEY `text` (`text`),
+    /* ADD UNIQUE KEY `text` (`text`), - failing on prod db */
     DROP FOREIGN KEY `licenses_ibfk_1`,  /* (`text`) REFERENCES `translations` (`id`),*/
     DROP FOREIGN KEY `licenses_ibfk_2`,  /* (`name`) REFERENCES `translations` (`id`)*/
     ADD CONSTRAINT `licenses_name_0308e4d2_fk_translations_id` FOREIGN KEY (`name`) REFERENCES `translations` (`id`),
