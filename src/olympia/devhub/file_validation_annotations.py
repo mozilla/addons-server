@@ -1,5 +1,3 @@
-import waffle
-
 from defusedxml import minidom
 from defusedxml.common import DefusedXmlException
 from xml.parsers.expat import ExpatError
@@ -7,7 +5,6 @@ from xml.parsers.expat import ExpatError
 from django.utils.translation import ugettext
 
 from olympia import amo
-from olympia.lib.akismet.models import AkismetReport
 from olympia.files.utils import RDFExtractor, SafeZip, get_file
 
 
@@ -102,19 +99,6 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
 
         insert_validation_message(
             results, type_='warning', message=msg, msg_id='webext_upgrade')
-
-
-def annotate_akismet_spam_check(results, akismet_results):
-    msg = ugettext(u'[{field}] The text in the "{field}" field has been '
-                   u'flagged as spam.')
-    error_if_spam = waffle.switch_is_active('akismet-addon-action')
-    for (comment_type, report_result) in akismet_results:
-        if error_if_spam and report_result in (
-                AkismetReport.MAYBE_SPAM, AkismetReport.DEFINITE_SPAM):
-            field = comment_type.split('-')[1]  # drop the "product-"
-            insert_validation_message(
-                results, message=msg.format(field=field),
-                msg_id='akismet_is_spam_%s' % field)
 
 
 def annotate_search_plugin_validation(results, file_path, channel):

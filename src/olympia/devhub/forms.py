@@ -40,9 +40,7 @@ from olympia.amo.utils import (
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
-from olympia.devhub.utils import (
-    fetch_existing_translations_from_addon, get_addon_akismet_reports,
-    UploadRestrictionChecker)
+from olympia.devhub.utils import UploadRestrictionChecker
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
@@ -125,43 +123,6 @@ def clean_tags(request, tags):
         raise forms.ValidationError(msg)
 
     return target
-
-
-class AkismetSpamCheckFormMixin(object):
-    fields_to_akismet_comment_check = []
-
-    def clean(self):
-        data = {
-            prop: value for prop, value in self.cleaned_data.items()
-            if prop in self.fields_to_akismet_comment_check}
-        request_meta = getattr(self.request, 'META', {})
-
-        # Find out if there is existing metadata that's been spam checked.
-        addon_listed_versions = self.instance.versions.filter(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        if self.version:
-            # If this is in the submission flow, exclude version in progress.
-            addon_listed_versions = addon_listed_versions.exclude(
-                id=self.version.id)
-        existing_data = (
-            fetch_existing_translations_from_addon(
-                self.instance, self.fields_to_akismet_comment_check)
-            if addon_listed_versions.exists() else ())
-
-        reports = get_addon_akismet_reports(
-            user=getattr(self.request, 'user', None),
-            user_agent=request_meta.get('HTTP_USER_AGENT'),
-            referrer=request_meta.get('HTTP_REFERER'),
-            addon=self.instance,
-            data=data,
-            existing_data=existing_data)
-        error_msg = ugettext('The text entered has been flagged as spam.')
-        error_if_spam = waffle.switch_is_active('akismet-addon-action')
-        for prop, report in reports:
-            is_spam = report.is_spam
-            if error_if_spam and is_spam:
-                self.add_error(prop, forms.ValidationError(error_msg))
-        return super(AkismetSpamCheckFormMixin, self).clean()
 
 
 class AddonFormBase(TranslationFormMixin, forms.ModelForm):
@@ -1077,7 +1038,7 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
         return super(SourceForm, self).clean_source()
 
 
-class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
+class DescribeForm(AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
@@ -1088,8 +1049,6 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
-
-    fields_to_akismet_comment_check = ['name', 'summary', 'description']
 
     class Meta:
         model = Addon
@@ -1170,15 +1129,13 @@ class DescribeFormContentOptimization(CombinedNameSummaryCleanMixin,
     summary = TransField(min_length=2)
 
 
-class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
+class DescribeFormUnlisted(AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
     description = TransField(widget=TransTextarea(attrs={'rows': 4}),
                              required=False)
-
-    fields_to_akismet_comment_check = ['name', 'summary', 'description']
 
     class Meta:
         model = Addon

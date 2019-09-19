@@ -474,7 +474,6 @@ INSTALLED_APPS = (
     'olympia.files',
     'olympia.hero',
     'olympia.lib.es',
-    'olympia.lib.akismet',
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
@@ -1102,7 +1101,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
-    'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.yara.tasks.run_yara': {'queue': 'devhub'},
 
@@ -1171,8 +1169,6 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
-    'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
-
 
     # Stats
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
@@ -1842,11 +1838,6 @@ BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
-
-AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
-AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
-AKISMET_API_TIMEOUT = 5
-AKISMET_REAL_SUBMIT = False
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
 
