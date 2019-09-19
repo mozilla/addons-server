@@ -16,6 +16,7 @@ from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
+from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import (
     EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
@@ -44,8 +45,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
 
         self.validate_file = self.patch(
             'olympia.devhub.tasks.validate_file').si
-        self.validate_upload = self.patch(
-            'olympia.devhub.tasks.validate_upload').si
+        self.mock_chain = self.patch('olympia.devhub.utils.chain')
 
     def patch(self, thing):
         """Patch the given "thing", and revert the patch on test teardown."""
@@ -65,33 +65,50 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         channel = (amo.RELEASE_CHANNEL_LISTED if listed
                    else amo.RELEASE_CHANNEL_UNLISTED)
 
-        # Make sure we run the correct validation task for the upload and we
-        # set up an error handler.
-        self.validate_upload.assert_called_once_with(
-            file_upload.pk, channel=channel)
-        assert self.validate_upload.return_value.on_error.called
+        # `Validator.validate_upload()` returns a chain of tasks.
+        self.mock_chain.assert_any_call(
+            repack_fileupload.si(file_upload.pk),
+            tasks.validate_upload.si(file_upload.pk, channel=channel),
+        )
+        # Make sure we set up an error handler on this chain.
+        assert self.mock_chain.return_value.on_error.called
 
-        # Make sure we run the correct save validation task.
+        # Make sure we run the correct "save" task.
         self.save_upload.assert_called_once_with(
             file_upload.pk, channel, False)
+        # Make sure we chain the "validation" and "save" tasks.
+        self.mock_chain.assert_any_call(
+            self.mock_chain.return_value.on_error(),
+            self.save_upload(file_upload.pk, channel, False)
+        )
 
     def check_file(self, file_):
         """Check that the given file is validated properly."""
+        # Mock tasks that we should not execute.
+        repack_fileupload = self.patch('olympia.files.tasks.repack_fileupload')
+        validate_upload = self.patch('olympia.devhub.tasks.validate_upload')
+
         # Run validator.
         utils.Validator(file_)
 
-        # We shouldn't be attempting to call validate_upload task when
+        # We shouldn't be attempting to call the `validate_upload` tasks when
         # dealing with a file.
-        assert not self.validate_upload.called
+        assert not repack_fileupload.called
+        assert not validate_upload.called
 
-        # Make sure we run the correct validation task and we set up an error
-        # handler.
+        # Make sure we run the correct "validation" task.
         self.validate_file.assert_called_once_with(file_.pk)
+        # Make sure we set up an error handler on this task.
         assert self.validate_file.return_value.on_error.called
 
-        # Make sure we run the correct save validation task.
+        # Make sure we run the correct "save" task.
         self.save_file.assert_called_once_with(
             file_.pk, file_.version.channel, False)
+        # Make sure we chain the "validation" and "save" tasks.
+        self.mock_chain.assert_called_once_with(
+            self.validate_file.return_value.on_error(),
+            self.save_file(file_.pk, file_.version.channel, False)
+        )
 
     @mock.patch.object(utils.Validator, 'get_task')
     def test_run_once_per_file(self, get_task_mock):

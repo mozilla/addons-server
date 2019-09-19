@@ -320,6 +320,14 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.addon.update(status=amo.STATUS_DISABLED)
         assert f.current_file_path.endswith(guarded_fp)
 
+    def test_has_been_validated_returns_false_when_no_validation(self):
+        file = File()
+        assert not file.has_been_validated
+
+    def test_has_been_validated_returns_true_when_validation_exists(self):
+        file = File(validation=FileValidation())
+        assert file.has_been_validated
+
 
 class TestTrackFileStatusChange(TestCase):
 

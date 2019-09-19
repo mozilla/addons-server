@@ -1,6 +1,6 @@
-import copy
 import uuid
 
+from celery import chain
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
@@ -13,6 +13,7 @@ import olympia.core.logger
 from olympia import amo, core
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
+from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.tags.models import Tag
 from olympia.users.models import (
@@ -233,7 +234,6 @@ class Validator(object):
             assert listed is not None
             channel = (amo.RELEASE_CHANNEL_LISTED if listed else
                        amo.RELEASE_CHANNEL_UNLISTED)
-            save = tasks.handle_upload_validation_result
             is_mozilla_signed = False
 
             # We're dealing with a bare file upload. Try to extract the
@@ -249,7 +249,17 @@ class Validator(object):
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
-            validate_task = self.validate_upload(file_, channel)
+
+            assert not file_.validation
+
+            self.task = chain(
+                tasks.create_initial_validation_results.s(),
+                repack_fileupload.s(file_.pk),
+                tasks.validate_upload.s(file_.pk, channel),
+                tasks.handle_upload_validation_result.s(file_.pk,
+                                                        channel,
+                                                        is_mozilla_signed),
+            )
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
@@ -258,30 +268,22 @@ class Validator(object):
 
             channel = file_.version.channel
             is_mozilla_signed = file_.is_mozilla_signed_extension
-            save = tasks.handle_file_validation_result
-            validate_task = self.validate_file(file_)
 
             self.file = file_
             self.addon = self.file.version.addon
             addon_data = {'guid': self.addon.guid,
                           'version': self.file.version.version}
+
+            self.task = chain(
+                tasks.create_initial_validation_results.s(),
+                tasks.validate_file.s(file_.pk),
+                tasks.handle_file_validation_result.s(file_)
+            )
         else:
             raise ValueError
 
-        # Fallback error handler to save a set of exception results, in case
-        # anything unexpected happens during processing.
-        self.on_error = self.error_handler(
-            save, file_, channel, is_mozilla_signed)
-
-        # When the validation jobs complete, pass the results to the
-        # appropriate save task for the object type.
-        self.task = (
-            validate_task.on_error(self.on_error) |
-            save.s(file_.pk, channel, is_mozilla_signed)
-        )
-
-        # Create a cache key for the task, so multiple requests to
-        # validate the same object do not result in duplicate tasks.
+        # Create a cache key for the task, so multiple requests to validate the
+        # same object do not result in duplicate tasks.
         opts = file_._meta
         self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
             opts.app_label, opts.object_name, file_.pk, listed)
@@ -289,24 +291,6 @@ class Validator(object):
     def get_task(self):
         """Return task chain to execute to trigger validation."""
         return self.task
-
-    @staticmethod
-    def error_handler(save_task, file_, channel, is_mozilla_signed):
-        """Return the task error handler."""
-        results = copy.deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-        return save_task.si(results, file_.pk, channel, is_mozilla_signed)
-
-    @staticmethod
-    def validate_file(file):
-        """Return a subtask to validate a File instance."""
-        return tasks.validate_file.si(file.pk)
-
-    @staticmethod
-    def validate_upload(upload, channel):
-        """Return a subtask to validate a FileUpload instance."""
-        assert not upload.validation
-
-        return tasks.validate_upload.si(upload.pk, channel=channel)
 
 
 def add_dynamic_theme_tag(version):
