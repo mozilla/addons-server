@@ -1,4 +1,0 @@
-ALTER TABLE applications_versions
-    ADD UNIQUE (application_id, version_id),
-    DROP PRIMARY KEY,
-    ADD COLUMN id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY FIRST;
