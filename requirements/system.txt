@@ -74,9 +74,9 @@ ndg-httpsclient==0.5.1 \
     --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4 \
     --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210
 # packaging is required by setuptools
-packaging==19.1 \
-    --hash=sha256:a7ac867b97fdc07ee80a8058fe4435ccd274ecc3b0ed61d852d7d53055528cf9 \
-    --hash=sha256:c491ca87294da7cc01902edbe30a5bc6c4c28172b5138ab4e4aa1b9d7bfaeafe
+packaging==19.2 \
+    --hash=sha256:28b924174df7a2fa32c1953825ff29c61e2f5e082343165438812f00d3a7fc47 \
+    --hash=sha256:d9551545c6d761f3def1677baf08ab2a3ca17c56879e70fecba2fc4dde4ed108
 pip==19.2.3 \
     --hash=sha256:340a0ba40fdeb16413914c0fcd8e0b4ebb0bf39a900ec80e11c05d836c05103f \
     --hash=sha256:e7a31f147974362e6c82d84b91c7f2bdf57e4d3163d3d454e6c3e71944d67135
