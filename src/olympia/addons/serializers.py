@@ -590,8 +590,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # Attach related models (also faking them). `current_version` is a
         # property we can't write to, so we use the underlying field which
         # begins with an underscore.
+        data_version = data.get('current_version') or {}
         obj._current_version = self.fake_version_object(
-            obj, data.get('current_version'), amo.RELEASE_CHANNEL_LISTED)
+            obj, data_version, amo.RELEASE_CHANNEL_LISTED)
+        obj._current_version_id = data_version.get('id')
 
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
@@ -640,10 +642,10 @@ class ESAddonAutoCompleteSerializer(ESAddonSerializer):
 
     def get_url(self, obj):
         # Addon.get_absolute_url() calls get_url_path(), which wants
-        # current_version to exist, but that's just a safeguard. We don't care
-        # and don't want to fetch the current version field to improve perf, so
-        # give it a fake one.
-        obj._current_version = Version()
+        # _current_version_id to exist, but that's just a safeguard. We don't
+        # care and don't want to fetch the current version field to improve
+        # perf, so give it a fake one.
+        obj._current_version_id = 1
         return obj.get_absolute_url()
 
 

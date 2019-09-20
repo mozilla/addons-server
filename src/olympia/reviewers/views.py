@@ -35,7 +35,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import (
-    ActivityLog, AddonLog, CommentLog, DraftComment)
+    ActivityLog, CommentLog, DraftComment)
 from olympia.addons.decorators import (
     addon_view, addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import (
@@ -884,9 +884,8 @@ def review(request, addon, channel=None):
         amo.LOG.ADD_USER_WITH_ROLE.id,
         amo.LOG.CHANGE_USER_WITH_ROLE.id,
         amo.LOG.REMOVE_USER_WITH_ROLE.id]
-    user_changes_log = AddonLog.objects.filter(
-        activity_log__action__in=user_changes_actions,
-        addon=addon).order_by('id')
+    user_changes_log = ActivityLog.objects.filter(
+        action__in=user_changes_actions, addonlog__addon=addon).order_by('id')
     ctx = context(
         actions=actions, actions_comments=actions_comments,
         actions_full=actions_full, addon=addon,
@@ -899,7 +898,7 @@ def review(request, addon, channel=None):
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
-        user_changes=user_changes_log, user_ratings=user_ratings,
+        user_changes_log=user_changes_log, user_ratings=user_ratings,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)
