@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-17 18:08+0000\n"
+"PO-Revision-Date: 2019-09-22 13:26+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -2013,10 +2013,10 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "Te han invitado a convertirte en autor de {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Si aceptas la invitación podrás editar el complemento y puede que aparezca tu nombre en la lista de autores del sitio web. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Haz clic en el botón Aceptar de más abajo para confirmar que quieres que se te añada como autor de {addon_name}."
 
 msgid "Decline"
 msgstr "Rechazar"
@@ -2803,10 +2803,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Haz clic en el botón Confirmar para generar credenciales API para el usuario <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Se enviará un enlace de confirmación a tu dirección de correo. Cuando lo confirmes, tus claves API aparecerán en esta página."
 
 msgid "You don't have any API credentials."
 msgstr "No tienes credenciales API."
