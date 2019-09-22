@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-18 16:29+0000\n"
+"PO-Revision-Date: 2019-09-22 07:05+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4023,9 +4023,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Torne o YouTube seu {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Reproduza vídeos numa janela pop-up, veja anúncios somente nos canais inscritos, faça captura de telas em vídeos e muito mais."
+msgstr "Personalize o YouTube. Reproduza vídeos numa janela pop-up, veja anúncios somente nos canais inscritos, faça captura de telas em vídeos e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4088,9 +4087,8 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Combata o spam {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Use e-mails temporários inteligentes para se manter anônimo e evitar spam."
+msgstr "Derrote o spam. Use e-mails temporários inteligentes para se manter anônimo e evitar spam."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4177,9 +4175,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Selecione facilmente os favoritos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Uma maneira melhor de salvar favoritos se você usa várias pastas de favoritos."
+msgstr "Uma maneira mais eficiente de salvar favoritos se você usa várias pastas de favoritos."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4198,7 +4195,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Extrair links {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Abra imediatamente todos os links de uma página web em novas abas."
 
@@ -4343,9 +4339,8 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pare com o sequestro de abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Não permita que um link que você clicou assuma o controle da sua aba atual e carregue conteúdo que você não pediu."
+msgstr "Acabe com o sequestro de abas. Não permita que um link que você clicou assuma o controle da sua aba atual e carregue conteúdo que você não pediu."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4377,9 +4372,8 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Ganhe vantagens na Amazon {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Ao visitar um produto em uma loja online e o mesmo produto existir na Amazon, você pode clicar rapidamente em um botão para visualizar o produto na Amazon."
+msgstr "Obtenha vantagens na Amazon. Ao explorar páginas de produtos em outras lojas online e o mesmo produto existir na Amazon, você pode só clicar em um botão para ver o produto na Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
