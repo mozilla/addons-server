@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-22 07:13+0000\n"
+"PO-Revision-Date: 2019-09-22 07:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3837,9 +3837,8 @@ msgid "Surf anonymously. Browse the web with disguised identity—even appear as
 msgstr "Navegar anonimamente. Navegue na web com uma identidade disfarçada ─ pareça até estar navegando de outro país."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Acesse seus sites preferidos, abas fechadas recentemente e muito mais — tudo de um lindo painel quadriculado."
+msgstr "Novo visual de favoritos. Acesse seus sites preferidos, abas fechadas recentemente e muito mais — tudo em um lindo painel quadriculado."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4346,9 +4345,8 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Acesse a Wikipédia facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Execute uma busca na Wikipedia ao simplesmente selecionar texto em qualquer página e clicar com o botão direito do mouse."
+msgstr "Pesquise facilmente na Wikipedia, simplesmente selecionando texto em qualquer página e clicando com o botão direito do mouse."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4667,9 +4665,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Siga em frente apesar da falta de sentido {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Uma hábil extensão que ajuda você a entender rapidamente com o que está concordando."
+msgstr "Desmistifique os termos jurídicos típicos de termos de serviço. Esta extensão inteligente ajuda a entender rapidamente o que está sendo pedido para você concordar."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
