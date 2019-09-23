@@ -1,3 +1,7 @@
+DELETE FROM `update_counts` USING `update_counts`
+    LEFT JOIN `addons` ON `addon_id` = `addons`.`id`
+    WHERE `addons`.`id` IS NULL AND `addon_id` IS NOT NULL;
+
 ALTER TABLE `update_counts`
     CHANGE COLUMN `addon_id` `addon_id` INT (10) UNSIGNED NOT NULL,
     CHANGE COLUMN `count` `count` INT (10) UNSIGNED NOT NULL,
