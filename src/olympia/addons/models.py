@@ -722,7 +722,7 @@ class Addon(OnChangeMixin, ModelBase):
         return data
 
     def get_url_path(self, add_prefix=True):
-        if not self.current_version:
+        if not self._current_version_id:
             return ''
         return reverse(
             'addons.detail', args=[self.slug], add_prefix=add_prefix)
