@@ -96,8 +96,8 @@ ADDONS_LINTER_BIN = env(
 DELETION_EMAIL = 'amo-notifications+deletion@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 
-DRF_API_VERSIONS = ['v3', 'v4', 'v5']
-DRF_API_REGEX = r'^/?api/(?:v3|v4|v5)/'
+DRF_API_VERSIONS = ['auth', 'v3', 'v4', 'v5']
+DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
 
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
@@ -1671,6 +1671,7 @@ JWT_AUTH = {
 }
 
 DRF_API_GATES = {
+    'auth': (),
     'v3': (
         'ratings-rating-shim',
         'ratings-title-shim',
