@@ -53,7 +53,6 @@ def fxa_login_url(config, state, next_path=None, action=None,
             urlsafe_b64encode(next_path.encode('utf-8'))).rstrip('=')
     query = {
         'client_id': config['client_id'],
-        'redirect_url': config['redirect_url'],
         'scope': 'profile',
         'state': state,
     }

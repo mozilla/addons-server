@@ -360,13 +360,11 @@ class AuthenticateView(FxAConfigMixin, APIView):
         # logging them on.
         if user is None:
             user = register_user(self.__class__, request, identity)
-            fxa_config = self.get_fxa_config(request)
-            if fxa_config.get('skip_register_redirect') is not True:
-                edit_page = reverse('users.edit')
-                if _is_safe_url(next_path, request):
-                    next_path = f'{edit_page}?to={quote_plus(next_path)}'
-                else:
-                    next_path = edit_page
+            edit_page = reverse('users.edit')
+            if _is_safe_url(next_path, request):
+                next_path = f'{edit_page}?to={quote_plus(next_path)}'
+            else:
+                next_path = edit_page
             response = safe_redirect(next_path, 'register', request)
         else:
             login_user(self.__class__, request, user, identity)

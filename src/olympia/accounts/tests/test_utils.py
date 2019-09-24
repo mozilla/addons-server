@@ -22,7 +22,6 @@ FXA_CONFIG = {
     'default': {
         'client_id': 'foo',
         'client_secret': 'bar',
-        'redirect_url': 'https://testserver/fxa',
     },
 }
 
@@ -38,7 +37,6 @@ def test_fxa_config_anonymous():
         'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
         'contentHost': 'https://stable.dev.lcip.org',
         'profileHost': 'https://stable.dev.lcip.org/profile/v1',
-        'redirectUrl': 'https://testserver/fxa',
         'scope': 'profile',
     }
 
@@ -55,7 +53,6 @@ def test_fxa_config_logged_in():
         'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
         'contentHost': 'https://stable.dev.lcip.org',
         'profileHost': 'https://stable.dev.lcip.org/profile/v1',
-        'redirectUrl': 'https://testserver/fxa',
         'scope': 'profile',
     }
 
@@ -76,7 +73,6 @@ def test_default_fxa_login_url_with_state():
     assert query == {
         'action': ['signin'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
@@ -99,7 +95,6 @@ def test_default_fxa_register_url_with_state():
     assert query == {
         'action': ['signup'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
@@ -127,7 +122,6 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
     assert query == {
         'action': ['signin'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
@@ -156,7 +150,6 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'acr_values': ['AAL2'],
         'action': ['signin'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],

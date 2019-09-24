@@ -41,12 +41,9 @@ from olympia.users.utils import UnsubscribeCode
 
 FXA_CONFIG = {
     'client_id': 'amodefault',
-    'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
 }
 SKIP_REDIRECT_FXA_CONFIG = {
     'client_id': 'amodefault',
-    'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
-    'skip_register_redirect': True,
 }
 
 
@@ -86,7 +83,6 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         assert parse_qs(url.query) == {
             'action': ['signin'],
             'client_id': ['amodefault'],
-            'redirect_url': ['https://addons.mozilla.org/fxa-authenticate'],
             'scope': ['profile'],
             'state': ['arandomstring'],
         }
@@ -161,7 +157,7 @@ class TestLoginStartView(TestCase):
     def test_default_config_is_used(self):
         assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
         assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'local', 'code-manager'])
+            ['default', 'amo', 'local'])
 
 
 class TestLoginUserAndRegisterUser(TestCase):
@@ -630,7 +626,6 @@ class TestWithUser(TestCase):
             'acr_values': ['AAL2'],
             'action': ['signin'],
             'client_id': [fxa_config['client_id']],
-            'redirect_url': [fxa_config['redirect_url']],
             'scope': ['profile'],
             'state': ['some-blob:{next_path}'.format(
                 next_path=force_text(next_path))],
@@ -894,30 +889,6 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 reverse('users.edit'),  # No '?to=...'
                 target_status_code=200)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.login_user.called
-        self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
-
-    @mock.patch('olympia.accounts.views.AuthenticateView.ALLOWED_FXA_CONFIGS',
-                ['default', 'skip'])
-    def test_register_redirects_next_when_config_says_to(self):
-        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not user_qs.exists()
-        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
-        self.fxa_identify.return_value = identity
-        user = UserProfile(username='foo', email='me@yeahoo.com')
-        self.register_user.return_value = user
-        response = self.client.get(self.url, {
-            'code': 'codes!!',
-            'state': ':'.join(
-                [self.fxa_state,
-                 force_text(base64.urlsafe_b64encode(b'/go/here'))]),
-            'config': 'skip',
-        })
-        self.fxa_identify.assert_called_with(
-            'codes!!', config=SKIP_REDIRECT_FXA_CONFIG)
-        self.assertRedirects(
-            response, '/go/here', fetch_redirect_response=False)
         assert not self.login_user.called
         self.register_user.assert_called_with(
             views.AuthenticateView, mock.ANY, identity)

@@ -105,27 +105,16 @@ FXA_CONFIG = {
     'default': {
         'client_id': env('FXA_CLIENT_ID'),
         'client_secret': env('FXA_CLIENT_SECRET'),
-        'redirect_url':
-            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
-    },
-    'amo': {
-        'client_id': env('AMO_FXA_CLIENT_ID'),
-        'client_secret': env('AMO_FXA_CLIENT_SECRET'),
-        'redirect_url': 'https://addons-dev.allizom.org/api/v3/accounts/authenticate/?config=amo', # noqa
+        # redirect_uri = 'https://%s/api/auth/authenticate-callback/' % DOMAIN,
     },
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
-        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/?config=local', # noqa
-    },
-    'code-manager': {
-        'client_id': env('CODE_MANAGER_FXA_CLIENT_ID'),
-        'client_secret': env('CODE_MANAGER_FXA_CLIENT_SECRET'),
-        'redirect_url': 'https://addons-dev.allizom.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
+        # redirect_uri = 'http://localhost:3000/api/auth/authenticate-callback/?config=local', # noqa
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local', 'code-manager']
+ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
