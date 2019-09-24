@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-20 11:28+0000\n"
+"PO-Revision-Date: 2019-09-24 07:38+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3967,7 +3967,7 @@ msgstr "Encouragez la productivité {start_sub_heading}avec {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Votre productivité au beau fixe : modifiez votre page nouvel onglet pour afficher une agréable image de fond, dressez la liste de vos tâches du jour, etc."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4127,7 +4127,7 @@ msgstr "Créez une liste noire de sites web {start_sub_heading}avec {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Empêchez Firefox d’accéder aux sites web que vous définissez. Un excellent outil pour pratiquer l’autodiscipline en ligne."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4195,7 +4195,7 @@ msgstr "Passez outre les redirections et les traqueurs {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Supprimez automatiquement les pages de redirection et les paramètres de pistage des URL."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4211,7 +4211,7 @@ msgstr "Téléchargez des vidéos YouTube {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Téléchargez des vidéos de YouTube et/ou des contenus audio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4283,7 +4283,7 @@ msgstr "Surfez en toute sérénité {start_sub_heading}avec {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Lorsqu’elle est disponible, utilisez automatiquement la version sécurisée des sites web."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4315,7 +4315,7 @@ msgstr "Remplissez les formulaires automatiquement {start_sub_heading}avec {addo
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Remplissez les formulaires automatiquement. Enregistrez les données saisies une seule fois et ils seront automatiquement remplis les fois suivantes."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4331,7 +4331,7 @@ msgstr "Empêchez le détournement de vos onglets {start_sub_heading}avec {addon
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Mettez un terme au détournement d’onglets. Ne laissez pas les liens cliqués prendre le contrôle de votre onglet actuel et charger des contenus que vous n’avez pas demandés."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4373,7 +4373,7 @@ msgstr "Prenez le contrôle total de vos onglets {start_sub_heading}avec {addon_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Profitez d’un contrôle total sur les onglets : fermez les onglets en double, fusionnez les fenêtres, copiez le titre de l’onglet, etc."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4381,7 +4381,7 @@ msgstr "Bénéficiez d’une éducation inhabituelle {start_sub_heading}avec {ad
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Découvrez de façon originale. Chargez un article Wikipédia aléatoire chaque fois que vous ouvrez un nouvel onglet."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4477,7 +4477,7 @@ msgstr "Achetez en toute confiance {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Faites vos achats en toute confiance. Cette extension fournit une vérification supplémentaire pour vous assurer que vous allez commander sur un site dont la fiabilité a été vérifiée."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4485,7 +4485,7 @@ msgstr "Suivez votre productivité {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Estimez votre productivité : mesurez le temps que vous passez sur l’ordinateur ou sur certaines applications telles que Trello, JIRA, Basecamp, GitHub, et beaucoup d’autres."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
