@@ -3,10 +3,15 @@
 {% set title = _('Status & Versions') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
-{% if addon.has_listed_versions() %}
+{% set current_version=addon.current_version %}
+{% set latest_listed_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED, exclude=()) %}
+{% set latest_unlisted_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED, exclude=()) %}
+{% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+
+{% if latest_listed_version_including_disabled %}
   {% set has_listed_versions = True %}
 {% endif %}
-{% if addon.has_unlisted_versions() %}
+{% if latest_unlisted_version_including_disabled %}
   {% set has_unlisted_versions = True %}
 {% endif %}
 
@@ -27,7 +32,7 @@
 {% endif %}
 
 {% macro version_details(version, full_info=False) %}
-  {% set latest_version_in_channel = version.addon.find_latest_version(channel=version.channel, exclude=()) %}
+{% set latest_version_in_channel_including_disabled = latest_listed_version_including_disabled if version.channel == amo.RELEASE_CHANNEL_LISTED else latest_unlisted_version_including_disabled %}
   <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
     <td>
       <strong>
@@ -61,7 +66,7 @@
           <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history"
             id="review-history-show-{{ version.id }}" data-version="{{ version.id }}">{{ _('Review History') }}</a>
           <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
-          {% if latest_version_in_channel == version %}
+          {% if latest_version_in_channel_including_disabled == version %}
               {% set pending_count = pending_activity_log_count_for_developer(version) %}
               {% if pending_count > 0 %}
                   <b class="review-history-pending-count">{{ pending_count }}</b>
@@ -126,7 +131,7 @@
                   <pre>$comments</pre>
               </div>
           </div>
-          {% if latest_version_in_channel == version %}
+          {% if latest_version_in_channel_including_disabled == version %}
             <div class="dev-review-reply">
               <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
                     data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
@@ -136,7 +141,7 @@
             </div>
           {% else %}
             <div>
-              <a href="#" class="review-history-show" data-version="{{ latest_version_in_channel.id }}">{{ _('Leave a reply') }}</a>
+              <a href="#" class="review-history-show" data-version="{{ latest_version_in_channel_including_disabled.id }}">{{ _('Leave a reply') }}</a>
             </div>
           {% endif %}
       </td>
@@ -172,10 +177,6 @@
              label_open='<strong>'|safe, label_close='</strong>'|safe) }}</label>
       </div>
     </div>
-
-    {% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
-    {% set current_version=addon.current_version %}
-
     {% if latest_listed_version or current_version %}
         <h3>{{ distro_tag(amo.RELEASE_CHANNEL_LISTED)}} {{ _('Listed versions') }}</h3>
     {% endif %}
@@ -234,7 +235,6 @@
           <th class="version-delete">{{ _('Delete/Disable') }}</th>
         </tr>
 
-        {% set latest_listed_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED, exclude=()) %}
         {% for version in versions.object_list %}
           {% if version != current_version and version != latest_listed_version %}
             {{ version_details(version, full_info=version==latest_listed_version_including_disabled) }}

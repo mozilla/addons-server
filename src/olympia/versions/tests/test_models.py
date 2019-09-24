@@ -201,21 +201,6 @@ class TestVersion(TestCase):
         v = Version.objects.get(pk=81551)
         assert amo.PLATFORM_ALL in v.supported_platforms
 
-    def test_mobile_version_supports_only_mobile_platforms(self):
-        self.version.apps.all().delete()
-        self.target_mobile()
-        assert (sorted(self.named_plat(self.version.compatible_platforms())) ==
-                [u'android'])
-
-    def test_mixed_version_supports_all_platforms(self):
-        self.target_mobile()
-        assert (sorted(self.named_plat(self.version.compatible_platforms())) ==
-                ['all', 'android', 'linux', 'mac', 'windows'])
-
-    def test_non_mobile_version_supports_non_mobile_platforms(self):
-        assert (sorted(self.named_plat(self.version.compatible_platforms())) ==
-                ['all', 'linux', 'mac', 'windows'])
-
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
         v = Version(version='3.0.12b2')
