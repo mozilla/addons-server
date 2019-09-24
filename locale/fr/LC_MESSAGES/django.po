@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-08-16 14:57+0000\n"
-"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
+"PO-Revision-Date: 2019-09-20 11:28+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4111,7 +4111,7 @@ msgstr "Utilisez WhatsApp sur le Web {start_sub_heading}avec {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp sur le Web. Connectez-vous à WhatsApp à partir du panneau de la barre d’outils de Firefox et recevez des notifications par badge pour les conversations non lues."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4291,7 +4291,7 @@ msgstr "Supprimez votre historique de navigation {start_sub_heading}avec {addon_
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Spécifiez le nombre de jours pendant lequel votre historique de navigation web sera conservé (au-delà de cette limite, l’historique sera automatiquement effacé)."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4339,7 +4339,7 @@ msgstr "Accédez simplement à Wikipédia {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Effectuez une recherche sur Wikipédia simplement avec un clic droit sur le texte sélectionné dans la page."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4364,6 +4364,8 @@ msgstr "Bénéficiez d’un avantage sur Amazon {start_sub_heading}avec {addon_n
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
+"Lorsque vous consultez des pages de produits sur les boutiques en ligne, si le produit qui vous intéresse est également disponible sur Amazon, un simple clic vous permet d’accéder à la page Amazon "
+"qui présente ce produit."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4411,7 +4413,7 @@ msgstr "Recherchez dans Firefox {start_sub_heading}avec {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Consultez très facilement vos onglets ouverts, vos marque-pages et votre historique de navigation web."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
