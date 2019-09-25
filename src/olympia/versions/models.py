@@ -407,27 +407,12 @@ class Version(OnChangeMixin, ModelBase):
     @cached_property
     def _compatible_apps(self):
         """Get a mapping of {APP: ApplicationsVersions}."""
-        return self._compat_map(self.apps.all())
+        return self._compat_map(self.apps.all().select_related('min', 'max'))
 
     @cached_property
     def compatible_apps_ordered(self):
         apps = self.compatible_apps.items()
         return sorted(apps, key=lambda v: v[0].short)
-
-    def compatible_platforms(self):
-        """Returns a dict of compatible file platforms for this version.
-
-        The result is based on which app(s) the version targets.
-        """
-        app_ids = [a.application for a in self.apps.all()]
-        targets_mobile = amo.ANDROID.id in app_ids
-        targets_other = any((id_ != amo.ANDROID.id) for id_ in app_ids)
-        all_plats = {}
-        if targets_other:
-            all_plats.update(amo.DESKTOP_PLATFORMS)
-        if targets_mobile:
-            all_plats.update(amo.MOBILE_PLATFORMS)
-        return all_plats
 
     @cached_property
     def is_compatible_by_default(self):

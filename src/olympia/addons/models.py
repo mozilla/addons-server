@@ -809,16 +809,21 @@ class Addon(OnChangeMixin, ModelBase):
         # would exclude a version if *any* of its files match but if there is
         # only one file that doesn't have one of the excluded statuses it
         # should be enough for that version to be considered.
-        statuses_no_disabled = (
-            set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
+        params = {
+            'files__status__in': (
+                set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude)
+            )
+        }
+        if channel is not None:
+            params['channel'] = channel
         try:
-            latest_qs = (
-                Version.objects.filter(addon=self)
-                       .filter(files__status__in=statuses_no_disabled))
-            if channel is not None:
-                latest_qs = latest_qs.filter(channel=channel)
+            # Avoid most transformers - keep translations because they don't
+            # get automatically fetched if you just access the field without
+            # having made the query beforehand, and we don't know what callers
+            # will want ; but for the rest of them, since it's a single
+            # instance there is no reason to call the default transformers.
+            latest_qs = self.versions.filter(**params).only_translations()
             latest = latest_qs.latest()
-            latest.addon = self
         except Version.DoesNotExist:
             latest = None
         return latest
