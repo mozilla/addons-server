@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-07-03 17:38+0000\n"
-"Last-Translator: Suhail Singh Bains <suhail.singhyo@gmail.com>\n"
+"PO-Revision-Date: 2019-09-25 04:15+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -232,11 +232,11 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਇਸ HTTPS ਸਾਈਟ ਨੂੰ ਤੁਹਾਡੇ ਵੈਬ ਬ੍ਰਾਊਜ਼ਰ ਦੁਆਰਾ ਭੇਜੇ ਜਾਣ ਵਾਲੇ 'ਰੈਫਰਰ ਹੈਡਰ' ਦੀ ਲੋੜ ਹੈ, ਪਰ ਕੋਈ ਵੀ ਨਹੀਂ ਭੇਜਿਆ ਗਿਆ ਸੀ। ਇਹ ਸਿਰਲੇਖ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਯਕੀਨੀ "
-"ਬਣਾਉਣ ਲਈ ਕਿ ਤੁਹਾਡੇ ਬ੍ਰਾਉਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
+"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਇਸ HTTPS ਸਾਈਟ ਨੂੰ ਤੁਹਾਡੇ ਵੈਬ ਬਰਾਊਜ਼ਰ ਵਲੋਂ ਭੇਜੇ ਜਾਣ ਵਾਲੇ 'ਰੈਫਰਰ ਹੈਡਰ' ਦੀ ਲੋੜ ਹੈ, ਪਰ ਕੋਈ ਵੀ ਨਹੀਂ ਭੇਜਿਆ ਗਿਆ ਸੀ। ਇਹ ਸਿਰਲੇਖ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ"
+" ਲਈ ਕਿ ਤੁਹਾਡੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "ਜੇ ਤੁਸੀਂ 'ਸੁਧਾਰਕ' ਸਿਰਲੇਖ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਆਪਣੇ ਬ੍ਰਾਉਜ਼ਰ ਦੀ ਸੰਰਚਨਾ ਕੀਤੀ ਹੈ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ ਇਸ ਸਾਈਟ ਲਈ, ਜਾਂ HTTPS ਕਨੈਕਸ਼ਨ ਲਈ, ਜਾਂ 'ਉਸੇ ਮੂਲ' ਬੇਨਤੀਆਂ ਲਈ ਮੁੜ-ਸਮਰੱਥ ਕਰੋ।"
+msgstr "ਜੇ ਤੁਸੀਂ 'ਸੁਧਾਰਕ' ਸਿਰਲੇਖ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਦੀ ਸੰਰਚਨਾ ਕੀਤੀ ਹੈ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ ਇਸ ਸਾਈਟ ਲਈ, ਜਾਂ HTTPS ਕਨੈਕਸ਼ਨ ਲਈ, ਜਾਂ 'ਉਸੇ ਮੂਲ' ਬੇਨਤੀਆਂ ਲਈ ਮੁੜ-ਸਮਰੱਥ ਕਰੋ।"
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -447,8 +447,7 @@ msgstr "ਸਹੀ ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
-"ਮੋਜ਼ੀਲਾ ਐਡਆਨ ਕੋਲ ਐਡਆਨ ਪੇਸ਼ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਕੋਲ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਹੇਠਲੇ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੀ ਇੱਕ ਮੈਨੀਫੈਸਟ ਫਾਇਲ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹਨਾਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਕੇਵਲ ਹੇਠਾਂ ਦਿੱਤੇ ਗਏ ਵਰਜਨ ਹੀ ਅਨੁਮਤੀ ਦਿੱਤੀ ਜਾਂਦੀ "
-"ਹੈ।"
+"ਮੋਜ਼ੀਲਾ ਐਡਆਨ ਕੋਲ ਐਡਆਨ ਪੇਸ਼ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਕੋਲ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਹੇਠਲੇ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੀ ਮੈਨੀਫੈਸਟ ਫਾਇਲ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹਨਾਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਕੇਵਲ ਹੇਠਾਂ ਦਿੱਤੇ ਗਏ ਵਰਜ਼ਨ ਲਈ ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਜਾਂਦੀ ਹੈ।"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -4201,7 +4200,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਡਾ
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr "ਇੱਕ ਕਲਿਕ ਜਾਂ ਕੀਸਟਰੋਕ ਨਾਲ ਆਪਣੇ ਬ੍ਰਾਉਜ਼ਰ ਕੈਚ ਨੂੰ ਸਾਫ਼ ਕਰੋ।"
+msgstr "ਇੱਕ ਕਲਿਕ ਜਾਂ ਕੀਸਟਰੋਕ ਨਾਲ ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਕੈਸ਼ ਨੂੰ ਸਾਫ਼ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4483,7 +4482,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਇਤ
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr "ਤੁਹਾਡੇ ਦੁਆਰਾ ਚੁਣੀਆਂ ਗਈਆਂ ਵੈਬਸਾਈਟਾਂ ਲਈ ਆਟੋਮੈਟਿਕਲੀ ਬ੍ਰਾਉਜ਼ਰ ਇਤਿਹਾਸ ਮਿਟਾਓ।"
+msgstr "ਤੁਹਾਡੇ ਦੁਆਰਾ ਚੁਣੀਆਂ ਗਈਆਂ ਵੈਬਸਾਈਟਾਂ ਲਈ ਆਪਣੇ-ਆਪ ਹੀ ਬਰਾਊਜ਼ਰ ਅਤੀਤ ਹੀ ਹਟਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5473,7 +5472,7 @@ msgid "Approve Content"
 msgstr "ਸਮੱਗਰੀ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਦੀ ਸਮਗਰੀ ਦੀ ਤੁਹਾਡੀ ਅਨੁਮਤੀ ਨੂੰ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ।"
+msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਨਵੀਨਤਮ ਜਨਤਕ ਵਰਜ਼ਨ ਦੀ ਸਮਗਰੀ ਦੀ ਤੁਹਾਡੀ ਮਨਜ਼ੂਰੀ ਨੂੰ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ।"
 
 msgid "Confirm Approval"
 msgstr "ਮਨਜ਼ੂਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
