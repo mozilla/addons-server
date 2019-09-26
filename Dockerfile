@@ -2,8 +2,9 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# Run everything as olympia user, by default.
-USER olympia
+# Run all initial setup with root user. This is the default but mentioned here
+# for documentation.
+USER root
 
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
@@ -56,9 +57,9 @@ RUN mkdir -p /usr/local/share/GeoIP \
  && gunzip -c /tmp/GeoLite2-Country.mmdb.gz > /usr/local/share/GeoIP/GeoLite2-Country.mmdb \
  && rm -f /tmp/GeoLite2-Country.mmdb.gz
 
+# Install `file` and `libmagic` from the `buster` repositories for an up-to-date
+# file-detection.
 RUN apt-get update && apt-get -t buster install -y \
-       # For an up-to-date `file` and `libmagic-dev` library for better file
-       # detection.
        file \
        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -70,6 +71,14 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 # disk.
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
+
+# Now that we have run all necessary root-required scripts, let's create and
+# use our `olympia` user.
+# ADD scripts/docker-create-olympia-user.sh /create-user.sh
+
+# Create the user and group `olympia` that matches the hosts
+# uid and gid.
+RUN useradd -M olympia
 
 COPY . /code
 WORKDIR /code
@@ -84,7 +93,13 @@ ENV SWIG_FEATURES="-D__x86_64__"
 RUN mkdir -p /deps/{build,cache,src}/ && \
     ln -s /code/package.json /deps/package.json && \
     make update_deps && \
+    # Ensure that we are able to update dependencies ourselves later when
+    # using the `olympia` user by default.
+    chown -R olympia:olympia /deps/ && \
     rm -rf /deps/build/ /deps/cache/
+
+# Run everything from now on as olympia user, by default.
+USER olympia
 
 # Preserve bash history across image updates.
 # This works best when you link your local source code
