@@ -2,8 +2,10 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# Run everything as olympia user, by default.
-USER olympia
+# Run all initial setup with root user. This is the default but mentioned here
+# for documentation. We won't switch to the `olympia` user inside the dockerfile
+# but rather use the entrypoint instead.
+USER root
 
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
@@ -19,6 +21,8 @@ ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.lis
 ADD docker/debian-buster-testing-repo /etc/apt/sources.list.d/testing.list
 
 RUN apt-get update && apt-get -t stretch install -y \
+        # Allow for simpler setuid/setgid interaction
+        gosu \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
@@ -56,9 +60,9 @@ RUN mkdir -p /usr/local/share/GeoIP \
  && gunzip -c /tmp/GeoLite2-Country.mmdb.gz > /usr/local/share/GeoIP/GeoLite2-Country.mmdb \
  && rm -f /tmp/GeoLite2-Country.mmdb.gz
 
+# Install `file` and `libmagic` from the `buster` repositories for an up-to-date
+# file-detection.
 RUN apt-get update && apt-get -t buster install -y \
-       # For an up-to-date `file` and `libmagic-dev` library for better file
-       # detection.
        file \
        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*

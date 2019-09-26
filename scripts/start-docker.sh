@@ -11,7 +11,7 @@ uid=$(ls -nd . | awk '{ print $3 }')
 
 # Create an `olympia` user with that ID, and the current directory
 # as its home directory.
-if [[ $uid -eq 0 ]]; then
+if [[ $uid -ne 0 ]]; then
     # Don't try and create a user with uid 0 since it will fail.
     # Works around issue with docker for mac running containers
     # as root and not the user. Instead we just create the olympia
@@ -22,7 +22,21 @@ else
     useradd -Md $(pwd) -u $uid olympia
 fi
 
+deps_uid=$(ls -nd . | awk '{ print $3 }')
+
+# Fix /deps/ folder so that we're able to update the image
+# with the `olympia` user
+if [[ $deps_uid -ne $uid ]]; then
+    # Ensure that we are able to update dependencies ourselves later when
+    # using the `olympia` user by default.
+    chown -R olympia:olympia /deps/
+fi
+
 echo "Starting with user: 'olympia' uid: $(id -u olympia)"
 
-# Switch to that user and execute our actual command.
-exec su olympia -c 'exec "$@"' sh -- "$@"
+# Add call to gosu to drop from root user to olympia user
+# when running original entrypoint
+set -- gosu olympia "$@"
+
+# replace the current pid 1 with original entrypoint
+exec "$@"
