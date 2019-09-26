@@ -12,7 +12,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
@@ -165,6 +165,19 @@ class TestFileValidation(TestCase):
         self.client.logout()
         assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 200
+
+    def test_developer_cant_see_results_from_other_addon(self):
+        other_addon = addon_factory(users=[self.user])
+        url = reverse(
+            'devhub.file_validation', args=[other_addon.slug, self.file.id])
+        assert self.client.get(url, follow=True).status_code == 404
+
+    def test_developer_cant_see_json_results_from_other_addon(self):
+        other_addon = addon_factory(users=[self.user])
+        url = reverse(
+            'devhub.json_file_validation',
+            args=[other_addon.slug, self.file.id])
+        assert self.client.get(url, follow=True).status_code == 404
 
     def test_no_html_in_messages(self):
         response = self.client.post(self.json_url, follow=True)
