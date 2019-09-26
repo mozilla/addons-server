@@ -167,7 +167,7 @@ def validation_task(fn):
             if results and results['errors'] > 0:
                 return results
 
-            return fn(pk, *args, **kwargs)
+            return fn(results, pk, *args, **kwargs)
         except UnsupportedFileType as exc:
             results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
             annotations.insert_validation_message(
@@ -188,13 +188,11 @@ def validation_task(fn):
             # But we do want to return the results after that exception has
             # been handled.
             task.ignore_result = False
-    # Expose the original task for testing purpose.
-    wrapper.original_task = fn
     return wrapper
 
 
 @validation_task
-def validate_upload(upload_pk, channel):
+def validate_upload(results, upload_pk, channel):
     """Validate a FileUpload instance.
 
     Should only be called directly by Validator."""
@@ -205,7 +203,7 @@ def validate_upload(upload_pk, channel):
 
 
 @validation_task
-def validate_file(file_pk):
+def validate_file(results, file_pk):
     """Validate a File instance. If cached validation results exist, return
     those, otherwise run the validator.
 

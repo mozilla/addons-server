@@ -47,7 +47,7 @@ def extract_webext_permissions(ids, **kw):
 
 
 @validation_task
-def repack_fileupload(upload_pk):
+def repack_fileupload(results, upload_pk):
     log.info('Starting task to repackage FileUpload %s', upload_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     # When a FileUpload is created and a file added to it, if it's a xpi/zip,
@@ -75,3 +75,4 @@ def repack_fileupload(upload_pk):
         upload.save()
     else:
         log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)
+    return results
