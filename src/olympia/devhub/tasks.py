@@ -150,8 +150,8 @@ def validation_task(fn):
     """Wrap a validation task so that it runs with the correct flags and
     handles errors.
 
-    ALL but the validation tasks but `create_initial_validation_results()`
-    should use this decorator."""
+    ALL the validation tasks but `create_initial_validation_results()` should
+    use this decorator."""
 
     @task(bind=True,
           ignore_result=False,  # We want to pass the results down.
