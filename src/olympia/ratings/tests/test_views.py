@@ -185,22 +185,18 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        with self.assertNumQueries(5):
-            # 5 queries:
+        with self.assertNumQueries(7):
+            # 7 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count (pagination)
             # - One for the ratings themselves
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
-            #
-            # We patch get_addon_object() to avoid the add-on related queries,
-            # which would pollute the result.
-            with mock.patch('olympia.ratings.views.RatingViewSet'
-                            '.get_addon_object') as get_addon_object:
-                get_addon_object.return_value = self.addon
-                response = self.client.get(
-                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
+            # - One for the addon
+            # - One for its translations
+            response = self.client.get(
+                self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         assert data['count'] == 3
@@ -236,22 +232,17 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        with self.assertNumQueries(5):
-            # 5 queries:
+        with self.assertNumQueries(7):
+            # 7 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count
             # - One for the ratings
             # - One for the replies (using prefetch_related())
-            #
-            # We patch get_addon_object() to avoid the add-on related queries,
-            # which would pollute the result. In the real world those queries
-            # would often be in the cache.
-            with mock.patch('olympia.ratings.views.RatingViewSet'
-                            '.get_addon_object') as get_addon_object:
-                get_addon_object.return_value = self.addon
-                response = self.client.get(
-                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
+            # - One for the addon
+            # - One for its translations
+            response = self.client.get(
+                self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         assert data['count'] == 3
