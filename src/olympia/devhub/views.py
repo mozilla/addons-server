@@ -673,7 +673,7 @@ def upload_detail_for_version(request, addon_id, addon, uuid):
 
 @dev_required(allow_reviewers=True)
 def file_validation(request, addon_id, addon, file_id):
-    file_ = get_object_or_404(File, id=file_id)
+    file_ = get_object_or_404(File, version__addon=addon, id=file_id)
 
     validate_url = reverse('devhub.json_file_validation',
                            args=[addon.slug, file_.id])
@@ -693,7 +693,7 @@ def file_validation(request, addon_id, addon, file_id):
 @csrf_exempt
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
-    file = get_object_or_404(File, id=file_id)
+    file = get_object_or_404(File, version__addon=addon, id=file_id)
     try:
         result = file.validation
     except FileValidation.DoesNotExist:
