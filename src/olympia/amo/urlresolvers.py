@@ -185,8 +185,10 @@ def get_outgoing_url(url):
         return '/'
 
     # No double-escaping, and some domain names are excluded.
+    allowed = settings.REDIRECT_URL_ALLOW_LIST + [
+        django_urlparse(settings.EXTERNAL_SITE_URL).netloc]
     if (url_netloc == django_urlparse(settings.REDIRECT_URL).netloc or
-            url_netloc in settings.REDIRECT_URL_ALLOW_LIST):
+            url_netloc in allowed):
         return url
 
     url = force_bytes(jinja2.utils.Markup(url).unescape())

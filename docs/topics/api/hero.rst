@@ -22,6 +22,7 @@ and a single, randomly selected secondary hero shelf.
 .. http:get:: /api/v4/hero/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json object primary: A :ref:`primary hero shelf <primary-hero-shelf>`.
     :>json object secondary: A :ref:`secondary hero shelf <secondary-hero-shelf>`.
 
@@ -40,6 +41,7 @@ small number of shelves this endpoint is not paginated.
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean all: return all shelves - both enabled and disabled.  To be used internally to generate .po files containing the strings defined by the content team.
+    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the results for this query.
     :>json object results[].gradient: The background colors used for the gradient.
     :>json string results[].gradient.start: The starting color name for gradient - typically top or left. The name is from the `photon color variables <https://github.com/FirefoxUX/photon-colors/blob/master/photon-colors.scss>`_.
@@ -64,6 +66,7 @@ small number of shelves - and likely only one - this endpoint is not paginated.
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean all: return all shelves - both enabled and disabled.  To be used internally to generate .po files containing the strings defined by the content team.
+    :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the results for this query.
     :>json string results[].headline: The headline for this item.
     :>json string results[].description: The description for this item.
