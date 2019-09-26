@@ -253,7 +253,7 @@ class Validator(object):
             assert not file_.validation
 
             self.task = chain(
-                tasks.create_initial_validation_results.s(),
+                tasks.create_initial_validation_results.si(),
                 repack_fileupload.s(file_.pk),
                 tasks.validate_upload.s(file_.pk, channel),
                 tasks.handle_upload_validation_result.s(file_.pk,
@@ -275,9 +275,9 @@ class Validator(object):
                           'version': self.file.version.version}
 
             self.task = chain(
-                tasks.create_initial_validation_results.s(),
+                tasks.create_initial_validation_results.si(),
                 tasks.validate_file.s(file_.pk),
-                tasks.handle_file_validation_result.s(file_)
+                tasks.handle_file_validation_result.s(file_.pk)
             )
         else:
             raise ValueError

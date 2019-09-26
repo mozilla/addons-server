@@ -188,6 +188,8 @@ def validation_task(fn):
             # But we do want to return the results after that exception has
             # been handled.
             task.ignore_result = False
+    # Expose the original task for testing purpose.
+    wrapper.original_task = fn
     return wrapper
 
 
