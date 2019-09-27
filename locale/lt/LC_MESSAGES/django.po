@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,6 +145,58 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr ""
+
+msgid "Rejected"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "Added {0}"
+msgstr ""
+
+#. {0} is the number of users.
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Neperžiūrėtas"
+
+#, fuzzy
+msgid "Add"
+msgstr "Priedai"
+
+msgid "Edit"
+msgstr ""
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Dar neįvertintas"
+
+msgid "<b>{0}</b> users"
+msgstr ""
+
+msgid "by"
+msgstr "sukūrė"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Kasdienių naudotojų"
+msgstr[1] "Kasdienių naudotojų"
+msgstr[2] "Kasdienių naudotojų"
 
 msgid "Sort by:"
 msgstr "Rušiuoti pagal:"
@@ -294,6 +346,9 @@ msgstr "Oi"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr ""
+
+msgid "Some rights reserved"
 msgstr ""
 
 msgid "No results found"
@@ -531,9 +586,6 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
-msgid "Approved"
-msgstr ""
-
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -541,9 +593,6 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
-msgstr ""
-
-msgid "Rejected"
 msgstr ""
 
 msgid "{addon} {version} retained."
@@ -810,6 +859,9 @@ msgstr "Apžvalgų žurnalas"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
+msgid "User {user} api key reset."
+msgstr ""
+
 msgid "Firefox"
 msgstr ""
 
@@ -835,9 +887,6 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Incomplete"
-msgstr ""
-
-msgid "Awaiting Review"
 msgstr ""
 
 msgid "Disabled by Mozilla"
@@ -2039,9 +2088,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr ""
 
-msgid "Edit"
-msgstr ""
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Priedai, skirti {0}"
@@ -3051,6 +3097,7 @@ msgstr ""
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Sužinoti daugiau"
 
@@ -3237,9 +3284,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
-
-msgid "by"
-msgstr "sukūrė"
 
 msgid "Leave a reply"
 msgstr ""
@@ -4748,6 +4792,36 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Populiarūs plėtiniai"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Plėtiniai"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4803,7 +4877,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4811,6 +4884,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5233,9 +5307,6 @@ msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-
-msgid "Not yet rated"
-msgstr "Dar neįvertintas"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6389,6 +6460,13 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+msgid "Reset API Key"
 msgstr ""
 
 msgid "Profile Photo"

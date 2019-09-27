@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2019-08-12 15:00+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -143,6 +143,57 @@ msgstr "アドオンとコレクションのパスは「/」で終わってい�
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "アドオン名には Mozilla または Firefox の商標を含めることはできません。"
+
+msgid "Awaiting Review"
+msgstr "審査待ち"
+
+msgid "Rejected"
+msgstr "却下済み"
+
+msgid "Approved"
+msgstr "承認済み"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "{0}のアドオンメディア"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "レビューのページへ戻る"
+
+#, fuzzy
+msgid "Add"
+msgstr "アドオン"
+
+msgid "Edit"
+msgstr "編集"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "まだ評価されていません"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> 個のテーマ"
+
+msgid "by"
+msgstr "作者:"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "日別ユーザー数"
 
 msgid "Sort by:"
 msgstr "並べ替え:"
@@ -297,6 +348,10 @@ msgstr "申し訳ありません"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>申し訳ありません。エラーが発生しました。</h1> <p>すぐに問題の修正に取り掛かります。</p> <p>ページを再読み込みするか、<a href=\"%(home)s\">アドオンのホームページ</a> に戻ってください。</p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "All Rights Reserved"
 
 msgid "No results found"
 msgstr "該当するアイテムはありません"
@@ -543,9 +598,6 @@ msgstr "{addon} のバージョン {version} からファイル {0}が削除さ�
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} が承認されました。"
 
-msgid "Approved"
-msgstr "承認済み"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} の事前審査が承認されました。"
 
@@ -554,9 +606,6 @@ msgstr "事前承認されました"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} の審査が却下されました。"
-
-msgid "Rejected"
-msgstr "却下済み"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} の審査が保留されました。"
@@ -806,6 +855,10 @@ msgstr "管理者テーマ審査が申請されました"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} が軽量テーマから移行されました。"
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "ユーザー {user} の写真が削除されました。"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -832,9 +885,6 @@ msgstr "不明"
 
 msgid "Incomplete"
 msgstr "未完成"
-
-msgid "Awaiting Review"
-msgstr "審査待ち"
 
 msgid "Disabled by Mozilla"
 msgstr "Mozilla により無効化"
@@ -2014,9 +2064,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "アドオンの詳細"
 
-msgid "Edit"
-msgstr "編集"
-
 msgid "Additional Details for {0}"
 msgstr "アドオン {0} の詳細"
 
@@ -3017,6 +3064,7 @@ msgstr "お帰りなさい"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s でおすすめしてもらいたいですか？おすすめ拡張機能ポリシーで、必要な内容をご覧ください。"
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "詳細"
 
@@ -3200,9 +3248,6 @@ msgstr "審査ノートの取得中に問題が発生しました"
 
 msgid "Load older..."
 msgstr "読み込み順..."
-
-msgid "by"
-msgstr "作者:"
 
 msgid "Leave a reply"
 msgstr "返信を書く"
@@ -4772,6 +4817,38 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 動画の�
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "旧式の拡張機能は Firefox でサポートされなくなりました。"
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "すべての拡張機能を見る"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "拡張機能"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "ファイルビューアーはロックされており、%sの抽出が行われている可能性があります。約 5 分後に再度試してください。"
@@ -4827,7 +4904,6 @@ msgstr "アップロードされたファイルを解析できませんでした
 msgid "Unsupported archive type."
 msgstr "サポートされていないアーカイブ形式です。"
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "アーカイブ内に不正なファイル名が含まれています。ファイル名がすべて UTF-8 または Latin 1 エンコードになっていることを確認してください。"
 
@@ -4835,6 +4911,7 @@ msgstr "アーカイブ内に不正なファイル名が含まれています。
 msgid "Invalid file name in archive: {0}"
 msgstr "アーカイブ内のファイル名が不正です: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "アーカイブ内のファイルがサイズ制限を超えています: {0}"
 
@@ -5263,9 +5340,6 @@ msgstr "フラグの理由として「その他」を選択する場合は、短
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} 件のレビュー"
-
-msgid "Not yet rated"
-msgstr "まだ評価されていません"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5 つ星中 {0}つの評価を受けています"
@@ -6378,6 +6452,14 @@ msgstr "ユーザー「%(users)s」のアカウントが停止されました。
 
 msgid "Ban selected users"
 msgstr "選択したユーザーのアカウントを停止"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API キーを管理"
 
 msgid "Profile Photo"
 msgstr "プロファイル写真"

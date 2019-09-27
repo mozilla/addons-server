@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,6 +143,59 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
+
+msgid "Rejected"
+msgstr "ਠੁਕਰਾਇਆ"
+
+msgid "Approved"
+msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "{0} ਲਈ ਐਡ-ਆਨ ਮੀਡੀਆ"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
+msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
+
+#, fuzzy
+msgid "Add"
+msgstr "ਐਡ-ਆਨ"
+
+msgid "Edit"
+msgstr "ਸੋਧ"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> ਥੀਮ"
+
+msgid "by"
+msgstr "ਵੱਲੋਂ"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
+msgstr[1] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
 
 msgid "Sort by:"
 msgstr "ਦੇ ਨਾਲ ਕ੍ਰਮਬੱਧ:"
@@ -303,6 +356,10 @@ msgstr "ਓ ਹੋ"
 #, fuzzy, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>ਓ ਹੋ!ਸਾਨੂੰ ਇੱੱਕ ਖਾਮੀ ਮਿਲੀ।</h1> <p>ਅਸੀਂ ਛੇਤੀ ਹੋ ਇਸਨੂੰ ਸੋਧਣ ਵਿੱਚ ਲੱਗ ਜਾਵਾਂਗੇ।</ p> <p> ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਨੂੰ ਤਾਜਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ <a href=\"%(home)s\">ਐਡ-ਆਨ ਮੁੱਖਸਫ਼ੇ</a>ਤੇ ਵਾਪਸ ਜਾਓ। </p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
 
 msgid "No results found"
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ"
@@ -549,9 +606,6 @@ msgstr "{addon}ਦੇ {version} ਤੋਂ File {0} ਹਟਾਈ।"
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
 
-msgid "Approved"
-msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
 
@@ -560,9 +614,6 @@ msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਵੀਕਾਰ ਹੋਇ�
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
-
-msgid "Rejected"
-msgstr "ਠੁਕਰਾਇਆ"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ਰੱਖਿਆ।"
@@ -849,6 +900,10 @@ msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
+
 msgid "Firefox"
 msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ"
 
@@ -875,9 +930,6 @@ msgstr "ਗੁਮਨਾਮ"
 
 msgid "Incomplete"
 msgstr "ਅਧੂਰਾ"
-
-msgid "Awaiting Review"
-msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
 
 msgid "Disabled by Mozilla"
 msgstr "ਮੌਜੀਲਾ ਵੱਲੋਂ ਅਯੋਗ ਕੀਤਾ"
@@ -2113,9 +2165,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "ਐਡ-ਆਨ ਵੇਰਵਾ"
 
-msgid "Edit"
-msgstr "ਸੋਧ"
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "{0} ਲਈ ਐਡ-ਆਨ ਵੇਰਵਾ"
@@ -3186,6 +3235,7 @@ msgstr "ਜੀ ਆਇਆ ਨੂੰ, {0}"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
@@ -3387,9 +3437,6 @@ msgstr ""
 #, fuzzy
 msgid "Load older..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
-
-msgid "by"
-msgstr "ਵੱਲੋਂ"
 
 #, fuzzy
 msgid "Leave a reply"
@@ -4901,6 +4948,36 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4956,7 +5033,6 @@ msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕ�
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4964,6 +5040,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
@@ -5412,9 +5489,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} ਸਮੀਖਿਆ"
 msgstr[1] "{num} ਸਮੀਖਿਆਵਾਂ"
-
-msgid "Not yet rated"
-msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"
@@ -6600,6 +6674,13 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+msgid "Reset API Key"
 msgstr ""
 
 msgid "Profile Photo"

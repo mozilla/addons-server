@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2017-02-15 17:32+0000\n"
 "Last-Translator: echrs <echrs@outlook.com>\n"
 "Language-Team: Croatian\n"
@@ -154,6 +154,60 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr "Čeka se revizija"
+
+# 87%
+msgid "Rejected"
+msgstr "Odbijeno"
+
+msgid "Approved"
+msgstr "Odobreno"
+
+msgid "Added {0}"
+msgstr ""
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> aktivni korisnik"
+msgstr[1] "<strong>{0}</strong> aktivni korisnici"
+msgstr[2] "<strong>{0}</strong> aktivnih korisnika"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Nije pregledano"
+
+#, fuzzy
+msgid "Add"
+msgstr "Dodatak"
+
+msgid "Edit"
+msgstr "Uredi"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Još nije ocijenjeno"
+
+msgid "<b>{0}</b> users"
+msgstr ""
+
+msgid "by"
+msgstr "od"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Dnevni korisnici"
+msgstr[1] "Dnevni korisnici"
+msgstr[2] "Dnevni korisnici"
 
 msgid "Sort by:"
 msgstr "Sortiraj po:"
@@ -308,6 +362,9 @@ msgstr "Ups"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr ""
+
+msgid "Some rights reserved"
 msgstr ""
 
 msgid "No results found"
@@ -550,9 +607,6 @@ msgstr "Datoteka {0} izbrisana iz {version} od {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} odobren."
 
-msgid "Approved"
-msgstr "Odobreno"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} dana preliminarna revizija."
 
@@ -561,10 +615,6 @@ msgstr "Preliminarno odobreno"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} odbijen."
-
-# 87%
-msgid "Rejected"
-msgstr "Odbijeno"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} zadržan."
@@ -848,6 +898,10 @@ msgstr "Zatražena revizija"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} {version} dana preliminarna revizija."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Korisnik prijavljen."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -874,9 +928,6 @@ msgstr "Nepoznato"
 
 msgid "Incomplete"
 msgstr "Nedovršeno"
-
-msgid "Awaiting Review"
-msgstr "Čeka se revizija"
 
 msgid "Disabled by Mozilla"
 msgstr ""
@@ -2091,9 +2142,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Tehnički detalji"
 
-msgid "Edit"
-msgstr "Uredi"
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Tehnički detalji za {0}"
@@ -3126,6 +3174,7 @@ msgstr ""
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Saznajte više"
 
@@ -3313,9 +3362,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
-
-msgid "by"
-msgstr "od"
 
 msgid "Leave a reply"
 msgstr ""
@@ -4824,6 +4870,36 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Pretraži sve dodatke"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Proširenja"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4880,7 +4956,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4888,6 +4963,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5313,9 +5389,6 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} pregled"
 msgstr[1] "{num} pregleda"
 msgstr[2] "{num} pregleda"
-
-msgid "Not yet rated"
-msgstr "Još nije ocijenjeno"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6486,6 +6559,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Upravljanje API ključevima"
 
 msgid "Profile Photo"
 msgstr ""

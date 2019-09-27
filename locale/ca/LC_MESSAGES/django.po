@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2019-02-10 15:36+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -154,6 +154,59 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr ""
+
+msgid "Rejected"
+msgstr "Rebutjat"
+
+msgid "Approved"
+msgstr "Aprovat"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "Multimèdia del complement {0}"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> usuari actiu"
+msgstr[1] "<strong>{0}</strong> usuaris actius"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Torna a la revisió"
+
+#, fuzzy
+msgid "Add"
+msgstr "Complement"
+
+msgid "Edit"
+msgstr "Edita"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Encara no s'ha valorat"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> complement"
+
+msgid "by"
+msgstr "per"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Usuaris diaris"
+msgstr[1] "Usuaris diaris"
 
 msgid "Sort by:"
 msgstr "Ordenat per:"
@@ -315,6 +368,10 @@ msgstr "Ups"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Tots els drets reservats."
 
 msgid "No results found"
 msgstr ""
@@ -563,9 +620,6 @@ msgstr "S'ha suprimit el fitxer {0} de la versió {version} del complement {addo
 msgid "{addon} {version} approved."
 msgstr "S'ha aprovat el complement {addon} {version}"
 
-msgid "Approved"
-msgstr "Aprovat"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
 
@@ -574,9 +628,6 @@ msgstr "Aprovat de manera preliminar"
 
 msgid "{addon} {version} rejected."
 msgstr "S'ha rebutjat la versió {addon} {version}"
-
-msgid "Rejected"
-msgstr "Rebutjat"
 
 msgid "{addon} {version} retained."
 msgstr "S'ha retingut la versió {addon} {version}"
@@ -863,6 +914,10 @@ msgstr "S'ha sol·licitat la revisió"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "L'usuari {user} resta anònim."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -889,9 +944,6 @@ msgstr "Desconegut"
 
 msgid "Incomplete"
 msgstr "Incomplet"
-
-msgid "Awaiting Review"
-msgstr ""
 
 msgid "Disabled by Mozilla"
 msgstr "Inhabilitat per Mozilla"
@@ -2116,9 +2168,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Detalls del complement"
 
-msgid "Edit"
-msgstr "Edita"
-
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
@@ -3175,6 +3224,7 @@ msgstr "Benvingut, {0}"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Més informació"
 
@@ -3374,9 +3424,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
-
-msgid "by"
-msgstr "per"
 
 #, fuzzy
 msgid "Leave a reply"
@@ -4887,6 +4934,37 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Mostra tots els complements"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Extensions"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4942,7 +5020,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4950,6 +5027,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5381,9 +5459,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} valoració"
 msgstr[1] "{num} valoracions"
-
-msgid "Not yet rated"
-msgstr "Encara no s'ha valorat"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6568,6 +6643,13 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+msgid "Reset API Key"
 msgstr ""
 
 msgid "Profile Photo"

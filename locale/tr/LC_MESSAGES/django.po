@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2019-07-14 11:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -146,6 +146,62 @@ msgstr "Eklenti ve koleksiyon yolları \"/\" ile bitmelidir"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Eklenti adlarında Mozilla ve Firefox tescilli markaları kullanılamaz."
+
+msgid "Awaiting Review"
+msgstr "İnceleme Bekliyor"
+
+msgid "Rejected"
+msgstr "Reddedildi."
+
+msgid "Approved"
+msgstr "Onaylandı"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "Added {0}"
+msgstr "{0} Eklenti Medyası"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> etkin kullanıcı"
+msgstr[1] "<strong>{0}</strong> etkin kullanıcı"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "İncelemeye dön"
+
+#, fuzzy
+msgid "Add"
+msgstr "Eklentiler"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Henüz puanlanmamış"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> tema"
+
+msgid "by"
+msgstr "geliştiren:"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Günlük Kullanıcı"
+msgstr[1] "Günlük Kullanıcı"
 
 msgid "Sort by:"
 msgstr "Sıralama:"
@@ -306,6 +362,10 @@ msgstr "Hata"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz.</p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Tüm hakları saklıdır"
 
 msgid "No results found"
 msgstr "Sonuç bulunamadı"
@@ -554,9 +614,6 @@ msgstr "{addon} {version} sürümünden {0} dosyası silindi."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} onaylandı."
 
-msgid "Approved"
-msgstr "Onaylandı"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ön incelemesi yapıldı."
 
@@ -565,9 +622,6 @@ msgstr "Ön onay verildi"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} reddedildi."
-
-msgid "Rejected"
-msgstr "Reddedildi."
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} tutuldu."
@@ -829,6 +883,10 @@ msgstr "Yönetici tema incelemesi istendi"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} hafif bir temadan taşındı."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "{user} adlı kullanıcı kısıtlandı."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -855,9 +913,6 @@ msgstr "Bilinmeyen"
 
 msgid "Incomplete"
 msgstr "Tamamlanmamış"
-
-msgid "Awaiting Review"
-msgstr "İnceleme Bekliyor"
 
 msgid "Disabled by Mozilla"
 msgstr "Mozilla tarafından devre dışı bırakıldı"
@@ -2077,9 +2132,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Ek Ayrıntılar"
 
-msgid "Edit"
-msgstr "Düzenle"
-
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
@@ -3104,6 +3156,7 @@ msgstr "Yeniden hoş geldiniz"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Daha fazla bilgi"
 
@@ -3288,9 +3341,6 @@ msgstr "İnceleme notları alınırken sorun yaşadık"
 
 msgid "Load older..."
 msgstr "Daha eskileri yükle..."
-
-msgid "by"
-msgstr "geliştiren:"
 
 msgid "Leave a reply"
 msgstr "Yanıt yaz"
@@ -4829,6 +4879,40 @@ msgstr "Videoları {start_sub_heading}{addon_name} ile{end_sub_heading} indirin"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Eski teknoloji eklentiler artık Firefox'ta desteklenmemektedir."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+# 95%
+# 100%
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Tüm eklentilere göz atın"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Eklentiler"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4884,7 +4968,6 @@ msgstr "Yüklenen dosya çözümlenemedi."
 msgid "Unsupported archive type."
 msgstr "Desteklenmeyen arşiv türü."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4892,6 +4975,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "Arşivdeki geçersiz dosya adı: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Arşivde boyut sınırını aşan dosya: {0}"
 
@@ -5326,9 +5410,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} inceleme"
 msgstr[1] "{num} inceleme"
-
-msgid "Not yet rated"
-msgstr "Henüz puanlanmamış"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5 üzerinden {0} yıldız"
@@ -6516,6 +6597,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr "Seçilen kullanıcıları engelle"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API Anahtarlarını Yönet"
 
 msgid "Profile Photo"
 msgstr "Profil Resmi"

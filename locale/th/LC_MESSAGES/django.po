@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2019-08-19 10:56+0000\n"
 "Last-Translator: Can <udomc.can@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -142,6 +142,57 @@ msgstr "เส้นทางส่วนเสริมและชุดสะ
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ชื่อส่วนเสริมต้องไม่มีเครื่องหมายการค้าของ Mozilla หรือ Firefox"
+
+msgid "Awaiting Review"
+msgstr "รอการตรวจทาน"
+
+msgid "Rejected"
+msgstr "ถูกปฏิเสธ"
+
+msgid "Approved"
+msgstr "ได้รับการอนุมัติ"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "ส่วนเสริมสื่อสำหรับ {0}"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> ดาวน์โหลดต่อสัปดาห์"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "กลับไปที่บทวิจารณ์"
+
+#, fuzzy
+msgid "Add"
+msgstr "ส่วนเสริม"
+
+msgid "Edit"
+msgstr "แก้ไข"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "ยังไม่มีการจัดอันดับ"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> ชุดตกแต่ง"
+
+msgid "by"
+msgstr "โดย"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "ผู้ใช้ต่อวัน"
 
 msgid "Sort by:"
 msgstr "เรียงลำดับตาม:"
@@ -291,6 +342,10 @@ msgstr "อุ๊ปส์"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>อุ๊ปส์!  เรามีข้อผิดพลาด</h1> <p>เราจะทำการซ่อมแซมในเร็ว ๆ นี้</p><p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "สงวนลิขสิทธิ์"
 
 msgid "No results found"
 msgstr "ไม่พบผลลัพธ์"
@@ -529,9 +584,6 @@ msgstr "ไฟล์ {0} ถูกลบออกจากรุ่น {version}
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
 
-msgid "Approved"
-msgstr "ได้รับการอนุมัติ"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ได้รับการตรวจสอบเบื้องต้นแล้ว"
 
@@ -540,9 +592,6 @@ msgstr "อนุมัติเบื้องต้นแล้ว"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ถูกปฏิเสธ"
-
-msgid "Rejected"
-msgstr "ถูกปฏิเสธ"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ถูกเก็บไว้แล้ว"
@@ -807,6 +856,10 @@ msgstr "บทวิจารณ์:"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} ถูกเอาออกจาก {collection}"
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "ลบรูปภาพของผู้ใช้ {user} แล้ว"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -833,9 +886,6 @@ msgstr "ไม่รู้จัก"
 
 msgid "Incomplete"
 msgstr "ไม่สมบูรณ์"
-
-msgid "Awaiting Review"
-msgstr "รอการตรวจทาน"
 
 msgid "Disabled by Mozilla"
 msgstr "ถูกปิดการใช้งานโดย Mozilla"
@@ -2025,9 +2075,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "รายละเอียดเพิ่มเติม"
 
-msgid "Edit"
-msgstr "แก้ไข"
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "ส่วนเสริมสำหรับ {0}"
@@ -3026,6 +3073,7 @@ msgstr "ยินดีต้อนรับกลับ"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "เรียนรู้เพิ่มเติม"
 
@@ -3209,9 +3257,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "โหลดที่เก่ากว่า..."
-
-msgid "by"
-msgstr "โดย"
 
 msgid "Leave a reply"
 msgstr "เขียนการตอบกลับ"
@@ -4740,6 +4785,37 @@ msgstr "ค้นหาวิดีโอ {start_sub_heading}ด้วย {addon
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "ไม่รองรับส่วนขยายแบบเก่าใน Firefox อีกต่อไป"
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "เรียกดูส่วนขยายทั้งหมด"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "ส่วนขยาย"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4795,7 +4871,6 @@ msgstr "ไม่สามารถแยกวิเคราะห์ไฟล
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4803,6 +4878,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5223,9 +5299,6 @@ msgstr ""
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} บทวิจารณ์"
-
-msgid "Not yet rated"
-msgstr "ยังไม่มีการจัดอันดับ"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "ให้คะแนน {0} จาก 5 ดาว"
@@ -6357,6 +6430,14 @@ msgstr "ห้ามผู้ใช้ \"%(users)s\" แล้ว"
 
 msgid "Ban selected users"
 msgstr "ห้ามผู้ใช้ที่เลือก"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "ห้ามผู้ใช้ \"%(users)s\" แล้ว"
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "จัดการกุญแจ API"
 
 msgid "Profile Photo"
 msgstr "รูปโปรไฟล์"

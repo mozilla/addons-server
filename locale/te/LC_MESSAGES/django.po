@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2019-08-20 16:59+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -139,6 +139,59 @@ msgstr "పొడిగింతల మరియు సేకరణ మార్
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "పొడగింతల పేర్లలో Mozilla లేదా Firefox ట్రేడ్‌మార్కులు ఉండకూడదు."
+
+msgid "Awaiting Review"
+msgstr "సమీక్ష కోసం వేచి ఉంది"
+
+msgid "Rejected"
+msgstr "తిరస్కరించబడినది"
+
+msgid "Approved"
+msgstr "ఆమోదించబడింది"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "{0} కోసం పొడిగింత మీడియా"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> క్రియాశీల వాడుకరి"
+msgstr[1] "<strong>{0}</strong> క్రియాశీల వాడుకరులు"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "తిరిగి సమీక్షకి"
+
+#, fuzzy
+msgid "Add"
+msgstr "పొడగింతలు"
+
+msgid "Edit"
+msgstr "సవరణ"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "ఇంకా రేటు చేయలేదు"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> అలంకారం"
+
+msgid "by"
+msgstr "ద్వారా"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "రోజువారీ వాడుకరులు"
+msgstr[1] "రోజువారీ వాడుకరులు"
 
 msgid "Sort by:"
 msgstr "దీని ద్వారా క్రమబద్ధీకరించు:"
@@ -284,6 +337,10 @@ msgstr "అయ్యో"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "అన్ని హక్కులు ప్రత్యేకించబడ్డాయి"
 
 msgid "No results found"
 msgstr "ఫలితాలు కనుగొనబడలేదు"
@@ -520,9 +577,6 @@ msgstr "{addon} యొక్క {version} నుండి {0} ఫైలు �
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ఆమోదించబడింది."
 
-msgid "Approved"
-msgstr "ఆమోదించబడింది"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ఇచ్చిన ప్రాథమిక సమీక్ష."
 
@@ -531,9 +585,6 @@ msgstr "ప్రాథమిక సమీక్ష"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} తిరస్కరించబడింది."
-
-msgid "Rejected"
-msgstr "తిరస్కరించబడినది"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} నిలుపుకుంది."
@@ -783,6 +834,10 @@ msgstr "నిర్వాహక అలంకారం-సమీక్ష అభ
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} తేలికపాటి అలంకారం నుండి వలస వచ్చింది."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "వాడుకరి {user} బొమ్మ తొలగించబడింది."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -809,9 +864,6 @@ msgstr "తెలియని"
 
 msgid "Incomplete"
 msgstr "అసంపూర్తి"
-
-msgid "Awaiting Review"
-msgstr "సమీక్ష కోసం వేచి ఉంది"
 
 msgid "Disabled by Mozilla"
 msgstr "మొజిల్లాచే అచేతనించబడింది"
@@ -1982,9 +2034,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "అదనపు వివరాలు"
 
-msgid "Edit"
-msgstr "సవరణ"
-
 msgid "Additional Details for {0}"
 msgstr "{0} కొరకు అదనపు వివరాలు"
 
@@ -2953,6 +3002,7 @@ msgstr "పునఃస్వాగతం"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "ఇంకా తెలుసుకోండి"
 
@@ -3131,9 +3181,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "పాతదాన్ని లోడ్ చేయి..."
-
-msgid "by"
-msgstr "ద్వారా"
 
 msgid "Leave a reply"
 msgstr "సమాధానం ఇవ్వూ"
@@ -4650,6 +4697,36 @@ msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుక�
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "పొడగింతలన్నీ చూడండి"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "పొడిగింతలు"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4705,7 +4782,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4713,6 +4789,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5129,9 +5206,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} సమీక్ష"
 msgstr[1] "{num} సమీక్షలు"
-
-msgid "Not yet rated"
-msgstr "ఇంకా రేటు చేయలేదు"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6235,6 +6309,14 @@ msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించ�
 
 msgid "Ban selected users"
 msgstr "ఎంచుకున్న వాడుకరులను నిషేధించు"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించబడ్డారు."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API కీలను నిర్వహించండి"
 
 msgid "Profile Photo"
 msgstr "ప్రొఫైల్ ఫోటో"

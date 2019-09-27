@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2019-05-31 01:30+0000\n"
 "Last-Translator: Taegeon Lee <ash153311@gmail.com>\n"
 "Language-Team: none\n"
@@ -149,6 +149,57 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr "검토 대기중"
+
+msgid "Rejected"
+msgstr "거부됨"
+
+msgid "Approved"
+msgstr "승인됨"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "{0}의 부가 기능 미디어"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "현재 사용자 <strong>{0}</strong>명"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "검토로 돌아가기"
+
+#, fuzzy
+msgid "Add"
+msgstr "부가 기능"
+
+msgid "Edit"
+msgstr "편집"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "아직 별점 없음"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> 테마"
+
+msgid "by"
+msgstr "제작: "
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "일일 사용자"
 
 msgid "Sort by:"
 msgstr "정렬 방식:"
@@ -299,6 +350,10 @@ msgstr "앗 이런"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>저런!  오류가 발생했습니다.</h1> <p>빠른 시일 내에 고치도록 하겠습니다.</p> <p>현재 페이지를 새로고침해 보거나 <a href=\"%(home)s\">부가 기능 홈페이지</a>로 돌아가시기 바랍니다.</p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "All Rights Reserved"
 
 msgid "No results found"
 msgstr "결과 없음"
@@ -542,9 +597,6 @@ msgstr "{addon}의 {version} 버전에서 {0} 파일이 삭제되었습니다."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version}이(가) 승인되었습니다."
 
-msgid "Approved"
-msgstr "승인됨"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version}에 예비 검토 등급이 주어졌습니다."
 
@@ -553,9 +605,6 @@ msgstr "예비 검토 등급 승인"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version}이 거부 되었습니다."
-
-msgid "Rejected"
-msgstr "거부됨"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version}의 등급이 종전 그대로 유지되었습니다."
@@ -807,6 +856,10 @@ msgstr "관리자 테마 검토 요청됨"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} 부가 기능이 가벼운 테마에서 마이그레이션 되었습니다."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "{user} 사용자의 사진이 삭제되었습니다."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -833,9 +886,6 @@ msgstr "알 수 없음"
 
 msgid "Incomplete"
 msgstr "미완료"
-
-msgid "Awaiting Review"
-msgstr "검토 대기중"
 
 msgid "Disabled by Mozilla"
 msgstr "Mozilla에 의해 사용 정지당함"
@@ -2031,9 +2081,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "부가 기능 세부 설명"
 
-msgid "Edit"
-msgstr "편집"
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "{0} 부가 기능 세부 설명"
@@ -3047,6 +3094,7 @@ msgstr "환영합니다"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "더 알아보기"
 
@@ -3241,9 +3289,6 @@ msgstr ""
 #, fuzzy
 msgid "Load older..."
 msgstr "불러오는 중..."
-
-msgid "by"
-msgstr "제작: "
 
 #, fuzzy
 msgid "Leave a reply"
@@ -4753,6 +4798,37 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "모든 확장 기능 탐색하기"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "확장 기능"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4808,7 +4884,6 @@ msgstr "업로드한 파일을 인식할 수 없습니다."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4816,6 +4891,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "압축 파일내 잘못된 파일 이름: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "압축 파일내 파일 용량 제한 초과: {0}"
 
@@ -5257,9 +5333,6 @@ msgstr ""
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "검토 {num}개"
-
-msgid "Not yet rated"
-msgstr "아직 별점 없음"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5점중 {0}점 받음"
@@ -6432,6 +6505,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API 키 관리"
 
 msgid "Profile Photo"
 msgstr "프로필 사진"

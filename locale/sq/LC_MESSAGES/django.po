@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-27 09:57+0000\n"
 "PO-Revision-Date: 2019-09-08 08:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -143,6 +143,59 @@ msgstr "Shtigjet për shtesa dhe koleksione lypset të përfundojnë me \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Emrat e shtesave s’mund të përmbajnë shenjat tregtare Mozilla ose Firefox."
+
+msgid "Awaiting Review"
+msgstr "Në Pritje të Shqyrtimit"
+
+msgid "Rejected"
+msgstr "E hedhur poshtë"
+
+msgid "Approved"
+msgstr "E miratuar"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "Media Shtese për {0}"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> përdorues aktiv"
+msgstr[1] "<strong>{0}</strong> përdorues aktivë"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Mbrapsht te shqyrtimi"
+
+#, fuzzy
+msgid "Add"
+msgstr "Shtesa"
+
+msgid "Edit"
+msgstr "Përpunoni"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Ende e pavlerësuar"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> temë"
+
+msgid "by"
+msgstr "nga"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Përdorues të Përditshëm"
+msgstr[1] "Përdorues të Përditshëm"
 
 msgid "Sort by:"
 msgstr "Renditur sipas:"
@@ -299,6 +352,10 @@ msgstr "Oh"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Oh! Patëm një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose të ktheheni te <a href=\"%(home)s\">kreu i shtesave</a>. </p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Tërë të Drejtat të Rezervuara"
 
 msgid "No results found"
 msgstr "S’u gjetën përfundime"
@@ -545,9 +602,6 @@ msgstr "Kartela {0} u fshi nga {version} i {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} u miratua."
 
-msgid "Approved"
-msgstr "E miratuar"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} pati shqyrtim paraprak."
 
@@ -556,9 +610,6 @@ msgstr "E miratuar paraprakisht"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} u hodh tej."
-
-msgid "Rejected"
-msgstr "E hedhur poshtë"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} u mbajt."
@@ -810,6 +861,10 @@ msgstr "Është kërkuar shqyrtim teme nga përgjegjësi"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} u migrua nga një temë e peshës së lehtë."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Fotoja e përdoruesit {user} u fshi."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -836,9 +891,6 @@ msgstr "E panjohur"
 
 msgid "Incomplete"
 msgstr "Jo i plotë"
-
-msgid "Awaiting Review"
-msgstr "Në Pritje të Shqyrtimit"
 
 msgid "Disabled by Mozilla"
 msgstr "Çaktivizuar nga Mozilla"
@@ -2031,9 +2083,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Hollësi Shtesë"
 
-msgid "Edit"
-msgstr "Përpunoni"
-
 msgid "Additional Details for {0}"
 msgstr "Hollësi Shtesë për {0}"
 
@@ -3041,6 +3090,7 @@ msgstr "Mirë Se u Kthyet"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Dëshironi që zgjerimi juaj të shfaqet te %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Rregullat tona për zgjerime të zgjedhura do t’ju tregojnë se ç’duhet të dini."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Mësoni Më Tepër"
 
@@ -3229,9 +3279,6 @@ msgstr "Patëm një problem me marrjen e shënimeve të shqyrtimit"
 
 msgid "Load older..."
 msgstr "Ngarko më të hershme…"
-
-msgid "by"
-msgstr "nga"
 
 msgid "Leave a reply"
 msgstr "Lini një përgjigje"
@@ -4749,6 +4796,38 @@ msgstr "Ndihmë për video në Android {start_sub_heading}me {addon_name}{end_su
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Firefox për Android. Ky zgjerim sjell zgjidhje."
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Zgjerimet e dikurshme nuk mbulohen më në Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Shfletoni tërë zgjerimet"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Zgjerime"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Parësi i kartelave është i bllokuar, përftimi i %s mund të jetë në kryerje e sipër. Ju lutemi, riprovoni pas afërsisht 5 minutash."
@@ -4804,7 +4883,6 @@ msgstr "S’u përtyp dot kartela e ngarkuar."
 msgid "Unsupported archive type."
 msgstr "Lloj arkivi i pambuluar."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Emër kartele i pavlefshëm në arkiv. Ju lutemi, bëni të mundur që krejt emrat e kartelave të jenë nën kodim utf-8 ose latin1."
 
@@ -4812,6 +4890,7 @@ msgstr "Emër kartele i pavlefshëm në arkiv. Ju lutemi, bëni të mundur që k
 msgid "Invalid file name in archive: {0}"
 msgstr "Emër i pavlefshëm kartele te arkivi: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Kartelë që tejkalon kufirin e madhësisë te arkivi: {0}"
 
@@ -5246,9 +5325,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} shqyrtim"
 msgstr[1] "{num} shqyrtime"
-
-msgid "Not yet rated"
-msgstr "Ende e pavlerësuar"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
@@ -6365,6 +6441,14 @@ msgstr "Përdoruesit \"%(users)s\" janë dëbuar."
 
 msgid "Ban selected users"
 msgstr "Dëboni përdorues të përzgjedhur"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Përdoruesit \"%(users)s\" janë dëbuar."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Administroni Kyçe API"
 
 msgid "Profile Photo"
 msgstr "Foto Profili"
