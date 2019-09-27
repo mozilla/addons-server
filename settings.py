@@ -19,7 +19,18 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
-MIDDLEWARE = ('debug_toolbar.middleware.DebugToolbarMiddleware',) + MIDDLEWARE
+# If the DebugToolbar be before the GZip in MIDDLEWARE, appeared the WARNINGS.
+def insert_debug_toolbar_middleware(middlewares):
+    ret_middleware = list(middlewares)
+
+    for i, middleware in enumerate(ret_middleware):
+        if 'GZipMiddleware' in middleware:
+            ret_middleware.insert(i+1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+            break
+
+    return tuple(ret_middleware)
+
+MIDDLEWARE = insert_debug_toolbar_middleware(MIDDLEWARE)
 
 DEBUG_TOOLBAR_CONFIG = {
     # Enable django-debug-toolbar locally, if DEBUG is True.
