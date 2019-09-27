@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-27 11:30+0000\n"
+"PO-Revision-Date: 2019-09-27 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2002,7 +2002,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "Wegerje"
 
 msgid "Manage Authors & License"
 msgstr "Skriuwers en lisinsje beheare"
@@ -2014,7 +2014,7 @@ msgid "About author roles"
 msgstr "Oer ûntwikkelersfunksjes"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Auteurs wachtsje op befêstiging"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
@@ -2264,7 +2264,7 @@ msgstr "Brûkt op de add-on-detailsiden."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128 px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr "Wurdt standert brûkt op takomstige add-on-detailsiden."
@@ -2273,7 +2273,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Oanpaste piktogram oplade…"
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG en JPG wurde stipe."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
@@ -2489,7 +2489,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr "Is der earne wat ús beoardielers yn tinzen hâlde moatte by de beoardieling fan dizze add-on?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Unthâlde"
 
 #, python-format
 msgid ""
@@ -2691,7 +2691,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Oanrekommandearre hichte: 200 pixels"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "Maksimaal 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG of GIF (net animearre)"
@@ -3032,7 +3032,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Goede foarbylden besjen"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Fermeld op dizze website nei suksesfolle koadebeoardieling. Automatyske fernijingen wurde troch dizze website fersoarge."
@@ -3988,7 +3988,7 @@ msgstr "Download ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Download ôfbyldingen dy't jo op ynternet fine."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4766,16 +4766,16 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Koe oplade bestân net útpakke; ûntbrekkend of leech <%s>-elemint"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: XML-befeiligingsflater."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: XML-parseflater."
 
 msgid "Could not parse uploaded file."
 msgstr "Kin opladen bestân net útpakke."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Net-stipe argyftype."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -4789,7 +4789,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Te grut bestân yn argyf: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Net-komprimearre omfang is te grut"
 
 msgid "Invalid archive."
 msgstr "Unjildich argyf."
@@ -4811,7 +4811,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens befetsje: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "De maksimale grutte foar WebExtension-tema’s is {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Jo kinne dit type add-on net yntsjinje"
@@ -4948,12 +4948,12 @@ msgstr "Spam by Akismet yntsjinje"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s ham-meldingen yntsjinne as Spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s spam-meldingen yntsjinne as Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Oer Mozilla Add-ons"
@@ -5204,7 +5204,7 @@ msgstr "Jo kinne net mear beoardielingen foar deselde ferzje fan in add-on skriu
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Unjildich label [%s] – moat der ien fan [%s] wêze"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Dizze wurdearring kin net markearre wurde, omdat hy gjin beoardielingstekst befettet."
@@ -5331,7 +5331,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Risiko-útwurking net beskikber."
 
 msgid "Is locked by a reviewer"
 msgstr "Is beskoattele troch in beoardieler"
@@ -5340,13 +5340,13 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Hat markearring ‘automatysk goedkarre útskeakele’"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Is oan te rekommandearjen"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Fertrage omdat it de earste ferzje yn de list is"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Jo kinne gjin kommentaar yntsjinje as ‘canned_response’ definiearre is."
 
 msgid "Type"
 msgstr "Type"
@@ -5442,7 +5442,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Add-ons yn it foar beoardiele"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Oanrekommandearre ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Oere wachtsjend op beoardieling ({0})"
@@ -5546,7 +5546,7 @@ msgid "Add-on ID"
 msgstr "Add-on-ID"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Ynterne AMO-ID"
 
 msgid "Works with"
 msgstr "Wurket mei"
@@ -5873,7 +5873,7 @@ msgid "No reviews found for this period."
 msgstr "Gjin beoardielingen yn dizze perioade fûn."
 
 msgid "Method:"
-msgstr ""
+msgstr "Metoade:"
 
 msgid "Source:"
 msgstr "Boarne:"
@@ -5962,20 +5962,20 @@ msgstr "Unjildige parameter ‘%s’."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Unjildige kombinaasje fan parameters ‘%s’ en ‘%s’."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Return To AMO is op dit stuit útskeakele"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Unjildige GUID foar Return To AMO (net yn base64url-yndieling?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Unjildige GUID foar Return To AMO (gjin kurearre add-on)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Unjildige kombinaasje fan parameters ‘%s’, ‘%s’ en ‘%s’."
 
 msgid "Maximum query length exceeded."
 msgstr "Maksimale lingte fan sykopdracht oerskreaun."
@@ -6351,10 +6351,10 @@ msgid "Activity Logs"
 msgstr "Aktiviteitenlochboek"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Fier in jildich IPv4- of IPv6-adres yn, byg. 127.0.0.1. Wurdt konvertearre nei in /32-netwurk."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Jo kinne der mar ien ynfiere, in IP-adres of in netwerk."
 
 msgid "No user with that email."
 msgstr "Der is gjin brûker mei dat e-mailadres."
@@ -6369,13 +6369,13 @@ msgid "My Favorite Add-ons"
 msgstr "Myn favorite add-ons"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Fier in jildige IPv6- of IPv6 CIDR-netwurkrange yn, byg. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Fan jo lokaasje ôf binne mear add-ons dy't stridich binne mei ús belied yntsjinne. It IP-adres is blokkearre."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "E-mailpatroan"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
