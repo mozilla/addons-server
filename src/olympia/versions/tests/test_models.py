@@ -929,14 +929,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
-    def test_does_not_raise_when_scanners_result_does_not_exist(self):
-        self.create_switch('enable-customs', active=True)
-        Version.from_upload(self.upload,
-                            self.addon,
-                            [self.selected_app],
-                            amo.RELEASE_CHANNEL_LISTED,
-                            parsed_data=self.dummy_parsed_data)
-
     def test_does_nothing_when_no_scanner_is_enabled(self):
         self.create_switch('enable-customs', active=False)
         self.create_switch('enable-wat', active=False)

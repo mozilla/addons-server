@@ -305,13 +305,8 @@ class Version(OnChangeMixin, ModelBase):
                     waffle.switch_is_active('enable-customs') or
                     waffle.switch_is_active('enable-wat')
             ):
-                try:
-                    ScannersResult.objects.filter(upload_id=upload.id).update(
-                        version=version
-                    )
-                except ScannersResult.DoesNotExist:
-                    log.exception('Could not find ScannersResults for '
-                                  'FileUpload %s', upload.id)
+                ScannersResult.objects.filter(upload_id=upload.id).update(
+                    version=version)
 
         # Extract this version into git repository
         transaction.on_commit(
