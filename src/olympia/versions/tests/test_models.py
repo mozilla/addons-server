@@ -909,6 +909,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                                       amo.RELEASE_CHANNEL_LISTED,
                                       parsed_data=self.dummy_parsed_data)
 
+        assert version.is_webextension
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
@@ -924,7 +925,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                                       amo.RELEASE_CHANNEL_LISTED,
                                       parsed_data=self.dummy_parsed_data)
 
-        assert version.is_webextension == True
+        assert version.is_webextension
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
@@ -978,6 +979,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                                       amo.RELEASE_CHANNEL_LISTED,
                                       parsed_data=self.dummy_parsed_data)
 
+        assert version.is_webextension
         yara_result.refresh_from_db()
         assert yara_result.version == version
 
