@@ -362,8 +362,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self._set_tested_url(self.addon.pk)
 
-    def _test_url(self):
-        response = self.client.get(self.url)
+    def _test_url(self, **kwargs):
+        response = self.client.get(self.url, data=kwargs)
         assert response.status_code == 200
         result = json.loads(force_text(response.content))
         assert result['id'] == self.addon.pk
@@ -376,6 +376,26 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def _set_tested_url(self, param):
         self.url = reverse_ns(
             'addon-detail', api_version='v5', kwargs={'pk': param})
+
+    def test_queries(self):
+        with self.assertNumQueries(16):
+            # 16 queries
+            # - 2 savepoints because of tests
+            # - 1 for the add-on
+            # - 1 for its translations
+            # - 1 for its categories
+            # - 1 for its current_version
+            # - 1 for translations of that version
+            # - 1 for applications versions of that version
+            # - 1 for files of that version
+            # - 1 for authors
+            # - 1 for previews
+            # - 1 for license
+            # - 1 for translations of the license
+            # - 1 for discovery item (is_recommended)
+            # - 1 for featured collection presence (is_featured)
+            # - 1 for tags
+            self._test_url(lang='en-US')
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
@@ -704,6 +724,21 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def _set_tested_url(self, param):
         self.url = reverse_ns('addon-version-list', kwargs={'addon_pk': param})
+
+    def test_queries(self):
+        with self.assertNumQueries(13):
+            # 13 queries:
+            # - 2 savepoints because of tests
+            # - 2 user and its groups
+            # - 2 addon and its translations
+            # - 1 count for pagination
+            # - 1 versions themselves
+            # - 1 translations (release notes)
+            # - 1 applications versions
+            # - 1 files
+            # - 1 licenses
+            # - 1 licenses translations
+            self._test_url(lang='en-US')
 
     def test_bad_filter(self):
         response = self.client.get(self.url, data={'filter': 'ahahaha'})

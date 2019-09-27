@@ -30,7 +30,8 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
                 self.request.GET.get('addon'))
         self.addon_viewset = AddonViewSet(
             request=self.request, permission_classes=[],
-            kwargs={'pk': self.kwargs['addon_pk']})
+            kwargs={'pk': self.kwargs['addon_pk']},
+            action='retrieve_from_related')
         return self.addon_viewset
 
     def get_addon_object(self):
