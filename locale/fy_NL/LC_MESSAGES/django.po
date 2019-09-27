@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-19 11:02+0000\n"
+"PO-Revision-Date: 2019-09-27 07:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -242,11 +242,15 @@ msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"As jo jo browser sa konfigurearre hawwe dat ‘Referer’-headers útskeakele binne, skeakelje dizze dan wer yn, op syn minst foar dizze website, of foar HTTPS-ferbiningen, of foar ‘same-"
+"origin’-oanfragen."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Jo sjogge dit berjocht omdat dizze website in CSRF-cookie fereasket by it ferstjoeren fan formulieren. Dizze cookie is om befeiligingsredenen fereaske om wis te wêzen dat jo browser net troch "
+"tredden hackt wurdt."
 
 msgid "Page Not Found"
 msgstr "Side net fûn"
@@ -914,24 +918,25 @@ msgstr "Warskôgingen en fernijingen"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Download Firefox-útwreidingen dy't jo helpe by-de-tiid te bliuwen, taken te folgjen en jo effisjinsje te ferbetterjen. Sykje útwreidingen dy't ljepblêden opnij lade, produktiviteit beheare, en mear."
 
 msgid "Appearance"
 msgstr "Foarmjouwing"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Download útwreidingen dy't de werjefte fan websites en de browser Firefox oanpasse. Dizze kategory omfettet útwreidingen foar donkere tema’s, ljepblêdbehear, en mear."
 
 msgid "Bookmarks"
 msgstr "Blêdwizers"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Download útwreidingen dy't blêdwizers ferbetterje troch se mei in wachtwurd te befeiligjen, nei dûbele of defekte blêdwizers te sykjen, en mear."
 
 msgid "Download Management"
 msgstr "Downloadbehear"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen dy't helpe kinne mei downloaden fan web-, muzyk- en fideo-ynhâld. Jo kinne ek útwreidingen fine om downloads te behearen, bestannen te dielen, en mear."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds, nijs en blogging"
