@@ -651,6 +651,10 @@ class TestVersionFromUpload(UploadTest, TestCase):
 class TestExtensionVersionFromUpload(TestVersionFromUpload):
     filename = 'extension.xpi'
 
+    def setUp(self):
+        super(TestExtensionVersionFromUpload, self).setUp()
+        self.dummy_parsed_data['is_webextension'] = True
+
     def test_carry_over_old_license(self):
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
@@ -920,6 +924,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                                       amo.RELEASE_CHANNEL_LISTED,
                                       parsed_data=self.dummy_parsed_data)
 
+        assert version.is_webextension == True
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
@@ -938,11 +943,27 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             upload=self.upload, scanner=CUSTOMS)
         assert scanners_result.version is None
 
-        version = Version.from_upload(self.upload,
-                                      self.addon,
-                                      [self.selected_app],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=self.dummy_parsed_data)
+        Version.from_upload(self.upload,
+                            self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
+
+        scanners_result.refresh_from_db()
+        assert scanners_result.version is None
+
+    def test_does_not_update_scanners_results_when_not_a_webextension(self):
+        self.create_switch('enable-customs', active=True)
+        scanners_result = ScannersResult.objects.create(
+            upload=self.upload, scanner=CUSTOMS)
+        assert scanners_result.version is None
+
+        self.dummy_parsed_data['is_webextension'] = False
+        Version.from_upload(self.upload,
+                            self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
 
         scanners_result.refresh_from_db()
         assert scanners_result.version is None
@@ -972,10 +993,24 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         yara_result = YaraResult.objects.create(upload=self.upload)
         assert yara_result.version is None
 
-        version = Version.from_upload(self.upload, self.addon,
-                                      [self.selected_app],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=self.dummy_parsed_data)
+        Version.from_upload(self.upload, self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
+
+        yara_result.refresh_from_db()
+        assert yara_result.version is None
+
+    def test_does_not_update_yara_result_when_not_a_webextension(self):
+        self.create_switch('enable-yara', active=True)
+        yara_result = YaraResult.objects.create(upload=self.upload)
+        assert yara_result.version is None
+
+        self.dummy_parsed_data['is_webextension'] = False
+        Version.from_upload(self.upload, self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
 
         yara_result.refresh_from_db()
         assert yara_result.version is None

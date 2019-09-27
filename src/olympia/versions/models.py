@@ -291,26 +291,27 @@ class Version(OnChangeMixin, ModelBase):
 
         version_uploaded.send(instance=version, sender=Version)
 
-        if waffle.switch_is_active('enable-yara'):
-            try:
-                yara_result = YaraResult.objects.get(upload_id=upload.id)
-                yara_result.version = version
-                yara_result.save()
-            except YaraResult.DoesNotExist:
-                log.exception('Could not find a YaraResult for FileUpload %s',
-                            upload.id)
+        if version.is_webextension:
+            if waffle.switch_is_active('enable-yara'):
+                try:
+                    yara_result = YaraResult.objects.get(upload_id=upload.id)
+                    yara_result.version = version
+                    yara_result.save()
+                except YaraResult.DoesNotExist:
+                    log.exception('Could not find a YaraResult for FileUpload '
+                                  '%s', upload.id)
 
-        if (
-                waffle.switch_is_active('enable-customs') or
-                waffle.switch_is_active('enable-wat')
-        ):
-            try:
-                ScannersResult.objects.filter(upload_id=upload.id).update(
-                    version=version
-                )
-            except ScannersResult.DoesNotExist:
-                log.exception('Could not find ScannersResults for FileUpload '
-                              '%s', upload.id)
+            if (
+                    waffle.switch_is_active('enable-customs') or
+                    waffle.switch_is_active('enable-wat')
+            ):
+                try:
+                    ScannersResult.objects.filter(upload_id=upload.id).update(
+                        version=version
+                    )
+                except ScannersResult.DoesNotExist:
+                    log.exception('Could not find ScannersResults for '
+                                  'FileUpload %s', upload.id)
 
         # Extract this version into git repository
         transaction.on_commit(
