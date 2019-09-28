@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-27 21:25+0000\n"
+"PO-Revision-Date: 2019-09-28 14:22+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -47,15 +47,14 @@ msgstr "Izvadak poruke"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "%d odabrana izvještaja označeni kao ispravni."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d odabrana izvještaja označeni kao sumnjivi."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Zagubljeno izvješće greške ili zahtjev za podršku"
+msgstr "Označi odabrane izvještaje o zloupotrebi kao sumnjive"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
