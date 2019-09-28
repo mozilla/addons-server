@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 16:08+0000\n"
+"PO-Revision-Date: 2019-09-28 16:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -264,16 +264,14 @@ msgstr ""
 msgid "Suggested Pages"
 msgstr "Predložene stranice"
 
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Pretraži sve dodatke"
+msgstr "Pregledaj sve dodatke"
 
 msgid "Browse all themes"
 msgstr "Pretraži sve dodatke"
 
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Blog dodataka"
+msgstr "Naslovnica dodataka"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -411,7 +409,7 @@ msgid "Error decoding signature."
 msgstr "Greška u dešifriranju potpisa."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Pogrešna vrsta jednog ili više ključeva u sadržaju"
 
 msgid "Invalid JWT Token."
 msgstr "Neispravni JWT token."
@@ -435,9 +433,8 @@ msgstr "Moraš navesti objekt za {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Traženo više informacija"
+msgstr "Potvrda za razvijateljske API ključeve"
 
 msgid "Application Versions"
 msgstr "Verzije aplikacije"
@@ -589,9 +586,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "Komentar"
+msgstr "Komentirano"
 
 msgid "{tag} added to {addon}."
 msgstr "Dodatku {addon} je dodana oznaka {tag}."
@@ -1741,7 +1737,7 @@ msgstr "Slika mora biti barem {0} piksela široka i {1} piksela visoka."
 # 87%
 # 100%
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Dimenzije slike moraju biti u omjeru 4:3."
+msgstr "Dimenzije slike moraju biti u omjeru 4 : 3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikona mora biti barem {0} piksela široka i visoka."
@@ -2165,7 +2161,7 @@ msgid "This add-on is ready for general use."
 msgstr "Ovaj je dodatak spreman za opću upotrebu."
 
 msgid "Requires Payment?"
-msgstr ""
+msgstr "Zahtijeva plaćanje?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -2280,21 +2276,21 @@ msgstr "Odaberite ikonu za Vaš dodatak:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32 × 32 px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr "Koristi se u popisu dodataka, kao rezultati pretraživanja i posebni dodaci."
 
 #. The size of the icon
 msgid "64x64px"
-msgstr "64x64px"
+msgstr "64 × 64 px"
 
 msgid "Used in add-on detail pages."
 msgstr "Koristi se u stranicama s detaljima dodatka."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128 × 128 px"
 
 #, fuzzy
 msgid "Will be the standard in future add-on detail pages."
@@ -2304,32 +2300,31 @@ msgid "Upload a Custom Icon..."
 msgstr "Dodaj vlastitu ikonu..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Podržani su PNG i JPG formati."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikone moraju biti kvadratične i minimalne veličine od 128 × 128 piksela."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG i JPG podržani. Promjena veličine ikone na 64x64 piksela ako su veće."
+msgstr "Ako su veće, ikone će biti smanjene na 128 × 128 piksela."
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Snimke ekrana"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Priloži barem jednu snimku ekrana tvog dodatka:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Priloži opis za ovu snimku ekrana:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Dodaj snimku ekrana …"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Podržani su formati PNG i JPG, preporučuje se PNG. Maksimalna i preporučena veličina za snimke ekrana je 2400 × 1800 piksela."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Minimalna veličina je 1000 × 750 i potreban je omjer 4 : 3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
@@ -2363,31 +2358,31 @@ msgid "More information on Creative Commons licenses"
 msgstr "Traženo više informacija"
 
 msgid "General Tests"
-msgstr ""
+msgstr "Opći testovi"
 
 msgid "Security Tests"
 msgstr "Testovi sigurnosti"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Testovi za proširenja"
 
 msgid "Localization Tests"
 msgstr "Lokalizacijski testovi"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Testovi za kompatibilnost"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Sakrij poruke koje nisu potrebne za automatsko potpisivanje"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Sakrij poruke prisutne u prethodnoj verziji i zanemarene"
 
 msgid "Top"
 msgstr "Vrh"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Ukloni dodatak"
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2401,7 +2396,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "Radnje"
 
 msgid "Resume the submission process for this add-on"
 msgstr ""
@@ -2410,39 +2405,39 @@ msgid "Resume"
 msgstr "Nastavi"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Ukloni ovaj dodatak."
 
 msgid "Delete"
-msgstr ""
+msgstr "Ukloni"
 
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "Uredi detalje na stranici proizvoda ovog dodatka"
 
 #, fuzzy
 msgid "Upload a new version of this add-on"
 msgstr "Vidi sve revizije ovog dodatka"
 
 msgid "New Version"
-msgstr ""
+msgstr "Nova verzija"
 
 #, fuzzy
 msgid "Daily statistics on downloads and users"
 msgstr "Dnevna statistika o preuzimanjima i korisnicima."
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistike"
 
 msgid "Manage Status & Versions"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Pogledaj nedavne promjene"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Ovaj dodatak nema verzija."
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2497,7 +2492,7 @@ msgid "Description:"
 msgstr "Opis"
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Ovo je eksperimentalni dodatak"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -2531,7 +2526,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "Zapamti"
 
 #, python-format
 msgid ""
@@ -2745,48 +2740,43 @@ msgid "Theme name"
 msgstr "Tema"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Odaberi sliku zaglavlja za tvoju temu"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "Preporučena visina: 200 piksela"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6,9 MB maks"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG ili GIF (ne animirani)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Poravnato gore-desno"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Odaberi jednu drugu sliku zaglavlja"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Odaberite ikonu za Vaš dodatak:"
+msgstr "Odaberi boje za tvoju temu"
 
-#, fuzzy
 msgid "optional"
-msgstr "(opcionalno)"
+msgstr "opcionalno"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Pređite preko izgleda"
+msgstr "Pregled preglednika"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Dodaj novu datoteku"
+msgstr "Slanje teme"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Teme"
+msgstr "Završi temu"
 
 msgid "Back"
-msgstr ""
+msgstr "Natrag"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "API vjerodajnice"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2818,10 +2808,10 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "Opozovi"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Opozovi i obnovi vjerodajnice"
 
 msgid "Confirm and generate new credentials"
 msgstr ""
@@ -2833,7 +2823,7 @@ msgid "Invisible"
 msgstr "Nevidljiv"
 
 msgid "Approved and recommended"
-msgstr ""
+msgstr "Odobreno i preporučeno"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -2852,7 +2842,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "Stvoreno:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
@@ -2887,22 +2877,22 @@ msgstr ""
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s od %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Najnovija verzija:"
 
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Pošalji novu verziju"
 
 msgid "View All"
-msgstr ""
+msgstr "Pogledaj sve"
 
 #, fuzzy
 msgid "Listed Review Page"
@@ -2920,10 +2910,10 @@ msgid "View Statistics Dashboard"
 msgstr "Pregled Nadzorne ploče statistike"
 
 msgid "Developer News"
-msgstr ""
+msgstr "Vijesti za razvijatelje"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Pogledaj blog &#9658;"
 
 #, fuzzy
 msgid "Pending information request:"
@@ -2987,7 +2977,7 @@ msgid "Read more in our Blog"
 msgstr "treba više informacija"
 
 msgid "Resources"
-msgstr ""
+msgstr "Resursi"
 
 # 100%
 #, fuzzy
@@ -3013,7 +3003,7 @@ msgid "Support"
 msgstr "Podrška"
 
 msgid "Report Bug"
-msgstr ""
+msgstr "Prijavi grešku"
 
 msgid "Site Status"
 msgstr ""
@@ -3146,7 +3136,7 @@ msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a
 msgstr "<a href=\"%(reg)s\">Registrirajte se</a> ili <a href=\"%(login)s\">Prijavite se</a>"
 
 msgid "Customize Firefox"
-msgstr ""
+msgstr "Prilagodi Firefox"
 
 #, python-format
 msgid ""
@@ -3175,9 +3165,8 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 # 80%
-#, fuzzy
 msgid "Sign In"
-msgstr "Moji Add-ons"
+msgstr "Prijava"
 
 msgid "Web-Ext"
 msgstr ""
@@ -3210,7 +3199,7 @@ msgid "Manage {0}"
 msgstr "Upravljaj {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Datoteke"
 
 msgid "Version Notes"
 msgstr "Biljesške verzije"
@@ -5229,9 +5218,8 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 
-#, fuzzy
 msgid "User"
-msgstr "Korisničko ime"
+msgstr "Korisnik"
 
 msgid "IP Address"
 msgstr ""
