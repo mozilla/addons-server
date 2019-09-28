@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-24 14:33+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"PO-Revision-Date: 2019-09-28 16:31+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -3711,6 +3711,8 @@ msgstr "Изолируйте свои дела в Интернете {start_sub_
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
+"Разделите свою жизнь в Интернете. Если вы используете в сети различные аккаунты — для работы, личных дел и так далее — незаметно пометьте их цветными вкладками, чтобы спутать цифровые следы, "
+"оставляемые вами через куки."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3725,36 +3727,32 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Читайте файлы ePub {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Пользуйтесь всеми возможностями файлов ePub прямо в Firefox — увеличивайте шрифт, размеры страницы и т. д."
+msgstr "Читайте ePub-файлы прямо в Firefox — увеличивайте шрифт, размеры страницы и многое другое."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Сделайте YouTube удобнее {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Выберите по умолчанию для просмотра видео самое высокое качество, отключение аннотаций и т. д."
+msgstr "Проигрывайте видео на YouTube в самом высоком качестве по умолчанию, отключайте аннотации и многое другое."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Следите за трекерами {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Одним щелчком мыши узнайте, кто следит за вами."
+msgstr "Следите за трекерами. Одним щелчком мыши узнавайте, кто следит за вами."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Смените прокси-сервер {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Путешествуйте по сети через прокси с самостоятельно заданными настройками."
+msgstr "Измените свой прокси-сервер и путешествуйте по сети через прокси с самостоятельно заданными настройками."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3769,9 +3767,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Безопасно гуляйте в Интернете {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Укрепите безопасность, добавив шифрование на любой сайт, поддерживающий HTTPS."
+msgstr "Укрепите безопасность, зашифровав соединение с любым сайтом, поддерживающим HTTPS. Безопасный веб-сёрфинг."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3814,14 +3811,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Посещайте страницы анонимно {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Маскируйтесь, путешествуя по Интернету, и даже выдавайте себя за жителя другой страны."
+msgstr "Сёрфите анонимно. Маскируйтесь, путешествуя по Интернету, и даже выдавайте себя за жителя другой страны."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Посещайте любимые сайты, недавно закрытые вкладки и т. д., нажимая плитки в удобной схеме."
+msgstr "Наслаждайтесь визуальными закладками. Посещайте любимые сайты, недавно закрытые вкладки и другое, нажимая по плиткам."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3844,9 +3839,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Грамотное управление загрузками {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Проверяйте, как идет загрузка, в строке состояния, загружайте страницу истории и т. д."
+msgstr "Надёжное управление загрузками. Проверяйте, как идёт загрузка, в строке состояния, загружайте историю страниц и многое другое."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3861,9 +3855,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Поиск с защитой от трекеров {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Получайте результаты поиска в Google и Yandex в тайне от трекеров."
+msgstr "Получайте результаты поиска в Google и Яндексе в тайне от рекламных трекеров."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3878,9 +3871,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Добавляйте изображения в результаты поиска {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Отображение эскизов рядом с результатами поиска."
+msgstr "Наслаждайтесь эскизами веб-сайтов в результатах поиска."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3903,18 +3895,16 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Переделайте свои любимые веб-сайты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Измените вид любого веб-сайта — поменяйте цвета, фон страниц и т. д."
+msgstr "Измените вид любого веб-сайта. Поменяйте цвета, фон страниц и многое другое."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Настройте вид новой вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Задайте для страницы новой вкладки желаемое количество плиток, фоновое изображение и другие свойства."
+msgstr "Настройте свою страницу новой вкладки, задав желаемое число плиток, фоновое изображение и другие свойства."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
