@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 14:22+0000\n"
+"PO-Revision-Date: 2019-09-28 14:48+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -57,42 +57,41 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Označi odabrane izvještaje o zloupotrebi kao sumnjive"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Provjeri da ovo polje ne sadrži više od {max_length} znakova."
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Promijenjeno:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Po %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Sve"
 
 msgid "No links are allowed."
 msgstr "Poveznice nisu dopuštene."
 
 msgid "This display name cannot be used."
-msgstr "Ovo ime za prikaz ne može se koristiti."
+msgstr "Ime prikaza nije moguće koristiti."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "Ovo ime za prikaz ne može se koristiti."
+msgstr "Ime recenzenta nije moguće koristiti."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Polje za naslovnicu se može koristiti samo za povezivanje na vanjske web stranice."
 
 # 87%
 # 100%
 msgid "Images must be either PNG or JPG."
-msgstr "Slike moraju biti ili PNG ili JPG."
+msgstr "Slike moraju biti u formatu PNG ili JPG."
 
 msgid "Images cannot be animated."
 msgstr "Slike ne smiju biti animirane."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Molimo koristite slike manje od %dMB."
+msgstr "Koristi slike koje su manje od %dMB."
 
 msgid "You are already logged in."
 msgstr "Već ste prijavljeni."
@@ -114,7 +113,7 @@ msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Obavijest [%s] ne postoji"
 
 # 85%
 msgid "Review"
@@ -136,7 +135,7 @@ msgid "Ratings"
 msgstr "Ocjene"
 
 msgid "Status"
-msgstr "Status"
+msgstr "Stanje"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Dodatak nije na AMO -"
