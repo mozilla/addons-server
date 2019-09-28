@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 14:48+0000\n"
+"PO-Revision-Date: 2019-09-28 15:10+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -117,7 +117,7 @@ msgstr "Obavijest [%s] ne postoji"
 
 # 85%
 msgid "Review"
-msgstr "Revizija"
+msgstr "Pregled"
 
 # 91%
 msgid "Version {0}"
@@ -144,20 +144,20 @@ msgid "Listed"
 msgstr "Na popisu"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Staze dodataka i zbirki moraju završiti s „/”"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Nazivi dodataka ne smiju sadržati zaštitne znakove Mozilla ili Firefox."
 
 msgid "Sort by:"
-msgstr "Sortiraj po:"
+msgstr "Razvrstaj po:"
 
 msgid "More"
 msgstr "Više"
 
 # 80%
 msgid "My Add-ons"
-msgstr "Moji Add-ons"
+msgstr "Moji dodaci"
 
 msgid "My Themes"
 msgstr "Moje teme"
@@ -203,41 +203,41 @@ msgid "Admin Tools"
 msgstr "Administratorski alati"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Pozitivan cijeli broj"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Ovo se polje može koristiti samo za povezivanje s vanjskim web stranicama. URL-ovi na %(domain)s nisu dozvoljeni."
 
 msgid "Incorrect, please try again."
-msgstr "Netočno, molimo pokušajte ponovno."
+msgstr "Netočno, pokušaj ponovo."
 
 msgid "Error verifying input, please try again."
-msgstr "Pogreška provjere unosa, molimo pokušajte ponovo."
+msgstr "Greška tijekom provjere unosa, pokušaj ponovo."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Upiši ispravnu IP4 ili IP6 mrežu."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Tijekom održavanja naših web stranica su neke funkcije privremeno deaktivirane. Uskoro ćemo uspostaviti puni kapacitet."
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "Mora sadržati barem jedan ispisiv znak."
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "Provjeri da ovo polje sadrži barem jedno slovo ili broj."
 
 msgid "Not allowed"
-msgstr ""
+msgstr "Nije dozvoljeno"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Ups! Nije dozvoljeno."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Pokušavaš nešto učiniti što ti nije dozvoljeno."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -262,7 +262,7 @@ msgid "Sorry, but we can't find anything at the address you entered. If you foll
 msgstr ""
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Predložene stranice"
 
 #, fuzzy
 msgid "Browse all extensions"
@@ -319,16 +319,16 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr "Rezultati <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> od <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Održavanje u tijeku"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Tijekom održavanja naših web stranica je funkcija privremeno deaktivirana. Koristi gumb Natrag u pregledniku i pokušaj kasnije ponovo."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Tijekom održavanja naših web stranica su pojedine funkcije na ovoj stranici privremeno deaktivirane. Pokušaj ponovo malo kasnije."
 
 msgid "Are you human?"
-msgstr "Jeste li čovjek?"
+msgstr "Jesi li ljudsko biće?"
 
 msgid "What's this?"
 msgstr "Što je ovo?"
@@ -362,19 +362,19 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr ""
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Skoči na prvu stranicu"
 
 msgid "Previous"
-msgstr ""
+msgstr "Prethodna"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Skoči na zadnju stranicu"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Prikaz za <b>%(begin)s</b> &ndash; <b>%(end)s</b> od <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr "Dodaci za {0}"
@@ -396,40 +396,40 @@ msgid "Another Title"
 msgstr "Drugi naslov"
 
 msgid "Another Body"
-msgstr ""
+msgstr "Drugi tekst"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Neispravno zaglavlje autorizacije. Nema vjerodajnica."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Neispravno zaglavlje autorizacije. Znakovni niz vjerodajnica ne smije sadržati razmake."
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Potpis je istekao."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Greška u dešifriranju potpisa."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Neispravni JWT token."
 
 msgid "Invalid token or hash."
-msgstr ""
+msgstr "Neispravni token ili hash."
 
 msgid "Email address not found."
-msgstr ""
+msgstr "Adresa e-pošte nije pronađena."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Polje mora sadržati barem {num} znaka."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Kȏd jezika {lang_code} nije ispravan."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Moraš navesti objekt za {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -440,7 +440,7 @@ msgid "Confirmation for developer API keys"
 msgstr "Traženo više informacija"
 
 msgid "Application Versions"
-msgstr ""
+msgstr "Verzije aplikacije"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr ""
