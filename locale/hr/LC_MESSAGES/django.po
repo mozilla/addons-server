@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 15:48+0000\n"
+"PO-Revision-Date: 2019-09-28 16:08+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1795,20 +1795,19 @@ msgid "The color of the text and icons in the toolbar and the active tab. Manife
 msgstr ""
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Pozadina područja polja alatne trake"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Tekst područja polja alatne trake"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Otkaži zahtjev za revizijom"
+msgstr "Revizija zatražena."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -1817,10 +1816,10 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "Novi API ključ stvoren"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API ključ opozvan"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Moj dodatak se ne uklapa u bilo koju od kategorija"
@@ -1840,7 +1839,7 @@ msgid "Your account needs a display name set so users know who your add-on is co
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Prihvati"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ili <a href=\"{0}\">Otkaži</a>"
@@ -1851,17 +1850,17 @@ msgstr "Traženo više informacija"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} dodaci"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Vrati se na DevHub-ovu naslovnicu"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Razvojni centar za <small>Dodatke</small>"
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "još dodataka …"
 
 #, fuzzy
 msgid "Extension Workshop"
@@ -1871,7 +1870,7 @@ msgid "Documentation"
 msgstr "Dokumentacija"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Razvoj proširenja"
 
 msgid "Themes"
 msgstr "Teme"
@@ -1882,13 +1881,13 @@ msgid "Developer Policies"
 msgstr "Komentari programera"
 
 msgid "Add-on Validator"
-msgstr "Add-on Validator"
+msgstr "Provjera dodataka"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Razvojni dodaci"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Zajednica i podrška"
 
 msgid "Add-ons Blog"
 msgstr "Blog dodataka"
@@ -1897,10 +1896,10 @@ msgid "Add-ons Forum"
 msgstr "Forum dodataka"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Daljnji resursi"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Pretraži dokumente razvijatelja"
 
 msgid "Search"
 msgstr "Traži"
@@ -1919,13 +1918,13 @@ msgid "Validation Results for {0}"
 msgstr "Rezultati za provjeru valjanosti {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Rezultati provjere"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Provjereno:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Nedavna aktivnost za Moji dodaci"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
@@ -1942,7 +1941,7 @@ msgid "Refine Activity"
 msgstr "Poboljšajte aktivnost"
 
 msgid "Activity"
-msgstr ""
+msgstr "Aktivnost"
 
 msgid "Subscribe to this feed"
 msgstr ""
@@ -1998,29 +1997,29 @@ msgstr "Zatvori"
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> dodatak"
+msgstr[1] "<b>{0}</b> dodatka"
+msgstr[2] "<b>{0}</b> dodataka"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Nedavna aktivnost"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s, %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Starija aktivnost za Moji dodaci"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> tema"
+msgstr[1] "<b>{0}</b> teme"
+msgstr[2] "<b>{0}</b> tema"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Uredi stranicu proizvoda"
 
 msgid "None"
 msgstr ""
@@ -2028,9 +2027,8 @@ msgstr ""
 msgid "Preview"
 msgstr "Pregled"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Podržane inačice"
+msgstr "Pregled navedene verzije"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -2045,10 +2043,10 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "Odbij"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Upravljaj autorima i licencom"
 
 msgid "Authors"
 msgstr "Autori"
@@ -2067,16 +2065,14 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Tehnički detalji"
+msgstr "Dodatni detalji"
 
 msgid "Edit"
 msgstr "Uredi"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Tehnički detalji za {0}"
+msgstr "Dodatni detalji za {0}"
 
 msgid "Tags"
 msgstr "Oznake"
@@ -2086,12 +2082,12 @@ msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Odijeljeni zarezom, barem {0} znak."
+msgstr[1] "Odijeljeni zarezom, barem {0} znaka."
+msgstr[2] "Odijeljeni zarezom, barem {0} znakova."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Primjer: tamno, kino, crno. Granica 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
@@ -2107,31 +2103,28 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr ""
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Zadani jezik"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Homepage"
-msgstr ""
+msgstr "Web stranica"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Istaknuti dodaci"
+msgstr "Opiši dodatak"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Istaknuti dodaci"
+msgstr "Opiši {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Sažetak"
+msgstr "Naziv i sažetak"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2142,16 +2135,16 @@ msgid "Summary"
 msgstr "Sažetak"
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL dodatka"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Odaberi kratak, jedinstven URL umetak za Vaš dodatak."
 
 msgid "View Listing"
-msgstr ""
+msgstr "Prikaži popis"
 
 msgid "View Product Page"
-msgstr ""
+msgstr "Prikaži stranicu proizvoda"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2166,10 +2159,10 @@ msgid "If your add-on on is experimental or otherwise not ready for general use.
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Ovo je eksperimentalni dodatak."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Ovaj je dodatak spreman za opću upotrebu."
 
 msgid "Requires Payment?"
 msgstr ""
