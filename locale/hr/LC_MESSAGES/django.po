@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 17:30+0000\n"
+"PO-Revision-Date: 2019-09-28 17:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1109,7 +1109,7 @@ msgid "Music"
 msgstr "Glazba"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Preuzmi muzičke i umjetničke Firefox teme. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr ""
@@ -5451,20 +5451,17 @@ msgid "Add-on Review Log"
 msgstr "Revizijski zapis dodatka"
 
 # 100%
-#, fuzzy
 msgid "Review Guide"
-msgstr "Komentari programera"
+msgstr "Vodič za recenzente"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Nije pregledano"
+msgstr "Pregled sadržaja"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Moderirana revizija ({0})"
-msgstr[1] "Moderirane revizije ({0})"
-msgstr[2] "Moderiranih revizija ({0})"
+msgstr[0] "Pregled sadržaja ({0})"
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "New ({0})"
 msgstr "Novi ({0})"
@@ -5473,9 +5470,8 @@ msgid "Updates ({0})"
 msgstr "Aktualiziranja ({0})"
 
 # 100%
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Komentari programera"
+msgstr "Vodič za pregled tema"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5486,13 +5482,11 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr "Moderirani revizijski zapis"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Revizijski zapis dodatka"
+msgstr "Vodič za moderiranje"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "%s Dodaci"
+msgstr "Nenavedeni dodaci"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -5503,9 +5497,8 @@ msgstr ""
 msgid "Update message of the day"
 msgstr "Ažuriraj poruku dana"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Traženo više informacija"
+msgstr "Istekli zahtjevi za informacijama ({0})"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -5522,9 +5515,8 @@ msgstr ""
 msgid "{addon} :: EULA"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Zaštita Privatnosti"
+msgstr "{addon} :: Pravila o privatnosti"
 
 msgid "{addon} :: Abuse Reports"
 msgstr ""
@@ -5575,21 +5567,17 @@ msgstr ""
 msgid "Last Approval Date"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Zloupotreba prijavljena."
+msgstr "Izvještaji o zloupotrebi ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Moderirana revizija ({0})"
+msgstr "Loše ocjene korisnika ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Tema"
+msgstr "Slike teme"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Obrisane revizije"
+msgstr "Iscrtani pregled"
 
 msgid "More about this add-on"
 msgstr "Više o ovom dodatku"
@@ -5600,9 +5588,8 @@ msgstr "Galerija slika"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Natrag na {0} početnu stranicu dodataka"
+msgstr "Vrati se na nadzornu ploču s alatima za recenzente"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -5635,9 +5622,8 @@ msgstr ""
 msgid "Log details"
 msgstr ""
 
-#, fuzzy
 msgid "Review Author"
-msgstr "Dodaci"
+msgstr "Autor recenzije"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -5741,9 +5727,8 @@ msgid "Reviewer's Guide"
 msgstr "Vodič za recenzente"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Revizija {0}"
+msgstr "Pregled sadržaja {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5835,20 +5820,17 @@ msgstr ""
 msgid "Enable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Traženo više informacija"
+msgstr "Izbriši zahtjev za informacijama"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Nije pregledano"
+msgstr "Izbriši oznaku za administratorski pregled sadržaja"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Nije pregledano"
+msgstr "Izbriši oznaku za administratorski pregled statičke teme"
 
 msgid "(admin)"
 msgstr ""
@@ -5952,12 +5934,11 @@ msgstr[0] "Čeka na ažuriranje ({0})"
 msgstr[1] "Čekaju na ažuriranje ({0})"
 msgstr[2] ""
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Moderirana revizija ({0})"
-msgstr[1] "Moderirane revizije ({0})"
-msgstr[2] "Moderiranih revizija ({0})"
+msgstr[0] "Recenzija ocijenjivanja ({0})"
+msgstr[1] "Recenzije ocijenjivanja ({0})"
+msgstr[2] "Recenzije ocijenjivanja ({0})"
 
 #, fuzzy
 msgid "Auto Approved ({0})"
@@ -5966,12 +5947,11 @@ msgstr[0] "Dodaci za {0}"
 msgstr[1] "Dodaci za {0}"
 msgstr[2] ""
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Traženo više informacija"
-msgstr[1] "Traženo više informacija"
-msgstr[2] "Traženo više informacija"
+msgstr[0] "Istekao zahtjev za informacijama ({0})"
+msgstr[1] "Istekla zahtjeva za informacijama ({0})"
+msgstr[2] "Isteklih zahtjeva za informacijama ({0})"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6236,9 +6216,8 @@ msgstr ""
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
-#, fuzzy
 msgid "View the new site"
-msgstr "Pregled stranice za mobitele"
+msgstr "Pogledaj novu web stranicu"
 
 msgid "Report a bug"
 msgstr ""
@@ -6334,7 +6313,7 @@ msgstr ""
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Korisnik „%(user)s” je isključen."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
@@ -6342,10 +6321,10 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Korisnici „%(users)s” su isključeni."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Isključi odabrane korisnike"
 
 msgid "Profile Photo"
 msgstr ""
@@ -6353,9 +6332,8 @@ msgstr ""
 msgid "Collections"
 msgstr "Zbirke"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Sve aktivnosti"
+msgstr "Dnevnici aktivnosti"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
@@ -6429,9 +6407,8 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-#, fuzzy
 msgid "Ban"
-msgstr "i"
+msgstr "Isključi"
 
 msgid "Delete picture"
 msgstr "Ukloni sliku"
