@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 15:10+0000\n"
+"PO-Revision-Date: 2019-09-28 15:27+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -443,10 +443,10 @@ msgid "Application Versions"
 msgstr "Verzije aplikacije"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Prihvatljive verzije za sve aplikacije na AMO."
 
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "Ispravne verzije aplikacije"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
@@ -456,10 +456,10 @@ msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_versi
 msgstr ""
 
 msgid "GUID"
-msgstr "GUID"
+msgstr "GUID (globalno jedinstveni ID)"
 
 msgid "Versions"
-msgstr "Inačica"
+msgstr "Verzije"
 
 #, python-format
 msgid ""
@@ -468,28 +468,25 @@ msgid ""
 msgstr ""
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Upisani tekst je označen kao neželjeni sadržaj."
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "Jedna druga zbirka već koristi ovaj prilagođeni URL."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Ikonice ne smiju biti animirane."
+msgstr "Naziv ne može biti prazan."
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Ovaj se naziv ne može koristiti."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Prilagođeni URL mora sadržati slova, brojke, podvlake ili crtice."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Ikonice ne smiju biti animirane."
+msgstr "Ovaj se prilagođeni URL ne može koristiti."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "{addon} dodan u {collection}."
+msgstr "Ovaj dodatak već pripada zbirci"
 
 msgid "{addon} was created."
 msgstr "{addon} je stvoren."
@@ -520,9 +517,8 @@ msgid "{addon} enabled."
 msgstr "{addon} omogućen."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon} status promijenjen u {0}."
+msgstr "Stanje dodatka {addon} promijenjeno u {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} dodan {addon}."
@@ -598,16 +594,16 @@ msgid "Commented"
 msgstr "Komentar"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "Dodatku {addon} je dodana oznaka {tag}."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "Dodatku {addon} je uklonjena oznaka {tag}."
 
 msgid "{addon} added to {collection}."
-msgstr "{addon} dodan u {collection}."
+msgstr "Dodatak {addon} je dodan u zbirku {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr "{addon} uklonjen iz {collection}."
+msgstr "Dodatak {addon} je uklonjen iz zbirke {collection}."
 
 #, fuzzy
 msgid "{rating} for {addon} written."
@@ -629,11 +625,11 @@ msgstr "{addon} više nije sadržan."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} dodan."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Uloga od {0.name} promijenjena u {1} za dodatak {addon}."
 
 #, fuzzy
 msgid "{addon} is now licensed under {0}."
@@ -716,13 +712,13 @@ msgid "User {user} banned."
 msgstr "Korisnik prijavljen."
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "Slika korisnika {user} je izbrisana."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Korisnik {0.name} je dodan grupi {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Korisnik {0.name} je uklonjen iz grupe {group}."
 
 msgid "{addon} unlisted."
 msgstr ""
@@ -873,13 +869,13 @@ msgid "Awaiting Review"
 msgstr "Čeka se revizija"
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Deaktivirano od Mozille"
 
 msgid "Deleted"
 msgstr "Obrisano"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Nije na popisu"
 
 msgid "Owner"
 msgstr "Vlasnik"
@@ -900,19 +896,19 @@ msgid "Search Engine"
 msgstr "Tražilica"
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Jezični paket (aplikacija)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Jezični paket (dodatak)"
 
 msgid "Plugin"
 msgstr "Priključak"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "Zastarjela LWT tema"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Tema (statička)"
 
 msgid "Extensions"
 msgstr "Proširenja"
@@ -927,19 +923,19 @@ msgid "Search Tools"
 msgstr "Alati za pretraživanje"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Jezični paketi (aplikacija)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Jezični paketi (dodatak)"
 
 msgid "Plugins"
 msgstr "Dodaci za preglednik"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Zastarjele LWT teme"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Teme (statičke)"
 
 msgid "Alerts & Updates"
 msgstr "Upozorenja i obavijesti"
@@ -1216,28 +1212,28 @@ msgid "Video"
 msgstr "Video"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Sva prava pridržana"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Imenovanje 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Imenovanje – Nekomercijalno 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Imenovanje – Nekomercijalno – Bez prerada 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Imenovanje – Nekomercijalno – Dijeli pod istim uvjetima 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Imenovanje – Bez prerada 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Imenovanje – Dijeli pod istim uvjetima 3.0"
 
 msgid "Any"
-msgstr "Bilo koji"
+msgstr "Bilo koja"
 
 msgid "All Platforms"
 msgstr "Sve platforme"
@@ -1263,38 +1259,33 @@ msgstr "Android"
 msgid "Add-on"
 msgstr "Dodatak"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Kompletna tema"
+msgstr "Statička tema"
 
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Testovi sigurnosti"
+msgstr "Sigurnost"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Zaštita Privatnosti"
+msgstr "Privatnost"
 
 # 100%
-#, fuzzy
 msgid "Development Practices"
-msgstr "Komentari programera"
+msgstr "Razvojne praktike"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Dokumentacija"
+msgstr "Bez reputacije"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Dobar (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Vrlo dobar (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Odličan (3)"
 
 msgid "Manual Reviewer Points"
 msgstr ""
@@ -1415,10 +1406,10 @@ msgid "Request More Info"
 msgstr "Zatraži više informacija"
 
 msgid "Flag"
-msgstr ""
+msgstr "Označi"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 msgid "Reject"
 msgstr "Odbaci"
@@ -1427,22 +1418,22 @@ msgid "Approve"
 msgstr "Odobri"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksualni ili pornografski sadržaj"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Neprikladan ili uvredljiv sadržaj"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Nasilje, rat ili slike oružja"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nacistički ili drugi sadržaj mržnje"
 
 msgid "Defamatory content"
 msgstr ""
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Online kockanje"
 
 msgid "Spam content"
 msgstr ""
