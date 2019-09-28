@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 17:13+0000\n"
+"PO-Revision-Date: 2019-09-28 17:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2792,16 +2792,14 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Dodaj inačicu"
+msgstr "Navedena verzija:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
 
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Istaknuti dodaci"
+msgstr "Sljedeća navedena verzija:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
@@ -3036,9 +3034,8 @@ msgid "Listed on this site after passing code review. Automatic updates are hand
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Vidi sve aktualno & dolazeće"
+msgstr "Prikaži sva slanja"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
@@ -3066,9 +3063,9 @@ msgstr "Nema fotografije"
 msgid "User Photo"
 msgstr "Fotografija korisnika"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Registrirajte se</a> ili <a href=\"%(login)s\">Prijavite se</a>"
+msgstr "<a href=\"%(register)s\">Registriraj se</a> ili <a href=\"%(login)s\">Prijavi se</a>"
 
 msgid "Customize Firefox"
 msgstr "Prilagodi Firefox"
@@ -3082,9 +3079,8 @@ msgstr ""
 msgid "Learn How to Make an Add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Popularne ekstenzije"
+msgstr "Portiraj Chrome proširenje"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
@@ -3109,9 +3105,8 @@ msgstr ""
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
 
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Izvješća za Vaše dodatke"
+msgstr "Automatizirani testovi kodova za tvoj dodatak."
 
 msgid "Compatibility Test"
 msgstr "Test za kompatibilnost"
@@ -5429,9 +5424,8 @@ msgstr "Komentar"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Dodaci"
+msgstr "Pretpregledaj dodatke"
 
 msgid "Recommended ({0})"
 msgstr ""
@@ -5440,21 +5434,18 @@ msgid "Other Pending Review ({0})"
 msgstr "Ostala recenzija na čekanju ({0})"
 
 # 75%
-#, fuzzy
 msgid "Review Log"
-msgstr "Recenzent"
+msgstr "Zapisnik pregleda"
 
 #, fuzzy
 msgid "Add-on Review Guide"
 msgstr "Revizijski zapis dodatka"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "Istaknuti dodaci"
+msgstr "Automatski odobreni dodaci"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Dodaci za {0}"
+msgstr "Automatski odobreni dodaci ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Revizijski zapis dodatka"
@@ -5475,13 +5466,11 @@ msgstr[0] "Moderirana revizija ({0})"
 msgstr[1] "Moderirane revizije ({0})"
 msgstr[2] "Moderiranih revizija ({0})"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Dodaci za {0}"
+msgstr "Novi ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Čeka na ažuriranje ({0})"
+msgstr "Aktualiziranja ({0})"
 
 # 100%
 #, fuzzy
@@ -5550,9 +5539,8 @@ msgstr ""
 msgid "Add-on Information for {0}"
 msgstr "Informacija dodatka za {0}"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Dodatak"
+msgstr "ID dodatka"
 
 msgid "Internal AMO ID"
 msgstr ""
@@ -5749,9 +5737,8 @@ msgid "Add-on Policy"
 msgstr "Polica dodatka"
 
 # 100%
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Komentari programera"
+msgstr "Vodič za recenzente"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -5797,9 +5784,8 @@ msgstr ""
 msgid "Download"
 msgstr "Preuzimanje"
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Istaknuti dodaci"
+msgstr "Nije automatski odobreno jer"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -5831,9 +5817,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr ""
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Više opcija:"
+msgstr "Daljnje radnje"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -5841,9 +5826,8 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Mobilni dodaci"
+msgstr "Prisilno omogući dodatak"
 
 msgid "Disable Auto-Approval"
 msgstr ""
@@ -6382,9 +6366,8 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox za Android"
+msgstr "Korisnik Firefoxa {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
@@ -6450,9 +6433,8 @@ msgstr ""
 msgid "Ban"
 msgstr "i"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Obrisane revizije"
+msgstr "Ukloni sliku"
 
 msgctxt "user_list_others"
 msgid "others"
