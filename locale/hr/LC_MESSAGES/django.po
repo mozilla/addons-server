@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 16:30+0000\n"
+"PO-Revision-Date: 2019-09-28 16:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -601,9 +601,8 @@ msgstr "Dodatak {addon} je dodan u zbirku {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "Dodatak {addon} je uklonjen iz zbirke {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} za {addon} odobren."
+msgstr "{rating} za {addon} napisano."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -627,9 +626,8 @@ msgstr "{0} {1} dodan."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Uloga od {0.name} promijenjena u {1} za dodatak {addon}."
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} više nije sadržan."
+msgstr "{addon} je sad licenciran pod {0}."
 
 msgid "{addon} policy changed."
 msgstr "{addon} polica osiguranja promijenjena."
@@ -637,22 +635,18 @@ msgstr "{addon} polica osiguranja promijenjena."
 msgid "{addon} icon changed."
 msgstr "{addon} ikona promijenjena."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} za {addon} odobren."
+msgstr "{rating} za {addon} odobreno."
 
 # 75%
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{version} uređen za {addon}."
+msgstr "{user} je odobrio/la {rating} za {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "{review} za {addon} odobren."
+msgstr "Recenzija {rating} za {addon} izbrisana."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "Datoteka {0} izbrisana iz {version} od {addon}."
+msgstr "{user} je izbrisao/la {rating} za {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Najviša inačica aplikacije za {version} ažurirana."
@@ -696,16 +690,14 @@ msgstr ""
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} za {addon} odobren."
+msgstr "{rating} za {addon} aktualizirano."
 
 msgid "{addon} reviewed."
 msgstr ""
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Korisnik prijavljen."
+msgstr "Korisnik {user} isključen."
 
 msgid "User {user} picture deleted."
 msgstr "Slika korisnika {user} je izbrisana."
@@ -726,25 +718,22 @@ msgstr ""
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} dana preliminarna revizija."
+msgstr "{addon} premješten iz preliminarnog."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
 # 100%
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Komentari programera"
+msgstr "Odgovor razvijatelja"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 # 100%
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Komentari programera"
+msgstr "Odgovor recenzenta"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -752,87 +741,68 @@ msgstr ""
 msgid "Approval notes changed"
 msgstr ""
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Licenca izvornog koda za {addon}"
+msgstr "Izvorni kȏd prenesen za {addon} {version}."
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Licenca izvornog koda"
+msgstr "Izvorni kȏd prenesen"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Licenca izvornog koda za {addon}"
+msgstr "Automatsko odobrenje potvrđeno za {addon} {version}."
 
 msgid "Auto-Approval confirmed"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} odbijen."
+msgstr "{addon} {version} ponovo omogućen."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} eskalirano."
+msgstr "{addon} {version} onemogućen."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} odobren."
+msgstr "{addon} {version} sadržaj odobren."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "{addon} {version} odobren."
+msgstr "Sadržaj odobren"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} odbijen."
+msgstr "{addon} {version} sadržaj odbijen."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "odbijen"
+msgstr "Sadržaj odbijen"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Traženo više informacija"
+msgstr "{addon} zahtjev za informacijama izmijenio ili uklonio administrator."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Traženo više informacija"
+msgstr "Zahtjev za informacijama izmijenjen"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Traženo više informacija"
+msgstr "Zahtjev za informacijama uklonjen"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} zatražio reviziju."
+msgstr "{addon} {version} administratorski pregled dodatka zatražen."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Zatražena iznimna revizija"
+msgstr "Administratorski pregled dodatka zatražen"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} zatražio reviziju."
+msgstr "{addon} {version} administratorski pregled sadržaja zatražen."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Zatražena iznimna revizija"
+msgstr "Administratorski pregled sadržaja zatražen"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} zatražio reviziju."
+msgstr "{addon} {version} administratorski pregled teme zatražen."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Zatražena revizija"
+msgstr "Administratorski pregled teme zatražen"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} {version} dana preliminarna revizija."
+msgstr "{addon} je premješten iz laganih tema."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1286,16 +1256,14 @@ msgstr "Odličan (3)"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Revizijski zapis dodatka"
+msgstr "Nova recenzija starog dodatka"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Revizijski zapis dodatka"
+msgstr "Aktualizirana recenzija starog dodatka"
 
 #, fuzzy
 msgid "New Dictionary Review"
@@ -1586,9 +1554,8 @@ msgstr "Dogodila se greška prilikom Vašeg učitavanja. Molimo, pokušajte pono
 msgid "Override failed validation"
 msgstr ""
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Potrebna je barem jedna kompatibilna aplikacija."
+msgstr "Moraš odabrati barem jednu aplikaciju."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr ""
@@ -1596,9 +1563,8 @@ msgstr ""
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "{addon} {version} odbijen."
+msgstr "Verzija {version} već postoji."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -1609,9 +1575,8 @@ msgstr "Da"
 msgid "No"
 msgstr "Ne"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Nema datoteka u učitanoj datoteci."
+msgstr "Moraš prenijeti izvornu datoteku."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -1824,9 +1789,8 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 # 75%
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Recenzent"
+msgstr "Pravila za recenzije"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -2292,9 +2256,8 @@ msgstr "Koristi se u stranicama s detaljima dodatka."
 msgid "128x128px"
 msgstr "128 × 128 px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Koristi se u stranicama s detaljima dodatka."
+msgstr "Standardno će se koristiti na budućim stranicama s detaljima dodatka."
 
 msgid "Upload a Custom Icon..."
 msgstr "Dodaj vlastitu ikonu..."
@@ -2353,9 +2316,8 @@ msgstr ""
 msgid "Select a different license."
 msgstr ""
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Traženo više informacija"
+msgstr "Daljnje informacije o Creative Commons licencama"
 
 msgid "General Tests"
 msgstr "Opći testovi"
@@ -2413,16 +2375,14 @@ msgstr "Ukloni"
 msgid "Edit details on this add-on's product page"
 msgstr "Uredi detalje na stranici proizvoda ovog dodatka"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Vidi sve revizije ovog dodatka"
+msgstr "Prenesi novu verziju ovog dodatka"
 
 msgid "New Version"
 msgstr "Nova verzija"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Dnevna statistika o preuzimanjima i korisnicima."
+msgstr "Dnevna statistika o preuzimanjima i korisnicima"
 
 msgid "Statistics"
 msgstr "Statistike"
@@ -2453,9 +2413,8 @@ msgstr[0] "<strong>{0}</strong> aktivni korisnik"
 msgstr[1] "<strong>{0}</strong> aktivni korisnici"
 msgstr[2] "<strong>{0}</strong> aktivnih korisnika"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Dodaj novu inačicu"
+msgstr "Pošalji novu verziju"
 
 #, fuzzy
 msgid "Name and Summary:"
