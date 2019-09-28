@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 18:36+0000\n"
+"PO-Revision-Date: 2019-09-28 18:56+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -280,7 +280,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "Nije pronađeno"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -288,12 +288,11 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Žao nam je ali ne možemo pronaći to što tražite.</h1> <p> Stranica ili dodatak koji ste tražili nije pronađen na našem portalu. Moguće je da ste kliknuli na zastarjeli link ili krivo utipkali "
-"adresu. </p> <ul> <li>Ako ste utipkavali adresu, provjerite još jednom da li ste ispravno sve utipkali.</li> <li> Ako ste slijedili link s druge lokacije javite nam na <a "
-"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Napišite s koje adrese ste došli, što ste tražili i mi ćemo uraditi sve što možemo da popravimo to. </li> </ul> <p>Ili jednostavno "
-"možete pogledati neku od popularnih stranica na našem portalu.</p> <ul> <li>Da li vas zanima <a href=\"%(rec)s\">popis preporučenih dodataka</a>?</li> <li> Da li želite <a "
-"href=\"%(search)s\">pretraživati dodatke</a>? Možete posjetiti <a href=\"%(search)s\">stranicu za traženje</a> ili koristiti polje traženja iznad. </li> <li> Ako ipak želite krenuti ispočetka "
-"posjetite <a href=\"%(home)s\">početnu stranicu dodataka</a>. </li> </ul>"
+"<h1>Na žalost ne možemo pronaći to što tražiš.</h1> <p> Stranica ili datoteka koju tražiš nismo našli na našim stranicama. Moguće je da se radi o zastarjeloj poveznici ili o krivo utipkanoj adresi. "
+"</p> <ul> <li>Ako si utipkao/la adresu, provjeri unos.</li> <li> Ako slijediš poveznicu s druge lokacije, %(open_bug_link)sjavi nam problem%(close_bug_link)s. Reci nam s koje adrese dolaziš, što "
+"tražiš i mi ćemo se potruditi stvar ispraviti. </li> </ul> <p>Ili jednostavno pogledaj neku drugu našu popularnu stranicu.</p> <ul> <li>Zanima te <a href=\"%(rec)s\">popis preporučenih "
+"dodataka</a>?</li> <li> Želiš <a href=\"%(search)s\">tražiti dodatke</a>? Posjeti <a href=\"%(search)s\">stranicu za traženje</a> ili koristi gornje polje za pretragu. </li> <li> Ako pak želiš "
+"krenuti ispočetka, posjeti <a href=\"%(home)s\">početnu stranicu dodataka</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -307,7 +306,7 @@ msgstr "Nema rezultata"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr "Nazad"
+msgstr "Prethodna"
 
 msgid "Next"
 msgstr "Naprijed"
@@ -2895,9 +2894,8 @@ msgid "Resources"
 msgstr "Resursi"
 
 # 100%
-#, fuzzy
 msgid "Porting"
-msgstr "Ocjena"
+msgstr "Portiranje"
 
 msgid "Community"
 msgstr "Zajednica"
