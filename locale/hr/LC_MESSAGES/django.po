@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 15:27+0000\n"
+"PO-Revision-Date: 2019-09-28 15:48+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -117,7 +117,7 @@ msgstr "Obavijest [%s] ne postoji"
 
 # 85%
 msgid "Review"
-msgstr "Pregled"
+msgstr "Recenzija"
 
 # 91%
 msgid "Version {0}"
@@ -1436,7 +1436,7 @@ msgid "Online gambling"
 msgstr "Online kockanje"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Nepoželjni sadržaj"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr ""
@@ -1449,10 +1449,10 @@ msgstr ""
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Nedavne promjene za %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Nedavne promjene za Moji dodaci"
 
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
@@ -1476,22 +1476,22 @@ msgstr ""
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Neispravna oznaka: {0}"
+msgstr[1] "Neispravne oznake: {0}"
+msgstr[2] "Neispravne oznake: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "„{0}” je rezervirana oznaka i ne može se koristiti."
+msgstr[1] "„{0}” su rezervirane oznake i ne mogu se koristiti."
+msgstr[2] "„{0}” su rezervirane oznake i ne mogu se koristiti."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Imate {0} previše oznaka."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Imaš {0} oznaku previše."
+msgstr[1] "Imaš {0} oznake previše."
+msgstr[2] "Imaš {0} oznaka previše."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -1499,9 +1499,9 @@ msgstr ""
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Sve oznake moraju sadržati barem {0} znak."
+msgstr[1] "Sve oznake moraju sadržati barem {0} znaka."
+msgstr[2] "Sve oznake moraju sadržati barem {0} znakova."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
@@ -1509,35 +1509,35 @@ msgstr ""
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Možeš imati samo {0} kategoriju."
+msgstr[1] "Možeš imati samo {0} kategorije."
+msgstr[2] "Možeš imati samo {0} kategorija."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "URL domena mora biti jedna od [%s] ili poddomena."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Prije nego što promijenite zadani jezik trebate imati ime, sažetak i opis na tom jeziku. Nedostaje vam %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Korisnici se ne mogu izravno dodati"
 
 msgid "An author can only be present once."
-msgstr ""
+msgstr "Autor se smije samo jednom navesti."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Mora imati barem jednog vlasnika."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Barem jedan autor mora biti naveden."
 
 msgid "Slug incorrect."
 msgstr ""
@@ -1546,16 +1546,16 @@ msgid "Details"
 msgstr "Detalji"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Kako se zove tvoja licenca?"
 
 msgid "Custom License"
-msgstr "Korisnička licenca"
+msgstr "Prilagođena licenca"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Navedi tekst tvoje licence."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Tekst licence je potreban pri odabiru Ostalo."
 
 msgid "This add-on has an End-User License Agreement"
 msgstr ""
@@ -1670,7 +1670,7 @@ msgid "Rating"
 msgstr "Ocjena"
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Svi Moji dodaci"
 
 msgid "All Activity"
 msgstr "Sve aktivnosti"
@@ -1682,19 +1682,19 @@ msgid "Add-on Status"
 msgstr "Status dodataka"
 
 msgid "User Collections"
-msgstr ""
+msgstr "Korisničke zbirke"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "Korisničke recenzije"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Dodatak se ne može izbrisati. Umjesto toga deaktiviraj ovaj dodatak."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Tema izbrisana."
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Dodatak izbrisan."
 
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
@@ -1703,32 +1703,31 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Pozivnica prihvaćena."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Pozivnica odbijena."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Tvom dodatku je dodan jedan autor"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Doprinosi za {addon}."
+msgstr "Autorska pozivnica za {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "E-poruka s potvrdom je poslana na {email}"
 
 msgid "An author role has been changed on your add-on"
-msgstr ""
+msgstr "Jedna uloga autora je promijenjena na tvom dodatku"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Jedan autor je uklonjen iz tvog dodatka"
 
 msgid "Changes successfully saved."
 msgstr "Promjene uspješno spremljene."
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Provjeri dodatak"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonica mora biti ili PNG ili JPG."
@@ -1737,19 +1736,18 @@ msgid "Icons cannot be animated."
 msgstr "Ikonice ne smiju biti animirane."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Slika mora biti barem {0} piksela široka i {1} piksela visoka."
 
 # 87%
 # 100%
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Slike moraju biti ili PNG ili JPG."
+msgstr "Dimenzije slike moraju biti u omjeru 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr ""
+msgstr "Ikona mora biti barem {0} piksela široka i visoka."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikona mora biti kvadratična (iste širine i visine)."
 
 msgid "There was an error uploading your preview."
 msgstr "Došlo je do pogreške prilikom učitavanja Vašeg pregleda."
@@ -1759,7 +1757,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Verzija %s onemogućena."
 
 #, python-format
 msgid "Version %s deleted."
@@ -1767,31 +1765,31 @@ msgstr "Inačica %s izbrisana."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Verzija %s ponovo omogućena."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
 msgid "Header area background"
-msgstr ""
+msgstr "Pozadina područja zaglavlja"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Tekst i ikone područja zaglavlja"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Pozadina područja alatne trake"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Tekst i ikone područja alatne trake"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
