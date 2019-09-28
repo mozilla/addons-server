@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 17:50+0000\n"
+"PO-Revision-Date: 2019-09-28 18:13+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -190,7 +190,7 @@ msgid "Submit a New Theme"
 msgstr "Dodaj novu temu"
 
 msgid "Developer Hub"
-msgstr "Središte razvijatelja"
+msgstr "Razvojni centar"
 
 msgid "Manage API Keys"
 msgstr "Upravljanje API ključevima"
@@ -1265,9 +1265,8 @@ msgstr ""
 msgid "Updated Legacy Add-on Review"
 msgstr "Aktualizirana recenzija starog dodatka"
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Preliminarna revizija"
+msgstr "Nova recenzija rječnika"
 
 msgid "Preliminary Dictionary Review"
 msgstr ""
@@ -1275,9 +1274,8 @@ msgstr ""
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Jezični paket"
+msgstr "Nova recenzija jezičnog paketa"
 
 msgid "Preliminary Language Pack Review"
 msgstr ""
@@ -1288,9 +1286,8 @@ msgstr ""
 msgid "Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Moderirani revizijski zapis"
+msgstr "Pregled teme (statička)"
 
 #, fuzzy
 msgid "New Search Provider Review"
@@ -1804,9 +1801,8 @@ msgstr "Prihvati"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ili <a href=\"{0}\">Otkaži</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Traženo više informacija"
+msgstr "Više informacija o razvijateljskim računima"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -1836,9 +1832,8 @@ msgid "Themes"
 msgstr "Teme"
 
 # 100%
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Komentari programera"
+msgstr "Pravila za razvijatelje"
 
 msgid "Add-on Validator"
 msgstr "Provjera dodataka"
@@ -2949,9 +2944,8 @@ msgstr ""
 msgid "Promote"
 msgstr ""
 
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Povratak na dodatke"
+msgstr "Omogući predstavljanje tvog dodatka"
 
 msgid "\"Get The Add-on\" button"
 msgstr ""
@@ -2983,13 +2977,11 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
-msgstr "Početak rada"
+msgstr "Započni"
 
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Više načina za prilagodbu"
+msgstr "Daljnji načini sudjelovanja"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr ""
@@ -3046,9 +3038,8 @@ msgstr ""
 msgid "Submit Your First Theme"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Programeri dodataka"
+msgstr "Razvojni centar za dodatke"
 
 msgid "Docs"
 msgstr ""
@@ -3290,7 +3281,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Dokumentacija dodataka :: Razvojni centar"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -4187,7 +4178,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Uštedi propusnost veze i puštaj audio sadržaj direktno s YouTube-a."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4403,7 +4394,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Prati produktivnost. Mjeri količinu vremena koju provodiš za računalom ili na određenim radnim aplikacijama poput Trello, JIRA, Basecamp, GitHub i mnogim drugima."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
@@ -4927,13 +4918,11 @@ msgid "View Rating on site"
 msgstr "Pogledaj ocjenu na web stranici"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Dodaj novu inačicu"
+msgstr "Pošalji poželjnu poštu Akismetu"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Dodaj novu inačicu"
+msgstr "Pošalji nepoželjnu poštu Akismetu"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -5232,9 +5221,8 @@ msgstr "dodatak, recenzent ili komentar"
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Revizijski zapis dodatka"
+msgstr "Potreban je administratorski pregled koda"
 
 msgid "yes"
 msgstr "da"
@@ -5268,9 +5256,8 @@ msgstr "Aplikacije:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 dana"
+msgstr "dana"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -5287,13 +5274,11 @@ msgstr ""
 msgid "Delete review"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Nije pregledano"
+msgstr "Potreban je administratorski pregled sadržaja"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Revizijski zapis dodatka"
+msgstr "Potreban je administratorski pregled statičke teme"
 
 msgid "Requires Restart"
 msgstr "Zahtjeva ponovno pokretanje"
@@ -5301,9 +5286,8 @@ msgstr "Zahtjeva ponovno pokretanje"
 msgid "More Information Requested"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Traženo više informacija"
+msgstr "Istekao zahtjev za informacijama"
 
 msgid "Sources provided"
 msgstr ""
@@ -5374,9 +5358,8 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Traženo više informacija"
+msgstr "Rok za zahtjev za informacijama"
 
 msgid "Last Updated"
 msgstr "Zadnje aktualiziranje"
@@ -5437,9 +5420,8 @@ msgstr "Ostala recenzija na čekanju ({0})"
 msgid "Review Log"
 msgstr "Zapisnik pregleda"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Revizijski zapis dodatka"
+msgstr "Vodič za pregled dodataka"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatski odobreni dodaci"
@@ -5644,9 +5626,8 @@ msgstr ""
 msgid "Save"
 msgstr "Spremi"
 
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Revizijski zapis dodatka"
+msgstr "Učinkovitost recenzenta dodatka"
 
 msgid "View statistics for user"
 msgstr ""
