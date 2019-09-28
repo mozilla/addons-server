@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-28 18:13+0000\n"
+"PO-Revision-Date: 2019-09-28 18:31+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -982,7 +982,7 @@ msgid "Web Development"
 msgstr "Razvoj weba"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja koja sadrže alate za web razvoj. Ova kategorija uključuje proširenja za GitHub, prebacivanje korisničkih agenata, upravljanje kolačićima, itd."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -1025,7 +1025,7 @@ msgid "Social Networking"
 msgstr "Društvene mreže"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja i poboljšaj doživljaj na popularnim web stranicama društvenih mreža kao što su YouTube, GitHub, Reddit, itd."
 
 msgid "Sports & Games"
 msgstr "Sport i igre"
@@ -1308,33 +1308,26 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Revizijski zapis dodatka"
+msgstr "Moderirana recenzija dodataka"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Revizijski zapis dodatka"
+msgstr "Moderiranje recenzija dodatka obrnuto"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Nije pregledano"
+msgstr "Pregled sadržaja dodatka"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Revizijski zapis dodatka"
+msgstr "Pregled dodataka (najveći rizik)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Revizijski zapis dodatka"
+msgstr "Pregled dodataka (visoki rizik)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Revizijski zapis dodatka"
+msgstr "Pregled dodataka (srednji rizik)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Revizijski zapis dodatka"
+msgstr "Pregled dodataka (nizak rizik)"
 
 msgid "Level 1"
 msgstr "Razina 1"
@@ -1818,9 +1811,8 @@ msgstr "Razvojni centar za <small>Dodatke</small>"
 msgid "more add-ons..."
 msgstr "još dodataka …"
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Proširenja"
+msgstr "Radionica za proširenja"
 
 msgid "Documentation"
 msgstr "Dokumentacija"
@@ -2050,9 +2042,8 @@ msgstr[0] "Rezervirana oznaka:"
 msgstr[1] "Rezervirane oznake:"
 msgstr[2] "Rezervirano oznaka:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Donacije"
+msgstr "URL za doprinose"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -2824,17 +2815,14 @@ msgstr "Pošalji novu verziju"
 msgid "View All"
 msgstr "Pogledaj sve"
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Moderirani revizijski zapis"
+msgstr "Stranica za pregled navedenih dodataka"
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Moderirani revizijski zapis"
+msgstr "Stranica za pregled nenavedenih dodataka"
 
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Stranica administratora"
+msgstr "Upravljanje administratorima"
 
 msgid "View Statistics Dashboard"
 msgstr "Pregled Nadzorne ploče statistike"
@@ -2845,9 +2833,8 @@ msgstr "Vijesti za razvijatelje"
 msgid "View the blog &#9658;"
 msgstr "Pogledaj blog &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Traženo više informacija"
+msgstr "Zahtjev za informacijama na čekanju:"
 
 msgid "This request for information has been resolved"
 msgstr ""
@@ -2902,9 +2889,8 @@ msgid "Latest News"
 msgstr "Najnovije vijesti"
 
 # 79%
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "treba više informacija"
+msgstr "Pročitaj više u našem blogu"
 
 msgid "Resources"
 msgstr "Resursi"
@@ -4990,6 +4976,8 @@ msgstr ""
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Pomozi poboljšati ovu web stranicu. Otvorenog je koda i možeš prijaviti greške i slati zakrpe. <a href=\"%(url)s\"> GitHub</a> sadrži sve naše trenutačne greške, stare greške se još uvijek mogu naći"
+" u Bugzilla."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr ""
