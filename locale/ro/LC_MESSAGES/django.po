@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-15 12:26+0000\n"
+"PO-Revision-Date: 2019-09-28 00:06+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2323,7 +2323,7 @@ msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size 
 msgstr "PNG și JPG suportate, PNG recomandat. Mărimea maximă și recomandată pentru capturile de ecran este de 2400x1800 pixeli."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr "Mărimea minimă este de 1000x750 și este necesar un raport de 4:3."
+msgstr "Dimensiunea minimă este de 1000x750 și este necesar un raport de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr "Capturile de ecran pe pagina de produs îi sporesc considerabil șansele de a fi instalat și promovat pe pagina de start."
