@@ -5212,7 +5212,7 @@ msgid "Needs Admin Static Theme Review"
 msgstr "需要管理员审核静态主题"
 
 msgid "Requires Restart"
-msgstr "需要重开"
+msgstr ""
 
 msgid "More Information Requested"
 msgstr "要求更多信息"
