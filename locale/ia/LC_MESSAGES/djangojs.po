@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-09-03 21:59+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"PO-Revision-Date: 2019-09-30 21:24+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -152,29 +152,29 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "Iste thema es incompatibile con tu version de {0}"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Tote le derectos es reservate - All Rights Reserved"
 
 #, fuzzy
 msgid "Creative Commons Attribution 3.0"
 msgstr "Contribution medie"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Attribution non commercial 3.0 de Creative Commons"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Attribution-NonCommercial-NoDerivs 3.0 de Creative Commons"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Attribution-NonCommercial-NoDerivs 3.0 de Creative Commons"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Le nomine de tu thema"
 
 msgid "Flagged for review"
 msgstr "Marcate pro revision"
