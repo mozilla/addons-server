@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2018-12-06 00:28+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,8 @@ msgstr "Det gjekk ikkje å kontakte tenaren."
 msgid "Select a file..."
 msgstr "Vel ei fil…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Utvidinga di må slutte på .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -147,6 +148,31 @@ msgstr "Videoar må vere i formatet WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
+
+msgid "All Rights Reserved"
+msgstr ""
+
+#, fuzzy
+msgid "Creative Commons Attribution 3.0"
+msgstr "Gjennomsnittleg bidrag"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Your Theme's Name"
+msgstr ""
 
 msgid "Flagged for review"
 msgstr "Flagga for vurdering"
@@ -710,12 +736,6 @@ msgstr "Fjern denne omsettinga"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} såg på sida først."
-
-msgid "Receipt checked by app."
-msgstr "Kvittering kontrollert av appen."
-
-msgid "Receipt was not checked by app."
-msgstr "Kvitteringa vart ikkje kontrollert av appen."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} såg på utvidinga først."

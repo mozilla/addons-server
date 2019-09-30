@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2018-09-24 01:47+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,6 +144,58 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr ""
+
+msgid "Rejected"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "Added {0}"
+msgstr ""
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> usuariu activu"
+msgstr[1] "<strong>{0}</strong> usuarios activos"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Reseñes aprobaes"
+
+#, fuzzy
+msgid "Add"
+msgstr "Complementos"
+
+msgid "Edit"
+msgstr ""
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Entá nun se valoró"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> descargues"
+
+msgid "by"
+msgstr "por"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Usuarios diarios"
+msgstr[1] "Usuarios diarios"
 
 msgid "Sort by:"
 msgstr ""
@@ -289,6 +341,10 @@ msgstr "Ups"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>¡Ups!  Tuviemos un fallu.</h1> <p>Vamos igualu ceo.</p> <p> Pues tentar de refrescar la páxina o volver a la <a href=\"%(home)s\">páxina d'aniciu de los complementos</a>. </p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Tolos drechos reservaos"
 
 msgid "No results found"
 msgstr ""
@@ -526,9 +582,6 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
-msgid "Approved"
-msgstr ""
-
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -536,9 +589,6 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
-msgstr ""
-
-msgid "Rejected"
 msgstr ""
 
 msgid "{addon} {version} retained."
@@ -789,6 +839,9 @@ msgstr ""
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
+msgid "User {user} api key reset."
+msgstr ""
+
 msgid "Firefox"
 msgstr ""
 
@@ -814,9 +867,6 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Incomplete"
-msgstr ""
-
-msgid "Awaiting Review"
 msgstr ""
 
 msgid "Disabled by Mozilla"
@@ -1995,9 +2045,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Fontes adicionales:"
 
-msgid "Edit"
-msgstr ""
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Recursos adicionales"
@@ -2972,6 +3019,7 @@ msgstr "Volvi afayate"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr ""
 
@@ -3150,9 +3198,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
-
-msgid "by"
-msgstr "por"
 
 msgid "Leave a reply"
 msgstr ""
@@ -4679,6 +4724,37 @@ msgstr "Controla la reproducción de vídeos {start_sub_heading}con {addon_name}
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Les estensiones heredaes yá nun se sofiten en Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Estensiones"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Estensiones"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4734,7 +4810,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4742,6 +4817,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5160,9 +5236,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} reseña"
 msgstr[1] "{num} reseñes"
-
-msgid "Not yet rated"
-msgstr "Entá nun se valoró"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6267,6 +6340,13 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+msgid "Reset API Key"
 msgstr ""
 
 msgid "Profile Photo"

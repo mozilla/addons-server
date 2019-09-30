@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -151,6 +151,59 @@ msgstr "Addon and collection paths need to end with \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
+
+msgid "Awaiting Review"
+msgstr "Awaiting Review"
+
+msgid "Rejected"
+msgstr "Rejected"
+
+msgid "Approved"
+msgstr "Approved"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "Add-on Media for {0}"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> active user"
+msgstr[1] "<strong>{0}</strong> active users"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Back to review"
+
+#, fuzzy
+msgid "Add"
+msgstr "Addons"
+
+msgid "Edit"
+msgstr "Edit"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr "by {0} on {1}"
+
+msgid "Not yet rated"
+msgstr "Not yet rated"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> theme"
+
+msgid "by"
+msgstr "by"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Daily Users"
+msgstr[1] "Daily Users"
 
 msgid "Sort by:"
 msgstr "Sort by:"
@@ -316,6 +369,10 @@ msgstr "Oops"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "All Rights Reserved"
 
 msgid "No results found"
 msgstr "No results found"
@@ -564,9 +621,6 @@ msgstr "File {0} deleted from {version} of {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} approved."
 
-msgid "Approved"
-msgstr "Approved"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} given preliminary review."
 
@@ -575,9 +629,6 @@ msgstr "Preliminarily approved"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} rejected."
-
-msgid "Rejected"
-msgstr "Rejected"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} retained."
@@ -864,6 +915,10 @@ msgstr "Review requested"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} {version} given preliminary review."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "User {user} restricted."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -890,9 +945,6 @@ msgstr "Unknown"
 
 msgid "Incomplete"
 msgstr "Incomplete"
-
-msgid "Awaiting Review"
-msgstr "Awaiting Review"
 
 msgid "Disabled by Mozilla"
 msgstr "Disabled by Mozilla"
@@ -2159,9 +2211,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Add-on Details"
 
-msgid "Edit"
-msgstr "Edit"
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Add-on Details for {0}"
@@ -3268,6 +3317,7 @@ msgstr "Welcome, {0}"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Learn More"
 
@@ -3476,9 +3526,6 @@ msgstr "We had a problem retrieving review notes"
 #, fuzzy
 msgid "Load older..."
 msgstr "Loading..."
-
-msgid "by"
-msgstr "by"
 
 #, fuzzy
 msgid "Leave a reply"
@@ -5238,6 +5285,38 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Legacy extensions are no longer supported in Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "They add features to Firefox to make browsing faster, safer, or just plain fun."
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Browse all add-ons"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr "Sync extensions across devices"
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr "Privacy beyond browser extensions"
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr "Media enhancers for Firefox"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Extensions"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5293,7 +5372,6 @@ msgstr "Could not parse uploaded file."
 msgid "Unsupported archive type."
 msgstr "Unsupported archive type."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 
@@ -5301,6 +5379,7 @@ msgstr "Invalid file name in archive. Please make sure all filenames are utf-8 o
 msgid "Invalid file name in archive: {0}"
 msgstr "Invalid file name in archive: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
@@ -5759,9 +5838,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} review"
 msgstr[1] "{num} reviews"
-
-msgid "Not yet rated"
-msgstr "Not yet rated"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Rated {0} out of 5 stars"
@@ -6958,6 +7034,14 @@ msgstr "The users \"%(users)s\" have been banned.users, "
 
 msgid "Ban selected users"
 msgstr "Ban selected users"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "The users \"%(users)s\" have been banned.users, "
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Manage API Keys"
 
 msgid "Profile Photo"
 msgstr "Profile Photo"

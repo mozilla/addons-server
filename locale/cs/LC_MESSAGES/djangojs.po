@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-05-21 23:23+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -27,7 +27,8 @@ msgstr "Vyskytl se problém při kontaktování serveru."
 msgid "Select a file..."
 msgstr "Vybrat soubor..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Název vašeho doplňku by měl končit .zip, .xpi, .crx, .jar nebo .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -153,6 +154,31 @@ msgstr "Videa musí být ve formátu WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Motiv vzhledu je s touto verzí aplikace {0} nekompatibilní"
+
+msgid "All Rights Reserved"
+msgstr ""
+
+#, fuzzy
+msgid "Creative Commons Attribution 3.0"
+msgstr "Průměrný příspěvek"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Your Theme's Name"
+msgstr ""
 
 msgid "Flagged for review"
 msgstr "Označeno na kontrolu"
@@ -730,12 +756,6 @@ msgstr "Odebrat lokalizaci"
 
 msgid "{name} was viewing this page first."
 msgstr "Uživatel {name} shlédl tuto stránku jako první."
-
-msgid "Receipt checked by app."
-msgstr "Potvrzení bylo aplikací zkontrolováno."
-
-msgid "Receipt was not checked by app."
-msgstr "Potvrzení nebylo aplikací zkontrolováno."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} prohlédl tento doplněk jako první."

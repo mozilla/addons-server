@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-07-19 18:36+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,8 @@ msgstr "सर्वर से संपर्क करने में एक 
 msgid "Select a file..."
 msgstr "एक फ़ाइल चुनें..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "आपके ऐड-ऑन के आखिर में .zip, .xpi, .crx, .jar या .xml होना चाहिए"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -147,6 +148,31 @@ msgstr "वीडियोस WebM में होना चाहिए."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "यह थीम {0} के आपके संस्करण के साथ असंगत है"
+
+msgid "All Rights Reserved"
+msgstr ""
+
+#, fuzzy
+msgid "Creative Commons Attribution 3.0"
+msgstr "औसत योगदान"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Your Theme's Name"
+msgstr ""
 
 msgid "Flagged for review"
 msgstr "समीक्षा के लिए चिह्नित"
@@ -710,12 +736,6 @@ msgstr "इस स्थानीयकरण को निकालें"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} इस पेज को पहले देख रहे थे।"
-
-msgid "Receipt checked by app."
-msgstr "ऐप द्वारा रसीद की जाँच की गयी।"
-
-msgid "Receipt was not checked by app."
-msgstr "ऐप द्वारा रसीद की जाँच नही की गयी थी।"
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} पहले यह ऐड-ऑन देख रहे थे।"

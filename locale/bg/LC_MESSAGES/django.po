@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-08-07 10:53+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -145,6 +145,58 @@ msgstr "Пътищата на добавките и списъците тряб�
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Имената на добавките не могат да съдържат търговските марки Mozilla или Firefox."
+
+msgid "Awaiting Review"
+msgstr "Очаква рецензия"
+
+msgid "Rejected"
+msgstr "Отказан"
+
+msgid "Approved"
+msgstr "Одобрена"
+
+msgid "Added {0}"
+msgstr ""
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> активен потребител"
+msgstr[1] "<strong>{0}</strong> активни потребителя"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Бележка към рецензента:"
+
+#, fuzzy
+msgid "Add"
+msgstr "Добавка"
+
+msgid "Edit"
+msgstr "Редактиране"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Без оценка"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> тема"
+
+msgid "by"
+msgstr "от"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Дневни потребители"
+msgstr[1] "Дневни потребители"
 
 msgid "Sort by:"
 msgstr "Подреждане по:"
@@ -293,6 +345,10 @@ msgstr ""
 "<h1>Ооох! Възникна грешка</h1>\n"
 "<p>Скоро ще се заемем с оправянето ѝ.</p>\n"
 "<p>Презаредете страницата или се върнете към <a href=\"%(home)s\">началната страница на Добавки</a>.</p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Всички права запазени"
 
 msgid "No results found"
 msgstr "Няма резултати"
@@ -536,9 +592,6 @@ msgstr "Файл {0} изтрит от {version} на {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} одобрена."
 
-msgid "Approved"
-msgstr "Одобрена"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} получи предварителен преглед."
 
@@ -547,9 +600,6 @@ msgstr "Предварително одобрена"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} отказана."
-
-msgid "Rejected"
-msgstr "Отказан"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} задържана."
@@ -817,6 +867,10 @@ msgstr "Заявена рецензия"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} премина предварителна проверка."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Снимката на потребителят {user} е изтрита."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -843,9 +897,6 @@ msgstr "Непознат"
 
 msgid "Incomplete"
 msgstr "Непълен"
-
-msgid "Awaiting Review"
-msgstr "Очаква рецензия"
 
 msgid "Disabled by Mozilla"
 msgstr "Спряно от Mozilla"
@@ -2073,9 +2124,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Допълнителни детайли"
 
-msgid "Edit"
-msgstr "Редактиране"
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Детайли за {0}"
@@ -3081,6 +3129,7 @@ msgstr "Добре дошли"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Научете повече"
 
@@ -3263,9 +3312,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
-
-msgid "by"
-msgstr "от"
 
 msgid "Leave a reply"
 msgstr ""
@@ -4774,6 +4820,37 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Преглед на всички разширения"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Разширения"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4829,7 +4906,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4837,6 +4913,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5265,9 +5342,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} отзив"
 msgstr[1] "{num} отзива"
-
-msgid "Not yet rated"
-msgstr "Без оценка"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Оценена с {0} от 5 звезди"
@@ -6426,6 +6500,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Управление на ППИ"
 
 msgid "Profile Photo"
 msgstr "Профилна снимка"

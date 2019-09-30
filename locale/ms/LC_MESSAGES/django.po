@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,6 +146,57 @@ msgstr "Laluan add-on dan koleksi perlu berakhir dengan \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nama add-on tidak boleh mengandungi tanda dagangan Mozilla atau Firefox."
+
+msgid "Awaiting Review"
+msgstr "Menunggu Semakan"
+
+msgid "Rejected"
+msgstr "Ditolak"
+
+msgid "Approved"
+msgstr "Diluluskan"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "Media Add-on untuk {0}"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> pengguna aktif"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Kembali ke semakan"
+
+#, fuzzy
+msgid "Add"
+msgstr "Add-ons"
+
+msgid "Edit"
+msgstr "Edit"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Belum lagi dinilai"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> tema"
+
+msgid "by"
+msgstr "oleh"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Pengguna Harian"
 
 msgid "Sort by:"
 msgstr "Susun mengikut:"
@@ -303,6 +354,10 @@ msgstr "Ooops"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ooops!  Ada ralat.</h1> <p>Kami akan membaikinya sebentar lagi.</p> <p>Anda boleh cuba memulakan semula halaman, atau pergi ke <a href=\"%(home)s\">Halaman utama Add-ons</a>.</p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Hak Cipta Terpelihara"
 
 msgid "No results found"
 msgstr "Tiada hasil ditemukan"
@@ -546,9 +601,6 @@ msgstr "Fail {0} dibuang daripada {version} {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} diluluskan."
 
-msgid "Approved"
-msgstr "Diluluskan"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} diberi semakan awalan."
 
@@ -557,9 +609,6 @@ msgstr "Semakan Awalan diluluskan"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ditolak."
-
-msgid "Rejected"
-msgstr "Ditolak"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ditahan."
@@ -809,6 +858,10 @@ msgstr "Perlu semakan pentadbir tema"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} dipindahkan daripada tema ringkas."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Gambar pengguna {user} dibuang."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -835,9 +888,6 @@ msgstr "Tidak diketahui"
 
 msgid "Incomplete"
 msgstr "Tidak lengkap"
-
-msgid "Awaiting Review"
-msgstr "Menunggu Semakan"
 
 msgid "Disabled by Mozilla"
 msgstr "Dinyahdaya oleh Mozilla"
@@ -2026,9 +2076,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Butiran Tambahan"
 
-msgid "Edit"
-msgstr "Edit"
-
 msgid "Additional Details for {0}"
 msgstr "Butiran Tambahan untuk {0}"
 
@@ -3032,6 +3079,7 @@ msgstr "Selamat Kembali"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Anda mahu ekstensi anda dipaparkan di %(amo_link_open)saddons.mozilla.org%(amo_link_close)s Anda boleh ketahuinya dalam polisi ekstensi serlahan yang disediakan."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Ketahui Selanjutnya"
 
@@ -3216,9 +3264,6 @@ msgstr "Kami ada masalah mendapatkan nota semakan"
 
 msgid "Load older..."
 msgstr "Muatkan yang terdahulu..."
-
-msgid "by"
-msgstr "oleh"
 
 msgid "Leave a reply"
 msgstr "Beri pesanan"
@@ -4809,6 +4854,37 @@ msgstr "Cari video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Ekstensi legasi tidak lagi disokong di Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Layari semua ekstensi"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Ekstensi"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Pemerhati fail dikunci, mengekstrak %s mungkin sedang dilaksanakan. Sila cuba lagi dalam kira-kira 5 minit."
@@ -4864,7 +4940,6 @@ msgstr "Tidak dapat menghuraikan fail yang dimuat naik."
 msgid "Unsupported archive type."
 msgstr "Jenis arkib tidak disokong."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nama fail dalam arkib tidak sah. Sila pastikan semua nama fail dalam kod utf-8 atau latin1."
 
@@ -4872,6 +4947,7 @@ msgstr "Nama fail dalam arkib tidak sah. Sila pastikan semua nama fail dalam kod
 msgid "Invalid file name in archive: {0}"
 msgstr "Nama fail tidak sah dalam arkib: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Saiz fail melebihi had dalam arkib: {0}"
 
@@ -5310,9 +5386,6 @@ msgstr "Penjelasan ringkas mesti disertakan apabila memilih \"Lain-lain\" sebaga
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} ulasan"
-
-msgid "Not yet rated"
-msgstr "Belum lagi dinilai"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Tahap {0} daripada 5 bintang"
@@ -6427,6 +6500,14 @@ msgstr "Pengguna \"%(users)s\" telah disekat."
 
 msgid "Ban selected users"
 msgstr "Sekat pengguna yang dipilih"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Pengguna \"%(users)s\" telah disekat."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Urus Kekunci API"
 
 msgid "Profile Photo"
 msgstr "Foto Profil"
