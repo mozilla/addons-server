@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-09-30 21:28+0000\n"
+"PO-Revision-Date: 2019-09-30 22:30+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -150,24 +150,21 @@ msgstr "Rejectate"
 msgid "Approved"
 msgstr "Approbate"
 
-#, fuzzy
 msgid "Added {0}"
-msgstr "Medios de additivo pro {0}"
+msgstr "Addite {0}"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> usator active"
-msgstr[1] "<strong>{0}</strong> usatores active"
+msgstr[0] "<strong>{0}</strong> usatores"
+msgstr[1] "<strong>{0}</strong> usatores"
 
 #, fuzzy
 msgid "Hover to Preview"
 msgstr "Tornar al revision"
 
-#, fuzzy
 msgid "Add"
-msgstr "Additivos"
+msgstr "Adder"
 
 msgid "Edit"
 msgstr "Edition"
@@ -180,9 +177,8 @@ msgstr "per {0} sur {1}"
 msgid "Not yet rated"
 msgstr "Nondum valutate"
 
-#, fuzzy
 msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> thema"
+msgstr "<b>{0}</b> usatores"
 
 msgid "by"
 msgstr "per"
@@ -350,9 +346,8 @@ msgstr "Ups"
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ups!  Nos habeva un error.</h1> <p>Nos lo remediara tosto.</p> <p> Tu pote provar a refrescar le pagina, o receder al <a href=\"%(home)s\">Pagina principal del additivos</a>. </p>"
 
-#, fuzzy
 msgid "Some rights reserved"
-msgstr "Tote le derectos es reservate"
+msgstr "Alcun derectos es reservate"
 
 msgid "No results found"
 msgstr "Nulle resultatos trovate"
@@ -6423,9 +6418,8 @@ msgstr "Blocar le usatores eligite"
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr "Le usatores \"%(users)s\" ha essite blocate."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Gerer le claves API"
+msgstr "Remontar le clave API"
 
 msgid "Profile Photo"
 msgstr "Photo del profilo"

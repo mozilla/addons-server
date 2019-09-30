@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-09-30 21:24+0000\n"
+"PO-Revision-Date: 2019-09-30 22:25+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -27,9 +27,8 @@ msgstr "Il ha habite un problema con le connexion al servitor."
 msgid "Select a file..."
 msgstr "Elige un file..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, .jar o .xml"
+msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -154,9 +153,8 @@ msgstr "Iste thema es incompatibile con tu version de {0}"
 msgid "All Rights Reserved"
 msgstr "Tote le derectos es reservate - All Rights Reserved"
 
-#, fuzzy
 msgid "Creative Commons Attribution 3.0"
-msgstr "Contribution medie"
+msgstr "Attribution 3.0 de Creative Commons"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Attribution non commercial 3.0 de Creative Commons"
