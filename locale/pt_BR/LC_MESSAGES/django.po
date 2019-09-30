@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-09-30 20:52+0000\n"
+"PO-Revision-Date: 2019-09-30 20:57+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -352,9 +352,8 @@ msgstr "Ops"
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Opa!  Tivemos um problema.</h1> <p>Nós consertaremos isso logo.</p> <p>Você pode tentar atualizar a página ou voltar para a <a href=\"%(home)s\">página inicial das extensões</a>.</p>"
 
-#, fuzzy
 msgid "Some rights reserved"
-msgstr "Todos os direitos reservados"
+msgstr "Alguns direitos reservados"
 
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
@@ -868,9 +867,8 @@ msgstr "Análise administrativa do tema solicitada"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} foi migrado a partir de um tema leve."
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "Excluída foto do usuário {user}."
+msgstr "Redefinição de chave de api do usuário {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4839,18 +4837,16 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr "Esta extensão repara a dificuldade que alguns sites têm em reproduzir vídeos no Firefox para Android."
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Extensões legadas não são mais suportadas no Firefox."
+msgstr "Extensões são como aplicativos no Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Elas adicionam funcionalidades ao Firefox para tornar a navegação mais rápida, mais segura ou simplesmente divertida."
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Navegar em todas as extensões"
+msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
@@ -4866,9 +4862,8 @@ msgstr "Aprimoradores de mídia para Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Extensões"
+msgstr "Explorar extensões"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6513,13 +6508,12 @@ msgstr "Os usuários \"%(users)s\" foram banidos."
 msgid "Ban selected users"
 msgstr "Banir usuários selecionados"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Os usuários \"%(users)s\" foram banidos."
+msgstr "Os usuários \"%(users)s\" tiveram suas chaves de API redefinidas."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Gerenciar chaves API"
+msgstr "Redefinir chave de API"
 
 msgid "Profile Photo"
 msgstr "Foto do perfil"
