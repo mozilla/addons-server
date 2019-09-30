@@ -12,6 +12,8 @@ class TestPrimaryHero(TestCase):
             image='foo.png')
         assert ph.image_url == (
             'http://testserver/static/img/hero/featured/foo.png')
+        ph.update(image='')
+        assert ph.image_url is None
 
     def test_gradiant(self):
         ph = PrimaryHero.objects.create(
