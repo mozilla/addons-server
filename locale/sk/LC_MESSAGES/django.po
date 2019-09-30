@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-03-15 17:33+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -142,6 +142,61 @@ msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Názov doplnku nemôže obsahovať ochranné známky Mozilla alebo Firefox."
+
+msgid "Awaiting Review"
+msgstr "Čaká na kontrolu"
+
+msgid "Rejected"
+msgstr "Zamietnutý"
+
+msgid "Approved"
+msgstr "Schválený"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "Média doplnku pre {0}"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> aktívny používateľ"
+msgstr[1] "<strong>{0}</strong> aktívni používatelia"
+msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Späť na recenziu"
+
+#, fuzzy
+msgid "Add"
+msgstr "Doplnky"
+
+msgid "Edit"
+msgstr "Upraviť"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Nehodnotené"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> téma vzhľadu"
+
+msgid "by"
+msgstr "Autor:"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Denných používateľov"
+msgstr[1] "Denných používateľov"
+msgstr[2] "Denných používateľov"
 
 msgid "Sort by:"
 msgstr "Zoradiť podľa:"
@@ -288,6 +343,10 @@ msgstr "Ups"
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
 "<h1>Ups!  Vyskytla sa chyba.</h1> <p>Pokúsime sa ju čím skôr opraviť.</p> <p> Môžete skúsiť znova načítať túto stránku alebo prejdite na <a href=\"%(home)s\">domovskú stránku Doplnkov</a>. </p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Všetky práva vyhradené"
 
 msgid "No results found"
 msgstr "Neboli nájdené žiadne výsledky."
@@ -531,9 +590,6 @@ msgstr "Pre doplnok {addon} {version} odstránený súbor {0}."
 msgid "{addon} {version} approved."
 msgstr "Doplnok {addon} {version} schválený."
 
-msgid "Approved"
-msgstr "Schválený"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "Doplnok {addon} {version} bol predbežne skontrolovaný."
 
@@ -542,9 +598,6 @@ msgstr "Predbežne schválený"
 
 msgid "{addon} {version} rejected."
 msgstr "Doplnok {addon} {version} zamietnutý."
-
-msgid "Rejected"
-msgstr "Zamietnutý"
 
 msgid "{addon} {version} retained."
 msgstr "Doplnok {addon} {version} pozdržaný."
@@ -795,6 +848,10 @@ msgstr ""
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Obrázok používateľa {user} bol odstránený."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -821,9 +878,6 @@ msgstr "Neznámy"
 
 msgid "Incomplete"
 msgstr "Nekompletný"
-
-msgid "Awaiting Review"
-msgstr "Čaká na kontrolu"
 
 msgid "Disabled by Mozilla"
 msgstr "Zakázaný Mozillou"
@@ -2014,9 +2068,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Podrobnosti"
 
-msgid "Edit"
-msgstr "Upraviť"
-
 msgid "Additional Details for {0}"
 msgstr "Podrobnosti o doplnku {0}"
 
@@ -3004,6 +3055,7 @@ msgstr ""
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Ďalšie informácie"
 
@@ -3187,9 +3239,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "Načítať staršie..."
-
-msgid "by"
-msgstr "Autor:"
 
 msgid "Leave a reply"
 msgstr "Zanechať odpoveď"
@@ -4714,6 +4763,38 @@ msgstr "Preberajte videá {start_sub_heading}s doplnkom {addon_name}{end_sub_hea
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Zastarané rozšírenia už nie sú vo Firefoxe podporované."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Prehliadať všetky rozšírenia"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Rozšírenia"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4769,7 +4850,6 @@ msgstr "Odoslaný súbor nebolo možné spracovať."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4777,6 +4857,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5197,9 +5278,6 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} recenzia"
 msgstr[1] "{num} recenzie"
 msgstr[2] "{num} recenzií"
-
-msgid "Not yet rated"
-msgstr "Nehodnotené"
 
 # 87%
 msgid "Rated {0} out of 5 stars"
@@ -6335,6 +6413,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr "Zablokovať vybraných používateľov"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Spravovať kľúče API"
 
 msgid "Profile Photo"
 msgstr "Fotografia profilu"

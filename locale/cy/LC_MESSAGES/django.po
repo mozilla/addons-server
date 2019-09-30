@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-03-21 16:17+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,6 +147,62 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr ""
+
+msgid "Rejected"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "Added {0}"
+msgstr ""
+
+#. {0} is the number of users.
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Nodiadau'r Adolygydd:"
+
+msgid "Add"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Heb ei raddio eto"
+
+msgid "<b>{0}</b> users"
+msgstr ""
+
+msgid "by"
+msgstr "gan"
+
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 msgid "Sort by:"
 msgstr "Trefnu yn ôl:"
@@ -294,6 +350,9 @@ msgstr ""
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr ""
+
+msgid "Some rights reserved"
 msgstr ""
 
 msgid "No results found"
@@ -533,9 +592,6 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
-msgid "Approved"
-msgstr ""
-
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -543,9 +599,6 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
-msgstr ""
-
-msgid "Rejected"
 msgstr ""
 
 msgid "{addon} {version} retained."
@@ -796,6 +849,9 @@ msgstr "Cais am adolygiad thema gan ygweinyddwr"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
+msgid "User {user} api key reset."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -821,9 +877,6 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Incomplete"
-msgstr ""
-
-msgid "Awaiting Review"
 msgstr ""
 
 msgid "Disabled by Mozilla"
@@ -2034,9 +2087,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Manylion Ychwanegol"
 
-msgid "Edit"
-msgstr ""
-
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
@@ -3031,6 +3081,7 @@ msgstr ""
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Dysgu Rhagor"
 
@@ -3211,9 +3262,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
-
-msgid "by"
-msgstr "gan"
 
 msgid "Leave a reply"
 msgstr ""
@@ -4727,6 +4775,38 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Estyniadau"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Estyniadau"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4782,7 +4862,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4790,6 +4869,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5209,9 +5289,6 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
-
-msgid "Not yet rated"
-msgstr "Heb ei raddio eto"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6363,6 +6440,13 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+msgid "Reset API Key"
 msgstr ""
 
 msgid "Profile Photo"

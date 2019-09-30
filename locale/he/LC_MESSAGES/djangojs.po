@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-08-17 19:00+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,8 @@ msgstr "אירעה שגיאה בהתקשרות עם השרת."
 msgid "Select a file..."
 msgstr "בחירת קובץ..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "התוספת שלך צריכה להסתיים ב־zip‏, xpi‏, crx‏, jar או xml."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -144,6 +145,31 @@ msgstr "וידאו חייב להיות בתבנית WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ערכת נושא זו אינה תואמת לגרסה של ה־{0} שלך"
+
+msgid "All Rights Reserved"
+msgstr ""
+
+#, fuzzy
+msgid "Creative Commons Attribution 3.0"
+msgstr "תרומה ממוצעת"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Your Theme's Name"
+msgstr ""
 
 msgid "Flagged for review"
 msgstr "מסומן לסקירה"
@@ -707,12 +733,6 @@ msgstr "להסיר את התרגום הזה"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} צפה בדף הזה ראשון."
-
-msgid "Receipt checked by app."
-msgstr "הקבלה נבדקה על־ידי היישום."
-
-msgid "Receipt was not checked by app."
-msgstr "הקבלה לא נבדקה על־ידי היישום."
 
 msgid "{name} was viewing this add-on first."
 msgstr "תוספת זו כבר נצפתה על־ידי {name}."

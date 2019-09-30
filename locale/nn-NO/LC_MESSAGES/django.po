@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-08-19 15:22+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,6 +145,59 @@ msgstr "Søkesti for tillegg og samling må avsluttast med \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "Awaiting Review"
+msgstr "Ventar på vurdering"
+
+msgid "Rejected"
+msgstr "Avvist"
+
+msgid "Approved"
+msgstr "Godkjend"
+
+#, fuzzy
+msgid "Added {0}"
+msgstr "Utvidingsmedia for {0}"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] "<strong>{0}</strong> aktiv brukar"
+msgstr[1] "<strong>{0}</strong> aktive brukarar"
+
+#, fuzzy
+msgid "Hover to Preview"
+msgstr "Tilbake til vurderinga"
+
+#, fuzzy
+msgid "Add"
+msgstr "Tillegg"
+
+msgid "Edit"
+msgstr "Rediger"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "Ikkje vurdert enno"
+
+#, fuzzy
+msgid "<b>{0}</b> users"
+msgstr "<b>{0}</b> tema"
+
+msgid "by"
+msgstr "av"
+
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Daglege brukarar"
+msgstr[1] "Daglege brukarar"
 
 msgid "Sort by:"
 msgstr "Sorter etter:"
@@ -294,6 +347,10 @@ msgstr "Ops"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ops!  Noko gjekk gale.</h1> <p>Vi kjem til å reparere det snart.</p> <p> Du kan prøve å oppdatere sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. </p>"
+
+#, fuzzy
+msgid "Some rights reserved"
+msgstr "Alle rettar med atterhald"
 
 msgid "No results found"
 msgstr "Fann ingen resultat"
@@ -534,9 +591,6 @@ msgstr "Fila {0} sletta {version} av {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} godkjend."
 
-msgid "Approved"
-msgstr "Godkjend"
-
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} er førebels vurdert."
 
@@ -545,9 +599,6 @@ msgstr "Førebels godkjend"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} avvist."
-
-msgid "Rejected"
-msgstr "Avvist"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} halden tilbake."
@@ -804,6 +855,10 @@ msgstr "Det er bedt om ei vurdering"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} migrert frå førebuande."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Bildet til brukaren {user} sletta."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -830,9 +885,6 @@ msgstr "Ukjend"
 
 msgid "Incomplete"
 msgstr "Ufullstendig"
-
-msgid "Awaiting Review"
-msgstr "Ventar på vurdering"
 
 msgid "Disabled by Mozilla"
 msgstr "Deaktiveret av Mozilla"
@@ -2034,9 +2086,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr "Utvidingsdetaljar"
 
-msgid "Edit"
-msgstr "Rediger"
-
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Utvidingsdetaljar for {0}"
@@ -3025,6 +3074,7 @@ msgstr "Velkomen tilbake"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Les meir"
 
@@ -3207,9 +3257,6 @@ msgstr "Vi hadde eit problem med å hente vurderingsnotat"
 
 msgid "Load older..."
 msgstr "Last eldre…"
-
-msgid "by"
-msgstr "av"
 
 msgid "Leave a reply"
 msgstr "Legg att eit svar"
@@ -4888,6 +4935,36 @@ msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Bla i alle utvidingar"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Utvidingar"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4943,7 +5020,6 @@ msgstr "Klarte ikkje å tolke opplasta fil."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4951,6 +5027,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "Ugyldig filnamn i arkivet: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5368,9 +5445,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} vurdering"
 msgstr[1] "{num} vurderingar"
-
-msgid "Not yet rated"
-msgstr "Ikkje vurdert enno"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Vurdert til {0} av 5 stjerner"
@@ -6490,6 +6564,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Handsam API-nøklar"
 
 msgid "Profile Photo"
 msgstr "Profilfoto"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-07-11 17:15+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,6 +140,54 @@ msgstr "એડ-ઑન અને સંગ્રહ પાથો \"/\" સાથ�
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "એડ-ઓન નામોમાં Mozilla અથવા Firefox ટ્રેડમાર્ક્સ શામેલ નથી થઈ શક્તા."
+
+msgid "Awaiting Review"
+msgstr "સમીક્ષાની રાહ જોઇએ છીએ"
+
+msgid "Rejected"
+msgstr "નકારેલું"
+
+msgid "Approved"
+msgstr "મંજૂર"
+
+msgid "Added {0}"
+msgstr ""
+
+#. {0} is the number of users.
+msgid "<strong>{0}</strong> user"
+msgid_plural "<strong>{0}</strong> users"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Hover to Preview"
+msgstr ""
+
+#, fuzzy
+msgid "Add"
+msgstr "ઍડ-ઑન્સ"
+
+msgid "Edit"
+msgstr "ફેરફાર કરો"
+
+#. For datetime formatting, see the table on
+#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
+msgid "by {0} on {1}"
+msgstr ""
+
+msgid "Not yet rated"
+msgstr "હજુ સુધી રેટ નથી"
+
+msgid "<b>{0}</b> users"
+msgstr ""
+
+msgid "by"
+msgstr "દ્વારા"
+
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Sort by:"
 msgstr ""
@@ -284,6 +332,9 @@ msgstr "અરેરે"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr ""
+
+msgid "Some rights reserved"
 msgstr ""
 
 msgid "No results found"
@@ -520,9 +571,6 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
-msgid "Approved"
-msgstr "મંજૂર"
-
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -531,9 +579,6 @@ msgstr "પ્રારંભિક મંજૂર"
 
 msgid "{addon} {version} rejected."
 msgstr ""
-
-msgid "Rejected"
-msgstr "નકારેલું"
 
 msgid "{addon} {version} retained."
 msgstr ""
@@ -783,6 +828,9 @@ msgstr ""
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
+msgid "User {user} api key reset."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -809,9 +857,6 @@ msgstr ""
 
 msgid "Incomplete"
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr "સમીક્ષાની રાહ જોઇએ છીએ"
 
 msgid "Disabled by Mozilla"
 msgstr ""
@@ -1982,9 +2027,6 @@ msgstr ""
 msgid "Additional Details"
 msgstr ""
 
-msgid "Edit"
-msgstr "ફેરફાર કરો"
-
 msgid "Additional Details for {0}"
 msgstr "{0} માટે વધારાની વિગતો"
 
@@ -2953,6 +2995,7 @@ msgstr ""
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr ""
 
@@ -3131,9 +3174,6 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
-
-msgid "by"
-msgstr "દ્વારા"
 
 msgid "Leave a reply"
 msgstr ""
@@ -4636,6 +4676,36 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "તમામ એક્સટેન્શન્સને બ્રાઉઝ કરો"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "તમામ એક્સટેન્શન્સને બ્રાઉઝ કરો"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4691,7 +4761,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4699,6 +4768,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5115,9 +5185,6 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Not yet rated"
-msgstr "હજુ સુધી રેટ નથી"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -6220,6 +6287,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API કીઝ મેનેજ કરો"
 
 msgid "Profile Photo"
 msgstr ""

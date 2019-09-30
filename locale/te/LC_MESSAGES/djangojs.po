@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-08-16 18:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -26,7 +26,8 @@ msgstr "సర్వర్‌ని సంప్రదించడంలో స�
 msgid "Select a file..."
 msgstr "ఫైలును ఎంచుకోండి..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "మీ పొడగింతను .zip, .xpi, .crx, .jar లేదా .xml తో ముగించాలి"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -144,6 +145,31 @@ msgstr "వీడియోలు తప్పనిసరిగా WebM లో �
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ఈ అలంకారం మీ {0} వెర్షనుతో అనుగుణ్యంగా లేదు"
+
+msgid "All Rights Reserved"
+msgstr ""
+
+#, fuzzy
+msgid "Creative Commons Attribution 3.0"
+msgstr "సగటు సహకారం"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Your Theme's Name"
+msgstr ""
 
 msgid "Flagged for review"
 msgstr "సమీక్ష కోసం గుర్తించబడింది"
@@ -707,12 +733,6 @@ msgstr "ఈ స్థానికీకరణను తీసివేయి"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} మొదట ఈ పేజీని చూస్తున్నారు."
-
-msgid "Receipt checked by app."
-msgstr "అనువర్తనం ద్వారా రసీదు తనిఖీ చేయబడింది."
-
-msgid "Receipt was not checked by app."
-msgstr "అనువర్తనం ద్వారా రసీదు తనిఖీ చేయబడలేదు."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} మొదట ఈ పొడగింపును స్తున్నారు."

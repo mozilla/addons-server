@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-08-04 20:57+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -26,7 +26,8 @@ msgstr "Det gick inte att kontakta servern."
 msgid "Select a file..."
 msgstr "Välj en fil..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Ditt tillägg bör sluta med .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -146,6 +147,31 @@ msgstr "Videor måste vara i WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Detta tema är inte kompatibelt med din version av {0}"
+
+msgid "All Rights Reserved"
+msgstr ""
+
+#, fuzzy
+msgid "Creative Commons Attribution 3.0"
+msgstr "Genomsnittligt bidrag"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Your Theme's Name"
+msgstr ""
 
 msgid "Flagged for review"
 msgstr "Flaggad för granskning"
@@ -709,12 +735,6 @@ msgstr "Ta bort denna översättning"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} tittade på sidan först."
-
-msgid "Receipt checked by app."
-msgstr "Kvitto kontrollerad av app."
-
-msgid "Receipt was not checked by app."
-msgstr "Kvitto inte kontrollerad av app."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} tittade på tillägget först."

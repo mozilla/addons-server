@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-09-30 16:55+0000\n"
 "PO-Revision-Date: 2019-07-09 06:56+0000\n"
 "Last-Translator: Miro Rauhala <miro.rauhala.99@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,8 @@ msgstr "Yhteydessä palvelimeen oli ongelmia."
 msgid "Select a file..."
 msgstr "Valitse tiedosto…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Lisäosasi tiedostopäätteen on oltava .zip, .xpi, .crx, .jar tai .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -146,6 +147,30 @@ msgstr "Videoiden tulee olla WebM-muodossa."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tämä teema ei ole yhteensopiva tämän {0} -version kanssa"
+
+msgid "All Rights Reserved"
+msgstr ""
+
+msgid "Creative Commons Attribution 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr ""
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr ""
+
+msgid "Your Theme's Name"
+msgstr ""
 
 msgid "Flagged for review"
 msgstr "Merkitty arvioitavaksi"
@@ -708,12 +733,6 @@ msgid "Remove this localization"
 msgstr "Poista tämä lokalisointi"
 
 msgid "{name} was viewing this page first."
-msgstr ""
-
-msgid "Receipt checked by app."
-msgstr ""
-
-msgid "Receipt was not checked by app."
 msgstr ""
 
 msgid "{name} was viewing this add-on first."
