@@ -23,7 +23,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.constants.scanners import CUSTOMS
+from olympia.constants.scanners import CUSTOMS, WAT
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
@@ -651,6 +651,10 @@ class TestVersionFromUpload(UploadTest, TestCase):
 class TestExtensionVersionFromUpload(TestVersionFromUpload):
     filename = 'extension.xpi'
 
+    def setUp(self):
+        super(TestExtensionVersionFromUpload, self).setUp()
+        self.dummy_parsed_data['is_webextension'] = True
+
     def test_carry_over_old_license(self):
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
@@ -893,7 +897,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # _current_version changes, which isn't the case here.
         assert sync_object_to_basket_mock.delay.call_count == 0
 
-    def test_set_version_to_scanners_result(self):
+    def test_set_version_to_customs_scanners_result(self):
+        self.create_switch('enable-customs', active=True)
         scanners_result = ScannersResult.objects.create(
             upload=self.upload, scanner=CUSTOMS)
         assert scanners_result.version is None
@@ -904,17 +909,60 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                                       amo.RELEASE_CHANNEL_LISTED,
                                       parsed_data=self.dummy_parsed_data)
 
+        assert version.is_webextension
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
-    def test_does_not_raise_when_scanners_result_does_not_exist(self):
+    def test_set_version_to_wat_scanners_result(self):
+        self.create_switch('enable-wat', active=True)
+        scanners_result = ScannersResult.objects.create(
+            upload=self.upload, scanner=WAT)
+        assert scanners_result.version is None
+
+        version = Version.from_upload(self.upload,
+                                      self.addon,
+                                      [self.selected_app],
+                                      amo.RELEASE_CHANNEL_LISTED,
+                                      parsed_data=self.dummy_parsed_data)
+
+        assert version.is_webextension
+        scanners_result.refresh_from_db()
+        assert scanners_result.version == version
+
+    def test_does_nothing_when_no_scanner_is_enabled(self):
+        self.create_switch('enable-customs', active=False)
+        self.create_switch('enable-wat', active=False)
+        scanners_result = ScannersResult.objects.create(
+            upload=self.upload, scanner=CUSTOMS)
+        assert scanners_result.version is None
+
         Version.from_upload(self.upload,
                             self.addon,
                             [self.selected_app],
                             amo.RELEASE_CHANNEL_LISTED,
                             parsed_data=self.dummy_parsed_data)
 
+        scanners_result.refresh_from_db()
+        assert scanners_result.version is None
+
+    def test_does_not_update_scanners_results_when_not_a_webextension(self):
+        self.create_switch('enable-customs', active=True)
+        scanners_result = ScannersResult.objects.create(
+            upload=self.upload, scanner=CUSTOMS)
+        assert scanners_result.version is None
+
+        self.dummy_parsed_data['is_webextension'] = False
+        Version.from_upload(self.upload,
+                            self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
+
+        scanners_result.refresh_from_db()
+        assert scanners_result.version is None
+
     def test_set_version_to_yara_result(self):
+        self.create_switch('enable-yara', active=True)
         yara_result = YaraResult.objects.create(upload=self.upload)
         assert yara_result.version is None
 
@@ -923,14 +971,43 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                                       amo.RELEASE_CHANNEL_LISTED,
                                       parsed_data=self.dummy_parsed_data)
 
+        assert version.is_webextension
         yara_result.refresh_from_db()
         assert yara_result.version == version
 
     def test_does_not_raise_when_yara_result_does_not_exist(self):
+        self.create_switch('enable-yara', active=True)
         Version.from_upload(self.upload, self.addon,
                             [self.selected_app],
                             amo.RELEASE_CHANNEL_LISTED,
                             parsed_data=self.dummy_parsed_data)
+
+    def test_does_nothing_when_yara_is_not_enabled(self):
+        self.create_switch('enable-yara', active=False)
+        yara_result = YaraResult.objects.create(upload=self.upload)
+        assert yara_result.version is None
+
+        Version.from_upload(self.upload, self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
+
+        yara_result.refresh_from_db()
+        assert yara_result.version is None
+
+    def test_does_not_update_yara_result_when_not_a_webextension(self):
+        self.create_switch('enable-yara', active=True)
+        yara_result = YaraResult.objects.create(upload=self.upload)
+        assert yara_result.version is None
+
+        self.dummy_parsed_data['is_webextension'] = False
+        Version.from_upload(self.upload, self.addon,
+                            [self.selected_app],
+                            amo.RELEASE_CHANNEL_LISTED,
+                            parsed_data=self.dummy_parsed_data)
+
+        yara_result.refresh_from_db()
+        assert yara_result.version is None
 
 
 class TestExtensionVersionFromUploadTransactional(
