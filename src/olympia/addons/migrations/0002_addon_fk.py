@@ -3,6 +3,11 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
+    """This was a fix to overcome a circular dependency -
+    _current_version has to be added as a follow-up because _current_version is
+    a ForeignKey to Version and Version.addon is a ForeignKey to Addon."""
+
+    initial = True
 
     dependencies = [
         ('addons', '0001_initial'),
