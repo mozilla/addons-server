@@ -1153,7 +1153,7 @@ class TestUpload(BaseUploadTest):
         assert msg['type'] == u'error'
         assert msg['message'] == (
             u'Unsupported file type, please upload a supported file '
-            '(.crx, .xpi, .jar, .xml, .zip).')
+            '(.crx, .xpi, .xml, .zip).')
         assert not msg['description']
 
     def test_redirect(self):

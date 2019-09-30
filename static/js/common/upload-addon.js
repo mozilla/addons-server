@@ -28,7 +28,7 @@
 
     $.fn.addonUploader = function( options ) {
         var settings = {
-            'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'],
+            'filetypes': ['zip', 'xpi', 'crx', 'xml'],
             'getErrors': getErrors,
             'cancel': $(),
             'maxSize': 200 * 1024 * 1024 // 200M
@@ -62,7 +62,7 @@
 
             var ui_parent = $('<div>', {'class': 'invisible-upload prominent cta', 'id': 'upload-file-widget'}),
                 ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select a file...')}),
-                ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your add-on should end with .zip, .xpi, .crx, .jar or .xml')});
+                ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your add-on should end with .zip, .xpi, .crx or .xml')});
 
             $upload_field.prop('disabled', false);
             $upload_field.wrap(ui_parent);

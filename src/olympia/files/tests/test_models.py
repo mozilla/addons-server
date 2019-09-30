@@ -599,10 +599,6 @@ class TestParseXpi(TestCase):
         assert e.exception.messages[0] == (
             'The type (4) does not match the type of your add-on on AMO (1)')
 
-    def test_unknown_app(self):
-        data = self.parse(filename='theme-invalid-app.jar')
-        assert data['apps'] == []
-
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
             # This file doesn't exist, it will raise an IOError that should
@@ -629,10 +625,6 @@ class TestParseXpi(TestCase):
         # It's not a real dictionary, it's an extension, so it will require a
         # restart.
         assert result['is_restart_required']
-
-    def test_parse_jar(self):
-        result = self.parse(filename='theme.jar')
-        assert result['type'] == amo.ADDON_THEME
 
     def test_parse_theme_by_type(self):
         result = self.parse(filename='theme-type.xpi')
@@ -1218,12 +1210,6 @@ class TestFileFromUpload(UploadTest):
             upload, self.version, self.platform, parsed_data=parsed_data)
         assert file_.strict_compatibility
 
-    def test_theme_extension(self):
-        upload = self.upload('theme.jar')
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={})
-        assert file_.filename.endswith('.xpi')
-
     def test_extension_extension(self):
         upload = self.upload('extension.xpi')
         file_ = File.from_upload(
@@ -1389,9 +1375,6 @@ def test_parse_addon(search_mock, xpi_mock):
 
     parse_addon('file.xml', None, user=user)
     search_mock.assert_called_with('file.xml', None)
-
-    parse_addon('file.jar', None, user=user)
-    xpi_mock.assert_called_with('file.jar', None, minimal=False, user=user)
 
 
 def test_parse_xpi():
