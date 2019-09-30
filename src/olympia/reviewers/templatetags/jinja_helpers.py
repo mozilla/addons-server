@@ -56,10 +56,10 @@ def version_status(addon, version):
 def reviewer_page_title(context, title=None, addon=None):
     """Wrapper for reviewer page titles.  Eerily similar to dev_page_title."""
     if addon:
-        title = u'%s – %s' % (title, addon.name)
+        title = '%s – %s' % (title, addon.name)
     else:
         section = _('Reviewer Tools')
-        title = u'%s – %s' % (title, section) if title else section
+        title = '%s – %s' % (title, section) if title else section
     return page_title(context, title)
 
 
