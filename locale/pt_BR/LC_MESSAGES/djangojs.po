@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-06-25 14:12+0000\n"
+"PO-Revision-Date: 2019-09-30 20:47+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -26,9 +26,8 @@ msgstr "Houve um problema ao contatar o servidor."
 msgid "Select a file..."
 msgstr "Selecione um arquivo..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Sua extensão deve terminar com .zip, .xpi, .crx, .jar ou .xml"
+msgstr "Sua extensão deve terminar com .zip, .xpi, .crx ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -150,29 +149,28 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "Este tema não é compatível com a sua versão do {0}"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Todos os direitos reservados"
 
-#, fuzzy
 msgid "Creative Commons Attribution 3.0"
-msgstr "Contribuição média"
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Nome do seu tema"
 
 msgid "Flagged for review"
 msgstr "Marcado para análise"
