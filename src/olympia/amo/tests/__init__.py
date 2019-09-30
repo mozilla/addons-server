@@ -612,7 +612,7 @@ class AMOPaths(object):
         return os.path.join(settings.ROOT, path)
 
     def xpi_path(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar']:
+        if os.path.splitext(name)[-1] not in ['.xml', '.xpi']:
             return self.file_fixture_path(name + '.xpi')
         return self.file_fixture_path(name)
 

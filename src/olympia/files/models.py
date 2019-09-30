@@ -159,8 +159,6 @@ class File(OnChangeMixin, ModelBase):
         file_ = cls(version=version, platform=platform)
         upload_path = force_text(nfd_str(upload.path))
         ext = force_text(os.path.splitext(upload_path)[1])
-        if ext == '.jar':
-            ext = '.xpi'
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload_path)

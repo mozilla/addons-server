@@ -281,12 +281,8 @@ class RDFExtractor(object):
             self.is_experiment = self.package_type in self.EXPERIMENT_TYPES
             return self.TYPES[self.package_type]
 
-        name = force_text(self.zip_file.source.name)
-
         # Look for Complete Themes.
-        is_complete_theme = (
-            name.endswith('.jar') or self.find('internalName')
-        )
+        is_complete_theme = self.find('internalName')
         if is_complete_theme:
             return amo.ADDON_THEME
 
