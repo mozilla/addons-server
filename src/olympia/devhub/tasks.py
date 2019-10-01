@@ -134,19 +134,34 @@ def create_version_for_upload(addon, upload, channel):
 
 @task
 def create_initial_validation_results():
-    """Returns the initial validation results for the next chains in the
-    validation tasks. Should only be called directly by Validator."""
+    """Returns the initial validation results for the next tasks in the
+    validation chain. Should only be called directly by Validator."""
     results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
     return results
 
 
 def validation_task(fn):
     """Wrap a validation task so that it runs with the correct flags and
-    handles errors.
+    handles errors (mainly because Celery's error handling does not work for
+    us).
 
     ALL the validation tasks but `create_initial_validation_results()` should
-    use this decorator."""
+    use this decorator. Tasks decorated with `@validation_task` should have the
+    following declaration:
 
+        @validation_task
+        def my_task(results, pk):
+            # ...
+            return results
+
+    Notes:
+
+    * `results` is automagically passed to each task in the validation chain
+      and created by `create_initial_validation_results()` at the beginning of
+      the chain. It MUST be the first argument of the task.
+    * `pk` is passed to each task when added to the validation chain.
+    * the validation chain is defined in the `Validator` class.
+    """
     @task(bind=True,
           ignore_result=False,  # We want to pass the results down.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
