@@ -164,7 +164,12 @@ def validation_task(fn):
         # return.
         task.ignore_result = True
         try:
-            if results and results['errors'] > 0:
+            # All validation tasks should receive `results`.
+            if not results:
+                raise Exception('Unexpected call to a validation task without '
+                                '`results`')
+
+            if results['errors'] > 0:
                 return results
 
             return fn(results, pk, *args, **kwargs)
