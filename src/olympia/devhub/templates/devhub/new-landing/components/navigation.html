@@ -1,8 +1,8 @@
-<nav class="DevHub-Navigation content {% if user_authenticated %}scheme-light{% else %}scheme-medium{% endif %}">
+<nav class="DevHub-Navigation content scheme-light">
   <div>
     <ul>
       <li>
-        <a href="{{ url('devhub.index') }}" class="Logo {% if user_authenticated %}Logo--loggedin{% endif %}">
+        <a href="{{ url('devhub.index') }}" class="Logo">
           <span>{{ _('Add-on Developer Hub') }}</span>
         </a>
       </li>
@@ -16,18 +16,15 @@
       <li class="show-on-desktop"><a href="https://extensionworkshop.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link">
           {{ _('Extension Workshop') }}
       </a></li>
-      <li class="hide-on-desktop"><a href="https://developer.mozilla.org/en-US/Add-ons">
-        {{ _('Docs') }}
-      </a></li>
       <li class="show-on-desktop"><a href="https://developer.mozilla.org/en-US/Add-ons">
         {{ _('Documentation') }}
       </a></li>
 
-      <li><a href="https://developer.mozilla.org/en-US/Add-ons#Contact_us">
+      <li class="show-on-desktop"><a href="https://developer.mozilla.org/en-US/Add-ons#Contact_us">
         {{ _('Support') }}
       </a></li>
 
-      <li><a href="https://blog.mozilla.org/addons/">
+      <li class="show-on-desktop"><a href="https://blog.mozilla.org/addons/">
         {{ _('Blog') }}
       </a></li>
 
@@ -41,8 +38,8 @@
         </a></li>
       {% else %}
         <li class="show-on-desktop DevHub-Navigation-Register">
-          {% trans register=register_link(), login=login_link() %}
-            <a href="{{ register }}">Register</a> or <a href="{{ login }}">Sign In</a>
+          {% trans login=login_link() %}
+            <a class="Button" href="{{ login }}">Submit or Manage Extensions</a>
           {% endtrans %}
         </li>
       {% endif %}
