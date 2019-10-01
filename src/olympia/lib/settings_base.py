@@ -474,6 +474,7 @@ INSTALLED_APPS = (
     'olympia.files',
     'olympia.hero',
     'olympia.lib.es',
+    'olympia.lib.akismet',
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
