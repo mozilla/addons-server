@@ -203,8 +203,7 @@ def validate_upload(results, upload_pk, channel):
     Should only be called directly by Validator."""
     upload = FileUpload.objects.get(pk=upload_pk)
     data = validate_file_path(upload.path, channel)
-    results = json.loads(force_text(data))
-    return results
+    return {**results, **json.loads(force_text(data))}
 
 
 @validation_task
@@ -218,8 +217,7 @@ def validate_file(results, file_pk):
         data = file.validation.validation
     else:
         data = validate_file_path(file.current_file_path, file.version.channel)
-    results = json.loads(force_text(data))
-    return results
+    return {**results, **json.loads(force_text(data))}
 
 
 def validate_file_path(path, channel):
