@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-01 01:27+0000\n"
+"PO-Revision-Date: 2019-10-01 02:02+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4687,7 +4687,7 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "跨设备同步扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -4695,7 +4695,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Firefox 媒体增强工具"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
