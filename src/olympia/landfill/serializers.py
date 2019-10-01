@@ -102,7 +102,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 user=user_factory(), addon=addon)
             item = DiscoveryItem.objects.create(
                 addon=addon, recommendable=True)
-            
+
             PrimaryHero.objects.create(disco_addon=item)
             SecondaryHero.objects.create(
                 enabled=True,
