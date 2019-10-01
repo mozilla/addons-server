@@ -81,15 +81,6 @@ class TestVersion(TestCase):
         doc = self.get_doc()
         assert '<strong>Invisible:</strong>' in doc.html()
 
-    def test_no_validation_results(self):
-        doc = self.get_doc()
-        v = doc('td.file-validation').text()
-        assert re.sub(r'\s+', ' ', v) == (
-            'All Platforms Not validated. Validate now.')
-        assert doc('td.file-validation a').attr('href') == (
-            reverse('devhub.file_validation',
-                    args=[self.addon.slug, self.version.all_files[0].id]))
-
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit',
                       args=(self.addon.slug, self.version.pk))

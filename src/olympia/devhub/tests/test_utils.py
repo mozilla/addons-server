@@ -428,3 +428,24 @@ class TestUploadRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+
+
+def test_process_validation_ending_tier_is_preserved():
+    results = {
+        "errors": 0,
+        "success": True,
+        "warnings": 0,
+        "notices": 0,
+        "message_tree": {},
+        "messages": [],
+        "ending_tier": 5,
+        "metadata": {
+            "contains_binary_extension": True,
+            "version": "1.0",
+            "name": "gK0Bes Bot",
+            "id": "gkobes@gkobes"
+        }
+    }
+    data = utils.process_validation(results)
+    assert not data['errors']
+    assert data['ending_tier'] == 5
