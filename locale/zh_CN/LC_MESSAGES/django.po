@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-01 02:02+0000\n"
+"PO-Revision-Date: 2019-10-01 02:18+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -170,7 +170,7 @@ msgstr "编辑"
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "由 {0} 发表于 {1}"
 
 msgid "Not yet rated"
 msgstr "尚无评分"
@@ -4679,7 +4679,7 @@ msgstr "给 Firefox 加点机能。"
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "为 Firefox 增添功能，让上网变得更快、更安全，乐趣十足。"
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4691,7 +4691,7 @@ msgstr "跨设备同步扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "隐私优先浏览器扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
