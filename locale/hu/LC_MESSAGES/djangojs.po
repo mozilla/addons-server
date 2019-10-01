@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-01 17:26+0000\n"
+"PO-Revision-Date: 2019-10-01 18:02+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -27,9 +27,8 @@ msgstr "Probléma történt a kiszolgálóhoz történő csatlakozás közben."
 msgid "Select a file..."
 msgstr "Fájl kiválasztása…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Kiegészítője végződése .zip, .xpi, .crx, .jar vagy .xml legyen"
+msgstr "Kiegészítője végződése .zip, .xpi, .crx vagy .xml legyen"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -154,9 +153,8 @@ msgstr "A téma nem kompatibilis ezzel a {0} verzióval"
 msgid "All Rights Reserved"
 msgstr "Minden jog fenntartva"
 
-#, fuzzy
 msgid "Creative Commons Attribution 3.0"
-msgstr "Átlagos támogatás"
+msgstr "Creative Commons – Nevezd meg! 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons – Nevezd meg! – Ne add el! 3.0"
