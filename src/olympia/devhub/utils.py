@@ -1,6 +1,6 @@
 import uuid
 
-from celery import chain
+from celery import chain, chord
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
@@ -252,13 +252,20 @@ class Validator(object):
 
             assert not file_.validation
 
+            tasks_in_parallel = (
+                tasks.forward_linter_results.s(file_.pk),
+            )
+
             validation_tasks = [
                 tasks.create_initial_validation_results.si(),
                 repack_fileupload.s(file_.pk),
                 tasks.validate_upload.s(file_.pk, channel),
-                tasks.handle_upload_validation_result.s(file_.pk,
-                                                        channel,
-                                                        is_mozilla_signed),
+                chord(
+                    tasks_in_parallel,
+                    tasks.handle_upload_validation_result.s(file_.pk,
+                                                            channel,
+                                                            is_mozilla_signed)
+                ),
             ]
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
