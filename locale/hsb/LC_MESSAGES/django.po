@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-09-30 21:26+0000\n"
+"PO-Revision-Date: 2019-10-01 13:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4796,15 +4796,15 @@ msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "Rozšěrjenja přez graty synchronizować"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Priwatnosć za rozšěrjenjemi wobhladowaka"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Medijowe polěpšenja za Firefox"
 
 #. editorial content for the secondary hero shelves.
 msgid "Explore extensions"

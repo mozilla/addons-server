@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-01 01:01+0000\n"
+"PO-Revision-Date: 2019-10-01 15:06+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4861,7 +4861,7 @@ msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Neočekivana greška."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"

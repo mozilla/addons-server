@@ -19,7 +19,8 @@ class TestRepackFileUpload(UploadTest, TestCase):
         upload = self.get_upload('search.xml')
         old_hash = upload.hash
         assert old_hash.startswith('sha256:')
-        repack_fileupload(upload.pk)
+        fake_results = {'errors': 0}
+        repack_fileupload(fake_results, upload.pk)
         assert not extract_zip_mock.called
         assert not shutil_mock.make_archive.called
         assert not get_sha256_mock.called
@@ -38,7 +39,8 @@ class TestRepackFileUpload(UploadTest, TestCase):
         upload = self.get_upload('webextension.xpi')
         get_sha256_mock.return_value = 'fakehashfrommock'
         extract_zip_mock.return_value = '/tmp/faketempdir'
-        repack_fileupload(upload.pk)
+        fake_results = {'errors': 0}
+        repack_fileupload(fake_results, upload.pk)
         assert extract_zip_mock.called
         assert shutil_mock.make_archive.called
         assert get_sha256_mock.called
@@ -52,7 +54,8 @@ class TestRepackFileUpload(UploadTest, TestCase):
         # that structure is restored once the file has been moved.
         upload = self.get_upload('unicode-filenames.xpi')
         original_hash = upload.hash
-        repack_fileupload(upload.pk)
+        fake_results = {'errors': 0}
+        repack_fileupload(fake_results, upload.pk)
         upload.reload()
         assert upload.hash.startswith('sha256:')
         assert upload.hash != original_hash

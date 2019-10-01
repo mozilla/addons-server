@@ -16,6 +16,7 @@ from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
+from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import (
     EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
@@ -36,16 +37,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         self.file_upload = self.get_upload(
             abspath=self.file.current_file_path, with_validation=False)
 
-        # Patch validation tasks that we expect the validator to call.
-        self.save_file = self.patch(
-            'olympia.devhub.tasks.handle_file_validation_result').s
-        self.save_upload = self.patch(
-            'olympia.devhub.tasks.handle_upload_validation_result').s
-
-        self.validate_file = self.patch(
-            'olympia.devhub.tasks.validate_file').si
-        self.validate_upload = self.patch(
-            'olympia.devhub.tasks.validate_upload').si
+        self.mock_chain = self.patch('olympia.devhub.utils.chain')
 
     def patch(self, thing):
         """Patch the given "thing", and revert the patch on test teardown."""
@@ -58,40 +50,39 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         # Run validator.
         utils.Validator(file_upload, listed=listed)
 
-        # We shouldn't be attempting to call validate_file task when dealing
-        # with an upload.
-        assert not self.validate_file.called
-
         channel = (amo.RELEASE_CHANNEL_LISTED if listed
                    else amo.RELEASE_CHANNEL_UNLISTED)
 
-        # Make sure we run the correct validation task for the upload and we
-        # set up an error handler.
-        self.validate_upload.assert_called_once_with(
-            file_upload.pk, channel=channel)
-        assert self.validate_upload.return_value.on_error.called
-
-        # Make sure we run the correct save validation task.
-        self.save_upload.assert_called_once_with(
-            file_upload.pk, channel, False)
+        # Make sure we setup the correct validation task.
+        self.mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False),
+        )
 
     def check_file(self, file_):
         """Check that the given file is validated properly."""
+        # Mock tasks that we should not execute.
+        repack_fileupload = self.patch('olympia.files.tasks.repack_fileupload')
+        validate_upload = self.patch('olympia.devhub.tasks.validate_upload')
+
         # Run validator.
         utils.Validator(file_)
 
-        # We shouldn't be attempting to call validate_upload task when
+        # We shouldn't be attempting to call the `validate_upload` tasks when
         # dealing with a file.
-        assert not self.validate_upload.called
+        assert not repack_fileupload.called
+        assert not validate_upload.called
 
-        # Make sure we run the correct validation task and we set up an error
-        # handler.
-        self.validate_file.assert_called_once_with(file_.pk)
-        assert self.validate_file.return_value.on_error.called
-
-        # Make sure we run the correct save validation task.
-        self.save_file.assert_called_once_with(
-            file_.pk, file_.version.channel, False)
+        # Make sure we setup the correct validation task.
+        self.mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            tasks.validate_file.s(file_.pk),
+            tasks.handle_file_validation_result.s(file_.pk),
+        )
 
     @mock.patch.object(utils.Validator, 'get_task')
     def test_run_once_per_file(self, get_task_mock):
