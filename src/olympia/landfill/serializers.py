@@ -33,6 +33,7 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
 from olympia.discovery.models import DiscoveryItem
+from olympia.hero.models import PrimaryHero, SecondaryHero
 
 from .version import generate_version
 
@@ -99,8 +100,16 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 })
             AddonUser.objects.create(
                 user=user_factory(), addon=addon)
-            DiscoveryItem.objects.create(
-                recommendable=True, addon=addon)
+            item = DiscoveryItem.objects.create(
+                addon=addon, recommendable=True)
+            
+            PrimaryHero.objects.create(disco_addon=item)
+            SecondaryHero.objects.create(
+                enabled=True,
+                headline="This is a headline",
+                description="Hero Description")
+            item.addon.current_version.update(recommendation_approved=True)
+            item.primaryhero.update(enabled=True)
 
     def create_generic_featured_themes(self):
         for _ in range(10):
