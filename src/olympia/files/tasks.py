@@ -9,6 +9,7 @@ import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import move_stored_file
+from olympia.devhub.tasks import validation_task
 from olympia.files.models import File, FileUpload, WebextPermission
 from olympia.files.utils import extract_zip, get_sha256, parse_xpi
 from olympia.users.models import UserProfile
@@ -45,9 +46,8 @@ def extract_webext_permissions(ids, **kw):
             log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
 
 
-@task
-@use_primary_db
-def repack_fileupload(upload_pk):
+@validation_task
+def repack_fileupload(results, upload_pk):
     log.info('Starting task to repackage FileUpload %s', upload_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     # When a FileUpload is created and a file added to it, if it's a xpi/zip,
@@ -75,3 +75,4 @@ def repack_fileupload(upload_pk):
         upload.save()
     else:
         log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)
+    return results

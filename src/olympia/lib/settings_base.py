@@ -1091,6 +1091,8 @@ CELERY_TASK_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'olympia.devhub.tasks.create_initial_validation_results': {
+        'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
@@ -1102,6 +1104,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.yara.tasks.run_yara': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).

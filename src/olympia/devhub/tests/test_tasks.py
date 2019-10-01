@@ -28,7 +28,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks, file_validation_annotations as annotations
-from olympia.files.models import File, FileValidation
+from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
 from olympia.files.tests.test_models import UploadTest
 from olympia.versions.models import Version
@@ -492,50 +492,6 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
             assert result['success']
             assert not result['warnings']
             assert not result['errors']
-
-    @mock.patch('olympia.devhub.tasks.repack_fileupload')
-    @mock.patch('olympia.devhub.tasks.parse_addon')
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_upload_is_repacked_before_linter_runs(
-            self, run_addons_linter_mock, parse_addon_mock,
-            repack_fileupload_mock):
-        """When validating new uploads, we are repacking before handing the xpi
-        to the linter."""
-        run_addons_linter_mock.return_value = json.dumps(
-            {'errors': 0, 'warnings': 0, 'notices': 0}
-        )
-        parse_addon_mock.return_value = {
-            'is_webextension': True
-        }
-        upload = self.get_upload(
-            abspath=self.valid_path, with_validation=False)
-        assert not upload.valid
-        tasks.validate(upload, listed=True)
-        assert parse_addon_mock.called
-        assert repack_fileupload_mock.called
-        upload.reload()
-        assert upload.valid, upload.validation
-
-    @mock.patch('olympia.devhub.tasks.repack_fileupload')
-    @mock.patch('olympia.devhub.tasks.parse_addon')
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_file_is_not_repacked_before_linter_runs(
-            self, run_addons_linter_mock, parse_addon_mock,
-            repack_fileupload_mock):
-        """When validating existing File instances, we are *not* repacking."""
-        run_addons_linter_mock.return_value = json.dumps(
-            {'errors': 0, 'warnings': 0, 'notices': 0}
-        )
-        parse_addon_mock.return_value = {
-            'is_webextension': True
-        }
-        addon = addon_factory()
-        file_ = addon.current_version.all_files[0]
-        assert not FileValidation.objects.filter(file=file_).exists()
-        tasks.validate(file_).get()
-        assert parse_addon_mock.called
-        assert not repack_fileupload_mock.called
-        assert FileValidation.objects.filter(file=file_).exists()
 
 
 class TestValidateFilePath(ValidatorTestCase):
@@ -1441,3 +1397,32 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         assert not run_wat_mock.called
+
+
+class TestValidationTask(TestCase):
+
+    def setUp(self):
+        TestValidationTask.fake_task_has_been_called = False
+
+    @tasks.validation_task
+    def fake_task(results, pk):
+        TestValidationTask.fake_task_has_been_called = True
+        return {**results, 'fake_task_results': 1}
+
+    def test_returns_validator_results_when_received_results_is_none(self):
+        results = self.fake_task(None, 123)
+        assert not self.fake_task_has_been_called
+        assert results == amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT
+
+    def test_returns_results_when_received_results_have_errors(self):
+        results = {'errors': 1}
+        returned_results = self.fake_task(results, 123)
+        assert not self.fake_task_has_been_called
+        assert results == returned_results
+
+    def test_runs_wrapped_task(self):
+        results = {'errors': 0}
+        returned_results = self.fake_task(results, 123)
+        assert TestValidationTask.fake_task_has_been_called
+        assert results != returned_results
+        assert 'fake_task_results' in returned_results
