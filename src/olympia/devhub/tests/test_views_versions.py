@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-import re
 import zipfile
 
 from django.core.files import temp
