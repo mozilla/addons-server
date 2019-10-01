@@ -44,7 +44,7 @@ from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
     UploadRestrictionChecker, wizard_unsupported_properties)
-from olympia.files.models import File, FileUpload, FileValidation
+from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
@@ -672,17 +672,7 @@ def file_validation(request, addon_id, addon, file_id):
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, version__addon=addon, id=file_id)
-    try:
-        result = file.validation
-    except FileValidation.DoesNotExist:
-        if request.method != 'POST':
-            return http.HttpResponseNotAllowed(['POST'])
-
-        # This API is, unfortunately, synchronous, so wait for the
-        # task to complete and return the result directly.
-        pk = tasks.validate(file, synchronous=True).get()
-        result = FileValidation.objects.get(pk=pk)
-
+    result = file.validation
     response = JsonResponse({
         'validation': result.processed_validation,
         'error': None,

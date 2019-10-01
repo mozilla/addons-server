@@ -78,17 +78,13 @@
       <ul>
         {% for file in version.all_files %}
           <li>{{ file.get_platform_display() }}
-          <ul>
           {% if file.has_been_validated %}
-            <li><a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
-              {{ summarize_validation(file.validation) }}</a></li>
-          {% else %}
-            <li>{{ _('Not validated.') }}
-              <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
-                  {{ _('Validate now.') }}</a>
-            </li>
+            <ul>
+              <li><a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">
+                {{ summarize_validation(file.validation) }}</a>
+              </li>
+            </ul>
           {% endif %}
-          </ul>
           </li>
         {% endfor %}
       </ul>

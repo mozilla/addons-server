@@ -427,19 +427,40 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         addon = addon_factory()
         self.file = addon.current_version.all_files[0]
         assert not self.file.has_been_validated
-        file_validation_id = tasks.validate(
-            self.file, synchronous=True).get()
+        file_validation_id = tasks.validate(self.file).get()
         assert json.dumps(file_validation_id)
         # Not `self.file.reload()`. It won't update the `validation` FK.
         self.file = File.objects.get(pk=self.file.pk)
         assert self.file.has_been_validated
+
+    def test_binary_flag_set_on_addon_for_binary_extensions(self):
+        results = {
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {
+                "contains_binary_extension": True,
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes"
+            }
+        }
+        self.addon = addon_factory()
+        self.file = self.addon.current_version.all_files[0]
+        assert not self.addon.binary
+        tasks.handle_file_validation_result(results, self.file.pk)
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        assert self.addon.binary
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_validates_search_plugins_inline(self, run_addons_linter_mock):
         addon = addon_factory(file_kw={
             'filename': 'opensearch/sp_updateurl.xml'})
         file_ = addon.current_version.current_file
-        tasks.validate(file_, synchronous=True).get()
+        tasks.validate(file_).get()
 
         assert not run_addons_linter_mock.called
 
