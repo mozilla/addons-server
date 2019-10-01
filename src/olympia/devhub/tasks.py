@@ -48,8 +48,7 @@ from olympia.yara.tasks import run_yara
 log = olympia.core.logger.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None, subtask=None, synchronous=False,
-             pretask=None):
+def validate(file_, listed=None, subtask=None, synchronous=False):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that
     task.
@@ -67,12 +66,7 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
     if not synchronous and task_id:
         return AsyncResult(task_id)
     else:
-        # Note: pretask should never have ignore_result=False, as passing a
-        # result this would modify the arguments expected by the tasks
-        # afterwards and that would make @validation_task fail with mismatched
-        # arguments.
-        task = validator.get_task()
-        chain = task if pretask is None else pretask | task
+        chain = validator.get_task()
         if subtask is not None:
             chain |= subtask
 
@@ -86,10 +80,10 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
         return result
 
 
-def validate_and_submit(addon, file_, channel, pretask=None):
+def validate_and_submit(addon, file_, channel):
     return validate(
         file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-        subtask=submit_file.si(addon.pk, file_.pk, channel), pretask=pretask)
+        subtask=submit_file.si(addon.pk, file_.pk, channel))
 
 
 @task
