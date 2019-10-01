@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-02-01 12:52+0000\n"
+"PO-Revision-Date: 2019-10-01 17:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -113,8 +113,8 @@ msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben 
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
-"a következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
+" következő lépésben is megteheti)."
 
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
@@ -152,29 +152,29 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "A téma nem kompatibilis ezzel a {0} verzióval"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Minden jog fenntartva"
 
 #, fuzzy
 msgid "Creative Commons Attribution 3.0"
 msgstr "Átlagos támogatás"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons – Nevezd meg! – Ne add el! 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons – Nevezd meg! – Ne add el! – Ne változtasd! 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons – Nevezd meg! – Ne add el! – Így add tovább! 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons – Nevezd meg! – Ne változtasd! 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons – Nevezd meg! – Így add tovább! 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Téma neve"
 
 msgid "Flagged for review"
 msgstr "Vizsgálatra jelölve"
