@@ -8,8 +8,6 @@ from django.core import mail
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
-from unittest import mock
-
 from freezegun import freeze_time
 from rest_framework.exceptions import ErrorDetail
 
