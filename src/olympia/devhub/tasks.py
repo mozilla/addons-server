@@ -35,7 +35,6 @@ from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
-from olympia.lib.akismet.models import AkismetReport
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     InvalidManifest, NoManifestFound, parse_addon, SafeZip,
@@ -308,12 +307,6 @@ def handle_upload_validation_result(
         results = check_for_api_keys_in_file(results=results, upload=upload)
     except (ValidationError, BadZipfile, IOError):
         pass
-
-    # Annotate results with akismet reports results if there are any.
-    reports = AkismetReport.objects.filter(upload_instance=upload)
-    akismet_results = [
-        (report.comment_type, report.result) for report in reports]
-    annotations.annotate_akismet_spam_check(results, akismet_results)
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:

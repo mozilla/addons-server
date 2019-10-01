@@ -43,7 +43,6 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
-    fetch_existing_translations_from_addon, get_addon_akismet_reports,
     UploadRestrictionChecker, wizard_unsupported_properties)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
@@ -595,33 +594,12 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
         automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
-    from olympia.lib.akismet.tasks import akismet_comment_check   # circ import
-
-    if (channel == amo.RELEASE_CHANNEL_LISTED):
-        existing_data = (
-            fetch_existing_translations_from_addon(
-                upload.addon, ('name', 'summary', 'description'))
-            if addon and addon.has_listed_versions() else ())
-        akismet_reports = get_addon_akismet_reports(
-            user=user,
-            user_agent=request.META.get('HTTP_USER_AGENT'),
-            referrer=request.META.get('HTTP_REFERER'),
-            upload=upload,
-            existing_data=existing_data)
-    else:
-        akismet_reports = []
-    if akismet_reports:
-        pretask = akismet_comment_check.si(
-            [report.id for _, report in akismet_reports])
-    else:
-        pretask = None
     if submit:
         tasks.validate_and_submit(
-            addon, upload, channel=channel, pretask=pretask)
+            addon, upload, channel=channel)
     else:
         tasks.validate(
-            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-            pretask=pretask)
+            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
     return upload
 
