@@ -1397,3 +1397,32 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         assert not run_wat_mock.called
+
+
+class TestValidationTask(TestCase):
+
+    def setUp(self):
+        TestValidationTask.fake_task_has_been_called = False
+
+    @tasks.validation_task
+    def fake_task(results, pk):
+        TestValidationTask.fake_task_has_been_called = True
+        return {**results, 'fake_task_results': 1}
+
+    def test_returns_validator_results_when_received_results_is_none(self):
+        results = self.fake_task(None, 123)
+        assert not self.fake_task_has_been_called
+        assert results == amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT
+
+    def test_returns_results_when_received_results_have_errors(self):
+        results = {'errors': 1}
+        returned_results = self.fake_task(results, 123)
+        assert not self.fake_task_has_been_called
+        assert results == returned_results
+
+    def test_runs_wrapped_task(self):
+        results = {'errors': 0}
+        returned_results = self.fake_task(results, 123)
+        assert TestValidationTask.fake_task_has_been_called
+        assert results != returned_results
+        assert 'fake_task_results' in returned_results
