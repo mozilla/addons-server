@@ -53,24 +53,24 @@ def validate(file_, listed=None, subtask=None):
     already begun for this file, instead return an AsyncResult object for that
     task.
 
-    file_ can be either a File or FileUpload; if File then listed must be
-    None; if FileUpload listed must be specified."""
+    file_ can be either a File or FileUpload; if File then listed must be None;
+    if FileUpload listed must be specified.
+
+    subtask can be either None or a task that gets called after all the
+    validation tasks.
+    """
 
     # Import loop.
     from .utils import Validator
 
-    validator = Validator(file_, listed=listed)
+    validator = Validator(file_, listed=listed, final_task=subtask)
 
     task_id = cache.get(validator.cache_key)
 
     if task_id:
         return AsyncResult(task_id)
     else:
-        chain = validator.get_task()
-        if subtask is not None:
-            chain |= subtask
-
-        result = chain.delay()
+        result = validator.get_task().delay()
         cache.set(validator.cache_key, result.task_id, 5 * 60)
         return result
 

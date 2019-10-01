@@ -225,7 +225,7 @@ class Validator(object):
     legacy add-ons and search plugins to avoid running the linter.
     """
 
-    def __init__(self, file_, addon=None, listed=None):
+    def __init__(self, file_, addon=None, listed=None, final_task=None):
         self.addon = addon
         self.file = None
         self.prev_file = None
@@ -252,14 +252,14 @@ class Validator(object):
 
             assert not file_.validation
 
-            self.task = chain(
+            validation_tasks = [
                 tasks.create_initial_validation_results.si(),
                 repack_fileupload.s(file_.pk),
                 tasks.validate_upload.s(file_.pk, channel),
                 tasks.handle_upload_validation_result.s(file_.pk,
                                                         channel,
                                                         is_mozilla_signed),
-            )
+            ]
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
@@ -274,13 +274,18 @@ class Validator(object):
             addon_data = {'guid': self.addon.guid,
                           'version': self.file.version.version}
 
-            self.task = chain(
+            validation_tasks = [
                 tasks.create_initial_validation_results.si(),
                 tasks.validate_file.s(file_.pk),
                 tasks.handle_file_validation_result.s(file_.pk)
-            )
+            ]
         else:
             raise ValueError
+
+        if final_task:
+            validation_tasks.append(final_task)
+
+        self.task = chain(*validation_tasks)
 
         # Create a cache key for the task, so multiple requests to validate the
         # same object do not result in duplicate tasks.

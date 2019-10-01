@@ -440,3 +440,39 @@ def test_process_validation_ending_tier_is_preserved():
     data = utils.process_validation(results)
     assert not data['errors']
     assert data['ending_tier'] == 5
+
+
+class TestValidator(UploadTest, TestCase):
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_appends_final_task_for_file_uploads(self, mock_chain):
+        final_task = mock.Mock()
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True, final_task=final_task)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False),
+            final_task,
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_appends_final_task_for_files(self, mock_chain):
+        final_task = mock.Mock()
+        file = version_factory(addon=addon_factory()).files.get()
+
+        utils.Validator(file, final_task=final_task)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            tasks.validate_file.s(file.pk),
+            tasks.handle_file_validation_result.s(file.pk),
+            final_task,
+        )
