@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-01 21:52+0000\n"
+"PO-Revision-Date: 2019-10-01 21:53+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3463,7 +3463,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Bolja vizualizacija zabilježaka. Pristupi svojim omiljenim web lokacijama iz pločastog prikaza."
+msgstr "Bolja vizualizacija zabilježaka. Pristupi svojim omiljenim web lokacijama iz pločastog rasporeda."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3766,7 +3766,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Bolja vizualizacija zabilježaka. Pristupi svojim omiljenim web lokacijama, nedavno zatvorenim karticama, itd. iz predivnog pločastog prikaza."
+msgstr "Bolja vizualizacija zabilježaka. Pristupi svojim omiljenim web lokacijama, nedavno zatvorenim karticama, itd. iz predivnog pločastog rasporeda."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
