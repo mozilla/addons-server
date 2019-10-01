@@ -1,5 +1,7 @@
 import uuid
 
+import waffle
+
 from celery import chain, chord
 from django.conf import settings
 from django.db.models import Q
@@ -21,6 +23,7 @@ from olympia.users.models import (
 )
 from olympia.versions.compare import version_int
 from olympia.versions.utils import process_color_value
+from olympia.yara.tasks import run_yara
 
 from . import tasks
 
@@ -255,6 +258,9 @@ class Validator(object):
             tasks_in_parallel = (
                 tasks.forward_linter_results.s(file_.pk),
             )
+
+            if waffle.switch_is_active('enable-yara'):
+                tasks_in_parallel = (*tasks_in_parallel, run_yara.s(file_.pk))
 
             validation_tasks = [
                 tasks.create_initial_validation_results.si(),
