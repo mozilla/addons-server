@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-01 18:51+0000\n"
+"PO-Revision-Date: 2019-10-01 18:54+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4857,7 +4857,7 @@ msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "סנכרון הרחבות בין מכשירים"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
