@@ -9,9 +9,10 @@ import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import move_stored_file
+from olympia.amo.utils import rm_local_tmp_dir
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import File, FileUpload, WebextPermission
-from olympia.files.utils import extract_zip, get_sha256, parse_xpi
+from olympia.files.utils import get_sha256, parse_xpi, SafeZip
 from olympia.users.models import UserProfile
 
 
@@ -57,13 +58,18 @@ def repack_fileupload(results, upload_pk):
     # developer, so it could be something else.
     if upload.path.endswith('.xpi'):
         try:
-            tempdir = extract_zip(upload.path)
-        except Exception:
+            tempdir = tempfile.mkdtemp()  # *not* on TMP_PATH, we want local fs
+            zip_file = SafeZip(source=upload.path)
+            zip_file.extract_to_dest(tempdir)
+        except Exception as exc:
+            rm_local_tmp_dir(tempdir)
             # Something bad happened, maybe we couldn't parse the zip file.
             # This task should have a on_error attached when called by
             # Validator(), so we can just raise and the developer will get a
             # generic error message.
-            log.exception('Could not extract upload %s for repack.', upload_pk)
+            log.exception(
+                'Could not extract upload %s for repack.', upload_pk,
+                exc_info=exc)
             raise
         log.info('Zip from upload %s extracted, repackaging', upload_pk)
         file_ = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
