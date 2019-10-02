@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-02-18 18:27+0000\n"
+"PO-Revision-Date: 2019-10-02 01:37+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -27,9 +27,8 @@ msgstr "სერვერთან დაკავშირება ვერ 
 msgid "Select a file..."
 msgstr "ფაილის არჩევა..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "თქვენი დამატების დაბოლოება უნდა იყოს .zip, .xpi, .crx, .jar ან .xml"
+msgstr "თქვენი დამატების დაბოლოება უნდა იყოს .zip, .xpi, .crx ან .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -153,29 +152,28 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "ეს თემა {0}-ის თქვენს ვერსიასთან შეუთავსებელია"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "All Rights Reserved (ყველა უფლება დაცულია)"
 
-#, fuzzy
 msgid "Creative Commons Attribution 3.0"
-msgstr "შემოწირულობის საშუალო რაოდენობა"
+msgstr "Creative Commons Attribution 3.0 (ავტორობის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული, ავტორობის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (არაკომერციული, ავტორობის მითითებით, გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0 (არაკომერციული, ავტორობის მითითებით, იმავე პირობებით)"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორობის მითითებით, გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორობის მითითებით, იმავე პირობებით)"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "თქვენი თემის სახელი"
 
 msgid "Flagged for review"
 msgstr "მონიშნულია განსახილველად"
