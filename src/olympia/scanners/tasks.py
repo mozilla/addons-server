@@ -54,7 +54,7 @@ def run_scanner(upload_pk, scanner, api_url, api_key):
             # Log the response body when JSON decoding has failed.
             raise ValueError(response.text)
 
-        if 'error' in results:
+        if response.status_code != 200 or 'error' in results:
             raise ValueError(results)
 
         result.results = results

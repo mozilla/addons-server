@@ -15,8 +15,8 @@ class TestRunScanner(UploadTest, TestCase):
     API_URL = 'http://scanner.example.org'
     API_KEY = 'api-key'
 
-    def create_response(self, ok=True, data=None):
-        response = mock.Mock(ok=ok)
+    def create_response(self, status_code=200, data=None):
+        response = mock.Mock(status_code=status_code)
         response.json.return_value = data if data else {}
         return response
 
@@ -122,6 +122,24 @@ class TestRunScanner(UploadTest, TestCase):
         assert timer_mock.called
         scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
         timer_mock.assert_called_with('devhub.{}'.format(scanner_name))
+
+    @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_handles_http_errors_with_mock(self, requests_mock):
+        upload = self.get_upload('webextension.xpi')
+        requests_mock.return_value = self.create_response(
+            status_code=504, data={'message': 'http timeout'})
+        assert len(ScannersResult.objects.all()) == 0
+
+        run_scanner(
+            upload.pk,
+            scanner=self.FAKE_SCANNER,
+            api_url=self.API_URL,
+            api_key=self.API_KEY
+        )
+
+        assert requests_mock.called
+        assert len(ScannersResult.objects.all()) == 0
 
 
 class TestRunCustoms(TestCase):
