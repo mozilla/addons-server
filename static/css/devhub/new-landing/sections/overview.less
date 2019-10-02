@@ -1,27 +1,32 @@
 .DevHub-Overview {
-  @media @medium {
+  background: no-repeat bottom left/45% url(../../../img/developers/new-landing/overview-background-left.svg),
+              no-repeat bottom right/45% url(../../../img/developers/new-landing/overview-background-right.svg),
+              @color-scheme-medium-background;
+  > div {
+    padding: 40px 5px 155px;
+  }
+  @media @large {
+    background: no-repeat bottom left url(../../../img/developers/new-landing/overview-background-left.svg),
+                no-repeat bottom right url(../../../img/developers/new-landing/overview-background-right.svg),
+                @color-scheme-medium-background;
     > div {
-      background-image: url(../../../img/developers/new-landing/header-background.svg);
-      background-repeat: no-repeat;
-      // background size set to 100% of width
-      // with the height being set to auto.
-      background-size: 100%;
-      padding: 70px 20px 80px;
+      padding: 80px 20px 50px;
     }
   }
-
-  @media @medium {
-    text-align: center;
-  }
+  text-align: center;
 
   h1 {
     color: @color-scheme-medium-text;
+    font-size: 28px;
+    @media @large {
+      font-size: 40px;
+    }
   }
 
   p {
-    font-size: 24px;
+    font-size: 16px;
     margin: 20px auto;
-    max-width: 560px;
+    max-width: 530px;
 
     > a {
       .link(@color-scheme-medium-text, @decoration: underline);
