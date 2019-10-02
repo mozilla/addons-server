@@ -1448,7 +1448,7 @@ NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
 ASYNC_SIGNALS = True
 
 # Number of seconds before celery tasks will abort addon validation:
-VALIDATOR_TIMEOUT = 110
+VALIDATOR_TIMEOUT = 360
 
 # Max number of warnings/errors to show from validator. Set to None for no
 # limit.
