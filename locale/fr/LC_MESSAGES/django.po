@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-02 06:47+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2019-10-03 09:45+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -158,13 +158,13 @@ msgid "Approved"
 msgstr "Approuvé"
 
 msgid "Added {0}"
-msgstr ""
+msgstr "Ajout de {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> utilisateur"
+msgstr[1] "<strong>{0}</strong> utilisateurs"
 
 msgid "Hover to Preview"
 msgstr ""
@@ -178,13 +178,13 @@ msgstr "Modifier"
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "par {0} le {1}"
 
 msgid "Not yet rated"
 msgstr "Pas encore évalué"
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> utilisateurs"
 
 msgid "by"
 msgstr "par "
@@ -192,8 +192,8 @@ msgstr "par "
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} utilisateur quotidien"
+msgstr[1] "{0} utilisateurs quotidiens"
 
 msgid "Sort by:"
 msgstr "Trier par :"
@@ -864,7 +864,7 @@ msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} a été migré depuis un thème léger."
 
 msgid "User {user} api key reset."
-msgstr ""
+msgstr "Réinitialisation de la clé d’API de l’utilisateur {utilisateur}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5486,7 +5486,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Retardé parce que c’est la première version listée"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Vous ne pouvez pas soumettre de commentaire si « canned_response » est défini."
 
 msgid "Type"
 msgstr "Type"
@@ -6481,10 +6481,10 @@ msgstr "Bannir les utilisateurs sélectionnés"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
+msgstr "Les clés d’API des utilisateurs « %(users)s » ont été réinitialisées."
 
 msgid "Reset API Key"
-msgstr ""
+msgstr "Réinitialiser la clé d’API"
 
 msgid "Profile Photo"
 msgstr "Photo de profil"
