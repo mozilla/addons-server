@@ -864,7 +864,7 @@ msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} a été migré depuis un thème léger."
 
 msgid "User {user} api key reset."
-msgstr "Réinitialisation de la clé d’API de l’utilisateur {utilisateur}."
+msgstr "Réinitialisation de la clé d’API de l’utilisateur {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
