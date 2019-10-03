@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-09-28 17:24+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2019-10-02 06:47+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgid "Hover to Preview"
 msgstr ""
 
 msgid "Add"
-msgstr ""
+msgstr "Ajouter"
 
 msgid "Edit"
 msgstr "Modifier"
@@ -357,7 +357,7 @@ msgstr ""
 "modules</a>. </p>"
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Certains droits réservés"
 
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
@@ -4622,7 +4622,7 @@ msgstr "Modifiez avant d’imprimer {start_sub_heading}avec {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Modifiez radicalement une page web avant de l’imprimer : supprimez les publicités, les contenus peu recommandables, etc. "
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
