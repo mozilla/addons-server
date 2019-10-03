@@ -834,7 +834,58 @@ class TestAuthenticateView(BaseAuthenticationView):
                      force_text(base64.urlsafe_b64encode(b'/go/here'))]),
             })
             self.assertRedirects(
-                response, reverse('users.edit'), target_status_code=200)
+                response,
+                reverse('users.edit') + '?to=/go/here',
+                target_status_code=200)
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert not self.login_user.called
+        self.register_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, identity)
+
+    def test_register_redirects_edit_absolute_to(self):
+        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not user_qs.exists()
+        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        self.fxa_identify.return_value = identity
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            with override_settings(DOMAIN='supersafe.com'):
+                response = self.client.get(self.url, {
+                    'code': 'codes!!',
+                    'state': ':'.join(
+                        [self.fxa_state,
+                         force_text(base64.urlsafe_b64encode(
+                            b'https://supersafe.com/go/here'))]),
+                })
+            self.assertRedirects(
+                response,
+                reverse('users.edit') + '?to=https://supersafe.com/go/here',
+                target_status_code=200)
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert not self.login_user.called
+        self.register_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, identity)
+
+    def test_register_redirects_edit_ignores_to_when_unsafe(self):
+        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not user_qs.exists()
+        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        self.fxa_identify.return_value = identity
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            response = self.client.get(self.url, {
+                'code': 'codes!!',
+                'state': ':'.join(
+                    [self.fxa_state,
+                     force_text(base64.urlsafe_b64encode(
+                        b'https://go.go/here'))]),
+            })
+            self.assertRedirects(
+                response,
+                reverse('users.edit'),  # No '?to=...'
+                target_status_code=200)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(

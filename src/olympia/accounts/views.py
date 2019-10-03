@@ -3,6 +3,8 @@ import binascii
 import functools
 import os
 
+from urllib.parse import quote_plus
+
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.signals import user_logged_in
@@ -376,7 +378,11 @@ class AuthenticateView(FxAConfigMixin, APIView):
             user = register_user(self.__class__, request, identity)
             fxa_config = self.get_fxa_config(request)
             if fxa_config.get('skip_register_redirect') is not True:
-                next_path = reverse('users.edit')
+                edit_page = reverse('users.edit')
+                if _is_safe_url(next_path, request):
+                    next_path = f'{edit_page}?to={quote_plus(next_path)}'
+                else:
+                    next_path = edit_page
             response = safe_redirect(next_path, 'register', request)
         else:
             login_user(self.__class__, request, user, identity)
