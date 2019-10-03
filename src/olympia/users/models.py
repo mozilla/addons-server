@@ -547,7 +547,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     self, self.email))
                 self.email = None
                 self.fxa_id = None
-                self.last_login_ip = ''
+            # last_login_ip is kept, deleted by clear_old_last_login_ip
+            # command after 6 months.
             self.biography = ''
             self.display_name = None
             self.homepage = ''
