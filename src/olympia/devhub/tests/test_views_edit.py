@@ -1450,7 +1450,6 @@ class TestEditTechnical(BaseTestEdit):
         # Turn everything on
         data = {
             'developer_comments': 'Test comment!',
-            'view_source': 'on',
             'whiteboard-public': 'Whiteboard info.'
         }
 
@@ -1471,7 +1470,6 @@ class TestEditTechnical(BaseTestEdit):
         response = self.client.post(self.technical_edit_url, data)
         addon = self.get_addon()
 
-        assert not addon.view_source
 
     def test_technical_devcomment_notrequired(self):
         data = {
