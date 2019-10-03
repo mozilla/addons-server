@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-03 00:34+0000\n"
+"PO-Revision-Date: 2019-10-03 01:07+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -796,7 +796,7 @@ msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "Automatsko odobrenje potvrđeno za {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Automatsko odobrenje potvrđeno"
 
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} ponovo omogućen."
@@ -4246,11 +4246,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Automatski ispuni obrasce {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Automatski ispuni obrasce. Spremi upisane podatke jednom i obrasci će se sljedeći puta automatski ispuniti."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4390,7 +4390,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Spremi lozinke sigurno i automatski se prijavi na poznate web stranice."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4446,7 +4446,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Automatski obriši povijesti preglednika za odabrane web stranice."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4562,7 +4562,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Automatski izbriši neželjene kolačiće. Pruža podršku za popis poželjnih i nepoželjnih stranica."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4598,7 +4598,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Automatska provjera gramatike i pravopisa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5847,10 +5847,10 @@ msgid "Force-enable add-on"
 msgstr "Prisilno omogući dodatak"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Onemogući automatsko odobravanje"
 
 msgid "Enable Auto-Approval"
-msgstr ""
+msgstr "Omogući automatsko odobravanje"
 
 msgid "Clear information request"
 msgstr "Izbriši zahtjev za informacijama"
@@ -5972,12 +5972,11 @@ msgstr[0] "Recenzija ocijenjivanja ({0})"
 msgstr[1] "Recenzije ocijenjivanja ({0})"
 msgstr[2] "Recenzije ocijenjivanja ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Dodaci za {0}"
-msgstr[1] "Dodaci za {0}"
-msgstr[2] ""
+msgstr[0] "Automatski odobreno ({0})"
+msgstr[1] "Automatski odobreno ({0})"
+msgstr[2] "Automatski odobreno ({0})"
 
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
