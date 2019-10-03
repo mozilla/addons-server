@@ -1,3 +1,0 @@
--- Note: backfilling for previously confirmed auto-approvals is not trivial,
--- we'd need to go through the activity log, so we just don't do it...
-ALTER TABLE `editors_autoapprovalsummary` ADD COLUMN `confirmed` bool DEFAULT NULL;
