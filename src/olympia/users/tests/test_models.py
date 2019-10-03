@@ -107,7 +107,9 @@ class TestUserProfile(TestCase):
         assert user.display_name is None
         assert user.homepage == ''
         assert user.picture_type is None
-        assert user.last_login_ip == ''
+        # last_login_ip is kept during deletion, deleted 6 months later via
+        # clear_old_last_login_ip command
+        assert user.last_login_ip
         assert user.has_anonymous_username
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
