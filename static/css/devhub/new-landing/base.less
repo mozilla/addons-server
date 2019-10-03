@@ -3,7 +3,6 @@
 
 // Grid
 @grid-max: 960px;
-@small: ~"only screen and (min-width: 400px)";
 @large: ~"only screen and (min-width: 960px)";
 @retina: ~"only screen and (min-resolution: 1.5dppx)";
 
@@ -17,7 +16,7 @@
 
 // Color Schemes
 // Default
-@color-scheme-default-background: #ffffff;
+@color-scheme-default-background: #F9F9FA;
 
 // Light
 @color-scheme-light-text: #333;
@@ -86,7 +85,7 @@ img {
 }
 
 a {
-  .link(@color-text);
+  .link(@color-items);
 }
 
 body {
@@ -114,9 +113,11 @@ h1 {
   margin-top: 0;
 }
 
-h2,
+h2 {
+  font-size: 20px;
+}
 h3 {
-  font-size: 32px;
+  font-size: 18px;
 }
 
 h1,
@@ -170,6 +171,12 @@ h3 {
   h1, h2, h3 {
     font-weight: 400;
   }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 20px;
+  }
 }
 
 // Mixins / Utilities
@@ -187,6 +194,8 @@ h3 {
 @import 'sections/overview';
 @import 'sections/more-information';
 @import 'sections/my-addons';
+@import 'sections/submit-or-manage';
+@import 'sections/get-involved';
 
 // Footer
 @import 'footer';
