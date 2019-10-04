@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-04 10:08+0000\n"
+"PO-Revision-Date: 2019-10-04 12:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1115,7 +1115,7 @@ msgid "Abstract"
 msgstr "Abstraktno"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Preuzmi Firefoxove umjetničke i konceptualne teme. Ova kategorija uključuje šarene palete i oblike, fantastične pejzaže, razigrane mačke, psihodelično cvijeće."
 
 msgid "Causes"
 msgstr "Povodi"
@@ -1142,7 +1142,7 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Preuzmi Firefoxove teme s japanskim Firefoxom. Ova kategorija uključuje teme koje prikazuju simpatičnu maskotu Foxkeh u raznim pozama u raznolikim krajolicima."
 
 msgid "Holiday"
 msgstr "Blagdan"
@@ -1157,7 +1157,7 @@ msgid "Download Firefox themes for musical interests and artists. This category 
 msgstr "Preuzmi muzičke i umjetničke Firefox teme. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Preuzmi Firefoxove teme sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr ""
