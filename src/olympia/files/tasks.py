@@ -9,7 +9,7 @@ import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import move_stored_file
-from olympia.amo.utils import rm_local_tmp_dir
+from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import File, FileUpload, WebextPermission
 from olympia.files.utils import extract_zip, get_sha256, parse_xpi
@@ -57,6 +57,8 @@ def repack_fileupload(results, upload_pk):
     # We don't trust upload.name: it's the original filename as used by the
     # developer, so it could be something else.
     if upload.path.endswith('.xpi'):
+        timer = StopWatch('files.tasks.repack_fileupload.')
+        timer.start()
         try:
             tempdir = tempfile.mkdtemp()  # *not* on TMP_PATH, we want local fs
             extract_zip(upload.path, tempdir=tempdir)
@@ -69,14 +71,18 @@ def repack_fileupload(results, upload_pk):
                 'Could not extract upload %s for repack.', upload_pk,
                 exc_info=exc)
             raise
+        timer.log_interval('1.extracted')
         log.info('Zip from upload %s extracted, repackaging', upload_pk)
         file_ = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
         shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)
         with open(file_.name, 'rb') as f:
             upload.hash = 'sha256:%s' % get_sha256(f)
+        timer.log_interval('2.repackaged')
         log.info('Zip from upload %s repackaged, moving file back', upload_pk)
         move_stored_file(file_.name, upload.path)
+        timer.log_interval('3.moved')
         upload.save()
+        timer.log_interval('3.end')
     else:
         log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)
     return results
