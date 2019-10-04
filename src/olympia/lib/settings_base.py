@@ -1094,6 +1094,7 @@ CELERY_TASK_ROUTES = {
     # AMO Devhub.
     'olympia.devhub.tasks.create_initial_validation_results': {
         'queue': 'devhub'},
+    'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {

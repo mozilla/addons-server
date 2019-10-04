@@ -273,12 +273,32 @@ def validate_file_path(path, channel):
     return run_addons_linter(path, channel=channel)
 
 
+@validation_task
+def forward_linter_results(results, upload_pk):
+    """This task is used in the chord of the validation chain to pass the
+    linter results to `handle_upload_validation_result()` (the callback of the
+    chord).
+    """
+    log.info('Called forward_linter_results() for upload_pk = %d', upload_pk)
+    return results
+
+
 @task
 @use_primary_db
-def handle_upload_validation_result(
-        results, upload_pk, channel, is_mozilla_signed):
+def handle_upload_validation_result(all_results, upload_pk, channel,
+                                    is_mozilla_signed):
     """Annotate a set of validation results and save them to the given
-    FileUpload instance."""
+    FileUpload instance.
+
+    This task is the callback of the Celery chord in the validation chain. It
+    receives all the results returned by all the tasks in this chord (in
+    `all_results`).
+    """
+    # This task is the callback of a Celery chord and receives all the results
+    # returned by all the tasks in this chord. The first task registered in the
+    # chord is `forward_linter_results()`:
+    results = all_results[0]
+
     upload = FileUpload.objects.get(pk=upload_pk)
 
     if waffle.switch_is_active('enable-yara') and results['errors'] == 0:

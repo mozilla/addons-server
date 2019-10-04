@@ -8,6 +8,7 @@ from django.test.utils import override_settings
 from unittest import mock
 import pytest
 
+from celery import chord
 from celery.result import AsyncResult
 
 from olympia import amo
@@ -58,9 +59,12 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False),
+            chord(
+                (tasks.forward_linter_results.s(file_upload.pk)),
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
         )
 
     def check_file(self, file_):
@@ -457,9 +461,12 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
-            tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                    channel,
-                                                    False),
+            chord(
+                (tasks.forward_linter_results.s(file_upload.pk)),
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
             final_task,
         )
 

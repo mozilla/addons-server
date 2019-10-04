@@ -224,8 +224,8 @@ class TestMeasureValidationTime(UploadTest, TestCase):
 
     def handle_upload_validation_result(self,
                                         channel=amo.RELEASE_CHANNEL_LISTED):
-        validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        tasks.handle_upload_validation_result(validation, self.upload.pk,
+        results = [amo.VALIDATOR_SKELETON_RESULTS.copy()]
+        tasks.handle_upload_validation_result(results, self.upload.pk,
                                               channel, False)
 
     def test_track_upload_validation_results_time(self):
@@ -1266,7 +1266,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1285,7 +1285,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1303,7 +1303,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1320,7 +1320,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1339,7 +1339,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1357,7 +1357,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1374,7 +1374,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1393,7 +1393,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1411,7 +1411,7 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
         )
 
         tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
+            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
             upload_pk=upload.pk,
             channel=amo.RELEASE_CHANNEL_LISTED,
             is_mozilla_signed=False
@@ -1447,3 +1447,11 @@ class TestValidationTask(TestCase):
         assert TestValidationTask.fake_task_has_been_called
         assert results != returned_results
         assert 'fake_task_results' in returned_results
+
+
+class TestForwardLinterResults(TestCase):
+
+    def test_returns_received_results(self):
+        results = {'errors': 1}
+        returned_results = tasks.forward_linter_results(results, 123)
+        assert results == returned_results
