@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-10-03 21:40+0000\n"
+"PO-Revision-Date: 2019-10-04 10:08+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1049,10 +1049,10 @@ msgid "Download Firefox extensions that are regularly updated and ready for publ
 msgstr ""
 
 msgid "Performance"
-msgstr "Performanse"
+msgstr "Performansa"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Preuzmi proširenja koja poboljšavaju performanse Firefoxa. Pronađi proširenja koja ti pomažu povećati produktivnost i učinkovitost, blokirajući dosadne oglase i drugo."
 
 msgid "Photos & Media"
 msgstr "Slike i multimedija"
@@ -5705,7 +5705,7 @@ msgid "This Year"
 msgstr "Ove godine"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Mjesečni učinak"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
