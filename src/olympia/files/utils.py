@@ -842,9 +842,10 @@ class SafeZip(object):
         return self.zip_file.read(path)
 
 
-def extract_zip(source, remove=False, force_fsync=False):
+def extract_zip(source, remove=False, force_fsync=False, tempdir=None):
     """Extracts the zip file. If remove is given, removes the source file."""
-    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
+    if tempdir is None:
+        tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     try:
         zip_file = SafeZip(source, force_fsync=force_fsync)
