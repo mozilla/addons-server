@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2019-02-02 13:38+0000\n"
-"Last-Translator: Dag7 <dag7@protonmail.com>\n"
+"PO-Revision-Date: 2019-10-04 09:15+0000\n"
+"Last-Translator: Davide Quaranta <dvd.forty@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -128,8 +128,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il "
-"componente venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
+"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il componente"
+" venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Durante il processo di validazione sono stati rilevati i seguenti problemi, che potrebbero portare al rifiuto del componente aggiuntivo:"
@@ -154,29 +154,29 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "Questo tema non è compatibile con la versione di {0} in uso"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Tutti i diritti riservati"
 
 #, fuzzy
 msgid "Creative Commons Attribution 3.0"
 msgstr "Donazione media"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribuzione-Non commerciale 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribuzione-Non commerciale-Non opere derivate 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribuzione-Non Commerciale-Condividi allo stesso modo 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribuzione-Non opere derivate 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribuzione-Condividi allo stesso modo 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Nome del tema"
 
 msgid "Flagged for review"
 msgstr "Segnalato per revisione"
