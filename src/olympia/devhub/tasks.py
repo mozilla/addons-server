@@ -279,7 +279,7 @@ def forward_linter_results(results, upload_pk):
     linter results to `handle_upload_validation_result()` (the callback of the
     chord).
     """
-    log.info('Called forward_linter_results() for upload_pk = %d' % upload_pk)
+    log.info('Called forward_linter_results() for upload_pk = %d', upload_pk)
     return results
 
 
@@ -288,7 +288,12 @@ def forward_linter_results(results, upload_pk):
 def handle_upload_validation_result(all_results, upload_pk, channel,
                                     is_mozilla_signed):
     """Annotate a set of validation results and save them to the given
-    FileUpload instance."""
+    FileUpload instance.
+
+    This task is the callback of the Celery chord in the validation chain. It
+    receives all the results returned by all the tasks in this chord (in
+    `all_results`).
+    """
     # This task is the callback of a Celery chord and receives all the results
     # returned by all the tasks in this chord. The first task registered in the
     # chord is `forward_linter_results()`:
