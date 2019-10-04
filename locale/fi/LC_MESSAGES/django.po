@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-07-09 06:52+0000\n"
 "Last-Translator: Miro Rauhala <miro.rauhala.99@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -152,60 +152,6 @@ msgstr "Lisäosien ja kokoelmien polkujen on päätyttävä merkkiin \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Lisäosan nimi ei voi sisältää Mozillan tai Firefoxin tavaramerkkejä."
-
-msgid "Awaiting Review"
-msgstr "Odottaa arviointia"
-
-msgid "Rejected"
-msgstr "Hylätty"
-
-msgid "Approved"
-msgstr "Hyväksytty"
-
-msgid "Added {0}"
-msgstr ""
-
-# 78%
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> aktiivinen käyttäjä"
-msgstr[1] "<strong>{0}</strong> aktiivista käyttäjää"
-
-# 100%
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Huomiot tarkastajalle:"
-
-#, fuzzy
-msgid "Add"
-msgstr "Lisäosat"
-
-msgid "Edit"
-msgstr "Muokkaa"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Ei vielä pisteytetty"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> teema"
-
-msgid "by"
-msgstr "tekijänä"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Päivittäiset käyttäjät"
-msgstr[1] "Päivittäiset käyttäjät"
 
 msgid "Sort by:"
 msgstr "Järjestys:"
@@ -353,10 +299,6 @@ msgstr "Hups"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Kaikki oikeudet pidätetään"
 
 msgid "No results found"
 msgstr "Tuloksia ei löytynyt"
@@ -528,9 +470,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr "Syötetty teksti on merkitty roskapostiksi."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tämä osoitemuoto on jo käytössä jossakin toisessa kokoelmassasi."
 
@@ -600,6 +539,9 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} hyväksytty."
 
+msgid "Approved"
+msgstr "Hyväksytty"
+
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -608,6 +550,9 @@ msgstr "Alustavasti hyväksytty"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} hylättiin."
+
+msgid "Rejected"
+msgstr "Hylätty"
 
 msgid "{addon} {version} retained."
 msgstr ""
@@ -902,6 +847,9 @@ msgstr "Tuntematon"
 
 msgid "Incomplete"
 msgstr "Keskeneräinen"
+
+msgid "Awaiting Review"
+msgstr "Odottaa arviointia"
 
 msgid "Disabled by Mozilla"
 msgstr ""
@@ -1517,9 +1465,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Tämä osoitemuoto on jo käytössä. Valitse jokin toinen."
 
@@ -2124,6 +2069,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Lisäresursseja"
+
+msgid "Edit"
+msgstr "Muokkaa"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -3329,12 +3277,6 @@ msgstr "Arvosteluhistoria"
 msgid "Close Review History"
 msgstr "%s versiohistoria"
 
-msgid "Not validated."
-msgstr ""
-
-msgid "Validate now."
-msgstr ""
-
 #, fuzzy
 msgid "Request Review"
 msgstr "Käsittele arviot"
@@ -3350,6 +3292,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "Lataa aikaisempi..."
+
+msgid "by"
+msgstr "tekijänä"
 
 msgid "Leave a reply"
 msgstr ""
@@ -5089,50 +5034,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-#, fuzzy
-msgid "Reported Status"
-msgstr "Sivuston tila"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Ilmoita viasta"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Ilmoita viasta"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Ei vielä pisteytetty"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Versiokommentit"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Näytä uusi sivusto"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Lisää uusi tiedosto"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Lisää uusi tiedosto"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -5379,6 +5280,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} arvio"
 msgstr[1] "{num} arviota"
+
+msgid "Not yet rated"
+msgstr "Ei vielä pisteytetty"
 
 # %1 is the number of stars this add-on has
 # 87%

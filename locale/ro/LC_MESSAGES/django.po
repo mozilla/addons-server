@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-30 00:02+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -139,61 +139,6 @@ msgstr "Căile către suplimente și colecții trebuie să se termine în „/�
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau Firefox."
-
-msgid "Awaiting Review"
-msgstr "În așteptarea revizuirii"
-
-msgid "Rejected"
-msgstr "Respinsă"
-
-msgid "Approved"
-msgstr "Aprobată"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Multimedia supliment pentru {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> utilizator activ"
-msgstr[1] "<strong>{0}</strong> utilizatori activi"
-msgstr[2] "<strong>{0}</strong> de utilizatori activi"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Înapoi la recenzie"
-
-#, fuzzy
-msgid "Add"
-msgstr "Suplimente"
-
-msgid "Edit"
-msgstr "Editează"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Neevaluat încă"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> temă"
-
-msgid "by"
-msgstr "de"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Utilizatori zilnici"
-msgstr[1] "Utilizatori zilnici"
-msgstr[2] "Utilizatori zilnici"
 
 msgid "Sort by:"
 msgstr "Sortează după:"
@@ -353,10 +298,6 @@ msgstr "Ups"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ups!  A apărut o eroare.</h1> <p>O vom corecta imediat.</p> <p> Poți încerca să reîmprospătezi pagina sau mergi înapoi la <a href=\"%(home)s\">pagina de start pentru suplimente</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Toate drepturile rezervate"
 
 msgid "No results found"
 msgstr "Nu s-a găsit niciun rezultat"
@@ -529,9 +470,6 @@ msgstr ""
 "Dacă aplicația ta suportată nu necesită un fișier manifest, tot trebuie să incluzi unul care să aibă proprietățile obligatorii, conform specificațiilor%(amo_manifests_mdn_link_open)sde aici"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Textul introdus a fost semnalat ca spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Acest URL personalizat este deja utilizat de una dintre celelalte colecții ale tale."
 
@@ -601,6 +539,9 @@ msgstr "Fișierul {0} a fost șters din {version} de {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} aprobat."
 
+msgid "Approved"
+msgstr "Aprobată"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} are revizuire preliminară."
 
@@ -609,6 +550,9 @@ msgstr "Aprobat preliminar"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} respins."
+
+msgid "Rejected"
+msgstr "Respinsă"
 
 msgid "{addon} {version} retained."
 msgstr "S-a păstrat {addon} {version}."
@@ -890,6 +834,9 @@ msgstr "Necunoscut"
 
 msgid "Incomplete"
 msgstr "Incompletă"
+
+msgid "Awaiting Review"
+msgstr "În așteptarea revizuirii"
 
 msgid "Disabled by Mozilla"
 msgstr "Dezactivat de Mozilla"
@@ -1493,9 +1440,6 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 "Permitem și încurajăm o trecere la o versiune superioară dar nu putem inversa acest proces. Odată ce utilizatorii au extensia Web instalată nu vor mai putea instala un supliment de tehnologie "
 "anterioară."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Textul din câmpul \"{field}\" a fost semnalat ca spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
@@ -2101,6 +2045,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Detalii suplimentare"
+
+msgid "Edit"
+msgstr "Editează"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -3284,12 +3231,6 @@ msgstr "Istoricul examinărilor"
 msgid "Close Review History"
 msgstr "Închide istoricul examinărilor"
 
-msgid "Not validated."
-msgstr "Nevalidată."
-
-msgid "Validate now."
-msgstr "Validează acum."
-
 msgid "Request Review"
 msgstr "Solicită recenzie"
 
@@ -3304,6 +3245,9 @@ msgstr "Am întâmpinat o problemă la recuperarea notelor de revizuire"
 
 msgid "Load older..."
 msgstr "Încarcă mai vechi..."
+
+msgid "by"
+msgstr "de"
 
 msgid "Leave a reply"
 msgstr "Lasă un răspuns"
@@ -5104,42 +5048,6 @@ msgstr "Niciun fișier în fișierul încărcat."
 msgid "Fetching file."
 msgstr "Se obține fișierul."
 
-msgid "Reported Status"
-msgstr "Stare raportată"
-
-msgid "Reported Spam"
-msgstr "Mesaje nedorite raportate"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham raportat"
-
-msgid "Not Reported"
-msgstr "Neraportat"
-
-msgid "Content Submitted"
-msgstr "Conținut transmis"
-
-msgid "View Rating on site"
-msgstr "Vezi evaluarea pe site"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Trimite ham la Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Trimite spam la Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s rapoarte ham depuse ca spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s rapoarte spam depuse ca ham"
-
 msgid "About Mozilla Add-ons"
 msgstr "Despre suplimentele Mozilla"
 
@@ -5406,6 +5314,9 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} recenzie"
 msgstr[1] "{num} recenzii"
 msgstr[2] "{num} de recenzii"
+
+msgid "Not yet rated"
+msgstr "Neevaluat încă"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Evaluată cu {0} din 5 stele"

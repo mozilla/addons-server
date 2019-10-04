@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-08 08:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -143,59 +143,6 @@ msgstr "Shtigjet për shtesa dhe koleksione lypset të përfundojnë me \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Emrat e shtesave s’mund të përmbajnë shenjat tregtare Mozilla ose Firefox."
-
-msgid "Awaiting Review"
-msgstr "Në Pritje të Shqyrtimit"
-
-msgid "Rejected"
-msgstr "E hedhur poshtë"
-
-msgid "Approved"
-msgstr "E miratuar"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Media Shtese për {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> përdorues aktiv"
-msgstr[1] "<strong>{0}</strong> përdorues aktivë"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Mbrapsht te shqyrtimi"
-
-#, fuzzy
-msgid "Add"
-msgstr "Shtesa"
-
-msgid "Edit"
-msgstr "Përpunoni"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Ende e pavlerësuar"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> temë"
-
-msgid "by"
-msgstr "nga"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Përdorues të Përditshëm"
-msgstr[1] "Përdorues të Përditshëm"
 
 msgid "Sort by:"
 msgstr "Renditur sipas:"
@@ -352,10 +299,6 @@ msgstr "Oh"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Oh! Patëm një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose të ktheheni te <a href=\"%(home)s\">kreu i shtesave</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Tërë të Drejtat të Rezervuara"
 
 msgid "No results found"
 msgstr "S’u gjetën përfundime"
@@ -529,9 +472,6 @@ msgstr ""
 "Po qe se aplikacioni juaj nuk kërkon domosdo një kartelë manifest, prapë duhet ta përfshini një të tillë me vetitë e domosdoshme, siç tregohet %(amo_manifests_mdn_link_open)skëtu"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Tekstit të dhënë i është vënë shenjë si mesazh i padëshiruar."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Kjo URL vetjake përdoret tashmë nga një tjetër koleksion i juaji."
 
@@ -602,6 +542,9 @@ msgstr "Kartela {0} u fshi nga {version} i {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} u miratua."
 
+msgid "Approved"
+msgstr "E miratuar"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} pati shqyrtim paraprak."
 
@@ -610,6 +553,9 @@ msgstr "E miratuar paraprakisht"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} u hodh tej."
+
+msgid "Rejected"
+msgstr "E hedhur poshtë"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} u mbajt."
@@ -891,6 +837,9 @@ msgstr "E panjohur"
 
 msgid "Incomplete"
 msgstr "Jo i plotë"
+
+msgid "Awaiting Review"
+msgstr "Në Pritje të Shqyrtimit"
 
 msgid "Disabled by Mozilla"
 msgstr "Çaktivizuar nga Mozilla"
@@ -1480,9 +1429,6 @@ msgstr "Shtesat për Thunderbird-in dhe SeaMonkey-n tani shfaqen dhe mirëmbahen
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "E lejojmë dhe e nxisim një përmirësim, por këtë proces nuk mund ta zhbëni. Pasi përdoruesit tuaj të kenë instaluar WebExtension, nuk do të jenë në gjendje të instalojnë shtesa nga të dikurshmet."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Tekstit te fusha \"{field}\" i është vënë shenjë si mesazh i padëshiruar."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ky identifikues është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
@@ -2082,6 +2028,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Hollësi Shtesë"
+
+msgid "Edit"
+msgstr "Përpunoni"
 
 msgid "Additional Details for {0}"
 msgstr "Hollësi Shtesë për {0}"
@@ -3258,13 +3207,6 @@ msgstr "Historik Shqyrtimesh"
 msgid "Close Review History"
 msgstr "Mbylle Historikun e Shqyrtimeve"
 
-msgid "Not validated."
-msgstr "E pavleftësuar."
-
-# Button text (verb)
-msgid "Validate now."
-msgstr "Vleftësojeni tani."
-
 msgid "Request Review"
 msgstr "Kërkoni Shqyrtim"
 
@@ -3279,6 +3221,9 @@ msgstr "Patëm një problem me marrjen e shënimeve të shqyrtimit"
 
 msgid "Load older..."
 msgstr "Ngarko më të hershme…"
+
+msgid "by"
+msgstr "nga"
 
 msgid "Leave a reply"
 msgstr "Lini një përgjigje"
@@ -5025,42 +4970,6 @@ msgstr "Pa kartela te kartela e ngarkuar."
 msgid "Fetching file."
 msgstr "Po sillet kartelë."
 
-msgid "Reported Status"
-msgstr "Gjendje Raportimi"
-
-msgid "Reported Spam"
-msgstr "I raportuar si i Padëshiruar"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr ""
-
-msgid "Not Reported"
-msgstr "I paraportuar"
-
-msgid "Content Submitted"
-msgstr "Lënda u Parashtrua"
-
-msgid "View Rating on site"
-msgstr "Shihini Vlerësimin në sajt"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr ""
-
-msgid "Submit Spam to Akismet"
-msgstr "Parashtroni Në Akismet Mesazh të Padëshiruar"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "Rreth Shtesave Mozilla"
 
@@ -5325,6 +5234,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} shqyrtim"
 msgstr[1] "{num} shqyrtime"
+
+msgid "Not yet rated"
+msgstr "Ende e pavlerësuar"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"

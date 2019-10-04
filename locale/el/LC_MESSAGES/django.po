@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-16 23:36+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -142,59 +142,6 @@ msgstr "Οι διαδρομές των προσθέτων και των συλλ
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Τα ονόματα προσθέτων δεν μπορούν να περιέχουν τα εμπορικά σήματα της Mozilla ή του Firefox."
-
-msgid "Awaiting Review"
-msgstr "Αναμένεται αξιολόγηση"
-
-msgid "Rejected"
-msgstr "Απορίφθηκε"
-
-msgid "Approved"
-msgstr "Εγκρίθηκε"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Αρχεία πολυμέσων για το {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> ενεργός χρήστης"
-msgstr[1] "<strong>{0}</strong> ενεργοί χρήστες"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Πίσω στην αξιολόγηση"
-
-#, fuzzy
-msgid "Add"
-msgstr "Πρόσθετα"
-
-msgid "Edit"
-msgstr "Επεξεργασία"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Δεν έχει βαθμολογηθεί ακόμα"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> θέμα"
-
-msgid "by"
-msgstr "από"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Καθημερινοί χρήστες"
-msgstr[1] "Καθημερινοί χρήστες"
 
 msgid "Sort by:"
 msgstr "Ταξινόμηση κατά:"
@@ -357,10 +304,6 @@ msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p
 msgstr ""
 "<h1>Ωχ!  Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p> Μπορείτε να δοκιμάσετε να φορτώσετε εκ νέου τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</"
 "a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Με την επιφύλαξη παντός δικαιώματος"
 
 msgid "No results found"
 msgstr "Δεν βρέθηκαν αποτελέσματα"
@@ -535,9 +478,6 @@ msgstr ""
 "Αν η υποστηριζόμενη εφαρμογή σας δεν απαιτεί ένα αρχείο manifest, πρέπει ακόμη να περιλάβετε ένα με τις απαιτούμενες ιδιότητες, όπως περιγράφεται %(amo_manifests_mdn_link_open)sεδώ"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Το εισηγμένο κείμενο έχει αναφερθεί ως ανεπιθύμητο."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Αυτό το προσαρμοσμένο URL χρησιμοποιείται ήδη από κάποιο άλλο στις συλλογές σας."
 
@@ -607,6 +547,9 @@ msgstr "Διαγράφηκε το αρχείο {0} από την έκδοση {v
 msgid "{addon} {version} approved."
 msgstr "Εγκρίθηκε η έκδοση {version} του {addon}."
 
+msgid "Approved"
+msgstr "Εγκρίθηκε"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "Η έκδοση {version} του {addon} έχει αξιολογηθεί εισαγωγικώς."
 
@@ -615,6 +558,9 @@ msgstr "Εγκρίθηκε προκαταρκτικά"
 
 msgid "{addon} {version} rejected."
 msgstr "Απορρίφθηκε η έκδοση {version} του {addon}."
+
+msgid "Rejected"
+msgstr "Απορίφθηκε"
 
 msgid "{addon} {version} retained."
 msgstr "Διατηρήθηκε η έκδοση {version} του {addon}."
@@ -896,6 +842,9 @@ msgstr "Άγνωστο"
 
 msgid "Incomplete"
 msgstr "Ημιτελές"
+
+msgid "Awaiting Review"
+msgstr "Αναμένεται αξιολόγηση"
 
 msgid "Disabled by Mozilla"
 msgstr "Απενεργοποιημένο από τη Mozilla"
@@ -1527,9 +1476,6 @@ msgstr ""
 "Επιτρέπουμε και ενθαρρύνουμε να κάνετε μια αναβάθμιση, αλλά δεν μπορείτε να αναστρέψετε αυτή τη διαδικασία. Μόλις οι χρήστες έχουν εγκαταστήσει το WebExtension, δεν θα μπορούν να εγκαταστήσουν το "
 "πρόσθετο παλαιού τύπου."
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Το κείμενο στο πεδίο \"{field}\" έχει επισημανθεί ως ανεπιθύμητο."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
 
@@ -2127,6 +2073,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Επιπρόσθετες λεπτομέρειες"
+
+msgid "Edit"
+msgstr "Επεξεργασία"
 
 msgid "Additional Details for {0}"
 msgstr "Επιπρόσθετες λεπτομέρειες για το {0}"
@@ -3304,12 +3253,6 @@ msgstr "Προβολή ιστορικού"
 msgid "Close Review History"
 msgstr "Κλείσιμο ιστορικού αξιολόγησης"
 
-msgid "Not validated."
-msgstr "Δεν έχει επικυρωθεί."
-
-msgid "Validate now."
-msgstr "Επικύρωση τώρα."
-
 msgid "Request Review"
 msgstr "Απαίτηση αξιολόγησης"
 
@@ -3324,6 +3267,9 @@ msgstr "Αντιμετωπίσαμε πρόβλημα κατά την ανάκτ
 
 msgid "Load older..."
 msgstr "Φόρτωση παλαιότερων..."
+
+msgid "by"
+msgstr "από"
 
 msgid "Leave a reply"
 msgstr "Υποβάλετε μια απάντηση"
@@ -5122,42 +5068,6 @@ msgstr "Δεν υπάρχουν αρχεία μέσα στο αρχείο που
 msgid "Fetching file."
 msgstr "Φορτώνεται το αρχείο."
 
-msgid "Reported Status"
-msgstr ""
-
-msgid "Reported Spam"
-msgstr "Αναφέρθηκε ως ανεπιθύμητο"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Αναφέρθηκε ως επιθυμητό"
-
-msgid "Not Reported"
-msgstr "Δεν έχει αναφερθεί"
-
-msgid "Content Submitted"
-msgstr "Το περιεχόμενο υπεβλήθη"
-
-msgid "View Rating on site"
-msgstr "Προβολή βαθμολογίας στην ιστοσελίδα"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Υποβολή επιθυμητού στο Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Υποβολή ανεπιθύμητου στο Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s αναφορές επιθυμητών υποβλήθηκαν ως ανεπιθύμητα"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s αναφορές ανεπιθύμητων υποβλήθηκαν ως επιθυμητά"
-
 msgid "About Mozilla Add-ons"
 msgstr "Σχετικά με τα Πρόσθετα Mozilla"
 
@@ -5408,6 +5318,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} αξιολόγηση"
 msgstr[1] "{num} αξιολογήσεις"
+
+msgid "Not yet rated"
+msgstr "Δεν έχει βαθμολογηθεί ακόμα"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

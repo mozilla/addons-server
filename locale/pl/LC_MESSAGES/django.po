@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -154,61 +154,6 @@ msgstr "Ścieżki do dodatku i kolekcji muszą kończyć się znakiem „/”"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nazwy dodatków nie mogą zawierać znaków towarowych Mozilli lub Firefoksa."
-
-msgid "Awaiting Review"
-msgstr "Oczekujące sprawdzenie"
-
-msgid "Rejected"
-msgstr "Odrzucono"
-
-msgid "Approved"
-msgstr "Zatwierdzone"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Media dodatku dla {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> aktywny użytkownik"
-msgstr[1] "<strong>{0}</strong> aktywnych użytkowników"
-msgstr[2] "<strong>{0}</strong> aktywnych użytkowników"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Wróć do recenzji"
-
-#, fuzzy
-msgid "Add"
-msgstr "Dodatki"
-
-msgid "Edit"
-msgstr "Edytuj"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Brak ocen"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> motyw"
-
-msgid "by"
-msgstr "Autor:"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Dzienni użytkownicy"
-msgstr[1] "Dzienni użytkownicy"
-msgstr[2] "Dzienni użytkownicy"
 
 msgid "Sort by:"
 msgstr "Sortuj wg:"
@@ -366,10 +311,6 @@ msgstr "Ups"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ups! Wystąpił błąd.</h1> <p>Postaramy się szybko to naprawić.</p> <p> Możesz spróbować odświeżyć stronę lub wrócić na <a href=\"%(home)s\">stronę główną dodatków</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Wszelkie prawa zastrzeżone"
 
 msgid "No results found"
 msgstr "Nic nie znaleziono"
@@ -542,9 +483,6 @@ msgstr ""
 "Jeśli obsługiwana aplikacja nie wymaga pliku manifest, nadal należy dołączyć taki plik z wymaganymi właściwościami, które określono %(amo_manifests_mdn_link_open)stutaj"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ten niestandardowy adres URL już używany przez inną Twoją kolekcję."
 
@@ -614,6 +552,9 @@ msgstr "Z wersji {version} dodatku {addon} usunięto plik {0}."
 msgid "{addon} {version} approved."
 msgstr "Zaakceptowano dodatek {addon} {version}."
 
+msgid "Approved"
+msgstr "Zatwierdzone"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "Dodatek {addon} {version} został wstępnie przejrzany."
 
@@ -622,6 +563,9 @@ msgstr "Wstępnie zatwierdzono"
 
 msgid "{addon} {version} rejected."
 msgstr "Dodatek {addon} {version} został odrzucony."
+
+msgid "Rejected"
+msgstr "Odrzucono"
 
 msgid "{addon} {version} retained."
 msgstr "Dodatek {addon} {version} został zachowany."
@@ -903,6 +847,9 @@ msgstr "Nieznane"
 
 msgid "Incomplete"
 msgstr "Niekompletny"
+
+msgid "Awaiting Review"
+msgstr "Oczekujące sprawdzenie"
 
 msgid "Disabled by Mozilla"
 msgstr "Wyłączony przez Mozillę"
@@ -1500,9 +1447,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Zezwalamy na aktualizację i zachęcamy do niej, ale tego procesu nie można odwrócić. Kiedy użytkownicy zainstalują rozszerzenie WebExtension, nie będą mogli zainstalować przestarzałego dodatku."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ten ciąg słów jest już używany. Wybierz inny."
@@ -2126,6 +2070,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Szczegółowe dane dodatku"
+
+msgid "Edit"
+msgstr "Edytuj"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -3315,12 +3262,6 @@ msgstr "Historia opinii"
 msgid "Close Review History"
 msgstr "Zamknij historię sprawdzania"
 
-msgid "Not validated."
-msgstr "Nie sprawdzono"
-
-msgid "Validate now."
-msgstr "Sprawdź teraz"
-
 msgid "Request Review"
 msgstr "Poproś o sprawdzenie"
 
@@ -3335,6 +3276,9 @@ msgstr "Mamy problem z pobraniem uwag do opinii"
 
 msgid "Load older..."
 msgstr "Wczytaj starsze…"
+
+msgid "by"
+msgstr "Autor:"
 
 msgid "Leave a reply"
 msgstr "Pozostaw odpowiedź"
@@ -5158,50 +5102,6 @@ msgstr "Brak plików w przesyłanym pliku."
 msgid "Fetching file."
 msgstr "Pobieranie pliku."
 
-#, fuzzy
-msgid "Reported Status"
-msgstr "Status witryny"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Typ zgłoszenia"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Zgłoś błąd"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Brak ocen"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Przesłana wersja"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Wyświetl nową witrynę"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Prześlij nowy plik"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Prześlij nowy plik"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "O Mozilla Add-ons"
 
@@ -5468,6 +5368,9 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} opinia"
 msgstr[1] "{num} opinie"
 msgstr[2] "{num} opinii"
+
+msgid "Not yet rated"
+msgstr "Brak ocen"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Oceniono na {0} z 5 możliwych gwiazdek"

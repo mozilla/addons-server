@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-22 13:26+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -147,59 +147,6 @@ msgstr "Las rutas del complemento y la colección tienen que terminar con \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firefox."
-
-msgid "Awaiting Review"
-msgstr "Esperando revisión"
-
-msgid "Rejected"
-msgstr "Rechazado"
-
-msgid "Approved"
-msgstr "Aprobado"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Medio del complemento para {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> usuario activo"
-msgstr[1] "<strong>{0}</strong> usuarios activos"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Volver a la revisión"
-
-#, fuzzy
-msgid "Add"
-msgstr "Complementos"
-
-msgid "Edit"
-msgstr "Editar"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Sin puntuar aún"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> tema"
-
-msgid "by"
-msgstr "por"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Usuarios diarios"
-msgstr[1] "Usuarios diarios"
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
@@ -359,10 +306,6 @@ msgstr "Vaya"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>¡Ups!  Hubo un error.</h1> <p>Lo solucionaremos lo antes posible.</p> <p> Prueba a actualizar la página o volver a la <a href=\"%(home)s\">página de inicio de Complementos</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Todos los derechos reservados"
 
 msgid "No results found"
 msgstr "No se ha encontrado ningún resultado"
@@ -536,9 +479,6 @@ msgstr ""
 "Aunque la aplicación admitida por tu complemento no requiera un archivo de manifiesto, tienes que incluir uno con las propiedades requeridas, tal y como se especifica "
 "%(amo_manifests_mdn_link_open)s aquí %(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "El texto indicado ha sido marcado como spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta URL personalizada ya la utiliza otra de tus colecciones."
 
@@ -608,6 +548,9 @@ msgstr "Archivo {0} borrado de {version} de {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} aprobado."
 
+msgid "Approved"
+msgstr "Aprobado"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ha obtenido una revisión preliminar."
 
@@ -616,6 +559,9 @@ msgstr "Aprobado preliminarmente"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ha sido rechazado."
+
+msgid "Rejected"
+msgstr "Rechazado"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ha sido retenido."
@@ -897,6 +843,9 @@ msgstr "Desconocido"
 
 msgid "Incomplete"
 msgstr "Incompleto"
+
+msgid "Awaiting Review"
+msgstr "Esperando revisión"
 
 msgid "Disabled by Mozilla"
 msgstr "Deshabilitado por Mozilla"
@@ -1496,9 +1445,6 @@ msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en add
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] El texto en el campo \"{field}\" se ha marcado como spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Este slug se utiliza. Por favor, elige otro."
@@ -2100,6 +2046,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Más detalles"
+
+msgid "Edit"
+msgstr "Editar"
 
 msgid "Additional Details for {0}"
 msgstr "Más detalles para {0}"
@@ -3316,12 +3265,6 @@ msgstr "Historial de revisiones"
 msgid "Close Review History"
 msgstr "Cerrar historial de revisiones"
 
-msgid "Not validated."
-msgstr "No validado."
-
-msgid "Validate now."
-msgstr "Validar ahora."
-
 msgid "Request Review"
 msgstr "Solicitar valoraicón"
 
@@ -3336,6 +3279,9 @@ msgstr "Hubo un problema al recuperar las notas de revisión"
 
 msgid "Load older..."
 msgstr "Cargar más antiguos..."
+
+msgid "by"
+msgstr "por"
 
 msgid "Leave a reply"
 msgstr "Responder"
@@ -5145,42 +5091,6 @@ msgstr "No hay archivos en el archivo subido."
 msgid "Fetching file."
 msgstr "Extrayendo archivo."
 
-msgid "Reported Status"
-msgstr "Estado reportado"
-
-msgid "Reported Spam"
-msgstr "Spam reportado"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham reportado"
-
-msgid "Not Reported"
-msgstr "No reportado"
-
-msgid "Content Submitted"
-msgstr "Contenido enviado"
-
-msgid "View Rating on site"
-msgstr "Ver calificación en el sitio"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Notificar ham a Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Notificar spam a Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s informes de Ham enviados como Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s informes de Spam enviados como Ham"
-
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"
 
@@ -5446,6 +5356,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} valoración"
 msgstr[1] "{num} valoraciones"
+
+msgid "Not yet rated"
+msgstr "Sin puntuar aún"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Puntuado con {0} de 5 estrellas"

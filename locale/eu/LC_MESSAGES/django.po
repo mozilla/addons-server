@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -150,58 +150,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr ""
-
-msgid "Rejected"
-msgstr ""
-
-msgid "Approved"
-msgstr ""
-
-msgid "Added {0}"
-msgstr ""
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "Erabiltzaile aktibo <strong>bat</strong>"
-msgstr[1] "<strong>{0}</strong> erabiltzaile aktibo"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Berrikusi gabea"
-
-#, fuzzy
-msgid "Add"
-msgstr "Gehigarria"
-
-msgid "Edit"
-msgstr "Editatu"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Puntuatu gabe oraindik"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "Gehigarri <b>bat</b>"
-
-msgid "by"
-msgstr "egilea:"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Eguneko erabiltzaileak"
-msgstr[1] "Eguneko erabiltzaileak"
 
 msgid "Sort by:"
 msgstr "Ordenatu:"
@@ -353,10 +301,6 @@ msgstr "Ene"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Eskubide guztiak erreserbatuta"
 
 msgid "No results found"
 msgstr ""
@@ -524,9 +468,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URLa beste bilduma batek darabil"
@@ -601,6 +542,9 @@ msgstr "{addon}: {0} fitxategia ezabatuta {version} bertsiotik."
 msgid "{addon} {version} approved."
 msgstr ""
 
+msgid "Approved"
+msgstr ""
+
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -608,6 +552,9 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
+msgstr ""
+
+msgid "Rejected"
 msgstr ""
 
 msgid "{addon} {version} retained."
@@ -921,6 +868,9 @@ msgstr ""
 
 msgid "Incomplete"
 msgstr "Osatu gabea"
+
+msgid "Awaiting Review"
+msgstr ""
 
 msgid "Disabled by Mozilla"
 msgstr "Mozillak desgaitua"
@@ -1535,9 +1485,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
@@ -2137,6 +2084,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Baliabide gehigarriak"
+
+msgid "Edit"
+msgstr "Editatu"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -3369,14 +3319,6 @@ msgstr ""
 msgid "Close Review History"
 msgstr "%s bertsioaren historia"
 
-# Button text (verb)
-msgid "Not validated."
-msgstr "Balidatu gabe."
-
-# Button text (verb)
-msgid "Validate now."
-msgstr "Balidatu orain."
-
 #, fuzzy
 msgid "Request Review"
 msgstr "Eskatu super-berrikusp"
@@ -3392,6 +3334,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "egilea:"
 
 #, fuzzy
 msgid "Leave a reply"
@@ -5134,47 +5079,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "Reported Status"
-msgstr ""
-
-msgid "Reported Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr ""
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Puntuatu gabe oraindik"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Bertsioa"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Ikusi mugikorretarako gunea"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Bidali gehigarri berria"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Bidali gehigarri berria"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -5426,6 +5330,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "Berrikuspen bat"
 msgstr[1] "{num} berrikuspen"
+
+msgid "Not yet rated"
+msgstr "Puntuatu gabe oraindik"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

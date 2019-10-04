@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,59 +143,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
-
-msgid "Rejected"
-msgstr "ਠੁਕਰਾਇਆ"
-
-msgid "Approved"
-msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "{0} ਲਈ ਐਡ-ਆਨ ਮੀਡੀਆ"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
-msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
-
-#, fuzzy
-msgid "Add"
-msgstr "ਐਡ-ਆਨ"
-
-msgid "Edit"
-msgstr "ਸੋਧ"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> ਥੀਮ"
-
-msgid "by"
-msgstr "ਵੱਲੋਂ"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
-msgstr[1] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
 
 msgid "Sort by:"
 msgstr "ਦੇ ਨਾਲ ਕ੍ਰਮਬੱਧ:"
@@ -356,10 +303,6 @@ msgstr "ਓ ਹੋ"
 #, fuzzy, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>ਓ ਹੋ!ਸਾਨੂੰ ਇੱੱਕ ਖਾਮੀ ਮਿਲੀ।</h1> <p>ਅਸੀਂ ਛੇਤੀ ਹੋ ਇਸਨੂੰ ਸੋਧਣ ਵਿੱਚ ਲੱਗ ਜਾਵਾਂਗੇ।</ p> <p> ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਨੂੰ ਤਾਜਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ <a href=\"%(home)s\">ਐਡ-ਆਨ ਮੁੱਖਸਫ਼ੇ</a>ਤੇ ਵਾਪਸ ਜਾਓ। </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
 
 msgid "No results found"
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ"
@@ -528,9 +471,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍ਰਹਿ ਵੱਲੋਂ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
@@ -606,6 +546,9 @@ msgstr "{addon}ਦੇ {version} ਤੋਂ File {0} ਹਟਾਈ।"
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
 
+msgid "Approved"
+msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
 
@@ -614,6 +557,9 @@ msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਵੀਕਾਰ ਹੋਇ�
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+
+msgid "Rejected"
+msgstr "ਠੁਕਰਾਇਆ"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ਰੱਖਿਆ।"
@@ -930,6 +876,9 @@ msgstr "ਗੁਮਨਾਮ"
 
 msgid "Incomplete"
 msgstr "ਅਧੂਰਾ"
+
+msgid "Awaiting Review"
+msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
 
 msgid "Disabled by Mozilla"
 msgstr "ਮੌਜੀਲਾ ਵੱਲੋਂ ਅਯੋਗ ਕੀਤਾ"
@@ -1551,9 +1500,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "ਇਹ ਸਲੱਗ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
 
@@ -2164,6 +2110,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "ਐਡ-ਆਨ ਵੇਰਵਾ"
+
+msgid "Edit"
+msgstr "ਸੋਧ"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -3414,12 +3363,6 @@ msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
 msgid "Close Review History"
 msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
 
-msgid "Not validated."
-msgstr "ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ।"
-
-msgid "Validate now."
-msgstr "ਹੁਣੇ ਪ੍ਰਮਾਣਿਤ ਕਰਵਾਓ।"
-
 #, fuzzy
 msgid "Request Review"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕਰੋ"
@@ -3437,6 +3380,9 @@ msgstr ""
 #, fuzzy
 msgid "Load older..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
+
+msgid "by"
+msgstr "ਵੱਲੋਂ"
 
 #, fuzzy
 msgid "Leave a reply"
@@ -5179,50 +5125,6 @@ msgstr "ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਵਿੱਚ ਕੋਈ ਫ਼�
 msgid "Fetching file."
 msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
 
-#, fuzzy
-msgid "Reported Status"
-msgstr "ਉਪਭੋਗੀ ਦੀ ਸੂਚਨਾ ਦਿਓ"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "ਰਿਪਰੋਟ ਟਾਈਪ"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "ਵਰਜਨ ਨੋਟ"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "ਮੋਬਾਈਲ ਸਾਈਟ ਵੇਖੋ"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨਾਂ ਬਾਰੇ"
 
@@ -5489,6 +5391,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} ਸਮੀਖਿਆ"
 msgstr[1] "{num} ਸਮੀਖਿਆਵਾਂ"
+
+msgid "Not yet rated"
+msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"

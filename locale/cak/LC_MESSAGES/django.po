@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-26 23:21+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,59 +148,6 @@ msgstr "Ri kib'i' tz'aqat chuqa' mol k'o chi nikik'isb'ej rik'in \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Ri kib'i' tz'aqat man tikirel ta nikik'waj ketal ri Mozilla chuqa' Firefox."
-
-msgid "Awaiting Review"
-msgstr "Noyob'ëx Nik'oxïk"
-
-msgid "Rejected"
-msgstr "Xutun"
-
-msgid "Approved"
-msgstr "Juch'un"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Tz'aqat Ruk'oxom {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> titzij okisanel"
-msgstr[1] "<strong>{0}</strong> ketzij okisanela'"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Titzolin pa runik'oxik"
-
-#, fuzzy
-msgid "Add"
-msgstr "Taq tz'aqat"
-
-msgid "Edit"
-msgstr "Tinuk'"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "K'a man ya'on ta rejqalem"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> wachinel"
-
-msgid "by"
-msgstr "ruma"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Q'ij chi Q'ij Okisanela'"
-msgstr[1] "Q'ij chi Q'ij Okisanela'"
 
 msgid "Sort by:"
 msgstr "Tichol chi:"
@@ -359,10 +306,6 @@ msgstr "Uy"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>¡Uuy!  Xqapalb'ej jun sachoj.</h1> <p>Xtiqatïj qaq'ij richin niqasöl.</p> <p> Tatojtob'ej rik'in nak'ëx ri ruxaq o yatolin pa <a href=\"%(home)s\">Kitikirib'al ruxaq tz'aqat</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "E'ichinan Ronojel ri taq Ch'ojib'äl"
 
 msgid "No results found"
 msgstr "Majun achike xilitäj"
@@ -533,9 +476,6 @@ msgstr ""
 "Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol %(amo_manifests_mdn_link_open)swawe"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
 
@@ -605,6 +545,9 @@ msgstr "Yakb'äl {0} xyuj pa {version} richin {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ya'on q'ij."
 
+msgid "Approved"
+msgstr "Juch'un"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} xuk'ül jun nab'ey runik'oxik."
 
@@ -613,6 +556,9 @@ msgstr "Nab'ey ya'on q'ij"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} xxutüx."
+
+msgid "Rejected"
+msgstr "Xutun"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} xk'am."
@@ -892,6 +838,9 @@ msgstr "Man etaman ta ruwäch"
 
 msgid "Incomplete"
 msgstr "Man tz'aqät ta"
+
+msgid "Awaiting Review"
+msgstr "Noyob'ëx Nik'oxïk"
 
 msgid "Disabled by Mozilla"
 msgstr "Xchup ruma Mozilla"
@@ -1478,10 +1427,6 @@ msgstr "Wakami ri taq rutz'aqat Thunderbird chuqa' SeaMonkey xtiq'alajin pa addo
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Nokisäx re slug re'. Tacha' jun chik."
@@ -2091,6 +2036,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Kib'anikil Tz'aqat"
+
+msgid "Edit"
+msgstr "Tinuk'"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -3262,12 +3210,6 @@ msgstr "Runatab'al Tzijoxïk"
 msgid "Close Review History"
 msgstr "Titz'apïx Runatab'al Nik'oxik"
 
-msgid "Not validated."
-msgstr "Man xjikib'äx ta."
-
-msgid "Validate now."
-msgstr "Tijikib'äx wakami."
-
 msgid "Request Review"
 msgstr "Tik'utüx Runik'oxik"
 
@@ -3282,6 +3224,9 @@ msgstr "Xk'ulwachitäj jun k'ayewal toq yekol ri taq ruch'utitzijol nik'oxïk"
 
 msgid "Load older..."
 msgstr "Kesamajib'ëx e ojer..."
+
+msgid "by"
+msgstr "ruma"
 
 msgid "Leave a reply"
 msgstr "Titzolïx tzij"
@@ -5099,42 +5044,6 @@ msgstr "Majun yakb'äl pa ri yakb'äl xjotob'äx."
 msgid "Fetching file."
 msgstr "Nika'am yakb'äl."
 
-msgid "Reported Status"
-msgstr "Xsik'ïx Rub'anikil"
-
-msgid "Reported Spam"
-msgstr "Xsik'ïx Rub'anikil Seq'tzijol"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Xsik'ïx Ham"
-
-msgid "Not Reported"
-msgstr "Man Sik'in ta"
-
-msgid "Content Submitted"
-msgstr "Rupam Xtaq"
-
-msgid "View Rating on site"
-msgstr "Titz'et Rejqalem pa ri ruxaq"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Titaq Ham pan Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Titaq Seq'tzijol pan Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "Chi rij Mozilla Add-ons"
 
@@ -5402,6 +5311,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} rejqalem"
 msgstr[1] "{num} taq ejqalem"
+
+msgid "Not yet rated"
+msgstr "K'a man ya'on ta rejqalem"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Ya'on {0} richin 5 ch'umil"

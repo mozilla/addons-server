@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-03-15 17:33+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -142,61 +142,6 @@ msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Názov doplnku nemôže obsahovať ochranné známky Mozilla alebo Firefox."
-
-msgid "Awaiting Review"
-msgstr "Čaká na kontrolu"
-
-msgid "Rejected"
-msgstr "Zamietnutý"
-
-msgid "Approved"
-msgstr "Schválený"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Média doplnku pre {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> aktívny používateľ"
-msgstr[1] "<strong>{0}</strong> aktívni používatelia"
-msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Späť na recenziu"
-
-#, fuzzy
-msgid "Add"
-msgstr "Doplnky"
-
-msgid "Edit"
-msgstr "Upraviť"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Nehodnotené"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> téma vzhľadu"
-
-msgid "by"
-msgstr "Autor:"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Denných používateľov"
-msgstr[1] "Denných používateľov"
-msgstr[2] "Denných používateľov"
 
 msgid "Sort by:"
 msgstr "Zoradiť podľa:"
@@ -343,10 +288,6 @@ msgstr "Ups"
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
 "<h1>Ups!  Vyskytla sa chyba.</h1> <p>Pokúsime sa ju čím skôr opraviť.</p> <p> Môžete skúsiť znova načítať túto stránku alebo prejdite na <a href=\"%(home)s\">domovskú stránku Doplnkov</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Všetky práva vyhradené"
 
 msgid "No results found"
 msgstr "Neboli nájdené žiadne výsledky."
@@ -518,9 +459,6 @@ msgstr ""
 "Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané %(amo_manifests_mdn_link_open)stu"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Zadaný text bol označený ako spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Táto adresa URL je už používaná inou vašou kolekciou."
 
@@ -590,6 +528,9 @@ msgstr "Pre doplnok {addon} {version} odstránený súbor {0}."
 msgid "{addon} {version} approved."
 msgstr "Doplnok {addon} {version} schválený."
 
+msgid "Approved"
+msgstr "Schválený"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "Doplnok {addon} {version} bol predbežne skontrolovaný."
 
@@ -598,6 +539,9 @@ msgstr "Predbežne schválený"
 
 msgid "{addon} {version} rejected."
 msgstr "Doplnok {addon} {version} zamietnutý."
+
+msgid "Rejected"
+msgstr "Zamietnutý"
 
 msgid "{addon} {version} retained."
 msgstr "Doplnok {addon} {version} pozdržaný."
@@ -878,6 +822,9 @@ msgstr "Neznámy"
 
 msgid "Incomplete"
 msgstr "Nekompletný"
+
+msgid "Awaiting Review"
+msgstr "Čaká na kontrolu"
 
 msgid "Disabled by Mozilla"
 msgstr "Zakázaný Mozillou"
@@ -1462,9 +1409,6 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Doplnky pre Thunderbird a SeaMonkey sú odteraz na samostatnej stránke addons.thunderbird.net. Pre aktualizáciu svojho doplnku môžete použiť svoj terajší účet."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -2067,6 +2011,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Podrobnosti"
+
+msgid "Edit"
+msgstr "Upraviť"
 
 msgid "Additional Details for {0}"
 msgstr "Podrobnosti o doplnku {0}"
@@ -3219,12 +3166,6 @@ msgstr "História kontrol"
 msgid "Close Review History"
 msgstr ""
 
-msgid "Not validated."
-msgstr "Nie je overená."
-
-msgid "Validate now."
-msgstr "Overiť teraz"
-
 msgid "Request Review"
 msgstr "Požiadať o kontrolu"
 
@@ -3239,6 +3180,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "Načítať staršie..."
+
+msgid "by"
+msgstr "Autor:"
 
 msgid "Leave a reply"
 msgstr "Zanechať odpoveď"
@@ -4993,42 +4937,6 @@ msgstr "V odoslanom archíve sa nenachádzajú žiadne súbory."
 msgid "Fetching file."
 msgstr "Získava sa súbor..."
 
-msgid "Reported Status"
-msgstr ""
-
-msgid "Reported Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr ""
-
-msgid "Not Reported"
-msgstr ""
-
-msgid "Content Submitted"
-msgstr ""
-
-msgid "View Rating on site"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr ""
-
-msgid "Submit Spam to Akismet"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "O stránke Doplnky Mozilly"
 
@@ -5278,6 +5186,9 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} recenzia"
 msgstr[1] "{num} recenzie"
 msgstr[2] "{num} recenzií"
+
+msgid "Not yet rated"
+msgstr "Nehodnotené"
 
 # 87%
 msgid "Rated {0} out of 5 stars"

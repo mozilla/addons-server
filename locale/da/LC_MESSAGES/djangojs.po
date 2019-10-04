@@ -145,31 +145,6 @@ msgstr "Videoer skal være i formatet WebM."
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Dette tema er ikke kompatibelt med din version af {0}"
 
-msgid "All Rights Reserved"
-msgstr ""
-
-#, fuzzy
-msgid "Creative Commons Attribution 3.0"
-msgstr "Gennemsnitligt bidrag"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Your Theme's Name"
-msgstr ""
-
 msgid "Flagged for review"
 msgstr ""
 

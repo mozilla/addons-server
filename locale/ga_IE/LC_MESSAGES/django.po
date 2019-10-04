@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -150,65 +150,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr "Ag feitheamh le Réamhscrúdú"
-
-msgid "Rejected"
-msgstr "Diúltaithe"
-
-msgid "Approved"
-msgstr "Ceadaithe"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Meáin Bhreiseáin le haghaidh {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> úsáideoir gníomhach"
-msgstr[1] "<strong>{0}</strong> úsáideoir gníomhach"
-msgstr[2] "<strong>{0}</strong> úsáideoir gníomhacha"
-msgstr[3] "<strong>{0}</strong> n-úsáideoir gníomhach"
-msgstr[4] "<strong>{0}</strong> úsáideoir gníomhach"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Fill ar an léirmheas"
-
-#, fuzzy
-msgid "Add"
-msgstr "Breiseán"
-
-msgid "Edit"
-msgstr "Eagar"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Gan rátáil fós"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> téama"
-
-msgid "by"
-msgstr "le"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Úsáideoirí Laethúla"
-msgstr[1] "Úsáideoirí Laethúla"
-msgstr[2] "Úsáideoirí Laethúla"
-msgstr[3] "Úsáideoirí Laethúla"
-msgstr[4] "Úsáideoirí Laethúla"
 
 msgid "Sort by:"
 msgstr "Sórtáil de réir:"
@@ -363,10 +304,6 @@ msgstr "Úps"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Gach Ceart Ar Cosaint"
 
 msgid "No results found"
 msgstr "Gan torthaí"
@@ -535,9 +472,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tá an URL seo in úsáid ag bailiúchán eile cheana"
@@ -612,6 +546,9 @@ msgstr "Scriosadh comhad {0} ó leagan {version} de {addon}."
 msgid "{addon} {version} approved."
 msgstr "Ceadaíodh {addon} {version}."
 
+msgid "Approved"
+msgstr "Ceadaithe"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "Rinneadh réamhscrúdú ar {addon} {version}."
 
@@ -620,6 +557,9 @@ msgstr "Ceadaithe go sealadach"
 
 msgid "{addon} {version} rejected."
 msgstr "Diúltaíodh {addon} {version}."
+
+msgid "Rejected"
+msgstr "Diúltaithe"
 
 msgid "{addon} {version} retained."
 msgstr "Coinníodh {addon} {version}."
@@ -943,6 +883,9 @@ msgstr "Anaithnid"
 
 msgid "Incomplete"
 msgstr "Neamhiomlán"
+
+msgid "Awaiting Review"
+msgstr "Ag feitheamh le Réamhscrúdú"
 
 msgid "Disabled by Mozilla"
 msgstr "Díchumasaithe ag Mozilla"
@@ -1546,9 +1489,6 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -2177,6 +2117,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Mionsonraí an Bhreiseáin"
+
+msgid "Edit"
+msgstr "Eagar"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -3390,12 +3333,6 @@ msgstr "Stair na Léirmheasanna"
 msgid "Close Review History"
 msgstr "Stair na Léirmheasanna"
 
-msgid "Not validated."
-msgstr ""
-
-msgid "Validate now."
-msgstr "Bailíochtaigh anois."
-
 #, fuzzy
 msgid "Request Review"
 msgstr "Iarr Scrúdú Iomlán"
@@ -3412,6 +3349,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "Níos sine..."
+
+msgid "by"
+msgstr "le"
 
 msgid "Leave a reply"
 msgstr "Tabhair freagra"
@@ -5155,50 +5095,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr "Comhad á fháil."
 
-#, fuzzy
-msgid "Reported Status"
-msgstr "Déan gearán faoi úsáideoir"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Cineál Tuairisce"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Déan Tuairisc ar Dhrochúsáid"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Gan rátáil fós"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Síníodh an Leagan"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Suíomh Soghluaiste"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Seol Comhad Nua Chugainn"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Seol Comhad Nua Chugainn"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -5450,6 +5346,9 @@ msgstr[1] "{num} léirmheas"
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
+
+msgid "Not yet rated"
+msgstr "Gan rátáil fós"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

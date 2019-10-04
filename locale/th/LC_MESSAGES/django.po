@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-08-19 10:56+0000\n"
 "Last-Translator: Can <udomc.can@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -142,57 +142,6 @@ msgstr "เส้นทางส่วนเสริมและชุดสะ
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ชื่อส่วนเสริมต้องไม่มีเครื่องหมายการค้าของ Mozilla หรือ Firefox"
-
-msgid "Awaiting Review"
-msgstr "รอการตรวจทาน"
-
-msgid "Rejected"
-msgstr "ถูกปฏิเสธ"
-
-msgid "Approved"
-msgstr "ได้รับการอนุมัติ"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "ส่วนเสริมสื่อสำหรับ {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> ดาวน์โหลดต่อสัปดาห์"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "กลับไปที่บทวิจารณ์"
-
-#, fuzzy
-msgid "Add"
-msgstr "ส่วนเสริม"
-
-msgid "Edit"
-msgstr "แก้ไข"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "ยังไม่มีการจัดอันดับ"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> ชุดตกแต่ง"
-
-msgid "by"
-msgstr "โดย"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "ผู้ใช้ต่อวัน"
 
 msgid "Sort by:"
 msgstr "เรียงลำดับตาม:"
@@ -342,10 +291,6 @@ msgstr "อุ๊ปส์"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>อุ๊ปส์!  เรามีข้อผิดพลาด</h1> <p>เราจะทำการซ่อมแซมในเร็ว ๆ นี้</p><p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "สงวนลิขสิทธิ์"
 
 msgid "No results found"
 msgstr "ไม่พบผลลัพธ์"
@@ -512,9 +457,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "หากแอปพลิเคชันที่รองรับของคุณไม่ต้องการไฟล์กำกับ คุณยังคงต้องรวมไว้หนึ่งตามคุณสมบัติที่ต้องการที่ระบุไว้%(amo_manifests_mdn_link_open)sที่นี่%(amo_manifests_mdn_link_close)s"
 
-msgid "The text entered has been flagged as spam."
-msgstr "ข้อความที่ป้อนถูกตั้งสถานะเป็นสแปม"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ที่กำหนดเองนี้ถูกใช้งานกับชุดสะสมอื่นอยู่แล้ว"
 
@@ -584,6 +526,9 @@ msgstr "ไฟล์ {0} ถูกลบออกจากรุ่น {version}
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
 
+msgid "Approved"
+msgstr "ได้รับการอนุมัติ"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ได้รับการตรวจสอบเบื้องต้นแล้ว"
 
@@ -592,6 +537,9 @@ msgstr "อนุมัติเบื้องต้นแล้ว"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ถูกปฏิเสธ"
+
+msgid "Rejected"
+msgstr "ถูกปฏิเสธ"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ถูกเก็บไว้แล้ว"
@@ -886,6 +834,9 @@ msgstr "ไม่รู้จัก"
 
 msgid "Incomplete"
 msgstr "ไม่สมบูรณ์"
+
+msgid "Awaiting Review"
+msgstr "รอการตรวจทาน"
 
 msgid "Disabled by Mozilla"
 msgstr "ถูกปิดการใช้งานโดย Mozilla"
@@ -1482,9 +1433,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "สลักนี้ถูกใช้แล้ว โปรดเลือกอันอื่น"
 
@@ -2074,6 +2022,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "รายละเอียดเพิ่มเติม"
+
+msgid "Edit"
+msgstr "แก้ไข"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -3236,12 +3187,6 @@ msgstr "ตรวจทานประวัติ"
 msgid "Close Review History"
 msgstr ""
 
-msgid "Not validated."
-msgstr "ไม่ผ่านการตรวจสอบ"
-
-msgid "Validate now."
-msgstr ""
-
 #, fuzzy
 msgid "Request Review"
 msgstr "บทวิจารณ์ชุดตกแต่ง"
@@ -3257,6 +3202,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "โหลดที่เก่ากว่า..."
+
+msgid "by"
+msgstr "โดย"
 
 msgid "Leave a reply"
 msgstr "เขียนการตอบกลับ"
@@ -5013,47 +4961,6 @@ msgstr "ไม่มีไฟล์ในไฟล์ที่อัพโหล
 msgid "Fetching file."
 msgstr ""
 
-msgid "Reported Status"
-msgstr "สถานะที่รายงาน"
-
-msgid "Reported Spam"
-msgstr "สแปมที่รายงาน"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "รายงานข้อบกพร่อง"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "ยังไม่มีการจัดอันดับ"
-
-msgid "Content Submitted"
-msgstr "ส่งเนื้อหาแล้ว"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "ดูไซต์แบบใหม่"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "ส่งไฟล์ใหม่"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "ส่งไฟล์ใหม่"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "เกี่ยวกับส่วนเสริม Mozilla"
 
@@ -5299,6 +5206,9 @@ msgstr ""
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} บทวิจารณ์"
+
+msgid "Not yet rated"
+msgstr "ยังไม่มีการจัดอันดับ"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "ให้คะแนน {0} จาก 5 ดาว"

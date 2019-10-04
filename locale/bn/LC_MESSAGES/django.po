@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2018-11-02 15:00+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,58 +139,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
-
-msgid "Rejected"
-msgstr "বাতিলকৃত"
-
-msgid "Approved"
-msgstr "অনুমোদিত"
-
-msgid "Added {0}"
-msgstr ""
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
-msgstr[1] "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "পর্যালোকারীর নোট:"
-
-#, fuzzy
-msgid "Add"
-msgstr "অ্যাড-অন"
-
-msgid "Edit"
-msgstr "সম্পাদনা করুন"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "এখনও রেট করা হয় নি"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b> {0} </b> থিম"
-
-msgid "by"
-msgstr "দ্বারা"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "দৈনিক ব্যবহারকারী"
-msgstr[1] "দৈনিক ব্যবহারকারী"
 
 msgid "Sort by:"
 msgstr "বাছাই দ্বারা:"
@@ -336,10 +284,6 @@ msgstr "ওহো"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "সর্বস্বত্ব সংরক্ষিত"
 
 msgid "No results found"
 msgstr "কোন ফলাফল পাওয়া যায় নি"
@@ -504,9 +448,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
 
@@ -576,6 +517,9 @@ msgstr " {addon} এর {version} হতে  {0} ফাইলটি মুছে
 msgid "{addon} {version} approved."
 msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
 
+msgid "Approved"
+msgstr "অনুমোদিত"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
 
@@ -584,6 +528,9 @@ msgstr "প্রাথমিকভাবে অনুমোদিত"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} এর {version} বাতিল করা হয়েছে।"
+
+msgid "Rejected"
+msgstr "বাতিলকৃত"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} বজায় রাখা হয়েছে।"
@@ -863,6 +810,9 @@ msgstr "অজানা"
 
 msgid "Incomplete"
 msgstr "অসম্পূর্ণ"
+
+msgid "Awaiting Review"
+msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
 
 msgid "Disabled by Mozilla"
 msgstr "মজিলার দ্বারা বাতিল"
@@ -1444,9 +1394,6 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -2032,6 +1979,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr ""
+
+msgid "Edit"
+msgstr "সম্পাদনা করুন"
 
 msgid "Additional Details for {0}"
 msgstr ""
@@ -3160,12 +3110,6 @@ msgstr "পর্যালোচনা ইতিহাস"
 msgid "Close Review History"
 msgstr ""
 
-msgid "Not validated."
-msgstr ""
-
-msgid "Validate now."
-msgstr ""
-
 msgid "Request Review"
 msgstr "পর্যালোচনার অনুরোধ"
 
@@ -3180,6 +3124,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr "আগেরটা লোড হচ্ছে..."
+
+msgid "by"
+msgstr "দ্বারা"
 
 msgid "Leave a reply"
 msgstr "উত্তর দিন"
@@ -4909,42 +4856,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "Reported Status"
-msgstr ""
-
-msgid "Reported Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr ""
-
-msgid "Not Reported"
-msgstr ""
-
-msgid "Content Submitted"
-msgstr ""
-
-msgid "View Rating on site"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr ""
-
-msgid "Submit Spam to Akismet"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "মজিলা এড-অনস সমন্ধে"
 
@@ -5190,6 +5101,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Not yet rated"
+msgstr "এখনও রেট করা হয় নি"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
