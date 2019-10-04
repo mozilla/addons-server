@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-09-30 16:55+0000\n"
-"PO-Revision-Date: 2018-12-12 14:11+0000\n"
+"PO-Revision-Date: 2019-10-04 14:00+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -26,9 +26,8 @@ msgstr "Der opstod et problem med at kontakte serveren."
 msgid "Select a file..."
 msgstr "Vælg en fil..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Din tilføjelse skal ende på .zip, .xpi, .crx, .jar eller .xml"
+msgstr "Din tilføjelse skal ende på .zip, .xpi, .crx eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
