@@ -19,8 +19,8 @@
 @color-scheme-default-background: #F9F9FA;
 
 // Light
-@color-scheme-light-text: #333;
-@color-scheme-light-background: #f3f5f8;
+@color-scheme-light-text: @color-text;
+@color-scheme-light-background: #fff;
 
 // Medium
 @color-scheme-medium-text: #fff;
@@ -35,6 +35,9 @@
 @color-button-default: #0996F8;
 @color-button-primary: #fff;
 @color-button-register: #015fdf;
+@color-button-default-text: #fff;
+@color-button-primary-text: @color-items;
+@color-button-register-text: #fff;
 
 // State colors in 'My Addons'
 @color-version-state-disabled: #9b9898;
@@ -196,6 +199,7 @@ h3 {
 @import 'sections/my-addons';
 @import 'sections/submit-or-manage';
 @import 'sections/get-involved';
+@import 'sections/banner';
 
 // Footer
 @import 'footer';

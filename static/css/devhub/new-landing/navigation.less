@@ -1,4 +1,6 @@
 .DevHub-Navigation {
+  box-shadow: 0px 4px 16px rgba(12,12,13,0.1);
+
   > div {
     padding-left: 20px;
     padding-right: 20px;
@@ -47,7 +49,7 @@
       &.DevHub-Navigation-Register,
       &.DevHub-Navigation-SignOut {
         .Button {
-          .button(@color-scheme-dark-text, @color-button-register);
+          .button(@color-button-register-text, @color-button-register);
           padding-left: 15px;
           padding-right: 15px;
         }
@@ -74,8 +76,6 @@
 
   // Schemas:
   &.scheme-light {
-    min-width: @grid-max;
-
     ul li a {
       color: @color-scheme-light-text;
     }
