@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-30 21:15+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,8 +133,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho koda,"
-" zo njeby so waše zapodaće wotpokazało."
+"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho "
+"koda, zo njeby so waše zapodaće wotpokazało."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Přepruwowanski proces je slědowace problemy namakał, kotrež móhli k wotpokazanjam wjesć:"
@@ -157,30 +157,6 @@ msgstr "Wideja dyrbja we formaće WebM być."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tuta drasta z wašej wersiju {0} kompatibelna njeje"
-
-msgid "All Rights Reserved"
-msgstr "Wšě prawa wuměnjene"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Mjeno wašeje drasty"
 
 msgid "Flagged for review"
 msgstr "Za přepruwowanje woznamjenjeny"

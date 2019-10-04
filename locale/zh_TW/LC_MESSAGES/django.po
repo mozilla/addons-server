@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-09 13:14+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -140,57 +140,6 @@ msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
-
-msgid "Awaiting Review"
-msgstr "等待審查"
-
-msgid "Rejected"
-msgstr "已被退回"
-
-msgid "Approved"
-msgstr "已審查通過"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "{0} 的附加元件媒體"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> 位活躍的使用者"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "返回審核頁面"
-
-#, fuzzy
-msgid "Add"
-msgstr "附加元件"
-
-msgid "Edit"
-msgstr "編輯"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "未經評分"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b>個佈景主題"
-
-msgid "by"
-msgstr "作者:"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "每日使用者數"
 
 msgid "Sort by:"
 msgstr "排序依照:"
@@ -340,10 +289,6 @@ msgstr "糟糕"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>喔喔！發生問題了。</h1><p>我們會盡快修復。</p><p>您可以試試重新整理頁面，或回到 <a href=\"%(home)s\">附加元件站首頁</a>。</p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "保留所有權利"
 
 msgid "No results found"
 msgstr "搜尋沒有結果"
@@ -511,9 +456,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "就算您支援的應用程式不需要安裝資訊檔，您還是要依照%(amo_manifests_mdn_link_open)s此處%(amo_manifests_mdn_link_close)s描述的內容，加入包含所有必要屬性的安裝資訊檔。"
 
-msgid "The text entered has been flagged as spam."
-msgstr "輸入的文字已被標示為垃圾留言。"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "這個自訂網址已被您其他的收藏集使用。"
 
@@ -583,6 +525,9 @@ msgstr "{addon} {version} 已刪除檔案 {0}。"
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} 已審核通過。"
 
+msgid "Approved"
+msgstr "已審查通過"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} 已要求初步審核。"
 
@@ -593,6 +538,9 @@ msgstr "已通過初步審核"
 # 100%
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} 已被退回。"
+
+msgid "Rejected"
+msgstr "已被退回"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} 已被保留。"
@@ -878,6 +826,9 @@ msgstr "未知"
 
 msgid "Incomplete"
 msgstr "尚未完成"
+
+msgid "Awaiting Review"
+msgstr "等待審查"
 
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
@@ -1470,9 +1421,6 @@ msgstr "現在起，Thunderbird 與 SeaMonkey 的附加元件將上架於 addons
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當您的使用者安裝 WebExtension 後，就無法再安裝傳統的附加元件。"
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}]「{field}」欄位當中輸入的文字已被標示為垃圾留言。"
-
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
 
@@ -2057,6 +2005,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "其他詳細資訊"
+
+msgid "Edit"
+msgstr "編輯"
 
 msgid "Additional Details for {0}"
 msgstr "{0} 的其他詳細資訊"
@@ -3196,12 +3147,6 @@ msgstr "審核歷史"
 msgid "Close Review History"
 msgstr "關閉審查歷史"
 
-msgid "Not validated."
-msgstr "尚未驗證。"
-
-msgid "Validate now."
-msgstr "立刻驗證。"
-
 msgid "Request Review"
 msgstr "要求審核"
 
@@ -3216,6 +3161,9 @@ msgstr "取得審核註記時遇到問題"
 
 msgid "Load older..."
 msgstr "載入更舊的..."
+
+msgid "by"
+msgstr "作者:"
 
 msgid "Leave a reply"
 msgstr "留下回覆"
@@ -4994,42 +4942,6 @@ msgstr "上傳的檔案當中沒有檔案。"
 msgid "Fetching file."
 msgstr "正在取得檔案。"
 
-msgid "Reported Status"
-msgstr "已回報狀態"
-
-msgid "Reported Spam"
-msgstr "已回報為垃圾留言"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "已回報為正常留言"
-
-msgid "Not Reported"
-msgstr "未經回報"
-
-msgid "Content Submitted"
-msgstr "送出的內容"
-
-msgid "View Rating on site"
-msgstr "到網站檢視評分"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "到 Akismet 回報為正常留言"
-
-msgid "Submit Spam to Akismet"
-msgstr "到 Akismet 回報為垃圾留言"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "已將 %s 非垃圾報告送出為垃圾留言"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "已將 %s 垃圾報告送出為非垃圾留言"
-
 msgid "About Mozilla Add-ons"
 msgstr "關於 Mozilla 附加元件站"
 
@@ -5277,6 +5189,9 @@ msgstr "若在原因欄位選擇「其他」，則需提供一段簡短說明。
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} 篇評論"
+
+msgid "Not yet rated"
+msgstr "未經評分"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "評分: {0} / 5 顆星"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-26 02:13+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -141,57 +141,6 @@ msgstr "Đường dẫn tiện ích và bộ sưu tập cần kết thúc bằng
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
-
-msgid "Awaiting Review"
-msgstr "Đang chờ xét duyệt"
-
-msgid "Rejected"
-msgstr "Từ chối"
-
-msgid "Approved"
-msgstr "Chấp thuận"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Đa phương tiện Tiện ích cho {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> người dùng hoạt động"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Ghi chú cho người đánh giá:"
-
-#, fuzzy
-msgid "Add"
-msgstr "Tiện ích"
-
-msgid "Edit"
-msgstr "Chỉnh sửa"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Chưa được xếp hạng"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> tiện ích"
-
-msgid "by"
-msgstr "bởi"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Người dùng Hàng ngày"
 
 msgid "Sort by:"
 msgstr "Sắp xếp theo:"
@@ -345,10 +294,6 @@ msgstr "Ôi"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Oops!  Chúng ta gặp lỗi rồi.</h1> <p>Chúng tôi sẽ bắt tay vào sửa sớm.</p> <p> Bạn có thể thử tải lại trang, hoặc quay về lại <a href=\"%(home)s\">trang chủ Tiện ích</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Mọi Quyền Được Bảo Lưu"
 
 msgid "No results found"
 msgstr "Không tìm thấy kết quả nào"
@@ -517,9 +462,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr "Các văn bản đã nhập vào đã được gắn cờ là spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Một bộ sưu tập khác của bạn đã được sử dụng URL tùy chỉnh này."
 
@@ -589,6 +531,9 @@ msgstr "Tập tin {0} được xóa khỏi {version} của {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} đã được phê duyệt."
 
+msgid "Approved"
+msgstr "Chấp thuận"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} đã được xét duyệt sơ bộ."
 
@@ -597,6 +542,9 @@ msgstr ""
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} bị từ chối."
+
+msgid "Rejected"
+msgstr "Từ chối"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} giữ nguyên."
@@ -876,6 +824,9 @@ msgstr "Không rõ"
 
 msgid "Incomplete"
 msgstr "Chưa hoàn tất"
+
+msgid "Awaiting Review"
+msgstr "Đang chờ xét duyệt"
 
 msgid "Disabled by Mozilla"
 msgstr "Bị vô hiệu bởi Mozilla"
@@ -1473,9 +1424,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Văn bản trong trường \"{field}\" đã bị gắn cờ là spam."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug này đã được sử dụng. Vui lòng chọn cái khác."
 
@@ -2059,6 +2007,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Chi tiết bổ sung"
+
+msgid "Edit"
+msgstr "Chỉnh sửa"
 
 msgid "Additional Details for {0}"
 msgstr "Chi tiết bổ sung cho {0}"
@@ -3198,12 +3149,6 @@ msgstr "Xem lại lịch sử"
 msgid "Close Review History"
 msgstr "Đóng lịch sử đánh giá"
 
-msgid "Not validated."
-msgstr "Không được kiểm định."
-
-msgid "Validate now."
-msgstr "Kiểm định ngay."
-
 msgid "Request Review"
 msgstr "Yêu cầu đánh giá"
 
@@ -3218,6 +3163,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "bởi"
 
 msgid "Leave a reply"
 msgstr "Để lại một trả lời"
@@ -4953,42 +4901,6 @@ msgstr "Không có tập tin nào trong tập tin được tải lên."
 msgid "Fetching file."
 msgstr "Đang truy xuất tập tin."
 
-msgid "Reported Status"
-msgstr "Tình trạng báo cáo"
-
-msgid "Reported Spam"
-msgstr "Thư rác được báo cáo"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Báo cáo không phải Spam"
-
-msgid "Not Reported"
-msgstr "Không có báo cáo"
-
-msgid "Content Submitted"
-msgstr "Đã gửi nội dung"
-
-msgid "View Rating on site"
-msgstr "Xem xếp hạng trên trang web"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Báo cáo là không phải Spam đến Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Báo cáo Spam đến Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -5233,6 +5145,9 @@ msgstr ""
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} đánh giá"
+
+msgid "Not yet rated"
+msgstr "Chưa được xếp hạng"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,59 +145,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr "Venter på gjennomgang"
-
-msgid "Rejected"
-msgstr "Avvist"
-
-msgid "Approved"
-msgstr "Godkjent"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Utvidelsesmedia for {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> aktiv bruker"
-msgstr[1] "<strong>{0}</strong> aktive brukere"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Ingen anmeldelser"
-
-#, fuzzy
-msgid "Add"
-msgstr "Utvidelse"
-
-msgid "Edit"
-msgstr "Rediger"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Ikke rangert ennå"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> tema"
-
-msgid "by"
-msgstr "av"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Daglige brukere"
-msgstr[1] "Daglige brukere"
 
 msgid "Sort by:"
 msgstr "Sorter etter:"
@@ -358,10 +305,6 @@ msgstr "Oops"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Med enerett"
 
 msgid "No results found"
 msgstr "Ingen resultater funnet"
@@ -527,9 +470,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne url-en er allerede i bruk av en annen samling"
@@ -603,6 +543,9 @@ msgstr "Fil {0} slettet fra {version} av {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} godkjent."
 
+msgid "Approved"
+msgstr "Godkjent"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} er foreløpig gjennomgått."
 
@@ -611,6 +554,9 @@ msgstr "Foreløpig godkjent"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} avvist."
+
+msgid "Rejected"
+msgstr "Avvist"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} holdt tilbake."
@@ -926,6 +872,9 @@ msgstr "Ukjent"
 
 msgid "Incomplete"
 msgstr "Uferdig"
+
+msgid "Awaiting Review"
+msgstr "Venter på gjennomgang"
 
 msgid "Disabled by Mozilla"
 msgstr "Avslått av Mozilla"
@@ -1537,9 +1486,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne adresseteksten er allerede i bruk. Velg en annen."
 
@@ -2139,6 +2085,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Utvidelsesdetaljer"
+
+msgid "Edit"
+msgstr "Rediger"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -3336,12 +3285,6 @@ msgstr "Historikk over gjennomgang"
 msgid "Close Review History"
 msgstr "Historikk over gjennomgang"
 
-msgid "Not validated."
-msgstr ""
-
-msgid "Validate now."
-msgstr ""
-
 #, fuzzy
 msgid "Request Review"
 msgstr "Gjennomgang av tema"
@@ -3358,6 +3301,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "av"
 
 msgid "Leave a reply"
 msgstr ""
@@ -5093,49 +5039,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-#, fuzzy
-msgid "Reported Status"
-msgstr "Rapporter misbruk"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Rapporttype"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Rapporter misbruk"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Ikke rangert ennå"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Versjon"
-
-msgid "View Rating on site"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Send inn nytt tema"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Send inn nytt tema"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -5382,6 +5285,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Not yet rated"
+msgstr "Ikke rangert ennå"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

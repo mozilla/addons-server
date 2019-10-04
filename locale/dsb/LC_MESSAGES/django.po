@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-09 15:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,63 +140,6 @@ msgstr "Sćažki dodankow a zběrkow muse se na \"/\" kóńcyś"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Mjenja dodankow njamógu wikowu marku Mozilla abo Firefox wopśimowaś."
-
-msgid "Awaiting Review"
-msgstr "Caka na pśeglědanje"
-
-msgid "Rejected"
-msgstr "Wótpokazany"
-
-msgid "Approved"
-msgstr "Pśizwólony"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Dodankowe medije za {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> aktiwny wužywaŕ"
-msgstr[1] "<strong>{0}</strong> aktiwnej wužywarja"
-msgstr[2] "<strong>{0}</strong> aktiwne wužywarje"
-msgstr[3] "<strong>{0}</strong> aktiwnych wužywarjow"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Slědk k pśeglědanjeju"
-
-#, fuzzy
-msgid "Add"
-msgstr "Dodanki"
-
-msgid "Edit"
-msgstr "Wobźěłaś"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Hyšći njepógódnośone"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> drastwa"
-
-msgid "by"
-msgstr "wót"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Wšedne wužywarje"
-msgstr[1] "Wšedne wužywarje"
-msgstr[2] "Wšedne wužywarje"
-msgstr[3] "Wšedne wužywarje"
 
 msgid "Sort by:"
 msgstr "Sortěrowaś:"
@@ -354,10 +297,6 @@ msgstr "Hopla"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Hopla! Zmólka jo nastała.</h1> <p>Buźomy problem skóro rozwězowaś.</p><p> Móžośo wopytaś, bok aktualizěrowaś, abo wrośćo se k <a href=\"%(home)s\">startowemu bokoju dodankow</a>.</p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Wšykne pšawa wuměnjone"
 
 msgid "No results found"
 msgstr "Žedne wuslědki namakane"
@@ -524,9 +463,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "Jolic wašo pódprěte nałoženje njetrjeba manifestowu dataju, musyśo hyšći jadnu z trěbnymi kakosćami pśidaś, ako su %(amo_manifests_mdn_link_open)show%(amo_manifests_mdn_link_close)s pódane."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Tekst, kótaryž sćo zapódał, jo se ako spam markěrował."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Toś ten swójski URL se južo wót drugeje z wašych zběrkow wužywa."
 
@@ -596,6 +532,9 @@ msgstr "Dataja {0} jo se z wersije {version} dodanka {addon} wulašowała."
 msgid "{addon} {version} approved."
 msgstr "Dodank {addon} {version} jo se pśizwólił."
 
+msgid "Approved"
+msgstr "Pśizwólony"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "Dodank {addon} {version} jo nachylu pśizwólony."
 
@@ -604,6 +543,9 @@ msgstr "Nachylu pśizwólony"
 
 msgid "{addon} {version} rejected."
 msgstr "Dodank {addon} {version} wótpokazany."
+
+msgid "Rejected"
+msgstr "Wótpokazany"
 
 msgid "{addon} {version} retained."
 msgstr "Dodank {addon} {version} zaźažany."
@@ -885,6 +827,9 @@ msgstr "Njeznaty"
 
 msgid "Incomplete"
 msgstr "Njedopołny"
+
+msgid "Awaiting Review"
+msgstr "Caka na pśeglědanje"
 
 msgid "Disabled by Mozilla"
 msgstr "Wót Mozilla znjemóžnjony"
@@ -1473,9 +1418,6 @@ msgstr "Dodanki za Thunderbird a SeaMonkey se něnto na addons.thunderbird.net n
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten proces pśewobrośiś. Gaž waše wužywarje su WebExtension zainstalěrowali, njamógu wěcej dodank starego typa instalěrowaś."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Tekst w \"{field}\" pólu jo se markěrował ako spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Toś to adresowe mě se južo wužywa. Pšosym wubjeŕśo druge."
@@ -2082,6 +2024,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Dalšne drobnostki"
+
+msgid "Edit"
+msgstr "Wobźěłaś"
 
 msgid "Additional Details for {0}"
 msgstr "Dalšne drobnostki za {0}"
@@ -3261,12 +3206,6 @@ msgstr "Historija pógódnośenjow"
 msgid "Close Review History"
 msgstr "Historiju pśeglědanjow zacyniś"
 
-msgid "Not validated."
-msgstr "Njepśeglědany."
-
-msgid "Validate now."
-msgstr "Něnto pśeglědowaś."
-
 msgid "Request Review"
 msgstr "Pśeglědanje pominaś"
 
@@ -3281,6 +3220,9 @@ msgstr "Pśi wótwołowanju pśipiskow pśeglědanjow jo problem nastał"
 
 msgid "Load older..."
 msgstr "Starše se zacytuju..."
+
+msgid "by"
+msgstr "wót"
 
 msgid "Leave a reply"
 msgstr "Wótegrono zawóstajiś"
@@ -5025,42 +4967,6 @@ msgstr "Žedne dataje w nagratej dataji."
 msgid "Fetching file."
 msgstr "Dataja se wótwołujo."
 
-msgid "Reported Status"
-msgstr "Pśizjawjony status"
-
-msgid "Reported Spam"
-msgstr "Pśizjawjony spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Pśizjawjony njespam"
-
-msgid "Not Reported"
-msgstr "Njepśizjawjony"
-
-msgid "Content Submitted"
-msgstr "Wopśimjeśe jo se wótpósłało"
-
-msgid "View Rating on site"
-msgstr "Pógódnośenje na websedle pokazaś"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Njespam na Akismet pósłaś"
-
-msgid "Submit Spam to Akismet"
-msgstr "Spam na Akismet pósłaś"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s njespamowych rozpšawow jo se ako spam pósłało"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s spamowych rozpšawow jo se ako njespam pósłało"
-
 msgid "About Mozilla Add-ons"
 msgstr "Wó dodankach Mozilla"
 
@@ -5327,6 +5233,9 @@ msgstr[0] "{num} pógódnośenje"
 msgstr[1] "{num} pógódnośeni"
 msgstr[2] "{num} pógódnośenja"
 msgstr[3] "{num} pógódnośenjow"
+
+msgid "Not yet rated"
+msgstr "Hyšći njepógódnośone"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Z {0} z 5 gwězdkow pógódnośony"

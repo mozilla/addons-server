@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-27 05:44+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -145,61 +145,6 @@ msgstr "Cesta k doplňkům a sbírkám musí končit znakem \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Názvy doplňků nesmí obsahovat ochranné známky Mozilly a Firefoxu."
-
-msgid "Awaiting Review"
-msgstr "Čeká na kontrolu"
-
-msgid "Rejected"
-msgstr "Zamítnuto"
-
-msgid "Approved"
-msgstr "Schváleno"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Média doplňku {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> aktivní uživatel"
-msgstr[1] "<strong>{0}</strong> aktivní uživatelé"
-msgstr[2] "<strong>{0}</strong> aktivních uživatelů"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Zpět na recenzi"
-
-#, fuzzy
-msgid "Add"
-msgstr "Doplňky"
-
-msgid "Edit"
-msgstr "Upravit"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Nehodnoceno"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> motiv vzhledu"
-
-msgid "by"
-msgstr "od"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Denních uživatelů"
-msgstr[1] "Denních uživatelů"
-msgstr[2] "Denních uživatelů"
 
 msgid "Sort by:"
 msgstr "Řazení:"
@@ -356,10 +301,6 @@ msgstr "Jejda"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ale ne! Nastala chyba.</h1> <p>Brzy to opravíme.</p> <p> Můžete zkusit obnovit stránku či přejít zpět na <a href=\"%(home)s\">domovskou stránku doplňků</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Všechna práva vyhrazena"
 
 msgid "No results found"
 msgstr "Nebyly nalezeny žádné výsledky"
@@ -528,9 +469,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "Pokud vámi podporovaná aplikace nevyžaduje manifest, musíte přidat takový, který obsahuje povinné atributy specifikované %(amo_manifests_mdn_link_open)szde%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Zadaný text byl označen jako spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tato URL je už používána jinou vaší sbírkou."
 
@@ -600,6 +538,9 @@ msgstr "Od doplňku {addon} verze {version} byl smazán soubor {0}."
 msgid "{addon} {version} approved."
 msgstr "Doplněk {addon} {version} byl schválen."
 
+msgid "Approved"
+msgstr "Schváleno"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} byl předběžně zkontrolován."
 
@@ -608,6 +549,9 @@ msgstr "Předběžně schváleno"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} zamítnut."
+
+msgid "Rejected"
+msgstr "Zamítnuto"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} byl pozdržen."
@@ -888,6 +832,9 @@ msgstr "Neznámé"
 
 msgid "Incomplete"
 msgstr "Nekompletní"
+
+msgid "Awaiting Review"
+msgstr "Čeká na kontrolu"
 
 msgid "Disabled by Mozilla"
 msgstr "Zakázáno Mozillou"
@@ -1479,9 +1426,6 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 "Dovolujeme a doporučujeme povýšení doplňku, ale tento proces již nebudete moci zvrátit. Jakmile budou mít uživatelé nainstalovánu WebExtension verzi, nebudou schopni nainstalovat předchozí verze "
 "vašeho doplňku."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Text v poli \"{field}\" byl vyhodnocen jako spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."
@@ -2086,6 +2030,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Další podrobnosti"
+
+msgid "Edit"
+msgstr "Upravit"
 
 msgid "Additional Details for {0}"
 msgstr "Další podrobnosti k {0}"
@@ -3260,12 +3207,6 @@ msgstr "Historie kontrol"
 msgid "Close Review History"
 msgstr "Zavřít historii kontrol"
 
-msgid "Not validated."
-msgstr "Není validní."
-
-msgid "Validate now."
-msgstr "Zkontrolovat."
-
 msgid "Request Review"
 msgstr "Požádat o kontrolu"
 
@@ -3280,6 +3221,9 @@ msgstr "Během načítání poznámek ke kontrole se vyskytla chyba"
 
 msgid "Load older..."
 msgstr "Načíst starší..."
+
+msgid "by"
+msgstr "od"
 
 msgid "Leave a reply"
 msgstr "Zanechat odpověď"
@@ -5021,42 +4965,6 @@ msgstr "V nahraném souboru se nenachází žádné soubory."
 msgid "Fetching file."
 msgstr "Probíhá stahování souboru."
 
-msgid "Reported Status"
-msgstr "Hlášený stav"
-
-msgid "Reported Spam"
-msgstr "Nahlášeno jako spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Nahlášeno jako \"není spam\""
-
-msgid "Not Reported"
-msgstr "Nehlášeno"
-
-msgid "Content Submitted"
-msgstr "Obsah byl odeslán"
-
-msgid "View Rating on site"
-msgstr "Zobrazit hodnocení na webu"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Poslat Akismetu \"není spam\""
-
-msgid "Submit Spam to Akismet"
-msgstr "Poslat Akismetu \"je spam\""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s hlášení \"není spam\" odesláno jako \"je spam\""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s hlášení \"je spam\" odesláno jako \"není spam\""
-
 msgid "About Mozilla Add-ons"
 msgstr "O webu Doplňky Mozilly"
 
@@ -5319,6 +5227,9 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} recenze"
 msgstr[1] "{num} recenze"
 msgstr[2] "{num} recenzí"
+
+msgid "Not yet rated"
+msgstr "Nehodnoceno"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Ohodnoceno {0} z 5 hvězdiček"

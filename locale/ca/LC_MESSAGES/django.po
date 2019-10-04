@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-02-10 15:36+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -154,59 +154,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr ""
-
-msgid "Rejected"
-msgstr "Rebutjat"
-
-msgid "Approved"
-msgstr "Aprovat"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Multimèdia del complement {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> usuari actiu"
-msgstr[1] "<strong>{0}</strong> usuaris actius"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Torna a la revisió"
-
-#, fuzzy
-msgid "Add"
-msgstr "Complement"
-
-msgid "Edit"
-msgstr "Edita"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Encara no s'ha valorat"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> complement"
-
-msgid "by"
-msgstr "per"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Usuaris diaris"
-msgstr[1] "Usuaris diaris"
 
 msgid "Sort by:"
 msgstr "Ordenat per:"
@@ -368,10 +315,6 @@ msgstr "Ups"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Tots els drets reservats."
 
 msgid "No results found"
 msgstr ""
@@ -543,9 +486,6 @@ msgstr ""
 "Si la vostra aplicació no requereix un fitxer de manifest, n'haureu d'incloure un igualment amb les propietats obligatòries, tal com s'especifica %(amo_manifests_mdn_link_open)saquí"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
@@ -620,6 +560,9 @@ msgstr "S'ha suprimit el fitxer {0} de la versió {version} del complement {addo
 msgid "{addon} {version} approved."
 msgstr "S'ha aprovat el complement {addon} {version}"
 
+msgid "Approved"
+msgstr "Aprovat"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
 
@@ -628,6 +571,9 @@ msgstr "Aprovat de manera preliminar"
 
 msgid "{addon} {version} rejected."
 msgstr "S'ha rebutjat la versió {addon} {version}"
+
+msgid "Rejected"
+msgstr "Rebutjat"
 
 msgid "{addon} {version} retained."
 msgstr "S'ha retingut la versió {addon} {version}"
@@ -944,6 +890,9 @@ msgstr "Desconegut"
 
 msgid "Incomplete"
 msgstr "Incomplet"
+
+msgid "Awaiting Review"
+msgstr ""
 
 msgid "Disabled by Mozilla"
 msgstr "Inhabilitat per Mozilla"
@@ -1548,9 +1497,6 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -2167,6 +2113,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Detalls del complement"
+
+msgid "Edit"
+msgstr "Edita"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -3403,12 +3352,6 @@ msgstr ""
 msgid "Close Review History"
 msgstr "Històric de versions del %s"
 
-msgid "Not validated."
-msgstr "No està validat."
-
-msgid "Validate now."
-msgstr "Valida'l ara."
-
 #, fuzzy
 msgid "Request Review"
 msgstr "Demana una revisió final"
@@ -3424,6 +3367,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "per"
 
 #, fuzzy
 msgid "Leave a reply"
@@ -5167,50 +5113,6 @@ msgstr "No s'ha trobat cap fitxer per pujar"
 msgid "Fetching file."
 msgstr "S'està analitzant el fitxer."
 
-#, fuzzy
-msgid "Reported Status"
-msgstr "Denuncia un usuari"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Tipus d'informe"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Denuncieu un abús"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Encara no s'ha valorat"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Notes de la versió"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Vés al web per a Mòbils"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Envia un complement nou"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Envia un complement nou"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -5459,6 +5361,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} valoració"
 msgstr[1] "{num} valoracions"
+
+msgid "Not yet rated"
+msgstr "Encara no s'ha valorat"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

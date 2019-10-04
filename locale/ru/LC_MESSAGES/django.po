@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-28 16:50+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -146,61 +146,6 @@ msgstr "Пути дополнений и подборок должны зака�
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Имена дополнений не могут содержать товарных марок Mozilla или Firefox."
-
-msgid "Awaiting Review"
-msgstr "Ожидает проверки"
-
-msgid "Rejected"
-msgstr "Отклонено"
-
-msgid "Approved"
-msgstr "Одобрено"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Медиа дополнения для {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> активный пользователь"
-msgstr[1] "<strong>{0}</strong> активных пользователя"
-msgstr[2] "<strong>{0}</strong> активных пользователей"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Вернуться к проверке"
-
-#, fuzzy
-msgid "Add"
-msgstr "Дополнения"
-
-msgid "Edit"
-msgstr "Правка"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Пока не оценено"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> тема"
-
-msgid "by"
-msgstr "автор"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Ежедневные пользователи"
-msgstr[1] "Ежедневные пользователи"
-msgstr[2] "Ежедневные пользователи"
 
 msgid "Sort by:"
 msgstr "Сортировать по:"
@@ -355,10 +300,6 @@ msgstr "Ой"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ой!  У нас ошибка.</h1> <p>Мы скоро это починим.</p> <p> Попробуйте обновить страницу или вернуться на <a href=\"%(home)s\">домашнюю страницу дополнений</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Все права защищены"
 
 msgid "No results found"
 msgstr "Результатов не найдено"
@@ -531,9 +472,6 @@ msgstr ""
 "Даже если поддерживаемое вами приложение не требует файл манифеста, вы всё же должны включить его с указанными %(amo_manifests_mdn_link_open)sздесь%(amo_manifests_mdn_link_close)s требуемыми "
 "свойствами."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Введённый текст был отмечен как спам."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Этот пользовательский URL уже используется в одной из ваших подборок."
 
@@ -603,6 +541,9 @@ msgstr "Файл {0} удалён из версии {version} дополнени
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} одобрено."
 
+msgid "Approved"
+msgstr "Одобрено"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} прошло предварительную проверку."
 
@@ -611,6 +552,9 @@ msgstr "Предварительно одобрено"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} отвергнуто."
+
+msgid "Rejected"
+msgstr "Отклонено"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} оставлено."
@@ -890,6 +834,9 @@ msgstr "Неизвестно"
 
 msgid "Incomplete"
 msgstr "Неполный"
+
+msgid "Awaiting Review"
+msgstr "Ожидает проверки"
 
 msgid "Disabled by Mozilla"
 msgstr "Отключено Mozilla"
@@ -1487,9 +1434,6 @@ msgstr "Дополнения для Thunderbird и SeaMonkey теперь раз
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Мы позволяем и поощряем обновления, но вы не сможете обратить этот процесс вспять. После того, как ваши пользователи установят WebExtension, они больше не смогут установить устаревшее дополнение."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Текст, введённый в «{field}», был отмечен как спам."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Это окончание уже используется. Пожалуйста, выберите другое."
@@ -2094,6 +2038,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Дополнительные сведения"
+
+msgid "Edit"
+msgstr "Правка"
 
 msgid "Additional Details for {0}"
 msgstr "Дополнительные сведения о {0}"
@@ -3290,12 +3237,6 @@ msgstr "История проверок"
 msgid "Close Review History"
 msgstr "Закрыть историю проверок"
 
-msgid "Not validated."
-msgstr "Не валидировано."
-
-msgid "Validate now."
-msgstr "Валидировать сейчас."
-
 msgid "Request Review"
 msgstr "Запросить проверку"
 
@@ -3310,6 +3251,9 @@ msgstr "Возникла проблема при запрашивании ист
 
 msgid "Load older..."
 msgstr "Загрузить старее..."
+
+msgid "by"
+msgstr "автор"
 
 msgid "Leave a reply"
 msgstr "Оставить ответ"
@@ -5061,42 +5005,6 @@ msgstr "В загруженном файле нет файлов."
 msgid "Fetching file."
 msgstr "Получение файла."
 
-msgid "Reported Status"
-msgstr "Статус отчёта"
-
-msgid "Reported Spam"
-msgstr "Отчёт о спаме отправлен"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Отчёт о «не спаме» отправлен"
-
-msgid "Not Reported"
-msgstr "Не сообщено"
-
-msgid "Content Submitted"
-msgstr "Содержимое отправлено"
-
-msgid "View Rating on site"
-msgstr "Посмотреть рейтинг на сайте"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Сообщить о «не спаме» в Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Сообщить о спаме в Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s отчётов о «не спаме», отправленных как спам"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s отчётов о спаме, отправленных как «не спам»"
-
 msgid "About Mozilla Add-ons"
 msgstr "О дополнениях Mozilla"
 
@@ -5363,6 +5271,9 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} отзыв"
 msgstr[1] "{num} отзыва"
 msgstr[2] "{num} отзывов"
+
+msgid "Not yet rated"
+msgstr "Пока не оценено"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Рейтинг {0} из 5 звёзд"

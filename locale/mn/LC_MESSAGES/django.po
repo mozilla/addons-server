@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,56 +149,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
-
-msgid "Awaiting Review"
-msgstr ""
-
-msgid "Rejected"
-msgstr ""
-
-msgid "Approved"
-msgstr ""
-
-msgid "Added {0}"
-msgstr ""
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> долоо хоног тутмын татаж авсан файл"
-msgstr[1] "<strong>{0}</strong> долоо хоног тутмын татаж авсан файл"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Нийт үнэлгээ"
-
-msgid "Add"
-msgstr ""
-
-msgid "Edit"
-msgstr "Засварлах"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Одоогоор үнэлгээ аваагүй"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> Татаж авсан файлууд"
-
-msgid "by"
-msgstr "зохиогч"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Sort by:"
 msgstr "Эрэмбэлэлт:"
@@ -351,9 +301,6 @@ msgstr ""
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
-
-msgid "Some rights reserved"
 msgstr ""
 
 msgid "No results found"
@@ -526,9 +473,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
 
@@ -598,6 +542,9 @@ msgstr ""
 msgid "{addon} {version} approved."
 msgstr ""
 
+msgid "Approved"
+msgstr ""
+
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
@@ -605,6 +552,9 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
+msgstr ""
+
+msgid "Rejected"
 msgstr ""
 
 msgid "{addon} {version} retained."
@@ -895,6 +845,9 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Incomplete"
+msgstr ""
+
+msgid "Awaiting Review"
 msgstr ""
 
 msgid "Disabled by Mozilla"
@@ -1508,9 +1461,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
@@ -2110,6 +2060,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Нэмэлт эх сурвалж"
+
+msgid "Edit"
+msgstr "Засварлах"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -3293,12 +3246,6 @@ msgstr ""
 msgid "Close Review History"
 msgstr ""
 
-msgid "Not validated."
-msgstr ""
-
-msgid "Validate now."
-msgstr ""
-
 #, fuzzy
 msgid "Request Review"
 msgstr "Delete review"
@@ -3314,6 +3261,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "зохиогч"
 
 msgid "Leave a reply"
 msgstr ""
@@ -5062,46 +5012,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "Reported Status"
-msgstr ""
-
-msgid "Reported Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr ""
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Одоогоор үнэлгээ аваагүй"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Хувилбарын тэмдэглэл"
-
-msgid "View Rating on site"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "New Version"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "New Version"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -5352,6 +5262,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Not yet rated"
+msgstr "Одоогоор үнэлгээ аваагүй"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""

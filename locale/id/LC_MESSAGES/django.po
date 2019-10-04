@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-09-30 15:09+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -144,57 +144,6 @@ msgstr "Pengaya dan jalur koleksi perlu diakhiri dengan \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nama pengaya tidak boleh mengandung merek dagang Mozilla atau Firefox."
-
-msgid "Awaiting Review"
-msgstr "Menunggu Ulasan"
-
-msgid "Rejected"
-msgstr "Ditolak"
-
-msgid "Approved"
-msgstr "Disetujui"
-
-#, fuzzy
-msgid "Added {0}"
-msgstr "Media Pengaya untuk {0}"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> pengguna aktif"
-
-#, fuzzy
-msgid "Hover to Preview"
-msgstr "Kembali ke ulasan"
-
-#, fuzzy
-msgid "Add"
-msgstr "Pengaya"
-
-msgid "Edit"
-msgstr "Sunting"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr ""
-
-msgid "Not yet rated"
-msgstr "Belum diperingkat"
-
-#, fuzzy
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> tema"
-
-msgid "by"
-msgstr "oleh"
-
-#. {0} is the number of users.
-#, fuzzy
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "Pengguna Harian"
 
 msgid "Sort by:"
 msgstr "Urut berdasarkan:"
@@ -354,10 +303,6 @@ msgstr "Aduh"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Ups!  Terjadi kesalahan.</h1> <p>Kami akan memperbaikinya segera.</p> <p> Anda bisa mencoba memuat ulang laman, atau kembali ke <a href=\"%(home)s\">beranda Pengaya</a>. </p>"
-
-#, fuzzy
-msgid "Some rights reserved"
-msgstr "Всі права захищені"
 
 msgid "No results found"
 msgstr "Tak ada hasil yang ditemukan"
@@ -531,9 +476,6 @@ msgstr ""
 "Jika aplikasi Anda yang didukung tidak memerlukan berkas maklumat, Anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan %(amo_manifests_mdn_link_open)sdi sini"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Teks yang dimasukkan telah ditandai sebagai spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ubahsuai ini telah dipakai oleh koleksi Anda yang lain."
 
@@ -603,6 +545,9 @@ msgstr "Berkas {0} dihapus dari {version} dari {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} disetujui."
 
+msgid "Approved"
+msgstr "Disetujui"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} diberikan ulasan awal."
 
@@ -611,6 +556,9 @@ msgstr "Disetujui sebelumnya"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ditolak."
+
+msgid "Rejected"
+msgstr "Ditolak"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} dipertahankan."
@@ -892,6 +840,9 @@ msgstr "Tidak diketahui"
 
 msgid "Incomplete"
 msgstr "Tidak lengkap"
+
+msgid "Awaiting Review"
+msgstr "Menunggu Ulasan"
 
 msgid "Disabled by Mozilla"
 msgstr "Dimatikan oleh Mozilla"
@@ -1488,9 +1439,6 @@ msgstr ""
 "Kami memperbolehkan dan mendorong peningkatan tetapi Anda tidak dapat membalik proses ini. Setelah pengguna memiliki WebExtension yang terpasang, mereka tidak akan dapat memasang pengaya "
 "peninggalan."
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Teks dalam bidang \"{field}\" telah ditandai sebagai spam."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug ini sudah dipakai. Silakan pilih yang lain."
 
@@ -2083,6 +2031,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Rincian Tambahan"
+
+msgid "Edit"
+msgstr "Sunting"
 
 msgid "Additional Details for {0}"
 msgstr "Rincian Tambahan untuk {0}"
@@ -3273,12 +3224,6 @@ msgstr "Riwayat Ulasan"
 msgid "Close Review History"
 msgstr "Tutup Riwayat Ulasan"
 
-msgid "Not validated."
-msgstr "Tidak divalidasi."
-
-msgid "Validate now."
-msgstr "Validasi sekarang."
-
 msgid "Request Review"
 msgstr "Meminta Peninjauan"
 
@@ -3293,6 +3238,9 @@ msgstr "Kami menghadapi masalah menerima catatan ulasan"
 
 msgid "Load older..."
 msgstr "Memuat yang lebih lama..."
+
+msgid "by"
+msgstr "oleh"
 
 msgid "Leave a reply"
 msgstr "Tinggalkan balasan"
@@ -5050,42 +4998,6 @@ msgstr "Tidak ada berkas dalam berkas yang diunggah."
 msgid "Fetching file."
 msgstr "Mengambil berkas."
 
-msgid "Reported Status"
-msgstr "Status yang Dilaporkan"
-
-msgid "Reported Spam"
-msgstr "Spam yang Dilaporkan"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham yang Dilaporkan"
-
-msgid "Not Reported"
-msgstr "Tidak Dilaporkan"
-
-msgid "Content Submitted"
-msgstr "Konten Diajukan"
-
-msgid "View Rating on site"
-msgstr "Tampilkan peringkat pada situs"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Ajukan Ham ke Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Ajukan Spam ke Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s Ham melaporkan kiriman sebagai Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s Laporan Spam dikirimkan sebagai Ham"
-
 msgid "About Mozilla Add-ons"
 msgstr "Tentang Pengaya Mozilla"
 
@@ -5350,6 +5262,9 @@ msgstr "Penjelasan singkat harus disediakan saat memilih \"Lainnya\" sebagai ala
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} ulasan"
+
+msgid "Not yet rated"
+msgstr "Belum diperingkat"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Peringkat {0} dari 5 bintang"

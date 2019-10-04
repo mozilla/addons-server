@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,38 +189,6 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:49
-msgid "All Rights Reserved"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:53
-msgid "Creative Commons Attribution 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:58
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:63
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:68
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:73
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:78
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:280
-msgid "Your Theme's Name"
 msgstr ""
 
 #: static/js/impala/ratings.js:23 static/js/zamboni/ratings.js:18

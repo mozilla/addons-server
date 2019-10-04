@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -154,31 +154,6 @@ msgstr "Wideo musi być w formacie WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ten motyw jest niekompatybilny z twoją wersją programu {0}"
-
-msgid "All Rights Reserved"
-msgstr ""
-
-#, fuzzy
-msgid "Creative Commons Attribution 3.0"
-msgstr "Średnia dotacji"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Your Theme's Name"
-msgstr ""
 
 msgid "Flagged for review"
 msgstr "Oznaczona do sprawdzenia"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-30 16:55+0000\n"
+"POT-Creation-Date: 2019-10-04 13:44+0000\n"
 "PO-Revision-Date: 2019-08-16 18:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -145,31 +145,6 @@ msgstr "వీడియోలు తప్పనిసరిగా WebM లో �
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ఈ అలంకారం మీ {0} వెర్షనుతో అనుగుణ్యంగా లేదు"
-
-msgid "All Rights Reserved"
-msgstr ""
-
-#, fuzzy
-msgid "Creative Commons Attribution 3.0"
-msgstr "సగటు సహకారం"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Your Theme's Name"
-msgstr ""
 
 msgid "Flagged for review"
 msgstr "సమీక్ష కోసం గుర్తించబడింది"
