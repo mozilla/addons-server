@@ -255,12 +255,10 @@ class Validator(object):
 
             assert not file_.validation
 
-            tasks_in_parallel = (
-                tasks.forward_linter_results.s(file_.pk),
-            )
+            tasks_in_parallel = [tasks.forward_linter_results.s(file_.pk)]
 
             if waffle.switch_is_active('enable-yara'):
-                tasks_in_parallel = (*tasks_in_parallel, run_yara.s(file_.pk))
+                tasks_in_parallel.append(run_yara.s(file_.pk))
 
             validation_tasks = [
                 tasks.create_initial_validation_results.si(),

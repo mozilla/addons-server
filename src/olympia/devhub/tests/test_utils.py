@@ -61,7 +61,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
             chord(
-                (tasks.forward_linter_results.s(file_upload.pk)),
+                [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
                                                         channel,
                                                         False)
@@ -463,7 +463,7 @@ class TestValidator(UploadTest, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
             chord(
-                (tasks.forward_linter_results.s(file_upload.pk)),
+                [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
                                                         channel,
                                                         False)
@@ -499,10 +499,10 @@ class TestValidator(UploadTest, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
             chord(
-                (
+                [
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
-                ),
+                ],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
                                                         channel,
                                                         False)
@@ -523,7 +523,7 @@ class TestValidator(UploadTest, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
             chord(
-                (tasks.forward_linter_results.s(file_upload.pk)),
+                [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
                                                         channel,
                                                         False)

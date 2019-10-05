@@ -16,9 +16,10 @@ class TestRunYara(UploadTest, TestCase):
         upload = self.get_upload('search.xml')
 
         results = {'errors': 0}
-        run_yara(results, upload.pk)
+        received_results = run_yara(results, upload.pk)
 
         assert not yara_compile_mock.called
+        assert results == received_results
 
     @mock.patch('olympia.yara.tasks.statsd.incr')
     def test_run_with_mocks(self, incr_mock):
@@ -115,3 +116,13 @@ class TestRunYara(UploadTest, TestCase):
 
         assert timer_mock.called
         timer_mock.assert_called_with('devhub.yara')
+
+    @mock.patch('yara.compile')
+    def test_does_not_run_when_results_contain_errors(self, yara_compile_mock):
+        upload = self.get_upload('webextension.xpi')
+
+        results = {'errors': 1}
+        received_results = run_yara(results, upload.pk)
+
+        assert not yara_compile_mock.called
+        assert results == received_results
