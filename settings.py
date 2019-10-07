@@ -19,13 +19,15 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
-# If the DebugToolbar be before the GZip in MIDDLEWARE, appeared the WARNINGS.
+# django-debug-doolbar middleware needs to be inserted as high as possible
+# but after GZip middleware
 def insert_debug_toolbar_middleware(middlewares):
     ret_middleware = list(middlewares)
 
     for i, middleware in enumerate(ret_middleware):
         if 'GZipMiddleware' in middleware:
-            ret_middleware.insert(i+1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+            ret_middleware.insert(
+                i + 1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
             break
 
     return tuple(ret_middleware)
