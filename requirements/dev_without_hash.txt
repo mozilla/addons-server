@@ -1,2 +1,0 @@
-## py3 compatible version isn't released yet.
--e git+https://github.com/Supervisor/supervisor.git@a0ee8f1026c929ae4d9fc84741924414e8008f49#egg=supervisor
