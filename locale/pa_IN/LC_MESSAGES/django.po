@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-04 13:44+0000\n"
-"PO-Revision-Date: 2019-08-16 16:19+0000\n"
-"Last-Translator: Sanjna <randhawasanjna75@gmail.com>\n"
+"PO-Revision-Date: 2019-10-07 01:25+0000\n"
+"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -1483,12 +1483,11 @@ msgstr "ਤੁਹਾਡਾ ਮੂਲ ਲੋਕੇਲ ਬਦਲਣ ਤੋਂ ਪ�
 msgid "Users can not be added directly"
 msgstr "ਵਰਤੋਂਕਾਰ ਸਿੱਧੇ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "ਇੱਕ ਲੇਖਕ ਕੇਵਲ ਇੱਕ ਵਾਰ ਸੂਚੀਬੱਧ ਹੋ ਸਕਦਾ।"
+msgstr "ਇੱਕ ਲੇਖਕ ਸਿਰਫ ਇੱਕ ਵਾਰ ਮੌਜੂਦ ਹੋ ਸਕਦਾ ਹੈ।"
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "ਇਸ ਨੂੰ ਲੇਖਕ ਦੇ ਤੌਰ ਤੇ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ ਖਾਤੇ ਨੂੰ ਪ੍ਰਦਰਸ਼ਤ ਨਾਮ ਦੀ ਜ਼ਰੂਰਤ ਹੁੰਦੀ ਹੈ।"
 
 msgid "Must have at least one owner."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
@@ -1708,7 +1707,7 @@ msgid "There was an error uploading your preview."
 msgstr "ਤੁਹਾਡੀ ਝਲਕ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਵਿੱਚ ਖਾਮੀ ਆਈ।"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "ਸਿਫਾਰਸ਼ੀ ਐਕਸਟੈਂਸ਼ਨ ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਨੂੰ ਹਟਾਇਆ ਜਾਂ ਅਸਮਰਥਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। AMO ਐਡਮਿਨਜ਼ ਨੂੰ ਸੰਪਰਕ ਕਰੋ ਜੇ ਤੁਹਾਨੂੰ ਇਸ ਬਾਰੇ ਮਦਦ ਦੀ ਲੋਡ਼ ਹੈ।"
 
 #, python-format
 msgid "Version %s disabled."
@@ -1982,7 +1981,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਵਰਕਾ ਸੱਜਰਾ ਕਰੋ।"
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "ਤੁਹਾਨੂੰ {addon_name}ਦੇ ਲੇਖਕ ਬਣਨ ਲਈ ਸੱਦਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr ""
@@ -2265,7 +2264,7 @@ msgid "PNG and JPG supported."
 msgstr "PNG ਅਤੇ JPG ਸਮਰਥਿਤ।"
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "ਆਈਕਾਨ ਵਰਗ ਅਤੇ 128x128 ਪਿਕਸਲ ਦਾ ਨਿਊਨਤਮ ਆਕਾਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "ਆਈਕਾਨ ਨੂੰ 128x128 ਪਿਕਸਲ ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ ਜੇ ਵੱਡਾ ਹੋਵੇ।"
@@ -2426,6 +2425,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"ਚੇਤਾਵਨੀ: ਤੁਹਾਡੇ ਕੋਲ ਹੋਰ ਲੋਕਲ ਵਿੱਚ ਨਾਮ/summary ਮੁੱਲ ਹਨ ਜੋ ਕਿ ਆਟੋਮੈਟਿਕ ਹੀ %(max_length)s ਦੇ ਅੱਖਰਾਂ ਦੇ ਅਨੁਸਾਰ ਫਿੱਟ ਕੀਤੇ ਜਾਣਗੇ।  ਸਬਮਿਸ਼ਨ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋਣ ਤੋਂ ਬਾਦ ਇਨ੍ਹਾਂ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ Edit "
+"Product Page ਵੱਲ ਜਾਓ।"
 
 msgid "Add-on URL:"
 msgstr "ਐਡ-ਆਨ URL:"
@@ -3367,7 +3368,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੁ
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "ਵਿਸ਼ਵ ਭਰ ਤੋਂ ਤੁਰੰਤ ਮੌਸਮ ਦੇ ਅਪਡੇਟਸ।"
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4187,7 +4188,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਫੋ
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਡੈਸਕਟਾਪ ਲਈ ਫੋਨ-ਵਰਗੇ ਸਕ੍ਰੌਲਿੰਗ। \"ਗ੍ਰੈਬ-ਐਨ-ਡ੍ਰੈਗ\" ਸ਼ੈਲੀ ਦੇ ਮਾਓਸ ਦੀ ਹਰਕਤ।"
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4429,7 +4430,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਐਮ
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "ਅਮੇਜ਼ਨ ਦੀ ਕੀਮਤ ਦੇ ਇਤਿਹਾਸ ਨੂੰ ਟਰੈਕ ਕਰੋ। ਖਰੀਦੇ ਖਰੀਦਾਰੀ ਦੇ ਫੈਸਲੇ ਲਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4501,7 +4502,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੰ
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "ਸਧਾਰਣ ਕਲਿੱਕ ਨਾਲ ਤੰਗ ਕਰਨ ਵਾਲੇ ਪੌਪ-ਅਪਸ ਨੂੰ ਬੰਦ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4598,7 +4599,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਕੂ
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "ਆਟੋਮੈਟਿਕ ਅਣਚਾਹੇ ਕੂਕੀਜ਼ ਮਿਟਾਓ। ਸਫੈਦ ਅਤੇ ਬਲੈਕਲਿਸਟ ਸਮਰਥਨ ਪੇਸ਼ ਕਰਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4616,7 +4617,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਬਾ
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "ਨਿਸ਼ਕਿਰਿਆ ਟੈਬਸ ਨਾਲ ਮਹੱਤਵਪੂਰਨ ਮੈਮੋਰੀ ਸਪੇਸ ਬਰਬਾਦ ਕਰਨਾ ਬੰਦ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4666,7 +4667,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀ
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "ਬਹੁ-ਥ੍ਰੈਡਿੰਗ ਡਾਉਨਲੋਡ ਸਹਾਇਤਾ ਦਾ ਅਨੰਦ ਮਾਣੋ। ਡਾਉਨਲੋਡ ਲਈ ਆਟੋਮੈਟਿਕ ਵੱਖ-ਵੱਖ ਮੀਡੀਆ ਉਪਲਬਧਾਂ ਦਾ ਪਤਾ ਲਗਾਓ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4742,7 +4743,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋ
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Google, Yahoo ਅਤੇ DuckDuckGo ਤੇ ਵੌਇਸ ਖੋਜ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਲਈ ਸਪੀਚ ਪਛਾਣ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
