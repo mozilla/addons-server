@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-04 13:44+0000\n"
-"PO-Revision-Date: 2019-10-07 03:42+0000\n"
+"PO-Revision-Date: 2019-10-07 04:12+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -961,7 +961,7 @@ msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬ੍ਰਾਉਜ਼ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਰੋਕਣ, ਟ੍ਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ "
+"ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬਰਾਉਜ਼ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕਣ, ਟਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ "
 "ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
@@ -1015,7 +1015,7 @@ msgid "Performance"
 msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫਾਇਰਫਾਕਸ ਨੂੰ ਕਾਰਗੁਜ਼ਾਰੀ ਬੜ੍ਹਾਵਾ ਦੇਣਗੇ। ਤੰਗ ਕਰਨ ਵਾਲੇ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਰੋਕ ਕੇ ਅਤੇ ਉਹਨਾਂ ਦੁਆਰਾ ਹੋਰ ਜ਼ਿਆਦਾ ਉਤਪਾਦਕ ਅਤੇ ਕਾਰਜਸ਼ੀਲ ਹੋਣ ਵਿੱਚ ਐਕਸਟੈਂਸ਼ਨਾਂ ਲੱਭੋ।"
+msgstr "ਇਕਸਟੈਂਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫਾਇਰਫਾਕਸ ਨੂੰ ਕਾਰਗੁਜ਼ਾਰੀ ਸੁਧਾਰਨ ਲਈ। ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕ ਕੇ ਅਤੇ ਉਹਨਾਂ ਰਾਹੀਂ ਹੋਰ ਜ਼ਿਆਦਾ ਉਤਪਾਦਕ ਅਤੇ ਕਾਰਜਸ਼ੀਲ ਹੋਣ ਵਿੱਚ ਇਕਸਟੈਂਸ਼ਨਾਂ ਲੱਭੋ।"
 
 msgid "Photos & Media"
 msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਮੀਡੀਆ"
@@ -1028,8 +1028,8 @@ msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਪਰਦੇਦਾਰੀ"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਸਪੰਨੀ ਇਸ਼ਤਿਜਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ "
-"ਅਤੀਤ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
+"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਲੁਕਾਏ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ ਅਤੀਤ"
+" ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
 
 msgid "Social Networking"
 msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
@@ -1550,7 +1550,7 @@ msgid "Need to select at least one application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਚੁਣਨ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਹਾਲ ਹੀ ਵਿੱਚ ਬਹੁਤ ਸਾਰੇ ਅਪਲੋਡ ਕੀਤੇ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਸਮੇਂ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਲੱਦੀ ਅਤੇ ਮਿਟਾਈ ਗਈ।"
@@ -3332,9 +3332,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਇਸ਼ਤਿਹਾਰ ਰੋਕਣਾ ਅਤੇ ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "ਇੱਕ ਸਧਾਰਨ ਸੈੱਟ-ਅੱਪ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦੁਆਰਾ ਦੇਖੀਆਂ ਗਈਆਂ ਵਿਗਿਆਪਨਾਂ ਤੇ ਨਿਯੰਤਰਣ ਅਤੇ ਤੁਹਾਨੂੰ ਇੰਟਰਨੈੱਟ ਤੇ ਕਿਵੇਂ ਟ੍ਰੈਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
+msgstr "ਇਸ਼ਤਿਹਾਰ ਪਾਬੰਦੀ ਅਤੇ ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ। ਸਧਾਰਨ ਸੈੱਟ-ਅੱਪ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦੁਆਰਾ ਦੇਖਾਏ ਇਸ਼ਤਿਹਾਰਾਂ ਨਾਂ ਤੇ ਕੰਟਰੋਲ ਅਤੇ ਤੁਹਾਨੂੰ ਇੰਟਰਨੈੱਟ ਤੇ ਕਿਵੇਂ ਟਰੈਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3415,7 +3414,7 @@ msgstr "ਸਾਰੇ ਸਾਧਨਾਂ ਤੇ ਰਾਜ ਕਰਨ ਲਈ ਇੱ
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਨਾਲ{end_sub_heading} ਇਸ਼ਤਿਹਾਰਾਂ ‘ਤੇ ਪਾਬੰਦੀ ਲਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
@@ -3427,7 +3426,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀ
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ਨਵੀਆਂ YouTube ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ, ਜਿਵੇਂ ਕਿ ਸਿਨੇਮਾ ਮੋਡ, ਵਿਗਿਆਪਨ ਨੂੰ ਰੋਕਣਾ, ਆਟੋ-ਪਲੇ ਨਿਯੰਤਰਣ, ਅਤੇ ਹੋਰ ਬਹੁਤਿਆਂ ਦਾ ਇੱਕ ਅਨੰਦ ਮਾਣੋ।"
+msgstr "ਨਵੇਂ YouTube ਫ਼ੀਚਰਾਂ, ਜਿਵੇਂ ਕਿ ਸਿਨੇਮਾ ਮੋਡ, ਇਸ਼ਤਿਹਾਰ ਨੂੰ ਰੋਕਣਾ, ਆਟੋ-ਪਲੇ ਕੰਟਰੋਲ, ਅਤੇ ਹੋਰ ਬਹੁਤਿਆਂ ਦੇ ਸਮੂਹ ਦਾ ਆਨੰਦ ਲਵੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3460,7 +3459,7 @@ msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} YouTu
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr "YouTube ਤੇ ਨਜ਼ਰ ਆਉਣ ਤੋਂ ਤੰਗ ਕਰਨ ਵਾਲੇ ਵਿਗਿਆਪਨ ਅਤੇ ਐਨੋਟੇਸ਼ਨ ਨੂੰ ਬਲੌਕ ਕਰੋ।"
+msgstr "YouTube ‘ਤੇ ਦਿਖਣ ਵਾਲੇ ਖਿਝਾਊ ਇਸ਼ਤਿਹਾਰਾਂ ਅਤੇ ਵਿਆਖਿਆ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3613,11 +3612,11 @@ msgstr "ਇੱਕ ਹੀ ਚੀਜ ਨੂੰ ਦੁਹਰਾਓਨ ਤੋਂ ਰ
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਈਮੇਲ ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਈਮੇਲ ਇਸ਼ਤਿਹਾਰਾਂ ‘ਤੇ ਰੋਕ ਲਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr "ਆਪਣੇ ਵੈਬ-ਅਧਾਰਿਤ ਇਨਬਾਕਸ ਤੋਂ ਵਿਗਿਆਪਨ ਹਟਾ ਕੇ ਜ਼ਿਆਦਾ ਸਕ੍ਰੀਨ ਸਪੇਸ ਪ੍ਰਾਪਤ ਕਰੋ।"
+msgstr "ਆਪਣੇ ਵੈਬ-ਅਧਾਰਿਤ ਇਨਬਾਕਸ ਤੋਂ ਇਸ਼ਤਿਹਾਰ ਹਟਾ ਕੇ ਹੋਰ ਸਕਰੀਨ ਥਾਂ ਲਵੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3954,9 +3953,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} YouTube ਦੇ ਨਾਲ ਬਣਾਓ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "ਪੌਪ-ਆਊਟ ਵਿਡਿਓ ਵਿੱਚ ਵਿਡੀਓਜ਼ ਚਲਾਉ, ਸਿਰਫ ਮੈਂਬਰ ਚੈਨਲਾਂ ਵਿੱਚ ਵਿਗਿਆਪਨ ਦੇਖੋ, ਵੀਡੀਓ ਸਕ੍ਰੀਨਸ਼ੌਟਸ ਲਓ, ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
+msgstr "ਆਪਣਾ YouTube ਬਣਾਓ। ਪੌਪ-ਆਉਟ ਵਿੰਡੋ ਵਿੱਚ ਵਿਡੀਓਜ਼ਚਲਾਓ, ਸਿਰਫ ਮੈਂਬਰ ਚੈਨਲਾਂ ਵਿੱਚ ਇਸ਼ਤਿਕਾਰ ਦੇਖੋ, ਵਿਡੀਓ ਸਕਰੀਨਸ਼ਾਟ ਲਓ, ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4158,12 +4156,11 @@ msgstr "ਖੋਜ ਇੰਜਣਾਂ ਨੂੰ ਜਾਣਨ ਤੋਂ ਰੋਕ�
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} YouTube ਵੀਡੀਓਜ਼ ਡਾਊਨਲੋਡ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} YouTube ਵੀਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "ਵੀਡੀਓ ਅਤੇ/ਜਾਂ ਔਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ।"
+msgstr "YouTube ਵੀਡੀਓ ਅਤੇ/ਜਾਂ ਆਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4250,11 +4247,11 @@ msgstr "ਬ੍ਰਾਉਜ਼ਰ ਅਤੀਤ ਨੂੰ ਆਪਣੇ-ਆਪ ਸ�
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਹਟਾਓ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਇਸ਼ਤਿਹਾਰ ਹਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr "ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ ਦੇ ਅੰਦਰ ਵਿਗਿਆਪਨ ਦਿਖਾਉਣ ਤੋਂ ਰੋਕੋ।"
+msgstr "ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ ਦੇ ਵਿੱਚ ਇਸ਼ਤਿਹਾਰ ਵਿਖਾਉਣ ਤੋਂ ਰੋਕੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4421,7 +4418,7 @@ msgstr "ਪਾਸਵਰਡ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿ�
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "ਇੱਕ ਸਧਾਰਨ ਇਸ਼ਟਿਹਾਰ ਬਲੌਕਰ ਜੋ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਉਹ ਸਮਗਰੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਤੇ ਕੇਂਦਰਿਤ ਹੈ।"
+msgstr "ਸਧਾਰਨ ਇਸ਼ਤਿਹਾਰ ਰੋਕੂ, ਜੋ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਉਹ ਸਮੱਗਰੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਤੇ ਕੇਂਦਰਿਤ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4545,9 +4542,8 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍ਰਿੰਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਾਦਨ ਕਰੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "ਵਿਲੱਖਣ ਵਿਜ਼ੁਅਲ ਬਦਲਾਵ ਕਰੋ—ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਨੂੰ ਛਾਪਣ ਲਈ ਵਿਗਿਆਪਨ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾਓ।"
+msgstr "ਵਿਲੱਖਣ ਦਿੱਖ ਤਬਦਾਲੇ ਕਰੋ—ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਨੂੰ ਛਾਪਣ ਲਈ ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4651,9 +4647,8 @@ msgid "Read with more clarity and ease. Remove the clutter around text on web pa
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਇਸ਼ਤਿਹਾਰਾਂ ‘ਤੇ ਰੋਕ ਲਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
@@ -4736,9 +4731,8 @@ msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach n
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਹਟਾਓ"
+msgstr "{start_sub_heading}{addon_name} ਨਾਲ{end_sub_heading} ਆਵਾਜ਼ ਰਾਹੀਂ ਸਰਗਰਮ ਕੀਤੀ ਖੋਜ"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
@@ -5186,7 +5180,7 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"ਐਡ-ਆਨ ਦੀ ਕਿਸੇ ਕੰਮ ਲਈ ਆਲੋਚਨਾ ਕਰਨਾ ਜੋ ਲਈ ਉਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ। ਮਿਸਾਲ ਲਈ, ਵਿਗਿਆਪਨ ਵਿਖਾਉਣ ਜਾਂ ਲੌੜੀਂਦਾ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਨੂੰ ਨਕਾਰਆਤਮਕ ਸਮੀਖਿਆ ਦੇਣਾ, ਜਦੋਂ ਐਡ-ਆਨ ਇਸੇ ਕਾਰਜ ਲਈ ਬਣਿਆ ਹੋਵੇ, ਜਾਂ ਐਡ-ਆਨ ਨੂੰ ਕੰਮ "
+"ਐਡ-ਆਨ ਦੀ ਕਿਸੇ ਕੰਮ ਲਈ ਆਲੋਚਨਾ ਕਰਨਾ ਜੋ ਲਈ ਉਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ। ਮਿਸਾਲ ਲਈ, ਇਸ਼ਤਿਹਾਰ ਵਿਖਾਉਣ ਜਾਂ ਲੌੜੀਂਦਾ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਨੂੰ ਨਕਾਰਆਤਮਕ ਸਮੀਖਿਆ ਦੇਣਾ, ਜਦੋਂ ਐਡ-ਆਨ ਇਸੇ ਕਾਰਜ ਲਈ ਬਣਿਆ ਹੋਵੇ, ਜਾਂ ਐਡ-ਆਨ ਨੂੰ ਕੰਮ "
 "ਕਰਨ ਲਈ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇ।"
 
 msgid "How can I report a problematic review?"
@@ -5928,7 +5922,7 @@ msgid "No reviews found for this period."
 msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
 
 msgid "Method:"
-msgstr ""
+msgstr "ਢੰਗ:"
 
 #, fuzzy
 msgid "Source:"
