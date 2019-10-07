@@ -11,9 +11,14 @@
   }
 
   span {
+    display: none;
     align-self: center;
     font-weight: bold;
     margin-left: 10px;
+
+    @media @large {
+      display: inline;
+    }
 
     html[dir=rtl] & {
       margin-left: 0;
