@@ -1,5 +1,5 @@
-.DevHub-MyAddons-copy {
-  max-width: 32em;
+.DevHub-MyAddons > div {
+  margin: 0px;
 }
 
 .DevHub-MyAddons-item {
@@ -12,7 +12,7 @@
 .DevHub-MyAddons-item-modified {
   margin-left: auto;
   align-self: flex-end;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: right;
   max-width: 280px;
@@ -21,6 +21,10 @@
   html[dir=rtl] & {
     margin-right: auto;
     margin-left: 0;
+  }
+
+  @media @large {
+    display: flex;
   }
 }
 
@@ -122,17 +126,23 @@
   justify-content: flex-start;
 }
 
-.DevHub-MyAddons-item-buttons-all-submissions {
-  .link(@color-button-default);
+.DevHub-MyAddons-item-buttons-all {
+  .link(@color-text);
 
   font-size: 15px;
 }
 
 .DevHub-MyAddons-item-buttons-submit {
+  display: none;
+
   margin-left: auto;
 
   html[dir=rtl] & {
     margin-right: auto;
     margin-left: 0;
+  }
+
+  @media @large {
+    display: inline;
   }
 }
