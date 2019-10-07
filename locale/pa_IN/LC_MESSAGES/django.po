@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-04 13:44+0000\n"
-"PO-Revision-Date: 2019-07-03 17:46+0000\n"
-"Last-Translator: Suhail Singh Bains <suhail.singhyo@gmail.com>\n"
+"PO-Revision-Date: 2019-08-16 16:19+0000\n"
+"Last-Translator: Sanjna <randhawasanjna75@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -2006,7 +2006,7 @@ msgid "Authors pending confirmation"
 msgstr "ਲੇਖਕਾਂ ਦੀ ਪੁਸ਼ਟੀਕਰਣ ਲੰਬਤ ਹੈ"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "ਲੇਖਕ ਜੋ ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤੇ ਗਏ ਹਨ ਪਰ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕੀਤੀ ਹੈ।"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3998,7 +3998,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤਸ
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "ਉਹ ਤਸਵੀਰਾਂ ਡਾਉਨਲੋਡ ਕਰੋ ਜੋ ਤੁਸੀਂ ਵੈੱਬ ਤੇ ਪਾਉਂਦੇ ਹੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4715,7 +4715,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿ
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "ਆਰਕਾਈਵਡ, ਮਰੇ, ਜਾਂ ਅਸਫਲ ਵੈਬ ਪੰਨਿਆਂ ਨੂੰ ਲੱਭੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4778,7 +4778,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀ
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "ਕੁਝ ਸਾਈਟਸ ਨੂੰ ਐਡਰਾਇਡ ਲਈ ਫਾਇਰਫਾਕਸ ਉੱਤੇ ਵੀਡੀਓ ਖੇਡਣ ਵਿੱਚ ਮੁਸ਼ਕਲ ਆਉਂਦੀ ਹੈ। ਇਹ ਐਕਸਟੈਂਸ਼ਨ ਫਿਕਸ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।"
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -4848,7 +4848,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "ਸਭ ਤੋਂ ਘੱਟ ਸਮਰਥਿਤ \"ਸਖਤ_ਮੰਨ_ਵਰਜਨ\" 42.0 ਹੈ।"
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "{app} ਲਈ ਅਣਜਾਣ \"strict_min_version\" {appver}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5257,7 +5257,7 @@ msgstr "ਤੁਸੀਂ ਐਡਆਨ ਦੇ ਉਸੇ ਵਰਜਨ ਲਈ ਇਕ
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "ਅਵੈਧ flag [%s] - ਇੱਕ [%s] ਵਿੱਚ ਹੋਣਾ ਜਰੂਰੀ ਹੈ"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "ਇਸ ਰੇਟਿੰਗ ਨੂੰ ਫਲੈਗ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਕਿਉਂਕਿ ਇਸਦਾ ਕੋਈ ਸਮੀਖਿਆ ਪਾਠ ਨਹੀਂ ਹੈ।"
