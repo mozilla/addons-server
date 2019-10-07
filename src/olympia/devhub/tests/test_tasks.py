@@ -1311,60 +1311,6 @@ class TestHandleUploadValidationResult(UploadTest, TestCase):
 
         assert not run_customs_mock.called
 
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_calls_run_yara_with_mock(self, run_yara_mock):
-        self.create_switch('enable-yara', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert run_yara_mock.called
-        run_yara_mock.assert_called_with(upload.pk)
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_does_not_run_yara_when_validation_has_errors_with_mock(
-            self, run_yara_mock):
-        self.create_switch('enable-yara', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('invalid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            all_results=[amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy()],
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_yara_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_does_not_run_yara_when_switch_is_off_with_mock(
-            self, run_yara_mock):
-        self.create_switch('enable-yara', active=False)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            all_results=[amo.VALIDATOR_SKELETON_RESULTS.copy()],
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_yara_mock.called
-
     @mock.patch('olympia.devhub.tasks.run_wat')
     def test_calls_run_wat_with_mock(self, run_wat_mock):
         self.create_switch('enable-wat', active=True)

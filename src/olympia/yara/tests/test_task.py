@@ -15,12 +15,15 @@ class TestRunYara(UploadTest, TestCase):
     def test_skip_non_xpi_files_with_mocks(self, yara_compile_mock):
         upload = self.get_upload('search.xml')
 
-        run_yara(upload.pk)
+        results = {'errors': 0}
+        received_results = run_yara(results, upload.pk)
 
         assert not yara_compile_mock.called
+        assert results == received_results
 
     @mock.patch('olympia.yara.tasks.statsd.incr')
     def test_run_with_mocks(self, incr_mock):
+        results = {'errors': 0}
         upload = self.get_upload('webextension.xpi')
         assert len(YaraResult.objects.all()) == 0
 
@@ -28,22 +31,22 @@ class TestRunYara(UploadTest, TestCase):
         rules = yara.compile(source='rule always_true { condition: true }')
         with mock.patch('yara.compile') as yara_compile_mock:
             yara_compile_mock.return_value = rules
-            run_yara(upload.pk)
+            received_results = run_yara(results, upload.pk)
 
         assert yara_compile_mock.called
-        results = YaraResult.objects.all()
-        assert len(results) == 1
-        result = results[0]
-        assert result.upload == upload
-        assert len(result.matches) == 2
-        assert result.matches[0] == {
+        yara_results = YaraResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.upload == upload
+        assert len(yara_result.matches) == 2
+        assert yara_result.matches[0] == {
             'rule': 'always_true',
             'tags': [],
             'meta': {
                 'filename': 'index.js'
             },
         }
-        assert result.matches[1] == {
+        assert yara_result.matches[1] == {
             'rule': 'always_true',
             'tags': [],
             'meta': {
@@ -52,8 +55,11 @@ class TestRunYara(UploadTest, TestCase):
         }
         assert incr_mock.called
         incr_mock.assert_called_with('devhub.yara.success')
+        # The task should always return the results.
+        assert received_results == results
 
     def test_run_no_matches_with_mocks(self):
+        results = {'errors': 0}
         upload = self.get_upload('webextension.xpi')
         assert len(YaraResult.objects.all()) == 0
 
@@ -61,43 +67,62 @@ class TestRunYara(UploadTest, TestCase):
         rules = yara.compile(source='rule always_false { condition: false }')
         with mock.patch('yara.compile') as yara_compile_mock:
             yara_compile_mock.return_value = rules
-            run_yara(upload.pk)
+            received_results = run_yara(results, upload.pk)
 
-        result = YaraResult.objects.all()[0]
-        assert result.matches == []
+        yara_result = YaraResult.objects.all()[0]
+        assert yara_result.matches == []
+        # The task should always return the results.
+        assert received_results == results
 
     def test_run_ignores_directories(self):
+        results = {'errors': 0}
         upload = self.get_upload('webextension_signed_already.xpi')
         # This compiled rule will match for all files in the xpi.
         rules = yara.compile(source='rule always_true { condition: true }')
 
         with mock.patch('yara.compile') as yara_compile_mock:
             yara_compile_mock.return_value = rules
-            run_yara(upload.pk)
+            received_results = run_yara(results, upload.pk)
 
-        result = YaraResult.objects.all()[0]
-        assert result.upload == upload
+        yara_result = YaraResult.objects.all()[0]
+        assert yara_result.upload == upload
         # The `webextension_signed_already.xpi` fixture file has 1 directory
         # and 3 files.
-        assert len(result.matches) == 3
+        assert len(yara_result.matches) == 3
+        # The task should always return the results.
+        assert received_results == results
 
     @override_settings(YARA_RULES_FILEPATH='unknown/path/to/rules.yar')
     @mock.patch('olympia.yara.tasks.statsd.incr')
     def test_run_does_not_raise(self, incr_mock):
+        results = {'errors': 0}
         upload = self.get_upload('webextension.xpi')
 
         # This call should not raise even though there will be an error because
         # YARA_RULES_FILEPATH is configured with a wrong path.
-        run_yara(upload.pk)
+        received_results = run_yara(results, upload.pk)
 
         assert incr_mock.called
         incr_mock.assert_called_with('devhub.yara.failure')
+        # The task should always return the results.
+        assert received_results == results
 
     @mock.patch('olympia.yara.tasks.statsd.timer')
     def test_calls_statsd_timer(self, timer_mock):
         upload = self.get_upload('webextension.xpi')
 
-        run_yara(upload.pk)
+        results = {'errors': 0}
+        run_yara(results, upload.pk)
 
         assert timer_mock.called
         timer_mock.assert_called_with('devhub.yara')
+
+    @mock.patch('yara.compile')
+    def test_does_not_run_when_results_contain_errors(self, yara_compile_mock):
+        upload = self.get_upload('webextension.xpi')
+
+        results = {'errors': 1}
+        received_results = run_yara(results, upload.pk)
+
+        assert not yara_compile_mock.called
+        assert results == received_results
