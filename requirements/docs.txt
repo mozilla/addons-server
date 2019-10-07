@@ -1,9 +1,9 @@
 -r system.txt
 
 # Jinja2 is required by Sphinx
-Jinja2==2.10.1 \
-    --hash=sha256:065c4f02ebe7f7cf559e49ee5a95fb800a9e4528727aec6f24402a5374c65013 \
-    --hash=sha256:14dd6caf1527abb21f08f86c784eac40853ba93edb79552aa1e4b8aef1b61c7b
+Jinja2==2.10.3 \
+    --hash=sha256:74320bb91f31270f9551d46522e33af46a80c3d619f4a4bf42b3164d30b5911f \
+    --hash=sha256:9fe95f19286cfefaa917656583d020be14e7859c6b0252588391e47db34527de
 # Pygments is required by Sphinx
 Pygments==2.4.2 \
     --hash=sha256:71e430bc85c88a430f000ac1d9b331d2407f681d6f6aec95e8bcfbc3df5b0127 \
