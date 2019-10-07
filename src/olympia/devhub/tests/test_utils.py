@@ -19,6 +19,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
+from olympia.scanners.tasks import run_customs, run_wat
 from olympia.users.models import (
     EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
 from olympia.yara.tasks import run_yara
@@ -524,6 +525,150 @@ class TestValidator(UploadTest, TestCase):
             tasks.validate_upload.s(file_upload.pk, channel),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_run_customs_when_enabled(self, mock_chain):
+        self.create_switch('enable-customs', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_customs.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_does_not_add_run_customs_when_disabled(self, mock_chain):
+        self.create_switch('enable-customs', active=False)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            chord(
+                [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_run_wat_when_enabled(self, mock_chain):
+        self.create_switch('enable-wat', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_wat.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_does_not_add_run_wat_when_disabled(self, mock_chain):
+        self.create_switch('enable-wat', active=False)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            chord(
+                [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_yara_and_customs(self, mock_chain):
+        self.create_switch('enable-customs', active=True)
+        self.create_switch('enable-yara', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_yara.s(file_upload.pk),
+                    run_customs.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_all_scanners(self, mock_chain):
+        self.create_switch('enable-customs', active=True)
+        self.create_switch('enable-wat', active=True)
+        self.create_switch('enable-yara', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_yara.s(file_upload.pk),
+                    run_customs.s(file_upload.pk),
+                    run_wat.s(file_upload.pk),
+                ],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
                                                         channel,
                                                         False)

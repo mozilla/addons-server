@@ -10,7 +10,6 @@ from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
 from zipfile import BadZipfile
-import waffle
 
 from django.conf import settings
 from django.core.cache import cache
@@ -41,7 +40,6 @@ from olympia.files.utils import (
     UnsupportedFileType)
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
-from olympia.scanners.tasks import run_customs, run_wat
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -299,28 +297,6 @@ def handle_upload_validation_result(all_results, upload_pk, channel,
     results = all_results[0]
 
     upload = FileUpload.objects.get(pk=upload_pk)
-
-    if waffle.switch_is_active('enable-customs') and results['errors'] == 0:
-        # Run customs. This cannot be asynchronous because we have no way to
-        # know whether the task will complete before we attach a `Version` to
-        # it later in the submission process... Because we cannot use `chord`
-        # reliably right now (requires Celery 4.2+), this task is actually not
-        # run as a task, it's a simple function call.
-        #
-        # TODO: use `run_customs` as a task in the submission chord once it is
-        # possible. See: https://github.com/mozilla/addons-server/issues/12217
-        run_customs(upload.pk)
-
-    if waffle.switch_is_active('enable-wat') and results['errors'] == 0:
-        # Run wat. This cannot be asynchronous because we have no way to know
-        # whether the task will complete before we attach a `Version` to it
-        # later in the submission process... Because we cannot use `chord`
-        # reliably right now (requires Celery 4.2+), this task is actually not
-        # run as a task, it's a simple function call.
-        #
-        # TODO: use `run_wat` as a task in the submission chord once it is
-        # possible. See: https://github.com/mozilla/addons-server/issues/12224
-        run_wat(upload.pk)
 
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no search plugin
