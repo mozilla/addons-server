@@ -82,7 +82,7 @@ def repack_fileupload(results, upload_pk):
         move_stored_file(file_.name, upload.path)
         timer.log_interval('3.moved')
         upload.save()
-        timer.log_interval('3.end')
+        timer.log_interval('4.end')
     else:
         log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)
     return results
