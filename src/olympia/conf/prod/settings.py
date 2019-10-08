@@ -85,17 +85,17 @@ FXA_CONFIG = {
     'default': {
         'client_id': env('FXA_CLIENT_ID'),
         'client_secret': env('FXA_CLIENT_SECRET'),
-        # redirect_url' = 'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
+        # fxa redirects to 'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
     },
     'amo': {
         'client_id': env('AMO_FXA_CLIENT_ID'),
         'client_secret': env('AMO_FXA_CLIENT_SECRET'),
-        # redirect_url = 'https://addons.mozilla.org/api/v3/accounts/authenticate/?config=amo', # noqa
+        # fxa redirects to 'https://addons.mozilla.org/api/v3/accounts/authenticate/?config=amo', # noqa
     },
     'code-manager': {
         'client_id': env('CODE_MANAGER_FXA_CLIENT_ID'),
         'client_secret': env('CODE_MANAGER_FXA_CLIENT_SECRET'),
-        # redirect_url = 'https://addons.mozilla.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
+        # fxa redirects to 'https://addons.mozilla.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
     },
 }
 FXA_CONTENT_HOST = 'https://accounts.firefox.com'

@@ -99,22 +99,22 @@ FXA_CONFIG = {
     'default': {
         'client_id': env('FXA_CLIENT_ID'),
         'client_secret': env('FXA_CLIENT_SECRET'),
-        # 'redirect_url' = 'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
+        # fxa redirects to 'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
     },
     'amo': {
         'client_id': env('AMO_FXA_CLIENT_ID'),
         'client_secret': env('AMO_FXA_CLIENT_SECRET'),
-        # redirect_url': 'https://addons.allizom.org/api/v3/accounts/authenticate/?config=amo', # noqa
+        # fxa redirects to 'https://addons.allizom.org/api/v3/accounts/authenticate/?config=amo', # noqa
     },
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
-        # redirect_url = 'http://localhost:3000/api/v3/accounts/authenticate/?config=local', # noqa
+        # fxa redirects to 'http://localhost:3000/api/v3/accounts/authenticate/?config=local', # noqa
     },
     'code-manager': {
         'client_id': env('CODE_MANAGER_FXA_CLIENT_ID'),
         'client_secret': env('CODE_MANAGER_FXA_CLIENT_SECRET'),
-        # redirect_url = 'https://addons.allizom.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
+        # fxa redirects to 'https://addons.allizom.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
