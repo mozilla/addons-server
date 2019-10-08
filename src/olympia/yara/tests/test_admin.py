@@ -3,11 +3,13 @@ import json
 from django.contrib.admin.sites import AdminSite
 from django.utils.html import format_html
 
+from pyquery import PyQuery as pq
+
 from olympia import amo
 from olympia.amo.tests import (TestCase, addon_factory, user_factory,
                                version_factory)
 from olympia.amo.urlresolvers import reverse
-from olympia.yara.admin import YaraResultAdmin
+from olympia.yara.admin import YaraResultAdmin, MatchesFilter
 from olympia.yara.models import YaraResult
 
 
@@ -99,3 +101,30 @@ class TestYaraResultAdmin(TestCase):
         result = YaraResult()
 
         assert self.admin.formatted_matches(result) == '<pre>[]</pre>'
+
+    def test_list_shows_matches_only_by_default(self):
+        # Create one entry without matches
+        YaraResult.objects.create()
+        # Create one entry with matches
+        with_matches = YaraResult()
+        with_matches.add_match(rule='some-rule')
+        with_matches.save()
+
+        response = self.client.get(self.list_url)
+        html = pq(response.content)
+        assert html('#result_list tbody tr').length == 1
+
+    def test_list_can_show_all_entries(self):
+        # Create one entry without matches
+        YaraResult.objects.create()
+        # Create one entry with matches
+        with_matches = YaraResult()
+        with_matches.add_match(rule='some-rule')
+        with_matches.save()
+
+        response = self.client.get(self.list_url, {
+            MatchesFilter.parameter_name: 'all',
+        })
+        html = pq(response.content)
+        expected_length = YaraResult.objects.count()
+        assert html('#result_list tbody tr').length == expected_length
