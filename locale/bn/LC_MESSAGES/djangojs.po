@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2018-10-19 14:01+0000\n"
-"Last-Translator: Rajan Dey <feb17rajandey@gmail.com>\n"
+"PO-Revision-Date: 2019-10-08 05:14+0000\n"
+"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -26,9 +26,8 @@ msgstr "সার্ভারের সঙ্গে যোগাযোগ কর
 msgid "Select a file..."
 msgstr "ফাইল নির্বাচন করুন..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml দিয়ে শেষ হতে হবে"
+msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, অথবা .xml দিয়ে শেষ হতে হবে"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -68,7 +67,7 @@ msgid "Validating {0}"
 msgstr "বৈধতা যাচাই {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "আপনার অ্যাড-অন সর্বোচ্চ সাইজ {0} এর চেয়ে বড়।"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "সার্ভার হতে একটি খালি প্রতিক্রিয়া এসেছে; অবস্থা : {0}"
@@ -131,7 +130,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ফাইলটি সর্বোচ্চ সাইজ {0} এর চেয়েও বড়।"
 
 msgid "You cancelled the upload."
 msgstr "আপনি আপলোড বাতিল করেছেন।"
@@ -341,13 +340,13 @@ msgid "Collections"
 msgstr "সংগ্রহসমূহ"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "ল্যান্ডিং বিভাগ আলোচিত ক্যারাউজেল"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "ল্যান্ডিং বিভাগ শীর্ষ রেটেড"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "ল্যান্ডিংয় বিভাগ সর্বাধিক জনপ্রিয়"
 
 msgid "Category Landing Recently Added"
 msgstr ""
@@ -356,22 +355,22 @@ msgid "Browse Listing Featured Sort"
 msgstr ""
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "ব্রাউজার ব্যবহারকারীর সাজানো তালিকা"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "ব্রাউজারে রেটিং তালিকা সাজানোর ক্রম"
 
 msgid "Browse Listing Created Sort"
 msgstr ""
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "নাম অনুসারে সাজানো তালিকা ব্রাউজ করুন"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "জনপ্রিয়তা অনুসারে সাজানো তালিকা ব্রাউজ করুন"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "হালনাগাদ অনুসারে সাজানো তালিকা ব্রাউজ করুন"
 
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Listing Up এবং Coming Sort ব্রাউজ করুন"
@@ -452,7 +451,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "{0} হতে {1} প্ল্যাটফর্ম"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -516,7 +515,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "অ্যাডস-অন ডাউনলোড হয়েছে {০} থেকে {১} "
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -524,7 +523,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "অ্যাড-অন তৈরী করা হয়েছে {০} থেকে {১}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -556,7 +555,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "সংগ্রহগুলো তৈরী হয়েছে {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -564,7 +563,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "সাবস্ক্রাইবার {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
@@ -572,7 +571,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "রেটিং {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -661,7 +660,7 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr ""
 
 msgid "Changes Saved"
-msgstr "পরিবর্তন সংরক্ষিত"
+msgstr "পরিবর্তন সংরক্ষণ করা হয়েছে"
 
 msgid "Enter a new author's email address"
 msgstr ""
