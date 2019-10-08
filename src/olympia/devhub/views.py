@@ -13,7 +13,6 @@ from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -26,7 +25,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.utils import redirect_for_login, _is_safe_url
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
@@ -1848,30 +1847,16 @@ def theme_background_image(request, addon_id, addon, channel):
             else {})
 
 
-def _clean_next_url(request):
-    gets = request.GET.copy()
-    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
-
-    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
-        log.info(u'Unsafe redirect to %s' % url)
-        url = settings.LOGIN_REDIRECT_URL
-
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
-
-    gets['to'] = url
-    request.GET = gets
-    return request
-
-
 def logout(request):
     user = request.user
     if not user.is_anonymous:
         log.debug(u"User (%s) logged out" % user)
 
-    if 'to' in request.GET:
-        request = _clean_next_url(request)
+    if 'to' in request.GET and not _is_safe_url(request.GET['to'], request):
+            log.info(u'Unsafe redirect to %s' % request.GET['to'])
+            gets = request.GET.copy()
+            gets['to'] = settings.LOGIN_REDIRECT_URL
+            request.GET = gets
 
     next_url = request.GET.get('to')
     if not next_url:
