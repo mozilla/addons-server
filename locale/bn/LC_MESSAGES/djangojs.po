@@ -515,7 +515,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "অ্যাডস-অন ডাউনলোড হয়েছে {০} থেকে {১} "
+msgstr "অ্যাডস-অন ডাউনলোড হয়েছে {0} থেকে {1} "
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -523,7 +523,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr "অ্যাড-অন তৈরী করা হয়েছে {০} থেকে {১}"
+msgstr "অ্যাড-অন তৈরী করা হয়েছে {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -781,7 +781,7 @@ msgid "Warning"
 msgstr "সর্তকবার্তা"
 
 msgid "{0} line {1} column {2}"
-msgstr "{ 0} লাইন { 1} কলাম { 2}"
+msgstr "{0} লাইন {1} কলাম {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} এর {1}"
