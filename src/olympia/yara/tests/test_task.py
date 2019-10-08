@@ -7,7 +7,6 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.files.tests.test_models import UploadTest
-from olympia.files.utils import parse_addon
 from olympia.yara.models import YaraResult
 from olympia.yara.tasks import run_yara
 
