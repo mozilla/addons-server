@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-08 05:06+0000\n"
-"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
+"PO-Revision-Date: 2019-09-08 11:44+0000\n"
+"Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Addons"
 msgstr ""
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "ন্যূনতম প্রতিবেদন গণনা (গাইড অনুসারে গ্রুপ করা)"
 
 msgid "creation date"
 msgstr ""
@@ -37,34 +37,34 @@ msgid "Distribution"
 msgstr ""
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "প্রতিবেদকের দেশ"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "বার্তা অংশ"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "নির্বাচিত %d টি প্রতিবেদনগুলি বৈধ হিসাবে চিহ্নিত হয়েছে।"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "নির্বাচিত %d প্রতিবেদনগুলি সন্দেহজনক হিসাবে চিহ্নিত হয়েছে।"
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "দয়া করে নিশ্চিত করুন যে এই ক্ষেত্রটিতে {max_length} অক্ষরের বেশি নেই।"
 
 msgid "Modified on:"
-msgstr ""
+msgstr "সংশোধিত:"
 
 #, python-format
 msgid "By %(filter_title)s"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "সব"
 
 msgid "No links are allowed."
 msgstr "কোন লিঙ্ক গ্রহণযোগ্য নয়।"
@@ -192,7 +192,7 @@ msgid "Admin Tools"
 msgstr "অ্যাডমিন টুলস"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "ধনাত্মক পূর্ণসংখ্যা"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -205,10 +205,10 @@ msgid "Error verifying input, please try again."
 msgstr "ইনপুট যাচাই করতে ব্যর্থ, অনুগ্রহ করে আবার চেস্টা করুন।"
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "একটি বৈধ IP4 অথবা IP6 নেটওয়ার্ক লিখুন।"
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -1224,13 +1224,13 @@ msgid "No Reputation"
 msgstr ""
 
 msgid "Good (1)"
-msgstr ""
+msgstr "ভালো (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "খুব ভালো (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "চমৎকার (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
@@ -1617,10 +1617,10 @@ msgid "Add-on deleted."
 msgstr "অ্যাড-অন মুছে ফেলা হয়েছে।"
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL এর নাম ভুল। থিম মুছে দেওয়া হয়নি।"
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL এর নাম ভুল। অ্যাড-অন মুছে দেওয়া হয়নি।"
 
 msgid "Invitation accepted."
 msgstr ""
@@ -1668,7 +1668,7 @@ msgid "Icon must be square (same width and height)."
 msgstr ""
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "আপনার প্রিভিউ আপলোডে কোন ত্রুটি ছিলো।"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1683,7 +1683,7 @@ msgstr "%s সংস্করণ মুছে ফেলা হয়েছে।"
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "ভার্সন %s পুনরায় সক্রিয় হয়েছে।"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -1734,7 +1734,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "নতুন API key তৈরি হয়েছে"
 
 msgid "API key revoked"
 msgstr ""
@@ -1755,7 +1755,7 @@ msgid "Your account needs a display name set so users know who your add-on is co
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "গ্রহন করুন"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "অথবা <a href=\"{0}\">বাতিল</a>"
@@ -1768,11 +1768,11 @@ msgid "{0} Add-ons"
 msgstr ""
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "DevHub এর হোমপেজে ব্যাক করুন"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>অ্যাড-অন</small> ডেভেলোপার হাব"
 
 msgid "more add-ons..."
 msgstr ""
@@ -1784,7 +1784,7 @@ msgid "Documentation"
 msgstr ""
 
 msgid "Extension Development"
-msgstr ""
+msgstr "এক্সটেনসন ডেভেলপমেন্ট"
 
 msgid "Themes"
 msgstr "থিম"
@@ -1796,22 +1796,22 @@ msgid "Add-on Validator"
 msgstr ""
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "ডেভেলোপমেন্ট অ্যাড-অন"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "কমিউনিটি এবং সাপোর্ট"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "অ্যাড-অন সংশ্লিষ্ট ব্লগ"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "অ্যাড-অন সংশ্লিষ্ট ফোরাম"
 
 msgid "More Resources"
-msgstr ""
+msgstr "আরো রিসোর্সসমূহ"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "ডেভেলোপার ডকে খুুঁজুন"
 
 msgid "Search"
 msgstr "খোঁজা"
@@ -1830,7 +1830,7 @@ msgid "Validation Results for {0}"
 msgstr ""
 
 msgid "Validation Results"
-msgstr ""
+msgstr "যাচাইকরণের ফলাফল"
 
 msgid "Validated at:"
 msgstr ""
@@ -1872,7 +1872,7 @@ msgid "View and update application compatibility ranges"
 msgstr ""
 
 msgid "Compatibility"
-msgstr ""
+msgstr "উপযুক্ততা"
 
 msgid "Update Compatibility"
 msgstr ""
@@ -1911,11 +1911,11 @@ msgstr[0] "<b>{0}</b> টি অ্যাড-অন"
 msgstr[1] "<b>{0}</b> গুলো অ্যাড-অন"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "সাম্প্রতিক কার্যকলাপ"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(user)s দ্বারা %(ago)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -1960,7 +1960,7 @@ msgid "Authors"
 msgstr "লেখক"
 
 msgid "About author roles"
-msgstr ""
+msgstr "লেখকের ভূমিকা সম্বন্ধে"
 
 msgid "Authors pending confirmation"
 msgstr ""
@@ -2008,7 +2008,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr ""
 
 msgid "Default Locale"
-msgstr ""
+msgstr "ডিফল্ট লোকেল"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -2046,7 +2046,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
 
 msgid "View Listing"
-msgstr ""
+msgstr "তালিকা দেখুন"
 
 msgid "View Product Page"
 msgstr ""
@@ -2112,7 +2112,7 @@ msgid "Images"
 msgstr "ছবিগুলো"
 
 msgid "Technical Details"
-msgstr ""
+msgstr "প্রযুক্তিগত বিবরণ"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
@@ -2139,7 +2139,7 @@ msgid "No, this add-on's source code is not publicly viewable."
 msgstr ""
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "সার্বজনীন পরিসংখ্যান?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
@@ -2171,7 +2171,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "অ্যাড-অন আইকন"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -2197,13 +2197,13 @@ msgstr ""
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr ""
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "কাস্টম আইকন আপলোড করুন ..."
 
 msgid "PNG and JPG supported."
 msgstr ""
@@ -2215,7 +2215,7 @@ msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr ""
+msgstr "স্ক্রীনশট"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
@@ -2224,7 +2224,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr ""
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "স্ক্রীনশট যুক্ত করুন..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
@@ -2257,7 +2257,7 @@ msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
-msgstr ""
+msgstr "একটি ভিন্ন লাইসেন্স নির্বাচন করুন।"
 
 msgid "More information on Creative Commons licenses"
 msgstr ""
@@ -2310,7 +2310,7 @@ msgid "Resume"
 msgstr "পুনরায় আরম্ভ করুন"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "এই এড-অনটি মুছে ফেলুন"
 
 msgid "Delete"
 msgstr "মুছে ফেলুন"
@@ -2334,7 +2334,7 @@ msgid "Manage Status & Versions"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "সম্প্রতি পরিবর্তনগুলো দেখুন"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -2351,7 +2351,7 @@ msgstr[1] "<strong>{0}</strong> সাপ্তাহিক ডাউনলো�
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> সক্রিয় ব্যবহারকারী"
 msgstr[1] ""
 
 msgid "Submit a New Version"
@@ -2454,7 +2454,7 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "জমাদান সম্পূর্ণ"
 
 msgid "Version Submitted for Review"
 msgstr "সংস্করণ জমা দেওয়া হয়েছে পর্যালোচনার জন্য"
@@ -2647,7 +2647,7 @@ msgid "Finish Theme"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "পিছনে"
 
 msgid "API Credentials"
 msgstr ""
@@ -2755,13 +2755,13 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "সর্বশেষ সংস্করণ:"
 
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "নতুন সংস্করণ আপলোড করুন"
 
 msgid "View All"
 msgstr "সব দেখুন"
@@ -2782,7 +2782,7 @@ msgid "Developer News"
 msgstr "ডেভেলপারদের খবর"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "ব্লগ দেখুন &#9658;"
 
 msgid "Pending information request:"
 msgstr ""
@@ -2802,10 +2802,10 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr ""
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "কিছু HTML সমর্থন করে।"
 
 msgid "Remove this application"
-msgstr ""
+msgstr "অ্যাপ্লিকেশানটি সরিয়ে ফেলুন"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
@@ -2836,10 +2836,10 @@ msgid "Read more about the source code review policy."
 msgstr ""
 
 msgid "Latest News"
-msgstr ""
+msgstr "সর্বশেষ খবর"
 
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "আমাদের ব্লগে আরো পড়ুন"
 
 msgid "Resources"
 msgstr ""
@@ -2884,7 +2884,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "আইনগত"
 
 msgid "Report Trademark Abuse"
 msgstr ""
@@ -2902,10 +2902,10 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "আমাদের সাথে যোগ দিন!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "কিছু কোড লিখুন"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
@@ -2920,7 +2920,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "দেখ কিভাবে"
 
 msgid "Manage Your Add-on"
 msgstr ""
@@ -2976,7 +2976,7 @@ msgid "Add-on Developer Hub"
 msgstr ""
 
 msgid "Docs"
-msgstr ""
+msgstr "ডকুমেন্টেশন"
 
 msgid "Sign Out"
 msgstr "সাইন আউট"
@@ -3038,7 +3038,7 @@ msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
 msgid "Live Testing"
-msgstr ""
+msgstr "লাইভ টেস্টিং"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -3062,7 +3062,7 @@ msgid ""
 msgstr ""
 
 msgid "Approval Status"
-msgstr ""
+msgstr "অনুমোদনের অবস্থা"
 
 msgid "Notes for Reviewers"
 msgstr ""
@@ -3094,7 +3094,7 @@ msgid "Edit this version"
 msgstr "ভার্সনটি সম্পাদনা করুন"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 ফাইল"
 
 msgid "Re-enable Version"
 msgstr ""
@@ -3109,7 +3109,7 @@ msgid "Request Review"
 msgstr "পর্যালোচনার অনুরোধ"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "পর্যালোচনা অনুরোধ বাতিল করুন"
 
 msgid "Loading Review History..."
 msgstr "পর্যালোচনা ইতিহাস লোড হচ্ছে..."
@@ -3143,10 +3143,10 @@ msgid "Listed versions"
 msgstr ""
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "বর্তমানে AMO তে আছে"
 
 msgid "Validation"
-msgstr ""
+msgstr "বৈধতা"
 
 msgid "Delete/Disable"
 msgstr ""
@@ -3189,7 +3189,7 @@ msgid "Disable Version"
 msgstr ""
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "অ্যাড-অন লুকান"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -3207,12 +3207,12 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "অ্যাড-অন ডকুমেন্টেশন :: ডেভেলোপার হাব"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} টি ত্রুটি"
 msgstr[1] ""
 
 #. L10n: first parameter is the number of warnings
@@ -4696,10 +4696,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: XML নিরাপত্তা ত্রুটি।"
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: XML পার্স ত্রুটি।"
 
 msgid "Could not parse uploaded file."
 msgstr ""
@@ -4744,7 +4744,7 @@ msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "আপনি এই ধরণের এড-অন জমা দিতে পারবেন না"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
@@ -4760,14 +4760,14 @@ msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "অপ্রত্যাশিত ত্রুটি।"
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "পর্যালোচনায় ফিরে যান"
 
 msgid "Back to add-on"
 msgstr "অ্যাড-অনে ফিরে যান"
@@ -4783,7 +4783,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr ""
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "যাচাই করণে ব্যর্থ:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
@@ -4808,13 +4808,13 @@ msgid "Files:"
 msgstr "ফাইলগুলো:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "মুছে ফেলা ফাইল:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "পরিচিত ফাইল লুকান"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "ট্যাব স্টপ:"
 
 msgid "Up file"
 msgstr "ফাইল আপ"
@@ -4823,16 +4823,16 @@ msgid "Down file"
 msgstr "ডাউন ফাইল"
 
 msgid "Previous diff"
-msgstr ""
+msgstr "পূর্ববর্তী ভিন্নতা"
 
 msgid "Previous note"
-msgstr ""
+msgstr "পূর্ববর্তী নোট"
 
 msgid "Next diff"
-msgstr ""
+msgstr "পরের ভিন্নতা"
 
 msgid "Next note"
-msgstr ""
+msgstr "পরবর্তী নোট"
 
 msgid "Expand all"
 msgstr "সব প্রসারিত"
@@ -4844,16 +4844,16 @@ msgid "Wrap or unwrap text"
 msgstr ""
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "আপলোডকৃত ফাইলে কোন ফাইল নেই।"
 
 msgid "Fetching file."
-msgstr ""
+msgstr "ফাইল আনা হচ্ছে।"
 
 msgid "About Mozilla Add-ons"
 msgstr "মজিলা এড-অনস সমন্ধে"
 
 msgid "What is this website?"
-msgstr ""
+msgstr "এই ওয়েবসাইটটি কি?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
@@ -4931,7 +4931,7 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr ""
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "কারা এই ওয়েবসাইটে কাজ করে?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
@@ -4943,7 +4943,7 @@ msgid "Sections"
 msgstr "সেকশন সমূহ"
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "একটি ভালো পর্যালোচনা লেখার জন্য কিছু টিপস"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr ""
@@ -5091,7 +5091,7 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
+msgstr[0] "{num} পর্যালোচনা"
 msgstr[1] ""
 
 msgid "Not yet rated"
@@ -5105,10 +5105,10 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "অনুমোদিত পর্যালোচনা"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "মুছে ফেলা পর্যালোচনা"
 
 msgid "View entries between"
 msgstr ""
@@ -5151,19 +5151,19 @@ msgid "Search by add-on name / author email / guid"
 msgstr ""
 
 msgid "Max. Version"
-msgstr ""
+msgstr "সর্বোচ্চ সংস্করণ"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "প্রথমে একটি অ্যাপ্লিকেশন নির্বাচন করুন"
 
 msgid "Comments:"
 msgstr "মন্তব্যগুলো:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "অপারেটিং সিস্টেম:"
 
 msgid "Applications:"
-msgstr ""
+msgstr "অ্যাপ্লিকেশন:"
 
 msgid "Require developer to respond in less than…"
 msgstr ""
@@ -5184,7 +5184,7 @@ msgid "Skip for now"
 msgstr "এখকার জন্য স্কিপ করুন"
 
 msgid "Delete review"
-msgstr ""
+msgstr "পর্যালোচনা মুছে ফেলুন"
 
 msgid "Needs Admin Content Review"
 msgstr ""
@@ -5229,13 +5229,13 @@ msgid "Type"
 msgstr "ধরণ"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "অপেক্ষার সময়"
 
 msgid "Flags"
 msgstr ""
 
 msgid "moments ago"
-msgstr ""
+msgstr "কিছুক্ষণ আগে"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
@@ -5256,16 +5256,16 @@ msgstr[0] "{0} দিন"
 msgstr[1] ""
 
 msgid "Last Review"
-msgstr ""
+msgstr "শেষ পর্যালোচনা"
 
 msgid "Last Update"
-msgstr ""
+msgstr "সর্বশেষ হালনাগাদ"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "এখনও কোন পর্যালোচনা করা হয়নি"
 
 msgid "Weight"
-msgstr ""
+msgstr "ওজন"
 
 msgid "Information Request Deadline"
 msgstr ""
@@ -5378,7 +5378,7 @@ msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Announcement"
-msgstr ""
+msgstr "ঘোষণা"
 
 msgid "Update message of the day"
 msgstr ""
@@ -5519,7 +5519,7 @@ msgid "Add-on Title"
 msgstr "এড-অন শিরোনাম"
 
 msgid "Review Text"
-msgstr ""
+msgstr "টেক্সট পর্যালোচনা করুন"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5540,13 +5540,13 @@ msgid "Range"
 msgstr "সীমানা"
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "আপনার পর্যালোচনা"
 
 msgid "By {user_name}"
 msgstr "{user_name} দ্বারা"
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "মোট পর্যালোচনা"
 
 msgid "Active Contributors"
 msgstr "সক্রিয় অবদানকারী"
@@ -5616,7 +5616,7 @@ msgstr ""
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "পর্যালোচনা {0}"
 
 msgid "Add-on user change history"
 msgstr ""
@@ -5641,7 +5641,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "ফাইল ডাউনলোড করুন"
 
 msgid "The developer has provided source code."
 msgstr ""
@@ -5671,7 +5671,7 @@ msgid "Insert canned response..."
 msgstr ""
 
 msgid "Tested on:"
-msgstr ""
+msgstr "পরীক্ষা করা হয়েছে:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
@@ -5725,13 +5725,13 @@ msgid "Review This Add-on"
 msgstr ""
 
 msgid "More Information"
-msgstr ""
+msgstr "আরও তথ্য"
 
 msgid "Resolution"
 msgstr "রেজুলেশন"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "পর্যালোচনাকারী"
 
 msgid "Add-on has been deleted."
 msgstr ""
@@ -5752,7 +5752,7 @@ msgid "Source:"
 msgstr ""
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "এই ঘোষণা খারিজ করুন"
 
 msgid "Files in this version:"
 msgstr ""
@@ -5777,7 +5777,7 @@ msgid "Newer"
 msgstr "নতুন"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "সাম্প্রতিক পয়েন্ট"
 
 msgid "No points awarded yet."
 msgstr ""
@@ -5786,7 +5786,7 @@ msgid "Top Reviewers (past 7 days)"
 msgstr ""
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "এখনো কোন শীর্ষ পর্যালোচক নেই।"
 
 msgid "All Time"
 msgstr "সব সময়"
@@ -5812,7 +5812,7 @@ msgstr "[অবস্থা:%s]"
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
 msgstr[0] "হালনাগাদ ({0})"
-msgstr[1] ""
+msgstr[1] "হালনাগাদকৃত {0}"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
@@ -5889,7 +5889,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "সারসংক্ষেপ"
 
 msgid "by Source"
 msgstr "সোর্স দ্বারা"
@@ -5901,13 +5901,13 @@ msgid "by Add-on Version"
 msgstr "এড-অন ভার্সন"
 
 msgid "by Application"
-msgstr ""
+msgstr "আবেদন দ্বারা"
 
 msgid "by Language"
 msgstr "ভাষা দ্বারা"
 
 msgid "by Platform"
-msgstr ""
+msgstr "প্ল্যাটফর্ম দ্বারা"
 
 msgid "by Add-on Status"
 msgstr "এড-অন স্ট্যাটাস দ্বারা"
@@ -5945,13 +5945,13 @@ msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "নিয়ন্ত্রণ:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "জুম রিসেট"
 
 msgid "Group by:"
-msgstr ""
+msgstr "গ্রুপ হয়েছে:"
 
 msgid "day"
 msgstr "দিন"
@@ -5987,7 +5987,7 @@ msgid "Loading the latest data&hellip;"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "ডাটা নেই।"
 
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
@@ -6034,16 +6034,16 @@ msgid "See more applications&hellip;"
 msgstr ""
 
 msgid "Top Languages"
-msgstr ""
+msgstr "শীর্ষ ভাষা"
 
 msgid "See more languages&hellip;"
 msgstr ""
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "শীর্ষ প্ল্যাটফর্ম"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "আরো প্ল্যাটফর্ম দেখুন &hellip;"
 
 msgid "Download sources by Date"
 msgstr ""
@@ -6110,13 +6110,13 @@ msgid "Android Browser"
 msgstr ""
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS ব্রাউজার"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus ব্রাউজার"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "ডেস্কটপ ব্রাউজার"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
@@ -6159,13 +6159,13 @@ msgstr ""
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "বিদ্যমান ভাষা সমূহ"
 
 msgid "New Locales"
-msgstr ""
+msgstr "নতুন ভাষা সমূহ"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
@@ -6285,7 +6285,7 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
-msgstr ""
+msgstr "ব্যবহারকারীর নোটিফিকেশন"
 
 msgid "Ban"
 msgstr ""
@@ -6295,7 +6295,7 @@ msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "অন্যান্য"
 
 msgid "{app} {min} and later"
 msgstr ""
