@@ -1476,14 +1476,6 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 # How long to delay tasks relying on file system to cope with NFS lag.
 NFS_LAG_DELAY = 3
 
-# An approved list of domains that the authentication script will redirect to
-# upon successfully logging in or out.
-VALID_LOGIN_REDIRECTS = {
-    'builder': 'https://builder.addons.mozilla.org',
-    'builderstage': 'https://builder-addons.allizom.org',
-    'buildertrunk': 'https://builder-addons-dev.allizom.org',
-}
-
 # Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
@@ -1782,6 +1774,9 @@ SHELL_PLUS_POST_IMPORTS = (
     ('olympia', 'amo'),
 )
 
+FXA_CONTENT_HOST = 'https://accounts.firefox.com'
+FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
+FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 

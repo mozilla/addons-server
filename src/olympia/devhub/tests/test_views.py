@@ -1956,13 +1956,6 @@ class TestLogout(UserViewBase):
                                    follow=True)
         self.assert3xx(response, url, status_code=302)
 
-        url = urlparams(reverse('devhub.logout'), to='/addon/new',
-                        domain='builder')
-        response = self.client.get(url, follow=False)
-        self.assert3xx(
-            response, 'https://builder.addons.mozilla.org/addon/new',
-            status_code=302)
-
         # Test an invalid domain
         url = urlparams(reverse('devhub.logout'), to='/en-US/about',
                         domain='http://evil.com')
