@@ -98,9 +98,6 @@ FXA_CONFIG = {
         # fxa redirects to 'https://addons.mozilla.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
     },
 }
-FXA_CONTENT_HOST = 'https://accounts.firefox.com'
-FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
-FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'code-manager']
 

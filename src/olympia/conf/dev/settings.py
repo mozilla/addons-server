@@ -123,6 +123,9 @@ FXA_CONFIG = {
         # fxa redirects to 'https://addons-dev.allizom.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
     },
 }
+FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
+FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
+FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local', 'code-manager']
 

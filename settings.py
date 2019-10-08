@@ -101,6 +101,9 @@ FXA_CONFIG = {
         # fxa redirects to 'http://olympia.test/api/v4/accounts/authenticate/?config=code-manager', # noqa
     },
 }
+FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
+FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
+FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local', 'code-manager']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
