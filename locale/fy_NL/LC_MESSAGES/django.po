@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-08 06:38+0000\n"
+"PO-Revision-Date: 2019-10-09 08:41+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -984,32 +984,32 @@ msgid "Social & Communication"
 msgstr "Sosjaal en kommunikaasje"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om sosjale media en chatten te ferbetterjen. Dizze kategory omfettet ferbettere ljepblêdnotifikaasjes, fideodownloaders, en mear."
 
 msgid "Tabs"
 msgstr "Ljepblêden"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om ljepblêden en de nij-ljepblêdside oan te passen. Untdek útwreidingen dy't ljepblêden oanstjoere kinne, de manier wêrop jo dermei omgean wizigje, en mear."
 
 msgid "Web Development"
 msgstr "Webûntwikkeling"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen mei webûntwikkelhelpmiddelen. Dizze kategory omfettet útwreidingen foar GitHub, wikseljen fan user agent, cookiebehear, en mear."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Oars"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Download Firefox-útwreidingen dy't ûnfoarspelber en kreatyf wêze kinne, mar wol handich binne foar dat soarte fan ûngebrûklike taken."
 
 msgid "Device Features & Location"
 msgstr "Apparaatfunksjes en -lokaasje"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Download útwreidingen om Firefox foar Android te ferbetterjen. Fier flugge sykopdrachten út, skjin it systeem op, meitsje notysjes, en mear."
 
 msgid "Experimental"
 msgstr "Eksperiminteel"
