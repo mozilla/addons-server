@@ -1,9 +1,10 @@
 import json
 
 from django.contrib import admin
+from django.db.models import Prefetch
 from django.utils.html import format_html
 
-from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 
 from .models import ScannersResult
@@ -20,6 +21,19 @@ class ScannersResultAdmin(admin.ModelAdmin):
 
     fields = ('id', 'upload', 'formatted_addon', 'channel', 'scanner',
               'formatted_results')
+
+    def get_queryset(self, request):
+        # We already set list_select_related() so we don't need to repeat that.
+        # We also need to fetch the add-ons though, and because we need their
+        # translations for the name (see formatted_addon() below) we can't use
+        # select_related(). We don't want to run the default transformer though
+        # so we prefetch them with just the translations.
+        return self.model.objects.prefetch_related(
+            Prefetch(
+                'version__addon',
+                queryset=Addon.objects.all().only_translations()
+            )
+        )
 
     # Remove the "add" button
     def has_add_permission(self, request):
@@ -41,14 +55,13 @@ class ScannersResultAdmin(admin.ModelAdmin):
                 obj.version.addon.name,
                 obj.version.id
             )
-        return "-"
+        return '-'
     formatted_addon.short_description = 'Add-on'
 
     def channel(self, obj):
         if obj.version:
-            return ('listed' if obj.version.channel ==
-                    amo.RELEASE_CHANNEL_LISTED else 'unlisted')
-        return "-"
+            return obj.version.get_channel_display()
+        return '-'
     channel.short_description = 'Channel'
 
     def formatted_results(self, obj):
