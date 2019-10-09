@@ -107,7 +107,7 @@ def addon_listing(request, theme=False):
 
 
 def index(request):
-    ctx = {'blog_posts': _get_posts()}
+    ctx = {}
     if request.user.is_authenticated:
         user_addons = Addon.objects.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]

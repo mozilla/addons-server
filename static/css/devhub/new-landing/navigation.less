@@ -1,6 +1,11 @@
 .DevHub-Navigation {
-  > div {
+  box-shadow: 0 4px 16px rgba(12,12,13,0.1);
+
+  > .DevHub-Navigation-list-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 5px;
+    padding-bottom: 5px;
   }
 
   ul {
@@ -43,16 +48,22 @@
 
       &.DevHub-Navigation-Register,
       &.DevHub-Navigation-SignOut {
+        .Button {
+          .button(@color-button-register-text, @color-button-register);
+          padding-left: 15px;
+          padding-right: 15px;
+        }
         @media @large {
-          margin-left: 40px;
+          margin-left: 50px;
+          margin-right: 0;
 
           a {
             margin: 0 2px;
           }
 
           html[dir=rtl] & {
-            margin-right: 40px;
-            margin-left: 10px;
+            margin-right: 50px;
+            margin-left: 0;
           }
         }
       }
@@ -65,8 +76,6 @@
 
   // Schemas:
   &.scheme-light {
-    min-width: @grid-max;
-
     ul li a {
       color: @color-scheme-light-text;
     }
