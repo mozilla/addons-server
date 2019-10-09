@@ -1465,7 +1465,6 @@ class TestEditTechnical(BaseTestEdit):
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
-    
     def test_technical_devcomment_notrequired(self):
         data = {
             'developer_comments': '',
