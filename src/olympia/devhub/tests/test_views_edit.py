@@ -1465,12 +1465,7 @@ class TestEditTechnical(BaseTestEdit):
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
-        # Andddd offf
-        data = {'developer_comments': 'Test comment!'}
-        response = self.client.post(self.technical_edit_url, data)
-        addon = self.get_addon()
-
-
+    
     def test_technical_devcomment_notrequired(self):
         data = {
             'developer_comments': '',
