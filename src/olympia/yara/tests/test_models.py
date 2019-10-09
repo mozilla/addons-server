@@ -40,6 +40,7 @@ class TestYaraResult(TestCase):
         assert result.upload == upload
         assert result.matches == []
         assert result.version is None
+        assert result.has_matches is False
 
     def test_add_match(self):
         result = self.create_yara_result()
@@ -52,6 +53,18 @@ class TestYaraResult(TestCase):
             'tags': match.tags,
             'meta': match.meta,
         }]
+        assert result.has_matches is True
+
+    def test_save_set_has_matches_if_none(self):
+        result = self.create_yara_result()
+        result.has_matches = None
+        result.save()
+        assert result.has_matches is False
+
+        result.has_matches = None
+        result.matches = [{}]  # Fake match
+        result.save()
+        assert result.has_matches is True
 
     def test_upload_constraint(self):
         upload = self.create_file_upload()

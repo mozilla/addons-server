@@ -2,7 +2,6 @@ import json
 
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
-from django.db.models import Q
 from django.utils.html import format_html
 from django.utils.translation import ugettext
 
@@ -34,7 +33,7 @@ class MatchesFilter(SimpleListFilter):
     def queryset(self, request, queryset):
         if self.value() == 'all':
             return queryset
-        return queryset.filter(~Q(matches='[]'))
+        return queryset.filter(has_matches=True)
 
 
 @admin.register(YaraResult)

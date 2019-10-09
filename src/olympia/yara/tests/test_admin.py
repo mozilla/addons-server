@@ -136,7 +136,7 @@ class TestYaraResultAdmin(TestCase):
         YaraResult.objects.create(version=addon_factory().current_version)
         YaraResult.objects.create(version=addon_factory().current_version)
 
-        with self.assertNumQueries(0):
+        with self.assertNumQueries(9):
             # 9 queries:
             # - 2 transaction savepoints because of tests
             # - 2 user and groups
