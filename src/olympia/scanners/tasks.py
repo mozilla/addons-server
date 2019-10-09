@@ -35,9 +35,9 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         if not os.path.exists(upload.path):
             raise ValueError('File "{}" does not exist.' .format(upload.path))
 
-        result = ScannersResult()
-        result.upload = upload
-        result.scanner = scanner
+        scanners_result = ScannersResult()
+        scanners_result.upload = upload
+        scanners_result.scanner = scanner
 
         with statsd.timer('devhub.{}'.format(scanner_name)):
             json_payload = {
@@ -49,16 +49,16 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
                                      timeout=settings.SCANNER_TIMEOUT)
 
         try:
-            scanner_results = response.json()
+            data = response.json()
         except ValueError:
             # Log the response body when JSON decoding has failed.
             raise ValueError(response.text)
 
-        if response.status_code != 200 or 'error' in scanner_results:
-            raise ValueError(scanner_results)
+        if response.status_code != 200 or 'error' in data:
+            raise ValueError(data)
 
-        result.results = scanner_results
-        result.save()
+        scanners_result.results = data
+        scanners_result.save()
 
         statsd.incr('devhub.{}.success'.format(scanner_name))
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
