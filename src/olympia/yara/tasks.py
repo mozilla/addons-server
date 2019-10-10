@@ -63,6 +63,9 @@ def run_yara(results, upload_pk):
 
         result.save()
 
+        if result.has_matches:
+            statsd.incr('devhub.yara.has_matches')
+
         statsd.incr('devhub.yara.success')
         log.info('Ending yara task for FileUpload %s.', upload_pk)
     except Exception:
