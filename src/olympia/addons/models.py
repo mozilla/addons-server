@@ -15,7 +15,6 @@ from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
-from django.utils.encoding import force_text
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
@@ -1375,19 +1374,6 @@ class Addon(OnChangeMixin, ModelBase):
         """NULLify strings in this locale for the add-on and versions."""
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
-
-    def get_localepicker(self):
-        """For language packs, gets the contents of localepicker."""
-        if (self.type == amo.ADDON_LPAPP and
-                self.status == amo.STATUS_APPROVED and
-                self.current_version):
-            files = (self.current_version.files
-                         .filter(platform=amo.PLATFORM_ANDROID.id))
-            try:
-                return force_text(files[0].get_localepicker())
-            except IndexError:
-                pass
-        return ''
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
