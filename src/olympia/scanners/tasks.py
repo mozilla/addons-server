@@ -19,17 +19,22 @@ log = olympia.core.logger.getLogger('z.scanners.task')
 def run_scanner(results, upload_pk, scanner, api_url, api_key):
     """
     Run a scanner on a FileUpload via RPC and store the results.
+
+    - `results` are the validation results passed in the validation chain. This
+       task is a validation task, which is why it must receive the validation
+       results as first argument.
+    - `upload_pk` is the FileUpload ID.
     """
     scanner_name = SCANNERS.get(scanner)
     log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name,
              upload_pk)
 
-    upload = FileUpload.objects.get(pk=upload_pk)
-
-    if not upload.path.endswith('.xpi'):
-        log.info('Not running scanner "%s" for FileUpload %s, it is not a xpi '
-                 'file.', scanner_name, upload_pk)
+    if not results['metadata']['is_webextension']:
+        log.info('Not running scanner "%s" for FileUpload %s, it is not a '
+                 'webextension.', upload_pk)
         return results
+
+    upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
         if not os.path.exists(upload.path):

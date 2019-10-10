@@ -20,7 +20,9 @@ class TestRunScanner(UploadTest, TestCase):
         super(TestRunScanner, self).setUp()
 
         self.upload = self.get_upload('webextension.xpi')
-        self.results = {**amo.VALIDATOR_SKELETON_RESULTS}
+        self.results = {**amo.VALIDATOR_SKELETON_RESULTS, 'metadata': {
+            'is_webextension': True,
+        }}
 
     def create_response(self, status_code=200, data=None):
         response = mock.Mock(status_code=status_code)
@@ -28,11 +30,14 @@ class TestRunScanner(UploadTest, TestCase):
         return response
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
-    def test_skip_non_xpi_files(self):
+    def test_skip_non_webextensions(self):
         upload = self.get_upload('search.xml')
+        results = {**amo.VALIDATOR_SKELETON_RESULTS, 'metadata': {
+            'is_webextension': False,
+        }}
 
         returned_results = run_scanner(
-            self.results,
+            results,
             upload.pk,
             scanner=self.FAKE_SCANNER,
             api_url=self.API_URL,
@@ -40,7 +45,7 @@ class TestRunScanner(UploadTest, TestCase):
         )
 
         assert len(ScannersResult.objects.all()) == 0
-        assert returned_results == self.results
+        assert returned_results == results
 
     @override_settings(SCANNER_TIMEOUT=123)
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
