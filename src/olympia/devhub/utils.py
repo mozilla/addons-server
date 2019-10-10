@@ -17,6 +17,7 @@ from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
+from olympia.scanners.tasks import run_customs, run_wat
 from olympia.tags.models import Tag
 from olympia.users.models import (
     DeveloperAgreementRestriction, UserRestrictionHistory
@@ -259,6 +260,12 @@ class Validator(object):
 
             if waffle.switch_is_active('enable-yara'):
                 tasks_in_parallel.append(run_yara.s(file_.pk))
+
+            if waffle.switch_is_active('enable-customs'):
+                tasks_in_parallel.append(run_customs.s(file_.pk))
+
+            if waffle.switch_is_active('enable-wat'):
+                tasks_in_parallel.append(run_wat.s(file_.pk))
 
             validation_tasks = [
                 tasks.create_initial_validation_results.si(),
