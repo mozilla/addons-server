@@ -11,7 +11,7 @@ uid=$(ls -nd . | awk '{ print $3 }')
 
 # Create an `olympia` user with that ID, and the current directory
 # as its home directory.
-if [[ $uid -ne 0 ]]; then
+if [[ $uid -eq 0 ]]; then
     # Don't try and create a user with uid 0 since it will fail.
     # Works around issue with docker for mac running containers
     # as root and not the user. Instead we just create the olympia
