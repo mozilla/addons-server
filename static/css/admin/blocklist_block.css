@@ -1,0 +1,4 @@
+.field-review_listed label,
+.field-review_unlisted label {
+    display: none;
+}
