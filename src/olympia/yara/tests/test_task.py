@@ -64,11 +64,16 @@ class TestRunYara(UploadTest, TestCase):
             },
         }
         assert incr_mock.called
-        incr_mock.assert_called_with('devhub.yara.success')
+        assert incr_mock.call_count == 2
+        incr_mock.assert_has_calls([
+            mock.call('devhub.yara.has_matches'),
+            mock.call('devhub.yara.success'),
+        ])
         # The task should always return the results.
         assert received_results == self.results
 
-    def test_run_no_matches_with_mocks(self):
+    @mock.patch('olympia.yara.tasks.statsd.incr')
+    def test_run_no_matches_with_mocks(self, incr_mock):
         assert len(YaraResult.objects.all()) == 0
 
         # This compiled rule will never match.
@@ -81,6 +86,9 @@ class TestRunYara(UploadTest, TestCase):
         assert yara_result.matches == []
         # The task should always return the results.
         assert received_results == self.results
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_called_with('devhub.yara.success')
 
     def test_run_ignores_directories(self):
         upload = self.get_upload('webextension_signed_already.xpi')
