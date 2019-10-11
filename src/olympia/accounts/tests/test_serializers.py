@@ -218,15 +218,10 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
 
     def test_expose_fxa_edit_email_url(self):
         fxa_host = 'http://example.com'
-        fxa_config = {
-            'default': {
-                'content_host': fxa_host,
-            },
-        }
         user_fxa_id = 'ufxa-id-123'
         self.user.update(fxa_id=user_fxa_id)
 
-        with override_settings(FXA_CONFIG=fxa_config):
+        with override_settings(FXA_CONTENT_HOST=fxa_host):
             expected_url = urlparams('{}/settings'.format(fxa_host),
                                      uid=user_fxa_id, email=self.user_email,
                                      entrypoint='addons')

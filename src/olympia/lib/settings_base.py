@@ -1043,6 +1043,14 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+# When testing, we always want tasks to raise exceptions. Good for sanity.
+CELERY_TASK_EAGER_PROPAGATES = True
+
+# Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
+# The task can catch that and recover but should exit ASAP. Note that there is
+# a separate, shorter timeout for validation tasks.
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
+
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
@@ -1084,6 +1092,9 @@ CELERY_TASK_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'olympia.devhub.tasks.create_initial_validation_results': {
+        'queue': 'devhub'},
+    'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
@@ -1094,8 +1105,8 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
-    'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.yara.tasks.run_yara': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
@@ -1163,8 +1174,6 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
-    'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
-
 
     # Stats
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
@@ -1191,14 +1200,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
 }
-
-# When testing, we always want tasks to raise exceptions. Good for sanity.
-CELERY_TASK_EAGER_PROPAGATES = True
-
-# Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
-# The task can catch that and recover but should exit ASAP. Note that there is
-# a separate, shorter timeout for validation tasks.
-CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # See PEP 391 for formatting help.
 LOGGING = {
@@ -1449,7 +1450,7 @@ NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
 ASYNC_SIGNALS = True
 
 # Number of seconds before celery tasks will abort addon validation:
-VALIDATOR_TIMEOUT = 110
+VALIDATOR_TIMEOUT = 360
 
 # Max number of warnings/errors to show from validator. Set to None for no
 # limit.
@@ -1474,14 +1475,6 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 
 # How long to delay tasks relying on file system to cope with NFS lag.
 NFS_LAG_DELAY = 3
-
-# An approved list of domains that the authentication script will redirect to
-# upon successfully logging in or out.
-VALID_LOGIN_REDIRECTS = {
-    'builder': 'https://builder.addons.mozilla.org',
-    'builderstage': 'https://builder-addons.allizom.org',
-    'buildertrunk': 'https://builder-addons-dev.allizom.org',
-}
 
 # Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
@@ -1781,6 +1774,9 @@ SHELL_PLUS_POST_IMPORTS = (
     ('olympia', 'amo'),
 )
 
+FXA_CONTENT_HOST = 'https://accounts.firefox.com'
+FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
+FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 
@@ -1842,11 +1838,6 @@ BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
-
-AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
-AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
-AKISMET_API_TIMEOUT = 5
-AKISMET_REAL_SUBMIT = False
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
 

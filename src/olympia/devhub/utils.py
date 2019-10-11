@@ -1,29 +1,30 @@
-import copy
 import uuid
 
+import waffle
+
+from celery import chain, chord
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
-import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import amo, core
-from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
+from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.lib.akismet.models import AkismetReport
+from olympia.scanners.tasks import run_customs, run_wat
 from olympia.tags.models import Tag
-from olympia.translations.models import Translation
 from olympia.users.models import (
     DeveloperAgreementRestriction, UserRestrictionHistory
 )
 from olympia.versions.compare import version_int
 from olympia.versions.utils import process_color_value
+from olympia.yara.tasks import run_yara
 
 from . import tasks
 
@@ -228,7 +229,7 @@ class Validator(object):
     legacy add-ons and search plugins to avoid running the linter.
     """
 
-    def __init__(self, file_, addon=None, listed=None):
+    def __init__(self, file_, addon=None, listed=None, final_task=None):
         self.addon = addon
         self.file = None
         self.prev_file = None
@@ -237,7 +238,6 @@ class Validator(object):
             assert listed is not None
             channel = (amo.RELEASE_CHANNEL_LISTED if listed else
                        amo.RELEASE_CHANNEL_UNLISTED)
-            save = tasks.handle_upload_validation_result
             is_mozilla_signed = False
 
             # We're dealing with a bare file upload. Try to extract the
@@ -253,7 +253,31 @@ class Validator(object):
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
-            validate_task = self.validate_upload(file_, channel)
+
+            assert not file_.validation
+
+            tasks_in_parallel = [tasks.forward_linter_results.s(file_.pk)]
+
+            if waffle.switch_is_active('enable-yara'):
+                tasks_in_parallel.append(run_yara.s(file_.pk))
+
+            if waffle.switch_is_active('enable-customs'):
+                tasks_in_parallel.append(run_customs.s(file_.pk))
+
+            if waffle.switch_is_active('enable-wat'):
+                tasks_in_parallel.append(run_wat.s(file_.pk))
+
+            validation_tasks = [
+                tasks.create_initial_validation_results.si(),
+                repack_fileupload.s(file_.pk),
+                tasks.validate_upload.s(file_.pk, channel),
+                chord(
+                    tasks_in_parallel,
+                    tasks.handle_upload_validation_result.s(file_.pk,
+                                                            channel,
+                                                            is_mozilla_signed)
+                ),
+            ]
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
@@ -262,30 +286,27 @@ class Validator(object):
 
             channel = file_.version.channel
             is_mozilla_signed = file_.is_mozilla_signed_extension
-            save = tasks.handle_file_validation_result
-            validate_task = self.validate_file(file_)
 
             self.file = file_
             self.addon = self.file.version.addon
             addon_data = {'guid': self.addon.guid,
                           'version': self.file.version.version}
+
+            validation_tasks = [
+                tasks.create_initial_validation_results.si(),
+                tasks.validate_file.s(file_.pk),
+                tasks.handle_file_validation_result.s(file_.pk)
+            ]
         else:
             raise ValueError
 
-        # Fallback error handler to save a set of exception results, in case
-        # anything unexpected happens during processing.
-        self.on_error = self.error_handler(
-            save, file_, channel, is_mozilla_signed)
+        if final_task:
+            validation_tasks.append(final_task)
 
-        # When the validation jobs complete, pass the results to the
-        # appropriate save task for the object type.
-        self.task = (
-            validate_task.on_error(self.on_error) |
-            save.s(file_.pk, channel, is_mozilla_signed)
-        )
+        self.task = chain(*validation_tasks)
 
-        # Create a cache key for the task, so multiple requests to
-        # validate the same object do not result in duplicate tasks.
+        # Create a cache key for the task, so multiple requests to validate the
+        # same object do not result in duplicate tasks.
         opts = file_._meta
         self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
             opts.app_label, opts.object_name, file_.pk, listed)
@@ -294,24 +315,6 @@ class Validator(object):
         """Return task chain to execute to trigger validation."""
         return self.task
 
-    @staticmethod
-    def error_handler(save_task, file_, channel, is_mozilla_signed):
-        """Return the task error handler."""
-        results = copy.deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-        return save_task.si(results, file_.pk, channel, is_mozilla_signed)
-
-    @staticmethod
-    def validate_file(file):
-        """Return a subtask to validate a File instance."""
-        return tasks.validate_file.si(file.pk)
-
-    @staticmethod
-    def validate_upload(upload, channel):
-        """Return a subtask to validate a FileUpload instance."""
-        assert not upload.validation
-
-        return tasks.validate_upload.si(upload.pk, channel=channel)
-
 
 def add_dynamic_theme_tag(version):
     if version.channel != amo.RELEASE_CHANNEL_LISTED:
@@ -319,56 +322,6 @@ def add_dynamic_theme_tag(version):
     files = version.all_files
     if any('theme' in file_.webext_permissions_list for file_ in files):
         Tag(tag_text='dynamic theme').save_tag(version.addon)
-
-
-def fetch_existing_translations_from_addon(addon, properties):
-    translation_ids_gen = (
-        getattr(addon, prop + '_id', None) for prop in properties)
-    translation_ids = [id_ for id_ in translation_ids_gen if id_]
-    # Just get all the values together to make it simplier
-    return {
-        str(value)
-        for value in Translation.objects.filter(id__in=translation_ids)}
-
-
-def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
-                              addon=None, data=None, existing_data=()):
-    if not waffle.switch_is_active('akismet-spam-check'):
-        return []
-    assert addon or upload
-    properties = ('name', 'summary', 'description')
-
-    if upload:
-        addon = addon or upload.addon
-        if not data:
-            try:
-                data = Addon.resolve_webext_translations(
-                    parse_addon(upload, addon, user, minimal=True), upload)
-            except ValidationError:
-                # The xpi is broken - it'll be rejected by the linter so abort.
-                return []
-
-    reports = []
-    for prop in properties:
-        locales = data.get(prop)
-        if not locales:
-            continue
-        if isinstance(locales, dict):
-            # Avoid spam checking the same value more than once by using a set.
-            locale_values = set(locales.values())
-        else:
-            # It's not a localized dict, it's a flat string; wrap it anyway.
-            locale_values = {locales}
-        for comment in locale_values:
-            if not comment or comment in existing_data:
-                # We don't want to submit empty or unchanged content
-                continue
-            report = AkismetReport.create_for_addon(
-                upload=upload, addon=addon, user=user, property_name=prop,
-                property_value=comment, user_agent=user_agent,
-                referrer=referrer)
-            reports.append((prop, report))
-    return reports
 
 
 def extract_theme_properties(addon, channel):

@@ -10,7 +10,6 @@ from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
 from zipfile import BadZipfile
-import waffle
 
 from django.conf import settings
 from django.core.cache import cache
@@ -35,63 +34,50 @@ from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
-from olympia.lib.akismet.models import AkismetReport
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     InvalidManifest, NoManifestFound, parse_addon, SafeZip,
     UnsupportedFileType)
-from olympia.files.tasks import repack_fileupload
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
-from olympia.scanners.tasks import run_customs, run_wat
-from olympia.yara.tasks import run_yara
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None, subtask=None, synchronous=False,
-             pretask=None):
+def validate(file_, listed=None, final_task=None):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that
     task.
 
-    file_ can be either a File or FileUpload; if File then listed must be
-    None; if FileUpload listed must be specified."""
+    file_ can be either a File or FileUpload; if File then listed must be None;
+    if FileUpload listed must be specified.
+
+    final_task can be either None or a task that gets called after all the
+    validation tasks.
+    """
 
     # Import loop.
     from .utils import Validator
 
-    validator = Validator(file_, listed=listed)
+    validator = Validator(file_, listed=listed, final_task=final_task)
 
     task_id = cache.get(validator.cache_key)
 
-    if not synchronous and task_id:
+    if task_id:
         return AsyncResult(task_id)
     else:
-        # Note: pretask should never have ignore_result=False, as passing a
-        # result this would modify the arguments expected by the tasks
-        # afterwards and that would make @validation_task fail with mismatched
-        # arguments.
-        task = validator.get_task()
-        chain = task if pretask is None else pretask | task
-        if subtask is not None:
-            chain |= subtask
-
-        if synchronous:
-            result = chain.apply()
-        else:
-            result = chain.delay()
-
-            cache.set(validator.cache_key, result.task_id, 5 * 60)
-
+        result = validator.get_task().delay()
+        cache.set(validator.cache_key, result.task_id, 5 * 60)
         return result
 
 
-def validate_and_submit(addon, file_, channel, pretask=None):
+def validate_and_submit(addon, file_, channel):
     return validate(
-        file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-        subtask=submit_file.si(addon.pk, file_.pk, channel), pretask=pretask)
+        file_,
+        listed=(channel == amo.RELEASE_CHANNEL_LISTED),
+        final_task=submit_file.si(addon.pk, file_.pk, channel)
+    )
 
 
 @task
@@ -140,22 +126,56 @@ def create_version_for_upload(addon, upload, channel):
         add_dynamic_theme_tag(version)
 
 
-def validation_task(fn):
-    """Wrap a validation task so that it runs with the correct flags, then
-    parse and annotate the results before returning."""
+@task
+def create_initial_validation_results():
+    """Returns the initial validation results for the next tasks in the
+    validation chain. Should only be called directly by Validator."""
+    results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+    return results
 
-    @task(bind=True, ignore_result=False,  # We want to pass the results down.
+
+def validation_task(fn):
+    """Wrap a validation task so that it runs with the correct flags and
+    handles errors (mainly because Celery's error handling does not work for
+    us).
+
+    ALL the validation tasks but `create_initial_validation_results()` should
+    use this decorator. Tasks decorated with `@validation_task` should have the
+    following declaration:
+
+        @validation_task
+        def my_task(results, pk):
+            # ...
+            return results
+
+    Notes:
+
+    * `results` is automagically passed to each task in the validation chain
+      and created by `create_initial_validation_results()` at the beginning of
+      the chain. It MUST be the first argument of the task.
+    * `pk` is passed to each task when added to the validation chain.
+    * the validation chain is defined in the `Validator` class.
+    """
+    @task(bind=True,
+          ignore_result=False,  # We want to pass the results down.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
+    @use_primary_db
     @wraps(fn)
-    def wrapper(task, id_or_path, *args, **kwargs):
-        # This is necessary to prevent timeout exceptions from being set
-        # as our result, and replacing the partial validation results we'd
-        # prefer to return.
+    def wrapper(task, results, pk, *args, **kwargs):
+        # This is necessary to prevent timeout exceptions from being set as our
+        # result, and replacing the partial validation results we'd prefer to
+        # return.
         task.ignore_result = True
         try:
-            data = fn(id_or_path, **kwargs)
-            results = json.loads(force_text(data))
-            return results
+            # All validation tasks should receive `results`.
+            if not results:
+                raise Exception('Unexpected call to a validation task without '
+                                '`results`')
+
+            if results['errors'] > 0:
+                return results
+
+            return fn(results, pk, *args, **kwargs)
         except UnsupportedFileType as exc:
             results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
             annotations.insert_validation_message(
@@ -180,23 +200,27 @@ def validation_task(fn):
 
 
 @validation_task
-@use_primary_db
-def validate_upload(upload_pk, channel):
-    """
-    Repack and then validate a FileUpload.
+def validate_upload(results, upload_pk, channel):
+    """Validate a FileUpload instance.
 
-    This only exists to get repack_fileupload() and validate_file_path()
-    into a single task that is wrapped by @validation_task. We do this because
-    with Celery < 4.2, on_error is never executed for task chains, so we use
-    a task decorated by @validation_task which takes care of it for us. Once
-    we upgrade to Celery 4.2, we stop calling repack_fileupload() here and just
-    have Validator.task return a chain with those 2 tasks when it's dealing
-    with a FileUpload.
-    https://github.com/mozilla/addons-server/issues/9068#issuecomment-473255011
-    """
+    Should only be called directly by Validator."""
     upload = FileUpload.objects.get(pk=upload_pk)
-    repack_fileupload(upload.pk)
-    return validate_file_path(upload.path, channel)
+    data = validate_file_path(upload.path, channel)
+    return {**results, **json.loads(force_text(data))}
+
+
+@validation_task
+def validate_file(results, file_pk):
+    """Validate a File instance. If cached validation results exist, return
+    those, otherwise run the validator.
+
+    Should only be called directly by Validator."""
+    file = File.objects.get(pk=file_pk)
+    if file.has_been_validated:
+        data = file.validation.validation
+    else:
+        data = validate_file_path(file.current_file_path, file.version.channel)
+    return {**results, **json.loads(force_text(data))}
 
 
 def validate_file_path(path, channel):
@@ -247,60 +271,32 @@ def validate_file_path(path, channel):
 
 
 @validation_task
-def validate_file(file_id):
-    """Validate a File instance. If cached validation results exist, return
-    those, otherwise run the validator.
-
-    Should only be called directly by Validator."""
-
-    file_ = File.objects.get(pk=file_id)
-    try:
-        return file_.validation.validation
-    except FileValidation.DoesNotExist:
-        return validate_file_path(
-            file_.current_file_path, file_.version.channel)
+def forward_linter_results(results, upload_pk):
+    """This task is used in the chord of the validation chain to pass the
+    linter results to `handle_upload_validation_result()` (the callback of the
+    chord).
+    """
+    log.info('Called forward_linter_results() for upload_pk = %d', upload_pk)
+    return results
 
 
 @task
 @use_primary_db
-def handle_upload_validation_result(
-        results, upload_pk, channel, is_mozilla_signed):
+def handle_upload_validation_result(all_results, upload_pk, channel,
+                                    is_mozilla_signed):
     """Annotate a set of validation results and save them to the given
-    FileUpload instance."""
+    FileUpload instance.
+
+    This task is the callback of the Celery chord in the validation chain. It
+    receives all the results returned by all the tasks in this chord (in
+    `all_results`).
+    """
+    # This task is the callback of a Celery chord and receives all the results
+    # returned by all the tasks in this chord. The first task registered in the
+    # chord is `forward_linter_results()`:
+    results = all_results[0]
+
     upload = FileUpload.objects.get(pk=upload_pk)
-
-    if waffle.switch_is_active('enable-yara') and results['errors'] == 0:
-        # Run Yara. This cannot be asynchronous because we have no way to know
-        # whether the task will complete before we attach a `Version` to it
-        # later in the submission process... Because we cannot use `chord`
-        # reliably right now (requires Celery 4.2+), this task is actually not
-        # run as a task, it's a simple function call.
-        #
-        # TODO: use `run_yara` as a task in the submission chord once it is
-        # possible. See: https://github.com/mozilla/addons-server/issues/12216
-        run_yara(upload.pk)
-
-    if waffle.switch_is_active('enable-customs') and results['errors'] == 0:
-        # Run customs. This cannot be asynchronous because we have no way to
-        # know whether the task will complete before we attach a `Version` to
-        # it later in the submission process... Because we cannot use `chord`
-        # reliably right now (requires Celery 4.2+), this task is actually not
-        # run as a task, it's a simple function call.
-        #
-        # TODO: use `run_customs` as a task in the submission chord once it is
-        # possible. See: https://github.com/mozilla/addons-server/issues/12217
-        run_customs(upload.pk)
-
-    if waffle.switch_is_active('enable-wat') and results['errors'] == 0:
-        # Run wat. This cannot be asynchronous because we have no way to know
-        # whether the task will complete before we attach a `Version` to it
-        # later in the submission process... Because we cannot use `chord`
-        # reliably right now (requires Celery 4.2+), this task is actually not
-        # run as a task, it's a simple function call.
-        #
-        # TODO: use `run_wat` as a task in the submission chord once it is
-        # possible. See: https://github.com/mozilla/addons-server/issues/12224
-        run_wat(upload.pk)
 
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no search plugin
@@ -308,12 +304,6 @@ def handle_upload_validation_result(
         results = check_for_api_keys_in_file(results=results, upload=upload)
     except (ValidationError, BadZipfile, IOError):
         pass
-
-    # Annotate results with akismet reports results if there are any.
-    reports = AkismetReport.objects.filter(upload_instance=upload)
-    akismet_results = [
-        (report.comment_type, report.result) for report in reports]
-    annotations.annotate_akismet_spam_check(results, akismet_results)
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:

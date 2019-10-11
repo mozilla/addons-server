@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-02-18 18:27+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-10-02 01:37+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -27,8 +27,8 @@ msgstr "სერვერთან დაკავშირება ვერ 
 msgid "Select a file..."
 msgstr "ფაილის არჩევა..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "თქვენი დამატების დაბოლოება უნდა იყოს .zip, .xpi, .crx, .jar ან .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "თქვენი დამატების დაბოლოება უნდა იყოს .zip, .xpi, .crx ან .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -713,12 +713,6 @@ msgstr "ამ თარგმანის ამოშლა"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} პირველმა მოინახულა ეს გვერდი."
-
-msgid "Receipt checked by app."
-msgstr "დასტური მიღებულია პროგრამის მიერ."
-
-msgid "Receipt was not checked by app."
-msgstr "დასტური არაა მიღებული პროგრამის მიერ."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} პირველმა იხილა ეს დამატება."

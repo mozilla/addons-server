@@ -3,10 +3,13 @@ import json
 from django.contrib.admin.sites import AdminSite
 from django.utils.html import format_html
 
+from pyquery import PyQuery as pq
+
 from olympia import amo
 from olympia.amo.tests import (TestCase, addon_factory, user_factory,
                                version_factory)
 from olympia.amo.urlresolvers import reverse
+from olympia.constants.scanners import CUSTOMS, WAT
 from olympia.scanners.admin import ScannersResultAdmin
 from olympia.scanners.models import ScannersResult
 
@@ -71,7 +74,7 @@ class TestScannersResultAdmin(TestCase):
         )
         result = ScannersResult(version=version)
 
-        assert self.admin.channel(result) == 'listed'
+        assert self.admin.channel(result) == 'Listed'
 
     def test_unlisted_channel(self):
         version = version_factory(
@@ -80,7 +83,7 @@ class TestScannersResultAdmin(TestCase):
         )
         result = ScannersResult(version=version)
 
-        assert self.admin.channel(result) == 'unlisted'
+        assert self.admin.channel(result) == 'Unlisted'
 
     def test_channel_without_version(self):
         result = ScannersResult(version=None)
@@ -100,3 +103,25 @@ class TestScannersResultAdmin(TestCase):
         result = ScannersResult()
 
         assert self.admin.formatted_results(result) == '<pre>{}</pre>'
+
+    def test_list_queries(self):
+        ScannersResult.objects.create(
+            scanner=CUSTOMS, version=addon_factory().current_version)
+        ScannersResult.objects.create(
+            scanner=WAT, version=addon_factory().current_version)
+        ScannersResult.objects.create(
+            scanner=CUSTOMS, version=addon_factory().current_version)
+
+        with self.assertNumQueries(9):
+            # 9 queries:
+            # - 2 transaction savepoints because of tests
+            # - 2 user and groups
+            # - 2 COUNT(*) on scanners results for pagination and total display
+            # - 1 scanners results and versions in one query
+            # - 1 all add-ons in one query
+            # - 1 all add-ons translations in one query
+            response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        html = pq(response.content)
+        expected_length = ScannersResult.objects.count()
+        assert html('#result_list tbody tr').length == expected_length

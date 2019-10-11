@@ -28,7 +28,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks, file_validation_annotations as annotations
-from olympia.files.models import File, FileValidation
+from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
 from olympia.files.tests.test_models import UploadTest
 from olympia.versions.models import Version
@@ -224,8 +224,8 @@ class TestMeasureValidationTime(UploadTest, TestCase):
 
     def handle_upload_validation_result(self,
                                         channel=amo.RELEASE_CHANNEL_LISTED):
-        validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        tasks.handle_upload_validation_result(validation, self.upload.pk,
+        results = [amo.VALIDATOR_SKELETON_RESULTS.copy()]
+        tasks.handle_upload_validation_result(results, self.upload.pk,
                                               channel, False)
 
     def test_track_upload_validation_results_time(self):
@@ -427,19 +427,40 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         addon = addon_factory()
         self.file = addon.current_version.all_files[0]
         assert not self.file.has_been_validated
-        file_validation_id = tasks.validate(
-            self.file, synchronous=True).get()
+        file_validation_id = tasks.validate(self.file).get()
         assert json.dumps(file_validation_id)
         # Not `self.file.reload()`. It won't update the `validation` FK.
         self.file = File.objects.get(pk=self.file.pk)
         assert self.file.has_been_validated
+
+    def test_binary_flag_set_on_addon_for_binary_extensions(self):
+        results = {
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {
+                "contains_binary_extension": True,
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes"
+            }
+        }
+        self.addon = addon_factory()
+        self.file = self.addon.current_version.all_files[0]
+        assert not self.addon.binary
+        tasks.handle_file_validation_result(results, self.file.pk)
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        assert self.addon.binary
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_validates_search_plugins_inline(self, run_addons_linter_mock):
         addon = addon_factory(file_kw={
             'filename': 'opensearch/sp_updateurl.xml'})
         file_ = addon.current_version.current_file
-        tasks.validate(file_, synchronous=True).get()
+        tasks.validate(file_).get()
 
         assert not run_addons_linter_mock.called
 
@@ -492,50 +513,6 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
             assert result['success']
             assert not result['warnings']
             assert not result['errors']
-
-    @mock.patch('olympia.devhub.tasks.repack_fileupload')
-    @mock.patch('olympia.devhub.tasks.parse_addon')
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_upload_is_repacked_before_linter_runs(
-            self, run_addons_linter_mock, parse_addon_mock,
-            repack_fileupload_mock):
-        """When validating new uploads, we are repacking before handing the xpi
-        to the linter."""
-        run_addons_linter_mock.return_value = json.dumps(
-            {'errors': 0, 'warnings': 0, 'notices': 0}
-        )
-        parse_addon_mock.return_value = {
-            'is_webextension': True
-        }
-        upload = self.get_upload(
-            abspath=self.valid_path, with_validation=False)
-        assert not upload.valid
-        tasks.validate(upload, listed=True)
-        assert parse_addon_mock.called
-        assert repack_fileupload_mock.called
-        upload.reload()
-        assert upload.valid, upload.validation
-
-    @mock.patch('olympia.devhub.tasks.repack_fileupload')
-    @mock.patch('olympia.devhub.tasks.parse_addon')
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_file_is_not_repacked_before_linter_runs(
-            self, run_addons_linter_mock, parse_addon_mock,
-            repack_fileupload_mock):
-        """When validating existing File instances, we are *not* repacking."""
-        run_addons_linter_mock.return_value = json.dumps(
-            {'errors': 0, 'warnings': 0, 'notices': 0}
-        )
-        parse_addon_mock.return_value = {
-            'is_webextension': True
-        }
-        addon = addon_factory()
-        file_ = addon.current_version.all_files[0]
-        assert not FileValidation.objects.filter(file=file_).exists()
-        tasks.validate(file_).get()
-        assert parse_addon_mock.called
-        assert not repack_fileupload_mock.called
-        assert FileValidation.objects.filter(file=file_).exists()
 
 
 class TestValidateFilePath(ValidatorTestCase):
@@ -1279,165 +1256,38 @@ def test_opensearch_validation_rel_self_url():
     assert results['errors']
 
 
-class TestHandleUploadValidationResult(UploadTest, TestCase):
-    @mock.patch('olympia.devhub.tasks.run_customs')
-    def test_calls_run_customs_with_mock(self, run_customs_mock):
-        self.create_switch('enable-customs', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
+class TestValidationTask(TestCase):
 
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
+    def setUp(self):
+        TestValidationTask.fake_task_has_been_called = False
 
-        assert run_customs_mock.called
-        run_customs_mock.assert_called_with(upload.pk)
+    @tasks.validation_task
+    def fake_task(results, pk):
+        TestValidationTask.fake_task_has_been_called = True
+        return {**results, 'fake_task_results': 1}
 
-    @mock.patch('olympia.devhub.tasks.run_customs')
-    def test_does_not_run_customs_when_validation_has_errors_with_mock(
-            self, run_customs_mock):
-        self.create_switch('enable-customs', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('invalid_webextension.xpi'),
-            with_validation=False
-        )
+    def test_returns_validator_results_when_received_results_is_none(self):
+        results = self.fake_task(None, 123)
+        assert not self.fake_task_has_been_called
+        assert results == amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT
 
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
+    def test_returns_results_when_received_results_have_errors(self):
+        results = {'errors': 1}
+        returned_results = self.fake_task(results, 123)
+        assert not self.fake_task_has_been_called
+        assert results == returned_results
 
-        assert not run_customs_mock.called
+    def test_runs_wrapped_task(self):
+        results = {'errors': 0}
+        returned_results = self.fake_task(results, 123)
+        assert TestValidationTask.fake_task_has_been_called
+        assert results != returned_results
+        assert 'fake_task_results' in returned_results
 
-    @mock.patch('olympia.devhub.tasks.run_customs')
-    def test_does_not_run_customs_when_switch_is_off_with_mock(
-            self, run_customs_mock):
-        self.create_switch('enable-customs', active=False)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
 
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
+class TestForwardLinterResults(TestCase):
 
-        assert not run_customs_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_calls_run_yara_with_mock(self, run_yara_mock):
-        self.create_switch('enable-yara', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert run_yara_mock.called
-        run_yara_mock.assert_called_with(upload.pk)
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_does_not_run_yara_when_validation_has_errors_with_mock(
-            self, run_yara_mock):
-        self.create_switch('enable-yara', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('invalid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_yara_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_does_not_run_yara_when_switch_is_off_with_mock(
-            self, run_yara_mock):
-        self.create_switch('enable-yara', active=False)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_yara_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_wat')
-    def test_calls_run_wat_with_mock(self, run_wat_mock):
-        self.create_switch('enable-wat', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert run_wat_mock.called
-        run_wat_mock.assert_called_with(upload.pk)
-
-    @mock.patch('olympia.devhub.tasks.run_wat')
-    def test_does_not_run_wat_when_validation_has_errors_with_mock(
-            self, run_wat_mock):
-        self.create_switch('enable-wat', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('invalid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_wat_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_wat')
-    def test_does_not_run_wat_when_switch_is_off_with_mock(
-            self, run_wat_mock):
-        self.create_switch('enable-wat', active=False)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_wat_mock.called
+    def test_returns_received_results(self):
+        results = {'errors': 1}
+        returned_results = tasks.forward_linter_results(results, 123)
+        assert results == returned_results

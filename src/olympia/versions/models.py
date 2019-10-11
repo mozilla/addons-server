@@ -97,6 +97,20 @@ class VersionManager(ManagerBase):
         return qs
 
 
+class UnfilteredVersionManagerForRelations(VersionManager):
+    """Like VersionManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of Versions like this:
+    <Addon>.versions(manager=unfiltered_for_relations).all(), for when you want
+    to use the related manager but need to include deleted versions.
+
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations() is
+    defined in Version for this to work.
+    """
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
+
+
 def source_upload_path(instance, filename):
     # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS
     # because we already checked for that in
@@ -151,6 +165,10 @@ class Version(OnChangeMixin, ModelBase):
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
+
+    # See UnfilteredVersionManagerForRelations() docstring for usage of this
+    # special manager.
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations()
 
     class Meta(ModelBase.Meta):
         db_table = 'versions'
@@ -273,21 +291,22 @@ class Version(OnChangeMixin, ModelBase):
 
         version_uploaded.send(instance=version, sender=Version)
 
-        try:
-            yara_result = YaraResult.objects.get(upload_id=upload.id)
-            yara_result.version = version
-            yara_result.save()
-        except YaraResult.DoesNotExist:
-            log.exception('Could not find a YaraResult for FileUpload %s',
-                          upload.id)
+        if version.is_webextension:
+            if waffle.switch_is_active('enable-yara'):
+                try:
+                    yara_result = YaraResult.objects.get(upload_id=upload.id)
+                    yara_result.version = version
+                    yara_result.save()
+                except YaraResult.DoesNotExist:
+                    log.exception('Could not find a YaraResult for FileUpload '
+                                  '%s', upload.id)
 
-        try:
-            ScannersResult.objects.filter(upload_id=upload.id).update(
-                version=version
-            )
-        except ScannersResult.DoesNotExist:
-            log.exception('Could not find ScannersResults for FileUpload %s',
-                          upload.id)
+            if (
+                    waffle.switch_is_active('enable-customs') or
+                    waffle.switch_is_active('enable-wat')
+            ):
+                ScannersResult.objects.filter(upload_id=upload.id).update(
+                    version=version)
 
         # Extract this version into git repository
         transaction.on_commit(
@@ -369,10 +388,11 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_activity(self):
-        from olympia.activity.models import VersionLog  # yucky
-        al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related('activity_log', 'version'))
-        return al
+        # prefetch_related() and not select_related() the ActivityLog to make
+        # sure its transformer is called.
+        return (
+            self.versionlog_set.prefetch_related('activity_log')
+                               .order_by('created'))
 
     @property
     def compatible_apps(self):
@@ -388,27 +408,12 @@ class Version(OnChangeMixin, ModelBase):
     @cached_property
     def _compatible_apps(self):
         """Get a mapping of {APP: ApplicationsVersions}."""
-        return self._compat_map(self.apps.all())
+        return self._compat_map(self.apps.all().select_related('min', 'max'))
 
     @cached_property
     def compatible_apps_ordered(self):
         apps = self.compatible_apps.items()
         return sorted(apps, key=lambda v: v[0].short)
-
-    def compatible_platforms(self):
-        """Returns a dict of compatible file platforms for this version.
-
-        The result is based on which app(s) the version targets.
-        """
-        app_ids = [a.application for a in self.apps.all()]
-        targets_mobile = amo.ANDROID.id in app_ids
-        targets_other = any((id_ != amo.ANDROID.id) for id_ in app_ids)
-        all_plats = {}
-        if targets_other:
-            all_plats.update(amo.DESKTOP_PLATFORMS)
-        if targets_mobile:
-            all_plats.update(amo.MOBILE_PLATFORMS)
-        return all_plats
 
     @cached_property
     def is_compatible_by_default(self):
@@ -564,14 +569,22 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def transformer_activity(cls, versions):
         """Attach all the activity to the versions."""
-        from olympia.activity.models import VersionLog  # yucky
+        from olympia.activity.models import VersionLog
 
         ids = set(v.id for v in versions)
         if not versions:
             return
 
-        al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related('activity_log', 'version'))
+        # Ideally, we'd start from the ActivityLog, but because VersionLog
+        # to ActivityLog isn't a OneToOneField, we wouldn't be able to find
+        # the version easily afterwards - we can't even do a
+        # select_related('versionlog') and try to traverse the relation to find
+        # the version. So, instead, start from VersionLog, but make sure to use
+        # prefetch_related() (and not select_related() - yes, it's one extra
+        # query, but it's worth it to benefit from the default transformer) so
+        # that the ActivityLog default transformer is called.
+        al = VersionLog.objects.prefetch_related('activity_log').filter(
+            version__in=ids).order_by('created')
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')

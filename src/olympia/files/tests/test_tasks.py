@@ -1,26 +1,31 @@
 # -*- coding: utf-8 -*-
 from unittest import mock
+import tempfile
 import zipfile
+
+from django.conf import settings
 
 from olympia.amo.tests import TestCase
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
+from olympia.files.utils import SafeZip
 
 
 class TestRepackFileUpload(UploadTest, TestCase):
     @mock.patch('olympia.files.tasks.move_stored_file')
     @mock.patch('olympia.files.tasks.get_sha256')
     @mock.patch('olympia.files.tasks.shutil')
-    @mock.patch('olympia.files.tasks.extract_zip')
+    @mock.patch.object(SafeZip, 'extract_to_dest')
     def test_not_repacking_non_xpi_files_with_mocks(
-            self, extract_zip_mock, shutil_mock, get_sha256_mock,
+            self, extract_to_dest_mock, shutil_mock, get_sha256_mock,
             move_stored_file_mock):
         """Test we're not repacking non-xpi files"""
         upload = self.get_upload('search.xml')
         old_hash = upload.hash
         assert old_hash.startswith('sha256:')
-        repack_fileupload(upload.pk)
-        assert not extract_zip_mock.called
+        fake_results = {'errors': 0}
+        repack_fileupload(fake_results, upload.pk)
+        assert not extract_to_dest_mock.called
         assert not shutil_mock.make_archive.called
         assert not get_sha256_mock.called
         assert not move_stored_file_mock.called
@@ -30,16 +35,19 @@ class TestRepackFileUpload(UploadTest, TestCase):
     @mock.patch('olympia.files.tasks.move_stored_file')
     @mock.patch('olympia.files.tasks.get_sha256')
     @mock.patch('olympia.files.tasks.shutil')
-    @mock.patch('olympia.files.tasks.extract_zip')
+    @mock.patch.object(SafeZip, 'extract_to_dest')
     def test_repacking_xpi_files_with_mocks(
-            self, extract_zip_mock, shutil_mock, get_sha256_mock,
+            self, extract_to_dest_mock, shutil_mock, get_sha256_mock,
             move_stored_file_mock):
         """Opposite of test_not_repacking_non_xpi_files() (using same mocks)"""
         upload = self.get_upload('webextension.xpi')
         get_sha256_mock.return_value = 'fakehashfrommock'
-        extract_zip_mock.return_value = '/tmp/faketempdir'
-        repack_fileupload(upload.pk)
-        assert extract_zip_mock.called
+        fake_results = {'errors': 0}
+        repack_fileupload(fake_results, upload.pk)
+        assert extract_to_dest_mock.called
+        tempdir = extract_to_dest_mock.call_args[0][0]
+        assert tempdir.startswith(tempfile.gettempdir())  # On local filesystem
+        assert not tempdir.startswith(settings.TMP_PATH)  # Not on EFS
         assert shutil_mock.make_archive.called
         assert get_sha256_mock.called
         assert move_stored_file_mock.called
@@ -52,7 +60,8 @@ class TestRepackFileUpload(UploadTest, TestCase):
         # that structure is restored once the file has been moved.
         upload = self.get_upload('unicode-filenames.xpi')
         original_hash = upload.hash
-        repack_fileupload(upload.pk)
+        fake_results = {'errors': 0}
+        repack_fileupload(fake_results, upload.pk)
         upload.reload()
         assert upload.hash.startswith('sha256:')
         assert upload.hash != original_hash

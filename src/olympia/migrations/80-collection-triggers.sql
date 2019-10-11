@@ -1,2 +1,0 @@
-DROP TRIGGER IF EXISTS collections_update_subscriber_count_delete;
-DROP TRIGGER IF EXISTS collections_update_subscriber_count_insert;

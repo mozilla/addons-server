@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2019-07-14 11:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -477,9 +477,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr "Girilen metin spam olarak işaretlendi."
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu kısa ad başka bir koleksiyonunuz tarafından kullanılıyor."
@@ -828,6 +825,10 @@ msgstr "Yönetici tema incelemesi istendi"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} hafif bir temadan taşındı."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "{user} adlı kullanıcı kısıtlandı."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1458,10 +1459,6 @@ msgstr "Thunderbird ve SeaMonkey eklentileri artık addons.thunderbird.net adres
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Yükseltmeye izin veriyoruz ve hatta öneriyoruz ama bu işlemi geri alamazsınız. Kullanıcılarınız bir kez WebExtension'ı yükledikten sonra eski nesil eklentiyi yükleyemezler."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Girilen metin spam olarak işaretlendi."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Bu kısa ad zaten kullanımda. Lütfen başka bir kısa ad seçin."
@@ -3104,6 +3101,7 @@ msgstr "Yeniden hoş geldiniz"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Daha fazla bilgi"
 
@@ -3267,12 +3265,6 @@ msgstr "İnceleme Geçmişi"
 
 msgid "Close Review History"
 msgstr "İnceleme geçmişini kapat"
-
-msgid "Not validated."
-msgstr "Doğrulanmadı."
-
-msgid "Validate now."
-msgstr "Şimdi doğrulayın."
 
 msgid "Request Review"
 msgstr "İncelenmesini iste"
@@ -4829,6 +4821,40 @@ msgstr "Videoları {start_sub_heading}{addon_name} ile{end_sub_heading} indirin"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Eski teknoloji eklentiler artık Firefox'ta desteklenmemektedir."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+# 95%
+# 100%
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Tüm eklentilere göz atın"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Eklentiler"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4884,7 +4910,6 @@ msgstr "Yüklenen dosya çözümlenemedi."
 msgid "Unsupported archive type."
 msgstr "Desteklenmeyen arşiv türü."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4892,6 +4917,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "Arşivdeki geçersiz dosya adı: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Arşivde boyut sınırını aşan dosya: {0}"
 
@@ -5030,50 +5056,6 @@ msgstr "Yüklenen dosyada dosya yok."
 
 msgid "Fetching file."
 msgstr "Dosya getiriliyor."
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "Site durumu"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Rapor Türü"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Hata bildir"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Henüz puanlanmamış"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Sürüm gönderildi"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Yeni siteye bak"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Yeni dosya gönder"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Yeni dosya gönder"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla Eklentileri Hakkında"
@@ -6516,6 +6498,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr "Seçilen kullanıcıları engelle"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API Anahtarlarını Yönet"
 
 msgid "Profile Photo"
 msgstr "Profil Resmi"

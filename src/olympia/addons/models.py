@@ -15,7 +15,6 @@ from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
-from django.utils.encoding import force_text
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
@@ -722,7 +721,7 @@ class Addon(OnChangeMixin, ModelBase):
         return data
 
     def get_url_path(self, add_prefix=True):
-        if not self.current_version:
+        if not self._current_version_id:
             return ''
         return reverse(
             'addons.detail', args=[self.slug], add_prefix=add_prefix)
@@ -809,16 +808,21 @@ class Addon(OnChangeMixin, ModelBase):
         # would exclude a version if *any* of its files match but if there is
         # only one file that doesn't have one of the excluded statuses it
         # should be enough for that version to be considered.
-        statuses_no_disabled = (
-            set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
+        params = {
+            'files__status__in': (
+                set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude)
+            )
+        }
+        if channel is not None:
+            params['channel'] = channel
         try:
-            latest_qs = (
-                Version.objects.filter(addon=self)
-                       .filter(files__status__in=statuses_no_disabled))
-            if channel is not None:
-                latest_qs = latest_qs.filter(channel=channel)
+            # Avoid most transformers - keep translations because they don't
+            # get automatically fetched if you just access the field without
+            # having made the query beforehand, and we don't know what callers
+            # will want ; but for the rest of them, since it's a single
+            # instance there is no reason to call the default transformers.
+            latest_qs = self.versions.filter(**params).only_translations()
             latest = latest_qs.latest()
-            latest.addon = self
         except Version.DoesNotExist:
             latest = None
         return latest
@@ -1370,19 +1374,6 @@ class Addon(OnChangeMixin, ModelBase):
         """NULLify strings in this locale for the add-on and versions."""
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
-
-    def get_localepicker(self):
-        """For language packs, gets the contents of localepicker."""
-        if (self.type == amo.ADDON_LPAPP and
-                self.status == amo.STATUS_APPROVED and
-                self.current_version):
-            files = (self.current_version.files
-                         .filter(platform=amo.PLATFORM_ANDROID.id))
-            try:
-                return force_text(files[0].get_localepicker())
-            except IndexError:
-                pass
-        return ''
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):

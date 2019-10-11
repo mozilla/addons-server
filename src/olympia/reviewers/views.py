@@ -1,7 +1,7 @@
 import json
 import time
 
-from collections import OrderedDict, defaultdict
+from collections import OrderedDict
 from datetime import date, datetime, timedelta
 
 from django import http
@@ -35,7 +35,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import (
-    ActivityLog, AddonLog, CommentLog, DraftComment)
+    ActivityLog, CommentLog, DraftComment)
 from olympia.addons.decorators import (
     addon_view, addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import (
@@ -629,49 +629,6 @@ def queue_expired_info_requests(request):
                   qs=qs, SearchForm=None)
 
 
-def _get_comments_for_hard_deleted_versions(addon):
-    """Versions are soft-deleted now but we need to grab review history for
-    older deleted versions that were hard-deleted so the only record we have
-    of them is in the review log.  Hard deletion was pre Feb 2016.
-
-    We don't know if they were unlisted or listed but given the time overlap
-    they're most likely listed so we assume that."""
-    class PseudoVersion(object):
-        def __init__(self):
-            self.all_activity = []
-
-        all_files = ()
-        approval_notes = None
-        compatible_apps_ordered = ()
-        release_notes = None
-        status = 'Deleted'
-        deleted = True
-        channel = amo.RELEASE_CHANNEL_LISTED
-        is_ready_for_auto_approval = False
-
-        @property
-        def created(self):
-            return self.all_activity[0].created
-
-        @property
-        def version(self):
-            return (self.all_activity[0].activity_log
-                        .details.get('version', '[deleted]'))
-
-    comments = (CommentLog.objects
-                .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
-                        activity_log__versionlog=None,
-                        activity_log__addonlog__addon=addon)
-                .order_by('created')
-                .select_related('activity_log'))
-
-    comment_versions = defaultdict(PseudoVersion)
-    for c in comments:
-        c.version = c.activity_log.details.get('version', c.created)
-        comment_versions[c.version].all_activity.append(c)
-    return list(comment_versions.values())
-
-
 def perform_review_permission_checks(
         request, addon, channel, content_review_only=False):
     """Perform the permission checks needed by the review() view or anything
@@ -839,7 +796,7 @@ def review(request, addon, channel=None):
     # cached validation, since reviewers will almost certainly need to access
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
-    if version and not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
+    if version and not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False):
         for file_ in version.all_files:
             if not file_.has_been_validated:
                 devhub_tasks.validate(file_)
@@ -876,25 +833,26 @@ def review(request, addon, channel=None):
     # the comments form).
     actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
-    versions = (Version.unfiltered.filter(addon=addon, channel=channel)
-                                  .select_related('autoapprovalsummary')
-                                  .order_by('-created')
-                                  .transform(Version.transformer_activity)
-                                  .transform(Version.transformer))
-
-    # We assume comments on old deleted versions are for listed versions.
-    # See _get_comments_for_hard_deleted_versions above for more detail.
-    all_versions = (_get_comments_for_hard_deleted_versions(addon)
-                    if channel == amo.RELEASE_CHANNEL_LISTED else [])
-    all_versions.extend(versions)
-    all_versions.sort(key=lambda v: v.created,
-                      reverse=True)
+    # Queryset to be paginated for versions. We use the default ordering to get
+    # most recently created first (Note that the template displays each page
+    # in reverse order, older first).
+    versions_qs = (
+        # We want to load all Versions, even deleted ones, while using the
+        # addon.versions related manager to get `addon` property pre-cached on
+        # each version.
+        addon.versions(manager='unfiltered_for_relations')
+             .filter(channel=channel)
+             .select_related('autoapprovalsummary')
+        # Add activity transformer to prefetch all related activity logs on
+        # top of the regular transformers.
+             .transform(Version.transformer_activity)
+    )
 
     deleted_addon_ids = (
         ReusedGUID.objects.filter(guid=addon.guid).values_list(
             'addon_id', flat=True) if addon.guid else [])
 
-    pager = paginate(request, all_versions, 10)
+    pager = paginate(request, versions_qs, 10)
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
@@ -928,9 +886,8 @@ def review(request, addon, channel=None):
         amo.LOG.ADD_USER_WITH_ROLE.id,
         amo.LOG.CHANGE_USER_WITH_ROLE.id,
         amo.LOG.REMOVE_USER_WITH_ROLE.id]
-    user_changes_log = AddonLog.objects.filter(
-        activity_log__action__in=user_changes_actions,
-        addon=addon).order_by('id')
+    user_changes_log = ActivityLog.objects.filter(
+        action__in=user_changes_actions, addonlog__addon=addon).order_by('id')
     ctx = context(
         actions=actions, actions_comments=actions_comments,
         actions_full=actions_full, addon=addon,
@@ -943,7 +900,7 @@ def review(request, addon, channel=None):
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
-        user_changes=user_changes_log, user_ratings=user_ratings,
+        user_changes_log=user_changes_log, user_ratings=user_ratings,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)

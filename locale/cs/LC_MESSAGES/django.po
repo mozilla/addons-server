@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-08-21 15:09+0000\n"
-"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-10-08 05:52+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -439,7 +439,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Neplatný primární klíč nebo slug \"%s\" - objekt neexistuje."
 
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Potvrzení pro vývojářské API klíče"
 
 msgid "Application Versions"
 msgstr "Verze aplikace"
@@ -468,9 +468,6 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Pokud vámi podporovaná aplikace nevyžaduje manifest, musíte přidat takový, který obsahuje povinné atributy specifikované %(amo_manifests_mdn_link_open)szde%(amo_manifests_mdn_link_close)s."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Zadaný text byl označen jako spam."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tato URL je už používána jinou vaší sbírkou."
@@ -804,6 +801,9 @@ msgstr "Vyžádána kontrola vzhledu administrátorem"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} byl přesunut z lehkých vzhledů."
+
+msgid "User {user} api key reset."
+msgstr "API klíč uživatele {user} byl obnoven."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1425,9 +1425,6 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 "Dovolujeme a doporučujeme povýšení doplňku, ale tento proces již nebudete moci zvrátit. Jakmile budou mít uživatelé nainstalovánu WebExtension verzi, nebudou schopni nainstalovat předchozí verze "
 "vašeho doplňku."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Text v poli \"{field}\" byl vyhodnocen jako spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."
@@ -2760,10 +2757,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Pro vygenerování API klíče pro uživatele <strong>%(name)s</strong> prosím klepněte na tlačítko níže."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Na vaši e-mailovou adresu bude zaslán odkaz pro potvrzení. Po potvrzení najdete svůj API klíče na této stránce."
 
 msgid "You don't have any API credentials."
 msgstr "Nemáte žádné přihlašovací údaje k API."
@@ -2774,9 +2771,8 @@ msgstr "Revokovat"
 msgid "Revoke and regenerate credentials"
 msgstr "Revokovat a regenerovat pověření"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Generovat nová pověření"
+msgstr "Potvrdit a generovat nová pověření"
 
 msgid "Generate new credentials"
 msgstr "Generovat nová pověření"
@@ -3038,6 +3034,7 @@ msgstr "Vítejte zpátky"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Chcete své rozšíření nechat doporučit uživatelům na %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Všechny potřebné informace najdete v našich pravidlech pro doporučená rozšíření."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Dozvědět se více"
 
@@ -3201,12 +3198,6 @@ msgstr "Historie kontrol"
 
 msgid "Close Review History"
 msgstr "Zavřít historii kontrol"
-
-msgid "Not validated."
-msgstr "Není validní."
-
-msgid "Validate now."
-msgstr "Zkontrolovat."
 
 msgid "Request Review"
 msgstr "Požádat o kontrolu"
@@ -4737,6 +4728,35 @@ msgstr "Bezproblémové přehrávání videi na Androidu {start_sub_heading}dík
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Některé stránky mají potíže s přehráváním videí ve Firefoxu pro Android. Toto rozšíření poskytuje opravu."
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr "Rozšíření jsou jako aplikace pro Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "Přidávají do Firefoxu funkce s kterými je brouzdání rychlejší, bezpečnější nebo prostě jen zábavnější."
+
+#. editorial content for the secondary hero shelves.
+msgid "See all extensions"
+msgstr "Zobrazit všechna rozšíření"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr "Synchronizujte si rozšíření mezi zařízeními"
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+# Plural in this context means many of the add-on type
+msgid "Explore extensions"
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Prohlížeč souborů je uzamčen, což může být způsobeno probíhající extrakcí %s. Zkuste to prosím znovu za přibližně 5 minut."
@@ -4792,7 +4812,6 @@ msgstr "Nepodařilo se zpracovat nahrávaný soubor."
 msgid "Unsupported archive type."
 msgstr "Nepodporovaný typ archivu."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "V archivu se nachází soubor s neplatným názvem. Ujistěte se prosím, že všechny názvy souborů jsou v kódování utf-8 nebo latin1."
 
@@ -4800,6 +4819,7 @@ msgstr "V archivu se nachází soubor s neplatným názvem. Ujistěte se prosím
 msgid "Invalid file name in archive: {0}"
 msgstr "Neplatný název souboru v archivu: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Překročena velikost souboru v archivu: {0}"
 
@@ -4933,42 +4953,6 @@ msgstr "V nahraném souboru se nenachází žádné soubory."
 
 msgid "Fetching file."
 msgstr "Probíhá stahování souboru."
-
-msgid "Reported Status"
-msgstr "Hlášený stav"
-
-msgid "Reported Spam"
-msgstr "Nahlášeno jako spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Nahlášeno jako \"není spam\""
-
-msgid "Not Reported"
-msgstr "Nehlášeno"
-
-msgid "Content Submitted"
-msgstr "Obsah byl odeslán"
-
-msgid "View Rating on site"
-msgstr "Zobrazit hodnocení na webu"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Poslat Akismetu \"není spam\""
-
-msgid "Submit Spam to Akismet"
-msgstr "Poslat Akismetu \"je spam\""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s hlášení \"není spam\" odesláno jako \"je spam\""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s hlášení \"je spam\" odesláno jako \"není spam\""
 
 msgid "About Mozilla Add-ons"
 msgstr "O webu Doplňky Mozilly"
@@ -5360,7 +5344,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Zpožděno pro kontrolu první zveřejněné verze"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Komentář nelze odeslat, pokud je definována `canned_response`."
 
 msgid "Type"
 msgstr "Typ"
@@ -5889,11 +5873,10 @@ msgid "No reviews found for this period."
 msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
 
 msgid "Method:"
-msgstr ""
+msgstr "Metoda:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "dle zdroje"
+msgstr "Zdroj:"
 
 msgid "Dismiss this announcement"
 msgstr "Skrýt toto oznámení"
@@ -6358,6 +6341,13 @@ msgstr "Uživatelé %(users)s byli zablokováni."
 
 msgid "Ban selected users"
 msgstr "Zablokovat vybrané uživatele"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "API klíče uživatelů \"%(users)s\" byly obnoveny."
+
+msgid "Reset API Key"
+msgstr "Obnovit API klíč"
 
 msgid "Profile Photo"
 msgstr "Profilové foto"

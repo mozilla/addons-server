@@ -181,21 +181,6 @@ function initReviewActions() {
         $(format('#history a[data-num="{0}"]', eh_setting)).addClass('on');
     }
     highlightHistory();
-
-    function check_receipt() {
-        var $node = $('#receipt-check-result');
-        if ($node) {
-            $.getJSON($node.data('url'), function(data) {
-                if (data.status) {
-                    $node.text(gettext('Receipt checked by app.'));
-                } else {
-                    $node.text(gettext('Receipt was not checked by app.'));
-                    setTimeout(check_receipt, 10000);
-                }
-            });
-        }
-    }
-    check_receipt();
 }
 
 function callReviewersAPI(apiUrl, method, data, successCallback) {

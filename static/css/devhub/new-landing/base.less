@@ -3,10 +3,8 @@
 
 // Grid
 @grid-max: 960px;
-@extra-small: ~"only screen and (max-width: 399px)";
-@small: ~"only screen and (min-width: 400px)";
 @medium: ~"only screen and (min-width: 700px)";
-@large: ~"only screen and (min-width: 1024px)";
+@large: ~"only screen and (min-width: 960px)";
 @retina: ~"only screen and (min-resolution: 1.5dppx)";
 
 // Fonts
@@ -14,21 +12,20 @@
 
 // Colors
 @color-text: #333;
-@color-items: #fff;
+@color-items:#015fdf;
 @color-callout-border: #FDC900;
 
 // Color Schemes
 // Default
-@color-scheme-default-background: #ffffff;
+@color-scheme-default-background: #F9F9FA;
 
 // Light
-@color-scheme-light-text: #333;
-@color-scheme-light-background: #f3f5f8;
+@color-scheme-light-text: @color-text;
+@color-scheme-light-background: #fff;
 
 // Medium
 @color-scheme-medium-text: #fff;
-@color-scheme-medium-background: #0568ba;
-@color-scheme-medium-items: #29c978;
+@color-scheme-medium-background: linear-gradient(46deg, #E31586, #FC4054, #FF9641);
 
 // Dark
 @color-scheme-dark-text: #fff;
@@ -37,7 +34,11 @@
 
 // Buttons
 @color-button-default: #0996F8;
-@color-button-primary: #29c978;
+@color-button-primary: #fff;
+@color-button-register: #015fdf;
+@color-button-default-text: #fff;
+@color-button-primary-text: @color-items;
+@color-button-register-text: #fff;
 
 // State colors in 'My Addons'
 @color-version-state-disabled: #9b9898;
@@ -88,7 +89,7 @@ img {
 }
 
 a {
-  .link(@color-text);
+  .link(@color-items);
 }
 
 body {
@@ -116,9 +117,11 @@ h1 {
   margin-top: 0;
 }
 
-h2,
+h2 {
+  font-size: 20px;
+}
 h3 {
-  font-size: 32px;
+  font-size: 18px;
 }
 
 h1,
@@ -168,9 +171,15 @@ h3 {
   font-size: 14px;
 }
 
-@media @medium {
+@media @large {
   h1, h2, h3 {
     font-weight: 400;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 20px;
   }
 }
 
@@ -189,6 +198,9 @@ h3 {
 @import 'sections/overview';
 @import 'sections/more-information';
 @import 'sections/my-addons';
+@import 'sections/submit-or-manage';
+@import 'sections/get-involved';
+@import 'sections/banner';
 
 // Footer
 @import 'footer';

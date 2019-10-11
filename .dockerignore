@@ -2,4 +2,5 @@
 .cache
 .tox
 node_modules/
+storage/
 logs/*

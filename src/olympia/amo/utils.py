@@ -13,6 +13,7 @@ import scandir
 import shutil
 import string
 import subprocess
+import tempfile
 import time
 import unicodedata
 
@@ -908,7 +909,7 @@ def rm_local_tmp_dir(path):
     """
     path = force_text(path)
     tmp_path = force_text(settings.TMP_PATH)
-    assert path.startswith(tmp_path)
+    assert path.startswith((tmp_path, tempfile.gettempdir()))
     return shutil.rmtree(path)
 
 

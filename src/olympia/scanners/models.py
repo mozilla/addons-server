@@ -12,7 +12,7 @@ class ScannersResult(ModelBase):
                                on_delete=models.SET_NULL,
                                null=True)
     results = JSONField(default={})
-    scanner = models.PositiveSmallIntegerField(choices=SCANNERS)
+    scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
     version = models.ForeignKey('versions.Version',
                                 related_name='scanners_results',
                                 on_delete=models.CASCADE,

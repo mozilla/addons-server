@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-07-25 20:12+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-09-22 13:26+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -61,7 +61,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Marcar como sospechosos los informes de abuso seleccionados"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Asegúrate de que este campo no tiene más de {max_length} caracteres."
 
 msgid "Modified on:"
 msgstr "Modificado el:"
@@ -479,9 +479,6 @@ msgstr ""
 "Aunque la aplicación admitida por tu complemento no requiera un archivo de manifiesto, tienes que incluir uno con las propiedades requeridas, tal y como se especifica "
 "%(amo_manifests_mdn_link_open)s aquí %(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "El texto indicado ha sido marcado como spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta URL personalizada ya la utiliza otra de tus colecciones."
 
@@ -816,6 +813,10 @@ msgstr "Se ha solicitado la revisión de tema de un administrador"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} se migró desde un tema ligero."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Imagen de {user} eliminada."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -884,7 +885,7 @@ msgid "Plugin"
 msgstr "Plugin"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "LWT en desuso"
 
 msgid "Theme (Static)"
 msgstr "Tema (estático)"
@@ -914,7 +915,7 @@ msgid "Plugins"
 msgstr "Plugins"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "LWTs en desuso"
 
 msgid "Themes (Static)"
 msgstr "Temas (estáticos)"
@@ -1445,9 +1446,6 @@ msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en add
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] El texto en el campo \"{field}\" se ha marcado como spam."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Este slug se utiliza. Por favor, elige otro."
 
@@ -1502,14 +1500,14 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Antes de cambiar tu idioma predeterminado, debes tener un nombre, un resumen y una descripción en dicho idioma. Te falta %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Los usuarios no se pueden agregar directamente"
 
 #, fuzzy
 msgid "An author can only be present once."
 msgstr "Un autor sólo puede ser listado una vez."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "La cuenta necesita un nombre para mostrar antes de poder agregarla como autor."
 
 msgid "Must have at least one owner."
 msgstr "Debe tener al menos un propietario."
@@ -1683,10 +1681,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "El nombre de la URL es incorrecto. No se eliminó el complemento."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Invitación aceptada."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Invitación rechazada."
 
 msgid "An author has been added to your add-on"
 msgstr "Un autor ha sido añadido a tu complemento"
@@ -1696,7 +1694,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Colaboraciones para {addon}."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Se ha enviado un enlace de confirmación a {email}"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -2013,16 +2011,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Aún se está generando la vista previa: vuelva más tarde o actualice la página."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Te han invitado a convertirte en autor de {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Si aceptas la invitación podrás editar el complemento y puede que aparezca tu nombre en la lista de autores del sitio web. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Haz clic en el botón Aceptar de más abajo para confirmar que quieres que se te añada como autor de {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Rechazar"
 
 msgid "Manage Authors & License"
 msgstr "Administrar autores y licencia"
@@ -2034,10 +2032,10 @@ msgid "About author roles"
 msgstr "Acerca de las funciones de un autor"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Autores pendientes de confirmación"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autores que se han agregado a este complemento pero que no han confirmado."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2808,10 +2806,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Haz clic en el botón Confirmar para generar credenciales API para el usuario <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Se enviará un enlace de confirmación a tu dirección de correo. Cuando lo confirmes, tus claves API aparecerán en esta página."
 
 msgid "You don't have any API credentials."
 msgstr "No tienes credenciales API."
@@ -3096,6 +3094,7 @@ msgstr "Bienvenido/a"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "¿Quieres que se promocione tu extensión en %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Encontrarás todo lo que necesitas saber en nuestras políticas de promoción de extensiones."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Más información"
 
@@ -3265,12 +3264,6 @@ msgstr "Historial de revisiones"
 
 msgid "Close Review History"
 msgstr "Cerrar historial de revisiones"
-
-msgid "Not validated."
-msgstr "No validado."
-
-msgid "Validate now."
-msgstr "Validar ahora."
 
 msgid "Request Review"
 msgstr "Solicitar valoraicón"
@@ -3466,7 +3459,7 @@ msgstr "Actualizaciones instantáneas del pronóstico del tiempo {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Actualizaciones instantáneas del clima en todo el mundo."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4097,7 +4090,7 @@ msgstr "Descarga imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Descarga las imágenes que encuentres en la web."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4286,7 +4279,7 @@ msgstr "Desplázate por páginas web como en tu teléfono móvil {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Desplazamiento típico del teléfono para tu escritorio; es decir, el movimiento del ratón será como \"agarrar y arrastrar\" en el móvil."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4302,7 +4295,7 @@ msgstr "Resalta partes de un texto {start_sub_heading}con {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Resalta texto en páginas web para guardarlas y acceder más tarde."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4378,7 +4371,7 @@ msgstr "Navega de forma privada {start_sub_heading}con {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Navega de forma privada con solo un clic."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4528,7 +4521,7 @@ msgstr "Haz un seguimiento del historial de precios en Amazon {start_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Rastrea el historial de precios de Amazon. Toma decisiones de compra informadas."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4600,7 +4593,7 @@ msgstr "Cierra las molestas ventanas superpuestas {start_sub_heading}con {addon_
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Cierra ventanas emergentes molestas con un simple clic."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4654,7 +4647,7 @@ msgstr "Haz un seguimiento del historial de precios en Amazon {start_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Rastrea el historial de precios de Amazon. Toma decisiones de compra inteligentes al recibir alertas sobre cambios de precios en los productos de Amazon que te interesan."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4742,7 +4735,7 @@ msgstr "Mejora tu experiencia de lectura {start_sub_heading}con {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Lee con más claridad y facilidad. Elimina el desorden alrededor del texto en las páginas web."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4824,7 +4817,7 @@ msgstr "Haz notas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Mantén tus notas personales en cualquier lugar de la web. Solo tienes que usar una barra lateral para adjuntar notas en páginas web específicas."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4849,7 +4842,7 @@ msgstr "Oscurece la web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Pásate a la web oscura o selecciona un esquema de color personalizado para adaptar Internet de forma visual a tus propios gustos."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4866,6 +4859,38 @@ msgstr "Ayuda sobre vídeos Android {start_sub_heading}con {addon_name}{end_sub_
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Algunos sitios tienen problemas para reproducir vídeos en Firefox para Android. Esta extensión te ofrece una solución."
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Firefox ya no admite las extensiones antiguas."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Explorar todas las extensiones"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Extensiones"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4922,7 +4947,6 @@ msgstr "No se ha podido interpretar el archivo subido."
 msgid "Unsupported archive type."
 msgstr "Tipo de archivo no admitido."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nombre de archivo inválido. Asegúrate de que todos los nombres de archivo están codificados como utf-8 o latin1."
 
@@ -4930,11 +4954,12 @@ msgstr "Nombre de archivo inválido. Asegúrate de que todos los nombres de arch
 msgid "Invalid file name in archive: {0}"
 msgstr "Nombre de archivo no válido en archivo: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Archivo excede límite de tamaño en archivo: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "El tamaño sin comprimir es demasiado grande"
 
 msgid "Invalid archive."
 msgstr "Archivo no válido."
@@ -5065,42 +5090,6 @@ msgstr "No hay archivos en el archivo subido."
 
 msgid "Fetching file."
 msgstr "Extrayendo archivo."
-
-msgid "Reported Status"
-msgstr "Estado reportado"
-
-msgid "Reported Spam"
-msgstr "Spam reportado"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham reportado"
-
-msgid "Not Reported"
-msgstr "No reportado"
-
-msgid "Content Submitted"
-msgstr "Contenido enviado"
-
-msgid "View Rating on site"
-msgstr "Ver calificación en el sitio"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Notificar ham a Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Notificar spam a Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s informes de Ham enviados como Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s informes de Spam enviados como Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"
@@ -5497,7 +5486,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Se retrasó al sr la primera versión listada"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "No puede enviar un comentario si la opción 'respuesta predeterminada' está definida."
 
 msgid "Type"
 msgstr "Tipo"
@@ -6024,11 +6013,10 @@ msgid "No reviews found for this period."
 msgstr "No se ha encontrado ninguna revisión para este periodo."
 
 msgid "Method:"
-msgstr ""
+msgstr "Método:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "por fuente"
+msgstr "Fuente:"
 
 msgid "Dismiss this announcement"
 msgstr "Cerrar este aviso"
@@ -6475,9 +6463,8 @@ msgstr "¿Estás seguro de que quieres borrar las <b>{0}</b> traducciones? No po
 msgid "Delete Locale"
 msgstr "Eliminar traducción"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Cerrar historial de revisiones"
+msgstr "Historial de restricciones del usuario"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6493,6 +6480,14 @@ msgstr "Se han expulsado a los usuarios \"%(users)s\"."
 
 msgid "Ban selected users"
 msgstr "Expulsar usuarios seleccionados"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Se han expulsado a los usuarios \"%(users)s\"."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Administrar llaves API"
 
 msgid "Profile Photo"
 msgstr "Foto del perfil"
@@ -6544,6 +6539,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Escribe el dominio de correo electrónico completo que hay que bloquear. Los comodines no son compatibles: si los necesitas, o si necesitas hacer coincidir el correo electrónico completo y no solo "
+"la parte del dominio, usa \"Restricciones de usuario de correo electrónico\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "

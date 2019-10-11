@@ -13,7 +13,6 @@ from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -26,7 +25,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.utils import redirect_for_login, _is_safe_url
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
@@ -43,9 +42,8 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
-    fetch_existing_translations_from_addon, get_addon_akismet_reports,
     UploadRestrictionChecker, wizard_unsupported_properties)
-from olympia.files.models import File, FileUpload, FileValidation
+from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
@@ -109,7 +107,7 @@ def addon_listing(request, theme=False):
 
 
 def index(request):
-    ctx = {'blog_posts': _get_posts()}
+    ctx = {}
     if request.user.is_authenticated:
         user_addons = Addon.objects.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
@@ -164,10 +162,11 @@ def ajax_compat_error(request, addon_id, addon):
 def ajax_compat_update(request, addon_id, addon, version_id):
     if not addon.accepts_compatible_apps():
         raise http.Http404()
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
-    compat_form = forms.CompatFormSet(request.POST or None,
-                                      queryset=version.apps.all(),
-                                      form_kwargs={'version': version})
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
+    compat_form = forms.CompatFormSet(
+        request.POST or None,
+        queryset=version.apps.all().select_related('min', 'max'),
+        form_kwargs={'version': version})
     if request.method == 'POST' and compat_form.is_valid():
         for compat in compat_form.save(commit=False):
             compat.version = version
@@ -594,33 +593,12 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
         automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
-    from olympia.lib.akismet.tasks import akismet_comment_check   # circ import
-
-    if (channel == amo.RELEASE_CHANNEL_LISTED):
-        existing_data = (
-            fetch_existing_translations_from_addon(
-                upload.addon, ('name', 'summary', 'description'))
-            if addon and addon.has_listed_versions() else ())
-        akismet_reports = get_addon_akismet_reports(
-            user=user,
-            user_agent=request.META.get('HTTP_USER_AGENT'),
-            referrer=request.META.get('HTTP_REFERER'),
-            upload=upload,
-            existing_data=existing_data)
-    else:
-        akismet_reports = []
-    if akismet_reports:
-        pretask = akismet_comment_check.si(
-            [report.id for _, report in akismet_reports])
-    else:
-        pretask = None
     if submit:
         tasks.validate_and_submit(
-            addon, upload, channel=channel, pretask=pretask)
+            addon, upload, channel=channel)
     else:
         tasks.validate(
-            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-            pretask=pretask)
+            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
     return upload
 
@@ -672,7 +650,7 @@ def upload_detail_for_version(request, addon_id, addon, uuid):
 
 @dev_required(allow_reviewers=True)
 def file_validation(request, addon_id, addon, file_id):
-    file_ = get_object_or_404(File, id=file_id)
+    file_ = get_object_or_404(File, version__addon=addon, id=file_id)
 
     validate_url = reverse('devhub.json_file_validation',
                            args=[addon.slug, file_.id])
@@ -692,18 +670,8 @@ def file_validation(request, addon_id, addon, file_id):
 @csrf_exempt
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
-    file = get_object_or_404(File, id=file_id)
-    try:
-        result = file.validation
-    except FileValidation.DoesNotExist:
-        if request.method != 'POST':
-            return http.HttpResponseNotAllowed(['POST'])
-
-        # This API is, unfortunately, synchronous, so wait for the
-        # task to complete and return the result directly.
-        pk = tasks.validate(file, synchronous=True).get()
-        result = FileValidation.objects.get(pk=pk)
-
+    file = get_object_or_404(File, version__addon=addon, id=file_id)
+    result = file.validation
     response = JsonResponse({
         'validation': result.processed_validation,
         'error': None,
@@ -1022,7 +990,7 @@ def upload_image(request, addon_id, addon, upload_type):
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
     static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = forms.VersionForm(
         request.POST or None,
@@ -1040,7 +1008,7 @@ def version_edit(request, addon_id, addon, version_id):
                                   amo.permissions.REVIEWS_ADMIN)
 
     if not static_theme and addon.accepts_compatible_apps():
-        qs = version.apps.all()
+        qs = version.apps.all().select_related('min', 'max')
         compat_form = forms.CompatFormSet(
             request.POST or None, queryset=qs,
             form_kwargs={'version': version})
@@ -1123,7 +1091,7 @@ def _log_max_version_change(addon, version, appversion):
 @transaction.atomic
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
     if (addon.is_recommended and
             version.recommendation_approved and
             version == addon.current_version):
@@ -1152,7 +1120,7 @@ def version_delete(request, addon_id, addon):
 @transaction.atomic
 def version_reenable(request, addon_id, addon):
     version_id = request.POST.get('version_id')
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
     messages.success(
         request,
         ugettext('Version %s re-enabled.') % version.version)
@@ -1200,7 +1168,7 @@ def auto_sign_version(version, **kwargs):
 
 @dev_required
 def version_list(request, addon_id, addon):
-    qs = addon.versions.order_by('-created').transform(Version.transformer)
+    qs = addon.versions.order_by('-created')
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWS_ADMIN)
@@ -1217,10 +1185,9 @@ def version_list(request, addon_id, addon):
 @dev_required
 def version_bounce(request, addon_id, addon, version):
     # Use filter since there could be dupes.
-    vs = (Version.objects.filter(version=version, addon=addon)
-          .order_by('-created'))
+    vs = addon.versions.filter(version=version).order_by('-created').first()
     if vs:
-        return redirect('devhub.versions.edit', addon.slug, vs[0].id)
+        return redirect('devhub.versions.edit', addon.slug, vs.id)
     else:
         raise http.Http404()
 
@@ -1228,7 +1195,7 @@ def version_bounce(request, addon_id, addon, version):
 @json_view
 @dev_required
 def version_stats(request, addon_id, addon):
-    qs = Version.objects.filter(addon=addon)
+    qs = addon.versions.all()
     reviews = (qs.annotate(review_count=Count('ratings'))
                .values('id', 'version', 'review_count'))
     data = {v['id']: v for v in reviews}
@@ -1511,7 +1478,7 @@ def submit_addon_source(request, addon_id, addon):
 
 @dev_required(submitting=True)
 def submit_version_source(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
+    version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_source(
         request, addon, version, 'devhub.submit.version.details')
 
@@ -1612,7 +1579,7 @@ def submit_addon_details(request, addon_id, addon):
 
 @dev_required(submitting=True)
 def submit_version_details(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
+    version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_details(request, addon, version)
 
 
@@ -1668,7 +1635,7 @@ def submit_addon_finish(request, addon_id, addon):
 
 @dev_required
 def submit_version_finish(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
+    version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_finish(request, addon, version)
 
 
@@ -1880,30 +1847,16 @@ def theme_background_image(request, addon_id, addon, channel):
             else {})
 
 
-def _clean_next_url(request):
-    gets = request.GET.copy()
-    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
-
-    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
-        log.info(u'Unsafe redirect to %s' % url)
-        url = settings.LOGIN_REDIRECT_URL
-
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
-
-    gets['to'] = url
-    request.GET = gets
-    return request
-
-
 def logout(request):
     user = request.user
     if not user.is_anonymous:
-        log.debug(u"User (%s) logged out" % user)
+        log.debug('User (%s) logged out' % user)
 
-    if 'to' in request.GET:
-        request = _clean_next_url(request)
+    if 'to' in request.GET and not _is_safe_url(request.GET['to'], request):
+        log.info('Unsafe redirect to %s' % request.GET['to'])
+        gets = request.GET.copy()
+        gets['to'] = settings.LOGIN_REDIRECT_URL
+        request.GET = gets
 
     next_url = request.GET.get('to')
     if not next_url:

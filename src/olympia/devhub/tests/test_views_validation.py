@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import shutil
 
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
@@ -12,10 +11,10 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
-from olympia.files.models import File, FileUpload, FileValidation
+from olympia.files.models import FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.users.models import UserProfile
@@ -166,6 +165,19 @@ class TestFileValidation(TestCase):
         assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 200
 
+    def test_developer_cant_see_results_from_other_addon(self):
+        other_addon = addon_factory(users=[self.user])
+        url = reverse(
+            'devhub.file_validation', args=[other_addon.slug, self.file.id])
+        assert self.client.get(url, follow=True).status_code == 404
+
+    def test_developer_cant_see_json_results_from_other_addon(self):
+        other_addon = addon_factory(users=[self.user])
+        url = reverse(
+            'devhub.json_file_validation',
+            args=[other_addon.slug, self.file.id])
+        assert self.client.get(url, follow=True).status_code == 404
+
     def test_no_html_in_messages(self):
         response = self.client.post(self.json_url, follow=True)
         assert response.status_code == 200
@@ -176,43 +188,6 @@ class TestFileValidation(TestCase):
         assert msg['context'] == (
             [u'<em:description>...', u'<foo/>'])
 
-    @mock.patch('olympia.devhub.tasks.validate_file_path')
-    def test_json_results_post_not_cached(self, validate):
-        validate.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
-
-        self.file.validation.delete()
-        # Not `file.reload()`. It won't update the `validation` foreign key.
-        self.file = File.objects.get(pk=self.file.pk)
-        assert not self.file.has_been_validated
-
-        assert self.client.post(self.json_url).status_code == 200
-        assert validate.called
-
-    @mock.patch('olympia.devhub.tasks.validate')
-    def test_json_results_post_cached(self, validate):
-        assert self.file.has_been_validated
-
-        assert self.client.post(self.json_url).status_code == 200
-
-        assert not validate.called
-
-    def test_json_results_get_cached(self):
-        """Test that GET requests return results when they've already been
-        cached."""
-        assert self.file.has_been_validated
-        assert self.client.get(self.json_url).status_code == 200
-
-    def test_json_results_get_not_cached(self):
-        """Test that GET requests return a Method Not Allowed error when
-        retults have not been cached."""
-
-        self.file.validation.delete()
-        # Not `file.reload()`. It won't update the `validation` foreign key.
-        self.file = File.objects.get(pk=self.file.pk)
-        assert not self.file.has_been_validated
-
-        assert self.client.get(self.json_url).status_code == 405
-
     def test_cors_headers_are_sent(self):
         code_manager_url = 'https://my-code-manager-url.example.org'
         with override_settings(CODE_MANAGER_URL=code_manager_url):
@@ -222,6 +197,36 @@ class TestFileValidation(TestCase):
         assert response['Access-Control-Allow-Methods'] == 'GET, OPTIONS'
         assert response['Access-Control-Allow-Headers'] == 'Content-Type'
         assert response['Access-Control-Allow-Credentials'] == 'true'
+
+    def test_linkify_validation_messages(self):
+        self.file_validation.update(validation=json.dumps({
+            "errors": 0,
+            "success": True,
+            "warnings": 1,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [{
+                "context": ["<code>", None],
+                "description": [
+                    "Something something, see https://bugzilla.mozilla.org/"],
+                "column": 0,
+                "line": 1,
+                "file": "chrome/content/down.html",
+                "tier": 2,
+                "message": "Some warning",
+                "type": "warning",
+                "id": [],
+                "uid": "bb9948b604b111e09dfdc42c0301fe38"
+            }],
+            "metadata": {}
+        }))
+        response = self.client.get(self.json_url, follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        doc = pq(data['validation']['messages'][0]['description'][0])
+        link = doc('a')[0]
+        assert link.text == 'https://bugzilla.mozilla.org/'
+        assert link.attrib['href'] == 'https://bugzilla.mozilla.org/'
 
 
 class TestValidateAddon(TestCase):
@@ -391,166 +396,3 @@ class TestUploadURLs(TestCase):
 
         self.upload_addon(listed=False, status=amo.STATUS_APPROVED)
         self.expect_validation(listed=False, automated_signing=True)
-
-
-class TestValidateFile(BaseUploadTest):
-    fixtures = ['base/users', 'base/addon_3615', 'devhub/addon-file-100456']
-
-    def setUp(self):
-        super(TestValidateFile, self).setUp()
-        assert self.client.login(email='del@icio.us')
-        self.user = UserProfile.objects.get(email='del@icio.us')
-        self.file = File.objects.get(pk=100456)
-        # Move the file into place as if it were a real file
-        with storage.open(self.file.file_path, 'wb') as dest:
-            fpath = self.file_fixture_path('webextension_validation_error.zip')
-            shutil.copyfileobj(open(fpath, 'rb'), dest)
-        self.addon = self.file.version.addon
-
-    def tearDown(self):
-        if storage.exists(self.file.file_path):
-            storage.delete(self.file.file_path)
-        super(TestValidateFile, self).tearDown()
-
-    def test_lazy_validate(self):
-        response = self.client.post(
-            reverse('devhub.json_file_validation',
-                    args=[self.addon.slug, self.file.id]), follow=True)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        msg = data['validation']['messages'][0]
-        assert msg['message'] == (
-            '&#34;/manifest_version&#34; should be &gt;= 2')
-
-    def test_time(self):
-        response = self.client.post(
-            reverse('devhub.file_validation',
-                    args=[self.addon.slug, self.file.id]), follow=True)
-        doc = pq(response.content)
-        assert doc('time').text()
-
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_validator_sets_binary_flag_for_extensions(self, v):
-        v.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "contains_binary_extension": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes"
-            }
-        })
-        assert not self.addon.binary
-        response = self.client.post(
-            reverse('devhub.json_file_validation',
-                    args=[self.addon.slug, self.file.id]), follow=True)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert not data['validation']['errors']
-        addon = Addon.objects.get(pk=self.addon.id)
-        assert addon.binary
-
-    @mock.patch('olympia.devhub.tasks.validate_file_path')
-    def test_ending_tier_is_preserved(self, validate_file_path_mock):
-        validate_file_path_mock.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "ending_tier": 5,
-            "metadata": {
-                "contains_binary_extension": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes"
-            }
-        })
-        response = self.client.post(
-            reverse('devhub.json_file_validation',
-                    args=[self.addon.slug, self.file.id]), follow=True)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert not data['validation']['errors']
-        assert data['validation']['ending_tier'] == 5
-
-    @mock.patch('olympia.devhub.tasks.validate_file_path')
-    def test_validator_sets_binary_flag_for_content(
-            self, validate_file_path_mock):
-        validate_file_path_mock.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "contains_binary_content": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes"
-            }
-        })
-        assert not self.addon.binary
-        response = self.client.post(
-            reverse('devhub.json_file_validation',
-                    args=[self.addon.slug, self.file.id]), follow=True)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert not data['validation']['errors']
-        addon = Addon.objects.get(pk=self.addon.id)
-        assert addon.binary
-
-    @mock.patch('olympia.devhub.tasks.validate_file_path')
-    def test_linkify_validation_messages(self, validate_file_path_mock):
-        validate_file_path_mock.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 1,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [{
-                "context": ["<code>", None],
-                "description": [
-                    "Something something, see https://bugzilla.mozilla.org/"],
-                "column": 0,
-                "line": 1,
-                "file": "chrome/content/down.html",
-                "tier": 2,
-                "message": "Some warning",
-                "type": "warning",
-                "id": [],
-                "uid": "bb9948b604b111e09dfdc42c0301fe38"
-            }],
-            "metadata": {}
-        })
-        response = self.client.post(
-            reverse('devhub.json_file_validation',
-                    args=[self.addon.slug, self.file.id]), follow=True)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        doc = pq(data['validation']['messages'][0]['description'][0])
-        assert doc('a').text() == 'https://bugzilla.mozilla.org/'
-
-    def test_opensearch_validation(self):
-        addon_file = open(
-            'src/olympia/files/fixtures/files/opensearch/sp_no_url.xml', 'rb')
-        response = self.client.post(
-            reverse('devhub.upload'),
-            {'name': 'sp_no_url.xml', 'upload': addon_file})
-
-        uuid = response.url.split('/')[-2]
-
-        upload = FileUpload.objects.get(uuid=uuid)
-        assert upload.processed_validation['errors'] == 2
-        assert upload.processed_validation['messages'][0]['message'] == (
-            'OpenSearch: Missing &lt;Url&gt; element with &#39;text/html&#39; '
-            'type.')
-        assert upload.processed_validation['messages'][1]['message'] == (
-            'OpenSearch: Missing &lt;Url&gt; elements.')

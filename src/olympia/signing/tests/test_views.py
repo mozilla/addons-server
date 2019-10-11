@@ -13,7 +13,6 @@ from unittest import mock
 import responses
 from freezegun import freeze_time
 from rest_framework.response import Response
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -24,7 +23,6 @@ from olympia.amo.tests import (
     get_random_ip, reverse_ns, TestCase)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.files.models import File, FileUpload
-from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
 from olympia.users.models import (
     EmailUserRestriction, IPNetworkUserRestriction, UserProfile
@@ -455,86 +453,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         error_msg = (
             'You cannot add a listed version to this addon via the API')
         assert error_msg in response.data['error']
-
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert AkismetReport.objects.count() == 0
-        assert response.status_code == 202
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert response.status_code == 202
-        comment_check_mock.assert_called_once()
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Upload Version Test XPI'  # the addon's name
-
-        validation_response = self.get(self.url(self.guid, '3.0'))
-        assert validation_response.status_code == 200
-        assert b'spam' not in validation_response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_logging_only(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert response.status_code == 202
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Upload Version Test XPI'  # the addon's name
-        assert report.result == AkismetReport.MAYBE_SPAM
-
-        validation_response = self.get(self.url(self.guid, '3.0'))
-        assert validation_response.status_code == 200
-        assert b'spam' not in validation_response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_action_taken(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert response.status_code == 202
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Upload Version Test XPI'  # the addon's name
-        assert report.result == AkismetReport.MAYBE_SPAM
-
-        validation_response = self.get(self.url(self.guid, '3.0'))
-        assert validation_response.status_code == 200
-        assert b'spam' in validation_response.content
-        data = json.loads(validation_response.content.decode('utf-8'))
-        assert data['validation_results']['messages'][0]['id'] == [
-            u'validation', u'messages', u'akismet_is_spam_name'
-        ]
 
     def _test_throttling_verb_ip_burst(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:

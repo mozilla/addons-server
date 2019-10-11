@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-03 21:59+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-09-30 22:25+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,8 @@ msgstr "Il ha habite un problema con le connexion al servitor."
 msgid "Select a file..."
 msgstr "Elige un file..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, .jar o .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -712,12 +712,6 @@ msgstr "Remover iste localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visualisava antea iste pagina."
-
-msgid "Receipt checked by app."
-msgstr "Quitantia verificate per le application."
-
-msgid "Receipt was not checked by app."
-msgstr "La quitantia non ha essite verificate per le application."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} visualisava antea iste additivo."

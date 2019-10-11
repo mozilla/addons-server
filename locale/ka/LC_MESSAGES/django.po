@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-08-30 17:07+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-10-02 01:48+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -429,9 +429,8 @@ msgstr "საჭიროა {lang-code:value} ობიექტის მი�
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "არასწორი pk ან ბმულის დაბოლოება „%s“ - ობიექტი არ არსებობს."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "ვრცლად, შემმუშავებლის ანგარიშების შესახებ"
+msgstr "დადასტურება, შემმუშავებლის API-გასაღებებისთვის"
 
 msgid "Application Versions"
 msgstr "აპლიკაციის ვერსიები"
@@ -462,9 +461,6 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 msgstr "თუ მხარდაჭერილი პროგრამა არ საჭიროებს მანიფესტის ფაილს, მისი მიმაგრება მაინც აუცილებელია, %(amo_manifests_mdn_link_open)sმოცემული მითითების%(amo_manifests_mdn_link_close)s შესაბამისად."
-
-msgid "The text entered has been flagged as spam."
-msgstr "შეყვანილი ტექსტი მონიშნულია არასასურველად."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL-ბმულის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
@@ -797,6 +793,9 @@ msgstr "თემა საჭიროებს მმართველის 
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} გადმოტანილია მსუბუქი თემიდან."
+
+msgid "User {user} api key reset."
+msgstr "{user} მომხმარებლის api-გასაღები ხელახლა შეიქმნა."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1436,9 +1435,6 @@ msgstr "დამატებები Thunderbird და SeaMonkey პროგ
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "ჩვენ საშუალებას ვიძლევით და ხელს ვუწყობთ განახლებას, მაგრამ ეს ქმედება შეუქცევადია. თუ თქვენი მომხმარებლები დააყენებენ WebExtension-ს, მოძველებული დამატებების დაყენებას, ვეღარ შეძლებენ."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] ტექსტი „{field}“ ველში აღნიშნა არასასურველად."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "ეს დაბოლოება უკვე გამოიყენება. გთხოვთ, შეარჩიოთ სხვა."
@@ -2759,10 +2755,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "გთხოვთ, დაწკაპოთ დადასტურების ღილაკზე ქვემოთ API-მონაცემების შესაქმნელად მომხმარებლისთვის <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "დადასტურების ბმული გამოიგზავნება თქვენს ელფოსტაზე. დამოწმების შემდეგ, API-გასაღებებს გამოჩნდება ამ გვერდზე."
 
 msgid "You don't have any API credentials."
 msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
@@ -2773,9 +2769,8 @@ msgstr "უარყოფა"
 msgid "Revoke and regenerate credentials"
 msgstr "მონაცემების უარყოფა და ხელახლა შექმნა"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "ახალი მონაცემების შექმნა"
+msgstr "დადასტურება და ახალი მონაცემების შექმნა"
 
 msgid "Generate new credentials"
 msgstr "ახალი მონაცემების შექმნა"
@@ -3038,6 +3033,7 @@ msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org
 msgstr ""
 "გსურთ, თქვენი გაფართოება გახდეს რჩეული %(amo_link_open)saddons.mozilla.org%(amo_link_close)s საიტზე? რჩეული გაფართოებების შესახებ ჩვენი დებულებები დაგეხმარებათ გაიგოთ, რა არის ამისთვის საჭირო."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "იხილეთ ვრცლად"
 
@@ -3201,12 +3197,6 @@ msgstr "მიმოხილვის ისტორია"
 
 msgid "Close Review History"
 msgstr "განხილვების ისტორიის დახურვა"
-
-msgid "Not validated."
-msgstr "შეუმოწმებელია."
-
-msgid "Validate now."
-msgstr "შემოწმება ახლავე."
 
 msgid "Request Review"
 msgstr "განხილვის მოთხოვნა"
@@ -4731,6 +4721,34 @@ msgstr "ვიდეოების შეუფერხებელი ჩვ�
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "საიტების ნაწილს ხარვეზები აქვს ვიდეოების გაშვებისას Firefox-ში Android-ზე. ეს გაფართოება აგვარებს ამ პრობლემებს."
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც იყენებს Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "მათი მეშვეობით Firefox იღებს ახალ შესაძლებლობებს გვერდების უფრო სწრაფად და უსაფრთხოდ მოსანახულებლად, ან უბრალოდ გასართობად."
+
+#. editorial content for the secondary hero shelves.
+msgid "See all extensions"
+msgstr "ყველა გაფართოების ნახვა"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr "გაფართოებების სინქრონიზაცია მოწყობილობებზე"
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr "გაფართოებები პირადი მონაცემების დაცვით"
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr "საშუალებები, რომლებითაც Firefox უკეთ იმუშავებს ფაილებთან"
+
+#. editorial content for the secondary hero shelves.
+msgid "Explore extensions"
+msgstr "მოიძიეთ გაფართოებები"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "ფაილის მნახველი შეზღუდულია, მიმდინარეობს %s-იდან მონაცემები ამოღება. გთხოვთ სცადოთ ხელახლა, დაახლოებით 5 წუთში."
@@ -4786,7 +4804,6 @@ msgstr "ატვირთული ფაილის დამუშავე�
 msgid "Unsupported archive type."
 msgstr "მხარდაუჭერელი სახის არქივი."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "ფაილის უმართებულო სახელი არქივში. გთხოვთ, გადაამოწმოთ, ყველა ფაილის სახელი უნდა იყოს utf-8, ან latin1 კოდირებაში."
 
@@ -4794,6 +4811,7 @@ msgstr "ფაილის უმართებულო სახელი ა
 msgid "Invalid file name in archive: {0}"
 msgstr "ფაილის უმართებულო სახელი არქივში: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ფაილის მოცულობა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
 
@@ -4927,42 +4945,6 @@ msgstr "ასატვირთი ფაილები არ არის �
 
 msgid "Fetching file."
 msgstr "ფაილის თანხვედრა."
-
-msgid "Reported Status"
-msgstr "მოხსენების მდგომარეობა"
-
-msgid "Reported Spam"
-msgstr "მოხსენება არასასურველ შიგთავსზე"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "მოხსენება დასაშვებ შიგთავსზე"
-
-msgid "Not Reported"
-msgstr "მოხსენება არაა"
-
-msgid "Content Submitted"
-msgstr "შიგთავსი წარდგენილია"
-
-msgid "View Rating on site"
-msgstr "შეფასების ნახვა საიტზე"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "დასაშვები შიგთავსის გადაგზავნა Akismet-ზე"
-
-msgid "Submit Spam to Akismet"
-msgstr "არასასურველი შიგთავსის გადაგზავნა Akismet-ზე"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s მოხსენება დასაშვებ შიგთავსზე წარდგენილია, როგორც არასასურველი"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s მოხსენება არასასურველ შიგთავსზე წარდგენილია, როგორც დასაშვები"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla-ს დამატების შესახებ"
@@ -5360,7 +5342,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "გადადებულია, ვინაიდან პირველი გამოქვეყნებული ვერსიაა"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "გამოხმაურების გაგზავნას ვერ შეძლებთ, როცა „წინასწარ განსაზღვრული პასუხია“ მითითებული."
 
 msgid "Type"
 msgstr "სახეობა"
@@ -5883,11 +5865,10 @@ msgid "No reviews found for this period."
 msgstr "დროის ამ მონაკვეთისთვის მიმოხილვები ვერ მოიძებნა."
 
 msgid "Method:"
-msgstr ""
+msgstr "მეთოდი:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "წყარო"
+msgstr "წყარო:"
 
 msgid "Dismiss this announcement"
 msgstr "განცხადების გამოტოვება"
@@ -6347,6 +6328,13 @@ msgstr "მომხმარებლები „%(users)s“ არიან 
 
 msgid "Ban selected users"
 msgstr "მითითებული მომხმარებლების შეზღუდვა"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "„%(users)s“ მომხმარებლების API-გასაღები ხელახლა შეიქმნა."
+
+msgid "Reset API Key"
+msgstr "API-გასაღების ხელახლა შექმნა"
 
 msgid "Profile Photo"
 msgstr "პროფილის სურათი"

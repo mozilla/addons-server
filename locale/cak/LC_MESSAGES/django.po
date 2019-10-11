@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2018-11-24 21:09+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-09-26 23:21+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "ruwäch"
 
 #, fuzzy
 msgid "Users"
@@ -70,7 +70,7 @@ msgid "By %(filter_title)s"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "Ronojel"
 
 msgid "No links are allowed."
 msgstr "Majun ximonel ya'on q'ij chi re."
@@ -476,9 +476,6 @@ msgstr ""
 "Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol %(amo_manifests_mdn_link_open)swawe"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
 
@@ -810,6 +807,10 @@ msgstr "Xk'utüx runik'oxik ruwachinel nuk'samajel"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} xb'e pa jun aninäq wachinel."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Okisanel {user} xyuj ruwachib'al."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1426,10 +1427,6 @@ msgstr "Wakami ri taq rutz'aqat Thunderbird chuqa' SeaMonkey xtiq'alajin pa addo
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Nokisäx re slug re'. Tacha' jun chik."
@@ -3050,6 +3047,7 @@ msgstr "Ütz Apetik"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "¿La nawajo' chi tiya' rutzijol ri ak'amal pa %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Xtawïl ronojel ri k'atzinel awetaman pa ri runa'ojil kitaluxik taq k'amal."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Tetamäx Ch'aqa' Chik"
 
@@ -3211,12 +3209,6 @@ msgstr "Runatab'al Tzijoxïk"
 
 msgid "Close Review History"
 msgstr "Titz'apïx Runatab'al Nik'oxik"
-
-msgid "Not validated."
-msgstr "Man xjikib'äx ta."
-
-msgid "Validate now."
-msgstr "Tijikib'äx wakami."
 
 msgid "Request Review"
 msgstr "Tik'utüx Runik'oxik"
@@ -4823,6 +4815,36 @@ msgstr "Ke'awila' taq silowäch {start_sub_heading}rik'in {addon_name}{end_sub_h
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Kekanöx ronojel ri taq k'amal"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Taq k'amal"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Q'atäl ri tz'etonel yakb'äl, rik'in jub'a' nelesäx %s. Tatojtob'ej chik pa 5 ch'utiramaj."
@@ -4878,7 +4900,6 @@ msgstr "Man niq'ax ta ri runa'oj ri yakb'äl xjotob'äx."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Man okel ta rub'i' yakb'äl. Tatz'eta' chi ronojel ri kib'i' yakb'äl nuk'un rik'in utf-8 or latin1."
 
@@ -4886,6 +4907,7 @@ msgstr "Man okel ta rub'i' yakb'äl. Tatz'eta' chi ronojel ri kib'i' yakb'äl nu
 msgid "Invalid file name in archive: {0}"
 msgstr "Man okel ta rub'i' yakb'äl pa yakb'äl: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Nik'o runimilem yakb'äl pa yakb'äl: {0}"
 
@@ -5021,42 +5043,6 @@ msgstr "Majun yakb'äl pa ri yakb'äl xjotob'äx."
 
 msgid "Fetching file."
 msgstr "Nika'am yakb'äl."
-
-msgid "Reported Status"
-msgstr "Xsik'ïx Rub'anikil"
-
-msgid "Reported Spam"
-msgstr "Xsik'ïx Rub'anikil Seq'tzijol"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Xsik'ïx Ham"
-
-msgid "Not Reported"
-msgstr "Man Sik'in ta"
-
-msgid "Content Submitted"
-msgstr "Rupam Xtaq"
-
-msgid "View Rating on site"
-msgstr "Titz'et Rejqalem pa ri ruxaq"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Titaq Ham pan Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Titaq Seq'tzijol pan Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Chi rij Mozilla Add-ons"
@@ -6446,6 +6432,14 @@ msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
 
 msgid "Ban selected users"
 msgstr "Kech'aqïx el ri okisanela' echa'on"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Kenuk'samajïx API Kik'u'x Tzij"
 
 msgid "Profile Photo"
 msgstr "Ruwachib'al Ruwäch B'i'aj"

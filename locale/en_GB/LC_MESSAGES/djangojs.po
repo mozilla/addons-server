@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-03-05 14:37+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-09-30 23:48+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -26,8 +26,8 @@ msgstr "There was a problem contacting the server."
 msgid "Select a file..."
 msgstr "Select a file..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Your add-on should end with .zip, .xpi, .crx or .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -709,12 +709,6 @@ msgstr "Remove this localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} was viewing this page first."
-
-msgid "Receipt checked by app."
-msgstr "Receipt checked by app."
-
-msgid "Receipt was not checked by app."
-msgstr "Receipt was not checked by app."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} was viewing this add-on first."

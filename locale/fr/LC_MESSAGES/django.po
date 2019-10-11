@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-13 21:30+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-10-10 13:39+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -482,9 +482,6 @@ msgstr ""
 "Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié "
 "%(amo_manifests_mdn_link_open)sici%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Le texte saisi a été marqué comme spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Cette adresse personnalisée est déjà utilisée par une autre de vos collections."
 
@@ -818,6 +815,9 @@ msgstr "Revue de thème par un administrateur demandée"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} a été migré depuis un thème léger."
+
+msgid "User {user} api key reset."
+msgstr "Réinitialisation de la clé d’API de l’utilisateur {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1469,9 +1469,6 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 "Nous permettons et encourageons cette mise à niveau, mais le processus est irréversible. Une fois que vos utilisateurs auront installé la WebExtension, ils ne pourront plus installer les anciens "
 "modules."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Le texte du champ « {field} » a été marqué comme spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce raccourci est déjà utilisé. Merci d’en choisir un autre."
@@ -3085,6 +3082,7 @@ msgstr "Heureux de vous revoir !"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Vous voulez que votre extension figure sur %(amo_link_open)saddons.mozilla.org%(amo_link_close)s ? Nos politiques applicables aux extensions vous disent ce que vous devez savoir."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "En savoir plus"
 
@@ -3250,12 +3248,6 @@ msgstr "Voir l’historique"
 
 msgid "Close Review History"
 msgstr "Fermer l’historique de revue"
-
-msgid "Not validated."
-msgstr "Non validé."
-
-msgid "Validate now."
-msgstr "Valider maintenant."
 
 msgid "Request Review"
 msgstr "Demander une revue"
@@ -3967,7 +3959,7 @@ msgstr "Encouragez la productivité {start_sub_heading}avec {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Votre productivité au beau fixe : modifiez votre page nouvel onglet pour afficher une agréable image de fond, dressez la liste de vos tâches du jour, etc."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4031,7 +4023,7 @@ msgstr "Modifiez l’apparence de Wikipédia {start_sub_heading}avec {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Appliquez un thème moderne et original à Wikipédia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4111,7 +4103,7 @@ msgstr "Utilisez WhatsApp sur le Web {start_sub_heading}avec {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp sur le Web. Connectez-vous à WhatsApp à partir du panneau de la barre d’outils de Firefox et recevez des notifications par badge pour les conversations non lues."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4127,7 +4119,7 @@ msgstr "Créez une liste noire de sites web {start_sub_heading}avec {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Empêchez Firefox d’accéder aux sites web que vous définissez. Un excellent outil pour pratiquer l’autodiscipline en ligne."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4167,7 +4159,7 @@ msgstr "Sélectionnez facilement le dossier où vous voulez ranger vos marque-pa
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Gérez vos marque-pages plus efficacement si vous utilisez plusieurs dossiers de marque-pages."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4187,7 +4179,7 @@ msgstr "Récupérez des liens {start_sub_heading}avec {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Affichez tous les liens d’une page web dans de nouveaux onglets."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4195,7 +4187,7 @@ msgstr "Passez outre les redirections et les traqueurs {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Supprimez automatiquement les pages de redirection et les paramètres de pistage des URL."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4211,7 +4203,7 @@ msgstr "Téléchargez des vidéos YouTube {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Téléchargez des vidéos de YouTube et/ou des contenus audio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4259,7 +4251,7 @@ msgstr "Profitez de musiques provenant du monde entier {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Écoutez plus de 30 000 stations de radio du monde entier."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4283,7 +4275,7 @@ msgstr "Surfez en toute sérénité {start_sub_heading}avec {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Lorsqu’elle est disponible, utilisez automatiquement la version sécurisée des sites web."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4291,7 +4283,7 @@ msgstr "Supprimez votre historique de navigation {start_sub_heading}avec {addon_
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Spécifiez le nombre de jours pendant lequel votre historique de navigation web sera conservé (au-delà de cette limite, l’historique sera automatiquement effacé)."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4315,7 +4307,7 @@ msgstr "Remplissez les formulaires automatiquement {start_sub_heading}avec {addo
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Remplissez les formulaires automatiquement. Enregistrez les données saisies une seule fois et ils seront automatiquement remplis les fois suivantes."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4331,7 +4323,7 @@ msgstr "Empêchez le détournement de vos onglets {start_sub_heading}avec {addon
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Mettez un terme au détournement d’onglets. Ne laissez pas les liens cliqués prendre le contrôle de votre onglet actuel et charger des contenus que vous n’avez pas demandés."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4339,7 +4331,7 @@ msgstr "Accédez simplement à Wikipédia {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Effectuez une recherche sur Wikipédia simplement avec un clic droit sur le texte sélectionné dans la page."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4364,6 +4356,8 @@ msgstr "Bénéficiez d’un avantage sur Amazon {start_sub_heading}avec {addon_n
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
+"Lorsque vous consultez des pages de produits sur les boutiques en ligne, si le produit qui vous intéresse est également disponible sur Amazon, un simple clic vous permet d’accéder à la page Amazon "
+"qui présente ce produit."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4371,7 +4365,7 @@ msgstr "Prenez le contrôle total de vos onglets {start_sub_heading}avec {addon_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Profitez d’un contrôle total sur les onglets : fermez les onglets en double, fusionnez les fenêtres, copiez le titre de l’onglet, etc."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4379,7 +4373,7 @@ msgstr "Bénéficiez d’une éducation inhabituelle {start_sub_heading}avec {ad
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Découvrez de façon originale. Chargez un article Wikipédia aléatoire chaque fois que vous ouvrez un nouvel onglet."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4411,7 +4405,7 @@ msgstr "Recherchez dans Firefox {start_sub_heading}avec {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Consultez très facilement vos onglets ouverts, vos marque-pages et votre historique de navigation web."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4475,7 +4469,7 @@ msgstr "Achetez en toute confiance {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Faites vos achats en toute confiance. Cette extension fournit une vérification supplémentaire pour vous assurer que vous allez commander sur un site dont la fiabilité a été vérifiée."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4483,11 +4477,13 @@ msgstr "Suivez votre productivité {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Estimez votre productivité : mesurez le temps que vous passez sur l’ordinateur ou sur certaines applications telles que Trello, JIRA, Basecamp, GitHub, et beaucoup d’autres."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
+"Enregistrez votre sélection web. Mettez de côté les articles, vidéos, images, etc. que vous préférez pour les enregistrer et les utiliser dans des projets personnels ou pour une collaboration en "
+"équipe et en temps réel."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4495,7 +4491,7 @@ msgstr "Surfez en toute sécurité {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Autorisez l’affichage de contenus web seulement s’ils viennent de sites auxquels vous faites confiance. Surfez en sécurité."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4571,7 +4567,7 @@ msgstr "Réglez vos problèmes audio {start_sub_heading}avec {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Le volume sonore sur cette page web est trop faible ? Trop élevé ? SoundFixer est prêt à vous aider."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4579,7 +4575,7 @@ msgstr "Modifiez avant d’imprimer {start_sub_heading}avec {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Modifiez radicalement une page web avant de l’imprimer : supprimez les publicités, les contenus peu recommandables, etc. "
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4611,7 +4607,7 @@ msgstr "Effacez vos traces {start_sub_heading}avec {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Recherchez avec plus de sécurité grâce au blocage des traqueurs, à un chiffrement plus malin à d’autres fonctionnalités qui renforcent la confidentialité."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4619,7 +4615,7 @@ msgstr "Simplifiez les onglets {start_sub_heading}avec {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Simplifiez l’affichage des onglets. Organisez vos nombreux onglets ouverts dans une barre latérale verticale ordonnée."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4789,6 +4785,35 @@ msgstr "Aide vidéo sous Android {start_sub_heading}avec {addon_name}{end_sub_he
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Certains sites rencontrent des difficultés à lire des vidéos dans Firefox pour Android. Cette extension fournit une solution."
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See all extensions"
+msgstr "Voir toutes les extensions"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+# Plural in this context means many of the add-on type
+msgid "Explore extensions"
+msgstr "Parcourir les extensions"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "La visionneuse de fichier est verrouillée, l’extraction de %s pourrait être en cours. Veuillez essayer à nouveau dans environ 5 minutes."
@@ -4844,7 +4869,6 @@ msgstr "Impossible de lire le fichier envoyé."
 msgid "Unsupported archive type."
 msgstr "Type d’archive non pris en charge."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nom de fichier invalide au sein de l’archive. Vérifiez que tous les noms de fichiers sont encodés en utf-8 ou latin1."
 
@@ -4852,6 +4876,7 @@ msgstr "Nom de fichier invalide au sein de l’archive. Vérifiez que tous les n
 msgid "Invalid file name in archive: {0}"
 msgstr "Nom de fichier invalide dans l’archive : {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fichier dépassant la taille limite dans l’archive : {0}"
 
@@ -4985,42 +5010,6 @@ msgstr "Pas de fichier dans le fichier envoyé."
 
 msgid "Fetching file."
 msgstr "Récupération du fichier."
-
-msgid "Reported Status"
-msgstr "État signalé"
-
-msgid "Reported Spam"
-msgstr "Spam signalé"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham signalé"
-
-msgid "Not Reported"
-msgstr "Non signalé"
-
-msgid "Content Submitted"
-msgstr "Contenu soumis"
-
-msgid "View Rating on site"
-msgstr "Voir la note sur le site"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Envoyer les données Ham à Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Envoyer les données Spam à Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s rapports Ham envoyés comme Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s rapports Spam envoyés comme Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "À propos de Mozilla Add-ons"
@@ -5417,7 +5406,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Retardé parce que c’est la première version listée"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Vous ne pouvez pas soumettre de commentaire si « canned_response » est défini."
 
 msgid "Type"
 msgstr "Type"
@@ -5942,10 +5931,10 @@ msgid "No reviews found for this period."
 msgstr "Pas de revue trouvée pour cette période."
 
 msgid "Method:"
-msgstr ""
+msgstr "Méthode :"
 
 msgid "Source:"
-msgstr ""
+msgstr "Source :"
 
 msgid "Dismiss this announcement"
 msgstr "Rejeter cette annonce"
@@ -6409,6 +6398,13 @@ msgstr "Les personnes qui utilisent le compte « %(users)s » ont été bannie
 
 msgid "Ban selected users"
 msgstr "Bannir les utilisateurs sélectionnés"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Les clés d’API des utilisateurs « %(users)s » ont été réinitialisées."
+
+msgid "Reset API Key"
+msgstr "Réinitialiser la clé d’API"
 
 msgid "Profile Photo"
 msgstr "Photo de profil"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-08-30 15:38+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-09-30 23:48+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -427,9 +427,8 @@ msgstr "You must provide an object of {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Invalid pk or slug \"%s\" - object does not exist."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "More information on Developer Accounts"
+msgstr "Confirmation for developer API keys"
 
 msgid "Application Versions"
 msgstr "Application Versions"
@@ -460,9 +459,6 @@ msgid ""
 msgstr ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
-
-msgid "The text entered has been flagged as spam."
-msgstr "The text entered has been flagged as spam."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "This custom URL is already in use by another one of your collections."
@@ -795,6 +791,9 @@ msgstr "Admin theme-review requested"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} was migrated from a lightweight theme."
+
+msgid "User {user} api key reset."
+msgstr "User {user} api key reset."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1406,9 +1405,6 @@ msgstr "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on a
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] The text in the \"{field}\" field has been flagged as spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "This slug is already in use. Please choose another."
@@ -2748,10 +2744,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 
 msgid "You don't have any API credentials."
 msgstr "You don't have any API credentials."
@@ -2762,9 +2758,8 @@ msgstr "Revoke"
 msgid "Revoke and regenerate credentials"
 msgstr "Revoke and regenerate credentials"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Generate new credentials"
+msgstr "Confirm and generate new credentials"
 
 msgid "Generate new credentials"
 msgstr "Generate new credentials"
@@ -3030,6 +3025,7 @@ msgstr "Welcome Back"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Learn More"
 
@@ -3194,12 +3190,6 @@ msgstr "Review History"
 
 msgid "Close Review History"
 msgstr "Close Review History"
-
-msgid "Not validated."
-msgstr "Not validated."
-
-msgid "Validate now."
-msgstr "Validate now."
 
 msgid "Request Review"
 msgstr "Request Review"
@@ -4724,6 +4714,34 @@ msgstr "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr "Extensions are like apps for Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "They add features to Firefox to make browsing faster, safer, or just plain fun."
+
+#. editorial content for the secondary hero shelves.
+msgid "See all extensions"
+msgstr "See all extensions"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr "Synchronise extensions across devices"
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr "Privacy beyond browser extensions"
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr "Media enhancers for Firefox"
+
+#. editorial content for the secondary hero shelves.
+msgid "Explore extensions"
+msgstr "Explore extensions"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4779,7 +4797,6 @@ msgstr "Could not parse uploaded file."
 msgid "Unsupported archive type."
 msgstr "Unsupported archive type."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 
@@ -4787,6 +4804,7 @@ msgstr "Invalid file name in archive. Please make sure all filenames are utf-8 o
 msgid "Invalid file name in archive: {0}"
 msgstr "Invalid file name in archive: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
@@ -4920,42 +4938,6 @@ msgstr "No files in the uploaded file."
 
 msgid "Fetching file."
 msgstr "Fetching file."
-
-msgid "Reported Status"
-msgstr "Reported Status"
-
-msgid "Reported Spam"
-msgstr "Reported Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Reported Ham"
-
-msgid "Not Reported"
-msgstr "Not Reported"
-
-msgid "Content Submitted"
-msgstr "Content Submitted"
-
-msgid "View Rating on site"
-msgstr "View Rating on site"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Submit Ham to Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Submit Spam to Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s Ham reports submitted as Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s Spam reports submitted as Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "About Mozilla Add-ons"
@@ -5349,7 +5331,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Delayed because it's the first listed version"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "You can't submit a comment if `canned_response` is defined."
 
 msgid "Type"
 msgstr "Type"
@@ -5872,11 +5854,10 @@ msgid "No reviews found for this period."
 msgstr "No reviews found for this period."
 
 msgid "Method:"
-msgstr ""
+msgstr "Method:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "by Source"
+msgstr "Source:"
 
 msgid "Dismiss this announcement"
 msgstr "Dismiss this announcement"
@@ -6336,6 +6317,13 @@ msgstr "The users \"%(users)s\" have been banned."
 
 msgid "Ban selected users"
 msgstr "Ban selected users"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "The users \"%(users)s\" had their API Key reset."
+
+msgid "Reset API Key"
+msgstr "Reset API Key"
 
 msgid "Profile Photo"
 msgstr "Profile Photo"

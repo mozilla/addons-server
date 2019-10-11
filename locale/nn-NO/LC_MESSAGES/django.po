@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2019-08-19 15:22+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -462,9 +462,6 @@ msgid ""
 msgstr ""
 "Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludere ein av følgjande eigenskapar som spesifisert %(amo_manifests_mdn_link_open)sher%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne tilpassa adressa vert allereie brukt av ei av samlingane dine."
 
@@ -803,6 +800,10 @@ msgstr "Det er bedt om ei vurdering"
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} migrert frå førebuande."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Bildet til brukaren {user} sletta."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1422,9 +1423,6 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -3025,6 +3023,7 @@ msgstr "Velkomen tilbake"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Les meir"
 
@@ -3186,12 +3185,6 @@ msgstr "Vurderingshistorikk"
 
 msgid "Close Review History"
 msgstr "Lat att vurderingshistorikk"
-
-msgid "Not validated."
-msgstr "Ikkje validert."
-
-msgid "Validate now."
-msgstr "Valider no."
 
 msgid "Request Review"
 msgstr "Be om vurdering"
@@ -4888,6 +4881,36 @@ msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Bla i alle utvidingar"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Utvidingar"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4943,7 +4966,6 @@ msgstr "Klarte ikkje å tolke opplasta fil."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4951,6 +4973,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "Ugyldig filnamn i arkivet: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5086,42 +5109,6 @@ msgstr "Ingen filer i den opplasta fila."
 
 msgid "Fetching file."
 msgstr "Hentar fil."
-
-msgid "Reported Status"
-msgstr "Rapportert status"
-
-msgid "Reported Spam"
-msgstr "Spam rapportert"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham rapportert"
-
-msgid "Not Reported"
-msgstr "Ikkje rapportert"
-
-msgid "Content Submitted"
-msgstr "Innsendt innhald"
-
-msgid "View Rating on site"
-msgstr "Vis vurdering på nettsida"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Send inn ham til Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Send inn spam til Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla-utvidingar"
@@ -6490,6 +6477,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Handsam API-nøklar"
 
 msgid "Profile Photo"
 msgstr "Profilfoto"

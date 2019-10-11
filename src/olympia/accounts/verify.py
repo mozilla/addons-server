@@ -1,3 +1,5 @@
+from django.conf import settings
+
 import requests
 
 from django_statsd.clients import statsd
@@ -27,7 +29,7 @@ def fxa_identify(code, config=None):
 def get_fxa_token(code, config):
     log.debug('Getting token [{code}]'.format(code=code))
     with statsd.timer('accounts.fxa.identify.token'):
-        response = requests.post(config['oauth_host'] + '/token', data={
+        response = requests.post(settings.FXA_OAUTH_HOST + '/token', data={
             'code': code,
             'client_id': config['client_id'],
             'client_secret': config['client_secret'],
@@ -53,9 +55,11 @@ def get_fxa_token(code, config):
 def get_fxa_profile(token, config):
     log.debug('Getting profile [{token}]'.format(token=token))
     with statsd.timer('accounts.fxa.identify.profile'):
-        response = requests.get(config['profile_host'] + '/profile', headers={
-            'Authorization': 'Bearer {token}'.format(token=token),
-        })
+        response = requests.get(
+            settings.FXA_PROFILE_HOST + '/profile', headers={
+                'Authorization': 'Bearer {token}'.format(token=token),
+            }
+        )
     if response.status_code == 200:
         profile = response.json()
         if profile.get('email'):

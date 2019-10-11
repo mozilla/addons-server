@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-08-26 06:40+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-09-30 15:09+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -476,9 +476,6 @@ msgstr ""
 "Jika aplikasi Anda yang didukung tidak memerlukan berkas maklumat, Anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan %(amo_manifests_mdn_link_open)sdi sini"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Teks yang dimasukkan telah ditandai sebagai spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ubahsuai ini telah dipakai oleh koleksi Anda yang lain."
 
@@ -812,6 +809,10 @@ msgstr "Ulasan tema oleh admin dimintakan"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} telah dipindahkan dari tema yang ringan."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Pengguna {user} gambar telah dihapus."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1437,9 +1438,6 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 "Kami memperbolehkan dan mendorong peningkatan tetapi Anda tidak dapat membalik proses ini. Setelah pengguna memiliki WebExtension yang terpasang, mereka tidak akan dapat memasang pengaya "
 "peninggalan."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Teks dalam bidang \"{field}\" telah ditandai sebagai spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug ini sudah dipakai. Silakan pilih yang lain."
@@ -3057,6 +3055,7 @@ msgstr "Selamat Datang Kembali"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Pelajari lebih Lanjut"
 
@@ -3224,12 +3223,6 @@ msgstr "Riwayat Ulasan"
 
 msgid "Close Review History"
 msgstr "Tutup Riwayat Ulasan"
-
-msgid "Not validated."
-msgstr "Tidak divalidasi."
-
-msgid "Validate now."
-msgstr "Validasi sekarang."
 
 msgid "Request Review"
 msgstr "Meminta Peninjauan"
@@ -4776,6 +4769,38 @@ msgstr "Bantuan video Android {start_sub_heading}dengan {addon_name}{end_sub_hea
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Ekstensi lawas tidak didukung lagi di Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Telusuri semua ekstensi"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Ekstensi"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Penampil berkas terkunci, ekstraksi untuk %s boleh jadi sedang berlangsung. Silakan coba lagi dalam waktu sekitar 5 menit."
@@ -4831,7 +4856,6 @@ msgstr "Tidak dapat mengurai berkas yang diunggah."
 msgid "Unsupported archive type."
 msgstr "Jenis arsip tidak didukung."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nama berkas di dalam berkas tidak valid. Mohon pastikan semua nama berkas adalah terenkode utf-8 atau latin1."
 
@@ -4839,6 +4863,7 @@ msgstr "Nama berkas di dalam berkas tidak valid. Mohon pastikan semua nama berka
 msgid "Invalid file name in archive: {0}"
 msgstr "Nama berkas dalam arsip tidak benar: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Berkas melebihi batas ukuran dalam arsip: {0}"
 
@@ -4972,42 +4997,6 @@ msgstr "Tidak ada berkas dalam berkas yang diunggah."
 
 msgid "Fetching file."
 msgstr "Mengambil berkas."
-
-msgid "Reported Status"
-msgstr "Status yang Dilaporkan"
-
-msgid "Reported Spam"
-msgstr "Spam yang Dilaporkan"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham yang Dilaporkan"
-
-msgid "Not Reported"
-msgstr "Tidak Dilaporkan"
-
-msgid "Content Submitted"
-msgstr "Konten Diajukan"
-
-msgid "View Rating on site"
-msgstr "Tampilkan peringkat pada situs"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Ajukan Ham ke Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Ajukan Spam ke Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s Ham melaporkan kiriman sebagai Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s Laporan Spam dikirimkan sebagai Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Tentang Pengaya Mozilla"
@@ -5926,9 +5915,8 @@ msgstr "Tidak ada ulasan ditemukan untuk rentang waktu ini."
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "berdasarkan Sumber"
+msgstr "Sumber:"
 
 msgid "Dismiss this announcement"
 msgstr "Abaikan pengumuman ini"
@@ -6385,6 +6373,14 @@ msgstr "Pengguna \"%(users)s\" telah diblokir."
 
 msgid "Ban selected users"
 msgstr "Cekal pengguna terpilih"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Pengguna \"%(users)s\" telah diblokir."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Mengelola Kunci API"
 
 msgid "Profile Photo"
 msgstr "Foto Profil"

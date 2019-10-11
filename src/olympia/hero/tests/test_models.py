@@ -12,6 +12,8 @@ class TestPrimaryHero(TestCase):
             image='foo.png')
         assert ph.image_url == (
             'http://testserver/static/img/hero/featured/foo.png')
+        ph.update(image='')
+        assert ph.image_url is None
 
     def test_gradiant(self):
         ph = PrimaryHero.objects.create(
@@ -51,6 +53,7 @@ class TestPrimaryHero(TestCase):
         ph.clean()  # it raises if there's an error
 
     def test_clean_gradient_and_image(self):
+        # Currently, gradient is required and image isn't.
         ph = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()))
         ph.disco_addon.update(recommendable=True)
@@ -62,7 +65,7 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError) as ve:
             ph.clean()
         assert 'gradient_color' in ve.exception.error_dict
-        assert 'image' in ve.exception.error_dict
+        assert 'image' not in ve.exception.error_dict
 
         ph.update(image='foo.png')
         with self.assertRaises(ValidationError) as ve:
@@ -71,12 +74,6 @@ class TestPrimaryHero(TestCase):
         assert 'image' not in ve.exception.error_dict
 
         ph.update(image='', gradient_color='#123456')
-        with self.assertRaises(ValidationError) as ve:
-            ph.clean()
-        assert 'gradient_color' not in ve.exception.error_dict
-        assert 'image' in ve.exception.error_dict
-
-        ph.update(image='baa.jpg')
         ph.clean()  # it raises if there's an error
 
     def test_clean_only_enabled(self):

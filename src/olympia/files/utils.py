@@ -281,12 +281,8 @@ class RDFExtractor(object):
             self.is_experiment = self.package_type in self.EXPERIMENT_TYPES
             return self.TYPES[self.package_type]
 
-        name = force_text(self.zip_file.source.name)
-
         # Look for Complete Themes.
-        is_complete_theme = (
-            name.endswith('.jar') or self.find('internalName')
-        )
+        is_complete_theme = self.find('internalName')
         if is_complete_theme:
             return amo.ADDON_THEME
 
@@ -712,7 +708,10 @@ def archive_member_validator(archive, member):
     """Validate a member of an archive member (TarInfo or ZipInfo)."""
     filename = getattr(member, 'filename', getattr(member, 'name', None))
     filesize = getattr(member, 'file_size', getattr(member, 'size', None))
+    _validate_archive_member_name_and_size(filename, filesize)
 
+
+def _validate_archive_member_name_and_size(filename, filesize):
     if filename is None or filesize is None:
         raise forms.ValidationError(ugettext('Unsupported archive type.'))
 
@@ -721,29 +720,23 @@ def archive_member_validator(archive, member):
     except UnicodeDecodeError:
         # We can't log the filename unfortunately since it's encoding
         # is obviously broken :-/
-        log.error('Extraction error, invalid file name encoding in '
-                  'archive: %s' % archive)
-        # L10n: {0} is the name of the invalid file.
-        msg = ugettext(
-            'Invalid file name in archive. Please make sure '
-            'all filenames are utf-8 or latin1 encoded.')
-        raise forms.ValidationError(msg.format(filename))
+        log.error('Extraction error, invalid file name encoding')
+        msg = ugettext('Invalid file name in archive. Please make sure '
+                       'all filenames are utf-8 or latin1 encoded.')
+        raise forms.ValidationError(msg)
 
-    if '..' in filename or filename.startswith('/'):
-        log.error('Extraction error, invalid file name (%s) in '
-                  'archive: %s' % (filename, archive))
+    if '../' in filename or '..' == filename or filename.startswith('/'):
+        log.error('Extraction error, invalid file name: %s' % (filename))
         # L10n: {0} is the name of the invalid file.
         msg = ugettext('Invalid file name in archive: {0}')
         raise forms.ValidationError(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
-        log.error('Extraction error, file too big (%s) for file (%s): '
-                  '%s' % (archive, filename, filesize))
+        log.error('Extraction error, file too big for file (%s): '
+                  '%s' % (filename, filesize))
         # L10n: {0} is the name of the invalid file.
-        raise forms.ValidationError(
-            ugettext(
-                'File exceeding size limit in archive: {0}'
-            ).format(filename))
+        msg = ugettext('File exceeding size limit in archive: {0}')
+        raise forms.ValidationError(msg.format(filename))
 
 
 class SafeZip(object):
@@ -849,9 +842,10 @@ class SafeZip(object):
         return self.zip_file.read(path)
 
 
-def extract_zip(source, remove=False, force_fsync=False):
+def extract_zip(source, remove=False, force_fsync=False, tempdir=None):
     """Extracts the zip file. If remove is given, removes the source file."""
-    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
+    if tempdir is None:
+        tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     try:
         zip_file = SafeZip(source, force_fsync=force_fsync)

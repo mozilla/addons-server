@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2019-08-12 15:00+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -471,9 +471,6 @@ msgstr ""
 "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
 "れています。"
 
-msgid "The text entered has been flagged as spam."
-msgstr "入力されたテキストはスパムとして扱われています。"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
 
@@ -805,6 +802,10 @@ msgstr "管理者テーマ審査が申請されました"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} が軽量テーマから移行されました。"
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "ユーザー {user} の写真が削除されました。"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1420,9 +1421,6 @@ msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] \"{field}\" 内のテキストはスパムのフラグが付けられています。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
@@ -3017,6 +3015,7 @@ msgstr "お帰りなさい"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s でおすすめしてもらいたいですか？おすすめ拡張機能ポリシーで、必要な内容をご覧ください。"
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "詳細"
 
@@ -3179,12 +3178,6 @@ msgstr "審査履歴"
 
 msgid "Close Review History"
 msgstr "審査履歴を閉じる"
-
-msgid "Not validated."
-msgstr "未検証"
-
-msgid "Validate now."
-msgstr "今すぐ検証"
 
 msgid "Request Review"
 msgstr "審査を申請"
@@ -4772,6 +4765,38 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 動画の�
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "旧式の拡張機能は Firefox でサポートされなくなりました。"
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "すべての拡張機能を見る"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "拡張機能"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "ファイルビューアーはロックされており、%sの抽出が行われている可能性があります。約 5 分後に再度試してください。"
@@ -4827,7 +4852,6 @@ msgstr "アップロードされたファイルを解析できませんでした
 msgid "Unsupported archive type."
 msgstr "サポートされていないアーカイブ形式です。"
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "アーカイブ内に不正なファイル名が含まれています。ファイル名がすべて UTF-8 または Latin 1 エンコードになっていることを確認してください。"
 
@@ -4835,6 +4859,7 @@ msgstr "アーカイブ内に不正なファイル名が含まれています。
 msgid "Invalid file name in archive: {0}"
 msgstr "アーカイブ内のファイル名が不正です: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "アーカイブ内のファイルがサイズ制限を超えています: {0}"
 
@@ -4970,42 +4995,6 @@ msgstr "アップロードされたファイルにはファイルが含まれて
 
 msgid "Fetching file."
 msgstr "ファイルを取得しています。"
-
-msgid "Reported Status"
-msgstr "報告されたステータス"
-
-msgid "Reported Spam"
-msgstr "報告されたスパム"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "報告されたハム (非スパム)"
-
-msgid "Not Reported"
-msgstr "報告なし"
-
-msgid "Content Submitted"
-msgstr "登録されたコンテンツ"
-
-msgid "View Rating on site"
-msgstr "サイトで評価を見る"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "ハム (非スパム) を Akismet へ送信"
-
-msgid "Submit Spam to Akismet"
-msgstr "スパムを Akismet へ送信"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s ハム報告をスパムとして送信しました"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s スパム報告をハムとして送信しました"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla アドオンサイトについて"
@@ -6378,6 +6367,14 @@ msgstr "ユーザー「%(users)s」のアカウントが停止されました。
 
 msgid "Ban selected users"
 msgstr "選択したユーザーのアカウントを停止"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API キーを管理"
 
 msgid "Profile Photo"
 msgstr "プロファイル写真"

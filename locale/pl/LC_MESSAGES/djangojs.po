@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -28,7 +28,8 @@ msgstr "Wystąpił problem skontaktowania się z serwerem."
 msgid "Select a file..."
 msgstr "Wybierz plik…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Nazwa pliku dodatku powinna kończyć się rozszerzeniem .zip, .xpi, .crx, .jar lub .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -740,12 +741,6 @@ msgstr "Usuń tę lokalizację"
 
 msgid "{name} was viewing this page first."
 msgstr "Strona została wyświetlona po raz pierwszy przez {name}."
-
-msgid "Receipt checked by app."
-msgstr "Potwierdzenie zostało sprawdzone przez aplikację."
-
-msgid "Receipt was not checked by app."
-msgstr "Potwierdzenie nie zostało sprawdzone przez aplikację."
 
 msgid "{name} was viewing this add-on first."
 msgstr "Użytkownik {name} oglądał ten dodatek pierwszy."

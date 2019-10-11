@@ -1189,6 +1189,9 @@ def test_id_to_path(value, expected):
 
 
 class TestSafeZip(TestCase):
+    def test_raises_error_for_invalid_webextension_xpi(self):
+        with pytest.raises(forms.ValidationError):
+            utils.SafeZip(get_addon_file('invalid_webextension.xpi'))
 
     def test_raises_validation_error_when_uncompressed_size_is_too_large(self):
         with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
@@ -1196,3 +1199,39 @@ class TestSafeZip(TestCase):
                 # total uncompressed size of this xpi is: 2269 bytes
                 utils.SafeZip(get_addon_file(
                     'valid_firefox_and_thunderbird_addon.xpi'))
+
+
+class TestArchiveMemberValidator(TestCase):
+    # We cannot easily test `archive_member_validator` so let's test
+    # `_validate_archive_member_name_and_size` instead.
+
+    def test_raises_when_filename_is_none(self):
+        with pytest.raises(forms.ValidationError):
+            utils._validate_archive_member_name_and_size(None, 123)
+
+    def test_raises_when_filesize_is_none(self):
+        with pytest.raises(forms.ValidationError):
+            utils._validate_archive_member_name_and_size('filename', None)
+
+    def test_raises_when_filename_is_dot_dot_slash(self):
+        with pytest.raises(forms.ValidationError):
+            utils._validate_archive_member_name_and_size('../', 123)
+
+    def test_raises_when_filename_starts_with_slash(self):
+        with pytest.raises(forms.ValidationError):
+            utils._validate_archive_member_name_and_size('/..', 123)
+
+    def test_raises_when_filename_is_dot_dot(self):
+        with pytest.raises(forms.ValidationError):
+            utils._validate_archive_member_name_and_size('..', 123)
+
+    def test_does_not_raise_when_filename_is_dot_dot_extension(self):
+        utils._validate_archive_member_name_and_size('foo..svg', 123)
+
+    @override_settings(FILE_UNZIP_SIZE_LIMIT=100)
+    def test_raises_when_filesize_is_above_limit(self):
+        with pytest.raises(forms.ValidationError):
+            utils._validate_archive_member_name_and_size(
+                'filename',
+                settings.FILE_UNZIP_SIZE_LIMIT + 100
+            )

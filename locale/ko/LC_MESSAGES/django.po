@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2019-05-31 01:30+0000\n"
 "Last-Translator: Taegeon Lee <ash153311@gmail.com>\n"
 "Language-Team: none\n"
@@ -470,9 +470,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "지원되는 애플리케이션이 매니페스트 파일을 요구하지 않으면, %(amo_manifests_mdn_link_open)s이곳%(amo_manifests_mdn_link_close)s에 명시된 요구 항목을 반드시 포함하고 있어야 합니다."
 
-msgid "The text entered has been flagged as spam."
-msgstr "입력한 글이 스팸으로 처리되었습니다."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "이 URL은 이미 다른 모음집에서 사용중입니다."
 
@@ -806,6 +803,10 @@ msgstr "관리자 테마 검토 요청됨"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} 부가 기능이 가벼운 테마에서 마이그레이션 되었습니다."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "{user} 사용자의 사진이 삭제되었습니다."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1426,9 +1427,6 @@ msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "우리는 업그레이드를 허용하고 장려하지만, 이 절차를 거꾸로 할 수는 없습니다. 당신의 사용자들이 WebExtension을 설치하였다면, 그들은 레거시 부가 기능을 설치할 수 없을 것입니다."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "이미 사용중인 주화입니다. 다른걸 사용해 주세요."
@@ -3047,6 +3045,7 @@ msgstr "환영합니다"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "더 알아보기"
 
@@ -3219,12 +3218,6 @@ msgstr "검토 기록"
 
 msgid "Close Review History"
 msgstr "검토 기록 닫기"
-
-msgid "Not validated."
-msgstr "검사가 이루어지지 않았음."
-
-msgid "Validate now."
-msgstr "검사하기."
 
 msgid "Request Review"
 msgstr "검토 요청"
@@ -4753,6 +4746,37 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "모든 확장 기능 탐색하기"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "확장 기능"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4808,7 +4832,6 @@ msgstr "업로드한 파일을 인식할 수 없습니다."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4816,6 +4839,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "압축 파일내 잘못된 파일 이름: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "압축 파일내 파일 용량 제한 초과: {0}"
 
@@ -4956,50 +4980,6 @@ msgstr "업로드한 파일 내역에 파일이 없습니다."
 
 msgid "Fetching file."
 msgstr "파일을 가져오고 있습니다."
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "사이트 상태"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "제보 종류"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "오류 보고"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "아직 별점 없음"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "버전 제출됨"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "모바일 사이트 보기"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "새로운 파일 올리기"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "새로운 파일 올리기"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla 부가 기능 소개"
@@ -6432,6 +6412,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API 키 관리"
 
 msgid "Profile Photo"
 msgstr "프로필 사진"

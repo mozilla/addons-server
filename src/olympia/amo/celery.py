@@ -64,15 +64,14 @@ class AMOTask(PostRequestTask):
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options)
 
-        return super(AMOTask, self).apply_async(
-            args=args, kwargs=kwargs, **options)
+        return super().apply_async(args=args, kwargs=kwargs, **options)
 
     def apply(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:
             args, kwargs = self._serialize_args_and_kwargs_for_eager_mode(
                 args=args, kwargs=kwargs, **options)
 
-        return super(AMOTask, self).apply(args=args, kwargs=kwargs, **options)
+        return super().apply(args=args, kwargs=kwargs, **options)
 
 
 app = Celery('olympia', task_cls=AMOTask)
@@ -127,7 +126,8 @@ def start_task_timer(task_id, task, **kw):
     # Cache start time for one hour. This will allow us to catch crazy long
     # tasks. Currently, stats indexing tasks run around 20-30 min.
     expiration = 60 * 60
-    cache.set(timer.cache_key(task_id), timer.current_epoch_ms, expiration)
+    cache_key = timer.cache_key(task_id)
+    cache.set(cache_key, timer.current_epoch_ms, expiration)
 
 
 @task_postrun.connect

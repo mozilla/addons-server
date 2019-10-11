@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-08 08:52+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-10-07 09:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -472,9 +472,6 @@ msgstr ""
 "Po qe se aplikacioni juaj nuk kërkon domosdo një kartelë manifest, prapë duhet ta përfshini një të tillë me vetitë e domosdoshme, siç tregohet %(amo_manifests_mdn_link_open)skëtu"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Tekstit të dhënë i është vënë shenjë si mesazh i padëshiruar."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Kjo URL vetjake përdoret tashmë nga një tjetër koleksion i juaji."
 
@@ -809,6 +806,10 @@ msgstr "Është kërkuar shqyrtim teme nga përgjegjësi"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} u migrua nga një temë e peshës së lehtë."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Fotoja e përdoruesit {user} u fshi."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1428,9 +1429,6 @@ msgstr "Shtesat për Thunderbird-in dhe SeaMonkey-n tani shfaqen dhe mirëmbahen
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "E lejojmë dhe e nxisim një përmirësim, por këtë proces nuk mund ta zhbëni. Pasi përdoruesit tuaj të kenë instaluar WebExtension, nuk do të jenë në gjendje të instalojnë shtesa nga të dikurshmet."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Tekstit te fusha \"{field}\" i është vënë shenjë si mesazh i padëshiruar."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ky identifikues është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
@@ -2761,10 +2759,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Ju lutemi, klikoni mbi butonin e ripohimit më poshtë që të prodhohen kredenciale API për përdoruesin <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Te adresa juaj email do të dërgohet një lidhje ripohimi. Pas ripohimit, te kjo faqe do të gjeni kyçet tuaj për API-n."
 
 msgid "You don't have any API credentials."
 msgstr "S’keni kredenciale API."
@@ -3041,6 +3039,7 @@ msgstr "Mirë Se u Kthyet"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Dëshironi që zgjerimi juaj të shfaqet te %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Rregullat tona për zgjerime të zgjedhura do t’ju tregojnë se ç’duhet të dini."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Mësoni Më Tepër"
 
@@ -3207,13 +3206,6 @@ msgstr "Historik Shqyrtimesh"
 
 msgid "Close Review History"
 msgstr "Mbylle Historikun e Shqyrtimeve"
-
-msgid "Not validated."
-msgstr "E pavleftësuar."
-
-# Button text (verb)
-msgid "Validate now."
-msgstr "Vleftësojeni tani."
 
 msgid "Request Review"
 msgstr "Kërkoni Shqyrtim"
@@ -4749,6 +4741,38 @@ msgstr "Ndihmë për video në Android {start_sub_heading}me {addon_name}{end_su
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Firefox për Android. Ky zgjerim sjell zgjidhje."
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Zgjerimet e dikurshme nuk mbulohen më në Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "Ato i shtojnë Firefox-it veçori për ta bërë shfletimin më të shpejtë, më të parrezik, ose thjesht më zbavitës."
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Shfletoni tërë zgjerimet"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr "Njëkohësoni zgjerimet nëpër pajisje"
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr "Zgjerime privatësie tej shfletuesish"
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr "Thellues mediash për Firefox-in"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Zgjerime"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Parësi i kartelave është i bllokuar, përftimi i %s mund të jetë në kryerje e sipër. Ju lutemi, riprovoni pas afërsisht 5 minutash."
@@ -4804,7 +4828,6 @@ msgstr "S’u përtyp dot kartela e ngarkuar."
 msgid "Unsupported archive type."
 msgstr "Lloj arkivi i pambuluar."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Emër kartele i pavlefshëm në arkiv. Ju lutemi, bëni të mundur që krejt emrat e kartelave të jenë nën kodim utf-8 ose latin1."
 
@@ -4812,6 +4835,7 @@ msgstr "Emër kartele i pavlefshëm në arkiv. Ju lutemi, bëni të mundur që k
 msgid "Invalid file name in archive: {0}"
 msgstr "Emër i pavlefshëm kartele te arkivi: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Kartelë që tejkalon kufirin e madhësisë te arkivi: {0}"
 
@@ -4945,42 +4969,6 @@ msgstr "Pa kartela te kartela e ngarkuar."
 
 msgid "Fetching file."
 msgstr "Po sillet kartelë."
-
-msgid "Reported Status"
-msgstr "Gjendje Raportimi"
-
-msgid "Reported Spam"
-msgstr "I raportuar si i Padëshiruar"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr ""
-
-msgid "Not Reported"
-msgstr "I paraportuar"
-
-msgid "Content Submitted"
-msgstr "Lënda u Parashtrua"
-
-msgid "View Rating on site"
-msgstr "Shihini Vlerësimin në sajt"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr ""
-
-msgid "Submit Spam to Akismet"
-msgstr "Parashtroni Në Akismet Mesazh të Padëshiruar"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Rreth Shtesave Mozilla"
@@ -5376,7 +5364,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "E vonuar ngaqë është versioni i parë i paraqitur në listë"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "S’mund të parashtroni koment, nëse është përkufizuar parametri `canned_response`."
 
 msgid "Type"
 msgstr "Lloj"
@@ -5899,7 +5887,7 @@ msgid "No reviews found for this period."
 msgstr "S’u gjetën shqyrtime për këtë periudhë."
 
 msgid "Method:"
-msgstr ""
+msgstr "Metodë:"
 
 #, fuzzy
 msgid "Source:"
@@ -6366,6 +6354,14 @@ msgstr "Përdoruesit \"%(users)s\" janë dëbuar."
 msgid "Ban selected users"
 msgstr "Dëboni përdorues të përzgjedhur"
 
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Përdoruesit \"%(users)s\" janë dëbuar."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Administroni Kyçe API"
+
 msgid "Profile Photo"
 msgstr "Foto Profili"
 
@@ -6416,6 +6412,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Jepni përkatësinë e plotë email-i njëpërdorimsh që duhet bllokuar. Nuk mbulohen shenja të gjithëpushtetshme: nëse keni nevojë t’i përdorni, ose ju duhet të gjeni përputhje me email-in e plotë dhe jo"
+" thjesht me pjesën e përkatësisë, më mirë përdorni \"Kufizime email-i përdoruesi\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "

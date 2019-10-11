@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-07-07 19:46+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-10-06 14:37+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -52,7 +52,7 @@ msgid "The %d selected reports have been marked as suspicious."
 msgstr "%d n yineqqisen yettwafernen ttwacerḍen meckukit."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Creḍ ineqqisen n usexseṛ i yettwafernen am akken yella deg-sen ccek"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
@@ -466,9 +466,6 @@ msgstr ""
 "Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel %(amo_manifests_mdn_link_open)sdagi"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tansa-agi URLA tudmawant tesseqdac-itt yakan yiwet seg tigrummiwin-ik."
 
@@ -801,6 +798,10 @@ msgstr "acegger n usentel n unedbal yettwasuter."
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} yekka-d seg usentel afessas."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Tawlaft n useqdac {user} tettwakkes."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -868,7 +869,7 @@ msgid "Plugin"
 msgstr "Azegrir"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "LWT d aqbuṛ"
 
 msgid "Theme (Static)"
 msgstr "Asentel (Static)"
@@ -895,7 +896,7 @@ msgid "Plugins"
 msgstr "Izegrar"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "LWTs d aqbuṛ"
 
 msgid "Themes (Static)"
 msgstr "Isental (Static)"
@@ -1422,10 +1423,6 @@ msgstr "Izegrar i Thunderbird akked SeaMonkey llan tura, daɣen ttwaseggmen deg 
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar deffir. Ticki iseqdacen sbedden WebExtension, ur ttizmiren ara ad sbedden ileman iqburen."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Anegzum-agi  yettwaseqdec yakan. Ma ulac aɣilif ɛreḍ wayeḍ."
@@ -3056,6 +3053,7 @@ msgstr "Anṣuf ar tuɣalin"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Issin ugar"
 
@@ -3216,12 +3214,6 @@ msgstr "Cegger amazray"
 
 msgid "Close Review History"
 msgstr "Mdel amazray n ucegger"
-
-msgid "Not validated."
-msgstr "Ur yettwasentem ara."
-
-msgid "Validate now."
-msgstr "Se,tem tura."
 
 msgid "Request Review"
 msgstr "Suter aɛiwed n tɣuri"
@@ -4918,6 +4910,36 @@ msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Snirem akk isiɣzaf"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Isiɣzaf"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4973,7 +4995,6 @@ msgstr "Ur izmir ara ad isleḍ afaylu yulin."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4981,6 +5002,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "Isem n ufaylu mačči d ameɣtu deg uḥraz: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Afaylu yezger talast n teɣzi deg uɣbaṛ: {0}"
 
@@ -5116,50 +5138,6 @@ msgstr "Ulac ifuyla deg ufaylu yulin."
 
 msgid "Fetching file."
 msgstr "Awway n ufaylu."
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "Addad n usmel"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Anaw n uneqqis"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Azen-d abug"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Ur yettwasezmel ara"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Lqem yettwazmel"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Wali asmel amaynut"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Azen afaylu amaynut"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Azen afaylu amaynut"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s ineqqisen ispamen ttwaznen am Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Ɣef izegrar n Mozilla"
@@ -6535,6 +6513,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr "Gdel aseqdac-a"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Sefrek tisura API"
 
 msgid "Profile Photo"
 msgstr "Tawlaft n umaɣnu"

@@ -1,2 +1,0 @@
--- If you have a column called "domain" in your addons table you should run this:
--- ALTER TABLE addons CHANGE COLUMN `domain` `manifest_url` varchar(255);

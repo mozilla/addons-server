@@ -105,7 +105,7 @@ class PrimaryHero(ModelBase):
 
     @property
     def image_url(self):
-        return f'{FEATURED_IMAGE_URL}{self.image}'
+        return f'{FEATURED_IMAGE_URL}{self.image}' if self.image else None
 
     @property
     def gradient(self):
@@ -120,9 +120,6 @@ class PrimaryHero(ModelBase):
             if not self.gradient_color:
                 error_dict['gradient_color'] = ValidationError(
                     'Gradient color is required for enabled shelves')
-            if not self.image:
-                error_dict['image'] = ValidationError(
-                    'A featured image is required for enabled shelves')
 
             if self.is_external and not self.disco_addon.addon.homepage:
                 error_dict['is_external'] = ValidationError(

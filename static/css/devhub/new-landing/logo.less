@@ -6,29 +6,23 @@
     display: inline-block;
     height: 32px;
     width: 32px;
-    background: url('../../../img/developers/addons-logo.svg') no-repeat left center;
+    background: url('../../../img/developers/new-landing/addons-logo-blue.svg') no-repeat left center;
     background-size: contain;
   }
 
   span {
     display: none;
     align-self: center;
+    font-weight: bold;
+    margin-left: 10px;
 
     @media @large {
       display: inline;
-      margin-left: 10px;
-
-      html[dir=rtl] & {
-        margin-left: 0;
-        margin-right: 10px;
-      }
     }
-  }
-}
 
-.Logo--loggedin {
-  &::before {
-    background: url('../../../img/developers/addons-logo-black.svg') no-repeat left center;
-    background-size: contain;
+    html[dir=rtl] & {
+      margin-left: 0;
+      margin-right: 10px;
+    }
   }
 }

@@ -5,31 +5,39 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia.amo.celery import task
+from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
+
 
 from .models import YaraResult
 
 log = olympia.core.logger.getLogger('z.yara.task')
 
 
-@task
-def run_yara(upload_pk):
+@validation_task
+def run_yara(results, upload_pk):
     """
-    Apply a set of Yara rules on a FileUpload and store the results.
+    Apply a set of Yara rules on a FileUpload and store the Yara results
+    (matches).
 
     This task is intended to be run as part of the submission process only.
     When a version is created from a FileUpload, the files are removed. In
     addition, we usually delete old FileUpload entries after 180 days.
+
+    - `results` are the validation results passed in the validation chain. This
+       task is a validation task, which is why it must receive the validation
+       results as first argument.
+    - `upload_pk` is the FileUpload ID.
     """
     log.info('Starting yara task for FileUpload %s.', upload_pk)
-    upload = FileUpload.objects.get(pk=upload_pk)
 
-    if not upload.path.endswith('.xpi'):
-        log.info('Not running yara for FileUpload %s, it is not a xpi file.',
-                 upload_pk)
-        return
+    if not results['metadata']['is_webextension']:
+        log.info('Not running yara for FileUpload %s, it is not a '
+                 'webextension.', upload_pk)
+        return results
+
+    upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
         result = YaraResult()
@@ -56,8 +64,15 @@ def run_yara(upload_pk):
 
         result.save()
 
+        if result.has_matches:
+            statsd.incr('devhub.yara.has_matches')
+
+        statsd.incr('devhub.yara.success')
         log.info('Ending yara task for FileUpload %s.', upload_pk)
     except Exception:
+        statsd.incr('devhub.yara.failure')
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
         log.exception('Error in yara task for FileUpload %s.', upload_pk)
+
+    return results

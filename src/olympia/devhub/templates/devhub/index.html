@@ -51,19 +51,10 @@
 
     {% if not user_authenticated %}
       {% include 'devhub/new-landing/components/overview.html' %}
-      {% include 'devhub/new-landing/components/port_chrome_ext.html' %}
-      {% include 'devhub/new-landing/components/publish_your_addon.html' %}
-      {% include 'devhub/new-landing/components/manage_your_addon.html' %}
-    {% endif %}
-
-    {% if not user_authenticated %}
-      <div class="DevHub-MoreInformation scheme-dark content">
-        <div>
-          {% include 'devhub/new-landing/components/blog_posts.html' %}
-          {% include 'devhub/new-landing/components/tools.html' %}
-        </div>
-      </div>
+      {% include 'devhub/new-landing/components/submit_or_manage_extension.html' %}
+      {% include 'devhub/new-landing/components/get_involved.html' %}
     {% else %}
+      {% include 'devhub/new-landing/components/banner.html' %}
       {% include 'devhub/new-landing/components/my-addons.html' %}
     {% endif %}
 

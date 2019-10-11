@@ -17,7 +17,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -1178,13 +1178,19 @@ class AutoApprovalSummary(ModelBase):
         # first listed version - should have their auto-approval delayed for
         # 24 hours to give us time to catch spam. Langpacks are exempted from
         # this since they are submitted as part of Firefox release process.
-        is_langpack = version.addon.type == amo.ADDON_LPAPP
+        addon = version.addon
+        is_langpack = addon.type == amo.ADDON_LPAPP
         now = datetime.now()
-        nomination = version.nomination or version.addon.created
+        nomination = version.nomination or addon.created
+        try:
+            content_review = addon.addonapprovalscounter.last_content_review
+        except AddonApprovalsCounter.DoesNotExist:
+            content_review = None
         return (
             not is_langpack and
             version.addon.status == amo.STATUS_NOMINATED and
-            now - nomination < timedelta(hours=24))
+            now - nomination < timedelta(hours=24) and
+            content_review is None)
 
     @classmethod
     def create_summary_for_version(cls, version, dry_run=False):

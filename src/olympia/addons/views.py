@@ -178,11 +178,20 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         if (self.request.user.is_authenticated and
                 acl.action_allowed(self.request,
                                    amo.permissions.ADDONS_VIEW_DELETED)):
-            return Addon.unfiltered.all()
-        # Permission classes disallow access to non-public/unlisted add-ons
-        # unless logged in as a reviewer/addon owner/admin, so we don't have to
-        # filter the base queryset here.
-        return Addon.objects.all()
+            qs = Addon.unfiltered.all()
+        else:
+            # Permission classes disallow access to non-public/unlisted add-ons
+            # unless logged in as a reviewer/addon owner/admin, so we don't
+            # have to filter the base queryset here.
+            qs = Addon.objects.all()
+        if self.action == 'retrieve_from_related':
+            # Avoid default transformers if we're fetching a single instance
+            # from a related view: We're unlikely to need the preloading they
+            # bring, this would only cause extra useless queries. Still include
+            # translations because at least the addon name is likely to be
+            # needed in most cases.
+            qs = qs.only_translations()
+        return qs
 
     def get_serializer_class(self):
         # Override serializer to use serializer_class_with_unlisted_data if
@@ -250,8 +259,10 @@ class AddonChildMixin(object):
             permission_classes = AddonViewSet.permission_classes
 
         self.addon_object = AddonViewSet(
-            request=self.request, permission_classes=permission_classes,
-            kwargs={'pk': self.kwargs[lookup]}).get_object()
+            request=self.request,
+            permission_classes=permission_classes,
+            kwargs={'pk': self.kwargs[lookup]},
+            action='retrieve_from_related').get_object()
         return self.addon_object
 
 
@@ -330,27 +341,29 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             elif requested not in valid_filters:
                 raise serializers.ValidationError(
                     'Invalid "filter" parameter specified.')
-        # By default we restrict to valid, listed versions. Some filtering
-        # options are available when listing, and in addition, when returning
-        # a single instance, we don't filter at all.
+        # When listing, by default we only want to return listed, approved
+        # versions, matching frontend needs - this can be overridden by the
+        # filter in use. When fetching a single instance however, we use the
+        # same queryset as the less restrictive filter, that allows us to see
+        # all versions, even deleted ones. In any case permission checks will
+        # prevent access if necessary (meaning regular users will never see
+        # deleted or unlisted versions regardless of the queryset being used).
+        # We start with the <Addon>.versions manager in order to have the
+        # `addon` property preloaded on each version we return.
+        addon = self.get_addon_object()
         if requested == 'all_with_deleted' or self.action != 'list':
-            queryset = Version.unfiltered.all()
+            queryset = addon.versions(manager='unfiltered_for_relations').all()
         elif requested == 'all_with_unlisted':
-            queryset = Version.objects.all()
+            queryset = addon.versions.all()
         elif requested == 'all_without_unlisted':
-            queryset = Version.objects.filter(
+            queryset = addon.versions.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED)
         else:
-            # By default, we rely on queryset filtering to hide
-            # non-public/unlisted versions. get_queryset() might override this
-            # if we are asked to see non-valid, deleted and/or unlisted
-            # versions explicitly.
-            queryset = Version.objects.filter(
+            queryset = addon.versions.filter(
                 files__status=amo.STATUS_APPROVED,
                 channel=amo.RELEASE_CHANNEL_LISTED).distinct()
 
-        # Filter with the add-on.
-        return queryset.filter(addon=self.get_addon_object())
+        return queryset
 
 
 class AddonSearchView(ListAPIView):

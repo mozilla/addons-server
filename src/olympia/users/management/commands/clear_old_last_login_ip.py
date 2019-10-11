@@ -13,9 +13,10 @@ class Command(BaseCommand):
     help = 'Clear last_login_ip on users banned more than a year ago'
 
     def handle(self, *args, **options):
-        a_year_ago = datetime.now() - timedelta(days=365)
+        six_months_ago = datetime.now() - timedelta(days=183)
         qs = UserProfile.objects.filter(
-            deleted=True, banned__lt=a_year_ago).exclude(last_login_ip='')
+            deleted=True,
+            modified__lt=six_months_ago).exclude(last_login_ip='')
         log.info('Clearing last_login_ip for %d users', qs.count())
         for user in qs:
             user.update(last_login_ip='', _signal=False)

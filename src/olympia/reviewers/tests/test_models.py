@@ -1684,6 +1684,38 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_should_be_delayed(
             self.version) is False
 
+    def test_check_should_be_delayed_only_until_first_content_review(self):
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
+        # Delete current_version, making self.version the first listed version
+        # submitted and add-on creation date recent.
+        self.addon.current_version.delete()
+        self.addon.update(created=datetime.now())
+        self.addon.update_status()
+
+        # Also remove AddonApprovalsCounter to start fresh.
+        self.addon.addonapprovalscounter.delete()
+
+        # Set a recent nomination date. It should be delayed.
+        self.version.update(nomination=datetime.now() - timedelta(hours=12))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is True
+
+        # Add AddonApprovalsCounter with default values, it should still be
+        # delayed.
+        self.addon.addonapprovalscounter = (
+            AddonApprovalsCounter.objects.create(addon=self.addon))
+        assert self.addon.addonapprovalscounter.last_content_review is None
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is True
+
+        # Once there is a content review, it should no longer be delayed.
+        self.addon.addonapprovalscounter.update(
+            last_content_review=datetime.now())
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
     def test_check_should_be_delayed_langpacks_are_exempted(self):
         self.addon.update(type=amo.ADDON_LPAPP)
         assert AutoApprovalSummary.check_should_be_delayed(

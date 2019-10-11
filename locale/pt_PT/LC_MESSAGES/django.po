@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2019-06-09 01:15+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -470,9 +470,6 @@ msgstr ""
 "Se a sua aplicação suportada não requer um ficheiro de manifesto, deve ainda incluir um com as propriedades requeridas como especificado %(amo_manifests_mdn_link_open)saqui"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "O texto introduzido foi marcado como spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Este URL personalizado já está a ser utilizado por uma outra coleção sua."
 
@@ -807,6 +804,10 @@ msgstr "Theme-review de admin solicitada"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} foi migrado a partir de um tema leve."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Imagem do utilizador {user} eliminada."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1440,9 +1441,6 @@ msgstr "Os extras para Thunderbird e SeaMonkey são agora listados e mantidos em
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] O texto no campo \"{field}\" foi marcado como spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Este identificador já está a ser utilizado. Por favor, escolha outro."
@@ -3065,6 +3063,7 @@ msgstr "Bem-vindo(a) de volta"
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr "Quer a sua extensão em destaque em %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? As nossas políticas de extensões em destaque irão dizer-lhe o que precisa de saber."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Saber mais"
 
@@ -3230,12 +3229,6 @@ msgstr "Histórico de revisões"
 
 msgid "Close Review History"
 msgstr "Fechar histórico de revisões"
-
-msgid "Not validated."
-msgstr "Não validado."
-
-msgid "Validate now."
-msgstr "Validar agora."
 
 msgid "Request Review"
 msgstr "Solicitar revisão"
@@ -4847,6 +4840,38 @@ msgstr "Encontre vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "As extensões de legado já não são suportadas no Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Navegar em todas as extensões"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Extensões"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "O visualizador de ficheiros está bloqueado, a extração para %s pode estar em progresso. Por favor tente novamente em aproximadamente 5 minutos."
@@ -4902,7 +4927,6 @@ msgstr "Não foi possível analisar o ficheiro carregado."
 msgid "Unsupported archive type."
 msgstr "Tipo de arquivo não suportado."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nome de ficheiro inválido no arquivo. Por favor certifique-se que todos os nomes de ficheiros são codificados em utf-8 ou latin1."
 
@@ -4910,6 +4934,7 @@ msgstr "Nome de ficheiro inválido no arquivo. Por favor certifique-se que todos
 msgid "Invalid file name in archive: {0}"
 msgstr "Nome de ficheiro inválido no arquivo: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
@@ -5044,42 +5069,6 @@ msgstr "Não há ficheiros no arquivo carregado."
 
 msgid "Fetching file."
 msgstr "A procurar ficheiro."
-
-msgid "Reported Status"
-msgstr "Estado reportado"
-
-msgid "Reported Spam"
-msgstr "Spam reportado"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham reportado"
-
-msgid "Not Reported"
-msgstr "Não reportado"
-
-msgid "Content Submitted"
-msgstr "Conteúdo submetido"
-
-msgid "View Rating on site"
-msgstr "Ver avaliação no site"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Submeter Ham para Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Submeter Spam para Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s relatórios Ham submetidos como Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s relatórios Spam submetidos como Spam"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca dos Extras da Mozilla"
@@ -6476,6 +6465,14 @@ msgstr "Os utilizadores \"%(users)s\" foram banidos."
 
 msgid "Ban selected users"
 msgstr "Banir utilizadores selecionados"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Os utilizadores \"%(users)s\" foram banidos."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Gerir chaves da API"
 
 msgid "Profile Photo"
 msgstr "Fotografia do perfil"

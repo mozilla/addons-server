@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2019-06-25 15:00+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,8 @@ msgstr "Teḍra-d tuccḍa deg unermes n uqeddac."
 msgid "Select a file..."
 msgstr "Fren afaylu..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Ur issefk ara izegrar-ik ad bdun s .zip, .xpi, .crx, .jar neɣ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -710,12 +711,6 @@ msgstr "Kkes asideg agi"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} yettwali di tazwara asebter-agi."
-
-msgid "Receipt checked by app."
-msgstr "Tanfult yesneqd-itt usnas."
-
-msgid "Receipt was not checked by app."
-msgstr "Tanfult ur tt-isenqed ara usanas."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} yettwali di tazwara azegrir-agi."

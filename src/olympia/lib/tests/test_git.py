@@ -275,7 +275,6 @@ def test_extract_and_commit_from_version_support_custom_note():
         note='via signing')
 
     output = _run_process('git log --format=full listed', repo)
-    print(output)
 
     expected = (
         'Create new version {} ({}) for {} from {} (via signing)'

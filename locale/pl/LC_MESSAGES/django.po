@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -483,9 +483,6 @@ msgstr ""
 "Jeśli obsługiwana aplikacja nie wymaga pliku manifest, nadal należy dołączyć taki plik z wymaganymi właściwościami, które określono %(amo_manifests_mdn_link_open)stutaj"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ten niestandardowy adres URL już używany przez inną Twoją kolekcję."
 
@@ -819,6 +816,10 @@ msgstr "Poproszono o sprawdzenie motywu przez administratora"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "Dodatek {addon} został zmigrowany z lekkiego motywu."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Zdjęcie użytkownika {user} zostało usunięte."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1446,9 +1447,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Zezwalamy na aktualizację i zachęcamy do niej, ale tego procesu nie można odwrócić. Kiedy użytkownicy zainstalują rozszerzenie WebExtension, nie będą mogli zainstalować przestarzałego dodatku."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ten ciąg słów jest już używany. Wybierz inny."
@@ -3096,6 +3094,7 @@ msgstr ""
 "Chcesz, by Twoje rozszerzenie zostało wyróżnione na stronie %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Nasze zasady dotyczące polecanych rozszerzeń zawierają wszystko, co musisz "
 "wiedzieć."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Dowiedz się więcej"
 
@@ -3262,12 +3261,6 @@ msgstr "Historia opinii"
 
 msgid "Close Review History"
 msgstr "Zamknij historię sprawdzania"
-
-msgid "Not validated."
-msgstr "Nie sprawdzono"
-
-msgid "Validate now."
-msgstr "Sprawdź teraz"
 
 msgid "Request Review"
 msgstr "Poproś o sprawdzenie"
@@ -4879,6 +4872,37 @@ msgstr "Znajduj filmy {start_sub_heading}przy użyciu dodatku {addon_name}{end_s
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Przejrzyj wszystkie rozszerzenia"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Rozszerzenia"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Przeglądarka plików jest zablokowana, może trwać wyodrębnianie pliku %s. Spróbuj ponownie za około 5 minut."
@@ -4934,7 +4958,6 @@ msgstr "Nie można przetworzyć przesłanego pliku."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nieprawidłowa nazwa pliku w archiwum. Upewnij się, że wszystkie nazwy plików są zakodowane w formacie utf-8 lub latin1."
 
@@ -4942,6 +4965,7 @@ msgstr "Nieprawidłowa nazwa pliku w archiwum. Upewnij się, że wszystkie nazwy
 msgid "Invalid file name in archive: {0}"
 msgstr "Nieprawidłowa nazwa pliku w archiwum: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Plik przekracza limit rozmiaru w archiwum: {0}"
 
@@ -5077,50 +5101,6 @@ msgstr "Brak plików w przesyłanym pliku."
 
 msgid "Fetching file."
 msgstr "Pobieranie pliku."
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "Status witryny"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Typ zgłoszenia"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Zgłoś błąd"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Brak ocen"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Przesłana wersja"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Wyświetl nową witrynę"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Prześlij nowy plik"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Prześlij nowy plik"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozilla Add-ons"
@@ -6527,6 +6507,14 @@ msgstr "Użytkownicy „%(users)s” zostali zablokowani."
 
 msgid "Ban selected users"
 msgstr "Zablokuj wybranych użytkowników"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Użytkownicy „%(users)s” zostali zablokowani."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Zarządzaj kluczami API"
 
 msgid "Profile Photo"
 msgstr "Zdjęcie do profilu"

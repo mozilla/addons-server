@@ -1,4 +1,0 @@
-ALTER TABLE users_tags_addons
-    ADD UNIQUE (user_id, tag_id, addon_id),
-    DROP PRIMARY KEY,
-    ADD COLUMN id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY FIRST;

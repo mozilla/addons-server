@@ -7,7 +7,6 @@ from urllib.parse import parse_qs
 from collections import OrderedDict
 from datetime import datetime, timedelta
 from unittest import mock
-from unittest.mock import Mock, patch
 
 from django.conf import settings
 from django.core import mail
@@ -204,12 +203,35 @@ class TestReviewLog(ReviewerTest):
 
         # But they should have 2 showing for someone with the right perms.
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        response = self.client.get(self.url)
+        with self.assertNumQueries(15):
+            # 15 queries:
+            # - 2 savepoints because of tests
+            # - 2 user and its groups
+            # - 2 for motd config and site notice
+            # - 2 for collections and addons belonging to the user (menu bar)
+            # - 1 count for the pagination
+            # - 1 for the activities
+            # - 1 for the users for these activities
+            # - 1 for the addons for these activities
+            # - 1 for the translations of these add-ons
+            # - 1 for the versions for these activities
+            # - 1 for the translations of these versions
+            response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         rows = doc('tbody tr')
         assert rows.filter(':not(.hide)').length == 2
         assert rows.filter('.hide').eq(0).text() == 'youwin'
+
+        # Add more activity, it'd still should not cause more queries.
+        self.make_an_approval(amo.LOG.APPROVE_CONTENT, addon=addon_factory())
+        self.make_an_approval(amo.LOG.REJECT_CONTENT, addon=addon_factory())
+        with self.assertNumQueries(15):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        rows = doc('tbody tr')
+        assert rows.filter(':not(.hide)').length == 4
 
     def test_xss(self):
         a = Addon.objects.all()[0]
@@ -377,9 +399,10 @@ class TestReviewLog(ReviewerTest):
         assert response.status_code == 200
         assert pq(response.content)('.no-results').length == 1
 
-    @patch('olympia.activity.models.ActivityLog.arguments', new=Mock)
     def test_addon_missing(self):
         self.make_approvals()
+        activity = ActivityLog.objects.latest('pk')
+        activity.update(_arguments='')
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tr td').eq(1).text() == (
@@ -1172,9 +1195,9 @@ class TestQueueBasics(QueueTest):
         # No exceptions:
         assert response.status_code == 200
 
-    @patch.multiple('olympia.reviewers.views',
-                    REVIEWS_PER_PAGE_MAX=1,
-                    REVIEWS_PER_PAGE=1)
+    @mock.patch.multiple('olympia.reviewers.views',
+                         REVIEWS_PER_PAGE_MAX=1,
+                         REVIEWS_PER_PAGE=1)
     def test_max_per_page(self):
         self.generate_files()
 
@@ -1184,7 +1207,7 @@ class TestQueueBasics(QueueTest):
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1\u20131 of 4')
 
-    @patch('olympia.reviewers.views.REVIEWS_PER_PAGE', new=1)
+    @mock.patch('olympia.reviewers.views.REVIEWS_PER_PAGE', new=1)
     def test_reviews_per_page(self):
         self.generate_files()
 
@@ -2794,7 +2817,7 @@ class TestReview(ReviewBase):
         self.client.logout()
         self.assertLoginRedirects(self.client.head(self.url), to=self.url)
 
-    @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
+    @mock.patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.reviewer)
         assert self.client.head(self.url).status_code == 302
@@ -3016,6 +3039,33 @@ class TestReview(ReviewBase):
             assert ((reviewer_name == self.reviewer.name) or
                     (reviewer_name == self.other_reviewer.name))
 
+    def test_item_history_pagination(self):
+        addon = self.addons['Public']
+        addon.current_version.update(created=self.days_ago(366))
+        for i in range(0, 10):
+            # Add versions 1.0 to 1.9
+            version_factory(
+                addon=addon, version=f'1.{i}', created=self.days_ago(365 - i))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        table = doc('#review-files')
+        ths = table.children('tr > th')
+        assert ths.length == 10
+        # Original version should not be there any more, it's on the second
+        # page. Versions on the page should be displayed in chronological order
+        assert '1.0' in ths.eq(0).text()
+        assert '1.1' in ths.eq(1).text()
+        assert '1.9' in ths.eq(9).text()
+
+        response = self.client.get(self.url, {'page': 2})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        table = doc('#review-files')
+        ths = table.children('tr > th')
+        assert ths.length == 1
+        assert '0.1' in ths.eq(0).text()
+
     def test_item_history_with_unlisted_versions_too(self):
         # Throw in an unlisted version to be ignored.
         version_factory(
@@ -3036,59 +3086,6 @@ class TestReview(ReviewBase):
             'unlisted', self.addon.slug])
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
-
-    def generate_deleted_versions(self):
-        self.addon = addon_factory(version_kw={
-            'version': '1.0', 'created': self.days_ago(1)})
-        self.url = reverse('reviewers.review', args=[self.addon.slug])
-
-        versions = ({'version': '0.1', 'action': 'comment',
-                     'comments': 'millenium hand and shrimp'},
-                    {'version': '0.1', 'action': 'public',
-                     'comments': 'buggrit'},
-                    {'version': '0.2', 'action': 'comment',
-                     'comments': 'I told em'},
-                    {'version': '0.3'})
-
-        for i, version_data in enumerate(versions):
-            version = version_factory(
-                addon=self.addon, version=version_data['version'],
-                created=self.days_ago(-i),
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-
-            if 'action' in version_data:
-                data = {'action': version_data['action'],
-                        'operating_systems': 'win',
-                        'applications': 'something',
-                        'comments': version_data['comments']}
-                self.client.post(self.url, data)
-                version.delete(hard=True)
-
-        self.addon.current_version.delete(hard=True)
-
-    @patch('olympia.reviewers.utils.sign_file')
-    def test_item_history_deleted(self, mock_sign):
-        self.generate_deleted_versions()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        table = pq(response.content)('#review-files')
-
-        # Check the history for all versions.
-        ths = table.children('tr > th')
-        assert ths.length == 3  # The 2 with the same number will be coalesced.
-        assert '0.1' in ths.eq(0).text()
-        assert '0.2' in ths.eq(1).text()
-        assert '0.3' in ths.eq(2).text()
-        for idx in range(2):
-            assert 'Deleted' in ths.eq(idx).text()
-
-        bodies = table.children('.listing-body')
-        assert 'millenium hand and shrimp' in bodies.eq(0).text()
-        assert 'buggrit' in bodies.eq(0).text()
-        assert 'I told em' in bodies.eq(1).text()
-
-        assert mock_sign.called
 
     def test_item_history_compat_ordered(self):
         """ Make sure that apps in compatibility are ordered. """
@@ -3578,7 +3575,7 @@ class TestReview(ReviewBase):
         self.assert3xx(response, reverse('reviewers.queue_extension'),
                        status_code=302)
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def review_version(self, version, url, mock_sign):
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
             version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
@@ -3959,7 +3956,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'The developer has provided source code.' in response.content
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_approve_recommended_addon(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -3978,7 +3975,7 @@ class TestReview(ReviewBase):
         assert addon.current_version.recommendation_approved
         assert mock_sign_file.called
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -4158,7 +4155,7 @@ class TestReview(ReviewBase):
             assert ActivityLog.objects.filter(
                 action=amo.LOG.APPROVE_VERSION.id).count() == 0
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_admin_can_review_statictheme_if_admin_theme_review_flag_set(
             self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -4242,9 +4239,9 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert 'user_changes' in response.context
-        user_changes_log = response.context['user_changes']
-        actions = [log.activity_log.action for log in user_changes_log]
+        assert 'user_changes_log' in response.context
+        user_changes_log = response.context['user_changes_log']
+        actions = [log.action for log in user_changes_log]
         assert actions == [
             amo.LOG.ADD_USER_WITH_ROLE.id,
             amo.LOG.CHANGE_USER_WITH_ROLE.id,
@@ -4257,7 +4254,7 @@ class TestReview(ReviewBase):
         assert 'role changed to Owner for ' in user_changes[1].text
         assert '(Owner) removed from ' in user_changes[2].text
 
-    @override_settings(CELERY_ALWAYS_EAGER=True)
+    @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_not_run_eagerly(self, validate):
         """Tests that validation is not run in eager mode."""
@@ -4268,7 +4265,7 @@ class TestReview(ReviewBase):
 
         assert not validate.called
 
-    @override_settings(CELERY_ALWAYS_EAGER=False)
+    @override_settings(CELERY_TASK_ALWAYS_EAGER=False)
     @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_run(self, validate):
         """Tests that validation is run if necessary."""
@@ -4279,7 +4276,7 @@ class TestReview(ReviewBase):
 
         validate.assert_called_once_with(self.file)
 
-    @override_settings(CELERY_ALWAYS_EAGER=False)
+    @override_settings(CELERY_TASK_ALWAYS_EAGER=False)
     @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_not_run_again(self, validate):
         """Tests that validation is not run for files which have cached
@@ -4797,7 +4794,7 @@ class TestReviewPending(ReviewBase):
     def pending_dict(self):
         return self.get_dict(action='public')
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -4848,7 +4845,7 @@ class TestReviewPending(ReviewBase):
         assert unreviewed.filename in response.content
         assert self.file.filename in response.content
 
-    @patch('olympia.reviewers.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_review_unreviewed_files(self, mock_sign):
         """Review all the unreviewed files when submitting a review."""
         reviewed = File.objects.create(version=self.version,

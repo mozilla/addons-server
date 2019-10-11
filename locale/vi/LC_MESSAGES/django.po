@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-07-04 13:27+0000\n"
-"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
+"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"PO-Revision-Date: 2019-09-26 02:13+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -462,9 +462,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr "Các văn bản đã nhập vào đã được gắn cờ là spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Một bộ sưu tập khác của bạn đã được sử dụng URL tùy chỉnh này."
 
@@ -796,6 +793,10 @@ msgstr "Yêu cầu đánh giá chủ đề của quản trị viên"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} đã được di chuyển từ một chủ đề nhẹ."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Đã xóa hình ảnh người dùng {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1423,9 +1424,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
 
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Văn bản trong trường \"{field}\" đã bị gắn cờ là spam."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug này đã được sử dụng. Vui lòng chọn cái khác."
 
@@ -1514,10 +1512,10 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Vui lòng chỉ định Thỏa thuận cấp phép người dùng cuối của tiện ích mở rộng của bạn:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "Tiện ích này có một Chính sách Riêng tư"
+msgstr "Tiện ích này có một chính sách riêng tư"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Vui lòng chỉ định Chính sách Riêng tư cho tiện ích của bạn:"
+msgstr "Vui lòng chỉ định chính sách riêng tư cho tiện ích của bạn:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Kiểu tập tin không được hỗ trợ, vui lòng tải lên tệp lưu trữ {extensions}."
@@ -2854,7 +2852,7 @@ msgid "Please note that a EULA is not the same as a code license, such as the GP
 msgstr ""
 
 msgid "Privacy Policy"
-msgstr "Chính sách Riêng tư"
+msgstr "Chính sách riêng tư"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -2984,6 +2982,7 @@ msgstr ""
 "Muốn tiện ích mở rộng của bạn được làm nổi bật trên %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Các chính sách tiện ích mở rộng nổi bật của chúng tôi sẽ cho bạn biết những gì bạn cần "
 "biết."
 
+#. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Tìm hiểu Thêm"
 
@@ -3149,12 +3148,6 @@ msgstr "Xem lại lịch sử"
 
 msgid "Close Review History"
 msgstr "Đóng lịch sử đánh giá"
-
-msgid "Not validated."
-msgstr "Không được kiểm định."
-
-msgid "Validate now."
-msgstr "Kiểm định ngay."
 
 msgid "Request Review"
 msgstr "Yêu cầu đánh giá"
@@ -4305,7 +4298,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Rất nhiều thẻ đang mở? Bỏ qua việc cuộn và tìm kiếm thông qua các phím tắt."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4679,6 +4672,38 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Các tiện ích mở rộng cũ không còn được hỗ trợ trong Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Khám phá tất cả tiện ích"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Tiện ích mở rộng"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4734,7 +4759,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4742,6 +4766,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -4875,42 +4900,6 @@ msgstr "Không có tập tin nào trong tập tin được tải lên."
 
 msgid "Fetching file."
 msgstr "Đang truy xuất tập tin."
-
-msgid "Reported Status"
-msgstr "Tình trạng báo cáo"
-
-msgid "Reported Spam"
-msgstr "Thư rác được báo cáo"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Báo cáo không phải Spam"
-
-msgid "Not Reported"
-msgstr "Không có báo cáo"
-
-msgid "Content Submitted"
-msgstr "Đã gửi nội dung"
-
-msgid "View Rating on site"
-msgstr "Xem xếp hạng trên trang web"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Báo cáo là không phải Spam đến Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Báo cáo Spam đến Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -5502,7 +5491,7 @@ msgid "Average Daily Users"
 msgstr "Người dùng Hàng ngày Trung bình"
 
 msgid "View Privacy Policy"
-msgstr "Xem Chính sách Riêng tư"
+msgstr "Xem chính sách riêng tư"
 
 msgid "Requires Payment"
 msgstr "Yêu cầu thanh toán"
@@ -6261,6 +6250,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Quản lý khóa API"
 
 msgid "Profile Photo"
 msgstr "Hình ảnh Hồ sơ"
