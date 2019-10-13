@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 10:54+0000\n"
+"PO-Revision-Date: 2019-10-13 11:08+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -985,9 +985,7 @@ msgid "Web Development"
 msgstr "Disveloppamento del Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
-"Discarga extensiones de Firefox que ha functionalitates de utensiles de disveloppator del web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e "
-"altero ancora."
+msgstr "Discarga extensiones de Firefox que offere utensiles pro disveloppatores web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e multo plus."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -1000,7 +998,7 @@ msgid "Device Features & Location"
 msgstr "Functionalitates del apparato & position"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque rapide recercas, libera ressources de systema, prende notas e altero ancora."
+msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque recercas rapide, libera ressources de systema, prende notas, e multo plus."
 
 msgid "Experimental"
 msgstr "Experimental"
@@ -1012,9 +1010,7 @@ msgid "Performance"
 msgstr "Prestationes"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-"Discarga le extensiones que da a Firefox un incremento de performance. Trova extensiones que te adjuta a ser plus productive e efficiente per le blocada del enoiose avisos publicitari e altero "
-"ancora."
+msgstr "Discarga extensiones que rende Firefox plus rapide. Trova extensiones que te adjuta a esser plus productive e efficiente per le blocada del enoiose avisos publicitari e multo plus."
 
 msgid "Photos & Media"
 msgstr "Photos & medios"
@@ -1027,26 +1023,26 @@ msgstr "Securitate & confidentialitate"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"Discarga extensiones de Firefox pro navigar con securitate e privatemente. Discoperi extensiones que pote stoppar in lor traciamento furtive avisos publicitari traciator, clarar facilemente le "
-"chronologia de exploration e altero ancora."
+"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le furtive avisos publicitari que te tracia, rader facilemente le historia de navigation, e "
+"multo plus."
 
 msgid "Social Networking"
 msgstr "Retes social"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras online per le analyse del recensiones, trovante offertas e coupons e altero ancora."
+msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de retes social popular como YouTube, GitHub, Reddit e multo plus."
 
 msgid "Sports & Games"
 msgstr "Sports & jocos"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Discarga extensiones de Firefox pro meliorar tu experientia sur sitos web de retes social popular tal como YouTube, GitHub, Reddit e altero ancora."
+msgstr "Discarga extensiones de Firefox que meliora tu experientia de intertenimento con optimisation de transmission in vivo, actualitates de sport, e multo plus."
 
 msgid "User Interface"
 msgstr "Interface de usator"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Discarga extensiones de Firefox pro incrementar tu experientia de intertenimento con melioratores de live stream, actualitates sportive, e altero ancora."
+msgstr "Discarga extensiones de Firefox que optimisa paginas web pro lectura, recerca e navigation plus facile, e multo plus."
 
 msgid "Animals"
 msgstr "Animales"
@@ -1091,7 +1087,7 @@ msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "Discarga themas de Firefox que celebra stilos de tote le formas — patronos, ramages, contexturas, modellos, e altero ancora."
+msgstr "Discarga themas de Firefox que celebra stilos de tote le formas — patronos, ramages, texturas, modellos, e multo plus."
 
 msgid "Film and TV"
 msgstr "Film e TV"
