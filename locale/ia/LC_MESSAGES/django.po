@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 20:34+0000\n"
+"PO-Revision-Date: 2019-10-13 21:28+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1390,7 +1390,7 @@ msgid "Defamatory content"
 msgstr "Contento diffamatori"
 
 msgid "Online gambling"
-msgstr "Joco de hasardo online"
+msgstr "Jocos de hasardo in linea"
 
 msgid "Spam content"
 msgstr "Contento SPAM"
@@ -2181,7 +2181,7 @@ msgid "View Source?"
 msgstr "Vider le fonte?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Si le fonte de tu additivo pote esser displicate in nostre visor online. Illo es pertinente solo pro le additivos listate."
+msgstr "Si le fonte de tu additivo pote esser monstrate in nostre visor in linea. Isto es pertinente solo pro le additivos listate."
 
 msgid "This add-on's source code is publicly viewable."
 msgstr "Le codice fonte de iste additivo es visibile publicamente."
@@ -2193,7 +2193,7 @@ msgid "Public Stats?"
 msgstr "Statistica public?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Si le statistica de discarga e uso de tu additivo pote esser displicate in nostre visor online. Illo es pertinente solo pro le additivos listate."
+msgstr "Si le statisticas de discargamento e uso de tu additivo pote esser monstrate in nostre visor in linea. Isto es pertinente solo pro le additivos listate."
 
 msgid "This add-on's stats are publicly viewable."
 msgstr "Le statistica de iste additivo es publicamente visibile."
@@ -3646,11 +3646,11 @@ msgstr "Recarga automaticamente le schedas in base a intervallos de tempore que 
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Separa tu identitates online {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Separa tu vitas in linea {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Separa tu vitas online. Distingue reservatemente tu varie identitates online: labor, personal et cetera; con schedas codificate per color, que divide tu pista de cookies digital."
+msgstr "Separa tu vitas in linea. Distingue privatemente inter tu varie identitates in linea – labor, personal, etc. – con schedas codificate per color que divide tu pista de cookies digital."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4050,7 +4050,7 @@ msgstr "Crea un lista de blocada de sitos web {start_sub_heading}con {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Impedi a Firefox de acceder al sitos web que tu prescribe. Un grande utensile pro exercitar autodisciplina online."
+msgstr "Impedi a Firefox de acceder al sitos web que tu indica. Un excellente utensile pro exercitar autodisciplina in linea."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
