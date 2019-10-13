@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 13:15+0000\n"
+"PO-Revision-Date: 2019-10-13 14:11+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -428,7 +428,7 @@ msgstr "Tu debe fornir un objecto de {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "\"%s\" non es un pk o supernomine valide - le objecto non existe."
+msgstr "\"%s\" non es un clave primari o identificator valide - le objecto non existe."
 
 msgid "Confirmation for developer API keys"
 msgstr "Confirmation pro le claves API de disveloppator"
@@ -1491,7 +1491,7 @@ msgid "At least one author must be listed."
 msgstr "Al minus un autor debe ser listate."
 
 msgid "Slug incorrect."
-msgstr "Supernomine non correcte."
+msgstr "Identificator non correcte."
 
 msgid "Details"
 msgstr "Detalios"
@@ -2084,7 +2084,7 @@ msgid "Add-on URL"
 msgstr "URL de additivo"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Elige un supernomine breve del URL, unic pro tu additivo."
+msgstr "Elige un identificator curte e unic pro le adresse URL de tu additivo."
 
 msgid "View Listing"
 msgstr "Vide le lista"
@@ -3449,7 +3449,7 @@ msgstr "Gaude del marcapaginas visual {start_sub_heading}con {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Gaude le marcapaginas visual. Accede tu sitos consiliate ab un mappa de quadrellas."
+msgstr "Gaude de marcapaginas visual. Accede a tu sitos favorite in un dispositivo a quadrellos."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3754,7 +3754,7 @@ msgstr "Naviga le Web anonyme. Con identitate disguisate: pare mesmo como si tu 
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Nove habito graphic pro marcapaginas! Accede a tu sitos favorite, al schedas recentemente claudite, e multo plus – toto in un splendide disposition a quadrellos."
+msgstr "Gaude de marcapaginas visual. Accede a tu sitos favorite, al schedas recentemente claudite, e multo plus – toto in un splendide disposition a quadrellos."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
