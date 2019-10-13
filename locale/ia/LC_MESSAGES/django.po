@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 12:32+0000\n"
+"PO-Revision-Date: 2019-10-13 12:51+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3674,7 +3674,7 @@ msgstr "Eleva tu experientia de YouTube {start_sub_heading}con {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Reproduce le videos YouTube de ordinario in le melior qualitate, disactiva annotationes e altero ancora."
+msgstr "Reguarda le videos YouTube sempre in le melior qualitate, disactiva annotationes, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3698,7 +3698,7 @@ msgstr "Controla le reproduction del video {start_sub_heading}con {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr "Meliora tu experientia de vision per adjustar le velocitate del video e altero ancora."
+msgstr "Meliora tu experientia de vision per adjustar le velocitate del video e altere parametros."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3722,7 +3722,7 @@ msgstr "Meliora Reddit {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr "Cambia le maniera que tu naviga per Reddit per etiquettas e altero ancora."
+msgstr "Cambia le maniera in que tu naviga per Reddit usante etiquettas e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3754,7 +3754,7 @@ msgstr "Naviga le Web anonyme. Con identitate disguisate: pare mesmo como si tu 
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Nove habito graphic pro marcapaginas! Accede tu sitos favorite, schedas recentemente claudite e altero ancora, per un splendide mappa de quadrellas."
+msgstr "Nove habito graphic pro marcapaginas! Accede a tu sitos favorite, al schedas recentemente claudite, e multo plus – toto in un splendide disposition a quadrellos."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3778,7 +3778,7 @@ msgstr "Robuste gestion de discargamentos {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Gestion del discargamentos robuste. Controla per un barra de stato, discarga le chronologia del pagina e altero ancora."
+msgstr "Gestion robuste de discargamentos. Verifica le stato de tu files discargate per un barra de stato, un pagina con historia de discargamentos, e plus ancora."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3786,7 +3786,7 @@ msgstr "Captura contento de web {start_sub_heading}con {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr "Salva informationes de internet pro OneNote proque tu pote rediger, annotar, e altero ancora."
+msgstr "Salva informationes de internet in OneNote de maniera que tu pote rediger los, annotar los, etc."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3802,7 +3802,7 @@ msgstr "Navigation dynamic {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr "Usa le gestos del mus pro clauder schedas, receder a un pagina, recargar e altero ancora."
+msgstr "Usa le gestos del mus pro clauder schedas, receder a un pagina, recargar, etc."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3834,7 +3834,7 @@ msgstr "Personalisa tu favorite sitos web {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Personalisa le apparentia de ulle sito web. Displacia colores, fundos de pagina e altero ancora."
+msgstr "Personalisa le apparentia de qualcunque sito web. Altera le colores, le fundos de pagina e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3842,7 +3842,7 @@ msgstr "Personalisa tu nove schedas {start_sub_heading}con {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Personalisa le pagina del nove schedas pro monstrar tu preferite numero de quadrellas, imagine de fundo e altero ancora."
+msgstr "Personalisa le pagina de nove scheda pro monstrar tu preferite numero de quadrellos, imagine de fundo, e plus ancora."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3890,7 +3890,7 @@ msgstr "Inspira productivitate {start_sub_heading}con {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Infunde productivitate. Modifica le presentation de tu nove paginas pro monstrar un belle fundo, definir tu foco quotidian e altero ancora."
+msgstr "Un inspiration pro tu productivitate. Decora tu pagina de nove scheda con un belle fundo, defini tu prioritates quotidian, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3914,7 +3914,7 @@ msgstr "Repara tu favoritos {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr "Trova e resolve marcapaginas rupte, duplicate e altero ancora."
+msgstr "Trova e repara marcapaginas rupte, duplicatos, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3930,7 +3930,7 @@ msgstr "Compra in maniera plus intelligente {start_sub_heading}con {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr "Tracia le chronologia del precios, trova productos competitive, sape classificationes del venditores, e altero ancora."
+msgstr "Tracia le chronologia del precios, trova productos competitive, consulta le evalutationes del venditores, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
