@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-08 05:52+0000\n"
+"PO-Revision-Date: 2019-10-13 15:41+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4746,16 +4746,16 @@ msgstr "Synchronizujte si rozšíření mezi zařízeními"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Ochrana osobních údajů nad rámec rozšíření do prohlížeče"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Vylepšení médií ve Firefoxu"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Explore extensions"
-msgstr ""
+msgstr "Podívejte se na další rozšíření"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
