@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 11:48+0000\n"
+"PO-Revision-Date: 2019-10-13 12:32+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1138,10 +1138,10 @@ msgid "Solid"
 msgstr "Colores uniforme"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Discarga themas de Firefox con colores uniforme o gradiente pro personalisar tu navigator. Iste categoria include rubies hardite, pastellos, grises blande e multo altero ancora."
+msgstr "Discarga themas de Firefox con colores uniforme o gradiente pro personalisar tu navigator. Iste categoria include rubies hardite, pastellos, grises blande e multo plus."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr "Discarga themas de Firefox que characterisa un varietate de sports. Iste categoria include bandieras de paises, equipas sportive, football, hockey e altero ancora."
+msgstr "Discarga themas de Firefox que presenta un varietate de sports. Iste categoria include bandieras de paises, equipas sportive, football, hockey e multo plus."
 
 msgid "Websites"
 msgstr "Sitos web"
@@ -1423,11 +1423,11 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste processo. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo precedente."
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Iste supernomine es ja in uso. Per favor elige un altero."
+msgstr "Iste identificator es ja in uso. Per favor elige un altere."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Le supernomine non pote ser \"%(slug)s\". Per favor elige un altero."
+msgstr "Le identificator non pote esser \"%(slug)s\". Per favor elige un altere."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -3319,7 +3319,7 @@ msgstr "Personalisa le paginas de nove scheda {start_sub_heading}con {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "Gaude un nove pagina belle, con fundos personalisabile, informationes meteorologic local e altero."
+msgstr "Gaude de un nove pagina belle, con fundos personalisabile, informationes meteorologic local e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3433,7 +3433,7 @@ msgstr "Meliora videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Gaude de un suite de nove functionalitates de YouTube, como: modo cinema, blocada del avisos publicitari, controlo del auto-reproduction, e altero."
+msgstr "Gaude de un serie de nove functionalitates de YouTube, como: modo cinema, blocada del avisos publicitari, controlo del auto-reproduction, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3473,7 +3473,7 @@ msgstr "Lege ubicunque {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "Invia articulos de novas, historias, messages de blog e altero a tu Kindle."
+msgstr "Invia articulos de novas, historias, messages de blog e multo plus a tu Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3497,7 +3497,7 @@ msgstr "Controla le grammatica automaticamente {start_sub_heading}con {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: medios social, email, documentos e altero ancora."
+msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: medios social, e-mail, documentos e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3666,7 +3666,7 @@ msgstr "Lege files ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Lege simplemente in Firefox files ePub. Accresce le dimensiones del typo de character, le dimensiones del pagina e altero ancora."
+msgstr "Lege files ePub directemente in Firefox. Aggrandi le litteras, augmenta le dimension del pagina, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
