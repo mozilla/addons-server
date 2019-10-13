@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 11:08+0000\n"
+"PO-Revision-Date: 2019-10-13 11:48+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1093,7 +1093,7 @@ msgid "Film and TV"
 msgstr "Film e TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Discarga themas de Firefox con films e television. Iste categoria include animationes como Uchiha Madara, films como Matrix, spectaculos (Joco de Thrones) e altero ancora."
+msgstr "Discarga themas de Firefox con films e television. Iste categoria include anime japonese como Uchiha Madara, films como The Matrix, series (Game of Thrones) e multo plus."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr "Discarga themas de Firefox del Navigator mesme. Iste categoria include pictoresc, diverse depictiones del logo de Firefox, anque le altere themas del vulpe general."
@@ -1108,16 +1108,16 @@ msgid "Holiday"
 msgstr "Vacantias"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "Discarga themas de Firefox con vacantias. Iste categoria include: Nativitate, halloween, die del action de gratias, die de sancte Patricio, Pascha, quatro de julio e altero ancora."
+msgstr "Discarga themas de Firefox sur le dies festive. Iste categoria include Natal, Halloween, le festa de Regratiamento, le die de Sancte Patricio, Pascha, le Quatro de Julio e multo plus."
 
 msgid "Music"
 msgstr "Musica"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "Discarga themas de Firefox pro interesses musical e artistas. Iste categoria include bandas popular como le Nirvana e le BTS, instrumentos, videos musical e multo altero ancora."
+msgstr "Discarga themas de Firefox pro interesses musical e artistas. Iste categoria include gruppos popular como Nirvana e BTS, instrumentos, videos musical e multo plus."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Discarga themas de Firefox con animales e paisages natural. Iste categoria include flores, poner del sol, vulpes, saisones, planetas, cattones, aves e altero ancora."
+msgstr "Discarga themas de Firefox con animales e paisages natural. Iste categoria include flores, poner del sol, vulpes, saisones, planetas, cattones, aves e multo plus."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Discarga themas de Firefox que es interessante, creative e unic."
@@ -1126,7 +1126,7 @@ msgid "Scenery"
 msgstr "Paisage"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Discarga themas de Firefox que characterisa le ambiente e le natura. Iste categoria include poner del sol, plagias, illustrationes, lineas del horizonte de citates e altero ancora."
+msgstr "Discarga themas de Firefox que monstra le ambiente e le natura. Iste categoria include poner del sol, plagias, illustrationes, horizontes de citate e multo plus."
 
 msgid "Seasonal"
 msgstr "Saisonal"
