@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 16:56+0000\n"
+"PO-Revision-Date: 2019-10-13 20:02+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4154,11 +4154,11 @@ msgstr "Crea notas generic o specific pro le sito web a revider plus tarde."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rola como sur le smartphono {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Rolar como sur tu mobile {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr "Rolamento simile-a-smartphono pro tu scriptorio. Presenta movimento del mus stilo \"sasi-e-trahe\"."
+msgstr "Rola sur tu computator como sur tu mobile. Permitte movimento del mus in stilo \"sasir e traher\"."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
