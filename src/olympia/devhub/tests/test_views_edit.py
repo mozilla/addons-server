@@ -1463,8 +1463,7 @@ class TestEditTechnical(BaseTestEdit):
             elif k == 'whiteboard-public':
                 assert str(addon.whiteboard.public) == str(data[k])
             else:
-                assert getattr(addon, k) == (data[k] == 'on')
-                
+                assert getattr(addon, k) == (data[k] == 'on')            
 
 class TestEditTechnicalUnlisted(BaseTestEdit):
     __test__ = True
