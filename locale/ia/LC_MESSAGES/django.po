@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-11 16:28+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2019-10-13 00:17+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -991,7 +991,7 @@ msgstr ""
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr "Altero"
+msgstr "Altere"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, totevia utile pro ille labores curiose."
@@ -1510,7 +1510,7 @@ msgid "Provide the text of your license."
 msgstr "Forni le texto de tu licentia."
 
 msgid "License text is required when choosing Other."
-msgstr "Le texto del licentia es requirite si tu selige altero.."
+msgstr "Le texto del licentia es necessari si tu selige Altere."
 
 msgid "This add-on has an End-User License Agreement"
 msgstr "Iste additivo ha un accordo de licentia con le usator final (EULA)"
@@ -5171,7 +5171,7 @@ msgid "Misplaced bug report or support request"
 msgstr "Reporto de defecto o requesta de supporto mal ponite"
 
 msgid "Other (please specify)"
-msgstr "Altero (specificar)"
+msgstr "Altere (specificar)"
 
 msgid "This field is required."
 msgstr "Campo obligatori."
@@ -5202,7 +5202,7 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr "Iste classification non pote ser signalate pois que il ha nulle texto de revision."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Un breve explication debe ser fornite quando tu selige \"Altero\" como ration del signal."
+msgstr "Un breve explication debe esser fornite quando tu selige \"Altere\" como ration del signal."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5581,7 +5581,7 @@ msgid "Rendered Preview"
 msgstr "Ante-prima rendite"
 
 msgid "More about this add-on"
-msgstr "Altero re iste additivo"
+msgstr "Plus sur iste additivo"
 
 msgid "Image Gallery"
 msgstr "Galeria de imagines"
