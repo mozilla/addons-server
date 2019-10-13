@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 00:17+0000\n"
+"PO-Revision-Date: 2019-10-13 00:50+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -905,31 +905,31 @@ msgstr "Alertas & actualisationes"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
-"Discarga le extensiones de Firefox que adjuta te a restar actualisate, traciar le labores, meliorar le efficientia. Trova le extensiones que recarga schedas, gere tu productivitate e altero ancora."
+"Discarga le extensiones de Firefox que te adjuta a restar actualisate, traciar le labores, meliorar le efficientia. Trova le extensiones que recarga schedas, gere tu productivitate e multo plus."
 
 msgid "Appearance"
 msgstr "Apparentia"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Discarga le extensiones que modifica le apparentia del sitos web e del navigator Firefox. Iste categoria include le extensiones pro themas obscur, gestion de schedas e altero ancora."
+msgstr "Discarga le extensiones que modifica le apparentia del sitos web e del navigator Firefox. Iste categoria include le extensiones pro themas obscur, gestion de schedas e multo plus."
 
 msgid "Bookmarks"
 msgstr "Marcapaginas"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "Discarga extensiones que meliora le marcapaginas per lor protection con contrasignos, le recerca de duplicatos e de marcapaginas corrupte, e altero ancora."
+msgstr "Discarga extensiones que protege le marcapaginas con un contrasigno, cerca duplicatos, trova marcapaginas rupte, e multo plus."
 
 msgid "Download Management"
 msgstr "Gestion de discargamento"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Discarga extensiones de Firefox que pote adjutar a discargar contento del Web, musica e video. Tu pote alsi trovar extensiones pro gerer discargamentos, compartir files e altero ancora."
+msgstr "Discarga extensiones de Firefox que pote adjutar a discargar contento del Web, musica e video. Tu pote etiam trovar extensiones pro gerer discargamentos, compartir files e multo plus."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds de novas, novas e blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Discarga extensiones de Firefox que remove disordine assi que tu pote restar actualisate sur le medios social, prender sur blogs, RSS feeds, reducer le effortio del oculo e altero ancora."
+msgstr "Discarga extensiones de Firefox que remove disordine de maniera que tu pote restar actualisate sur le medios social, leger blogs, syndicationes RSS, reducer le fatiga ocular e multo plus."
 
 msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
