@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 12:51+0000\n"
+"PO-Revision-Date: 2019-10-13 13:13+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3938,7 +3938,7 @@ msgstr "Rende tue YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Personalisa YouTube. Reproduce videos in un fenestra emergente, vide solo le avisos publicitari in le canales subscribite, prende videos, instantaneos de schermo e multe altero ancora."
+msgstr "Personalisa YouTube. Reguarda videos in un fenestra emergente, vide solo le avisos publicitari in le canales subscribite, prende instantaneos de videos, e tanto ancora."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4296,7 +4296,7 @@ msgstr "Definitive controlo de schedas {start_sub_heading}con {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Gaude plure optiones de controlo de schedas: claude schedas duplicate, misce fenestras, copia le titulo de scheda e altero ancora."
+msgstr "Gaude de un controlo total de schedas: claude schedas duplicate, combina fenestras, copia le titulo de schedas, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4412,7 +4412,7 @@ msgstr "Mesura tu productivitate, le tempore que tu passa sur le computator o su
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Salva tu contento favorite, retalia contento de web como articulos, videos, imagines, e altero ancora pro salvar e usar lo in projectos personal o in collaboration de equipa in real-time."
+msgstr "Guarda tu cosas favorite del web. Retalia articulos, videos, imagines, etc. pro salvar e usar los in projectos personal o in collaboration directe con tu equipa."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4476,7 +4476,7 @@ msgstr "Simplifica le cosas {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "Justo trahe texto, imagines, o ligamines pro exequer actiones como copiar, aperir, cercar, e altero ancora."
+msgstr "Simplemente trahe texto, imagines o ligamines pro exequer actiones como copiar, aperir, cercar, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
