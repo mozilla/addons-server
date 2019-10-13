@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 00:50+0000\n"
+"PO-Revision-Date: 2019-10-13 10:54+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -935,20 +935,20 @@ msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr "Discarga extensiones de Firefox pro stimular tu experientia de intertenimento. Iste categoria include extensiones que pote meliorar le jocos, controlar reproduction video e altero ancora."
+msgstr "Discarga extensiones de Firefox pro stimular tu experientia de intertenimento. Iste categoria include extensiones que pote meliorar le jocos, controlar reproduction video e multo plus."
 
 msgid "Language Support"
 msgstr "Supporto de linguas"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Discarga extensiones de Firefox que offere supporto del lingua como controlar grammatica, cercar parolas, traducer texto, converter le texto in parolas e altero ancora."
+msgstr "Discarga extensiones de Firefox que offere supporto de linguas como verification de grammatica, dictionarios, traduction de texto, synthese vocal e multo plus."
 
 msgid "Photos, Music & Videos"
 msgstr "Photos, Musica & Videos"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
-"Discarga extensiones de Firefox que meliora le experientias de photos, musica e video. Le extensiones in iste categoria modifica audio e video, face recerca inverse del imagines e altero ancora."
+"Discarga extensiones de Firefox que meliora le experientias de photos, musica e video. Le extensiones in iste categoria modifica audio e video, face recerca inverse del imagines, e multo plus."
 
 msgid "Privacy & Security"
 msgstr "Confidentialitate & securitate"
@@ -956,30 +956,30 @@ msgstr "Confidentialitate & securitate"
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
 "Discarga extensiones de Firefox pro navigar privatemente e con securitate. Iste categoria include extensiones pro blocar enoiose avisos publicitari, impedir le traciamento, gerer re-directiones e "
-"altero ancora."
+"multo plus."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Discarga extensiones de Firefox pro cercar e filtrar. Iste categoria include extensiones que evidentia e cerca texto, filtra proprietate intellectual adresses/dominios, e altero ancora."
+msgstr "Discarga extensiones de Firefox pro cercar e filtrar. Iste categoria include extensiones que evidentia e cerca texto, consulta adresses/dominios internet, e multo plus."
 
 msgid "Shopping"
 msgstr "Compras"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras online con cercator de coupon e de accordos, analysatores de revision altero ancora."
+msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras in linea con instrumentos pro cercar coupons e occasiones, analysar recensiones, e multo plus."
 
 msgid "Social & Communication"
 msgstr "Social & communication"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Discarga extensiones de Firefox pro meliorar medios social e messages instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video e altero ancora."
+msgstr "Discarga extensiones de Firefox pro optimisar le medios social e messageria instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video, e multo plus."
 
 msgid "Tabs"
 msgstr "Schedas"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
-"Discarga Firefox extension pro personalisar le schedas e le apparentia del nove schedas. Discoperi extensiones que pote controlar schedas, modificar le maniera que tu interage con illos e altero "
-"ancora."
+"Discarga extensiones Firefox pro personalisar le schedas e le pagina de nove scheda. Discoperi extensiones que pote controlar schedas, modificar le maniera in que tu interage con illos, e multo "
+"plus."
 
 msgid "Web Development"
 msgstr "Disveloppamento del Web"
