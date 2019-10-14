@@ -90,6 +90,8 @@ RUN mkdir -p /deps/{build,cache,src}/ && \
     make update_deps && \
     rm -rf /deps/build/ /deps/cache/
 
+RUN useradd -Md /code/ olympia
+
 # Preserve bash history across image updates.
 # This works best when you link your local source code
 # as a volume.

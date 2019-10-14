@@ -1,4 +1,4 @@
-version: "2.3"
+version: "2.4"
 
 # If you're changing the &env mapping
 # please make sure to update tests/ui/docker-compose.selenium.yml
@@ -23,9 +23,11 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
+    build: .
     image: addons/addons-server:fixed-docker-perms
     command: supervisord -n -c /code/docker/supervisor-celery.conf
-    entrypoint: ./scripts/start-docker.sh
+    # entrypoint: ./scripts/start-docker.sh
+    user: olympia
     volumes:
       - .:/code
     extra_hosts:
