@@ -31,25 +31,32 @@ class AmoLoggerAdapter(logging.LoggerAdapter):
         return msg, kwargs
 
 
-class Formatter(logging.Formatter):
-    """Formatter that makes sure REMOTE_ADDR and USERNAME are available.
-
-    Relies on AmoLoggerAdapter to make sure those variables will be set."""
-
-    def format(self, record):
-        for name in 'REMOTE_ADDR', 'USERNAME':
-            record.__dict__.setdefault(name, '')
-        return super(Formatter, self).format(record)
-
-
 class JsonFormatter(dockerflow.logging.JsonLogFormatter):
     """Like JsonLogFormatter, but with uid and remoteAddressChain set from
-    current user and ip, following mozlog format.
+    current user and ip, following mozlog format, as well as an additional
+    severity field at the root of the output for stackdriver."""
 
-    See Formatter above for the legacy, console version of this."""
+    # Map from Python logging levels to Stackdriver severity levels
+    STACKDRIVER_LEVEL_MAP = {
+        # 800 is EMERGENCY but Python doesn't have that
+        # 700 is ALERT but Python doesn't have that
+        logging.CRITICAL: 600,
+        logging.ERROR: 500,
+        logging.WARNING: 400,
+        # 300 is NOTICE but Python doesn't have that
+        logging.INFO: 200,
+        logging.DEBUG: 100,
+        logging.NOTSET: 0,
+    }
 
-    def format(self, record):
+    def convert_record(self, record):
+        # Modify the record to include uid and remoteAddressChain
         record.__dict__['uid'] = record.__dict__.pop('USERNAME', '')
         record.__dict__['remoteAddressChain'] = record.__dict__.pop(
             'REMOTE_ADDR', '')
-        return super(JsonFormatter, self).format(record)
+        # Call the parent implementation to get most of the return value built.
+        out = super().convert_record(record)
+
+        # Add custom keys for stackdriver that need to live at the root level.
+        out['severity'] = self.STACKDRIVER_LEVEL_MAP.get(record.levelno, 0)
+        return out
