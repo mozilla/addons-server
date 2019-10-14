@@ -346,8 +346,26 @@ class TestVersion(TestCase):
         version = Version.objects.create(addon=addon)
         version.disable_old_files()
         assert qs.all()[0].status == amo.STATUS_DISABLED
-        addon.current_version.all_files[0]
         assert hide_disabled_file_mock.called
+
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
+    def test_new_version_dont_disable_old_unlisted_unreviewed(
+            self, hide_disabled_file_mock):
+        addon = Addon.objects.get(id=3615)
+        old_version = version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        new_version = Version.objects.create(addon=addon)
+        new_version.disable_old_files()
+        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert not hide_disabled_file_mock.called
+
+        # Doesn't happen even if the new version is also unlisted.
+        new_version = Version.objects.create(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        new_version.disable_old_files()
+        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert not hide_disabled_file_mock.called
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_unlisted_dont_disable_old_unreviewed(
@@ -525,7 +543,17 @@ class TestVersion(TestCase):
         addon.update(type=amo.ADDON_DICT)
         assert version.is_ready_for_auto_approval
 
+        # Test with an unlisted version. Note that it's the only version, so
+        # the add-on status is reset to STATUS_NULL at this point.
         version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert not version.is_ready_for_auto_approval
+
+        # Retest with the addon being approved or nominated
+        addon.reload()
+        addon.update(status=amo.STATUS_NOMINATED)
+        assert not version.is_ready_for_auto_approval
+
+        addon.update(status=amo.STATUS_APPROVED)
         assert not version.is_ready_for_auto_approval
 
     def test_is_ready_for_auto_approval_addon_status(self):
