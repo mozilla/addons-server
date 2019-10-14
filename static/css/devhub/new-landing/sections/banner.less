@@ -3,7 +3,6 @@
     align-self: center;
 }
 .DevHub-callout-box--banner {
-    background: no-repeat bottom left url(../../../img/developers/new-landing/banner-background.svg);
     margin-top: 20px;
     padding-bottom: 160px;
 
@@ -20,6 +19,24 @@
             margin: 16px 20px;
             max-width: 45%;
             min-height: 100%;
+
+             .html-rtl & {
+                float: right;
+             }
         }
+    }
+}
+
+.DevHub-callout-box--banner::before {
+    background: no-repeat bottom left url(../../../img/developers/new-landing/banner-background.svg);
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .html-rtl & {
+        transform: scaleX(-1);
     }
 }
