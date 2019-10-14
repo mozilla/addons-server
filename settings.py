@@ -86,38 +86,31 @@ DATABASES = {
 # FxA config for local development only.
 FXA_CONFIG = {
     'default': {
-        'client_id': env('FXA_CLIENT_ID', default='f336377c014eacf0'),
+        'client_id': env('FXA_CLIENT_ID', default='a25796da7bc73ffa'),
         'client_secret': env(
             'FXA_CLIENT_SECRET',
-            default='5a36054059674b09ea56709c85b862c388f2d493d735070868ae8f476e16a80d'),  # noqa
-        # fxa redirects to 'http://olympia.test/api/v3/accounts/authenticate/',
+            default='4828af02f60a12738a79c7121b06d42b481f112dce1831440902a8412d2770c5'),  # noqa
+        # fxa redirects to http://olympia.test/api/auth/authenticate-callback/
     },
     'amo': {
         'client_id': env('FXA_CLIENT_ID', default='0f95f6474c24c1dc'),
         'client_secret': env(
             'FXA_CLIENT_SECRET',
             default='ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38'),  # noqa
-        # fxa redirects to 'http://localhost:3000/fxa-authenticate',
+        # fxa redirects to http://localhost:3000/fxa-authenticate
     },
     'local': {
-        'client_id': env('FXA_CLIENT_ID', default='1778aef72d1adfb3'),
+        'client_id': env('FXA_CLIENT_ID', default='4dce1adfa7901c08'),
         'client_secret': env(
             'FXA_CLIENT_SECRET',
-            default='3feebe3c009c1a0acdedd009f3530eae2b88859f430fa8bb951ea41f2f859b18'),  # noqa
-        # fxa redirects to 'http://localhost:3000/api/v3/accounts/authenticate/?config=local', # noqa
-    },
-    'code-manager': {
-        'client_id': env('CODE_MANAGER_FXA_CLIENT_ID', default='a98b671fdd3dfcea'), # noqa
-        'client_secret': env(
-            'CODE_MANAGER_FXA_CLIENT_SECRET',
-            default='d9934865e34bed4739a2dc60046a90d09a5d8336cf92809992dec74a4cff4665'),  # noqa
-        # fxa redirects to 'http://olympia.test/api/v4/accounts/authenticate/?config=code-manager', # noqa
+            default='d7d5f1148a35b12c067fb9eafafc29d35165a90f5d8b0032f1fcd37468ae49fe'),  # noqa
+        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  #noqa
     },
 }
 FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
 FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
 FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local', 'code-manager']
+ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'

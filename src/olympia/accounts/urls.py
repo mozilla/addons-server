@@ -23,9 +23,7 @@ notifications = NestedSimpleRouter(accounts, r'account', lookup='user')
 notifications.register(r'notifications', views.AccountNotificationViewSet,
                        basename='notification')
 
-urlpatterns = [
-    url(r'^authenticate/$', views.AuthenticateView.as_view(),
-        name='accounts.authenticate'),
+accounts_v4 = [
     url(r'^login/start/$',
         views.LoginStartView.as_view(),
         name='accounts.login_start'),
@@ -41,4 +39,15 @@ urlpatterns = [
     url(r'', include(collections.urls)),
     url(r'', include(sub_collections.urls)),
     url(r'', include(notifications.urls)),
+]
+
+accounts_v3 = accounts_v4 + [
+    url(r'^authenticate/$', views.AuthenticateView.as_view(),
+        name='accounts.authenticate'),
+]
+
+auth_callback_patterns = [
+    url(r'^authenticate-callback/$', views.AuthenticateView.as_view(),
+        name='accounts.authenticate'),
+
 ]

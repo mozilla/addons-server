@@ -1,0 +1,42 @@
+.DevHub-Banner {
+    max-width: @grid-max;
+    align-self: center;
+}
+.DevHub-callout-box--banner {
+    margin-top: 20px;
+    padding-bottom: 160px;
+
+    h2 {
+        display: inline-block;
+    }
+
+    @media @medium {
+        margin: 20px 80px;
+        padding-top: 40px;
+        padding-bottom:100px;
+        h2 {
+            float: left;
+            margin: 16px 20px;
+            max-width: 45%;
+            min-height: 100%;
+
+             .html-rtl & {
+                float: right;
+             }
+        }
+    }
+}
+
+.DevHub-callout-box--banner::before {
+    background: no-repeat bottom left url(../../../img/developers/new-landing/banner-background.svg);
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .html-rtl & {
+        transform: scaleX(-1);
+    }
+}

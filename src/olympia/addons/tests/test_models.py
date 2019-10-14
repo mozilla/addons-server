@@ -2538,47 +2538,6 @@ class TestTrackAddonStatusChange(TestCase):
         )
 
 
-class TestLanguagePack(TestCase, amo.tests.AMOPaths):
-
-    def setUp(self):
-        super(TestLanguagePack, self).setUp()
-        self.addon = amo.tests.addon_factory(type=amo.ADDON_LPAPP,
-                                             status=amo.STATUS_APPROVED)
-        self.platform_all = amo.PLATFORM_ALL.id
-        self.platform_mob = amo.PLATFORM_ANDROID.id
-        self.version = self.addon.current_version
-
-    def test_extract(self):
-        File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker()
-        assert 'title=Select a language' in self.addon.get_localepicker()
-
-    def test_extract_no_file(self):
-        File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker() == ''
-
-    def test_extract_no_files(self):
-        assert self.addon.get_localepicker() == ''
-
-    def test_extract_not_language_pack(self):
-        File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker()
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        assert self.addon.get_localepicker() == ''
-
-    def test_extract_not_platform_mobile(self):
-        File.objects.create(platform=self.platform_all, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker() == ''
-
-
 class TestAddonApprovalsCounter(TestCase):
     def setUp(self):
         self.addon = addon_factory()

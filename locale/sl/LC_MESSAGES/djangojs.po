@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2018-10-20 11:02+0000\n"
+"PO-Revision-Date: 2019-10-12 08:37+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -28,9 +28,8 @@ msgstr "Pri vzpostavljanju stika s strežnikom je prišlo do napake."
 msgid "Select a file..."
 msgstr "Izberite datoteko ..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Končnica vašega dodatka mora biti .zip, .xpi, .crx, .jar ali .xml"
+msgstr "Končnica vašega dodatka mora biti .zip, .xpi, .crx ali .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

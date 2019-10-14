@@ -10,6 +10,7 @@ class YaraResult(ModelBase):
                                   related_name='yara_results',
                                   on_delete=models.SET_NULL,
                                   null=True)
+    has_matches = models.NullBooleanField()
     matches = JSONField(default=[])
     version = models.OneToOneField('versions.Version',
                                    related_name='yara_results',
@@ -18,6 +19,9 @@ class YaraResult(ModelBase):
 
     class Meta:
         db_table = 'yara_results'
+        indexes = [
+            models.Index(fields=('has_matches',)),
+        ]
 
     def add_match(self, rule, tags=None, meta=None):
         self.matches.append({
@@ -25,6 +29,12 @@ class YaraResult(ModelBase):
             'tags': tags or [],
             'meta': meta or {},
         })
+        self.has_matches = True
+
+    def save(self, *args, **kwargs):
+        if self.has_matches is None:
+            self.has_matches = bool(self.matches)
+        super().save(*args, **kwargs)
 
     @property
     def matched_rules(self):

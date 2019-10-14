@@ -31,12 +31,13 @@ def run_yara(results, upload_pk):
     - `upload_pk` is the FileUpload ID.
     """
     log.info('Starting yara task for FileUpload %s.', upload_pk)
-    upload = FileUpload.objects.get(pk=upload_pk)
 
     if not results['metadata']['is_webextension']:
         log.info('Not running yara for FileUpload %s, it is not a '
                  'webextension.', upload_pk)
         return results
+
+    upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
         result = YaraResult()
@@ -62,6 +63,9 @@ def run_yara(results, upload_pk):
             zip_file.close()
 
         result.save()
+
+        if result.has_matches:
+            statsd.incr('devhub.yara.has_matches')
 
         statsd.incr('devhub.yara.success')
         log.info('Ending yara task for FileUpload %s.', upload_pk)
