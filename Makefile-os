@@ -11,17 +11,17 @@ help_submake:
 
 .PHONY: update_docker
 update_docker: ## update all the docker images
-	docker-compose exec worker make update_deps
-	docker-compose exec web make update
+	docker-compose run worker make update_deps
+	docker-compose run web make update
 	docker-compose restart web
 	docker-compose restart worker
 
 .PHONY: shell
 shell: ## connect to a running addons-server docker shell
-	docker-compose exec web bash
+	docker-compose run web bash
 
 %: ## This directs any other recipe (command) to the web container's make.
-	docker-compose exec web make $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker-compose run web make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 # You probably want to put new commands in Makefile-docker, unless they operate
 # on multiple containers or are host-os specific.

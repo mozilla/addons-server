@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-07 08:33+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2019-10-13 21:28+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,7 @@ msgid "Submit a New Theme"
 msgstr "Inviar un nove thema"
 
 msgid "Developer Hub"
-msgstr "Centro de developpatores"
+msgstr "Centro de disveloppatores"
 
 msgid "Manage API Keys"
 msgstr "Gerer le claves API"
@@ -243,8 +243,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"Tu vide iste message pois que iste sito necessita un cookie CSRF al invio de formas. Iste cookie es requirite pro rationes de securitate, pro assecurar te que tu navigator non es piratate per "
-"tertie partes."
+"Tu vide iste message pois que iste sito necessita un cookie CSRF al invio de formas. Iste cookie es requirite pro rationes de securitate, pro assecurar te que tu navigator non es piratate per tertie"
+" partes."
 
 msgid "Page Not Found"
 msgstr "Pagina non trovate"
@@ -278,17 +278,17 @@ msgstr "Non trovate"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Nos lo regretta, ma nos non pote trovar lo que tu recerca.</h1> <p> Le pagina o file que tu requireva non esseva trovate sur nostre sito. Il es possibile que tu cliccava un ligamine que es "
-"foras de data, o insereva le adresse incorrectemente. </p> <ul> <li>Si tu insereva le adresse, per favor duple controla le orthographia.</li> <li> Si tu sequeva un ligamine ab alicubi, per favor "
+"<h1>Nos lo regretta, ma nos non pote trovar lo que tu recerca.</h1> <p> Le pagina o file que tu requireva non esseva trovate sur nostre sito. Il es possibile que tu cliccava un ligamine que es foras"
+" de data, o insereva le adresse incorrectemente. </p> <ul> <li>Si tu insereva le adresse, per favor duple controla le orthographia.</li> <li> Si tu sequeva un ligamine ab alicubi, per favor "
 "%(open_bug_link)ssignala un problema%(close_bug_link)s. Conta nos ab ubi tu veniva e lo que tu cercava, e nos facera nostre melio pro lo reparar. </li> </ul> <p>O tu pote justo saltar super alcun "
-"del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos consiliate</a>?</li> <li> Desira tu <a href=\"%(search)s\">cercar pro additivos</"
-"a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o justo usar le campo de recerca supra. </li> <li> Si tu prefere comenciar, va justo al <a href=\"%(home)s\">pagina de prime plan del "
-"additivos</a>. </li> </ul>"
+"del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos consiliate</a>?</li> <li> Desira tu <a href=\"%(search)s\">cercar pro "
+"additivos</a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o justo usar le campo de recerca supra. </li> <li> Si tu prefere comenciar, va justo al <a href=\"%(home)s\">pagina de prime"
+" plan del additivos</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -330,8 +330,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Per favor insere <strong>tote le parolas</strong> infra, <strong>separate per un spatio si necessari</strong>. </p> <p> Si isto es dur a leger, tu pote <a href=\"#\" id=\"recaptcha_different"
-"\">provar differente parolas</a> o <a href=\"#\" id=\"recaptcha_audio\"> provar un differente typo de defia</a> in vice. </p>"
+"<p> Per favor insere <strong>tote le parolas</strong> infra, <strong>separate per un spatio si necessari</strong>. </p> <p> Si isto es dur a leger, tu pote <a href=\"#\" "
+"id=\"recaptcha_different\">provar differente parolas</a> o <a href=\"#\" id=\"recaptcha_audio\"> provar un differente typo de defia</a> in vice. </p>"
 
 msgid "Most Popular"
 msgstr "Plus popular"
@@ -428,7 +428,7 @@ msgstr "Tu debe fornir un objecto de {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "\"%s\" non es un pk o supernomine valide - le objecto non existe."
+msgstr "\"%s\" non es un clave primari o identificator valide - le objecto non existe."
 
 msgid "Confirmation for developer API keys"
 msgstr "Confirmation pro le claves API de disveloppator"
@@ -458,11 +458,11 @@ msgstr "Versiones"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Si tu application supportate non require un file manifesto, tu debe includer comocunque uno con le proprietates requirite como specificate per %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"Si tu application supportate non require un file manifesto, tu debe includer comocunque uno con le proprietates requirite como specificate per "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste adresse personalisate es ja in uso per un altere de tu collectiones."
@@ -721,7 +721,7 @@ msgid "Reply by developer on {addon} {version}."
 msgstr "Responsa per disveloppator sur {addon} {version}."
 
 msgid "Developer Reply"
-msgstr "Responsa de developpator"
+msgstr "Responsa de disveloppator"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr "Responsa per revisor sur {addon} {version}."
@@ -844,7 +844,7 @@ msgid "Owner"
 msgstr "Proprietario"
 
 msgid "Developer"
-msgstr "Developpator"
+msgstr "Disveloppator"
 
 msgid "Extension"
 msgstr "Extension"
@@ -905,50 +905,50 @@ msgstr "Alertas & actualisationes"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
-"Discarga le extensiones de Firefox que adjuta te a restar actualisate, traciar le labores, meliorar le efficientia. Trova le extensiones que recarga schedas, gere tu productivitate e altero ancora."
+"Discarga le extensiones de Firefox que te adjuta a restar actualisate, traciar le labores, meliorar le efficientia. Trova le extensiones que recarga schedas, gere tu productivitate e multo plus."
 
 msgid "Appearance"
 msgstr "Apparentia"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Discarga le extensiones que modifica le apparentia del sitos web e del navigator Firefox. Iste categoria include le extensiones pro themas obscur, gestion de schedas e altero ancora."
+msgstr "Discarga le extensiones que modifica le apparentia del sitos web e del navigator Firefox. Iste categoria include le extensiones pro themas obscur, gestion de schedas e multo plus."
 
 msgid "Bookmarks"
 msgstr "Marcapaginas"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "Discarga extensiones que meliora le marcapaginas per lor protection con contrasignos, le recerca de duplicatos e de marcapaginas corrupte, e altero ancora."
+msgstr "Discarga extensiones que protege le marcapaginas con un contrasigno, cerca duplicatos, trova marcapaginas rupte, e multo plus."
 
 msgid "Download Management"
 msgstr "Gestion de discargamento"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Discarga extensiones de Firefox que pote adjutar a discargar contento del Web, musica e video. Tu pote alsi trovar extensiones pro gerer discargamentos, compartir files e altero ancora."
+msgstr "Discarga extensiones de Firefox que pote adjutar a discargar contento del Web, musica e video. Tu pote etiam trovar extensiones pro gerer discargamentos, compartir files e multo plus."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds de novas, novas e blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Discarga extensiones de Firefox que remove disordine assi que tu pote restar actualisate sur le medios social, prender sur blogs, RSS feeds, reducer le effortio del oculo e altero ancora."
+msgstr "Discarga extensiones de Firefox que remove disordine de maniera que tu pote restar actualisate sur le medios social, leger blogs, syndicationes RSS, reducer le fatiga ocular e multo plus."
 
 msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr "Discarga extensiones de Firefox pro stimular tu experientia de intertenimento. Iste categoria include extensiones que pote meliorar le jocos, controlar reproduction video e altero ancora."
+msgstr "Discarga extensiones de Firefox pro stimular tu experientia de intertenimento. Iste categoria include extensiones que pote meliorar le jocos, controlar reproduction video e multo plus."
 
 msgid "Language Support"
 msgstr "Supporto de linguas"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Discarga extensiones de Firefox que offere supporto del lingua como controlar grammatica, cercar parolas, traducer texto, converter le texto in parolas e altero ancora."
+msgstr "Discarga extensiones de Firefox que offere supporto de linguas como verification de grammatica, dictionarios, traduction de texto, synthese vocal e multo plus."
 
 msgid "Photos, Music & Videos"
 msgstr "Photos, Musica & Videos"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
-"Discarga extensiones de Firefox que meliora le experientias de photos, musica e video. Le extensiones in iste categoria modifica audio e video, face recerca inverse del imagines e altero ancora."
+"Discarga extensiones de Firefox que meliora le experientias de photos, musica e video. Le extensiones in iste categoria modifica audio e video, face recerca inverse del imagines, e multo plus."
 
 msgid "Privacy & Security"
 msgstr "Confidentialitate & securitate"
@@ -956,42 +956,40 @@ msgstr "Confidentialitate & securitate"
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
 "Discarga extensiones de Firefox pro navigar privatemente e con securitate. Iste categoria include extensiones pro blocar enoiose avisos publicitari, impedir le traciamento, gerer re-directiones e "
-"altero ancora."
+"multo plus."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Discarga extensiones de Firefox pro cercar e filtrar. Iste categoria include extensiones que evidentia e cerca texto, filtra proprietate intellectual adresses/dominios, e altero ancora."
+msgstr "Discarga extensiones de Firefox pro cercar e filtrar. Iste categoria include extensiones que evidentia e cerca texto, consulta adresses/dominios internet, e multo plus."
 
 msgid "Shopping"
 msgstr "Compras"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras online con cercator de coupon e de accordos, analysatores de revision altero ancora."
+msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras in linea con instrumentos pro cercar coupons e occasiones, analysar recensiones, e multo plus."
 
 msgid "Social & Communication"
 msgstr "Social & communication"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Discarga extensiones de Firefox pro meliorar medios social e messages instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video e altero ancora."
+msgstr "Discarga extensiones de Firefox pro optimisar le medios social e messageria instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video, e multo plus."
 
 msgid "Tabs"
 msgstr "Schedas"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
-"Discarga Firefox extension pro personalisar le schedas e le apparentia del nove schedas. Discoperi extensiones que pote controlar schedas, modificar le maniera que tu interage con illos e altero "
-"ancora."
+"Discarga extensiones Firefox pro personalisar le schedas e le pagina de nove scheda. Discoperi extensiones que pote controlar schedas, modificar le maniera in que tu interage con illos, e multo "
+"plus."
 
 msgid "Web Development"
 msgstr "Disveloppamento del Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
-"Discarga extensiones de Firefox que ha functionalitates de utensiles de disveloppator del web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e "
-"altero ancora."
+msgstr "Discarga extensiones de Firefox que offere utensiles pro disveloppatores web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e multo plus."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr "Altero"
+msgstr "Altere"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, totevia utile pro ille labores curiose."
@@ -1000,7 +998,7 @@ msgid "Device Features & Location"
 msgstr "Functionalitates del apparato & position"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque rapide recercas, libera ressources de systema, prende notas e altero ancora."
+msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque recercas rapide, libera ressources de systema, prende notas, e multo plus."
 
 msgid "Experimental"
 msgstr "Experimental"
@@ -1012,9 +1010,7 @@ msgid "Performance"
 msgstr "Prestationes"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-"Discarga le extensiones que da a Firefox un incremento de performance. Trova extensiones que te adjuta a ser plus productive e efficiente per le blocada del enoiose avisos publicitari e altero "
-"ancora."
+msgstr "Discarga extensiones que rende Firefox plus rapide. Trova extensiones que te adjuta a esser plus productive e efficiente per le blocada del enoiose avisos publicitari e multo plus."
 
 msgid "Photos & Media"
 msgstr "Photos & medios"
@@ -1027,26 +1023,26 @@ msgstr "Securitate & confidentialitate"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"Discarga extensiones de Firefox pro navigar con securitate e privatemente. Discoperi extensiones que pote stoppar in lor traciamento furtive avisos publicitari traciator, clarar facilemente le "
-"chronologia de exploration e altero ancora."
+"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le furtive avisos publicitari que te tracia, rader facilemente le historia de navigation, e "
+"multo plus."
 
 msgid "Social Networking"
 msgstr "Retes social"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras online per le analyse del recensiones, trovante offertas e coupons e altero ancora."
+msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de retes social popular como YouTube, GitHub, Reddit e multo plus."
 
 msgid "Sports & Games"
 msgstr "Sports & jocos"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Discarga extensiones de Firefox pro meliorar tu experientia sur sitos web de retes social popular tal como YouTube, GitHub, Reddit e altero ancora."
+msgstr "Discarga extensiones de Firefox que meliora tu experientia de intertenimento con optimisation de transmission in vivo, actualitates de sport, e multo plus."
 
 msgid "User Interface"
 msgstr "Interface de usator"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Discarga extensiones de Firefox pro incrementar tu experientia de intertenimento con melioratores de live stream, actualitates sportive, e altero ancora."
+msgstr "Discarga extensiones de Firefox que optimisa paginas web pro lectura, recerca e navigation plus facile, e multo plus."
 
 msgid "Animals"
 msgstr "Animales"
@@ -1091,13 +1087,13 @@ msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "Discarga themas de Firefox que celebra stilos de tote le formas — patronos, ramages, contexturas, modellos, e altero ancora."
+msgstr "Discarga themas de Firefox que celebra stilos de tote le formas — patronos, ramages, texturas, modellos, e multo plus."
 
 msgid "Film and TV"
 msgstr "Film e TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Discarga themas de Firefox con films e television. Iste categoria include animationes como Uchiha Madara, films como Matrix, spectaculos (Joco de Thrones) e altero ancora."
+msgstr "Discarga themas de Firefox con films e television. Iste categoria include anime japonese como Uchiha Madara, films como The Matrix, series (Game of Thrones) e multo plus."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr "Discarga themas de Firefox del Navigator mesme. Iste categoria include pictoresc, diverse depictiones del logo de Firefox, anque le altere themas del vulpe general."
@@ -1112,16 +1108,16 @@ msgid "Holiday"
 msgstr "Vacantias"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "Discarga themas de Firefox con vacantias. Iste categoria include: Nativitate, halloween, die del action de gratias, die de sancte Patricio, Pascha, quatro de julio e altero ancora."
+msgstr "Discarga themas de Firefox sur le dies festive. Iste categoria include Natal, Halloween, le festa de Regratiamento, le die de Sancte Patricio, Pascha, le Quatro de Julio e multo plus."
 
 msgid "Music"
 msgstr "Musica"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "Discarga themas de Firefox pro interesses musical e artistas. Iste categoria include bandas popular como le Nirvana e le BTS, instrumentos, videos musical e multo altero ancora."
+msgstr "Discarga themas de Firefox pro interesses musical e artistas. Iste categoria include gruppos popular como Nirvana e BTS, instrumentos, videos musical e multo plus."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Discarga themas de Firefox con animales e paisages natural. Iste categoria include flores, poner del sol, vulpes, saisones, planetas, cattones, aves e altero ancora."
+msgstr "Discarga themas de Firefox con animales e paisages natural. Iste categoria include flores, poner del sol, vulpes, saisones, planetas, cattones, aves e multo plus."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Discarga themas de Firefox que es interessante, creative e unic."
@@ -1130,7 +1126,7 @@ msgid "Scenery"
 msgstr "Paisage"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Discarga themas de Firefox que characterisa le ambiente e le natura. Iste categoria include poner del sol, plagias, illustrationes, lineas del horizonte de citates e altero ancora."
+msgstr "Discarga themas de Firefox que monstra le ambiente e le natura. Iste categoria include poner del sol, plagias, illustrationes, horizontes de citate e multo plus."
 
 msgid "Seasonal"
 msgstr "Saisonal"
@@ -1142,10 +1138,10 @@ msgid "Solid"
 msgstr "Colores uniforme"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Discarga themas de Firefox con colores uniforme o gradiente pro personalisar tu navigator. Iste categoria include rubies hardite, pastellos, grises blande e multo altero ancora."
+msgstr "Discarga themas de Firefox con colores uniforme o gradiente pro personalisar tu navigator. Iste categoria include rubies hardite, pastellos, grises blande e multo plus."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr "Discarga themas de Firefox que characterisa un varietate de sports. Iste categoria include bandieras de paises, equipas sportive, football, hockey e altero ancora."
+msgstr "Discarga themas de Firefox que presenta un varietate de sports. Iste categoria include bandieras de paises, equipas sportive, football, hockey e multo plus."
 
 msgid "Websites"
 msgstr "Sitos web"
@@ -1394,7 +1390,7 @@ msgid "Defamatory content"
 msgstr "Contento diffamatori"
 
 msgid "Online gambling"
-msgstr "Joco de hasardo online"
+msgstr "Jocos de hasardo in linea"
 
 msgid "Spam content"
 msgstr "Contento SPAM"
@@ -1427,11 +1423,11 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste processo. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo precedente."
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Iste supernomine es ja in uso. Per favor elige un altero."
+msgstr "Iste identificator es ja in uso. Per favor elige un altere."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Le supernomine non pote ser \"%(slug)s\". Per favor elige un altero."
+msgstr "Le identificator non pote esser \"%(slug)s\". Per favor elige un altere."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1495,7 +1491,7 @@ msgid "At least one author must be listed."
 msgstr "Al minus un autor debe ser listate."
 
 msgid "Slug incorrect."
-msgstr "Supernomine non correcte."
+msgstr "Identificator non correcte."
 
 msgid "Details"
 msgstr "Detalios"
@@ -1510,7 +1506,7 @@ msgid "Provide the text of your license."
 msgstr "Forni le texto de tu licentia."
 
 msgid "License text is required when choosing Other."
-msgstr "Le texto del licentia es requirite si tu selige altero.."
+msgstr "Le texto del licentia es necessari si tu selige Altere."
 
 msgid "This add-on has an End-User License Agreement"
 msgstr "Iste additivo ha un accordo de licentia con le usator final (EULA)"
@@ -1582,8 +1578,7 @@ msgstr ""
 "Sur iste sito. <span class=\"helptext\">Tu submission essera listate sur iste sito e le Gestor de additivos de Firefox pro milliones de usatores, post que illo passa le revision del codice. Le "
 "actualisationes automatic es tractate per iste sito. Iste additivo essera alsi considerate pro promotiones e contextos de Mozilla. Le auto-distribution del files revidite es alsi possibile.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Sur tu proprie. <span class=\"helptext\">Tu submission essera immediatemente signate pro auto-distribution. Le actualisationes debe esser tractate per te per un updateURL o per un application "
 "externe dedicate.</span>"
@@ -1826,7 +1821,7 @@ msgid "Themes"
 msgstr "Themas"
 
 msgid "Developer Policies"
-msgstr "Politicas de developpator"
+msgstr "Politicas pro disveloppatores"
 
 msgid "Add-on Validator"
 msgstr "Utensile de validation de additivos"
@@ -1903,9 +1898,7 @@ msgstr ""
 "le cargamento de un version plus recente de iste additivo."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualisar Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Cargar nove version</a> o <a href=\"#\" "
 "class=\"close\">Ignorar</a>"
@@ -1914,7 +1907,7 @@ msgid "View and update application compatibility ranges"
 msgstr "Vide e actualisa le intervallos de compatibilitate del application"
 
 msgid "Compatibility"
-msgstr "Compatibile"
+msgstr "Compatibilitate"
 
 msgid "Update Compatibility"
 msgstr "Actualisar le compatibilitate"
@@ -2014,8 +2007,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Le additivos pote haber ulle numeros de autores con 2 possibile rolos:</p><ul><li><b>Proprietario:</b> Pote gerer tote le aspectos del visualisation del additivo, includite addition e remotion "
-"de altere autores</li><li><b>Disveloppator:</b> Pote gerer tote le aspectos del visualisation del additivo, totos minus illo del addition e remotion de altere autores</li></ul>"
+"<p>Le additivos pote haber ulle numeros de autores con 2 possibile rolos:</p><ul><li><b>Proprietario:</b> Pote gerer tote le aspectos del visualisation del additivo, includite addition e remotion de"
+" altere autores</li><li><b>Disveloppator:</b> Pote gerer tote le aspectos del visualisation del additivo, totos minus illo del addition e remotion de altere autores</li></ul>"
 
 msgid "Additional Details"
 msgstr "Detalios additional"
@@ -2091,7 +2084,7 @@ msgid "Add-on URL"
 msgstr "URL de additivo"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Elige un supernomine breve del URL, unic pro tu additivo."
+msgstr "Elige un identificator curte e unic pro le adresse URL de tu additivo."
 
 msgid "View Listing"
 msgstr "Vide le lista"
@@ -2133,8 +2126,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Le categorias es le maniera primari pro le usatores de navigar per le additivos. Elige lo que adhere al functionalitate de tu additivo pro le melior visibilitate."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu "
 "necessita de modificar tu categorias."
@@ -2142,15 +2134,15 @@ msgstr ""
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Le categorias non pote ser cambiate durante que tu additivos es consiliate. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu necessita de modificar "
-"tu categorias."
+"Le categorias non pote ser cambiate durante que tu additivos es consiliate. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu necessita de modificar tu"
+" categorias."
 
 msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Si tu vole monstrar un adresse de e-mail pro demandas de supporto, insere lo ci. Si tu ha differente adresses pro cata lingua, es possibile adder plure traductiones de iste campo. Illo es relevante "
 "solmente pro le additivos listate."
@@ -2182,14 +2174,14 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos "
-"note, informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
+"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos note,"
+" informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
 
 msgid "View Source?"
 msgstr "Vider le fonte?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Si le fonte de tu additivo pote esser displicate in nostre visor online. Illo es pertinente solo pro le additivos listate."
+msgstr "Si le fonte de tu additivo pote esser monstrate in nostre visor in linea. Isto es pertinente solo pro le additivos listate."
 
 msgid "This add-on's source code is publicly viewable."
 msgstr "Le codice fonte de iste additivo es visibile publicamente."
@@ -2201,7 +2193,7 @@ msgid "Public Stats?"
 msgstr "Statistica public?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Si le statistica de discarga e uso de tu additivo pote esser displicate in nostre visor online. Illo es pertinente solo pro le additivos listate."
+msgstr "Si le statisticas de discargamento e uso de tu additivo pote esser monstrate in nostre visor in linea. Isto es pertinente solo pro le additivos listate."
 
 msgid "This add-on's stats are publicly viewable."
 msgstr "Le statistica de iste additivo es publicamente visibile."
@@ -2225,8 +2217,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, qualcunque version. Usa lo pro fornir manieras pro testar le additivo, e ulle altere informationes que "
-"pote adjutar. Iste tabula blanc es alsi modificabile per le revisores."
+"Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, qualcunque version. Usa lo pro fornir manieras pro testar le additivo, e ulle altere informationes que pote"
+" adjutar. Iste tabula blanc es alsi modificabile per le revisores."
 
 msgid "Add-on Media for {0}"
 msgstr "Medios de additivo pro {0}"
@@ -2619,11 +2611,11 @@ msgid "Operating system and build environment requirements."
 msgstr "Requisitos de systema operative e ambiente de compilation."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
-"Detalios (includite version requirite e instructiones de installation), de ulle programmas usate in le processo de compilation (per exemplo: <span class=\"tech-emphasis\">nodo</span> e <span class="
-"\"tech-emphasis\">npm</span> version usate)."
+"Detalios (includite version requirite e instructiones de installation), de ulle programmas usate in le processo de compilation (per exemplo: <span class=\"tech-emphasis\">nodo</span> e <span class"
+"=\"tech-emphasis\">npm</span> version usate)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
@@ -2741,11 +2733,11 @@ msgstr "Jeton secrete JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a href="
-"\"%(docs_url)s\">Documentation API</a>."
+"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a "
+"href=\"%(docs_url)s\">Documentation API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -3078,11 +3070,11 @@ msgstr "Personalisar Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Le additivos consenti que milliones de usatores de Firefox meliora lor experientia de exploration. Si tu sape %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, e "
-"%(css_link_open)sCSS%(link_close)s, tu ja ha tote le necessari habilitates pro facer un grande additivo."
+"Le additivos adjuta milliones de usatores de Firefox a meliorar lor experientia de navigtation. Si tu sape %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s e "
+"%(css_link_open)sCSS%(link_close)s, tu ja possede tote le habilitates necessari pro facer un additivo excellente."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Apprende como crear un additivo"
@@ -3146,8 +3138,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informationes sur cambiamentos in iste version, nove functionalitates, defectos cognoscite, e altere informationes utile concernente iste edition/version. Iste informationes es etiam monstrate in "
-"le Gestor de additivos durante le actualisation."
+"Informationes sur cambiamentos in iste version, nove functionalitates, defectos cognoscite, e altere informationes utile concernente iste edition/version. Iste informationes es etiam monstrate in le"
+" Gestor de additivos durante le actualisation."
 
 msgid "Approval Status"
 msgstr "Stato del approbation"
@@ -3327,7 +3319,7 @@ msgstr "Personalisa le paginas de nove scheda {start_sub_heading}con {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "Gaude un nove pagina belle, con fundos personalisabile, informationes meteorologic local e altero."
+msgstr "Gaude de un nove pagina belle, con fundos personalisabile, informationes meteorologic local e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3441,7 +3433,7 @@ msgstr "Meliora videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Gaude de un suite de nove functionalitates de YouTube, como: modo cinema, blocada del avisos publicitari, controlo del auto-reproduction, e altero."
+msgstr "Gaude de un serie de nove functionalitates de YouTube, como: modo cinema, blocada del avisos publicitari, controlo del auto-reproduction, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3457,7 +3449,7 @@ msgstr "Gaude del marcapaginas visual {start_sub_heading}con {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Gaude le marcapaginas visual. Accede tu sitos consiliate ab un mappa de quadrellas."
+msgstr "Gaude de marcapaginas visual. Accede a tu sitos favorite in un dispositivo a quadrellos."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3481,7 +3473,7 @@ msgstr "Lege ubicunque {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "Invia articulos de novas, historias, messages de blog e altero a tu Kindle."
+msgstr "Invia articulos de novas, historias, messages de blog e multo plus a tu Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3505,7 +3497,7 @@ msgstr "Controla le grammatica automaticamente {start_sub_heading}con {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: medios social, email, documentos e altero ancora."
+msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: medios social, e-mail, documentos e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3654,11 +3646,11 @@ msgstr "Recarga automaticamente le schedas in base a intervallos de tempore que 
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Separa tu identitates online {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Separa tu vitas in linea {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Separa tu vitas online. Distingue reservatemente tu varie identitates online: labor, personal et cetera; con schedas codificate per color, que divide tu pista de cookies digital."
+msgstr "Separa tu vitas in linea. Distingue privatemente inter tu varie identitates in linea – labor, personal, etc. – con schedas codificate per color que divide tu pista de cookies digital."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3674,7 +3666,7 @@ msgstr "Lege files ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Lege simplemente in Firefox files ePub. Accresce le dimensiones del typo de character, le dimensiones del pagina e altero ancora."
+msgstr "Lege files ePub directemente in Firefox. Aggrandi le litteras, augmenta le dimension del pagina, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3682,7 +3674,7 @@ msgstr "Eleva tu experientia de YouTube {start_sub_heading}con {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Reproduce le videos YouTube de ordinario in le melior qualitate, disactiva annotationes e altero ancora."
+msgstr "Reguarda le videos YouTube sempre in le melior qualitate, disactiva annotationes, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3706,7 +3698,7 @@ msgstr "Controla le reproduction del video {start_sub_heading}con {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr "Meliora tu experientia de vision per adjustar le velocitate del video e altero ancora."
+msgstr "Meliora tu experientia de vision per adjustar le velocitate del video e altere parametros."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3730,7 +3722,7 @@ msgstr "Meliora Reddit {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr "Cambia le maniera que tu naviga per Reddit per etiquettas e altero ancora."
+msgstr "Cambia le maniera in que tu naviga per Reddit usante etiquettas e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3762,7 +3754,7 @@ msgstr "Naviga le Web anonyme. Con identitate disguisate: pare mesmo como si tu 
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Nove habito graphic pro marcapaginas! Accede tu sitos favorite, schedas recentemente claudite e altero ancora, per un splendide mappa de quadrellas."
+msgstr "Gaude de marcapaginas visual. Accede a tu sitos favorite, al schedas recentemente claudite, e multo plus – toto in un splendide disposition a quadrellos."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3786,7 +3778,7 @@ msgstr "Robuste gestion de discargamentos {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Gestion del discargamentos robuste. Controla per un barra de stato, discarga le chronologia del pagina e altero ancora."
+msgstr "Gestion robuste de discargamentos. Verifica le stato de tu files discargate per un barra de stato, un pagina con historia de discargamentos, e plus ancora."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3794,7 +3786,7 @@ msgstr "Captura contento de web {start_sub_heading}con {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr "Salva informationes de internet pro OneNote proque tu pote rediger, annotar, e altero ancora."
+msgstr "Salva informationes de internet in OneNote de maniera que tu pote rediger los, annotar los, etc."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3810,7 +3802,7 @@ msgstr "Navigation dynamic {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr "Usa le gestos del mus pro clauder schedas, receder a un pagina, recargar e altero ancora."
+msgstr "Usa le gestos del mus pro clauder schedas, receder a un pagina, recargar, etc."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3842,7 +3834,7 @@ msgstr "Personalisa tu favorite sitos web {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Personalisa le apparentia de ulle sito web. Displacia colores, fundos de pagina e altero ancora."
+msgstr "Personalisa le apparentia de qualcunque sito web. Altera le colores, le fundos de pagina e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3850,7 +3842,7 @@ msgstr "Personalisa tu nove schedas {start_sub_heading}con {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Personalisa le pagina del nove schedas pro monstrar tu preferite numero de quadrellas, imagine de fundo e altero ancora."
+msgstr "Personalisa le pagina de nove scheda pro monstrar tu preferite numero de quadrellos, imagine de fundo, e plus ancora."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3898,7 +3890,7 @@ msgstr "Inspira productivitate {start_sub_heading}con {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Infunde productivitate. Modifica le presentation de tu nove paginas pro monstrar un belle fundo, definir tu foco quotidian e altero ancora."
+msgstr "Un inspiration pro tu productivitate. Decora tu pagina de nove scheda con un belle fundo, defini tu prioritates quotidian, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3922,7 +3914,7 @@ msgstr "Repara tu favoritos {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr "Trova e resolve marcapaginas rupte, duplicate e altero ancora."
+msgstr "Trova e repara marcapaginas rupte, duplicatos, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3938,7 +3930,7 @@ msgstr "Compra in maniera plus intelligente {start_sub_heading}con {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr "Tracia le chronologia del precios, trova productos competitive, sape classificationes del venditores, e altero ancora."
+msgstr "Tracia le chronologia del precios, trova productos competitive, consulta le evalutationes del venditores, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3946,7 +3938,7 @@ msgstr "Rende tue YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Personalisa YouTube. Reproduce videos in un fenestra emergente, vide solo le avisos publicitari in le canales subscribite, prende videos, instantaneos de schermo e multe altero ancora."
+msgstr "Personalisa YouTube. Reguarda videos in un fenestra emergente, vide solo le avisos publicitari in le canales subscribite, prende instantaneos de videos, e tanto ancora."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4058,7 +4050,7 @@ msgstr "Crea un lista de blocada de sitos web {start_sub_heading}con {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Impedi a Firefox de acceder al sitos web que tu prescribe. Un grande utensile pro exercitar autodisciplina online."
+msgstr "Impedi a Firefox de acceder al sitos web que tu indica. Un excellente utensile pro exercitar autodisciplina in linea."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4162,11 +4154,11 @@ msgstr "Crea notas generic o specific pro le sito web a revider plus tarde."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rola como sur le smartphono {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Rolar como sur tu mobile {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr "Rolamento simile-a-smartphono pro tu scriptorio. Presenta movimento del mus stilo \"sasi-e-trahe\"."
+msgstr "Rola sur tu computator como sur tu mobile. Permitte movimento del mus in stilo \"sasir e traher\"."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4304,7 +4296,7 @@ msgstr "Definitive controlo de schedas {start_sub_heading}con {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Gaude plure optiones de controlo de schedas: claude schedas duplicate, misce fenestras, copia le titulo de scheda e altero ancora."
+msgstr "Gaude de un controlo total de schedas: claude schedas duplicate, combina fenestras, copia le titulo de schedas, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4420,7 +4412,7 @@ msgstr "Mesura tu productivitate, le tempore que tu passa sur le computator o su
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Salva tu contento favorite, retalia contento de web como articulos, videos, imagines, e altero ancora pro salvar e usar lo in projectos personal o in collaboration de equipa in real-time."
+msgstr "Guarda tu cosas favorite del web. Retalia articulos, videos, imagines, etc. pro salvar e usar los in projectos personal o in collaboration directe con tu equipa."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4484,7 +4476,7 @@ msgstr "Simplifica le cosas {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "Justo trahe texto, imagines, o ligamines pro exequer actiones como copiar, aperir, cercar, e altero ancora."
+msgstr "Simplemente trahe texto, imagines o ligamines pro exequer actiones como copiar, aperir, cercar, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -5004,12 +4996,11 @@ msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Si tu ha experientia de disveloppamento de additivos, <a href=\"%(url)s\"> deveni un revisor de additivo</a>! Nostre revisores es admiratores del additivos con un fundo technic, qui revide "
-"additivos pro qualitate e stabilitate del codice."
+"Si tu ha experientia de disveloppamento de additivos, <a href=\"%(url)s\"> deveni un revisor de additivo</a>! Nostre revisores es admiratores del additivos con un fundo technic, qui revide additivos"
+" pro qualitate e stabilitate del codice."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Adjuta a meliorar iste sito web. Il es open-source, e tu pote indicar defectos e inviar pecias. <a href=\"%(url)s\">GitHub</a> contine tote nostre actual defectos, defectos legate pote ancora ser "
 "trovate in Bugzilla."
@@ -5025,7 +5016,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "Participa a nostre <a href=\"%(url)s\">foros</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr "Revide additivos sur le sito. Le autores de additivos es plus probabile pro meliorar lor additivos e scriber alteros nove quando illes sape que le personas apprecia lor labor."
+msgstr "Scribe tu opinion sur additivos sur le sito. Le autores de additivos es plus inclinate a meliorar lor additivos e scriber noves quando illes sape que le personas apprecia lor labor."
 
 msgid "I have a question"
 msgstr "Io ha un question"
@@ -5057,8 +5048,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Questiones frequente circa le revisiones"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Le revisiones del additivos es un maniera pro tu pro compartir tu opiniones circa le additivos que tu ha installate e usate. Nostre equipa de moderation del revisiones se reserva le derecto de "
 "refusar o remover ulle revision que non se conforma con iste lineas guida."
@@ -5128,8 +5119,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Criticar un additivo pro un cosa que illo es destinate a facer. Per exemplo, lassar un recension negative de un additivo perque illo monstra avisos publicitari o require le collecta de datos, "
-"quando iste es le scopo explicite del additivo, o le additivo require le collecta de datos pro functionar."
+"Criticar un additivo pro un cosa que illo es destinate a facer. Per exemplo, lassar un recension negative de un additivo perque illo monstra avisos publicitari o require le collecta de datos, quando"
+" iste es le scopo explicite del additivo, o le additivo require le collecta de datos pro functionar."
 
 msgid "How can I report a problematic review?"
 msgstr "Como pote io reportar un revision problematic?"
@@ -5138,8 +5129,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Per favor reporta o signala ulle revisiones problematic per cliccar le button \"Reportar iste revision\" e illo sera submittite al sito pro le moderation. Nostre equipa de moderation usara le "
-"lineas guida del revisiones pro evalutar si deler o non le revision o restaurar illo retro al sito."
+"Per favor reporta o signala ulle revisiones problematic per cliccar le button \"Reportar iste revision\" e illo sera submittite al sito pro le moderation. Nostre equipa de moderation usara le lineas"
+" guida del revisiones pro evalutar si deler o non le revision o restaurar illo retro al sito."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Io es un autor de additivos, pote io responder al revisiones?"
@@ -5176,7 +5167,7 @@ msgid "Misplaced bug report or support request"
 msgstr "Reporto de defecto o requesta de supporto mal ponite"
 
 msgid "Other (please specify)"
-msgstr "Altero (specificar)"
+msgstr "Altere (specificar)"
 
 msgid "This field is required."
 msgstr "Campo obligatori."
@@ -5207,7 +5198,7 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr "Iste classification non pote ser signalate pois que il ha nulle texto de revision."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Un breve explication debe ser fornite quando tu selige \"Altero\" como ration del signal."
+msgstr "Un breve explication debe esser fornite quando tu selige \"Altere\" como ration del signal."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5586,7 +5577,7 @@ msgid "Rendered Preview"
 msgstr "Ante-prima rendite"
 
 msgid "More about this add-on"
-msgstr "Altero re iste additivo"
+msgstr "Plus sur iste additivo"
 
 msgid "Image Gallery"
 msgstr "Galeria de imagines"
@@ -6177,18 +6168,18 @@ msgstr "Circa le traciamento del fontes externe..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Traciar fontes externe</h2> <p> Si tu insere in un sito externe (como tu blog o tu sito web) un ligamine al pagina de detalios de tu additivo, o un ligamine directe a su file, tu pote adjunger "
 "un parametro que essera traciate como un fonte de discargamento additional sur iste pagina. Per exemplo, le sequente ligamines apparerea como proveniente de tu blog: <dl> <dt>Pagina de detalios del "
-"additivo</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligamine directe al file</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-"
-"latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Solo le parametros src que initia con \"external-\" essera traciate, con un maximo de 61 characteres additional. Le texto post \"external-\" pote "
-"esser usate pro describer le fonte, per exemplo \"external-blog\", \"external-sidebar\", \"external-campaign225\", et cetera. Le sequente characteres, secur pro uso in adresses URL, es permittite: "
-"<code>a-z A-Z - .  _ ~ %% +</code>"
+"additivo</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligamine directe al file</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Solo le parametros src que initia con \"external-\" essera traciate, con un "
+"maximo de 61 characteres additional. Le texto post \"external-\" pote esser usate pro describer le fonte, per exemplo \"external-blog\", \"external-sidebar\", \"external-campaign225\", et cetera. Le"
+" sequente characteres, secur pro uso in adresses URL, es permittite: <code>a-z A-Z - .  _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Stato del additivos per data"
@@ -6231,8 +6222,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Excepte ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es licentiate sub le <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> o ulle version plus recente."
+"Excepte ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es licentiate sub le <br /> <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> o ulle version plus recente."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "discoperi le <b>additivos</b>"
@@ -6390,12 +6381,12 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Insere le complete dominio de e-mail jectabile a blocar. Le metacharacteres non es supportate: si tu los require, o si tu vole facer corresponder le adresse de e-mail integre e non solmente le "
-"parte de dominio, usa \"Restrictiones de e-mail del usator\" in loco de isto."
+"Insere le complete dominio de e-mail jectabile a blocar. Le metacharacteres non es supportate: si tu los require, o si tu vole facer corresponder le adresse de e-mail integre e non solmente le parte"
+" de dominio, usa \"Restrictiones de e-mail del usator\" in loco de isto."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Ante de initiar, per favor leger e acceptar nostre Accordo de distribution del additivos de Firefox tam ben como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
 "Firefox alsi se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."

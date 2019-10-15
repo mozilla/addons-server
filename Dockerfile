@@ -4,6 +4,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 
 # Run all initial setup with root user. This is the default but mentioned here
 # for documentation.
+# We won't switch to the `olympia` user inside the dockerfile
+# but rather use the `user` option instead
 USER root
 
 # Allow scripts to detect we're running in our own container
@@ -20,6 +22,8 @@ ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.lis
 ADD docker/debian-buster-testing-repo /etc/apt/sources.list.d/testing.list
 
 RUN apt-get update && apt-get -t stretch install -y \
+        # Allow for simpler setuid/setgid interaction
+        gosu \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
@@ -89,6 +93,8 @@ ENV PIP_SRC=/deps/src/
 ENV NPM_CONFIG_PREFIX=/deps/
 ENV SWIG_FEATURES="-D__x86_64__"
 
+RUN useradd -Md /code/ olympia
+
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
     ln -s /code/package.json /deps/package.json && \
@@ -98,8 +104,6 @@ RUN mkdir -p /deps/{build,cache,src}/ && \
     chown -R olympia:olympia /deps/ && \
     rm -rf /deps/build/ /deps/cache/
 
-# Run everything from now on as olympia user, by default.
-USER olympia
 
 # Preserve bash history across image updates.
 # This works best when you link your local source code
