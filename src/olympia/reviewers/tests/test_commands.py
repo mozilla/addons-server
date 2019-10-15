@@ -129,6 +129,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         DiscoveryItem.objects.create(
             recommendable=True, addon=recommended_addon)
 
+        # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
         addon_factory(file_kw={'is_webextension': True})
@@ -168,6 +169,15 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             version=self.version, status=amo.STATUS_AWAITING_REVIEW,
             is_webextension=True)
 
+        # Add-on with an already public version and an unlisted webext
+        # still awaiting review
+        complex_addon_2 = addon_factory(file_kw={'is_webextension': True})
+        version_factory(
+            addon=complex_addon_2, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True,
+                     'status': amo.STATUS_AWAITING_REVIEW})
+
+        # ---------------------------------------------------------------------
         # Gather the candidates.
         command = auto_approve.Command()
         command.post_review = True
