@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-15 02:26+0000\n"
+"PO-Revision-Date: 2019-10-15 08:23+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -793,9 +793,8 @@ msgstr "已要求管理員進行佈景主題審核"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} 是從輕量佈景主題移轉而來。"
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "已刪除使用者 {user} 的照片。"
+msgstr "已重設使用者 {user} 的 API 金鑰。"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4706,7 +4705,6 @@ msgid "They add features to Firefox to make browsing faster, safer, or just plai
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
@@ -4724,9 +4722,8 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "擴充套件"
+msgstr "探索擴充套件"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6275,13 +6272,12 @@ msgstr "已封鎖使用者「%(users)s」。"
 msgid "Ban selected users"
 msgstr "封鎖所選的使用者"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "已封鎖使用者「%(users)s」。"
+msgstr "使用者「%(users)s」已重設 API 金鑰。"
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "管理 API 金鑰"
+msgstr "重設 API 金鑰"
 
 msgid "Profile Photo"
 msgstr "個人檔案照片"
