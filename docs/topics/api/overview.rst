@@ -363,6 +363,7 @@ v4 API changelog
 * 2019-08-15: removed /addons/compat-override/ from v4 and above.  Still exists in /v3/ but will always return an empty response. https://github.com/mozilla/addons-server/issues/12063
 * 2019-08-22: added ``canned_response`` property to draft comment api. https://github.com/mozilla/addons-server/issues/11807
 * 2019-09-19: added /site/ endpoint to expose read-only mode and any site notice.  Also added the same response to the /accounts/account/ non-public response as a convenience for logged in users. https://github.com/mozilla/addons-server/issues/11493)
+* 2019-10-17: moved /authenticate endpoint from api/v4/accounts/authenticate to version-less api/auth/authenticate-callback https://github.com/mozilla/addons-server/issues/10487
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

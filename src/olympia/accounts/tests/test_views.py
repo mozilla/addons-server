@@ -157,7 +157,7 @@ class TestLoginStartView(TestCase):
     def test_default_config_is_used(self):
         assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
         assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'local', 'code-manager'])
+            ['default', 'amo', 'local'])
 
 
 class TestLoginUserAndRegisterUser(TestCase):
@@ -276,9 +276,11 @@ class TestFindUser(TestCase):
 
 
 class TestRenderErrorHTML(TestCase):
+    api_version = 'auth'
 
     def make_request(self):
-        request = APIRequestFactory().get(reverse_ns('accounts.authenticate'))
+        request = APIRequestFactory().get(
+            reverse_ns('accounts.authenticate', api_version=self.api_version))
         request.user = AnonymousUser()
         return self.enable_messages(request)
 
@@ -328,7 +330,12 @@ class TestRenderErrorHTML(TestCase):
         assert_url_equal(response['location'], '/')
 
 
+class TestRenderErrorHTMLV3(TestRenderErrorHTML):
+    api_version = 'v3'
+
+
 class TestRenderErrorJSON(TestCase):
+    api_version = 'auth'
 
     def setUp(self):
         patcher = mock.patch('olympia.accounts.views.Response')
@@ -336,7 +343,8 @@ class TestRenderErrorJSON(TestCase):
         self.addCleanup(patcher.stop)
 
     def make_request(self):
-        return APIRequestFactory().post(reverse_ns('accounts.authenticate'))
+        return APIRequestFactory().post(
+            reverse_ns('accounts.authenticate', api_version=self.api_version))
 
     def render_error(self, error):
         views.render_error(self.make_request(), error, format='json')
@@ -354,6 +362,10 @@ class TestRenderErrorJSON(TestCase):
         self.render_error(views.ERROR_STATE_MISMATCH)
         self.Response.assert_called_with(
             {'error': views.ERROR_STATE_MISMATCH}, status=400)
+
+
+class TestRenderErrorJSONV3(TestRenderErrorJSON):
+    api_version = 'v3'
 
 
 class TestWithUser(TestCase):
@@ -740,12 +752,13 @@ def empty_view(*args, **kwargs):
 class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     view_name = 'accounts.authenticate'
     client_class = APIClient
+    api_version = 'auth'
 
     def setUp(self):
         super().setUp()
         self.fxa_identify = self.patch(
             'olympia.accounts.views.verify.fxa_identify')
-        self.url = reverse_ns(self.view_name)
+        self.url = reverse_ns(self.view_name, api_version=self.api_version)
         self.fxa_state = '1cd2ae9d'
         self.initialize_session({'fxa_state': self.fxa_state})
         self.login_user = self.patch('olympia.accounts.views.login_user')
@@ -1007,6 +1020,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             })
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             self.assertRedirects(response, reverse('home'))
+
+
+class TestAuthenticateViewV3(TestAuthenticateView):
+    api_version = 'v3'
 
 
 class TestAccountViewSet(TestCase):
@@ -1610,6 +1627,8 @@ class TestParseNextPath(TestCase):
 
 
 class TestSessionView(TestCase):
+    api_version = 'auth'
+
     def login_user(self, user):
         identity = {
             'username': user.username,
@@ -1622,7 +1641,8 @@ class TestSessionView(TestCase):
                 lambda code, config: identity):
             response = self.client.get(
                 '{url}?code={code}&state={state}'.format(
-                    url=reverse_ns('accounts.authenticate'),
+                    url=reverse_ns(
+                        'accounts.authenticate', api_version=self.api_version),
                     state='myfxastate',
                     code='thecode'))
             token = response.cookies[views.API_TOKEN_COOKIE].value
@@ -1690,6 +1710,10 @@ class TestSessionView(TestCase):
         assert not response.has_header('Access-Control-Allow-Methods')
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Max-Age')
+
+
+class TestSessionViewV3(TestSessionView):
+    api_version = 'v3'
 
 
 class TestAccountNotificationViewSetList(TestCase):

@@ -22,7 +22,21 @@ uid=$(ls -nd . | awk '{ print $3 }')
 #     useradd -Md $(pwd) -u $uid olympia
 # fi
 
+deps_uid=$(ls -nd . | awk '{ print $3 }')
+
+# Fix /deps/ folder so that we're able to update the image
+# with the `olympia` user
+if [[ $deps_uid -ne $uid ]]; then
+    # Ensure that we are able to update dependencies ourselves later when
+    # using the `olympia` user by default.
+    chown -R olympia:olympia /deps/
+fi
+
 echo "Starting with user: 'olympia' uid: $(id -u olympia)"
 
-# Switch to that user and execute our actual command.
-exec su olympia -c 'exec "$@"' sh -- "$@"
+# Add call to gosu to drop from root user to olympia user
+# when running original entrypoint
+set -- gosu olympia "$@"
+
+# replace the current pid 1 with original entrypoint
+exec "$@"
