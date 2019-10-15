@@ -22,8 +22,6 @@ ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.lis
 ADD docker/debian-buster-testing-repo /etc/apt/sources.list.d/testing.list
 
 RUN apt-get update && apt-get -t stretch install -y \
-        # Allow for simpler setuid/setgid interaction
-        gosu \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
@@ -75,10 +73,6 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 # disk.
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
-
-# Now that we have run all necessary root-required scripts, let's create and
-# use our `olympia` user.
-# ADD scripts/docker-create-olympia-user.sh /create-user.sh
 
 COPY . /code
 WORKDIR /code
