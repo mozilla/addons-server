@@ -206,7 +206,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert review_helper_mock().handler.process_public.call_count == 1
         assert statsd_incr_mock.call_count == 1
         assert statsd_incr_mock.call_args == (
-            ('reviewers.auto_approve.approve',), {}
+            ('reviewers.auto_approve.approve.success',), {}
         )
 
     @mock.patch('olympia.reviewers.utils.sign_file')

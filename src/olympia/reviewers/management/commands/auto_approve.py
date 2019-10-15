@@ -114,6 +114,7 @@ class Command(BaseCommand):
                 'files or because it had no validation attached.', version)
             self.stats['error'] += 1
         except SigningError:
+            statsd.incr('reviewers.auto_approve.approve.failure')
             log.info(
                 'Version %s was skipped because of a signing error', version)
             self.stats['error'] += 1
@@ -122,6 +123,7 @@ class Command(BaseCommand):
             if not already_locked:
                 clear_reviewing_cache(version.addon.pk)
 
+    @statsd.timer('reviewers.auto_approve.approve')
     def approve(self, version):
         """Do the approval itself, caling ReviewHelper to change the status,
         sign the files, send the e-mail, etc."""
@@ -139,7 +141,7 @@ class Command(BaseCommand):
                         u'\r\n\r\nThank you!'
         }
         helper.handler.process_public()
-        statsd.incr('reviewers.auto_approve.approve')
+        statsd.incr('reviewers.auto_approve.approve.success')
 
     def log_final_summary(self, stats):
         """Log a summary of what happened."""
