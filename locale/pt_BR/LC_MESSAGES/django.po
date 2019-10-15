@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-11 14:35+0000\n"
+"PO-Revision-Date: 2019-10-15 19:31+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5184,7 +5184,7 @@ msgid "Use profanity, sexual language or language that can be construed as hatef
 msgstr "Usar palavrões, linguagem sexual ou linguagem que possa ser interpretada como odiosa."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Incluir HTML, links, código fonte ou partes de código. As análises devem ser apenas texto."
+msgstr "Inclui HTML, links, código fonte ou trechos de código. As análises devem ser apenas texto."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "Não faça afirmações falsas, deprecie os autores da extensão ou os insulte pessoalmente."
