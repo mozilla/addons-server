@@ -87,6 +87,7 @@ class VersionManager(ManagerBase):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
         qs = self.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED,
             addon__type__in=(
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
                 amo.ADDON_SEARCH),
@@ -598,8 +599,8 @@ class Version(OnChangeMixin, ModelBase):
 
     def disable_old_files(self):
         """
-        Disable files from versions older than the current one and awaiting
-        review. Used when uploading a new version.
+        Disable files from versions older than the current one in the same
+        channel and awaiting review. Used when uploading a new version.
 
         Does nothing if the current instance is unlisted.
         """
@@ -607,6 +608,7 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
+                                     version__channel=self.channel,
                                      status=amo.STATUS_AWAITING_REVIEW)
             # Use File.update so signals are triggered.
             for f in qs:
