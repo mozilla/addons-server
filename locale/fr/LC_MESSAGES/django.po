@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-13 18:47+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2019-10-16 13:34+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4719,7 +4719,7 @@ msgstr "Réduisez les distractions {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Bloquez les sites qui vous déconcentrent. Répertoriez les sites web que vous souhaitez voir bloqués par l’extension. Apprentissage instantané !"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4791,7 +4791,7 @@ msgstr "Les extensions sont comme des applications pour Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Elles ajoutent des fonctionnalités à Firefox pour rendre la navigation plus rapide, plus sûre ou tout simplement plus plaisante."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
