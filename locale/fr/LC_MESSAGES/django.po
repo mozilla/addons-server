@@ -6382,7 +6382,7 @@ msgid "Delete Locale"
 msgstr "Supprimer la traduction"
 
 msgid "User Restriction History"
-msgstr ""
+msgstr "Historique de restrictions utilisateurs"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
