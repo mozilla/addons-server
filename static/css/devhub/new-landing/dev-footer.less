@@ -17,6 +17,11 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  @media @medium {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .DevHub-Footer-sections-header {
@@ -25,7 +30,7 @@
 }
 
 .DevHub-Footer-section {
-  width: 260px;
+  min-width: 250px;
   margin-bottom: 20px;
   font-size: 12px;
 

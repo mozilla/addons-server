@@ -25,10 +25,6 @@
     padding: 58px 20px;
 
     @media @medium {
-        padding: 58px 24px;
-    }
-
-    @media @large {
         display: grid;
         grid-template-areas:
           'logo amo-links firefox-links'
@@ -38,6 +34,10 @@
         margin: 0 auto;
         max-width: @grid-max;
         width: 100%;
+    }
+
+    @media @large {
+        padding: 58px 80px;
     }
 }
 
