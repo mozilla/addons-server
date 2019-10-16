@@ -26,7 +26,9 @@ services:
     build: .
     image: addons/addons-server:fixed-docker-perms
     command: supervisord -n -c /code/docker/supervisor-celery.conf
-    # entrypoint: ./scripts/start-docker.sh
+    # We are defaulting to the olympia user to avoid any permission related
+    # issues and files owned by root. This can be overwritten through
+    # the --user option when calling docker-compose
     user: olympia
     volumes:
       - .:/code
