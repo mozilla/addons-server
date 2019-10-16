@@ -5,7 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Run all initial setup with root user. This is the default but mentioned here
 # for documentation.
 # We won't switch to the `olympia` user inside the dockerfile
-# but rather use the `user` option instead
+# but rather use the `user` option in docker-compose.yml instead
 USER root
 
 # Allow scripts to detect we're running in our own container
