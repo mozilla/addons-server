@@ -22,8 +22,6 @@ ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.lis
 ADD docker/debian-buster-testing-repo /etc/apt/sources.list.d/testing.list
 
 RUN apt-get update && apt-get -t stretch install -y \
-        # Allow for simpler setuid/setgid interaction
-        gosu \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
@@ -76,14 +74,6 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-# Now that we have run all necessary root-required scripts, let's create and
-# use our `olympia` user.
-# ADD scripts/docker-create-olympia-user.sh /create-user.sh
-
-# Create the user and group `olympia` that matches the hosts
-# uid and gid.
-RUN useradd -M olympia
-
 COPY . /code
 WORKDIR /code
 
@@ -103,7 +93,6 @@ RUN mkdir -p /deps/{build,cache,src}/ && \
     # using the `olympia` user by default.
     chown -R olympia:olympia /deps/ && \
     rm -rf /deps/build/ /deps/cache/
-
 
 # Preserve bash history across image updates.
 # This works best when you link your local source code
