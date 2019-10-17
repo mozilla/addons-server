@@ -695,7 +695,7 @@ MINIFY_BUNDLES = {
         ),
     },
     'js': {
-        # JS files common to the entire site (pre-impala).
+        # JS files common to the entire site, apart from dev-landing.
         'common': (
             'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
@@ -898,6 +898,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/static_theme.js',
             'js/node_lib/jquery.minicolors.js',
             'js/node_lib/jszip.js',
+        ),
+        'devhub/new-landing/js': (
+            'js/common/lang_switcher.js',
+            'js/lib/basket-client.js',
         ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',
@@ -1839,6 +1843,9 @@ BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
+MOZILLA_NEWLETTER_URL = env(
+    'MOZILLA_NEWSLETTER_URL',
+    default='https://www.mozilla.org/en-US/newsletter/')
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
 

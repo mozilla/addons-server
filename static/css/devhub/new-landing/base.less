@@ -30,8 +30,8 @@
 
 // Dark
 @color-scheme-dark-text: #fff;
-@color-scheme-dark-background: #1d3770;
-@color-scheme-dark-items: #40d38d;
+@color-scheme-dark-background: #09204d;
+@color-scheme-dark-items: #b1b1b3;
 
 // Buttons
 @color-button-default: #0996F8;
@@ -124,11 +124,29 @@ h2 {
 h3 {
   font-size: 18px;
 }
+h4 {
+  font-size: 16px;
+}
 
 h1,
 h2,
 h3 {
   font-weight: 500;
+}
+h4 {
+  font-weight: 400;
+}
+
+@media @large {
+  h1, h2, h3 {
+    font-weight: 400;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 20px;
+  }
 }
 
 .stars {
@@ -172,18 +190,6 @@ h3 {
   font-size: 14px;
 }
 
-@media @large {
-  h1, h2, h3 {
-    font-weight: 400;
-  }
-  h2 {
-    font-size: 24px;
-  }
-  h3 {
-    font-size: 20px;
-  }
-}
-
 // Mixins / Utilities
 @import 'utils';
 
@@ -202,6 +208,7 @@ h3 {
 @import 'sections/submit-or-manage';
 @import 'sections/get-involved';
 @import 'sections/banner';
+@import 'sections/connect';
 
 // Developer Footer
 @import 'dev-footer';
