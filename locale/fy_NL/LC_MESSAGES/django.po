@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-09 08:41+0000\n"
+"PO-Revision-Date: 2019-10-17 19:32+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1016,30 +1016,32 @@ msgstr "Eksperiminteel"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Download Firefox-útwreidingen dy't regelmjittich bywurke wurde en ree binne foar testen troch it publyk. Jo kommentaar ynformearret ûntwikkelers oer wizigingen dy't se yn kommende ferzjes meitsje "
+"kinne."
 
 msgid "Performance"
 msgstr "Prestaasjes"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Download útwreidingen dy't Firefox in prestaasjeboost jaan. Fyn útwreidingen dy't jo helpe produktiver en effisjinter te wêzen troch ferfelende advertinsjes te blokkearjen en mear."
 
 msgid "Photos & Media"
 msgstr "Foto’s en media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om foto's en media te ferbetterjen. Dizze kategory omfettet útwreidingen foar omkeard sykjen fan ôfbyldingen, it meitsjen fan folsleine skermôfdrukken, en mear."
 
 msgid "Security & Privacy"
 msgstr "Befeiliging en privacy"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om feilich en privee te sneupen. Untdek útwreidingen dy't stikeme advertinsjetrackers stopje kinne, maklik sneupskiednis wiskje kinne, en mear."
 
 msgid "Social Networking"
 msgstr "Sosjale netwurken"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om jo ûnderfining op populêre websites foar sosjale netwurken lykas YouTube, GitHub, Reddit, en mear te ferbetterjen."
 
 msgid "Sports & Games"
 msgstr "Sport en spul"
