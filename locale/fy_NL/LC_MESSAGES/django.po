@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-17 19:49+0000\n"
+"PO-Revision-Date: 2019-10-17 20:03+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1579,10 +1579,10 @@ msgid "You have not uploaded a source file."
 msgstr "Jo hawwe gjin boarnebestân opladen."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Boarnebestân opladen, mar jo hawwe oanjûn dat der gjin boarne nedich wie."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Soargje derfoar dat namme en gearfetting tegearre op syn heechst {limit_value} tekens bestiet (se hawwe no {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -1710,13 +1710,13 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Piktogram moat op syn minst {0} piksels breed en heech wêze."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Piktogram moat fjouwerkant wêze (deselde breedte en hichte)."
 
 msgid "There was an error uploading your preview."
 msgstr "Der is in flater bard by it opladen fan jo foarbyld."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "De lêste goedkarre ferzje fan in oanrekommandearre útwreiding kin net fuortsmiten of útskeakele wurde. Nim kontakt op mei AMO-behearders as jo hjir help by nedich hawwe."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1797,7 +1797,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ik haw dizze Oerienkomst en de Rigels en it Belied lêzen en akseptearje dizze"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Jo account hat in werjeftenamme nedich, sadat brûkers witte fan wa't jo add-on ôfkomstich is. Fier der hjirûnder ien yn."
 
 msgid "Accept"
 msgstr "Akseptearje"
@@ -2000,7 +2000,7 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr "As jo de útnûging akseptearje, krije jo tagong om de add-on te bewurkjen en wurdt jo namme mooglik werjûn yn de skriuwerslist op de website. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Klik hjirûnder op de knop Akseptearje om te befêstigjen dat jo tafoege wurde wolle as auteur foar {addon_name}."
 
 msgid "Decline"
 msgstr "Wegerje"
@@ -2018,7 +2018,7 @@ msgid "Authors pending confirmation"
 msgstr "Auteurs wachtsje op befêstiging"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Auteurs dy't oan dizze add-on tafoege binne, mar noch net befêstige hawwe."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2091,6 +2091,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"De gearfetting moat útlizze wat jo add-on docht, dúdlik en konkreet. Sawol de namme as de gearfetting sille ferskine op jo produktside en yn sykresultaten. Se hawwe in kombinearre maksimale lingte "
+"fan 70 karakters en in minimale lingte fan 2 tekens foar elk."
 
 msgid "Summary"
 msgstr "Gearfetting"
@@ -2277,7 +2279,7 @@ msgid "PNG and JPG supported."
 msgstr "PNG en JPG wurde stipe."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Piktogrammen moatte fjouwerkant wêze en in minimale grutte fan 128x128 piksels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Piktogrammen wurde ferlytse oant 128x128 piksels wannear grutter."
@@ -2295,7 +2297,7 @@ msgid "Add a Screenshot..."
 msgstr "In skermôfbylding tafoegje…"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG en JPG wurde stipe, PNG wurdt oanrekommandearre. De maksimale en oanrekommandearre grutte foar skermôfbyldingen is 2400x1800 piksels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr ""
