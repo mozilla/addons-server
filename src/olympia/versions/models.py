@@ -35,7 +35,7 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
-from olympia.scanners.models import ScannersResult
+from olympia.scanners.models import ScannerResult
 from olympia.yara.models import YaraResult
 
 from .compare import version_dict, version_int
@@ -306,7 +306,7 @@ class Version(OnChangeMixin, ModelBase):
                     waffle.switch_is_active('enable-customs') or
                     waffle.switch_is_active('enable-wat')
             ):
-                ScannersResult.objects.filter(upload_id=upload.id).update(
+                ScannerResult.objects.filter(upload_id=upload.id).update(
                     version=version)
 
         # Extract this version into git repository

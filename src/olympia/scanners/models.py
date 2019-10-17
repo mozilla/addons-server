@@ -6,7 +6,7 @@ from olympia.constants.scanners import SCANNERS
 from olympia.files.models import FileUpload
 
 
-class ScannersResult(ModelBase):
+class ScannerResult(ModelBase):
     upload = models.ForeignKey(FileUpload,
                                related_name='scanners_results',
                                on_delete=models.SET_NULL,

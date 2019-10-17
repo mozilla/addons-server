@@ -5,7 +5,7 @@ from django.contrib.admin import SimpleListFilter
 from django.utils.html import format_html
 from django.utils.translation import ugettext
 
-from olympia.scanners.admin import ScannersResultAdmin
+from olympia.scanners.admin import ScannerResultAdmin
 
 from .models import YaraResult
 
@@ -37,7 +37,7 @@ class MatchesFilter(SimpleListFilter):
 
 
 @admin.register(YaraResult)
-class YaraResultAdmin(ScannersResultAdmin):
+class YaraResultAdmin(ScannerResultAdmin):
 
     list_display = ('id', 'formatted_addon', 'channel', 'matched_rules')
     list_filter = (MatchesFilter,)

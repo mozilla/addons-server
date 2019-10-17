@@ -33,7 +33,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview, source_upload_path)
-from olympia.scanners.models import ScannersResult
+from olympia.scanners.models import ScannerResult
 from olympia.yara.models import YaraResult
 
 
@@ -927,7 +927,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
-        scanners_result = ScannersResult.objects.create(
+        scanners_result = ScannerResult.objects.create(
             upload=self.upload, scanner=CUSTOMS)
         assert scanners_result.version is None
 
@@ -943,7 +943,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_set_version_to_wat_scanners_result(self):
         self.create_switch('enable-wat', active=True)
-        scanners_result = ScannersResult.objects.create(
+        scanners_result = ScannerResult.objects.create(
             upload=self.upload, scanner=WAT)
         assert scanners_result.version is None
 
@@ -960,7 +960,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_does_nothing_when_no_scanner_is_enabled(self):
         self.create_switch('enable-customs', active=False)
         self.create_switch('enable-wat', active=False)
-        scanners_result = ScannersResult.objects.create(
+        scanners_result = ScannerResult.objects.create(
             upload=self.upload, scanner=CUSTOMS)
         assert scanners_result.version is None
 
@@ -975,7 +975,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_does_not_update_scanners_results_when_not_a_webextension(self):
         self.create_switch('enable-customs', active=True)
-        scanners_result = ScannersResult.objects.create(
+        scanners_result = ScannerResult.objects.create(
             upload=self.upload, scanner=CUSTOMS)
         assert scanners_result.version is None
 

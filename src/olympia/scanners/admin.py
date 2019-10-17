@@ -7,11 +7,11 @@ from django.utils.html import format_html
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 
-from .models import ScannersResult
+from .models import ScannerResult
 
 
-@admin.register(ScannersResult)
-class ScannersResultAdmin(admin.ModelAdmin):
+@admin.register(ScannerResult)
+class ScannerResultAdmin(admin.ModelAdmin):
     actions = None
     view_on_site = False
 

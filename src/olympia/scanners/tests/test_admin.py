@@ -10,21 +10,21 @@ from olympia.amo.tests import (TestCase, addon_factory, user_factory,
                                version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import CUSTOMS, WAT
-from olympia.scanners.admin import ScannersResultAdmin
-from olympia.scanners.models import ScannersResult
+from olympia.scanners.admin import ScannerResultAdmin
+from olympia.scanners.models import ScannerResult
 
 
-class TestScannersResultAdmin(TestCase):
+class TestScannerResultAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
         self.user = user_factory()
         self.grant_permission(self.user, 'Admin:Advanced')
         self.client.login(email=self.user.email)
-        self.list_url = reverse('admin:scanners_scannersresult_changelist')
+        self.list_url = reverse('admin:scanners_scannerresult_changelist')
 
-        self.admin = ScannersResultAdmin(model=ScannersResult,
-                                         admin_site=AdminSite())
+        self.admin = ScannerResultAdmin(model=ScannerResult,
+                                        admin_site=AdminSite())
 
     def test_list_view(self):
         response = self.client.get(self.list_url)
@@ -52,7 +52,7 @@ class TestScannersResultAdmin(TestCase):
             addon=addon,
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        result = ScannersResult(version=version)
+        result = ScannerResult(version=version)
 
         assert self.admin.formatted_addon(result) == (
             '<a href="{}">{} (version: {})</a>'.format(
@@ -63,7 +63,7 @@ class TestScannersResultAdmin(TestCase):
         )
 
     def test_formatted_addon_without_version(self):
-        result = ScannersResult(version=None)
+        result = ScannerResult(version=None)
 
         assert self.admin.formatted_addon(result) == '-'
 
@@ -72,7 +72,7 @@ class TestScannersResultAdmin(TestCase):
             addon=addon_factory(),
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        result = ScannersResult(version=version)
+        result = ScannerResult(version=version)
 
         assert self.admin.channel(result) == 'Listed'
 
@@ -81,18 +81,18 @@ class TestScannersResultAdmin(TestCase):
             addon=addon_factory(),
             channel=amo.RELEASE_CHANNEL_UNLISTED
         )
-        result = ScannersResult(version=version)
+        result = ScannerResult(version=version)
 
         assert self.admin.channel(result) == 'Unlisted'
 
     def test_channel_without_version(self):
-        result = ScannersResult(version=None)
+        result = ScannerResult(version=None)
 
         assert self.admin.channel(result) == '-'
 
     def test_formatted_results(self):
         results = {'some': 'results'}
-        result = ScannersResult(results=results)
+        result = ScannerResult(results=results)
 
         assert self.admin.formatted_results(result) == format_html(
             '<pre>{}</pre>',
@@ -100,16 +100,16 @@ class TestScannersResultAdmin(TestCase):
         )
 
     def test_formatted_results_without_results(self):
-        result = ScannersResult()
+        result = ScannerResult()
 
         assert self.admin.formatted_results(result) == '<pre>{}</pre>'
 
     def test_list_queries(self):
-        ScannersResult.objects.create(
+        ScannerResult.objects.create(
             scanner=CUSTOMS, version=addon_factory().current_version)
-        ScannersResult.objects.create(
+        ScannerResult.objects.create(
             scanner=WAT, version=addon_factory().current_version)
-        ScannersResult.objects.create(
+        ScannerResult.objects.create(
             scanner=CUSTOMS, version=addon_factory().current_version)
 
         with self.assertNumQueries(9):
@@ -123,5 +123,5 @@ class TestScannersResultAdmin(TestCase):
             response = self.client.get(self.list_url)
         assert response.status_code == 200
         html = pq(response.content)
-        expected_length = ScannersResult.objects.count()
+        expected_length = ScannerResult.objects.count()
         assert html('#result_list tbody tr').length == expected_length
