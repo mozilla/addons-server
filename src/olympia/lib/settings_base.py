@@ -1107,7 +1107,7 @@ CELERY_TASK_ROUTES = {
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
-    'olympia.yara.tasks.run_yara': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},

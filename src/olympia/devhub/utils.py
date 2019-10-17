@@ -17,14 +17,13 @@ from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.scanners.tasks import run_customs, run_wat
+from olympia.scanners.tasks import run_customs, run_wat, run_yara
 from olympia.tags.models import Tag
 from olympia.users.models import (
     DeveloperAgreementRestriction, UserRestrictionHistory
 )
 from olympia.versions.compare import version_int
 from olympia.versions.utils import process_color_value
-from olympia.yara.tasks import run_yara
 
 from . import tasks
 

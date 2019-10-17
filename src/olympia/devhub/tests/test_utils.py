@@ -19,10 +19,9 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
-from olympia.scanners.tasks import run_customs, run_wat
+from olympia.scanners.tasks import run_customs, run_wat, run_yara
 from olympia.users.models import (
     EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
-from olympia.yara.tasks import run_yara
 
 
 class TestAddonsLinterListed(UploadTest, TestCase):
