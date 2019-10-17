@@ -14,7 +14,7 @@ from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
 from olympia.yara.models import YaraResult
 
-from .models import ScannersResult
+from .models import ScannerResult
 
 log = olympia.core.logger.getLogger('z.scanners.task')
 
@@ -43,9 +43,9 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         if not os.path.exists(upload.path):
             raise ValueError('File "{}" does not exist.' .format(upload.path))
 
-        scanners_result = ScannersResult()
-        scanners_result.upload = upload
-        scanners_result.scanner = scanner
+        scanner_result = ScannerResult()
+        scanner_result.upload = upload
+        scanner_result.scanner = scanner
 
         with statsd.timer('devhub.{}'.format(scanner_name)):
             json_payload = {
@@ -65,8 +65,8 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         if response.status_code != 200 or 'error' in data:
             raise ValueError(data)
 
-        scanners_result.results = data
-        scanners_result.save()
+        scanner_result.results = data
+        scanner_result.save()
 
         statsd.incr('devhub.{}.success'.format(scanner_name))
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
