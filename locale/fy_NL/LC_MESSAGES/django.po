@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-17 19:32+0000\n"
+"PO-Revision-Date: 2019-10-17 19:49+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1047,13 +1047,13 @@ msgid "Sports & Games"
 msgstr "Sport en spul"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om jo ferdivedaasjeûnderfining in ympuls te jaan mei livestreamferbettering, sportupdates, en mear."
 
 msgid "User Interface"
 msgstr "Brûkersinterface"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen foar jo brûkersynterface om websiden te wizigjen foar makliker lêzen, sykjen, sneupen, en mear."
 
 msgid "Animals"
 msgstr "Bisten"
@@ -1086,79 +1086,79 @@ msgid "Abstract"
 msgstr "Abstrakt"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Download Firefox artistike en konseptuele tema's. Dizze kategory omfettet kleurige paletten en foarmen, fantasy-lânskippen, boartlike katten, psychedelyske blommen."
 
 msgid "Causes"
 msgstr "Goede doelen"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Download Firefox-tema's foar bysûndere ynteressen en ûnderwerpen. Dizze kategory omfettet sporttema's, fakânsjes, filantropyske oarsaken, nasjonaliteiten, en noch folle mear."
 
 msgid "Fashion"
 msgstr "Moade"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Download Firefox-tema's dy't fan alle stylfoarmen fiere – patroanen, blomfoarmen, tekstueren, modellen en mear."
 
 msgid "Film and TV"
 msgstr "Film en telefyzje"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei films en telefyzje. Dizze kategory omfettet anime lykas Uchiha Madara, films lykas The Matrix, searjes (Game of Thrones), en mear."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Download Firefox-tema's mei it Firefox-browsertema. Dizze kategory omfettet kleurige, ferskate ôfbyldingen fan it Firefox-logo, ynklusyf mear algemiene foks-tema's."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Download Firefox-tema's mei de Japanske Firefox. Dizze kategory omfettet tema's dy't de aardige Foxkeh-maskotte yn ferskate poazen op ferskate lânskippen werjaan."
 
 msgid "Holiday"
 msgstr "Fakânsje"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei fakânsjes. Dizze kategory omfettet Kryst, Halloween, Thanksgiving, Sint Patricks Dei, Peaske, 4 july, en mear."
 
 msgid "Music"
 msgstr "Muzyk"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Download Firefox-tema's foar muzikale ynteressen en artysten. Dizze kategory omfettet populêre bands lykas Nirvana en BTS, ynstruminten, muzykfideo's, en folle mear."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei bisten en natuerlike lânskippen. Dizze kategory omfettet blommen, sinneûndergongen, foksen, seizoenen, planeten, katten, fûgels, en mear."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Download ynteressante, kreative en unike Firefox-tema's."
 
 msgid "Scenery"
 msgstr "Lânskip"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei de omjouwing en de natuer. Dizze kategory omfettet sinneûndergongen, strannen, yllustraasjes, stêdsgesichten, en mear."
 
 msgid "Seasonal"
 msgstr "Seizoensbûn"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Download Firefox-tema's foar alle fjouwer seizoenen — hjerst, winter, maitiid en simmer. Hjerstblêden, sniewite berchtoppen, sinnige simmerdagen, en maitiidsblommen."
 
 msgid "Solid"
 msgstr "Fêst"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Download Firefox-tema's mei solide en skakearde kleuren om jo browser te personalisearjen. Dizze kategory omfettet fet read, pastelkleuren, sêft griis, en noch folle mear."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei in ferskaat oan sporten. Dizze kategory omfettet lânflaggen, sportteams, fuotbal, hockey, en mear."
 
 msgid "Websites"
 msgstr "Websites"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Download Firefox-tema's dy't de essinsje fan it web fêstlizze — boeiend, ûngewoan en bysûnder."
 
 msgid "General"
 msgstr "Algemien"
@@ -1425,7 +1425,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Resinte wizigingen foar myn add-ons"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Ferâldere útwreidingen wurde yn Firefox net mear stipe."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Add-ons foar Thunderbird en SeaMonkey wurde no fermeld en ûnderhâlden op addons.thunderbird.net. Foar it bywurkjen fan jo add-ons op de nije website kinne jo deselde account brûke."
@@ -1489,13 +1489,13 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Eardat jo jo standertlocale wizigje, moatte jo in namme, gearfetting en beskriuwing foar dy locale yn jaan. %s ûntbrekt."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Brûkers kinne net direkt tafoege wurde"
 
 msgid "An author can only be present once."
 msgstr "In skriuwer kin mar ien kear fermeld wurde."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "De account hat inskermnamme nedich foardat dizze as auteur tafoege wurde kin."
 
 msgid "Must have at least one owner."
 msgstr "Der moat op syn minst ien eigener wêze."
@@ -1558,7 +1558,7 @@ msgid "Need to select at least one application."
 msgstr "Jo moatte op syn minst ien tapassing selektearje."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Jo hawwe koartlyn te folle oplaads yntsjinne. Probearje it nei in skoft opnij."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Ferzje {version} is earder al opladen fuortsmiten."
