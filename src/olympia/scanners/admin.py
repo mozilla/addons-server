@@ -1,8 +1,10 @@
 import json
 
 from django.contrib import admin
+from django.contrib.admin import SimpleListFilter
 from django.db.models import Prefetch
 from django.utils.html import format_html
+from django.utils.translation import ugettext
 
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
@@ -10,17 +12,44 @@ from olympia.amo.urlresolvers import reverse
 from .models import ScannerResult
 
 
+class MatchesFilter(SimpleListFilter):
+    title = ugettext('matches')
+    parameter_name = 'has_matches'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('all', 'All'),
+            (None, ' With matched rules only'),
+        )
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            yield {
+                'selected': self.value() == lookup,
+                'query_string': cl.get_query_string({
+                    self.parameter_name: lookup,
+                }, []),
+                'display': title,
+            }
+
+    def queryset(self, request, queryset):
+        if self.value() == 'all':
+            return queryset
+        return queryset.filter(has_matches=True)
+
+
 @admin.register(ScannerResult)
 class ScannerResultAdmin(admin.ModelAdmin):
     actions = None
     view_on_site = False
 
-    list_display = ('id', 'formatted_addon', 'channel', 'scanner')
-    list_filter = ('scanner',)
+    list_display = ('id', 'formatted_addon', 'channel', 'scanner',
+                    'matched_rules')
+    list_filter = ('scanner', MatchesFilter)
     list_select_related = ('version',)
 
     fields = ('id', 'upload', 'formatted_addon', 'channel', 'scanner',
-              'formatted_results')
+              'formatted_matches', 'formatted_results')
 
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
@@ -67,3 +96,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     def formatted_results(self, obj):
         return format_html('<pre>{}</pre>', json.dumps(obj.results, indent=2))
     formatted_results.short_description = 'Results'
+
+    def formatted_matches(self, obj):
+        return format_html('<pre>{}</pre>', json.dumps(obj.matches, indent=4))
+    formatted_matches.short_description = 'Matches'

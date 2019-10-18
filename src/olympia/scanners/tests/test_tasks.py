@@ -10,7 +10,6 @@ from olympia.constants.scanners import CUSTOMS, WAT
 from olympia.files.tests.test_models import UploadTest
 from olympia.scanners.models import ScannerResult
 from olympia.scanners.tasks import run_scanner, run_customs, run_wat, run_yara
-from olympia.yara.models import YaraResult
 
 
 class TestRunScanner(UploadTest, TestCase):
@@ -266,7 +265,7 @@ class TestRunYara(UploadTest, TestCase):
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_with_mocks(self, incr_mock):
-        assert len(YaraResult.objects.all()) == 0
+        assert len(ScannerResult.objects.all()) == 0
 
         # This compiled rule will match for all files in the xpi.
         rules = yara.compile(source='rule always_true { condition: true }')
@@ -275,7 +274,7 @@ class TestRunYara(UploadTest, TestCase):
             received_results = run_yara(self.results, self.upload.pk)
 
         assert yara_compile_mock.called
-        yara_results = YaraResult.objects.all()
+        yara_results = ScannerResult.objects.all()
         assert len(yara_results) == 1
         yara_result = yara_results[0]
         assert yara_result.upload == self.upload
@@ -303,7 +302,7 @@ class TestRunYara(UploadTest, TestCase):
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_no_matches_with_mocks(self, incr_mock):
-        assert len(YaraResult.objects.all()) == 0
+        assert len(ScannerResult.objects.all()) == 0
 
         # This compiled rule will never match.
         rules = yara.compile(source='rule always_false { condition: false }')
@@ -311,7 +310,7 @@ class TestRunYara(UploadTest, TestCase):
             yara_compile_mock.return_value = rules
             received_results = run_yara(self.results, self.upload.pk)
 
-        yara_result = YaraResult.objects.all()[0]
+        yara_result = ScannerResult.objects.all()[0]
         assert yara_result.matches == []
         # The task should always return the results.
         assert received_results == self.results
@@ -332,7 +331,7 @@ class TestRunYara(UploadTest, TestCase):
             yara_compile_mock.return_value = rules
             received_results = run_yara(results, upload.pk)
 
-        yara_result = YaraResult.objects.all()[0]
+        yara_result = ScannerResult.objects.all()[0]
         assert yara_result.upload == upload
         # The `webextension_signed_already.xpi` fixture file has 1 directory
         # and 3 files.

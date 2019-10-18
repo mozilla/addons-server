@@ -8,11 +8,10 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia.constants.scanners import SCANNERS, CUSTOMS, WAT
+from olympia.constants.scanners import SCANNERS, CUSTOMS, WAT, YARA
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
-from olympia.yara.models import YaraResult
 
 from .models import ScannerResult
 
@@ -34,7 +33,7 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
     if not results['metadata']['is_webextension']:
         log.info('Not running scanner "%s" for FileUpload %s, it is not a '
-                 'webextension.', upload_pk)
+                 'webextension.', scanner_name, upload_pk)
         return results
 
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -43,9 +42,7 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         if not os.path.exists(upload.path):
             raise ValueError('File "{}" does not exist.' .format(upload.path))
 
-        scanner_result = ScannerResult()
-        scanner_result.upload = upload
-        scanner_result.scanner = scanner
+        scanner_result = ScannerResult(upload=upload, scanner=scanner)
 
         with statsd.timer('devhub.{}'.format(scanner_name)):
             json_payload = {
@@ -152,8 +149,7 @@ def run_yara(results, upload_pk):
     upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
-        result = YaraResult()
-        result.upload = upload
+        scanner_result = ScannerResult(upload=upload, scanner=YARA)
 
         with statsd.timer('devhub.yara'):
             rules = yara.compile(filepath=settings.YARA_RULES_FILEPATH)
@@ -167,16 +163,16 @@ def run_yara(results, upload_pk):
                     for match in rules.match(data=file_content):
                         # Add the filename to the meta dict.
                         meta = {**match.meta, 'filename': zip_info.filename}
-                        result.add_match(
+                        scanner_result.add_match(
                             rule=match.rule,
                             tags=match.tags,
                             meta=meta
                         )
             zip_file.close()
 
-        result.save()
+        scanner_result.save()
 
-        if result.has_matches:
+        if scanner_result.has_matches:
             statsd.incr('devhub.yara.has_matches')
 
         statsd.incr('devhub.yara.success')
