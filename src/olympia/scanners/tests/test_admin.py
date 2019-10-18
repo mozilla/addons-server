@@ -14,8 +14,12 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import CUSTOMS, WAT, YARA
-from olympia.scanners.admin import ScannerResultAdmin, MatchesFilter
-from olympia.scanners.models import ScannerResult
+from olympia.scanners.admin import (
+    MatchesFilter,
+    ScannerResultAdmin,
+    ScannerRuleAdmin,
+)
+from olympia.scanners.models import ScannerResult, ScannerRule
 
 
 class TestScannerResultAdmin(TestCase):
@@ -124,9 +128,9 @@ class TestScannerResultAdmin(TestCase):
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all add-ons translations in one query
-            response = self.client.get(self.list_url, {
-                MatchesFilter.parameter_name: 'all',
-            })
+            response = self.client.get(
+                self.list_url, {MatchesFilter.parameter_name: 'all'}
+            )
         assert response.status_code == 200
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()
@@ -173,3 +177,28 @@ class TestScannerResultAdmin(TestCase):
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()
         assert html('#result_list tbody tr').length == expected_length
+
+
+class TestScannerRuleAdmin(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:Advanced')
+        self.client.login(email=self.user.email)
+        self.list_url = reverse('admin:scanners_scannerrule_changelist')
+
+        self.admin = ScannerRuleAdmin(
+            model=ScannerRule, admin_site=AdminSite()
+        )
+
+    def test_list_view(self):
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+
+    def test_list_view_is_restricted(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403

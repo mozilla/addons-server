@@ -9,7 +9,7 @@ from django.utils.translation import ugettext
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 
-from .models import ScannerResult
+from .models import ScannerResult, ScannerRule
 
 
 class MatchesFilter(SimpleListFilter):
@@ -102,3 +102,11 @@ class ScannerResultAdmin(admin.ModelAdmin):
     def formatted_matches(self, obj):
         return format_html('<pre>{}</pre>', json.dumps(obj.matches, indent=4))
     formatted_matches.short_description = 'Matches'
+
+
+@admin.register(ScannerRule)
+class ScannerRuleAdmin(admin.ModelAdmin):
+    view_on_site = False
+
+    list_display = ('name', 'action', 'is_active')
+    list_filter = ('action', 'is_active')
