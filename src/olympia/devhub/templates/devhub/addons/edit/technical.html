@@ -40,19 +40,7 @@
               {% endif %}
             </td>
           </tr>
-          <tr>
-            <th>
-              {{ tip(_("View Source?"),
-                     _("Whether the source of your add-on can be displayed in our "
-                       "online viewer. It is only relevant for listed add-ons.")) }}
-            </th>
-            <td>
-              {{ flags(_("This add-on's source code is publicly viewable."),
-                       addon.view_source if not editable else form.view_source, editable,
-                       _("No, this add-on's source code is not publicly viewable.")) }}
-            </td>
-          </tr>
-          {% endif %}
+          {% endif %}   
           {% if show_listed_fields %}
           <tr>
             <th>

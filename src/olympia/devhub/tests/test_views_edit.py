@@ -1450,7 +1450,6 @@ class TestEditTechnical(BaseTestEdit):
         # Turn everything on
         data = {
             'developer_comments': 'Test comment!',
-            'view_source': 'on',
             'whiteboard-public': 'Whiteboard info.'
         }
 
@@ -1463,28 +1462,6 @@ class TestEditTechnical(BaseTestEdit):
                 assert str(getattr(addon, k)) == str(data[k])
             elif k == 'whiteboard-public':
                 assert str(addon.whiteboard.public) == str(data[k])
-            else:
-                assert getattr(addon, k) == (data[k] == 'on')
-
-        # Andddd offf
-        data = {'developer_comments': 'Test comment!'}
-        response = self.client.post(self.technical_edit_url, data)
-        addon = self.get_addon()
-
-        assert not addon.view_source
-
-    def test_technical_devcomment_notrequired(self):
-        data = {
-            'developer_comments': '',
-            'view_source': 'on'
-        }
-        response = self.client.post(self.technical_edit_url, data)
-        assert response.context['form'].errors == {}
-
-        addon = self.get_addon()
-        for k in data:
-            if k == 'developer_comments':
-                assert str(getattr(addon, k)) == str(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
