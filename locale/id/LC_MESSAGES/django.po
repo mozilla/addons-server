@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-19 09:12+0000\n"
+"PO-Revision-Date: 2019-10-19 09:23+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1102,37 +1102,37 @@ msgid "Fashion"
 msgstr "Fashion"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Unduh tema Firefox yang mencakup semua pola dan gaya —, motif bunga, tekstur, model, dan lainnya."
 
 msgid "Film and TV"
 msgstr "Film dan TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Unduh tema Firefox untuk film dan televisi. Kategori ini mencakup anime, misalnya Uchiha Madara, film seperti The Matrix, serial (seperti Game of Thrones), dan banyak lagi."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Unduh tema Firefox untuk peramban Firefox. Kategori ini mencakup penggambaran logo Firefox yang penuh ragam dan warna, termasuk juga tema rubah yang lebih umum."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Unduh tema Firefox dari Firefox Jepang. Kategori ini mencakup tema yang menggambarkan maskot Foxkeh yang lucu dalam berbagai pose di beragam lanskap."
 
 msgid "Holiday"
 msgstr "Liburan"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Unduh tema Firefox tentang hari libur. Kategori ini mencakup Natal, Halloween, Thanksgiving, Hari St. Patrick, Paskah, Hari Kemerdekaan AS, dan banyak lagi."
 
 msgid "Music"
 msgstr "Musik"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Unduh tema Firefox untuk musik dan seniman. Kategori ini mencakup band-band populer seperti Nirvana dan BTS, alat musik, video musik, dan banyak lagi."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Unduh tema Firefox untuk hewan dan pemandangan alam. Kategori ini mencakup bunga, matahari terbenam, rubah, musim, planet, anak kucing, burung, dan banyak lagi."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Unduh tema Firefox yang menarik, kreatif, dan unik."
@@ -1141,7 +1141,7 @@ msgid "Scenery"
 msgstr "Pemandangan"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Unduh tema Firefox yang menampilkan lingkungan dan pemandangan alam. Kategori ini mencakup matahari terbenam, pantai, ilustrasi, kaki langit, dan banyak lagi."
 
 msgid "Seasonal"
 msgstr "Musim"
@@ -1155,16 +1155,16 @@ msgid "Solid"
 msgstr "Polos"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Unduh tema Firefox dengan warna solid dan bergradasi untuk mempersonalisasi peramban Anda. Kategori ini mencakup warna merah berani, warna-warna pastel, kelabu lembut, dan banyak lagi."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Unduh tema Firefox yang menampilkan beragam kegiatan olahraga. Kategori ini mencakup bendera negara, tim olahraga, sepak bola, hoki, dan lainnya."
 
 msgid "Websites"
 msgstr "Situs Web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Unduh tema Firefox yang menangkap esensi web — yang menawan, tidak biasa, dan khas."
 
 msgid "General"
 msgstr "Umum"
@@ -1488,7 +1488,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Sebelum mengubah kode pelokalan baku Anda harus menentukan nama, ringkasan, dan deskripsi pada kode pelokalan tersebut. Anda masih belum menentukan %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Pengguna tidak dapat ditambahkan secara langsung"
 
 #, fuzzy
 msgid "An author can only be present once."
