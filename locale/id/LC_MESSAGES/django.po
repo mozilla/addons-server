@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-19 09:23+0000\n"
+"PO-Revision-Date: 2019-10-19 13:50+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1495,7 +1495,7 @@ msgid "An author can only be present once."
 msgstr "Penulis hanya akan terdaftar sekali."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Akun ini membutuhkan nama sebelum dapat ditambahkan sebagai penulis."
 
 msgid "Must have at least one owner."
 msgstr "Harus punya sekurangnya satu pemilik."
@@ -1558,7 +1558,7 @@ msgid "Need to select at least one application."
 msgstr "Perlu memilih setidaknya satu aplikasi."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Anda mengirimkan terlalu banyak unggahan baru-baru ini. Silakan coba lagi setelah beberapa waktu."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} sudah diunggah sebelumnya dan dihapus."
@@ -1582,7 +1582,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File sumber telah diunggah tetapi Anda menyatakan tidak ada sumber yang diperlukan."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Pastikan gabungan jumlah karakter nama dan ringkasan paling banyak {limit_value} karakter, (ini mengandung {show_value}) karakter."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -1667,10 +1667,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Nama URL salah. Pengaya tidak dihapus."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Undangan diterima."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Undangan ditolak."
 
 msgid "An author has been added to your add-on"
 msgstr "Penulis telah ditambahkan ke pengaya anda"
@@ -1680,7 +1680,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Kontribusi untuk {addon}."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Email konfirmasi telah dikirim ke {email}"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -1717,7 +1717,7 @@ msgid "There was an error uploading your preview."
 msgstr "Terjadi kesalahan menggunggah pratinjau anda."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Versi terbaru dari ekstensi Recomended yang disetujui tidak dapat dihapus atau dinonaktifkan. Silakan hubungi Admin AMO jika Anda memerlukan bantuan untuk hal ini."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1993,16 +1993,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Pratinjau sedang disiapkan - kembalilah nanti atau memuat ulang laman."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Anda telah diundang untuk menjadi pencipta {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Menerima undangan akan memberi Anda akses untuk menyunting pengaya, dan dapat menunjukkan nama Anda dalam daftar pencipta di situsnya. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Klik tombol Terima di bawah untuk mengonfirmasi bahwa Anda ingin ditambahkan sebagai pencipta untuk {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Tolak"
 
 msgid "Manage Authors & License"
 msgstr "Mengelola Penulis dan Lisensi"
@@ -2014,10 +2014,10 @@ msgid "About author roles"
 msgstr "Tentang peran penulis"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Konfirmasi pencipta masih ditunda"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Pencipta yang telah ditambahkan ke pengaya ini tetapi belum dikonfirmasi."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
