@@ -24,7 +24,7 @@ services:
   worker: &worker
     <<: *env
     build: .
-    image: addons/addons-server:latest-local-dev
+    image: addons/addons-server:fixed-docker-perms
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     user: olympia
     volumes:
