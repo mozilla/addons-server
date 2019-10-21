@@ -1,6 +1,11 @@
-export PIP_COMMAND=pip3
 export PYTHON_COMMAND=python3
 
+# As we're using user-local installs inside the docker-container we need
+# to be cautious about uprading pip and not confusing it with the
+# globally installed version. This will take `$PYTHONUSERBASE` and `$PIP_USER`
+# into account.
+# See https://github.com/pypa/pip/issues/7205
+export PIP_COMMAND=$(PYTHON_COMMAND) -m pip
 APP=src/olympia/
 
 NUM_ADDONS=10
