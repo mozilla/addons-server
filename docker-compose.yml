@@ -26,7 +26,7 @@ services:
     build: .
     image: addons/addons-server:latest-local-dev
     command: supervisord -n -c /code/docker/supervisor-celery.conf
-    user: ${CURRENT_UID-1000:1000}
+    user: olympia
     volumes:
       - .:/code
     extra_hosts:

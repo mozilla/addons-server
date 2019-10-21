@@ -96,7 +96,7 @@ ENV PIP_SRC=/deps/src/
 # Allow us to install all dependencies to the `olympia` users
 # home directory (which is `/deps/`)
 ENV PIP_USER=true
-env PYTHONUSERBASE=/deps
+ENV PYTHONUSERBASE=/deps
 
 # Make sure that installed binaries are accessible
 ENV PATH $PYTHONUSERBASE/bin:$PATH
