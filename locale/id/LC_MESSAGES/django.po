@@ -48,11 +48,11 @@ msgstr "Kutipan pesan"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Sejumlah  % laporan terpilih ditandai valid. "
+msgstr "Sejumlah  %d laporan terpilih ditandai valid. "
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr "Sejumlah  % laporan terpilih ditandai mencurigakan."
+msgstr "Sejumlah  %d laporan terpilih ditandai mencurigakan."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Tandai laporan penyalahgunaan terpilih sebagai mencurigakan"
@@ -65,7 +65,7 @@ msgstr "Diubah pada:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr "Sesuai %(filter_title)"
+msgstr "Sesuai %(filter_title)s"
 
 msgid "All"
 msgstr "Semua"
