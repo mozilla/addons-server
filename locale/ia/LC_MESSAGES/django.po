@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-21 23:16+0000\n"
+"PO-Revision-Date: 2019-10-21 23:42+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4010,7 +4010,7 @@ msgstr "Modifica tu confidentialitate {start_sub_heading}con {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Un via breve pro personalisar le configurationes de confidentialitate integrate in Firefox."
+msgstr "Un cammino directe pro personalisar le parametros de confidentialitate interior de Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
