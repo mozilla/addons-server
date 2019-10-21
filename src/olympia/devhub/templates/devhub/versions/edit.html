@@ -135,7 +135,9 @@
         </table>
       </div>
       <div class="listing-footer">
-        <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+        {% if addon.type != amo.ADDON_STATICTHEME %}
+          <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+        {% endif %}
         <a href="{{ addon.get_dev_url('versions') }}">{{ _('Cancel') }}</a>
       </div>
     </div>

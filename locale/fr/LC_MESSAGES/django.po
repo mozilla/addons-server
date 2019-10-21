@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-08-16 14:58+0000\n"
+"PO-Revision-Date: 2019-10-16 15:07+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4655,7 +4655,7 @@ msgstr "Évitez les éléments superflus {start_sub_heading}avec {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "Fini, le charabia des Conditions d’utilisation. Cette extension astucieuse vous aide à comprendre rapidement ce que l’on vous demande d’accepter."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4691,7 +4691,7 @@ msgstr "Enregistrez facilement des images {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Enregistrez facilement les images : récupérez simplement des images dans votre onglet actuel."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4699,7 +4699,7 @@ msgstr "Mesurez des pages web {start_sub_heading}avec {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Mesurez les pages web. Déployez une règle numérique sur n’importe quelle page web pour mesurer la hauteur, la largeur et l’alignement des éléments de la page."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4719,7 +4719,7 @@ msgstr "Réduisez les distractions {start_sub_heading}avec {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Bloquez les sites qui vous déconcentrent. Répertoriez les sites web que vous souhaitez voir bloqués par l’extension. Apprentissage instantané !"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4735,7 +4735,7 @@ msgstr "Changez l’apparence de Firefox {start_sub_heading}avec {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Modifiez l’apparence de votre navigateur. Créez facilement vos propres thèmes visuels pour que Firefox soit à votre image."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4759,7 +4759,7 @@ msgstr "Suivez les prix des produits {start_sub_heading}avec {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Suivez des produits et recevez une notification lorsque les prix baissent sur les articles qui vous intéressent chez Amazon, Best Buy, eBay, Home Depot et Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4787,11 +4787,11 @@ msgstr "Certains sites rencontrent des difficultés à lire des vidéos dans Fir
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr ""
+msgstr "Les extensions sont comme des applications pour Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Elles ajoutent des fonctionnalités à Firefox pour rendre la navigation plus rapide, plus sûre ou tout simplement plus plaisante."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4799,15 +4799,15 @@ msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "Synchroniser des extensions sur plusieurs appareils"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "La vie privée au-delà des extensions de navigateur"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Une meilleure expérience avec les éléments multimédia dans Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
@@ -6382,7 +6382,7 @@ msgid "Delete Locale"
 msgstr "Supprimer la traduction"
 
 msgid "User Restriction History"
-msgstr ""
+msgstr "Historique de restrictions utilisateurs"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."

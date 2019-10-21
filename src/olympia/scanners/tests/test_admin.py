@@ -6,25 +6,30 @@ from django.utils.html import format_html
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import (TestCase, addon_factory, user_factory,
-                               version_factory)
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.scanners import CUSTOMS, WAT
-from olympia.scanners.admin import ScannersResultAdmin
-from olympia.scanners.models import ScannersResult
+from olympia.constants.scanners import CUSTOMS, WAT, YARA
+from olympia.scanners.admin import ScannerResultAdmin, MatchesFilter
+from olympia.scanners.models import ScannerResult
 
 
-class TestScannersResultAdmin(TestCase):
+class TestScannerResultAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
         self.user = user_factory()
         self.grant_permission(self.user, 'Admin:Advanced')
         self.client.login(email=self.user.email)
-        self.list_url = reverse('admin:scanners_scannersresult_changelist')
+        self.list_url = reverse('admin:scanners_scannerresult_changelist')
 
-        self.admin = ScannersResultAdmin(model=ScannersResult,
-                                         admin_site=AdminSite())
+        self.admin = ScannerResultAdmin(
+            model=ScannerResult, admin_site=AdminSite()
+        )
 
     def test_list_view(self):
         response = self.client.get(self.list_url)
@@ -49,68 +54,67 @@ class TestScannersResultAdmin(TestCase):
     def test_formatted_addon(self):
         addon = addon_factory()
         version = version_factory(
-            addon=addon,
-            channel=amo.RELEASE_CHANNEL_LISTED
+            addon=addon, channel=amo.RELEASE_CHANNEL_LISTED
         )
-        result = ScannersResult(version=version)
+        result = ScannerResult(version=version)
 
         assert self.admin.formatted_addon(result) == (
             '<a href="{}">{} (version: {})</a>'.format(
                 reverse('reviewers.review', args=[addon.slug]),
                 addon.name,
-                version.id
+                version.id,
             )
         )
 
     def test_formatted_addon_without_version(self):
-        result = ScannersResult(version=None)
+        result = ScannerResult(version=None)
 
         assert self.admin.formatted_addon(result) == '-'
 
     def test_listed_channel(self):
         version = version_factory(
-            addon=addon_factory(),
-            channel=amo.RELEASE_CHANNEL_LISTED
+            addon=addon_factory(), channel=amo.RELEASE_CHANNEL_LISTED
         )
-        result = ScannersResult(version=version)
+        result = ScannerResult(version=version)
 
         assert self.admin.channel(result) == 'Listed'
 
     def test_unlisted_channel(self):
         version = version_factory(
-            addon=addon_factory(),
-            channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=addon_factory(), channel=amo.RELEASE_CHANNEL_UNLISTED
         )
-        result = ScannersResult(version=version)
+        result = ScannerResult(version=version)
 
         assert self.admin.channel(result) == 'Unlisted'
 
     def test_channel_without_version(self):
-        result = ScannersResult(version=None)
+        result = ScannerResult(version=None)
 
         assert self.admin.channel(result) == '-'
 
     def test_formatted_results(self):
         results = {'some': 'results'}
-        result = ScannersResult(results=results)
+        result = ScannerResult(results=results)
 
         assert self.admin.formatted_results(result) == format_html(
-            '<pre>{}</pre>',
-            json.dumps(results, indent=2)
+            '<pre>{}</pre>', json.dumps(results, indent=2)
         )
 
     def test_formatted_results_without_results(self):
-        result = ScannersResult()
+        result = ScannerResult()
 
         assert self.admin.formatted_results(result) == '<pre>{}</pre>'
 
     def test_list_queries(self):
-        ScannersResult.objects.create(
-            scanner=CUSTOMS, version=addon_factory().current_version)
-        ScannersResult.objects.create(
-            scanner=WAT, version=addon_factory().current_version)
-        ScannersResult.objects.create(
-            scanner=CUSTOMS, version=addon_factory().current_version)
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, version=addon_factory().current_version
+        )
+        ScannerResult.objects.create(
+            scanner=WAT, version=addon_factory().current_version
+        )
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, version=addon_factory().current_version
+        )
 
         with self.assertNumQueries(9):
             # 9 queries:
@@ -120,8 +124,52 @@ class TestScannersResultAdmin(TestCase):
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all add-ons translations in one query
-            response = self.client.get(self.list_url)
+            response = self.client.get(self.list_url, {
+                MatchesFilter.parameter_name: 'all',
+            })
         assert response.status_code == 200
         html = pq(response.content)
-        expected_length = ScannersResult.objects.count()
+        expected_length = ScannerResult.objects.count()
+        assert html('#result_list tbody tr').length == expected_length
+
+    def test_formatted_matches(self):
+        result = ScannerResult()
+        result.add_match(rule='some-rule')
+
+        assert self.admin.formatted_matches(result) == format_html(
+            '<pre>{}</pre>', json.dumps(result.matches, indent=4)
+        )
+
+    def test_formatted_matches_without_matches(self):
+        result = ScannerResult()
+
+        assert self.admin.formatted_matches(result) == '<pre>[]</pre>'
+
+    def test_list_shows_matches_only_by_default(self):
+        # Create one entry without matches
+        ScannerResult.objects.create(scanner=YARA)
+        # Create one entry with matches
+        with_matches = ScannerResult(scanner=YARA)
+        with_matches.add_match(rule='some-rule')
+        with_matches.save()
+
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        html = pq(response.content)
+        assert html('#result_list tbody tr').length == 1
+
+    def test_list_can_show_all_entries(self):
+        # Create one entry without matches
+        ScannerResult.objects.create(scanner=YARA)
+        # Create one entry with matches
+        with_matches = ScannerResult(scanner=YARA)
+        with_matches.add_match(rule='some-rule')
+        with_matches.save()
+
+        response = self.client.get(
+            self.list_url, {MatchesFilter.parameter_name: 'all'}
+        )
+        assert response.status_code == 200
+        html = pq(response.content)
+        expected_length = ScannerResult.objects.count()
         assert html('#result_list tbody tr').length == expected_length

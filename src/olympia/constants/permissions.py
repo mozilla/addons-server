@@ -129,7 +129,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
 
     'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
 
-    'scanners.view_scannersresult': ADMIN_ADVANCED,
+    'scanners.view_scannerresult': ADMIN_ADVANCED,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,

@@ -1,0 +1,56 @@
+<footer class="Footer">
+    <div class="Footer-wrapper">
+        <div class="Footer-mozilla-link-wrapper">
+            <a class="Footer-mozilla-link" href="https://mozilla.org/" title="Go to Mozilla's homepage"><span class="Icon Icon-mozilla Footer-mozilla-logo"><span class="visually-hidden">Go to Mozilla's homepage</span></span></a>
+        </div>
+
+        <section class="Footer-amo-links">
+            <h4 class="Footer-links-header"><a href="{{ url('home') }}">Add-ons</a></h4>
+
+            <ul class="Footer-links">
+                <li><a href="{{ url('pages.about') }}">About</a></li>
+                <li><a href="https://blog.mozilla.com/addons">Blog</a></li>
+                <li><a class="Footer-extension-workshop-link" href="https://extensionworkshop.com/?utm_source=addons.mozilla.org&amp;utm_medium=referral&amp;utm_content=footer-link">Extension Workshop</a></li>
+                <li><a href="{{ url('devhub.index') }}">Developer Hub</a></li>
+                <li><a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/AMO/Policy">Developer Policies</a></li>
+                <li><a href="https://discourse.mozilla-community.org/c/add-ons">Forum</a></li>
+                <li><a class="Footer-bug-report-link" href="https://developer.mozilla.org/Add-ons/AMO/Policy/Contact">Report a bug</a></li>
+                <li><a href="{{ url('pages.review_guide') }}">Review Guide</a></li>
+                <li><a href="https://status.mozilla.org/">Site Status</a></li>
+            </ul>
+        </section>
+
+        <section class="Footer-firefox-links">
+            <h4 class="Footer-links-header"><a href="https://www.mozilla.org/firefox/">Firefox</a></h4>
+
+            <ul class="Footer-links">
+                <li><a href="https://www.mozilla.org/firefox/new/?utm_source=addons.mozilla.org&amp;utm_campaign=footer&amp;utm_medium=referral">Download Firefox</a></li>
+                <li><a href="https://www.mozilla.org/firefox/android/?utm_source=addons.mozilla.org&amp;utm_campaign=footer&amp;utm_medium=referral">Android Browser</a></li>
+                <li><a href="https://www.mozilla.org/firefox/ios/?utm_source=addons.mozilla.org&amp;utm_campaign=footer&amp;utm_medium=referral">iOS Browser</a></li>
+                <li><a href="https://www.mozilla.org/firefox/focus/?utm_source=addons.mozilla.org&amp;utm_campaign=footer&amp;utm_medium=referral">Focus Browser</a></li>
+                <li><a href="https://www.mozilla.org/firefox/desktop/?utm_source=addons.mozilla.org&amp;utm_campaign=footer&amp;utm_medium=referral">Desktop Browser</a></li>
+                <li><a href="https://www.mozilla.org/firefox/channel/desktop/?utm_source=addons.mozilla.org&amp;utm_campaign=footer&amp;utm_medium=referral">Beta, Nightly, Developer Edition</a></li>
+            </ul>
+
+            <ul class="Footer-links Footer-links-social">
+                <li class="Footer-link-social"><a href="https://twitter.com/firefox"><span class="Icon Icon-twitter"><span class="visually-hidden">Twitter (@firefox)</span></span></a></li>
+                <li class="Footer-link-social"><a href="https://www.facebook.com/Firefox"><span class="Icon Icon-facebook"><span class="visually-hidden">Facebook (Firefox)</span></span></a></li>
+                <li class="Footer-link-social"><a href="https://www.youtube.com/firefoxchannel"><span class="Icon Icon-youtube"><span class="visually-hidden">YouTube (firefoxchannel)</span></span></a></li>
+            </ul>
+        </section>
+
+        <ul class="Footer-legal-links">
+            <li><a class="Footer-privacy-link" href="https://www.mozilla.org/privacy/websites/">Privacy</a></li>
+            <li><a class="Footer-cookies-link" href="https://www.mozilla.org/privacy/websites/#cookies">Cookies</a></li>
+            <li><a class="Footer-legal-link" href="https://www.mozilla.org/about/legal/terms/mozilla/">Legal</a></li>
+        </ul>
+
+        <p class="Footer-copyright">Except where otherwise <a href="https://www.mozilla.org/en-US/about/legal/">noted</a>, content on this site is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version.</p>
+
+        <div class="Footer-language-picker">
+            <div class="LanguagePicker">
+              {% include 'includes/lang_switcher.html' %}
+            </div>
+        </div>
+    </div>
+</footer>

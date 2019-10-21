@@ -35,8 +35,7 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
-from olympia.scanners.models import ScannersResult
-from olympia.yara.models import YaraResult
+from olympia.scanners.models import ScannerResult
 
 from .compare import version_dict, version_int
 
@@ -87,6 +86,7 @@ class VersionManager(ManagerBase):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
         qs = self.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED,
             addon__type__in=(
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
                 amo.ADDON_SEARCH),
@@ -292,20 +292,12 @@ class Version(OnChangeMixin, ModelBase):
         version_uploaded.send(instance=version, sender=Version)
 
         if version.is_webextension:
-            if waffle.switch_is_active('enable-yara'):
-                try:
-                    yara_result = YaraResult.objects.get(upload_id=upload.id)
-                    yara_result.version = version
-                    yara_result.save()
-                except YaraResult.DoesNotExist:
-                    log.exception('Could not find a YaraResult for FileUpload '
-                                  '%s', upload.id)
-
             if (
+                    waffle.switch_is_active('enable-yara') or
                     waffle.switch_is_active('enable-customs') or
                     waffle.switch_is_active('enable-wat')
             ):
-                ScannersResult.objects.filter(upload_id=upload.id).update(
+                ScannerResult.objects.filter(upload_id=upload.id).update(
                     version=version)
 
         # Extract this version into git repository
@@ -598,8 +590,8 @@ class Version(OnChangeMixin, ModelBase):
 
     def disable_old_files(self):
         """
-        Disable files from versions older than the current one and awaiting
-        review. Used when uploading a new version.
+        Disable files from versions older than the current one in the same
+        channel and awaiting review. Used when uploading a new version.
 
         Does nothing if the current instance is unlisted.
         """
@@ -607,6 +599,7 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
+                                     version__channel=self.channel,
                                      status=amo.STATUS_AWAITING_REVIEW)
             # Use File.update so signals are triggered.
             for f in qs:

@@ -3,15 +3,15 @@
     align-self: center;
 }
 .DevHub-callout-box--banner {
-    margin-top: 20px;
+    margin: 20px 0 0;
     padding-bottom: 160px;
+    background-color: transparent;
 
     h2 {
         display: inline-block;
     }
 
     @media @medium {
-        margin: 20px 80px;
         padding-top: 40px;
         padding-bottom:100px;
         h2 {
@@ -29,12 +29,14 @@
 
 .DevHub-callout-box--banner::before {
     background: no-repeat bottom left url(../../../img/developers/new-landing/banner-background.svg);
+    background-size: (@grid-max - (@side-margin *2))  auto;
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: -1;
 
     .html-rtl & {
         transform: scaleX(-1);
