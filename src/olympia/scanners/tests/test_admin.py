@@ -103,7 +103,7 @@ class TestScannerResultAdmin(TestCase):
     def test_formatted_results_without_results(self):
         result = ScannerResult()
 
-        assert self.admin.formatted_results(result) == '<pre>{}</pre>'
+        assert self.admin.formatted_results(result) == '<pre>[]</pre>'
 
     def test_list_queries(self):
         ScannerResult.objects.create(
@@ -132,25 +132,12 @@ class TestScannerResultAdmin(TestCase):
         expected_length = ScannerResult.objects.count()
         assert html('#result_list tbody tr').length == expected_length
 
-    def test_formatted_matches(self):
-        result = ScannerResult()
-        result.add_match(rule='some-rule')
-
-        assert self.admin.formatted_matches(result) == format_html(
-            '<pre>{}</pre>', json.dumps(result.matches, indent=4)
-        )
-
-    def test_formatted_matches_without_matches(self):
-        result = ScannerResult()
-
-        assert self.admin.formatted_matches(result) == '<pre>[]</pre>'
-
     def test_list_shows_matches_only_by_default(self):
         # Create one entry without matches
         ScannerResult.objects.create(scanner=YARA)
         # Create one entry with matches
         with_matches = ScannerResult(scanner=YARA)
-        with_matches.add_match(rule='some-rule')
+        with_matches.add_yara_result(rule='some-rule')
         with_matches.save()
 
         response = self.client.get(self.list_url)
@@ -163,7 +150,7 @@ class TestScannerResultAdmin(TestCase):
         ScannerResult.objects.create(scanner=YARA)
         # Create one entry with matches
         with_matches = ScannerResult(scanner=YARA)
-        with_matches.add_match(rule='some-rule')
+        with_matches.add_yara_result(rule='some-rule')
         with_matches.save()
 
         response = self.client.get(

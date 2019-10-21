@@ -40,9 +40,8 @@ class TestScannerResult(TestCase):
         assert result.id is not None
         assert result.upload == upload
         assert result.scanner == CUSTOMS
-        assert result.results == {}
+        assert result.results == []
         assert result.version is None
-        assert result.matches == []
         assert result.has_matches is False
 
     def test_create_different_entries_for_a_single_upload(self):
@@ -56,13 +55,15 @@ class TestScannerResult(TestCase):
         assert customs_result.scanner == CUSTOMS
         assert wat_result.scanner == WAT
 
-    def test_add_match(self):
+    def test_add_yara_result(self):
         result = self.create_yara_result()
         match = self.create_fake_yara_match()
 
-        result.add_match(rule=match.rule, tags=match.tags, meta=match.meta)
+        result.add_yara_result(
+            rule=match.rule, tags=match.tags, meta=match.meta
+        )
 
-        assert result.matches == [
+        assert result.results == [
             {'rule': match.rule, 'tags': match.tags, 'meta': match.meta}
         ]
         assert result.has_matches is True
@@ -74,7 +75,7 @@ class TestScannerResult(TestCase):
         assert result.has_matches is False
 
         result.has_matches = None
-        result.matches = [{}]  # Fake match
+        result.results = [{}]  # Fake match
         result.save()
         assert result.has_matches is True
 
@@ -98,7 +99,9 @@ class TestScannerResult(TestCase):
 
         for rule in [rule1, rule2]:
             match = self.create_fake_yara_match(rule=rule)
-            result.add_match(rule=match.rule, tags=match.tags, meta=match.meta)
+            result.add_yara_result(
+                rule=match.rule, tags=match.tags, meta=match.meta
+            )
 
         assert result.matched_rules == [rule1, rule2]
 
@@ -109,6 +112,12 @@ class TestScannerResult(TestCase):
 
         for rule in [rule1, rule2, rule1, rule2]:
             match = self.create_fake_yara_match(rule=rule)
-            result.add_match(rule=match.rule, tags=match.tags, meta=match.meta)
+            result.add_yara_result(
+                rule=match.rule, tags=match.tags, meta=match.meta
+            )
 
         assert result.matched_rules == [rule1, rule2]
+
+    def test_matched_rules_returns_empty_list_when_not_yara(self):
+        result = self.create_customs_result()
+        assert result.matched_rules == []

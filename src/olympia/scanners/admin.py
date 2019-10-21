@@ -49,7 +49,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     list_select_related = ('version',)
 
     fields = ('id', 'upload', 'formatted_addon', 'channel', 'scanner',
-              'formatted_matches', 'formatted_results')
+              'formatted_results')
 
     ordering = ('-created',)
 
@@ -98,10 +98,6 @@ class ScannerResultAdmin(admin.ModelAdmin):
     def formatted_results(self, obj):
         return format_html('<pre>{}</pre>', json.dumps(obj.results, indent=2))
     formatted_results.short_description = 'Results'
-
-    def formatted_matches(self, obj):
-        return format_html('<pre>{}</pre>', json.dumps(obj.matches, indent=4))
-    formatted_matches.short_description = 'Matches'
 
 
 @admin.register(ScannerRule)
