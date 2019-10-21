@@ -2,10 +2,13 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
+ARG GROUP_ID=1000
+ARG USER_ID=1000
+
 # Run all initial setup with root user. This is the default but mentioned here
 # for documentation.
 # We won't switch to the `olympia` user inside the dockerfile
-# but rather use the `user` option instead
+# but rather use the `user` option in docker-compose.yml instead
 USER root
 
 # Allow scripts to detect we're running in our own container
@@ -77,21 +80,35 @@ ENV LC_ALL en_US.UTF-8
 COPY . /code
 WORKDIR /code
 
+RUN groupadd -g ${GROUP_ID} olympia
+RUN useradd -g ${GROUP_ID} -u ${USER_ID} -Md /deps/ olympia
+
+# Create /deps/ and move ownership over to `olympia` user so that
+# we can install things there
+# Also run `chown` on `/code/` which technically doesn't change permissions
+# on the host but ensures that the image knows about correct permissions.
+RUN mkdir /deps/ && chown -R olympia:olympia /deps/ /code/
+
 ENV PIP_BUILD=/deps/build/
 ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
+
+# Allow us to install all dependencies to the `olympia` users
+# home directory (which is `/deps/`)
+ENV PIP_USER=true
+ENV PYTHONUSERBASE=/deps
+
+# Make sure that installed binaries are accessible
+ENV PATH $PYTHONUSERBASE/bin:$PATH
+
 ENV NPM_CONFIG_PREFIX=/deps/
 ENV SWIG_FEATURES="-D__x86_64__"
 
-RUN useradd -Md /code/ olympia
+# From now on run everything with the `olympia` user by default.
+USER olympia
 
-# Install all python requires
-RUN mkdir -p /deps/{build,cache,src}/ && \
-    ln -s /code/package.json /deps/package.json && \
+RUN ln -s /code/package.json /deps/package.json && \
     make update_deps && \
-    # Ensure that we are able to update dependencies ourselves later when
-    # using the `olympia` user by default.
-    chown -R olympia:olympia /deps/ && \
     rm -rf /deps/build/ /deps/cache/
 
 # Preserve bash history across image updates.
