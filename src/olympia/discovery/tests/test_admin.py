@@ -254,7 +254,7 @@ class TestDiscoveryAdmin(TestCase):
                 'primaryhero-0-id': str(hero.pk),
                 'primaryhero-0-disco_addon': str(item.pk),
                 'primaryhero-0-gradient_color': '#054096',
-                'primaryhero-0-image': 'ladder.jpg',
+                'primaryhero-0-image': 'placeholder_a.jpg',
             }, follow=True)
         assert response.status_code == 200
         item.reload()
@@ -290,7 +290,7 @@ class TestDiscoveryAdmin(TestCase):
                 'custom_addon_name': 'Xäxâxàxaxaxa !',
                 'recommendable': True,
                 'primaryhero-0-gradient_color': '#054096',
-                'primaryhero-0-image': 'ladder.jpg',
+                'primaryhero-0-image': 'placeholder_a.jpg',
             }),
             follow=True)
         assert response.status_code == 200
@@ -301,7 +301,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
         assert item.recommendable is True
         hero = PrimaryHero.objects.last()
-        assert hero.image == 'ladder.jpg'
+        assert hero.image == 'placeholder_a.jpg'
         assert hero.gradient_color == '#054096'
         assert hero.disco_addon == item
 
