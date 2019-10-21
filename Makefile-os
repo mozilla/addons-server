@@ -20,6 +20,10 @@ update_docker: ## update all the docker images
 shell: ## connect to a running addons-server docker shell
 	docker-compose exec web bash
 
+.PHONY: shell
+rootshell: ## connect to a running addons-server docker shell with root user
+	docker-compose exec --user root web bash
+
 %: ## This directs any other recipe (command) to the web container's make.
 	docker-compose exec web make $(MAKECMDGOALS) ARGS=$(ARGS)
 
