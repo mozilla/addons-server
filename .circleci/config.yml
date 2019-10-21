@@ -65,7 +65,7 @@ workflows:
       - build:
           filters:
             branches:
-              only: master
+              only: master,12366-fix-docker-builds
       - build-tag:
           filters:
             tags:
