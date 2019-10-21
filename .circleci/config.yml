@@ -45,6 +45,14 @@ jobs:
       - build_and_push_container_image:
           image_tag: "${CIRCLE_TAG}"
           dockerfile: "Dockerfile.deploy"
+  build-local-dev:
+    machine: true
+    working_directory: ~/addons-server
+    steps:
+      - checkout
+      - build_and_push_container_image:
+          image_tag: latest-local-dev
+          dockerfile: "Dockerfile"
 
 workflows:
   version: 2

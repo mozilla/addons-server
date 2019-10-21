@@ -24,12 +24,9 @@ services:
   worker: &worker
     <<: *env
     build: .
-    image: addons/addons-server:fixed-docker-perms
+    image: addons/addons-server:latest-local-dev
     command: supervisord -n -c /code/docker/supervisor-celery.conf
-    # We are defaulting to the olympia user to avoid any permission related
-    # issues and files owned by root. This can be overwritten through
-    # the --user option when calling docker-compose
-    user: olympia
+    user: ${CURRENT_UID-1000:1000}
     volumes:
       - .:/code
     extra_hosts:
