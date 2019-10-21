@@ -5,7 +5,10 @@ from olympia.constants.scanners import YARA
 
 class Migration(migrations.Migration):
 
-    dependencies = [('scanners', '0003_auto_20191017_1514')]
+    dependencies = [
+        ('scanners', '0003_auto_20191017_1514'),
+        ('yara', '0003_auto_20191010_1446'),
+    ]
 
     operations = [
         migrations.RunSQL(
