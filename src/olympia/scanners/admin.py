@@ -51,6 +51,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
     fields = ('id', 'upload', 'formatted_addon', 'channel', 'scanner',
               'formatted_matches', 'formatted_results')
 
+    ordering = ('-created',)
+
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
         # We also need to fetch the add-ons though, and because we need their
