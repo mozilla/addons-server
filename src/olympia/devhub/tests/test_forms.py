@@ -55,7 +55,7 @@ class TestNewUploadForm(TestCase):
         # Without an add-on, we only pre-select the default which is Firefox
         form = forms.NewUploadForm(data, request=request)
         assert form.fields['compatible_apps'].initial == [
-            amo.FIREFOX.id, amo.ANDROID.id]
+            amo.FIREFOX.id]
 
         # with an add-on provided we select the platforms based on the current
         # version
