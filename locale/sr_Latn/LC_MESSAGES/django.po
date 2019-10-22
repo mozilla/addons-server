@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1675,6 +1675,13 @@ msgstr "Lošeg kvaliteta, istegnuta ili prazna slika"
 msgid "Header image alignment problem"
 msgstr "Problem ravnanja slike zaglavlja"
 
+#, fuzzy
+msgid "no action"
+msgstr "Još opcija:"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr ""
 
@@ -2597,20 +2604,6 @@ msgid ""
 "new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr "Pogledati izvor?"
-
-msgid ""
-"Whether the source of your add-on can be displayed in our online viewer. It "
-"is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Izvorni kod ovog dodatka je javan."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Ne, izvorni kod ovog dodatka nije dostupan za javnost."
-
 msgid "Public Stats?"
 msgstr "Javna statistika?"
 
@@ -3493,49 +3486,28 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Pročitajte više o polisi pregleda izvornog koda."
 
-#, fuzzy
-msgid "Latest News"
-msgstr "Poslednja verzija:"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
+msgid ""
+"Whether you’re new to extension development, polishing up or porting an "
+"existing extension or theme, or creating a custom enterprise solution, we’ve "
+"got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Read more in our Blog"
-msgstr "treba više informacija"
+msgid "Visit the Extension Workshop"
+msgstr "Ekstenzije"
 
 #, fuzzy
 msgid "Resources"
 msgstr "Više resursa"
 
+# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Porting"
-msgstr "Ocene"
-
-#, fuzzy
-msgid "Community"
-msgstr "Komentariši"
-
-msgid "About"
-msgstr "Više informacija"
-
-msgid "Forum"
-msgstr "Forum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-#, fuzzy
-msgid "Contact Us"
-msgstr "Kontaktirajte nas"
-
-msgid "Support"
-msgstr "Podrška"
-
-#, fuzzy
-msgid "Report Bug"
-msgstr "Prijavi zloupotrebu"
-
-msgid "Site Status"
-msgstr ""
+msgid "WebExtensions API"
+msgstr "Ekstenzije"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3543,22 +3515,11 @@ msgstr ""
 msgid "Promote"
 msgstr ""
 
-#, fuzzy
-msgid "Get Your Add-on Featured"
-msgstr "Upravljanje Vašim dodatkom"
-
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
-msgid "Legal"
+msgid "Recommended Extensions program"
 msgstr ""
-
-#, fuzzy
-msgid "Report Trademark Abuse"
-msgstr "Prijavi zloupotrebu"
-
-msgid "Legal Notices"
-msgstr "Pravna obaveštenja"
 
 msgid "Contribute"
 msgstr "Priloži"
@@ -3597,48 +3558,17 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-#, fuzzy
-msgid "Manage Your Add-on"
-msgstr "Upravljanje Vašim dodatkom"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
 msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on "
-"Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more "
-"about the differences in extension development between the four major "
-"browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-
-msgid "View Best Practices for Cross-Browser Development"
+"Connect with thousands of developers and discover more ways you can "
+"contribute to the extension ecosystem."
 msgstr ""
 
 #, fuzzy
-msgid "Welcome Back"
-msgstr "Dobrodošli, {0}"
-
-#, python-format
-msgid ""
-"Want your extension to be featured on %(amo_link_open)saddons.mozilla.org"
-"%(amo_link_close)s? Our featured extensions policies will tell you what you "
-"need to know."
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Saznajte više"
-
-msgid ""
-"You can help users gain confidence and trust in your extension by following "
-"our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+msgid "Learn more about the developer community"
+msgstr "Pročitajte više o polisi pregleda izvornog koda."
 
 msgid ""
 "Listed on this site after passing code review. Automatic updates are handled "
@@ -3672,6 +3602,13 @@ msgstr "Programer dodataka"
 msgid "Docs"
 msgstr ""
 
+msgid "Support"
+msgstr "Podrška"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 #, fuzzy
 msgid "Sign Out"
 msgstr "Pošalji dodatak"
@@ -3683,79 +3620,25 @@ msgstr "Nema slike"
 msgid "User Photo"
 msgstr "Obriši korisničku sliku"
 
-#, fuzzy, python-format
-msgid ""
-"<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
+#, python-format
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
 msgstr ""
-"<a href=\"%(reg)s\">Registrujte nalog</a> ili se <a href=\"%(login)s"
-"\">prijavite</a>"
 
 #, fuzzy
 msgid "Customize Firefox"
 msgstr "Teme lake za upotrebu za Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If "
-"you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
-"%(link_close)s, and %(css_link_open)sCSS%(link_close)s, you already have all "
-"the necessary skills to make a great add-on."
-msgstr ""
-
 #, fuzzy
-msgid "Learn How to Make an Add-on"
+msgid "Learn how to make an extension"
 msgstr "Saznajte više o dodacima"
 
-#, fuzzy
-msgid "Port a Chrome Extension"
-msgstr "Popularne ekstenzije"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with "
-"the extension APIs supported by Chrome, Opera and Edge, so your extensions "
-"will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
 
-#, fuzzy
-msgid "Learn How"
-msgstr "Saznajte više"
-
-#, fuzzy
-msgid "Publish Your Add-on"
-msgstr "Upravljanje Vašim dodatkom"
-
-msgid ""
-"Have an add-on ready? Submit your extension or theme to be listed on addons."
-"mozilla.org or sign and distribute your extension on your own."
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
 
-#, fuzzy
-msgid "Sign In"
-msgstr "Pošalji dodatak"
-
-msgid "Web-Ext"
-msgstr ""
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr ""
-
-#, fuzzy
-msgid "Automated code tests for your add-on."
-msgstr "Molim Vas završite Vaš dodatak."
-
-#, fuzzy
-msgid "Compatibility Test"
-msgstr "Testovi kompatibilnosti"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "Pogledaj listing"
-
-msgid ""
-"Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -5727,6 +5610,10 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Saznajte više"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -7156,6 +7043,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Više traženih informacija: {0}"
 msgstr[1] "Više traženih informacija: {0}"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Neispravan opseg verzije."
@@ -7439,12 +7332,22 @@ msgstr "Nazad na dodatke"
 msgid "Footer logo"
 msgstr ""
 
+msgid "Legal Notices"
+msgstr "Pravna obaveštenja"
+
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "Prijavi zloupotrebu"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 #, fuzzy
 msgid "View the new site"
 msgstr "Sajt za mobilne uređaje"
+
+msgid "Site Status"
+msgstr ""
 
 #, fuzzy
 msgid "Report a bug"
@@ -7464,6 +7367,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "saznajte više o <b>dodacima</b>"
+
+msgid "About"
+msgstr "Više informacija"
+
+msgid "Forum"
+msgstr "Forum"
 
 #, fuzzy
 msgid "Download Firefox"

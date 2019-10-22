@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-09-30 19:11+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1388,6 +1388,13 @@ msgstr "Low-quality, stretched, or blank image"
 msgid "Header image alignment problem"
 msgstr "Header image alignment problem"
 
+#, fuzzy
+msgid "no action"
+msgstr "More Actions"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Core"
 
@@ -2162,18 +2169,6 @@ msgstr ""
 "Any information end users may want to know that isn’t necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 
-msgid "View Source?"
-msgstr "View Source?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "This add-on’s source code is publicly viewable."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "No, this add-on’s source code is not publicly viewable."
-
 msgid "Public Stats?"
 msgstr "Public Stats?"
 
@@ -2885,41 +2880,22 @@ msgstr "Please include instructions on how to reproduce the final add-on file, e
 msgid "Read more about the source code review policy."
 msgstr "Read more about the source code review policy."
 
-msgid "Latest News"
-msgstr "Latest News"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Read more in our Blog"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Extension Workshop"
 
 msgid "Resources"
 msgstr "Resources"
 
-msgid "Porting"
-msgstr "Porting"
-
-msgid "Community"
-msgstr "Community"
-
-msgid "About"
-msgstr "About"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Contact Us"
-
-msgid "Support"
-msgstr "Support"
-
-msgid "Report Bug"
-msgstr "Report Bug"
-
-msgid "Site Status"
-msgstr "Site Status"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: build & test extensions"
@@ -2927,20 +2903,11 @@ msgstr "Web-Ext: build & test extensions"
 msgid "Promote"
 msgstr "Promote"
 
-msgid "Get Your Add-on Featured"
-msgstr "Get Your Add-on Featured"
-
 msgid "\"Get The Add-on\" button"
 msgstr "“Get The Add-on” button"
 
-msgid "Legal"
-msgstr "Legal"
-
-msgid "Report Trademark Abuse"
-msgstr "Report Trademark Abuse"
-
-msgid "Legal Notices"
-msgstr "Legal Notices"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Contribute"
@@ -2972,41 +2939,15 @@ msgstr "You don’t need coding skills to help keep Firefox the most customizabl
 msgid "See how"
 msgstr "See how"
 
-msgid "Manage Your Add-on"
-msgstr "Manage Your Add-on"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Sign In to Edit and Update Your Add-on"
-
-msgid "Write one code base for many browsers"
-msgstr "Write one code base for many browsers"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "View Best Practices for Cross-Browser Development"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "Welcome Back"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Learn More"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-
-msgid "See Best Practices"
-msgstr "See Best Practices"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Read more about the source code review policy."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3030,6 +2971,12 @@ msgstr "Add-on Developer Hub"
 msgid "Docs"
 msgstr "Docs"
 
+msgid "Support"
+msgstr "Support"
+
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Sign Out"
 
@@ -3040,63 +2987,24 @@ msgid "User Photo"
 msgstr "User Photo"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Customize Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Learn How to Make an Add-on"
 
-msgid "Port a Chrome Extension"
-msgstr "Port a Chrome Extension"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 
-msgid "Learn How"
-msgstr "Learn How"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Publish Your Add-on"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-
-msgid "Sign In"
-msgstr "Sign In"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "A command line tool to build, run, and test extensions."
-
-msgid "Automated code tests for your add-on."
-msgstr "Automated code tests for your add-on."
-
-msgid "Compatibility Test"
-msgstr "Compatibility Test"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Check to see if your extension is compatible with Firefox."
-
-msgid "Live Testing"
-msgstr "Live Testing"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Manage Version {0}"
@@ -4710,6 +4618,10 @@ msgid "Media enhancers for Firefox"
 msgstr "Media enhancers for Firefox"
 
 #. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Learn More"
+
+#. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
 msgstr "Explore extensions"
 
@@ -5908,6 +5820,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Expired Info Request ({0})"
 msgstr[1] "Expired Info Requests ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Invalid \"%s\" parameter."
@@ -6174,11 +6092,20 @@ msgstr "Back to Add-ons"
 msgid "Footer logo"
 msgstr "Footer logo"
 
+msgid "Legal Notices"
+msgstr "Legal Notices"
+
+msgid "Report Trademark Abuse"
+msgstr "Report Trademark Abuse"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "The new website supports mobile and desktop clients"
 
 msgid "View the new site"
 msgstr "View the new site"
+
+msgid "Site Status"
+msgstr "Site Status"
 
 msgid "Report a bug"
 msgstr "Report a bug"
@@ -6192,6 +6119,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "get to know <b>add-ons</b>"
+
+msgid "About"
+msgstr "About"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Download Firefox"

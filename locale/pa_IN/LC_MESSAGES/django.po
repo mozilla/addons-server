@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-07 04:12+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1386,6 +1386,13 @@ msgstr "ਘੱਟ-ਗੁਣਵੱਤਾ, ਕਸਵੀਂ ਜਾਂ ਖਾਲੀ 
 msgid "Header image alignment problem"
 msgstr "ਹੈਡਰ ਈਮੇਜ ਅਲਾਈਨਮੈੰਟ ਸਮੱਸਿਆ"
 
+#, fuzzy
+msgid "no action"
+msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "ਕੋਰ"
 
@@ -2152,18 +2159,6 @@ msgstr ""
 "ਅੰਤ ਵਰਤੋਂਕਾਰ ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋਣ ਜੋ ਜ਼ਰੂਰੀ ਨਹੀਂ ਐਡ-ਆਨ ਦੇ ਸੰਖੇਪ ਵਰਣਨ ਜਾਂ ਵੇਰਵੇ ਤੇ ਲਾਗੂ ਹੋਵੋ। ਆਮ ਵਰਤੋਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਜਾਣੂ ਬੱਗਾਂ ਦੀ ਸੂਚੀ, ਬੱਗਾਂ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਭੇਜੀਏ ਦੀ ਜਾਣਕਾਰੀ, ਨਵੇਂ ਵਰਜਨ ਦੇ ਜਾਰੀ ਹੋਣ ਦੀ ਤਰੀਕ ਦਾ ਅਨੁਮਾਨ, ਆਦਿ। ਇਹ ਕੇਵਲ "
 "ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-msgid "View Source?"
-msgstr "ਸਰੋਤ ਵੇਖੋ?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "ਚਾਹੇ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਸੋਰਸ ਸਾਡੇ ਆਨਲਾਈਨ ਦਰਸ਼ਕ ਵਿੱਚ ਵਿਖਾਇਆ ਜਾਵੇ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਸੋਰਸ ਕੋਡ ਜਨਤਕ ਤੌਰ ਤੇ ਵੇਖਣਯੋਗ ਹੈ।"
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "ਨਹੀਂ, ਇਸ ਐਡ-ਆਨ ਦਾ ਸੋਰਸ ਕੋਡ ਜਨਤਕ ਤੌਰ ਤੇ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ।"
-
 msgid "Public Stats?"
 msgstr "ਜਨਤਕ ਅੰਕੜੇ?"
 
@@ -2873,41 +2868,22 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਐਡੀਸ਼ਨ ਲਈ ਆਖਰ�
 msgid "Read more about the source code review policy."
 msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
 
-msgid "Latest News"
-msgstr "ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਬਲੌਗ ਪੜ੍ਹੋ"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "ਇਕਸਟੈਂਸ਼ਨ ਵਰਕਸ਼ਾਪ"
 
 msgid "Resources"
 msgstr "ਸਰੋਤ"
 
-msgid "Porting"
-msgstr "ਪੋਰਟਿੰਗ"
-
-msgid "Community"
-msgstr "ਭਾਈਚਾਰਾ"
-
-msgid "About"
-msgstr "ਬਾਰੇ"
-
-msgid "Forum"
-msgstr "ਫ਼ੋਰਮ"
-
-msgid "Blog"
-msgstr "ਬਲੌਗ"
-
-msgid "Contact Us"
-msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
-
-msgid "Support"
-msgstr "ਸਹਿਯੋਗ"
-
-msgid "Report Bug"
-msgstr "ਬੱਗ ਰਿਪੋਰਟ ਕਰੋ"
-
-msgid "Site Status"
-msgstr "ਸਾਈਟ ਦੀ ਸਥਿਤੀ"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "ਵੈਬ-ਐਕਸਟੈਂਟ: ਬਿਲਡ ਅਤੇ ਟੈਸਟ ਐਕਸਟੈਂਸ਼ਨ"
@@ -2915,20 +2891,11 @@ msgstr "ਵੈਬ-ਐਕਸਟੈਂਟ: ਬਿਲਡ ਅਤੇ ਟੈਸਟ ਐ
 msgid "Promote"
 msgstr "ਉਤਸ਼ਾਹਿਤ"
 
-msgid "Get Your Add-on Featured"
-msgstr "ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਫੀਚਰ ਕਰੋ"
-
 msgid "\"Get The Add-on\" button"
 msgstr "\"ਐਡ-ਆਨ ਪ੍ਰਾਪਤ ਕਰੋ\" ਬਟਨ"
 
-msgid "Legal"
-msgstr "ਕਨੂੰਨੀ"
-
-msgid "Report Trademark Abuse"
-msgstr "ਟਰੇਡਮਾਰਕ ਦੁਰਵਿਅਵਹਾਰ ਰਿਪੋਰਟ"
-
-msgid "Legal Notices"
-msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "ਯੋਗਦਾਨ ਪਾਓ"
@@ -2960,39 +2927,15 @@ msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਸਭ ਤੋਂ ਵੱਧ ਅਨੁ�
 msgid "See how"
 msgstr "ਵੇਖੋ ਕਿਵੇਂ"
 
-msgid "Manage Your Add-on"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਸਾਂਭ-ਸੰਭਾਲ੍ਹ ਕਰੋ"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੋਧਣ ਅਤੇ ਅਪਡੇਟ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ"
-
-msgid "Write one code base for many browsers"
-msgstr "ਬਹੁਤ ਸਾਰੇ ਬਰਾਊਜ਼ਰਾਂ ਲਈ ਕੋਡ ਬੇਸ ਲਿਖੋ"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "ਕ੍ਰਾਸ-ਬ੍ਰਾਊਜ਼ਰ ਡਿਵੈਲਪਮੈਂਟ ਲਈ ਬਿਹਤਰੀਨ ਪ੍ਰੈਕਟਿਸਿਸ ਦੇਖੋ"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "ਜੀ ਆਇਆ ਨੂੰ"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "%(amo_link_open)saddons.mozilla.org%(amo_link_close)sਤੇ ਤੁਹਾਡੇ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਸਾਡੀ ਫੀਚਰਡ ਐਕਸਟੈਂਸ਼ਨ ਨੀਤੀ ਤੁਹਾਨੂੰ ਦੱਸੇਗੀ ਕਿ ਤੁਹਾਨੂੰ ਕੀ ਜਾਣਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ।"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "ਹੋਰ ਜਾਣੋ"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਆਨ-ਬੋਰਡਿੰਗ ਲਈ ਸਾਡੇ ਸਰਵੋਤਮ ਅਭਿਆਸ ਦੀ ਪਾਲਣਾ ਕਰਕੇ ਤੁਸੀਂ ਆਪਣੇ ਵਿਸਥਾਰ ਵਿੱਚ ਵਿਸ਼ਵਾਸ ਅਤੇ ਭਰੋਸਾ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਮਦਦ ਕਰ ਸਕਦੇ ਹੋ।"
-
-msgid "See Best Practices"
-msgstr "ਵਧੀਆ ਪ੍ਰੈਕਟਿਸਾਂ ਦੇਖੋ"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "ਕੋਡ ਰਿਵਿਊ ਪਾਸ ਕਰਨ ਤੋਂ ਬਾਅਦ ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਬੱਧ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
@@ -3016,6 +2959,12 @@ msgstr "ਐਡਆਨ ਡਿਵੈਲਪਰ ਹੱਬ"
 msgid "Docs"
 msgstr "ਦਸਤਾਵੇਜ਼"
 
+msgid "Support"
+msgstr "ਸਹਿਯੋਗ"
+
+msgid "Blog"
+msgstr "ਬਲੌਗ"
+
 msgid "Sign Out"
 msgstr "ਸਾਈਨ ਆਉਟ"
 
@@ -3026,62 +2975,24 @@ msgid "User Photo"
 msgstr "ਵਰਤੋਂਕਾਰ ਫੋਟੋ"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">ਰਜਿਸਟਰ ਕਰੋ</a> ਜਾਂ <a href=\"%(login)s\">ਸਾਈਨ ਇਨ ਕਰੋ</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"ਐਡਆਨ, ਲੱਖਾਂ ਫਾਇਰਫਾਕਸ ਵਰਤੋਂਕਾਰ ਆਪਣੇ ਬਰਾਊਜ਼ਿੰਗ ਤਜਰਬੇ ਨੂੰ ਵਧਾਉਂਦੇ ਹਨ। ਜੇ ਤੁਸੀਂ (html_link_open)sHTML(link_close)s, %(js_link_open)sJavaScript%(link_close)s, ਅਤੇ %(css_link_open)sCSS%(link_close)s ਜਾਣਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡੇ ਕੋਲ "
-"ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਸ਼ਾਨਦਾਰ ਐਡਆਨ ਬਣਾਉਣ ਲਈ ਪਹਿਲਾਂ ਹੀ ਬਹੁਤ ਹੁਨਰ ਹਨ।"
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "ਐਡਆਨ ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
 
-msgid "Port a Chrome Extension"
-msgstr "Chrome ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਪੋਰਟ ਕਰੋ"
+msgid "Ready to submit or manage your extension?"
+msgstr ""
 
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "ਫਾਇਰਫਾਕਸ ਵੈੱਬ ਐਕਸਟੇਂਸ਼ਨ API ਨੂੰ ਸਹਿਯੋਗ ਦਿੰਦਾ ਹੈ, ਜੋ ਕਿ ਬਹੁਤੇ ਕੇਸਾਂ ਵਿੱਚ ਕਰੋਮ, ਓਪੇਰਾ ਅਤੇ ਐਜ ਦੁਆਰਾ ਸਹਿਯੋਗੀ ਐਕਸਟੈਂਸ਼ਨ API ਦੇ ਅਨੁਕੂਲ ਹਨ, ਤਾਂ ਕਿ ਤੁਹਾਡੇ ਐਕਸਟੈਨਸ਼ਨ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਕੇਵਲ ਕੁਝ ਬਦਲਾਅ ਹੀ ਚੱਲੇ।"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Learn How"
-msgstr "ਸਿੱਖੋ ਕਿ ਕਿਵੇਂ"
-
-msgid "Publish Your Add-on"
-msgstr "ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੋ"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "ਕੀ ਐਡਆਨ ਤਿਆਰ ਹੈ? addons.mozilla.org ਤੇ ਸੂਚੀਬੱਧ ਹੋਣ ਲਈ ਆਪਣੀ ਐਕਸਟੈਂਸ਼ਨ ਜਾਂ ਥੀਮ ਦਰਜ਼ ਕਰੋ ਜਾਂ ਆਪਣੇ ਐਕਸਟੈਨਸ਼ਨ ਤੇ ਦਸਤਖਤ ਕਰੋ ਅਤੇ ਵੰਡੋ।"
-
-msgid "Sign In"
-msgstr "ਸਾਇਨ ਇਨ"
-
-msgid "Web-Ext"
-msgstr "ਵੈਬ-ਐਕਸਟੈਂਸ਼ਨ"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਬਣਾਉਣ, ਰਨ ਅਤੇ ਟੈਸਟ ਕਰਨ ਲਈ ਇੱਕ ਕਮਾਂਡ ਲਾਈਨ ਟੂਲ।"
-
-msgid "Automated code tests for your add-on."
-msgstr "ਤੁਹਾਡੇ ਐਡਆਨ ਲਈ ਆਟੋਮੇਟਿਡ ਕੋਡ ਟੈਸਟ।"
-
-msgid "Compatibility Test"
-msgstr "ਅਨੁਕੂਲਤਾ ਟੈਸਟ"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "ਇਹ ਵੇਖਣ ਲਈ ਜਾਂਚ ਕਰੋ ਕਿ ਕੀ ਤੁਹਾਡਾ ਐਕਸਟੈਂਸ਼ਨ ਫਾਇਰਫਾਕਸ ਦੇ ਅਨੁਕੂਲ ਹੈ।"
-
-msgid "Live Testing"
-msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬਗਿੰਗ ਲਈ ਅਸਥਾਈ ਰੂਪ ਵਿੱਚ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਆਪਣਾ ਐਕਸਟੈਂਸ਼ਨ ਇੰਸਟਾਲ ਕਰੋ।"
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "ਵਰਜਨ {0} ਸੰਭਾਲ੍ਹੋ"
@@ -4767,6 +4678,10 @@ msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "ਹੋਰ ਜਾਣੋ"
+
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Explore extensions"
 msgstr "ਵਾਧਰੇ"
@@ -5969,6 +5884,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "ਮਿਆਦ ਪੁੱਗੀ ਜਾਣਕਾਰੀ ਬੇਨਤੀ ({0})"
 msgstr[1] "ਮਿਆਦ ਪੁੱਗ ਗਈ ਜਾਣਕਾਰੀ ਬੇਨਤੀਆਂ ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "ਗਲਤ \"%s\" ਪੈਰਾਮੀਟਰ ਹੈ।"
@@ -6232,11 +6153,20 @@ msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ"
 msgid "Footer logo"
 msgstr "ਫੁਟਰ ਲੋਗੋ"
 
+msgid "Legal Notices"
+msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
+
+msgid "Report Trademark Abuse"
+msgstr "ਟਰੇਡਮਾਰਕ ਦੁਰਵਿਅਵਹਾਰ ਰਿਪੋਰਟ"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "ਨਵੀਂ ਵੈਬਸਾਈਟ ਮੋਬਾਈਲ ਅਤੇ ਡੈਸਕਟੌਪ ਕਲਾਇੰਟਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦੀ ਹੈ"
 
 msgid "View the new site"
 msgstr "ਨਵੀਂ ਸਾਈਟ ਦੇਖੋ"
+
+msgid "Site Status"
+msgstr "ਸਾਈਟ ਦੀ ਸਥਿਤੀ"
 
 msgid "Report a bug"
 msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
@@ -6250,6 +6180,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
+
+msgid "About"
+msgstr "ਬਾਰੇ"
+
+msgid "Forum"
+msgstr "ਫ਼ੋਰਮ"
 
 msgid "Download Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ ਡਾਊਨਲੋਡ ਕਰੋ"

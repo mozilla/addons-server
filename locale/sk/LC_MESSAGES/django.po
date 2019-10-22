@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-03-15 17:33+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1392,6 +1392,13 @@ msgstr "Obrázok nízkej kvality, zlých rozmerov, alebo prázdny obrázok"
 msgid "Header image alignment problem"
 msgstr "Problém so zarovnaním obrázku záhlavia"
 
+#, fuzzy
+msgid "no action"
+msgstr "Žiadna reputácia"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Jadro"
 
@@ -2171,18 +2178,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr "Zobraziť zdrojový kód?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Zdrojový kód tohto doplnku je verejne dostupný."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Zdrojový kód tohto doplnku nie je verejne dostupný."
-
 msgid "Public Stats?"
 msgstr "Zverejniť štatistiky?"
 
@@ -2888,42 +2883,21 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Prečítajte si viac o zásadách pre kontrolu zdrojového kódu."
 
-msgid "Latest News"
-msgstr "Najnovšie správy"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Ďalšie informácie nájdete na našom blogu"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+msgid "Visit the Extension Workshop"
+msgstr ""
 
 msgid "Resources"
 msgstr "Zdroje"
 
-msgid "Porting"
-msgstr "Portovanie"
-
-msgid "Community"
-msgstr "Komunita"
-
-msgid "About"
-msgstr "O nás"
-
-msgid "Forum"
-msgstr "Fórum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Kontaktujte nás"
-
-msgid "Support"
-msgstr "Podpora"
-
-msgid "Report Bug"
-msgstr "Nahlásiť chybu"
-
-msgid "Site Status"
-msgstr "Stav stránky"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -2931,21 +2905,11 @@ msgstr ""
 msgid "Promote"
 msgstr "Propagácia"
 
-# 82%
-msgid "Get Your Add-on Featured"
-msgstr ""
-
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
-msgid "Legal"
-msgstr "Právne informácie"
-
-msgid "Report Trademark Abuse"
-msgstr "Nahlásiť zneužitie ochrannej známky"
-
-msgid "Legal Notices"
-msgstr "Právne informácie"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Prispieť"
@@ -2977,40 +2941,15 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-# 82%
-msgid "Manage Your Add-on"
+msgid "Get involved"
 msgstr ""
 
-msgid "Sign In to Edit and Update Your Add-on"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "Write one code base for many browsers"
-msgstr ""
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr ""
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Ďalšie informácie"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Prečítajte si viac o zásadách pre kontrolu zdrojového kódu."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3036,6 +2975,13 @@ msgstr "Centrum pre vývojárov doplnkov"
 msgid "Docs"
 msgstr "Dokumenty"
 
+msgid "Support"
+msgstr "Podpora"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Odhlásiť sa"
 
@@ -3046,59 +2992,23 @@ msgid "User Photo"
 msgstr "Fotografia používateľa"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Zaregistrujte sa</a> alebo <a href=\"%(login)s\">a prihláste</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Prispôsobte si Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+#, fuzzy
+msgid "Learn how to make an extension"
+msgstr "Prehliadať všetky rozšírenia"
+
+msgid "Ready to submit or manage your extension?"
 msgstr ""
 
-msgid "Learn How to Make an Add-on"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
 
-msgid "Port a Chrome Extension"
-msgstr ""
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
-
-msgid "Learn How"
-msgstr "Ďalšie informácie"
-
-msgid "Publish Your Add-on"
-msgstr ""
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
-
-msgid "Sign In"
-msgstr "Prihlásiť sa"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr ""
-
-msgid "Automated code tests for your add-on."
-msgstr "Automatické testy kódu vášho doplnku."
-
-msgid "Compatibility Test"
-msgstr "Testy kompatibility"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Overte si, či je vaše rozšírenie kompatibilné s Firefoxom."
-
-msgid "Live Testing"
-msgstr ""
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4733,6 +4643,10 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Ďalšie informácie"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -5944,6 +5858,12 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr ""
@@ -6208,11 +6128,20 @@ msgstr "Naspäť na Doplnky"
 msgid "Footer logo"
 msgstr "Logo v päte"
 
+msgid "Legal Notices"
+msgstr "Právne informácie"
+
+msgid "Report Trademark Abuse"
+msgstr "Nahlásiť zneužitie ochrannej známky"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Nová webová stránka funguje na mobiloch i počítačoch"
 
 msgid "View the new site"
 msgstr "Navštívte novú stránku"
+
+msgid "Site Status"
+msgstr "Stav stránky"
 
 msgid "Report a bug"
 msgstr "Nahlásiť chybu"
@@ -6226,6 +6155,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "spoznajte <b>doplnky</b>"
+
+msgid "About"
+msgstr "O nás"
+
+msgid "Forum"
+msgstr "Fórum"
 
 msgid "Download Firefox"
 msgstr "Prevziať Firefox"

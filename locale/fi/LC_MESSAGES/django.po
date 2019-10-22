@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-07-09 06:52+0000\n"
 "Last-Translator: Miro Rauhala <miro.rauhala.99@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1446,6 +1446,13 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr ""
 
+#, fuzzy
+msgid "no action"
+msgstr "Lisää toimintoja"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr ""
 
@@ -2231,18 +2238,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr "Näytä lähdekoodi?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Tämän lisäosan lähdekoodi on julkisesti nähtävissä."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Ei, tämän lisäosan lähdekoodi ei ole julkisesti nähtävissä."
-
 msgid "Public Stats?"
 msgstr "Julkiset tilastot?"
 
@@ -2978,44 +2973,23 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr ""
 
-msgid "Latest News"
-msgstr "Viimeisimmät uutiset"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Lue lisää blogistamme"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Laajennukset"
 
 msgid "Resources"
 msgstr "Resurssit"
 
-msgid "Porting"
-msgstr "Porttaus"
-
-# 87%
-# 100%
-msgid "Community"
-msgstr "Yhteisö"
-
-msgid "About"
-msgstr "Tietoja"
-
-msgid "Forum"
-msgstr "Keskustelu"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blogi"
-
-msgid "Contact Us"
-msgstr "Ota yhteyttä"
-
-msgid "Support"
-msgstr "Tuki"
-
-msgid "Report Bug"
-msgstr "Ilmoita virhe"
-
-msgid "Site Status"
-msgstr "Sivuston tila"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: koosta ja testaa laajennuksia"
@@ -3023,23 +2997,11 @@ msgstr "Web-Ext: koosta ja testaa laajennuksia"
 msgid "Promote"
 msgstr "Mainosta"
 
-# 78%
-# 100%
-#, fuzzy
-msgid "Get Your Add-on Featured"
-msgstr "Lisää lisäosia"
-
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
-msgid "Legal"
-msgstr "Lakiasiat"
-
-msgid "Report Trademark Abuse"
-msgstr "Ilmoita tavaramerkin väärinkäyttö"
-
-msgid "Legal Notices"
-msgstr "Lakiasiat"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Myötävaikuta"
@@ -3074,42 +3036,13 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-# 78%
-# 100%
-msgid "Manage Your Add-on"
-msgstr "Hallitse lisäosaasi"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Kirjaudu sisään muokataksesi ja päivittääksesi lisäosaasi"
-
-msgid "Write one code base for many browsers"
-msgstr "Kirjoita yksi pohjakoodi monille eri selaimille"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-"WebExtension-rajapintaa hyödyntäen on helppo luoda laajennuksia, jotka toimivat Firefoxissa, Chromessa, Operassa ja Edgessä vain pienin muutoksin. Lue lisää laajennuskehityksen eroista neljän eri "
-"selaimen välillä ja opi, kuinka tehdä laajennuksesta yhteensopiva eri selainten kanssa."
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Katso parhaat käytännöt selainten väliseen kehitykseen"
-
-msgid "Welcome Back"
-msgstr "Tervetuloa takaisin"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Haluatko, että laajennustasi suositellaan %(amo_link_open)saddons.mozilla.org%(amo_link_close)s -sivustolla? Suositeltujen lisäosien käytäntömme kertovat tätä varten kaiken tarvittavan."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Lue lisää"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgid "Get involved"
 msgstr ""
 
-msgid "See Best Practices"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
+
+msgid "Learn more about the developer community"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3137,6 +3070,13 @@ msgstr "Lisäosien kehittäjäkeskus"
 msgid "Docs"
 msgstr ""
 
+msgid "Support"
+msgstr "Tuki"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blogi"
+
 # 81%
 msgid "Sign Out"
 msgstr "Kirjaudu ulos"
@@ -3148,67 +3088,24 @@ msgid "User Photo"
 msgstr "Käyttäjän valokuva"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Rekisteröidy</a> tai <a href=\"%(login)s\">kirjaudu sisään</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Muokkaa Firefoxia"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Lisäosat antavat miljoonille Firefox-käyttäjille mahdollisuuden muokata ja parannella selainkokemustaan. Jos teknologiat kuten %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
-"%(link_close)s ja %(css_link_open)sCSS%(link_close)s ovat sinulle tuttuja, sinulla on jo tarvittavat taidot mahtavan lisäosan luomiseksi."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Opi kuinka tehdä lisäosa"
 
-# 78%
-msgid "Port a Chrome Extension"
-msgstr "Chrome-laajennuksen porttaaminen"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox tukee WebExtension-rajapintoja, jotka useimmiten ovat yhteensopivia Chromen, Operan ja Edgen laajennusrajapintojen kanssa, joten tekemäsi laajennukset toimivat Firefoxissa vain pienin "
-"muutoksin."
 
-msgid "Learn How"
-msgstr "Lue lisää"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Julkaise lisäosasi"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Saitko lisäosan jo valmiiksi? Lähetä laajennus tai teema listattavaksi addons.mozilla.org-sivustolle tai allekirjoita ja jakele laajennusta omatoimisesti."
-
-# 81%
-msgid "Sign In"
-msgstr "Kirjaudu"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Komentorivityökalu laajennusten koostamista, suorittamista ja testausta varten."
-
-msgid "Automated code tests for your add-on."
-msgstr "Automatisoidut kooditestaukset lisäosallesi."
-
-# 79%
-msgid "Compatibility Test"
-msgstr "Yhteensopivuustesti"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Tarkista nähdäksesi onko laajennuksesi yhteensopiva Firefoxin kanssa."
-
-msgid "Live Testing"
-msgstr "Reaaliaikainen testaus"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Asenna laajennuksesi väliaikaisesti Firefoxiin reaaliaikaista testausta ja vianselvitystä varten."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Hallitse versiota {0}"
@@ -4827,6 +4724,10 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Lue lisää"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -6097,6 +5998,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Tukitiedot"
 msgstr[1] "Tukitiedot"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Virheellinen versioalue."
@@ -6365,11 +6272,20 @@ msgstr "Takaisin lisäosiin"
 msgid "Footer logo"
 msgstr ""
 
+msgid "Legal Notices"
+msgstr "Lakiasiat"
+
+msgid "Report Trademark Abuse"
+msgstr "Ilmoita tavaramerkin väärinkäyttö"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
 msgstr "Näytä uusi sivusto"
+
+msgid "Site Status"
+msgstr "Sivuston tila"
 
 msgid "Report a bug"
 msgstr "Ilmoita viasta"
@@ -6384,6 +6300,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "opi tuntemaan <b>lisäosat</b>"
+
+msgid "About"
+msgstr "Tietoja"
+
+msgid "Forum"
+msgstr "Keskustelu"
 
 msgid "Download Firefox"
 msgstr "Lataa Firefox"

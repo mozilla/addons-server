@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-06 14:37+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1405,6 +1405,13 @@ msgstr "Tugna tilemt, n yir taɣara neɣ ur nemɛin ara"
 msgid "Header image alignment problem"
 msgstr "Ugur deg ureyyec n tugna n uqeṛṛu"
 
+#, fuzzy
+msgid "no action"
+msgstr "Ugar n tigawin"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Iγes"
 
@@ -2201,18 +2208,6 @@ msgstr ""
 "Aseqdac aneggaru n telɣut-agi yessefk ad yizmir ad yissin d akken ur ttwasnasent ara ɣef ugzul neq aglam n uzegrir. Nettmuddu-d yakan talɣut n tebdart n yibugen yettwassnen, talɣut ɣef tarrayt n "
 "tuzna n wuguren, akked uɣawas n usuffeɣ i yileqman i d-iteddun. Ayagi ur yettwasnas ara ɣef izgrar yettwabedren."
 
-msgid "View Source?"
-msgstr "Sken aɣbalu?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Ma yella tangalt n uɣbalu n uzegrir-ik yezmer ad d-yettwasken di tmeskant srid. Ayagi d usdid kan n yizegrar yettwabeedren."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Tangalt aɣbalu n uzegrir-agi tettwaskan s wudem azayez."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Ala, tangalt aɣbalu n uzegrir-agi ur tettwaskan ara s wudem azayez."
-
 msgid "Public Stats?"
 msgstr "Tidaddanin tizayazin?"
 
@@ -2942,41 +2937,22 @@ msgstr "Seddu ma ulac aɣilif tarrayt ara tḍefreḍ akken ad theggiḍ afaylu 
 msgid "Read more about the source code review policy."
 msgstr "Ɣeṛ ugar ɣef tsertit n ucegger n tengalt aɣbalu."
 
-msgid "Latest News"
-msgstr "Isallen ineggura"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Ɣeṛ ugar deg ublug nneɣ"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Isiɣzaf"
 
 msgid "Resources"
 msgstr "Tiγbula"
 
-msgid "Porting"
-msgstr "Awway"
-
-msgid "Community"
-msgstr "Tamezdagnut"
-
-msgid "About"
-msgstr "Γef"
-
-msgid "Forum"
-msgstr "Anmager"
-
-msgid "Blog"
-msgstr "Ablug"
-
-msgid "Contact Us"
-msgstr "Nermes-aγ-d"
-
-msgid "Support"
-msgstr "Tallalt"
-
-msgid "Report Bug"
-msgstr "Azen-d abug"
-
-msgid "Site Status"
-msgstr "Addad n usmel"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext : sefruri & sekyed isiɣzaf"
@@ -2984,20 +2960,11 @@ msgstr "Web-Ext : sefruri & sekyed isiɣzaf"
 msgid "Promote"
 msgstr "Smel"
 
-msgid "Get Your Add-on Featured"
-msgstr "Sban-d azegrir inek"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Tageffalt \"awi-d azegrir\""
 
-msgid "Legal"
-msgstr "Usḍif"
-
-msgid "Report Trademark Abuse"
-msgstr "Mmel yir aseqdec n tecreṭ"
-
-msgid "Legal Notices"
-msgstr "Alγu usḍif"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Ttekki"
@@ -3029,39 +2996,15 @@ msgstr "Ur tesriḍ ara ad tissineḍ asihel ad tmuddeḍ afus akken Firefox ad 
 msgid "See how"
 msgstr "Ẓer amek"
 
-msgid "Manage Your Add-on"
-msgstr "Sefrek azegrir inek"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Kcem akken ad tẓergeḍ neɣ ad tleqmeḍ azegrir inek"
-
-msgid "Write one code base for many browsers"
-msgstr "Aru yiwet n taffa n tegnalt i ddeqs n yiminigen"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "Welcome Back"
-msgstr "Anṣuf ar tuɣalin"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Issin ugar"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Ɣeṛ ugar ɣef tsertit n ucegger n tengalt aɣbalu."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi."
@@ -3085,6 +3028,12 @@ msgstr "Alemmas n uneflay n uzegrir"
 msgid "Docs"
 msgstr "Isemliyen"
 
+msgid "Support"
+msgstr "Tallalt"
+
+msgid "Blog"
+msgstr "Ablug"
+
 msgid "Sign Out"
 msgstr "Ffeγ"
 
@@ -3095,62 +3044,23 @@ msgid "User Photo"
 msgstr "Tawlaft n useqdac"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Jerred</a> neɣ <a href=\"%(login)s\">Kcem</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Sagen Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Izegrar ttaǧǧan imelyan n yiseqdacen n Firefox ad sneflin tarmit-nsen n tunigin. Ma telliḍ d aneflay wed daɣen tessneḍ %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
-"%(link_close)s, akked %(css_link_open)sCSS%(link_close)s, ɣur-k abrid yeldi akken ad tegeḍ azegrir meqqṛen."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Issin amek ara tesniflid azegrir"
 
-msgid "Port a Chrome Extension"
-msgstr "Ttaɛebga n usiɣzef Chrome"
+msgid "Ready to submit or manage your extension?"
+msgstr ""
 
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox isefrak isnasen API WebExtension, tugett deg-sen mṣadan akked usnas API n usiɣzef isefrak  Chrome, Opera akked Edge, ihi isiɣzaf inek ad ttwaselkmen di Firefox s kra kan n usnifel."
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Issin amek"
-
-msgid "Publish Your Add-on"
-msgstr "Suffeγ-d azegrir inek"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Γur-k yakan azegrir iheggan? Azen asiɣzef-inek neγ asentel-inek ara d-yettwabedren deg addons.mozilla.org neγ kcem sakin zuzer asiγzef-inek iman-ik."
-
-msgid "Sign In"
-msgstr "Kcem"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Afecku s yizirig n tladna i tmerna, aselkem akked usekyed n yisiɣzaf."
-
-msgid "Automated code tests for your add-on."
-msgstr "Ikayaden n tengalt awurman i uzegrir-inek."
-
-msgid "Compatibility Test"
-msgstr "Akayad n umṣada"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Senqed akken ad twaliḍ ma yella azegrir imsaḍa akked Firefox."
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "Asebter n usnas"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4936,6 +4846,10 @@ msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Issin ugar"
+
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Explore extensions"
 msgstr "Isiɣzaf"
@@ -6140,6 +6054,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Asuter n telɣut yemmut {0}"
 msgstr[1] "Asuter n telɣut yemmut {0}"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Azilal n lqem mačči d ameɣtu."
@@ -6398,11 +6318,20 @@ msgstr "Uɣal ar izegrar"
 msgid "Footer logo"
 msgstr "Alugu n uḍaṛ"
 
+msgid "Legal Notices"
+msgstr "Alγu usḍif"
+
+msgid "Report Trademark Abuse"
+msgstr "Mmel yir aseqdec n tecreṭ"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
 msgstr "Wali asmel amaynut"
+
+msgid "Site Status"
+msgstr "Addad n usmel"
 
 msgid "Report a bug"
 msgstr "Azen-d abug"
@@ -6416,6 +6345,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "wali <b>izegrar</b>"
+
+msgid "About"
+msgstr "Γef"
+
+msgid "Forum"
+msgstr "Anmager"
 
 msgid "Download Firefox"
 msgstr "Sider Firefox"

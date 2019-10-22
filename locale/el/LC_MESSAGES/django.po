@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-09-16 23:36+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1453,6 +1453,13 @@ msgstr "Χαμηλής ποιότητας, παραποιημένη, ή κενή
 msgid "Header image alignment problem"
 msgstr "Πρόβλημα στοίχησης εικόνας τύπου κεφαλίδας"
 
+#, fuzzy
+msgid "no action"
+msgstr "Περισσότερες ενέργειες"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Πυρήνας"
 
@@ -2239,18 +2246,6 @@ msgstr ""
 "Κάθε πληροφορία που ενδέχεται να θέλουν να γνωρίζουν οι τελικοί χρήστες και δεν ισχύει κατ' ανάγκη στην περίληψη ή την περιγραφή του προσθέτου. Οι συνήθεις χρήσεις περιλαμβάνουν την καταγραφή "
 "γνωστών σημαντικών σφαλμάτων, πληροφορίες σχετικά με τον τρόπο αναφοράς σφαλμάτων, την αναμενόμενη ημερομηνία κυκλοφορίας μιας νέας έκδοσης κ.λπ. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
-msgid "View Source?"
-msgstr "Προβολή πηγαίου κώδικα;"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Αν θα μπορεί να εμφανιστεί ο πηγαίος κώδικας του προσθέτου σας στο πρόγραμμα διαδικτυακής προβολής. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Ο πηγαίος κώδικας του πρόσθετου διατίθεται για δημόσια προβολή."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Όχι, ο πηγαίος κώδικας αυτού του πρόσθετου δεν είναι διαθέσιμος για δημόσια προβολή."
-
 msgid "Public Stats?"
 msgstr "Δημόσια στατιστικά;"
 
@@ -2970,42 +2965,23 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Διαβάστε περισσότερα σχετικά με τη πολιτική κριτικής πηγαίου κώδικα."
 
-msgid "Latest News"
-msgstr "Τελευταίες ειδήσεις"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Διαβάστε περισσότερα στο ιστολόγιό μας"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Εργαστήριο επεκτάσεων"
 
 msgid "Resources"
 msgstr "Πόροι"
 
-msgid "Porting"
-msgstr "Μεταφορά (porting)"
-
-msgid "Community"
-msgstr "Κοινότητα"
-
-msgid "About"
-msgstr "Σχετικά"
-
-msgid "Forum"
-msgstr "Φόρουμ"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Ιστολόγιο"
-
-msgid "Contact Us"
-msgstr "Επικοινωνήστε μαζί μας"
-
-msgid "Support"
-msgstr "Υποστήριξη"
-
-msgid "Report Bug"
-msgstr "Αναφορά σφάλματος"
-
-msgid "Site Status"
-msgstr "Κατάσταση ιστοσελίδας"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: ανάπτυξη & δοκιμή επεκτάσεων"
@@ -3013,20 +2989,11 @@ msgstr "Web-Ext: ανάπτυξη & δοκιμή επεκτάσεων"
 msgid "Promote"
 msgstr "Προώθηση"
 
-msgid "Get Your Add-on Featured"
-msgstr "Προσθήκη του προσθέτου σας στα προτεινόμενα"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Κουμπί \"Λήψη προσθέτου\""
 
-msgid "Legal"
-msgstr "Νομικά"
-
-msgid "Report Trademark Abuse"
-msgstr "Αναφορά κατάχρησης εμπορικού σήματος"
-
-msgid "Legal Notices"
-msgstr "Νομικές σημειώσεις"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Συνεισφορά"
@@ -3058,41 +3025,15 @@ msgstr "Δεν χρειάζεστε ικανότητες στον προγραμ
 msgid "See how"
 msgstr "Δείτε πώς"
 
-msgid "Manage Your Add-on"
-msgstr "Διαχείριση προσθέτου"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Συνδεθείτε για να επεξεργαστείτε και να ενημερώσετε το πρόσθετό σας"
-
-msgid "Write one code base for many browsers"
-msgstr "Γράψτε μια βάση κώδικα για πολλά προγράμματα περιήγησης"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"Με το WebExtensions API, μπορείτε να δημιουργήσετε εύκολα επεκτάσεις που λειτουργούν στο Firefox, στο Chrome, στο Opera και στο Edge, με μικρές μόνο αλλαγές. Μάθετε περισσότερα σχετικά με τις "
-"διαφορές στην ανάπτυξη επεκτάσεων μεταξύ των τεσσάρων, κύριων προγραμμάτων περιήγησης, καθώς και πώς μπορείτε να κάνετε τη δική σας επέκταση συμβατή με πολλαπλά προγράμματα περιήγησης."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Δείτε τις καλύτερες πρακτικές για ανάπτυξη σε πολλαπλά προγράμματα περιήγησης"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "Καλώς ορίσατε ξανά"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Θέλετε να προωθηθεί η επέκτασή σας στο %(amo_link_open)saddons.mozilla.org%(amo_link_close)s; Οι πολιτικές των προτεινόμενων επεκτάσεων περιέχουν ό,τι πρέπει να γνωρίζετε."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Μάθετε περισσότερα"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "Μπορείτε να βοηθήσετε τους χρήστες να εμπιστευτούν την επέκτασή σας, ακολουθώντας τις βέλτιστες πρακτικές μας για την προσέλκυση χρηστών."
-
-msgid "See Best Practices"
-msgstr "Δείτε τις καλύτερες πρακτικές"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Διαβάστε περισσότερα σχετικά με τη πολιτική κριτικής πηγαίου κώδικα."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Καταχωρήθηκε σε αυτή την ιστοσελίδα αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα."
@@ -3119,6 +3060,13 @@ msgstr "Κέντρο δημιουργών προσθέτων"
 msgid "Docs"
 msgstr "Έγγραφα"
 
+msgid "Support"
+msgstr "Υποστήριξη"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Ιστολόγιο"
+
 msgid "Sign Out"
 msgstr "Αποσύνδεση"
 
@@ -3129,64 +3077,24 @@ msgid "User Photo"
 msgstr "Φωτογραφία χρήστη"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Εγγραφή</a> ή <a href=\"%(login)s\">είσοδος</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Προσαρμογή του Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Τα πρόσθετα επιτρέπουν σε εκατομμύρια χρήστες του Firefox να βελτιώνουν την εμπειρία περιήγησής τους. Αν γνωρίζετε %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s και "
-"%(css_link_open)sCSS%(link_close)s, έχετε ήδη όλες τις απαραίτητες ικανότητες για να φτιάξετε ένα εξαιρετικό πρόσθετο."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Μάθετε πώς να δημιουργήσετε ένα πρόσθετο"
 
-msgid "Port a Chrome Extension"
-msgstr "Μετατροπή επέκτασης Chrome"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Το Firefox υποστηρίζει τα WebExtension APIs, που στις περισσότερες περιπτώσεις είναι συμβατά με τα APIs επεκτάσεων που υποστηρίζουν τα Chrome, Opera και Edge. Συνεπώς, οι επεκτάσεις σας θα "
-"λειτουργούν στο Firefox με μικρές μόνο αλλαγές."
 
-msgid "Learn How"
-msgstr "Μάθετε πώς"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Δημοσιεύστε το πρόσθετό σας"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Έχετε ήδη ένα πρόσθετο; Υποβάλετε την επέκταση ή το θέμα σας για καταχώρηση στο addons.mozilla.org ή συνδεθείτε και διανείμετε μόνοι σας την επέκτασή σας."
-
-msgid "Sign In"
-msgstr "Είσοδος"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Μια γραμμή εντολών για ανάπτυξη, εκτέλεση και δοκιμή επεκτάσεων."
-
-msgid "Automated code tests for your add-on."
-msgstr "Αυτοματοποιημένες δοκιμές κώδικα για το πρόσθετό σας."
-
-msgid "Compatibility Test"
-msgstr "Δοκιμή συμβατότητας"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Δείτε αν η επέκτασή σας είναι συμβατή με το Firefox."
-
-msgid "Live Testing"
-msgstr "\"Ζωντανή\" δοκιμή"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Εγκαταστήστε την επέκτασή σας προσωρινά στο Firefox για ζωντανή δοκιμή και αποσφαλμάτωση."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Διαχείριση της έκδοσης {0}"
@@ -4865,6 +4773,10 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Μάθετε περισσότερα"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -6063,6 +5975,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Αίτημα πληροφοριών που έχει λήξει ({0})"
 msgstr[1] "Αιτήματα πληροφοριών που έχουν λήξει ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Άκυρη παράμετρος \"%s\"."
@@ -6322,11 +6240,20 @@ msgstr "Πίσω στα πρόσθετα"
 msgid "Footer logo"
 msgstr "Λογότυπο υποσέλιδου"
 
+msgid "Legal Notices"
+msgstr "Νομικές σημειώσεις"
+
+msgid "Report Trademark Abuse"
+msgstr "Αναφορά κατάχρησης εμπορικού σήματος"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Η νέα ιστοσελίδα υποστηρίζει κινητές συσκευές και υπολογιστές"
 
 msgid "View the new site"
 msgstr "Προβολή νέας ιστοσελίδας"
+
+msgid "Site Status"
+msgstr "Κατάσταση ιστοσελίδας"
 
 msgid "Report a bug"
 msgstr "Αναφορά σφάλματος"
@@ -6341,6 +6268,12 @@ msgstr ""
 # χωρίς τόνο στο «πρόσθετα» λόγω του text-transform:uppercase
 msgid "get to know <b>add-ons</b>"
 msgstr "Γνωρίστε τα <b>πρόσθετα</b>"
+
+msgid "About"
+msgstr "Σχετικά"
+
+msgid "Forum"
+msgstr "Φόρουμ"
 
 msgid "Download Firefox"
 msgstr "Λήψη του Firefox"

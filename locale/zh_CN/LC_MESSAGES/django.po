@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-01 02:18+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1388,6 +1388,13 @@ msgstr "低质量的、拉伸的、或者是空白图片"
 msgid "Header image alignment problem"
 msgstr "页眉图像对齐问题"
 
+#, fuzzy
+msgid "no action"
+msgstr "更多操作"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "核心"
 
@@ -2141,18 +2148,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr "任何最终用户可能想要知道的，但不是附加组件的概要或者描述的信息。例如：您可以在这里列出已知的重要 bug、报告 bug 的方式、有关新版本的发布情况等信息。此项仅与公开上架的附加组件相关。"
 
-msgid "View Source?"
-msgstr "查看源代码？"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "我们是否可以在我们的在线查看器中显示您的附加组件的源代码。此项仅与公开上架的附加组件相关。"
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "此附加组件的源代码可以公开查看。"
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "不，此附加组件的源代码不能公开查看。"
-
 msgid "Public Stats?"
 msgstr "公开统计数据？"
 
@@ -2847,42 +2842,23 @@ msgstr "请包含如何生成最终的附加组件文件的操作说明，通过
 msgid "Read more about the source code review policy."
 msgstr "详细了解源代码审查政策。"
 
-msgid "Latest News"
-msgstr "最新消息"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "阅读我们的博客了解更多"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "扩展工坊"
 
 msgid "Resources"
 msgstr "资源"
 
-msgid "Porting"
-msgstr "待定"
-
-msgid "Community"
-msgstr "社区"
-
-msgid "About"
-msgstr "关于"
-
-msgid "Forum"
-msgstr "论坛"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "博客"
-
-msgid "Contact Us"
-msgstr "联系我们"
-
-msgid "Support"
-msgstr "支持"
-
-msgid "Report Bug"
-msgstr "报告缺陷"
-
-msgid "Site Status"
-msgstr "网站状态"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext：构建和测试扩展"
@@ -2890,20 +2866,11 @@ msgstr "Web-Ext：构建和测试扩展"
 msgid "Promote"
 msgstr "推荐"
 
-msgid "Get Your Add-on Featured"
-msgstr "获取精选的附加组件"
-
 msgid "\"Get The Add-on\" button"
 msgstr "“获取附加组件”按钮"
 
-msgid "Legal"
-msgstr "法律"
-
-msgid "Report Trademark Abuse"
-msgstr "报告商标滥用"
-
-msgid "Legal Notices"
-msgstr "法律声明"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "捐助"
@@ -2935,39 +2902,15 @@ msgstr "即使没有编写代码的技能，您也可以让 Firefox 成为最可
 msgid "See how"
 msgstr "怎么做"
 
-msgid "Manage Your Add-on"
-msgstr "管理您的附加组件"
+msgid "Get involved"
+msgstr ""
 
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "登录以编辑和更新您的附加组件"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Write one code base for many browsers"
-msgstr "为众多浏览器编写一个代码库"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr "使用 WebExtensions API，只需进行一些小的修改，就可轻松创建能够在 Firefox、Chrome、Opera 和 Edge 上运行的扩展。详细了解四种主要浏览器之间扩展开发的差异，以及如何使扩展跨浏览器兼容。"
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "查看跨浏览器开发的最佳实践"
-
-msgid "Welcome Back"
-msgstr "欢迎回来"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "想让您的扩展出现在 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 的“精选扩展”中吗？我们的精选扩展政策将告诉您需要了解的内容。"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "了解更多"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "遵循我们针对用户体验的最佳实践，帮助用户获得对您的扩展的信心和信任。"
-
-msgid "See Best Practices"
-msgstr "参阅最佳实践"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "详细了解源代码审查政策。"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "在通过代码审查后在此网站上列出。自动更新由此网站处理。"
@@ -2992,6 +2935,13 @@ msgstr "附加组件开发者中心"
 msgid "Docs"
 msgstr "文档"
 
+msgid "Support"
+msgstr "支持"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "博客"
+
 msgid "Sign Out"
 msgstr "退出"
 
@@ -3002,62 +2952,24 @@ msgid "User Photo"
 msgstr "用户照片"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">注册</a> 或 <a href=\"%(login)s\">登录</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "定制 Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"附加组件让超过数百万的 Firefox 用户能够增强自己的浏览体验。如果您了解 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 和 %(css_link_open)sCSS%(link_close)s，您已经具备"
-"了足够的技能来制作一个绝佳的附加组件。"
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "了解如何制作一个附加组件"
 
-msgid "Port a Chrome Extension"
-msgstr "移植一个 Chrome 扩展"
+msgid "Ready to submit or manage your extension?"
+msgstr ""
 
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox 支持 WebExtension API，它们大多数情况下与 Google Chrome 和 Opera 支持的扩展 API 兼容，因此使您的扩展在 Firefox 中运行只需很少的更改。"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Learn How"
-msgstr "了解方法"
-
-msgid "Publish Your Add-on"
-msgstr "发布您的附加组件"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "已经准备好您的第一个附加组件了？提交您的扩展或主题到 addons.mozilla.org 上，或者只签名然后自行分发您的扩展。"
-
-msgid "Sign In"
-msgstr "登录"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "一个可用来构建、运行和测试扩展的工具。"
-
-msgid "Automated code tests for your add-on."
-msgstr "自动测试您的附加组件的代码。"
-
-msgid "Compatibility Test"
-msgstr "兼容性测试"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "检查您的扩展是否兼容 Firefox。"
-
-msgid "Live Testing"
-msgstr "实时测试"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "在 Firefox 中临时安装您的扩展以进行实时测试和调试。"
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
@@ -4666,6 +4578,10 @@ msgstr "隐私优先浏览器扩展"
 msgid "Media enhancers for Firefox"
 msgstr "Firefox 媒体增强工具"
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "了解更多"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
@@ -5842,6 +5758,12 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "过期的信息请求 ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "参数“%s”无效。"
@@ -6105,11 +6027,20 @@ msgstr "返回附加组件"
 msgid "Footer logo"
 msgstr "页脚标志"
 
+msgid "Legal Notices"
+msgstr "法律声明"
+
+msgid "Report Trademark Abuse"
+msgstr "报告商标滥用"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "新网站支持移动端和桌面端"
 
 msgid "View the new site"
 msgstr "查看新版网站"
+
+msgid "Site Status"
+msgstr "网站状态"
 
 msgid "Report a bug"
 msgstr "报告缺陷"
@@ -6123,6 +6054,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "认识 <b>附加组件</b>"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Forum"
+msgstr "论坛"
 
 msgid "Download Firefox"
 msgstr "下载 Firefox"

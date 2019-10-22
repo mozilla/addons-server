@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-02-10 15:36+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1480,6 +1480,13 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr ""
 
+#, fuzzy
+msgid "no action"
+msgstr "Més opcions"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr ""
 
@@ -2277,18 +2284,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr "Voleu veure'n el codi?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "El codi font d'aquest complement és pot veure públicament."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "No, el codi font d'aquest complement no es pot veure públicament."
-
 msgid "Public Stats?"
 msgstr "Estadístiques públiques?"
 
@@ -3048,48 +3043,25 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr ""
 
-msgid "Latest News"
+msgid "Build best-in-class extensions and themes"
 msgstr ""
 
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Read more in our Blog"
-msgstr "necessita més informació"
+msgid "Visit the Extension Workshop"
+msgstr "Extensions"
 
 #, fuzzy
 msgid "Resources"
 msgstr "Recursos addicionals"
 
+# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Porting"
-msgstr "Valoració"
-
-#, fuzzy
-msgid "Community"
-msgstr "Comentari"
-
-msgid "About"
-msgstr "Quant a"
-
-msgid "Forum"
-msgstr "Fòrum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-#, fuzzy
-msgid "Contact Us"
-msgstr "Contactes"
-
-msgid "Support"
-msgstr "Ajuda"
-
-#, fuzzy
-msgid "Report Bug"
-msgstr "Denuncieu un abús"
-
-msgid "Site Status"
-msgstr ""
+msgid "WebExtensions API"
+msgstr "Extensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3097,22 +3069,11 @@ msgstr ""
 msgid "Promote"
 msgstr ""
 
-#, fuzzy
-msgid "Get Your Add-on Featured"
-msgstr "Més complements"
-
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
-msgid "Legal"
+msgid "Recommended Extensions program"
 msgstr ""
-
-#, fuzzy
-msgid "Report Trademark Abuse"
-msgstr "Denuncieu un abús"
-
-msgid "Legal Notices"
-msgstr "Avís legal"
 
 msgid "Contribute"
 msgstr "Contribuïu-hi"
@@ -3147,40 +3108,13 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-#, fuzzy
-msgid "Manage Your Add-on"
-msgstr "Més complements"
-
-msgid "Sign In to Edit and Update Your Add-on"
+msgid "Get involved"
 msgstr ""
 
-msgid "Write one code base for many browsers"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-#, fuzzy
-msgid "Welcome Back"
-msgstr "Benvingut, {0}"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Més informació"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
+msgid "Learn more about the developer community"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3209,6 +3143,13 @@ msgstr "Desenvolupador de complements"
 msgid "Docs"
 msgstr ""
 
+msgid "Support"
+msgstr "Ajuda"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 #, fuzzy
 msgid "Sign Out"
 msgstr "Envia el complement"
@@ -3220,69 +3161,25 @@ msgstr "Sense foto"
 msgid "User Photo"
 msgstr "Suprimeix la foto de l'usuari"
 
-#, fuzzy, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Registreu-vos</a> o <a href=\"%(login)s\">inicieu una sessió</a>"
+#, python-format
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 #, fuzzy
 msgid "Customize Firefox"
 msgstr "Temes d'ús fàcil per al Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-
 #, fuzzy
-msgid "Learn How to Make an Add-on"
+msgid "Learn how to make an extension"
 msgstr "Comenceu a crear complements"
 
-#, fuzzy
-msgid "Port a Chrome Extension"
-msgstr "Extensions populars"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
 
-#, fuzzy
-msgid "Learn How"
-msgstr "Més informació"
-
-#, fuzzy
-msgid "Publish Your Add-on"
-msgstr "Descobreix més complements"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
 
-#, fuzzy
-msgid "Sign In"
-msgstr "Envia el complement"
-
-msgid "Web-Ext"
-msgstr ""
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr ""
-
-#, fuzzy
-msgid "Automated code tests for your add-on."
-msgstr "Completeu el vostre complement"
-
-#, fuzzy
-msgid "Compatibility Test"
-msgstr "Compatibilitat"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "Mostra la llista"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4905,6 +4802,10 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Més informació"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -6170,6 +6071,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "S'ha sol·licitat més informació"
 msgstr[1] "S'ha sol·licitat més informació"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Número de versió invàlid. "
@@ -6427,12 +6334,22 @@ msgstr "Torna als complements"
 msgid "Footer logo"
 msgstr ""
 
+msgid "Legal Notices"
+msgstr "Avís legal"
+
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "Denuncieu un abús"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 #, fuzzy
 msgid "View the new site"
 msgstr "Vés al web per a Mòbils"
+
+msgid "Site Status"
+msgstr ""
 
 #, fuzzy
 msgid "Report a bug"
@@ -6445,6 +6362,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "per saber-ne més dels <b>complements</b>"
+
+msgid "About"
+msgstr "Quant a"
+
+msgid "Forum"
+msgstr "Fòrum"
 
 # This is the text that appears on buttons to download add-ons.
 # %$1s is an optional string that only appears if the add-on is only available for

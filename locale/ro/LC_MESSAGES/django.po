@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-09-30 00:02+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1420,6 +1420,13 @@ msgstr "Imagine de calitate proastă, deformată sau goală"
 msgid "Header image alignment problem"
 msgstr "Problemă de aliniere a imaginii antetului"
 
+#, fuzzy
+msgid "no action"
+msgstr "Mai multe acțiuni"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Nucleu"
 
@@ -2216,18 +2223,6 @@ msgstr ""
 "Orice informații pe care utilizatorii finali ar vrea să le știe și care nu sunt neapărat obligatoriu de inclus în rezumatul sau în descrierea suplimentului. Utilizările frecvente includ enumerarea "
 "defectelor majore, informații despre raportarea defectelor, data preconizată de lansare a unei versiuni noi etc. Este relevant numai pentru suplimentele listate."
 
-msgid "View Source?"
-msgstr "Vizualizare sursă?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Dacă sursa suplimentului poate fi afișată în vizualizatorul nostru online. Este un aspect relevant numai pentru suplimentele listate."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Codul sursă al acestui supliment este vizibil publicului."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Nu, codul sursă al acestui supliment nu este vizibil publicului."
-
 msgid "Public Stats?"
 msgstr "Statistici publice?"
 
@@ -2950,42 +2945,23 @@ msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului fina
 msgid "Read more about the source code review policy."
 msgstr "Citește mai multe despre politica de revizuire a codului-sursă."
 
-msgid "Latest News"
-msgstr "Ultimele știri"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Citește mai multe pe blogul nostru"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Atelier de lucru pentru extensii"
 
 msgid "Resources"
 msgstr "Resurse"
 
-msgid "Porting"
-msgstr "Portare"
-
-msgid "Community"
-msgstr "Comunitate"
-
-msgid "About"
-msgstr "Despre"
-
-msgid "Forum"
-msgstr "Forum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Contactează-ne"
-
-msgid "Support"
-msgstr "Asistență"
-
-msgid "Report Bug"
-msgstr "Raportează o defecțiune"
-
-msgid "Site Status"
-msgstr "Starea site-ului"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: creează și testează extensii"
@@ -2993,20 +2969,11 @@ msgstr "Web-Ext: creează și testează extensii"
 msgid "Promote"
 msgstr "Promovează"
 
-msgid "Get Your Add-on Featured"
-msgstr "Obține includerea suplimentului printre cele promovate"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Buton „Descarcă suplimentul”"
 
-msgid "Legal"
-msgstr "Mențiuni legale"
-
-msgid "Report Trademark Abuse"
-msgstr "Raportează abuzul mărcilor înregistrate"
-
-msgid "Legal Notices"
-msgstr "Mențiuni legale"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Contribuie"
@@ -3038,41 +3005,15 @@ msgstr "Nu ai nevoie de aptitudini de codare ca să ajuți la a menține Firefox
 msgid "See how"
 msgstr "Vezi cum"
 
-msgid "Manage Your Add-on"
-msgstr "Gestionează-ți suplimentele"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Autentifică-te pentru a edita și actualiza suplimentul"
-
-msgid "Write one code base for many browsers"
-msgstr "Scrie un cod de bază pentru mai multe browsere"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"Cu API-ul WebExtensions, este ușor să creezi extensii de rulat pe Firefox, Chrome, Opera și Edge, cu doar câteva mici modificări. Află mai multe despre diferențele de dezvoltare a extensiilor "
-"pentru cele patru browsere majore și cum poți face o extensie compatibilă cu toate patru."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Vezi cele mai bune practici pentru dezvoltare multi-browser"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "Bine ai revenit!"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Vrei ca extensia ta să fie promovată pe %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Politicile noastre privind extensiile promovate îți vor da toate informațiile de care ai nevoie."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Află mai multe"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "Poți ajuta utilizatorii să se familiarizeze și să aibă încredere în extensia ta urmând cele mai bune practici pe care le-am creat pentru obținerea de utilizatori."
-
-msgid "See Best Practices"
-msgstr "Vezi cele mai bune practici"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Citește mai multe despre politica de revizuire a codului-sursă."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Actualizările automate sunt gestionate de acest site."
@@ -3097,6 +3038,13 @@ msgstr "Hubul dezvoltatorilor de suplimente"
 msgid "Docs"
 msgstr "Documente"
 
+msgid "Support"
+msgstr "Asistență"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Ieșire"
 
@@ -3107,64 +3055,24 @@ msgid "User Photo"
 msgstr "Fotografia utilizatorului"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">Autentifică-te</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Personalizează Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Suplimentele permit milioanelor de utilizatori Firefox să își îmbunătățească experiența de navigare, Dacă știi %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s și "
-"%(css_link_open)sCSS%(link_close)s, deții deja toate aptitudinile necesare ca să creezi un supliment grozav."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Află cum să creezi un supliment"
 
-msgid "Port a Chrome Extension"
-msgstr "Portează o extensie Chrome"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox suportă API-uri WebExtension, care, în cele mai multe cazuri, sunt compatibile cu API-urile de extensii suportate de Chrome, Opera și Edge, așa că extensiile tale vor rula în Firefox cu "
-"doar câteva modificări."
 
-msgid "Learn How"
-msgstr "Află cum"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Publică-ți suplimentul"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Ai un supliment terminat? Trimite-ți extensia sau tema pentru listare pe addons.mozilla.org sau semnează și distribuie chiar tu extensia."
-
-msgid "Sign In"
-msgstr "Autentificare"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "O unealtă cu linie de comandă pentru creat, rulat și testat extensii."
-
-msgid "Automated code tests for your add-on."
-msgstr "Teste automate de cod pentru suplimentul tău."
-
-msgid "Compatibility Test"
-msgstr "Test de compatibilitate"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Vezi dacă extensia ta este compatibilă cu Firefox."
-
-msgid "Live Testing"
-msgstr "Testare live"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Instalează-ți temporar extensia în Firefox pentru testare live și depanare."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Gestionează versiunea {0}"
@@ -4845,6 +4753,10 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Află mai multe"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -6073,6 +5985,12 @@ msgstr[0] "Solicitare de informații expirată ({0})"
 msgstr[1] "Solicitări de informații expirate ({0})"
 msgstr[2] "Solicitări de informații expirate ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Parametru „%s” nevalid."
@@ -6341,11 +6259,20 @@ msgstr "Înapoi la Suplimente"
 msgid "Footer logo"
 msgstr "Logo la subsol"
 
+msgid "Legal Notices"
+msgstr "Mențiuni legale"
+
+msgid "Report Trademark Abuse"
+msgstr "Raportează abuzul mărcilor înregistrate"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Noul site web are suport pentru clienți dispozitive mobile și calculatoare"
 
 msgid "View the new site"
 msgstr "Vezi noul site"
+
+msgid "Site Status"
+msgstr "Starea site-ului"
 
 msgid "Report a bug"
 msgstr "Raportează o defecțiune"
@@ -6359,6 +6286,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "descoperă <b>suplimente</b>"
+
+msgid "About"
+msgstr "Despre"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Descarcă Firefox"
