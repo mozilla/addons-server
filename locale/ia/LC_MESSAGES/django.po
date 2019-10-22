@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 18:07+0000\n"
+"PO-Revision-Date: 2019-10-22 19:09+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -929,7 +929,7 @@ msgid "Feeds, News & Blogging"
 msgstr "Feeds de novas, novas e blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Discarga extensiones de Firefox que remove disordine de maniera que tu pote restar actualisate sur le medios social, leger blogs, syndicationes RSS, reducer le fatiga ocular e multo plus."
+msgstr "Discarga extensiones de Firefox que remove disordine de maniera que tu pote restar actualisate sur le retes social, leger blogs, syndicationes RSS, reducer le fatiga ocular e multo plus."
 
 msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
@@ -971,7 +971,7 @@ msgid "Social & Communication"
 msgstr "Social & communication"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Discarga extensiones de Firefox pro optimisar le medios social e messageria instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video, e multo plus."
+msgstr "Discarga extensiones de Firefox pro optimisar le retes social e messageria instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video, e multo plus."
 
 msgid "Tabs"
 msgstr "Schedas"
@@ -3404,7 +3404,7 @@ msgstr "Controla le grammatica automaticamente {start_sub_heading}con {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: medios social, e-mail, documentos e multo plus."
+msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: retes social, e-mail, documentos e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
