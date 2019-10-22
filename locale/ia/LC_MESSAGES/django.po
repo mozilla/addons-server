@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 14:56+0000\n"
+"PO-Revision-Date: 2019-10-22 15:30+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -283,12 +283,12 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Nos lo regretta, ma nos non pote trovar lo que tu recerca.</h1> <p> Le pagina o file que tu requireva non esseva trovate sur nostre sito. Il es possibile que tu cliccava un ligamine que es foras"
-" de data, o insereva le adresse incorrectemente. </p> <ul> <li>Si tu insereva le adresse, per favor duple controla le orthographia.</li> <li> Si tu sequeva un ligamine ab alicubi, per favor "
-"%(open_bug_link)ssignala un problema%(close_bug_link)s. Conta nos ab ubi tu veniva e lo que tu cercava, e nos facera nostre melio pro lo reparar. </li> </ul> <p>O tu pote justo saltar super alcun "
-"del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos consiliate</a>?</li> <li> Desira tu <a href=\"%(search)s\">cercar pro "
-"additivos</a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o justo usar le campo de recerca supra. </li> <li> Si tu prefere comenciar, va justo al <a href=\"%(home)s\">pagina de prime"
-" plan del additivos</a>. </li> </ul>"
+"<h1>Nos lo regretta, ma nos non pote trovar lo que tu cerca.</h1> <p> Le pagina o file que tu requestava non ha essite trovate sur nostre sito. Il es possibile que tu ha cliccate sur un ligamine "
+"obsolete, o ha inserite un adresse incorrecte. </p> <ul> <li>Si tu ha dactylographate le adresse, re-verifica le orthographia.</li> <li> Si tu ha sequite un ligamine sur un altere pagina, per favor "
+"%(open_bug_link)ssignala un problema%(close_bug_link)s. Indica ab ubi tu veniva e lo que tu cercava, e nos facera nostre melior pro remediar le problema. </li> </ul> <p>O tu pote simplemente visitar"
+" un del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos promovite</a>?</li> <li> Vole tu <a href=\"%(search)s\">cercar additivos</a>? "
+"Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o usar le campo de recerca supra. </li> <li> Si tu prefere recomenciar, reveni al <a href=\"%(home)s\">pagina initial de additivos</a>. "
+"</li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -343,7 +343,7 @@ msgid "Newest"
 msgstr "Le plus recente"
 
 msgid "Featured"
-msgstr "Favorite"
+msgstr "Promovite"
 
 msgid "Explore"
 msgstr "Explorar"
@@ -603,17 +603,17 @@ msgstr "{rating} scribite pro {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr "{addon} consiliate in {0}."
+msgstr "{addon} promovite in {0}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr "{addon} non plus consiliate in {0}."
+msgstr "{addon} non plus promovite in {0}."
 
 msgid "{addon} is now featured."
-msgstr "{addon} es ora consiliate."
+msgstr "{addon} es ora promovite."
 
 msgid "{addon} is no longer featured."
-msgstr "{addon} non es plus consiliate."
+msgstr "{addon} non es plus promovite."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -1463,7 +1463,7 @@ msgstr[0] "Tote le tags debe ser al minus de {0} character."
 msgstr[1] "Tote le tags debe ser al minus de {0} characteres."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application."
+msgstr "Le categorias non pote esser cambiate durante que tu additivo es promovite pro iste application."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1594,7 +1594,7 @@ msgid "Display Name"
 msgstr "Nomine monstrate"
 
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "Le categorias non pote ser cambiate durante que tu additivos es consiliate."
+msgstr "Le categorias non pote esser cambiate durante que tu additivo es promovite."
 
 msgid "Invalid or corrupt add-on file."
 msgstr "File de additivo non valide o corrupte."

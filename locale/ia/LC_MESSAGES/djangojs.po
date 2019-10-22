@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 01:01+0000\n"
+"PO-Revision-Date: 2019-10-22 15:21+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -282,7 +282,7 @@ msgid "Add-ons Manager Promo"
 msgstr "Gestor de additivos in promotion"
 
 msgid "Add-ons Manager Featured"
-msgstr "Gestor de additivos in evidentia"
+msgstr "Promovite in le gestor de additivos"
 
 msgid "Add-ons Manager Learn More"
 msgstr "Gestor de additivos, Saper plus"
@@ -297,7 +297,7 @@ msgid "Homepage Promo"
 msgstr "Promotion del pagina principal"
 
 msgid "Homepage Featured"
-msgstr "Pagina principal consiliate"
+msgstr "Promovite in le pagina initial"
 
 msgid "Homepage Up and Coming"
 msgstr "Pagina principal emergente"
@@ -345,7 +345,7 @@ msgid "Collections"
 msgstr "Collectiones"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Galeria del categorias de accesso favorite"
+msgstr "Carosello de additivos promovite pro le pagina initial del categoria"
 
 msgid "Category Landing Top Rated"
 msgstr "Categorias de accesso de los melio valutate"
@@ -357,7 +357,7 @@ msgid "Category Landing Recently Added"
 msgstr "Categorias de accesso de los plus recente"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Explora le lista ordinate per los plus favorite"
+msgstr "Explora le lista ordinate per additivo promovite"
 
 msgid "Browse Listing Users Sort"
 msgstr "Explora le lista ordinate per usatores"
