@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 16:46+0000\n"
+"PO-Revision-Date: 2019-10-22 17:23+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -772,7 +772,7 @@ msgid "Information request altered"
 msgstr "Requesta de informationes alterate"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Requesta de informationes clarate per disveloppator sur {addon} {version}."
+msgstr "Requesta de information resolvite per disveloppator sur {addon} {version}."
 
 msgid "Information request removed"
 msgstr "Requesta de informationes removite"
@@ -4073,7 +4073,7 @@ msgstr "Dele le datos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr "Clara le cache de tu navigator con un clic o un pulsata de clave."
+msgstr "Vacua le cache de tu navigator con un clic o un pulsata de clave."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4121,7 +4121,7 @@ msgstr "Dele tu chronologia de navigation {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Dele le chronologia de tu navigation. Specifica un numero de dies personalisate pro retener le chronologia del navigator ante que illo es clarate automaticamente."
+msgstr "Dele le chronologia de tu navigation. Specifica le numero de dies a retener le chronologia del navigator ante que illo se elimina automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5017,7 +5017,7 @@ msgid "Include HTML, links, source code or code snippets. Reviews are meant to b
 msgstr "Includer HTML, ligamines, codice fonte o fragmentos de codice. Les revisiones es intendite pro esser texto solmente."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Facer declarationes false, denigrar autores del additivos o insultar personalmente illes."
+msgstr "Facer declarationes false, denigrar autores del additivos o insultar les personalmente."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "Includer email, numero de telephono o altere detalios personal tue proprie o de quicunque altere."
@@ -5600,7 +5600,7 @@ msgid "Advanced Search"
 msgstr "Recerca avantiate"
 
 msgid "clear search"
-msgstr "clarar le recerca"
+msgstr "rader le recerca"
 
 msgid "Process Reviews"
 msgstr "Processar revisiones"
@@ -5725,16 +5725,16 @@ msgid "Enable Auto-Approval"
 msgstr "Activar auto-approbation"
 
 msgid "Clear information request"
-msgstr "Clarar requesta de informationes"
+msgstr "Rader requesta de information"
 
 msgid "Clear Admin Code Review Flag"
-msgstr "Clarar le flag de revision del codice de administrator"
+msgstr "Remover le signal de revision de codice per administrator"
 
 msgid "Clear Admin Content Review Flag"
-msgstr "Clarar le flag de revision del contento de administrator"
+msgstr "Remover le signal de revision de contento per administrator"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Clarar le flag de revision del thema static de administrator"
+msgstr "Remover le signal de revision de thema static per administrator"
 
 msgid "(admin)"
 msgstr "(administrator)"
