@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 17:23+0000\n"
+"PO-Revision-Date: 2019-10-22 18:07+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -772,7 +772,7 @@ msgid "Information request altered"
 msgstr "Requesta de informationes alterate"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Requesta de information resolvite per disveloppator sur {addon} {version}."
+msgstr "Requesta de information removite per disveloppator sur {addon} {version}."
 
 msgid "Information request removed"
 msgstr "Requesta de informationes removite"
@@ -4153,7 +4153,7 @@ msgstr "Naviga privatemente {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr "Cerca reservatemente con solo un clic."
+msgstr "Cerca privatemente con un sol clic."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
