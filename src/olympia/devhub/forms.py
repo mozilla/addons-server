@@ -948,6 +948,15 @@ class NewUploadForm(forms.Form):
         self.addon = kw.pop('addon', None)
         super(NewUploadForm, self).__init__(*args, **kw)
 
+        # Preselect compatible apps based on the current version
+        if self.addon and self.addon.current_version:
+            # Fetch list of applications freshly from the database to not
+            # rely on potentially outdated data since `addon.compatible_apps`
+            # is a cached property
+            compat_apps = list(self.addon.current_version.apps.values_list(
+                'application', flat=True))
+            self.fields['compatible_apps'].initial = compat_apps
+
     def _clean_upload(self):
         if not (self.cleaned_data['upload'].valid or
                 self.cleaned_data['upload'].validation_timeout or
