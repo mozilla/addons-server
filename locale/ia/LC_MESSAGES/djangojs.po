@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-09-30 22:25+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2019-10-22 01:01+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -84,16 +84,16 @@ msgstr "Le validation de tu additivo vadeva foras tempore limite, illo essera re
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Tu additivo esseva validate sin errores e con {0} aviso."
+msgstr[0] "Tu additivo ha essite validate sin errores e con {0} aviso."
 msgstr[1] "Tu additivo esseva validate sin errores e con {0} avisos."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Tu additivo esseva validate sin errores e {0} con message."
-msgstr[1] "Tu additivo esseva validate sin errores e {0} con messages."
+msgstr[0] "Tu additivo ha essite validate sin errores e con {0} message."
+msgstr[1] "Tu additivo ha essite validate sin errores e con {0} messages."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "Tu additivo esseva validate sin errores o avisos."
+msgstr "Tu additivo ha essite validate sin errores o avisos."
 
 msgid "Your submission will be automatically signed."
 msgstr "Tu submission essera signate automaticamente."
