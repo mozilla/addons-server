@@ -14,12 +14,8 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import CUSTOMS, WAT, YARA
-from olympia.scanners.admin import (
-    MatchesFilter,
-    ScannerResultAdmin,
-    ScannerRuleAdmin,
-)
-from olympia.scanners.models import ScannerResult, ScannerRule
+from olympia.scanners.admin import MatchesFilter, ScannerResultAdmin
+from olympia.scanners.models import ScannerResult
 
 
 class TestScannerResultAdmin(TestCase):
@@ -187,10 +183,6 @@ class TestScannerRuleAdmin(TestCase):
         self.grant_permission(self.user, 'Admin:Advanced')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerrule_changelist')
-
-        self.admin = ScannerRuleAdmin(
-            model=ScannerRule, admin_site=AdminSite()
-        )
 
     def test_list_view(self):
         response = self.client.get(self.list_url)
