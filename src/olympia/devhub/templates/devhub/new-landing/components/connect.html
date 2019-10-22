@@ -1,0 +1,62 @@
+<section class="DevHub-Connect content scheme-dark">
+  <div class="DevHub-content-container DevHub-content-container--Connect">
+    <div class="DevHub-content-header DevHub-content-header--Connect">
+      <h2>{{ _('Connect with us') }}</h2>
+    </div>
+    <div class="DevHub-content-copy Devhub-content-copy--Connect">
+      <div class="DevHub-Connect-section">
+        <h4>{{ _('Twitter') }}</h4>
+        <ul class="DevHub-content-copy--Connect-twitter-list">
+          <li>{{ _('For developers') }}:<a class="Before-Icon Before-Icon-twitter" href="https://twitter.com/mozamo" target="_blank" rel="noopener noreferrer">@mozamo</a></li>
+          <li>{{ _('For end users') }}:<a class="Before-Icon Before-Icon-twitter" href="https://twitter.com/rockyourfirefox" target="_blank" rel="noopener noreferrer">@rockyourfirefox</a></li>
+        </ul>
+      </div>
+      <div class="DevHub-Connect-section">
+        <h4>{{ _('More') }}</h4>
+        <ul>
+          <li><a class="Before-Icon Before-Icon-telegram" href="https://t.me/addonschat">{{ _('Telegram group') }}</a></li>
+          <li><a class="Before-Icon Before-Icon-irc" href="https://wiki.mozilla.org/IRC">{{ _('IRC') }}</a></li>
+          <li><a class="Before-Icon Before-Icon-mail" href="https://mail.mozilla.org/listinfo/dev-addons">{{ _('Add-on Developers Mailing List') }}</a></li>
+        </ul>
+      </div>
+     <div class="DevHub-Connect-section">
+        <h4>{{ _('Extensions Developers Newsletter') }}</h4>
+        <p>{% trans %}
+          Stay up-to-date on news and events for Firefox extension developers.{% endtrans %}
+        </p>
+        <form class="DevHub-Connect-newsletter-form" id="newsletter_form" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+          <input type="hidden" id="fmt" name="fmt" value="H">
+          <input type="hidden" id="newsletters" name="newsletters" value="about-addons">
+          <div id="newsletter_errors" class="newsletter_errors"></div>
+
+          <div id="newsletter_email" class="form_group">
+              <label for="email">{{ _('Email Address') }}</label>
+              <input type="email" id="email" name="email" class="form_input" required placeholder="{{ _('Email Address') }}" size="30">
+          </div>
+
+          <div id="newsletter_privacy" class="form_group form_group-agree">
+              <input type="checkbox" id="privacy" name="privacy" required>
+              <label for="privacy">
+                {% trans link_open = '<a href="https://www.mozilla.org/privacy/websites/" target="_blank" rel="noopener noreferrer">'|safe,
+                         link_close = '</a>'|safe %}
+                I’m okay with Mozilla handling my info as explained in this
+                {{ link_open }}Privacy Notice{{ link_close }}.
+                {% endtrans %}
+              </label>
+          </div>
+
+          <div id="newsletter_submit">
+            <button type="submit" class="button btn-success">{{ _('Sign Up') }}</button>
+          </div>
+        </form>
+        <div id="newsletter_thanks" class="newsletter_thanks">
+          <h2>{{ _('Thanks!') }}</h2>
+          <p>{% trans %}
+              If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so.
+              Please check your inbox or your spam filter for an email from us.{% endtrans %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

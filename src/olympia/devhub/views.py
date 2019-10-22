@@ -19,6 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import waffle
 
+from csp.decorators import csp_update
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -106,6 +107,8 @@ def addon_listing(request, theme=False):
     return filter_.qs, filter_
 
 
+@csp_update(CONNECT_SRC=settings.MOZILLA_NEWLETTER_URL,
+            FORM_ACTION=settings.MOZILLA_NEWLETTER_URL)
 def index(request):
     ctx = {}
     if request.user.is_authenticated:

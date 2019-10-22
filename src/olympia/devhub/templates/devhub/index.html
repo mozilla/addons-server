@@ -53,6 +53,7 @@
       {% include 'devhub/new-landing/components/overview.html' %}
       {% include 'devhub/new-landing/components/submit_or_manage_extension.html' %}
       {% include 'devhub/new-landing/components/get_involved.html' %}
+      {% include 'devhub/new-landing/components/connect.html' %}
     {% else %}
       {% include 'devhub/new-landing/components/banner.html' %}
       {% include 'devhub/new-landing/components/my-addons.html' %}
@@ -65,7 +66,7 @@
     </div>
     {% block site_js %}
       <script src="{{ static('js/i18n/%s.js'|format(LANG)) }}"></script>
-      {{ js('common') }}
+      {{ js('devhub/new-landing/js') }}
     {% endblock %}
   </body>
 </html>
