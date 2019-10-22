@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-22 01:10+0000\n"
+"PO-Revision-Date: 2019-10-22 01:33+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2120,7 +2120,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Iste additivo necessita pagamento, servicios o software non-libere, o altere hardware."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "Iste additivo non require ulle altere pagamentos, servicios o software pagate, o altere hardware."
+msgstr "Iste additivo non require pagamentos additional, servicios o software pagate, o hardware additional."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Le categorias es le maniera primari pro le usatores de navigar per le additivos. Elige lo que adhere al functionalitate de tu additivo pro le melior visibilitate."
@@ -2217,8 +2217,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, qualcunque version. Usa lo pro fornir manieras pro testar le additivo, e ulle altere informationes que pote"
-" adjutar. Iste tabula blanc es alsi modificabile per le revisores."
+"Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, non importa le version. Usa lo pro fornir manieras pro testar le additivo, e qualcunque altere "
+"informationes que pote adjutar. Iste tabula blanc pote etiam esser modificate per le revisores."
 
 msgid "Add-on Media for {0}"
 msgstr "Medios de additivo pro {0}"
@@ -2397,7 +2397,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr "Iste additivo manca de alcun requirite informationes ante que illo pote ser submittite pro publication."
 
 msgid "This add-on doesn't have any versions."
-msgstr "Iste additivo non ha ulle versiones."
+msgstr "Iste additivo non ha versiones."
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2469,7 +2469,7 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Per favor elige un licentia appropriate pro le derectos que tu vole ceder."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Si tu additivo transmitte ulle datos ab le computator del usator, un politica de confidentialitate es necesse que explica que datos es inviate e como illos es usate."
+msgstr "Si tu additivo transmitte datos ab le computator del usator, un politica de confidentialitate es necessari que explica que datos es inviate e como illos es usate."
 
 msgid "Notes to Reviewer:"
 msgstr "Notas pro le revisor:"
@@ -2577,7 +2577,7 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr "Per favor revide le <a %(a_attrs)s>politica de submission del codice fonte</a>."
 
 msgid "Do you use any of the following?"
-msgstr "Usa tu ulle de los sequente?"
+msgstr "Usa tu alcun del sequentes?"
 
 msgid "Code minifiers or obfuscators"
 msgstr "Utensiles pro minimisar o offuscar le codice"
@@ -2589,7 +2589,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Motores de modellos de web, ambe pro HTML e CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr "Ulle altere application que prende codice o files, processa, e genera codice o file(s) a includer in le additivo"
+msgstr "Omne altere application que prende codice o files, processa los, e genera codice o file(s) a includer in le additivo"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Tu non necessita de inviar codice fonte, e tu es preste pro le grado successive."
@@ -2614,8 +2614,8 @@ msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
-"Detalios (includite version requirite e instructiones de installation), de ulle programmas usate in le processo de compilation (per exemplo: <span class=\"tech-emphasis\">nodo</span> e <span class"
-"=\"tech-emphasis\">npm</span> version usate)."
+"Detalios (includite le version requirite e instructiones de installation), de omne programmas usate in le processo de compilation (per exemplo: le versiones usate de <span class=\"tech-"
+"emphasis\">node</span> e <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
@@ -2747,7 +2747,7 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr "A ligamine de confirmation essera inviate a tu adresse email. Post le confirmation tu trovara tu claves API sur iste pagina."
 
 msgid "You don't have any API credentials."
-msgstr "Tu non ha ulle credentiales API."
+msgstr "Tu non ha credentiales API."
 
 msgid "Revoke"
 msgstr "Revocar"
@@ -2777,7 +2777,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Tu additivo es displicate in nostre galeria e le usatores recipe le actualisationes automatic."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Tu additivo esseva disactivate per un administrator del sito e non es plus monstrate in nostre galeria. Si tu ha ulle questiones, per favor email amo-admins@mozilla.com."
+msgstr "Tu additivo ha essite disactivate per un administrator del sito e non es plus monstrate in nostre galeria. Si tu ha questiones, per favor invia e-mail a amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -2895,8 +2895,8 @@ msgstr "Politica de confidentialitate"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Si tu additivo transmitte ulle datos ab le computator del usator, un politica de confidentialitate es necesse que explica que datos es inviate e como illos es usate. Illo es pertinente solo al "
-"additivos listate."
+"Si tu additivo transmitte datos ab le computator del usator, un politica de confidentialitate es necessari que explica que datos es inviate e como illos es usate. Isto es relevante solmente pro le "
+"additivos listate publicamente."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Si tu additivo contine codice binari o offuscate in ultra al note bibliothecas, carga su fontes pro le revision."
@@ -3327,7 +3327,7 @@ msgstr "Traduce facilemente {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Mitte in evidentia ulle texto, clicca dextre, e traduce instantaneemente."
+msgstr "Marca qualcunque texto, face clic a dextra, e traduce instantaneemente."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3369,7 +3369,7 @@ msgstr "Simplifica le recerca {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Simplifica le recerca per evidentiar texto sur ulle pagina web a cercar le phrase in un serie de motores."
+msgstr "Simplifica le recerca per marcar texto sur qualcunque pagina web e cercar le phrase in un serie de motores."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3441,7 +3441,7 @@ msgstr "Trova facilemente le imagines {start_sub_heading}con {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Pone in evidentia ulle texto e clicca dextre pro exequer rapidemente un recerca de imagine."
+msgstr "Marca qualcunque texto e face clic a dextra pro exequer rapidemente un recerca de imagines."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3513,7 +3513,7 @@ msgstr "Traduce in un baleno {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Traductiones facile. Pone in evidentia un fragmento de texto sur ulle paginas web, o elige le pagina integre, pro traducer lo instantaneemente."
+msgstr "Traductiones facile. Marca texto sur qualcunque paginas web, o selige tote le pagina, pro traducer lo instantaneemente."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3582,7 +3582,7 @@ msgstr "Adjusta le dimension del vista del pagina {start_sub_heading}con {addon_
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr "Un simple maniera pro adjustar le dimension del texto de ulle pagina —o mesmo aggrandir le pagina mesme."
+msgstr "Un simple maniera pro adjustar le dimension del texto de qualcunque pagina – o mesmo aggrandir le pagina mesme."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3706,7 +3706,7 @@ msgstr "Naviga con securitate {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Adde securitate cifrate a ulle sito que supporta HTTPS. Naviga con securitate."
+msgstr "Adde securitate cryptate a omne sito que supporta HTTPS. Naviga con securitate."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4262,7 +4262,7 @@ msgstr "Accede facilemente Wikipedia {start_sub_heading}con {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Exeque rapidemente un recerca de Wikipedia per evidentiar fragmentos de texto de ulle pagina web e cliccar dextre."
+msgstr "Exeque rapidemente un recerca de Wikipedia per marcar texto de qualcunque pagina web e facer clic a dextra."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4278,7 +4278,7 @@ msgstr "Trova videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr "Evidentia texto ex ulle sito web e clicca dextre pro recercar in YouTube medios correlate."
+msgstr "Marca texto de qualcunque sito web e face clic a dextra pro cercar videos associate in YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
