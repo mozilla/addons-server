@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 19:09+0000\n"
+"PO-Revision-Date: 2019-10-22 19:31+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3757,7 +3757,7 @@ msgstr "Gere tu contrasignos {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr "Salva contrasignos con securitate e accede a illos trans plure apparatos."
+msgstr "Salva contrasignos con securitate e accede a illos inter plure apparatos."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3829,7 +3829,7 @@ msgstr "Minus stress {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr "Rende tu cosas facite con un utile agenda que se synchronisa trans tu apparatos."
+msgstr "Sia efficace con un utile lista de cosas a facer que se synchronisa inter tu apparatos."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4635,7 +4635,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr "Synchronisar extensiones intra apparatos"
+msgstr "Synchronisar extensiones inter apparatos"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
