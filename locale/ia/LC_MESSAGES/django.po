@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-21 23:42+0000\n"
+"PO-Revision-Date: 2019-10-22 00:25+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5875,7 +5875,7 @@ msgid "Compare"
 msgstr "Comparar"
 
 msgid "Permissions:"
-msgstr "Permissos:"
+msgstr "Permissiones:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
