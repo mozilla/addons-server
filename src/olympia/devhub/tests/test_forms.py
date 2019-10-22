@@ -51,6 +51,14 @@ class TestNewUploadForm(TestCase):
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
         request.user = user_factory()
+
+        # Without an add-on, we only pre-select the default which is Firefox
+        form = forms.NewUploadForm(data, request=request)
+        assert form.fields['compatible_apps'].initial == [
+            amo.FIREFOX.id, amo.ANDROID.id]
+
+        # with an add-on provided we select the platforms based on the current
+        # version
         form = forms.NewUploadForm(data, request=request, addon=addon)
         assert form.fields['compatible_apps'].initial == [
             amo.FIREFOX.id, amo.ANDROID.id]
