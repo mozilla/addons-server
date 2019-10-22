@@ -24,6 +24,9 @@ class ScannerResult(ModelBase):
         null=True,
     )
     has_matches = models.NullBooleanField()
+    matched_rules = models.ManyToManyField(
+        'ScannerRule', through='ScannerMatch'
+    )
 
     class Meta:
         db_table = 'scanners_results'
@@ -41,20 +44,25 @@ class ScannerResult(ModelBase):
         self.results.append(
             {'rule': rule, 'tags': tags or [], 'meta': meta or {}}
         )
-        self.has_matches = True
 
-    def save(self, *args, **kwargs):
-        if self.has_matches is None:
-            self.has_matches = bool(self.results)
-        super().save(*args, **kwargs)
-
-    @property
-    def matched_rules(self):
+    def extract_rule_names(self):
+        """This method parses the raw results and returns the (matched) rule
+        names. Not all scanners have rules that necessarily match."""
         if self.scanner is not YARA:
             # We do not have support for other scanners yet.
             return []
-        """This method returns a sorted list of matched rule names."""
-        return sorted({match['rule'] for match in self.results})
+        return sorted({result['rule'] for result in self.results})
+
+    def save(self, *args, **kwargs):
+        matched_rules = ScannerRule.objects.filter(
+            scanner=self.scanner, name__in=self.extract_rule_names()
+        )
+        self.has_matches = bool(matched_rules)
+        # Save the instance first...
+        super().save(*args, **kwargs)
+        # ...then add the associated rules.
+        for scanner_rule in matched_rules:
+            self.matched_rules.add(scanner_rule)
 
 
 class ScannerRule(ModelBase):
@@ -74,3 +82,8 @@ class ScannerRule(ModelBase):
 
     def __str__(self):
         return self.name
+
+
+class ScannerMatch(ModelBase):
+    result = models.ForeignKey(ScannerResult, on_delete=models.CASCADE)
+    rule = models.ForeignKey(ScannerRule, on_delete=models.CASCADE)

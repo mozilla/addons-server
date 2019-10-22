@@ -8,7 +8,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia.constants.scanners import SCANNERS, CUSTOMS, WAT, YARA
+from olympia.constants.scanners import CUSTOMS, SCANNERS, WAT, YARA
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
@@ -40,7 +40,7 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
     try:
         if not os.path.exists(upload.path):
-            raise ValueError('File "{}" does not exist.' .format(upload.path))
+            raise ValueError('File "{}" does not exist.'.format(upload.path))
 
         scanner_result = ScannerResult(upload=upload, scanner=scanner)
 
@@ -97,7 +97,7 @@ def run_customs(results, upload_pk):
         upload_pk,
         scanner=CUSTOMS,
         api_url=settings.CUSTOMS_API_URL,
-        api_key=settings.CUSTOMS_API_KEY
+        api_key=settings.CUSTOMS_API_KEY,
     )
 
 
@@ -120,7 +120,7 @@ def run_wat(results, upload_pk):
         upload_pk,
         scanner=WAT,
         api_url=settings.WAT_API_URL,
-        api_key=settings.WAT_API_KEY
+        api_key=settings.WAT_API_KEY,
     )
 
 
