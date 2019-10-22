@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-07 10:03+0000\n"
-"PO-Revision-Date: 2019-10-22 01:33+0000\n"
+"PO-Revision-Date: 2019-10-22 01:52+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4488,7 +4488,7 @@ msgstr "Conscientia del ubication {start_sub_heading}con {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Sape ubi es ubicate geographicamente ulle servitor de sito web. Que tu sia un viagiator informate del web."
+msgstr "Apprende le position geographic de qualcunque servitor de sito web. Sia un viagiator informate del web."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4504,7 +4504,7 @@ msgstr "Rediger ante que imprimer {start_sub_heading}con {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Prepara un pagina web pro le stampa. Face cambios visual extraordinari, remove avisos publicitari o contento a ulle pagina web que tu desira imprimer."
+msgstr "Modifica un pagina web ante de imprimer lo. Apporta cambios visual drastic (p.ex. le elimination de avisos publicitari o contento disagradabile) a qualcunque pagina web que tu vole imprimer."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4628,7 +4628,7 @@ msgstr "Cerca paginas web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Mesura le paginas web. Tira un regula digital tra ulle paginas web pro verificar altitude, largessa, e alineamento del elementos del pagina."
+msgstr "Mesura le paginas web. Tira un regula digital sur qualcunque pagina web pro determinar le altitude, latitude e alineamento del elementos del pagina."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4934,7 +4934,7 @@ msgid "Wrap or unwrap text"
 msgstr "Incassar le texto o non"
 
 msgid "No files in the uploaded file."
-msgstr "Nulle file in le archivo cargate."
+msgstr "Il non ha files in le archivo incargate."
 
 msgid "Fetching file."
 msgstr "Recuperante file."
@@ -5051,8 +5051,8 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
-"Le revisiones del additivos es un maniera pro tu pro compartir tu opiniones circa le additivos que tu ha installate e usate. Nostre equipa de moderation del revisiones se reserva le derecto de "
-"refusar o remover ulle revision que non se conforma con iste lineas guida."
+"Le recensiones del additivos es un maniera de compartir tu opinion sur le additivos que tu ha installate e usate. Nostre equipa de moderation del recensiones se reserva le derecto de refusar o "
+"remover omne recension que non respecta iste directivas."
 
 msgid "Do:"
 msgstr "A facer:"
@@ -5129,8 +5129,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Per favor reporta o signala ulle revisiones problematic per cliccar le button \"Reportar iste revision\" e illo sera submittite al sito pro le moderation. Nostre equipa de moderation usara le lineas"
-" guida del revisiones pro evalutar si deler o non le revision o restaurar illo retro al sito."
+"Per favor reporta o signala omne recension problematic con le button \"Reportar iste recension\" e illo essera submittite al attention del moderatores. Nostre equipa de moderation usara le "
+"directivas sur le recensiones pro determinar si deler o restaurar le recension sur le sito."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Io es un autor de additivos, pote io responder al revisiones?"
