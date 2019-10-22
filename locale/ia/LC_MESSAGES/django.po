@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 15:30+0000\n"
+"PO-Revision-Date: 2019-10-22 15:37+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2135,14 +2135,14 @@ msgstr "Le categorias es le maniera primari pro le usatores de navigar per le ad
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu "
-"necessita de modificar tu categorias."
+"Le categorias non pote esser cambiate durante que tu additivo es promovite pro iste application. Per favor invia un e-mail <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration que necessita"
+" modificar tu categorias."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Le categorias non pote ser cambiate durante que tu additivos es consiliate. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu necessita de modificar tu"
-" categorias."
+"Le categorias non pote esser cambiate durante que tu additivos es promovite. Per favor invia un e-mail <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration que necessita modificar tu "
+"categorias."
 
 msgid "Email"
 msgstr "Email"
@@ -2236,7 +2236,7 @@ msgid "32x32px"
 msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr "Usate in listas de additivos, como resultatos del recerca e additivos consiliate."
+msgstr "Usate in listas de additivos, como resultatos de recerca e additivos promovite."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2283,7 +2283,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr "Haber instantaneos de schermo in le pagina de tu producto, accresce grandemente su probabilitates de ser installate e evidentiate in le pagina principal."
+msgstr "Haber instantaneos de schermo in le pagina de tu producto augmenta multo su chance de esser installate e promovite sur le pagina initial."
 
 msgid "Continue"
 msgstr "Continuar"
