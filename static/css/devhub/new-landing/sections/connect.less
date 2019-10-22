@@ -65,14 +65,21 @@
         margin-bottom: 20px;
     }
 
-    .form_group-agree{
+    .form_group-agree {
         padding-left: 1.5em; // roughly width of a checkbox
+        padding-right: 0;
         text-indent: -1.5em;
+
+        html[dir=rtl] & {
+            padding-left: 0;
+            padding-right: 1.5em;
+        }
     }
 
     .form_input {
         background: rgba(177,177,179,0.2);
-        color: #fff;border: 0;
+        color: #fff;
+        border: 0;
         padding: 6px;
         line-height: 20px;
         width: 100%;
@@ -107,21 +114,21 @@
             font-size: 14px;
         }
     }
+
+    #newsletter_errors {
+        display: none; /* hide by default */
+        margin-bottom: 20px;
+        box-shadow: 0 0 0 1px #ffffff; // incase it's on a black background
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.1); // incase it's on a white background
+        border: 1px solid #c00;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
-.newsletter_errors {
-    display: none; /* hide by default */
-    margin-bottom: 20px;
-    box-shadow: 0 0 0 1px #ffffff; // incase it's on a black background
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.1); // incase it's on a white background
-    border: 1px solid #c00;
-
-}
-
-.newsletter_errors:last-child {
-    margin-bottom: 0;
-}
 
 .newsletter_thanks {
     display: none;
@@ -130,6 +137,8 @@
 a.Before-Icon::before {
     padding-right: 0.3em;
     display: inline-block;
+    line-height: 1.2;
+    vertical-align: middle;
 }
 
 a.Before-Icon-twitter::before {
