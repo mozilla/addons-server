@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields.json import JSONField
 
 from olympia.amo.models import ModelBase
-from olympia.constants.scanners import SCANNERS, ACTIONS, NO_ACTION
+from olympia.constants.scanners import SCANNERS, ACTIONS, NO_ACTION, YARA
 from olympia.files.models import FileUpload
 
 
@@ -14,8 +14,8 @@ class ScannerResult(ModelBase):
         on_delete=models.SET_NULL,
         null=True,
     )
-    # Store the "raw" results of a scanner (optionally).
-    results = JSONField(default=None)
+    # Store the "raw" results of a scanner.
+    results = JSONField(default=[])
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
     version = models.ForeignKey(
         'versions.Version',
@@ -23,7 +23,6 @@ class ScannerResult(ModelBase):
         on_delete=models.CASCADE,
         null=True,
     )
-    matches = JSONField(default=[])
     has_matches = models.NullBooleanField()
 
     class Meta:
@@ -37,22 +36,25 @@ class ScannerResult(ModelBase):
         ]
         indexes = [models.Index(fields=('has_matches',))]
 
-    def add_match(self, rule, tags=None, meta=None):
-        """This method is used to store a matched rule."""
-        self.matches.append(
+    def add_yara_result(self, rule, tags=None, meta=None):
+        """This method is used to store a Yara result."""
+        self.results.append(
             {'rule': rule, 'tags': tags or [], 'meta': meta or {}}
         )
         self.has_matches = True
 
     def save(self, *args, **kwargs):
         if self.has_matches is None:
-            self.has_matches = bool(self.matches)
+            self.has_matches = bool(self.results)
         super().save(*args, **kwargs)
 
     @property
     def matched_rules(self):
+        if self.scanner is not YARA:
+            # We do not have support for other scanners yet.
+            return []
         """This method returns a sorted list of matched rule names."""
-        return sorted({match['rule'] for match in self.matches})
+        return sorted({match['rule'] for match in self.results})
 
 
 class ScannerRule(ModelBase):

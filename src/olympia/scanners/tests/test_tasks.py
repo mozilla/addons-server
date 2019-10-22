@@ -278,13 +278,13 @@ class TestRunYara(UploadTest, TestCase):
         assert len(yara_results) == 1
         yara_result = yara_results[0]
         assert yara_result.upload == self.upload
-        assert len(yara_result.matches) == 2
-        assert yara_result.matches[0] == {
+        assert len(yara_result.results) == 2
+        assert yara_result.results[0] == {
             'rule': 'always_true',
             'tags': [],
             'meta': {'filename': 'index.js'},
         }
-        assert yara_result.matches[1] == {
+        assert yara_result.results[1] == {
             'rule': 'always_true',
             'tags': [],
             'meta': {'filename': 'manifest.json'},
@@ -311,7 +311,7 @@ class TestRunYara(UploadTest, TestCase):
             received_results = run_yara(self.results, self.upload.pk)
 
         yara_result = ScannerResult.objects.all()[0]
-        assert yara_result.matches == []
+        assert yara_result.results == []
         # The task should always return the results.
         assert received_results == self.results
         assert incr_mock.called
@@ -335,7 +335,7 @@ class TestRunYara(UploadTest, TestCase):
         assert yara_result.upload == upload
         # The `webextension_signed_already.xpi` fixture file has 1 directory
         # and 3 files.
-        assert len(yara_result.matches) == 3
+        assert len(yara_result.results) == 3
         # The task should always return the results.
         assert received_results == results
 

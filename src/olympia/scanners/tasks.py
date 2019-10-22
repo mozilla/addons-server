@@ -163,7 +163,7 @@ def run_yara(results, upload_pk):
                     for match in rules.match(data=file_content):
                         # Add the filename to the meta dict.
                         meta = {**match.meta, 'filename': zip_info.filename}
-                        scanner_result.add_match(
+                        scanner_result.add_yara_result(
                             rule=match.rule,
                             tags=match.tags,
                             meta=meta
