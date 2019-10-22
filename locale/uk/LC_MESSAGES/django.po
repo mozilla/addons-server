@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-03 16:51+0000\n"
 "Last-Translator: Stanislav <zoyzich@gmail.com>\n"
 "Language-Team: \n"
@@ -1407,6 +1407,13 @@ msgstr "Низька якість, витягнуте чи пусте зобра
 msgid "Header image alignment problem"
 msgstr "Проблема розташування зображення в заголовку"
 
+#, fuzzy
+msgid "no action"
+msgstr "Додаткові дії"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Ядро"
 
@@ -2198,20 +2205,6 @@ msgstr ""
 "Будь-яка інформація, яку можливо захочуть дізнатися кінцеві користувачі, але якій не місце в зведенні або описі додатка. Зазвичай використовується для відомостей про серйозні помилки, про те як "
 "повідомляти про помилки, передбачувану дату випуску нової версії і т.д. Це стосується тільки додатків, що знаходяться в списку."
 
-msgid "View Source?"
-msgstr "Переглянути програмний код?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Чи може джерело вашого додатка бути відображене у нашому\n"
-"                        засобі онлайн-перегляду. Це стосується лише опублікованих додатків."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Програмний код цього додатка є загальнодоступним."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Програмний код цього додатка не є загальнодоступним."
-
 msgid "Public Stats?"
 msgstr "Публічна статистика?"
 
@@ -2945,41 +2938,22 @@ msgstr "Будь ласка, додайте інструкції про те, я
 msgid "Read more about the source code review policy."
 msgstr "Дізнайтеся більше про політику перевірки програмного коду."
 
-msgid "Latest News"
-msgstr "Останні новини"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Дізнатися більше в нашому блозі"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Семінар з розширень"
 
 msgid "Resources"
 msgstr "Ресурси"
 
-msgid "Porting"
-msgstr "Портування"
-
-msgid "Community"
-msgstr "Спільнота"
-
-msgid "About"
-msgstr "Про"
-
-msgid "Forum"
-msgstr "Форум"
-
-msgid "Blog"
-msgstr "Блог"
-
-msgid "Contact Us"
-msgstr "Зв'язатися з нами"
-
-msgid "Support"
-msgstr "Підтримка"
-
-msgid "Report Bug"
-msgstr "Повідомити про помилку"
-
-msgid "Site Status"
-msgstr "Статус сайту "
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: створюйте і тестуйте розширення"
@@ -2987,20 +2961,11 @@ msgstr "Web-Ext: створюйте і тестуйте розширення"
 msgid "Promote"
 msgstr "Поширити"
 
-msgid "Get Your Add-on Featured"
-msgstr "Зробіть свій додаток відібраним"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Кнопка \"Отримати додаток\""
 
-msgid "Legal"
-msgstr "Юридична інформація"
-
-msgid "Report Trademark Abuse"
-msgstr "Повідомити про зловживання торговою маркою"
-
-msgid "Legal Notices"
-msgstr "Юридичні відомості"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Зробити внесок"
@@ -3032,41 +2997,15 @@ msgstr "Вам не потрібно знати код, щоб допомогт�
 msgid "See how"
 msgstr "Подивіться як"
 
-msgid "Manage Your Add-on"
-msgstr "Керуйте своїм додатком"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Увійдіть, щоб змінювати й оновлювати свій додаток"
-
-msgid "Write one code base for many browsers"
-msgstr "Підтримуйте єдину кодову базу для багатьох браузерів"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"За допомогою WebExtensions API дуже легко створювати розширення, що можуть працювати в Firefox, Chrome, Opera та Edge лише з кількома незначними змінами. Дізнайтеся, чим відрізняється розробка "
-"розширень між чотирма основними браузерами і як ви можете зробити свої розширення сумісними з цими браузерами."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Перегляньте кращі рішення для кросбраузерної розробки"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "З поверненням"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Хочете, щоб ваше розширення потрапило до відібраних на %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Ви можете дізнатись необхідну інформацію з наших правил відбору розширень."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Дізнатись більше"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "Ви можете допомогти користувачам довіряти вашим розширенням, керуючись нашими рішеннями для залучення нових користувачів."
-
-msgid "See Best Practices"
-msgstr "Переглянути кращі рішення"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Дізнайтеся більше про політику перевірки програмного коду."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Опубліковано на цьому сайті після проходження перевірки коду. Автоматичні оновлення забезпечуються цим сайтом."
@@ -3090,6 +3029,12 @@ msgstr "Центр розробників"
 msgid "Docs"
 msgstr "Документи"
 
+msgid "Support"
+msgstr "Підтримка"
+
+msgid "Blog"
+msgstr "Блог"
+
 msgid "Sign Out"
 msgstr "Вийти"
 
@@ -3100,64 +3045,24 @@ msgid "User Photo"
 msgstr "Фото користувача"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Зареєструйтеся</a> або <a href=\"%(login)s\">Увійдіть</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Пристосуйте Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Додатки дозволяють мільйонам користувачів Firefox розширювати їхні можливості в мережі Інтернет. Якщо ви знаєте %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s та "
-"%(css_link_open)sCSS%(link_close)s, у вас вже є всі необхідні навички для створення чудового додатка."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Дізнайтеся, як створити додаток"
 
-msgid "Port a Chrome Extension"
-msgstr "Порт розширення Chrome"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox підтримує API для WebExtension, які в більшості випадків є сумісними з API розширень, що підтримуються в Chrome, Opera та Edge. Отже ваші розширення будуть працювати в Firefox лише після "
-"незначних змін."
 
-msgid "Learn How"
-msgstr "Дізнайтеся як"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Опублікуйте свій додаток"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Вже маєте готовий додаток чи тему? Подайте їх для публікації на addons.mozilla.org, або ж підпишіть та поширюйте їх власними засобами."
-
-msgid "Sign In"
-msgstr "Увійти"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Інструмент командного рядка для створення, виконання і тестування розширення."
-
-msgid "Automated code tests for your add-on."
-msgstr "Автоматизовані тести коду вашого додатка."
-
-msgid "Compatibility Test"
-msgstr "Тест сумісності"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Перевірте, чи ваше розширення сумісне з Firefox."
-
-msgid "Live Testing"
-msgstr "Живе тестування"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Тимчасово встановіть ваше розширення в Firefox для живого тестування і зневадження."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Керування версією {0}"
@@ -4841,6 +4746,10 @@ msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Дізнатись більше"
+
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Explore extensions"
 msgstr "Розширення"
@@ -6052,6 +5961,12 @@ msgstr[0] "Протермінований запит інформації ({0})"
 msgstr[1] "Протерміновані запити інформації ({0})"
 msgstr[2] "Протермінованих запитів інформації ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Неправильний параметр \"%s\"."
@@ -6319,11 +6234,20 @@ msgstr "Назад до додатків"
 msgid "Footer logo"
 msgstr "Логотип знизу"
 
+msgid "Legal Notices"
+msgstr "Юридичні відомості"
+
+msgid "Report Trademark Abuse"
+msgstr "Повідомити про зловживання торговою маркою"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Новий веб-сайт підтримує мобільні та комп'ютерні версії браузерів"
 
 msgid "View the new site"
 msgstr "Відвідати новий сайт"
+
+msgid "Site Status"
+msgstr "Статус сайту "
 
 msgid "Report a bug"
 msgstr "Повідомити про помилку"
@@ -6337,6 +6261,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "дізнайтеся про <b>додатки</b>"
+
+msgid "About"
+msgstr "Про"
+
+msgid "Forum"
+msgstr "Форум"
 
 msgid "Download Firefox"
 msgstr "Завантажити Firefox"

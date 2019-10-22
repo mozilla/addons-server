@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-05 09:14+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1452,6 +1452,13 @@ msgstr "Immagini di bassa qualità, deformate o vuote"
 msgid "Header image alignment problem"
 msgstr "Problema di allineamento con l’immagine della testata"
 
+#, fuzzy
+msgid "no action"
+msgstr "Altre azioni"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Base"
 
@@ -2251,18 +2258,6 @@ msgstr ""
 "Ulteriori informazioni utili per l’utente finale che non possono essere inserite nei campi sommario e descrizione. Questo campo è solitamente utilizzato per indicare l’elenco dei bug noti più "
 "importanti, le istruzioni per segnalare nuovi bug, date di rilascio previste di versioni future e simili. Rilevante solo per i componenti aggiuntivi pubblici."
 
-msgid "View Source?"
-msgstr "Mostra il codice sorgente?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Specifica se il codice sorgente del componente aggiuntivo può essere visualizzato sul sito. Rilevante solo per i componenti aggiuntivi pubblici."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Il codice sorgente di questo componente aggiuntivo è visibile pubblicamente."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "No, il codice sorgente di questo componente aggiuntivo non è visibile pubblicamente."
-
 msgid "Public Stats?"
 msgstr "Statistiche pubbliche?"
 
@@ -2992,42 +2987,23 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Ulteriori informazioni riguardo alle norme di revisione del codice sorgente."
 
-msgid "Latest News"
-msgstr "Ultime novità"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Ulteriori informazioni sul nostro blog"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Laboratorio estensioni"
 
 msgid "Resources"
 msgstr "Risorse"
 
-msgid "Porting"
-msgstr "Porting"
-
-msgid "Community"
-msgstr "Comunità"
-
-msgid "About"
-msgstr "Informazioni su"
-
-msgid "Forum"
-msgstr "Forum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Contattaci"
-
-msgid "Support"
-msgstr "Supporto"
-
-msgid "Report Bug"
-msgstr "Segnala problemi"
-
-msgid "Site Status"
-msgstr "Stato del sito"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: Sviluppa ed esegui i test delle tue estensioni"
@@ -3035,20 +3011,11 @@ msgstr "Web-Ext: Sviluppa ed esegui i test delle tue estensioni"
 msgid "Promote"
 msgstr "Promuovi"
 
-msgid "Get Your Add-on Featured"
-msgstr "Mostra il tuo componente aggiuntivo tra quelli consigliati"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Ottieni un pulsante per promuovere il componente aggiuntivo"
 
-msgid "Legal"
-msgstr "Note legali"
-
-msgid "Report Trademark Abuse"
-msgstr "Segnala abusi dei marchi registrati"
-
-msgid "Legal Notices"
-msgstr "Note legali"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Fai una donazione"
@@ -3080,42 +3047,15 @@ msgstr "Non serve saper programmare per fare in modo che Firefox rimanga il brow
 msgid "See how"
 msgstr "Scopri come"
 
-msgid "Manage Your Add-on"
-msgstr "Gestione componenti aggiuntivi"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Effettua l’accesso per aggiornare il tuo componente aggiuntivo"
-
-msgid "Write one code base for many browsers"
-msgstr "Scrivi un solo codice per più browser!"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"Con l’API WebExtensions, è facile creare estensioni che verranno eseguite su Firefox, Chrome, Opera e Edge con solo alcuni piccoli cambiamenti. Scopri di più sulle differenze nello sviluppo delle "
-"estensioni tra i quattro principali browser e su come è possibile rendere compatibile la tua estensione su ognuno di esso."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Consulta le buone pratiche per lo sviluppo multi-browser"
-
-msgid "Welcome Back"
-msgstr "Bentornato"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
-"Vuoi che la tua estensione sia posta in evidenza su %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Leggi le nostre regole relative alle estensioni in primo piano per sapere cosa serve fare."
 
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Ulteriori informazioni"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "Incoraggia i tuoi utenti a familiarizzare e riporre la propria fiducia nella tua estensione seguendo le buone pratiche per l’acquisizione di utenti."
-
-msgid "See Best Practices"
-msgstr "Scopri le buone pratiche"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Ulteriori informazioni riguardo alle norme di revisione del codice sorgente."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Visibile sul sito dopo il superamento della revisione. Gli aggiornamenti verranno gestiti automaticamente dal sito."
@@ -3142,6 +3082,13 @@ msgstr "Centro di sviluppo componenti aggiuntivi"
 msgid "Docs"
 msgstr "Documentazione"
 
+msgid "Support"
+msgstr "Supporto"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Disconnetti"
 
@@ -3152,66 +3099,24 @@ msgid "User Photo"
 msgstr "Immagine utente"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(login)s\">Accedi</a> o <a href=\"%(register)s\">Registrati</a> "
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Personalizza Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi %(html_link_open)sHTML%(link_close)s, "
-"%(js_link_open)sJavaScript%(link_close)s e %(css_link_open)sCSS%(link_close)s, sei già in possesso di tutti gli strumenti necessari per realizzare uno straordinario componente aggiuntivo."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Scopri come realizzare un componente aggiuntivo"
 
-msgid "Port a Chrome Extension"
-msgstr "Converti un’estensione per Chrome"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox supporta le API WebExtension, nella maggior parte dei casi compatibili con le API utilizzate per le estensioni di Chrome, Opera e Edge. Questo significa che potrai utilizzare le estensioni "
-"realizzate per questi browser con modifiche minime al codice."
 
-msgid "Learn How"
-msgstr "Scopri come fare"
-
-msgid "Publish Your Add-on"
-msgstr "Pubblica il tuo componente aggiuntivo"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
-"Hai già realizzato un componente aggiuntivo? Invia l’estensione o il tema affinché venga visualizzato su addons.mozilla.org oppure firma digitalmente il componente aggiuntivo e occupati "
-"direttamente della distribuzione."
 
-msgid "Sign In"
-msgstr "Accedi"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Uno strumento da linea di comando per sviluppare, eseguire e sottoporre a test le estensioni."
-
-msgid "Automated code tests for your add-on."
-msgstr "Una serie di test automatici per convalidare il codice di un componente aggiuntivo."
-
-msgid "Compatibility Test"
-msgstr "Test di compatibilità"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Verifica se la tua estensione è compatibile con Firefox."
-
-msgid "Live Testing"
-msgstr "Test nel browser"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Installa temporaneamente la tua estensione in Firefox per effettuare test e debug."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Gestisci versione {0}"
@@ -4833,6 +4738,10 @@ msgstr "Non fermare la privacy alle estensioni del browser!"
 msgid "Media enhancers for Firefox"
 msgstr "Arricchisci la tua esperienza multimediale su Firefox"
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Ulteriori informazioni"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
@@ -6048,6 +5957,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Richiesta informazioni scaduta ({0})"
 msgstr[1] "Richieste informazioni scadute ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Parametro “%s” non valido."
@@ -6316,11 +6231,20 @@ msgstr "Ritorna ai componenti aggiuntivi"
 msgid "Footer logo"
 msgstr "Logo a piè di pagina"
 
+msgid "Legal Notices"
+msgstr "Note legali"
+
+msgid "Report Trademark Abuse"
+msgstr "Segnala abusi dei marchi registrati"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Il nuovo sito web è ottimizzato sia per computer sia per dispositivi portatili"
 
 msgid "View the new site"
 msgstr "Visita il nuovo sito"
+
+msgid "Site Status"
+msgstr "Stato del sito"
 
 msgid "Report a bug"
 msgstr "Segnala problemi"
@@ -6334,6 +6258,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "Scopri i <b>componenti aggiuntivi</b>"
+
+msgid "About"
+msgstr "Informazioni su"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Scarica Firefox"

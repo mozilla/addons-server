@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-02 01:48+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1417,6 +1417,13 @@ msgstr "უხარისხო, გაწელილი ან ცარი�
 msgid "Header image alignment problem"
 msgstr "ზედა სურათი არ არის სათანადოდ გასწორებული"
 
+#, fuzzy
+msgid "no action"
+msgstr "დამატებითი მოქმედებები"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "ბირთვი"
 
@@ -2190,18 +2197,6 @@ msgstr ""
 "ნებისმიერი სახის ინფორმაცია, რომელიც გსურთ მიაწოდოთ მომხმარებლებს და რომლის მითითებაც არაა აუცილებელი დამატების მონაცემებსა და აღწერაში. ჩვეულებრივ, ეს შეიძლება იყოს ცნობილი ხარვეზების სია, "
 "პრობლემის შესახებ მოხსენების გაგზავნის გზები, ახალი ვერსიის გამოშვების თარიღის დაანონსება და ა. შ. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
-msgid "View Source?"
-msgstr "წყაროს ნახვა?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "თქვენი დამატების საწყისი კოდის გამოჩენა ვებ-მნახველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "ამ დამატების პირველწყარო კოდი საჯაროდ ხელმისაწვდომია."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "არა, ამ დამატების პირველწყარო კოდი არაა საჯაროდ ხელმისაწვდომი."
-
 msgid "Public Stats?"
 msgstr "საჯარო სტატისტიკა?"
 
@@ -2919,41 +2914,22 @@ msgstr "გთხოვთ მიუთითოთ, დამატების
 msgid "Read more about the source code review policy."
 msgstr "გაეცანით პირველწყარო კოდის მიმოხილვის დებულებას."
 
-msgid "Latest News"
-msgstr "ბოლო სიახლეები"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "ვრცლად, იხილეთ ჩვენს სვეტზე"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "გაფართოებების შემუშავება"
 
 msgid "Resources"
 msgstr "სასარგებლო ბმულები"
 
-msgid "Porting"
-msgstr "გადატანა"
-
-msgid "Community"
-msgstr "ერთობა"
-
-msgid "About"
-msgstr "საიტის შესახებ"
-
-msgid "Forum"
-msgstr "ფორუმი"
-
-msgid "Blog"
-msgstr "სვეტი"
-
-msgid "Contact Us"
-msgstr "დაგვიკავშირდით"
-
-msgid "Support"
-msgstr "მხარდაჭერა"
-
-msgid "Report Bug"
-msgstr "მოხსენება ხარვეზის შესახებ"
-
-msgid "Site Status"
-msgstr "საიტის მდგომარეობა"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: შექმენით და გამოცადეთ გაფართოებები"
@@ -2961,20 +2937,11 @@ msgstr "Web-Ext: შექმენით და გამოცადეთ გ
 msgid "Promote"
 msgstr "ხელშეწყობა"
 
-msgid "Get Your Add-on Featured"
-msgstr "გახადეთ თქვენი დამატება რჩეული"
-
 msgid "\"Get The Add-on\" button"
 msgstr "ღილაკი „გადმოწერეთ დამატება“"
 
-msgid "Legal"
-msgstr "სამართლებრივი საკითხები"
-
-msgid "Report Trademark Abuse"
-msgstr "მოხსენება სავაჭრო ნიშნების დარღვევის შესახებ"
-
-msgid "Legal Notices"
-msgstr "სამართლებრივი შენიშვნები"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "შემოწირულობა"
@@ -3006,42 +2973,15 @@ msgstr "კოდის წერის ცოდნა არაა აუც�
 msgid "See how"
 msgstr "ნახეთ როგორ"
 
-msgid "Manage Your Add-on"
-msgstr "დამატებების მართვა"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "შედით ანგარიშზე, თქვენი დამატებების ჩასასწორებლად და გასაახლებლად"
-
-msgid "Write one code base for many browsers"
-msgstr "დაწერეთ ერთი კოდი მრავალი ბრაუზერისთვის"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"WebExtensions API-ით, მარტივადაა შესაძლებელი გაფართოებების შექმნა, რომლებიც გაეშვება Firefox-ზე, Chrome-ზე, Opera-სა და Edge-ზე, მცირე შესწორებების შეტანით. იხილეთ ვრცლად, გაფართოებების შემუშავების "
-"განსხვავებების შესახებ ოთხი ძირითადი ბრაუზერისთვის და როგორ შეგიძლიათ შექმნათ მრავალ ბრაუზერთან თავსებადი გაფართოება."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "იხილეთ საუკეთესო გადაწყვეტები მრავალი ბრაუზერისთვის შესამუშავებლად"
-
-msgid "Welcome Back"
-msgstr "კეთილი იყოს თქვენი დაბრუნება"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
-"გსურთ, თქვენი გაფართოება გახდეს რჩეული %(amo_link_open)saddons.mozilla.org%(amo_link_close)s საიტზე? რჩეული გაფართოებების შესახებ ჩვენი დებულებები დაგეხმარებათ გაიგოთ, რა არის ამისთვის საჭირო."
 
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "იხილეთ ვრცლად"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "მომხმარებლებისგან თქვენი გაფართოების მიმართ ნდობის მოსაპოვებლად, მიჰყევით ჩვენს რჩევებს დამწყებთათვის."
-
-msgid "See Best Practices"
-msgstr "იხილეთ საუკეთესო გადაწყვეტები"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "გაეცანით პირველწყარო კოდის მიმოხილვის დებულებას."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "საიტზე გამოქვეყნდება კოდის მიმოხილვის გავლის შემდეგ. თვითგანახლებები იმართება ამ საიტით."
@@ -3065,6 +3005,12 @@ msgstr "დამატებების შემმუშავებლე�
 msgid "Docs"
 msgstr "მასალები"
 
+msgid "Support"
+msgstr "მხარდაჭერა"
+
+msgid "Blog"
+msgstr "სვეტი"
+
 msgid "Sign Out"
 msgstr "გამოსვლა"
 
@@ -3075,64 +3021,24 @@ msgid "User Photo"
 msgstr "მომხმარებლის სურათი"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">რეგისტრაცია</a> ან <a href=\"%(login)s\">შესვლა</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Firefox-ის მორგება"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"დამატებები საშუალებას აძლევს Firefox-ის მილიონობით მომხმარებელს, გააფართოვონ თავიანთი ბრაუზერის შესაძლებლობები. თუ ფლობთ %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
-"%(link_close)s და %(css_link_open)sCSS%(link_close)s-ს, თქვენ უკვე თავისუფლად შეგიძლიათ შექმნათ არაჩვეულებრივი დამატებები."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "გაიგეთ, თუ როგორ იქმნება დამატებები"
 
-msgid "Port a Chrome Extension"
-msgstr "Chrome-ის გაფართოების გადმოტანა"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox-ში მხარდაჭერილია WebExtension API-ები, რაც უმეტეს შემთხვევაში თავსებადია Chrome-ის, Opera-სა და Edge-ს API-ებთან, ასე რომ, თქვენი გაფართოება, მცირე ხელის შევლების შედეგად, მარტივად გაეშვება "
-"Firefox-შიც."
 
-msgid "Learn How"
-msgstr "გაიგეთ, როგორ"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "გამოაქვეყნეთ თქვენი დამატება"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "მზად გაქვთ უკვე დამატება? გადააგზავნეთ თქვენი გაფართოება ან თემა, addons.mozilla.org-ზე გამოსაქვეყნებლად, ან დაამოწმეთ და გაავრცელეთ თავად."
-
-msgid "Sign In"
-msgstr "შესვლა"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "ბრძანების სტრიქონი, გაფართოებების შექმნის, გაშვებისა და გამოცდისთვის."
-
-msgid "Automated code tests for your add-on."
-msgstr "დამატების კოდის ავტომატური შემოწმება."
-
-msgid "Compatibility Test"
-msgstr "თავსებადობის შემოწმება"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "შეამოწმეთ, არის თუ არა თქვენი გაფართოება Firefox-სთან თავსებადი."
-
-msgid "Live Testing"
-msgstr "პირდაპირი შემოწმება"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "გაფართოების დროებით დაყენება Firefox-ში, პირდაპირ რეჟიმში შესამოწმებლად და გასამართად."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "{0} ვერსიის მართვა"
@@ -4746,6 +4652,10 @@ msgid "Media enhancers for Firefox"
 msgstr "საშუალებები, რომლებითაც Firefox უკეთ იმუშავებს ფაილებთან"
 
 #. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "იხილეთ ვრცლად"
+
+#. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
 msgstr "მოიძიეთ გაფართოებები"
 
@@ -5948,6 +5858,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "მონაცემების ვადაგასული მოთხოვნა ({0})"
 msgstr[1] "მონაცემების ვადაგასული მოთხოვნა ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "არამართებული პარამეტრი „%s“."
@@ -6214,11 +6130,20 @@ msgstr "დამატებების გვერდზე დაბრუ�
 msgid "Footer logo"
 msgstr "ქვედა ლოგო"
 
+msgid "Legal Notices"
+msgstr "სამართლებრივი შენიშვნები"
+
+msgid "Report Trademark Abuse"
+msgstr "მოხსენება სავაჭრო ნიშნების დარღვევის შესახებ"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "ახალი საიტი თავსებადია როგორც სამაგიდო, ასევე მობილურ მოწყობილობებთან"
 
 msgid "View the new site"
 msgstr "ახალ საიტზე გადასვლა"
+
+msgid "Site Status"
+msgstr "საიტის მდგომარეობა"
 
 msgid "Report a bug"
 msgstr "მოხსენება ხარვეზის შესახებ"
@@ -6232,6 +6157,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "გაეცანით <b>დამატებებს</b>"
+
+msgid "About"
+msgstr "საიტის შესახებ"
+
+msgid "Forum"
+msgstr "ფორუმი"
 
 msgid "Download Firefox"
 msgstr "Firefox ჩამოტვირთვა"

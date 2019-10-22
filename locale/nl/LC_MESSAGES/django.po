@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-02 14:16+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -1415,6 +1415,13 @@ msgstr "Afbeelding van lage kwaliteit, opgerekt of leeg"
 msgid "Header image alignment problem"
 msgstr "Probleem met uitlijning headerafbeelding"
 
+#, fuzzy
+msgid "no action"
+msgstr "Meer acties"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Kern"
 
@@ -2199,18 +2206,6 @@ msgstr ""
 "Alle informatie waar gebruikers mogelijk in zijn geïnteresseerd die niet noodzakelijkerwijs van toepassing is op de samenvatting of beschrijving van de add-on. Wordt vaak gebruikt voor een lijst "
 "met bekende bugs, informatie over hoe bugs gemeld kunnen worden, de verwachte publicatiedatum van een nieuwe versie, enz. Alleen relevant voor vermelde add-ons."
 
-msgid "View Source?"
-msgstr "Bron bekijken?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Of de broncode van uw add-on in onze online weergave kan worden weergegeven. Alleen relevant voor vermelde add-ons."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "De broncode van deze add-on mag worden ingezien."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Nee, de broncode van deze add-on is niet beschikbaar voor het publiek."
-
 msgid "Public Stats?"
 msgstr "Openbare statistieken?"
 
@@ -2930,42 +2925,23 @@ msgstr "Voeg instructies bij over hoe het uiteindelijke add-onbestand kan worden
 msgid "Read more about the source code review policy."
 msgstr "Lees meer over het beleid aangaande broncodebeoordeling."
 
-msgid "Latest News"
-msgstr "Laatste nieuws"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Lees meer in onze blog"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Extensieworkshop"
 
 msgid "Resources"
 msgstr "Hulpbronnen"
 
-msgid "Porting"
-msgstr "Porteren"
-
-msgid "Community"
-msgstr "Gemeenschap"
-
-msgid "About"
-msgstr "Over"
-
-msgid "Forum"
-msgstr "Forum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Contact opnemen"
-
-msgid "Support"
-msgstr "Ondersteuning"
-
-msgid "Report Bug"
-msgstr "Bug melden"
-
-msgid "Site Status"
-msgstr "Websitestatus"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: extensies bouwen en testen"
@@ -2973,20 +2949,11 @@ msgstr "Web-Ext: extensies bouwen en testen"
 msgid "Promote"
 msgstr "Promoten"
 
-msgid "Get Your Add-on Featured"
-msgstr "Uw add-on Aanbevolen krijgen"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Knop ‘Add-on downloaden’"
 
-msgid "Legal"
-msgstr "Juridisch"
-
-msgid "Report Trademark Abuse"
-msgstr "Misbruik van handelsmerk melden"
-
-msgid "Legal Notices"
-msgstr "Juridische kennisgevingen"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Bijdragen"
@@ -3018,41 +2985,15 @@ msgstr "U hebt geen codevaardigheden nodig om Firefox de meest aanpasbare browse
 msgid "See how"
 msgstr "Lees hoe"
 
-msgid "Manage Your Add-on"
-msgstr "Uw add-on beheren"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Meld u aan om uw add-on te bewerken en bij te werken"
-
-msgid "Write one code base for many browsers"
-msgstr "Schrijf één codebasis voor veel browsers"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"Met de WebExtensions-API is het eenvoudig om extensies te maken die met slechts enkele kleine aanpassingen in Firefox, Chrome, Opera en Edge kunnen werken. Lees meer over de verschillen in "
-"extensieontwikkeling tussen de vier grote browsers, en hoe u uw extensie met verschillende browsers compatibel kunt maken."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Goede voorbeelden voor cross-browser-ontwikkeling bekijken"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "Welkom terug"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Wilt u dat uw extensie wordt aanbevolen op %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Onze beleidsregels voor aanbevolen extensies geven aan wat u dient te weten."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Meer info"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "U kunt gebruikers helpen vertrouwen in uw extensie te krijgen door onze goede voorbeelden voor het overtuigen van gebruikers te volgen."
-
-msgid "See Best Practices"
-msgstr "Goede voorbeelden bekijken"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Lees meer over het beleid aangaande broncodebeoordeling."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Vermeld op deze website na succesvolle codebeoordeling. Automatische updates worden door deze website verzorgd."
@@ -3077,6 +3018,13 @@ msgstr "Add-on-ontwikkelaarshub"
 msgid "Docs"
 msgstr "Documenten"
 
+msgid "Support"
+msgstr "Ondersteuning"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Afmelden"
 
@@ -3087,64 +3035,24 @@ msgid "User Photo"
 msgstr "Gebruikersfoto"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Registreren</a> of <a href=\"%(login)s\">aanmelden</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Firefox aanpassen"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Met add-ons kunnen miljoenen Firefox-gebruikers hun surfervaring verbeteren. Als u %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s en %(css_link_open)sCSS"
-"%(link_close)s kent, hebt u al de benodigde vaardigheden om een geweldige add-on te maken."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Informatie over het maken van een add-on"
 
-msgid "Port a Chrome Extension"
-msgstr "Een Chrome-extensie porteren"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox ondersteunt WebExtension-API’s, die in de meeste gevallen compatibel zijn met de extensie-API’s die door Chrome, Opera en Edge worden ondersteund, dus uw extensies kunnen met slechts een "
-"paar aanpassingen in Firefox werken."
 
-msgid "Learn How"
-msgstr "Meer info"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Uw add-on publiceren"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Hebt u een add-on af? Dien uw extensie of thema in voor vermelding op addons.mozilla.org of onderteken en distribueer uw extensie zelf."
-
-msgid "Sign In"
-msgstr "Aanmelden"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Een opdrachtregelhulpprogramma voor het bouwen, uitvoeren en testen van extensies."
-
-msgid "Automated code tests for your add-on."
-msgstr "Geautomatiseerde codetests voor uw add-on."
-
-msgid "Compatibility Test"
-msgstr "Compatibiliteitstest"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Controleren of uw extensie compatibel is met Firefox."
-
-msgid "Live Testing"
-msgstr "Live testen"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Installeer uw extensie in Firefox tijdelijk voor live testen en debuggen."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Versie {0} beheren"
@@ -4764,6 +4672,10 @@ msgstr "Privacy voorbij browserextensies"
 msgid "Media enhancers for Firefox"
 msgstr "Mediaverbeteraars voor Firefox"
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Meer info"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
@@ -5967,6 +5879,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Verlopen verzoek om informatie ({0})"
 msgstr[1] "Verlopen verzoeken om informatie ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Ongeldige parameter ‘%s’."
@@ -6238,11 +6156,20 @@ msgstr "Terug naar add-ons"
 msgid "Footer logo"
 msgstr "Voettekstlogo"
 
+msgid "Legal Notices"
+msgstr "Juridische kennisgevingen"
+
+msgid "Report Trademark Abuse"
+msgstr "Misbruik van handelsmerk melden"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "De nieuwe website ondersteunt mobiele en desktopclients"
 
 msgid "View the new site"
 msgstr "De nieuwe website bekijken"
+
+msgid "Site Status"
+msgstr "Websitestatus"
 
 msgid "Report a bug"
 msgstr "Een bug melden"
@@ -6256,6 +6183,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "maak kennis met <b>add-ons</b>"
+
+msgid "About"
+msgstr "Over"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Firefox downloaden"

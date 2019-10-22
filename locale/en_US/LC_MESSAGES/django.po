@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1501,6 +1501,13 @@ msgstr "Low-quality, stretched, or blank image"
 msgid "Header image alignment problem"
 msgstr "Header image alignment problem"
 
+#, fuzzy
+msgid "no action"
+msgstr "More Actions:"
+
+msgid "flag for human review"
+msgstr "flag for human review"
+
 msgid "Core"
 msgstr "Core"
 
@@ -2332,18 +2339,6 @@ msgstr ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 
-msgid "View Source?"
-msgstr "View Source?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "This add-on's source code is publicly viewable."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "No, this add-on's source code is not publicly viewable."
-
 msgid "Public Stats?"
 msgstr "Public Stats?"
 
@@ -3137,49 +3132,24 @@ msgstr "Please include instructions on how to reproduce the final add-on file, e
 msgid "Read more about the source code review policy."
 msgstr "Read more about the source code review policy."
 
-#, fuzzy
-msgid "Latest News"
-msgstr "Latest Version:"
+msgid "Build best-in-class extensions and themes"
+msgstr "Build best-in-class extensions and themes"
 
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+
+# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Read more in our Blog"
-msgstr "needs more information"
+msgid "Visit the Extension Workshop"
+msgstr "Extensions"
 
 #, fuzzy
 msgid "Resources"
 msgstr "More Resources"
 
 #, fuzzy
-msgid "Porting"
-msgstr "Rating"
-
-#, fuzzy
-msgid "Community"
-msgstr "Comment"
-
-msgid "About"
-msgstr "About"
-
-msgid "Forum"
-msgstr "Forum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-#, fuzzy
-msgid "Contact Us"
-msgstr "Contacting Us"
-
-msgid "Support"
-msgstr "Support"
-
-#, fuzzy
-msgid "Report Bug"
-msgstr "Report Abuse"
-
-msgid "Site Status"
-msgstr "Site Status "
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: build & test extensions"
@@ -3187,22 +3157,11 @@ msgstr "Web-Ext: build & test extensions"
 msgid "Promote"
 msgstr "Promote"
 
-#, fuzzy
-msgid "Get Your Add-on Featured"
-msgstr "Managing Your Add-on"
-
 msgid "\"Get The Add-on\" button"
 msgstr "\"Get The Add-on\" button"
 
-msgid "Legal"
-msgstr "Legal"
-
-#, fuzzy
-msgid "Report Trademark Abuse"
-msgstr "Report Abuse"
-
-msgid "Legal Notices"
-msgstr "Legal Notices"
+msgid "Recommended Extensions program"
+msgstr "Recommended Extensions program"
 
 msgid "Contribute"
 msgstr "Contribute"
@@ -3237,43 +3196,15 @@ msgstr "You don't need coding skills to help keep Firefox the most customizable 
 msgid "See how"
 msgstr "See how"
 
-#, fuzzy
-msgid "Manage Your Add-on"
-msgstr "Managing Your Add-on"
+msgid "Get involved"
+msgstr "Get involved"
 
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Sign In to Edit and Update Your Add-on"
-
-msgid "Write one code base for many browsers"
-msgstr "Write one code base for many browsers"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "View Best Practices for Cross-Browser Development"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 
 #, fuzzy
-msgid "Welcome Back"
-msgstr "Welcome, {0}"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Learn More"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-
-msgid "See Best Practices"
-msgstr "See Best Practices"
+msgid "Learn more about the developer community"
+msgstr "Read more about the source code review policy."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3302,6 +3233,13 @@ msgstr "Add-ons Developer"
 msgid "Docs"
 msgstr "Docs"
 
+msgid "Support"
+msgstr "Support"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 #, fuzzy
 msgid "Sign Out"
 msgstr "Submit Add-on"
@@ -3313,76 +3251,26 @@ msgstr "No Photo"
 msgid "User Photo"
 msgstr "Delete User Photo"
 
-#, fuzzy, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
+#, python-format
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
 
 #, fuzzy
 msgid "Customize Firefox"
 msgstr "Easy-to-use themes for Firefox"
 
-#, fuzzy, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-
 #, fuzzy
-msgid "Learn How to Make an Add-on"
+msgid "Learn how to make an extension"
 msgstr "Learn More About Add-ons"
 
-#, fuzzy
-msgid "Port a Chrome Extension"
-msgstr "Popular Extensions"
+msgid "Ready to submit or manage your extension?"
+msgstr "Ready to submit or manage your extension?"
 
-#, fuzzy
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr "Sign in to the Developer Hub to submit or manage extensions and themes."
 
-#, fuzzy
-msgid "Learn How"
-msgstr "Learn More"
-
-#, fuzzy
-msgid "Publish Your Add-on"
-msgstr "Publish your add-ons!"
-
-#, fuzzy
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-
-#, fuzzy
-msgid "Sign In"
-msgstr "Submit Add-on"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "A command line tool to build, run, and test extensions."
-
-#, fuzzy
-msgid "Automated code tests for your add-on."
-msgstr "Please complete your add-on."
-
-#, fuzzy
-msgid "Compatibility Test"
-msgstr "Compatibility Tests"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Check to see if your extension is compatible with Firefox."
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "View Listing"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr "Register for a developer account or log in to the Developer Hub"
 
 msgid "Manage Version {0}"
 msgstr "Manage Version {0}"
@@ -5256,6 +5144,10 @@ msgstr "Privacy beyond browser extensions"
 msgid "Media enhancers for Firefox"
 msgstr "Media enhancers for Firefox"
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Learn More"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -6549,6 +6441,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "More Info Requested: {0}"
 msgstr[1] "More Info Requested: {0}"
 
+msgid "matches"
+msgstr "matches"
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr "This is the exact name of the rule used by a scanner."
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Invalid version range."
@@ -6817,12 +6715,22 @@ msgstr "Back to Add-ons"
 msgid "Footer logo"
 msgstr "Footer logo"
 
+msgid "Legal Notices"
+msgstr "Legal Notices"
+
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "Report Abuse"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "The new website supports mobile and desktop clients"
 
 #, fuzzy
 msgid "View the new site"
 msgstr "Visit the new site"
+
+msgid "Site Status"
+msgstr "Site Status "
 
 #, fuzzy
 msgid "Report a bug"
@@ -6838,6 +6746,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "get to know <b>add-ons</b>"
+
+msgid "About"
+msgstr "About"
+
+msgid "Forum"
+msgstr "Forum"
 
 #, fuzzy
 msgid "Download Firefox"

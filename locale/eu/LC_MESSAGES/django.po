@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1466,6 +1466,13 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr ""
 
+#, fuzzy
+msgid "no action"
+msgstr "Aukera gehiago:"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr ""
 
@@ -2246,18 +2253,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr ""
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr ""
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
-
 msgid "Public Stats?"
 msgstr ""
 
@@ -3015,49 +3010,25 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr ""
 
-msgid "Latest News"
+msgid "Build best-in-class extensions and themes"
 msgstr ""
 
-# 79%
-# 100%
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Read more in our Blog"
-msgstr "Eskatu informazio gehiago"
+msgid "Visit the Extension Workshop"
+msgstr "Hedapenak"
 
 #, fuzzy
 msgid "Resources"
 msgstr "Baliabide gehigarriak"
 
+# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "Porting"
-msgstr "Balorazioa"
-
-#, fuzzy
-msgid "Community"
-msgstr "Iruzkina"
-
-msgid "About"
-msgstr "Honi buruz"
-
-msgid "Forum"
-msgstr "Foroa"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Bloga"
-
-#, fuzzy
-msgid "Contact Us"
-msgstr "Kontaktuak"
-
-msgid "Support"
-msgstr "Laguntza"
-
-msgid "Report Bug"
-msgstr ""
-
-msgid "Site Status"
-msgstr ""
+msgid "WebExtensions API"
+msgstr "Hedapenak"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3065,21 +3036,11 @@ msgstr ""
 msgid "Promote"
 msgstr ""
 
-#, fuzzy
-msgid "Get Your Add-on Featured"
-msgstr "Gehigarri gehiago"
-
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
-msgid "Legal"
+msgid "Recommended Extensions program"
 msgstr ""
-
-msgid "Report Trademark Abuse"
-msgstr ""
-
-msgid "Legal Notices"
-msgstr "Lege-oharrak"
 
 msgid "Contribute"
 msgstr "Egin ekarpena"
@@ -3114,40 +3075,13 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-#, fuzzy
-msgid "Manage Your Add-on"
-msgstr "Gehigarri gehiago"
-
-msgid "Sign In to Edit and Update Your Add-on"
+msgid "Get involved"
 msgstr ""
 
-msgid "Write one code base for many browsers"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-#, fuzzy
-msgid "Welcome Back"
-msgstr "Ongi etorri, {0}"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Argibide gehiago"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
+msgid "Learn more about the developer community"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3176,6 +3110,13 @@ msgstr "Gehigarrien garatzailea"
 msgid "Docs"
 msgstr ""
 
+msgid "Support"
+msgstr "Laguntza"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Bloga"
+
 #, fuzzy
 msgid "Sign Out"
 msgstr "Bidali gehigarria"
@@ -3187,69 +3128,25 @@ msgstr "Argazkirik ez"
 msgid "User Photo"
 msgstr "Ezabatu erabiltzaile-argazkia"
 
-#, fuzzy, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Eman izena</a> edo <a href=\"%(login)s\">hasi saioa</a>"
+#, python-format
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 #, fuzzy
 msgid "Customize Firefox"
 msgstr "Gehitu Firefoxera"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+#, fuzzy
+msgid "Learn how to make an extension"
+msgstr "Arakatu gehigarri guztiak"
+
+msgid "Ready to submit or manage your extension?"
 msgstr ""
 
-msgid "Learn How to Make an Add-on"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
 
-#, fuzzy
-msgid "Port a Chrome Extension"
-msgstr "Gehigarri ezagunak"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
-
-#, fuzzy
-msgid "Learn How"
-msgstr "Argibide gehiago"
-
-#, fuzzy
-msgid "Publish Your Add-on"
-msgstr "Aurkitu gehigarriak"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
-
-#, fuzzy
-msgid "Sign In"
-msgstr "Bidali gehigarria"
-
-msgid "Web-Ext"
-msgstr ""
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr ""
-
-# %s is the application name (Firefox, Thunderbird).
-#, fuzzy
-msgid "Automated code tests for your add-on."
-msgstr "Hautatu ikonoa zure gehigarriarentzat:"
-
-#, fuzzy
-msgid "Compatibility Test"
-msgstr "Osatu gabea"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "Ikusi zerrenda"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -4873,6 +4770,10 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Argibide gehiago"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -6139,6 +6040,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Informazio gehiago"
 msgstr[1] "Informazio gehiago"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Artxibo baliogabea."
@@ -6397,12 +6304,21 @@ msgstr "Atzera gehigarrietara"
 msgid "Footer logo"
 msgstr ""
 
+msgid "Legal Notices"
+msgstr "Lege-oharrak"
+
+msgid "Report Trademark Abuse"
+msgstr ""
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 #, fuzzy
 msgid "View the new site"
 msgstr "Ikusi mugikorretarako gunea"
+
+msgid "Site Status"
+msgstr ""
 
 msgid "Report a bug"
 msgstr ""
@@ -6414,6 +6330,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "ezagutu <b>gehigarriak</b>"
+
+msgid "About"
+msgstr "Honi buruz"
+
+msgid "Forum"
+msgstr "Foroa"
 
 #, fuzzy
 msgid "Download Firefox"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-09-30 23:20+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -1393,6 +1393,13 @@ msgstr "Låg kvalitet, sträckt eller tom bild"
 msgid "Header image alignment problem"
 msgstr "Problem med sidhuvudets bildjustering"
 
+#, fuzzy
+msgid "no action"
+msgstr "Fler åtgärder"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Kärna"
 
@@ -2182,20 +2189,6 @@ msgstr ""
 "                          hur man rapporterar buggar, planerat datum för en ny utgåva,\n"
 "                          etc. Detta är endast relevant för listade tillägg."
 
-msgid "View Source?"
-msgstr "Visa källkod?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-"Om källan till ditt tillägg kan visas i vårt\n"
-"                        visningsprogram. Detta är endast relevant för listade tillägg."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Detta tilläggs källkod är offentligt."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Nej, detta tilläggs källkod är inte offentligt."
-
 msgid "Public Stats?"
 msgstr "Publik statistik?"
 
@@ -2923,41 +2916,22 @@ msgstr "Inkludera instruktioner om hur man återskapar den slutliga tilläggsfil
 msgid "Read more about the source code review policy."
 msgstr "Läs mer om granskningspolicyn för källkod."
 
-msgid "Latest News"
-msgstr "Senaste nytt"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Läs mer i vår blogg"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Utökningsverkstad"
 
 msgid "Resources"
 msgstr "Resurser"
 
-msgid "Porting"
-msgstr "Portning"
-
-msgid "Community"
-msgstr "Gemenskap"
-
-msgid "About"
-msgstr "Om"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Blog"
-msgstr "Blogg"
-
-msgid "Contact Us"
-msgstr "Kontakta oss"
-
-msgid "Support"
-msgstr "Hjälp"
-
-msgid "Report Bug"
-msgstr "Rapportera en bugg"
-
-msgid "Site Status"
-msgstr "Webbplatsstatus "
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: utveckla och testa utökningar"
@@ -2965,20 +2939,11 @@ msgstr "Web-Ext: utveckla och testa utökningar"
 msgid "Promote"
 msgstr "Främja"
 
-msgid "Get Your Add-on Featured"
-msgstr "Få ditt tillägg utvalt"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Knappen \"Hämta tillägg\""
 
-msgid "Legal"
-msgstr "Juridisk"
-
-msgid "Report Trademark Abuse"
-msgstr "Rapportera varumärkesintrång"
-
-msgid "Legal Notices"
-msgstr "Juridisk information"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Bidra"
@@ -3010,41 +2975,15 @@ msgstr "Du behöver inte kodningsfärdigheter för att gör Firefox till den mes
 msgid "See how"
 msgstr "Se hur"
 
-msgid "Manage Your Add-on"
-msgstr "Hantera ditt tillägg"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Logga in för att redigera och uppdatera ditt tillägg"
-
-msgid "Write one code base for many browsers"
-msgstr "Skriv en kodbas för många webbläsare"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"Med WebExtensions API är det enkelt att skapa utökningar som körs på Firefox, Chrome, Opera och Edge med bara några små ändringar. Läs mer om skillnaderna i utvecklingen av utökningar mellan de "
-"fyra stora webbläsarna och hur du kan göra din utökning korskompatibel med andra webbläsare."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Visa bästa praxis för utveckling av webbläsare"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "Välkommen tillbaka"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Vill du att din utökning ska visas på %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Vår policy för utvalda utökningar kommer att berätta vad du behöver veta."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Läs mer"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "Du kan hjälpa användare att få förtroende för din utökning genom att följa våra bästa praxis för att vinna användare."
-
-msgid "See Best Practices"
-msgstr "Se bästa praxis"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Läs mer om granskningspolicyn för källkod."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen."
@@ -3068,6 +3007,12 @@ msgstr "Utvecklarcenter för tillägg"
 msgid "Docs"
 msgstr "Dokument"
 
+msgid "Support"
+msgstr "Hjälp"
+
+msgid "Blog"
+msgstr "Blogg"
+
 msgid "Sign Out"
 msgstr "Logga ut"
 
@@ -3078,64 +3023,24 @@ msgid "User Photo"
 msgstr "Användarfoto"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Registrera</a> eller <a href=\"%(login)s\">Logga in</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Anpassa Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Tillägg låter miljontals Firefox-användare förbättra sin webbupplevelse. Om du har kunskap inom %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s och "
-"%(css_link_open)sCSS%(link_close)s, har du redan alla de kunskaper som behövs för att skapa ett bra tillägg."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Lär dig hur man skapar ett tillägg"
 
-msgid "Port a Chrome Extension"
-msgstr "Porta ett Chrome-tillägg"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox stöder WebExtension API, som i de flesta fall är kompatibla med tilläggs API:er som stöds av Chrome, Opera och Edge, så dina tillägg kommer att kunna köras i Firefox utan några större "
-"förändringar."
 
-msgid "Learn How"
-msgstr "Lär dig hur"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Publicera ditt tillägg"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Har du redan ett tillägg klart? Skicka in ditt tillägg eller tema för att listas på addons.mozilla.org eller signera och distribuera ditt tillägg på egen hand."
-
-msgid "Sign In"
-msgstr "Logga in"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Ett kommandoradsverktyg för att utveckla, köra och testa utökningar."
-
-msgid "Automated code tests for your add-on."
-msgstr "Automatiserade kodtester för ditt tillägg."
-
-msgid "Compatibility Test"
-msgstr "Kompatibilitetstest"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Kontrollera om din utökning är kompatibel med Firefox."
-
-msgid "Live Testing"
-msgstr "Live Testing"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Installera tillfälligt ditt tillägg i Firefox för live testning och felsökning."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Hantera version {0}"
@@ -4751,6 +4656,10 @@ msgid "Media enhancers for Firefox"
 msgstr "Medieförbättrare för Firefox"
 
 #. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Läs mer"
+
+#. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
 msgstr "Utforska tillägg"
 
@@ -5951,6 +5860,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Upphörd informationsbegäran ({0})"
 msgstr[1] "Upphörd informationsbegäran ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Ogiltig parameter \"%s\"."
@@ -6217,11 +6132,20 @@ msgstr "Tillbaka till tillägg"
 msgid "Footer logo"
 msgstr "Logotyp sidfot"
 
+msgid "Legal Notices"
+msgstr "Juridisk information"
+
+msgid "Report Trademark Abuse"
+msgstr "Rapportera varumärkesintrång"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Den nya webbplatsen stöder mobila och stationära datorer"
 
 msgid "View the new site"
 msgstr "Visa den nya webbplatsen"
+
+msgid "Site Status"
+msgstr "Webbplatsstatus "
 
 msgid "Report a bug"
 msgstr "Rapportera en bugg"
@@ -6235,6 +6159,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "lär känna <b>tillägg</b>"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Hämta Firefox"

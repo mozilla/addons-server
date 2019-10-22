@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-07 10:03+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-10-07 09:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1410,6 +1410,13 @@ msgstr "Figurë me cilësi të ulët, e shformuar, ose e zbrazët"
 msgid "Header image alignment problem"
 msgstr "Problem drejtimi figure kryeje"
 
+#, fuzzy
+msgid "no action"
+msgstr "Më Tepër Veprime"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Baza"
 
@@ -2194,18 +2201,6 @@ msgstr ""
 "Çfarëdo të dhënash që përdoruesit e zakonshëm do të donin të dinin, që jo domosdoshmërisht hyn te përmbledhja ose përshkrimi i shtesës. Si të tilla gjenden rëndom paraqitje të metash të rëndësishme "
 "të njohura, të dhëna se si të raportohen të meta, datë e përafërt e hedhjes në qarkullim e një versioni të ri, etj. Kjo vlen vetëm për shtesa të paraqitura."
 
-msgid "View Source?"
-msgstr "Të shihet Burimi?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Nëse mund të shfaqet apo jo burimi i shtesës suaj te vendi ynë përkatës në internet. Kjo vlen vetëm për shtesa të pranishme në lista."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Kodi burim i kësaj shtese mund të shihet publikisht."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Jo, kodi burim i kësaj shtese s’mund të shihet publikisht."
-
 msgid "Public Stats?"
 msgstr "Statistika Publike?"
 
@@ -2924,42 +2919,23 @@ msgstr "Ju lutemi, përfshini udhëzime se si të riprodhohet kartela përfundim
 msgid "Read more about the source code review policy."
 msgstr "Lexoni më tepër rreth rregullave të shqyrtimit të kodit burim."
 
-msgid "Latest News"
-msgstr "Lajmet e Reja"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Lexoni më tepër te Blogu ynë"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Praktikë Mbi Zgjerime"
 
 msgid "Resources"
 msgstr "Burime"
 
-msgid "Porting"
-msgstr "Kalimi në format të ri"
-
-msgid "Community"
-msgstr "Bashkësi"
-
-msgid "About"
-msgstr "Rreth"
-
-msgid "Forum"
-msgstr "Forum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Lidhuni Me Ne"
-
-msgid "Support"
-msgstr "Asistencë"
-
-msgid "Report Bug"
-msgstr "Njoftoni Një të Metë"
-
-msgid "Site Status"
-msgstr "Gjendje Sajti"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: krijoni & testoni zgjerime"
@@ -2967,20 +2943,11 @@ msgstr "Web-Ext: krijoni & testoni zgjerime"
 msgid "Promote"
 msgstr "Promovoni"
 
-msgid "Get Your Add-on Featured"
-msgstr "Nxirreni Në Pah Shtesën Tuaj"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Buton \"Merreni Shtesën\""
 
-msgid "Legal"
-msgstr "Ligjore"
-
-msgid "Report Trademark Abuse"
-msgstr "Njoftoni Shpërdorim Shenjash Tregtare"
-
-msgid "Legal Notices"
-msgstr "Shënime Ligjore"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Kontribuoni"
@@ -3012,42 +2979,15 @@ msgstr "Nuk ju duhen aftësi kodimi për të ndihmuar të mbahet Firefox-i si sh
 msgid "See how"
 msgstr "Shihni se si"
 
-msgid "Manage Your Add-on"
-msgstr "Administroni Shtesën Tuaj"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Që të Përpunoni dhe Përditësoni Shtesën Tuaj, Bëni Hyrjen"
-
-msgid "Write one code base for many browsers"
-msgstr "Shkruani një kod bazë për shumë shfletues"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
-"Me API-n WebExtensions, është e lehtë të krijohen zgjerime që, ne vetëm pak ndryshime, do të xhirojnë në Firefox, Chrome, Opera, dhe Edge. Mësoni më tepër mbi dallimet në zhvillimin e zgjerimeve "
-"mes katër shfletuesve më të mëdhenj dhe se si mund ta bëni zgjerimin tuaj të kalueshëm për shfletues të ndryshëm."
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "Shihni Praktikat Më të Mira për Zhvillim Për Shumë Shfletues"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-# %s is the user's name
-msgid "Welcome Back"
-msgstr "Mirë Se u Kthyet"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Dëshironi që zgjerimi juaj të shfaqet te %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Rregullat tona për zgjerime të zgjedhura do t’ju tregojnë se ç’duhet të dini."
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Mësoni Më Tepër"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "Duke ndjekur praktikat tona më të mira për tërheqjen e përdoruesve, mund t’i ndihmoni përdoruesit të fitojnë besim për zgjerimin tuaj."
-
-msgid "See Best Practices"
-msgstr "Shihni Praktikat Më të Mira"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Lexoni më tepër rreth rregullave të shqyrtimit të kodit burim."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt."
@@ -3072,6 +3012,13 @@ msgstr "Qendra e Zhvilluesve të Shtesave"
 msgid "Docs"
 msgstr "Dokumentim"
 
+msgid "Support"
+msgstr "Asistencë"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Dilni"
 
@@ -3082,64 +3029,24 @@ msgid "User Photo"
 msgstr "Foto Përdoruesi"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Regjistrohuni</a> ose <a href=\"%(login)s\">Hyni</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Përshtateni Firefox-in"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Shtesat u lejojnë miliona përdoruesve të Firefox-it të zgjerojnë punën e shfletuesit të tyre. Nëse dini %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, dhe "
-"%(css_link_open)sCSS%(link_close)s, keni tashmë krejt aftësitë e nevojshme për të krijuar një shtesë të fuqishme."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Mësoni Si të Krijoni një Shtesë"
 
-msgid "Port a Chrome Extension"
-msgstr "Përshtatni Për Firefox një Zgjerim Chrome-i"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox-i mbulon API WebExtension, të cilat në shumicën e rasteve janë të përputhshme me API zgjerimesh që mbulohen nga Chrome, Opera dhe Edge, kështu që me pak ndryshime zgjerimet tuaja do të jenë "
-"gati të xhirojnë në Firefox."
 
-msgid "Learn How"
-msgstr "Mësoni Se Si"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Botoni Shtesën Tuaj"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Keni gati një shtesë? Parashtrojeni zgjerimin ose temën që të paraqitet te addons.mozilla.org ose nënshkruajeni dhe shpërndajeni vetë zgjerimin tuaj."
-
-msgid "Sign In"
-msgstr "Hyni"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Një mjet rreshti urdhrash për të krijuar, xhiruar dhe testuar zgjerime."
-
-msgid "Automated code tests for your add-on."
-msgstr "Teste të automatizuar kodi për shtesën suaj."
-
-msgid "Compatibility Test"
-msgstr "Provë Përputhshmërie"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Kontrolloni për të parë nëse zgjerimi juaj është i përputhshëm me Firefox-in."
-
-msgid "Live Testing"
-msgstr "Testim <em>Live</em>"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Instalojeni përkohësisht zgjerimin tuaj në Firefox për testim dhe diagnostikim <em>live</em>."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 # %s is the version number.
 msgid "Manage Version {0}"
@@ -4767,6 +4674,10 @@ msgstr "Zgjerime privatësie tej shfletuesish"
 msgid "Media enhancers for Firefox"
 msgstr "Thellues mediash për Firefox-in"
 
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Mësoni Më Tepër"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -5971,6 +5882,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Kërkesë e Skaduar Për të Dhëna ({0})"
 msgstr[1] "Kërkesa të Skaduara Për të Dhëna ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Parametër i pavlefshëm \"%s\"."
@@ -6237,11 +6154,20 @@ msgstr "Mbrapsht te Shtesat"
 msgid "Footer logo"
 msgstr "Logo fundfaqeje"
 
+msgid "Legal Notices"
+msgstr "Shënime Ligjore"
+
+msgid "Report Trademark Abuse"
+msgstr "Njoftoni Shpërdorim Shenjash Tregtare"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Sajti i ri mbulon klientë celularë dhe desktop"
 
 msgid "View the new site"
 msgstr "Shihni sajtin e ri"
+
+msgid "Site Status"
+msgstr "Gjendje Sajti"
 
 msgid "Report a bug"
 msgstr "Njoftoni një të metë"
@@ -6255,6 +6181,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "njihuni me <b>shtesat</b>"
+
+msgid "About"
+msgstr "Rreth"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Shkarkoni Firefox-in"
@@ -6412,8 +6344,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Jepni përkatësinë e plotë email-i njëpërdorimsh që duhet bllokuar. Nuk mbulohen shenja të gjithëpushtetshme: nëse keni nevojë t’i përdorni, ose ju duhet të gjeni përputhje me email-in e plotë dhe jo"
-" thjesht me pjesën e përkatësisë, më mirë përdorni \"Kufizime email-i përdoruesi\"."
+"Jepni përkatësinë e plotë email-i njëpërdorimsh që duhet bllokuar. Nuk mbulohen shenja të gjithëpushtetshme: nëse keni nevojë t’i përdorni, ose ju duhet të gjeni përputhje me email-in e plotë dhe "
+"jo thjesht me pjesën e përkatësisë, më mirë përdorni \"Kufizime email-i përdoruesi\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
