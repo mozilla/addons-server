@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 15:37+0000\n"
+"PO-Revision-Date: 2019-10-22 16:11+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -995,7 +995,7 @@ msgid "Download Firefox extensions that can be unpredictable and creative, yet u
 msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, totevia utile pro ille labores curiose."
 
 msgid "Device Features & Location"
-msgstr "Functionalitates del apparato & position"
+msgstr "Functiones e position del apparato"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
 msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque recercas rapide, libera ressources de systema, prende notas, e multo plus."
@@ -2121,7 +2121,7 @@ msgid "Requires Payment?"
 msgstr "Require illo un pagamento?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr "Marca iste option si iste functionalitates del nucleo del additivo require alcun forma de pagamento previe o post un periodo de prova pro functionar."
+msgstr "Marca iste option si le functiones essential del additivo require un forma de pagamento in avantia o post un periodo de prova pro poter functionar."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Iste additivo necessita pagamento, servicios o software non-libere, o altere hardware."
