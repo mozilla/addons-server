@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 16:19+0000\n"
+"PO-Revision-Date: 2019-10-22 16:46+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1023,8 +1023,8 @@ msgstr "Securitate & confidentialitate"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le furtive avisos publicitari que te tracia, rader facilemente le historia de navigation, e "
-"multo plus."
+"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le furtive avisos publicitari que te tracia, rader facilemente le chronologia de navigation,"
+" e multo plus."
 
 msgid "Social Networking"
 msgstr "Retes social"
@@ -3657,7 +3657,7 @@ msgstr "Navigation anonyme {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Naviga le Web anonyme. Con identitate disguisate: pare mesmo como si tu explora ab un altere pais."
+msgstr "Naviga anonymemente. Move te in le Web con identitate disguisate – mesmo appare como si tu te connecte ab un altere pais."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
@@ -4335,7 +4335,7 @@ msgstr "Gere tu cookies {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr "Prende plen controlo del cookies que tu ha accumulate durante le exploration."
+msgstr "Prende le controlo total sur le cookies que tu ha accumulate durante le navigation."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4631,7 +4631,7 @@ msgstr "Illos adde functiones a Firefox pro render le navigation plus veloce, pl
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
-msgstr "Explora tote le extensiones"
+msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
@@ -4651,7 +4651,7 @@ msgstr "Saper plus"
 
 #. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
-msgstr "Explora extensiones"
+msgstr "Explorar extensiones"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
