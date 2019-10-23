@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 16:19+0000\n"
+"PO-Revision-Date: 2019-10-22 19:31+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -772,7 +772,7 @@ msgid "Information request altered"
 msgstr "Requesta de informationes alterate"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Requesta de informationes clarate per disveloppator sur {addon} {version}."
+msgstr "Requesta de information removite per disveloppator sur {addon} {version}."
 
 msgid "Information request removed"
 msgstr "Requesta de informationes removite"
@@ -929,7 +929,7 @@ msgid "Feeds, News & Blogging"
 msgstr "Feeds de novas, novas e blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Discarga extensiones de Firefox que remove disordine de maniera que tu pote restar actualisate sur le medios social, leger blogs, syndicationes RSS, reducer le fatiga ocular e multo plus."
+msgstr "Discarga extensiones de Firefox que remove disordine de maniera que tu pote restar actualisate sur le retes social, leger blogs, syndicationes RSS, reducer le fatiga ocular e multo plus."
 
 msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
@@ -971,7 +971,7 @@ msgid "Social & Communication"
 msgstr "Social & communication"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Discarga extensiones de Firefox pro optimisar le medios social e messageria instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video, e multo plus."
+msgstr "Discarga extensiones de Firefox pro optimisar le retes social e messageria instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video, e multo plus."
 
 msgid "Tabs"
 msgstr "Schedas"
@@ -1023,8 +1023,8 @@ msgstr "Securitate & confidentialitate"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le furtive avisos publicitari que te tracia, rader facilemente le historia de navigation, e "
-"multo plus."
+"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le furtive avisos publicitari que te tracia, rader facilemente le chronologia de navigation,"
+" e multo plus."
 
 msgid "Social Networking"
 msgstr "Retes social"
@@ -3404,7 +3404,7 @@ msgstr "Controla le grammatica automaticamente {start_sub_heading}con {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: medios social, e-mail, documentos e multo plus."
+msgstr "Obtene auxilio grammatical ubicunque tu scribe sur le web: retes social, e-mail, documentos e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3657,7 +3657,7 @@ msgstr "Navigation anonyme {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Naviga le Web anonyme. Con identitate disguisate: pare mesmo como si tu explora ab un altere pais."
+msgstr "Naviga anonymemente. Move te in le Web con identitate disguisate – mesmo appare como si tu te connecte ab un altere pais."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
@@ -3757,7 +3757,7 @@ msgstr "Gere tu contrasignos {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr "Salva contrasignos con securitate e accede a illos trans plure apparatos."
+msgstr "Salva contrasignos con securitate e accede a illos inter plure apparatos."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3829,7 +3829,7 @@ msgstr "Minus stress {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr "Rende tu cosas facite con un utile agenda que se synchronisa trans tu apparatos."
+msgstr "Sia efficace con un utile lista de cosas a facer que se synchronisa inter tu apparatos."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4073,7 +4073,7 @@ msgstr "Dele le datos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr "Clara le cache de tu navigator con un clic o un pulsata de clave."
+msgstr "Vacua le cache de tu navigator con un clic o un pulsata de clave."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4121,7 +4121,7 @@ msgstr "Dele tu chronologia de navigation {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Dele le chronologia de tu navigation. Specifica un numero de dies personalisate pro retener le chronologia del navigator ante que illo es clarate automaticamente."
+msgstr "Dele le chronologia de tu navigation. Specifica le numero de dies a retener le chronologia del navigator ante que illo se elimina automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4153,7 +4153,7 @@ msgstr "Naviga privatemente {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr "Cerca reservatemente con solo un clic."
+msgstr "Cerca privatemente con un sol clic."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4335,7 +4335,7 @@ msgstr "Gere tu cookies {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr "Prende plen controlo del cookies que tu ha accumulate durante le exploration."
+msgstr "Prende le controlo total sur le cookies que tu ha accumulate durante le navigation."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4631,11 +4631,11 @@ msgstr "Illos adde functiones a Firefox pro render le navigation plus veloce, pl
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
-msgstr "Explora tote le extensiones"
+msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr "Synchronisar extensiones intra apparatos"
+msgstr "Synchronisar extensiones inter apparatos"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -4651,7 +4651,7 @@ msgstr "Saper plus"
 
 #. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
-msgstr "Explora extensiones"
+msgstr "Explorar extensiones"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5017,7 +5017,7 @@ msgid "Include HTML, links, source code or code snippets. Reviews are meant to b
 msgstr "Includer HTML, ligamines, codice fonte o fragmentos de codice. Les revisiones es intendite pro esser texto solmente."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Facer declarationes false, denigrar autores del additivos o insultar personalmente illes."
+msgstr "Facer declarationes false, denigrar autores del additivos o insultar les personalmente."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "Includer email, numero de telephono o altere detalios personal tue proprie o de quicunque altere."
@@ -5600,7 +5600,7 @@ msgid "Advanced Search"
 msgstr "Recerca avantiate"
 
 msgid "clear search"
-msgstr "clarar le recerca"
+msgstr "rader le recerca"
 
 msgid "Process Reviews"
 msgstr "Processar revisiones"
@@ -5725,16 +5725,16 @@ msgid "Enable Auto-Approval"
 msgstr "Activar auto-approbation"
 
 msgid "Clear information request"
-msgstr "Clarar requesta de informationes"
+msgstr "Rader requesta de information"
 
 msgid "Clear Admin Code Review Flag"
-msgstr "Clarar le flag de revision del codice de administrator"
+msgstr "Remover le signal de revision de codice per administrator"
 
 msgid "Clear Admin Content Review Flag"
-msgstr "Clarar le flag de revision del contento de administrator"
+msgstr "Remover le signal de revision de contento per administrator"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Clarar le flag de revision del thema static de administrator"
+msgstr "Remover le signal de revision de thema static per administrator"
 
 msgid "(admin)"
 msgstr "(administrator)"
