@@ -24,7 +24,7 @@
         <p>{% trans %}
           Stay up-to-date on news and events for Firefox extension developers.{% endtrans %}
         </p>
-        <form class="DevHub-Connect-newsletter-form" id="newsletter_form" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+        <form class="DevHub-Connect-newsletter-form" id="newsletter_form" name="newsletter_form" action="https://www.mozilla.org/en-US/newsletter/" method="post" data-no-csrf>
           <input type="hidden" id="fmt" name="fmt" value="H">
           <input type="hidden" id="newsletters" name="newsletters" value="about-addons">
           <div id="newsletter_errors" class="newsletter_errors"></div>
