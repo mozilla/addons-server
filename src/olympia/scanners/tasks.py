@@ -8,12 +8,22 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia.constants.scanners import CUSTOMS, SCANNERS, WAT, YARA
+from olympia.constants.scanners import (
+    ACTIONS,
+    CUSTOMS,
+    FLAG_FOR_HUMAN_REVIEW,
+    NO_ACTION,
+    SCANNERS,
+    WAT,
+    YARA,
+)
+from olympia.amo.celery import task
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
+from olympia.versions.models import Version
 
-from .models import ScannerResult
+from .models import ScannerResult, ScannerRule
 
 log = olympia.core.logger.getLogger('z.scanners.task')
 
@@ -185,3 +195,56 @@ def run_yara(results, upload_pk):
                       upload_pk)
 
     return results
+
+
+def _no_action(version):
+    """This action does nothing."""
+    pass
+
+
+def _flag_for_human_review(version):
+    """This action flags the version for human review."""
+    # TODO: implement me
+    pass
+
+
+@task
+def run_action(version_id):
+    log.info('Checking rules and actions for version %s.', version_id)
+    version = Version.objects.get(pk=version_id)
+
+    rule = (
+        ScannerRule.objects.filter(
+            scannerresult__version=version, is_active=True
+        )
+        .order_by(
+            # The `-` sign means descending order.
+            '-action'
+        )
+        .first()
+    )
+
+    if not rule:
+        log.info('No action to execute for version %s.', version_id)
+        return
+
+    action_id = rule.action
+    action_name = ACTIONS.get(action_id, None)
+
+    if not action_name:
+        raise Exception("invalid action %s" % action_id)
+
+    ACTION_FUNCTIONS = {
+        NO_ACTION: _no_action,
+        FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
+    }
+
+    action_function = ACTION_FUNCTIONS.get(action_id, None)
+
+    if not action_function:
+        raise Exception("no implementation for action %s" % action_id)
+
+    # We have a valid action to execute, so let's do it!
+    log.info('Starting action "%s" for version %s.', action_name, version_id)
+    action_function(version)
+    log.info('Ending action "%s" for version %s.', action_name, version_id)
