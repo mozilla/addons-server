@@ -88,6 +88,13 @@ def queue_tabnav(context):
                 ('extension', 'queue_extension',
                  '🛠️ ' + new_text.format(counts['extension'])),
             ))
+            tabnav.append(
+                ('needs_human_review', 'queue_needs_human_review',
+                 (ungettext('Need Human Review ({0})',
+                            'Need Human Review ({0})',
+                            counts['needs_human_review'])
+                  .format(counts['needs_human_review']))),
+            )
         if acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
             new_text = ugettext('New ({0})')
             update_text = ungettext(

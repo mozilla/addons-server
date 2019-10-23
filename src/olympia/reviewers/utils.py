@@ -253,38 +253,79 @@ class ContentReviewTable(AutoApprovedTable):
         return reverse('reviewers.review', args=['content', record.slug])
 
 
+class NeedsHumanReviewTable(AutoApprovedTable):
+    def render_addon_name(self, record):
+        rval = [jinja2.escape(record.name)]
+        versions_needing_human_review = list(
+            record.versions.values_list('pk', flat=True).filter(
+                channel=amo.RELEASE_CHANNEL_LISTED,
+                needs_human_review=True)
+        )
+        if versions_needing_human_review:
+            url = reverse('reviewers.review', args=[record.slug])
+            rval.append(
+                '<a href="%s?needs_human_review_versions_ids=%s">%s</a>' % (
+                    url,
+                    ','.join(map(str, versions_needing_human_review)),
+                    _('Listed versions needing human review ({0})').format(
+                        len(versions_needing_human_review))
+                )
+            )
+        unlisted_versions_needing_human_review = list(
+            record.versions.values_list('pk', flat=True).filter(
+                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                needs_human_review=True)
+        )
+        if unlisted_versions_needing_human_review:
+            url = reverse('reviewers.review', args=['unlisted', record.slug])
+            rval.append(
+                '<a href="%s?needs_human_review_versions_ids=%s">%s</a>' % (
+                    url,
+                    ','.join(map(str, unlisted_versions_needing_human_review)),
+                    _('Unlisted versions needing human review ({0})').format(
+                        len(unlisted_versions_needing_human_review))
+                )
+            )
+        return ''.join(rval)
+
+
 class ReviewHelper(object):
     """
     A class that builds enough to render the form back to the user and
     process off to the correct handler.
     """
     def __init__(self, request=None, addon=None, version=None,
-                 content_review_only=False):
+                 content_review_only=False,
+                 needs_human_review_versions=None):
         self.handler = None
         self.required = {}
         self.addon = addon
         self.version = version
         self.content_review_only = content_review_only
-        self.set_review_handler(request)
+        self.set_review_handler(
+            request, needs_human_review_versions=needs_human_review_versions)
         self.actions = self.get_actions(request)
 
     def set_data(self, data):
         self.handler.set_data(data)
 
-    def set_review_handler(self, request):
+    def set_review_handler(self, request, needs_human_review_versions=None):
         if (self.version and
                 self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
             self.handler = ReviewUnlisted(
                 request, self.addon, self.version, 'unlisted',
-                content_review_only=self.content_review_only)
+                content_review_only=self.content_review_only,
+                needs_human_review_versions=needs_human_review_versions)
         elif self.addon.status == amo.STATUS_NOMINATED:
             self.handler = ReviewAddon(
                 request, self.addon, self.version, 'nominated',
-                content_review_only=self.content_review_only)
+                content_review_only=self.content_review_only,
+                needs_human_review_versions=needs_human_review_versions)
         else:
             self.handler = ReviewFiles(
                 request, self.addon, self.version, 'pending',
-                content_review_only=self.content_review_only)
+                content_review_only=self.content_review_only,
+                needs_human_review_versions=needs_human_review_versions)
 
     def get_actions(self, request):
         actions = OrderedDict()
@@ -456,7 +497,7 @@ class ReviewHelper(object):
 class ReviewBase(object):
 
     def __init__(self, request, addon, version, review_type,
-                 content_review_only=False):
+                 content_review_only=False, needs_human_review_versions=None):
         self.request = request
         if request:
             self.user = self.request.user
@@ -471,9 +512,10 @@ class ReviewBase(object):
              else 'extension_%s') % review_type)
         self.files = self.version.unreviewed_files if self.version else []
         self.content_review_only = content_review_only
+        self.needs_human_review_versions = needs_human_review_versions or []
 
     def set_addon(self, **kw):
-        """Alters addon and sets reviewed timestamp on version."""
+        """Alter addon, set reviewed timestamp on version being reviewed."""
         self.addon.update(**kw)
         self.version.update(reviewed=datetime.now())
 
@@ -491,6 +533,11 @@ class ReviewBase(object):
                 file.hide_disabled_file()
             file.status = status
             file.save()
+
+    def unset_needs_human_review(self):
+        """Unset needs_human_review flag on versions."""
+        for version in self.needs_human_review_versions:
+            version.update(needs_human_review=False)
 
     def set_recommended(self):
         try:
@@ -651,6 +698,7 @@ class ReviewBase(object):
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_APPROVED, self.files)
         self.set_recommended()
+        self.unset_needs_human_review()
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
 
@@ -691,6 +739,7 @@ class ReviewBase(object):
         # Hold onto the status before we change it.
         status = self.addon.status
 
+        self.unset_needs_human_review()
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_NULL)
         self.set_files(amo.STATUS_DISABLED, self.files,
@@ -781,6 +830,8 @@ class ReviewBase(object):
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
+        self.unset_needs_human_review()
+
         # Assign reviewer incentive scores.
         if self.request:
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
@@ -806,6 +857,7 @@ class ReviewBase(object):
             self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
             self.log_action(action_id, version=version, files=files,
                             timestamp=timestamp)
+        self.unset_needs_human_review()
         self.addon.update_status()
         self.data['version_numbers'] = u', '.join(
             str(v.version) for v in self.data['versions'])

@@ -152,13 +152,13 @@ function initReviewActions() {
     }
 
     /* Item History */
-    $('#review-files tr.listing-header').click(function() {
+    $('.review-files tr.listing-header').click(function() {
         $(this).next('tr.listing-body').toggle();
     });
 
     var storage = z.Storage(),
         eh_setting = storage.get('reviewers_history'),
-        eh_els = $('#review-files tr.listing-body'),
+        eh_els = $('#history .review-files tr.listing-body'),
         eh_size = eh_els.length;
     if(!eh_setting) eh_setting = 3;
 

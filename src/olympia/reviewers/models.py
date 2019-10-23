@@ -1078,8 +1078,9 @@ class AutoApprovalSummary(ModelBase):
             'should_be_delayed': ugettext(
                 "Delayed because it's the first listed version")
         }
-        return (mapping[key] for key, value in sorted(verdict_info.items())
-                if value)
+        return list(
+            mapping[key] for key, value in sorted(verdict_info.items())
+            if value)
 
     @classmethod
     def _count_linter_flag(cls, version, flag):

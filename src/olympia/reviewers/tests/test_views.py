@@ -4648,6 +4648,44 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Previously deleted entries' not in response.content
 
+    def test_versions_that_needs_human_review(self):
+        version2 = version_factory(addon=self.addon, needs_human_review=True)
+        version3 = version_factory(addon=self.addon, needs_human_review=True)
+        # Make sure the current version (which has changed with the versions
+        # we just added) is auto-approved, and the user is a post-reviewer.
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+        )
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        # Load the review page as if we're a reviewer. Pass the version ids
+        # like they would have been done if coming from the needs human review
+        # queue page.
+        response = self.client.get(
+            self.url, {
+                'needs_human_review_versions_ids':
+                    ','.join((str(version2.pk), str(version3.pk)))})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#needs-human-review')
+        assert len(doc('#needs-human-review .files .needs-human-review')) == 2
+
+        # Make sure the regular versions history is also there.
+        assert len(doc('#versions-history .files')) == 3
+
+        # Submit an approval and check that the versions have been unflagged.
+        selector = (
+            '#needs-human-review input[name=needs_human_review_versions_ids]')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'needs_human_review_versions_ids': doc(selector)[0].value
+        })
+        assert response.status_code == 302
+
+        version2.reload()
+        version3.reload()
+        assert not version2.needs_human_review
+        assert not version3.needs_human_review
+
 
 class TestAbuseReportsView(ReviewerTest):
     def setUp(self):
