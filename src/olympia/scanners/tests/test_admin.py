@@ -14,8 +14,8 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import CUSTOMS, WAT, YARA
-from olympia.scanners.admin import MatchesFilter, ScannerResultAdmin
-from olympia.scanners.models import ScannerResult
+from olympia.scanners.admin import ScannerResultAdmin, MatchesFilter
+from olympia.scanners.models import ScannerResult, ScannerRule
 
 
 class TestScannerResultAdmin(TestCase):
@@ -116,14 +116,15 @@ class TestScannerResultAdmin(TestCase):
             scanner=CUSTOMS, version=addon_factory().current_version
         )
 
-        with self.assertNumQueries(9):
-            # 9 queries:
+        with self.assertNumQueries(10):
+            # 10 queries:
             # - 2 transaction savepoints because of tests
             # - 2 user and groups
             # - 2 COUNT(*) on scanners results for pagination and total display
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all add-ons translations in one query
+            # - 1 all scanner rules in one query
             response = self.client.get(
                 self.list_url, {MatchesFilter.parameter_name: 'all'}
             )
@@ -136,8 +137,9 @@ class TestScannerResultAdmin(TestCase):
         # Create one entry without matches
         ScannerResult.objects.create(scanner=YARA)
         # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
         with_matches = ScannerResult(scanner=YARA)
-        with_matches.add_yara_result(rule='some-rule')
+        with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
 
         response = self.client.get(self.list_url)
@@ -149,8 +151,9 @@ class TestScannerResultAdmin(TestCase):
         # Create one entry without matches
         ScannerResult.objects.create(scanner=YARA)
         # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
         with_matches = ScannerResult(scanner=YARA)
-        with_matches.add_yara_result(rule='some-rule')
+        with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
 
         response = self.client.get(

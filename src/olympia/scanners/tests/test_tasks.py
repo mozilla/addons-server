@@ -6,9 +6,9 @@ from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.constants.scanners import CUSTOMS, WAT
+from olympia.constants.scanners import CUSTOMS, WAT, YARA
 from olympia.files.tests.test_models import UploadTest
-from olympia.scanners.models import ScannerResult
+from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.scanners.tasks import run_scanner, run_customs, run_wat, run_yara
 
 
@@ -267,8 +267,9 @@ class TestRunYara(UploadTest, TestCase):
     def test_run_with_mocks(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
 
+        rule = ScannerRule.objects.create(name='always_true', scanner=YARA)
         # This compiled rule will match for all files in the xpi.
-        rules = yara.compile(source='rule always_true { condition: true }')
+        rules = yara.compile(source='rule %s { condition: true }' % rule.name)
         with mock.patch('yara.compile') as yara_compile_mock:
             yara_compile_mock.return_value = rules
             received_results = run_yara(self.results, self.upload.pk)
@@ -280,12 +281,12 @@ class TestRunYara(UploadTest, TestCase):
         assert yara_result.upload == self.upload
         assert len(yara_result.results) == 2
         assert yara_result.results[0] == {
-            'rule': 'always_true',
+            'rule': rule.name,
             'tags': [],
             'meta': {'filename': 'index.js'},
         }
         assert yara_result.results[1] == {
-            'rule': 'always_true',
+            'rule': rule.name,
             'tags': [],
             'meta': {'filename': 'manifest.json'},
         }

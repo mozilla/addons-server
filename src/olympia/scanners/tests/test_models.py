@@ -2,7 +2,7 @@ from olympia.amo.tests import TestCase, addon_factory
 
 from olympia.constants.scanners import CUSTOMS, WAT, YARA
 from olympia.files.models import FileUpload
-from olympia.scanners.models import ScannerResult
+from olympia.scanners.models import ScannerResult, ScannerRule
 
 
 class FakeYaraMatch(object):
@@ -66,16 +66,20 @@ class TestScannerResult(TestCase):
         assert result.results == [
             {'rule': match.rule, 'tags': match.tags, 'meta': match.meta}
         ]
-        assert result.has_matches is True
 
-    def test_save_set_has_matches_if_none(self):
+    def test_save_set_has_matches(self):
         result = self.create_yara_result()
+        rule = ScannerRule.objects.create(
+            name='some rule name',
+            scanner=result.scanner
+        )
+
         result.has_matches = None
         result.save()
         assert result.has_matches is False
 
         result.has_matches = None
-        result.results = [{}]  # Fake match
+        result.results = [{'rule': rule.name}]  # Fake match
         result.save()
         assert result.has_matches is True
 
@@ -88,11 +92,11 @@ class TestScannerResult(TestCase):
 
         assert result.upload is None
 
-    def test_empty_matched_rules(self):
+    def test_extract_rule_names_with_no_yara_results(self):
         result = self.create_yara_result()
-        assert result.matched_rules == []
+        assert result.extract_rule_names() == []
 
-    def test_matched_rules(self):
+    def test_extract_rule_names_with_yara_results(self):
         result = self.create_yara_result()
         rule1 = 'rule-1'
         rule2 = 'rule-2'
@@ -103,9 +107,9 @@ class TestScannerResult(TestCase):
                 rule=match.rule, tags=match.tags, meta=match.meta
             )
 
-        assert result.matched_rules == [rule1, rule2]
+        assert result.extract_rule_names() == [rule1, rule2]
 
-    def test_matched_rules_returns_unique_list(self):
+    def test_extract_rule_names_returns_unique_list(self):
         result = self.create_yara_result()
         rule1 = 'rule-1'
         rule2 = 'rule-2'
@@ -116,8 +120,8 @@ class TestScannerResult(TestCase):
                 rule=match.rule, tags=match.tags, meta=match.meta
             )
 
-        assert result.matched_rules == [rule1, rule2]
+        assert result.extract_rule_names() == [rule1, rule2]
 
-    def test_matched_rules_returns_empty_list_when_not_yara(self):
+    def test_extract_rule_names_returns_empty_list_when_not_yara(self):
         result = self.create_customs_result()
-        assert result.matched_rules == []
+        assert result.extract_rule_names() == []
