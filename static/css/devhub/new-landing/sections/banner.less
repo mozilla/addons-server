@@ -38,6 +38,10 @@
     right: 0;
     z-index: -1;
 
+    @media @medium {
+        background-size: (@grid-max - (@medium-side-margin *2))  auto;
+    }
+
     .html-rtl & {
         transform: scaleX(-1);
     }

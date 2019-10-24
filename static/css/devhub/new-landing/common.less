@@ -5,10 +5,14 @@
     color: @color-text;
     padding: @side-margin;
 
+    @media @medium {
+      padding: @medium-side-margin;
+    }
+
     @media @large {
       margin: 0 auto;
       max-width: @grid-max;
-      padding: 0 @side-margin;
+      padding: 0 @medium-side-margin;
     }
   }
 
@@ -73,6 +77,10 @@
   display: flex;
   position: relative;
   padding: 0 @side-margin;
+
+  @media @medium {
+    padding: 0 @medium-side-margin;
+  }
 }
 
 .DevHub-content-header {
