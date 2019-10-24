@@ -1849,6 +1849,9 @@ MOZILLA_NEWLETTER_URL = env(
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
 
+EXTENSION_WORKSHOP_URL = env(
+    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com')
+
 # Sectools
 SCANNER_TIMEOUT = 60  # seconds
 CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
