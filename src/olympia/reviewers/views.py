@@ -174,6 +174,12 @@ def dashboard(request):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         ),
         ))
+        sections[ugettext('Need Human Review')] = [(
+            ugettext('Need Human Review ({0})').format(
+                Addon.objects.get_needs_human_review_queue(
+                    admin_reviewer=admin_reviewer).count()),
+            reverse('reviewers.queue_needs_human_review'))
+        ]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
