@@ -115,7 +115,7 @@
         }
       }
 
-      &.DevHub-Navigation-Button,
+      &.DevHub-Navigation-Open,
       .DevHub-Navigation-Close {
         margin: 0 0 0 auto;
         padding: 0 0 0 @side-margin;
@@ -133,16 +133,20 @@
         }
 
         a {
-          padding: 4px;
+          padding: 1px 4px;
           display: inline-block;
           font-weight: 800;
-          font-size: 18px;
+          font-size: 22px;
         }
       }
 
       .DevHub-Navigation-Close {
           display: none;
           border-width: 0;
+          a {
+            padding: 4px;
+            font-weight: 18px
+          }
       }
 
       a {
@@ -178,7 +182,7 @@
          flex-grow: 0;
       }
 
-      .DevHub-Navigation-Button {
+      .DevHub-Navigation-Open {
         display: none;
       }
 
