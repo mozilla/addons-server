@@ -52,7 +52,6 @@ def get_fxa_token(code, config):
 
 
 def get_fxa_profile(token, config):
-    log.debug('Getting profile')
     with statsd.timer('accounts.fxa.identify.profile'):
         response = requests.get(
             settings.FXA_PROFILE_HOST + '/profile', headers={
@@ -62,7 +61,6 @@ def get_fxa_profile(token, config):
     if response.status_code == 200:
         profile = response.json()
         if profile.get('email'):
-            log.debug('Got profile {profile}'.format(profile=profile))
             return profile
         else:
             log.info('Incomplete profile {profile}'.format(profile=profile))
