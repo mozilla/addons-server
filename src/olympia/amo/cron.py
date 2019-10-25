@@ -15,6 +15,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.files.models import FileUpload
 from olympia.lib.es.utils import raise_if_reindex_in_progress
+from olympia.scanners.models import ScannerResult
 
 from . import tasks
 
@@ -56,6 +57,9 @@ def gc(test_result=True):
             except OSError:
                 pass
         file_upload.delete()
+
+    # Delete stale ScannerResults.
+    ScannerResult.objects.filter(upload=None, version=None).delete()
 
 
 def category_totals():

@@ -1,8 +1,10 @@
 from unittest import mock
 
 from olympia.amo.cron import gc
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.constants.scanners import YARA
 from olympia.files.models import FileUpload
+from olympia.scanners.models import ScannerResult
 
 
 @mock.patch('olympia.amo.cron.storage')
@@ -45,3 +47,33 @@ class TestGC(TestCase):
         assert storage_mock.delete.call_count == 2
         assert storage_mock.delete.call_args_list[0][0][0] == fu_older.path
         assert storage_mock.delete.call_args_list[1][0][0] == fu_old.path
+
+    def test_scanner_results_deletion(self, storage_mock):
+        old_upload = FileUpload.objects.create(path='/tmp/old', name='old')
+        old_upload.update(created=self.days_ago(8))
+
+        new_upload = FileUpload.objects.create(path='/tmp/new', name='new')
+        new_upload.update(created=self.days_ago(6))
+
+        version = version_factory(addon=addon_factory())
+
+        # upload = None, version = None --> DELETED
+        ScannerResult.objects.create(scanner=YARA)
+        # upload will become None because it is bound to an old upload, version
+        # = None --> DELETED
+        ScannerResult.objects.create(scanner=YARA, upload=old_upload)
+        # upload is not None, version = None --> KEPT
+        ScannerResult.objects.create(scanner=YARA, upload=new_upload)
+        # upload = None, version is not None --> KEPT
+        ScannerResult.objects.create(scanner=YARA, version=version)
+        # upload is not None, version is not None --> KEPT
+        ScannerResult.objects.create(scanner=YARA,
+                                     upload=new_upload,
+                                     version=version)
+
+        assert ScannerResult.objects.count() == 5
+
+        gc()
+
+        assert ScannerResult.objects.count() == 3
+        assert storage_mock.delete.call_count == 1
