@@ -944,16 +944,19 @@ class TestUserEmailField(TestCase):
 
     def test_success(self):
         user = UserProfile.objects.get(pk=2519)
-        assert UserEmailField().clean(user.email) == user
+        assert UserEmailField(
+            queryset=UserProfile.objects.all()).clean(user.email) == user
 
     def test_failure(self):
         with pytest.raises(forms.ValidationError):
-            UserEmailField().clean('xxx')
+            UserEmailField(
+                queryset=UserProfile.objects.all()).clean('xxx')
 
     def test_empty_email(self):
         UserProfile.objects.create(email='')
         with pytest.raises(forms.ValidationError) as exc_info:
-            UserEmailField().clean('')
+            UserEmailField(
+                queryset=UserProfile.objects.all()).clean('')
 
         assert exc_info.value.messages[0] == 'This field is required.'
 
