@@ -253,7 +253,7 @@ class Migration(migrations.Migration):
                 ('role', models.SmallIntegerField(choices=[(5, 'Owner'), (4, 'Developer')], default=5)),
                 ('listed', models.BooleanField(default=True, verbose_name='Listed')),
                 ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
-                ('user', olympia.users.models.UserForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
             ],
             options={
                 'db_table': 'addons_users_pending_confirmation',
@@ -268,7 +268,7 @@ class Migration(migrations.Migration):
                 ('listed', models.BooleanField(default=True, verbose_name='Listed')),
                 ('position', models.IntegerField(default=0)),
                 ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
-                ('user', olympia.users.models.UserForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
             ],
             options={
                 'db_table': 'addons_users',

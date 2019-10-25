@@ -28,7 +28,7 @@ from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, DisposableEmailDomainRestriction, generate_auth_id,
     EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
-    IPReputationRestriction, UserEmailField, UserForeignKey, UserProfile)
+    IPReputationRestriction, UserEmailField, UserProfile)
 from olympia.zadmin.models import set_config
 
 
@@ -1059,41 +1059,6 @@ class TestUserManager(TestCase):
         Group.objects.get(name="Admins") in user.groups.all()
         assert user.is_staff
         assert user.is_superuser
-
-
-def test_user_foreign_key_supports_migration():
-    """Tests serializing UserForeignKey in a simple migration.
-
-    Since `UserForeignKey` is a ForeignKey migrations pass `to=` explicitly
-    and we have to pop it in our __init__.
-    """
-    fields = {
-        'charfield': UserForeignKey(),
-    }
-
-    migration = type(str('Migration'), (migrations.Migration,), {
-        'operations': [
-            migrations.CreateModel(
-                name='MyModel', fields=tuple(fields.items()),
-                bases=(models.Model,)
-            ),
-        ],
-    })
-    writer = MigrationWriter(migration)
-    output = writer.as_string()
-
-    # Just make sure it runs and that things look alright.
-    result = safe_exec(output, globals_=globals())
-
-    assert 'Migration' in result
-
-
-def test_user_foreign_key_field_deconstruct():
-    field = UserForeignKey()
-    name, path, args, kwargs = field.deconstruct()
-    new_field_instance = UserForeignKey()
-
-    assert kwargs['to'] == new_field_instance.to
 
 
 @pytest.mark.django_db
