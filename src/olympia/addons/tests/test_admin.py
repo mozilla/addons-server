@@ -3,6 +3,7 @@ from pyquery import PyQuery as pq
 from django.conf import settings
 from django.contrib import admin
 
+from olympia import amo
 from olympia.addons.admin import ReplacementAddonAdmin
 from olympia.addons.models import ReplacementAddon
 from olympia.amo.tests import (
@@ -220,6 +221,103 @@ class TestAddonAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
+
+    def test_can_edit_addonuser_if_has_admin_advanced(self):
+        addon = addon_factory(guid='@foo', users=[user_factory()])
+        addonuser = addon.addonuser_set.get()
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'total_ratings': addon.total_ratings,
+            'text_ratings_count': addon.text_ratings_count,
+            'default_locale': addon.default_locale,
+            'weekly_downloads': addon.weekly_downloads,
+            'total_downloads': addon.total_downloads,
+            'average_rating': addon.average_rating,
+            'average_daily_users': addon.average_daily_users,
+            'bayesian_rating': addon.bayesian_rating,
+            'reputation': addon.reputation,
+            'type': addon.type,
+            'slug': addon.slug,
+            'addonuser_set-TOTAL_FORMS': 1,
+            'addonuser_set-INITIAL_FORMS': 1,
+            'addonuser_set-MIN_NUM_FORMS': 0,
+            'addonuser_set-MAX_NUM_FORMS': 1000,
+            'addonuser_set-0-id': addonuser.pk,
+            'addonuser_set-0-addon': addon.pk,
+            'addonuser_set-0-user': user.pk,  # Different user than initial.
+            'addonuser_set-0-role': amo.AUTHOR_ROLE_OWNER,
+            'addonuser_set-0-listed': 'on',
+            'addonuser_set-0-position': 0,
+
+        }
+        post_data['guid'] = '@bar'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reload()
+        assert addon.guid == '@bar'
+        addonuser.reload()
+        assert addonuser.user == user
+
+    def test_can_not_edit_addonuser_if_doesnt_have_admin_advanced(self):
+        addon = addon_factory(guid='@foo', users=[user_factory()])
+        addonuser = addon.addonuser_set.get()
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'total_ratings': addon.total_ratings,
+            'text_ratings_count': addon.text_ratings_count,
+            'default_locale': addon.default_locale,
+            'weekly_downloads': addon.weekly_downloads,
+            'total_downloads': addon.total_downloads,
+            'average_rating': addon.average_rating,
+            'average_daily_users': addon.average_daily_users,
+            'bayesian_rating': addon.bayesian_rating,
+            'reputation': addon.reputation,
+            'type': addon.type,
+            'slug': addon.slug,
+
+            # This won't work:
+            'addonuser_set-TOTAL_FORMS': 1,
+            'addonuser_set-INITIAL_FORMS': 1,
+            'addonuser_set-MIN_NUM_FORMS': 0,
+            'addonuser_set-MAX_NUM_FORMS': 1000,
+            'addonuser_set-0-id': addonuser.pk,
+            'addonuser_set-0-addon': addon.pk,
+            'addonuser_set-0-user': user.pk,  # Different user than initial.
+            'addonuser_set-0-role': amo.AUTHOR_ROLE_OWNER,
+            'addonuser_set-0-listed': 'on',
+            'addonuser_set-0-position': 0,
+
+        }
+        post_data['guid'] = '@bar'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reload()
+        assert addon.guid == '@bar'
+        addonuser.reload()
+        assert addonuser.user != user
 
 
 class TestReplacementAddonList(TestCase):
