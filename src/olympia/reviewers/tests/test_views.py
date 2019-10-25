@@ -662,13 +662,14 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 9  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_recommended'),
             reverse('reviewers.queue_extension'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            reverse('reviewers.queue_needs_human_review'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -694,17 +695,17 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[0].text == 'Recommended (2)'
         assert doc('.dashboard a')[1].text == 'Other Pending Review (3)'
         # auto-approved addons
-        assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[9].text == 'Content Review (11)'
+        assert doc('.dashboard a')[10].text == 'Content Review (11)'
         # themes
-        assert doc('.dashboard a')[11].text == 'New (1)'
-        assert doc('.dashboard a')[12].text == 'Updates (1)'
+        assert doc('.dashboard a')[12].text == 'New (1)'
+        assert doc('.dashboard a')[13].text == 'Updates (1)'
         # user ratings moderation
-        assert (doc('.dashboard a')[16].text ==
+        assert (doc('.dashboard a')[17].text ==
                 'Ratings Awaiting Moderation (1)')
         # admin tools
-        assert (doc('.dashboard a')[22].text ==
+        assert (doc('.dashboard a')[23].text ==
                 'Expired Information Requests (2)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -712,12 +713,13 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 9  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            reverse('reviewers.queue_needs_human_review'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -776,12 +778,13 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 1
+        assert len(doc('.dashboard h3')) == 2
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            reverse('reviewers.queue_needs_human_review'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1008,12 +1011,13 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 2
+        assert len(doc('.dashboard h3')) == 3
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            reverse('reviewers.queue_needs_human_review'),
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -1022,11 +1026,11 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Other Pending Review (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[4].text == 'Ratings Awaiting Moderation (0)'
+        assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
         assert 'target' not in doc('.dashboard a')[5].attrib
-        assert doc('.dashboard a')[6].text == 'Moderation Guide'
-        assert doc('.dashboard a')[6].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[6].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[7].text == 'Moderation Guide'
+        assert doc('.dashboard a')[7].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[7].attrib['rel'] == 'noopener noreferrer'
 
     def test_view_mobile_site_link_hidden(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -1323,6 +1327,7 @@ class TestQueueBasics(QueueTest):
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
         expected = [
             reverse('reviewers.queue_extension'),
+            reverse('reviewers.queue_needs_human_review'),
         ]
         assert links == expected
 
@@ -1513,7 +1518,7 @@ class TestExtensionQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout('🛠️ Other Pending Review',
-                                tab_position=0, total_addons=4, total_queues=1)
+                                tab_position=0, total_addons=4, total_queues=2)
 
     def test_webextensions_filtered_out_because_of_post_review(self):
         self.addons['Nominated Two'].find_latest_version(
@@ -1721,7 +1726,7 @@ class TestRecommendedQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout(
-            'Recommended', tab_position=0, total_addons=4, total_queues=2)
+            'Recommended', tab_position=0, total_addons=4, total_queues=3)
 
     def test_nothing_recommended_filtered_out(self):
         version = self.addons['Nominated One'].find_latest_version(
@@ -1751,6 +1756,7 @@ class TestModeratedQueue(QueueTest):
 
         assert RatingFlag.objects.filter(flag=RatingFlag.SPAM).count() == 1
         assert Rating.objects.filter(editorreview=True).count() == 1
+        self.user.groupuser_set.all().delete()  # Remove all permissions
         self.grant_permission(self.user, 'Ratings:Moderate')
 
     def test_results(self):
@@ -1911,7 +1917,7 @@ class TestModeratedQueue(QueueTest):
         RatingFlag.objects.create(rating=rating)
 
         self._test_queue_layout('Rating Reviews',
-                                tab_position=1, total_addons=2, total_queues=2)
+                                tab_position=0, total_addons=2, total_queues=1)
 
     def test_no_reviews(self):
         Rating.objects.all().delete()
@@ -1988,6 +1994,7 @@ class TestAutoApprovedQueue(QueueTest):
 
     def login_with_permission(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.user.groupuser_set.all().delete()  # Remove all permissions
         self.grant_permission(user, 'Addons:PostReview')
         self.client.login(email=user.email)
 
@@ -2072,13 +2079,13 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(24):
-            # 24 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(25):
+            # 25 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 9 for various queue counts, including current one (
-            #     unfortunately duplicated because it appears in two completely
-            #     different places)
+            # - 10 for various queue counts, including current one
+            #      (unfortunately duplicated because it appears in two
+            #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
@@ -2125,7 +2132,7 @@ class TestAutoApprovedQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Auto Approved', tab_position=1, total_addons=4, total_queues=2,
+            'Auto Approved', tab_position=0, total_addons=4, total_queues=1,
             per_page=1)
 
 
@@ -2216,6 +2223,7 @@ class TestContentReviewQueue(QueueTest):
 
     def login_with_permission(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.user.groupuser_set.all().delete()  # Remove all permissions
         self.grant_permission(user, 'Addons:ContentReview')
         self.client.login(email=user.email)
         return user
@@ -2330,13 +2338,13 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(24):
-            # 24 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(25):
+            # 25 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 9 for various queue counts, including current one (
-            #     unfortunately duplicated because it appears in two completely
-            #     different places)
+            # - 10 for various queue counts, including current one
+            #      (unfortunately duplicated because it appears in two
+            #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
@@ -2349,7 +2357,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=1, total_addons=4, total_queues=2,
+            'Content Review', tab_position=0, total_addons=4, total_queues=1,
             per_page=1)
 
     def test_queue_layout_admin(self):
@@ -2359,7 +2367,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=1, total_addons=5, total_queues=3)
+            'Content Review', tab_position=0, total_addons=5, total_queues=2)
 
 
 class TestPerformance(QueueTest):
