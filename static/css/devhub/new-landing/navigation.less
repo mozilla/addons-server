@@ -143,9 +143,13 @@
       .DevHub-Navigation-Close {
           display: none;
           border-width: 0;
+
+          html[dir=rtl] & {
+            border-width: 0;
+          }
+
           a {
             padding: 4px;
-            font-weight: 18px
           }
       }
 
