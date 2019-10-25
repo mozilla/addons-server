@@ -4,8 +4,7 @@ from datetime import date, datetime, timedelta
 import django  # noqa
 
 from django import forms
-from django.db import migrations, models
-from django.db.migrations.writer import MigrationWriter
+from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
@@ -21,7 +20,7 @@ import olympia  # noqa
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
