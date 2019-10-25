@@ -55,11 +55,13 @@ def get_id(addon):
 
 def use_recommendation_signer(file_obj):
     try:
-        item = file_obj.version.addon.discoveryitem
+        return (
+            file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
+            file_obj.version.addon.discoveryitem.recommendable)
     except ObjectDoesNotExist:
-        return False
+        pass
 
-    return item.recommendable
+    return False
 
 
 def call_signing(file_obj):

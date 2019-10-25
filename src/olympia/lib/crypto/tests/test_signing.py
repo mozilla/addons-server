@@ -341,7 +341,7 @@ class TestSigning(TestCase):
             'Digest-Algorithms: SHA1 SHA256\n'
         )
 
-    def test_call_signing_recommendable(self):
+    def test_call_signing_recommended(self):
         # This is the usual process for recommended add-ons, they're
         # in "pending recommendation" and only *after* we approve and sign
         # them they will become "recommended". Once the `recommendable`
@@ -368,6 +368,25 @@ class TestSigning(TestCase):
             self.file_.current_file_path)
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert recommendation_data['states'] == ['recommended']
+
+    def test_call_signing_recommendable_unlisted(self):
+        # Unlisted versions, even when the add-on is recommendable, should
+        # never be recommended.
+        DiscoveryItem.objects.create(
+            addon=self.file_.version.addon,
+            recommendable=True)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 4
+
+        assert 'Name: mozilla-recommendation.json' not in manifest
 
     def test_call_signing_not_recommendable(self):
         DiscoveryItem.objects.create(
