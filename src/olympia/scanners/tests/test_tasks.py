@@ -1,15 +1,29 @@
 from unittest import mock
 
+import pytest
 import yara
 
 from django.test.utils import override_settings
 
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.constants.scanners import CUSTOMS, WAT, YARA
+from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.constants.scanners import (
+    CUSTOMS,
+    FLAG_FOR_HUMAN_REVIEW,
+    NO_ACTION,
+    WAT,
+    YARA,
+)
 from olympia.files.tests.test_models import UploadTest
 from olympia.scanners.models import ScannerResult, ScannerRule
-from olympia.scanners.tasks import run_scanner, run_customs, run_wat, run_yara
+from olympia.scanners.tasks import (
+    run_scanner,
+    run_customs,
+    run_wat,
+    run_yara,
+    _no_action,
+    run_action,
+)
 
 
 class TestRunScanner(UploadTest, TestCase):
@@ -367,3 +381,103 @@ class TestRunYara(UploadTest, TestCase):
         assert not yara_compile_mock.called
         # The task should always return the results.
         assert received_results == self.results
+
+
+class TestNoAction(TestCase):
+    def test_action_does_nothing(self):
+        version = version_factory(addon=addon_factory())
+        _no_action(version)
+
+
+class TestFlagForHumanReview(TestCase):
+    def test_flags_a_version_for_human_review(self):
+        # TODO: implement me
+        pass
+
+
+class TestRunAction(TestCase):
+    def setUp(self):
+        super(TestRunAction, self).setUp()
+
+        self.scanner = YARA
+        self.version = version_factory(addon=addon_factory())
+        self.scanner_rule = ScannerRule.objects.create(
+            name='rule-1', scanner=self.scanner, action=NO_ACTION
+        )
+        self.scanner_result = ScannerResult.objects.create(
+            version=self.version, scanner=self.scanner
+        )
+        self.scanner_result.matched_rules.add(self.scanner_rule)
+
+    @mock.patch('olympia.scanners.tasks._no_action')
+    def test_runs_no_action(self, no_action_mock):
+        self.scanner_rule.update(action=NO_ACTION)
+
+        run_action(self.version.id)
+
+        assert no_action_mock.called
+        no_action_mock.assert_called_with(self.version)
+
+    @mock.patch('olympia.scanners.tasks._flag_for_human_review')
+    def test_runs_flag_for_human_review(self, flag_for_human_review_mock):
+        self.scanner_rule.update(action=FLAG_FOR_HUMAN_REVIEW)
+
+        run_action(self.version.id)
+
+        assert flag_for_human_review_mock.called
+        flag_for_human_review_mock.assert_called_with(self.version)
+
+    @mock.patch('olympia.scanners.tasks.log.info')
+    def test_returns_when_no_action_found(self, log_mock):
+        self.scanner_rule.delete()
+
+        run_action(self.version.id)
+
+        log_mock.assert_called_with(
+            'No action to execute for version %s.', self.version.id
+        )
+
+    def test_raise_when_action_is_invalid(self):
+        # `12345` is an invalid action ID
+        self.scanner_rule.update(action=12345)
+
+        with pytest.raises(Exception, match='invalid action 12345'):
+            run_action(self.version.id)
+
+    @mock.patch('olympia.scanners.tasks._no_action')
+    @mock.patch('olympia.scanners.tasks._flag_for_human_review')
+    def test_selects_the_action_with_the_highest_severity(
+        self, flag_for_human_review_mock, no_action_mock
+    ):
+        # Create another rule and add it to the current scanner result. This
+        # rule is more severe than `rule-1` created in `setUp()`.
+        rule = ScannerRule.objects.create(
+            name='rule-2', scanner=self.scanner, action=FLAG_FOR_HUMAN_REVIEW
+        )
+        self.scanner_result.matched_rules.add(rule)
+
+        run_action(self.version.id)
+
+        assert not no_action_mock.called
+        assert flag_for_human_review_mock.called
+
+    @mock.patch('olympia.scanners.tasks._no_action')
+    @mock.patch('olympia.scanners.tasks._flag_for_human_review')
+    def test_selects_active_actions_only(
+        self, flag_for_human_review_mock, no_action_mock
+    ):
+        # Create another rule and add it to the current scanner result. This
+        # rule is more severe than `rule-1` created in `setUp()`. In this test
+        # case, we disable this rule, though.
+        rule = ScannerRule.objects.create(
+            name='rule-2',
+            scanner=self.scanner,
+            action=FLAG_FOR_HUMAN_REVIEW,
+            is_active=False,
+        )
+        self.scanner_result.matched_rules.add(rule)
+
+        run_action(self.version.id)
+
+        assert no_action_mock.called
+        assert not flag_for_human_review_mock.called
