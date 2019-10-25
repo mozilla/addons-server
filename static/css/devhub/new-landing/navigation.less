@@ -87,8 +87,11 @@
         a {
           width: 100%;
           margin: 0 10px;
-          .button(@color-button-signout-text, @color-button-signout);
           padding: 5px 0;
+
+          @media @notlarge {
+            .button(@color-button-signout-text, @color-button-signout);
+          }
         }
 
         .avatar img {
@@ -99,9 +102,6 @@
         }
 
         @media @large {
-          a {
-            .button(@color-text, @color-scheme-light-background);
-          }
           .avatar {
             span {
               display: none;
