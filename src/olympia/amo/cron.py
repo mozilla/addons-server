@@ -58,11 +58,8 @@ def gc(test_result=True):
                 pass
         file_upload.delete()
 
-    stale_scanner_results = ScannerResult.objects.filter(
-        upload=None, version=None
-    ).order_by('id')
-    for scanner_result in stale_scanner_results:
-        scanner_result.delete()
+    # Delete stale ScannerResults.
+    ScannerResult.objects.filter(upload=None, version=None).delete()
 
 
 def category_totals():
