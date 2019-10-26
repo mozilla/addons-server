@@ -9,9 +9,9 @@ Pygments==2.4.2 \
     --hash=sha256:71e430bc85c88a430f000ac1d9b331d2407f681d6f6aec95e8bcfbc3df5b0127 \
     --hash=sha256:881c4c157e45f30af185c1ffe8d549d48ac9127433f2c380c24b84572ad66297
 # Sphinx is required by sphinxcontrib-httpdomain
-Sphinx==2.2.0 \
-    --hash=sha256:0d586b0f8c2fc3cc6559c5e8fd6124628110514fda0e5d7c82e682d749d2e845 \
-    --hash=sha256:839a3ed6f6b092bb60f492024489cc9e6991360fb9f52ed6361acd510d261069
+Sphinx==2.2.1 \
+    --hash=sha256:31088dfb95359384b1005619827eaee3056243798c62724fd3fa4b84ee4d71bd \
+    --hash=sha256:52286a0b9d7caa31efee301ec4300dbdab23c3b05da1c9024b4e84896fb73d79
 # alabaster is required by Sphinx
 alabaster==0.7.12 \
     --hash=sha256:446438bdcca0e05bd45ea2de1668c1d9b032e1a9154c2c259092d77031ddd359 \
