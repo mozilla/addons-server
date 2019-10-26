@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-26 18:02+0000\n"
+"PO-Revision-Date: 2019-10-26 18:26+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -799,7 +799,7 @@ msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} habeva migrate ab un thema legier."
 
 msgid "User {user} api key reset."
-msgstr "Clave api del usator {user} remontate."
+msgstr "Le clave API del usator {user} ha essite reinitialisate."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -6257,7 +6257,7 @@ msgstr "Blocar le usatores eligite"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Le clave api del usatores \"%(users)s\" ha essite remontate."
+msgstr "Le claves API del usatores \"%(users)s\" ha essite reinitialisate."
 
 msgid "Reset API Key"
 msgstr "Reinitialisar le clave API"
