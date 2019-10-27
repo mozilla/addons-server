@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-22 16:03+0000\n"
+"PO-Revision-Date: 2019-10-27 17:10+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -306,13 +306,13 @@ msgid "Homepage Most Popular"
 msgstr "Pagina principal plus popular"
 
 msgid "Detail Page"
-msgstr "Pagina de detalio del additivo"
+msgstr "Pagina de detalios"
 
 msgid "Detail Page (bottom)"
-msgstr "Pagina de detalio del additivo (fundo)"
+msgstr "Pagina de detalios (fundo)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Pagina de detalio del additivo (canal de disveloppamento)"
+msgstr "Pagina de detalios (canal de disveloppamento)"
 
 msgid "Often Used With"
 msgstr "Sovente usate con"
@@ -324,7 +324,7 @@ msgid "Dependencies"
 msgstr "Dependentias"
 
 msgid "Upsell"
-msgstr "Promotion"
+msgstr "Promotion additional"
 
 msgid "Meet the Developer"
 msgstr "Incontra le disveloppator"
@@ -333,10 +333,10 @@ msgid "User Profile"
 msgstr "Profilo de usator"
 
 msgid "Version History"
-msgstr "Chronologia del versiones"
+msgstr "Historia de versiones"
 
 msgid "Sharing"
-msgstr "Compartimento"
+msgstr "Compartition"
 
 msgid "Category Pages"
 msgstr "Paginas de categoria"
@@ -348,13 +348,13 @@ msgid "Category Landing Featured Carousel"
 msgstr "Carosello de additivos promovite in le pagina initial del categoria"
 
 msgid "Category Landing Top Rated"
-msgstr "Categorias de accesso de los melio valutate"
+msgstr "Le additivos le melio evalutate in le pagina initial del categoria"
 
 msgid "Category Landing Most Popular"
-msgstr "Categorias de accesso de los plus popular"
+msgstr "Le additivos le plus popular in le pagina initial del categoria"
 
 msgid "Category Landing Recently Added"
-msgstr "Categorias de accesso de los plus recente"
+msgstr "Additivos recentemente addite in le pagina initial del categoria"
 
 msgid "Browse Listing Featured Sort"
 msgstr "Explora le lista ordinate per additivo promovite"
