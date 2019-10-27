@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-27 22:16+0000\n"
+"PO-Revision-Date: 2019-10-27 23:40+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3525,7 +3525,7 @@ msgstr "Bloca le avisos publicitari del web-email {start_sub_heading}con {addon_
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr "Obtene altere spatio de schermo per le remotion de avisos publicitari ex tu cassa de ingresso basate sur web."
+msgstr "Recupera spatio de schermo eliminante avisos publicitari de tu cassa de entrata sur web."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
