@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-27 22:08+0000\n"
+"PO-Revision-Date: 2019-10-27 22:16+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -102,7 +102,7 @@ msgid "You could not be logged in. Please try again."
 msgstr "Tu non pote ser authenticate. Per favor prova de novo."
 
 msgid "Need help?"
-msgstr "Besonia tu de adjuta?"
+msgstr "Require adjuta?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr "Le disveloppatores de additivos o themas non pote deler lor conto. Tu debe deler tote le additivos e themas ligate a iste conto, o transferer illos a altere usatores."
@@ -1489,7 +1489,7 @@ msgid "An author can only be present once."
 msgstr "Un autor pote esser presente solo un vice."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr "Le conto besonia de un nomine a monstrar ante que illo pote esser addite como autor."
+msgstr "Le conto require un nomine a monstrar ante que illo pote esser addite como autor."
 
 msgid "Must have at least one owner."
 msgstr "Debe haber al minus un proprietario."
@@ -1709,7 +1709,7 @@ msgid "There was an error uploading your preview."
 msgstr "Error durante le cargamento de tu vista preliminar."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr "Le ultime version approbate de un extension recommendate non pote esser delite o disactivate. Contacta le administratores de AMO si te besonia adjuta pro isto."
+msgstr "Le ultime version approbate de un extension recommendate non pote esser delite o disactivate. Contacta le administratores de AMO si te require adjuta pro isto."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1790,7 +1790,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Io ha legite e accepta iste accordo e le regulas e politicas"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Il besonia definir un nomine a monstrar de tu conto, assi que le usatores sape ab ubi veni tu additivo. Insere uno infra."
+msgstr "Tu conto require un nomine a monstrar, de sorta que le usatores cognosce le autor de tu additivo. Insere lo infra."
 
 msgid "Accept"
 msgstr "Acceptar"
@@ -2562,7 +2562,7 @@ msgid "Source Code Upload"
 msgstr "Cargamento de codice fonte"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr "Ha tu besonio de inviar codice fonte?"
+msgstr "Debe tu inviar codice fonte?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr "Tu pote haber besonio de submitter codice fonte. Si tu non lo face, tu additivo pote ser removite ex iste sito!"
