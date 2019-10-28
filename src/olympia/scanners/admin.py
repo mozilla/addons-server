@@ -137,5 +137,5 @@ class ScannerResultAdmin(admin.ModelAdmin):
 class ScannerRuleAdmin(admin.ModelAdmin):
     view_on_site = False
 
-    list_display = ('name', 'action', 'is_active')
-    list_filter = ('action', 'is_active')
+    list_display = ('name', 'scanner', 'action', 'is_active')
+    list_filter = ('scanner', 'action', 'is_active')
