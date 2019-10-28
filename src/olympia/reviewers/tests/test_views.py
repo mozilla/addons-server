@@ -2370,6 +2370,147 @@ class TestContentReviewQueue(QueueTest):
             'Content Review', tab_position=0, total_addons=5, total_queues=2)
 
 
+class TestNeedsHumanReviewQueue(QueueTest):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('reviewers.queue_needs_human_review')
+
+    def generate_files(self):
+        self.expected_versions = {}
+        # Has no versions needing human review.
+        extra_addon = addon_factory()
+        version_factory(
+            addon=extra_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Has 3 listed versions, 2 needing human review, 1 unlisted but not
+        # needing human review.
+        addon1 = addon_factory(created=self.days_ago(31))
+        addon1_v1 = addon1.current_version
+        addon1_v1.update(needs_human_review=True)
+        addon1_v2 = version_factory(addon=addon1, needs_human_review=True)
+        version_factory(addon=addon1)
+        version_factory(addon=addon1, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        AddonApprovalsCounter.objects.create(
+            addon=addon1, counter=1, last_human_review=self.days_ago(1))
+        self.expected_versions[addon1] = {
+            'listed': (str(addon1_v1.pk), str(addon1_v2.pk))
+        }
+
+        # Has 1 listed and 1 unlisted versions, both needing human review.
+        addon2 = addon_factory(
+            created=self.days_ago(15),
+            version_kw={'needs_human_review': True})
+        addon2_v1 = addon2.current_version
+        addon2_v2 = version_factory(
+            addon=addon2, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            needs_human_review=True)
+        self.expected_versions[addon2] = {
+            'listed': (str(addon2_v1.pk), ),
+            'unlisted': (str(addon2_v2.pk), ),
+        }
+
+        # Has 2 unlisted versions, 1 needing human review. Needs admin content
+        # review but that shouldn't matter.
+        addon3 = addon_factory(
+            created=self.days_ago(7),
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                        'needs_human_review': True})
+        addon3_v1 = addon3.versions.get()
+        version_factory(
+            addon=addon3, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        AddonReviewerFlags.objects.create(
+            addon=addon3, needs_admin_content_review=True)
+        self.expected_versions[addon3] = {
+            'unlisted': (str(addon3_v1.pk), ),
+        }
+
+        # Needs admin code review, so wouldn't show up for regular reviewers.
+        addon4 = addon_factory(
+            created=self.days_ago(1),
+            version_kw={'needs_human_review': True})
+        AddonReviewerFlags.objects.create(
+            addon=addon4, needs_admin_code_review=True)
+
+        self.expected_addons = [addon1, addon2, addon3]
+
+    def test_results(self):
+        self.generate_files()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        expected = []
+        # addon1
+        addon = self.expected_addons[0]
+        expected.append((
+            'Listed versions needing human review (2)',
+            reverse('reviewers.review', args=[addon.slug]) +
+            '?needs_human_review_versions_ids=' +
+            ','.join(self.expected_versions[addon]['listed'])
+        ))
+        # addon2
+        addon = self.expected_addons[1]
+        expected.append((
+            'Listed versions needing human review (1)',
+            reverse('reviewers.review', args=[addon.slug]) +
+            '?needs_human_review_versions_ids=' +
+            ','.join(self.expected_versions[addon]['listed'])
+        ))
+        expected.append((
+            'Unlisted versions needing human review (1)',
+            reverse('reviewers.review', args=['unlisted', addon.slug]) +
+            '?needs_human_review_versions_ids=' +
+            ','.join(self.expected_versions[addon]['unlisted'])
+        ))
+        # addon3
+        addon = self.expected_addons[2]
+        expected.append((
+            'Unlisted versions needing human review (1)',
+            reverse('reviewers.review', args=['unlisted', addon.slug]) +
+            '?needs_human_review_versions_ids=' +
+            ','.join(self.expected_versions[addon]['unlisted'])
+        ))
+
+        doc = pq(response.content)
+        links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
+        # Number of expected links is not equal to len(self.expected_addons)
+        # because we display a review link for each channel that has versions
+        # needing review per add-on, and addon2 has both unlisted and listed
+        # versions needing review.
+        assert len(links) == 4
+        check_links(expected, links, verify=False)
+
+    def test_only_viewable_with_specific_permission(self):
+        # Post-review reviewer does not have access.
+        self.user.groupuser_set.all().delete()  # Remove all permissions
+        self.grant_permission(self.user, 'Addons:PostReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_queue_layout(self):
+        self.generate_files()
+
+        self._test_queue_layout(
+            'Need Human Review',
+            tab_position=1, total_addons=3, total_queues=2, per_page=1)
+
+    def test_queue_layout_admin(self):
+        # Admins should see the extra add-on that needs admin content review.
+        self.login_as_admin()
+        self.generate_files()
+
+        self._test_queue_layout(
+            'Need Human Review',
+            tab_position=2, total_addons=4, total_queues=9, per_page=1)
+
+
 class TestPerformance(QueueTest):
     fixtures = ['base/users', 'base/addon_3615']
 

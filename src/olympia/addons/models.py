@@ -364,7 +364,7 @@ class AddonManager(ManagerBase):
         )
         if not admin_reviewer:
             qs = qs.exclude(
-                addonreviewerflags__needs_admin_content_review=True)
+                addonreviewerflags__needs_admin_code_review=True)
         return qs
 
 

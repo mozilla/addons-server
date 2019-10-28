@@ -259,7 +259,7 @@ class NeedsHumanReviewTable(AutoApprovedTable):
         versions_needing_human_review = list(
             record.versions.values_list('pk', flat=True).filter(
                 channel=amo.RELEASE_CHANNEL_LISTED,
-                needs_human_review=True)
+                needs_human_review=True).order_by('pk')
         )
         if versions_needing_human_review:
             url = reverse('reviewers.review', args=[record.slug])
@@ -274,7 +274,7 @@ class NeedsHumanReviewTable(AutoApprovedTable):
         unlisted_versions_needing_human_review = list(
             record.versions.values_list('pk', flat=True).filter(
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
-                needs_human_review=True)
+                needs_human_review=True).order_by('pk')
         )
         if unlisted_versions_needing_human_review:
             url = reverse('reviewers.review', args=['unlisted', record.slug])
