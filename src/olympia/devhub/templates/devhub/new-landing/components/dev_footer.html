@@ -7,8 +7,8 @@
         <h4>{{ _('Documentation') }}</h4>
         <ul>
           <li><a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('WebExtensions API') }}</a></li>
-          <li><a href="https://extensionworkshop.com/extension-basics/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Extensions') }}</a></li>
-          <li><a href="https://extensionworkshop.com/documentation/themes/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Themes') }}</a></li>
+          <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/extension-basics/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Extensions') }}</a></li>
+          <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/themes/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Themes') }}</a></li>
         </ul>
       </section>
 
@@ -25,7 +25,7 @@
         <h4>{{ _('Promote') }}</h4>
         <ul>
           <li><a href="https://blog.mozilla.org/addons/2015/11/10/promote-your-add-ons-with-the-get-the-add-on-button/">{{ _('"Get The Add-on" button') }}</a></li>
-          <li><a href="https://extensionworkshop.com/documentation/publish/recommended-extensions/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Recommended Extensions program') }}</a></li>
+          <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/recommended-extensions/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Recommended Extensions program') }}</a></li>
         </ul>
       </section>
     </div>
