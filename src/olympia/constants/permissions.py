@@ -99,6 +99,8 @@ DJANGO_PERMISSIONS_MAPPING.update({
     # will be kept.
     'activity.delete_activitylog': ADMIN_ADVANCED,
     'addons.change_addon': ADDONS_EDIT,
+    'addons.add_addonuser': ADMIN_ADVANCED,
+    'addons.change_addonuser': ADMIN_ADVANCED,
     'addons.delete_addonuser': ADMIN_ADVANCED,
     # Users with Admin:Curation can do anything to ReplacementAddon.
     # In addition, the modeladmin will also check for Addons:Edit and give them

@@ -52,7 +52,8 @@ from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
-from olympia.users.models import EmailUserRestriction, UserProfile
+from olympia.users.models import (
+    EmailUserRestriction, UserEmailField, UserProfile)
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
@@ -395,12 +396,11 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
 
 
 class AuthorForm(forms.ModelForm):
+    user = UserEmailField(required=True, queryset=UserProfile.objects.all())
+
     class Meta:
         model = AddonUser
         exclude = ('addon',)
-        # Note: AddonUser's user db field is a UserForeignKey(), which will
-        # expose the user email address in the form (and lookup users from the
-        # email submitted in the form data when adding/changing)
 
     def __init__(self, *args, **kwargs):
         # addon should be passed through form_kwargs={'addon': addon} when
@@ -413,6 +413,9 @@ class AuthorForm(forms.ModelForm):
             # to do that, they need to remove the existing author and add a new
             # one. This makes the confirmation system easier to manage.
             self.fields['user'].disabled = True
+
+            # Set the email to be displayed in the form instead of the pk.
+            self.initial['user'] = instance.user.email
 
     def clean(self):
         rval = super().clean()

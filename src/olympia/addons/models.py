@@ -48,7 +48,7 @@ from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
-from olympia.users.models import UserForeignKey, UserProfile
+from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version, VersionPreview, inherit_nomination
 
@@ -1639,7 +1639,7 @@ class AddonCategory(models.Model):
 class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    user = UserForeignKey()
+    user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(_(u'Listed'), default=True)
@@ -1698,7 +1698,7 @@ models.signals.post_save.connect(addon_user_sync,
 class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    user = UserForeignKey()
+    user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(_(u'Listed'), default=True)
