@@ -70,7 +70,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return self.model.objects.prefetch_related(
             Prefetch(
                 'version__addon',
-                queryset=Addon.objects.all().only_translations(),
+                # We use `unfiltred` because we want to fetch all the add-ons,
+                # including the deleted ones.
+                queryset=Addon.unfiltered.all().only_translations(),
             ),
             'matched_rules',
         )
@@ -91,7 +93,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
         if obj.version:
             return format_html(
                 '<a href="{}">{} (version: {})</a>',
-                reverse('reviewers.review', args=[obj.version.addon.slug]),
+                # We use the add-on's ID to support deleted add-ons.
+                reverse('reviewers.review', args=[obj.version.addon.id]),
                 obj.version.addon.name,
                 obj.version.id,
             )

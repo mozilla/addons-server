@@ -60,7 +60,7 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.formatted_addon(result) == (
             '<a href="{}">{} (version: {})</a>'.format(
-                reverse('reviewers.review', args=[addon.slug]),
+                reverse('reviewers.review', args=[addon.id]),
                 addon.name,
                 version.id,
             )
@@ -112,9 +112,11 @@ class TestScannerResultAdmin(TestCase):
         ScannerResult.objects.create(
             scanner=WAT, version=addon_factory().current_version
         )
+        deleted_addon = addon_factory(name='a deleted add-on')
         ScannerResult.objects.create(
-            scanner=CUSTOMS, version=addon_factory().current_version
+            scanner=CUSTOMS, version=deleted_addon.current_version
         )
+        deleted_addon.delete()
 
         with self.assertNumQueries(10):
             # 10 queries:
@@ -132,6 +134,8 @@ class TestScannerResultAdmin(TestCase):
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()
         assert html('#result_list tbody tr').length == expected_length
+        # The name of the deleted add-on should be displayed.
+        assert str(deleted_addon.name) in html.text()
 
     def test_list_shows_matches_only_by_default(self):
         # Create one entry without matches
