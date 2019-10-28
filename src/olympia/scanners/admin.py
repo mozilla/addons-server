@@ -70,7 +70,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return self.model.objects.prefetch_related(
             Prefetch(
                 'version__addon',
-                # We use `unfiltred` because we want to fetch all the add-ons,
+                # We use `unfiltered` because we want to fetch all the add-ons,
                 # including the deleted ones.
                 queryset=Addon.unfiltered.all().only_translations(),
             ),
