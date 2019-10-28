@@ -1096,6 +1096,7 @@ CELERY_TASK_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {
         'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},

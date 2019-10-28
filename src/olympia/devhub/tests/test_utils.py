@@ -60,6 +60,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
@@ -462,6 +463,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
@@ -498,6 +500,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -522,6 +525,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
@@ -543,6 +547,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -567,6 +572,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
@@ -588,6 +594,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -612,6 +619,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 tasks.handle_upload_validation_result.s(file_upload.pk,
@@ -634,6 +642,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -661,6 +670,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
