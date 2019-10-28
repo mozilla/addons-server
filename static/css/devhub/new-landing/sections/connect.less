@@ -118,14 +118,17 @@
 
     #newsletter_errors {
         display: none; /* hide by default */
-        margin-bottom: 20px;
-        box-shadow: 0 0 0 1px #ffffff; // incase it's on a black background
-        padding: 20px;
-        background-color: rgba(0, 0, 0, 0.1); // incase it's on a white background
-        border: 1px solid #c00;
+        margin-bottom: 10px;
+        padding: 0 10px;
 
-        &:last-child {
-            margin-bottom: 0;
+        ul {
+            list-style-type: disc;
+            li {
+                color: @color-scheme-dark-text;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 }
