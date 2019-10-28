@@ -2989,7 +2989,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
-        items = pq(response.content)('#review-files .files .file-info')
+        items = pq(response.content)('#versions-history .files .file-info')
         assert items.length == 1
 
         file_ = self.version.all_files[0]
@@ -3023,7 +3023,7 @@ class TestReview(ReviewBase):
         # https://github.com/gawel/pyquery/issues/31
         UTF8_PARSER = HTMLParser(encoding='utf-8')
         doc = pq(fromstring(response.content, parser=UTF8_PARSER))
-        table = doc('#review-files')
+        table = doc('#versions-history .review-files')
 
         # Check the history for both versions.
         ths = table.children('tr > th')
@@ -3057,7 +3057,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        table = doc('#review-files')
+        table = doc('#versions-history .review-files')
         ths = table.children('tr > th')
         assert ths.length == 10
         # Original version should not be there any more, it's on the second
@@ -3069,7 +3069,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url, {'page': 2})
         assert response.status_code == 200
         doc = pq(response.content)
-        table = doc('#review-files')
+        table = doc('#versions-history .review-files')
         ths = table.children('tr > th')
         assert ths.length == 1
         assert '0.1' in ths.eq(0).text()
@@ -3135,7 +3135,7 @@ class TestReview(ReviewBase):
 
         response = self.client.get(self.url)
         assert response.status_code == 200
-        doc = pq(response.content)('#review-files')
+        doc = pq(response.content)('#versions-history .review-files')
 
         version = doc('.activity_version')
         assert version.length == 1
@@ -3149,8 +3149,8 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert ('Approved' in
-                doc('#review-files .listing-header .light').text())
+        assert ('Approved' in doc(
+            '#versions-history .review-files .listing-header .light').text())
 
     def test_item_history_comment(self):
         # Add Comment.
@@ -3159,7 +3159,7 @@ class TestReview(ReviewBase):
 
         response = self.client.get(self.url)
         assert response.status_code == 200
-        doc = pq(response.content)('#review-files')
+        doc = pq(response.content)('#versions-history .review-files')
         assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').text() == 'hello sailor'
 
@@ -3171,7 +3171,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        items = doc('#review-files .files .file-info')
+        items = doc('#versions-history .review-files .files .file-info')
         assert items.length == 1
         assert items.find('a.reviewers-install').text() == 'All Platforms'
 
@@ -3179,7 +3179,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#review-files .no-activity').length == 1
+        assert doc('#versions-history .review-files .no-activity').length == 1
 
     def test_action_links(self):
         response = self.client.get(self.url)
@@ -3506,7 +3506,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#review-files .files ul .file-info').length == 1
+        assert doc('#versions-history .files ul .file-info').length == 1
 
     def test_version_deletion(self):
         """
@@ -3534,7 +3534,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         # View the history verify two versions:
-        ths = doc('table#review-files > tr > th:first-child')
+        ths = doc('#versions-history .review-files > tr > th:first-child')
         assert '0.1' in ths.eq(0).text()
         assert '0.2' in ths.eq(1).text()
 
@@ -3544,7 +3544,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        ths = doc('table#review-files > tr > th:first-child')
+        ths = doc('#versions-history .review-files > tr > th:first-child')
 
         assert ths.length == 2
         assert '0.1' in ths.text()
@@ -3805,7 +3805,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        info = doc('#review-files .file-info')
+        info = doc('#versions-history .file-info')
         assert info.length == 1
         assert info.find('a.compare').length == 0
 
@@ -3815,7 +3815,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        info = doc('#review-files .file-info')
+        info = doc('#versions-history .file-info')
         assert info.length == 1
         # Only the download/install link
         assert info.find('a').length == 1
@@ -3836,7 +3836,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert response.context['show_diff']
-        links = doc('#review-files .file-info .compare')
+        links = doc('#versions-history .file-info .compare')
         expected = [
             reverse('files.compare', args=[new_file.pk, first_file.pk]),
         ]
@@ -3862,7 +3862,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert response.context['show_diff']
-        links = doc('#review-files .file-info .compare')
+        links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the first,
         # ignoring the interim version because it was auto-approved and not
         # manually confirmed by a human.
@@ -3898,7 +3898,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert response.context['show_diff']
-        links = doc('#review-files .file-info .compare')
+        links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # ignoring the third version because it was auto-approved and not
         # manually confirmed by a human (the second was auto-approved but
@@ -3930,7 +3930,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert response.context['show_diff']
-        links = doc('#review-files .file-info .compare')
+        links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # because second was approved by human before auto-approval ran on it
         expected = [
@@ -4303,8 +4303,8 @@ class TestReview(ReviewBase):
             reverse('reviewers.review', args=[self.addon.slug]))
         listed_review_page = self.client.get(
             reverse('reviewers.review', args=['listed', self.addon.slug]))
-        assert (pq(review_page.content)('#review-files').text() ==
-                pq(listed_review_page.content)('#review-files').text())
+        assert (pq(review_page.content)('#versions-history').text() ==
+                pq(listed_review_page.content)('#versions-history').text())
 
     def test_approvals_info(self):
         approval_info = AddonApprovalsCounter.objects.create(
@@ -4341,7 +4341,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        info = doc('#review-files .file-info div')
+        info = doc('#versions-history .file-info div')
         assert info.eq(1).text() == 'Permissions: ' + ', '.join(permissions)
 
     def test_abuse_reports(self):
@@ -4993,7 +4993,7 @@ class TestStatusFile(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#review-files .file-info div').text() == expected
+        assert doc('#versions-history .file-info div').text() == expected
 
     def test_status_full(self):
         self.get_file().update(status=amo.STATUS_AWAITING_REVIEW)
