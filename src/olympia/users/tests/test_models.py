@@ -4,8 +4,7 @@ from datetime import date, datetime, timedelta
 import django  # noqa
 
 from django import forms
-from django.db import migrations, models
-from django.db.migrations.writer import MigrationWriter
+from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
@@ -21,14 +20,14 @@ import olympia  # noqa
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, DisposableEmailDomainRestriction, generate_auth_id,
     EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
-    IPReputationRestriction, UserEmailField, UserForeignKey, UserProfile)
+    IPReputationRestriction, UserEmailField, UserProfile)
 from olympia.zadmin.models import set_config
 
 
@@ -944,16 +943,19 @@ class TestUserEmailField(TestCase):
 
     def test_success(self):
         user = UserProfile.objects.get(pk=2519)
-        assert UserEmailField().clean(user.email) == user
+        assert UserEmailField(
+            queryset=UserProfile.objects.all()).clean(user.email) == user
 
     def test_failure(self):
         with pytest.raises(forms.ValidationError):
-            UserEmailField().clean('xxx')
+            UserEmailField(
+                queryset=UserProfile.objects.all()).clean('xxx')
 
     def test_empty_email(self):
         UserProfile.objects.create(email='')
         with pytest.raises(forms.ValidationError) as exc_info:
-            UserEmailField().clean('')
+            UserEmailField(
+                queryset=UserProfile.objects.all()).clean('')
 
         assert exc_info.value.messages[0] == 'This field is required.'
 
@@ -1059,41 +1061,6 @@ class TestUserManager(TestCase):
         Group.objects.get(name="Admins") in user.groups.all()
         assert user.is_staff
         assert user.is_superuser
-
-
-def test_user_foreign_key_supports_migration():
-    """Tests serializing UserForeignKey in a simple migration.
-
-    Since `UserForeignKey` is a ForeignKey migrations pass `to=` explicitly
-    and we have to pop it in our __init__.
-    """
-    fields = {
-        'charfield': UserForeignKey(),
-    }
-
-    migration = type(str('Migration'), (migrations.Migration,), {
-        'operations': [
-            migrations.CreateModel(
-                name='MyModel', fields=tuple(fields.items()),
-                bases=(models.Model,)
-            ),
-        ],
-    })
-    writer = MigrationWriter(migration)
-    output = writer.as_string()
-
-    # Just make sure it runs and that things look alright.
-    result = safe_exec(output, globals_=globals())
-
-    assert 'Migration' in result
-
-
-def test_user_foreign_key_field_deconstruct():
-    field = UserForeignKey()
-    name, path, args, kwargs = field.deconstruct()
-    new_field_instance = UserForeignKey()
-
-    assert kwargs['to'] == new_field_instance.to
 
 
 @pytest.mark.django_db

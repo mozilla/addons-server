@@ -1,49 +1,49 @@
-<nav class="DevHub-Navigation content scheme-light">
+<nav id="nav-menu" class="DevHub-Navigation content scheme-light">
   <div class="DevHub-Navigation-list-wrapper">
     <ul>
-      <li>
-        <a href="{{ url('devhub.index') }}" class="Logo">
-          <span>{{ _('Add-on Developer Hub') }}</span>
-        </a>
+      <li class="DevHub-Navigation-Logo-And-Close">
+        <div class="DevHub-Navigation-Logo">
+          <a href="{{ url('devhub.index') }}" class="Logo">
+            <span>{{ _('Add-on Developer Hub') }}</span>
+          </a>
+        </div>
+        <div class="DevHub-Navigation-Close"><a href="#">&#10006;</a></div>
       </li>
 
       {% if user_authenticated %}
-        <li class="show-on-desktop"><a href="{{ url('devhub.addons') }}">
+        <li class="in-hamburger-menu"><a href="{{ url('devhub.addons') }}">
           {{ _('My Add-ons') }}
         </a></li>
       {% endif %}
 
-      <li class="show-on-desktop"><a href="https://extensionworkshop.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link">
+      <li class="in-hamburger-menu"><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link">
           {{ _('Extension Workshop') }}
       </a></li>
-      <li class="show-on-desktop"><a href="https://developer.mozilla.org/en-US/Add-ons">
+      <li class="in-hamburger-menu"><a href="https://developer.mozilla.org/en-US/Add-ons">
         {{ _('Documentation') }}
       </a></li>
-      <li class="hide-on-desktop"><a href="https://developer.mozilla.org/en-US/Add-ons">
-        {{ _('Docs') }}
-      </a></li>
-      <li><a href="https://developer.mozilla.org/en-US/Add-ons#Contact_us">
+      <li class="in-hamburger-menu"><a href="https://developer.mozilla.org/en-US/Add-ons#Contact_us">
         {{ _('Support') }}
       </a></li>
-
-      <li><a href="https://blog.mozilla.org/addons/">
+      <li class="in-hamburger-menu flex-grow"><a href="https://blog.mozilla.org/addons/">
         {{ _('Blog') }}
       </a></li>
 
-      {% if user_authenticated %}
-        <li class="DevHub-Navigation-SignOut"><a href="{{ url('devhub.logout') }}?to={{ url('devhub.index') }}">
-          {{ _('Sign Out') }}
-        </a></li>
+      <li class="DevHub-Navigation-Open">
+        <a href="#nav-menu">&#9776;</a>
+      </li>
 
-        <li class="avatar"><a href="{{ user.get_url_path() }}">
-          <img src="{{ request.user.picture_url }}" alt="{% if not request.user.picture_type %}{{ _('No Photo') }}{% else %}{{ _('User Photo') }}{% endif %}" />
-        </a></li>
+      {% if user_authenticated %}
+      <li class="in-hamburger-menu DevHub-Navigation-SignOut"><a href="{{ url('devhub.logout') }}?to={{ url('devhub.index') }}">
+        {{ _('Sign Out') }}
+      </a><a class="avatar" href="{{ user.get_url_path() }}">
+        <img src="{{ request.user.picture_url }}" alt="{% if not request.user.picture_type %}{{ _('No Photo') }}{% else %}{{ _('User Photo') }}{% endif %}" />
+        <span>{{ _('Profile') }}</span>
+      </a></li>
       {% else %}
-        <li class="show-on-desktop DevHub-Navigation-Register">
-          {% trans login=login_link() %}
-            <a class="Button" href="{{ login }}">Submit or Manage Extensions</a>
-          {% endtrans %}
-        </li>
+      <li class="in-hamburger-menu DevHub-Navigation-Register">
+           <a class="Button" href="{{ login_link() }}">{{ _('Submit or Manage Extensions') }}</a>
+      </li>
       {% endif %}
     </ul>
   </div>

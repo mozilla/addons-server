@@ -11,12 +11,29 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.urlresolvers import reverse
 from olympia.ratings.models import Rating
 from olympia.zadmin.admin import related_content_link
 
 from . import models
+
+
+class AddonUserInline(admin.TabularInline):
+    model = AddonUser
+    raw_id_fields = ('user',)
+    readonly_fields = ('user_profile_link',)
+    extra = 0
+
+    def user_profile_link(self, obj):
+        if obj.pk:
+            return format_html(
+                '<a href="{}">Admin User Profile</a> ({})',
+                reverse('admin:users_userprofile_change', args=(obj.user.pk,)),
+                obj.user.email)
+        else:
+            return ''
+    user_profile_link.short_description = 'User Profile'
 
 
 class AddonAdmin(admin.ModelAdmin):
@@ -31,7 +48,7 @@ class AddonAdmin(admin.ModelAdmin):
                     'status_with_admin_manage_link', 'average_rating')
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
-
+    inlines = (AddonUserInline,)
     readonly_fields = ('id', 'status_with_admin_manage_link',
                        'average_rating', 'bayesian_rating',
                        'total_ratings_link', 'text_ratings_count',
@@ -107,10 +124,6 @@ class AddonAdmin(admin.ModelAdmin):
         return super(AddonAdmin, self).change_view(
             request, object_id, form_url, extra_context=None,
         )
-
-
-class AddonUserAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addon', 'user')
 
 
 class FeatureAdmin(admin.ModelAdmin):

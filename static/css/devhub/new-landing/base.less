@@ -5,6 +5,7 @@
 @grid-max: 960px;
 @medium: ~"only screen and (min-width: 700px)";
 @large: ~"only screen and (min-width: 960px)";
+@notlarge: ~"only screen and (max-width: 959px)";
 @retina: ~"only screen and (min-resolution: 1.5dppx)";
 @side-margin: 10px;
 @medium-side-margin: 24px;
@@ -38,9 +39,11 @@
 @color-button-default: #0996F8;
 @color-button-primary: #fff;
 @color-button-register: #015fdf;
+@color-button-signout: rgba(12,12,12,0.1);
 @color-button-default-text: #fff;
 @color-button-primary-text: @color-items;
 @color-button-register-text: #fff;
+@color-button-signout-text: @color-text;
 
 // State colors in 'My Addons'
 @color-version-state-disabled: #9b9898;
@@ -190,9 +193,6 @@ h4 {
 .rating b {
   font-size: 14px;
 }
-
-// Mixins / Utilities
-@import 'utils';
 
 // Common component utilities
 @import 'common';
