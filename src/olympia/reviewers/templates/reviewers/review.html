@@ -52,24 +52,6 @@
     </ul>
   </div>
   {% endif %}
-  {% if needs_human_review_versions %}
-  <div id="needs-human-review">
-    <h3>
-      {{ _('Versions that need human review') }}
-    </h3>
-    <p> {{ _('These versions were flagged as needing human review. They will be unflagged if you approve or reject this add-on.') }} </p>
-    <div class="results">
-      <div class="results-inner">
-        <input type="hidden" name="needs_human_review_versions_ids" value="{{ needs_human_review_versions_ids }}" />
-        <table class="review-files item-history">
-          {% for version in needs_human_review_versions %}
-            {% include "reviewers/includes/version.html" %}
-          {% endfor %}
-        </table>
-      </div>
-    </div>
-  </div>
-  {% endif %}
   <div id="review-files-header">
     <h3 id="history">
       {{ _('Add-on History') }}
@@ -86,7 +68,7 @@
       </th></tr></table>
     </div>
     {% endif %}
-    <div id="review-files-paginate">
+    <div class="review-files-paginate">
       {% include "reviewers/includes/paginator_history.html" %}
     </div>
   </div>

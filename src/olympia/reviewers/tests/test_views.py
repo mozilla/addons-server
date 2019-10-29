@@ -2378,7 +2378,6 @@ class TestNeedsHumanReviewQueue(QueueTest):
         self.url = reverse('reviewers.queue_needs_human_review')
 
     def generate_files(self):
-        self.expected_versions = {}
         # Has no versions needing human review.
         extra_addon = addon_factory()
         version_factory(
@@ -2394,9 +2393,6 @@ class TestNeedsHumanReviewQueue(QueueTest):
         version_factory(addon=addon1, channel=amo.RELEASE_CHANNEL_UNLISTED)
         AddonApprovalsCounter.objects.create(
             addon=addon1, counter=1, last_human_review=self.days_ago(1))
-        self.expected_versions[addon1] = {
-            'listed': (str(addon1_v1.pk), str(addon1_v2.pk))
-        }
 
         # Has 1 listed and 1 unlisted versions, both needing human review.
         addon2 = addon_factory(
@@ -2406,10 +2402,6 @@ class TestNeedsHumanReviewQueue(QueueTest):
         addon2_v2 = version_factory(
             addon=addon2, channel=amo.RELEASE_CHANNEL_UNLISTED,
             needs_human_review=True)
-        self.expected_versions[addon2] = {
-            'listed': (str(addon2_v1.pk), ),
-            'unlisted': (str(addon2_v2.pk), ),
-        }
 
         # Has 2 unlisted versions, 1 needing human review. Needs admin content
         # review but that shouldn't matter.
@@ -2422,9 +2414,6 @@ class TestNeedsHumanReviewQueue(QueueTest):
             addon=addon3, channel=amo.RELEASE_CHANNEL_UNLISTED)
         AddonReviewerFlags.objects.create(
             addon=addon3, needs_admin_content_review=True)
-        self.expected_versions[addon3] = {
-            'unlisted': (str(addon3_v1.pk), ),
-        }
 
         # Needs admin code review, so wouldn't show up for regular reviewers.
         addon4 = addon_factory(
@@ -2445,31 +2434,23 @@ class TestNeedsHumanReviewQueue(QueueTest):
         addon = self.expected_addons[0]
         expected.append((
             'Listed versions needing human review (2)',
-            reverse('reviewers.review', args=[addon.slug]) +
-            '?needs_human_review_versions_ids=' +
-            ','.join(self.expected_versions[addon]['listed'])
+            reverse('reviewers.review', args=[addon.slug])
         ))
         # addon2
         addon = self.expected_addons[1]
         expected.append((
             'Listed versions needing human review (1)',
-            reverse('reviewers.review', args=[addon.slug]) +
-            '?needs_human_review_versions_ids=' +
-            ','.join(self.expected_versions[addon]['listed'])
+            reverse('reviewers.review', args=[addon.slug])
         ))
         expected.append((
             'Unlisted versions needing human review (1)',
-            reverse('reviewers.review', args=['unlisted', addon.slug]) +
-            '?needs_human_review_versions_ids=' +
-            ','.join(self.expected_versions[addon]['unlisted'])
+            reverse('reviewers.review', args=['unlisted', addon.slug])
         ))
         # addon3
         addon = self.expected_addons[2]
         expected.append((
             'Unlisted versions needing human review (1)',
-            reverse('reviewers.review', args=['unlisted', addon.slug]) +
-            '?needs_human_review_versions_ids=' +
-            ','.join(self.expected_versions[addon]['unlisted'])
+            reverse('reviewers.review', args=['unlisted', addon.slug])
         ))
 
         doc = pq(response.content)
@@ -4806,34 +4787,16 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
         )
         self.grant_permission(self.reviewer, 'Addons:PostReview')
-        # Load the review page as if we're a reviewer. Pass the version ids
-        # like they would have been done if coming from the needs human review
-        # queue page.
-        response = self.client.get(
-            self.url, {
-                'needs_human_review_versions_ids':
-                    ','.join((str(version2.pk), str(version3.pk)))})
+        response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#needs-human-review')
-        assert len(doc('#needs-human-review .files .needs-human-review')) == 2
 
-        # Make sure the regular versions history is also there.
-        assert len(doc('#versions-history .files')) == 3
-
-        # Submit an approval and check that the versions have been unflagged.
-        selector = (
-            '#needs-human-review input[name=needs_human_review_versions_ids]')
-        response = self.client.post(self.url, {
-            'action': 'confirm_auto_approved',
-            'needs_human_review_versions_ids': doc(selector)[0].value
-        })
-        assert response.status_code == 302
-
-        version2.reload()
-        version3.reload()
-        assert not version2.needs_human_review
-        assert not version3.needs_human_review
+        # FIXME:
+        # - need to make sure the versions needing review are highlighted
+        # - need to play with pagination to make sure we're displaying the
+        #   warning
+        # - need other tests in reviewers/test_utils.py once Review* changes
+        #   are implemented...
 
 
 class TestAbuseReportsView(ReviewerTest):

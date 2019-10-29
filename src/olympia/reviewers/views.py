@@ -767,17 +767,6 @@ def review(request, addon, channel=None):
              .transform(Version.transformer_activity)
     )
 
-    # Specific versions for the reviewer to look at / act upon when POSTing.
-    needs_human_review_versions = []
-    needs_human_review_versions_ids = (
-        request.POST.get(
-            'needs_human_review_versions_ids',
-            request.GET.get('needs_human_review_versions_ids', ''))
-    )
-    if needs_human_review_versions_ids:
-        needs_human_review_versions = versions_qs.filter(
-            pk__in=needs_human_review_versions_ids.split(','))
-
     form_initial = {
         # Get the current info request state to set as the default.
         'info_request': addon.pending_info_request,
@@ -785,8 +774,7 @@ def review(request, addon, channel=None):
 
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
-        content_review_only=content_review_only,
-        needs_human_review_versions=needs_human_review_versions)
+        content_review_only=content_review_only)
     form = ReviewForm(request.POST if request.method == 'POST' else None,
                       helper=form_helper, initial=form_initial)
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
@@ -888,11 +876,12 @@ def review(request, addon, channel=None):
     count = pager.paginator.count
 
     auto_approval_info = {}
+    version_ids = []
     # Now that we've paginated the versions queryset, iterate on them to
     # generate auto approvals info. Note that the variable should not clash
     # the already existing 'version'.
-    for a_version in set(
-            list(pager.object_list) + list(needs_human_review_versions)):
+    for a_version in pager.object_list:
+        version_ids.append(a_version.pk)
         if not a_version.is_ready_for_auto_approval:
             continue
         try:
@@ -903,6 +892,12 @@ def review(request, addon, channel=None):
         # Call calculate_verdict() again, it will use the data already stored.
         verdict_info = summary.calculate_verdict(pretty=True)
         auto_approval_info[a_version.pk] = verdict_info
+
+    # We want to notify the reviewer if there are versions needing extra
+    # attention that are not present in the versions history (which is
+    # paginated).
+    versions_needing_human_review = versions_qs.filter(
+        needs_human_review=True).exclude(pk__in=version_ids).count()
 
     flags = get_flags(addon, version) if version else []
 
@@ -929,12 +924,11 @@ def review(request, addon, channel=None):
         deleted_addon_ids=deleted_addon_ids, flags=flags,
         form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
         reports=reports, show_diff=show_diff,
-        needs_human_review_versions=needs_human_review_versions,
-        needs_human_review_versions_ids=needs_human_review_versions_ids,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes_log=user_changes_log, user_ratings=user_ratings,
+        versions_needing_human_review=versions_needing_human_review,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)

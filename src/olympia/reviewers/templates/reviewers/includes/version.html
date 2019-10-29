@@ -1,4 +1,4 @@
-<tr class="listing-header">
+<tr class="listing-header {% if version.needs_human_review %}needs-human-review{% endif %}">
   <th colspan="2">
     {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
     Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
@@ -38,7 +38,7 @@
         <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
       {% endif %}
       {% if version.needs_human_review %}
-        <div><strong class="needs-human-review">{{ _('Flagged by scanners as needing human review') }}</strong></div>
+        <div><strong class="risk-high">{{ _('Flagged by scanners as needing human review') }}</strong></div>
       {% endif %}
     {% else %}
       <ul>

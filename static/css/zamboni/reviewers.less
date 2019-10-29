@@ -200,7 +200,7 @@ table.data-grid .locked .addon-locked {
 .risk-highest {
     color: red;
 }
-.risk-high, .needs-human-review {
+.risk-high {
     color: orange;
 }
 .risk-medium {
@@ -719,16 +719,14 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 .review-files tr.listing-header {
      border-top: 1px solid #A5BFCE;
 }
-#needs-human-review .review-files tr.listing-header {
-     border-top: 1px solid #fede94;
-}
-#needs-human-review .review-files tr.listing-header {
+.review-files tr.listing-header.needs-human-review {
     background-color: #ffeec5;
+    border-top: 1px solid #fede94;
 }
-#needs-human-review .review-files tr.listing-header:hover {
+.review-files tr.listing-header.needs-human-review:hover {
     background: linear-gradient(#FFFFFF, #ffcf5d);
 }
-#needs-human-review .review-files tr.listing-header:active {
+.review-files tr.listing-header.needs-human-review:active {
     background: linear-gradient(#ffcf5d, #FFF);
 }
 .review-files tr.listing-header:hover {
