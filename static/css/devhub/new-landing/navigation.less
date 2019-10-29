@@ -2,11 +2,12 @@
   box-shadow: 0 4px 16px rgba(12,12,13,0.1);
 
   .DevHub-Navigation-list-wrapper {
-    padding-left: @side-margin;
-    padding-right: @side-margin;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px @side-margin;
     height: 100%;
+
+    @media @medium {
+      padding: 5px @medium-side-margin;
+    }
   }
 
   ul {
