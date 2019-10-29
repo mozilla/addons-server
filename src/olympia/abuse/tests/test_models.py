@@ -154,12 +154,14 @@ class TestAbuse(TestCase):
             (1, 'Uninstall'),
             (2, 'Menu'),
             (3, 'Toolbar context menu'),
+            (4, 'AMO'),
         )
         assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
             (None, None),
             (1, 'uninstall'),
             (2, 'menu'),
             (3, 'toolbar_context_menu'),
+            (4, 'amo'),
         )
 
     def test_type_unknown_addon_type(self):
