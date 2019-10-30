@@ -541,7 +541,6 @@ class ReviewBase(object):
         are supposed to automatically get the update to that version, so we
         don't need to care about older ones anymore.
         """
-        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
         # Do a mass UPDATE.
         self.addon.versions.filter(
             needs_human_review=True,
@@ -702,7 +701,8 @@ class ReviewBase(object):
             self.set_addon(status=amo.STATUS_APPROVED)
 
         # Clear needs_human_review flags on past listed versions.
-        self.unset_past_needs_human_review()
+        if self.request:
+            self.unset_past_needs_human_review()
 
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
@@ -748,7 +748,8 @@ class ReviewBase(object):
 
         # Unset needs_human_review on the latest version - it's the only
         # version we can be certain that the reviewer looked at.
-        self.version.update(needs_human_review=False)
+        if self.request:
+            self.version.update(needs_human_review=False)
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_rejected' % self.review_type
@@ -830,12 +831,19 @@ class ReviewBase(object):
         # so override the text in case the reviewer switched between actions
         # and accidently submitted some comments from another action.
         self.data['comments'] = ''
-        if channel == amo.RELEASE_CHANNEL_LISTED:
-            # Clear needs_human_review flags on past listed versions.
+
+        if channel == amo.RELEASE_CHANNEL_LISTED and self.request:
+            # Clear needs_human_review flags on past versions in channel.
             self.unset_past_needs_human_review()
 
             version.autoapprovalsummary.update(confirmed=True)
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+        else:
+            # For now, for unlisted versions, only drop the needs_human_review
+            # flag on the latest version.
+            if self.version.needs_human_review:
+                self.version.update(needs_human_review=False)
+
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
         # Assign reviewer incentive scores.
@@ -865,7 +873,8 @@ class ReviewBase(object):
                             timestamp=timestamp)
         # Unset needs_human_review on those versions, we consider that the
         # reviewer looked at them.
-        self.data['versions'].update(needs_human_review=False)
+        if self.request:
+            self.data['versions'].update(needs_human_review=False)
 
         self.addon.update_status()
         self.data['version_numbers'] = u', '.join(
