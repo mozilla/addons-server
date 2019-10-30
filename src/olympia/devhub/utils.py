@@ -270,6 +270,7 @@ class Validator(object):
                 tasks.create_initial_validation_results.si(),
                 repack_fileupload.s(file_.pk),
                 tasks.validate_upload.s(file_.pk, channel),
+                tasks.check_for_api_keys_in_file.s(file_.pk),
                 chord(
                     tasks_in_parallel,
                     tasks.handle_upload_validation_result.s(file_.pk,
