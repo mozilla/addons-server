@@ -90,8 +90,8 @@ def queue_tabnav(context):
             ))
             tabnav.append(
                 ('needs_human_review', 'queue_needs_human_review',
-                 (ungettext('Need Human Review ({0})',
-                            'Need Human Review ({0})',
+                 (ungettext('Flagged By Scanners ({0})',
+                            'Flagged By Scanners ({0})',
                             counts['needs_human_review'])
                   .format(counts['needs_human_review']))),
             )

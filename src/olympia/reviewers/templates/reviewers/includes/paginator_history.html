@@ -27,7 +27,7 @@
     </li>
     {% endfor %}
   </ol>
-  {% if versions_needing_human_review %}
-    <strong class="risk-high">{{ _('{num} versions needing human review on other pages.')|format_html(num=versions_needing_human_review) }}</strong>
+  {% if versions_flagged_by_scanners %}
+    <strong class="risk-high">{{ _('{num} versions flagged by scanners on other pages.')|format_html(num=versions_flagged_by_scanners) }}</strong>
   {% endif %}
 {% endif %}

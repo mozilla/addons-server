@@ -256,28 +256,28 @@ class ContentReviewTable(AutoApprovedTable):
 class NeedsHumanReviewTable(AutoApprovedTable):
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
-        versions_needing_human_review = record.versions.filter(
+        versions_flagged_by_scanners = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_LISTED,
             needs_human_review=True).count()
-        if versions_needing_human_review:
+        if versions_flagged_by_scanners:
             url = reverse('reviewers.review', args=[record.slug])
             rval.append(
                 '<a href="%s">%s</a>' % (
                     url,
                     _('Listed versions needing human review ({0})').format(
-                        versions_needing_human_review)
+                        versions_flagged_by_scanners)
                 )
             )
-        unlisted_versions_needing_human_review = record.versions.filter(
+        unlisted_versions_flagged_by_scanners = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_UNLISTED,
             needs_human_review=True).count()
-        if unlisted_versions_needing_human_review:
+        if unlisted_versions_flagged_by_scanners:
             url = reverse('reviewers.review', args=['unlisted', record.slug])
             rval.append(
                 '<a href="%s">%s</a>' % (
                     url,
                     _('Unlisted versions needing human review ({0})').format(
-                        unlisted_versions_needing_human_review)
+                        unlisted_versions_flagged_by_scanners)
                 )
             )
         return ''.join(rval)

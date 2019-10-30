@@ -2479,7 +2479,7 @@ class TestNeedsHumanReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Need Human Review',
+            'Flagged By Scanners',
             tab_position=1, total_addons=3, total_queues=2, per_page=1)
 
     def test_queue_layout_admin(self):
@@ -2488,7 +2488,7 @@ class TestNeedsHumanReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Need Human Review',
+            'Flagged By Scanners',
             tab_position=2, total_addons=4, total_queues=9, per_page=1)
 
 

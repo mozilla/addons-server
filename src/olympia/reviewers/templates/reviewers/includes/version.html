@@ -38,7 +38,7 @@
         <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
       {% endif %}
       {% if version.needs_human_review %}
-        <div><strong class="risk-high">{{ _('Flagged by scanners as needing human review') }}</strong></div>
+        <div><strong class="risk-high">{{ _('Flagged by automated scanners') }}</strong></div>
       {% endif %}
     {% else %}
       <ul>

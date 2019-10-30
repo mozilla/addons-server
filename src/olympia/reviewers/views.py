@@ -174,8 +174,8 @@ def dashboard(request):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         ),
         ))
-        sections[ugettext('Need Human Review')] = [(
-            ugettext('Need Human Review ({0})').format(
+        sections[ugettext('Flagged By Scanners')] = [(
+            ugettext('Flagged By Scanners ({0})').format(
                 Addon.objects.get_needs_human_review_queue(
                     admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_needs_human_review'))
@@ -896,7 +896,7 @@ def review(request, addon, channel=None):
     # We want to notify the reviewer if there are versions needing extra
     # attention that are not present in the versions history (which is
     # paginated).
-    versions_needing_human_review = versions_qs.filter(
+    versions_flagged_by_scanners = versions_qs.filter(
         needs_human_review=True).exclude(pk__in=version_ids).count()
 
     flags = get_flags(addon, version) if version else []
@@ -928,7 +928,7 @@ def review(request, addon, channel=None):
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes_log=user_changes_log, user_ratings=user_ratings,
-        versions_needing_human_review=versions_needing_human_review,
+        versions_flagged_by_scanners=versions_flagged_by_scanners,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)
