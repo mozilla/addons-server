@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-30 08:42+0000\n"
+"PO-Revision-Date: 2019-10-30 11:32+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3447,18 +3447,16 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Доторкніться до академічних знань {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Отримайте доступ до понад 10 мільйонів дослідницьких видань."
+msgstr "Доторкніться до академічної мудрості. Отримайте доступ до понад 10 мільйонів дослідницьких видань."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Налаштовуйте рухи миші {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Ознайомтеся з новим способом навігації за допомогою понад 50 корисних рухів миші."
+msgstr "Налаштуйте рухи миші. Ознайомтеся з новим способом навігації за допомогою понад 50 корисних рухів миші."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3494,9 +3492,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Збільшуйте зображення {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "Просто наведіть на зображення для його збільшення."
+msgstr "Наведіть на зображення для його збільшення."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3527,20 +3524,19 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Не залишайте цифрового сліду {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Дозвольте Firefox забути локальні дані веб-сайтів, такі як куки й дані сховища, але лише для вибраних доменів."
+msgstr "Не залишайте після себе цифрового сліду. Дозвольте Firefox забути локальні дані веб-сайтів, такі як куки й дані сховища, але лише для вибраних доменів."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Зберігайте текст {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
-msgstr "Припиніть писати одне й те саме знову й знову! Якщо ви часто використовуєте однакові фрази в своїй роботі чи інших справах, збережіть їх та легко вставляйте за потреби."
+msgstr ""
+"Збережіть текст на потім. Припиніть писати одне й те саме знову й знову! Якщо ви часто використовуєте однакові фрази в своїй роботі чи інших справах, збережіть їх та легко вставляйте за потреби."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
