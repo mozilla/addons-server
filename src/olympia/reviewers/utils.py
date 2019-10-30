@@ -533,6 +533,23 @@ class ReviewBase(object):
             assert not self.user.id == settings.TASK_USER_ID
             self.version.update(recommendation_approved=True)
 
+    def unset_past_needs_human_review(self):
+        """Clear needs_human_review flag on past listed versions.
+
+        To be called when approving a listed version: For listed, the version
+        reviewers are approving is always the latest listed one, and then users
+        are supposed to automatically get the update to that version, so we
+        don't need to care about older ones anymore.
+        """
+        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+        # Do a mass UPDATE.
+        self.addon.versions.filter(
+            needs_human_review=True,
+            channel=self.version.channel).update(
+            needs_human_review=False)
+        # Also reset it on self.version in case this instance is saved later.
+        self.version.needs_human_review = False
+
     def log_action(self, action, version=None, files=None,
                    timestamp=None):
         details = {'comments': self.data['comments'],
@@ -684,6 +701,9 @@ class ReviewBase(object):
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
 
+        # Clear needs_human_review flags on past listed versions.
+        self.unset_past_needs_human_review()
+
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
         # approval.
@@ -725,6 +745,10 @@ class ReviewBase(object):
             self.set_addon(status=amo.STATUS_NULL)
         self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
+
+        # Unset needs_human_review on the latest version - it's the only
+        # version we can be certain that the reviewer looked at.
+        self.version.update(needs_human_review=False)
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_rejected' % self.review_type
@@ -807,6 +831,9 @@ class ReviewBase(object):
         # and accidently submitted some comments from another action.
         self.data['comments'] = ''
         if channel == amo.RELEASE_CHANNEL_LISTED:
+            # Clear needs_human_review flags on past listed versions.
+            self.unset_past_needs_human_review()
+
             version.autoapprovalsummary.update(confirmed=True)
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
@@ -836,6 +863,10 @@ class ReviewBase(object):
             self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
             self.log_action(action_id, version=version, files=files,
                             timestamp=timestamp)
+        # Unset needs_human_review on those versions, we consider that the
+        # reviewer looked at them.
+        self.data['versions'].update(needs_human_review=False)
+
         self.addon.update_status()
         self.data['version_numbers'] = u', '.join(
             str(v.version) for v in self.data['versions'])
