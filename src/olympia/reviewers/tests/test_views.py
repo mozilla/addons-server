@@ -4775,25 +4775,41 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Previously deleted entries' not in response.content
 
-    def test_versions_that_needs_human_review(self):
-        version2 = version_factory(addon=self.addon, needs_human_review=True)
-        version3 = version_factory(addon=self.addon, needs_human_review=True)
-        # Make sure the current version (which has changed with the versions
-        # we just added) is auto-approved, and the user is a post-reviewer.
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
-        )
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+    def test_versions_that_needs_human_review_are_highlighted(self):
+        self.addon.current_version.update(created=self.days_ago(366))
+        for i in range(0, 10):
+            # Add versions 1.0 to 1.9. Flag a few of them as needing human
+            # review.
+            version_factory(
+                addon=self.addon, version=f'1.{i}',
+                needs_human_review=not bool(i % 3),
+                created=self.days_ago(365 - i))
+
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
+        tds = doc('#versions-history .review-files td.files')
+        assert tds.length == 10
+        # Original version should not be there any more, it's on the second
+        # page. Versions on the page should be displayed in chronological order
+        # Versions 1.0, 1.3, 1.6, 1.9 are flagged for human review.
+        assert 'Flagged by automated scanners' in tds.eq(0).text()
+        assert 'Flagged by automated scanners' in tds.eq(3).text()
+        assert 'Flagged by automated scanners' in tds.eq(6).text()
+        assert 'Flagged by automated scanners' in tds.eq(9).text()
 
-        # FIXME:
-        # - need to make sure the versions needing review are highlighted
-        # - need to play with pagination to make sure we're displaying the
-        #   warning
-        # - need other tests in reviewers/test_utils.py once Review* changes
-        #   are implemented...
+        # There are no other flagged versions in the other page.
+        span = doc('#review-files-header .risk-high')
+        assert span.length == 0
+
+        # Load the second page. This time there should be a message indicating
+        # there are flagged versions in other pages.
+        response = self.client.get(self.url, {'page': 2})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        span = doc('#review-files-header .risk-high')
+        assert span.length == 1
+        assert span.text() == '4 versions flagged by scanners on other pages.'
 
 
 class TestAbuseReportsView(ReviewerTest):
