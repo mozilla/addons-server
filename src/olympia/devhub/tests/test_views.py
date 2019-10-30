@@ -1881,7 +1881,7 @@ def test_get_next_version_number():
     version_factory(addon=addon, version='2')
     assert get_next_version_number(addon) == '3.0'
     # We just iterate the major version number
-    addon.current_version.update(version='34.45.0a1pre', version_int=None)
+    addon.current_version.update(version='34.45.0a1pre')
     addon.current_version.save()
     assert get_next_version_number(addon) == '35.0'
     # "Take" 35.0

@@ -227,7 +227,6 @@
     "modified": "2014-12-08T06:39:45",
     "deleted": false,
     "version": "0.4",
-    "version_int": 40000200100,
     "reviewed": null,
     "nomination": "2014-12-08T06:39:45",
     "addon": 1
@@ -245,7 +244,6 @@
     "modified": "2014-12-08T06:40:07",
     "deleted": false,
     "version": "1.2",
-    "version_int": 1020000200100,
     "reviewed": null,
     "nomination": null,
     "addon": 2
@@ -263,7 +261,6 @@
     "modified": "2014-12-08T06:40:16",
     "deleted": false,
     "version": "1.9",
-    "version_int": 1090000200100,
     "reviewed": null,
     "nomination": "2014-12-08T06:40:16",
     "addon": 3
@@ -281,7 +278,6 @@
     "modified": "2014-12-08T06:40:23",
     "deleted": false,
     "version": "1.8",
-    "version_int": 1080000200100,
     "reviewed": null,
     "nomination": "2014-12-08T06:40:23",
     "addon": 4
@@ -299,7 +295,6 @@
     "modified": "2014-12-08T06:40:24",
     "deleted": false,
     "version": "1.1",
-    "version_int": 1010000200100,
     "reviewed": null,
     "nomination": "2014-12-08T06:40:25",
     "addon": 5
@@ -317,7 +312,6 @@
     "modified": "2014-12-08T06:40:25",
     "deleted": false,
     "version": "0.3",
-    "version_int": 30000200100,
     "reviewed": null,
     "nomination": "2014-12-08T06:40:25",
     "addon": 6
