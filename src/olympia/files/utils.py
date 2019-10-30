@@ -611,8 +611,8 @@ def extract_search(content):
                 ugettext('Could not parse uploaded file, missing or empty '
                          '<%s> element') % tag)
 
-    # Only catch basic errors, most of that validation already happened in
-    # devhub.tasks:annotate_search_plugin_validation
+    # Only catch basic errors, we don't accept any new uploads and validation
+    # has happened on upload in the past.
     try:
         dom = minidom.parse(content)
     except DefusedXmlException:

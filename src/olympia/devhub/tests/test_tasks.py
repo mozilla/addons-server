@@ -456,22 +456,6 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         assert self.addon.binary
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_validates_search_plugins_inline(self, run_addons_linter_mock):
-        addon = addon_factory(file_kw={
-            'filename': 'opensearch/sp_updateurl.xml'})
-        file_ = addon.current_version.current_file
-        tasks.validate(file_).get()
-
-        assert not run_addons_linter_mock.called
-
-        file_.refresh_from_db()
-        validation = file_.validation.processed_validation
-
-        assert validation['errors'] == 2
-        assert validation['messages'][0]['message'].startswith(
-            'OpenSearch: &lt;updateURL&gt; elements')
-
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_calls_run_linter(self, run_addons_linter_mock):
         run_addons_linter_mock.return_value = '{"errors": 0}'
         upload = self.get_upload(
@@ -540,14 +524,6 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['success']
         assert result['errors']
         assert not result['warnings']
-
-    def test_returns_skeleton_for_search_plugin(self):
-        result = json.loads(tasks.validate_file_path(
-            get_addon_file('searchgeek-20090701.xml'),
-            channel=amo.RELEASE_CHANNEL_LISTED))
-
-        expected = amo.VALIDATOR_SKELETON_RESULTS
-        assert result == expected
 
     @mock.patch('olympia.devhub.tasks.parse_addon')
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -827,9 +803,22 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
 
         upload.refresh_from_db()
 
-        assert upload.processed_validation['errors'] == 0
-        assert upload.processed_validation['messages'] == []
-        assert upload.valid
+        assert not upload.valid
+        assert upload.processed_validation['errors'] == 1
+        assert upload.processed_validation['messages'] == [{
+            'compatibility_type': None,
+            'description': [],
+            'id': ['validation', 'messages', 'legacy_addons_unsupported'],
+            'message': (
+                'Open Search add-ons are <a '
+                'href="https://blog.mozilla.org/addons/2019/10/15/'
+                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/" '
+                'rel="nofollow">no longer supported on AMO</a>. You can create '
+                'a <a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/'
+                'WebExtensions/Your_first_WebExtension" '
+                'rel="nofollow">search extension instead</a>.'),
+            'tier': 1,
+            'type': 'error'}]
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
@@ -1163,97 +1152,6 @@ class TestAPIKeyInSubmission(UploadTest, TestCase):
         # validation task.
         assert upload.processed_validation['errors'] == 1
         assert not upload.valid
-
-
-@pytest.mark.parametrize('fixture, success, message', [
-    ('pass.xml', True, ''),
-    # xmlns attribute is present
-    ('no_xmlns.xml', False, 'Missing XMLNS attribute.'),
-    # an xmlns attribute is an invvalid value
-    ('bad_xmlns.xml', False, 'Bad XMLNS attribute.'),
-    # Broken XML
-    ('bad_xml.xml', False, 'XML Parse Error.'),
-    # Tests that there is no updateURL element in the provider
-    ('sp_updateurl.xml', False,
-     '<updateURL> elements are banned in OpenSearch providers.'),
-    # the provider is indeed OpenSearch
-    ('sp_notos.xml', False, 'Invalid Document Root.'),
-    # the provider has a <ShortName> element
-    ('sp_no_shortname.xml', False, 'Missing <ShortName> elements.'),
-    ('sp_dup_shortname.xml', False, 'Too many <ShortName> elements.'),
-    ('sp_long_shortname.xml', False, '<ShortName> element too long.'),
-    # the provider has a <Description> element.'
-    ('sp_no_description.xml', False,
-     'Invalid number of <Description> elements.'),
-    # the provider has a <Url> element.'
-    ('sp_no_url.xml', False, 'Missing <Url> elements.'),
-    # the provider is passing the proper attributes for its urls.'
-    ('sp_bad_url_atts.xml', False,
-     'Missing <Url> element with \'text/html\' type.'),
-    # Test that there's no traceback for a missing template attribute
-    ('sp_no_template_attr.xml', False,
-     '<Url> element missing template attribute.'),
-    # a search term field is provided for the <Url> element.'
-    ('sp_no_url_template.xml', False,
-     '<Url> element missing template placeholder.'),
-    # a valid inline search term field is provided.'
-    ('sp_inline_template.xml', True, ''),
-    # a valid search term field is provided in a <Param />'
-    ('sp_param_template.xml', True, ''),
-    # necessary attributes are provided in a <Param />'
-    ('sp_bad_param_atts.xml', False,
-     '`<Param>` element missing \'name/value\'.'),
-    # Test malicious XML is detected properly
-    ('lol.xml', False, 'XML Security error.'),
-])
-def test_opensearch_validation(fixture, success, message):
-    """Tests that the OpenSearch validation doesn't find anything worrying."""
-    fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files/opensearch/',
-        fixture)
-
-    results = {
-        'messages': [],
-        'errors': 0,
-        'metadata': {}
-    }
-
-    annotations.annotate_search_plugin_validation(
-        results, fixture_path, channel=amo.RELEASE_CHANNEL_LISTED)
-
-    if success:
-        assert not results['errors']
-        assert not results['messages']
-    else:
-        assert results['errors']
-        assert results['messages']
-
-        expected = 'OpenSearch: {}'.format(message)
-        assert any(
-            message['message'] == expected for message in results['messages'])
-
-
-def test_opensearch_validation_rel_self_url():
-    """Tests that rel=self urls are ignored for unlisted addons."""
-    fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files',
-        'opensearch/rel_self_url.xml')
-
-    results = {
-        'messages': [],
-        'errors': 0,
-        'metadata': {}
-    }
-
-    annotations.annotate_search_plugin_validation(
-        results, fixture_path, channel=amo.RELEASE_CHANNEL_UNLISTED)
-
-    assert not results['errors']
-
-    annotations.annotate_search_plugin_validation(
-        results, fixture_path, channel=amo.RELEASE_CHANNEL_LISTED)
-
-    assert results['errors']
 
 
 class TestValidationTask(TestCase):
