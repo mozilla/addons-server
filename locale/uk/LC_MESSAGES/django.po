@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-30 08:20+0000\n"
+"PO-Revision-Date: 2019-10-30 08:42+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3343,18 +3343,16 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Керуйте паролями {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Спростіть керування та синхронізуйте всі ваші паролі для різних веб-сайтів між пристроями за допомогою одного головного пароля."
+msgstr "Спрощене керування паролями. Синхронізуйте всі ваші паролі між пристроями за допомогою одного головного пароля."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Легкий та ефективний додаток для блокування реклами. uBlock Origin забезпечує тисячами фільтрів вмісту без суттєвого впливу на споживання пам'яті."
+msgstr "Ефективний та легкий додаток для блокування реклами. uBlock Origin забезпечує тисячами фільтрів вмісту без суттєвого впливу на споживання пам'яті."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3377,9 +3375,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Оцініть візуальні закладки {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Доступ до улюблених сайтів за допомогою закладок у вигляді плиток."
+msgstr "Відчуйте переваги візуальних закладок. Доступ до улюблених сайтів за допомогою закладок у вигляді плиток."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3442,9 +3439,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Простий переклад {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Підсвічуйте текст на будь-якій веб-сторінці — або обирайте цілу сторінку — для миттєвого перекладу."
+msgstr "Простий переклад. Підсвічуйте текст на будь-якій веб-сторінці — або обирайте цілу сторінку — для миттєвого перекладу."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
