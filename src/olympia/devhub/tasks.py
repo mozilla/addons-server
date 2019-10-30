@@ -241,7 +241,7 @@ def validate_file_path(path, channel):
         # search plugins are validated directly by addons-server
         # so that we don't have to call the linter or validator
         results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
-        annotations.annotate_search_plugin_validation(
+        annotations.annotate_search_plugin_restriction(
             results=results, file_path=path, channel=channel)
         return json.dumps(results)
 
@@ -258,6 +258,7 @@ def validate_file_path(path, channel):
         # Similarly, if we can't parse the manifest, let the linter pick that
         # up.
         data = {}
+
     is_legacy_extension = data.get('is_webextension', None) is False
     is_mozilla_signed = data.get('is_mozilla_signed_extension', None) is True
 
