@@ -333,7 +333,6 @@ class AddonManager(ManagerBase):
             # to have a version since they got the needs_human_review flag, so
             # returning incomplete ones is acceptable.
             .filter(
-                disabled_by_user=False,
                 status__in=[
                     amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL
                 ],
