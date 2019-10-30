@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-30 11:32+0000\n"
+"PO-Revision-Date: 2019-10-30 11:41+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3559,9 +3559,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Уникайте підступні елементи стеження й обмеження {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Приховайте свої дії в інтернеті, замаскувавши браузер та операційну систему."
+msgstr "Уникайте прихованого стеження й обмежень. Приховайте свої дії в інтернеті, замаскувавши дані про свій браузер та операційну систему."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3576,9 +3575,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Відокремте свої онлайн простори {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Розрізняйте свою мережеву діяльність — роботу, особисте, інше — за допомогою кольорових груп вкладок, що розділяють ваші цифрові сліди та куки. "
+msgstr "Відокремте свою діяльність в Інтернеті — роботу, особисте, інше — за допомогою кольорових груп вкладок, що розділяють ваші цифрові сліди та куки."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3593,7 +3591,6 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Читайте файли ePub {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Читайте файли в форматі електронних книг ePub безпосередньо в Firefox—налаштовуйте розмір шрифту, сторінки та інші параметри."
 
@@ -3602,18 +3599,16 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Вдоскональте роботу з YouTube {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Завжди запускайте відтворення відео високої якості, вмикайте анотації та інші можливості."
+msgstr "Завжди відтворюйте YouTube відео у високій якості, вимикайте анотації, а також використовуйте інші можливості."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Відстежуйте стеження {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Одним натисканням кнопки погляньте, хто за вами стежить."
+msgstr "Стежте за стеженням. Одним натисканням кнопки погляньте, хто за вами стежить."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
