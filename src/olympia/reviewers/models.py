@@ -260,28 +260,21 @@ class ViewUnlistedAllList(RawSQLModel):
     addon_name = models.CharField(max_length=255)
     addon_slug = models.CharField(max_length=30)
     guid = models.CharField(max_length=255)
-    version_date = models.DateTimeField()
     _author_ids = models.CharField(max_length=255)
     _author_usernames = models.CharField()
-    review_date = models.DateField()
-    review_version_num = models.CharField(max_length=255)
-    review_log_id = models.IntegerField()
     addon_status = models.IntegerField()
-    latest_version = models.CharField(max_length=255)
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
     is_deleted = models.BooleanField()
 
     def base_query(self):
-        review_ids = ','.join([str(r) for r in amo.LOG_REVIEWER_REVIEW_ACTION])
         return {
             'select': OrderedDict([
                 ('id', 'addons.id'),
                 ('addon_name', 'tr.localized_string'),
                 ('addon_status', 'addons.status'),
                 ('addon_slug', 'addons.slug'),
-                ('latest_version', 'versions.version'),
                 ('guid', 'addons.guid'),
                 ('_author_ids', 'GROUP_CONCAT(authors.user_id)'),
                 ('_author_usernames', 'GROUP_CONCAT(users.username)'),
@@ -292,55 +285,25 @@ class ViewUnlistedAllList(RawSQLModel):
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('is_deleted', 'IF (addons.status=11, true, false)'),
-                ('version_date', 'versions.nomination'),
-                ('review_date', 'reviewed_versions.created'),
-                ('review_version_num', 'reviewed_versions.version'),
-                ('review_log_id', 'reviewed_versions.log_id'),
             ]),
             'from': [
                 'addons',
                 """
-                JOIN (
-                    SELECT MAX(id) AS latest_version, addon_id FROM versions
-                    WHERE channel = {channel}
-                    GROUP BY addon_id
-                    ) AS latest_version
-                    ON latest_version.addon_id = addons.id
                 LEFT JOIN addons_addonreviewerflags ON (
                     addons.id = addons_addonreviewerflags.addon_id)
                 LEFT JOIN versions
-                    ON (latest_version.latest_version = versions.id)
+                    ON (versions.addon_id = addons.id)
                 JOIN translations AS tr ON (
                     tr.id = addons.name AND
                     tr.locale = addons.defaultlocale)
                 LEFT JOIN addons_users AS authors
                     ON addons.id = authors.addon_id
                 LEFT JOIN users as users ON users.id = authors.user_id
-                LEFT JOIN (
-                    SELECT versions.id AS id, addon_id, log.created, version,
-                           log.id AS log_id
-                    FROM versions
-                    JOIN log_activity_version AS log_v ON (
-                        log_v.version_id=versions.id)
-                    JOIN log_activity as log ON (
-                        log.id=log_v.activity_log_id)
-                    WHERE log.user_id <> {task_user} AND
-                        log.action in ({review_actions}) AND
-                        versions.channel = {channel}
-                    ORDER BY id desc
-                    ) AS reviewed_versions
-                    ON reviewed_versions.addon_id = addons.id
-                """.format(task_user=settings.TASK_USER_ID,
-                           review_actions=review_ids,
-                           channel=amo.RELEASE_CHANNEL_UNLISTED),
+                """
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
                 'versions.channel = %s' % amo.RELEASE_CHANNEL_UNLISTED,
-                """((reviewed_versions.id = (select max(reviewed_versions.id)))
-                    OR
-                    (reviewed_versions.id IS NULL))
-                """,
                 'addons.status <> %s' % amo.STATUS_DISABLED
             ],
             'group_by': 'id'}

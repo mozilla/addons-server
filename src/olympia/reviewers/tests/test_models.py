@@ -287,62 +287,6 @@ class TestUnlistedAllList(TestCase):
         self.assertSetEqual(set(row.authors),
                             {(ernie.id, 'ernie'), (bert.id, 'bert')})
 
-    def test_last_reviewed_version(self):
-        today = datetime.today().date()
-        addon = self.new_addon(version='1.0')
-        v2 = version_factory(addon=addon, version='2.0', channel=self.channel)
-        log = ActivityLog.create(amo.LOG.APPROVE_VERSION, v2, v2.addon,
-                                 user=UserProfile.objects.get(pk=999))
-        version_factory(addon=addon, version='3.0', channel=self.channel)
-        row = self.Queue.objects.all()[0]
-        assert row.review_date == today
-        assert row.review_version_num == '2.0'
-        assert row.review_log_id == log.id
-
-    def test_no_developer_actions(self):
-        addon = self.new_addon(version='1.0')
-        ActivityLog.create(amo.LOG.ADD_VERSION, addon.latest_unlisted_version,
-                           addon, user=UserProfile.objects.get(pk=999))
-        row = self.Queue.objects.all()[0]
-        assert row.review_version_num is None
-
-        ver2 = version_factory(version='2.0', addon=addon,
-                               channel=self.channel)
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, ver2, addon,
-                           user=UserProfile.objects.get(pk=999))
-        row = self.Queue.objects.all()[0]
-        assert row.review_version_num == '2.0'
-
-        ver3 = version_factory(version='3.0', addon=addon,
-                               channel=self.channel)
-        ActivityLog.create(amo.LOG.EDIT_VERSION, ver3, addon,
-                           user=UserProfile.objects.get(pk=999))
-        row = self.Queue.objects.all()[0]
-        # v2.0 is still the last reviewed version.
-        assert row.review_version_num == '2.0'
-
-    def test_no_automatic_reviews(self):
-        ver = self.new_addon(
-            name='addon789', version='1.0').latest_unlisted_version
-        ActivityLog.create(
-            amo.LOG.APPROVE_VERSION, ver, ver.addon,
-            user=UserProfile.objects.get(pk=settings.TASK_USER_ID))
-        row = self.Queue.objects.all()[0]
-        assert row.review_version_num is None
-
-    def test_latest_version(self):
-        addon = addon_factory(
-            version_kw={'version': u'0.1', 'channel': self.channel,
-                        'created': self.days_ago(2)},
-            file_kw={'created': self.days_ago(2)})
-        version_factory(
-            addon=addon, version=u'0.2', channel=self.channel,
-            created=self.days_ago(1), file_kw={'created': self.days_ago(1)})
-        version_factory(
-            addon=addon, version=u'0.3', channel=self.channel)
-        row = self.Queue.objects.get()
-        assert row.latest_version == '0.3'
-
     def test_addons_disabled_by_user_are_hidden(self):
         self.new_addon().update(disabled_by_user=True)
         assert list(self.Queue.objects.all()) == []
@@ -398,8 +342,6 @@ class TestUnlistedAllList(TestCase):
         assert self.Queue.objects.all().count() == 3
         assert [addon.addon_name for addon in self.Queue.objects.all()] == [
             'UnlistedListed', 'ListedUnlisted', 'JustUnlisted']
-        assert ([addon.latest_version for addon in self.Queue.objects.all()] ==
-                ['0.1', '0.2', '0.2'])
 
 
 class TestReviewerSubscription(TestCase):

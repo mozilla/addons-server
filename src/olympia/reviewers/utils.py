@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import loader
 from django.utils import translation
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django.utils.translation import ugettext_lazy as _, ungettext
 
 import django_tables2 as tables
 import jinja2
@@ -107,12 +107,10 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
 
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
+    id = tables.Column(verbose_name=_('ID'))
     addon_name = tables.Column(verbose_name=_(u'Add-on'))
     guid = tables.Column(verbose_name=_(u'GUID'))
-    authors = tables.Column(verbose_name=_(u'Authors'),
-                            orderable=False)
-    review_date = tables.Column(verbose_name=_(u'Last Review'))
-    version_date = tables.Column(verbose_name=_(u'Last Update'))
+    authors = tables.Column(verbose_name=_(u'Authors'), orderable=False)
 
     class Meta(ReviewerQueueTable.Meta):
         model = ViewUnlistedAllList
@@ -123,22 +121,10 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             record.addon_slug if record.addon_slug is not None else record.id,
         ])
         self.increment_item()
-        return safe_substitute(u'<a href="%s">%s <em>%s</em></a>',
-                               url, record.addon_name, record.latest_version)
+        return safe_substitute(u'<a href="%s">%s</a>', url, record.addon_name)
 
     def render_guid(self, record):
         return safe_substitute(u'%s', record.guid)
-
-    def render_version_date(self, record):
-        return safe_substitute(u'<span>%s</span>', record.version_date)
-
-    def render_review_date(self, record):
-        if record.review_version_num is None:
-            return ugettext('No Reviews')
-        return safe_substitute(
-            u'<span class="addon-review-text">'
-            u'<a href="#"><em>%s</em> on %s</a></span>',
-            record.review_version_num, record.review_date)
 
     def render_authors(self, record):
         authors = record.authors
@@ -155,7 +141,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
     @classmethod
     def default_order_by(cls):
-        return '-version_date'
+        return '-id'
 
 
 def view_table_factory(viewqueue):

@@ -1149,15 +1149,17 @@ class QueueTest(ReviewerTest):
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
         for idx, addon in enumerate(self.expected_addons):
-            latest_version = self.get_addon_latest_version(addon)
-            assert latest_version
-            name = '%s %s' % (str(addon.name), latest_version.version)
             if self.channel_name == 'listed':
                 # We typically don't include the channel name if it's the
                 # default one, 'listed'.
                 channel = []
+                # And we onlyinclude the version number in listed queues.
+                latest_version = self.get_addon_latest_version(addon)
+                assert latest_version
+                name = '%s %s' % (str(addon.name), latest_version.version)
             else:
                 channel = [self.channel_name]
+                name = str(addon.name)
             url = reverse('reviewers.review', args=channel + [addon.slug])
             expected.append((name, url))
         doc = pq(response.content)
@@ -1951,16 +1953,15 @@ class TestUnlistedAllList(QueueTest):
     def setUp(self):
         super(TestUnlistedAllList, self).setUp()
         self.url = reverse('reviewers.unlisted_queue_all')
-        # We should have all add-ons.
-        self.expected_addons = self.get_expected_addons_by_names(
-            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two',
-             'Public'])
-        # Need to set unique nomination times or we get a psuedo-random order.
-        for idx, addon in enumerate(self.expected_addons):
-            latest_version = addon.find_latest_version(
-                channel=amo.RELEASE_CHANNEL_UNLISTED)
-            latest_version.update(
-                nomination=(datetime.now() - timedelta(minutes=idx)))
+        # We should have all add-ons, sorted by id desc.
+        self.generate_files()
+        self.expected_addons = [
+            self.addons['Public'],
+            self.addons['Pending Two'],
+            self.addons['Pending One'],
+            self.addons['Nominated Two'],
+            self.addons['Nominated One'],
+        ]
 
     def test_results(self):
         self._test_results()
