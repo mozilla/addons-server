@@ -325,6 +325,7 @@ function initValidator($doc) {
         function rebuildResults() {
             vis = new MsgVisitor(suite, data);
             $.each(sortByType(validation.messages), function(i, msg) {
+                console.log('RENDER MESSAGE', i, msg);
                 vis.message(msg);
             });
             vis.finish();

@@ -802,6 +802,7 @@ def escape_all(value):
     Only linkify full urls, including a scheme, if "linkify_only_full" is True.
 
     """
+    print('XXXXXXXXXXXXXXXX', value)
     if isinstance(value, str):
         value = jinja2.escape(force_text(value))
         value = linkify_with_outgoing(value)

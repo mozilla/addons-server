@@ -120,6 +120,7 @@ def htmlify_validation(validation):
     safe HTML, with URLs turned into links."""
 
     for msg in validation['messages']:
+        print('AAAAAAAAAAAAAA', msg)
         msg['message'] = linkify_escape(msg['message'])
 
         if 'description' in msg:
@@ -130,6 +131,7 @@ def htmlify_validation(validation):
 
             msg['description'] = [
                 linkify_escape(text) for text in msg['description']]
+        print('BBBBBBBBBBBBBB', msg)
 
 
 def fix_addons_linter_output(validation, channel):

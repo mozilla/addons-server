@@ -827,7 +827,7 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
 
         upload.refresh_from_db()
 
-        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['errors'] == 1
         assert upload.processed_validation['messages'] == []
         assert upload.valid
 

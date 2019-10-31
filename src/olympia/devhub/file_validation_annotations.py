@@ -122,12 +122,11 @@ def annotate_search_plugin_restriction(results, file_path, channel):
         u'instead{doc_link_close}.').format(
             blog_link_open=(
                 '<a href="https://blog.mozilla.org/addons/2019/10/15/'
-                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/'
-                '</a>'),
+                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/">'),
             blog_link_close='</a>',
             doc_link_open=(
                 '<a href="https://developer.mozilla.org/docs/Mozilla/'
-                'Add-ons/WebExtensions/Your_first_WebExtension'),
+                'Add-ons/WebExtensions/Your_first_WebExtension">'),
             doc_link_close='</a>')
 
     insert_validation_message(
