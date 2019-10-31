@@ -1343,7 +1343,25 @@ class TestReviewHelper(TestReviewHelperBase):
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_reject_multiple_versions_need_human_review(self):
-        pass  # FIXME
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(
+            addon=self.addon, version='3.0', needs_human_review=True)
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        # We rejected all versions so there aren't any left that need human
+        # review.
+        assert not self.addon.versions.filter(needs_human_review=True).exists()
+        assert self.file.status == amo.STATUS_DISABLED
 
     def test_reject_multiple_versions_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
