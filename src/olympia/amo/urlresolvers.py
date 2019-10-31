@@ -220,12 +220,6 @@ def linkify_only_full_urls(attrs, new=False):
     return attrs
 
 
-def linkify_escape(text):
-    """Linkifies plain text, escaping any HTML metacharacters already
-    present."""
-    return bleach.linkify(text)
-
-
 def linkify_with_outgoing(text):
     """Wrapper around bleach.linkify: uses get_outgoing_url."""
     callbacks = [linkify_bounce_url_callback, bleach.callbacks.nofollow]
