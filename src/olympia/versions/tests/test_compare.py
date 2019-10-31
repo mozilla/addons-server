@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from olympia.versions.compare import (
-    MAXVERSION, dict_from_int, version_dict, version_int)
+from olympia.versions.compare import MAXVERSION, version_dict, version_int
 
 
 def test_version_int():
@@ -40,15 +39,3 @@ def test_version_dict():
 
 def test_version_int_unicode():
     assert version_int(u'\u2322 ugh stephend') == 200100
-
-
-def test_dict_from_int():
-    d = dict_from_int(3050000001002)
-    assert d['major'] == 3
-    assert d['minor1'] == 5
-    assert d['minor2'] == 0
-    assert d['minor3'] == 0
-    assert d['alpha'] == 'a'
-    assert d['alpha_ver'] == 1
-    assert d['pre'] == 'pre'
-    assert d['pre_ver'] == 2

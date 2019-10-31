@@ -10,7 +10,6 @@ from olympia.amo.celery import task
 from olympia.files.utils import update_version_number
 from olympia.lib.crypto.signing import sign_file
 from olympia.addons.models import Addon
-from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
@@ -136,8 +135,7 @@ def sign_addons(addon_ids, force=False, **kw):
 
         # Now update the Version model, if we signed at least one file.
         if signed_at_least_a_file:
-            version.update(version=bumped_version_number,
-                           version_int=version_int(bumped_version_number))
+            version.update(version=bumped_version_number)
             addon = version.addon
             if addon.pk not in addons_emailed:
                 # Send a mail to the owners/devs warning them we've

@@ -298,12 +298,6 @@ def handle_upload_validation_result(all_results, upload_pk, channel,
 
     upload = FileUpload.objects.get(pk=upload_pk)
 
-    # Annotate results with potential webext warnings on new versions.
-    if upload.addon_id and upload.version:
-        annotations.annotate_webext_incompatibilities(
-            results=results, file_=None, addon=upload.addon,
-            version_string=upload.version, channel=channel)
-
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
 
@@ -361,11 +355,6 @@ def handle_file_validation_result(results, file_id, *args):
     instance."""
 
     file_ = File.objects.get(pk=file_id)
-
-    annotations.annotate_webext_incompatibilities(
-        results=results, file_=file_, addon=file_.version.addon,
-        version_string=file_.version.version, channel=file_.version.channel)
-
     return FileValidation.from_json(file_, results).pk
 
 
