@@ -1148,18 +1148,17 @@ class QueueTest(ReviewerTest):
         expected = []
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
+        # We typically don't include the channel name if it's the
+        # default one, 'listed'.
+        channel = [] if self.channel_name == 'listed' else [self.channel_name]
         for idx, addon in enumerate(self.expected_addons):
-            if self.channel_name == 'listed':
-                # We typically don't include the channel name if it's the
-                # default one, 'listed'.
-                channel = []
-                # And we onlyinclude the version number in listed queues.
+            if self.channel_name == 'unlisted':
+                # In unlisted queue we don't display latest version number.
+                name = str(addon.name)
+            else:
                 latest_version = self.get_addon_latest_version(addon)
                 assert latest_version
                 name = '%s %s' % (str(addon.name), latest_version.version)
-            else:
-                channel = [self.channel_name]
-                name = str(addon.name)
             url = reverse('reviewers.review', args=channel + [addon.slug])
             expected.append((name, url))
         doc = pq(response.content)
