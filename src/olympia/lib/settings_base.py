@@ -280,6 +280,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/new-key-email.ltxt',
     r'^devhub\/email\/submission_api_key_revocation.txt',
     r'^devhub\/email\/api_key_confirmation.ltxt',
+    r'^blocklist\/',
 
     # Django specific templates
     r'^registration\/',
@@ -468,6 +469,7 @@ INSTALLED_APPS = (
     'olympia.api',
     'olympia.applications',
     'olympia.bandwagon',
+    'olympia.blocklist',
     'olympia.browse',
     'olympia.devhub',
     'olympia.discovery',

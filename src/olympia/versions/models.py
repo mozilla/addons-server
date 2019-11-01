@@ -101,8 +101,8 @@ class UnfilteredVersionManagerForRelations(VersionManager):
     """Like VersionManager, but defaults to include deleted objects.
 
     Designed to be used in reverse relations of Versions like this:
-    <Addon>.versions(manager=unfiltered_for_relations).all(), for when you want
-    to use the related manager but need to include deleted versions.
+    <Addon>.versions(manager='unfiltered_for_relations').all(), for when you
+    want to use the related manager but need to include deleted versions.
 
     unfiltered_for_relations = UnfilteredVersionManagerForRelations() is
     defined in Version for this to work.
