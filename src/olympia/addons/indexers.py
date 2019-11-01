@@ -282,7 +282,7 @@ class AddonIndexer(BaseSearchIndexer):
                     # compatibility, so the max version essentially needs to be
                     # ignored - let's fake a super high one. We leave max_human
                     # alone to leave the API representation intact.
-                    max_ = version_int('9999')
+                    max_ = version_int('*')
             else:
                 # Fake wide compatibility for add-ons with no info. We don't
                 # want to reindex every time a new version of the app is

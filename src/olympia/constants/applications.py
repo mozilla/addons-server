@@ -169,7 +169,7 @@ for _app in APP_USAGE:
         APP_TYPE_SUPPORT.setdefault(_type, []).append(_app)
 
 # Fake max version for when we want max compatibility
-FAKE_MAX_VERSION = '9999'
+FAKE_MAX_VERSION = '65535'
 
 # The lowest maxVersion an app has to support to allow default-to-compatible.
 D2C_MIN_VERSIONS = {
@@ -179,9 +179,7 @@ D2C_MIN_VERSIONS = {
 
 for _app in APPS_ALL.values():
     _versions = list(getattr(_app, 'exclude_versions', []))
-    # 99 comes from the hacks we do to make search tools compatible with
-    # versions (bug 692360).
-    _versions.append(99)
+    _versions.append(FAKE_MAX_VERSION)
     _app.exclude_versions = tuple(_versions)
 
 del _app, _type, _versions
