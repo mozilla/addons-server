@@ -34,7 +34,7 @@ from defusedxml.common import DefusedXmlException
 
 import olympia.core.logger
 
-from olympia import amo, core
+from olympia import amo
 from olympia.access import acl
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
@@ -1020,10 +1020,9 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         raise forms.ValidationError(ugettext('Could not find an add-on ID.'))
 
     if guid:
-        current_user = core.get_user()
-        if current_user:
+        if user:
             deleted_guid_clashes = Addon.unfiltered.exclude(
-                authors__id=current_user.id).filter(guid=guid)
+                authors__id=user.id).filter(guid=guid)
         else:
             deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
 
@@ -1060,7 +1059,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         # `resolve_webext_translations` modifies data in-place
         translations = Addon.resolve_webext_translations(
             xpi_info.copy(), xpi_file)
-        verify_mozilla_trademark(translations['name'], core.get_user())
+        verify_mozilla_trademark(translations['name'], user)
 
     # Parse the file to get and validate package data with the addon.
     if not acl.experiments_submission_allowed(user, xpi_info):

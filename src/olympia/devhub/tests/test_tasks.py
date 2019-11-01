@@ -568,66 +568,6 @@ class TestWebextensionIncompatibilities(UploadTest, ValidatorTestCase):
             for file in version.files.all():
                 file.update(**kw)
 
-    def test_webextension_upgrade_is_annotated(self):
-        assert all(f.is_webextension is False
-                   for f in self.addon.current_version.all_files)
-
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, with_validation=False, addon=self.addon,
-            version='0.1')
-        tasks.validate(upload, listed=True)
-
-        upload.refresh_from_db()
-        assert upload.processed_validation['is_upgrade_to_webextension']
-
-        expected = ['validation', 'messages', 'webext_upgrade']
-        assert upload.processed_validation['messages'][0]['id'] == expected
-        assert upload.processed_validation['warnings'] == 1
-        assert upload.valid
-
-    def test_new_webextension_is_not_annotated(self):
-        """https://github.com/mozilla/addons-server/issues/3679"""
-        previous_file = self.addon.current_version.all_files[-1]
-        previous_file.is_webextension = True
-        previous_file.status = amo.STATUS_AWAITING_REVIEW
-        previous_file.save()
-
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, with_validation=False, addon=self.addon,
-            version='0.1')
-        tasks.validate(upload, listed=True)
-
-        upload.refresh_from_db()
-        validation = upload.processed_validation
-
-        assert 'is_upgrade_to_webextension' not in validation
-        expected = ['validation', 'messages', 'webext_upgrade']
-        assert not any(msg['id'] == expected for msg in validation['messages'])
-        assert validation['warnings'] == 0
-        assert upload.valid
-
-    def test_webextension_webext_to_webext_not_annotated(self):
-        previous_file = self.addon.current_version.all_files[-1]
-        previous_file.is_webextension = True
-        previous_file.save()
-
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, with_validation=False, addon=self.addon,
-            version='0.1')
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-
-        validation = upload.processed_validation
-
-        assert 'is_upgrade_to_webextension' not in validation
-        expected = ['validation', 'messages', 'webext_upgrade']
-        assert not any(msg['id'] == expected for msg in validation['messages'])
-        assert validation['warnings'] == 0
-        assert upload.valid
-
     def test_webextension_no_webext_no_warning(self):
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')
@@ -639,7 +579,6 @@ class TestWebextensionIncompatibilities(UploadTest, ValidatorTestCase):
 
         validation = upload.processed_validation
 
-        assert 'is_upgrade_to_webextension' not in validation
         expected = ['validation', 'messages', 'webext_upgrade']
         assert not any(msg['id'] == expected for msg in validation['messages'])
 

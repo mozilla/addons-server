@@ -65,42 +65,6 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
         msg_id='legacy_addons_unsupported')
 
 
-def annotate_webext_incompatibilities(results, file_, addon, version_string,
-                                      channel):
-    """Check for WebExtension upgrades or downgrades.
-
-    We avoid developers to downgrade their webextension to a XUL add-on
-    at any cost and warn in case of an upgrade from XUL add-on to a
-    WebExtension.
-
-    Firefox doesn't support a downgrade.
-
-    See https://github.com/mozilla/addons-server/issues/3061 and
-    https://github.com/mozilla/addons-server/issues/3082 for more details.
-    """
-    from .utils import find_previous_version
-
-    previous_version = find_previous_version(
-        addon, file_, version_string, channel)
-
-    if not previous_version:
-        return results
-
-    is_webextension = results['metadata'].get('is_webextension', False)
-    was_webextension = previous_version and previous_version.is_webextension
-
-    if is_webextension and not was_webextension:
-        results['is_upgrade_to_webextension'] = True
-
-        msg = ugettext(
-            'We allow and encourage an upgrade but you cannot reverse '
-            'this process. Once your users have the WebExtension '
-            'installed, they will not be able to install a legacy add-on.')
-
-        insert_validation_message(
-            results, type_='warning', message=msg, msg_id='webext_upgrade')
-
-
 def annotate_search_plugin_restriction(results, file_path, channel):
     """
     Annotate validation results to restrict uploads of OpenSearch plugins

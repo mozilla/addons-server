@@ -2099,9 +2099,8 @@ class TestAddonFromUpload(UploadTest):
 
     def setUp(self):
         super(TestAddonFromUpload, self).setUp()
-        u = UserProfile.objects.get(pk=999)
-        core.set_user(u)
         self.selected_app = amo.FIREFOX.id
+        self.user = UserProfile.objects.get(pk=999)
         self.addCleanup(translation.deactivate)
 
         def _app(application):
@@ -2128,13 +2127,13 @@ class TestAddonFromUpload(UploadTest):
         in order to prevent resubmission after deletion """
         DeniedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
-            parse_addon(self.get_upload('extension.xpi'), user=Mock())
+            parse_addon(self.get_upload('extension.xpi'), user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid(self):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
         deleted.update(status=amo.STATUS_APPROVED)
@@ -2144,17 +2143,17 @@ class TestAddonFromUpload(UploadTest):
         # Now upload the same add-on again (so same guid).
         with self.assertRaises(forms.ValidationError) as e:
             self.upload = self.get_upload('extension.xpi')
-            parse_addon(self.upload, user=Mock())
+            parse_addon(self.upload, user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid_same_author(self):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
         # Claim the add-on.
-        AddonUser(addon=deleted, user=UserProfile.objects.get(pk=999)).save()
+        AddonUser(addon=deleted, user=self.user).save()
         deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
         assert deleted.guid == 'guid@xpi'
@@ -2162,7 +2161,7 @@ class TestAddonFromUpload(UploadTest):
         # Now upload the same add-on again (so same guid), checking no
         # validationError is raised this time.
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         deleted.reload()
@@ -2184,8 +2183,8 @@ class TestAddonFromUpload(UploadTest):
         deleted2 = Addon.from_upload(
             self.get_upload('alt-rdf.xpi'), [self.selected_app],
             parsed_data=self.dummy_parsed_data)
-        AddonUser(addon=deleted1, user=UserProfile.objects.get(pk=999)).save()
-        AddonUser(addon=deleted2, user=UserProfile.objects.get(pk=999)).save()
+        AddonUser(addon=deleted1, user=self.user).save()
+        AddonUser(addon=deleted2, user=self.user).save()
 
         # Soft delete them like they were before, by nullifying their GUIDs.
         deleted1.update(status=amo.STATUS_APPROVED, guid=None)
@@ -2197,13 +2196,13 @@ class TestAddonFromUpload(UploadTest):
         # None, but many are returned. So make sure we're not trying to reclaim
         # the GUID.
         self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
     def test_xpi_attributes(self):
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         assert addon.name == 'xpi name'
@@ -2240,7 +2239,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_search_attributes(self):
         self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         assert addon.name == 'search tool'
@@ -2254,7 +2253,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_search_version(self):
         self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
         version = addon.versions.get()
@@ -2325,7 +2324,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_webextension_generate_guid(self):
         self.upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
@@ -2335,7 +2334,7 @@ class TestAddonFromUpload(UploadTest):
 
         # Uploading the same addon without a id works.
         self.upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         new_addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
         assert new_addon.guid is not None
@@ -2345,7 +2344,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_webextension_reuse_guid(self):
         self.upload = self.get_upload('webextension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
@@ -2354,14 +2353,14 @@ class TestAddonFromUpload(UploadTest):
         # Uploading the same addon with pre-existing id fails
         with self.assertRaises(forms.ValidationError) as e:
             self.upload = self.get_upload('webextension.xpi')
-            parsed_data = parse_addon(self.upload, user=Mock())
+            parsed_data = parse_addon(self.upload, user=self.user)
             Addon.from_upload(self.upload, [self.selected_app],
                               parsed_data=parsed_data)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_webextension_resolve_translations(self):
         self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
