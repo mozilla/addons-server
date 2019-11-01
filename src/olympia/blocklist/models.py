@@ -17,7 +17,9 @@ class Block(ModelBase):
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
         UserProfile, null=True, on_delete=models.SET_NULL)
-    include_in_legacy = models.BooleanField(default=False)
+    include_in_legacy = models.BooleanField(
+        default=False,
+        help_text='Include in legacy xml blocklist too, as well as new v3')
 
     def __str__(self):
         return f'Block: {self.guid}'

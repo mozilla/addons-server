@@ -17,8 +17,14 @@ from .models import Block
 class BlockAdminAddMixin():
 
     def get_urls(self):
-        urls = super().get_urls()
+        # Drop the existing add_view path so we can use our own
+        urls = [url for url in super().get_urls()
+                if url.name != 'blocklist_block_add']
         my_urls = [
+            path(
+                'add/',
+                self.admin_site.admin_view(self.input_guids_view),
+                name='blocklist_block_add'),
             path(
                 'add_single/',
                 self.admin_site.admin_view(self.add_single_view),
@@ -30,7 +36,7 @@ class BlockAdminAddMixin():
         ]
         return my_urls + urls
 
-    def add_view(self, request, form_url='', extra_context=None):
+    def input_guids_view(self, request, form_url='', extra_context=None):
         errors = []
         if request.method == 'POST':
             guids_data = request.POST.get('guids')
@@ -77,7 +83,7 @@ class BlockAdminAddMixin():
 
     def add_single_view(self, request, form_url='', extra_context=None):
         """This is just the default django add view."""
-        return super().add_view(
+        return self.add_view(
             request, form_url=form_url, extra_context=extra_context)
 
     def add_multiple_view(self, request, **kwargs):
@@ -178,7 +184,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related(
             Prefetch(
-                'addon', queryset=Addon.objects.all().only_translations()),
+                'addon', queryset=Addon.unfiltered.all().only_translations()),
         )
 
     def _get_addon_versions(self):
