@@ -27,7 +27,7 @@ from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
-from olympia.devhub import tasks, file_validation_annotations as annotations
+from olympia.devhub import tasks
 from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
 from olympia.files.tests.test_models import UploadTest
@@ -751,10 +751,10 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
             'message': (
                 'Open Search add-ons are <a '
                 'href="https://blog.mozilla.org/addons/2019/10/15/'
-                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/" '
-                'rel="nofollow">no longer supported on AMO</a>. You can create '
-                'a <a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/'
-                'WebExtensions/Your_first_WebExtension" '
+                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/"'
+                ' rel="nofollow">no longer supported on AMO</a>. You can '
+                'create a <a href="https://developer.mozilla.org/docs/Mozilla/'
+                'Add-ons/WebExtensions/Your_first_WebExtension" '
                 'rel="nofollow">search extension instead</a>.'),
             'tier': 1,
             'type': 'error'}]
