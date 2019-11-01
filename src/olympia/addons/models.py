@@ -947,13 +947,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         # Figure out what to return for an image URL
         if not self.icon_type:
-            if self.type == amo.ADDON_THEME:
-                icon = amo.ADDON_ICONS[amo.ADDON_THEME]
-                return "%simg/icons/%s" % (settings.STATIC_URL, icon)
-            else:
-                if not use_default:
-                    return None
-                return self.get_default_icon_url(size)
+            return self.get_default_icon_url(size) if use_default else None
         elif icon_type_split[0] == 'icon':
             return '{0}img/addon-icons/{1}-{2}.png'.format(
                 settings.STATIC_URL,

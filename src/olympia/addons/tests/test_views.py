@@ -1195,7 +1195,7 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_type(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
         theme = addon_factory(slug='my-theme', name=u'My Thème',
-                              type=amo.ADDON_THEME)
+                              type=amo.ADDON_STATICTHEME)
         addon_factory(slug='my-search', name=u'My Seárch',
                       type=amo.ADDON_SEARCH)
         self.refresh()
@@ -1205,12 +1205,12 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-        data = self.perform_search(self.url, {'type': 'theme'})
+        data = self.perform_search(self.url, {'type': 'statictheme'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == theme.pk
 
-        data = self.perform_search(self.url, {'type': 'theme,extension'})
+        data = self.perform_search(self.url, {'type': 'statictheme,extension'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         result_ids = (data['results'][0]['id'], data['results'][1]['id'])
@@ -1924,7 +1924,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             type=amo.ADDON_STATICTHEME)
         addon_factory(slug='nonsense', name=u'Nope Nope Nope')
         addon_factory(
-            slug='whocares', name=u'My xul theme', type=amo.ADDON_THEME)
+            slug='whocares', name=u'My dict', type=amo.ADDON_DICT)
         self.refresh()
 
         # No db query.
@@ -2102,13 +2102,13 @@ class TestAddonFeaturedView(TestCase):
         get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
         response = self.client.get(self.url, {
-            'app': 'firefox', 'type': 'extension,theme'
+            'app': 'firefox', 'type': 'extension,statictheme'
         })
         assert get_featured_ids_mock.call_count == 1
         assert (get_featured_ids_mock.call_args_list[0][0][0] ==
                 amo.FIREFOX)  # app
         assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': [amo.ADDON_EXTENSION, amo.ADDON_THEME],
+                {'types': [amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME],
                  'lang': None})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))

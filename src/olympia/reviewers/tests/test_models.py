@@ -505,7 +505,6 @@ class TestReviewerScore(TestCase):
         types = {
             amo.ADDON_ANY: None,
             amo.ADDON_EXTENSION: 'ADDON',
-            amo.ADDON_THEME: 'XUL_THEME',
             amo.ADDON_DICT: 'DICT',
             amo.ADDON_SEARCH: 'SEARCH',
             amo.ADDON_LPAPP: 'LP',

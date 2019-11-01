@@ -14,7 +14,7 @@ from django.test.utils import override_settings
 from unittest import mock
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import addon_factory
 from olympia.stats.management.commands import get_stats_data
 from olympia.stats.management.commands.download_counts_from_file import \
     is_valid_source  # noqa
@@ -257,33 +257,6 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert not is_valid_source('ba',
                                    fulls=['foo', 'bar'],
                                    prefixes=['baz', 'cruux'])
-
-
-class TestThemeADICommand(FixturesFolderMixin, TestCase):
-    date = '2014-11-06'
-    fixtures = ['base/appversion.json']
-    source_folder = '1093699'
-    stats_source = 'file'
-
-    def test_update_counts_from_file_bug_1093699(self):
-        addon_factory(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
-                      type=amo.ADDON_THEME)
-        management.call_command('update_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
-        assert UpdateCount.objects.all().count() == 1
-        uc = UpdateCount.objects.last()
-        # should be identical to `statuses.userEnabled`
-        assert uc.count == 1259
-        assert uc.date == date(2014, 11, 6)
-        assert (uc.versions ==
-                {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3,
-                 u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6})
-        assert (uc.statuses ==
-                {u'Unknown': 3, u'userEnabled': 1259, u'userDisabled': 58})
-        assert uc.oses == {u'WINNT': 1122, u'Darwin': 114, u'Linux': 84}
-        assert uc.locales[u'es-ES'] == 20
-        assert (uc.applications[u'{aa3c5121-dab2-40e2-81ca-7ea25febc110}'] ==
-                {u'2.0': 3})
 
 
 class TestADICommandS3(TransactionTestCase):

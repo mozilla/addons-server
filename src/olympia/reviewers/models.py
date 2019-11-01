@@ -221,7 +221,7 @@ class ExtensionQueueMixin:
     def base_query(self):
         query = super().base_query()
         types = _int_join(
-            set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH} | {amo.ADDON_THEME})
+            set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH})
         query['where'].append(
             f'((addons.addontype_id IN ({types}) '
             'AND files.is_webextension = 0) '
@@ -539,8 +539,6 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_STATICTHEME'
             elif addon.type == amo.ADDON_SEARCH and queue:
                 reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
-            elif addon.type == amo.ADDON_THEME and queue:
-                reviewed_score_name = 'REVIEWED_XUL_THEME_%s' % queue
 
         if reviewed_score_name:
             return getattr(amo, reviewed_score_name)
