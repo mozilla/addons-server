@@ -204,8 +204,7 @@ def _no_action(version):
 
 def _flag_for_human_review(version):
     """This action flags the version for human review."""
-    # TODO: implement me
-    pass
+    version.update(needs_human_review=True)
 
 
 @task
