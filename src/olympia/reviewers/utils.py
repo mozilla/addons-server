@@ -490,10 +490,12 @@ class ReviewBase(object):
         self.request = request
         if request:
             self.user = self.request.user
+            self.human_review = True
         else:
             # Use the addons team go-to user "Mozilla" for the automatic
             # validations.
             self.user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+            self.human_review = False
         self.addon = addon
         self.version = version
         self.review_type = (
@@ -701,13 +703,13 @@ class ReviewBase(object):
             self.set_addon(status=amo.STATUS_APPROVED)
 
         # Clear needs_human_review flags on past listed versions.
-        if self.request:
+        if self.human_review:
             self.unset_past_needs_human_review()
 
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
         # approval.
-        if self.request:
+        if self.human_review:
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         else:
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
@@ -724,9 +726,9 @@ class ReviewBase(object):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             ReviewerScore.award_points(
-                self.request.user, self.addon, status, version=self.version)
+                self.user, self.addon, status, version=self.version)
 
     def process_sandbox(self):
         """Set an addon or a version back to sandbox."""
@@ -748,7 +750,7 @@ class ReviewBase(object):
 
         # Unset needs_human_review on the latest version - it's the only
         # version we can be certain that the reviewer looked at.
-        if self.request:
+        if self.human_review:
             self.version.update(needs_human_review=False)
 
         self.log_action(amo.LOG.REJECT_VERSION)
@@ -760,9 +762,9 @@ class ReviewBase(object):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             ReviewerScore.award_points(
-                self.request.user, self.addon, status, version=self.version)
+                self.user, self.addon, status, version=self.version)
 
     def process_super_review(self):
         """Mark an add-on as needing admin code, content, or theme review."""
@@ -807,10 +809,10 @@ class ReviewBase(object):
         self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
-                self.request.user, self.addon, self.addon.status,
+                self.user, self.addon, self.addon.status,
                 version=version, post_review=is_post_review,
                 content_review=self.content_review_only)
 
@@ -832,7 +834,7 @@ class ReviewBase(object):
         # and accidently submitted some comments from another action.
         self.data['comments'] = ''
 
-        if channel == amo.RELEASE_CHANNEL_LISTED and self.request:
+        if channel == amo.RELEASE_CHANNEL_LISTED and self.human_review:
             # Clear needs_human_review flags on past versions in channel.
             self.unset_past_needs_human_review()
 
@@ -847,10 +849,10 @@ class ReviewBase(object):
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
-                self.request.user, self.addon, self.addon.status,
+                self.user, self.addon, self.addon.status,
                 version=version, post_review=is_post_review,
                 content_review=self.content_review_only)
 
@@ -873,7 +875,7 @@ class ReviewBase(object):
                             timestamp=timestamp)
         # Unset needs_human_review on those versions, we consider that the
         # reviewer looked at them.
-        if self.request:
+        if self.human_review:
             self.data['versions'].update(needs_human_review=False)
 
         self.addon.update_status()
@@ -900,9 +902,9 @@ class ReviewBase(object):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             ReviewerScore.award_points(
-                self.request.user, self.addon, status, version=latest_version,
+                self.user, self.addon, status, version=latest_version,
                 post_review=True, content_review=self.content_review_only)
 
 
