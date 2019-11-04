@@ -121,27 +121,12 @@ class TestUnlistedViewAllListTable(TestCase):
         page.start_index.return_value = 1
         row.addon_name = u'フォクすけといっしょ'
         row.addon_slug = 'test'
-        row.latest_version = u'0.12'
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
 
         assert (a.attr('href') == reverse(
             'reviewers.review', args=['unlisted', str(row.addon_slug)]))
-        assert a.text() == u'フォクすけといっしょ 0.12'
-
-    def test_last_review(self):
-        row = Mock()
-        row.review_version_num = u'0.34.3b'
-        row.review_date = u'2016-01-01'
-        doc = pq(self.table.render_review_date(row))
-        assert doc.text() == u'0.34.3b on 2016-01-01'
-
-    def test_no_review(self):
-        row = Mock()
-        row.review_version_num = None
-        row.review_date = None
-        doc = pq(self.table.render_review_date(row))
-        assert doc.text() == u'No Reviews'
+        assert a.text() == u'フォクすけといっしょ'
 
     def test_authors_few(self):
         row = Mock()
