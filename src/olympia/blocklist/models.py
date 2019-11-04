@@ -5,7 +5,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.users.models import UserProfile
 from django.utils.translation import gettext_lazy as _
-from olympia.versions.compare import version_int
+from olympia.versions.compare import addon_version_int
 
 
 class Block(ModelBase):
@@ -29,6 +29,8 @@ class Block(ModelBase):
         return self.addon.guid if self.addon else None
 
     def clean(self):
-        if version_int(self.min_version) > version_int(self.max_version):
+        min_vint = addon_version_int(self.min_version)
+        max_vint = addon_version_int(self.max_version)
+        if min_vint > max_vint:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
