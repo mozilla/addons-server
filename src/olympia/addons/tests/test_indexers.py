@@ -13,6 +13,7 @@ from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
 from olympia.files.models import WebextPermission
+from olympia.versions.compare import version_int
 from olympia.versions.models import License, VersionPreview
 
 
@@ -276,7 +277,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['current_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 2000000200100,
-                'max': 9999000000200100,
+                'max': version_int('*'),
                 'max_human': '4.0',
                 'min_human': '2.0',
             }
