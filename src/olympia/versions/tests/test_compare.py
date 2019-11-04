@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from olympia.versions.compare import (
-    addon_version_hash, MAX_VERSION_PART, version_dict, version_int)
+    addon_version_int, MAX_VERSION_PART, version_dict, version_int)
 
 
 def test_version_int():
@@ -22,27 +22,27 @@ def test_version_int_compare():
     assert version_int('5.*') > version_int('5.0.*')
 
 
-def test_addon_version_hash_hash():
-    assert addon_version_hash('3.5.0a1pre2') == 0x30005000000000000102
-    assert addon_version_hash('') == 0x2000010
-    assert addon_version_hash('0') == 0x2000010
-    assert addon_version_hash('*') == 0xFFFF0000000000002000010
-    assert addon_version_hash(MAX_VERSION_PART) == 0xFFFF0000000000002000010
-    assert addon_version_hash('*.65535.65535.65535') == (
+def test_addon_version_int_hash():
+    assert addon_version_int('3.5.0a1pre2') == 0x30005000000000000102
+    assert addon_version_int('') == 0x2000010
+    assert addon_version_int('0') == 0x2000010
+    assert addon_version_int('*') == 0xFFFF0000000000002000010
+    assert addon_version_int(MAX_VERSION_PART) == 0xFFFF0000000000002000010
+    assert addon_version_int('*.65535.65535.65535') == (
         0xFFFFFFFFFFFFFFFF2000010)
-    assert addon_version_hash('*.65535.65635.65535a65535pre9') == (
+    assert addon_version_int('*.65535.65635.65535a65535pre9') == (
         0xFFFFFFFFFFFFFFFF0FFFF09)
 
 
-def test_addon_version_hash_compare():
-    assert addon_version_hash('3.6.*') == addon_version_hash('3.6.65535')
-    assert addon_version_hash('3.6.*') > addon_version_hash('3.6.8')
-    assert addon_version_hash('*') == addon_version_hash('65535')
-    assert addon_version_hash('*') == addon_version_hash('65536')  # over max.
-    assert addon_version_hash('98.*') < addon_version_hash('*')
-    assert addon_version_hash('65534.*') < addon_version_hash('*')
-    assert addon_version_hash('5.*') == addon_version_hash('5.65535')
-    assert addon_version_hash('5.*') > addon_version_hash('5.0.*')
+def test_addon_version_int_compare():
+    assert addon_version_int('3.6.*') == addon_version_int('3.6.65535')
+    assert addon_version_int('3.6.*') > addon_version_int('3.6.8')
+    assert addon_version_int('*') == addon_version_int('65535')
+    assert addon_version_int('*') == addon_version_int('65536')  # over max.
+    assert addon_version_int('98.*') < addon_version_int('*')
+    assert addon_version_int('65534.*') < addon_version_int('*')
+    assert addon_version_int('5.*') == addon_version_int('5.65535')
+    assert addon_version_int('5.*') > addon_version_int('5.0.*')
 
 
 def test_version_dict():

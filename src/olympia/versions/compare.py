@@ -57,7 +57,7 @@ def _get_version_dict(version_string, max_number_minor, max_number_major):
 
 def version_int(version):
     """This is used for converting an app version's version string into a
-    single number for comparision.  To maintain compatibility the minor parts
+    single number for comparison.  To maintain compatibility the minor parts
     are limited to 99 making it unsuitable for comparing addon version strings.
     """
     vdict = _get_version_dict(
@@ -69,7 +69,7 @@ def version_int(version):
     return min(int(vint), BIGINT_POSITIVE_MAX)
 
 
-def addon_version_hash(version):
+def addon_version_int(version):
     """Suitable for comparing addon version strings that are Chrome compatible
     plus the limited a, b, pre suffixes we support for app versions.  Returns
     a very large integer (that's too big to store as a BIGINT in mysql).
@@ -79,9 +79,9 @@ def addon_version_hash(version):
         max_number_major=MAX_VERSION_PART)
 
     # use hex numbers to simplify the conversion.
-    # alpha and pre can only be 0,1,2 so will always be a single digit; prevar
+    # alpha and pre can only be 0,1,2 so will always be a single digit; pre_var
     # is parsed as single digit by version_dict.
-    hash_string = ('%x' '%04x' '%04x' '%04x' '%x' '%04x' '%x' '%x') % (
+    hex_string = ('%x' '%04x' '%04x' '%04x' '%x' '%04x' '%x' '%x') % (
         vdict['major'], vdict['minor1'], vdict['minor2'], vdict['minor3'],
         vdict['alpha'], vdict['alpha_ver'], vdict['pre'], vdict['pre_ver'])
-    return int(hash_string, base=16)
+    return int(hex_string, base=16)
