@@ -160,6 +160,10 @@ class Version(OnChangeMixin, ModelBase):
 
     recommendation_approved = models.BooleanField(null=False, default=False)
 
+    # FIXME: Convert needs_human_review into a BooleanField(default=False) in
+    # future push following the one where the field was introduced.
+    needs_human_review = models.NullBooleanField(default=None)
+
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
