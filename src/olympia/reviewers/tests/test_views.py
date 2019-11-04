@@ -2388,7 +2388,7 @@ class TestNeedsHumanReviewQueue(QueueTest):
         addon1 = addon_factory(created=self.days_ago(31))
         addon1_v1 = addon1.current_version
         addon1_v1.update(needs_human_review=True)
-        addon1_v2 = version_factory(addon=addon1, needs_human_review=True)
+        version_factory(addon=addon1, needs_human_review=True)
         version_factory(addon=addon1)
         version_factory(addon=addon1, channel=amo.RELEASE_CHANNEL_UNLISTED)
         AddonApprovalsCounter.objects.create(
@@ -2398,8 +2398,8 @@ class TestNeedsHumanReviewQueue(QueueTest):
         addon2 = addon_factory(
             created=self.days_ago(15),
             version_kw={'needs_human_review': True})
-        addon2_v1 = addon2.current_version
-        addon2_v2 = version_factory(
+        addon2.current_version
+        version_factory(
             addon=addon2, channel=amo.RELEASE_CHANNEL_UNLISTED,
             needs_human_review=True)
 
@@ -2409,7 +2409,7 @@ class TestNeedsHumanReviewQueue(QueueTest):
             created=self.days_ago(7),
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED,
                         'needs_human_review': True})
-        addon3_v1 = addon3.versions.get()
+        addon3.versions.get()
         version_factory(
             addon=addon3, channel=amo.RELEASE_CHANNEL_UNLISTED)
         AddonReviewerFlags.objects.create(
