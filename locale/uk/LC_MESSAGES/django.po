@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-30 11:44+0000\n"
+"PO-Revision-Date: 2019-11-04 13:40+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3719,9 +3719,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Пошук із захистом від стеження {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Блокуйте стеження при переході в результатах пошуку Google та Yandex."
+msgstr "Блокуйте стеження при переході в результатах пошуку Google та та інших пошукових засобах."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3736,9 +3735,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Додавайте зображення до результатів пошуку {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Переглядайте мініатюри зображень поруч з результатами пошуку."
+msgstr "Переглядайте мініатюри зображень веб-сайтів поруч з результатами пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3761,16 +3759,14 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Налаштуйте свої улюблені веб-сайти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Змінюйте вигляд будь-якого веб-сайту! Змінюйте кольори, тло сторінок та багато іншого."
+msgstr "Змінюйте вигляд будь-якого веб-сайту. Змінюйте кольори, тло сторінок та багато іншого."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Налаштовуйте нову вкладку {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "Змініть сторінку нової вкладки для відображення бажаної кількості плиток, зображення тла та інших елементів."
 
@@ -3787,27 +3783,24 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Знайте більше про те, куди ви переходите в Інтернеті {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Будьте інформованим в інтернеті. Отримуйте дані про розташування відвідуваних веб-сайтів."
+msgstr "Знайте, куди ви переходите в Інтернеті. Отримуйте дані про розташування відвідуваних веб-сайтів. Будьте інформованими."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Вдоскональте процес читання {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Приберіть зайвий вміст, щоб залишити лише текст, необхідний для читання."
+msgstr "Вдоскональте своє читання. Приберіть зайвий вміст, щоб залишити лише текст, необхідний для читання."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Відкривайте декілька посилань {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
-msgstr "Зробіть клік правою кнопкою миші й перетягніть посилання, щоб відкрити їх в нових вкладках."
+msgstr "Клацніть правою кнопкою миші й перетягніть посилання, щоб відкрити їх в нових вкладках."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3822,9 +3815,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Працюйте продуктивно {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Змінюйте сторінку нової вкладки, щоб відобразити гарне тло, встановити щоденний фокус та інше."
+msgstr "Вдоскональте продуктивність. Змінюйте сторінку нової вкладки, щоб відобразити гарне тло, встановити щоденний фокус та інше."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3871,9 +3863,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Зробіть YouTube своїм {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Відтворюйте відео в окремому вікні, переглядайте рекламу лише в межах каналів, на які ви підписані, робіть знімки екрану відео та багато іншого."
+msgstr "Підлаштуйте YouTube для себе. Відтворюйте відео в окремому вікні, переглядайте рекламу лише в межах каналів, на які ви підписані, робіть знімки екрану відео та багато іншого."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3888,9 +3879,8 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Додайте стилю Wikipedia {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Свіжий та сучасний дизайн для Wikipedia."
+msgstr "Свіжий та сучасний зовнішній вигляд для Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
