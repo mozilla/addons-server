@@ -218,9 +218,6 @@ class TestVersion(TestCase):
             action=amo.LOG.DISABLE_VERSION.id).count() == 1
 
         self.addon.reload()
-        print(self.addon.current_version)
-        print(self.version)
-        print(previous_version)
         assert self.addon.current_version == previous_version
         assert self.addon.is_recommended  # It's still recommended
 
