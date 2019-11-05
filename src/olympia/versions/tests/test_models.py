@@ -617,22 +617,27 @@ class TestVersion(TestCase):
         # new current_version.
         version_a = previous_version.reload()
         version_b = addon.current_version
-        version_c = version_factory(addon=addon, recommendation_approved=True)
+        version_c = version_factory(addon=addon)
+        version_d = version_factory(addon=addon, recommendation_approved=True)
+        version_c.is_user_disabled = True  # disabled version_c
         addon = addon.reload()
         version_b = version_b.reload()
-        assert version_c == addon.current_version
+        assert version_d == addon.current_version
         assert version_a.recommendation_approved
         assert version_b.recommendation_approved
-        assert version_c.recommendation_approved
+        assert not version_c.recommendation_approved  # ignored cuz disabled
+        assert version_d.recommendation_approved
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
+        assert version_d.can_be_disabled_and_deleted()
         assert addon.is_recommended
         # now un-approve version_b
         version_b.update(recommendation_approved=False)
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
-        assert not version_c.can_be_disabled_and_deleted()
+        assert version_c.can_be_disabled_and_deleted()
+        assert not version_d.can_be_disabled_and_deleted()
         assert addon.is_recommended
 
 

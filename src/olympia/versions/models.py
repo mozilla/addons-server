@@ -638,8 +638,8 @@ class Version(OnChangeMixin, ModelBase):
     def can_be_disabled_and_deleted(self):
         addon = self.addon
         if self.recommendation_approved and self == addon.current_version:
-            qs = addon.versions.exclude(id=self.id)
-            previous_version = qs.latest() if qs.exists() else None
+            previous_version = addon.versions.valid().filter(
+                channel=self.channel).exclude(id=self.id).first()
             previous_approved = (
                 previous_version and previous_version.recommendation_approved)
             if addon.is_recommended and not previous_approved:
