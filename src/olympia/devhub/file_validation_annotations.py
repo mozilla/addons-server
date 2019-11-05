@@ -1,7 +1,3 @@
-from defusedxml import minidom
-from defusedxml.common import DefusedXmlException
-from xml.parsers.expat import ExpatError
-
 from django.utils.translation import ugettext
 
 from olympia import amo
@@ -86,7 +82,8 @@ def annotate_search_plugin_restriction(results, file_path, channel):
         u'instead{doc_link_close}.').format(
             blog_link_open=(
                 '<a href="https://blog.mozilla.org/addons/2019/10/15/'
-                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/">'),
+                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/'
+                '">'),
             blog_link_close='</a>',
             doc_link_open=(
                 '<a href="https://developer.mozilla.org/docs/Mozilla/'
@@ -94,4 +91,5 @@ def annotate_search_plugin_restriction(results, file_path, channel):
             doc_link_close='</a>')
 
     insert_validation_message(
-        results, type_='error', message=msg, msg_id='legacy_addons_unsupported')
+        results, type_='error', message=msg, msg_id='legacy_addons_unsupported'
+    )

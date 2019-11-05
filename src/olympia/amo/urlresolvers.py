@@ -226,6 +226,11 @@ def linkify_with_outgoing(text):
     return bleach.linkify(str(text), callbacks=callbacks)
 
 
+def escape_and_linkify(text):
+    callbacks = [linkify_only_full_urls, bleach.callbacks.nofollow]
+    return bleach.linkify(jinja2.escape(str(text)), callbacks=callbacks)
+
+
 def lang_from_accept_header(header):
     # Map all our lang codes and any prefixes to the locale code.
     langs = dict((k.lower(), v) for k, v in settings.LANGUAGE_URL_MAP.items())

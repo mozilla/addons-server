@@ -27,7 +27,7 @@ from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
-from olympia.devhub import tasks, file_validation_annotations as annotations
+from olympia.devhub import tasks
 from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
 from olympia.files.tests.test_models import UploadTest
@@ -456,22 +456,6 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         assert self.addon.binary
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_validates_search_plugins_inline(self, run_addons_linter_mock):
-        addon = addon_factory(file_kw={
-            'filename': 'opensearch/sp_updateurl.xml'})
-        file_ = addon.current_version.current_file
-        tasks.validate(file_).get()
-
-        assert not run_addons_linter_mock.called
-
-        file_.refresh_from_db()
-        validation = file_.validation.processed_validation
-
-        assert validation['errors'] == 2
-        assert validation['messages'][0]['message'].startswith(
-            'OpenSearch: &lt;updateURL&gt; elements')
-
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_calls_run_linter(self, run_addons_linter_mock):
         run_addons_linter_mock.return_value = '{"errors": 0}'
         upload = self.get_upload(
@@ -540,14 +524,6 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['success']
         assert result['errors']
         assert not result['warnings']
-
-    def test_returns_skeleton_for_search_plugin(self):
-        result = json.loads(tasks.validate_file_path(
-            get_addon_file('searchgeek-20090701.xml'),
-            channel=amo.RELEASE_CHANNEL_LISTED))
-
-        expected = amo.VALIDATOR_SKELETON_RESULTS
-        assert result == expected
 
     @mock.patch('olympia.devhub.tasks.parse_addon')
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -766,9 +742,22 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
 
         upload.refresh_from_db()
 
+        assert not upload.valid
         assert upload.processed_validation['errors'] == 1
-        assert upload.processed_validation['messages'] == []
-        assert upload.valid
+        assert upload.processed_validation['messages'] == [{
+            'compatibility_type': None,
+            'description': [],
+            'id': ['validation', 'messages', 'legacy_addons_unsupported'],
+            'message': (
+                'Open Search add-ons are <a '
+                'href="https://blog.mozilla.org/addons/2019/10/15/'
+                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/"'
+                ' rel="nofollow">no longer supported on AMO</a>. You can '
+                'create a <a href="https://developer.mozilla.org/docs/Mozilla/'
+                'Add-ons/WebExtensions/Your_first_WebExtension" '
+                'rel="nofollow">search extension instead</a>.'),
+            'tier': 1,
+            'type': 'error'}]
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
