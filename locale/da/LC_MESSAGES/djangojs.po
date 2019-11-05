@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-04 14:00+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"PO-Revision-Date: 2019-10-28 22:29+0000\n"
+"Last-Translator: Kasper Nymand <mail@kaspernymand.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Søg i tilføjelser efter <b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "Brug original"
 
 msgid "Week of {0}"
 msgstr "Uge {0}"
