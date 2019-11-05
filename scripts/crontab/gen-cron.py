@@ -26,7 +26,7 @@ def main():
     if not opts.deprecations:
         opts.python += ' -W ignore::DeprecationWarning'
 
-    ctx = { "django": "cd %s; %s %s manage.py" % (opts.zamboni, opts.python) }
+    ctx = { "django": "cd %s; %s manage.py" % (opts.zamboni, opts.python) }
 
     ctx['z_cron'] = '%s cron' % ctx['django']
 
