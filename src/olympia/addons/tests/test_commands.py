@@ -447,7 +447,6 @@ class TestExtractWebextensionsToGitStorage(TestCase):
 
         # Not supported, we focus entirely on WebExtensions
         # (except for search plugins)
-        addon_factory(type=amo.ADDON_THEME)
         addon_factory()
         addon_factory()
         addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': False})
@@ -684,7 +683,7 @@ class TestDeleteObsoleteAddons(TestCase):
         self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         self.dictionary = addon_factory(type=amo.ADDON_DICT)
         # And some obsolete ones
-        addon_factory(type=amo.ADDON_THEME)
+        addon_factory(type=2)  # _ADDON_THEME
         addon_factory().update(type=amo.ADDON_LPADDON)
         addon_factory().update(type=amo.ADDON_PLUGIN)
         addon_factory(type=9)  # _ADDON_PERSONA

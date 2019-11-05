@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PLUGIN,
-    ADDON_SEARCH, ADDON_STATICTHEME, ADDON_THEME)
+    ADDON_SEARCH, ADDON_STATICTHEME)
 
 from olympia.versions.compare import version_int as vint
 
@@ -22,8 +22,8 @@ class FIREFOX(App):
     short = 'firefox'
     pretty = _(u'Firefox')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN, ADDON_STATICTHEME]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
+             ADDON_PLUGIN, ADDON_STATICTHEME]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
@@ -46,7 +46,7 @@ class THUNDERBIRD(App):
     shortername = 'tb'
     pretty = _(u'Thunderbird')
     browser = False
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
     min_display_version = 1.0
     user_agent_string = 'Thunderbird'
@@ -59,7 +59,7 @@ class SEAMONKEY(App):
     shortername = 'sm'
     pretty = _(u'SeaMonkey')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
@@ -77,7 +77,7 @@ class SUNBIRD(App):
     shortername = 'sb'
     pretty = _(u'Sunbird')
     browser = False
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{718e30fb-e89b-41dd-9da7-e25a45638b28}'
     min_display_version = 0.2
     latest_version = None
@@ -142,7 +142,7 @@ class MOZILLA(App):
     shortername = 'mz'
     pretty = _(u'Mozilla')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
              ADDON_LPAPP, ADDON_PLUGIN]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)

@@ -496,7 +496,7 @@ class TestVersion(TestCase):
             addon=addon, auto_approval_disabled=False)
         assert version.is_ready_for_auto_approval
 
-        addon.update(type=amo.ADDON_THEME)
+        addon.update(type=amo.ADDON_STATICTHEME)
         assert not version.is_ready_for_auto_approval
 
         addon.update(type=amo.ADDON_LPAPP)
