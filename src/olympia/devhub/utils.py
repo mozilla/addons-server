@@ -12,7 +12,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import amo, core
-from olympia.amo.urlresolvers import escape_and_linkify
+from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
@@ -118,7 +118,7 @@ def htmlify_validation(validation):
     safe HTML, with URLs turned into links."""
 
     for msg in validation['messages']:
-        msg['message'] = escape_and_linkify(msg['message'])
+        msg['message'] = linkify_and_clean(msg['message'])
 
         if 'description' in msg:
             # Description may be returned as a single string, or list of
@@ -127,7 +127,7 @@ def htmlify_validation(validation):
                 msg['description'] = [msg['description']]
 
             msg['description'] = [
-                escape_and_linkify(text) for text in msg['description']]
+                linkify_and_clean(text) for text in msg['description']]
 
 
 def fix_addons_linter_output(validation, channel):

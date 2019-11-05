@@ -226,9 +226,9 @@ def linkify_with_outgoing(text):
     return bleach.linkify(str(text), callbacks=callbacks)
 
 
-def escape_and_linkify(text):
+def linkify_and_clean(text):
     callbacks = [linkify_only_full_urls, bleach.callbacks.nofollow]
-    return bleach.linkify(str(text), callbacks=callbacks)
+    return bleach.linkify(bleach.clean(str(text)), callbacks=callbacks)
 
 
 def lang_from_accept_header(header):
