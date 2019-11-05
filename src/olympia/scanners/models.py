@@ -54,9 +54,9 @@ class ScannerResult(ModelBase):
     def extract_rule_names(self):
         """This method parses the raw results and returns the (matched) rule
         names. Not all scanners have rules that necessarily match."""
-        if self.scanner is YARA:
+        if self.scanner == YARA:
             return sorted({result['rule'] for result in self.results})
-        if self.scanner is CUSTOMS and 'matchedRules' in self.results:
+        if self.scanner == CUSTOMS and 'matchedRules' in self.results:
             return self.results['matchedRules']
         # We do not have support for the remaining scanners (yet).
         return []
