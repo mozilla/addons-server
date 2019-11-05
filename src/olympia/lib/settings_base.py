@@ -280,6 +280,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/new-key-email.ltxt',
     r'^devhub\/email\/submission_api_key_revocation.txt',
     r'^devhub\/email\/api_key_confirmation.ltxt',
+    r'^blocklist\/',
 
     # Django specific templates
     r'^registration\/',
@@ -468,6 +469,7 @@ INSTALLED_APPS = (
     'olympia.api',
     'olympia.applications',
     'olympia.bandwagon',
+    'olympia.blocklist',
     'olympia.browse',
     'olympia.devhub',
     'olympia.discovery',
@@ -1096,6 +1098,7 @@ CELERY_TASK_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {
         'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
@@ -1850,7 +1853,8 @@ MOZILLA_NEWLETTER_URL = env(
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
 
 EXTENSION_WORKSHOP_URL = env(
-    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com')
+    'EXTENSION_WORKSHOP_URL',
+    default='https://extensionworkshop-dev.allizom.org')
 
 # Sectools
 SCANNER_TIMEOUT = 60  # seconds

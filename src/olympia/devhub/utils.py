@@ -5,7 +5,6 @@ import bleach
 
 from celery import chain, chord
 from django.conf import settings
-from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
@@ -22,7 +21,6 @@ from olympia.tags.models import Tag
 from olympia.users.models import (
     DeveloperAgreementRestriction, UserRestrictionHistory
 )
-from olympia.versions.compare import version_int
 from olympia.versions.utils import process_color_value
 
 from . import tasks
@@ -182,42 +180,6 @@ def fix_addons_linter_output(validation, channel):
     }
 
 
-def find_previous_version(addon, file, version_string, channel):
-    """
-    Find the most recent previous version of this add-on, prior to
-    `version`, that can be used to issue upgrade warnings.
-    """
-    if not addon or not version_string:
-        return
-
-    statuses = [amo.STATUS_APPROVED]
-    # Find all previous files of this add-on with the correct status and in
-    # the right channel.
-    qs = File.objects.filter(
-        version__addon=addon, version__channel=channel, status__in=statuses)
-
-    if file:
-        # Add some extra filters if we're validating a File instance,
-        # to try to get the closest possible match.
-        qs = (qs.exclude(pk=file.pk)
-              # Files which are not for the same platform, but have
-              # other files in the same version which are.
-                .exclude(~Q(platform=file.platform) &
-                         Q(version__files__platform=file.platform))
-              # Files which are not for either the same platform or for
-              # all platforms, but have other versions in the same
-              # version which are.
-                .exclude(~Q(platform__in=(file.platform,
-                                          amo.PLATFORM_ALL.id)) &
-                         Q(version__files__platform=amo.PLATFORM_ALL.id)))
-
-    vint = version_int(version_string)
-    for file_ in qs.order_by('-id'):
-        # Only accept versions which come before the one we're validating.
-        if (file_.version.version_int or 0) < vint:
-            return file_
-
-
 class Validator(object):
     """
     Class which handles creating or fetching validation results for File
@@ -270,6 +232,7 @@ class Validator(object):
                 tasks.create_initial_validation_results.si(),
                 repack_fileupload.s(file_.pk),
                 tasks.validate_upload.s(file_.pk, channel),
+                tasks.check_for_api_keys_in_file.s(file_.pk),
                 chord(
                     tasks_in_parallel,
                     tasks.handle_upload_validation_result.s(file_.pk,

@@ -105,3 +105,6 @@ TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-west-2.amazonaws.com/361527076523/'
     'amo-account-change-prod')
+
+EXTENSION_WORKSHOP_URL = env(
+    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com')

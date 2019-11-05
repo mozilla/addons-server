@@ -68,7 +68,6 @@ class ScannerResult(ModelBase):
 class ScannerRule(ModelBase):
     name = models.CharField(
         max_length=200,
-        unique=True,
         help_text=_('This is the exact name of the rule used by a scanner.'),
     )
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
@@ -79,6 +78,7 @@ class ScannerRule(ModelBase):
 
     class Meta:
         db_table = 'scanners_rules'
+        unique_together = ('name', 'scanner')
 
     def __str__(self):
         return self.name

@@ -113,6 +113,10 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'bandwagon.change_collection': COLLECTIONS_EDIT,
     'bandwagon.delete_collection': ADMIN_ADVANCED,
 
+    'blocklist.add_block': REVIEWS_ADMIN,
+    'blocklist.change_block': REVIEWS_ADMIN,
+    'blocklist.delete_block': REVIEWS_ADMIN,
+
     'discovery.add_discoveryitem': DISCOVERY_EDIT,
     'discovery.change_discoveryitem': DISCOVERY_EDIT,
     'discovery.delete_discoveryitem': DISCOVERY_EDIT,

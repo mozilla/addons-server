@@ -200,30 +200,6 @@ class TestVersion(TestCase):
         v = Version.objects.get(pk=81551)
         assert amo.PLATFORM_ALL in v.supported_platforms
 
-    def test_major_minor(self):
-        """Check that major/minor/alpha is getting set."""
-        v = Version(version='3.0.12b2')
-        assert v.major == 3
-        assert v.minor1 == 0
-        assert v.minor2 == 12
-        assert v.minor3 is None
-        assert v.alpha == 'b'
-        assert v.alpha_ver == 2
-
-        v = Version(version='3.6.1apre2+')
-        assert v.major == 3
-        assert v.minor1 == 6
-        assert v.minor2 == 1
-        assert v.alpha == 'a'
-        assert v.pre == 'pre'
-        assert v.pre_ver == 2
-
-        v = Version(version='')
-        assert v.major is None
-        assert v.minor1 is None
-        assert v.minor2 is None
-        assert v.minor3 is None
-
     def test_is_restart_required(self):
         version = Version.objects.get(pk=81551)
         file_ = version.all_files[0]
@@ -381,19 +357,6 @@ class TestVersion(TestCase):
         assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
         assert not hide_disabled_file_mock.called
 
-    def test_version_int(self):
-        version = Version.objects.get(pk=81551)
-        version.save()
-        assert version.version_int == 2017200200100
-
-    def test_large_version_int(self):
-        # This version will fail to be written to the version_int
-        # table because the resulting int is bigger than mysql bigint.
-        version = Version.objects.get(pk=81551)
-        version.version = '1237.2319.32161734.2383290.34'
-        version.save()
-        assert version.version_int is None
-
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_APPROVED
         version.deleted = False
@@ -533,7 +496,7 @@ class TestVersion(TestCase):
             addon=addon, auto_approval_disabled=False)
         assert version.is_ready_for_auto_approval
 
-        addon.update(type=amo.ADDON_THEME)
+        addon.update(type=amo.ADDON_STATICTHEME)
         assert not version.is_ready_for_auto_approval
 
         addon.update(type=amo.ADDON_LPAPP)
