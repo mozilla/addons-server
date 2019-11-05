@@ -1,7 +1,6 @@
 import uuid
 
 import waffle
-import bleach
 
 from celery import chain, chord
 from django.conf import settings
