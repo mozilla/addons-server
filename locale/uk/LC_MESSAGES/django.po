@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-05 11:51+0000\n"
+"PO-Revision-Date: 2019-11-05 11:57+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4529,9 +4529,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокуйте рекламу й інші сторонні елементи {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Блокуйте не лише надокучливу рекламу, але й захистіть себе від зловмисних програм і стеження."
+msgstr "Блокуйте рекламу та отримайте вдосконалений захист від зловмисних програм і стеження."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4546,21 +4545,18 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Легко зберігайте зображення {start_sub_heading}використовуючи {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Завантажте лише зображення з поточної вкладки."
+msgstr "Легко зберігайте зображення — просто завантажте їх з поточної вкладки."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Вимірюйте веб-сторінки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Додайте цифрову лінійку на будь-яких веб-сторінках, щоб перевіряти висоту, ширину та вирівнювання елементів сторінки."
+msgstr "Вимірюйте веб-сторінки. Додайте цифрову лінійку на будь-яких веб-сторінках, щоб перевіряти висоту, ширину та вирівнювання елементів сторінки."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
 msgstr "Отримайте переваги надійного керування паролями."
 
@@ -4577,9 +4573,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Блокуйте надокучливі веб-сайти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Перелічіть веб-сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
+msgstr "Блокуйте відволікаючі веб-сайти. Вкажіть сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4594,9 +4589,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Змініть вигляд Firefox {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Легко створюйте власні візуальні теми, щоб надати Firefox вигляду, який вам до вподоби."
+msgstr "Змініть зовнішній вигляд браузера. Легко створюйте власні теми оформлення, щоб надати Firefox вигляду, який вам до вподоби."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4619,9 +4613,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Стежте за цінами продуктів {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Отримуйте сповіщення, коли знижується ціна на продукти, що вас цікавлять, на Amazon, Best Buy, eBay, Home Depot та Walmart."
+msgstr "Відстежуйте й отримуйте сповіщення, коли знижується ціна на продукти, що вас цікавлять, на Amazon, Best Buy, eBay, Home Depot та Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4648,16 +4641,14 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Застарілі розширення більше не підтримуються в Firefox."
+msgstr "Розширення - це наче програми для вашого браузера."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
@@ -4678,9 +4669,8 @@ msgid "Learn More"
 msgstr "Дізнатись більше"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Розширення"
+msgstr "Знайдіть більше розширень"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5802,9 +5792,8 @@ msgstr "Не знайдено відгуків для цього періоду.
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "за джерелом"
+msgstr "Джерело:"
 
 msgid "Dismiss this announcement"
 msgstr "Ігнорувати це оголошення"
@@ -6273,9 +6262,8 @@ msgstr "Ви впевнені, що хочете прибрати всі <b>{0}<
 msgid "Delete Locale"
 msgstr "Видалити локаль"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Закрити історію перевірок"
+msgstr "Історія обмежень користувача"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6292,13 +6280,12 @@ msgstr "Користувачів \"%(users)s\" було заблоковано."
 msgid "Ban selected users"
 msgstr "Заблокувати вибраних користувачів"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Користувачів \"%(users)s\" було заблоковано."
+msgstr "Для користувачів \"%(users)s\" скинуто їхні API ключі."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Керувати API Ключами"
+msgstr "Скинути ключ API"
 
 msgid "Profile Photo"
 msgstr "Світлина профілю"
