@@ -225,7 +225,10 @@ class ExtensionQueueMixin:
         query['where'].append(
             f'((addons.addontype_id IN ({types}) '
             'AND files.is_webextension = 0) '
-            'OR addons_addonreviewerflags.auto_approval_disabled = 1)')
+            'OR addons_addonreviewerflags.auto_approval_disabled = 1 '
+            'OR addons_addonreviewerflags.auto_approval_disabled_until > NOW()'
+            ')'
+        )
         return query
 
 
@@ -1123,9 +1126,15 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_has_auto_approval_disabled(cls, version):
-        """Check whether the add-on has auto approval disabled by a reviewer.
+        """Check whether the add-on has auto approval disabled by a reviewer
+        or automated scanners.
         """
-        return bool(version.addon.auto_approval_disabled)
+        addon = version.addon
+        return (
+            bool(addon.auto_approval_disabled) or
+            bool(addon.auto_approval_disabled_until and
+                 datetime.now() < addon.auto_approval_disabled_until)
+        )
 
     @classmethod
     def check_is_recommendable(cls, version):

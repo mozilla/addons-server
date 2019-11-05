@@ -1570,13 +1570,31 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_check_has_auto_approval_disabled(self):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
-            self.version) == 0
+            self.version) is False
 
         flags = AddonReviewerFlags.objects.create(addon=self.addon)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
-            self.version) == 0
+            self.version) is False
 
         flags.update(auto_approval_disabled=True)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is True
+
+    def test_check_has_auto_approval_disabled_until(self):
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        past_date = datetime.now() - timedelta(hours=1)
+        flags.update(auto_approval_disabled_until=past_date)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        future_date = datetime.now() + timedelta(hours=1)
+        flags.update(auto_approval_disabled_until=future_date)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 

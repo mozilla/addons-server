@@ -922,8 +922,8 @@ def review(request, addon, channel=None):
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         content_review_only=content_review_only, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
-        form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
-        reports=reports, show_diff=show_diff,
+        form=form, is_admin=is_admin, now=datetime.now(), num_pages=num_pages,
+        pager=pager, reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),

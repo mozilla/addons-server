@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from unittest import mock
 
 import pytest
@@ -9,6 +10,8 @@ from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.scanners import (
     CUSTOMS,
+    DELAY_AUTO_APPROVAL,
+    DELAY_AUTO_APPROVAL_INDEFINITELY,
     FLAG_FOR_HUMAN_REVIEW,
     NO_ACTION,
     WAT,
@@ -21,6 +24,8 @@ from olympia.scanners.tasks import (
     run_customs,
     run_wat,
     run_yara,
+    _delay_auto_approval,
+    _delay_auto_approval_indefinitely,
     _flag_for_human_review,
     _no_action,
     run_action,
@@ -384,13 +389,11 @@ class TestRunYara(UploadTest, TestCase):
         assert received_results == self.results
 
 
-class TestNoAction(TestCase):
+class TestActions(TestCase):
     def test_action_does_nothing(self):
         version = version_factory(addon=addon_factory())
         _no_action(version)
 
-
-class TestFlagForHumanReview(TestCase):
     def test_flags_a_version_for_human_review(self):
         version = version_factory(addon=addon_factory())
         assert not version.needs_human_review
@@ -398,6 +401,22 @@ class TestFlagForHumanReview(TestCase):
         assert version.needs_human_review
         version.reload()
         assert version.needs_human_review
+
+    def test_delay_auto_approval(self):
+        addon = addon_factory()
+        version = addon.current_version
+        assert addon.auto_approval_disabled_until is None
+        _delay_auto_approval(version)
+        self.assertCloseToNow(
+            addon.auto_approval_disabled_until,
+            now=datetime.now() + timedelta(hours=24))
+
+    def test_delay_auto_approval_indefinitely(self):
+        addon = addon_factory()
+        version = addon.current_version
+        assert addon.auto_approval_disabled_until is None
+        _delay_auto_approval_indefinitely(version)
+        assert addon.auto_approval_disabled_until == datetime.max
 
 
 class TestRunAction(TestCase):
@@ -431,6 +450,25 @@ class TestRunAction(TestCase):
 
         assert flag_for_human_review_mock.called
         flag_for_human_review_mock.assert_called_with(self.version)
+
+    @mock.patch('olympia.scanners.tasks._delay_auto_approval')
+    def test_runs_delay_auto_approval(self, _delay_auto_approval_mock):
+        self.scanner_rule.update(action=DELAY_AUTO_APPROVAL)
+
+        run_action(self.version.id)
+
+        assert _delay_auto_approval_mock.called
+        _delay_auto_approval_mock.assert_called_with(self.version)
+
+    @mock.patch('olympia.scanners.tasks._delay_auto_approval_indefinitely')
+    def test_runs_delay_auto_approval_indefinitely(
+            self, _delay_auto_approval_indefinitely_mock):
+        self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
+
+        run_action(self.version.id)
+
+        assert _delay_auto_approval_indefinitely_mock.called
+        _delay_auto_approval_indefinitely_mock.assert_called_with(self.version)
 
     @mock.patch('olympia.scanners.tasks.log.info')
     def test_returns_when_no_action_found(self, log_mock):

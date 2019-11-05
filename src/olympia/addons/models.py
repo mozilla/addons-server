@@ -1435,6 +1435,11 @@ class Addon(OnChangeMixin, ModelBase):
                 (not version.all_files[0].is_webextension or
                  version.all_files[0].webext_permissions_list))
 
+    # Aliases for addonreviewerflags below are not just useful in case
+    # AddonReviewerFlags does not exist for this add-on: they are also used
+    # by reviewer tools get_flags() function to return flags shown to reviewers
+    # in both the review queues and the review page.
+
     @property
     def needs_admin_code_review(self):
         try:
@@ -1460,6 +1465,13 @@ class Addon(OnChangeMixin, ModelBase):
     def auto_approval_disabled(self):
         try:
             return self.addonreviewerflags.auto_approval_disabled
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def auto_approval_disabled_until(self):
+        try:
+            return self.addonreviewerflags.auto_approval_disabled_until
         except AddonReviewerFlags.DoesNotExist:
             return None
 
@@ -1627,6 +1639,8 @@ class AddonReviewerFlags(ModelBase):
     needs_admin_content_review = models.BooleanField(default=False)
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
+    auto_approval_disabled_until = models.DateTimeField(
+        default=None, null=True)
     pending_info_request = models.DateTimeField(default=None, null=True)
     notified_about_expiring_info_request = models.BooleanField(default=False)
 

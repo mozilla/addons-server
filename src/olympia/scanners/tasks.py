@@ -1,4 +1,5 @@
 import os
+from datetime import datetime, timedelta
 
 import requests
 import yara
@@ -11,12 +12,15 @@ import olympia.core.logger
 from olympia.constants.scanners import (
     ACTIONS,
     CUSTOMS,
+    DELAY_AUTO_APPROVAL,
+    DELAY_AUTO_APPROVAL_INDEFINITELY,
     FLAG_FOR_HUMAN_REVIEW,
     NO_ACTION,
     SCANNERS,
     WAT,
     YARA,
 )
+from olympia.addons.models import AddonReviewerFlags
 from olympia.amo.celery import task
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
@@ -198,13 +202,28 @@ def run_yara(results, upload_pk):
 
 
 def _no_action(version):
-    """This action does nothing."""
+    """Do nothing."""
     pass
 
 
 def _flag_for_human_review(version):
-    """This action flags the version for human review."""
+    """Flag the version for human review."""
     version.update(needs_human_review=True)
+
+
+def _delay_auto_approval(version):
+    """Delay auto-approval for the whole add-on for 24 hours."""
+    in_twenty_four_hours = datetime.now() + timedelta(hours=24)
+    AddonReviewerFlags.objects.update_or_create(
+        addon=version.addon,
+        defaults={'auto_approval_disabled_until': in_twenty_four_hours})
+
+
+def _delay_auto_approval_indefinitely(version):
+    """Delay auto-approval for the whole add-on indefinitely."""
+    AddonReviewerFlags.objects.update_or_create(
+        addon=version.addon,
+        defaults={'auto_approval_disabled_until': datetime.max})
 
 
 @task
@@ -236,6 +255,8 @@ def run_action(version_id):
     ACTION_FUNCTIONS = {
         NO_ACTION: _no_action,
         FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
+        DELAY_AUTO_APPROVAL: _delay_auto_approval,
+        DELAY_AUTO_APPROVAL_INDEFINITELY: _delay_auto_approval_indefinitely,
     }
 
     action_function = ACTION_FUNCTIONS.get(action_id, None)

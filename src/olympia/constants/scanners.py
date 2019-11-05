@@ -12,10 +12,15 @@ SCANNERS = {
 }
 
 # Action IDs are also used for severity (the higher, the more severe).
+# The field is a PositiveSmallIntegerField, it should go up to 65535.
 NO_ACTION = 1
 FLAG_FOR_HUMAN_REVIEW = 20
+DELAY_AUTO_APPROVAL = 100
+DELAY_AUTO_APPROVAL_INDEFINITELY = 200
 
 ACTIONS = {
-    NO_ACTION: _('no action'),
-    FLAG_FOR_HUMAN_REVIEW: _('flag for human review'),
+    NO_ACTION: _('No action'),
+    FLAG_FOR_HUMAN_REVIEW: _('Flag for human review'),
+    DELAY_AUTO_APPROVAL: _('Delay auto-approval'),
+    DELAY_AUTO_APPROVAL_INDEFINITELY: _('Delay auto-approval indefinitely'),
 }

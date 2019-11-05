@@ -36,9 +36,14 @@ from olympia.lib.cache import cache_get_or_set
 class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddonReviewerFlags
-        fields = ('auto_approval_disabled', 'needs_admin_code_review',
-                  'needs_admin_content_review', 'needs_admin_theme_review',
-                  'pending_info_request')
+        fields = (
+            'auto_approval_disabled',
+            'auto_approval_disabled_until',
+            'needs_admin_code_review',
+            'needs_admin_content_review',
+            'needs_admin_theme_review',
+            'pending_info_request'
+        )
 
 
 class FileEntriesSerializer(FileSerializer):
