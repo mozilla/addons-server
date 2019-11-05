@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-05 09:19+0000\n"
+"PO-Revision-Date: 2019-11-05 11:51+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4331,23 +4331,22 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Стежте за продуктивністю {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Вимірюйте кількість часу, проведеного за комп'ютером, або в певній програмі, наприклад, Trello, JIRA, Basecamp, GitHub, та багатьох інших."
+msgstr "Стежте за продуктивністю. Вимірюйте кількість часу, проведеного за комп'ютером, або в певній програмі, наприклад, Trello, JIRA, Basecamp, GitHub, та багатьох інших."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Робіть вирізки веб-вмісту, наприклад, статей, відео, зображень та інших матеріалів, щоб зберігати й використовувати їх у власних проектах або для співпраці в реальному часі."
+msgstr ""
+"Зберігайте свої улюблені матеріали в Інтернеті. Робіть вирізки веб-вмісту, наприклад, статей, відео, зображень та інших матеріалів, щоб зберігати й використовувати їх у власних проектах або для "
+"співпраці в реальному часі."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Безпечно переглядайте Інтернет {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Дозволяйте виконання веб-вмісту лише для сайтів, яким ви довіряєте."
+msgstr "Дозволяйте виконання веб-вмісту лише для сайтів, яким ви довіряєте. Користуйтесь Інтернетом безпечно."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4422,18 +4421,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Розберіться з надокучливим аудіо {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Якщо звук на веб-сайті надто тихий чи гучний, SoundFixer може допомогти виправити це."
+msgstr "Виправте аудіо. Якщо звук на веб-сайті надто тихий чи гучний, SoundFixer може допомогти."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Редагування перед друком {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій веб-сторінці, яку ви хочете роздрукувати."
+msgstr "Редагуйте веб-сторінку перед друком. Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій веб-сторінці, яку ви хочете роздрукувати."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4464,18 +4461,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ховайте свої сліди {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Виконуйте пошук з вищою безпекою з блокуванням стеження, розумним шифруванням, приватним пошуком та іншими можливостями."
+msgstr "Виконуйте пошук з розширеним захистом від стеження, розумним шифруванням, а також іншими засобами захисту приватності."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Спростіть роботу з вкладками {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Організуйте свої відкриті вкладки у вертикальній бічній панелі."
+msgstr "Спростіть вкладки. Організуйте свої відкриті вкладки у вертикальній бічній панелі."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4490,9 +4485,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Переглядайте зображення цілком {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Перемикання в повноекранний режим перегляду відео одним натисканням кнопки."
+msgstr "Перемикайтесь в повноекранний режим перегляду відео однією кнопкою миші."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4515,9 +4509,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Припиніть намагатися зрозуміти нісенітниці {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Розумне розширення, що допомагає вам швидко зрозуміти, з чим ви погоджуєтесь."
+msgstr "Зробіть текст заплутаних ліцензійних угод зрозумілим. Розумне розширення, що допомагає вам швидко зрозуміти, з чим ви погоджуєтесь."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
