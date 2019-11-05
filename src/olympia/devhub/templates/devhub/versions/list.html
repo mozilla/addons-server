@@ -90,7 +90,9 @@
       </ul>
     </td>
     <td class="version-delete">
-      <a href="#" class="remove" data-version="{{ version.id }}" data-is-recommended="{{ (addon.is_recommended and version.recommendation_approved)|int }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
+      <a href="#" class="remove" data-version="{{ version.id }}"
+         data-can-be-disabled="{{ version.can_be_disabled_and_deleted()|int }}"
+         data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
   {% set can_request_review=addon.can_request_review() %}
@@ -298,7 +300,8 @@
     <p class="recommended-version-warning">
       {# will be hidden by default, shown by javascript if data-is-recommended is truthy #}
       {% trans %}
-        The latest approved version of a Recommended extension cannot be deleted or disabled.
+        The latest approved version of this Recommended extension cannot be deleted or disabled
+        because the previous version was not approved for recommendation.
         Please contact AMO Admins if you need help with this.
       {% endtrans %}
       <a href="#" class="close">{{ _('Cancel') }}</a>
