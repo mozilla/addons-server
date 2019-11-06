@@ -6,11 +6,14 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.activity.models import (
-    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken, AddonLog,
-    DraftComment)
+    MAX_TOKEN_USE_COUNT,
+    ActivityLog,
+    ActivityLogToken,
+    AddonLog,
+    DraftComment,
+)
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory)
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import CannedResponse
@@ -24,11 +27,13 @@ class TestActivityLogToken(TestCase):
         super(TestActivityLogToken, self).setUp()
         self.addon = addon_factory()
         self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED
+        )
         self.version.update(created=self.days_ago(1))
         self.user = user_factory()
         self.token = ActivityLogToken.objects.create(
-            version=self.version, user=self.user)
+            version=self.version, user=self.user
+        )
 
     def test_uuid_is_automatically_created(self):
         assert self.token.uuid
@@ -45,7 +50,8 @@ class TestActivityLogToken(TestCase):
         assert self.token.is_expired()
         # But the version is still the latest version.
         assert self.version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED
+        )
         assert not self.token.is_valid()
 
     def test_increment_use(self):
@@ -53,7 +59,8 @@ class TestActivityLogToken(TestCase):
         self.token.increment_use()
         assert self.token.use_count == 1
         token_from_db = ActivityLogToken.objects.get(
-            version=self.version, user=self.user)
+            version=self.version, user=self.user
+        )
         assert token_from_db.use_count == 1
 
     def test_validity_version_out_of_date(self):
@@ -66,7 +73,8 @@ class TestActivityLogToken(TestCase):
     def test_validity_still_valid_if_new_version_in_different_channel(self):
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED
+        )
 
         # The token isn't expired.
         assert not self.token.is_expired()
@@ -86,8 +94,7 @@ class TestActivityLog(TestCase):
 
     def setUp(self):
         super(TestActivityLog, self).setUp()
-        self.user = UserProfile.objects.create(
-            username='yolo', display_name='Yolo')
+        self.user = UserProfile.objects.create(username='yolo', display_name='Yolo')
         self.request = Mock()
         self.request.user = self.user
         core.set_user(self.user)
@@ -176,13 +183,15 @@ class TestActivityLog(TestCase):
     def test_arguments_old_reviews_app(self):
         addon = Addon.objects.get()
         rating = Rating.objects.create(
-            addon=addon, user=self.user, user_responsible=self.user, rating=5)
+            addon=addon, user=self.user, user_responsible=self.user, rating=5
+        )
         activity = ActivityLog.objects.latest('pk')
         # Override _arguments to use reviews.review instead of ratings.rating,
         # as old data already present in the db would use.
-        activity._arguments = (
-            u'[{"addons.addon": %d}, {"reviews.review": %d}]' % (
-                addon.pk, rating.pk))
+        activity._arguments = u'[{"addons.addon": %d}, {"reviews.review": %d}]' % (
+            addon.pk,
+            rating.pk,
+        )
         assert activity.arguments == [addon, rating]
 
     def test_no_arguments(self):
@@ -208,8 +217,9 @@ class TestActivityLog(TestCase):
         """
         user = UserProfile(username='Marlboro Manatee')
         user.save()
-        ActivityLog.create(amo.LOG.ADD_USER_WITH_ROLE,
-                           user, 'developer', Addon.objects.get())
+        ActivityLog.create(
+            amo.LOG.ADD_USER_WITH_ROLE, user, 'developer', Addon.objects.get()
+        )
         entries = ActivityLog.objects.for_user(self.request.user)
         assert len(entries) == 1
         entries = ActivityLog.objects.for_user(user)
@@ -217,8 +227,9 @@ class TestActivityLog(TestCase):
 
     def test_version_log(self):
         version = Version.objects.all()[0]
-        ActivityLog.create(amo.LOG.REJECT_VERSION, version.addon, version,
-                           user=self.request.user)
+        ActivityLog.create(
+            amo.LOG.REJECT_VERSION, version.addon, version, user=self.request.user
+        )
         entries = ActivityLog.objects.for_version(version)
         assert len(entries) == 1
         assert version.get_url_path() in str(entries[0])
@@ -228,8 +239,9 @@ class TestActivityLog(TestCase):
         # Get the url before the addon is changed to unlisted.
         url_path = version.get_url_path()
         self.make_addon_unlisted(version.addon)
-        ActivityLog.create(amo.LOG.REJECT_VERSION, version.addon, version,
-                           user=self.request.user)
+        ActivityLog.create(
+            amo.LOG.REJECT_VERSION, version.addon, version, user=self.request.user
+        )
         entries = ActivityLog.objects.for_version(version)
         assert len(entries) == 1
         assert url_path not in str(entries[0])
@@ -237,18 +249,22 @@ class TestActivityLog(TestCase):
     def test_version_log_transformer(self):
         addon = Addon.objects.get()
         version = addon.current_version
-        ActivityLog.create(amo.LOG.REJECT_VERSION, addon, version,
-                           user=self.request.user)
+        ActivityLog.create(
+            amo.LOG.REJECT_VERSION, addon, version, user=self.request.user
+        )
 
-        version_two = Version(addon=addon, license=version.license,
-                              version='1.2.3')
+        version_two = Version(addon=addon, license=version.license, version='1.2.3')
         version_two.save()
 
-        ActivityLog.create(amo.LOG.REJECT_VERSION, addon, version_two,
-                           user=self.request.user)
+        ActivityLog.create(
+            amo.LOG.REJECT_VERSION, addon, version_two, user=self.request.user
+        )
 
-        versions = (Version.objects.filter(addon=addon).order_by('-created')
-                                   .transform(Version.transformer_activity))
+        versions = (
+            Version.objects.filter(addon=addon)
+            .order_by('-created')
+            .transform(Version.transformer_activity)
+        )
 
         assert len(versions[0].all_activity) == 1
         assert len(versions[1].all_activity) == 1
@@ -260,17 +276,18 @@ class TestActivityLog(TestCase):
         addon = addon.reload()
         au = AddonUser(addon=addon, user=self.user)
         ActivityLog.create(
-            amo.LOG.CHANGE_USER_WITH_ROLE, au.user,
-            str(au.get_role_display()), addon)
+            amo.LOG.CHANGE_USER_WITH_ROLE, au.user, str(au.get_role_display()), addon
+        )
         log = ActivityLog.objects.get()
 
-        log_expected = ('Yolo role changed to Owner for <a href="/en-US/'
-                        'firefox/addon/a3615/">Delicious &lt;script src='
-                        '&#34;x.js&#34;&gt;Bookmarks</a>.')
+        log_expected = (
+            'Yolo role changed to Owner for <a href="/en-US/'
+            'firefox/addon/a3615/">Delicious &lt;script src='
+            '&#34;x.js&#34;&gt;Bookmarks</a>.'
+        )
         assert log.to_string() == log_expected
 
-        rendered = amo.utils.from_string('<p>{{ log }}</p>').render(
-            {'log': log})
+        rendered = amo.utils.from_string('<p>{{ log }}</p>').render({'log': log})
         assert rendered == '<p>%s</p>' % log_expected
 
     def test_tag_no_match(self):
@@ -284,31 +301,40 @@ class TestActivityLog(TestCase):
 
     def test_change_status(self):
         addon = Addon.objects.get()
-        log = ActivityLog.create(
-            amo.LOG.CHANGE_STATUS, addon, amo.STATUS_APPROVED)
-        expected = ('<a href="/en-US/firefox/addon/a3615/">'
-                    'Delicious Bookmarks</a> status changed to Approved.')
+        log = ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_APPROVED)
+        expected = (
+            '<a href="/en-US/firefox/addon/a3615/">'
+            'Delicious Bookmarks</a> status changed to Approved.'
+        )
         assert str(log) == expected
 
         log.arguments = [amo.STATUS_DISABLED, addon]
-        expected = ('<a href="/en-US/firefox/addon/a3615/">'
-                    'Delicious Bookmarks</a> status changed to '
-                    'Disabled by Mozilla.')
+        expected = (
+            '<a href="/en-US/firefox/addon/a3615/">'
+            'Delicious Bookmarks</a> status changed to '
+            'Disabled by Mozilla.'
+        )
         assert str(log) == expected
 
         log.arguments = [addon, amo.STATUS_NULL]
-        expected = ('<a href="/en-US/firefox/addon/a3615/">'
-                    'Delicious Bookmarks</a> status changed to Incomplete.')
+        expected = (
+            '<a href="/en-US/firefox/addon/a3615/">'
+            'Delicious Bookmarks</a> status changed to Incomplete.'
+        )
         assert str(log) == expected
 
         log.arguments = [addon, 666]
-        expected = ('<a href="/en-US/firefox/addon/a3615/">'
-                    'Delicious Bookmarks</a> status changed to 666.')
+        expected = (
+            '<a href="/en-US/firefox/addon/a3615/">'
+            'Delicious Bookmarks</a> status changed to 666.'
+        )
         assert str(log) == expected
 
         log.arguments = [addon, 'Some String']
-        expected = ('<a href="/en-US/firefox/addon/a3615/">'
-                    'Delicious Bookmarks</a> status changed to Some String.')
+        expected = (
+            '<a href="/en-US/firefox/addon/a3615/">'
+            'Delicious Bookmarks</a> status changed to Some String.'
+        )
         assert str(log) == expected
 
 
@@ -345,8 +371,7 @@ class TestActivityLogCount(TestCase):
         assert result[0]['approval_count'] == 5
 
     def test_review_last_month(self):
-        log = ActivityLog.create(amo.LOG.APPROVE_VERSION,
-                                 Addon.objects.get())
+        log = ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
         log.update(created=self.lm)
         assert len(ActivityLog.objects.monthly_reviews()) == 0
 
@@ -361,8 +386,7 @@ class TestActivityLogCount(TestCase):
         assert result[0]['approval_count'] == 5
 
     def test_total_last_month(self):
-        log = ActivityLog.create(amo.LOG.APPROVE_VERSION,
-                                 Addon.objects.get())
+        log = ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
         log.update(created=self.lm)
         result = ActivityLog.objects.total_ratings()
         assert len(result) == 1
@@ -394,8 +418,7 @@ class TestActivityLogCount(TestCase):
         assert result == 3
         result = ActivityLog.objects.user_approve_reviews(other).count()
         assert result == 2
-        another = UserProfile.objects.create(
-            email="no@mtrala.la", username="a")
+        another = UserProfile.objects.create(email="no@mtrala.la", username="a")
         result = ActivityLog.objects.user_approve_reviews(another).count()
         assert result == 0
 
@@ -404,7 +427,8 @@ class TestActivityLogCount(TestCase):
         ActivityLog.objects.update(created=self.days_ago(40))
         self.add_approve_logs(2)
         result = ActivityLog.objects.current_month_user_approve_reviews(
-            self.user).count()
+            self.user
+        ).count()
         assert result == 2
 
     def test_log_admin(self):
@@ -419,14 +443,12 @@ class TestActivityLogCount(TestCase):
 
 
 class TestDraftComment(TestCase):
-
     def test_default_requirements(self):
         addon = addon_factory()
         user = user_factory()
         # user and version are the absolute minimum required to
         # create a DraftComment
-        comment = DraftComment.objects.create(
-            user=user, version=addon.current_version)
+        comment = DraftComment.objects.create(user=user, version=addon.current_version)
 
         assert comment.user == user
         assert comment.version == addon.current_version
@@ -443,11 +465,12 @@ class TestDraftComment(TestCase):
             name=u'Terms of services',
             response=u'test',
             category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+            type=amo.CANNED_RESPONSE_TYPE_ADDON,
+        )
 
         DraftComment.objects.create(
-            user=user, version=addon.current_version,
-            canned_response=canned_response)
+            user=user, version=addon.current_version, canned_response=canned_response
+        )
 
         canned_response.delete()
 

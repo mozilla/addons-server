@@ -22,8 +22,10 @@ log = olympia.core.logger.getLogger('z.files.task')
 @task
 @use_primary_db
 def extract_webext_permissions(ids, **kw):
-    log.info('[%s@%s] Extracting permissions from Files, starting at id: %s...'
-             % (len(ids), extract_webext_permissions.rate_limit, ids[0]))
+    log.info(
+        '[%s@%s] Extracting permissions from Files, starting at id: %s...'
+        % (len(ids), extract_webext_permissions.rate_limit, ids[0])
+    )
     files = File.objects.filter(pk__in=ids).no_transforms()
 
     # A user needs to be passed down to parse_xpi(), so we use the task user.
@@ -31,18 +33,17 @@ def extract_webext_permissions(ids, **kw):
 
     for file_ in files:
         try:
-            log.info('Parsing File.id: %s @ %s' %
-                     (file_.pk, file_.current_file_path))
+            log.info('Parsing File.id: %s @ %s' % (file_.pk, file_.current_file_path))
             parsed_data = parse_xpi(file_.current_file_path, user=user)
             permissions = parsed_data.get('permissions', [])
             # Add content_scripts host matches too.
             for script in parsed_data.get('content_scripts', []):
                 permissions.extend(script.get('matches', []))
             if permissions:
-                log.info('Found %s permissions for: %s' %
-                         (len(permissions), file_.pk))
+                log.info('Found %s permissions for: %s' % (len(permissions), file_.pk))
                 WebextPermission.objects.update_or_create(
-                    defaults={'permissions': permissions}, file=file_)
+                    defaults={'permissions': permissions}, file=file_
+                )
         except Exception as err:
             log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
 
@@ -68,8 +69,8 @@ def repack_fileupload(results, upload_pk):
             # transformed in a generic error message for the developer, so we
             # just log it and re-raise.
             log.exception(
-                'Could not extract upload %s for repack.', upload_pk,
-                exc_info=exc)
+                'Could not extract upload %s for repack.', upload_pk, exc_info=exc
+            )
             raise
         timer.log_interval('1.extracted')
         log.info('Zip from upload %s extracted, repackaging', upload_pk)

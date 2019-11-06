@@ -29,8 +29,10 @@ class CommaSearchInAdminMixin:
         # Not pretty but looking up the actual field would require truly
         # resolving the field name, walking to any relations we find up until
         # the last one, that would be a lot of work for a simple edge case.
-        if any(field_name in lookup_fields for field_name in
-                ('localized_string', 'localized_string_clean')):
+        if any(
+            field_name in lookup_fields
+            for field_name in ('localized_string', 'localized_string_clean')
+        ):
             rval = True
         return rval
 
@@ -101,22 +103,22 @@ class CommaSearchInAdminMixin:
             queryset = queryset.filter(**{orm_lookup: search_terms})
         else:
             orm_lookups = [
-                construct_search(str(search_field))
-                for search_field in search_fields]
+                construct_search(str(search_field)) for search_field in search_fields
+            ]
             for bit in search_terms:
-                or_queries = [models.Q(**{orm_lookup: bit})
-                              for orm_lookup in orm_lookups]
+                or_queries = [
+                    models.Q(**{orm_lookup: bit}) for orm_lookup in orm_lookups
+                ]
 
-                q_for_this_term = models.Q(
-                    functools.reduce(operator.or_, or_queries))
+                q_for_this_term = models.Q(functools.reduce(operator.or_, or_queries))
                 filters.append(q_for_this_term)
 
             use_distinct |= any(
                 # Use our own lookup_needs_distinct(), not django's.
                 self.lookup_needs_distinct(self.opts, search_spec)
-                for search_spec in orm_lookups)
+                for search_spec in orm_lookups
+            )
 
             if filters:
-                queryset = queryset.filter(
-                    functools.reduce(joining_operator, filters))
+                queryset = queryset.filter(functools.reduce(joining_operator, filters))
         return queryset, use_distinct

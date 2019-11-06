@@ -25,4 +25,5 @@ class CoreConfig(AppConfig):
     def enable_urllib_certificate_checking(self):
         # From requests's packages/urllib3/contrib/pyopenssl.py
         import urllib3.contrib.pyopenssl
+
         urllib3.contrib.pyopenssl.inject_into_urllib3()

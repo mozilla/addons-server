@@ -26,14 +26,27 @@ from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
-    AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
+    AllowAddonAuthor,
+    AllowReadOnlyIfPublic,
+    AllowRelatedObjectPermissions,
+    AllowReviewer,
+    AllowReviewerUnlisted,
+    AnyOf,
+    GroupPermission,
+)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
-    AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
-    AddonCategoryQueryParam, AddonTypeQueryParam, AutoCompleteSortFilter,
-    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
-    SortingFilter)
+    AddonAppQueryParam,
+    AddonAppVersionQueryParam,
+    AddonAuthorQueryParam,
+    AddonCategoryQueryParam,
+    AddonTypeQueryParam,
+    AutoCompleteSortFilter,
+    ReviewedContentFilter,
+    SearchParameterFilter,
+    SearchQueryFilter,
+    SortingFilter,
+)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
@@ -42,12 +55,22 @@ from .indexers import AddonIndexer
 from .models import Addon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData,
-    ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
-    ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
+    AddonSerializer,
+    AddonSerializerWithUnlistedData,
+    ESAddonAutoCompleteSerializer,
+    ESAddonSerializer,
+    LanguageToolsSerializer,
+    ReplacementAddonSerializer,
+    StaticCategorySerializer,
+    VersionSerializer,
+)
 from .utils import (
-    get_addon_recommendations, get_addon_recommendations_invalid,
-    get_creatured_ids, get_featured_ids, is_outcome_recommended)
+    get_addon_recommendations,
+    get_addon_recommendations_invalid,
+    get_creatured_ids,
+    get_featured_ids,
+    is_outcome_recommended,
+)
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -79,8 +102,9 @@ class BaseFilter(object):
 
     def options(self, request, key, default):
         """Get the (option, title) pair we want according to the request."""
-        if key in request.GET and (request.GET[key] in self.opts_dict or
-                                   request.GET[key] in self.extras_dict):
+        if key in request.GET and (
+            request.GET[key] in self.opts_dict or request.GET[key] in self.extras_dict
+        ):
             opt = request.GET[key]
         else:
             opt = default
@@ -157,14 +181,21 @@ def find_replacement_addon(request):
             # It's an external URL:
             return redirect(get_outgoing_url(path))
     replace_url = '%s%s?src=%s' % (
-        ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
+        ('/' if not path.startswith('/') else ''),
+        path,
+        FIND_REPLACEMENT_SRC,
+    )
     return redirect(replace_url, permanent=False)
 
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor,
-              AllowReviewer, AllowReviewerUnlisted),
+        AnyOf(
+            AllowReadOnlyIfPublic,
+            AllowAddonAuthor,
+            AllowReviewer,
+            AllowReviewerUnlisted,
+        ),
     ]
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
@@ -175,9 +206,9 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if (self.request.user.is_authenticated and
-                acl.action_allowed(self.request,
-                                   amo.permissions.ADDONS_VIEW_DELETED)):
+        if self.request.user.is_authenticated and acl.action_allowed(
+            self.request, amo.permissions.ADDONS_VIEW_DELETED
+        ):
             qs = Addon.unfiltered.all()
         else:
             # Permission classes disallow access to non-public/unlisted add-ons
@@ -198,9 +229,11 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance')
         request = self.request
-        if (acl.check_unlisted_addons_reviewer(request) or
-                (obj and request.user.is_authenticated and
-                 obj.authors.filter(pk=request.user.pk).exists())):
+        if acl.check_unlisted_addons_reviewer(request) or (
+            obj
+            and request.user.is_authenticated
+            and obj.authors.filter(pk=request.user.pk).exists()
+        ):
             return self.serializer_class_with_unlisted_data
         return self.serializer_class
 
@@ -238,7 +271,8 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     def eula_policy(self, request, pk=None):
         obj = self.get_object()
         serializer = AddonEulaPolicySerializer(
-            obj, context=self.get_serializer_context())
+            obj, context=self.get_serializer_context()
+        )
         return Response(serializer.data)
 
 
@@ -262,12 +296,14 @@ class AddonChildMixin(object):
             request=self.request,
             permission_classes=permission_classes,
             kwargs={'pk': self.kwargs[lookup]},
-            action='retrieve_from_related').get_object()
+            action='retrieve_from_related',
+        ).get_object()
         return self.addon_object
 
 
-class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
-                          ListModelMixin, GenericViewSet):
+class AddonVersionViewSet(
+    AddonChildMixin, RetrieveModelMixin, ListModelMixin, GenericViewSet
+):
     # Permissions are always checked against the parent add-on in
     # get_addon_object() using AddonViewSet.permission_classes so we don't need
     # to set any here. Some extra permission classes are added dynamically
@@ -282,33 +318,37 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             if requested == 'all_with_deleted':
                 # To see deleted versions, you need Addons:ViewDeleted.
                 self.permission_classes = [
-                    GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)]
+                    GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)
+                ]
             elif requested == 'all_with_unlisted':
                 # To see unlisted versions, you need to be add-on author or
                 # unlisted reviewer.
-                self.permission_classes = [AnyOf(
-                    AllowReviewerUnlisted, AllowAddonAuthor)]
+                self.permission_classes = [
+                    AnyOf(AllowReviewerUnlisted, AllowAddonAuthor)
+                ]
             elif requested == 'all_without_unlisted':
                 # To see all listed versions (not just public ones) you need to
                 # be add-on author or reviewer.
-                self.permission_classes = [AnyOf(
-                    AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor)]
+                self.permission_classes = [
+                    AnyOf(AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor)
+                ]
             # When listing, we can't use AllowRelatedObjectPermissions() with
             # check_permissions(), because AllowAddonAuthor needs an author to
             # do the actual permission check. To work around that, we call
             # super + check_object_permission() ourselves, passing down the
             # addon object directly.
             return super(AddonVersionViewSet, self).check_object_permissions(
-                request, self.get_addon_object())
+                request, self.get_addon_object()
+            )
         super(AddonVersionViewSet, self).check_permissions(request)
 
     def check_object_permissions(self, request, obj):
         # If the instance is marked as deleted and the client is not allowed to
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
-        if (obj.deleted and
-                not GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
-                has_object_permission(request, self, obj)):
+        if obj.deleted and not GroupPermission(
+            amo.permissions.ADDONS_VIEW_DELETED
+        ).has_object_permission(request, self, obj):
             raise http.Http404
 
         if obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
@@ -316,13 +356,15 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             # authors..
             self.permission_classes = [
                 AllowRelatedObjectPermissions(
-                    'addon', [AnyOf(AllowReviewerUnlisted, AllowAddonAuthor)])
+                    'addon', [AnyOf(AllowReviewerUnlisted, AllowAddonAuthor)]
+                )
             ]
         elif not obj.is_public():
             # If the instance is disabled, only allow reviewers and authors.
             self.permission_classes = [
                 AllowRelatedObjectPermissions(
-                    'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)])
+                    'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)]
+                )
             ]
         super(AddonVersionViewSet, self).check_object_permissions(request, obj)
 
@@ -337,10 +379,12 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         if requested is not None:
             if self.action != 'list':
                 raise serializers.ValidationError(
-                    'The "filter" parameter is not valid in this context.')
+                    'The "filter" parameter is not valid in this context.'
+                )
             elif requested not in valid_filters:
                 raise serializers.ValidationError(
-                    'Invalid "filter" parameter specified.')
+                    'Invalid "filter" parameter specified.'
+                )
         # When listing, by default we only want to return listed, approved
         # versions, matching frontend needs - this can be overridden by the
         # filter in use. When fetching a single instance however, we use the
@@ -356,12 +400,11 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         elif requested == 'all_with_unlisted':
             queryset = addon.versions.all()
         elif requested == 'all_without_unlisted':
-            queryset = addon.versions.filter(
-                channel=amo.RELEASE_CHANNEL_LISTED)
+            queryset = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         else:
             queryset = addon.versions.filter(
-                files__status=amo.STATUS_APPROVED,
-                channel=amo.RELEASE_CHANNEL_LISTED).distinct()
+                files__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
+            ).distinct()
 
         return queryset
 
@@ -369,7 +412,9 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
 class AddonSearchView(ListAPIView):
     authentication_classes = []
     filter_backends = [
-        ReviewedContentFilter, SearchQueryFilter, SearchParameterFilter,
+        ReviewedContentFilter,
+        SearchQueryFilter,
+        SearchParameterFilter,
         SortingFilter,
     ]
     pagination_class = ESPageNumberPagination
@@ -377,12 +422,15 @@ class AddonSearchView(ListAPIView):
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
-        qset = Search(
-            using=amo.search.get_es(),
-            index=AddonIndexer.get_index_alias(),
-            doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'excludes': AddonIndexer.hidden_fields}).params(
-                    search_type='dfs_query_then_fetch')
+        qset = (
+            Search(
+                using=amo.search.get_es(),
+                index=AddonIndexer.get_index_alias(),
+                doc_type=AddonIndexer.get_doctype_name(),
+            )
+            .extra(_source={'excludes': AddonIndexer.hidden_fields})
+            .params(search_type='dfs_query_then_fetch')
+        )
 
         return qset
 
@@ -396,7 +444,9 @@ class AddonAutoCompleteSearchView(AddonSearchView):
     pagination_class = None
     serializer_class = ESAddonAutoCompleteSerializer
     filter_backends = [
-        ReviewedContentFilter, SearchQueryFilter, SearchParameterFilter,
+        ReviewedContentFilter,
+        SearchQueryFilter,
+        SearchParameterFilter,
         AutoCompleteSortFilter,
     ]
 
@@ -416,12 +466,11 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             'type',  # Needed to attach the Persona for icon_url (sadly).
         )
 
-        qset = (
-            Search(
-                using=amo.search.get_es(),
-                index=AddonIndexer.get_index_alias(),
-                doc_type=AddonIndexer.get_doctype_name())
-            .extra(_source={'includes': included_fields}))
+        qset = Search(
+            using=amo.search.get_es(),
+            index=AddonIndexer.get_index_alias(),
+            doc_type=AddonIndexer.get_doctype_name(),
+        ).extra(_source={'includes': included_fields})
 
         return qset
 
@@ -471,7 +520,8 @@ class AddonFeaturedView(GenericAPIView):
                 categories = AddonCategoryQueryParam(self.request).get_value()
             except ValueError:
                 raise exceptions.ParseError(
-                    'Invalid app, category and/or type parameter(s).')
+                    'Invalid app, category and/or type parameter(s).'
+                )
             ids = []
             for category in categories:
                 ids.extend(get_creatured_ids(category, lang))
@@ -481,21 +531,20 @@ class AddonFeaturedView(GenericAPIView):
             # to pick addons from. It can optionally filter by type, so we
             # parse request for that as well.
             try:
-                app = AddonAppQueryParam(
-                    self.request).get_object_from_reverse_dict()
+                app = AddonAppQueryParam(self.request).get_object_from_reverse_dict()
                 types = None
                 if 'type' in self.request.GET:
                     types = AddonTypeQueryParam(self.request).get_value()
             except ValueError:
                 raise exceptions.ParseError(
-                    'Invalid app, category and/or type parameter(s).')
+                    'Invalid app, category and/or type parameter(s).'
+                )
             ids = get_featured_ids(app, lang=lang, types=types)
         # ids is going to be a random list of ids, we just slice it to get
         # the number of add-ons that was requested. We do it before calling
         # manual_order(), since it'll use the ids as part of a id__in filter.
         try:
-            page_size = int(
-                self.request.GET.get('page_size', api_settings.PAGE_SIZE))
+            page_size = int(self.request.GET.get('page_size', api_settings.PAGE_SIZE))
         except ValueError:
             raise exceptions.ParseError('Invalid page_size parameter')
         ids = ids[:page_size]
@@ -518,7 +567,8 @@ class StaticCategoryView(ListAPIView):
 
     def finalize_response(self, request, response, *args, **kwargs):
         response = super(StaticCategoryView, self).finalize_response(
-            request, response, *args, **kwargs)
+            request, response, *args, **kwargs
+        )
         patch_cache_control(response, max_age=60 * 60 * 6)
         return response
 
@@ -532,8 +582,7 @@ class LanguageToolsView(ListAPIView):
     @classmethod
     def as_view(cls, **initkwargs):
         """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(
-            super(LanguageToolsView, cls).as_view(**initkwargs))
+        return non_atomic_requests(super(LanguageToolsView, cls).as_view(**initkwargs))
 
     def get_query_params(self):
         """
@@ -559,10 +608,7 @@ class LanguageToolsView(ListAPIView):
         if AddonAppVersionQueryParam.query_param in self.request.GET:
             try:
                 value = AddonAppVersionQueryParam(self.request).get_values()
-                appversions = {
-                    'min': value[1],
-                    'max': value[2]
-                }
+                appversions = {'min': value[1], 'max': value[2]}
             except ValueError:
                 raise exceptions.ParseError('Invalid appversion parameter.')
         else:
@@ -574,12 +620,12 @@ class LanguageToolsView(ListAPIView):
         # to filter by type if they want appversion filtering.
         if AddonTypeQueryParam.query_param in self.request.GET or appversions:
             try:
-                addon_types = tuple(
-                    AddonTypeQueryParam(self.request).get_value())
+                addon_types = tuple(AddonTypeQueryParam(self.request).get_value())
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid or missing type parameter while appversion '
-                    'parameter is set.')
+                    'parameter is set.'
+                )
         else:
             addon_types = (amo.ADDON_LPAPP, amo.ADDON_DICT)
 
@@ -605,7 +651,8 @@ class LanguageToolsView(ListAPIView):
         params = self.get_query_params()
         if params['types'] == (amo.ADDON_LPAPP,) and params['appversions']:
             qs = self.get_language_packs_queryset_with_appversions(
-                params['application'], params['appversions'])
+                params['application'], params['appversions']
+            )
         else:
             # appversions filtering only makes sense for language packs only,
             # so it's ignored here.
@@ -613,8 +660,8 @@ class LanguageToolsView(ListAPIView):
 
         if params['author']:
             qs = qs.filter(
-                addonuser__user__username__in=params['author'],
-                addonuser__listed=True).distinct()
+                addonuser__user__username__in=params['author'], addonuser__listed=True
+            ).distinct()
         return qs
 
     def get_queryset_base(self, application, addon_types):
@@ -624,23 +671,25 @@ class LanguageToolsView(ListAPIView):
         """
         return (
             Addon.objects.public()
-                 .filter(appsupport__app=application, type__in=addon_types,
-                         target_locale__isnull=False)
-                 .exclude(target_locale='')
+            .filter(
+                appsupport__app=application,
+                type__in=addon_types,
+                target_locale__isnull=False,
+            )
+            .exclude(target_locale='')
             # Deactivate default transforms which fetch a ton of stuff we
             # don't need here like authors, previews or current version.
             # It would be nice to avoid translations entirely, because the
             # translations transformer is going to fetch a lot of translations
             # we don't need, but some language packs or dictionaries have
             # custom names, so we can't use a generic one for them...
-                 .only_translations()
+            .only_translations()
             # Since we're fetching everything with no pagination, might as well
             # not order it.
-                 .order_by()
+            .order_by()
         )
 
-    def get_language_packs_queryset_with_appversions(
-            self, application, appversions):
+    def get_language_packs_queryset_with_appversions(self, application, appversions):
         """
         Return queryset to use specifically when requesting language packs
         compatible with a given app + versions.
@@ -656,19 +705,24 @@ class LanguageToolsView(ListAPIView):
         # re-applying the default one that takes care of the files and compat
         # info.
         versions_qs = (
-            Version.objects
-                   .latest_public_compatible_with(application, appversions)
-                   .no_transforms().transform(Version.transformer))
+            Version.objects.latest_public_compatible_with(application, appversions)
+            .no_transforms()
+            .transform(Version.transformer)
+        )
         return (
-            qs.prefetch_related(Prefetch('versions',
-                                         to_attr='compatible_versions',
-                                         queryset=versions_qs))
-              .filter(versions__apps__application=application,
-                      versions__apps__min__version_int__lte=appversions['min'],
-                      versions__apps__max__version_int__gte=appversions['max'],
-                      versions__channel=amo.RELEASE_CHANNEL_LISTED,
-                      versions__files__status=amo.STATUS_APPROVED)
-              .distinct()
+            qs.prefetch_related(
+                Prefetch(
+                    'versions', to_attr='compatible_versions', queryset=versions_qs
+                )
+            )
+            .filter(
+                versions__apps__application=application,
+                versions__apps__min__version_int__lte=appversions['min'],
+                versions__apps__max__version_int__gte=appversions['max'],
+                versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                versions__files__status=amo.STATUS_APPROVED,
+            )
+            .distinct()
         )
 
     @method_decorator(cache_page(60 * 60 * 24))
@@ -711,29 +765,37 @@ class AddonRecommendationView(AddonSearchView):
 
     def get_paginated_response(self, data):
         data = data[:4]  # taar is only supposed to return 4 anyway.
-        return Response(OrderedDict([
-            ('outcome', self.ab_outcome),
-            ('fallback_reason', self.fallback_reason),
-            ('page_size', 1),
-            ('page_count', 1),
-            ('count', len(data)),
-            ('next', None),
-            ('previous', None),
-            ('results', data),
-        ]))
+        return Response(
+            OrderedDict(
+                [
+                    ('outcome', self.ab_outcome),
+                    ('fallback_reason', self.fallback_reason),
+                    ('page_size', 1),
+                    ('page_count', 1),
+                    ('count', len(data)),
+                    ('next', None),
+                    ('previous', None),
+                    ('results', data),
+                ]
+            )
+        )
 
     def filter_queryset(self, qs):
         qs = super(AddonRecommendationView, self).filter_queryset(qs)
         guid_param = self.request.GET.get('guid')
         taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
-        guids, self.ab_outcome, self.fallback_reason = (
-            get_addon_recommendations(guid_param, taar_enable))
+        guids, self.ab_outcome, self.fallback_reason = get_addon_recommendations(
+            guid_param, taar_enable
+        )
         results_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
 
         results_qs.execute()  # To cache the results.
         if results_qs.count() != 4 and is_outcome_recommended(self.ab_outcome):
-            guids, self.ab_outcome, self.fallback_reason = (
-                get_addon_recommendations_invalid())
+            (
+                guids,
+                self.ab_outcome,
+                self.fallback_reason,
+            ) = get_addon_recommendations_invalid()
             return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
         return results_qs
 

@@ -20,11 +20,11 @@ KEY_LOCALES_FOR_EDITORIAL_CONTENT = ('de', 'fr', 'es', 'pl', 'it', 'ja')
 class SlugOrPkChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField that supports entering slugs instead of PKs for
     convenience."""
+
     def clean(self, value):
-        if (value and isinstance(value, str) and not value.isdigit()):
+        if value and isinstance(value, str) and not value.isdigit():
             try:
-                value = self.queryset.values_list(
-                    'pk', flat=True).get(slug=value)
+                value = self.queryset.values_list('pk', flat=True).get(slug=value)
             except self.queryset.model.DoesNotExist:
                 value = value
         return super(SlugOrPkChoiceField, self).clean(value)
@@ -72,17 +72,24 @@ class PositionChinaFilter(PositionFilter):
 
 class DiscoveryItemAdmin(admin.ModelAdmin):
     class Media:
-        css = {
-            'all': ('css/admin/discovery.css',)
-        }
+        css = {'all': ('css/admin/discovery.css',)}
+
     inlines = [PrimaryHeroInline]
-    list_display = ('__str__', 'recommended_status', 'primary_hero_shelf',
-                    'custom_addon_name', 'custom_heading', 'position',
-                    'position_china',
-                    )
+    list_display = (
+        '__str__',
+        'recommended_status',
+        'primary_hero_shelf',
+        'custom_addon_name',
+        'custom_heading',
+        'position',
+        'position_china',
+    )
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
-    readonly_fields = ('recommended_status', 'previews',)
+    readonly_fields = (
+        'recommended_status',
+        'previews',
+    )
     view_on_site = False
 
     def get_queryset(self, request):
@@ -98,19 +105,24 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
                     queryset=(
                         Addon.unfiltered.all()
                         .select_related('_current_version')
-                        .only_translations()))))
+                        .only_translations()
+                    ),
+                )
+            )
+        )
         return qset
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         if db_field.name == 'addon':
             kwargs['widget'] = ForeignKeyRawIdWidget(
-                db_field.remote_field, self.admin_site,
-                using=kwargs.get('using'))
+                db_field.remote_field, self.admin_site, using=kwargs.get('using')
+            )
             kwargs['queryset'] = Addon.objects.all()
             kwargs['help_text'] = db_field.help_text
             return SlugOrPkChoiceField(**kwargs)
         return super(DiscoveryItemAdmin, self).formfield_for_foreignkey(
-            db_field, request, **kwargs)
+            db_field, request, **kwargs
+        )
 
     def build_preview(self, obj, locale):
         # FIXME: when disco in Firefox itself lands, change this preview to
@@ -122,14 +134,14 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             u'<div class="editorial-description">{}</div></div>',
             locale,
             mark_safe(obj.heading),
-            mark_safe(obj.description))
+            mark_safe(obj.description),
+        )
 
     def previews(self, obj):
         translations = []
-        for locale in ('en-US', ) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
+        for locale in ('en-US',) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
             with translation.override(locale):
-                translations.append(
-                    conditional_escape(self.build_preview(obj, locale)))
+                translations.append(conditional_escape(self.build_preview(obj, locale)))
         return mark_safe(''.join(translations))
 
     def has_delete_permission(self, request, obj=None):

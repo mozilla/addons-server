@@ -24,8 +24,9 @@ def index_update_counts(ids, index=None, **kw):
     try:
         for update in qs:
             data.append(search.extract_update_count(update))
-        bulk_index(es, data, index=index,
-                   doc_type=UpdateCount.get_mapping_type(), refresh=True)
+        bulk_index(
+            es, data, index=index, doc_type=UpdateCount.get_mapping_type(), refresh=True
+        )
     except Exception as exc:
         index_update_counts.retry(args=[ids, index], exc=exc, **kw)
         raise
@@ -44,8 +45,13 @@ def index_download_counts(ids, index=None, **kw):
         data = []
         for dl in qs:
             data.append(search.extract_download_count(dl))
-        bulk_index(es, data, index=index,
-                   doc_type=DownloadCount.get_mapping_type(), refresh=True)
+        bulk_index(
+            es,
+            data,
+            index=index,
+            doc_type=DownloadCount.get_mapping_type(),
+            refresh=True,
+        )
     except Exception as exc:
         index_download_counts.retry(args=[ids, index], exc=exc)
         raise

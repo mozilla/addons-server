@@ -25,11 +25,15 @@ def update_denorm(*pairs, **kw):
     Takes a bunch of (addon, user) pairs and sets the denormalized fields for
     all reviews matching that pair.
     """
-    log.info('[%s@%s] Updating review denorms.' %
-             (len(pairs), update_denorm.rate_limit))
+    log.info(
+        '[%s@%s] Updating review denorms.' % (len(pairs), update_denorm.rate_limit)
+    )
     for addon, user in pairs:
-        reviews = list(Rating.without_replies.all()
-                       .filter(addon=addon, user=user).order_by('created'))
+        reviews = list(
+            Rating.without_replies.all()
+            .filter(addon=addon, user=user)
+            .order_by('created')
+        )
         if not reviews:
             continue
 
@@ -52,32 +56,41 @@ def update_denorm(*pairs, **kw):
 def addon_rating_aggregates(addons, **kw):
     if isinstance(addons, int):  # Got passed a single addon id.
         addons = [addons]
-    log.info('[%s@%s] Updating total reviews and average ratings.' %
-             (len(addons), addon_rating_aggregates.rate_limit))
+    log.info(
+        '[%s@%s] Updating total reviews and average ratings.'
+        % (len(addons), addon_rating_aggregates.rate_limit)
+    )
     addon_objs = list(Addon.objects.filter(pk__in=addons))
     # The following returns something like
     # [{'rating': 2.0, 'addon': 7, 'count': 5},
     #  {'rating': 3.75, 'addon': 6, 'count': 8}, ...]
-    qs = (Rating.without_replies.all()
-          .filter(addon__in=addons, is_latest=True)
-          .values('addon')  # Group by addon id.
-          .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
-          .order_by())  # Reset order by so that `created` is not included.
+    qs = (
+        Rating.without_replies.all()
+        .filter(addon__in=addons, is_latest=True)
+        .values('addon')  # Group by addon id.
+        .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
+        .order_by()
+    )  # Reset order by so that `created` is not included.
     stats = {x['addon']: (x['rating'], x['count']) for x in qs}
 
-    text_qs = (Rating.without_replies.all()
-               .filter(addon__in=addons, is_latest=True)
-               .exclude(body=None)
-               .values('addon')  # Group by addon id.
-               .annotate(count=Count('addon'))
-               .order_by())
+    text_qs = (
+        Rating.without_replies.all()
+        .filter(addon__in=addons, is_latest=True)
+        .exclude(body=None)
+        .values('addon')  # Group by addon id.
+        .annotate(count=Count('addon'))
+        .order_by()
+    )
     text_stats = {x['addon']: x['count'] for x in text_qs}
 
     for addon in addon_objs:
         rating, reviews = stats.get(addon.pk, [0, 0])
         reviews_with_text = text_stats.get(addon.pk, 0)
-        addon.update(total_ratings=reviews, average_rating=rating,
-                     text_ratings_count=reviews_with_text)
+        addon.update(
+            total_ratings=reviews,
+            average_rating=rating,
+            text_ratings_count=reviews_with_text,
+        )
 
         # Clear cached grouped ratings
         GroupedRating.delete(addon.pk)
@@ -90,11 +103,14 @@ def addon_rating_aggregates(addons, **kw):
 @use_primary_db
 def addon_bayesian_rating(*addons, **kw):
     def addon_aggregates():
-        return Addon.objects.valid().aggregate(rating=Avg('average_rating'),
-                                               reviews=Avg('total_ratings'))
+        return Addon.objects.valid().aggregate(
+            rating=Avg('average_rating'), reviews=Avg('total_ratings')
+        )
 
-    log.info('[%s@%s] Updating bayesian ratings.' %
-             (len(addons), addon_bayesian_rating.rate_limit))
+    log.info(
+        '[%s@%s] Updating bayesian ratings.'
+        % (len(addons), addon_bayesian_rating.rate_limit)
+    )
 
     avg = cache_get_or_set('task.bayes.avg', addon_aggregates, 60 * 60 * 60)
     # Rating can be NULL in the DB, so don't update it if it's not there.
@@ -134,15 +150,13 @@ def get_armagaddon_ratings_filters(prefix=''):
 @task
 @use_primary_db
 def delete_armagaddon_ratings_for_addons(ids, **kw):
-    ratings = Rating.objects.filter(
-        addon__in=ids, **get_armagaddon_ratings_filters())
+    ratings = Rating.objects.filter(addon__in=ids, **get_armagaddon_ratings_filters())
     task_user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
     for rating in ratings:
         # Normally, deletions are a special kind of save (because we
         # soft-delete) and that'd send a post save signal, which would trigger
         # addon ratings aggregate computation and reindexing. We specifically
         # avoid sending post_save to do those things only once per add-on.
-        rating.delete(user_responsible=task_user,
-                      send_post_save_signal=False)
+        rating.delete(user_responsible=task_user, send_post_save_signal=False)
     addon_rating_aggregates(ids)
     index_addons.delay(ids)

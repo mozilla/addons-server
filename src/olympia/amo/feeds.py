@@ -10,6 +10,7 @@ class BaseFeed(Feed):
     A base feed class that does not use transactions and tries to avoid raising
     exceptions on unserializable content.
     """
+
     # Regexp controlling which characters to strip from the items because they
     # would raise UnserializableContentError. Pretty much all control chars
     # except things like line feed, carriage return etc which are fine.
@@ -26,8 +27,7 @@ class BaseFeed(Feed):
     # we're returning, so we can use it to strip XML control chars before they
     # are being used. This avoid raising UnserializableContentError later.
     def _get_dynamic_attr(self, attname, obj, default=None):
-        data = super(BaseFeed, self)._get_dynamic_attr(
-            attname, obj, default=default)
+        data = super(BaseFeed, self)._get_dynamic_attr(attname, obj, default=default)
 
         # Limite the search to the item types we know can potentially contain
         # some weird characters.
@@ -38,7 +38,7 @@ class BaseFeed(Feed):
             'item_author_name',
             'item_description',
             'item_title',
-            'title'
+            'title',
         )
         if data and attname in problematic_keys:
             data = re.sub(self.CONTROL_CHARS_REGEXP, '', str(data))

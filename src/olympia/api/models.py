@@ -31,9 +31,11 @@ class APIKey(ModelBase):
     """
     A developer's key/secret pair to access the API.
     """
+
     id = PositiveAutoField(primary_key=True)
     user = models.ForeignKey(
-        UserProfile, related_name='api_keys', on_delete=models.CASCADE)
+        UserProfile, related_name='api_keys', on_delete=models.CASCADE
+    )
 
     # A user can only have one active key at the same time, it's enforced by
     # a unique db constraint. Since we keep old inactive keys though, nulls
@@ -41,7 +43,8 @@ class APIKey(ModelBase):
     # is_active=False when revoking keys).
     is_active = models.NullBooleanField(default=True)
     type = models.PositiveIntegerField(
-        choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0)
+        choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0
+    )
     key = models.CharField(max_length=255, db_index=True, unique=True)
     # TODO: use RSA public keys instead? If we were to use JWT RSA keys
     # then we'd only need to store the public key.
@@ -53,15 +56,13 @@ class APIKey(ModelBase):
             models.Index(fields=('user',), name='api_key_user_id'),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('user', 'is_active'),
-                                    name='user_id'),
+            models.UniqueConstraint(fields=('user', 'is_active'), name='user_id'),
         ]
 
     def __str__(self):
-        return (
-            u'<{cls} user={user}, type={type}, key={key} secret=...>'
-            .format(cls=self.__class__.__name__, key=self.key,
-                    type=self.type, user=self.user))
+        return u'<{cls} user={user}, type={type}, key={key} secret=...>'.format(
+            cls=self.__class__.__name__, key=self.key, type=self.type, user=self.user
+        )
 
     @classmethod
     def get_jwt_key(cls, **kwargs):
@@ -81,20 +82,25 @@ class APIKey(ModelBase):
         """
         key = cls.get_unique_key('user:{}:'.format(user.pk))
         return cls.objects.create(
-            key=key, secret=cls.generate_secret(32),
-            type=SYMMETRIC_JWT_TYPE, user=user, is_active=True)
+            key=key,
+            secret=cls.generate_secret(32),
+            type=SYMMETRIC_JWT_TYPE,
+            user=user,
+            is_active=True,
+        )
 
     @classmethod
     def get_unique_key(cls, prefix, try_count=1, max_tries=1000):
         if try_count >= max_tries:
             raise RuntimeError(
-                'a unique API key could not be found after {} tries'
-                .format(max_tries))
+                'a unique API key could not be found after {} tries'.format(max_tries)
+            )
 
         key = '{}{}'.format(prefix, random.randint(0, 999))
         if cls.objects.filter(key=key).exists():
-            return cls.get_unique_key(prefix, try_count=try_count + 1,
-                                      max_tries=max_tries)
+            return cls.get_unique_key(
+                prefix, try_count=try_count + 1, max_tries=max_tries
+            )
         return key
 
     @staticmethod
@@ -110,14 +116,15 @@ class APIKey(ModelBase):
         """
         if byte_length < 32:  # at least 256 bit
             raise ValueError(
-                '{} is too short; secrets must be longer than 32 bytes'
-                .format(byte_length))
+                '{} is too short; secrets must be longer than 32 bytes'.format(
+                    byte_length
+                )
+            )
         return force_text(binascii.b2a_hex(os.urandom(byte_length)))
 
 
 class APIKeyConfirmation(ModelBase):
-    user = models.OneToOneField(
-        UserProfile, primary_key=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(UserProfile, primary_key=True, on_delete=models.CASCADE)
     token = models.CharField(max_length=20)
     confirmed_once = models.BooleanField(default=False)
 
@@ -140,8 +147,10 @@ class APIKeyConfirmation(ModelBase):
         return send_mail_jinja(
             ugettext('Confirmation for developer API keys'),
             'devhub/email/api_key_confirmation.ltxt',
-            context, recipient_list=[self.user.email],
-            countdown=settings.API_KEY_CONFIRMATION_DELAY)
+            context,
+            recipient_list=[self.user.email],
+            countdown=settings.API_KEY_CONFIRMATION_DELAY,
+        )
 
     def is_token_valid(self, token):
         """

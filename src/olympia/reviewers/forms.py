@@ -5,7 +5,10 @@ from django import forms
 from django.db.models import Q
 from django.forms import widgets
 from django.forms.models import (
-    BaseModelFormSet, ModelMultipleChoiceField, modelformset_factory)
+    BaseModelFormSet,
+    ModelMultipleChoiceField,
+    modelformset_factory,
+)
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -23,20 +26,21 @@ from olympia.versions.models import Version
 log = olympia.core.logger.getLogger('z.reviewers.forms')
 
 
-ACTION_FILTERS = (('', ''), ('approved', _(u'Approved reviews')),
-                  ('deleted', _(u'Deleted reviews')))
+ACTION_FILTERS = (
+    ('', ''),
+    ('approved', _(u'Approved reviews')),
+    ('deleted', _(u'Deleted reviews')),
+)
 
-ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING,
-                   deleted=amo.LOG.DELETE_RATING)
+ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
 
 class RatingModerationLogForm(forms.Form):
-    start = forms.DateField(required=False,
-                            label=_(u'View entries between'))
-    end = forms.DateField(required=False,
-                          label=_(u'and'))
-    filter = forms.ChoiceField(required=False, choices=ACTION_FILTERS,
-                               label=_(u'Filter by type/action'))
+    start = forms.DateField(required=False, label=_(u'View entries between'))
+    end = forms.DateField(required=False, label=_(u'and'))
+    filter = forms.ChoiceField(
+        required=False, choices=ACTION_FILTERS, label=_(u'Filter by type/action')
+    )
 
     def clean(self):
         data = self.cleaned_data
@@ -50,8 +54,7 @@ class RatingModerationLogForm(forms.Form):
 
 
 class ReviewLogForm(forms.Form):
-    start = forms.DateField(required=False,
-                            label=_(u'View entries between'))
+    start = forms.DateField(required=False, label=_(u'View entries between'))
     end = forms.DateField(required=False, label=_(u'and'))
     search = forms.CharField(required=False, label=_(u'containing'))
 
@@ -60,16 +63,16 @@ class ReviewLogForm(forms.Form):
 
         # L10n: start, as in "start date"
         self.fields['start'].widget.attrs = {
-            'placeholder': ugettext('start'), 'size': 10}
+            'placeholder': ugettext('start'),
+            'size': 10,
+        }
 
         # L10n: end, as in "end date"
-        self.fields['end'].widget.attrs = {
-            'size': 10, 'placeholder': ugettext('end')}
+        self.fields['end'].widget.attrs = {'size': 10, 'placeholder': ugettext('end')}
 
         # L10n: Description of what can be searched for
         search_ph = ugettext('add-on, reviewer or comment')
-        self.fields['search'].widget.attrs = {'placeholder': search_ph,
-                                              'size': 30}
+        self.fields['search'].widget.attrs = {'placeholder': search_ph, 'size': 30}
 
     def clean(self):
         data = self.cleaned_data
@@ -82,22 +85,26 @@ class ReviewLogForm(forms.Form):
 
 class QueueSearchForm(forms.Form):
     text_query = forms.CharField(
-        required=False,
-        label=_(u'Search by add-on name / author email'))
-    searching = forms.BooleanField(widget=forms.HiddenInput, required=False,
-                                   initial=True)
+        required=False, label=_(u'Search by add-on name / author email')
+    )
+    searching = forms.BooleanField(
+        widget=forms.HiddenInput, required=False, initial=True
+    )
     needs_admin_code_review = forms.ChoiceField(
-        required=False, label=_(u'Needs Admin Code Review'), choices=[
-            ('', ''), ('1', _(u'yes')), ('0', _(u'no'))])
+        required=False,
+        label=_(u'Needs Admin Code Review'),
+        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
+    )
     application_id = forms.ChoiceField(
         required=False,
         label=_(u'Application'),
-        choices=([('', '')] +
-                 [(a.id, a.pretty) for a in amo.APPS_ALL.values()]))
+        choices=([('', '')] + [(a.id, a.pretty) for a in amo.APPS_ALL.values()]),
+    )
     addon_type_ids = forms.MultipleChoiceField(
         required=False,
         label=_(u'Add-on Types'),
-        choices=[(amo.ADDON_ANY, _(u'Any'))] + list(amo.ADDON_TYPES.items()))
+        choices=[(amo.ADDON_ANY, _(u'Any'))] + list(amo.ADDON_TYPES.items()),
+    )
 
     def __init__(self, *args, **kw):
         super(QueueSearchForm, self).__init__(*args, **kw)
@@ -113,17 +120,17 @@ class QueueSearchForm(forms.Form):
     def filter_qs(self, qs):
         data = self.cleaned_data
         if data['needs_admin_code_review']:
-            qs = qs.filter(
-                needs_admin_code_review=data['needs_admin_code_review'])
+            qs = qs.filter(needs_admin_code_review=data['needs_admin_code_review'])
         if data['addon_type_ids']:
             qs = qs.filter_raw('addon_type_id IN', data['addon_type_ids'])
         if data['application_id']:
-            qs = qs.filter_raw('apps_match.application_id =',
-                               data['application_id'])
+            qs = qs.filter_raw('apps_match.application_id =', data['application_id'])
             # We join twice so it includes all apps, and not just the ones
             # filtered by the search criteria.
-            app_join = ('LEFT JOIN applications_versions apps_match ON '
-                        '(versions.id = apps_match.version_id)')
+            app_join = (
+                'LEFT JOIN applications_versions apps_match ON '
+                '(versions.id = apps_match.version_id)'
+            )
             qs.base_query['from'].extend([app_join])
 
         if data['text_query']:
@@ -136,58 +143,66 @@ class QueueSearchForm(forms.Form):
                          supportemail_default.locale=addons.defaultlocale)""",
                 """LEFT JOIN translations AS supportemail_local ON
                         (supportemail_local.id = addons.supportemail AND
-                         supportemail_local.locale=%%(%s)s)""" %
-                qs._param(lang),
+                         supportemail_local.locale=%%(%s)s)"""
+                % qs._param(lang),
                 """LEFT JOIN translations AS ad_name_local ON
                         (ad_name_local.id = addons.name AND
-                         ad_name_local.locale=%%(%s)s)""" %
-                qs._param(lang)]
+                         ad_name_local.locale=%%(%s)s)"""
+                % qs._param(lang),
+            ]
             qs.base_query['from'].extend(joins)
             fuzzy_q = u'%' + data['text_query'] + u'%'
             qs = qs.filter_raw(
-                Q('addon_name LIKE', fuzzy_q) |
+                Q('addon_name LIKE', fuzzy_q)
+                |
                 # Search translated add-on names / support emails in
                 # the reviewer's locale:
-                Q('ad_name_local.localized_string LIKE', fuzzy_q) |
-                Q('supportemail_default.localized_string LIKE', fuzzy_q) |
-                Q('supportemail_local.localized_string LIKE', fuzzy_q) |
-                Q('au.role IN', [amo.AUTHOR_ROLE_OWNER,
-                                 amo.AUTHOR_ROLE_DEV],
-                  'u.email LIKE', fuzzy_q))
+                Q('ad_name_local.localized_string LIKE', fuzzy_q)
+                | Q('supportemail_default.localized_string LIKE', fuzzy_q)
+                | Q('supportemail_local.localized_string LIKE', fuzzy_q)
+                | Q(
+                    'au.role IN',
+                    [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
+                    'u.email LIKE',
+                    fuzzy_q,
+                )
+            )
         return qs
 
 
 class AllAddonSearchForm(forms.Form):
     text_query = forms.CharField(
-        required=False,
-        label=_(u'Search by add-on name / author email / guid'))
+        required=False, label=_(u'Search by add-on name / author email / guid')
+    )
     searching = forms.BooleanField(
-        widget=forms.HiddenInput,
-        required=False,
-        initial=True)
+        widget=forms.HiddenInput, required=False, initial=True
+    )
     needs_admin_code_review = forms.ChoiceField(
-        required=False, label=_(u'Needs Admin Code Review'), choices=[
-            ('', ''), ('1', _(u'yes')), ('0', _(u'no'))])
+        required=False,
+        label=_(u'Needs Admin Code Review'),
+        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
+    )
     application_id = forms.ChoiceField(
         required=False,
         label=_(u'Application'),
-        choices=([('', '')] +
-                 [(a.id, a.pretty) for a in amo.APPS_ALL.values()]))
+        choices=([('', '')] + [(a.id, a.pretty) for a in amo.APPS_ALL.values()]),
+    )
     max_version = forms.ChoiceField(
         required=False,
         label=_(u'Max. Version'),
-        choices=[('', _(u'Select an application first'))])
+        choices=[('', _(u'Select an application first'))],
+    )
     deleted = forms.ChoiceField(
         required=False,
         choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
-        label=_(u'Deleted'))
+        label=_(u'Deleted'),
+    )
 
     def __init__(self, *args, **kw):
         super(AllAddonSearchForm, self).__init__(*args, **kw)
         widget = self.fields['application_id'].widget
         # Get the URL after the urlconf has loaded.
-        widget.attrs['data-url'] = reverse(
-            'reviewers.application_versions_json')
+        widget.attrs['data-url'] = reverse('reviewers.application_versions_json')
 
     def version_choices_for_app_id(self, app_id):
         versions = AppVersion.objects.filter(application=app_id)
@@ -196,7 +211,8 @@ class AllAddonSearchForm(forms.Form):
     def clean_application_id(self):
         if self.cleaned_data['application_id']:
             choices = self.version_choices_for_app_id(
-                self.cleaned_data['application_id'])
+                self.cleaned_data['application_id']
+            )
             self.fields['max_version'].choices = choices
         return self.cleaned_data['application_id']
 
@@ -209,27 +225,28 @@ class AllAddonSearchForm(forms.Form):
     def filter_qs(self, qs):
         data = self.cleaned_data
         if data['needs_admin_code_review']:
-            qs = qs.filter(
-                needs_admin_code_review=data['needs_admin_code_review'])
+            qs = qs.filter(needs_admin_code_review=data['needs_admin_code_review'])
         if data['deleted']:
             qs = qs.filter(is_deleted=data['deleted'])
         if data['application_id']:
-            qs = qs.filter_raw('apps_match.application_id =',
-                               data['application_id'])
+            qs = qs.filter_raw('apps_match.application_id =', data['application_id'])
             # We join twice so it includes all apps, and not just the ones
             # filtered by the search criteria.
-            app_join = ('LEFT JOIN applications_versions apps_match ON '
-                        '(versions.id = apps_match.version_id)')
+            app_join = (
+                'LEFT JOIN applications_versions apps_match ON '
+                '(versions.id = apps_match.version_id)'
+            )
             qs.base_query['from'].extend([app_join])
 
             if data['max_version']:
-                joins = ["""JOIN applications_versions vs
+                joins = [
+                    """JOIN applications_versions vs
                             ON (versions.id = vs.version_id)""",
-                         """JOIN appversions max_version
-                            ON (max_version.id = vs.max)"""]
+                    """JOIN appversions max_version
+                            ON (max_version.id = vs.max)""",
+                ]
                 qs.base_query['from'].extend(joins)
-                qs = qs.filter_raw('max_version.version =',
-                                   data['max_version'])
+                qs = qs.filter_raw('max_version.version =', data['max_version'])
         if data['text_query']:
             lang = get_language()
             joins = [
@@ -240,30 +257,37 @@ class AllAddonSearchForm(forms.Form):
                          supportemail_default.locale=addons.defaultlocale)""",
                 """LEFT JOIN translations AS supportemail_local ON
                         (supportemail_local.id = addons.supportemail AND
-                         supportemail_local.locale=%%(%s)s)""" %
-                qs._param(lang),
+                         supportemail_local.locale=%%(%s)s)"""
+                % qs._param(lang),
                 """LEFT JOIN translations AS ad_name_local ON
                         (ad_name_local.id = addons.name AND
-                         ad_name_local.locale=%%(%s)s)""" %
-                qs._param(lang)]
+                         ad_name_local.locale=%%(%s)s)"""
+                % qs._param(lang),
+            ]
             qs.base_query['from'].extend(joins)
             fuzzy_q = u'%' + data['text_query'] + u'%'
             qs = qs.filter_raw(
-                Q('addon_name LIKE', fuzzy_q) |
-                Q('guid LIKE', fuzzy_q) |
+                Q('addon_name LIKE', fuzzy_q)
+                | Q('guid LIKE', fuzzy_q)
+                |
                 # Search translated add-on names / support emails in
                 # the reviewer's locale:
-                Q('ad_name_local.localized_string LIKE', fuzzy_q) |
-                Q('supportemail_default.localized_string LIKE', fuzzy_q) |
-                Q('supportemail_local.localized_string LIKE', fuzzy_q) |
-                Q('au.role IN', [amo.AUTHOR_ROLE_OWNER,
-                                 amo.AUTHOR_ROLE_DEV],
-                  'u.email LIKE', fuzzy_q))
+                Q('ad_name_local.localized_string LIKE', fuzzy_q)
+                | Q('supportemail_default.localized_string LIKE', fuzzy_q)
+                | Q('supportemail_local.localized_string LIKE', fuzzy_q)
+                | Q(
+                    'au.role IN',
+                    [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
+                    'u.email LIKE',
+                    fuzzy_q,
+                )
+            )
         return qs
 
 
 class NonValidatingChoiceField(forms.ChoiceField):
     """A ChoiceField that doesn't validate."""
+
     def validate(self, value):
         pass
 
@@ -280,28 +304,32 @@ class ReviewForm(forms.Form):
     # See https://github.com/mozilla/addons-server/issues/8912 for proper fix.
     use_required_attribute = False
 
-    comments = forms.CharField(required=True, widget=forms.Textarea(),
-                               label=_(u'Comments:'))
+    comments = forms.CharField(
+        required=True, widget=forms.Textarea(), label=_(u'Comments:')
+    )
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     versions = ModelMultipleChoiceField(
         widget=forms.SelectMultiple(
-            attrs={
-                'class': 'data-toggle',
-                'data-value': 'reject_multiple_versions|'
-            }),
+            attrs={'class': 'data-toggle', 'data-value': 'reject_multiple_versions|'}
+        ),
         required=False,
-        queryset=Version.objects.none())  # queryset is set later in __init__.
+        queryset=Version.objects.none(),
+    )  # queryset is set later in __init__.
 
-    operating_systems = forms.CharField(required=False,
-                                        label=_(u'Operating systems:'))
-    applications = forms.CharField(required=False,
-                                   label=_(u'Applications:'))
+    operating_systems = forms.CharField(required=False, label=_(u'Operating systems:'))
+    applications = forms.CharField(required=False, label=_(u'Applications:'))
     info_request = forms.BooleanField(
-        required=False, label=_(u'Require developer to respond in less than…'))
+        required=False, label=_(u'Require developer to respond in less than…')
+    )
     info_request_deadline = forms.IntegerField(
-        required=False, widget=NumberInput, initial=7, label=_(u'days'),
-        min_value=1, max_value=99)
+        required=False,
+        widget=NumberInput,
+        initial=7,
+        label=_(u'days'),
+        min_value=1,
+        max_value=99,
+    )
 
     def is_valid(self):
         # Some actions do not require comments.
@@ -328,10 +356,12 @@ class ReviewForm(forms.Form):
             info_request_deadline.min_value = info_request_deadline.initial
             info_request_deadline.max_value = info_request_deadline.initial
             deadline_widget_attributes['readonly'] = 'readonly'
-        deadline_widget_attributes.update({
-            'min': info_request_deadline.min_value,
-            'max': info_request_deadline.max_value,
-        })
+        deadline_widget_attributes.update(
+            {
+                'min': info_request_deadline.min_value,
+                'max': info_request_deadline.max_value,
+            }
+        )
         info_request_deadline.widget.attrs.update(deadline_widget_attributes)
 
         # With the helper, we now have the add-on and can set queryset on the
@@ -340,27 +370,32 @@ class ReviewForm(forms.Form):
         # don't really care about this field.
         if 'reject_multiple_versions' in self.helper.actions:
             self.fields['versions'].queryset = (
-                self.helper.addon.versions.distinct().filter(
+                self.helper.addon.versions.distinct()
+                .filter(
                     channel=amo.RELEASE_CHANNEL_LISTED,
-                    files__status__in=(amo.STATUS_APPROVED,
-                                       amo.STATUS_AWAITING_REVIEW)).
-                order_by('created'))
+                    files__status__in=(amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW),
+                )
+                .order_by('created')
+            )
 
         # For the canned responses, we're starting with an empty one, which
         # will be hidden via CSS.
-        canned_choices = [
-            ['', [('', ugettext('Choose a canned response...'))]]]
+        canned_choices = [['', [('', ugettext('Choose a canned response...'))]]]
 
         canned_type = (
             amo.CANNED_RESPONSE_TYPE_THEME
             if self.helper.addon.type == amo.ADDON_STATICTHEME
-            else amo.CANNED_RESPONSE_TYPE_ADDON)
+            else amo.CANNED_RESPONSE_TYPE_ADDON
+        )
         responses = CannedResponse.objects.filter(type=canned_type)
 
         # Loop through the actions (public, etc).
         for k, action in self.helper.actions.items():
-            action_choices = [[c.response, c.name] for c in responses
-                              if c.sort_group and k in c.sort_group.split(',')]
+            action_choices = [
+                [c.response, c.name]
+                for c in responses
+                if c.sort_group and k in c.sort_group.split(',')
+            ]
 
             # Add the group of responses to the canned_choices array.
             if action_choices:
@@ -372,12 +407,12 @@ class ReviewForm(forms.Form):
                 canned_choices.append([r.response, r.name])
         self.fields['canned_response'].choices = canned_choices
         self.fields['action'].choices = [
-            (k, v['label']) for k, v in self.helper.actions.items()]
+            (k, v['label']) for k, v in self.helper.actions.items()
+        ]
 
     @property
     def unreviewed_files(self):
-        return (self.helper.version.unreviewed_files
-                if self.helper.version else [])
+        return self.helper.version.unreviewed_files if self.helper.version else []
 
 
 class MOTDForm(forms.Form):
@@ -385,34 +420,29 @@ class MOTDForm(forms.Form):
 
 
 class WhiteboardForm(forms.ModelForm):
-
     class Meta:
         model = Whiteboard
         fields = ['private', 'public']
-        labels = {
-            'private': _('Private Whiteboard'),
-            'public': _('Whiteboard')
-        }
+        labels = {'private': _('Private Whiteboard'), 'public': _('Whiteboard')}
 
 
 class PublicWhiteboardForm(forms.ModelForm):
     class Meta:
         model = Whiteboard
         fields = ['public']
-        labels = {
-            'public': _('Whiteboard')
-        }
+        labels = {'public': _('Whiteboard')}
 
 
 class ModerateRatingFlagForm(forms.ModelForm):
 
-    action_choices = [(ratings.REVIEW_MODERATE_KEEP,
-                       _(u'Keep review; remove flags')),
-                      (ratings.REVIEW_MODERATE_SKIP, _(u'Skip for now')),
-                      (ratings.REVIEW_MODERATE_DELETE,
-                       _(u'Delete review'))]
-    action = forms.ChoiceField(choices=action_choices, required=False,
-                               initial=0, widget=forms.RadioSelect())
+    action_choices = [
+        (ratings.REVIEW_MODERATE_KEEP, _(u'Keep review; remove flags')),
+        (ratings.REVIEW_MODERATE_SKIP, _(u'Skip for now')),
+        (ratings.REVIEW_MODERATE_DELETE, _(u'Delete review')),
+    ]
+    action = forms.ChoiceField(
+        choices=action_choices, required=False, initial=0, widget=forms.RadioSelect()
+    )
 
     class Meta:
         model = Rating
@@ -420,15 +450,15 @@ class ModerateRatingFlagForm(forms.ModelForm):
 
 
 class BaseRatingFlagFormSet(BaseModelFormSet):
-
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(BaseRatingFlagFormSet, self).__init__(*args, **kwargs)
 
     def save(self):
         for form in self.forms:
-            if form.cleaned_data and user_can_delete_rating(self.request,
-                                                            form.instance):
+            if form.cleaned_data and user_can_delete_rating(
+                self.request, form.instance
+            ):
                 action = int(form.cleaned_data['action'])
 
                 if action == ratings.REVIEW_MODERATE_DELETE:
@@ -437,6 +467,6 @@ class BaseRatingFlagFormSet(BaseModelFormSet):
                     form.instance.approve(user=self.request.user)
 
 
-RatingFlagFormSet = modelformset_factory(Rating, extra=0,
-                                         form=ModerateRatingFlagForm,
-                                         formset=BaseRatingFlagFormSet)
+RatingFlagFormSet = modelformset_factory(
+    Rating, extra=0, form=ModerateRatingFlagForm, formset=BaseRatingFlagFormSet
+)

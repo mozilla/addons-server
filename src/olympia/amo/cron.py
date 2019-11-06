@@ -25,18 +25,21 @@ log = olympia.core.logger.getLogger('z.cron')
 
 def gc(test_result=True):
     """Site-wide garbage collections."""
+
     def days_ago(days):
         return datetime.today() - timedelta(days=days)
 
     log.debug('Collecting data to delete')
 
-    logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
-            .exclude(action__in=amo.LOG_KEEP).values_list('id', flat=True))
+    logs = (
+        ActivityLog.objects.filter(created__lt=days_ago(90))
+        .exclude(action__in=amo.LOG_KEEP)
+        .values_list('id', flat=True)
+    )
 
-    collections_to_delete = (
-        Collection.objects.filter(created__lt=days_ago(2),
-                                  type=amo.COLLECTION_ANONYMOUS)
-        .values_list('id', flat=True))
+    collections_to_delete = Collection.objects.filter(
+        created__lt=days_ago(2), type=amo.COLLECTION_ANONYMOUS
+    ).values_list('id', flat=True)
 
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
@@ -46,11 +49,13 @@ def gc(test_result=True):
     # rejected during a review it is marked as incomplete. See bug 670295.
 
     # Delete stale FileUploads.
-    stale_uploads = FileUpload.objects.filter(
-        created__lte=days_ago(7)).order_by('id')
+    stale_uploads = FileUpload.objects.filter(created__lte=days_ago(7)).order_by('id')
     for file_upload in stale_uploads:
-        log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
-                  .format(uuid=file_upload.uuid, path=file_upload.path))
+        log.debug(
+            u'[FileUpload:{uuid}] Removing file: {path}'.format(
+                uuid=file_upload.uuid, path=file_upload.path
+            )
+        )
         if file_upload.path:
             try:
                 storage.delete(file_upload.path)
@@ -71,7 +76,8 @@ def category_totals():
     file_statuses = ",".join(['%s'] * len(VALID_FILE_STATUSES))
 
     with connection.cursor() as cursor:
-        cursor.execute("""
+        cursor.execute(
+            """
         UPDATE categories AS t INNER JOIN (
          SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
           FROM addons AS Addon
@@ -87,8 +93,10 @@ def category_totals():
           GROUP BY at.category_id)
         AS j ON (t.id = j.category_id)
         SET t.count = j.ct
-        """ % (file_statuses, addon_statuses),
-            VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
+        """
+            % (file_statuses, addon_statuses),
+            VALID_FILE_STATUSES + VALID_ADDON_STATUSES,
+        )
 
 
 def weekly_downloads():
@@ -102,12 +110,14 @@ def weekly_downloads():
     raise_if_reindex_in_progress('amo')
 
     with connection.cursor() as cursor:
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT addon_id, SUM(count) AS weekly_count
             FROM download_counts
             WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
             GROUP BY addon_id
-            ORDER BY addon_id""")
+            ORDER BY addon_id"""
+        )
         counts = cursor.fetchall()
 
     addon_ids = [r[0] for r in counts]
@@ -116,21 +126,29 @@ def weekly_downloads():
         return
 
     with connection.cursor() as cursor:
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT id, 0
             FROM addons
-            WHERE id NOT IN %s""", (addon_ids,))
+            WHERE id NOT IN %s""",
+            (addon_ids,),
+        )
         counts += cursor.fetchall()
 
-        cursor.execute("""
+        cursor.execute(
+            """
             CREATE TEMPORARY TABLE tmp_wd
-            (addon_id INT PRIMARY KEY, count INT)""")
-        cursor.execute('INSERT INTO tmp_wd VALUES %s' %
-                       ','.join(['(%s,%s)'] * len(counts)),
-                       list(itertools.chain(*counts)))
+            (addon_id INT PRIMARY KEY, count INT)"""
+        )
+        cursor.execute(
+            'INSERT INTO tmp_wd VALUES %s' % ','.join(['(%s,%s)'] * len(counts)),
+            list(itertools.chain(*counts)),
+        )
 
-        cursor.execute("""
+        cursor.execute(
+            """
             UPDATE addons INNER JOIN tmp_wd
                 ON addons.id = tmp_wd.addon_id
-            SET weeklydownloads = tmp_wd.count""")
+            SET weeklydownloads = tmp_wd.count"""
+        )
         cursor.execute("DROP TABLE IF EXISTS tmp_wd")

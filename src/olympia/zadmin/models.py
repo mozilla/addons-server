@@ -5,6 +5,7 @@ from django.db import models
 
 class Config(models.Model):
     """Sitewide settings."""
+
     key = models.CharField(max_length=255, primary_key=True)
     value = models.TextField()
 

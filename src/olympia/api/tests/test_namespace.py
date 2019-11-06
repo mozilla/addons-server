@@ -5,8 +5,7 @@ from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 
-from olympia.amo.tests import (
-    addon_factory, reverse_ns, TestCase, WithDynamicEndpoints)
+from olympia.amo.tests import addon_factory, reverse_ns, TestCase, WithDynamicEndpoints
 
 
 class EmptyViewSet(GenericViewSet):
@@ -17,60 +16,54 @@ class EmptyViewSet(GenericViewSet):
 
 
 class TestNamespacing(WithDynamicEndpoints, TestCase):
-
     def setUp(self):
         v3_only_url = url(
-            r'foo', EmptyViewSet.as_view(actions={'get': 'list'}), name='foo')
+            r'foo', EmptyViewSet.as_view(actions={'get': 'list'}), name='foo'
+        )
         v4_only_url = url(
-            r'baa', EmptyViewSet.as_view(actions={'get': 'list'}), name='baa')
+            r'baa', EmptyViewSet.as_view(actions={'get': 'list'}), name='baa'
+        )
         both_url = url(
-            r'yay', EmptyViewSet.as_view(actions={'get': 'list'}), name='yay')
+            r'yay', EmptyViewSet.as_view(actions={'get': 'list'}), name='yay'
+        )
         v3_url = url(r'v3/', include(([v3_only_url, both_url], 'v3')))
         v4_url = url(r'v4/', include(([v4_only_url, both_url], 'v4')))
-        self.endpoint(
-            include([v3_url, v4_url]),
-            url_regex=r'^api/')
+        self.endpoint(include([v3_url, v4_url]), url_regex=r'^api/')
 
     def test_v3(self):
         # The unique view
-        response = self.client.get(
-            'api/v3/foo', HTTP_ORIGIN='testserver', follow=True)
+        response = self.client.get('api/v3/foo', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
         assert response.json() == {'version': 'v3'}
         url_ = reverse_ns('foo', api_version='v3')
         assert '/api/v3/' in url_
         # And the common one
-        response = self.client.get(
-            'api/v3/yay', HTTP_ORIGIN='testserver', follow=True)
+        response = self.client.get('api/v3/yay', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
         assert response.json() == {'version': 'v3'}
         url_ = reverse_ns('yay', api_version='v3')
         assert '/api/v3/' in url_
         # But no baa in v3
-        response = self.client.get(
-            'api/v3/baa', HTTP_ORIGIN='testserver', follow=True)
+        response = self.client.get('api/v3/baa', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 404
         with self.assertRaises(NoReverseMatch):
             reverse_ns('baa', api_version='v3')
 
     def test_v4(self):
         # The unique view
-        response = self.client.get(
-            'api/v4/baa', HTTP_ORIGIN='testserver', follow=True)
+        response = self.client.get('api/v4/baa', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
         assert response.json() == {'version': 'v4'}
         url_ = reverse_ns('baa', api_version='v4')
         assert '/api/v4/' in url_
         # And the common one
-        response = self.client.get(
-            'api/v4/yay', HTTP_ORIGIN='testserver', follow=True)
+        response = self.client.get('api/v4/yay', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
         assert response.json() == {'version': 'v4'}
         url_ = reverse_ns('yay', api_version='v4')
         assert '/api/v4/' in url_
         # But no foo in v4
-        response = self.client.get(
-            'api/v4/foo', HTTP_ORIGIN='testserver', follow=True)
+        response = self.client.get('api/v4/foo', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 404
         with self.assertRaises(NoReverseMatch):
             reverse_ns('foo', api_version='v4')
@@ -82,7 +75,6 @@ class TestNamespacing(WithDynamicEndpoints, TestCase):
 
 
 class TestRealAPIRouting(TestCase):
-
     def setUp(self):
         addon_factory(slug='foo')
 

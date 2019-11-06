@@ -12,7 +12,6 @@ from olympia.versions.models import Version
 
 
 class _BaseAddonGeneratorMixin(object):
-
     def test_tinyset(self):
         size = 4
         data = list(_yield_name_and_cat(size, self.app, self.type))
@@ -64,7 +63,6 @@ class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
 
 
 class CreateGeneratorTests(TestCase):
-
     def test_create_addon(self):
         addon = create_addon('foo', 'icon/default', APPS['android'])
         assert Addon.objects.last().name == addon.name

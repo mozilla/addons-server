@@ -16,8 +16,15 @@ class ActivityLogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ActivityLog
-        fields = ('id', 'action', 'action_label', 'comments', 'user', 'date',
-                  'highlight')
+        fields = (
+            'id',
+            'action',
+            'action_label',
+            'comments',
+            'user',
+            'date',
+            'highlight',
+        )
 
     def __init__(self, *args, **kwargs):
         super(ActivityLogSerializer, self).__init__(*args, **kwargs)
@@ -50,9 +57,5 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         }
         request = self.context.get('request')
         if request and is_gate_active(request, 'activity-user-shim'):
-            data.update({
-                'id': None,
-                'username': None,
-                'url': None
-            })
+            data.update({'id': None, 'username': None, 'url': None})
         return data

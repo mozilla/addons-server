@@ -25,13 +25,13 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     POST as json.
     The HTTP verb to use is either "get" or "post", controlled through `verb`,
     which defaults to "get"."""
-    request_kwargs = {
-        'timeout': settings.RECOMMENDATION_ENGINE_TIMEOUT
-    }
+    request_kwargs = {'timeout': settings.RECOMMENDATION_ENGINE_TIMEOUT}
     if verb == 'get':
         params = OrderedDict(sorted(data.items(), key=lambda t: t[0]))
-        endpoint = urljoin(server, '%s/%s%s' % (
-            client_id_or_guid, '?' if params else '', urlencode(params)))
+        endpoint = urljoin(
+            server,
+            '%s/%s%s' % (client_id_or_guid, '?' if params else '', urlencode(params)),
+        )
 
     else:
         endpoint = urljoin(server, '%s/' % client_id_or_guid)
@@ -53,23 +53,25 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
 def get_disco_recommendations(hashed_client_id, overrides):
     from olympia.addons.models import Addon
     from olympia.discovery.models import DiscoveryItem
+
     if overrides:
         data = {
             'options': {
-                'promoted': [
-                    [guid, 100 - i] for i, guid in enumerate(overrides)
-                ]
+                'promoted': [[guid, 100 - i] for i, guid in enumerate(overrides)]
             }
         }
     else:
         data = None
     guids = call_recommendation_server(
-        settings.RECOMMENDATION_ENGINE_URL, hashed_client_id, data,
-        verb='post')
+        settings.RECOMMENDATION_ENGINE_URL, hashed_client_id, data, verb='post'
+    )
     results = []
     if guids:
-        qs = Addon.objects.select_related('discoveryitem').public().filter(
-            guid__in=guids)
+        qs = (
+            Addon.objects.select_related('discoveryitem')
+            .public()
+            .filter(guid__in=guids)
+        )
         for addon in qs:
             try:
                 addon.discoveryitem
@@ -85,6 +87,9 @@ def get_disco_recommendations(hashed_client_id, overrides):
 
 def replace_extensions(source, replacements):
     replacements = list(replacements)  # copy so we can pop it.
-    return [replacements.pop(0)
-            if item.addon.type == amo.ADDON_EXTENSION and replacements
-            else item for item in source]
+    return [
+        replacements.pop(0)
+        if item.addon.type == amo.ADDON_EXTENSION and replacements
+        else item
+        for item in source
+    ]

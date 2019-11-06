@@ -8,7 +8,6 @@ from olympia.users.models import UserProfile
 
 
 class RatingsTests(TestCase):
-
     def setUp(self):
         super(RatingsTests, self).setUp()
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)

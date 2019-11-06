@@ -12,8 +12,10 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from django.db import transaction
 from django.urls import is_valid_path
 from django.http import (
-    HttpResponsePermanentRedirect, HttpResponseRedirect,
-    JsonResponse)
+    HttpResponsePermanentRedirect,
+    HttpResponseRedirect,
+    JsonResponse,
+)
 from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.deprecation import MiddlewareMixin
@@ -53,13 +55,14 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
-        if (prefixer.app == amo.MOBILE.short and
-                request.path.rstrip('/').endswith('/' + amo.MOBILE.short)):
+        if prefixer.app == amo.MOBILE.short and request.path.rstrip('/').endswith(
+            '/' + amo.MOBILE.short
+        ):
             return redirect_type(request.path.replace('/mobile', '/android'))
 
-        if ('lang' in request.GET and not re.match(
-                settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX,
-                prefixer.shortened_path)):
+        if 'lang' in request.GET and not re.match(
+            settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX, prefixer.shortened_path
+        ):
             # Blank out the locale so that we can set a new one.  Remove lang
             # from query params so we don't have an infinite loop.
             prefixer.locale = ''
@@ -104,13 +107,14 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     Like AuthenticationMiddleware, but disabled for the API, which uses its
     own authentication mechanism.
     """
+
     def process_request(self, request):
         if request.is_api and not auth_path.match(request.path):
             request.user = AnonymousUser()
         else:
-            return super(
-                AuthenticationMiddlewareWithoutAPI,
-                self).process_request(request)
+            return super(AuthenticationMiddlewareWithoutAPI, self).process_request(
+                request
+            )
 
 
 class NoVarySessionMiddleware(SessionMiddleware):
@@ -123,6 +127,7 @@ class NoVarySessionMiddleware(SessionMiddleware):
     We skip the cache in Zeus if someone has an AMOv3+ cookie, so varying on
     Cookie at this level only hurts us.
     """
+
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
@@ -133,9 +138,9 @@ class NoVarySessionMiddleware(SessionMiddleware):
         if hasattr(response, 'get'):
             vary = response.get('Vary', None)
 
-        new_response = (
-            super(NoVarySessionMiddleware, self)
-            .process_response(request, response))
+        new_response = super(NoVarySessionMiddleware, self).process_response(
+            request, response
+        )
 
         if vary:
             new_response['Vary'] = vary
@@ -153,10 +158,12 @@ class RemoveSlashMiddleware(MiddlewareMixin):
     """
 
     def process_response(self, request, response):
-        if (response.status_code == 404 and
-                request.path_info.endswith('/') and
-                not is_valid_path(request.path_info) and
-                is_valid_path(request.path_info[:-1])):
+        if (
+            response.status_code == 404
+            and request.path_info.endswith('/')
+            and not is_valid_path(request.path_info)
+            and is_valid_path(request.path_info[:-1])
+        ):
             # Use request.path because we munged app/locale in path_info.
             newurl = request.path[:-1]
             if request.GET:
@@ -184,7 +191,6 @@ def safe_query_string(request):
 
 
 class CommonMiddleware(common.CommonMiddleware):
-
     def process_request(self, request):
         with safe_query_string(request):
             return super(CommonMiddleware, self).process_request(request)
@@ -195,6 +201,7 @@ class NonAtomicRequestsForSafeHttpMethodsMiddleware(MiddlewareMixin):
     Middleware to make the view non-atomic if the HTTP method used is safe,
     in order to avoid opening and closing a useless transaction.
     """
+
     def process_view(self, request, view_func, view_args, view_kwargs):
         # This uses undocumented django APIS:
         # - transaction.get_connection() followed by in_atomic_block property,
@@ -218,10 +225,12 @@ class ReadOnlyMiddleware(MiddlewareMixin):
 
     Supports issuing `Retry-After` header.
     """
+
     ERROR_MSG = _(
         u'Some features are temporarily disabled while we '
         u'perform website maintenance. We\'ll be back to '
-        u'full capacity shortly.')
+        u'full capacity shortly.'
+    )
 
     def process_request(self, request):
         if not settings.READ_ONLY:
@@ -251,6 +260,7 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     Our application servers should always be behind a load balancer that sets
     this header correctly.
     """
+
     def is_valid_ip(self, ip):
         for af in (socket.AF_INET, socket.AF_INET6):
             try:
@@ -264,8 +274,7 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
         ips = []
 
         if 'HTTP_X_FORWARDED_FOR' in request.META:
-            xff = [i.strip() for i in
-                   request.META['HTTP_X_FORWARDED_FOR'].split(',')]
+            xff = [i.strip() for i in request.META['HTTP_X_FORWARDED_FOR'].split(',')]
             ips = [ip for ip in xff if self.is_valid_ip(ip)]
         else:
             return

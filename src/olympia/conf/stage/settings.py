@@ -11,9 +11,7 @@ CDN_HOST = 'https://addons-stage-cdn.allizom.org'
 CSP_CONNECT_SRC += (CDN_HOST,)
 CSP_FONT_SRC += (CDN_HOST,)
 CSP_IMG_SRC += (CDN_HOST,)
-CSP_SCRIPT_SRC += (
-    CDN_HOST,
-)
+CSP_SCRIPT_SRC += (CDN_HOST,)
 CSP_STYLE_SRC += (CDN_HOST,)
 
 ENGAGE_ROBOTS = False
@@ -32,20 +30,16 @@ API_THROTTLING = True
 DOMAIN = env('DOMAIN', default='addons.allizom.org')
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
-                        default='https://addons.allizom.org')
-SERVICES_URL = env('SERVICES_URL',
-                   default='https://services.addons.allizom.org')
-CODE_MANAGER_URL = env('CODE_MANAGER_URL',
-                       default='https://code.addons.allizom.org')
+EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons.allizom.org')
+SERVICES_URL = env('SERVICES_URL', default='https://services.addons.allizom.org')
+CODE_MANAGER_URL = env('CODE_MANAGER_URL', default='https://code.addons.allizom.org')
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
-                           default='addons.allizom.org')
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default='addons.allizom.org')
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
@@ -59,16 +53,17 @@ REPLICA_DATABASES = ['replica']
 CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
+CACHES['default'][
+    'BACKEND'
+] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 
-LOGGING['loggers'].update({
-    'z.task': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
+LOGGING['loggers'].update(
+    {'z.task': {'level': logging.DEBUG}, 'z.pool': {'level': logging.ERROR},}
+)
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_stage'
@@ -112,14 +107,17 @@ ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
-             'addon_recommendations/'))
+    default=(
+        'https://taarlite.prod.mozaws.net/taarlite/api/v1/' 'addon_recommendations/'
+    ),
+)
 
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-west-2.amazonaws.com/361527076523/'
-    'amo-account-change-stage')
+    'https://sqs.us-west-2.amazonaws.com/361527076523/' 'amo-account-change-stage'
+)
 
 VAMO_URL = 'https://versioncheck.allizom.org'
 
 EXTENSION_WORKSHOP_URL = env(
-    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.allizom.org')
+    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.allizom.org'
+)

@@ -6,67 +6,76 @@ from django.contrib import admin
 from olympia import amo
 from olympia.addons.admin import ReplacementAddonAdmin
 from olympia.addons.models import ReplacementAddon
-from olympia.amo.tests import (
-    TestCase, addon_factory, collection_factory, user_factory)
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
 
 
 class TestReplacementAddonForm(TestCase):
     def test_valid_addon(self):
         addon_factory(slug='bar')
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': '/addon/bar/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(None)(
+            {'guid': 'foo', 'path': '/addon/bar/'}
+        )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['path'] == '/addon/bar/'
 
     def test_invalid(self):
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': '/invalid_url/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(None)(
+            {'guid': 'foo', 'path': '/invalid_url/'}
+        )
         assert not form.is_valid()
 
     def test_valid_collection(self):
         bagpuss = user_factory(username='bagpuss')
         collection_factory(slug='stuff', author=bagpuss)
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': '/collections/bagpuss/stuff/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(None)(
+            {'guid': 'foo', 'path': '/collections/bagpuss/stuff/'}
+        )
         assert form.is_valid(), form.errors
         assert form.cleaned_data['path'] == '/collections/bagpuss/stuff/'
 
     def test_url(self):
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'https://google.com/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(None)(
+            {'guid': 'foo', 'path': 'https://google.com/'}
+        )
         assert form.is_valid()
         assert form.cleaned_data['path'] == 'https://google.com/'
 
     def test_invalid_urls(self):
-        assert not ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'ftp://google.com/'}).is_valid()
-        assert not ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'https://88999@~'}).is_valid()
-        assert not ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'https://www. rutrt/'}).is_valid()
+        assert (
+            not ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': 'ftp://google.com/'})
+            .is_valid()
+        )
+        assert (
+            not ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': 'https://88999@~'})
+            .is_valid()
+        )
+        assert (
+            not ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': 'https://www. rutrt/'})
+            .is_valid()
+        )
 
         path = '/addon/bar/'
         site = settings.SITE_URL
         full_url = site + path
         # path is okay
-        assert ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': path}).is_valid()
+        assert (
+            ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': path})
+            .is_valid()
+        )
         # but we don't allow full urls for AMO paths
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': full_url})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(None)(
+            {'guid': 'foo', 'path': full_url}
+        )
         assert not form.is_valid()
-        assert ('Paths for [%s] should be relative, not full URLs including '
-                'the domain name' % site in form.errors['path'])
+        assert (
+            'Paths for [%s] should be relative, not full URLs including '
+            'the domain name' % site in form.errors['path']
+        )
 
 
 class TestAddonAdmin(TestCase):
@@ -107,9 +116,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_edit_with_addons_edit_permission(self):
         addon = addon_factory(guid='@foo')
-        self.detail_url = reverse(
-            'admin:addons_addon_change', args=(addon.pk,)
-        )
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -130,7 +137,7 @@ class TestAddonAdmin(TestCase):
             'bayesian_rating': addon.bayesian_rating,
             'reputation': addon.reputation,
             'type': addon.type,
-            'slug': addon.slug
+            'slug': addon.slug,
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -149,9 +156,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_not_edit_without_addons_edit_permission(self):
         addon = addon_factory(guid='@foo')
-        self.detail_url = reverse(
-            'admin:addons_addon_change', args=(addon.pk,)
-        )
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
@@ -170,7 +175,7 @@ class TestAddonAdmin(TestCase):
             'average_daily_users': addon.average_daily_users,
             'bayesian_rating': addon.bayesian_rating,
             'type': addon.type,
-            'slug': addon.slug
+            'slug': addon.slug,
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -180,12 +185,8 @@ class TestAddonAdmin(TestCase):
 
     def test_access_using_slug(self):
         addon = addon_factory(guid='@foo')
-        detail_url_by_slug = reverse(
-            'admin:addons_addon_change', args=(addon.slug,)
-        )
-        detail_url_final = reverse(
-            'admin:addons_addon_change', args=(addon.pk,)
-        )
+        detail_url_by_slug = reverse('admin:addons_addon_change', args=(addon.slug,))
+        detail_url_final = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -195,12 +196,8 @@ class TestAddonAdmin(TestCase):
 
     def test_access_using_guid(self):
         addon = addon_factory(guid='@foo')
-        detail_url_by_guid = reverse(
-            'admin:addons_addon_change', args=(addon.guid,)
-        )
-        detail_url_final = reverse(
-            'admin:addons_addon_change', args=(addon.pk,)
-        )
+        detail_url_by_guid = reverse('admin:addons_addon_change', args=(addon.guid,))
+        detail_url_final = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -211,9 +208,7 @@ class TestAddonAdmin(TestCase):
     def test_can_edit_deleted_addon(self):
         addon = addon_factory(guid='@foo')
         addon.delete()
-        self.detail_url = reverse(
-            'admin:addons_addon_change', args=(addon.pk,)
-        )
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -225,9 +220,7 @@ class TestAddonAdmin(TestCase):
     def test_can_edit_addonuser_if_has_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
         addonuser = addon.addonuser_set.get()
-        self.detail_url = reverse(
-            'admin:addons_addon_change', args=(addon.pk,)
-        )
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -260,7 +253,6 @@ class TestAddonAdmin(TestCase):
             'addonuser_set-0-role': amo.AUTHOR_ROLE_OWNER,
             'addonuser_set-0-listed': 'on',
             'addonuser_set-0-position': 0,
-
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -273,9 +265,7 @@ class TestAddonAdmin(TestCase):
     def test_can_not_edit_addonuser_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
         addonuser = addon.addonuser_set.get()
-        self.detail_url = reverse(
-            'admin:addons_addon_change', args=(addon.pk,)
-        )
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -297,7 +287,6 @@ class TestAddonAdmin(TestCase):
             'reputation': addon.reputation,
             'type': addon.type,
             'slug': addon.slug,
-
             # This won't work:
             'addonuser_set-TOTAL_FORMS': 1,
             'addonuser_set-INITIAL_FORMS': 1,
@@ -309,7 +298,6 @@ class TestAddonAdmin(TestCase):
             'addonuser_set-0-role': amo.AUTHOR_ROLE_OWNER,
             'addonuser_set-0-listed': 'on',
             'addonuser_set-0-position': 0,
-
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -328,7 +316,8 @@ class TestReplacementAddonList(TestCase):
         model_admin = ReplacementAddonAdmin(ReplacementAddon, admin.site)
         self.assertEqual(
             list(model_admin.get_list_display(None)),
-            ['guid', 'path', 'guid_slug', '_url'])
+            ['guid', 'path', 'guid_slug', '_url'],
+        )
 
     def test_can_see_replacementaddon_module_in_admin_with_addons_edit(self):
         user = user_factory()
@@ -341,8 +330,7 @@ class TestReplacementAddonList(TestCase):
 
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
-        self.list_url = django_reverse(
-            'admin:addons_replacementaddon_changelist')
+        self.list_url = django_reverse('admin:addons_replacementaddon_changelist')
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_see_replacementaddon_module_in_admin_with_admin_curate(self):
@@ -355,13 +343,11 @@ class TestReplacementAddonList(TestCase):
 
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
-        self.list_url = django_reverse(
-            'admin:addons_replacementaddon_changelist')
+        self.list_url = django_reverse('admin:addons_replacementaddon_changelist')
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_addons_edit_permission(self):
-        ReplacementAddon.objects.create(
-            guid='@bar', path='/addon/bar-replacement/')
+        ReplacementAddon.objects.create(guid='@bar', path='/addon/bar-replacement/')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -372,7 +358,8 @@ class TestReplacementAddonList(TestCase):
 
     def test_can_not_edit_with_addons_edit_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@bar', path='/addon/bar-replacement/')
+            guid='@bar', path='/addon/bar-replacement/'
+        )
         self.detail_url = reverse(
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
@@ -383,13 +370,14 @@ class TestReplacementAddonList(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(
-            self.detail_url, {'guid': '@bar', 'path': replacement.path},
-            follow=True)
+            self.detail_url, {'guid': '@bar', 'path': replacement.path}, follow=True
+        )
         assert response.status_code == 403
 
     def test_can_not_delete_with_addons_edit_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@foo', path='/addon/foo-replacement/')
+            guid='@foo', path='/addon/foo-replacement/'
+        )
         self.delete_url = reverse(
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
@@ -399,14 +387,14 @@ class TestReplacementAddonList(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
-        response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
     def test_can_edit_with_admin_curation_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@foo', path='/addon/foo-replacement/')
+            guid='@foo', path='/addon/foo-replacement/'
+        )
         self.detail_url = reverse(
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
@@ -418,15 +406,16 @@ class TestReplacementAddonList(TestCase):
         assert '/addon/foo-replacement/' in response.content.decode('utf-8')
 
         response = self.client.post(
-            self.detail_url, {'guid': '@bar', 'path': replacement.path},
-            follow=True)
+            self.detail_url, {'guid': '@bar', 'path': replacement.path}, follow=True
+        )
         assert response.status_code == 200
         replacement.reload()
         assert replacement.guid == '@bar'
 
     def test_can_delete_with_admin_curation_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@foo', path='/addon/foo-replacement/')
+            guid='@foo', path='/addon/foo-replacement/'
+        )
         self.delete_url = reverse(
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
@@ -435,8 +424,7 @@ class TestReplacementAddonList(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
-        response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
         assert not ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
@@ -450,8 +438,10 @@ class TestReplacementAddonList(TestCase):
         assert response.status_code == 200
         assert '@foofoo&amp;foo' in response.content.decode('utf-8')
         assert '/addon/bar/' in response.content.decode('utf-8')
-        test_url = str('<a href="%s">Test</a>' % (
-            reverse('addons.find_replacement') + '?guid=%40foofoo%26foo'))
+        test_url = str(
+            '<a href="%s">Test</a>'
+            % (reverse('addons.find_replacement') + '?guid=%40foofoo%26foo')
+        )
         assert test_url in response.content.decode('utf-8')
         # guid is not on AMO so no slug to show
         assert '- Add-on not on AMO -' in response.content.decode('utf-8')

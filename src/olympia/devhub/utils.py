@@ -18,9 +18,7 @@ from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.scanners.tasks import run_customs, run_wat, run_yara
 from olympia.tags.models import Tag
-from olympia.users.models import (
-    DeveloperAgreementRestriction, UserRestrictionHistory
-)
+from olympia.users.models import DeveloperAgreementRestriction, UserRestrictionHistory
 from olympia.versions.utils import process_color_value
 
 from . import tasks
@@ -29,8 +27,12 @@ from . import tasks
 log = olympia.core.logger.getLogger('z.devhub')
 
 
-def process_validation(validation, is_compatibility=False, file_hash=None,
-                       channel=amo.RELEASE_CHANNEL_LISTED):
+def process_validation(
+    validation,
+    is_compatibility=False,
+    file_hash=None,
+    channel=amo.RELEASE_CHANNEL_LISTED,
+):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling
     compatibility messages, and limiting the number of messages displayed."""
@@ -44,8 +46,9 @@ def process_validation(validation, is_compatibility=False, file_hash=None,
     validation.setdefault('ending_tier', 0)
 
     if not validation['ending_tier'] and validation['messages']:
-        validation['ending_tier'] = max(msg.get('tier', -1)
-                                        for msg in validation['messages'])
+        validation['ending_tier'] = max(
+            msg.get('tier', -1) for msg in validation['messages']
+        )
 
     limit_validation_results(validation)
 
@@ -80,6 +83,7 @@ def limit_validation_results(validation):
 
         def message_key(message):
             return TYPES.get(message.get('type'))
+
         messages.sort(key=message_key)
 
         leftover_count = len(messages) - lim
@@ -94,23 +98,31 @@ def limit_validation_results(validation):
         else:
             msg_type = 'notice'
 
-        compat_type = (msg_type if any(msg.get('compatibility_type')
-                                       for msg in messages)
-                       else None)
+        compat_type = (
+            msg_type if any(msg.get('compatibility_type') for msg in messages) else None
+        )
 
-        message = ugettext(
-            'Validation generated too many errors/warnings so %s '
-            'messages were truncated. After addressing the visible '
-            'messages, you\'ll be able to see the others.') % leftover_count
+        message = (
+            ugettext(
+                'Validation generated too many errors/warnings so %s '
+                'messages were truncated. After addressing the visible '
+                'messages, you\'ll be able to see the others.'
+            )
+            % leftover_count
+        )
 
-        messages.insert(0, {
-            'tier': 1,
-            'type': msg_type,
-            # To respect the message structure, see bug 1139674.
-            'id': ['validation', 'messages', 'truncated'],
-            'message': message,
-            'description': [],
-            'compatibility_type': compat_type})
+        messages.insert(
+            0,
+            {
+                'tier': 1,
+                'type': msg_type,
+                # To respect the message structure, see bug 1139674.
+                'id': ['validation', 'messages', 'truncated'],
+                'message': message,
+                'description': [],
+                'compatibility_type': compat_type,
+            },
+        )
 
 
 def htmlify_validation(validation):
@@ -126,8 +138,7 @@ def htmlify_validation(validation):
             if not isinstance(msg['description'], (list, tuple)):
                 msg['description'] = [msg['description']]
 
-            msg['description'] = [
-                linkify_escape(text) for text in msg['description']]
+            msg['description'] = [linkify_escape(text) for text in msg['description']]
 
 
 def fix_addons_linter_output(validation, channel):
@@ -166,11 +177,7 @@ def fix_addons_linter_output(validation, channel):
 
     return {
         'success': not validation['errors'],
-        'compatibility_summary': {
-            'warnings': 0,
-            'errors': 0,
-            'notices': 0,
-        },
+        'compatibility_summary': {'warnings': 0, 'errors': 0, 'notices': 0,},
         'notices': validation['summary']['notices'],
         'warnings': validation['summary']['warnings'],
         'errors': validation['summary']['errors'],
@@ -197,8 +204,9 @@ class Validator(object):
 
         if isinstance(file_, FileUpload):
             assert listed is not None
-            channel = (amo.RELEASE_CHANNEL_LISTED if listed else
-                       amo.RELEASE_CHANNEL_UNLISTED)
+            channel = (
+                amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
+            )
             is_mozilla_signed = False
 
             # We're dealing with a bare file upload. Try to extract the
@@ -206,11 +214,13 @@ class Validator(object):
             # from the file itself.
             try:
                 addon_data = parse_addon(file_, minimal=True)
-                is_mozilla_signed = addon_data.get(
-                    'is_mozilla_signed_extension', False)
+                is_mozilla_signed = addon_data.get('is_mozilla_signed_extension', False)
             except ValidationError as form_error:
-                log.info('could not parse addon for upload {}: {}'
-                         .format(file_.pk, form_error))
+                log.info(
+                    'could not parse addon for upload {}: {}'.format(
+                        file_.pk, form_error
+                    )
+                )
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
@@ -235,9 +245,9 @@ class Validator(object):
                 tasks.check_for_api_keys_in_file.s(file_.pk),
                 chord(
                     tasks_in_parallel,
-                    tasks.handle_upload_validation_result.s(file_.pk,
-                                                            channel,
-                                                            is_mozilla_signed)
+                    tasks.handle_upload_validation_result.s(
+                        file_.pk, channel, is_mozilla_signed
+                    ),
                 ),
             ]
         elif isinstance(file_, File):
@@ -251,13 +261,12 @@ class Validator(object):
 
             self.file = file_
             self.addon = self.file.version.addon
-            addon_data = {'guid': self.addon.guid,
-                          'version': self.file.version.version}
+            addon_data = {'guid': self.addon.guid, 'version': self.file.version.version}
 
             validation_tasks = [
                 tasks.create_initial_validation_results.si(),
                 tasks.validate_file.s(file_.pk),
-                tasks.handle_file_validation_result.s(file_.pk)
+                tasks.handle_file_validation_result.s(file_.pk),
             ]
         else:
             raise ValueError
@@ -271,7 +280,8 @@ class Validator(object):
         # same object do not result in duplicate tasks.
         opts = file_._meta
         self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
-            opts.app_label, opts.object_name, file_.pk, listed)
+            opts.app_label, opts.object_name, file_.pk, listed
+        )
 
     def get_task(self):
         """Return task chain to execute to trigger validation."""
@@ -292,7 +302,8 @@ def extract_theme_properties(addon, channel):
         return {}
     try:
         parsed_data = parse_xpi(
-            version.all_files[0].file_path, addon=addon, user=core.get_user())
+            version.all_files[0].file_path, addon=addon, user=core.get_user()
+        )
     except ValidationError:
         # If we can't parse the existing manifest safely return.
         return {}
@@ -300,7 +311,8 @@ def extract_theme_properties(addon, channel):
     # pre-process colors to deprecated colors; strip spaces.
     theme_props['colors'] = dict(
         process_color_value(prop, color)
-        for prop, color in theme_props.get('colors', {}).items())
+        for prop, color in theme_props.get('colors', {}).items()
+    )
     # upgrade manifest from deprecated headerURL to theme_frame
     if 'headerURL' in theme_props.get('images', {}):
         url = theme_props['images'].pop('headerURL')
@@ -310,14 +322,11 @@ def extract_theme_properties(addon, channel):
 
 def wizard_unsupported_properties(data, wizard_fields):
     # collect any 'theme' level unsupported properties
-    unsupported = [
-        key for key in data.keys() if key not in ['colors', 'images']]
+    unsupported = [key for key in data.keys() if key not in ['colors', 'images']]
     # and any unsupported 'colors' properties
-    unsupported += [
-        key for key in data.get('colors', {}) if key not in wizard_fields]
+    unsupported += [key for key in data.get('colors', {}) if key not in wizard_fields]
     # and finally any 'images' properties (wizard only supports the background)
-    unsupported += [
-        key for key in data.get('images', {}) if key != 'theme_frame']
+    unsupported += [key for key in data.get('images', {}) if key != 'theme_frame']
 
     return unsupported
 
@@ -330,6 +339,7 @@ class UploadRestrictionChecker:
     After this method has been called, the error message to show the user if
     needed will be available through get_error_message()
     """
+
     # We use UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES because it
     # currently matches the order we want to check things. If that ever
     # changes, keep RESTRICTION_CLASSES_CHOICES current order (to keep existing
@@ -354,20 +364,19 @@ class UploadRestrictionChecker:
             return True
 
         for restriction_number, cls in self.restriction_choices:
-            if (check_dev_agreement is False and
-                    cls == DeveloperAgreementRestriction):
+            if check_dev_agreement is False and cls == DeveloperAgreementRestriction:
                 continue
             allowed = cls.allow_request(self.request)
             if not allowed:
                 self.failed_restrictions.append(cls)
-                statsd.incr(
-                    'devhub.is_submission_allowed.%s.failure' % cls.__name__)
+                statsd.incr('devhub.is_submission_allowed.%s.failure' % cls.__name__)
                 if self.request.user and self.request.user.is_authenticated:
                     UserRestrictionHistory.objects.create(
                         user=self.request.user,
                         ip_address=self.request.META.get('REMOTE_ADDR', ''),
                         last_login_ip=self.request.user.last_login_ip or '',
-                        restriction=restriction_number)
+                        restriction=restriction_number,
+                    )
         suffix = 'success' if not self.failed_restrictions else 'failure'
         statsd.incr('devhub.is_submission_allowed.%s' % suffix)
         return not self.failed_restrictions

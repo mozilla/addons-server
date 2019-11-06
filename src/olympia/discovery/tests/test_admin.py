@@ -38,8 +38,7 @@ class TestDiscoveryAdmin(TestCase):
 
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
-        self.list_url = django_reverse(
-            'admin:discovery_discoveryitem_changelist')
+        self.list_url = django_reverse('admin:discovery_discoveryitem_changelist')
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
@@ -54,24 +53,22 @@ class TestDiscoveryAdmin(TestCase):
         assert u'FooBâr' in response.content.decode('utf-8')
 
     def test_list_filtering_position_yes(self):
-        DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'FooBâr'), position=1)
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'), position=1)
         DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
-        response = self.client.get(
-            self.list_url + '?position=yes', follow=True)
+        response = self.client.get(self.list_url + '?position=yes', follow=True)
         assert response.status_code == 200
         assert u'FooBâr' in response.content.decode('utf-8')
         assert u'Âbsent' not in response.content.decode('utf-8')
 
     def test_list_filtering_position_no(self):
         DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'FooBâr'), position_china=42)
-        DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'Âbsent'), position=1)
+            addon=addon_factory(name=u'FooBâr'), position_china=42
+        )
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'), position=1)
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
@@ -83,29 +80,28 @@ class TestDiscoveryAdmin(TestCase):
 
     def test_list_filtering_position_yes_china(self):
         DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'FooBâr'), position_china=1)
+            addon=addon_factory(name=u'FooBâr'), position_china=1
+        )
         DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
-        response = self.client.get(
-            self.list_url + '?position_china=yes', follow=True)
+        response = self.client.get(self.list_url + '?position_china=yes', follow=True)
         assert response.status_code == 200
         assert u'FooBâr' in response.content.decode('utf-8')
         assert u'Âbsent' not in response.content.decode('utf-8')
 
     def test_list_filtering_position_no_china(self):
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'FooBâr'), position=42)
         DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'FooBâr'), position=42)
-        DiscoveryItem.objects.create(
-            addon=addon_factory(name=u'Âbsent'), position_china=1)
+            addon=addon_factory(name=u'Âbsent'), position_china=1
+        )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
-        response = self.client.get(
-            self.list_url + '?position_china=no', follow=True)
+        response = self.client.get(self.list_url + '?position_china=no', follow=True)
         assert response.status_code == 200
         assert u'FooBâr' in response.content.decode('utf-8')
         assert u'Âbsent' not in response.content.decode('utf-8')
@@ -128,14 +124,18 @@ class TestDiscoveryAdmin(TestCase):
 
         response = self.client.post(
             self.detail_url,
-            dict(self._get_heroform(str(item.id)), **{
-                'addon': str(addon.pk),
-                'custom_addon_name': u'Xäxâxàxaxaxa !',
-                'custom_heading': u'This heading is totally custom.',
-                'custom_description': u'This description is as well!',
-                'recommendable': True,
-            }),
-            follow=True)
+            dict(
+                self._get_heroform(str(item.id)),
+                **{
+                    'addon': str(addon.pk),
+                    'custom_addon_name': u'Xäxâxàxaxaxa !',
+                    'custom_heading': u'This heading is totally custom.',
+                    'custom_description': u'This description is as well!',
+                    'recommendable': True,
+                },
+            ),
+            follow=True,
+        )
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -147,9 +147,7 @@ class TestDiscoveryAdmin(TestCase):
         assert PrimaryHero.objects.count() == 0  # check we didn't add one.
 
     def test_translations_interpolation(self):
-        addon = addon_factory(
-            name='{bar}', users=[user_factory(display_name='{foo}')]
-        )
+        addon = addon_factory(name='{bar}', users=[user_factory(display_name='{foo}')])
         item = DiscoveryItem.objects.create(addon=addon)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
@@ -205,9 +203,9 @@ class TestDiscoveryAdmin(TestCase):
         # Change add-on using the slug.
         response = self.client.post(
             self.detail_url,
-            dict(self._get_heroform(str(item.id)), **{
-                'addon': str(addon2.slug)}),
-            follow=True)
+            dict(self._get_heroform(str(item.id)), **{'addon': str(addon2.slug)}),
+            follow=True,
+        )
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -217,7 +215,8 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.post(
             self.detail_url,
             dict(self._get_heroform(str(item.id)), **{'addon': str(addon.pk)}),
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -227,8 +226,7 @@ class TestDiscoveryAdmin(TestCase):
     def test_can_edit_primary_hero_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
-        hero = PrimaryHero.objects.create(
-            disco_addon=item, gradient_color='#592ACB')
+        hero = PrimaryHero.objects.create(disco_addon=item, gradient_color='#592ACB')
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
@@ -243,7 +241,8 @@ class TestDiscoveryAdmin(TestCase):
         assert '#592ACB' in content
 
         response = self.client.post(
-            self.detail_url, {
+            self.detail_url,
+            {
                 'addon': str(addon.pk),
                 'custom_addon_name': 'Xäxâxàxaxaxa !',
                 'recommendable': True,
@@ -255,7 +254,9 @@ class TestDiscoveryAdmin(TestCase):
                 'primaryhero-0-disco_addon': str(item.pk),
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'placeholder_a.jpg',
-            }, follow=True)
+            },
+            follow=True,
+        )
         assert response.status_code == 200
         item.reload()
         hero.reload()
@@ -285,14 +286,18 @@ class TestDiscoveryAdmin(TestCase):
 
         response = self.client.post(
             self.detail_url,
-            dict(self._get_heroform(str(item.pk)), **{
-                'addon': str(addon.pk),
-                'custom_addon_name': 'Xäxâxàxaxaxa !',
-                'recommendable': True,
-                'primaryhero-0-gradient_color': '#054096',
-                'primaryhero-0-image': 'placeholder_a.jpg',
-            }),
-            follow=True)
+            dict(
+                self._get_heroform(str(item.pk)),
+                **{
+                    'addon': str(addon.pk),
+                    'custom_addon_name': 'Xäxâxàxaxaxa !',
+                    'recommendable': True,
+                    'primaryhero-0-gradient_color': '#054096',
+                    'primaryhero-0-image': 'placeholder_a.jpg',
+                },
+            ),
+            follow=True,
+        )
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -321,7 +326,8 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.post(
             self.detail_url,
             dict(self._get_heroform(str(item.id)), **{'addon': u'gârbage'}),
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -331,9 +337,9 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing using an unknown id.
         response = self.client.post(
             self.detail_url,
-            dict(self._get_heroform(str(item.id)), **{
-                'addon': str(addon2.pk + 666)}),
-            follow=True)
+            dict(self._get_heroform(str(item.id)), **{'addon': str(addon2.pk + 666)}),
+            follow=True,
+        )
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -344,9 +350,9 @@ class TestDiscoveryAdmin(TestCase):
         item2 = DiscoveryItem.objects.create(addon=addon2)
         response = self.client.post(
             self.detail_url,
-            dict(self._get_heroform(str(item.id)), **{
-                'addon': str(addon2.pk)}),
-            follow=True)
+            dict(self._get_heroform(str(item.id)), **{'addon': str(addon2.pk)}),
+            follow=True,
+        )
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -373,7 +379,8 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.post(
             self.delete_url,
             dict(self._get_heroform(str(item.id)), **{'post': 'yes'}),
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         assert not DiscoveryItem.objects.filter(pk=item.pk).exists()
 
@@ -402,14 +409,16 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.post(
             self.delete_url,
             dict(self._get_heroform(str(item.id)), **{'post': 'yes'}),
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 403
         assert DiscoveryItem.objects.filter(pk=item.pk).exists()
 
         # But if there's another enabled shelf we can now access the page.
         PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
-            enabled=True)
+            enabled=True,
+        )
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
 
@@ -417,7 +426,8 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.post(
             self.delete_url,
             dict(self._get_heroform(str(item.id)), **{'post': 'yes'}),
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         assert not DiscoveryItem.objects.filter(pk=item.pk).exists()
         assert not PrimaryHero.objects.filter(pk=shelf.pk).exists()
@@ -434,13 +444,17 @@ class TestDiscoveryAdmin(TestCase):
         assert DiscoveryItem.objects.count() == 0
         response = self.client.post(
             self.add_url,
-            dict(self._get_heroform(''), **{
-                'addon': str(addon.pk),
-                'custom_addon_name': u'Xäxâxàxaxaxa !',
-                'custom_heading': u'This heading is totally custom.',
-                'custom_description': u'This description is as well!',
-            }),
-            follow=True)
+            dict(
+                self._get_heroform(''),
+                **{
+                    'addon': str(addon.pk),
+                    'custom_addon_name': u'Xäxâxàxaxaxa !',
+                    'custom_heading': u'This heading is totally custom.',
+                    'custom_description': u'This description is as well!',
+                },
+            ),
+            follow=True,
+        )
         assert response.status_code == 200
         assert DiscoveryItem.objects.count() == 1
         item = DiscoveryItem.objects.get()
@@ -458,10 +472,7 @@ class TestDiscoveryAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.add_url, follow=True)
         assert response.status_code == 403
-        response = self.client.post(
-            self.add_url,
-            {'addon': str(addon.pk)},
-            follow=True)
+        response = self.client.post(self.add_url, {'addon': str(addon.pk)}, follow=True)
         assert response.status_code == 403
         assert DiscoveryItem.objects.count() == 0
 
@@ -478,12 +489,15 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 403
 
         response = self.client.post(
-            self.detail_url, {
+            self.detail_url,
+            {
                 'addon': str(addon.pk),
                 'custom_addon_name': u'Noooooô !',
                 'custom_heading': u'I should not be able to do this.',
                 'custom_description': u'This is wrong.',
-            }, follow=True)
+            },
+            follow=True,
+        )
         assert response.status_code == 403
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -506,8 +520,7 @@ class TestDiscoveryAdmin(TestCase):
         assert DiscoveryItem.objects.filter(pk=item.pk).exists()
 
         # Can not actually delete either.
-        response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert DiscoveryItem.objects.filter(pk=item.pk).exists()
 
@@ -548,8 +561,7 @@ class TestDiscoveryAdmin(TestCase):
 
 class TestSecondaryHeroShelfAdmin(TestCase):
     def setUp(self):
-        self.list_url = reverse(
-            'admin:discovery_secondaryheroshelf_changelist')
+        self.list_url = reverse('admin:discovery_secondaryheroshelf_changelist')
         self.detail_url_name = 'admin:discovery_secondaryheroshelf_change'
 
     def _get_moduleform(self, item, module_data, initial=0):
@@ -565,14 +577,16 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             "modules-__prefix__-shelf": str(item),
         }
         for index in range(0, len(module_data)):
-            out.update(**{
-                f"modules-{index}-icon": str(module_data[index]['icon']),
-                f"modules-{index}-description": str(
-                    module_data[index]['description']),
-                f"modules-{index}-id": str(module_data[index].get('id', '')),
-                f"modules-{index}-shelf": str(item),
-
-            })
+            out.update(
+                **{
+                    f"modules-{index}-icon": str(module_data[index]['icon']),
+                    f"modules-{index}-description": str(
+                        module_data[index]['description']
+                    ),
+                    f"modules-{index}-id": str(module_data[index].get('id', '')),
+                    f"modules-{index}-shelf": str(item),
+                }
+            )
         return out
 
     def test_can_see_secondary_hero_module_in_admin_with_discovery_edit(self):
@@ -586,8 +600,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
 
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
-        self.list_url = django_reverse(
-            'admin:discovery_secondaryheroshelf_changelist')
+        self.list_url = django_reverse('admin:discovery_secondaryheroshelf_changelist')
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
@@ -619,31 +632,23 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert 'Not selected' in content
 
         shelves = [
-            {
-                'id': modules[0].id,
-                'description': 'foo',
-                'icon': 'Audio.svg'
-            },
-            {
-                'id': modules[1].id,
-                'description': 'baa',
-                'icon': 'Developer.svg',
-            },
-            {
-                'id': modules[2].id,
-                'description': 'ugh',
-                'icon': 'Extensions.svg',
-            },
+            {'id': modules[0].id, 'description': 'foo', 'icon': 'Audio.svg'},
+            {'id': modules[1].id, 'description': 'baa', 'icon': 'Developer.svg',},
+            {'id': modules[2].id, 'description': 'ugh', 'icon': 'Extensions.svg',},
         ]
         response = self.client.post(
             detail_url,
-            dict(self._get_moduleform(item.id, shelves, initial=3), **{
-                'headline': 'This headline is ... something.',
-                'description': 'This description is as well!',
-            }), follow=True)
+            dict(
+                self._get_moduleform(item.id, shelves, initial=3),
+                **{
+                    'headline': 'This headline is ... something.',
+                    'description': 'This description is as well!',
+                },
+            ),
+            follow=True,
+        )
         assert response.status_code == 200
-        assert 'errors' not in response.context_data, (
-            response.context_data['errors'])
+        assert 'errors' not in response.context_data, response.context_data['errors']
         item.reload()
         assert SecondaryHero.objects.count() == 1
         assert item.headline == 'This headline is ... something.'
@@ -651,8 +656,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert SecondaryHeroModule.objects.count() == 3
         (module.reload() for module in modules)
         module_values = list(
-            SecondaryHeroModule.objects.all().values(
-                'id', 'description', 'icon'))
+            SecondaryHeroModule.objects.all().values('id', 'description', 'icon')
+        )
         assert module_values == shelves
 
     def test_can_delete_with_discovery_edit_permission(self):
@@ -676,9 +681,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
 
         # We can't actually delete either.
         response = self.client.post(
-            delete_url,
-            dict(self._get_moduleform(item.pk, {}), post='yes'),
-            follow=True)
+            delete_url, dict(self._get_moduleform(item.pk, {}), post='yes'), follow=True
+        )
         assert response.status_code == 403
         assert SecondaryHero.objects.filter(pk=item.pk).exists()
 
@@ -689,9 +693,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
 
         # And can actually delete.
         response = self.client.post(
-            delete_url,
-            dict(self._get_moduleform(item.pk, {}), post='yes'),
-            follow=True)
+            delete_url, dict(self._get_moduleform(item.pk, {}), post='yes'), follow=True
+        )
         assert response.status_code == 200
         assert not SecondaryHero.objects.filter(pk=item.pk).exists()
         assert not SecondaryHeroModule.objects.filter(shelf=item.pk).exists()
@@ -707,26 +710,21 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert SecondaryHero.objects.count() == 0
         assert SecondaryHeroModule.objects.count() == 0
         shelves = [
-            {
-                'description': 'foo',
-                'icon': 'Audio.svg'
-            },
-            {
-                'description': 'baa',
-                'icon': 'Developer.svg',
-            },
-            {
-                'description': 'ugh',
-                'icon': 'Extensions.svg',
-            },
+            {'description': 'foo', 'icon': 'Audio.svg'},
+            {'description': 'baa', 'icon': 'Developer.svg',},
+            {'description': 'ugh', 'icon': 'Extensions.svg',},
         ]
         response = self.client.post(
             add_url,
-            dict(self._get_moduleform('', shelves), **{
-                'headline': 'This headline is ... something.',
-                'description': 'This description is as well!',
-            }),
-            follow=True)
+            dict(
+                self._get_moduleform('', shelves),
+                **{
+                    'headline': 'This headline is ... something.',
+                    'description': 'This description is as well!',
+                },
+            ),
+            follow=True,
+        )
         assert response.status_code == 200
         assert 'errors' not in response.context_data
         assert SecondaryHero.objects.count() == 1
@@ -735,7 +733,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert item.description == 'This description is as well!'
         assert SecondaryHeroModule.objects.count() == 3
         module_values = list(
-            SecondaryHeroModule.objects.all().values('description', 'icon'))
+            SecondaryHeroModule.objects.all().values('description', 'icon')
+        )
         assert module_values == shelves
 
     def test_can_not_add_without_discovery_edit_permission(self):
@@ -746,11 +745,13 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(
-            add_url, {
+            add_url,
+            {
                 'headline': 'This headline is ... something.',
                 'description': 'This description is as well!',
             },
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 403
         assert SecondaryHero.objects.count() == 0
 
@@ -766,10 +767,13 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert response.status_code == 403
 
         response = self.client.post(
-            detail_url, {
+            detail_url,
+            {
                 'headline': 'I should not be able to do this.',
                 'description': 'This is wrong.',
-            }, follow=True)
+            },
+            follow=True,
+        )
         assert response.status_code == 403
         item.reload()
         assert SecondaryHero.objects.count() == 1
@@ -790,8 +794,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert SecondaryHero.objects.filter(pk=item.pk).exists()
 
         # Can not actually delete either.
-        response = self.client.post(
-            delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert SecondaryHero.objects.filter(pk=item.pk).exists()
 
@@ -806,12 +809,17 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         assert SecondaryHero.objects.count() == 0
         response = self.client.post(
             add_url,
-            dict(self._get_moduleform('', {}), **{
-                'headline': 'This headline is ... something.',
-                'description': 'This description is as well!',
-            }),
-            follow=True)
+            dict(
+                self._get_moduleform('', {}),
+                **{
+                    'headline': 'This headline is ... something.',
+                    'description': 'This description is as well!',
+                },
+            ),
+            follow=True,
+        )
         assert response.status_code == 200
         assert 'There must be exactly 3 modules in this shelf.' in (
-            response.context_data['errors'])
+            response.context_data['errors']
+        )
         assert SecondaryHero.objects.count() == 0

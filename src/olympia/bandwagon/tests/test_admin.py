@@ -80,7 +80,8 @@ class TestCollectionAdmin(TestCase):
         addon = addon_factory()
         addon2 = addon_factory()
         collection_addon = CollectionAddon.objects.create(
-            addon=addon, collection=collection)
+            addon=addon, collection=collection
+        )
         self.detail_url = reverse(
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
@@ -102,12 +103,17 @@ class TestCollectionAdmin(TestCase):
             'author': user.pk,
         }
         post_data['slug'] = 'bar'
-        post_data.update(formset({
-            'addon': addon2.pk,
-            'id': collection_addon.pk,
-            'collection': collection.pk,
-            'ordering': 1,
-        }, prefix='collectionaddon_set'))
+        post_data.update(
+            formset(
+                {
+                    'addon': addon2.pk,
+                    'id': collection_addon.pk,
+                    'collection': collection.pk,
+                    'ordering': 1,
+                },
+                prefix='collectionaddon_set',
+            )
+        )
 
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
@@ -157,7 +163,8 @@ class TestCollectionAdmin(TestCase):
         addon = addon_factory()
         addon2 = addon_factory()
         collection_addon = CollectionAddon.objects.create(
-            addon=addon, collection=collection)
+            addon=addon, collection=collection
+        )
         self.detail_url = reverse(
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
@@ -177,12 +184,17 @@ class TestCollectionAdmin(TestCase):
             'author': user.pk,
         }
         post_data['slug'] = 'bar'
-        post_data.update(formset({
-            'addon': addon2.pk,
-            'id': collection_addon.pk,
-            'collection': collection.pk,
-            'ordering': 1,
-        }, prefix='collectionaddon_set'))
+        post_data.update(
+            formset(
+                {
+                    'addon': addon2.pk,
+                    'id': collection_addon.pk,
+                    'collection': collection.pk,
+                    'ordering': 1,
+                },
+                prefix='collectionaddon_set',
+            )
+        )
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 403
         collection.reload()
@@ -207,12 +219,17 @@ class TestCollectionAdmin(TestCase):
             'author': mozilla.pk,
         }
         post_data['slug'] = 'bar'
-        post_data.update(formset({
-            'addon': addon2.pk,
-            'id': collection_addon.pk,
-            'collection': collection.pk,
-            'ordering': 1,
-        }, prefix='collectionaddon_set'))
+        post_data.update(
+            formset(
+                {
+                    'addon': addon2.pk,
+                    'id': collection_addon.pk,
+                    'collection': collection.pk,
+                    'ordering': 1,
+                },
+                prefix='collectionaddon_set',
+            )
+        )
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         collection.reload()
@@ -229,8 +246,7 @@ class TestCollectionAdmin(TestCase):
         content = response.content.decode('utf-8')
         assert collection.slug in content
         assert str(addon2.name) in content
-        assert CollectionAddon.objects.filter(
-            collection=collection).count() == 1
+        assert CollectionAddon.objects.filter(collection=collection).count() == 1
 
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.
@@ -240,40 +256,52 @@ class TestCollectionAdmin(TestCase):
             'author': mozilla.pk,
         }
         post_data['slug'] = 'fox'
-        post_data.update(formset({
-            'addon': addon2.pk,
-            'id': collection_addon.pk,
-            'collection': collection.pk,
-            'ordering': 1,
-        }, {
-            'addon': addon.pk,
-            'id': '',  # Addition, no existing id.
-            'collection': collection.pk,
-            'ordering': 2,
-        }, prefix='collectionaddon_set', initial_count=1))
+        post_data.update(
+            formset(
+                {
+                    'addon': addon2.pk,
+                    'id': collection_addon.pk,
+                    'collection': collection.pk,
+                    'ordering': 1,
+                },
+                {
+                    'addon': addon.pk,
+                    'id': '',  # Addition, no existing id.
+                    'collection': collection.pk,
+                    'ordering': 2,
+                },
+                prefix='collectionaddon_set',
+                initial_count=1,
+            )
+        )
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         collection.reload()
         assert collection.slug == 'fox'
         assert collection.author.pk == mozilla.pk
-        assert CollectionAddon.objects.filter(
-            collection=collection).count() == 2  # Adding the addon worked.
+        assert (
+            CollectionAddon.objects.filter(collection=collection).count() == 2
+        )  # Adding the addon worked.
 
         # Delete the first collection addon. We need to alter INITIAL-FORMS and
         # the id of the second one, now that this second CollectionAddon
         # instance was created.
         post_data['collectionaddon_set-INITIAL_FORMS'] = 2
         post_data['collectionaddon_set-0-DELETE'] = 'on'
-        post_data['collectionaddon_set-1-id'] = CollectionAddon.objects.filter(
-            collection=collection, addon=addon).get().pk
+        post_data['collectionaddon_set-1-id'] = (
+            CollectionAddon.objects.filter(collection=collection, addon=addon).get().pk
+        )
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
-        assert CollectionAddon.objects.filter(
-            collection=collection).count() == 1
-        assert CollectionAddon.objects.filter(
-            collection=collection, addon=addon).count() == 1
-        assert CollectionAddon.objects.filter(
-            collection=collection, addon=addon2).count() == 0
+        assert CollectionAddon.objects.filter(collection=collection).count() == 1
+        assert (
+            CollectionAddon.objects.filter(collection=collection, addon=addon).count()
+            == 1
+        )
+        assert (
+            CollectionAddon.objects.filter(collection=collection, addon=addon2).count()
+            == 0
+        )
 
     def test_can_not_delete_with_collections_edit_permission(self):
         collection = Collection.objects.create(slug='floob')
@@ -286,8 +314,7 @@ class TestCollectionAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
-        response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert Collection.objects.filter(pk=collection.pk).exists()
 
@@ -302,8 +329,7 @@ class TestCollectionAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
-        response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert Collection.objects.filter(pk=collection.pk).exists()
 
@@ -312,8 +338,7 @@ class TestCollectionAdmin(TestCase):
         collection.update(author=mozilla)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
-        response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert Collection.objects.filter(pk=collection.pk).exists()
 
@@ -326,7 +351,6 @@ class TestCollectionAdmin(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
-        response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+        response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
         assert not Collection.objects.filter(pk=collection.pk).exists()

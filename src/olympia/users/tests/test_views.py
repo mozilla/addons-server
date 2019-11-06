@@ -47,7 +47,6 @@ class TestLogin(UserViewBase):
 
 
 class TestSessionLength(UserViewBase):
-
     def test_session_does_not_expire_quickly(self):
         """Make sure no one is overriding our settings and making sessions
         expire at browser session end. See:

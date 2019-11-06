@@ -18,16 +18,18 @@ import time
 import unicodedata
 
 from urllib.parse import (
-    parse_qsl, ParseResult, unquote_to_bytes, urlencode as urllib_urlencode)
+    parse_qsl,
+    ParseResult,
+    unquote_to_bytes,
+    urlencode as urllib_urlencode,
+)
 
 import django.core.mail
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.files.storage import (
-    FileSystemStorage, default_storage as storage)
-from django.core.paginator import (
-    EmptyPage, InvalidPage, Paginator as DjangoPaginator)
+from django.core.files.storage import FileSystemStorage, default_storage as storage
+from django.core.paginator import EmptyPage, InvalidPage, Paginator as DjangoPaginator
 from django.core.validators import ValidationError, validate_slug
 from django.forms.fields import Field
 from django.http import HttpResponse
@@ -123,12 +125,14 @@ def urlparams(url_, hash=None, **query):
     q = url.query
     query_dict = dict(parse_qsl(force_text(q))) if q else {}
     query_dict.update(
-        (k, force_bytes(v) if v is not None else v) for k, v in query.items())
+        (k, force_bytes(v) if v is not None else v) for k, v in query.items()
+    )
     query_string = urlencode(
-        [(k, unquote_to_bytes(v))
-         for k, v in query_dict.items() if v is not None])
-    new = ParseResult(url.scheme, url.netloc, url.path, url.params,
-                      query_string, fragment)
+        [(k, unquote_to_bytes(v)) for k, v in query_dict.items() if v is not None]
+    )
+    new = ParseResult(
+        url.scheme, url.netloc, url.path, url.params, query_string, fragment
+    )
     return new.geturl()
 
 
@@ -177,8 +181,7 @@ def paginate(request, queryset, per_page=20, count=None):
     produce an expensive count query.
     """
     if isinstance(queryset, search.ES):
-        paginator = ESPaginator(
-            queryset, per_page, use_elasticsearch_dsl=False)
+        paginator = ESPaginator(queryset, per_page, use_elasticsearch_dsl=False)
     else:
         paginator = DjangoPaginator(queryset, per_page)
 
@@ -206,10 +209,23 @@ def decode_json(json_string):
     return json.loads(unicodehelper.decode(json_string))
 
 
-def send_mail(subject, message, from_email=None, recipient_list=None,
-              use_deny_list=True, perm_setting=None, manage_url=None,
-              headers=None, cc=None, real_email=False, html_message=None,
-              attachments=None, max_retries=3, reply_to=None, countdown=None):
+def send_mail(
+    subject,
+    message,
+    from_email=None,
+    recipient_list=None,
+    use_deny_list=True,
+    perm_setting=None,
+    manage_url=None,
+    headers=None,
+    cc=None,
+    real_email=False,
+    html_message=None,
+    attachments=None,
+    max_retries=3,
+    reply_to=None,
+    countdown=None,
+):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -229,14 +245,14 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if perm_setting:
         if isinstance(perm_setting, str):
             perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
-        perms = dict(UserNotification.objects
-                                     .filter(user__email__in=recipient_list,
-                                             notification_id=perm_setting.id)
-                                     .values_list('user__email', 'enabled'))
+        perms = dict(
+            UserNotification.objects.filter(
+                user__email__in=recipient_list, notification_id=perm_setting.id
+            ).values_list('user__email', 'enabled')
+        )
 
         d = perm_setting.default_checked
-        recipient_list = [e for e in recipient_list
-                          if e and perms.setdefault(e, d)]
+        recipient_list = [e for e in recipient_list if e and perms.setdefault(e, d)]
 
     # Prune denied emails.
     if use_deny_list:
@@ -286,16 +302,19 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             html_template = loader.get_template('amo/emails/unsubscribe.html')
             text_template = loader.get_template('amo/emails/unsubscribe.ltxt')
             if not manage_url:
-                manage_url = urlparams(absolutify(
-                    reverse('users.edit', add_prefix=False)),
-                    'acct-notify')
+                manage_url = urlparams(
+                    absolutify(reverse('users.edit', add_prefix=False)), 'acct-notify'
+                )
             for recipient in white_list:
                 # Add unsubscribe link to footer.
                 token, hash = UnsubscribeCode.create(recipient)
                 unsubscribe_url = absolutify(
-                    reverse('users.unsubscribe',
-                            args=[force_text(token), hash, perm_setting.short],
-                            add_prefix=False))
+                    reverse(
+                        'users.unsubscribe',
+                        args=[force_text(token), hash, perm_setting.short],
+                        add_prefix=False,
+                    )
+                )
 
                 context = {
                     'message': message,
@@ -314,15 +333,23 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                     context['message'] = html_message
                     with translation.override(settings.LANGUAGE_CODE):
                         html_with_unsubscribe = html_template.render(context)
-                        result = send([recipient], message_with_unsubscribe,
-                                      html_message=html_with_unsubscribe,
-                                      attachments=attachments)
+                        result = send(
+                            [recipient],
+                            message_with_unsubscribe,
+                            html_message=html_with_unsubscribe,
+                            attachments=attachments,
+                        )
                 else:
-                    result = send([recipient], message_with_unsubscribe,
-                                  attachments=attachments)
+                    result = send(
+                        [recipient], message_with_unsubscribe, attachments=attachments
+                    )
         else:
-            result = send(recipient_list, message=message,
-                          html_message=html_message, attachments=attachments)
+            result = send(
+                recipient_list,
+                message=message,
+                html_message=html_message,
+                attachments=attachments,
+            )
     else:
         result = True
 
@@ -350,16 +377,21 @@ def send_mail_jinja(subject, template, context, *args, **kwargs):
     return msg
 
 
-def send_html_mail_jinja(subject, html_template, text_template, context,
-                         *args, **kwargs):
+def send_html_mail_jinja(
+    subject, html_template, text_template, context, *args, **kwargs
+):
     """Sends HTML mail using a Jinja template with autoescaping turned off."""
     # Get a jinja environment so we can override autoescaping for text emails.
     with no_jinja_autoescape():
         html_template = loader.get_template(html_template)
         text_template = loader.get_template(text_template)
-    msg = send_mail(subject, text_template.render(context),
-                    html_message=html_template.render(context), *args,
-                    **kwargs)
+    msg = send_mail(
+        subject,
+        text_template.render(context),
+        html_message=html_template.render(context),
+        *args,
+        **kwargs,
+    )
     return msg
 
 
@@ -379,7 +411,8 @@ def sync_user_with_basket(user):
     except Exception as exc:
         acceptable_errors = (
             basket.errors.BASKET_INVALID_EMAIL,
-            basket.errors.BASKET_UNKNOWN_EMAIL)
+            basket.errors.BASKET_UNKNOWN_EMAIL,
+        )
 
         if getattr(exc, 'code', None) in acceptable_errors:
             return None
@@ -403,7 +436,8 @@ def subscribe_newsletter(user_profile, basket_id, request=None):
         basket_id,
         sync='Y',
         source_url=request.build_absolute_uri() if request else None,
-        optin='Y')
+        optin='Y',
+    )
     return response['status'] == 'ok'
 
 
@@ -420,7 +454,8 @@ def unsubscribe_newsletter(user_profile, basket_id):
     # newsletters.
     if user_profile.basket_token:
         response = basket.unsubscribe(
-            user_profile.basket_token, user_profile.email, basket_id)
+            user_profile.basket_token, user_profile.email, basket_id
+        )
         return response['status'] == 'ok'
     return False
 
@@ -466,9 +501,9 @@ def randslice(qs, limit, exclude=None):
     if exclude is not None:
         limit += 1
     rand = 0 if limit > cnt else random.randint(0, cnt - limit)
-    slice_ = list(qs[rand:rand + limit])
+    slice_ = list(qs[rand : rand + limit])
     if exclude is not None:
-        slice_ = [o for o in slice_ if o.pk != exclude][:limit - 1]
+        slice_ = [o for o in slice_ if o.pk != exclude][: limit - 1]
     return slice_
 
 
@@ -508,8 +543,15 @@ def normalize_string(value, strip_punctuation=False):
     return force_text(b' '.join(value.split()))
 
 
-def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
-                   message=validate_slug.message, code=validate_slug.code):
+def slug_validator(
+    s,
+    ok=SLUG_OK,
+    lower=True,
+    spaces=False,
+    delimiter='-',
+    message=validate_slug.message,
+    code=validate_slug.code,
+):
     """
     Raise an error if the string has any punctuation characters.
 
@@ -530,10 +572,12 @@ def clean_nl(string):
     cleaned text.
     """
 
-    html_blocks = ['{http://www.w3.org/1999/xhtml}blockquote',
-                   '{http://www.w3.org/1999/xhtml}ol',
-                   '{http://www.w3.org/1999/xhtml}li',
-                   '{http://www.w3.org/1999/xhtml}ul']
+    html_blocks = [
+        '{http://www.w3.org/1999/xhtml}blockquote',
+        '{http://www.w3.org/1999/xhtml}ol',
+        '{http://www.w3.org/1999/xhtml}li',
+        '{http://www.w3.org/1999/xhtml}ul',
+    ]
 
     if not string:
         return string
@@ -574,8 +618,7 @@ def clean_nl(string):
     # Serialize the parsed tree back to html.
     walker = html5lib.treewalkers.getTreeWalker('etree')
     stream = walker(parse)
-    serializer = HTMLSerializer(quote_attr_values='always',
-                                omit_optional_tags=False)
+    serializer = HTMLSerializer(quote_attr_values='always', omit_optional_tags=False)
     return serializer.render(stream)
 
 
@@ -607,8 +650,7 @@ def pngcrush_image(src, **kw):
         # comment, because that's what comes with Debian stretch that is used
         # for our docker container).
         cmd = [settings.PNGCRUSH_BIN, '-q', '-reduce', '-ow', src, tmp_path]
-        process = subprocess.Popen(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
 
         if process.returncode != 0:
@@ -631,8 +673,7 @@ def resize_image(source, destination, size=None):
     exist leading up to the dst filename.
     """
     if source == destination:
-        raise Exception(
-            "source and destination can't be the same: %s" % source)
+        raise Exception("source and destination can't be the same: %s" % source)
 
     with storage.open(source, 'rb') as fp:
         im = Image.open(fp)
@@ -656,7 +697,6 @@ def remove_icons(destination):
 
 
 class ImageCheck(object):
-
     def __init__(self, image):
         self._img = image
 
@@ -711,8 +751,9 @@ class ImageCheck(object):
             return True
 
 
-class MenuItem():
+class MenuItem:
     """Refinement item with nestable children for use in menus."""
+
     url, text, selected, children = ('', '', False, [])
 
 
@@ -724,7 +765,7 @@ def to_language(locale):
     # Django returns en-us but we want to see en-US.
     elif '-' in locale:
         idx = locale.find('-')
-        return locale[:idx].lower() + '-' + locale[idx + 1:].upper()
+        return locale[:idx].lower() + '-' + locale[idx + 1 :].upper()
     else:
         return translation.trans_real.to_language(locale)
 
@@ -743,11 +784,18 @@ def get_locale_from_lang(lang):
 
 
 class HttpResponseXSendFile(HttpResponse):
-
-    def __init__(self, request, path, content=None, status=None,
-                 content_type='application/octet-stream', etag=None):
-        super(HttpResponseXSendFile, self).__init__('', status=status,
-                                                    content_type=content_type)
+    def __init__(
+        self,
+        request,
+        path,
+        content=None,
+        status=None,
+        content_type='application/octet-stream',
+        etag=None,
+    ):
+        super(HttpResponseXSendFile, self).__init__(
+            '', status=status, content_type=content_type
+        )
         # We normalize the path because if it contains dots, nginx will flag
         # the URI as unsafe.
         self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
@@ -860,15 +908,20 @@ class LocalFileStorage(FileSystemStorage):
     def path(self, name):
         """Actual file system path to name without any safety checks."""
         return os.path.normpath(
-            os.path.join(force_bytes(self.location), force_bytes(name)))
+            os.path.join(force_bytes(self.location), force_bytes(name))
+        )
 
 
 def attach_trans_dict(model, objs):
     """Put all translations into a translations dict."""
     # Get the ids of all the translations we need to fetch.
     fields = model._meta.translated_fields
-    ids = [getattr(obj, f.attname) for f in fields
-           for obj in objs if getattr(obj, f.attname, None) is not None]
+    ids = [
+        getattr(obj, f.attname)
+        for f in fields
+        for obj in objs
+        if getattr(obj, f.attname, None) is not None
+    ]
 
     # Get translations in a dict, ids will be the keys. It's important to
     # consume the result of sorted_groupby, which is an iterator.
@@ -883,8 +936,7 @@ def attach_trans_dict(model, objs):
            and LinkifiedTranslations work) and return locale / string tuple."""
         converted_translation = new_class()
         converted_translation.__dict__ = translation.__dict__
-        return (converted_translation.locale.lower(),
-                str(converted_translation))
+        return (converted_translation.locale.lower(), str(converted_translation))
 
     # Build and attach translations for each field on each object.
     for obj in objs:
@@ -897,7 +949,8 @@ def attach_trans_dict(model, objs):
 
             obj.translations[t_id] = [
                 get_locale_and_string(t, field.remote_field.model)
-                for t in field_translations]
+                for t in field_translations
+            ]
 
 
 def rm_local_tmp_dir(path):
@@ -931,10 +984,10 @@ def timer(*func, **kwargs):
             if test_only and not settings.IN_TEST_SUITE:
                 return func(*args, **kw)
             else:
-                name = (key if key else
-                        '%s.%s' % (func.__module__, func.__name__))
+                name = key if key else '%s.%s' % (func.__module__, func.__name__)
                 with statsd.timer('timer.%s' % name):
                     return func(*args, **kw)
+
         return wrapper
 
     if func:
@@ -985,10 +1038,12 @@ def has_links(html):
 
 def walkfiles(folder, suffix=''):
     """Iterator over files in folder, recursively."""
-    return (os.path.join(basename, filename)
-            for basename, dirnames, filenames in scandir.walk(folder)
-            for filename in filenames
-            if filename.endswith(suffix))
+    return (
+        os.path.join(basename, filename)
+        for basename, dirnames, filenames in scandir.walk(folder)
+        for filename in filenames
+        if filename.endswith(suffix)
+    )
 
 
 def utc_millesecs_from_epoch(for_datetime=None):
@@ -1011,12 +1066,15 @@ def utc_millesecs_from_epoch(for_datetime=None):
 def extract_colors_from_image(path):
     try:
         image_colors = colorgram.extract(path, 6)
-        colors = [{
-            'h': color.hsl.h,
-            's': color.hsl.s,
-            'l': color.hsl.l,
-            'ratio': color.proportion
-        } for color in image_colors]
+        colors = [
+            {
+                'h': color.hsl.h,
+                's': color.hsl.s,
+                'l': color.hsl.l,
+                'ratio': color.proportion,
+            }
+            for color in image_colors
+        ]
     except IOError:
         colors = None
     return colors
@@ -1029,7 +1087,7 @@ class AMOJSONEncoder(JSONEncoder):
         return super(AMOJSONEncoder, self).default(obj)
 
 
-class StopWatch():
+class StopWatch:
     def __init__(self, label_prefix=''):
         self.prefix = label_prefix
 
@@ -1039,6 +1097,5 @@ class StopWatch():
     def log_interval(self, label):
         now = datetime.datetime.utcnow()
         statsd.timing(self.prefix + label, now - self._timestamp)
-        log.debug(
-            "%s: %s", self.prefix + label, now - self._timestamp)
+        log.debug("%s: %s", self.prefix + label, now - self._timestamp)
         self._timestamp = now

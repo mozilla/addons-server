@@ -15,8 +15,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import (
-    TestCase, formset, initial, user_factory, version_factory)
+from olympia.amo.tests import TestCase, formset, initial, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
@@ -31,8 +30,8 @@ SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
 
 
 ZADMIN_TEST_FILES = os.path.join(
-    os.path.dirname(olympia.__file__),
-    'zadmin', 'tests', 'resources')
+    os.path.dirname(olympia.__file__), 'zadmin', 'tests', 'resources'
+)
 
 
 class TestHomeAndIndex(TestCase):
@@ -53,8 +52,8 @@ class TestHomeAndIndex(TestCase):
         # Add fake log that would be shown in the index page.
         user = UserProfile.objects.get(email='admin@mozilla.com')
         ActivityLog.create(
-            amo.LOG.GROUP_USER_ADDED, user.groups.latest('pk'), user,
-            user=user)
+            amo.LOG.GROUP_USER_ADDED, user.groups.latest('pk'), user, user=user
+        )
         url = reverse('zadmin.index')
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
@@ -73,15 +72,13 @@ class TestHomeAndIndex(TestCase):
         # Redirected because no permissions if not logged in.
         self.client.logout()
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?'
-                                 'next=/en-US/admin/models/')
+        self.assert3xx(response, '/admin/models/login/?' 'next=/en-US/admin/models/')
 
         # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
         self.client.login(email='staffperson@m.c')
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?'
-                                 'next=/en-US/admin/models/')
+        self.assert3xx(response, '/admin/models/login/?' 'next=/en-US/admin/models/')
 
         # Can access with a "is_staff" user.
         self.grant_permission(user, 'Admin:Something')
@@ -106,8 +103,9 @@ class TestFeatures(TestCase):
         super(TestFeatures, self).setUp()
         assert self.client.login(email='admin@mozilla.com')
         self.url = reverse('zadmin.features')
-        FeaturedCollection.objects.create(application=amo.FIREFOX.id,
-                                          locale='zh-CN', collection_id=80)
+        FeaturedCollection.objects.create(
+            application=amo.FIREFOX.id, locale='zh-CN', collection_id=80
+        )
         self.f = self.client.get(self.url).context['form'].initial_forms[0]
         self.initial = self.f.initial
 
@@ -122,8 +120,7 @@ class TestFeatures(TestCase):
         doc = pq(response.content)
         assert doc('#features tr').attr('data-app') == str(amo.FIREFOX.id)
         assert doc('#features td.app').hasClass(amo.FIREFOX.short)
-        assert doc('#features td.collection.loading').attr(
-            'data-collection') == '80'
+        assert doc('#features td.collection.loading').attr('data-collection') == '80'
         assert doc('#features .collection-ac.js-hidden')
         assert not doc('#features .collection-ac[disabled]')
 
@@ -141,45 +138,51 @@ class TestFeatures(TestCase):
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.status_code == 200
         assert response.context['form'].errors[0]['application'] == (
-            ['This field is required.'])
+            ['This field is required.']
+        )
         assert response.context['form'].errors[0]['collection'] == (
-            ['Invalid collection for this application.'])
+            ['Invalid collection for this application.']
+        )
 
     def test_bad_app(self):
         data = initial(self.f)
         data['application'] = 999
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['application'] == [
-            'Select a valid choice. 999 is not one of the available choices.']
+            'Select a valid choice. 999 is not one of the available choices.'
+        ]
 
     def test_bad_collection_for_app(self):
         data = initial(self.f)
         data['application'] = amo.ANDROID.id
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
-            ['Invalid collection for this application.'])
+            ['Invalid collection for this application.']
+        )
 
     def test_bad_locale(self):
         data = initial(self.f)
         data['locale'] = 'klingon'
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['locale'] == (
-            ['Select a valid choice. klingon is not one of the available '
-             'choices.'])
+            ['Select a valid choice. klingon is not one of the available ' 'choices.']
+        )
 
     def test_required_collection(self):
         data = initial(self.f)
         del data['collection']
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
-            ['This field is required.'])
+            ['This field is required.']
+        )
 
     def test_bad_collection(self):
         data = initial(self.f)
         data['collection'] = 999
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
-            ['Invalid collection for this application.'])
+            ['Invalid collection for this application.']
+        )
 
     def test_success_insert(self):
         dupe = initial(self.f)
@@ -213,12 +216,14 @@ class TestFeatures(TestCase):
         response = self.client.get(self.url, {'q': 80})
         assert response.status_code == 200
         data = response.json()
-        assert data == [{
-            u'url': u'/en-US/firefox/collections/10482/lolwut/',
-            u'id': 80,
-            u'slug': u'lolwut',
-            u'name': u'WebDev',
-        }]
+        assert data == [
+            {
+                u'url': u'/en-US/firefox/collections/10482/lolwut/',
+                u'id': 80,
+                u'slug': u'lolwut',
+                u'name': u'WebDev',
+            }
+        ]
 
         response = self.client.get(self.url, {'q': 'something'})
         assert response.status_code == 200
@@ -228,12 +233,14 @@ class TestFeatures(TestCase):
         response = self.client.get(self.url, {'q': 'lol'})
         assert response.status_code == 200
         data = response.json()
-        assert data == [{
-            u'url': u'/en-US/firefox/collections/10482/lolwut/',
-            u'id': 80,
-            u'slug': u'lolwut',
-            u'name': u'WebDev',
-        }]
+        assert data == [
+            {
+                u'url': u'/en-US/firefox/collections/10482/lolwut/',
+                u'id': 80,
+                u'slug': u'lolwut',
+                u'name': u'WebDev',
+            }
+        ]
 
     def test_collection_json_not_admin(self):
         self.url = reverse('zadmin.collections_json')
@@ -264,10 +271,8 @@ class TestLookup(TestCase):
         for d in expected:
             id = d['value']
             email = u'%s' % d['label']
-            assert id in ids, (
-                'Expected user ID "%s" not found' % id)
-            assert email in emails, (
-                'Expected username "%s" not found' % email)
+            assert id in ids, 'Expected user ID "%s" not found' % id
+            assert email in emails, 'Expected username "%s" not found' % email
 
     def test_lookup_wrong_model(self):
         self.url = reverse('zadmin.search', args=['doesnt', 'exist'])
@@ -276,20 +281,22 @@ class TestLookup(TestCase):
 
     def test_lookup_empty(self):
         users = UserProfile.objects.values('id', 'email')
-        self.check_results('', [dict(
-            value=u['id'], label=u['email']) for u in users])
+        self.check_results('', [dict(value=u['id'], label=u['email']) for u in users])
 
     def test_lookup_by_id(self):
-        self.check_results(self.user.id, [dict(value=self.user.id,
-                                               label=self.user.email)])
+        self.check_results(
+            self.user.id, [dict(value=self.user.id, label=self.user.email)]
+        )
 
     def test_lookup_by_email(self):
-        self.check_results(self.user.email, [dict(value=self.user.id,
-                                                  label=self.user.email)])
+        self.check_results(
+            self.user.email, [dict(value=self.user.id, label=self.user.email)]
+        )
 
     def test_lookup_by_username(self):
-        self.check_results(self.user.username, [dict(value=self.user.id,
-                                                     label=self.user.email)])
+        self.check_results(
+            self.user.username, [dict(value=self.user.id, label=self.user.email)]
+        )
 
 
 class TestAddonSearch(amo.tests.ESTestCase):
@@ -321,7 +328,8 @@ class TestAddonAdmin(TestCase):
         rows = doc('#result_list tbody tr')
         assert rows.length == 1
         assert rows.find('a').attr('href') == (
-            '/en-US/admin/models/addons/addon/3615/change/')
+            '/en-US/admin/models/addons/addon/3615/change/'
+        )
 
 
 class TestAddonManagement(TestCase):
@@ -341,20 +349,23 @@ class TestAddonManagement(TestCase):
     def test_addon_mixed_channels(self):
         first_version = self.addon.current_version
         second_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         first_expected_review_link = reverse(
-            'reviewers.review', args=(self.addon.slug,))
+            'reviewers.review', args=(self.addon.slug,)
+        )
         elms = doc('a[href="%s"]' % first_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(first_version.pk)
         assert elms[0].text == first_version.version
 
         second_expected_review_link = reverse(
-            'reviewers.review', args=('unlisted', self.addon.slug,))
+            'reviewers.review', args=('unlisted', self.addon.slug,)
+        )
         elms = doc('a[href="%s"]' % second_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(second_version.pk)
@@ -396,13 +407,16 @@ class TestAddonManagement(TestCase):
         # But no change.
         assert file.status == 4
 
-    @mock.patch.object(File, 'file_path',
-                       amo.tests.AMOPaths().file_fixture_path(
-                           'delicious_bookmarks-2.1.106-fx.xpi'))
+    @mock.patch.object(
+        File,
+        'file_path',
+        amo.tests.AMOPaths().file_fixture_path('delicious_bookmarks-2.1.106-fx.xpi'),
+    )
     def test_regenerate_hash(self):
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version)
+            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
+        )
 
         r = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
         assert json.loads(r.content)[u'success'] == 1
@@ -412,14 +426,17 @@ class TestAddonManagement(TestCase):
         assert file.size, 'File size should not be zero'
         assert file.hash, 'File hash should not be empty'
 
-    @mock.patch.object(File, 'file_path',
-                       amo.tests.AMOPaths().file_fixture_path(
-                           'delicious_bookmarks-2.1.106-fx.xpi'))
+    @mock.patch.object(
+        File,
+        'file_path',
+        amo.tests.AMOPaths().file_fixture_path('delicious_bookmarks-2.1.106-fx.xpi'),
+    )
     def test_regenerate_hash_get(self):
         """ Don't allow GET """
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version)
+            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
+        )
 
         r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
         assert r.status_code == 405  # GET out of here
@@ -435,8 +452,7 @@ class TestElastic(amo.tests.ESTestCase):
 
     def test_login(self):
         self.client.logout()
-        self.assertLoginRedirects(
-            self.client.get(self.url), to='/en-US/admin/elastic')
+        self.assertLoginRedirects(self.client.get(self.url), to='/en-US/admin/elastic')
 
 
 class TestFileDownload(TestCase):
@@ -448,13 +464,11 @@ class TestFileDownload(TestCase):
         assert self.client.login(email='admin@mozilla.com')
 
         self.file = open(get_image_path('animated.png'), 'rb')
-        resp = self.client.post(reverse('devhub.upload'),
-                                {'upload': self.file})
+        resp = self.client.post(reverse('devhub.upload'), {'upload': self.file})
         assert resp.status_code == 302
 
         self.upload = FileUpload.objects.get()
-        self.url = reverse(
-            'zadmin.download_file_upload', args=[self.upload.uuid.hex])
+        self.url = reverse('zadmin.download_file_upload', args=[self.upload.uuid.hex])
 
     def test_download(self):
         """Test that downloading file_upload objects works."""
@@ -479,8 +493,7 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status(
-            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.features', 200)
 
@@ -493,8 +506,7 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status(
-            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.features', 200)
 
@@ -504,11 +516,11 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 403)
         self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status(
-            'zadmin.download_file_upload', 403, uuid=self.FILE_ID)
+        self.assert_status('zadmin.download_file_upload', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.features', 403)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertLoginRedirects(
-            self.client.get(reverse('zadmin.index')), to='/en-US/admin/')
+            self.client.get(reverse('zadmin.index')), to='/en-US/admin/'
+        )

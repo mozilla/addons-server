@@ -9,7 +9,6 @@ from olympia.amo.urlresolvers import reverse
 
 
 class HelpersTest(TestCase):
-
     def render(self, s, context=None):
         if context is None:
             context = {}
@@ -34,64 +33,60 @@ class HelpersTest(TestCase):
         assert doc.attr('class') == 'stars stars-5'
 
     def test_reviews_link(self):
-        addon = addon_factory(
-            average_rating=4, text_ratings_count=37, id=1, slug='xx')
-        content = self.render(
-            '{{ reviews_link(myaddon) }}', {'myaddon': addon})
+        addon = addon_factory(average_rating=4, text_ratings_count=37, id=1, slug='xx')
+        content = self.render('{{ reviews_link(myaddon) }}', {'myaddon': addon})
         assert pq(content)('strong').text() == '37 reviews'
 
         # without collection uuid
         assert pq(content)('a').attr('href') == (
-            'http://testserver/en-US/firefox/addon/xx/reviews/')
+            'http://testserver/en-US/firefox/addon/xx/reviews/'
+        )
 
         # with collection uuid
         myuuid = 'f19a8822-1ee3-4145-9440-0a3640201fe6'
-        content = self.render('{{ reviews_link(myaddon, myuuid) }}',
-                              {'myaddon': addon, 'myuuid': myuuid})
+        content = self.render(
+            '{{ reviews_link(myaddon, myuuid) }}', {'myaddon': addon, 'myuuid': myuuid}
+        )
         assert pq(content)('a').attr('href') == (
             'http://testserver/en-US/firefox/addon/xx/reviews/'
-            '?collection_uuid=%s' % myuuid)
+            '?collection_uuid=%s' % myuuid
+        )
 
-        addon2 = Addon(
-            average_rating=0, total_ratings=0, id=1, type=1, slug='xx')
-        content = self.render(
-            '{{ reviews_link(myaddon) }}', {'myaddon': addon2})
+        addon2 = Addon(average_rating=0, total_ratings=0, id=1, type=1, slug='xx')
+        content = self.render('{{ reviews_link(myaddon) }}', {'myaddon': addon2})
         assert pq(content)('strong').text() == 'Not yet rated'
 
         # with link
         link = reverse('addons.ratings.list', args=['xx'])
-        content = self.render('{{ reviews_link(myaddon) }}',
-                              {'myaddon': addon})
+        content = self.render('{{ reviews_link(myaddon) }}', {'myaddon': addon})
         assert pq(content)('a').attr('href') == absolutify(link)
 
     def test_impala_reviews_link(self):
-        addon = addon_factory(
-            average_rating=4, text_ratings_count=37, id=1, slug='xx')
-        content = self.render(
-            '{{ impala_reviews_link(myaddon) }}', {'myaddon': addon})
+        addon = addon_factory(average_rating=4, text_ratings_count=37, id=1, slug='xx')
+        content = self.render('{{ impala_reviews_link(myaddon) }}', {'myaddon': addon})
         assert pq(content)('a').text() == '(37)'
 
         # without collection uuid
         assert pq(content)('a').attr('href') == (
-            'http://testserver/en-US/firefox/addon/xx/reviews/')
+            'http://testserver/en-US/firefox/addon/xx/reviews/'
+        )
 
         # with collection uuid
         myuuid = 'f19a8822-1ee3-4145-9440-0a3640201fe6'
-        content = self.render('{{ impala_reviews_link(myaddon, myuuid) }}',
-                              {'myaddon': addon, 'myuuid': myuuid})
+        content = self.render(
+            '{{ impala_reviews_link(myaddon, myuuid) }}',
+            {'myaddon': addon, 'myuuid': myuuid},
+        )
         assert pq(content)('a').attr('href') == (
             'http://testserver/en-US/firefox/addon/xx/reviews/'
-            '?collection_uuid=%s' % myuuid)
+            '?collection_uuid=%s' % myuuid
+        )
 
-        addon2 = Addon(
-            average_rating=0, total_ratings=0, id=1, type=1, slug='xx')
-        content = self.render(
-            '{{ impala_reviews_link(myaddon) }}', {'myaddon': addon2})
+        addon2 = Addon(average_rating=0, total_ratings=0, id=1, type=1, slug='xx')
+        content = self.render('{{ impala_reviews_link(myaddon) }}', {'myaddon': addon2})
         assert pq(content)('b').text() == 'Not yet rated'
 
         # with link
         link = reverse('addons.ratings.list', args=['xx'])
-        content = self.render(
-            '{{ impala_reviews_link(myaddon) }}',
-            {'myaddon': addon})
+        content = self.render('{{ impala_reviews_link(myaddon) }}', {'myaddon': addon})
         assert pq(content)('a').attr('href') == absolutify(link)

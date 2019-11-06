@@ -20,20 +20,18 @@ class TestWebextExtractPermissions(UploadTest):
         versions = {
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-            amo.DEFAULT_WEBEXT_MAX_VERSION
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
-            AppVersion.objects.create(application=amo.FIREFOX.id,
-                                      version=version)
-            AppVersion.objects.create(application=amo.ANDROID.id,
-                                      version=version)
+            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
 
     def setUp(self):
         super(TestWebextExtractPermissions, self).setUp()
         self.platform = amo.PLATFORM_ALL.id
-        self.addon = Addon.objects.create(guid='guid@webext',
-                                          type=amo.ADDON_EXTENSION,
-                                          name='xxx')
+        self.addon = Addon.objects.create(
+            guid='guid@webext', type=amo.ADDON_EXTENSION, name='xxx'
+        )
         self.version = Version.objects.create(addon=self.addon)
         UserProfile.objects.create(pk=settings.TASK_USER_ID)
 
@@ -43,8 +41,9 @@ class TestWebextExtractPermissions(UploadTest):
         # Remove the permissions from the parsed data so they aren't added.
         pdata_permissions = parsed_data.pop('permissions')
         pdata_cscript = parsed_data.pop('content_scripts')
-        file_ = File.from_upload(upload, self.version, self.platform,
-                                 parsed_data=parsed_data)
+        file_ = File.from_upload(
+            upload, self.version, self.platform, parsed_data=parsed_data
+        )
         assert WebextPermission.objects.count() == 0
         assert file_.webext_permissions_list == []
 
@@ -56,22 +55,29 @@ class TestWebextExtractPermissions(UploadTest):
         assert len(permissions_list) == 8
         assert permissions_list == [
             # first 5 are 'permissions'
-            u'http://*/*', u'https://*/*', 'bookmarks', 'made up permission',
+            u'http://*/*',
+            u'https://*/*',
+            'bookmarks',
+            'made up permission',
             'https://google.com/',
             # last 3 are 'content_scripts' matches we treat the same
-            '*://*.mozilla.org/*', '*://*.mozilla.com/*',
-            'https://*.mozillians.org/*']
+            '*://*.mozilla.org/*',
+            '*://*.mozilla.com/*',
+            'https://*.mozillians.org/*',
+        ]
         assert permissions_list[0:5] == pdata_permissions
-        assert permissions_list[5:8] == [x for y in [
-            cs['matches'] for cs in pdata_cscript] for x in y]
+        assert permissions_list[5:8] == [
+            x for y in [cs['matches'] for cs in pdata_cscript] for x in y
+        ]
 
     def test_force_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(upload, user=mock.Mock())
         # change the permissions so we can tell they've been re-parsed.
         parsed_data['permissions'].pop()
-        file_ = File.from_upload(upload, self.version, self.platform,
-                                 parsed_data=parsed_data)
+        file_ = File.from_upload(
+            upload, self.version, self.platform, parsed_data=parsed_data
+        )
         assert WebextPermission.objects.count() == 1
         assert len(file_.webext_permissions_list) == 7
 

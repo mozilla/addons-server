@@ -9,8 +9,7 @@ from django.db.models.signals import post_save
 from olympia.addons.models import Addon, update_search_index
 from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS
-from olympia.constants.base import (
-    ADDON_EXTENSION, ADDON_STATICTHEME, STATUS_APPROVED)
+from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME, STATUS_APPROVED
 from olympia.devhub.forms import icons
 
 from .categories import generate_categories
@@ -31,8 +30,9 @@ def _yield_name_and_cat(num, app=None, type=None):
     categories = generate_categories(app=app, type=type)
     if num > len(generate_names()):
         base_names = islice(cycle(generate_names()), num)
-        addons = ['{name} {i}'.format(name=name, i=i)
-                  for i, name in enumerate(base_names)]
+        addons = [
+            '{name} {i}'.format(name=name, i=i) for i, name in enumerate(base_names)
+        ]
     else:
         addons = random.sample(generate_names(), num)
     num_cats = len(categories)
@@ -69,19 +69,20 @@ def create_addon(name, icon_type, application, **extra_kwargs):
 def generate_addons(num, owner, app_name, addon_type=ADDON_EXTENSION):
     """Generate `num` addons for the given `owner` and `app_name`."""
     # Disconnect this signal given that we issue a reindex at the end.
-    post_save.disconnect(update_search_index, sender=Addon,
-                         dispatch_uid='addons.search.index')
+    post_save.disconnect(
+        update_search_index, sender=Addon, dispatch_uid='addons.search.index'
+    )
 
     featured_categories = collections.defaultdict(int)
     user = generate_user(owner)
     app = APPS[app_name]
     default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
-    for name, category in _yield_name_and_cat(
-            num, app=app, type=addon_type):
+    for name, category in _yield_name_and_cat(num, app=app, type=addon_type):
         # Use one of the default icons at random.
         icon_type = random.choice(default_icons)
-        addon = create_addon(name=name, icon_type=icon_type,
-                             application=app, type=addon_type)
+        addon = create_addon(
+            name=name, icon_type=icon_type, application=app, type=addon_type
+        )
         generate_addon_user_and_category(addon, user, category)
         generate_addon_preview(addon)
         generate_translations(addon)

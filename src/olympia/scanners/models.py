@@ -30,26 +30,21 @@ class ScannerResult(ModelBase):
         null=True,
     )
     has_matches = models.NullBooleanField()
-    matched_rules = models.ManyToManyField(
-        'ScannerRule', through='ScannerMatch'
-    )
+    matched_rules = models.ManyToManyField('ScannerRule', through='ScannerMatch')
 
     class Meta:
         db_table = 'scanners_results'
         constraints = [
             models.UniqueConstraint(
                 fields=('upload', 'scanner', 'version'),
-                name='scanners_results_upload_id_scanner_'
-                'version_id_ad9eb8a6_uniq',
+                name='scanners_results_upload_id_scanner_' 'version_id_ad9eb8a6_uniq',
             )
         ]
         indexes = [models.Index(fields=('has_matches',))]
 
     def add_yara_result(self, rule, tags=None, meta=None):
         """This method is used to store a Yara result."""
-        self.results.append(
-            {'rule': rule, 'tags': tags or [], 'meta': meta or {}}
-        )
+        self.results.append({'rule': rule, 'tags': tags or [], 'meta': meta or {}})
 
     def extract_rule_names(self):
         """This method parses the raw results and returns the (matched) rule

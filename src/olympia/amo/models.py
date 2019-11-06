@@ -37,7 +37,6 @@ def use_primary_db():
 
 
 class BaseQuerySet(models.QuerySet):
-
     def __init__(self, *args, **kwargs):
         super(BaseQuerySet, self).__init__(*args, **kwargs)
         self._transform_fns = []
@@ -74,6 +73,7 @@ class BaseQuerySet(models.QuerySet):
     def only_translations(self):
         """Remove all transforms except translations."""
         from olympia.translations import transformer
+
         # Add an extra select so these are cached separately.
         qs = self.no_transforms()
         if hasattr(self.model._meta, 'translated_fields'):
@@ -106,6 +106,7 @@ class ManagerBase(models.Manager):
     If a model has translated fields, they'll be attached through a transform
     function.
     """
+
     _queryset_class = BaseQuerySet
 
     def get_queryset(self):
@@ -114,6 +115,7 @@ class ManagerBase(models.Manager):
 
     def _with_translations(self, qs):
         from olympia.translations import transformer
+
         # Since we're attaching translations to the object, we need to stick
         # the locale in the query so objects aren't shared across locales.
         if hasattr(self.model._meta, 'translated_fields'):
@@ -128,8 +130,9 @@ class ManagerBase(models.Manager):
         return self.all().transform(fn)
 
     def raw(self, raw_query, params=None, *args, **kwargs):
-        return RawQuerySet(raw_query, self.model, params=params,
-                           using=self._db, *args, **kwargs)
+        return RawQuerySet(
+            raw_query, self.model, params=params, using=self._db, *args, **kwargs
+        )
 
 
 class _NoChangeInstance(object):
@@ -226,8 +229,12 @@ class OnChangeMixin(object):
         new_attr = old_attr.copy()
         new_attr.update(new_attr_kw)
         for cb in _on_change_callbacks[self.__class__]:
-            cb(old_attr=old_attr, new_attr=new_attr,
-               instance=_NoChangeInstance(self), sender=self.__class__)
+            cb(
+                old_attr=old_attr,
+                new_attr=new_attr,
+                instance=_NoChangeInstance(self),
+                sender=self.__class__,
+            )
 
     def save(self, *args, **kw):
         """
@@ -268,8 +275,12 @@ class SearchMixin(object):
     def index(cls, document, id=None, refresh=False, index=None):
         """Wrapper around Elasticsearch.index."""
         search.get_es().index(
-            body=document, index=index or cls._get_index(),
-            doc_type=cls.get_mapping_type(), id=id, refresh=refresh)
+            body=document,
+            index=index or cls._get_index(),
+            doc_type=cls.get_mapping_type(),
+            id=id,
+            refresh=refresh,
+        )
 
     @classmethod
     def unindex(cls, id, index=None):
@@ -333,8 +344,7 @@ class SaveUpdateMixin(object):
         objects = cls.get_unfiltered_manager()
         objects.filter(pk=self.pk).update(**kw)
         if signal:
-            models.signals.post_save.send(sender=cls, instance=self,
-                                          created=False)
+            models.signals.post_save.send(sender=cls, instance=self, created=False)
 
     def save(self, **kwargs):
         # Unfortunately we have to save our translations before we call `save`
@@ -354,8 +364,7 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     * Fetches all translations in one subsequent query during initialization.
     """
 
-    created = models.DateTimeField(
-        default=timezone.now, editable=False, blank=True)
+    created = models.DateTimeField(default=timezone.now, editable=False, blank=True)
     modified = models.DateTimeField(auto_now=True)
 
     objects = ManagerBase()
@@ -389,8 +398,7 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         """
         Return the relative URL pointing to the instance admin change page.
         """
-        urlname = 'admin:%s_%s_change' % (
-            self._meta.app_label, self._meta.model_name)
+        urlname = 'admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name)
         return reverse(urlname, args=(self.pk,))
 
     def get_admin_absolute_url(self):
@@ -414,9 +422,9 @@ def manual_order(qs, pks, pk_name='id'):
     if not pks:
         return qs.none()
     return qs.filter(id__in=pks).extra(
-        select={'_manual': 'FIELD(%s, %s)' % (pk_name,
-                                              ','.join(map(str, pks)))},
-        order_by=['_manual'])
+        select={'_manual': 'FIELD(%s, %s)' % (pk_name, ','.join(map(str, pks)))},
+        order_by=['_manual'],
+    )
 
 
 class SlugField(models.SlugField):
@@ -424,6 +432,7 @@ class SlugField(models.SlugField):
     Django 1.6's SlugField rejects non-ASCII slugs. This field just
     keeps the old behaviour of not checking contents.
     """
+
     default_validators = []
 
 
@@ -444,6 +453,7 @@ class BasePreview(object):
 
     def _image_url(self, url_template):
         from olympia.amo.templatetags.jinja_helpers import user_media_url
+
         if self.modified is not None:
             modified = int(time.mktime(self.modified.timetuple()))
         else:
@@ -453,6 +463,7 @@ class BasePreview(object):
 
     def _image_path(self, url_template):
         from olympia.amo.templatetags.jinja_helpers import user_media_path
+
         args = [user_media_path(self.media_folder), self.id // 1000, self.id]
         return url_template % tuple(args)
 
@@ -489,19 +500,22 @@ class BasePreview(object):
         """On delete of the Preview object from the database, unlink the image
         and thumb on the file system """
         image_paths = [
-            instance.image_path, instance.thumbnail_path,
-            instance.original_path]
+            instance.image_path,
+            instance.thumbnail_path,
+            instance.original_path,
+        ]
         for filename in image_paths:
             try:
-                log.info('Removing filename: %s for preview: %s'
-                         % (filename, instance.pk))
+                log.info(
+                    'Removing filename: %s for preview: %s' % (filename, instance.pk)
+                )
                 storage.delete(filename)
             except Exception as e:
-                log.error(
-                    'Error deleting preview file (%s): %s' % (filename, e))
+                log.error('Error deleting preview file (%s): %s' % (filename, e))
 
 
 class LongNameIndex(models.Index):
     """Django's Index, but with a longer allowed name since we don't care about
     compatibility with Oracle."""
+
     max_name_length = 64  # Django default is 30, but MySQL can go up to 64.

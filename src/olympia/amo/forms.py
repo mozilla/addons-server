@@ -5,7 +5,6 @@ from django.utils.functional import cached_property
 
 
 class AMOModelForm(forms.ModelForm):
-
     @cached_property
     def changed_data(self):
         """
@@ -19,9 +18,9 @@ class AMOModelForm(forms.ModelForm):
         changed_data = forms.ModelForm.changed_data.__get__(self)[:]
 
         changed_translation_fields = [
-            field.name for field in Model._meta.get_fields()
-            if isinstance(field, TranslatedField) and
-            field.name in changed_data
+            field.name
+            for field in Model._meta.get_fields()
+            if isinstance(field, TranslatedField) and field.name in changed_data
         ]
 
         # If there are translated fields, pull the model from the database

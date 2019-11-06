@@ -6,8 +6,7 @@ from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
 
-from olympia.amo.tests import (
-    addon_factory, create_switch, ESTestCase, reverse_ns)
+from olympia.amo.tests import addon_factory, create_switch, ESTestCase, reverse_ns
 from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
@@ -77,9 +76,11 @@ class TestIndexCommand(ESTestCase):
     def get_indices_aliases(cls):
         """Return the test indices with an alias."""
         indices = cls.es.indices.get_alias()
-        items = [(index, list(aliases['aliases'].keys())[0])
-                 for index, aliases in indices.items()
-                 if len(aliases['aliases']) > 0 and index.startswith('test_')]
+        items = [
+            (index, list(aliases['aliases'].keys())[0])
+            for index, aliases in indices.items()
+            if len(aliases['aliases']) > 0 and index.startswith('test_')
+        ]
         items.sort()
         return items
 
@@ -99,6 +100,7 @@ class TestIndexCommand(ESTestCase):
                 # alias in setUpClass.
                 time.sleep(1)
                 management.call_command('reindex', stdout=self.stdout)
+
         t = ReindexThread()
         t.start()
 
@@ -121,8 +123,10 @@ class TestIndexCommand(ESTestCase):
             self.check_results(self.expected)
 
         if len(self.expected) == old_addons_count:
-            raise AssertionError('Could not index objects in foreground while '
-                                 'reindexing in the background.')
+            raise AssertionError(
+                'Could not index objects in foreground while '
+                'reindexing in the background.'
+            )
 
         t.join()  # Wait for the thread to finish.
         t.stdout.seek(0)
@@ -158,13 +162,13 @@ class TestIndexCommandClassicAlgorithm(TestIndexCommand):
 
     Refs https://github.com/mozilla/addons-server/issues/8867
     """
+
     def setUp(self):
         super(TestIndexCommandClassicAlgorithm, self).setUp()
         create_switch('es-use-classic-similarity')
 
     def check_settings(self, new_indices):
-        super(TestIndexCommandClassicAlgorithm, self).check_settings(
-            new_indices)
+        super(TestIndexCommandClassicAlgorithm, self).check_settings(new_indices)
 
         # We don't want to guess the index name. We are putting this here
         # explicitly to ensure that we actually run the test for the index

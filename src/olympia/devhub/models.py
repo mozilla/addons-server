@@ -18,12 +18,12 @@ log = olympia.core.logger.getLogger('devhub')
 class RssKey(models.Model):
     id = PositiveAutoField(primary_key=True)
     key = models.UUIDField(
-        db_column='rsskey', unique=True, null=True,
-        default=uuid.uuid4)
-    addon = models.ForeignKey(
-        Addon, null=True, unique=True, on_delete=models.CASCADE)
+        db_column='rsskey', unique=True, null=True, default=uuid.uuid4
+    )
+    addon = models.ForeignKey(Addon, null=True, unique=True, on_delete=models.CASCADE)
     user = models.ForeignKey(
-        UserProfile, null=True, unique=True, on_delete=models.CASCADE)
+        UserProfile, null=True, unique=True, on_delete=models.CASCADE
+    )
     created = models.DateField(default=datetime.now)
 
     class Meta:

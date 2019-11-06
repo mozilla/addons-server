@@ -82,79 +82,69 @@ LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
 
 
 # All permissions, for easy introspection
-PERMISSIONS_LIST = [
-    x for x in vars().values() if isinstance(x, AclPermission)]
+PERMISSIONS_LIST = [x for x in vars().values() if isinstance(x, AclPermission)]
 
 # Mapping between django-style object permissions and our own. By default,
 # require superuser admins (which also have all other permissions anyway) to do
 # something, and then add some custom ones.
 DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 
-DJANGO_PERMISSIONS_MAPPING.update({
-    'abuse.change_abusereport': ABUSEREPORTS_EDIT,
-    'abuse.delete_abusereport': ADMIN_ADVANCED,
-    # Note that ActivityLog's ModelAdmin actually forbids deletion entirely.
-    # This is just here to allow deletion of users, because django checks
-    # foreign keys even though users are only soft-deleted and related objects
-    # will be kept.
-    'activity.delete_activitylog': ADMIN_ADVANCED,
-    'addons.change_addon': ADDONS_EDIT,
-    'addons.add_addonuser': ADMIN_ADVANCED,
-    'addons.change_addonuser': ADMIN_ADVANCED,
-    'addons.delete_addonuser': ADMIN_ADVANCED,
-    # Users with Admin:Curation can do anything to ReplacementAddon.
-    # In addition, the modeladmin will also check for Addons:Edit and give them
-    # read-only access to the changelist (obj=None passed to the
-    # has_change_permission() method)
-    'addons.change_replacementaddon': ADMIN_CURATION,
-    'addons.add_replacementaddon': ADMIN_CURATION,
-    'addons.delete_replacementaddon': ADMIN_CURATION,
-
-    'bandwagon.change_collection': COLLECTIONS_EDIT,
-    'bandwagon.delete_collection': ADMIN_ADVANCED,
-
-    'blocklist.add_block': REVIEWS_ADMIN,
-    'blocklist.change_block': REVIEWS_ADMIN,
-    'blocklist.delete_block': REVIEWS_ADMIN,
-
-    'discovery.add_discoveryitem': DISCOVERY_EDIT,
-    'discovery.change_discoveryitem': DISCOVERY_EDIT,
-    'discovery.delete_discoveryitem': DISCOVERY_EDIT,
-    'discovery.add_secondaryheroshelf': DISCOVERY_EDIT,
-    'discovery.change_secondaryheroshelf': DISCOVERY_EDIT,
-    'discovery.delete_secondaryheroshelf': DISCOVERY_EDIT,
-
-    'files.change_file': ADMIN_ADVANCED,
-
-    'hero.add_primaryhero': DISCOVERY_EDIT,
-    'hero.change_primaryhero': DISCOVERY_EDIT,
-    'hero.delete_primaryhero': DISCOVERY_EDIT,
-    'hero.add_secondaryheromodule': DISCOVERY_EDIT,
-    'hero.change_secondaryheromodule': DISCOVERY_EDIT,
-    'hero.delete_secondaryheromodule': DISCOVERY_EDIT,
-
-    'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
-
-    'scanners.add_scannerrule': ADMIN_ADVANCED,
-    'scanners.change_scannerrule': ADMIN_ADVANCED,
-    'scanners.delete_scannerrule': ADMIN_ADVANCED,
-    'scanners.view_scannerresult': ADMIN_ADVANCED,
-
-    'users.change_userprofile': USERS_EDIT,
-    'users.delete_userprofile': ADMIN_ADVANCED,
-
-    'users.add_disposableemaildomainrestriction,': ADMIN_ADVANCED,
-    'users.add_emailuserrestriction': ADMIN_ADVANCED,
-    'users.add_ipnetworkuserrestriction': ADMIN_ADVANCED,
-    'users.change_disposableemaildomainrestriction,': ADMIN_ADVANCED,
-    'users.change_emailuserrestriction': ADMIN_ADVANCED,
-    'users.change_ipnetworkuserrestriction': ADMIN_ADVANCED,
-    'users.delete_disposableemaildomainrestriction,': ADMIN_ADVANCED,
-    'users.delete_emailuserrestriction': ADMIN_ADVANCED,
-    'users.delete_ipnetworkuserrestriction': ADMIN_ADVANCED,
-
-    'ratings.change_rating': RATINGS_MODERATE,
-    'ratings.delete_rating': ADMIN_ADVANCED,
-
-    'versions.change_version': ADMIN_ADVANCED,
-})
+DJANGO_PERMISSIONS_MAPPING.update(
+    {
+        'abuse.change_abusereport': ABUSEREPORTS_EDIT,
+        'abuse.delete_abusereport': ADMIN_ADVANCED,
+        # Note that ActivityLog's ModelAdmin actually forbids deletion entirely.
+        # This is just here to allow deletion of users, because django checks
+        # foreign keys even though users are only soft-deleted and related objects
+        # will be kept.
+        'activity.delete_activitylog': ADMIN_ADVANCED,
+        'addons.change_addon': ADDONS_EDIT,
+        'addons.add_addonuser': ADMIN_ADVANCED,
+        'addons.change_addonuser': ADMIN_ADVANCED,
+        'addons.delete_addonuser': ADMIN_ADVANCED,
+        # Users with Admin:Curation can do anything to ReplacementAddon.
+        # In addition, the modeladmin will also check for Addons:Edit and give them
+        # read-only access to the changelist (obj=None passed to the
+        # has_change_permission() method)
+        'addons.change_replacementaddon': ADMIN_CURATION,
+        'addons.add_replacementaddon': ADMIN_CURATION,
+        'addons.delete_replacementaddon': ADMIN_CURATION,
+        'bandwagon.change_collection': COLLECTIONS_EDIT,
+        'bandwagon.delete_collection': ADMIN_ADVANCED,
+        'blocklist.add_block': REVIEWS_ADMIN,
+        'blocklist.change_block': REVIEWS_ADMIN,
+        'blocklist.delete_block': REVIEWS_ADMIN,
+        'discovery.add_discoveryitem': DISCOVERY_EDIT,
+        'discovery.change_discoveryitem': DISCOVERY_EDIT,
+        'discovery.delete_discoveryitem': DISCOVERY_EDIT,
+        'discovery.add_secondaryheroshelf': DISCOVERY_EDIT,
+        'discovery.change_secondaryheroshelf': DISCOVERY_EDIT,
+        'discovery.delete_secondaryheroshelf': DISCOVERY_EDIT,
+        'files.change_file': ADMIN_ADVANCED,
+        'hero.add_primaryhero': DISCOVERY_EDIT,
+        'hero.change_primaryhero': DISCOVERY_EDIT,
+        'hero.delete_primaryhero': DISCOVERY_EDIT,
+        'hero.add_secondaryheromodule': DISCOVERY_EDIT,
+        'hero.change_secondaryheromodule': DISCOVERY_EDIT,
+        'hero.delete_secondaryheromodule': DISCOVERY_EDIT,
+        'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
+        'scanners.add_scannerrule': ADMIN_ADVANCED,
+        'scanners.change_scannerrule': ADMIN_ADVANCED,
+        'scanners.delete_scannerrule': ADMIN_ADVANCED,
+        'scanners.view_scannerresult': ADMIN_ADVANCED,
+        'users.change_userprofile': USERS_EDIT,
+        'users.delete_userprofile': ADMIN_ADVANCED,
+        'users.add_disposableemaildomainrestriction,': ADMIN_ADVANCED,
+        'users.add_emailuserrestriction': ADMIN_ADVANCED,
+        'users.add_ipnetworkuserrestriction': ADMIN_ADVANCED,
+        'users.change_disposableemaildomainrestriction,': ADMIN_ADVANCED,
+        'users.change_emailuserrestriction': ADMIN_ADVANCED,
+        'users.change_ipnetworkuserrestriction': ADMIN_ADVANCED,
+        'users.delete_disposableemaildomainrestriction,': ADMIN_ADVANCED,
+        'users.delete_emailuserrestriction': ADMIN_ADVANCED,
+        'users.delete_ipnetworkuserrestriction': ADMIN_ADVANCED,
+        'ratings.change_rating': RATINGS_MODERATE,
+        'ratings.delete_rating': ADMIN_ADVANCED,
+        'versions.change_version': ADMIN_ADVANCED,
+    }
+)

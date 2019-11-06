@@ -27,9 +27,7 @@ class TestFileAdmin(TestCase):
     def test_can_edit_with_admin_advanced_permission(self):
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
-        detail_url = reverse(
-            'admin:files_file_change', args=(file_.pk,)
-        )
+        detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Admin:Advanced')
@@ -72,9 +70,7 @@ class TestFileAdmin(TestCase):
     def test_detail_view_has_download_link(self):
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
-        detail_url = reverse(
-            'admin:files_file_change', args=(file_.pk,)
-        )
+        detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Admin:Advanced')
@@ -101,9 +97,11 @@ class TestFileAdmin(TestCase):
         path = user_media_url('addons')
 
         assert response.url == (
-            urlparams('%s%s/%s' % (
-                path, addon.id, urlquote(file_.filename)
-            ), filehash=file_.hash))
+            urlparams(
+                '%s%s/%s' % (path, addon.id, urlquote(file_.filename)),
+                filehash=file_.hash,
+            )
+        )
         assert response['X-Target-Digest'] == file_.hash
 
     def test_download_view_disabled_file(self):

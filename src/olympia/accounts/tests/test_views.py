@@ -26,16 +26,26 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
-    WithDynamicEndpoints, addon_factory, assert_url_equal, create_switch,
-    reverse_ns, user_factory)
+    APITestClient,
+    InitializeSessionMixin,
+    PatchMixin,
+    TestCase,
+    WithDynamicEndpoints,
+    addon_factory,
+    assert_url_equal,
+    create_switch,
+    reverse_ns,
+    user_factory,
+)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
-    NOTIFICATIONS_BY_ID, NOTIFICATIONS_COMBINED,
-    REMOTE_NOTIFICATIONS_BY_BASKET_ID)
+    NOTIFICATIONS_BY_ID,
+    NOTIFICATIONS_COMBINED,
+    REMOTE_NOTIFICATIONS_BY_BASKET_ID,
+)
 from olympia.users.utils import UnsubscribeCode
 
 
@@ -50,7 +60,6 @@ SKIP_REDIRECT_FXA_CONFIG = {
 @override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/v1')
 class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
-
     class LoginStartView(views.LoginStartView):
         DEFAULT_FXA_CONFIG_NAME = 'current-config'
 
@@ -64,21 +73,22 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         self.initialize_session({})
         assert 'fxa_state' not in self.client.session
         state = 'somerandomstate'
-        with mock.patch('olympia.accounts.views.generate_fxa_state',
-                        lambda: state):
+        with mock.patch('olympia.accounts.views.generate_fxa_state', lambda: state):
             self.client.get(self.url)
         assert 'fxa_state' in self.client.session
         assert self.client.session['fxa_state'] == state
 
     def test_redirect_url_is_correct(self):
         self.initialize_session({})
-        with mock.patch('olympia.accounts.views.generate_fxa_state',
-                        lambda: 'arandomstring'):
+        with mock.patch(
+            'olympia.accounts.views.generate_fxa_state', lambda: 'arandomstring'
+        ):
             response = self.client.get(self.url)
         assert response.status_code == 302
         url = urlparse(response['location'])
         redirect = '{scheme}://{netloc}{path}'.format(
-            scheme=url.scheme, netloc=url.netloc, path=url.path)
+            scheme=url.scheme, netloc=url.netloc, path=url.path
+        )
         assert redirect == 'https://accounts.firefox.com/v1/authorization'
         assert parse_qs(url.query) == {
             'action': ['signin'],
@@ -98,8 +108,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         assert b'=' in base64.urlsafe_b64encode(path)
         state = 'somenewstatestring'
         self.initialize_session({})
-        with mock.patch('olympia.accounts.views.generate_fxa_state',
-                        lambda: state):
+        with mock.patch('olympia.accounts.views.generate_fxa_state', lambda: state):
             response = self.client.get(self.url, data={'to': path})
         assert self.client.session['fxa_state'] == state
         url = urlparse(response['location'])
@@ -113,8 +122,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
     def test_to_is_excluded_when_unsafe(self):
         path = 'https://www.google.com'
         self.initialize_session({})
-        response = self.client.get(
-            '{url}?to={path}'.format(path=path, url=self.url))
+        response = self.client.get('{url}?to={path}'.format(path=path, url=self.url))
         url = urlparse(response['location'])
         query = parse_qs(url.query)
         assert ':' not in query['state'][0]
@@ -124,9 +132,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         code_manager_url = 'https://code.example.org'
         to = '{}/foobar'.format(code_manager_url)
         with override_settings(CODE_MANAGER_URL=code_manager_url):
-            response = self.client.get(
-                '{url}?to={to}'.format(to=to, url=self.url)
-            )
+            response = self.client.get('{url}?to={to}'.format(to=to, url=self.url))
         url = urlparse(response['location'])
         query = parse_qs(url.query)
         state_parts = query['state'][0].split(':')
@@ -137,9 +143,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         domain = 'example.org'
         to = 'https://{}/foobar'.format(domain)
         with override_settings(DOMAIN=domain):
-            response = self.client.get(
-                '{url}?to={to}'.format(to=to, url=self.url)
-            )
+            response = self.client.get('{url}?to={to}'.format(to=to, url=self.url))
         url = urlparse(response['location'])
         query = parse_qs(url.query)
         state_parts = query['state'][0].split(':')
@@ -148,25 +152,22 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
 
 def has_cors_headers(response, origin='https://addons-frontend'):
     return (
-        response['Access-Control-Allow-Origin'] == origin and
-        response['Access-Control-Allow-Credentials'] == 'true')
+        response['Access-Control-Allow-Origin'] == origin
+        and response['Access-Control-Allow-Credentials'] == 'true'
+    )
 
 
 class TestLoginStartView(TestCase):
-
     def test_default_config_is_used(self):
         assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
-        assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'local'])
+        assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (['default', 'amo', 'local'])
 
 
 class TestLoginUserAndRegisterUser(TestCase):
-
     def setUp(self):
         self.request = APIRequestFactory().get('/login')
         self.enable_messages(self.request)
-        self.user = UserProfile.objects.create(
-            email='real@yeahoo.com', fxa_id='9001')
+        self.user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='9001')
         self.identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         # This mock actually points to django.contrib.auth.login()
         patcher = mock.patch('olympia.accounts.views.login')
@@ -178,45 +179,43 @@ class TestLoginUserAndRegisterUser(TestCase):
         self.addCleanup(patcher.stop)
 
     def test_user_gets_logged_in(self):
-        views.login_user(
-            self.__class__, self.request, self.user, self.identity)
+        views.login_user(self.__class__, self.request, self.user, self.identity)
         self.login_mock.assert_called_with(self.request, self.user)
 
     def test_login_is_logged(self):
         self.user.update(last_login=self.days_ago(42))
-        views.login_user(
-            self.__class__, self.request, self.user, self.identity)
+        views.login_user(self.__class__, self.request, self.user, self.identity)
         self.login_mock.assert_called_with(self.request, self.user)
         self.assertCloseToNow(self.user.last_login)
         assert self.user.last_login_ip == '8.8.8.8'
 
     def test_email_address_can_change(self):
         self.user.update(email='different@yeahoo.com')
-        views.login_user(
-            self.__class__, self.request, self.user, self.identity)
+        views.login_user(self.__class__, self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert user.email == 'real@yeahoo.com'
 
     def test_fxa_id_can_be_set(self):
         self.user.update(fxa_id=None)
-        views.login_user(
-            self.__class__, self.request, self.user, self.identity)
+        views.login_user(self.__class__, self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert user.email == 'real@yeahoo.com'
 
     def test_auth_id_updated_if_none(self):
         self.user.update(auth_id=None)
-        views.login_user(
-            self.__class__, self.request, self.user, self.identity)
+        views.login_user(self.__class__, self.request, self.user, self.identity)
         self.user.reload()
         assert self.user.auth_id
 
     def test_register_user(self):
         with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
-            views.register_user(self.__class__, self.request,
-                                {'email': 'new@yeahoo.com', 'uid': '424242'})
+            views.register_user(
+                self.__class__,
+                self.request,
+                {'email': 'new@yeahoo.com', 'uid': '424242'},
+            )
         assert UserProfile.objects.count() == 2
         user = UserProfile.objects.get(email='new@yeahoo.com')
         assert user.fxa_id == '424242'
@@ -236,7 +235,6 @@ class TestLoginUserAndRegisterUser(TestCase):
 
 
 class TestFindUser(TestCase):
-
     def test_user_exists_with_uid(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
         found_user = views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
@@ -253,22 +251,18 @@ class TestFindUser(TestCase):
         assert user == found_user
 
     def test_two_users_exist(self):
-        UserProfile.objects.create(
-            fxa_id='9999', email='me@amo.ca', username='me')
-        UserProfile.objects.create(
-            fxa_id='8888', email='you@amo.ca', username='you')
+        UserProfile.objects.create(fxa_id='9999', email='me@amo.ca', username='me')
+        UserProfile.objects.create(fxa_id='8888', email='you@amo.ca', username='you')
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
             views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
 
     def test_find_user_deleted(self):
-        UserProfile.objects.create(
-            fxa_id='abc', email='me@amo.ca', deleted=True)
+        UserProfile.objects.create(fxa_id='abc', email='me@amo.ca', deleted=True)
         with self.assertRaises(PermissionDenied):
             views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
 
     def test_find_user_mozilla(self):
-        task_user = user_factory(
-            id=settings.TASK_USER_ID, fxa_id='abc')
+        task_user = user_factory(id=settings.TASK_USER_ID, fxa_id='abc')
         with self.assertRaises(PermissionDenied):
             views.find_user({'uid': '123456', 'email': task_user.email})
         with self.assertRaises(PermissionDenied):
@@ -280,26 +274,26 @@ class TestRenderErrorHTML(TestCase):
 
     def make_request(self):
         request = APIRequestFactory().get(
-            reverse_ns('accounts.authenticate', api_version=self.api_version))
+            reverse_ns('accounts.authenticate', api_version=self.api_version)
+        )
         request.user = AnonymousUser()
         return self.enable_messages(request)
 
     def render_error(self, request, error, next_path=None):
-        return views.render_error(
-            request, error, format='html', next_path=next_path)
+        return views.render_error(request, error, format='html', next_path=next_path)
 
     def test_error_no_code_with_safe_path(self):
         request = self.make_request()
         assert len(get_messages(request)) == 0
         response = self.render_error(
-            request, views.ERROR_NO_CODE, next_path='/over/here')
+            request, views.ERROR_NO_CODE, next_path='/over/here'
+        )
         assert response.status_code == 302
         messages = get_messages(request)
         assert len(messages) == 1
         assert 'could not be parsed' in next(iter(messages)).message
         assert_url_equal(response['location'], absolutify('/over/here'))
-        response = self.render_error(
-            request, views.ERROR_NO_CODE, next_path=None)
+        response = self.render_error(request, views.ERROR_NO_CODE, next_path=None)
         assert response.status_code == 302
         messages = get_messages(request)
         assert len(messages) == 1
@@ -313,16 +307,15 @@ class TestRenderErrorHTML(TestCase):
         assert response.status_code == 302
         messages = get_messages(request)
         assert len(messages) == 1
-        assert ('Firefox Account could not be found'
-                in next(iter(messages)).message)
+        assert 'Firefox Account could not be found' in next(iter(messages)).message
         assert_url_equal(response['location'], '/')
 
     def test_error_state_mismatch_with_unsafe_path(self):
         request = self.make_request()
         assert len(get_messages(request)) == 0
         response = self.render_error(
-            request, views.ERROR_STATE_MISMATCH,
-            next_path='https://www.google.com/')
+            request, views.ERROR_STATE_MISMATCH, next_path='https://www.google.com/'
+        )
         assert response.status_code == 302
         messages = get_messages(request)
         assert len(messages) == 1
@@ -344,7 +337,8 @@ class TestRenderErrorJSON(TestCase):
 
     def make_request(self):
         return APIRequestFactory().post(
-            reverse_ns('accounts.authenticate', api_version=self.api_version))
+            reverse_ns('accounts.authenticate', api_version=self.api_version)
+        )
 
     def render_error(self, error):
         views.render_error(self.make_request(), error, format='json')
@@ -355,13 +349,13 @@ class TestRenderErrorJSON(TestCase):
 
     def test_error_no_profile(self):
         self.render_error(views.ERROR_NO_PROFILE)
-        self.Response.assert_called_with(
-            {'error': views.ERROR_NO_PROFILE}, status=401)
+        self.Response.assert_called_with({'error': views.ERROR_NO_PROFILE}, status=401)
 
     def test_error_state_mismatch(self):
         self.render_error(views.ERROR_STATE_MISMATCH)
         self.Response.assert_called_with(
-            {'error': views.ERROR_STATE_MISMATCH}, status=400)
+            {'error': views.ERROR_STATE_MISMATCH}, status=400
+        )
 
 
 class TestRenderErrorJSONV3(TestRenderErrorJSON):
@@ -369,10 +363,8 @@ class TestRenderErrorJSONV3(TestRenderErrorJSON):
 
 
 class TestWithUser(TestCase):
-
     def setUp(self):
-        self.fxa_identify = self.patch(
-            'olympia.accounts.views.verify.fxa_identify')
+        self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
         self.find_user = self.patch('olympia.accounts.views.find_user')
         self.render_error = self.patch('olympia.accounts.views.render_error')
         self.request = mock.MagicMock()
@@ -408,7 +400,8 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
+                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -475,7 +468,9 @@ class TestWithUser(TestCase):
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
                 next_path=force_text(
-                    base64.urlsafe_b64encode(b'https://www.google.com'))),
+                    base64.urlsafe_b64encode(b'https://www.google.com')
+                )
+            ),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -503,15 +498,16 @@ class TestWithUser(TestCase):
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
         self.fn(self.request)
         self.render_error.assert_called_with(
-            self.request, views.ERROR_NO_PROFILE, next_path=None,
-            format='json')
+            self.request, views.ERROR_NO_PROFILE, next_path=None, format='json'
+        )
         assert not self.find_user.called
 
     def test_code_not_provided(self):
         self.request.data = {'hey': 'hi', 'state': 'some-blob'}
         self.fn(self.request)
         self.render_error.assert_called_with(
-            self.request, views.ERROR_NO_CODE, next_path=None, format='json')
+            self.request, views.ERROR_NO_CODE, next_path=None, format='json'
+        )
         assert not self.find_user.called
         assert not self.fxa_identify.called
 
@@ -520,7 +516,8 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{}'.format(
-                force_text(base64.urlsafe_b64encode(b'/next'))),
+                force_text(base64.urlsafe_b64encode(b'/next'))
+            ),
         }
         self.user = UserProfile()
         self.request.user = self.user
@@ -528,8 +525,8 @@ class TestWithUser(TestCase):
         self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
         self.fn(self.request)
         self.render_error.assert_called_with(
-            self.request, views.ERROR_AUTHENTICATED, next_path='/next',
-            format='json')
+            self.request, views.ERROR_AUTHENTICATED, next_path='/next', format='json'
+        )
         assert not self.find_user.called
         assert self.render_error.return_value.set_cookie.call_count == 0
         assert generate_api_token_mock.call_count == 0
@@ -539,7 +536,8 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{}'.format(
-                force_text(base64.urlsafe_b64encode(b'/next'))),
+                force_text(base64.urlsafe_b64encode(b'/next'))
+            ),
         }
         self.user = UserProfile()
         self.request.user = self.user
@@ -547,8 +545,8 @@ class TestWithUser(TestCase):
         self.request.COOKIES = {}
         self.fn(self.request)
         self.render_error.assert_called_with(
-            self.request, views.ERROR_AUTHENTICATED, next_path='/next',
-            format='json')
+            self.request, views.ERROR_AUTHENTICATED, next_path='/next', format='json'
+        )
         assert not self.find_user.called
         response = self.render_error.return_value
         assert response.set_cookie.call_count == 1
@@ -558,7 +556,8 @@ class TestWithUser(TestCase):
             domain=settings.SESSION_COOKIE_DOMAIN,
             max_age=settings.SESSION_COOKIE_AGE,
             secure=settings.SESSION_COOKIE_SECURE,
-            httponly=settings.SESSION_COOKIE_HTTPONLY)
+            httponly=settings.SESSION_COOKIE_HTTPONLY,
+        )
 
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
@@ -567,12 +566,13 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': 'other-blob:{}'.format(
-                force_text(base64.urlsafe_b64encode(b'/next'))),
+                force_text(base64.urlsafe_b64encode(b'/next'))
+            ),
         }
         self.fn(self.request)
         self.render_error.assert_called_with(
-            self.request, views.ERROR_STATE_MISMATCH, next_path='/next',
-            format='json')
+            self.request, views.ERROR_STATE_MISMATCH, next_path='/next', format='json'
+        )
 
     def test_dynamic_configuration(self):
         fxa_config = {'some': 'config'}
@@ -605,7 +605,8 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
+                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
         }
         # @with_user should return a redirect response directly in that case.
         response = self.fn(self.request)
@@ -615,11 +616,12 @@ class TestWithUser(TestCase):
         assert response.status_code == 302
         url = urlparse(response['Location'])
         base = '{scheme}://{netloc}{path}'.format(
-            scheme=url.scheme, netloc=url.netloc, path=url.path)
+            scheme=url.scheme, netloc=url.netloc, path=url.path
+        )
         fxa_config = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
         assert base == '{host}{path}'.format(
-            host=settings.FXA_OAUTH_HOST,
-            path='/authorization')
+            host=settings.FXA_OAUTH_HOST, path='/authorization'
+        )
         query = parse_qs(url.query)
         next_path = base64.urlsafe_b64encode(b'/a/path/?').rstrip(b'=')
         assert query == {
@@ -627,8 +629,7 @@ class TestWithUser(TestCase):
             'action': ['signin'],
             'client_id': [fxa_config['client_id']],
             'scope': ['profile'],
-            'state': ['some-blob:{next_path}'.format(
-                next_path=force_text(next_path))],
+            'state': ['some-blob:{next_path}'.format(next_path=force_text(next_path))],
         }
 
     def test_theme_developer_should_not_redirect_for_two_factor_auth(self):
@@ -641,7 +642,8 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
+                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -658,14 +660,15 @@ class TestWithUser(TestCase):
         identity = {
             'uid': '1234',
             'email': 'hey@yo.it',
-            'twoFactorAuthentication': True
+            'twoFactorAuthentication': True,
         }
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
+                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -685,7 +688,8 @@ class TestWithUser(TestCase):
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
+                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -696,13 +700,10 @@ class TestWithUser(TestCase):
         }
 
 
-@override_settings(FXA_CONFIG={
-    'foo': {'FOO': 123},
-    'bar': {'BAR': 456},
-    'baz': {'BAZ': 789},
-})
+@override_settings(
+    FXA_CONFIG={'foo': {'FOO': 123}, 'bar': {'BAR': 456}, 'baz': {'BAZ': 789},}
+)
 class TestFxAConfigMixin(TestCase):
-
     class DefaultConfig(views.FxAConfigMixin):
         DEFAULT_FXA_CONFIG_NAME = 'bar'
 
@@ -745,10 +746,9 @@ def empty_view(*args, **kwargs):
     return http.HttpResponse()
 
 
-@override_settings(FXA_CONFIG={
-    'default': FXA_CONFIG,
-    'skip': SKIP_REDIRECT_FXA_CONFIG,
-})
+@override_settings(
+    FXA_CONFIG={'default': FXA_CONFIG, 'skip': SKIP_REDIRECT_FXA_CONFIG,}
+)
 class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     view_name = 'accounts.authenticate'
     client_class = APIClient
@@ -756,8 +756,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
 
     def setUp(self):
         super().setUp()
-        self.fxa_identify = self.patch(
-            'olympia.accounts.views.verify.fxa_identify')
+        self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
         self.url = reverse_ns(self.view_name, api_version=self.api_version)
         self.fxa_state = '1cd2ae9d'
         self.initialize_session({'fxa_state': self.fxa_state})
@@ -779,8 +778,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert not self.register_user.called
 
     def test_wrong_state(self):
-        response = self.client.get(
-            self.url, {'code': 'foo', 'state': '9f865be0'})
+        response = self.client.get(self.url, {'code': 'foo', 'state': '9f865be0'})
         assert response.status_code == 302
         assert 'could not be logged in' in response.context['title']
         assert_url_equal(response['location'], '/')
@@ -790,10 +788,10 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
         response = self.client.get(
-            self.url, {'code': 'codes!!', 'state': self.fxa_state})
+            self.url, {'code': 'codes!!', 'state': self.fxa_state}
+        )
         assert response.status_code == 302
-        assert ('Your Firefox Account could not be found'
-                in response.context['title'])
+        assert 'Your Firefox Account could not be found' in response.context['title']
         assert_url_equal(response['location'], '/')
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
@@ -804,15 +802,17 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
-        self.register_user.side_effect = (
-            lambda sender, request, identity: UserProfile.objects.create(
-                username='foo', email='me@yeahoo.com', fxa_id='e0b6f'))
+        self.register_user.side_effect = lambda sender, request, identity: UserProfile.objects.create(
+            username='foo', email='me@yeahoo.com', fxa_id='e0b6f'
+        )
         response = self.client.get(
-            self.url, {'code': 'codes!!', 'state': self.fxa_state})
+            self.url, {'code': 'codes!!', 'state': self.fxa_state}
+        )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+            views.AuthenticateView, mock.ANY, identity
+        )
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == UserProfile.objects.get(username='foo')
@@ -829,20 +829,26 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         user = UserProfile(username='foo', email='me@yeahoo.com')
         self.register_user.return_value = user
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
-            response = self.client.get(self.url, {
-                'code': 'codes!!',
-                'state': ':'.join(
-                    [self.fxa_state,
-                     force_text(base64.urlsafe_b64encode(b'/go/here'))]),
-            })
+            response = self.client.get(
+                self.url,
+                {
+                    'code': 'codes!!',
+                    'state': ':'.join(
+                        [
+                            self.fxa_state,
+                            force_text(base64.urlsafe_b64encode(b'/go/here')),
+                        ]
+                    ),
+                },
+            )
             self.assertRedirects(
-                response,
-                reverse('users.edit') + '?to=/go/here',
-                target_status_code=200)
+                response, reverse('users.edit') + '?to=/go/here', target_status_code=200
+            )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+            views.AuthenticateView, mock.ANY, identity
+        )
 
     def test_register_redirects_edit_absolute_to(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
@@ -853,21 +859,32 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.register_user.return_value = user
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             with override_settings(DOMAIN='supersafe.com'):
-                response = self.client.get(self.url, {
-                    'code': 'codes!!',
-                    'state': ':'.join(
-                        [self.fxa_state,
-                         force_text(base64.urlsafe_b64encode(
-                            b'https://supersafe.com/go/here'))]),
-                })
+                response = self.client.get(
+                    self.url,
+                    {
+                        'code': 'codes!!',
+                        'state': ':'.join(
+                            [
+                                self.fxa_state,
+                                force_text(
+                                    base64.urlsafe_b64encode(
+                                        b'https://supersafe.com/go/here'
+                                    )
+                                ),
+                            ]
+                        ),
+                    },
+                )
             self.assertRedirects(
                 response,
                 reverse('users.edit') + '?to=https://supersafe.com/go/here',
-                target_status_code=200)
+                target_status_code=200,
+            )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+            views.AuthenticateView, mock.ANY, identity
+        )
 
     def test_register_redirects_edit_ignores_to_when_unsafe(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
@@ -877,80 +894,97 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         user = UserProfile(username='foo', email='me@yeahoo.com')
         self.register_user.return_value = user
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
-            response = self.client.get(self.url, {
-                'code': 'codes!!',
-                'state': ':'.join(
-                    [self.fxa_state,
-                     force_text(base64.urlsafe_b64encode(
-                        b'https://go.go/here'))]),
-            })
+            response = self.client.get(
+                self.url,
+                {
+                    'code': 'codes!!',
+                    'state': ':'.join(
+                        [
+                            self.fxa_state,
+                            force_text(base64.urlsafe_b64encode(b'https://go.go/here')),
+                        ]
+                    ),
+                },
+            )
             self.assertRedirects(
-                response,
-                reverse('users.edit'),  # No '?to=...'
-                target_status_code=200)
+                response, reverse('users.edit'), target_status_code=200  # No '?to=...'
+            )
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+            views.AuthenticateView, mock.ANY, identity
+        )
 
     def test_success_with_account_logs_in(self):
         user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com', fxa_id='10')
+            username='foobar', email='real@yeahoo.com', fxa_id='10'
+        )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             response = self.client.get(
-                self.url, {'code': 'code', 'state': self.fxa_state})
+                self.url, {'code': 'code', 'state': self.fxa_state}
+            )
             self.assertRedirects(response, reverse('home'))
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == user
         self.login_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, user, identity)
+            views.AuthenticateView, mock.ANY, user, identity
+        )
         assert not self.register_user.called
 
     def test_banned_user_cant_log_in(self):
         UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com', fxa_id='10',
-            deleted=True)
+            username='foobar', email='real@yeahoo.com', fxa_id='10', deleted=True
+        )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(
-            self.url, {'code': 'code', 'state': self.fxa_state})
+        response = self.client.get(self.url, {'code': 'code', 'state': self.fxa_state})
         assert response.status_code == 403
 
     def test_log_in_redirects_to_next_path(self):
         user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(self.url, {
-            'code': 'code',
-            'state': ':'.join([
-                self.fxa_state,
-                force_text(
-                    base64.urlsafe_b64encode(b'/en-US/firefox/a/path'))]),
-        })
-        self.assertRedirects(
-            response, '/en-US/firefox/a/path', target_status_code=404)
+        response = self.client.get(
+            self.url,
+            {
+                'code': 'code',
+                'state': ':'.join(
+                    [
+                        self.fxa_state,
+                        force_text(base64.urlsafe_b64encode(b'/en-US/firefox/a/path')),
+                    ]
+                ),
+            },
+        )
+        self.assertRedirects(response, '/en-US/firefox/a/path', target_status_code=404)
         self.login_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, user, identity)
+            views.AuthenticateView, mock.ANY, user, identity
+        )
         assert not self.register_user.called
 
     def test_log_in_sets_fxa_data_and_redirects(self):
         user = UserProfile.objects.create(email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(self.url, {
-            'code': 'code',
-            'state': ':'.join([
-                self.fxa_state,
-                force_text(
-                    base64.urlsafe_b64encode(b'/en-US/firefox/a/path'))]),
-        })
-        self.assertRedirects(
-            response, '/en-US/firefox/a/path', target_status_code=404)
+        response = self.client.get(
+            self.url,
+            {
+                'code': 'code',
+                'state': ':'.join(
+                    [
+                        self.fxa_state,
+                        force_text(base64.urlsafe_b64encode(b'/en-US/firefox/a/path')),
+                    ]
+                ),
+            },
+        )
+        self.assertRedirects(response, '/en-US/firefox/a/path', target_status_code=404)
         self.login_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, user, identity)
+            views.AuthenticateView, mock.ANY, user, identity
+        )
         assert not self.register_user.called
 
     def test_log_in_redirects_to_absolute_url(self):
@@ -960,15 +994,19 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         domain = 'example.org'
         next_path = 'https://{}/path'.format(domain)
         with override_settings(DOMAIN=domain):
-            response = self.client.get(self.url, {
-                'code': 'code',
-                'state': ':'.join([
-                    self.fxa_state,
-                    force_text(base64.urlsafe_b64encode(next_path.encode())),
-                ]),
-            })
-        self.assertRedirects(response, next_path,
-                             fetch_redirect_response=False)
+            response = self.client.get(
+                self.url,
+                {
+                    'code': 'code',
+                    'state': ':'.join(
+                        [
+                            self.fxa_state,
+                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                        ]
+                    ),
+                },
+            )
+        self.assertRedirects(response, next_path, fetch_redirect_response=False)
 
     def test_log_in_redirects_to_code_manager(self):
         email = 'real@yeahoo.com'
@@ -977,15 +1015,19 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         code_manager_url = 'https://example.org'
         next_path = '{}/path'.format(code_manager_url)
         with override_settings(CODE_MANAGER_URL=code_manager_url):
-            response = self.client.get(self.url, {
-                'code': 'code',
-                'state': ':'.join([
-                    self.fxa_state,
-                    force_text(base64.urlsafe_b64encode(next_path.encode())),
-                ]),
-            })
-        self.assertRedirects(response, next_path,
-                             fetch_redirect_response=False)
+            response = self.client.get(
+                self.url,
+                {
+                    'code': 'code',
+                    'state': ':'.join(
+                        [
+                            self.fxa_state,
+                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                        ]
+                    ),
+                },
+            )
+        self.assertRedirects(response, next_path, fetch_redirect_response=False)
 
     def test_log_in_requires_https_when_request_is_secure(self):
         email = 'real@yeahoo.com'
@@ -994,30 +1036,43 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         domain = 'example.org'
         next_path = 'https://{}/path'.format(domain)
         with override_settings(DOMAIN=domain):
-            response = self.client.get(self.url, secure=True, data={
-                'code': 'code',
-                'state': ':'.join([
-                    self.fxa_state,
-                    force_text(base64.urlsafe_b64encode(next_path.encode())),
-                ]),
-            })
-        self.assertRedirects(response, next_path,
-                             fetch_redirect_response=False)
+            response = self.client.get(
+                self.url,
+                secure=True,
+                data={
+                    'code': 'code',
+                    'state': ':'.join(
+                        [
+                            self.fxa_state,
+                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                        ]
+                    ),
+                },
+            )
+        self.assertRedirects(response, next_path, fetch_redirect_response=False)
 
-    def test_log_in_redirects_to_home_when_request_is_secure_but_next_path_is_not(self): # noqa
+    def test_log_in_redirects_to_home_when_request_is_secure_but_next_path_is_not(
+        self,
+    ):  # noqa
         email = 'real@yeahoo.com'
         UserProfile.objects.create(email=email)
         self.fxa_identify.return_value = {'email': email, 'uid': '9001'}
         domain = 'example.org'
         next_path = 'http://{}/path'.format(domain)
         with override_settings(DOMAIN=domain):
-            response = self.client.get(self.url, secure=True, data={
-                'code': 'code',
-                'state': ':'.join([
-                    self.fxa_state,
-                    force_text(base64.urlsafe_b64encode(next_path.encode())),
-                ]),
-            })
+            response = self.client.get(
+                self.url,
+                secure=True,
+                data={
+                    'code': 'code',
+                    'state': ':'.join(
+                        [
+                            self.fxa_state,
+                            force_text(base64.urlsafe_b64encode(next_path.encode())),
+                        ]
+                    ),
+                },
+            )
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             self.assertRedirects(response, reverse('home'))
 
@@ -1101,30 +1156,27 @@ class TestAccountViewSet(TestCase):
         self.client.login_api(self.user)
         self.random_user = user_factory()
         random_user_profile_url = reverse_ns(
-            'account-detail', kwargs={'pk': self.random_user.pk})
+            'account-detail', kwargs={'pk': self.random_user.pk}
+        )
         response = self.client.get(random_user_profile_url)
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
-        assert response.data['url'] == absolutify(
-            self.random_user.get_url_path())
+        assert response.data['url'] == absolutify(self.random_user.get_url_path())
 
     def test_self_view_slug(self):
         # Check it works the same with an account slug rather than pk.
-        self.url = reverse_ns('account-detail',
-                              kwargs={'pk': self.user.username})
+        self.url = reverse_ns('account-detail', kwargs={'pk': self.user.username})
         self.test_self_view()
 
     def test_is_public_because_developer_slug(self):
         # Check it works the same with an account slug rather than pk.
-        self.url = reverse_ns('account-detail',
-                              kwargs={'pk': self.user.username})
+        self.url = reverse_ns('account-detail', kwargs={'pk': self.user.username})
         self.test_is_public_because_developer()
 
         # Should still work if the username contains a period.
         self.user.update(username=u'fôo.bar')
-        self.url = reverse_ns('account-detail',
-                              kwargs={'pk': self.user.username})
+        self.url = reverse_ns('account-detail', kwargs={'pk': self.user.username})
         self.test_is_public_because_developer()
 
     def test_admin_view_slug(self):
@@ -1133,13 +1185,13 @@ class TestAccountViewSet(TestCase):
         self.client.login_api(self.user)
         self.random_user = user_factory()
         random_user_profile_url = reverse_ns(
-            'account-detail', kwargs={'pk': self.random_user.username})
+            'account-detail', kwargs={'pk': self.random_user.username}
+        )
         response = self.client.get(random_user_profile_url)
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
-        assert response.data['url'] == absolutify(
-            self.random_user.get_url_path())
+        assert response.data['url'] == absolutify(self.random_user.get_url_path())
 
 
 class TestProfileViewWithJWT(APIKeyAuthTestMixin, TestCase):
@@ -1216,8 +1268,9 @@ class TestAccountViewSetUpdate(TestCase):
         existing_username = self.user.username
         original = self.client.get(self.url).content
         # Try to patch a field that can't be patched.
-        response = self.patch(data={
-            'last_login_ip': '666.666.666.666', 'username': 'new_username'})
+        response = self.patch(
+            data={'last_login_ip': '666.666.666.666', 'username': 'new_username'}
+        )
         assert response.status_code == 200
         assert response.content == original
         self.user = self.user.reload()
@@ -1231,39 +1284,37 @@ class TestAccountViewSetUpdate(TestCase):
     def test_biography_no_links(self):
         self.client.login_api(self.user)
         response = self.patch(
-            data={'biography': '<a href="https://google.com">google</a>'})
+            data={'biography': '<a href="https://google.com">google</a>'}
+        )
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'biography': ['No links are allowed.']}
+            'biography': ['No links are allowed.']
+        }
 
     def test_display_name_validation(self):
         self.client.login_api(self.user)
-        response = self.patch(
-            data={'display_name': 'a'})
+        response = self.patch(data={'display_name': 'a'})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'display_name': ['Ensure this field has at least 2 characters.']}
+            'display_name': ['Ensure this field has at least 2 characters.']
+        }
 
-        response = self.patch(
-            data={'display_name': 'a' * 51})
+        response = self.patch(data={'display_name': 'a' * 51})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'display_name': [
-                'Ensure this field has no more than 50 characters.']}
+            'display_name': ['Ensure this field has no more than 50 characters.']
+        }
 
-        response = self.patch(
-            data={'display_name': u'\x7F\u20DF'})
+        response = self.patch(data={'display_name': u'\x7F\u20DF'})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'display_name': [
-                'Must contain at least one printable character.']}
+            'display_name': ['Must contain at least one printable character.']
+        }
 
-        response = self.patch(
-            data={'display_name': u'a\x7F'})
+        response = self.patch(data={'display_name': u'a\x7F'})
         assert response.status_code == 200
 
-        response = self.patch(
-            data={'display_name': 'a' * 50})
+        response = self.patch(data={'display_name': 'a' * 50})
         assert response.status_code == 200
 
     def test_reviewer_name_validation(self):
@@ -1272,38 +1323,33 @@ class TestAccountViewSetUpdate(TestCase):
         # (validation is only applied if there is a non-blank value).
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        response = self.patch(
-            data={'reviewer_name': 'a'})
+        response = self.patch(data={'reviewer_name': 'a'})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'reviewer_name': ['Ensure this field has at least 2 characters.']}
+            'reviewer_name': ['Ensure this field has at least 2 characters.']
+        }
 
-        response = self.patch(
-            data={'reviewer_name': 'a' * 51})
+        response = self.patch(data={'reviewer_name': 'a' * 51})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'reviewer_name': [
-                'Ensure this field has no more than 50 characters.']}
+            'reviewer_name': ['Ensure this field has no more than 50 characters.']
+        }
 
-        response = self.patch(
-            data={'reviewer_name': u'\x7F\u20DF'})
+        response = self.patch(data={'reviewer_name': u'\x7F\u20DF'})
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'reviewer_name': [
-                'Must contain at least one printable character.']}
+            'reviewer_name': ['Must contain at least one printable character.']
+        }
 
-        response = self.patch(
-            data={'reviewer_name': u'a\x7F'})
+        response = self.patch(data={'reviewer_name': u'a\x7F'})
         assert response.status_code == 200
 
-        response = self.patch(
-            data={'reviewer_name': 'a' * 50})
+        response = self.patch(data={'reviewer_name': 'a' * 50})
         assert response.status_code == 200
         self.user.reload()
         assert self.user.reviewer_name == 'a' * 50
 
-        response = self.patch(
-            data={'reviewer_name': ''})
+        response = self.patch(data={'reviewer_name': ''})
         assert response.status_code == 200
         self.user.reload()
         assert self.user.reviewer_name == ''
@@ -1315,8 +1361,7 @@ class TestAccountViewSetUpdate(TestCase):
         self.client.login_api(self.user)
         photo = get_uploaded_file('transparent.png')
         data = {'picture_upload': photo, 'biography': 'not just setting photo'}
-        response = self.client.patch(
-            self.url, data, format='multipart')
+        response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 200
         json_content = json.loads(force_text(response.content))
         self.user = self.user.reload()
@@ -1331,8 +1376,7 @@ class TestAccountViewSetUpdate(TestCase):
         self.test_picture_upload()
         assert path.exists(self.user.picture_path)
         # call the endpoint to delete
-        picture_url = reverse_ns(
-            'account-picture', kwargs={'pk': self.user.pk})
+        picture_url = reverse_ns('account-picture', kwargs={'pk': self.user.pk})
         response = self.client.delete(picture_url)
         assert response.status_code == 200
         # Should delete the photo
@@ -1341,8 +1385,7 @@ class TestAccountViewSetUpdate(TestCase):
         assert json_content['picture_url'] is None
 
     def test_account_picture_disallowed_verbs(self):
-        picture_url = reverse_ns(
-            'account-picture', kwargs={'pk': self.user.pk})
+        picture_url = reverse_ns('account-picture', kwargs={'pk': self.user.pk})
         self.client.login_api(self.user)
         response = self.client.get(picture_url)
         assert response.status_code == 405
@@ -1357,28 +1400,27 @@ class TestAccountViewSetUpdate(TestCase):
         self.client.login_api(self.user)
         gif = get_uploaded_file('animated.gif')
         data = {'picture_upload': gif}
-        response = self.client.patch(
-            self.url, data, format='multipart')
+        response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'picture_upload': [u'Images must be either PNG or JPG.']}
+            'picture_upload': [u'Images must be either PNG or JPG.']
+        }
 
     def test_picture_upload_animated(self):
         self.client.login_api(self.user)
         gif = get_uploaded_file('animated.png')
         data = {'picture_upload': gif}
-        response = self.client.patch(
-            self.url, data, format='multipart')
+        response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
-            'picture_upload': [u'Images cannot be animated.']}
+            'picture_upload': [u'Images cannot be animated.']
+        }
 
     def test_picture_upload_not_image(self):
         self.client.login_api(self.user)
         gif = get_uploaded_file('non-image.png')
         data = {'picture_upload': gif}
-        response = self.client.patch(
-            self.url, data, format='multipart')
+        response = self.client.patch(self.url, data, format='multipart')
         assert response.status_code == 400
         assert json.loads(force_text(response.content)) == {
             'picture_upload': [
@@ -1479,15 +1521,14 @@ class TestAccountViewSetDelete(TestCase):
 
 
 class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
-
     def setUp(self):
         super(TestAccountSuperCreate, self).setUp()
         create_switch('super-create-accounts', active=True)
         self.create_api_user()
         self.url = reverse_ns('accounts.super-create')
         group = Group.objects.create(
-            name='Account Super Creators',
-            rules='Accounts:SuperCreate')
+            name='Account Super Creators', rules='Accounts:SuperCreate'
+        )
         GroupUser.objects.create(group=group, user=self.user)
 
     def test_require_auth(self):
@@ -1503,7 +1544,8 @@ class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
         res = self.post(self.url, {})
         assert res.status_code == 403, res.content
         assert res.data['detail'] == (
-            'You do not have permission to perform this action.')
+            'You do not have permission to perform this action.'
+        )
 
     def test_a_new_user_is_created_and_logged_in(self):
         res = self.post(self.url, {})
@@ -1570,8 +1612,7 @@ class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
         res = self.post(self.url, {'username': username})
         assert res.status_code == 422, res.content
         assert res.data['errors'] == {
-            'username': [
-                'Someone with this username already exists in the system'],
+            'username': ['Someone with this username already exists in the system'],
         }
 
     def test_cannot_add_user_to_group_when_one_doesnt_exist(self):
@@ -1579,8 +1620,8 @@ class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
         assert res.status_code == 422, res.content
         assert res.data['errors'] == {
             'group': [
-                'Could not find a permissions group with the exact rules '
-                'needed.'],
+                'Could not find a permissions group with the exact rules ' 'needed.'
+            ],
         }
 
     def test_can_create_a_reviewer_user(self):
@@ -1601,7 +1642,6 @@ class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
 
 
 class TestParseNextPath(TestCase):
-
     def test_plain_path(self):
         parts = ['deadcafe', 'L2VuLVVTL2FkZG9ucy9teS1hZGRvbi8']
         next_path = views.parse_next_path(parts)
@@ -1615,12 +1655,13 @@ class TestParseNextPath(TestCase):
         ]
         next_path = views.parse_next_path(parts)
         assert next_path == (
-            u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured')
+            u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured'
+        )
 
     def test_path_with_unicodedecodeerror(self):
         parts = [
             '09aedd38eebd72e896250ae5b7ea9c0172542b6cec7683e58227e5670df12fb2',
-            'l2vulvvtl2rldmvsb3blcnmv'
+            'l2vulvvtl2rldmvsb3blcnmv',
         ]
         next_path = views.parse_next_path(parts)
         assert next_path is None
@@ -1637,14 +1678,17 @@ class TestSessionView(TestCase):
         }
         self.initialize_session({'fxa_state': 'myfxastate'})
         with mock.patch(
-                'olympia.accounts.views.verify.fxa_identify',
-                lambda code, config: identity):
+            'olympia.accounts.views.verify.fxa_identify', lambda code, config: identity
+        ):
             response = self.client.get(
                 '{url}?code={code}&state={state}'.format(
                     url=reverse_ns(
-                        'accounts.authenticate', api_version=self.api_version),
+                        'accounts.authenticate', api_version=self.api_version
+                    ),
                     state='myfxastate',
-                    code='thecode'))
+                    code='thecode',
+                )
+            )
             token = response.cookies[views.API_TOKEN_COOKIE].value
             assert token
             verify = WebTokenAuthentication().authenticate_token(token)
@@ -1657,7 +1701,8 @@ class TestSessionView(TestCase):
         token = self.login_user(user)
         authorization = 'Bearer {token}'.format(token=token)
         response = self.client.delete(
-            reverse_ns('accounts.session'), HTTP_AUTHORIZATION=authorization)
+            reverse_ns('accounts.session'), HTTP_AUTHORIZATION=authorization
+        )
         assert not response.cookies[views.API_TOKEN_COOKIE].value
         assert not self.client.session.get('_auth_user_id')
 
@@ -1683,8 +1728,7 @@ class TestSessionView(TestCase):
         token = self.login_user(user)
         authorization = 'Bearer {token}'.format(token=token)
         response = self.client.delete(
-            reverse_ns('accounts.session'),
-            HTTP_AUTHORIZATION=authorization,
+            reverse_ns('accounts.session'), HTTP_AUTHORIZATION=authorization,
         )
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Allow-Credentials')
@@ -1692,8 +1736,7 @@ class TestSessionView(TestCase):
     def test_responds_to_cors_preflight_requests(self):
         origin = 'http://example.org'
         response = self.client.options(
-            reverse_ns('accounts.session'),
-            HTTP_ORIGIN=origin,
+            reverse_ns('accounts.session'), HTTP_ORIGIN=origin,
         )
         assert response['Content-Length'] == '0'
         assert response['Access-Control-Allow-Credentials'] == 'true'
@@ -1722,8 +1765,7 @@ class TestAccountNotificationViewSetList(TestCase):
     def setUp(self):
         self.user = user_factory()
         addon_factory(users=[self.user])  # Developers get all notifications.
-        self.url = reverse_ns('notification-list',
-                              kwargs={'user_pk': self.user.pk})
+        self.url = reverse_ns('notification-list', kwargs={'user_pk': self.user.pk})
         super(TestAccountNotificationViewSetList, self).setUp()
 
     def test_defaults_only(self):
@@ -1731,9 +1773,7 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 8
-        assert (
-            {'name': u'reply', 'enabled': True, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': True, 'mandatory': False} in response.data
 
     def test_defaults_non_dev(self):
         self.user.addons.all().delete()
@@ -1741,49 +1781,41 @@ class TestAccountNotificationViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 2
-        assert (
-            {'name': u'reply', 'enabled': True, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': True, 'mandatory': False} in response.data
 
     def test_user_set_notifications_included(self):
         reply_notification = NOTIFICATIONS_BY_ID[3]
         UserNotification.objects.create(
-            user=self.user, notification_id=reply_notification.id,
-            enabled=False)
+            user=self.user, notification_id=reply_notification.id, enabled=False
+        )
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 8
-        assert (
-            {'name': u'reply', 'enabled': False, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
 
     def test_user_set_notifications_included_non_dev(self):
         self.user.addons.all().delete()
         reply_notification = NOTIFICATIONS_BY_ID[3]
         UserNotification.objects.create(
-            user=self.user, notification_id=reply_notification.id,
-            enabled=False)
+            user=self.user, notification_id=reply_notification.id, enabled=False
+        )
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 2
-        assert (
-            {'name': u'reply', 'enabled': False, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
 
     def test_old_notifications_are_safely_ignored(self):
         UserNotification.objects.create(
-            user=self.user, notification_id=69,
-            enabled=True)
+            user=self.user, notification_id=69, enabled=True
+        )
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data) == 8
         # Check for any known notification, just to see the response looks okay
-        assert (
-            {'name': u'reply', 'enabled': True, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': True, 'mandatory': False} in response.data
 
     def test_basket_integration(self):
         self.client.login_api(self.user)
@@ -1792,15 +1824,19 @@ class TestAccountNotificationViewSetList(TestCase):
 
         with mock.patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['about-addons']}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': ['about-addons'],
+            }
 
             response = self.client.get(self.url)
 
         assert response.status_code == 200
-        assert (
-            {'name': u'announcements', 'enabled': True, 'mandatory': False} in
-            response.data)
+        assert {
+            'name': u'announcements',
+            'enabled': True,
+            'mandatory': False,
+        } in response.data
 
     def test_basket_integration_non_dev(self):
         self.user.addons.all().delete()
@@ -1815,16 +1851,19 @@ class TestAccountNotificationViewSetList(TestCase):
 
         assert response.status_code == 200
         # And the notification shoudn't be included either.
-        assert (
-            {'name': u'announcements', 'enabled': True, 'mandatory': False}
-            not in response.data)
+        assert {
+            'name': u'announcements',
+            'enabled': True,
+            'mandatory': False,
+        } not in response.data
 
     def test_basket_integration_ignore_db(self):
         # Add some old obsolete data in the database for a notification that
         # is handled by basket: it should be ignored.
         notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
         UserNotification.objects.create(
-            user=self.user, notification_id=notification_id, enabled=True)
+            user=self.user, notification_id=notification_id, enabled=True
+        )
 
         self.client.login_api(self.user)
         response = self.client.get(self.url)
@@ -1832,19 +1871,23 @@ class TestAccountNotificationViewSetList(TestCase):
 
         with mock.patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['garbage']}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': ['garbage'],
+            }
 
             response = self.client.get(self.url)
 
         assert response.status_code == 200
-        assert (
-            {'name': u'announcements', 'enabled': False, 'mandatory': False}
-            in response.data)
+        assert {
+            'name': u'announcements',
+            'enabled': False,
+            'mandatory': False,
+        } in response.data
         # Check our response only contains one announcements notification.
-        assert len(
-            [nfn for nfn in response.data
-             if nfn['name'] == u'announcements']) == 1
+        assert (
+            len([nfn for nfn in response.data if nfn['name'] == u'announcements']) == 1
+        )
 
     def test_no_auth_fails(self):
         response = self.client.get(self.url)
@@ -1880,64 +1923,64 @@ class TestAccountNotificationViewSetUpdate(TestCase):
     def setUp(self):
         self.user = user_factory()
         addon_factory(users=[self.user])  # Developers get all notifications.
-        self.url = reverse_ns('notification-list',
-                              kwargs={'user_pk': self.user.pk})
-        self.list_url = reverse_ns('notification-list',
-                                   kwargs={'user_pk': self.user.pk})
+        self.url = reverse_ns('notification-list', kwargs={'user_pk': self.user.pk})
+        self.list_url = reverse_ns(
+            'notification-list', kwargs={'user_pk': self.user.pk}
+        )
         super(TestAccountNotificationViewSetUpdate, self).setUp()
 
     def test_new_notification(self):
         reply_notification = NOTIFICATIONS_BY_ID[3]
         assert not UserNotification.objects.filter(
-            user=self.user, notification_id=reply_notification.id).exists()
+            user=self.user, notification_id=reply_notification.id
+        ).exists()
         self.client.login_api(self.user)
         # Check it's set to the default True beforehand.
-        assert (
-            {'name': u'reply', 'enabled': True, 'mandatory': False} in
-            self.client.get(self.list_url).data)
+        assert {
+            'name': u'reply',
+            'enabled': True,
+            'mandatory': False,
+        } in self.client.get(self.list_url).data
 
         response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
-        assert (
-            {'name': u'reply', 'enabled': False, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=self.user, notification_id=reply_notification.id)
+            user=self.user, notification_id=reply_notification.id
+        )
         assert not un_obj.enabled
 
     def test_updated_notification(self):
         reply_notification = NOTIFICATIONS_BY_ID[3]
         # Create the UserNotification object
         UserNotification.objects.create(
-            user=self.user, notification_id=reply_notification.id,
-            enabled=True)
+            user=self.user, notification_id=reply_notification.id, enabled=True
+        )
         self.client.login_api(self.user)
 
         response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
-        assert (
-            {'name': u'reply', 'enabled': False, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=self.user, notification_id=reply_notification.id)
+            user=self.user, notification_id=reply_notification.id
+        )
         assert not un_obj.enabled
 
     def test_set_mandatory_fail(self):
         contact_notification = NOTIFICATIONS_BY_ID[12]
         self.client.login_api(self.user)
-        response = self.client.post(self.url,
-                                    data={'individual_contact': False})
+        response = self.client.post(self.url, data={'individual_contact': False})
         assert response.status_code == 400
         # Attempt fails.
-        assert b'Attempting to set [individual_contact] to False.' in (
-            response.content)
+        assert b'Attempting to set [individual_contact] to False.' in (response.content)
         # And the notification hasn't been saved.
         assert not UserNotification.objects.filter(
-            user=self.user, notification_id=contact_notification.id).exists()
+            user=self.user, notification_id=contact_notification.id
+        ).exists()
 
     def test_no_auth_fails(self):
         response = self.client.post(self.url, data={'dev_thanks': False})
@@ -1958,53 +2001,60 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
-        assert (
-            {'name': u'reply', 'enabled': False, 'mandatory': False} in
-            response.data)
+        assert {'name': u'reply', 'enabled': False, 'mandatory': False} in response.data
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=original_user, notification_id=NOTIFICATIONS_BY_ID[3].id)
+            user=original_user, notification_id=NOTIFICATIONS_BY_ID[3].id
+        )
         assert not un_obj.enabled
 
     def test_basket_integration(self):
         self.client.login_api(self.user)
 
-        assert (
-            {'name': u'announcements', 'enabled': False, 'mandatory': False} in
-            self.client.get(self.list_url).data)
+        assert {
+            'name': u'announcements',
+            'enabled': False,
+            'mandatory': False,
+        } in self.client.get(self.list_url).data
 
         with mock.patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['announcements']}
-            self.client.post(
-                self.url,
-                data={'announcements': True})
+                'status': 'ok',
+                'token': '123',
+                'newsletters': ['announcements'],
+            }
+            self.client.post(self.url, data={'announcements': True})
 
         request_call.assert_called_with(
-            'post', 'subscribe',
+            'post',
+            'subscribe',
             data={
-                'newsletters': 'about-addons', 'sync': 'Y', 'optin': 'Y',
+                'newsletters': 'about-addons',
+                'sync': 'Y',
+                'optin': 'Y',
                 'source_url': (
                     'http://testserver/api/{api_version}/accounts/account/'
-                    '{id}/notifications/').format(
-                    id=self.user.id,
-                    api_version=api_settings.DEFAULT_VERSION),
-                'email': self.user.email},
-            headers={'x-api-key': 'testkey'})
+                    '{id}/notifications/'
+                ).format(id=self.user.id, api_version=api_settings.DEFAULT_VERSION),
+                'email': self.user.email,
+            },
+            headers={'x-api-key': 'testkey'},
+        )
 
         with mock.patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': []}
-            self.client.post(
-                self.url,
-                data={'announcements': False})
+                'status': 'ok',
+                'token': '123',
+                'newsletters': [],
+            }
+            self.client.post(self.url, data={'announcements': False})
 
         request_call.assert_called_with(
-            'post', 'unsubscribe',
+            'post',
+            'unsubscribe',
             data={'newsletters': 'about-addons', 'email': self.user.email},
-            token='123')
+            token='123',
+        )
 
 
 class TestAccountNotificationUnsubscribe(TestCase):
@@ -2018,28 +2068,27 @@ class TestAccountNotificationUnsubscribe(TestCase):
     def test_unsubscribe_user(self):
         notification_const = NOTIFICATIONS_COMBINED[0]
         UserNotification.objects.create(
-            user=self.user, notification_id=notification_const.id,
-            enabled=True)
+            user=self.user, notification_id=notification_const.id, enabled=True
+        )
         token, hash_ = UnsubscribeCode.create(self.user.email)
-        data = {
-            'token': token, 'hash': hash_,
-            'notification': notification_const.short}
+        data = {'token': token, 'hash': hash_, 'notification': notification_const.short}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 200, response.content
-        assert response.data == {
-            'name': u'reply', 'enabled': False, 'mandatory': False}
+        assert response.data == {'name': u'reply', 'enabled': False, 'mandatory': False}
         ntn = UserNotification.objects.get(
-            user=self.user, notification_id=notification_const.id)
+            user=self.user, notification_id=notification_const.id
+        )
         assert not ntn.enabled
 
         ntn.delete()
         assert not UserNotification.objects.filter(
-            user=self.user, notification_id=notification_const.id).exists()
+            user=self.user, notification_id=notification_const.id
+        ).exists()
         response = self.client.post(self.url, data=data)
         assert response.status_code == 200
         assert UserNotification.objects.filter(
-            user=self.user, notification_id=notification_const.id,
-            enabled=False).exists()
+            user=self.user, notification_id=notification_const.id, enabled=False
+        ).exists()
 
     def test_unsubscribe_dev_notification(self):
         # Even if the user if not currently a developer they should be able to
@@ -2049,50 +2098,45 @@ class TestAccountNotificationUnsubscribe(TestCase):
         notification_const = NOTIFICATIONS_BY_ID[7]
         assert notification_const.group == 'dev'
         assert not UserNotification.objects.filter(
-            user=self.user, notification_id=notification_const.id).exists()
+            user=self.user, notification_id=notification_const.id
+        ).exists()
 
         token, hash_ = UnsubscribeCode.create(self.user.email)
-        data = {
-            'token': token, 'hash': hash_,
-            'notification': notification_const.short}
+        data = {'token': token, 'hash': hash_, 'notification': notification_const.short}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 200, response.content
         assert response.data == {
-            'name': u'new_review', 'enabled': False, 'mandatory': False}
+            'name': u'new_review',
+            'enabled': False,
+            'mandatory': False,
+        }
         ntn = UserNotification.objects.get(
-            user=self.user, notification_id=notification_const.id)
+            user=self.user, notification_id=notification_const.id
+        )
         assert not ntn.enabled
 
     def test_unsubscribe_invalid_notification(self):
         token, hash_ = UnsubscribeCode.create(self.user.email)
-        data = {
-            'token': token, 'hash': hash_,
-            'notification': 'foobaa'}
+        data = {'token': token, 'hash': hash_, 'notification': 'foobaa'}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 400
         assert response.content == b'["Notification [foobaa] does not exist"]'
 
     def test_unsubscribe_invalid_token_or_hash(self):
         token, hash_ = UnsubscribeCode.create(self.user.email)
-        data = {
-            'token': token, 'hash': hash_ + u'a',
-            'notification': 'reply'}
+        data = {'token': token, 'hash': hash_ + u'a', 'notification': 'reply'}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 403
         assert response.data == {'detail': 'Invalid token or hash.'}
 
-        data = {
-            'token': b'a' + token, 'hash': hash_,
-            'notification': 'reply'}
+        data = {'token': b'a' + token, 'hash': hash_, 'notification': 'reply'}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 403
         assert response.data == {'detail': 'Invalid token or hash.'}
 
     def test_email_doesnt_exist(self):
         token, hash_ = UnsubscribeCode.create('email@not-an-amo-user.com')
-        data = {
-            'token': token, 'hash': hash_,
-            'notification': 'reply'}
+        data = {'token': token, 'hash': hash_, 'notification': 'reply'}
         response = self.client.post(self.url, data=data)
         assert response.status_code == 403
         assert response.data == {'detail': 'Email address not found.'}

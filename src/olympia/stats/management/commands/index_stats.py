@@ -38,10 +38,8 @@ def gather_index_stats_tasks(index, addons=None, dates=None):
     index/dates/addons.
     """
     queries = [
-        (UpdateCount.objects, index_update_counts,
-            {'date': 'date'}),
-        (DownloadCount.objects, index_download_counts,
-            {'date': 'date'}),
+        (UpdateCount.objects, index_update_counts, {'date': 'date'}),
+        (DownloadCount.objects, index_download_counts, {'date': 'date'}),
     ]
 
     jobs = []
@@ -60,18 +58,18 @@ def gather_index_stats_tasks(index, addons=None, dates=None):
 
         if dates:
             if ':' in dates:
-                qs = qs.filter(**{'%s__range' % date_field:
-                                  dates.split(':')})
+                qs = qs.filter(**{'%s__range' % date_field: dates.split(':')})
             else:
                 qs = qs.filter(**{date_field: dates})
 
         if not (dates or addons):
             # We're loading the whole world. Do it in stages so we get most
             # recent stats first and don't do huge queries.
-            limits = (qs.model.objects.filter(**{'%s__isnull' %
-                                                 date_field: False})
-                      .extra(where=['%s <> "0000-00-00"' % date_field])
-                      .aggregate(min=Min(date_field), max=Max(date_field)))
+            limits = (
+                qs.model.objects.filter(**{'%s__isnull' % date_field: False})
+                .extra(where=['%s <> "0000-00-00"' % date_field])
+                .aggregate(min=Min(date_field), max=Max(date_field))
+            )
             # If there isn't any data at all, skip over.
             if not (limits['max'] or limits['min']):
                 continue
@@ -79,17 +77,23 @@ def gather_index_stats_tasks(index, addons=None, dates=None):
             num_days = (limits['max'] - limits['min']).days
             for start in range(0, num_days, STEP):
                 stop = start + STEP - 1
-                date_range = (limits['max'] - timedelta(days=stop),
-                              limits['max'] - timedelta(days=start))
-                data = list(qs.filter(**{
-                    '%s__range' % date_field: date_range
-                }))
+                date_range = (
+                    limits['max'] - timedelta(days=stop),
+                    limits['max'] - timedelta(days=start),
+                )
+                data = list(qs.filter(**{'%s__range' % date_field: date_range}))
                 if data:
-                    jobs.append(create_chunked_tasks_signatures(
-                        task, data, CHUNK_SIZE, task_args=(index,)))
+                    jobs.append(
+                        create_chunked_tasks_signatures(
+                            task, data, CHUNK_SIZE, task_args=(index,)
+                        )
+                    )
         else:
-            jobs.append(create_chunked_tasks_signatures(
-                task, list(qs), CHUNK_SIZE, task_args=(index,)))
+            jobs.append(
+                create_chunked_tasks_signatures(
+                    task, list(qs), CHUNK_SIZE, task_args=(index,)
+                )
+            )
     return jobs
 
 
@@ -100,18 +104,18 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument(
             '--addons',
-            help='Add-on ids to process. Use commas to separate multiple ids.')
+            help='Add-on ids to process. Use commas to separate multiple ids.',
+        )
 
         parser.add_argument(
             '--date',
             help='The date or date range to process. Use the format '
-                 'YYYY-MM-DD for a single date or '
-                 'YYYY-MM-DD:YYYY-MM-DD to index a range of dates '
-                 '(inclusive).')
+            'YYYY-MM-DD for a single date or '
+            'YYYY-MM-DD:YYYY-MM-DD to index a range of dates '
+            '(inclusive).',
+        )
 
-        parser.add_argument(
-            '--index',
-            help='Optional index name to use.')
+        parser.add_argument('--index', help='Optional index name to use.')
 
     def handle(self, *args, **kw):
         addons, dates, index = kw['addons'], kw['date'], kw['index']

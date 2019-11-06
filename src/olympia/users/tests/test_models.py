@@ -25,9 +25,16 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, DisposableEmailDomainRestriction, generate_auth_id,
-    EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
-    IPReputationRestriction, UserEmailField, UserProfile)
+    DeniedName,
+    DisposableEmailDomainRestriction,
+    generate_auth_id,
+    EmailReputationRestriction,
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    IPReputationRestriction,
+    UserEmailField,
+    UserProfile,
+)
 from olympia.zadmin.models import set_config
 
 
@@ -115,7 +122,8 @@ class TestUserProfile(TestCase):
 
     @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
     def test_ban_and_disable_related_content(
-            self, delete_or_disable_related_content_mock):
+        self, delete_or_disable_related_content_mock
+    ):
         user = UserProfile.objects.get(pk=4043307)
         user.ban_and_disable_related_content()
         user.reload()
@@ -126,27 +134,26 @@ class TestUserProfile(TestCase):
         assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
 
         assert delete_or_disable_related_content_mock.call_count == 1
-        assert (
-            delete_or_disable_related_content_mock.call_args[1] ==
-            {'delete': False})
+        assert delete_or_disable_related_content_mock.call_args[1] == {'delete': False}
 
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):
-        user_sole = user_factory(email='sole@foo.baa', fxa_id='13579',
-                                 last_login_ip='127.0.0.1')
+        user_sole = user_factory(
+            email='sole@foo.baa', fxa_id='13579', last_login_ip='127.0.0.1'
+        )
         addon_sole = addon_factory(users=[user_sole])
         self.setup_user_to_be_have_content_disabled(user_sole)
-        user_multi = user_factory(email='multi@foo.baa', fxa_id='24680',
-                                  last_login_ip='127.0.0.2')
+        user_multi = user_factory(
+            email='multi@foo.baa', fxa_id='24680', last_login_ip='127.0.0.2'
+        )
         innocent_user = user_factory()
         addon_multi = addon_factory(
-            users=UserProfile.objects.filter(
-                id__in=[user_multi.id, innocent_user.id]))
+            users=UserProfile.objects.filter(id__in=[user_multi.id, innocent_user.id])
+        )
         self.setup_user_to_be_have_content_disabled(user_multi)
 
         # Now that everything is set up, disable/delete related content.
-        UserProfile.ban_and_disable_related_content_bulk(
-            [user_sole, user_multi])
+        UserProfile.ban_and_disable_related_content_bulk([user_sole, user_multi])
 
         addon_sole.reload()
         addon_multi.reload()
@@ -158,11 +165,17 @@ class TestUserProfile(TestCase):
         assert list(addon_multi.authors.all()) == [innocent_user]
 
         # the File objects have been disabled
-        assert not File.objects.filter(version__addon=addon_sole).exclude(
-            status=amo.STATUS_DISABLED).exists()
+        assert (
+            not File.objects.filter(version__addon=addon_sole)
+            .exclude(status=amo.STATUS_DISABLED)
+            .exists()
+        )
         # But not for the Add-on that wasn't disabled
-        assert File.objects.filter(version__addon=addon_multi).exclude(
-            status=amo.STATUS_DISABLED).exists()
+        assert (
+            File.objects.filter(version__addon=addon_multi)
+            .exclude(status=amo.STATUS_DISABLED)
+            .exists()
+        )
 
         assert not user_sole._ratings_all.exists()  # Even replies.
         assert not user_sole.collections.exists()
@@ -203,10 +216,11 @@ class TestUserProfile(TestCase):
 
         assert user.addons.count() == 1
         rating = Rating.objects.create(
-            user=user, addon=addon, version=addon.current_version)
+            user=user, addon=addon, version=addon.current_version
+        )
         Rating.objects.create(
-            user=user, addon=addon, version=addon.current_version,
-            reply_to=rating)
+            user=user, addon=addon, version=addon.current_version, reply_to=rating
+        )
         Collection.objects.create(author=user)
 
     @mock.patch.object(File, 'hide_disabled_file')
@@ -230,8 +244,7 @@ class TestUserProfile(TestCase):
 
         hide_disabled_mock.assert_called_once()
 
-    def test_delete_or_disable_related_content_exclude_addons_with_other_devs(
-            self):
+    def test_delete_or_disable_related_content_exclude_addons_with_other_devs(self):
         user = UserProfile.objects.get(pk=55021)
         addon = user.addons.last()
         self.setup_user_to_be_have_content_disabled(user)
@@ -265,10 +278,11 @@ class TestUserProfile(TestCase):
 
         assert user.addons.count() == 1
         rating = Rating.objects.create(
-            user=user, addon=addon, version=addon.current_version)
+            user=user, addon=addon, version=addon.current_version
+        )
         Rating.objects.create(
-            user=user, addon=addon, version=addon.current_version,
-            reply_to=rating)
+            user=user, addon=addon, version=addon.current_version, reply_to=rating
+        )
         Collection.objects.create(author=user)
 
         # Now that everything is set up, delete related content.
@@ -316,8 +330,7 @@ class TestUserProfile(TestCase):
 
     def test_welcome_name(self):
         u1 = UserProfile.objects.create(username='sc')
-        u2 = UserProfile.objects.create(
-            username='sc2', display_name="Sarah Connor")
+        u2 = UserProfile.objects.create(username='sc2', display_name="Sarah Connor")
         u3 = UserProfile.objects.create()
         assert u1.welcome_name == 'Firefox user %s' % u1.id
         assert u2.welcome_name == 'Sarah Connor'
@@ -325,7 +338,8 @@ class TestUserProfile(TestCase):
 
     def test_welcome_name_anonymous(self):
         user = UserProfile.objects.create(
-            username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0', id=1234)
+            username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0', id=1234
+        )
         assert user.welcome_name == 'Firefox user 1234'
 
     def test_welcome_name_anonymous_with_display(self):
@@ -348,8 +362,7 @@ class TestUserProfile(TestCase):
         assert user.has_anonymous_username
 
     def test_has_anonymous_username_both_names_set(self):
-        user = UserProfile.objects.create(
-            username='bob', display_name='Bob Bobbertson')
+        user = UserProfile.objects.create(username='bob', display_name='Bob Bobbertson')
         assert not user.has_anonymous_username
 
     def test_has_anonymous_display_name_no_names(self):
@@ -367,8 +380,7 @@ class TestUserProfile(TestCase):
         assert not user.has_anonymous_display_name
 
     def test_has_anonymous_display_name_both_names_set(self):
-        user = UserProfile.objects.create(
-            username='bob', display_name='Bob Bobbertson')
+        user = UserProfile.objects.create(username='bob', display_name='Bob Bobbertson')
         assert not user.has_anonymous_display_name
 
     def test_superuser(self):
@@ -391,7 +403,8 @@ class TestUserProfile(TestCase):
 
     def test_staff_only(self):
         group = Group.objects.create(
-            name='Admins of Something', rules='Admin:Something')
+            name='Admins of Something', rules='Admin:Something'
+        )
         user = UserProfile.objects.get(username='jbalogh')
         assert not user.is_staff
         assert not user.is_superuser
@@ -414,17 +427,16 @@ class TestUserProfile(TestCase):
         Test for a preview URL if image is set, or default image otherwise.
         """
         u = UserProfile.objects.create(
-            id=1234, picture_type='image/png', modified=date.today(),
-            username='a')
+            id=1234, picture_type='image/png', modified=date.today(), username='a'
+        )
         u.picture_url.index('/userpics/0/1/1234.png?modified=')
 
         u = UserProfile.objects.create(
-            id=1234567890, picture_type='image/png', modified=date.today(),
-            username='b')
+            id=1234567890, picture_type='image/png', modified=date.today(), username='b'
+        )
         u.picture_url.index('/userpics/1234/1234567/1234567890.png?modified=')
 
-        u = UserProfile.objects.create(
-            id=123456, picture_type=None, username='c')
+        u = UserProfile.objects.create(id=123456, picture_type=None, username='c')
         assert u.picture_url.endswith('/anon_user.png')
 
     def test_review_replies(self):
@@ -435,20 +447,28 @@ class TestUserProfile(TestCase):
         addon = Addon.objects.get(id=3615)
         user = UserProfile.objects.get(pk=2519)
         version = addon.find_latest_public_listed_version()
-        new_rating = Rating(version=version, user=user, rating=2, body='hello',
-                            addon=addon)
+        new_rating = Rating(
+            version=version, user=user, rating=2, body='hello', addon=addon
+        )
         new_rating.save()
-        new_reply = Rating(version=version, user=user, reply_to=new_rating,
-                           addon=addon, body='my reply')
+        new_reply = Rating(
+            version=version,
+            user=user,
+            reply_to=new_rating,
+            addon=addon,
+            body='my reply',
+        )
         new_reply.save()
 
         review_list = [rating.pk for rating in user.ratings]
 
         assert len(review_list) == 1
-        assert new_rating.pk in review_list, (
-            'Original review must show up in ratings list.')
-        assert new_reply.pk not in review_list, (
-            'Developer reply must not show up in ratings list.')
+        assert (
+            new_rating.pk in review_list
+        ), 'Original review must show up in ratings list.'
+        assert (
+            new_reply.pk not in review_list
+        ), 'Developer reply must not show up in ratings list.'
 
     def test_num_addons_listed(self):
         """Test that num_addons_listed is only considering add-ons for which
@@ -476,8 +496,7 @@ class TestUserProfile(TestCase):
         addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
         addons = UserProfile.objects.get(id=2519).my_addons()
-        assert sorted(str(a.name) for a in addons) == [
-            addon1.name, addon2.name]
+        assert sorted(str(a.name) for a in addons) == [addon1.name, addon2.name]
 
     def test_mobile_collection(self):
         u = UserProfile.objects.get(id='4043307')
@@ -497,9 +516,11 @@ class TestUserProfile(TestCase):
 
     def test_get_url_path(self):
         assert UserProfile.objects.create(id=1).get_url_path() == (
-            '/en-US/firefox/user/1/')
-        assert UserProfile.objects.create(
-            username='yolo', id=2).get_url_path() == ('/en-US/firefox/user/2/')
+            '/en-US/firefox/user/1/'
+        )
+        assert UserProfile.objects.create(username='yolo', id=2).get_url_path() == (
+            '/en-US/firefox/user/2/'
+        )
 
     def test_mobile_addons(self):
         user = UserProfile.objects.get(id='4043307')
@@ -548,13 +569,12 @@ class TestUserProfile(TestCase):
 
     def test_has_read_developer_agreement(self):
         set_config('last_dev_agreement_change_date', '2019-06-12 00:00')
-        after_change = (
-            datetime(2019, 6, 12) + timedelta(days=1))
-        before_change = (
-            datetime(2019, 6, 12) - timedelta(days=42))
+        after_change = datetime(2019, 6, 12) + timedelta(days=1)
+        before_change = datetime(2019, 6, 12) - timedelta(days=42)
 
         assert not UserProfile.objects.create(
-            username='a').has_read_developer_agreement()
+            username='a'
+        ).has_read_developer_agreement()
         assert not UserProfile.objects.create(
             username='b', read_dev_agreement=None
         ).has_read_developer_agreement()
@@ -603,39 +623,38 @@ class TestUserProfile(TestCase):
         assert not user.reload().is_public
 
     @mock.patch('olympia.amo.tasks.sync_object_to_basket')
-    def test_user_field_changes_not_synced_to_basket(
-            self, sync_object_to_basket_mock):
+    def test_user_field_changes_not_synced_to_basket(self, sync_object_to_basket_mock):
         user = UserProfile.objects.get(id=4043307)
         # Note that basket_token is for newsletters, and is irrelevant here.
         user.update(
-            basket_token='FOO', fxa_id='BAR', is_public=True,
-            read_dev_agreement=self.days_ago(42), notes='Blah',
-            biography='Something', auth_id=12345)
+            basket_token='FOO',
+            fxa_id='BAR',
+            is_public=True,
+            read_dev_agreement=self.days_ago(42),
+            notes='Blah',
+            biography='Something',
+            auth_id=12345,
+        )
         assert sync_object_to_basket_mock.delay.call_count == 0
 
     @mock.patch('olympia.amo.tasks.sync_object_to_basket')
-    def test_user_field_changes_synced_to_basket(
-            self, sync_object_to_basket_mock):
+    def test_user_field_changes_synced_to_basket(self, sync_object_to_basket_mock):
         user = UserProfile.objects.get(id=4043307)
         user.update(last_login=self.days_ago(0))
         assert sync_object_to_basket_mock.delay.call_count == 1
-        assert sync_object_to_basket_mock.delay.called_with(
-            'userprofile', 4043307)
+        assert sync_object_to_basket_mock.delay.called_with('userprofile', 4043307)
 
         sync_object_to_basket_mock.reset_mock()
         user.update(display_name='Fôoo')
         assert sync_object_to_basket_mock.delay.call_count == 1
-        assert sync_object_to_basket_mock.delay.called_with(
-            'userprofile', 4043307)
+        assert sync_object_to_basket_mock.delay.called_with('userprofile', 4043307)
 
     @mock.patch('olympia.amo.tasks.sync_object_to_basket')
-    def test_user_deletion_synced_to_basket(
-            self, sync_object_to_basket_mock):
+    def test_user_deletion_synced_to_basket(self, sync_object_to_basket_mock):
         user = UserProfile.objects.get(id=4043307)
         user.delete()
         assert sync_object_to_basket_mock.delay.call_count == 1
-        assert sync_object_to_basket_mock.delay.called_with(
-            'userprofile', 4043307)
+        assert sync_object_to_basket_mock.delay.called_with('userprofile', 4043307)
 
 
 class TestDeniedName(TestCase):
@@ -697,13 +716,15 @@ class TestIPNetworkUserRestriction(TestCase):
         with pytest.raises(forms.ValidationError) as exc_info:
             IPNetworkUserRestriction(network='127.0.0.1/1218').full_clean()
         assert exc_info.value.messages[0] == (
-            "'127.0.0.1/1218' does not appear to be an IPv4 or IPv6 network")
+            "'127.0.0.1/1218' does not appear to be an IPv4 or IPv6 network"
+        )
 
     def test_ip6_address_validated(self):
         with pytest.raises(forms.ValidationError) as exc_info:
             IPNetworkUserRestriction(network='::1/1218').full_clean()
         assert exc_info.value.messages[0] == (
-            "'::1/1218' does not appear to be an IPv4 or IPv6 network")
+            "'::1/1218' does not appear to be an IPv4 or IPv6 network"
+        )
 
     def test_blocked_user_login_ip(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.8').get('/')
@@ -785,8 +806,7 @@ class TestEmailUserRestriction(TestCase):
         assert EmailUserRestriction.allow_email(request.user.email)
 
     def test_blocked_subdomain_but_allow_parent(self):
-        EmailUserRestriction.objects.create(
-            email_pattern='*.mail.com')
+        EmailUserRestriction.objects.create(email_pattern='*.mail.com')
 
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.mail.com')
@@ -807,7 +827,8 @@ class TestEmailUserRestriction(TestCase):
 @override_settings(
     REPUTATION_SERVICE_URL='https://reputation.example.com',
     REPUTATION_SERVICE_TOKEN='fancy_token',
-    REPUTATION_SERVICE_TIMEOUT=1.0)
+    REPUTATION_SERVICE_TIMEOUT=1.0,
+)
 class TestIPReputationRestriction(TestCase):
     expected_url = 'https://reputation.example.com/type/ip/192.168.0.1'
     restriction_class = IPReputationRestriction
@@ -849,9 +870,11 @@ class TestIPReputationRestriction(TestCase):
 
     def test_allowed_reputation_threshold(self):
         responses.add(
-            responses.GET, self.expected_url,
+            responses.GET,
+            self.expected_url,
             content_type='application/json',
-            json={'reputation': 100})
+            json={'reputation': 100},
+        )
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
@@ -863,9 +886,11 @@ class TestIPReputationRestriction(TestCase):
 
     def test_blocked_reputation_threshold(self):
         responses.add(
-            responses.GET, self.expected_url,
+            responses.GET,
+            self.expected_url,
             content_type='application/json',
-            json={'reputation': 45})
+            json={'reputation': 45},
+        )
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
@@ -877,9 +902,11 @@ class TestIPReputationRestriction(TestCase):
 
     def test_allowed_valueerror(self):
         responses.add(
-            responses.GET, self.expected_url,
+            responses.GET,
+            self.expected_url,
             content_type='application/json',
-            body='garbage')
+            body='garbage',
+        )
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
@@ -891,9 +918,11 @@ class TestIPReputationRestriction(TestCase):
 
     def test_allowed_valueerror_but_valid_json(self):
         responses.add(
-            responses.GET, self.expected_url,
+            responses.GET,
+            self.expected_url,
             content_type='application/json',
-            json={'reputation': 'garbage'})
+            json={'reputation': 'garbage'},
+        )
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
@@ -905,9 +934,11 @@ class TestIPReputationRestriction(TestCase):
 
     def test_allowed_keyerror(self):
         responses.add(
-            responses.GET, self.expected_url,
+            responses.GET,
+            self.expected_url,
             content_type='application/json',
-            json={'no_reputation_oh_noes': 'garbage'})
+            json={'no_reputation_oh_noes': 'garbage'},
+        )
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='foo@bar.com')
 
@@ -924,9 +955,11 @@ class TestEmailReputationRestriction(TestIPReputationRestriction):
 
     def test_blocked_reputation_threshold_email_variant(self):
         responses.add(
-            responses.GET, self.expected_url,
+            responses.GET,
+            self.expected_url,
             content_type='application/json',
-            json={'reputation': 45})
+            json={'reputation': 45},
+        )
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = UserProfile(email='f.oo+something@bar.com')
 
@@ -943,19 +976,18 @@ class TestUserEmailField(TestCase):
 
     def test_success(self):
         user = UserProfile.objects.get(pk=2519)
-        assert UserEmailField(
-            queryset=UserProfile.objects.all()).clean(user.email) == user
+        assert (
+            UserEmailField(queryset=UserProfile.objects.all()).clean(user.email) == user
+        )
 
     def test_failure(self):
         with pytest.raises(forms.ValidationError):
-            UserEmailField(
-                queryset=UserProfile.objects.all()).clean('xxx')
+            UserEmailField(queryset=UserProfile.objects.all()).clean('xxx')
 
     def test_empty_email(self):
         UserProfile.objects.create(email='')
         with pytest.raises(forms.ValidationError) as exc_info:
-            UserEmailField(
-                queryset=UserProfile.objects.all()).clean('')
+            UserEmailField(queryset=UserProfile.objects.all()).clean('')
 
         assert exc_info.value.messages[0] == 'This field is required.'
 
@@ -967,6 +999,7 @@ class TestOnChangeName(TestCase):
         # We're in a regular TestCase class so index_addons should have been
         # mocked.
         from olympia.addons.tasks import index_addons
+
         self.index_addons_mock = index_addons
 
     def test_changes_display_name_not_a_listed_author(self):
@@ -1013,11 +1046,11 @@ def find_users(email):
     users and in their history.
     """
     return UserProfile.objects.filter(
-        models.Q(email=email) | models.Q(history__email=email)).distinct()
+        models.Q(email=email) | models.Q(history__email=email)
+    ).distinct()
 
 
 class TestUserHistory(TestCase):
-
     def test_user_history(self):
         user = UserProfile.objects.create(email='foo@bar.com')
         assert user.history.count() == 0
@@ -1037,26 +1070,21 @@ class TestUserHistory(TestCase):
         assert [user] == list(find_users('dark@sith.com'))
 
     def test_user_find_multiple(self):
-        user_1 = UserProfile.objects.create(username='user_1',
-                                            email='luke@jedi.com')
+        user_1 = UserProfile.objects.create(username='user_1', email='luke@jedi.com')
         user_1.update(email='dark@sith.com')
-        user_2 = UserProfile.objects.create(username='user_2',
-                                            email='luke@jedi.com')
+        user_2 = UserProfile.objects.create(username='user_2', email='luke@jedi.com')
         assert [user_1, user_2] == list(find_users('luke@jedi.com'))
 
 
 class TestUserManager(TestCase):
-    fixtures = ('users/test_backends', )
+    fixtures = ('users/test_backends',)
 
     def test_create_user(self):
         user = UserProfile.objects.create_user("test", "test@test.com", 'xxx')
         assert user.pk is not None
 
     def test_create_superuser(self):
-        user = UserProfile.objects.create_superuser(
-            "test",
-            "test@test.com",
-        )
+        user = UserProfile.objects.create_superuser("test", "test@test.com",)
         assert user.pk is not None
         Group.objects.get(name="Admins") in user.groups.all()
         assert user.is_staff

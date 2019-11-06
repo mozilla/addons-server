@@ -16,8 +16,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.indexers import get_mappings as get_addons_mappings
 from olympia.addons.models import Addon
 from olympia.amo import messages, search
-from olympia.amo.decorators import (
-    json_view, permission_required, post_required)
+from olympia.amo.decorators import json_view, permission_required, post_required
 from olympia.amo.mail import DevEmailBackend
 from olympia.amo.utils import HttpResponseXSendFile, render
 from olympia.bandwagon.models import Collection
@@ -26,8 +25,7 @@ from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.versions.models import Version
 
 from .decorators import admin_required
-from .forms import (
-    AddonStatusForm, FeaturedCollectionFormSet, FileFormSet)
+from .forms import AddonStatusForm, FeaturedCollectionFormSet, FileFormSet
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -36,8 +34,11 @@ log = olympia.core.logger.getLogger('z.zadmin')
 @admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
-    return render(request, 'zadmin/settings.html',
-                  {'settings_dict': settings_dict, 'title': 'Settings!'})
+    return render(
+        request,
+        'zadmin/settings.html',
+        {'settings_dict': settings_dict, 'title': 'Settings!'},
+    )
 
 
 @admin_required
@@ -45,8 +46,9 @@ def env(request):
     env = {}
     for k in request.META.keys():
         env[k] = debug.cleanse_setting(k, request.META[k])
-    return render(request, 'zadmin/settings.html',
-                  {'settings_dict': env, 'title': 'Env!'})
+    return render(
+        request, 'zadmin/settings.html', {'settings_dict': env, 'title': 'Env!'}
+    )
 
 
 @admin.site.admin_view
@@ -58,8 +60,11 @@ def fix_disabled_file(request):
             file_.unhide_disabled_file()
             messages.success(request, 'We have done a great thing.')
             return redirect('zadmin.fix-disabled')
-    return render(request, 'zadmin/fix-disabled.html',
-                  {'file': file_, 'file_id': request.POST.get('file', '')})
+    return render(
+        request,
+        'zadmin/fix-disabled.html',
+        {'file': file_, 'file_id': request.POST.get('file', '')},
+    )
 
 
 @admin_required
@@ -80,10 +85,14 @@ def collections_json(request):
     except ValueError:
         pass
     for c in qs[:7]:
-        data.append({'id': c.id,
-                     'name': str(c.name),
-                     'slug': str(c.slug),
-                     'url': c.get_url_path()})
+        data.append(
+            {
+                'id': c.id,
+                'name': str(c.name),
+                'slug': str(c.slug),
+                'url': c.get_url_path(),
+            }
+        )
     return data
 
 
@@ -95,8 +104,7 @@ def featured_collection(request):
     except ValueError:
         pk = 0
     c = get_object_or_404(Collection, pk=pk)
-    return render(request, 'zadmin/featured_collection.html',
-                  dict(collection=c))
+    return render(request, 'zadmin/featured_collection.html', dict(collection=c))
 
 
 @admin_required
@@ -180,11 +188,24 @@ def general_search(request, app_id, model_id):
     # This is a hideous api, but uses the builtin admin search_fields API.
     # Expecting this to get replaced by ES so soon, that I'm not going to lose
     # too much sleep about it.
-    args = [request, obj.model, [], [], [], [], obj.search_fields, [],
-            obj.list_max_show_all, limit, [], obj]
+    args = [
+        request,
+        obj.model,
+        [],
+        [],
+        [],
+        [],
+        obj.search_fields,
+        [],
+        obj.list_max_show_all,
+        limit,
+        [],
+        obj,
+    ]
     try:
         # python3.2+ only
         from inspect import signature
+
         if 'sortable_by' in signature(ChangeList.__init__).parameters:
             args.append('None')  # sortable_by is a django2.1+ addition
     except ImportError:
@@ -194,16 +215,17 @@ def general_search(request, app_id, model_id):
     # Override search_fields_response on the ModelAdmin object
     # if you'd like to pass something else back to the front end.
     lookup = getattr(obj, 'search_fields_response', None)
-    return [{'value': o.pk, 'label': getattr(o, lookup) if lookup else str(o)}
-            for o in qs[:limit]]
+    return [
+        {'value': o.pk, 'label': getattr(o, lookup) if lookup else str(o)}
+        for o in qs[:limit]
+    ]
 
 
 @admin_required
 @addon_view_factory(qs=Addon.objects.all)
 def addon_manage(request, addon):
     form = AddonStatusForm(request.POST or None, instance=addon)
-    pager = amo.utils.paginate(
-        request, Version.unfiltered.filter(addon=addon), 30)
+    pager = amo.utils.paginate(request, Version.unfiltered.filter(addon=addon), 30)
     # A list coercion so this doesn't result in a subquery with a LIMIT which
     # MySQL doesn't support (at this time).
     versions = list(pager.object_list)
@@ -212,16 +234,21 @@ def addon_manage(request, addon):
 
     if form.is_valid() and formset.is_valid():
         if 'status' in form.changed_data:
-            ActivityLog.create(amo.LOG.CHANGE_STATUS, addon,
-                               form.cleaned_data['status'])
-            log.info('Addon "%s" status changed to: %s' % (
-                addon.slug, form.cleaned_data['status']))
+            ActivityLog.create(
+                amo.LOG.CHANGE_STATUS, addon, form.cleaned_data['status']
+            )
+            log.info(
+                'Addon "%s" status changed to: %s'
+                % (addon.slug, form.cleaned_data['status'])
+            )
             form.save()
 
         for form in formset:
             if 'status' in form.changed_data:
-                log.info('Addon "%s" file (ID:%d) status changed to: %s' % (
-                    addon.slug, form.instance.id, form.cleaned_data['status']))
+                log.info(
+                    'Addon "%s" file (ID:%d) status changed to: %s'
+                    % (addon.slug, form.instance.id, form.cleaned_data['status'])
+                )
                 form.save()
         return redirect('zadmin.addon_manage', addon.slug)
 
@@ -232,17 +259,28 @@ def addon_manage(request, addon):
     for file in files:
         file_map.setdefault(file.version_id, []).append(file)
 
-    return render(request, 'zadmin/addon_manage.html', {
-        'addon': addon, 'pager': pager, 'versions': versions, 'form': form,
-        'formset': formset, 'form_map': form_map, 'file_map': file_map})
+    return render(
+        request,
+        'zadmin/addon_manage.html',
+        {
+            'addon': addon,
+            'pager': pager,
+            'versions': versions,
+            'form': form,
+            'formset': formset,
+            'form_map': form_map,
+            'file_map': file_map,
+        },
+    )
 
 
 @admin_required
 def download_file_upload(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
 
-    return HttpResponseXSendFile(request, upload.path,
-                                 content_type='application/octet-stream')
+    return HttpResponseXSendFile(
+        request, upload.path, content_type='application/octet-stream'
+    )
 
 
 @admin.site.admin_view
@@ -256,6 +294,5 @@ def recalc_hash(request, file_id):
     file.save()
 
     log.info('Recalculated hash for file ID %d' % file.id)
-    messages.success(request,
-                     'File hash and size recalculated for file %d.' % file.id)
+    messages.success(request, 'File hash and size recalculated for file %d.' % file.id)
     return {'success': 1}

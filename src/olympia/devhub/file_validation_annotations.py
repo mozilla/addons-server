@@ -8,20 +8,29 @@ from olympia import amo
 from olympia.files.utils import RDFExtractor, SafeZip, get_file
 
 
-def insert_validation_message(results, type_='error', message='', msg_id='',
-                              compatibility_type=None, description=None):
+def insert_validation_message(
+    results,
+    type_='error',
+    message='',
+    msg_id='',
+    compatibility_type=None,
+    description=None,
+):
 
     if description is None:
         description = []
 
-    results['messages'].insert(0, {
-        'tier': 1,
-        'type': type_,
-        'id': ['validation', 'messages', msg_id],
-        'message': message,
-        'description': description,
-        'compatibility_type': compatibility_type,
-    })
+    results['messages'].insert(
+        0,
+        {
+            'tier': 1,
+            'type': type_,
+            'id': ['validation', 'messages', msg_id],
+            'message': message,
+            'description': description,
+            'compatibility_type': compatibility_type,
+        },
+    )
     # Need to increment 'errors' or 'warnings' count, so add an extra 's' after
     # the type_ to increment the right entry.
     results['{}s'.format(type_)] += 1
@@ -36,13 +45,13 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     # We can be broad here. Search plugins are not validated through this
     # path and as of right now (Jan 2019) there aren't any legacy type
     # add-ons allowed to submit anymore.
-    msg = ugettext(
-        u'Legacy extensions are no longer supported in Firefox.')
+    msg = ugettext(u'Legacy extensions are no longer supported in Firefox.')
 
     description = ugettext(
         u'Add-ons for Thunderbird and SeaMonkey are now listed and '
         u'maintained on addons.thunderbird.net. You can use the same '
-        u'account to update your add-ons on the new site.')
+        u'account to update your add-ons on the new site.'
+    )
 
     # `parsed_data` only contains the most minimal amount of data because
     # we aren't in the right context. Let's explicitly fetch the add-ons
@@ -60,9 +69,12 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     description = description if targets_thunderbird_or_seamonkey else []
 
     insert_validation_message(
-        results, type_='error' if error else 'warning',
-        message=msg, description=description,
-        msg_id='legacy_addons_unsupported')
+        results,
+        type_='error' if error else 'warning',
+        message=msg,
+        description=description,
+        msg_id='legacy_addons_unsupported',
+    )
 
 
 def annotate_search_plugin_validation(results, file_path, channel):
@@ -79,8 +91,9 @@ def annotate_search_plugin_validation(results, file_path, channel):
             message='OpenSearch: XML Security error.',
             description=[
                 'The OpenSearch extension could not be parsed due to a '
-                'security error in the XML. See {} for more info.'
-                .format(url)])
+                'security error in the XML. See {} for more info.'.format(url)
+            ],
+        )
         return
     except ExpatError:
         insert_validation_message(
@@ -88,7 +101,9 @@ def annotate_search_plugin_validation(results, file_path, channel):
             message='OpenSearch: XML Parse Error.',
             description=[
                 'The OpenSearch extension could not be parsed due to a syntax '
-                'error in the XML.'])
+                'error in the XML.'
+            ],
+        )
         return
 
     # Make sure that the root element is OpenSearchDescription.
@@ -98,7 +113,9 @@ def annotate_search_plugin_validation(results, file_path, channel):
             message='OpenSearch: Invalid Document Root.',
             description=[
                 'The root element of the OpenSearch provider is not '
-                '"OpenSearchDescription".'])
+                '"OpenSearchDescription".'
+            ],
+        )
 
     # Per bug 617822
     if not dom.documentElement.hasAttribute('xmlns'):
@@ -107,18 +124,23 @@ def annotate_search_plugin_validation(results, file_path, channel):
             message='OpenSearch: Missing XMLNS attribute.',
             description=[
                 'The XML namespace attribute is missing from the '
-                'OpenSearch document.'])
+                'OpenSearch document.'
+            ],
+        )
 
-    if ('xmlns' not in dom.documentElement.attributes.keys() or
-        dom.documentElement.attributes['xmlns'].value not in (
-            'http://a9.com/-/spec/opensearch/1.0/',
-            'http://a9.com/-/spec/opensearch/1.1/',
-            'http://a9.com/-/spec/opensearchdescription/1.1/',
-            'http://a9.com/-/spec/opensearchdescription/1.0/')):
+    if 'xmlns' not in dom.documentElement.attributes.keys() or dom.documentElement.attributes[
+        'xmlns'
+    ].value not in (
+        'http://a9.com/-/spec/opensearch/1.0/',
+        'http://a9.com/-/spec/opensearch/1.1/',
+        'http://a9.com/-/spec/opensearchdescription/1.1/',
+        'http://a9.com/-/spec/opensearchdescription/1.0/',
+    ):
         insert_validation_message(
             results,
             message='OpenSearch: Bad XMLNS attribute.',
-            description=['The XML namespace attribute contains an value.'])
+            description=['The XML namespace attribute contains an value.'],
+        )
 
     # Make sure that there is exactly one ShortName.
     sn = dom.documentElement.getElementsByTagName('ShortName')
@@ -127,15 +149,16 @@ def annotate_search_plugin_validation(results, file_path, channel):
             results,
             message='OpenSearch: Missing <ShortName> elements.',
             description=[
-                'ShortName elements are mandatory OpenSearch provider '
-                'elements.'])
+                'ShortName elements are mandatory OpenSearch provider ' 'elements.'
+            ],
+        )
     elif len(sn) > 1:
         insert_validation_message(
             results,
             message='OpenSearch: Too many <ShortName> elements.',
             description=[
                 'Too many ShortName elements exist in the OpenSearch provider.'
-            ]
+            ],
         )
     else:
         sn_children = sn[0].childNodes
@@ -149,7 +172,9 @@ def annotate_search_plugin_validation(results, file_path, channel):
                 message='OpenSearch: <ShortName> element too long.',
                 description=[
                     'The ShortName element must contains less than seventeen '
-                    'characters.'])
+                    'characters.'
+                ],
+            )
 
     # Make sure that there is exactly one Description.
     if len(dom.documentElement.getElementsByTagName('Description')) != 1:
@@ -158,7 +183,9 @@ def annotate_search_plugin_validation(results, file_path, channel):
             message='OpenSearch: Invalid number of <Description> elements.',
             description=[
                 'There are too many or too few Description elements '
-                'in the OpenSearch provider.'])
+                'in the OpenSearch provider.'
+            ],
+        )
 
     # Grab the URLs and make sure that there is at least one.
     urls = dom.documentElement.getElementsByTagName('Url')
@@ -166,12 +193,13 @@ def annotate_search_plugin_validation(results, file_path, channel):
         insert_validation_message(
             results,
             message='OpenSearch: Missing <Url> elements.',
-            description=['The OpenSearch provider is missing a Url element.'])
+            description=['The OpenSearch provider is missing a Url element.'],
+        )
 
-    ref_self_disallowed = (
-        channel == amo.RELEASE_CHANNEL_LISTED and
-        any(url.hasAttribute('rel') and url.attributes['rel'].value == 'self'
-            for url in urls))
+    ref_self_disallowed = channel == amo.RELEASE_CHANNEL_LISTED and any(
+        url.hasAttribute('rel') and url.attributes['rel'].value == 'self'
+        for url in urls
+    )
 
     if ref_self_disallowed:
         insert_validation_message(
@@ -181,59 +209,68 @@ def annotate_search_plugin_validation(results, file_path, channel):
                 'Per AMO guidelines, OpenSearch providers cannot '
                 "contain <Url /> elements with a 'rel' attribute "
                 "pointing to the URL's current location. It must be "
-                'removed before posting this provider to AMO.'])
+                'removed before posting this provider to AMO.'
+            ],
+        )
 
     acceptable_mimes = ('text/html', 'application/xhtml+xml')
     acceptable_urls = [
-        u for u in urls if u.hasAttribute('type') and
-        u.attributes['type'].value in acceptable_mimes]
+        u
+        for u in urls
+        if u.hasAttribute('type') and u.attributes['type'].value in acceptable_mimes
+    ]
 
     # At least one Url must be text/html
     if not acceptable_urls:
         insert_validation_message(
             results,
-            message=(
-                'OpenSearch: Missing <Url> element with \'text/html\' type.'),
+            message=('OpenSearch: Missing <Url> element with \'text/html\' type.'),
             description=[
                 'OpenSearch providers must have at least one Url '
-                'element with a type attribute set to \'text/html\'.'])
+                'element with a type attribute set to \'text/html\'.'
+            ],
+        )
 
     # Make sure that each Url has the require attributes.
     for url in acceptable_urls:
         if url.hasAttribute('rel') and url.attributes['rel'].value == 'self':
             continue
 
-        if url.hasAttribute('method') and \
-           url.attributes['method'].value.upper() not in ('GET', 'POST'):
+        if url.hasAttribute('method') and url.attributes[
+            'method'
+        ].value.upper() not in ('GET', 'POST'):
             insert_validation_message(
                 results,
                 message='OpenSearch: <Url> element with invalid \'method\'.',
                 description=[
                     'A Url element in the OpenSearch provider lists a '
                     'method attribute, but the value is not GET or '
-                    'POST.'])
+                    'POST.'
+                ],
+            )
 
         # Test for attribute presence.
         if not url.hasAttribute('template'):
             insert_validation_message(
                 results,
-                message=(
-                    'OpenSearch: <Url> element missing template attribute.'),
+                message=('OpenSearch: <Url> element missing template attribute.'),
                 description=[
                     '<Url> elements of OpenSearch providers must '
-                    'include a template attribute.'])
+                    'include a template attribute.'
+                ],
+            )
         else:
             url_template = url.attributes['template'].value
             if url_template[:4] != 'http':
                 insert_validation_message(
                     results,
-                    message=(
-                        'OpenSearch: `<Url>` element with invalid `template`.'
-                    ),
+                    message=('OpenSearch: `<Url>` element with invalid `template`.'),
                     description=[
                         'A `<Url>` element in the OpenSearch '
                         'provider lists a template attribute, but '
-                        'the value is not a valid HTTP URL.'])
+                        'the value is not a valid HTTP URL.'
+                    ],
+                )
 
             # Make sure that there is a {searchTerms} placeholder in the
             # URL template.
@@ -246,21 +283,25 @@ def annotate_search_plugin_validation(results, file_path, channel):
                     # As long as we're in here and dependent on the
                     # attributes, we'd might as well validate them.
                     attribute_keys = param.attributes.keys()
-                    if 'name' not in attribute_keys or \
-                       'value' not in attribute_keys:
+                    if 'name' not in attribute_keys or 'value' not in attribute_keys:
                         insert_validation_message(
                             results,
                             message=(
                                 'OpenSearch: `<Param>` element missing '
-                                '\'name/value\'.'),
+                                '\'name/value\'.'
+                            ),
                             description=[
                                 'Param elements in the OpenSearch '
                                 'provider must include a name and a '
-                                'value attribute.'])
+                                'value attribute.'
+                            ],
+                        )
 
                     param_value = (
-                        param.attributes['value'].value if
-                        'value' in param.attributes.keys() else '')
+                        param.attributes['value'].value
+                        if 'value' in param.attributes.keys()
+                        else ''
+                    )
 
                     if param_value.count('{searchTerms}'):
                         found_template = True
@@ -271,13 +312,15 @@ def annotate_search_plugin_validation(results, file_path, channel):
                 insert_validation_message(
                     results,
                     message=(
-                        'OpenSearch: <Url> element missing template '
-                        'placeholder.'),
+                        'OpenSearch: <Url> element missing template ' 'placeholder.'
+                    ),
                     description=[
                         '`<Url>` elements of OpenSearch providers '
                         'must include a template attribute or specify a '
                         'placeholder with `{searchTerms}`.',
-                        'Missing template: %s' % tpl])
+                        'Missing template: %s' % tpl,
+                    ],
+                )
 
     # Make sure there are no updateURL elements
     if dom.getElementsByTagName('updateURL'):
@@ -285,6 +328,7 @@ def annotate_search_plugin_validation(results, file_path, channel):
             results,
             message=(
                 'OpenSearch: <updateURL> elements are banned in OpenSearch '
-                'providers.'),
-            description=[
-                'OpenSearch providers may not contain <updateURL> elements.'])
+                'providers.'
+            ),
+            description=['OpenSearch providers may not contain <updateURL> elements.'],
+        )

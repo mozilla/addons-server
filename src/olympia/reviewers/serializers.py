@@ -20,7 +20,10 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
-    VersionSerializer, FileSerializer, SimpleAddonSerializer)
+    VersionSerializer,
+    FileSerializer,
+    SimpleAddonSerializer,
+)
 from olympia.addons.models import AddonReviewerFlags
 from olympia.api.fields import SplitField
 from olympia.users.models import UserProfile
@@ -36,9 +39,13 @@ from olympia.lib.cache import cache_get_or_set
 class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddonReviewerFlags
-        fields = ('auto_approval_disabled', 'needs_admin_code_review',
-                  'needs_admin_content_review', 'needs_admin_theme_review',
-                  'pending_info_request')
+        fields = (
+            'auto_approval_disabled',
+            'needs_admin_code_review',
+            'needs_admin_content_review',
+            'needs_admin_theme_review',
+            'pending_info_request',
+        )
 
 
 class FileEntriesSerializer(FileSerializer):
@@ -49,7 +56,10 @@ class FileEntriesSerializer(FileSerializer):
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'content', 'entries', 'selected_file', 'download_url'
+            'content',
+            'entries',
+            'selected_file',
+            'download_url',
         )
         model = File
 
@@ -73,8 +83,7 @@ class FileEntriesSerializer(FileSerializer):
         try:
             return self.git_repo.revparse_single(file_obj.version.git_hash)
         except pygit2.InvalidSpecError:
-            raise NotFound(
-                'Couldn\'t find the requested version in git-repository')
+            raise NotFound('Couldn\'t find the requested version in git-repository')
 
     def get_entries(self, obj):
         # Given that this is a very expensive operation we have a two-fold
@@ -96,15 +105,18 @@ class FileEntriesSerializer(FileSerializer):
 
                 sha_hash = (
                     get_sha256(io.BytesIO(memoryview(blob)))
-                    if not entry.type == 'tree' else '')
+                    if not entry.type == 'tree'
+                    else ''
+                )
 
                 commit_tzinfo = FixedOffset(commit.commit_time_offset)
                 commit_time = datetime.fromtimestamp(
-                    float(commit.commit_time),
-                    commit_tzinfo)
+                    float(commit.commit_time), commit_tzinfo
+                )
 
                 mimetype, entry_mime_category = get_mime_type_for_blob(
-                    tree_or_blob=entry.type, name=entry.name, blob=blob)
+                    tree_or_blob=entry.type, name=entry.name, blob=blob
+                )
 
                 result[path] = {
                     'depth': path.count(os.sep),
@@ -124,7 +136,8 @@ class FileEntriesSerializer(FileSerializer):
             # Store information about this commit for 24h which should be
             # enough to cover regular review-times but not overflow our
             # cache
-            60 * 60 * 24)
+            60 * 60 * 24,
+        )
 
         return self._entries
 
@@ -156,14 +169,14 @@ class FileEntriesSerializer(FileSerializer):
         if blob_or_tree.type == 'blob':
             blob = self.git_repo[blob_or_tree.oid]
             mimetype, mime_category = get_mime_type_for_blob(
-                tree_or_blob='blob', name=blob_or_tree.name, blob=blob)
+                tree_or_blob='blob', name=blob_or_tree.name, blob=blob
+            )
 
             # Only return the raw data if we detect a file that contains text
             # data that actually can be rendered.
             if mime_category == 'text':
                 # Remove any BOM data if preset.
-                return unicodehelper.decode(
-                    self.git_repo[blob_or_tree.oid].read_raw())
+                return unicodehelper.decode(self.git_repo[blob_or_tree.oid].read_raw())
 
         # By default return an empty string.
         # See https://github.com/mozilla/addons-server/issues/11782 for
@@ -184,13 +197,15 @@ class FileEntriesSerializer(FileSerializer):
         if blob_or_tree.type == 'tree':
             return None
 
-        return absolutify(reverse(
-            'reviewers.download_git_file',
-            kwargs={
-                'version_id': self.get_instance().version.pk,
-                'filename': selected_file
-            }
-        ))
+        return absolutify(
+            reverse(
+                'reviewers.download_git_file',
+                kwargs={
+                    'version_id': self.get_instance().version.pk,
+                    'filename': selected_file,
+                },
+            )
+        )
 
 
 class AddonBrowseVersionSerializer(VersionSerializer):
@@ -203,29 +218,44 @@ class AddonBrowseVersionSerializer(VersionSerializer):
     class Meta:
         model = Version
         # Doesn't contain `files` from VersionSerializer
-        fields = ('id', 'channel', 'compatibility', 'edit_url',
-                  'is_strict_compatibility_enabled', 'license',
-                  'release_notes', 'reviewed', 'version',
-                  # Our custom fields
-                  'file', 'validation_url', 'validation_url_json',
-                  'has_been_validated', 'addon')
+        fields = (
+            'id',
+            'channel',
+            'compatibility',
+            'edit_url',
+            'is_strict_compatibility_enabled',
+            'license',
+            'release_notes',
+            'reviewed',
+            'version',
+            # Our custom fields
+            'file',
+            'validation_url',
+            'validation_url_json',
+            'has_been_validated',
+            'addon',
+        )
 
     def get_validation_url_json(self, obj):
-        return absolutify(reverse('devhub.json_file_validation', args=[
-            obj.addon.slug, obj.current_file.id
-        ]))
+        return absolutify(
+            reverse(
+                'devhub.json_file_validation',
+                args=[obj.addon.slug, obj.current_file.id],
+            )
+        )
 
     def get_validation_url(self, obj):
-        return absolutify(reverse('devhub.file_validation', args=[
-            obj.addon.slug, obj.current_file.id
-        ]))
+        return absolutify(
+            reverse(
+                'devhub.file_validation', args=[obj.addon.slug, obj.current_file.id]
+            )
+        )
 
     def get_has_been_validated(self, obj):
         return obj.current_file.has_been_validated
 
 
 class DiffableVersionSerializer(VersionSerializer):
-
     class Meta:
         model = Version
         fields = ('id', 'channel', 'version')
@@ -239,7 +269,10 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'diff', 'entries', 'selected_file', 'download_url'
+            'diff',
+            'entries',
+            'selected_file',
+            'download_url',
         )
         model = File
 
@@ -251,9 +284,8 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         parent = parent if parent != commit else None
 
         diff = self.repo.get_diff(
-            commit=commit,
-            parent=parent,
-            pathspec=[self.get_selected_file(obj)])
+            commit=commit, parent=parent, pathspec=[self.get_selected_file(obj)]
+        )
 
         # Because we're always specifying `pathspec` with the currently
         # selected file we can inline the diff because there will always be
@@ -272,10 +304,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         # Initial commits have both set to the same version
         parent = parent if parent != commit else None
 
-        diff = self.repo.get_diff(
-            commit=commit,
-            parent=parent,
-            pathspec=None)
+        diff = self.repo.get_diff(commit=commit, parent=parent, pathspec=None)
 
         entries = super().get_entries(obj)
 
@@ -313,9 +342,9 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
 
             parent_path = os.path.dirname(path)
             if (
-                path_deleted is True and
-                parent_path != '' and
-                parent_path not in entries
+                path_deleted is True
+                and parent_path != ''
+                and parent_path not in entries
             ):
                 # The parent directory of this deleted file does not
                 # exist. This could happen if no other files were
@@ -357,22 +386,29 @@ class CannedResponseSerializer(serializers.ModelSerializer):
 class DraftCommentSerializer(serializers.ModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
-        BaseUserSerializer())
+        BaseUserSerializer(),
+    )
     version = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=Version.unfiltered.all()),
-        AddonBrowseVersionSerializer())
+        serializers.PrimaryKeyRelatedField(queryset=Version.unfiltered.all()),
+        AddonBrowseVersionSerializer(),
+    )
     canned_response = SplitField(
         serializers.PrimaryKeyRelatedField(
-            queryset=CannedResponse.objects.all(),
-            required=False),
-        CannedResponseSerializer())
+            queryset=CannedResponse.objects.all(), required=False
+        ),
+        CannedResponseSerializer(),
+    )
 
     class Meta:
         model = DraftComment
         fields = (
-            'id', 'filename', 'lineno', 'comment',
-            'version', 'user', 'canned_response'
+            'id',
+            'filename',
+            'lineno',
+            'comment',
+            'version',
+            'user',
+            'canned_response',
         )
 
     def __init__(self, *args, **kwargs):
@@ -384,7 +420,11 @@ class DraftCommentSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if data.get('comment') and data.get('canned_response'):
             raise serializers.ValidationError(
-                {'comment': ugettext(
-                    'You can\'t submit a comment if `canned_response` is '
-                    'defined.')})
+                {
+                    'comment': ugettext(
+                        'You can\'t submit a comment if `canned_response` is '
+                        'defined.'
+                    )
+                }
+            )
         return data

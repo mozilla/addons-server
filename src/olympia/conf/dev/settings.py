@@ -12,9 +12,7 @@ CDN_HOST = 'https://addons-dev-cdn.allizom.org'
 CSP_CONNECT_SRC += (CDN_HOST,)
 CSP_FONT_SRC += (CDN_HOST,)
 CSP_IMG_SRC += (CDN_HOST,)
-CSP_SCRIPT_SRC += (
-    CDN_HOST,
-)
+CSP_SCRIPT_SRC += (CDN_HOST,)
 CSP_STYLE_SRC += (CDN_HOST,)
 
 ENGAGE_ROBOTS = False
@@ -34,20 +32,18 @@ API_THROTTLING = False
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
-                        default='https://addons-dev.allizom.org')
-SERVICES_URL = env('SERVICES_URL',
-                   default='https://services.addons-dev.allizom.org')
-CODE_MANAGER_URL = env('CODE_MANAGER_URL',
-                       default='https://code.addons-dev.allizom.org')
+EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons-dev.allizom.org')
+SERVICES_URL = env('SERVICES_URL', default='https://services.addons-dev.allizom.org')
+CODE_MANAGER_URL = env(
+    'CODE_MANAGER_URL', default='https://code.addons-dev.allizom.org'
+)
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
-                           default='addons-dev.allizom.org')
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default='addons-dev.allizom.org')
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
@@ -61,20 +57,24 @@ REPLICA_DATABASES = ['replica']
 CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
+CACHES['default'][
+    'BACKEND'
+] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 
-LOGGING['loggers'].update({
-    'amqp': {'level': logging.WARNING},
-    'raven': {'level': logging.WARNING},
-    'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.DEBUG},
-    'z.task': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
+LOGGING['loggers'].update(
+    {
+        'amqp': {'level': logging.WARNING},
+        'raven': {'level': logging.WARNING},
+        'requests': {'level': logging.WARNING},
+        'z.addons': {'level': logging.DEBUG},
+        'z.task': {'level': logging.DEBUG},
+        'z.pool': {'level': logging.ERROR},
+    }
+)
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_dev'
@@ -120,7 +120,7 @@ DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/927034868273/'
-    'amo-account-change-dev')
+    'https://sqs.us-east-1.amazonaws.com/927034868273/' 'amo-account-change-dev'
+)
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'

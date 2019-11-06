@@ -15,21 +15,27 @@ import olympia.core
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AppSupport, MigratedLWT, Preview,
-    attach_tags, attach_translations)
+    Addon,
+    AddonApprovalsCounter,
+    AppSupport,
+    MigratedLWT,
+    Preview,
+    attach_tags,
+    attach_translations,
+)
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks, task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import (
-    LocalFileStorage, StopWatch, extract_colors_from_image)
+from olympia.amo.utils import LocalFileStorage, StopWatch, extract_colors_from_image
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.crypto.signing import SigningError
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import (
-    generate_static_theme_preview, VersionPreview)
+from olympia.versions.models import generate_static_theme_preview, VersionPreview
 from olympia.versions.utils import (
-    new_69_theme_properties_from_old, new_theme_version_with_69_properties)
+    new_69_theme_properties_from_old,
+    new_theme_version_with_69_properties,
+)
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -47,8 +53,9 @@ def update_last_updated(addon_id):
     try:
         addon = Addon.objects.get(pk=addon_id)
     except Addon.DoesNotExist:
-        log.info('[1@None] Updating last updated for %s failed, no addon found'
-                 % addon_id)
+        log.info(
+            '[1@None] Updating last updated for %s failed, no addon found' % addon_id
+        )
         return
 
     log.info('[1@None] Updating last updated for %s.' % addon_id)
@@ -79,8 +86,7 @@ def update_appsupport(ids, **kw):
             else:
                 min_, max_ = appver.min.version_int, appver.max.version_int
 
-            support.append(AppSupport(addon=addon, app=app.id,
-                                      min=min_, max=max_))
+            support.append(AppSupport(addon=addon, app=app.id, min=min_, max=max_))
 
     if not support:
         return
@@ -122,14 +128,15 @@ def update_addon_download_totals(data, **kw):
             addon = Addon.objects.get(pk=pk)
             # Don't trigger a save unless we have to (the counts may not have
             # changed)
-            if (sum_download_counts and
-                    addon.total_downloads != sum_download_counts):
+            if sum_download_counts and addon.total_downloads != sum_download_counts:
                 addon.update(total_downloads=sum_download_counts)
         except Addon.DoesNotExist:
             # We exclude deleted add-ons in the cron, but an add-on could have
             # been deleted by the time the task is processed.
-            msg = ("Got new download totals (total=%s) but the add-on"
-                   "doesn't exist (%s)" % (sum_download_counts, pk))
+            msg = (
+                "Got new download totals (total=%s) but the add-on"
+                "doesn't exist (%s)" % (sum_download_counts, pk)
+            )
             log.debug(msg)
 
 
@@ -143,8 +150,14 @@ def delete_preview_files(id, **kw):
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_tags, attach_translations)
-    index_objects(ids, Addon, AddonIndexer.extract_document,
-                  kw.pop('index', None), transforms, Addon.unfiltered)
+    index_objects(
+        ids,
+        Addon,
+        AddonIndexer.extract_document,
+        kw.pop('index', None),
+        transforms,
+        Addon.unfiltered,
+    )
 
 
 @task
@@ -167,32 +180,46 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
     length = len(ids)
     log.info(
         'Searching for inconsistencies between db and es %d-%d [%d].',
-        ids[0], ids[-1], length)
+        ids[0],
+        ids[-1],
+        length,
+    )
     db_addons = Addon.unfiltered.in_bulk(ids)
-    es_addons = Search(
-        doc_type=AddonIndexer.get_doctype_name(),
-        index=AddonIndexer.get_index_alias(),
-        using=amo.search.get_es()).filter('ids', values=ids)[:length].execute()
+    es_addons = (
+        Search(
+            doc_type=AddonIndexer.get_doctype_name(),
+            index=AddonIndexer.get_index_alias(),
+            using=amo.search.get_es(),
+        )
+        .filter('ids', values=ids)[:length]
+        .execute()
+    )
     es_addons = es_addons
     db_len = len(db_addons)
     es_len = len(es_addons)
     if db_len != es_len:
-        log.info('Inconsistency found: %d in db vs %d in es.',
-                 db_len, es_len)
+        log.info('Inconsistency found: %d in db vs %d in es.', db_len, es_len)
     for result in es_addons.hits.hits:
         pk = result['_source']['id']
         db_modified = db_addons[pk].modified.isoformat()
         es_modified = result['_source']['modified']
         if db_modified != es_modified:
-            log.info('Inconsistency found for addon %d: '
-                     'modified is %s in db vs %s in es.',
-                     pk, db_modified, es_modified)
+            log.info(
+                'Inconsistency found for addon %d: '
+                'modified is %s in db vs %s in es.',
+                pk,
+                db_modified,
+                es_modified,
+            )
         db_status = db_addons[pk].status
         es_status = result['_source']['status']
         if db_status != es_status:
-            log.info('Inconsistency found for addon %d: '
-                     'status is %s in db vs %s in es.',
-                     pk, db_status, es_status)
+            log.info(
+                'Inconsistency found for addon %d: ' 'status is %s in db vs %s in es.',
+                pk,
+                db_status,
+                es_status,
+            )
 
 
 @task
@@ -200,8 +227,8 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
 def add_dynamic_theme_tag(ids, **kw):
     """Add dynamic theme tag to addons with the specified ids."""
     log.info(
-        'Adding  dynamic theme tag to addons %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
+        'Adding  dynamic theme tag to addons %d-%d [%d].', ids[0], ids[-1], len(ids)
+    )
 
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
@@ -219,11 +246,11 @@ def add_dynamic_theme_tag(ids, **kw):
 def migrate_webextensions_to_git_storage(ids, **kw):
     # recursive imports...
     from olympia.versions.tasks import (
-        extract_version_to_git, extract_version_source_to_git)
+        extract_version_to_git,
+        extract_version_source_to_git,
+    )
 
-    log.info(
-        'Migrating add-ons to git storage %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
+    log.info('Migrating add-ons to git storage %d-%d [%d].', ids[0], ids[-1], len(ids))
 
     addons = Addon.unfiltered.filter(id__in=ids)
 
@@ -238,20 +265,22 @@ def migrate_webextensions_to_git_storage(ids, **kw):
             # simply the first file in the list. For WebExtensions there is
             # only a very very small number that have different files for
             # a single version.
-            unique_file_hashes = set([
-                x.original_hash for x in version.all_files
-            ])
+            unique_file_hashes = set([x.original_hash for x in version.all_files])
 
             if len(unique_file_hashes) > 1:
                 # Log actually different hashes so that we can clean them
                 # up manually and work together with developers later.
                 log.info(
                     'Version {version} of {addon} has more than one uploaded '
-                    'file'.format(version=repr(version), addon=repr(addon)))
+                    'file'.format(version=repr(version), addon=repr(addon))
+                )
 
             if not unique_file_hashes:
-                log.info('No files found for {version} from {addon}'.format(
-                    version=repr(version), addon=repr(addon)))
+                log.info(
+                    'No files found for {version} from {addon}'.format(
+                        version=repr(version), addon=repr(addon)
+                    )
+                )
                 continue
 
             # Don't call the task as a task but do the extraction in process
@@ -261,8 +290,9 @@ def migrate_webextensions_to_git_storage(ids, **kw):
             try:
                 file_id = version.all_files[0].pk
 
-                log.info('Extracting file {file_id} to git storage'.format(
-                    file_id=file_id))
+                log.info(
+                    'Extracting file {file_id} to git storage'.format(file_id=file_id)
+                )
 
                 extract_version_to_git(version.pk)
 
@@ -270,15 +300,19 @@ def migrate_webextensions_to_git_storage(ids, **kw):
                     extract_version_source_to_git(version.pk)
 
                 log.info(
-                    'Extraction of file {file_id} into git storage succeeded'
-                    .format(file_id=file_id))
+                    'Extraction of file {file_id} into git storage succeeded'.format(
+                        file_id=file_id
+                    )
+                )
             except Exception:
                 log.exception(
                     'Extraction of file {file_id} from {version} '
                     '({addon}) failed'.format(
                         file_id=version.all_files[0],
                         version=repr(version),
-                        addon=repr(addon)))
+                        addon=repr(addon),
+                    )
+                )
                 continue
 
 
@@ -286,8 +320,7 @@ def migrate_webextensions_to_git_storage(ids, **kw):
 @use_primary_db
 def extract_colors_from_static_themes(ids, **kw):
     """Extract and store colors from existing static themes."""
-    log.info('Extracting static themes colors %d-%d [%d].', ids[0], ids[-1],
-             len(ids))
+    log.info('Extracting static themes colors %d-%d [%d].', ids[0], ids[-1], len(ids))
     addons = Addon.objects.filter(id__in=ids)
     extracted = []
     for addon in addons:
@@ -303,9 +336,10 @@ def extract_colors_from_static_themes(ids, **kw):
 @task
 @use_primary_db
 def recreate_theme_previews(addon_ids, **kw):
-    log.info('[%s@%s] Recreating previews for themes starting at id: %s...'
-             % (len(addon_ids), recreate_theme_previews.rate_limit,
-                addon_ids[0]))
+    log.info(
+        '[%s@%s] Recreating previews for themes starting at id: %s...'
+        % (len(addon_ids), recreate_theme_previews.rate_limit, addon_ids[0])
+    )
     addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
     only_missing = kw.get('only_missing', False)
 
@@ -315,8 +349,11 @@ def recreate_theme_previews(addon_ids, **kw):
             continue
         try:
             if only_missing:
-                with_size = (VersionPreview.objects.filter(version=version)
-                             .exclude(sizes={}).count())
+                with_size = (
+                    VersionPreview.objects.filter(version=version)
+                    .exclude(sizes={})
+                    .count()
+                )
                 if with_size == len(amo.THEME_PREVIEW_SIZES):
                     continue
             log.info('Recreating previews for theme: %s' % addon.id)
@@ -343,9 +380,15 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     STATUS_DELETED.  *Addon.delete() only does a hard-delete where the Addon
     has no versions or files - and has never had any versions or files.
     """
-    log.info('[%s@%s] %sDeleting addons starting at id: %s...'
-             % ('Hard ' if with_deleted else '', len(addon_ids),
-                delete_addons.rate_limit, addon_ids[0]))
+    log.info(
+        '[%s@%s] %sDeleting addons starting at id: %s...'
+        % (
+            'Hard ' if with_deleted else '',
+            len(addon_ids),
+            delete_addons.rate_limit,
+            addon_ids[0],
+        )
+    )
     addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
     if with_deleted:
         # Call QuerySet.delete rather than Addon.delete.
@@ -360,7 +403,8 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
 def repack_themes_for_69(addon_ids, **kw):
     log.info(
         '[%s@%s] Repacking themes to use 69+ properties starting at id: %s...'
-        % (len(addon_ids), recreate_theme_previews.rate_limit, addon_ids[0]))
+        % (len(addon_ids), recreate_theme_previews.rate_limit, addon_ids[0])
+    )
     addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
 
     olympia.core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
@@ -380,8 +424,10 @@ def repack_themes_for_69(addon_ids, **kw):
             if new_data != old_data:
                 # if the manifest isn't the same let's repack
                 new_version = new_theme_version_with_69_properties(version)
-                log.info('[SUCCESS] Theme [%r], version [%r] updated to [%r]' %
-                         (addon, version, new_version))
+                log.info(
+                    '[SUCCESS] Theme [%r], version [%r] updated to [%r]'
+                    % (addon, version, new_version)
+                )
             else:
                 log.info('[SKIP] No need for theme repack [%s]' % addon.id)
             timer.log_interval('')
@@ -394,13 +440,14 @@ def repack_themes_for_69(addon_ids, **kw):
 @task
 @use_primary_db
 def content_approve_migrated_themes(ids, **kw):
-    log.info('[%s@None] Marking migrated static themes as content-reviewed %s.'
-             % (len(ids), ids))
+    log.info(
+        '[%s@None] Marking migrated static themes as content-reviewed %s.'
+        % (len(ids), ids)
+    )
     addons = Addon.objects.filter(pk__in=ids)
     for addon in addons:
         try:
             migrated_date = MigratedLWT.objects.get(static_theme=addon).created
         except MigratedLWT.DoesNotExist:
             continue
-        AddonApprovalsCounter.approve_content_for_addon(
-            addon=addon, now=migrated_date)
+        AddonApprovalsCounter.approve_content_for_addon(addon=addon, now=migrated_date)

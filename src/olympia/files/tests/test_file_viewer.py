@@ -43,7 +43,6 @@ def make_file(pk, file_path, **kwargs):
 
 
 class TestFileViewer(TestCase):
-
     def setUp(self):
         super(TestFileViewer, self).setUp()
         self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
@@ -76,7 +75,8 @@ class TestFileViewer(TestCase):
             u'recurse/chrome/test.jar',
             u'recurse/notazip.jar',
             u'recurse/recurse.xpi',
-            u'recurse/somejar.jar']
+            u'recurse/somejar.jar',
+        ]
 
     def test_locked(self):
         self.viewer.src = get_file('dictionary-test.xpi')
@@ -84,9 +84,9 @@ class TestFileViewer(TestCase):
         # Lock was successfully attained
         assert self.viewer.extract()
 
-        lock = flufl.lock.Lock(os.path.join(
-            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
-        ))
+        lock = flufl.lock.Lock(
+            os.path.join(settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk)
+        )
 
         assert not lock.is_locked
 
@@ -101,9 +101,9 @@ class TestFileViewer(TestCase):
         self.viewer.src = get_file('dictionary-test.xpi')
         assert not self.viewer.is_extracted()
 
-        lock = flufl.lock.Lock(os.path.join(
-            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
-        ))
+        lock = flufl.lock.Lock(
+            os.path.join(settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk)
+        )
 
         assert not lock.is_locked
 
@@ -124,14 +124,25 @@ class TestFileViewer(TestCase):
     def test_dest(self):
         viewer = FileViewer(make_file(1, get_file('webextension.xpi')))
         assert viewer.dest == os.path.join(
-            settings.TMP_PATH, 'file_viewer',
-            '0108', str(self.viewer.file.pk))
+            settings.TMP_PATH, 'file_viewer', '0108', str(self.viewer.file.pk)
+        )
 
     def test_isbinary(self):
         binary = self.viewer._is_binary
-        for f in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
-                  'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul', 'foo.sh',
-                  'foo.properties', 'foo.json', 'foo.src', 'CHANGELOG']:
+        for f in [
+            'foo.rdf',
+            'foo.xml',
+            'foo.js',
+            'foo.py' 'foo.html',
+            'foo.txt',
+            'foo.dtd',
+            'foo.xul',
+            'foo.sh',
+            'foo.properties',
+            'foo.json',
+            'foo.src',
+            'CHANGELOG',
+        ]:
             m, encoding = mimetypes.guess_type(f)
             assert not binary(m, f), '%s should not be binary' % f
 
@@ -153,12 +164,13 @@ class TestFileViewer(TestCase):
 
     def test_truncate(self):
         truncate = self.viewer.truncate
-        for x, y in (['foo.rdf', 'foo.rdf'],
-                     ['somelongfilename.rdf', 'somelongfilenam...rdf'],
-                     [u'unicode삮.txt', u'unicode\uc0ae.txt'],
-                     [u'unicodesomelong삮.txt', u'unicodesomelong...txt'],
-                     ['somelongfilename.somelongextension',
-                      'somelongfilenam...somelonge..'],):
+        for x, y in (
+            ['foo.rdf', 'foo.rdf'],
+            ['somelongfilename.rdf', 'somelongfilenam...rdf'],
+            [u'unicode삮.txt', u'unicode\uc0ae.txt'],
+            [u'unicodesomelong삮.txt', u'unicodesomelong...txt'],
+            ['somelongfilename.somelongextension', 'somelongfilenam...somelonge..'],
+        ):
             assert truncate(x) == y
 
     def test_get_files_not_extracted_runs_extraction(self):
@@ -195,13 +207,15 @@ class TestFileViewer(TestCase):
         os.remove(dest)
 
     def test_syntax(self):
-        for filename, syntax in [('foo.rdf', 'xml'),
-                                 ('foo.xul', 'xml'),
-                                 ('foo.json', 'js'),
-                                 ('foo.jsm', 'js'),
-                                 ('foo.htm', 'html'),
-                                 ('foo.bar', 'plain'),
-                                 ('foo.diff', 'plain')]:
+        for filename, syntax in [
+            ('foo.rdf', 'xml'),
+            ('foo.xul', 'xml'),
+            ('foo.json', 'js'),
+            ('foo.jsm', 'js'),
+            ('foo.htm', 'html'),
+            ('foo.bar', 'plain'),
+            ('foo.diff', 'plain'),
+        ]:
             assert self.viewer.get_syntax(filename) == syntax
 
     def test_file_order(self):
@@ -214,7 +228,7 @@ class TestFileViewer(TestCase):
         cache.delete(self.viewer._cache_key())
         files = list(self.viewer.get_files().keys())
         rt = files.index(u'chrome')
-        assert files[rt:rt + 3] == [u'chrome', u'chrome/foo', u'dictionaries']
+        assert files[rt : rt + 3] == [u'chrome', u'chrome/foo', u'dictionaries']
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
@@ -234,8 +248,7 @@ class TestFileViewer(TestCase):
             self.viewer.select('install.js')
             res = self.viewer.read_file()
             assert res == ''
-            assert (
-                self.viewer.selected['msg'].startswith(u'גודל הקובץ חורג'))
+            assert self.viewer.selected['msg'].startswith(u'גודל הקובץ חורג')
 
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
@@ -342,33 +355,34 @@ class TestSearchEngineHelper(TestCase):
 
 
 class TestDiffSearchEngine(TestCase):
-
     def setUp(self):
         super(TestDiffSearchEngine, self).setUp()
         src = os.path.join(settings.ROOT, get_file('search.xml'))
         if not storage.exists(src):
             with storage.open(src, 'w') as f:
                 f.write(open(src).read())
-        self.helper = DiffHelper(make_file(1, src, filename='search.xml'),
-                                 make_file(2, src, filename='search.xml'))
+        self.helper = DiffHelper(
+            make_file(1, src, filename='search.xml'),
+            make_file(2, src, filename='search.xml'),
+        )
 
     def tearDown(self):
         self.helper.cleanup()
         super(TestDiffSearchEngine, self).tearDown()
 
-    @patch(
-        'olympia.files.file_viewer.FileViewer.is_search_engine')
+    @patch('olympia.files.file_viewer.FileViewer.is_search_engine')
     def test_diff_search(self, is_search_engine):
         is_search_engine.return_value = True
         self.helper.extract()
-        shutil.copyfile(os.path.join(self.helper.left.dest, 'search.xml'),
-                        os.path.join(self.helper.right.dest, 's-20010101.xml'))
+        shutil.copyfile(
+            os.path.join(self.helper.left.dest, 'search.xml'),
+            os.path.join(self.helper.right.dest, 's-20010101.xml'),
+        )
         assert self.helper.select('search.xml')
         assert len(self.helper.get_deleted_files()) == 0
 
 
 class TestDiffHelper(TestCase):
-
     def setUp(self):
         super(TestDiffHelper, self).setUp()
         src = os.path.join(settings.ROOT, get_file('dictionary-test.xpi'))
@@ -390,8 +404,7 @@ class TestDiffHelper(TestCase):
         assert self.helper.is_extracted()
 
     def test_get_files(self):
-        assert self.helper.left.get_files() == (
-            self.helper.get_files())
+        assert self.helper.left.get_files() == (self.helper.get_files())
 
     def test_diffable(self):
         self.helper.extract()
@@ -451,8 +464,7 @@ class TestDiffHelper(TestCase):
 
     def test_diffable_parent(self):
         self.helper.extract()
-        self.change(self.helper.left.dest, 'asd',
-                    filename='__MACOSX/._dictionaries')
+        self.change(self.helper.left.dest, 'asd', filename='__MACOSX/._dictionaries')
         self.clear_cache()
         files = self.helper.get_files()
         assert files['__MACOSX/._dictionaries']['diff']

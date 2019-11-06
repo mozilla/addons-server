@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from unittest import mock
 
-from olympia.amo.tests import (
-    addon_factory, collection_factory, TestCase, user_factory)
+from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
     CollectionAddonSerializer,
-    CollectionSerializer, CollectionWithAddonsSerializer)
+    CollectionSerializer,
+    CollectionWithAddonsSerializer,
+)
 
 
 class TestCollectionSerializer(TestCase):
@@ -30,7 +31,8 @@ class TestCollectionSerializer(TestCase):
         assert data['url'] == self.collection.get_abs_url()
         assert data['addon_count'] == self.collection.addon_count
         assert data['modified'] == (
-            self.collection.modified.replace(microsecond=0).isoformat() + 'Z')
+            self.collection.modified.replace(microsecond=0).isoformat() + 'Z'
+        )
         assert data['author']['id'] == self.user.id
         assert data['slug'] == self.collection.slug
         assert data['public'] == self.collection.listed
@@ -38,13 +40,13 @@ class TestCollectionSerializer(TestCase):
 
 
 class TestCollectionAddonSerializer(TestCase):
-
     def setUp(self):
         self.collection = collection_factory()
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
-        self.item = CollectionAddon.objects.get(addon=self.addon,
-                                                collection=self.collection)
+        self.item = CollectionAddon.objects.get(
+            addon=self.addon, collection=self.collection
+        )
         self.item.comments = u'Dis is nice'
         self.item.save()
 
@@ -68,17 +70,16 @@ class TestCollectionWithAddonsSerializer(TestCollectionSerializer):
     def serialize(self):
         mock_viewset = mock.MagicMock()
         collection_addons = CollectionAddon.objects.filter(
-            addon=self.addon, collection=self.collection)
+            addon=self.addon, collection=self.collection
+        )
         mock_viewset.get_addons_queryset.return_value = collection_addons
-        return self.serializer(
-            self.collection, context={'view': mock_viewset}).data
+        return self.serializer(self.collection, context={'view': mock_viewset}).data
 
     def test_basic(self):
         super(TestCollectionWithAddonsSerializer, self).test_basic()
         collection_addon = CollectionAddon.objects.get(
-            addon=self.addon, collection=self.collection)
+            addon=self.addon, collection=self.collection
+        )
         data = self.serialize()
-        assert data['addons'] == [
-            CollectionAddonSerializer(collection_addon).data
-        ]
+        assert data['addons'] == [CollectionAddonSerializer(collection_addon).data]
         assert data['addons'][0]['addon']['id'] == self.addon.id

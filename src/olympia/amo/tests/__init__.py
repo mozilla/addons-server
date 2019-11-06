@@ -44,8 +44,11 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons import indexers as addons_indexers
 from olympia.addons.models import (
-    Addon, AddonCategory, Category,
-    update_search_index as addon_update_search_index)
+    Addon,
+    AddonCategory,
+    Category,
+    update_search_index as addon_update_search_index,
+)
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import unindex_addons
@@ -75,9 +78,7 @@ translation.activate('en-us')
 # them at import time. Note that this works because pytest overrides
 # ES_INDEXES before the test run even begins - if we were using
 # override_settings() on ES_INDEXES we'd be in trouble.
-ES_INDEX_SUFFIXES = {
-    key: timestamp_index('')
-    for key in settings.ES_INDEXES.keys()}
+ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.keys()}
 
 
 def get_es_index_name(key):
@@ -96,13 +97,17 @@ def setup_es_test_data(es):
         es.cluster.health()
     except Exception as e:
         e.args = tuple(
-            [u"%s (it looks like ES is not running, try starting it or "
-             u"don't run ES tests: make test_no_es)" % e.args[0]] +
-            list(e.args[1:]))
+            [
+                u"%s (it looks like ES is not running, try starting it or "
+                u"don't run ES tests: make test_no_es)" % e.args[0]
+            ]
+            + list(e.args[1:])
+        )
         raise
 
-    aliases_and_indexes = set(list(settings.ES_INDEXES.values()) +
-                              list(es.indices.get_alias().keys()))
+    aliases_and_indexes = set(
+        list(settings.ES_INDEXES.values()) + list(es.indices.get_alias().keys())
+    )
 
     for key in aliases_and_indexes:
         if key.startswith('test_'):
@@ -112,8 +117,7 @@ def setup_es_test_data(es):
     # suffixes generated at import time. Like the aliases later, the name
     # has been prefixed by pytest, we need to add a suffix that is unique
     # to this test run.
-    actual_indices = {key: get_es_index_name(key)
-                      for key in settings.ES_INDEXES.keys()}
+    actual_indices = {key: get_es_index_name(key) for key in settings.ES_INDEXES.keys()}
 
     # Create new addons and stats indexes with the timestamped name.
     # This is crucial to set up the correct mappings before we start
@@ -124,10 +128,18 @@ def setup_es_test_data(es):
     # Alias it to the name the code is going to use (which is suffixed by
     # pytest to avoid clashing with the real thing).
     actions = [
-        {'add': {'index': actual_indices['default'],
-                 'alias': settings.ES_INDEXES['default']}},
-        {'add': {'index': actual_indices['stats'],
-                 'alias': settings.ES_INDEXES['stats']}}
+        {
+            'add': {
+                'index': actual_indices['default'],
+                'alias': settings.ES_INDEXES['default'],
+            }
+        },
+        {
+            'add': {
+                'index': actual_indices['stats'],
+                'alias': settings.ES_INDEXES['stats'],
+            }
+        },
     ]
 
     es.indices.update_aliases({'actions': actions})
@@ -143,11 +155,12 @@ def formset(*args, **kw):
     prefix = kw.pop('prefix', 'form')
     total_count = kw.pop('total_count', len(args))
     initial_count = kw.pop('initial_count', len(args))
-    data = {prefix + '-TOTAL_FORMS': total_count,
-            prefix + '-INITIAL_FORMS': initial_count}
+    data = {
+        prefix + '-TOTAL_FORMS': total_count,
+        prefix + '-INITIAL_FORMS': initial_count,
+    }
     for idx, d in enumerate(args):
-        data.update(('%s-%s-%s' % (prefix, idx, k), v)
-                    for k, v in d.items())
+        data.update(('%s-%s-%s' % (prefix, idx, k), v) for k, v in d.items())
     data.update(kw)
     return data
 
@@ -194,8 +207,7 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            assert e.text() == text, (
-                f'At index {idx}, expected {text}, got {e.text()}')
+            assert e.text() == text, f'At index {idx}, expected {text}, got {e.text()}'
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
@@ -262,7 +274,6 @@ def create_flag(name=None, **kw):
 
 
 class PatchMixin(object):
-
     def patch(self, thing):
         patcher = mock.patch(thing, autospec=True)
         self.addCleanup(patcher.stop)
@@ -280,7 +291,6 @@ def initialize_session(request, session_data):
 
 
 class InitializeSessionMixin(object):
-
     def initialize_session(self, session_data):
         request = HttpRequest()
         initialize_session(request, session_data)
@@ -298,7 +308,6 @@ class InitializeSessionMixin(object):
 
 
 class TestClient(Client):
-
     def __getattr__(self, name):
         """
         Provides get_ajax, post_ajax, head_ajax methods etc in the
@@ -312,7 +321,6 @@ class TestClient(Client):
 
 
 class APITestClient(APIClient):
-
     def generate_api_token(self, user, **payload_overrides):
         """
         Creates a jwt token for this user.
@@ -390,7 +398,8 @@ def fxa_login_link(response=None, to=None, request=None):
         config=settings.FXA_CONFIG['default'],
         state=state,
         next_path=to,
-        action='signin')
+        action='signin',
+    )
 
 
 @contextmanager
@@ -419,6 +428,7 @@ def grant_permission(user_obj, rules, name):
 
 class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     """Base class for all amo tests."""
+
     client_class = TestClient
 
     def _pre_setup(self):
@@ -466,8 +476,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
                         msg = v.errors.as_text()
                     msg = msg.strip()
                     if msg != '':
-                        self.fail('form %r had the following error(s):\n%s'
-                                  % (k, msg))
+                        self.fail('form %r had the following error(s):\n%s' % (k, msg))
                     if hasattr(v, 'non_field_errors'):
                         assert v.non_field_errors() == []
                     if hasattr(v, 'non_form_errors'):
@@ -491,8 +500,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             try:
                 dt = dateutil_parser(dt)
             except ValueError as e:
-                raise AssertionError(
-                    'Expected valid date; got %s\n%s' % (dt, e))
+                raise AssertionError('Expected valid date; got %s\n%s' % (dt, e))
 
         if not dt:
             raise AssertionError('Expected datetime; got %s' % dt)
@@ -503,16 +511,17 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             now = datetime.now()
         now_ts = time.mktime(now.timetuple())
 
-        assert dt_earlier_ts < now_ts < dt_later_ts, (
-            'Expected datetime to be within a minute of %s. Got %r.' % (now,
-                                                                        dt))
+        assert (
+            dt_earlier_ts < now_ts < dt_later_ts
+        ), 'Expected datetime to be within a minute of %s. Got %r.' % (now, dt)
 
     def assertQuerySetEqual(self, qs1, qs2):
         """
         Assertion to check the equality of two querysets
         """
-        return self.assertSetEqual(qs1.values_list('id', flat=True),
-                                   qs2.values_list('id', flat=True))
+        return self.assertSetEqual(
+            qs1.values_list('id', flat=True), qs2.values_list('id', flat=True)
+        )
 
     def assertCORS(self, res, *verbs):
         """
@@ -527,7 +536,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         actual = res['Access-Control-Allow-Methods'].split(', ')
         self.assertSetEqual(verbs, actual)
         assert res['Access-Control-Allow-Headers'] == (
-            'X-HTTP-Method-Override, Content-Type')
+            'X-HTTP-Method-Override, Content-Type'
+        )
 
     def update_session(self, session):
         """
@@ -573,14 +583,13 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         self.change_channel_for_addon(addon, True)
 
     def change_channel_for_addon(self, addon, listed):
-        channel = (amo.RELEASE_CHANNEL_LISTED if listed else
-                   amo.RELEASE_CHANNEL_UNLISTED)
+        channel = amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
         for version in addon.versions.all():
             version.update(channel=channel)
 
     def _add_fake_throttling_action(
-            self, view_class, verb='post', url=None, user=None,
-            remote_addr=None):
+        self, view_class, verb='post', url=None, user=None, remote_addr=None
+    ):
         """Trigger the throttling classes on the API view passed in argument
         just like an action happened.
 
@@ -636,21 +645,23 @@ def _get_created(created):
     elif created:
         return created
     else:
-        return datetime(2011,
-                        random.randint(1, 12),  # Month
-                        random.randint(1, 28),  # Day
-                        random.randint(0, 23),  # Hour
-                        random.randint(0, 59),  # Minute
-                        random.randint(0, 59))  # Seconds
+        return datetime(
+            2011,
+            random.randint(1, 12),  # Month
+            random.randint(1, 28),  # Day
+            random.randint(0, 23),  # Hour
+            random.randint(0, 59),  # Minute
+            random.randint(0, 59),
+        )  # Seconds
 
 
-def addon_factory(
-        status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **kw):
+def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **kw):
     version_kw = version_kw or {}
 
     # Disconnect signals until the last save.
-    post_save.disconnect(addon_update_search_index, sender=Addon,
-                         dispatch_uid='addons.search.index')
+    post_save.disconnect(
+        addon_update_search_index, sender=Addon, dispatch_uid='addons.search.index'
+    )
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
@@ -706,14 +717,16 @@ def addon_factory(
 
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category:
-        static_category = random.choice(list(
-            CATEGORIES[application][addon.type].values()))
+        static_category = random.choice(
+            list(CATEGORIES[application][addon.type].values())
+        )
         category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
-    post_save.connect(addon_update_search_index, sender=Addon,
-                      dispatch_uid='addons.search.index')
+    post_save.connect(
+        addon_update_search_index, sender=Addon, dispatch_uid='addons.search.index'
+    )
 
     # Save 4.
     addon.save()
@@ -742,21 +755,17 @@ def collection_factory(**kw):
     c = Collection(**data)
     if c.slug is None:
         c.slug = data['name'].replace(' ', '-').lower()
-    c.created = c.modified = datetime(2011, 11, 11, random.randint(0, 23),
-                                      random.randint(0, 59))
+    c.created = c.modified = datetime(
+        2011, 11, 11, random.randint(0, 23), random.randint(0, 59)
+    )
     c.save()
     return c
 
 
 def license_factory(**kw):
     data = {
-        'name': {
-            'en-US': u'My License',
-            'fr': u'Mä Licence',
-        },
-        'text': {
-            'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
-        },
+        'name': {'en-US': u'My License', 'fr': u'Mä Licence',},
+        'text': {'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',},
         'url': 'http://license.example.com/',
     }
     data.update(**kw)
@@ -770,11 +779,12 @@ def file_factory(**kw):
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
 
     file_ = File.objects.create(
-        filename=filename, platform=platform, status=status, **kw)
+        filename=filename, platform=platform, status=status, **kw
+    )
 
     fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files',
-        filename)
+        settings.ROOT, 'src/olympia/files/fixtures/files', filename
+    )
 
     if os.path.exists(fixture_path):
         copy_stored_file(fixture_path, file_.current_file_path)
@@ -806,8 +816,7 @@ user_factory_counter = 0
 def user_factory(**kw):
     global user_factory_counter
     username = kw.pop('username', u'factoryûser%d' % user_factory_counter)
-    email = kw.pop(
-        'email', u'factoryuser%d@mozîlla.com' % user_factory_counter)
+    email = kw.pop('email', u'factoryuser%d@mozîlla.com' % user_factory_counter)
     user = UserProfile.objects.create(username=username, email=email, **kw)
 
     if 'username' not in kw:
@@ -860,13 +869,15 @@ def version_factory(file_kw=None, **kw):
     ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
     ver.save()
     if addon_type not in amo.NO_COMPAT:
-        av_min, _ = AppVersion.objects.get_or_create(application=application,
-                                                     version=min_app_version)
-        av_max, _ = AppVersion.objects.get_or_create(application=application,
-                                                     version=max_app_version)
-        ApplicationsVersions.objects.get_or_create(application=application,
-                                                   version=ver, min=av_min,
-                                                   max=av_max)
+        av_min, _ = AppVersion.objects.get_or_create(
+            application=application, version=min_app_version
+        )
+        av_max, _ = AppVersion.objects.get_or_create(
+            application=application, version=max_app_version
+        )
+        ApplicationsVersions.objects.get_or_create(
+            application=application, version=ver, min=av_min, max=av_max
+        )
     if file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
@@ -916,8 +927,7 @@ class ESTestCase(TestCase):
     def reindex(cls, model, index='default'):
         # Emit post-save signal so all of the objects get reindexed.
         manager = getattr(model, 'unfiltered', model.objects)
-        [post_save.send(
-            model, instance=o, created=False) for o in manager.all()]
+        [post_save.send(model, instance=o, created=False) for o in manager.all()]
         cls.refresh(index)
 
     @classmethod
@@ -932,7 +942,6 @@ class ESTestCase(TestCase):
 
 
 class ESTestCaseWithAddons(ESTestCase):
-
     @classmethod
     def setUpTestData(cls):
         super(ESTestCaseWithAddons, cls).setUpTestData()
@@ -940,9 +949,9 @@ class ESTestCaseWithAddons(ESTestCase):
         # fixture attribute.
         call_command('loaddata', 'addons/base_es')
         addon_ids = [1, 2, 3, 4, 5, 6]  # From the addons/base_es fixture.
-        cls._addons = list(Addon.objects.filter(pk__in=addon_ids)
-                           .order_by('id'))
+        cls._addons = list(Addon.objects.filter(pk__in=addon_ids).order_by('id'))
         from olympia.addons.tasks import index_addons
+
         index_addons(addon_ids)
         # Refresh ES.
         cls.refresh()
@@ -957,7 +966,10 @@ class ESTestCaseWithAddons(ESTestCase):
 
 
 class TestXss(TestCase):
-    fixtures = ['base/addon_3615', 'users/test_backends', ]
+    fixtures = [
+        'base/addon_3615',
+        'users/test_backends',
+    ]
 
     def setUp(self):
         super(TestXss, self).setUp()
@@ -967,8 +979,7 @@ class TestXss(TestCase):
         self.addon.name = self.name
         self.addon.save()
         u = UserProfile.objects.get(email='del@icio.us')
-        GroupUser.objects.create(group=Group.objects.get(name='Admins'),
-                                 user=u)
+        GroupUser.objects.create(group=Group.objects.get(name='Admins'), user=u)
         self.client.login(email='del@icio.us')
 
     def assertNameAndNoXSS(self, url):
@@ -1027,8 +1038,8 @@ class WithDynamicEndpointsMixin(object):
         if hasattr(view, 'as_view'):
             view = view.as_view()
 
-        dynamic_urls.urlpatterns = [django_urls.url(
-            url_regex, view, name='test-dynamic-endpoint')
+        dynamic_urls.urlpatterns = [
+            django_urls.url(url_regex, view, name='test-dynamic-endpoint')
         ]
 
         self.addCleanup(self._clean_up_dynamic_urls)
@@ -1044,7 +1055,8 @@ class WithDynamicEndpoints(WithDynamicEndpointsMixin, TestCase):
 
 @override_settings(ROOT_URLCONF='olympia.amo.tests.dynamic_urls')
 class WithDynamicEndpointsAndTransactions(
-        WithDynamicEndpointsMixin, test.TransactionTestCase):
+    WithDynamicEndpointsMixin, test.TransactionTestCase
+):
     pass
 
 
@@ -1066,8 +1078,8 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     except Exception as e:
         if value:
             raise AssertionError(
-                'Could not exec %r (from value %r): %s'
-                % (string.strip(), value, e))
+                'Could not exec %r (from value %r): %s' % (string.strip(), value, e)
+            )
         else:
             raise AssertionError('Could not exec %r: %s' % (string.strip(), e))
     return locals_
@@ -1092,7 +1104,8 @@ def prefix_indexes(config):
     for key, index in settings.ES_INDEXES.items():
         if not index.startswith(prefix):
             settings.ES_INDEXES[key] = '{prefix}_amo_{index}'.format(
-                prefix=prefix, index=index)
+                prefix=prefix, index=index
+            )
 
 
 def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
@@ -1113,12 +1126,12 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
     request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
     request.version = api_version
     return drf_reverse(
-        viewname, args=args or [], kwargs=kwargs or {}, request=request,
-        **extra)
+        viewname, args=args or [], kwargs=kwargs or {}, request=request, **extra
+    )
 
 
 def get_random_ip():
     """
     Return a fake random IP for tests (may return invalid IP like 0.0.0.0)
     """
-    return socket.inet_ntoa(struct.pack('>I', random.randint(1, 0xffffffff)))
+    return socket.inet_ntoa(struct.pack('>I', random.randint(1, 0xFFFFFFFF)))

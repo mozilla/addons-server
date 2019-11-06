@@ -68,19 +68,23 @@ class TestPositiveAutoField(TestCase):
         sql, _ = schema_editor.column_sql(
             self.ClassUsingPositiveAutoField,
             self.ClassUsingPositiveAutoField._meta.get_field('id'),
-            include_default=False)
+            include_default=False,
+        )
         assert sql == 'integer UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY'
 
     def test_db_field_properties(self):
         table_name = self.ClassUsingPositiveAutoField._meta.db_table
         with connection.cursor() as cursor:
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT column_type, column_key, extra
                 FROM information_schema.columns
                 WHERE table_name='%s' and column_name='id' and
                 table_schema=DATABASE();
-            """ % table_name)
-            (column_type, column_key, extra), = cursor.fetchall()
+            """
+                % table_name
+            )
+            ((column_type, column_key, extra),) = cursor.fetchall()
             assert column_type == 'int(10) unsigned'
             assert column_key == 'PRI'
             assert extra == 'auto_increment'

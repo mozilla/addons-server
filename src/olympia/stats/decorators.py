@@ -16,4 +16,5 @@ def addon_view_stats(f):
             qs = Addon.objects.valid
 
         return addon_view(f, qs)(request, addon_id=addon_id, *args, **kw)
+
     return wrapper

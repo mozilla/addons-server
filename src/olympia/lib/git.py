@@ -19,8 +19,7 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
-from olympia.files.utils import (
-    id_to_path, extract_extension_to_dest, get_all_files)
+from olympia.files.utils import id_to_path, extract_extension_to_dest, get_all_files
 
 
 log = olympia.core.logger.getLogger('z.git_storage')
@@ -30,7 +29,7 @@ TreeEntryWrapper = namedtuple('Entry', 'tree_entry, path, blob')
 
 BRANCHES = {
     amo.RELEASE_CHANNEL_LISTED: 'listed',
-    amo.RELEASE_CHANNEL_UNLISTED: 'unlisted'
+    amo.RELEASE_CHANNEL_UNLISTED: 'unlisted',
 }
 
 # Constants from libgit2 includes/git2/diff.h
@@ -125,18 +124,23 @@ def get_mime_type_for_blob(tree_or_blob, name, blob):
         if guessed_mimetype is not None:
             # Re-apply compatibility mappings since `guess_type()` might return
             # a completely different mimetype.
-            mimetype = MIMETYPE_COMPAT_MAPPING.get(
-                guessed_mimetype, guessed_mimetype)
+            mimetype = MIMETYPE_COMPAT_MAPPING.get(guessed_mimetype, guessed_mimetype)
 
     known_type_cagegories = ('image', 'text')
     default_type_category = 'binary'
     # If mimetype has an explicit category, use it.
-    type_category = MIMETYPE_CATEGORY_MAPPING.get(
-        mimetype, mimetype.split('/')[0]
-    ) if mimetype else default_type_category
+    type_category = (
+        MIMETYPE_CATEGORY_MAPPING.get(mimetype, mimetype.split('/')[0])
+        if mimetype
+        else default_type_category
+    )
 
-    return (mimetype, default_type_category if type_category not in
-            known_type_cagegories else type_category)
+    return (
+        mimetype,
+        default_type_category
+        if type_category not in known_type_cagegories
+        else type_category,
+    )
 
 
 class TemporaryWorktree(object):
@@ -179,9 +183,9 @@ class TemporaryWorktree(object):
 
 
 class AddonGitRepository(object):
-
     def __init__(self, addon_or_id, package_type='addon'):
         from olympia.addons.models import Addon
+
         assert package_type in ('addon', 'source')
 
         # Always enforce the search path being set to our ROOT
@@ -196,22 +200,17 @@ class AddonGitRepository(object):
         # https://github.com/libgit2/libgit2/issues/2122
         git_home = settings.ROOT
         pygit2.option(
-            pygit2.GIT_OPT_SET_SEARCH_PATH,
-            pygit2.GIT_CONFIG_LEVEL_GLOBAL,
-            git_home)
+            pygit2.GIT_OPT_SET_SEARCH_PATH, pygit2.GIT_CONFIG_LEVEL_GLOBAL, git_home
+        )
 
         # Enable calling fsync() for various operations touching .git
         pygit2.option(pygit2.GIT_OPT_ENABLE_FSYNC_GITDIR, True)
 
-        addon_id = (
-            addon_or_id.pk
-            if isinstance(addon_or_id, Addon)
-            else addon_or_id)
+        addon_id = addon_or_id.pk if isinstance(addon_or_id, Addon) else addon_or_id
 
         self.git_repository_path = os.path.join(
-            settings.GIT_FILE_STORAGE_PATH,
-            id_to_path(addon_id),
-            package_type)
+            settings.GIT_FILE_STORAGE_PATH, id_to_path(addon_id), package_type
+        )
 
     @property
     def is_extracted(self):
@@ -222,8 +221,8 @@ class AddonGitRepository(object):
         if not self.is_extracted:
             os.makedirs(self.git_repository_path)
             git_repository = pygit2.init_repository(
-                path=self.git_repository_path,
-                bare=False)
+                path=self.git_repository_path, bare=False
+            )
             # Write first commit to 'master' to act as HEAD
             tree = self.git_repository.TreeBuilder().write()
             git_repository.create_commit(
@@ -232,10 +231,14 @@ class AddonGitRepository(object):
                 self.get_author(),  # commiter, using addons-robot
                 'Initializing repository',  # message
                 tree,  # tree
-                [])  # parents
+                [],
+            )  # parents
 
-            log.debug('Initialized git repository {path}'.format(
-                path=self.git_repository_path))
+            log.debug(
+                'Initialized git repository {path}'.format(
+                    path=self.git_repository_path
+                )
+            )
         else:
             git_repository = pygit2.Repository(self.git_repository_path)
 
@@ -324,9 +327,12 @@ class AddonGitRepository(object):
                         version_id=version.id,
                         addon=repr(version.addon),
                         file_obj=repr(file_obj),
-                        note=note)),
+                        note=note,
+                    )
+                ),
                 author=author,
-                branch=branch)
+                branch=branch,
+            )
 
             # Set the latest git hash on the related version.
             version.update(git_hash=commit.hex)
@@ -357,9 +363,12 @@ class AddonGitRepository(object):
                 '{addon} from source file'.format(
                     version=repr(version),
                     version_id=version.id,
-                    addon=repr(version.addon))),
+                    addon=repr(version.addon),
+                )
+            ),
             author=author,
-            branch=branch)
+            branch=branch,
+        )
 
         # Set the latest git hash on the related version.
         version.update(source_git_hash=commit.hex)
@@ -381,7 +390,8 @@ class AddonGitRepository(object):
 
         if branch is None:
             branch = self.git_repository.create_branch(
-                name, self.git_repository.head.peel())
+                name, self.git_repository.head.peel()
+            )
 
         return branch
 
@@ -394,9 +404,8 @@ class AddonGitRepository(object):
         with TemporaryWorktree(self.git_repository) as worktree:
             # Now extract the extension to the workdir
             extract_extension_to_dest(
-                source=path,
-                dest=worktree.extraction_target_path,
-                force_fsync=True)
+                source=path, dest=worktree.extraction_target_path, force_fsync=True
+            )
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
@@ -404,10 +413,7 @@ class AddonGitRepository(object):
 
             # Fetch all files and strip the absolute path but keep the
             # `extracted/` prefix
-            files = get_all_files(
-                worktree.extraction_target_path,
-                worktree.path,
-                '')
+            files = get_all_files(worktree.extraction_target_path, worktree.path, '')
 
             # Make sure the index is up to date
             worktree.repo.index.read()
@@ -428,7 +434,7 @@ class AddonGitRepository(object):
                     renamed = '{}.{}'.format(filename, uuid.uuid4().hex[:8])
                     shutil.move(
                         os.path.join(worktree.path, filename),
-                        os.path.join(worktree.path, renamed)
+                        os.path.join(worktree.path, renamed),
                     )
 
             # Add all changes to the index (git add --all ...)
@@ -449,7 +455,7 @@ class AddonGitRepository(object):
                 tree,
                 # Set the current branch HEAD as the parent of this commit
                 # so that it'll go straight into the branches commit log
-                [branch.target]
+                [branch.target],
             )
 
             # Fetch the commit object
@@ -483,19 +489,18 @@ class AddonGitRepository(object):
 
             if isinstance(tree_or_blob, pygit2.Tree):
                 yield TreeEntryWrapper(
-                    blob=None,
-                    tree_entry=tree_entry,
-                    path=tree_entry.name)
+                    blob=None, tree_entry=tree_entry, path=tree_entry.name
+                )
                 for child in self.iter_tree(tree_or_blob):
                     yield TreeEntryWrapper(
                         blob=child.blob,
                         tree_entry=child.tree_entry,
-                        path=os.path.join(tree_entry.name, child.path))
+                        path=os.path.join(tree_entry.name, child.path),
+                    )
             else:
                 yield TreeEntryWrapper(
-                    blob=tree_or_blob,
-                    tree_entry=tree_entry,
-                    path=tree_entry.name)
+                    blob=tree_or_blob, tree_entry=tree_entry, path=tree_entry.name
+                )
 
     def get_raw_diff(self, commit, parent=None, include_unmodifed=False):
         """Return the raw diff object.
@@ -520,7 +525,8 @@ class AddonGitRepository(object):
                     context_lines=sys.maxsize,
                     interhunk_lines=0,
                     flags=flags,
-                    swap=True)
+                    swap=True,
+                )
             else:
                 retval = self.git_repository.diff(
                     self.get_root_tree(parent),
@@ -528,7 +534,8 @@ class AddonGitRepository(object):
                     # We always show the whole file by default
                     context_lines=sys.maxsize,
                     flags=flags,
-                    interhunk_lines=0)
+                    interhunk_lines=0,
+                )
 
             diff_cache[(commit, parent, include_unmodifed)] = retval
             self._diff_cache = diff_cache
@@ -545,7 +552,8 @@ class AddonGitRepository(object):
                          for them.
         """
         diff = self.get_raw_diff(
-            commit, parent=parent, include_unmodifed=pathspec is not None)
+            commit, parent=parent, include_unmodifed=pathspec is not None
+        )
 
         changes = []
 
@@ -557,11 +565,9 @@ class AddonGitRepository(object):
                 continue
 
             if parent is None:
-                changes.append(self._render_patch(
-                    patch, commit, commit, pathspec))
+                changes.append(self._render_patch(patch, commit, commit, pathspec))
             else:
-                changes.append(self._render_patch(
-                    patch, commit, parent, pathspec))
+                changes.append(self._render_patch(patch, commit, parent, pathspec))
         return changes
 
     def _render_patch(self, patch, commit, parent, pathspec=None):
@@ -592,22 +598,26 @@ class AddonGitRepository(object):
                 elif origin == GIT_DIFF_LINE_DEL_EOFNL:
                     new_ending_new_line = False
 
-                changes.append({
-                    'content': line.content.rstrip('\r\n'),
-                    'type': GIT_DIFF_LINE_MAPPING[origin],
-                    # Can be `-1` for additions
-                    'old_line_number': line.old_lineno,
-                    'new_line_number': line.new_lineno,
-                })
+                changes.append(
+                    {
+                        'content': line.content.rstrip('\r\n'),
+                        'type': GIT_DIFF_LINE_MAPPING[origin],
+                        # Can be `-1` for additions
+                        'old_line_number': line.old_lineno,
+                        'new_line_number': line.new_lineno,
+                    }
+                )
 
-            hunks.append({
-                'header': hunk.header.rstrip('\r\n'),
-                'old_start': hunk.old_start,
-                'new_start': hunk.new_start,
-                'old_lines': hunk.old_lines,
-                'new_lines': hunk.new_lines,
-                'changes': changes
-            })
+            hunks.append(
+                {
+                    'header': hunk.header.rstrip('\r\n'),
+                    'old_start': hunk.old_start,
+                    'new_start': hunk.new_start,
+                    'old_lines': hunk.old_lines,
+                    'new_lines': hunk.new_lines,
+                    'changes': changes,
+                }
+            )
 
         # We are exposing unchanged files fully to the frontend client
         # so that it can show them for an better review experience.
@@ -619,9 +629,9 @@ class AddonGitRepository(object):
         # a diff view for an file. That way we increase performance for
         # reguar unittests and full-tree diffs.
         generate_unmodified_fake_diff = (
-            not patch.delta.is_binary and
-            pathspec is not None and
-            patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
+            not patch.delta.is_binary
+            and pathspec is not None
+            and patch.delta.status == pygit2.GIT_DELTA_UNMODIFIED
         )
 
         if generate_unmodified_fake_diff:
@@ -629,7 +639,8 @@ class AddonGitRepository(object):
             blob_or_tree = tree[patch.delta.new_file.path]
             actual_blob = self.git_repository[blob_or_tree.oid]
             mime_category = get_mime_type_for_blob(
-                blob_or_tree.type, patch.delta.new_file.path, actual_blob)[1]
+                blob_or_tree.type, patch.delta.new_file.path, actual_blob
+            )[1]
 
             if mime_category == 'text':
                 data = actual_blob.data
@@ -643,14 +654,16 @@ class AddonGitRepository(object):
                     for lineno, line in enumerate(data.split(b'\n'), start=1)
                 ]
 
-                hunks.append({
-                    'header': '@@ -0 +0 @@',
-                    'old_start': 0,
-                    'new_start': 0,
-                    'old_lines': changes[-1]['old_line_number'],
-                    'new_lines': changes[-1]['new_line_number'],
-                    'changes': changes
-                })
+                hunks.append(
+                    {
+                        'header': '@@ -0 +0 @@',
+                        'old_start': 0,
+                        'new_start': 0,
+                        'old_lines': changes[-1]['old_line_number'],
+                        'new_lines': changes[-1]['new_line_number'],
+                        'changes': changes,
+                    }
+                )
 
         entry = {
             'path': patch.delta.new_file.path,

@@ -25,7 +25,9 @@ try:
 except ImportError:
     # django1.11
     from django.urls import (
-        RegexURLPattern as URLPattern, RegexURLResolver as URLResolver)
+        RegexURLPattern as URLPattern,
+        RegexURLResolver as URLResolver,
+    )
 
 
 def decorate(decorator, urlconf):

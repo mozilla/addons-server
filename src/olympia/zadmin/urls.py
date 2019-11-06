@@ -27,29 +27,44 @@ urlpatterns = [
     # AMO stuff.
     url(r'^$', views.index, name='zadmin.index'),
     url(r'^models$', lambda r: redirect('admin:index'), name='zadmin.home'),
-    url(r'^addon/manage/%s/$' % ADDON_ID,
-        views.addon_manage, name='zadmin.addon_manage'),
-    url(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
-        name='zadmin.recalc_hash'),
+    url(
+        r'^addon/manage/%s/$' % ADDON_ID, views.addon_manage, name='zadmin.addon_manage'
+    ),
+    url(
+        r'^addon/recalc-hash/(?P<file_id>\d+)/',
+        views.recalc_hash,
+        name='zadmin.recalc_hash',
+    ),
     url(r'^env$', views.env, name='zadmin.env'),
     url(r'^settings', views.show_settings, name='zadmin.settings'),
     url(r'^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
-
-    url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
-        views.download_file_upload, name='zadmin.download_file_upload'),
-
+    url(
+        r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
+        views.download_file_upload,
+        name='zadmin.download_file_upload',
+    ),
     url(r'^features$', views.features, name='zadmin.features'),
-    url(r'^features/collections\.json$', views.collections_json,
-        name='zadmin.collections_json'),
-    url(r'^features/featured-collection$', views.featured_collection,
-        name='zadmin.featured_collection'),
+    url(
+        r'^features/collections\.json$',
+        views.collections_json,
+        name='zadmin.collections_json',
+    ),
+    url(
+        r'^features/featured-collection$',
+        views.featured_collection,
+        name='zadmin.featured_collection',
+    ),
     url(r'^elastic$', views.elastic, name='zadmin.elastic'),
     url(r'^mail$', views.mail, name='zadmin.mail'),
     url(r'^addon-search$', views.addon_search, name='zadmin.addon-search'),
-
     # The Django admin.
-    url(r'^models/',
-        include((admin.site.get_urls(), 'admin'), namespace=admin.site.name)),
-    url(r'^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
-        views.general_search, name='zadmin.search'),
+    url(
+        r'^models/',
+        include((admin.site.get_urls(), 'admin'), namespace=admin.site.name),
+    ),
+    url(
+        r'^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
+        views.general_search,
+        name='zadmin.search',
+    ),
 ]

@@ -10,6 +10,7 @@ class IsSubmissionAllowedFor(BasePermission):
     reason is set on the permission instance to be returned to the client in
     the 403 response.
     """
+
     def has_permission(self, request, view):
         checker = UploadRestrictionChecker(request)
         if not checker.is_submission_allowed():

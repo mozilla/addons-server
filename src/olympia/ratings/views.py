@@ -3,8 +3,7 @@ from django.utils.encoding import force_text
 
 from rest_framework import serializers
 from rest_framework.decorators import action
-from rest_framework.exceptions import (
-    NotAuthenticated, ParseError, PermissionDenied)
+from rest_framework.exceptions import NotAuthenticated, ParseError, PermissionDenied
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_202_ACCEPTED
@@ -15,15 +14,21 @@ from olympia.access import acl
 from olympia.addons.views import AddonChildMixin
 from olympia.api.pagination import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowIfPublic, AllowNotOwner, AllowOwner,
-    AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
+    AllowAddonAuthor,
+    AllowIfPublic,
+    AllowNotOwner,
+    AllowOwner,
+    AllowRelatedObjectPermissions,
+    AnyOf,
+    ByHttpMethod,
+    GroupPermission,
+)
 from olympia.api.throttling import GranularUserRateThrottle
 from olympia.api.utils import is_gate_active
 
 from .models import GroupedRating, Rating, RatingFlag
 from .permissions import CanDeleteRatingPermission
-from .serializers import (
-    RatingFlagSerializer, RatingSerializer, RatingSerializerReply)
+from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerializerReply
 
 
 class RatingThrottle(GranularUserRateThrottle):
@@ -44,30 +49,31 @@ class RatingReplyThrottle(RatingThrottle):
 class RatingViewSet(AddonChildMixin, ModelViewSet):
     serializer_class = RatingSerializer
     permission_classes = [
-        ByHttpMethod({
-            'get': AllowAny,
-            'head': AllowAny,
-            'options': AllowAny,  # Needed for CORS.
-
-            # Deletion requires a specific permission check.
-            'delete': CanDeleteRatingPermission,
-
-            # To post a rating you just need to be authenticated.
-            'post': IsAuthenticated,
-
-            # To edit a rating you need to be the author or be an admin.
-            'patch': AnyOf(AllowOwner, GroupPermission(
-                amo.permissions.ADDONS_EDIT)),
-
-            # Implementing PUT would be a little incoherent as we don't want to
-            # allow users to change `version` but require it at creation time.
-            # So only PATCH is allowed for editing.
-        }),
+        ByHttpMethod(
+            {
+                'get': AllowAny,
+                'head': AllowAny,
+                'options': AllowAny,  # Needed for CORS.
+                # Deletion requires a specific permission check.
+                'delete': CanDeleteRatingPermission,
+                # To post a rating you just need to be authenticated.
+                'post': IsAuthenticated,
+                # To edit a rating you need to be the author or be an admin.
+                'patch': AnyOf(
+                    AllowOwner, GroupPermission(amo.permissions.ADDONS_EDIT)
+                ),
+                # Implementing PUT would be a little incoherent as we don't want to
+                # allow users to change `version` but require it at creation time.
+                # So only PATCH is allowed for editing.
+            }
+        ),
     ]
-    reply_permission_classes = [AnyOf(
-        GroupPermission(amo.permissions.ADDONS_EDIT),
-        AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
-    )]
+    reply_permission_classes = [
+        AnyOf(
+            GroupPermission(amo.permissions.ADDONS_EDIT),
+            AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
+        )
+    ]
     reply_serializer_class = RatingSerializerReply
     flag_permission_classes = [AllowNotOwner]
     throttle_classes = (RatingThrottle,)
@@ -93,9 +99,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             return self.addon_object
 
         if 'addon_pk' not in self.kwargs:
-            self.kwargs['addon_pk'] = (
-                self.request.data.get('addon') or
-                self.request.GET.get('addon'))
+            self.kwargs['addon_pk'] = self.request.data.get(
+                'addon'
+            ) or self.request.GET.get('addon')
         if not self.kwargs['addon_pk']:
             # If we don't have an addon object, set it as None on the instance
             # and return immediately, that's fine.
@@ -108,27 +114,29 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
         return super(RatingViewSet, self).get_addon_object(
-            permission_classes=[AllowIfPublic])
+            permission_classes=[AllowIfPublic]
+        )
 
     def should_include_flags(self):
         if not hasattr(self, '_should_include_flags'):
             request = self.request
             self._should_include_flags = (
-                'show_flags_for' in request.GET and
-                not is_gate_active(request, 'del-ratings-flags')
+                'show_flags_for' in request.GET
+                and not is_gate_active(request, 'del-ratings-flags')
             )
             if self._should_include_flags:
                 # Check the parameter was sent correctly
                 try:
-                    show_flags_for = (
-                        serializers.IntegerField().to_internal_value(
-                            request.GET['show_flags_for']))
+                    show_flags_for = serializers.IntegerField().to_internal_value(
+                        request.GET['show_flags_for']
+                    )
                     if show_flags_for != request.user.pk:
                         raise serializers.ValidationError
                 except serializers.ValidationError:
                     raise ParseError(
                         'show_flags_for parameter value should be equal to '
-                        'the user id of the authenticated user')
+                        'the user id of the authenticated user'
+                    )
         return self._should_include_flags
 
     def check_permissions(self, request):
@@ -158,7 +166,8 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             score_filter = (
                 self.request.GET.get('score')
                 if is_gate_active(self.request, 'ratings-score-filter')
-                else None)
+                else None
+            )
             exclude_ratings = self.request.GET.get('exclude_ratings')
             if addon_identifier:
                 qs = qs.filter(addon=self.get_addon_object())
@@ -196,7 +205,8 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 except ValueError:
                     raise ParseError(
                         'score parameter should be an integer or a list of '
-                        'integers (separated by a comma).')
+                        'integers (separated by a comma).'
+                    )
                 qs = qs.filter(rating__in=scores)
             if exclude_ratings:
                 try:
@@ -204,9 +214,11 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                         int(rating) for rating in exclude_ratings.split(',')
                     ]
                 except ValueError:
-                    raise ParseError('exclude_ratings parameter should be an '
-                                     'integer or a list of integers '
-                                     '(separated by a comma).')
+                    raise ParseError(
+                        'exclude_ratings parameter should be an '
+                        'integer or a list of integers '
+                        '(separated by a comma).'
+                    )
                 qs = qs.exclude(pk__in=exclude_ratings)
         return super(RatingViewSet, self).filter_queryset(qs)
 
@@ -215,33 +227,35 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         extra_data = {}
         if 'show_grouped_ratings' in request.GET:
             try:
-                show_grouped_ratings = (
-                    serializers.BooleanField().to_internal_value(
-                        request.GET['show_grouped_ratings']))
+                show_grouped_ratings = serializers.BooleanField().to_internal_value(
+                    request.GET['show_grouped_ratings']
+                )
             except serializers.ValidationError:
-                raise ParseError(
-                    'show_grouped_ratings parameter should be a boolean')
+                raise ParseError('show_grouped_ratings parameter should be a boolean')
             if show_grouped_ratings and self.get_addon_object():
-                extra_data['grouped_ratings'] = dict(GroupedRating.get(
-                    self.addon_object.id))
-        if ('show_permissions_for' in request.GET and
-                is_gate_active(self.request, 'ratings-can_reply')):
+                extra_data['grouped_ratings'] = dict(
+                    GroupedRating.get(self.addon_object.id)
+                )
+        if 'show_permissions_for' in request.GET and is_gate_active(
+            self.request, 'ratings-can_reply'
+        ):
             if 'addon' not in request.GET:
                 raise ParseError(
                     'show_permissions_for parameter is only valid if the '
-                    'addon parameter is also present')
+                    'addon parameter is also present'
+                )
             try:
-                show_permissions_for = (
-                    serializers.IntegerField().to_internal_value(
-                        request.GET['show_permissions_for']))
+                show_permissions_for = serializers.IntegerField().to_internal_value(
+                    request.GET['show_permissions_for']
+                )
                 if show_permissions_for != request.user.pk:
                     raise serializers.ValidationError
             except serializers.ValidationError:
                 raise ParseError(
                     'show_permissions_for parameter value should be equal to '
-                    'the user id of the authenticated user')
-            extra_data['can_reply'] = (
-                self.check_can_reply_permission_for_ratings_list())
+                    'the user id of the authenticated user'
+                )
+            extra_data['can_reply'] = self.check_can_reply_permission_for_ratings_list()
         # Call this here so the validation checks on the `show_flags_for` are
         # carried out even when there are no results to serialize.
         self.should_include_flags()
@@ -273,19 +287,20 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
     def get_queryset(self):
         requested = self.request.GET.get('filter', '').split(',')
-        has_addons_edit = acl.action_allowed(self.request,
-                                             amo.permissions.ADDONS_EDIT)
+        has_addons_edit = acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT)
 
         # Add this as a property of the view, because we need to pass down the
         # information to the serializer to show/hide delete replies.
         if not hasattr(self, 'should_access_deleted_ratings'):
             self.should_access_deleted_ratings = (
-                ('with_deleted' in requested or self.action != 'list') and
-                self.request.user.is_authenticated and
-                has_addons_edit)
+                ('with_deleted' in requested or self.action != 'list')
+                and self.request.user.is_authenticated
+                and has_addons_edit
+            )
 
         should_access_only_top_level_ratings = (
-            self.action == 'list' and self.get_addon_object())
+            self.action == 'list' and self.get_addon_object()
+        )
 
         if self.should_access_deleted_ratings:
             # For admins or add-on authors replying. When listing, we include
@@ -322,14 +337,15 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # separate query to fetch them all.
         queryset = queryset.select_related('version', 'user')
         replies_qs = Rating.unfiltered.select_related('user')
-        return queryset.prefetch_related(
-            Prefetch('reply', queryset=replies_qs))
+        return queryset.prefetch_related(Prefetch('reply', queryset=replies_qs))
 
     @action(
-        detail=True, methods=['post'],
+        detail=True,
+        methods=['post'],
         permission_classes=reply_permission_classes,
         serializer_class=reply_serializer_class,
-        throttle_classes=[RatingReplyThrottle])
+        throttle_classes=[RatingReplyThrottle],
+    )
     def reply(self, *args, **kwargs):
         # A reply is just like a regular post, except that we set the reply
         # FK to the current rating object and only allow add-on authors/admins.
@@ -346,9 +362,11 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         return self.create(*args, **kwargs)
 
     @action(
-        detail=True, methods=['post'],
+        detail=True,
+        methods=['post'],
         permission_classes=flag_permission_classes,
-        throttle_classes=[])
+        throttle_classes=[],
+    )
     def flag(self, request, *args, **kwargs):
         # We load the add-on object from the rating to trigger permission
         # checks.
@@ -357,21 +375,25 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
         try:
             flag_instance = RatingFlag.objects.get(
-                rating=self.rating_object, user=self.request.user)
+                rating=self.rating_object, user=self.request.user
+            )
         except RatingFlag.DoesNotExist:
             flag_instance = None
         if flag_instance is None:
             serializer = RatingFlagSerializer(
-                data=request.data, context=self.get_serializer_context())
+                data=request.data, context=self.get_serializer_context()
+            )
         else:
             serializer = RatingFlagSerializer(
-                flag_instance, data=request.data, partial=False,
-                context=self.get_serializer_context())
+                flag_instance,
+                data=request.data,
+                partial=False,
+                context=self.get_serializer_context(),
+            )
         serializer.is_valid(raise_exception=True)
         serializer.save()
         headers = self.get_success_headers(serializer.data)
-        return Response(
-            serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
+        return Response(serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
 
     def perform_destroy(self, instance):
         instance.delete(user_responsible=self.request.user)

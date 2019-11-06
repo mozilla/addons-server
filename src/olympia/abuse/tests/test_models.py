@@ -45,8 +45,7 @@ class TestAbuse(TestCase):
             (None, 'None'),
             (1, 'Damages computer and/or data'),
             (2, 'Creates spam or advertising'),
-            (3, 'Changes search / homepage / new tab page without informing '
-                'user'),
+            (3, 'Changes search / homepage / new tab page without informing ' 'user'),
             (5, "Doesn’t work, breaks websites, or slows Firefox down"),
             (6, 'Hateful, violent, or illegal content'),
             (7, "Pretends to be something it’s not"),
@@ -81,7 +80,7 @@ class TestAbuse(TestCase):
             (12, 'Temporary Add-on'),
             (13, 'Sync'),
             (14, 'URL'),
-            (127, 'Other')
+            (127, 'Other'),
         )
 
         assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == (
@@ -100,7 +99,7 @@ class TestAbuse(TestCase):
             (12, 'temporary_addon'),
             (13, 'sync'),
             (14, 'url'),
-            (127, 'other')
+            (127, 'other'),
         )
 
         assert AbuseReport.ADDON_INSTALL_SOURCES.choices == (
@@ -123,7 +122,7 @@ class TestAbuse(TestCase):
             (16, 'System Add-on'),
             (17, 'Temporary Add-on'),
             (18, 'Unknown'),
-            (127, 'Other')
+            (127, 'Other'),
         )
 
         assert AbuseReport.ADDON_INSTALL_SOURCES.api_choices == (
@@ -146,7 +145,7 @@ class TestAbuse(TestCase):
             (16, 'system_addon'),
             (17, 'temporary_addon'),
             (18, 'unknown'),
-            (127, 'other')
+            (127, 'other'),
         )
 
         assert AbuseReport.REPORT_ENTRY_POINTS.choices == (

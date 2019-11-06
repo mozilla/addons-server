@@ -22,20 +22,16 @@ CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
-                        default='https://addons.mozilla.org')
-SERVICES_URL = env('SERVICES_URL',
-                   default='https://services.addons.mozilla.org')
-CODE_MANAGER_URL = env('CODE_MANAGER_URL',
-                       default='https://code.addons.mozilla.org')
+EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons.mozilla.org')
+SERVICES_URL = env('SERVICES_URL', default='https://services.addons.mozilla.org')
+CODE_MANAGER_URL = env('CODE_MANAGER_URL', default='https://code.addons.mozilla.org')
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
-                           default='addons.mozilla.org')
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default='addons.mozilla.org')
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
@@ -49,21 +45,25 @@ REPLICA_DATABASES = ['replica']
 CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
+CACHES['default'][
+    'BACKEND'
+] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
 
-LOGGING['loggers'].update({
-    'adi.updatecounts': {'level': logging.INFO},
-    'amqp': {'level': logging.WARNING},
-    'raven': {'level': logging.WARNING},
-    'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.INFO},
-    'z.task': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
+LOGGING['loggers'].update(
+    {
+        'adi.updatecounts': {'level': logging.INFO},
+        'amqp': {'level': logging.WARNING},
+        'raven': {'level': logging.WARNING},
+        'requests': {'level': logging.WARNING},
+        'z.addons': {'level': logging.INFO},
+        'z.task': {'level': logging.DEBUG},
+        'z.pool': {'level': logging.ERROR},
+    }
+)
 
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')
@@ -95,16 +95,20 @@ ES_DEFAULT_NUM_SHARDS = 10
 
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.prod.mozaws.net/v1/api/recommendations/')
+    default='https://taar.prod.mozaws.net/v1/api/recommendations/',
+)
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
-             'addon_recommendations/'))
+    default=(
+        'https://taarlite.prod.mozaws.net/taarlite/api/v1/' 'addon_recommendations/'
+    ),
+)
 
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-west-2.amazonaws.com/361527076523/'
-    'amo-account-change-prod')
+    'https://sqs.us-west-2.amazonaws.com/361527076523/' 'amo-account-change-prod'
+)
 
 EXTENSION_WORKSHOP_URL = env(
-    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com')
+    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com'
+)

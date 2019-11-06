@@ -2,8 +2,7 @@
 import pytest
 
 from olympia.amo.tests import user_factory
-from olympia.users.utils import (
-    UnsubscribeCode, system_addon_submission_allowed)
+from olympia.users.utils import UnsubscribeCode, system_addon_submission_allowed
 
 
 def test_email_unsubscribe_code_parse():
@@ -20,10 +19,19 @@ def test_email_unsubscribe_code_parse():
         UnsubscribeCode.parse(token[5:], hash_)
 
 
-system_guids = pytest.mark.parametrize('guid', [
-    u'foø@mozilla.org', u'baa@shield.mozilla.org', u'moo@pioneer.mozilla.org',
-    u'blâh@mozilla.com', u'foø@Mozilla.Org', u'baa@ShielD.MozillA.OrG',
-    u'moo@PIONEER.mozilla.org', u'blâh@MOZILLA.COM'])
+system_guids = pytest.mark.parametrize(
+    'guid',
+    [
+        u'foø@mozilla.org',
+        u'baa@shield.mozilla.org',
+        u'moo@pioneer.mozilla.org',
+        u'blâh@mozilla.com',
+        u'foø@Mozilla.Org',
+        u'baa@ShielD.MozillA.OrG',
+        u'moo@PIONEER.mozilla.org',
+        u'blâh@MOZILLA.COM',
+    ],
+)
 
 
 @system_guids

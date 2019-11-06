@@ -29,35 +29,37 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
 
     def test_no_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid_webextension.xpi')
-        resp = self.client.get(reverse('devhub.upload_detail',
-                                       args=[upload.uuid.hex, 'json']))
+        resp = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         assert resp.status_code == 200
         data = json.loads(resp.content)
         msg = data['validation']['messages'][0]
         assert msg['message'] == 'The value of &lt;em:id&gt; is invalid.'
         assert msg['description'][0] == '&lt;iframe&gt;'
-        assert msg['context'] == (
-            [u'<em:description>...', u'<foo/>'])
+        assert msg['context'] == ([u'<em:description>...', u'<foo/>'])
 
     def test_date_on_upload(self):
         upload = FileUpload.objects.get(name='invalid_webextension.xpi')
-        resp = self.client.get(reverse('devhub.upload_detail',
-                                       args=[upload.uuid.hex]))
+        resp = self.client.get(reverse('devhub.upload_detail', args=[upload.uuid.hex]))
         assert resp.status_code == 200
         doc = pq(resp.content)
         assert doc('td').text() == 'Dec. 6, 2010'
 
     def test_upload_processed_validation_error(self):
         addon_file = open(
-            'src/olympia/devhub/tests/addons/invalid_webextension.xpi', 'rb')
-        response = self.client.post(reverse('devhub.upload'),
-                                    {'name': 'addon.xpi',
-                                     'upload': addon_file})
+            'src/olympia/devhub/tests/addons/invalid_webextension.xpi', 'rb'
+        )
+        response = self.client.post(
+            reverse('devhub.upload'), {'name': 'addon.xpi', 'upload': addon_file}
+        )
         uuid = response.url.split('/')[-2]
         upload = FileUpload.objects.get(uuid=uuid)
         assert upload.processed_validation['errors'] == 1
         assert upload.processed_validation['messages'][0]['id'] == [
-            u'validator', u'unexpected_exception']
+            u'validator',
+            u'unexpected_exception',
+        ]
 
     def test_login_required(self):
         upload = FileUpload.objects.get(name='invalid_webextension.xpi')
@@ -93,19 +95,29 @@ class TestUploadErrors(BaseUploadTest):
         addon.update(guid=data['guid'])
 
         dupe_xpi = self.get_upload('extension.xpi')
-        res = self.client.get(reverse('devhub.upload_detail',
-                                      args=[dupe_xpi.uuid, 'json']))
+        res = self.client.get(
+            reverse('devhub.upload_detail', args=[dupe_xpi.uuid, 'json'])
+        )
         assert res.status_code == 400, res.content
         data = json.loads(res.content)
         assert data['validation']['messages'] == (
-            [{'tier': 1, 'message': 'Duplicate add-on ID found.',
-              'type': 'error', 'fatal': True}])
+            [
+                {
+                    'tier': 1,
+                    'message': 'Duplicate add-on ID found.',
+                    'type': 'error',
+                    'fatal': True,
+                }
+            ]
+        )
         assert data['validation']['ending_tier'] == 1
 
     def test_long_uuid(self):
         """An add-on uuid may be more than 64 chars, see bug 1203915."""
-        long_guid = (u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
-                     u'bug_1201176_but_should_not_fail_see_bug_1203915@xpi')
+        long_guid = (
+            u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
+            u'bug_1201176_but_should_not_fail_see_bug_1203915@xpi'
+        )
         xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})
         assert xpi_info['guid'] == long_guid
 
@@ -138,12 +150,11 @@ class TestFileValidation(TestCase):
         assert response.status_code == 200
         assert response.context['addon'] == self.addon
         doc = pq(response.content)
-        assert not doc('#site-nav').hasClass('app-nav'), (
-            'Expected add-ons devhub nav')
+        assert not doc('#site-nav').hasClass('app-nav'), 'Expected add-ons devhub nav'
         assert doc('header h2').text() == (
-            u'Validation Results for testaddon-20101217.xpi')
-        assert doc('#addon-validator-suite').attr('data-validateurl') == (
-            self.json_url)
+            u'Validation Results for testaddon-20101217.xpi'
+        )
+        assert doc('#addon-validator-suite').attr('data-validateurl') == (self.json_url)
 
     def test_only_dev_can_see_results(self):
         self.client.logout()
@@ -167,15 +178,14 @@ class TestFileValidation(TestCase):
 
     def test_developer_cant_see_results_from_other_addon(self):
         other_addon = addon_factory(users=[self.user])
-        url = reverse(
-            'devhub.file_validation', args=[other_addon.slug, self.file.id])
+        url = reverse('devhub.file_validation', args=[other_addon.slug, self.file.id])
         assert self.client.get(url, follow=True).status_code == 404
 
     def test_developer_cant_see_json_results_from_other_addon(self):
         other_addon = addon_factory(users=[self.user])
         url = reverse(
-            'devhub.json_file_validation',
-            args=[other_addon.slug, self.file.id])
+            'devhub.json_file_validation', args=[other_addon.slug, self.file.id]
+        )
         assert self.client.get(url, follow=True).status_code == 404
 
     def test_no_html_in_messages(self):
@@ -185,8 +195,7 @@ class TestFileValidation(TestCase):
         msg = data['validation']['messages'][0]
         assert msg['message'] == 'The value of &lt;em:id&gt; is invalid.'
         assert msg['description'][0] == '&lt;iframe&gt;'
-        assert msg['context'] == (
-            [u'<em:description>...', u'<foo/>'])
+        assert msg['context'] == ([u'<em:description>...', u'<foo/>'])
 
     def test_cors_headers_are_sent(self):
         code_manager_url = 'https://my-code-manager-url.example.org'
@@ -199,27 +208,34 @@ class TestFileValidation(TestCase):
         assert response['Access-Control-Allow-Credentials'] == 'true'
 
     def test_linkify_validation_messages(self):
-        self.file_validation.update(validation=json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 1,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [{
-                "context": ["<code>", None],
-                "description": [
-                    "Something something, see https://bugzilla.mozilla.org/"],
-                "column": 0,
-                "line": 1,
-                "file": "chrome/content/down.html",
-                "tier": 2,
-                "message": "Some warning",
-                "type": "warning",
-                "id": [],
-                "uid": "bb9948b604b111e09dfdc42c0301fe38"
-            }],
-            "metadata": {}
-        }))
+        self.file_validation.update(
+            validation=json.dumps(
+                {
+                    "errors": 0,
+                    "success": True,
+                    "warnings": 1,
+                    "notices": 0,
+                    "message_tree": {},
+                    "messages": [
+                        {
+                            "context": ["<code>", None],
+                            "description": [
+                                "Something something, see https://bugzilla.mozilla.org/"
+                            ],
+                            "column": 0,
+                            "line": 1,
+                            "file": "chrome/content/down.html",
+                            "tier": 2,
+                            "message": "Some warning",
+                            "type": "warning",
+                            "id": [],
+                            "uid": "bb9948b604b111e09dfdc42c0301fe38",
+                        }
+                    ],
+                    "metadata": {},
+                }
+            )
+        )
         response = self.client.get(self.json_url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)
@@ -249,11 +265,14 @@ class TestValidateAddon(TestCase):
 
         doc = pq(response.content)
         assert doc('#upload-addon').attr('data-upload-url') == (
-            reverse('devhub.standalone_upload'))
+            reverse('devhub.standalone_upload')
+        )
         assert doc('#upload-addon').attr('data-upload-url-listed') == (
-            reverse('devhub.standalone_upload'))
+            reverse('devhub.standalone_upload')
+        )
         assert doc('#upload-addon').attr('data-upload-url-unlisted') == (
-            reverse('devhub.standalone_upload_unlisted'))
+            reverse('devhub.standalone_upload_unlisted')
+        )
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_filename_not_uuidfied(self, validate_mock):
@@ -267,7 +286,8 @@ class TestValidateAddon(TestCase):
 
         upload = FileUpload.objects.get()
         response = self.client.get(
-            reverse('devhub.upload_detail', args=(upload.uuid.hex,)))
+            reverse('devhub.upload_detail', args=(upload.uuid.hex,))
+        )
         assert b'Validation Results for webextension_no_id' in response.content
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -281,9 +301,7 @@ class TestValidateAddon(TestCase):
         with open(fpath, 'rb') as file_:
             self.client.post(url, {'upload': file_})
 
-        assert (
-            validate_mock.call_args[1]['channel'] ==
-            amo.RELEASE_CHANNEL_LISTED)
+        assert validate_mock.call_args[1]['channel'] == amo.RELEASE_CHANNEL_LISTED
         # No automated signing for listed add-ons.
         assert FileUpload.objects.get().automated_signing is False
 
@@ -298,9 +316,7 @@ class TestValidateAddon(TestCase):
         with open(fpath, 'rb') as file_:
             self.client.post(url, {'upload': file_})
 
-        assert (
-            validate_mock.call_args[1]['channel'] ==
-            amo.RELEASE_CHANNEL_UNLISTED)
+        assert validate_mock.call_args[1]['channel'] == amo.RELEASE_CHANNEL_UNLISTED
         # Automated signing enabled for unlisted add-ons.
         assert FileUpload.objects.get().automated_signing is True
 
@@ -313,15 +329,13 @@ class TestUploadURLs(TestCase):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.client.login(email='regular@mozilla.com')
 
-        self.addon = Addon.objects.create(guid='thing@stuff',
-                                          slug='thing-stuff',
-                                          status=amo.STATUS_APPROVED)
+        self.addon = Addon.objects.create(
+            guid='thing@stuff', slug='thing-stuff', status=amo.STATUS_APPROVED
+        )
         AddonUser.objects.create(addon=self.addon, user=user)
 
-        self.run_addons_linter = self.patch(
-            'olympia.devhub.tasks.run_addons_linter')
-        self.run_addons_linter.return_value = json.dumps(
-            amo.VALIDATOR_SKELETON_RESULTS)
+        self.run_addons_linter = self.patch('olympia.devhub.tasks.run_addons_linter')
+        self.run_addons_linter.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.parse_addon = self.patch('olympia.devhub.utils.parse_addon')
         self.parse_addon.return_value = {
             'guid': self.addon.guid,
@@ -337,9 +351,7 @@ class TestUploadURLs(TestCase):
     def expect_validation(self, listed, automated_signing):
         call_keywords = self.run_addons_linter.call_args[1]
 
-        channel = (
-            amo.RELEASE_CHANNEL_LISTED if listed else
-            amo.RELEASE_CHANNEL_UNLISTED)
+        channel = amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
 
         assert call_keywords['channel'] == channel
         assert self.file_upload.automated_signing == automated_signing
@@ -350,13 +362,10 @@ class TestUploadURLs(TestCase):
         FileUpload.objects.all().delete()
         self.run_addons_linter.reset_mock()
 
-        fpath = (
-            'src/olympia/files/fixtures/files/'
-            'webextension_validation_error.zip')
+        fpath = 'src/olympia/files/fixtures/files/' 'webextension_validation_error.zip'
 
         with open(fpath, 'rb') as file_:
-            resp = self.client.post(reverse(view, kwargs=kw),
-                                    {'upload': file_})
+            resp = self.client.post(reverse(view, kwargs=kw), {'upload': file_})
             assert resp.status_code == 302
         self.file_upload = FileUpload.objects.get()
 
@@ -366,8 +375,9 @@ class TestUploadURLs(TestCase):
         self.change_channel_for_addon(self.addon, listed=listed)
         self.addon.update(status=status)
         channel_text = 'listed' if listed else 'unlisted'
-        return self.upload('devhub.upload_for_version',
-                           channel=channel_text, addon_id=self.addon.slug)
+        return self.upload(
+            'devhub.upload_for_version', channel=channel_text, addon_id=self.addon.slug
+        )
 
     def test_upload_standalone(self):
         """Test that the standalone upload URLs result in file uploads with

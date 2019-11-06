@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from olympia.versions.compare import (
-    addon_version_int, MAX_VERSION_PART, version_dict, version_int)
+    addon_version_int,
+    MAX_VERSION_PART,
+    version_dict,
+    version_int,
+)
 
 
 def test_version_int():
@@ -28,10 +32,10 @@ def test_addon_version_int_hash():
     assert addon_version_int('0') == 0x2000010
     assert addon_version_int('*') == 0xFFFF0000000000002000010
     assert addon_version_int(MAX_VERSION_PART) == 0xFFFF0000000000002000010
-    assert addon_version_int('*.65535.65535.65535') == (
-        0xFFFFFFFFFFFFFFFF2000010)
+    assert addon_version_int('*.65535.65535.65535') == (0xFFFFFFFFFFFFFFFF2000010)
     assert addon_version_int('*.65535.65635.65535a65535pre9') == (
-        0xFFFFFFFFFFFFFFFF0FFFF09)
+        0xFFFFFFFFFFFFFFFF0FFFF09
+    )
 
 
 def test_addon_version_int_compare():
@@ -47,34 +51,43 @@ def test_addon_version_int_compare():
 
 def test_version_dict():
     assert version_dict('5.0.*') == (
-        {'major': 5,
-         'minor1': 0,
-         'minor2': 65535,
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
+        {
+            'major': 5,
+            'minor1': 0,
+            'minor2': 65535,
+            'minor3': None,
+            'alpha': None,
+            'alpha_ver': None,
+            'pre': None,
+            'pre_ver': None,
+        }
+    )
 
     assert version_dict('5.0.*', asterisk_value=1234) == (
-        {'major': 5,
-         'minor1': 0,
-         'minor2': 1234,
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
+        {
+            'major': 5,
+            'minor1': 0,
+            'minor2': 1234,
+            'minor3': None,
+            'alpha': None,
+            'alpha_ver': None,
+            'pre': None,
+            'pre_ver': None,
+        }
+    )
 
     assert version_dict('*.0.*', major_asterisk_value=5678) == (
-        {'major': 5678,
-         'minor1': 0,
-         'minor2': 65535,
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
+        {
+            'major': 5678,
+            'minor1': 0,
+            'minor2': 65535,
+            'minor3': None,
+            'alpha': None,
+            'alpha_ver': None,
+            'pre': None,
+            'pre_ver': None,
+        }
+    )
 
 
 def test_version_int_unicode():

@@ -5,8 +5,11 @@ from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
 from django.db.utils import IntegrityError
 from django.http import (
-    Http404, HttpResponseForbidden, HttpResponseNotAllowed,
-    HttpResponseRedirect)
+    Http404,
+    HttpResponseForbidden,
+    HttpResponseNotAllowed,
+    HttpResponseRedirect,
+)
 from django.utils.encoding import force_text
 from django.utils.html import format_html, format_html_join
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -25,8 +28,14 @@ from olympia.zadmin.admin import related_content_link
 
 from . import forms
 from .models import (
-    DeniedName, DisposableEmailDomainRestriction, EmailUserRestriction,
-    GroupUser, IPNetworkUserRestriction, UserProfile, UserRestrictionHistory)
+    DeniedName,
+    DisposableEmailDomainRestriction,
+    EmailUserRestriction,
+    GroupUser,
+    IPNetworkUserRestriction,
+    UserProfile,
+    UserRestrictionHistory,
+)
 
 
 class GroupUserInline(admin.TabularInline):
@@ -37,8 +46,7 @@ class GroupUserInline(admin.TabularInline):
 class UserRestrictionHistoryInline(admin.TabularInline):
     model = UserRestrictionHistory
     raw_id_fields = ('user',)
-    readonly_fields = ('restriction', 'ip_address', 'user',
-                       'last_login_ip', 'created')
+    readonly_fields = ('restriction', 'ip_address', 'user', 'last_login_ip', 'created')
     extra = 0
     can_delete = False
     view_on_site = False
@@ -57,35 +65,68 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     inlines = (GroupUserInline, UserRestrictionHistoryInline)
     show_full_result_count = False  # Turn off to avoid the query.
 
-    readonly_fields = ('id', 'picture_img', 'banned', 'deleted', 'is_public',
-                       'last_login', 'last_login_ip', 'known_ip_adresses',
-                       'last_known_activity_time', 'ratings_created',
-                       'collections_created', 'addons_created', 'activity',
-                       'abuse_reports_by_this_user',
-                       'abuse_reports_for_this_user',
-                       'has_active_api_key')
+    readonly_fields = (
+        'id',
+        'picture_img',
+        'banned',
+        'deleted',
+        'is_public',
+        'last_login',
+        'last_login_ip',
+        'known_ip_adresses',
+        'last_known_activity_time',
+        'ratings_created',
+        'collections_created',
+        'addons_created',
+        'activity',
+        'abuse_reports_by_this_user',
+        'abuse_reports_for_this_user',
+        'has_active_api_key',
+    )
     fieldsets = (
-        (None, {
-            'fields': ('id', 'email', 'fxa_id', 'username', 'display_name',
-                       'reviewer_name', 'biography', 'homepage', 'location',
-                       'occupation', 'picture_img'),
-        }),
-        ('Flags', {
-            'fields': ('display_collections', 'deleted', 'is_public'),
-        }),
-        ('Content', {
-            'fields': ('addons_created', 'collections_created',
-                       'ratings_created')
-        }),
-        ('Abuse Reports', {
-            'fields': ('abuse_reports_by_this_user',
-                       'abuse_reports_for_this_user')
-        }),
-        ('Admin', {
-            'fields': ('last_login', 'last_known_activity_time', 'activity',
-                       'last_login_ip', 'known_ip_adresses', 'banned', 'notes',
-                       'bypass_upload_restrictions', 'has_active_api_key')
-        }),
+        (
+            None,
+            {
+                'fields': (
+                    'id',
+                    'email',
+                    'fxa_id',
+                    'username',
+                    'display_name',
+                    'reviewer_name',
+                    'biography',
+                    'homepage',
+                    'location',
+                    'occupation',
+                    'picture_img',
+                ),
+            },
+        ),
+        ('Flags', {'fields': ('display_collections', 'deleted', 'is_public'),}),
+        (
+            'Content',
+            {'fields': ('addons_created', 'collections_created', 'ratings_created')},
+        ),
+        (
+            'Abuse Reports',
+            {'fields': ('abuse_reports_by_this_user', 'abuse_reports_for_this_user')},
+        ),
+        (
+            'Admin',
+            {
+                'fields': (
+                    'last_login',
+                    'last_known_activity_time',
+                    'activity',
+                    'last_login_ip',
+                    'known_ip_adresses',
+                    'banned',
+                    'notes',
+                    'bypass_upload_restrictions',
+                    'has_active_api_key',
+                )
+            },
+        ),
     )
 
     actions = ['ban_action', 'reset_api_key_action']
@@ -94,19 +135,26 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         def wrap(view):
             def wrapper(*args, **kwargs):
                 return self.admin_site.admin_view(view)(*args, **kwargs)
+
             return functools.update_wrapper(wrapper, view)
 
         urlpatterns = super(UserAdmin, self).get_urls()
         custom_urlpatterns = [
-            url(r'^(?P<object_id>.+)/ban/$',
+            url(
+                r'^(?P<object_id>.+)/ban/$',
                 wrap(self.ban_view),
-                name='users_userprofile_ban'),
-            url(r'^(?P<object_id>.+)/reset_api_key/$',
+                name='users_userprofile_ban',
+            ),
+            url(
+                r'^(?P<object_id>.+)/reset_api_key/$',
                 wrap(self.reset_api_key_view),
-                name='users_userprofile_reset_api_key'),
-            url(r'^(?P<object_id>.+)/delete_picture/$',
+                name='users_userprofile_reset_api_key',
+            ),
+            url(
+                r'^(?P<object_id>.+)/delete_picture/$',
                 wrap(self.delete_picture_view),
-                name='users_userprofile_delete_picture')
+                name='users_userprofile_delete_picture',
+            ),
         ]
         return custom_urlpatterns + urlpatterns
 
@@ -122,7 +170,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         extra_context['has_users_edit_permission'] = acl.action_allowed(
-            request, amo.permissions.USERS_EDIT)
+            request, amo.permissions.USERS_EDIT
+        )
         return super(UserAdmin, self).change_view(
             request, object_id, form_url, extra_context=extra_context,
         )
@@ -135,8 +184,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         obj.delete()
 
     def save_model(self, request, obj, form, change):
-        changes = {k: (form.initial.get(k), form.cleaned_data.get(k))
-                   for k in form.changed_data}
+        changes = {
+            k: (form.initial.get(k), form.cleaned_data.get(k))
+            for k in form.changed_data
+        }
         ActivityLog.create(amo.LOG.ADMIN_USER_EDITED, obj, details=changes)
         obj.save()
 
@@ -155,7 +206,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         obj.ban_and_disable_related_content()
         kw = {'user': force_text(obj)}
         self.message_user(
-            request, ugettext('The user "%(user)s" has been banned.' % kw))
+            request, ugettext('The user "%(user)s" has been banned.' % kw)
+        )
         return HttpResponseRedirect('../')
 
     def reset_api_key_view(self, request, object_id, extra_context=None):
@@ -188,9 +240,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         obj.delete_picture()
         kw = {'user': force_text(obj)}
         self.message_user(
-            request, ugettext(
-                'The picture belonging to user "%(user)s" has been deleted.' %
-                kw))
+            request,
+            ugettext('The picture belonging to user "%(user)s" has been deleted.' % kw),
+        )
         return HttpResponseRedirect('../')
 
     def ban_action(self, request, qs):
@@ -201,7 +253,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             users.append(force_text(obj))
         kw = {'users': u', '.join(users)}
         self.message_user(
-            request, ugettext('The users "%(users)s" have been banned.' % kw))
+            request, ugettext('The users "%(users)s" have been banned.' % kw)
+        )
+
     ban_action.short_description = _('Ban selected users')
 
     def reset_api_key_action(self, request, qs):
@@ -213,51 +267,60 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             users.append(force_text(user))
         kw = {'users': u', '.join(users)}
         self.message_user(
-            request,
-            ugettext('The users "%(users)s" had their API Key reset.' % kw))
+            request, ugettext('The users "%(users)s" had their API Key reset.' % kw)
+        )
+
     reset_api_key_action.short_description = _('Reset API Key')
 
     def picture_img(self, obj):
         return format_html(u'<img src="{}" />', obj.picture_url)
+
     picture_img.short_description = _(u'Profile Photo')
 
     def known_ip_adresses(self, obj):
-        ip_adresses = set(Rating.objects.filter(user=obj)
-                                .values_list('ip_address', flat=True)
-                                .order_by().distinct())
+        ip_adresses = set(
+            Rating.objects.filter(user=obj)
+            .values_list('ip_address', flat=True)
+            .order_by()
+            .distinct()
+        )
         ip_adresses.add(obj.last_login_ip)
-        contents = format_html_join(
-            '', "<li>{}</li>", ((ip,) for ip in ip_adresses))
+        contents = format_html_join('', "<li>{}</li>", ((ip,) for ip in ip_adresses))
         return format_html('<ul>{}</ul>', contents)
 
     def last_known_activity_time(self, obj):
         from django.contrib.admin.utils import display_for_value
+
         # We sort by -created by default, so first() gives us the last one, or
         # None.
         user_log = (
-            UserLog.objects.filter(user=obj)
-            .values_list('created', flat=True).first())
+            UserLog.objects.filter(user=obj).values_list('created', flat=True).first()
+        )
         return display_for_value(user_log, '')
 
     def has_active_api_key(self, obj):
         return obj.api_keys.filter(is_active=True).exists()
+
     has_active_api_key.boolean = True
 
     def collections_created(self, obj):
         return related_content_link(obj, Collection, 'author')
+
     collections_created.short_description = _('Collections')
 
     def addons_created(self, obj):
-        return related_content_link(obj, Addon, 'authors',
-                                    related_manager='unfiltered')
+        return related_content_link(obj, Addon, 'authors', related_manager='unfiltered')
+
     addons_created.short_description = _('Addons')
 
     def ratings_created(self, obj):
         return related_content_link(obj, Rating, 'user')
+
     ratings_created.short_description = _('Ratings')
 
     def activity(self, obj):
         return related_content_link(obj, ActivityLog, 'user')
+
     activity.short_description = _('Activity Logs')
 
     def abuse_reports_by_this_user(self, obj):
@@ -284,7 +347,8 @@ class DeniedModelAdmin(admin.ModelAdmin):
                         continue
                     try:
                         self.deny_list_model.objects.create(
-                            **{self.model_field: x.lower()})
+                            **{self.model_field: x.lower()}
+                        )
                         inserted += 1
                     except IntegrityError:
                         # although unlikely, someone else could have added

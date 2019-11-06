@@ -12,8 +12,7 @@ from django.utils.encoding import smart_text
 from django.utils.functional import lazy
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import (
-    get_language, to_locale, trim_whitespace, ugettext)
+from django.utils.translation import get_language, to_locale, trim_whitespace, ugettext
 
 import jinja2
 import waffle
@@ -24,8 +23,7 @@ from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 
 from olympia.amo import urlresolvers, utils
-from olympia.lib.jingo_minify_helpers import (
-    _build_html, get_css_urls, get_js_urls)
+from olympia.lib.jingo_minify_helpers import _build_html, get_css_urls, get_js_urls
 
 
 # Registering some utils as filters:
@@ -47,8 +45,7 @@ def switch_is_active(switch_name):
 
 @library.filter
 def link(item):
-    html = """<a href="%s">%s</a>""" % (item.get_url_path(),
-                                        jinja2.escape(item.name))
+    html = """<a href="%s">%s</a>""" % (item.get_url_path(), jinja2.escape(item.name))
     return jinja2.Markup(html)
 
 
@@ -78,10 +75,10 @@ def url(viewname, *args, **kwargs):
     add_prefix = kwargs.pop('add_prefix', True)
     host = kwargs.pop('host', '')
     src = kwargs.pop('src', '')
-    url = '%s%s' % (host, urlresolvers.reverse(viewname,
-                                               args=args,
-                                               kwargs=kwargs,
-                                               add_prefix=add_prefix))
+    url = '%s%s' % (
+        host,
+        urlresolvers.reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix),
+    )
     if src:
         url = urlparams(url, src=src)
     return url
@@ -96,7 +93,8 @@ def drf_url(context, viewname, *args, **kwargs):
         if not hasattr(request, 'versioning_scheme'):
             request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
         request.version = request.versioning_scheme.determine_version(
-            request, *args, **kwargs)
+            request, *args, **kwargs
+        )
     return drf_reverse(viewname, request=request, args=args, kwargs=kwargs)
 
 
@@ -119,7 +117,6 @@ def impala_paginator(pager):
 
 
 class PaginationRenderer(object):
-
     def __init__(self, pager):
         self.pager = pager
 
@@ -148,8 +145,7 @@ class PaginationRenderer(object):
         return range(max(lower + 1, 1), min(total, upper) + 1)
 
     def render(self):
-        c = {'pager': self.pager, 'num_pages': self.num_pages,
-             'count': self.count}
+        c = {'pager': self.pager, 'num_pages': self.num_pages, 'count': self.count}
         t = loader.get_template('amo/paginator.html').render(c)
         return jinja2.Markup(t)
 
@@ -226,9 +222,10 @@ def field(field, label=None, **attrs):
     if label is not None:
         field.label = label
     # HTML from Django is already escaped.
-    return jinja2.Markup(u'%s<p>%s%s</p>' %
-                         (field.errors, field.label_tag(),
-                          field.as_widget(attrs=attrs)))
+    return jinja2.Markup(
+        u'%s<p>%s%s</p>'
+        % (field.errors, field.label_tag(), field.as_widget(attrs=attrs))
+    )
 
 
 @library.global_function
@@ -421,8 +418,7 @@ def css(bundle, media=False, debug=None):
     if not media:
         media = getattr(settings, 'CSS_MEDIA_DEFAULT', 'screen,projection,tv')
 
-    return _build_html(urls, '<link rel="stylesheet" media="%s" href="%%s" />'
-                             % media)
+    return _build_html(urls, '<link rel="stylesheet" media="%s" href="%%s" />' % media)
 
 
 @library.filter

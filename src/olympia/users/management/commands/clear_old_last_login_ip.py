@@ -15,8 +15,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         six_months_ago = datetime.now() - timedelta(days=183)
         qs = UserProfile.objects.filter(
-            deleted=True,
-            modified__lt=six_months_ago).exclude(last_login_ip='')
+            deleted=True, modified__lt=six_months_ago
+        ).exclude(last_login_ip='')
         log.info('Clearing last_login_ip for %d users', qs.count())
         for user in qs:
             user.update(last_login_ip='', _signal=False)

@@ -16,70 +16,90 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
     NOT_RECOMMENDED = 'Not Recommended'
 
     addon = models.OneToOneField(
-        Addon, on_delete=models.CASCADE,
+        Addon,
+        on_delete=models.CASCADE,
         help_text='Add-on id this item will point to (If you do not know the '
-                  'id, paste the slug instead and it will be transformed '
-                  'automatically for you. If you have access to the add-on '
-                  'admin page, you can use the magnifying glass to see '
-                  'all available add-ons.')
+        'id, paste the slug instead and it will be transformed '
+        'automatically for you. If you have access to the add-on '
+        'admin page, you can use the magnifying glass to see '
+        'all available add-ons.',
+    )
     custom_addon_name = models.CharField(
-        max_length=255, blank=True,
+        max_length=255,
+        blank=True,
         help_text='Custom add-on name, if needed for space constraints. '
-                  'Will be used in the heading if present, but will '
-                  '<strong>not</strong> be translated.')
+        'Will be used in the heading if present, but will '
+        '<strong>not</strong> be translated.',
+    )
     custom_heading = models.CharField(
-        max_length=255, blank=True,
+        max_length=255,
+        blank=True,
         help_text='Short text used in the header. Can contain the following '
-                  'special tags: {start_sub_heading}, {addon_name}, '
-                  '{end_sub_heading}. Will be translated. '
-                  'Currently *not* visible to the user - #11817')
+        'special tags: {start_sub_heading}, {addon_name}, '
+        '{end_sub_heading}. Will be translated. '
+        'Currently *not* visible to the user - #11817',
+    )
     custom_description = models.TextField(
-        blank=True, help_text='Longer text used to describe an add-on. Should '
-                              'not contain any HTML or special tags. Will be '
-                              'translated.')
+        blank=True,
+        help_text='Longer text used to describe an add-on. Should '
+        'not contain any HTML or special tags. Will be '
+        'translated.',
+    )
     position = models.PositiveSmallIntegerField(
-        default=0, blank=True, db_index=True,
+        default=0,
+        blank=True,
+        db_index=True,
         help_text='Position in the discovery pane when telemetry-aware '
-                  'recommendations are off (editorial fallback). '
-                  'The lower the number, the higher the item will appear in '
-                  'the page. If left blank or if the value is 0, the item '
-                  'will not appear unless part of telemetry-aware '
-                  'recommendations.')
+        'recommendations are off (editorial fallback). '
+        'The lower the number, the higher the item will appear in '
+        'the page. If left blank or if the value is 0, the item '
+        'will not appear unless part of telemetry-aware '
+        'recommendations.',
+    )
     position_china = models.PositiveSmallIntegerField(
-        default=0, blank=True, db_index=True,
+        default=0,
+        blank=True,
+        db_index=True,
         help_text='Position in the discovery pane in China '
-                  '(See position field above).')
+        '(See position field above).',
+    )
     position_override = models.PositiveSmallIntegerField(
-        default=0, blank=True, db_index=True,
+        default=0,
+        blank=True,
+        db_index=True,
         help_text='Position in the discovery pane when telemetry-aware '
-                  'recommendations are on but we want to override them.'
-                  '(See position field above).')
+        'recommendations are on but we want to override them.'
+        '(See position field above).',
+    )
     recommendable = models.BooleanField(
-        db_index=True, null=False, default=False,
+        db_index=True,
+        null=False,
+        default=False,
         help_text="Should this add-on's versions be recommended. When enabled "
-                  'new versions will be reviewed for recommended status.')
+        'new versions will be reviewed for recommended status.',
+    )
 
     def __str__(self):
         return str(self.addon)
 
     def build_querystring(self):
         qs = QueryDict(mutable=True)
-        qs.update({
-            'utm_source': 'discovery.%s' % settings.DOMAIN,
-            'utm_medium': 'firefox-browser',
-            'utm_content': 'discopane-entry-link',
-            'src': 'api',
-        })
+        qs.update(
+            {
+                'utm_source': 'discovery.%s' % settings.DOMAIN,
+                'utm_medium': 'firefox-browser',
+                'utm_content': 'discopane-entry-link',
+                'src': 'api',
+            }
+        )
         return qs.urlencode()
 
     def _build_heading(self, html=False):
         addon_name = str(self.custom_addon_name or self.addon.name)
-        custom_heading = ugettext(
-            self.custom_heading) if self.custom_heading else None
+        custom_heading = ugettext(self.custom_heading) if self.custom_heading else None
 
         if html:
-            authors = ', '.join(
-                author.name for author in self.addon.listed_authors)
+            authors = ', '.join(author.name for author in self.addon.listed_authors)
             url = absolutify(self.addon.get_url_path())
             # addons-frontend will add target and rel attributes to the <a>
             # link. Note: The translated "by" in the middle of both strings is
@@ -89,27 +109,38 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
                 addon_link = format_html(
                     # The query string should not be encoded twice, so we add
                     # it to the template first, via '%'.
-                    '<a href="{0}?%(query)s">{1} {2} {3}</a>' % {
-                        'query': self.build_querystring()},
-                    url, addon_name, ugettext('by'), authors)
+                    '<a href="{0}?%(query)s">{1} {2} {3}</a>'
+                    % {'query': self.build_querystring()},
+                    url,
+                    addon_name,
+                    ugettext('by'),
+                    authors,
+                )
 
-                value = conditional_escape(custom_heading).replace(
-                    '{start_sub_heading}', '<span>').replace(
-                    '{end_sub_heading}', '</span>').replace(
-                    '{addon_name}', addon_link)
+                value = (
+                    conditional_escape(custom_heading)
+                    .replace('{start_sub_heading}', '<span>')
+                    .replace('{end_sub_heading}', '</span>')
+                    .replace('{addon_name}', addon_link)
+                )
             else:
                 value = format_html(
                     # The query string should not be encoded twice, so we add
                     # it to the template first, via '%'.
-                    '{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
-                        'query': self.build_querystring()},
-                    addon_name, ugettext('by'), url, authors)
+                    '{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>'
+                    % {'query': self.build_querystring()},
+                    addon_name,
+                    ugettext('by'),
+                    url,
+                    authors,
+                )
         else:
             if self.custom_heading:
-                value = custom_heading.replace(
-                    '{start_sub_heading}', '').replace(
-                    '{end_sub_heading}', '').replace(
-                    '{addon_name}', addon_name)
+                value = (
+                    custom_heading.replace('{start_sub_heading}', '')
+                    .replace('{end_sub_heading}', '')
+                    .replace('{addon_name}', addon_name)
+                )
             else:
                 value = addon_name
         return value
@@ -124,8 +155,9 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
             else:
                 value = u''
         if html:
-            return format_html(
-                u'<blockquote>{}</blockquote>', value) if value else value
+            return (
+                format_html(u'<blockquote>{}</blockquote>', value) if value else value
+            )
         else:
             return value
 
@@ -168,26 +200,30 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
     @property
     def recommended_status(self):
         return (
-            self.RECOMMENDED if (
-                self.recommendable and
-                self.addon.current_version and
-                self.addon.current_version.recommendation_approved) else
-            self.PENDING_RECOMMENDATION if self.recommendable else
-            self.NOT_RECOMMENDED)
+            self.RECOMMENDED
+            if (
+                self.recommendable
+                and self.addon.current_version
+                and self.addon.current_version.recommendation_approved
+            )
+            else self.PENDING_RECOMMENDATION
+            if self.recommendable
+            else self.NOT_RECOMMENDED
+        )
 
     def primary_hero_shelf(self):
-        return (self.primaryhero.enabled if hasattr(self, 'primaryhero')
-                else None)
+        return self.primaryhero.enabled if hasattr(self, 'primaryhero') else None
+
     primary_hero_shelf.boolean = True
 
 
 @DiscoveryItem.on_change
-def watch_recommendable_changes(old_attr=None, new_attr=None, instance=None,
-                                sender=None, **kwargs):
+def watch_recommendable_changes(
+    old_attr=None, new_attr=None, instance=None, sender=None, **kwargs
+):
     if 'recommendable' in old_attr or 'recommendable' in new_attr:
         old_value = old_attr.get('recommendable')
         new_value = new_attr.get('recommendable')
         if old_value != new_value:
             # Update ES because is_recommended depends on it.
-            update_search_index(
-                sender=sender, instance=instance.addon, **kwargs)
+            update_search_index(sender=sender, instance=instance.addon, **kwargs)

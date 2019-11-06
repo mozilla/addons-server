@@ -16,8 +16,9 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.throttling import (
-    GranularIPRateThrottle, GranularUserRateThrottle,
-    ThrottleOnlyUnsafeMethodsMixin
+    GranularIPRateThrottle,
+    GranularUserRateThrottle,
+    ThrottleOnlyUnsafeMethodsMixin,
 )
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
@@ -36,6 +37,7 @@ def with_addon(allow_missing=False):
     find an addon with the guid and verify the user's permissions. If the
     add-on is not found it will 404 when allow_missing is False otherwise it
     will call the view with addon set to None."""
+
     def wrapper(fn):
         @functools.wraps(fn)
         def inner(view, request, **kwargs):
@@ -48,51 +50,58 @@ def with_addon(allow_missing=False):
                 if allow_missing:
                     addon = None
                 else:
-                    msg = ugettext(
-                        'Could not find add-on with guid "{}".').format(guid)
-                    return Response(
-                        {'error': msg},
-                        status=status.HTTP_404_NOT_FOUND)
+                    msg = ugettext('Could not find add-on with guid "{}".').format(guid)
+                    return Response({'error': msg}, status=status.HTTP_404_NOT_FOUND)
             # Call the view if there is no add-on, the current user is an
             # author of the add-on or the current user is an admin and the
             # request is a GET.
-            has_perm = (
-                addon is None or
-                (addon.has_author(request.user) or
-                    (request.method == 'GET' and
-                        acl.action_allowed_user(
-                            request.user, amo.permissions.ADDONS_EDIT))))
+            has_perm = addon is None or (
+                addon.has_author(request.user)
+                or (
+                    request.method == 'GET'
+                    and acl.action_allowed_user(
+                        request.user, amo.permissions.ADDONS_EDIT
+                    )
+                )
+            )
 
             if has_perm:
                 return fn(view, request, addon=addon, **kwargs)
             else:
                 return Response(
                     {'error': ugettext('You do not own this addon.')},
-                    status=status.HTTP_403_FORBIDDEN)
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+
         return inner
+
     return wrapper
 
 
 class BurstUserAddonUploadThrottle(
-        ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle):
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
     scope = 'burst_ip_addon_upload'
     rate = '3/minute'
 
 
 class SustainedUserAddonUploadThrottle(
-        ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle):
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
     scope = 'sustained_user_addon_upload'
     rate = '20/hour'
 
 
 class BurstIPAddonUploadThrottle(
-        ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle):
+    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
+):
     scope = 'burst_ip_addon_upload'
     rate = '6/minute'
 
 
 class SustainedIPAddonUploadThrottle(
-        ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle):
+    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
+):
     scope = 'sustained_user_addon_upload'
     rate = '50/hour'
 
@@ -101,8 +110,10 @@ class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
     throttle_classes = (
-        BurstUserAddonUploadThrottle, SustainedUserAddonUploadThrottle,
-        BurstIPAddonUploadThrottle, SustainedIPAddonUploadThrottle,
+        BurstUserAddonUploadThrottle,
+        SustainedUserAddonUploadThrottle,
+        BurstIPAddonUploadThrottle,
+        SustainedIPAddonUploadThrottle,
     )
 
     def check_throttles(self, request):
@@ -120,28 +131,26 @@ class VersionView(APIView):
             file_upload, _ = self.handle_upload(request, None, version_string)
         except forms.ValidationError as exc:
             return Response(
-                {'error': exc.message},
-                status=exc.code or status.HTTP_400_BAD_REQUEST)
+                {'error': exc.message}, status=exc.code or status.HTTP_400_BAD_REQUEST
+            )
 
-        serializer = FileUploadSerializer(
-            file_upload, context={'request': request})
+        serializer = FileUploadSerializer(file_upload, context={'request': request})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @with_addon(allow_missing=True)
     def put(self, request, addon, version_string, guid=None):
         try:
             file_upload, created = self.handle_upload(
-                request, addon, version_string, guid=guid)
+                request, addon, version_string, guid=guid
+            )
         except forms.ValidationError as exc:
             return Response(
-                {'error': exc.message},
-                status=exc.code or status.HTTP_400_BAD_REQUEST)
+                {'error': exc.message}, status=exc.code or status.HTTP_400_BAD_REQUEST
+            )
 
-        status_code = (
-            status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED)
+        status_code = status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED
 
-        serializer = FileUploadSerializer(
-            file_upload, context={'request': request})
+        serializer = FileUploadSerializer(file_upload, context={'request': request})
         return Response(serializer.data, status=status_code)
 
     @use_primary_db
@@ -151,7 +160,8 @@ class VersionView(APIView):
         else:
             raise forms.ValidationError(
                 ugettext(u'Missing "upload" key in multipart file data.'),
-                status.HTTP_400_BAD_REQUEST)
+                status.HTTP_400_BAD_REQUEST,
+            )
 
         # Parse the file to get and validate package data with the addon.
         parsed_data = parse_addon(filedata, addon, user=request.user)
@@ -159,7 +169,8 @@ class VersionView(APIView):
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = ugettext(
                 'You cannot add versions to an addon that has status: %s.'
-                % amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED])
+                % amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]
+            )
             raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
 
         version_string = version_string or parsed_data['version']
@@ -167,95 +178,113 @@ class VersionView(APIView):
         if version_string and parsed_data['version'] != version_string:
             raise forms.ValidationError(
                 ugettext('Version does not match the manifest file.'),
-                status.HTTP_400_BAD_REQUEST)
+                status.HTTP_400_BAD_REQUEST,
+            )
 
-        if (addon is not None and
-                addon.versions.filter(version=version_string).exists()):
+        if addon is not None and addon.versions.filter(version=version_string).exists():
             latest_version = addon.find_latest_version(None, exclude=())
-            msg = ugettext('Version already exists. Latest version is: %s.'
-                           % latest_version.version)
+            msg = ugettext(
+                'Version already exists. Latest version is: %s.'
+                % latest_version.version
+            )
             raise forms.ValidationError(msg, status.HTTP_409_CONFLICT)
 
         package_guid = parsed_data.get('guid', None)
 
         dont_allow_no_guid = (
-            not addon and not package_guid and
-            not parsed_data.get('is_webextension', False))
+            not addon
+            and not package_guid
+            and not parsed_data.get('is_webextension', False)
+        )
 
         if dont_allow_no_guid:
             raise forms.ValidationError(
                 ugettext('Only WebExtensions are allowed to omit the GUID'),
-                status.HTTP_400_BAD_REQUEST)
+                status.HTTP_400_BAD_REQUEST,
+            )
 
         if guid is not None and not addon and not package_guid:
             # No guid was present in the package, but one was provided in the
             # URL, so we take it instead of generating one ourselves. But
             # first, validate it properly.
             if len(guid) > 64:
-                raise forms.ValidationError(ugettext(
-                    'Please specify your Add-on GUID in the manifest if it\'s '
-                    'longer than 64 characters.'
-                ))
+                raise forms.ValidationError(
+                    ugettext(
+                        'Please specify your Add-on GUID in the manifest if it\'s '
+                        'longer than 64 characters.'
+                    )
+                )
 
             if not amo.ADDON_GUID_PATTERN.match(guid):
                 raise forms.ValidationError(
-                    ugettext('Invalid GUID in URL'),
-                    status.HTTP_400_BAD_REQUEST)
+                    ugettext('Invalid GUID in URL'), status.HTTP_400_BAD_REQUEST
+                )
             parsed_data['guid'] = guid
 
         # channel will be ignored for new addons.
         if addon is None:
             channel = amo.RELEASE_CHANNEL_UNLISTED  # New is always unlisted.
             addon = Addon.initialize_addon_from_upload(
-                data=parsed_data, upload=filedata, channel=channel,
-                user=request.user)
+                data=parsed_data, upload=filedata, channel=channel, user=request.user
+            )
             created = True
         else:
             created = False
             channel_param = request.POST.get('channel')
             channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
             if not channel:
-                last_version = (
-                    addon.find_latest_version(None, exclude=()))
+                last_version = addon.find_latest_version(None, exclude=())
                 if last_version:
                     channel = last_version.channel
                 else:
                     channel = amo.RELEASE_CHANNEL_UNLISTED  # Treat as new.
 
             will_have_listed = channel == amo.RELEASE_CHANNEL_LISTED
-            if not addon.has_complete_metadata(
-                    has_listed_versions=will_have_listed):
+            if not addon.has_complete_metadata(has_listed_versions=will_have_listed):
                 raise forms.ValidationError(
-                    ugettext('You cannot add a listed version to this addon '
-                             'via the API due to missing metadata. '
-                             'Please submit via the website'),
-                    status.HTTP_400_BAD_REQUEST)
+                    ugettext(
+                        'You cannot add a listed version to this addon '
+                        'via the API due to missing metadata. '
+                        'Please submit via the website'
+                    ),
+                    status.HTTP_400_BAD_REQUEST,
+                )
 
         file_upload = devhub_handle_upload(
-            filedata=filedata, request=request, addon=addon, submit=True,
-            channel=channel)
+            filedata=filedata,
+            request=request,
+            addon=addon,
+            submit=True,
+            channel=channel,
+        )
 
         return file_upload, created
 
     @use_primary_db
     @with_addon()
     def get(self, request, addon, version_string, uuid=None, guid=None):
-        file_upload_qs = FileUpload.objects.filter(
-            addon=addon, version=version_string)
+        file_upload_qs = FileUpload.objects.filter(addon=addon, version=version_string)
 
         try:
             if uuid is None:
                 file_upload = file_upload_qs.latest()
-                log.info('getting latest upload for {addon} {version}: '
-                         '{file_upload.uuid}'.format(
-                             addon=addon, version=version_string,
-                             file_upload=file_upload))
+                log.info(
+                    'getting latest upload for {addon} {version}: '
+                    '{file_upload.uuid}'.format(
+                        addon=addon, version=version_string, file_upload=file_upload
+                    )
+                )
             else:
                 file_upload = file_upload_qs.get(uuid=uuid)
-                log.info('getting specific upload for {addon} {version} '
-                         '{uuid}: {file_upload.uuid}'.format(
-                             addon=addon, version=version_string, uuid=uuid,
-                             file_upload=file_upload))
+                log.info(
+                    'getting specific upload for {addon} {version} '
+                    '{uuid}: {file_upload.uuid}'.format(
+                        addon=addon,
+                        version=version_string,
+                        uuid=uuid,
+                        file_upload=file_upload,
+                    )
+                )
         except FileUpload.DoesNotExist:
             msg = ugettext('No uploaded file for that addon and version.')
             return Response({'error': msg}, status=status.HTTP_404_NOT_FOUND)
@@ -266,7 +295,8 @@ class VersionView(APIView):
             version = None
 
         serializer = FileUploadSerializer(
-            file_upload, version=version, context={'request': request})
+            file_upload, version=version, context={'request': request}
+        )
         return Response(serializer.data)
 
 

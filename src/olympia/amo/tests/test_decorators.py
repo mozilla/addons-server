@@ -34,6 +34,7 @@ def test_post_required():
 
 def test_json_view():
     """Turns a Python object into a response."""
+
     def func(request):
         return {'x': 1}
 
@@ -80,7 +81,6 @@ def test_json_view_response_status():
 
 
 class TestLoginRequired(TestCase):
-
     def setUp(self):
         super(TestLoginRequired, self).setUp()
         self.f = mock.Mock()
@@ -94,8 +94,7 @@ class TestLoginRequired(TestCase):
         response = func(self.request)
         assert not self.f.called
         assert response.status_code == 302
-        assert response['Location'] == fxa_login_link(
-            request=self.request, to='/path')
+        assert response['Location'] == fxa_login_link(request=self.request, to='/path')
 
     def test_no_redirect(self):
         func = decorators.login_required(self.f, redirect=False)
@@ -126,18 +125,17 @@ class TestSetModifiedOn(TestCase):
 
     def test_set_modified_on(self):
         user = UserProfile.objects.latest('pk')
-        self.some_method(
-            True, set_modified_on=user.serializable_reference())
+        self.some_method(True, set_modified_on=user.serializable_reference())
         assert UserProfile.objects.get(pk=user.pk).modified.date() == (
-            datetime.today().date())
+            datetime.today().date()
+        )
 
     def test_not_set_modified_on(self):
         yesterday = datetime.today() - timedelta(days=1)
         qs = UserProfile.objects.all()
         qs.update(modified=yesterday)
         user = qs.latest('pk')
-        self.some_method(
-            False, set_modified_on=user.serializable_reference())
+        self.some_method(False, set_modified_on=user.serializable_reference())
         date = UserProfile.objects.get(pk=user.pk).modified.date()
         assert date < datetime.today().date()
 
@@ -167,8 +165,8 @@ class TestPermissionRequired(TestCase):
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_allowed_correctly(self, action_allowed):
-        func = decorators.permission_required(
-            amo.permissions.ANY_ADMIN)(self.f)
+        func = decorators.permission_required(amo.permissions.ANY_ADMIN)(self.f)
         func(self.request)
         action_allowed.assert_called_with(
-            self.request, amo.permissions.AclPermission('Admin', '%'))
+            self.request, amo.permissions.AclPermission('Admin', '%')
+        )

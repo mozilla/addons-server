@@ -24,10 +24,12 @@ class AmoLoggerAdapter(logging.LoggerAdapter):
         super(AmoLoggerAdapter, self).__init__(logger, extra or {})
 
     def process(self, msg, kwargs):
-        kwargs.setdefault('extra', {}).update({
-            'REMOTE_ADDR': core.get_remote_addr() or '',
-            'USERNAME': getattr(core.get_user(), 'username', None) or '<anon>'
-        })
+        kwargs.setdefault('extra', {}).update(
+            {
+                'REMOTE_ADDR': core.get_remote_addr() or '',
+                'USERNAME': getattr(core.get_user(), 'username', None) or '<anon>',
+            }
+        )
         return msg, kwargs
 
 
@@ -52,8 +54,7 @@ class JsonFormatter(dockerflow.logging.JsonLogFormatter):
     def convert_record(self, record):
         # Modify the record to include uid and remoteAddressChain
         record.__dict__['uid'] = record.__dict__.pop('USERNAME', '')
-        record.__dict__['remoteAddressChain'] = record.__dict__.pop(
-            'REMOTE_ADDR', '')
+        record.__dict__['remoteAddressChain'] = record.__dict__.pop('REMOTE_ADDR', '')
         # Call the parent implementation to get most of the return value built.
         out = super().convert_record(record)
 

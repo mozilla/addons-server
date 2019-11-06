@@ -20,6 +20,7 @@ class APIChoices(Choices):
     """Like a regular extended_choices.Choices class, with an extra api_choices
     property that exposes constants in lower-case, meant to be used as choices
     in an API."""
+
     @property
     def api_choices(self):
         return tuple((entry[1], entry[0].lower()) for entry in self.entries)
@@ -28,6 +29,7 @@ class APIChoices(Choices):
 class APIChoicesWithNone(APIChoices):
     """Like APIChoices, but also returns 'None' as a valid choice for `choices`
     and `api_choices` properties."""
+
     @property
     def choices(self):
         return ((None, 'None'),) + super(APIChoicesWithNone, self).choices

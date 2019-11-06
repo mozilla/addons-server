@@ -65,24 +65,31 @@ class PLATFORM_ANDROID:
 
 # Contains historic platforms that are no longer supported.
 # These exist so that legacy files can still be edited.
-PLATFORMS = {PLATFORM_ANY.id: PLATFORM_ANY, PLATFORM_ALL.id: PLATFORM_ALL,
-             PLATFORM_LINUX.id: PLATFORM_LINUX, PLATFORM_MAC.id: PLATFORM_MAC,
-             PLATFORM_BSD.id: PLATFORM_BSD, PLATFORM_WIN.id: PLATFORM_WIN,
-             PLATFORM_SUN.id: PLATFORM_SUN,
-             PLATFORM_ANDROID.id: PLATFORM_ANDROID}
+PLATFORMS = {
+    PLATFORM_ANY.id: PLATFORM_ANY,
+    PLATFORM_ALL.id: PLATFORM_ALL,
+    PLATFORM_LINUX.id: PLATFORM_LINUX,
+    PLATFORM_MAC.id: PLATFORM_MAC,
+    PLATFORM_BSD.id: PLATFORM_BSD,
+    PLATFORM_WIN.id: PLATFORM_WIN,
+    PLATFORM_SUN.id: PLATFORM_SUN,
+    PLATFORM_ANDROID.id: PLATFORM_ANDROID,
+}
 
 MOBILE_PLATFORMS = OrderedDict([(PLATFORM_ANDROID.id, PLATFORM_ANDROID)])
 
-DESKTOP_PLATFORMS = OrderedDict([(PLATFORM_ALL.id, PLATFORM_ALL),
-                                 (PLATFORM_LINUX.id, PLATFORM_LINUX),
-                                 (PLATFORM_MAC.id, PLATFORM_MAC),
-                                 (PLATFORM_WIN.id, PLATFORM_WIN)])
+DESKTOP_PLATFORMS = OrderedDict(
+    [
+        (PLATFORM_ALL.id, PLATFORM_ALL),
+        (PLATFORM_LINUX.id, PLATFORM_LINUX),
+        (PLATFORM_MAC.id, PLATFORM_MAC),
+        (PLATFORM_WIN.id, PLATFORM_WIN),
+    ]
+)
 
 SUPPORTED_PLATFORMS = DESKTOP_PLATFORMS.copy()
 SUPPORTED_PLATFORMS.update(MOBILE_PLATFORMS)
-DESKTOP_PLATFORMS_CHOICES = tuple(
-    (p.id, p.name) for p in DESKTOP_PLATFORMS.values()
-)
+DESKTOP_PLATFORMS_CHOICES = tuple((p.id, p.name) for p in DESKTOP_PLATFORMS.values())
 SUPPORTED_PLATFORMS_CHOICES = tuple(
     (p.id, p.name) for p in SUPPORTED_PLATFORMS.values()
 )
@@ -105,9 +112,7 @@ PLATFORM_DICT = {
     'android': PLATFORM_ANDROID,
 }
 
-PLATFORM_CHOICES_API = {
-    p.id: p.shortname for p in SUPPORTED_PLATFORMS.values()
-}
+PLATFORM_CHOICES_API = {p.id: p.shortname for p in SUPPORTED_PLATFORMS.values()}
 
 _platforms = {'desktop': DESKTOP_PLATFORMS, 'mobile': MOBILE_PLATFORMS}
 for app in applications.APPS_ALL.values():

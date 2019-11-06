@@ -28,5 +28,4 @@ class GZipMiddlewareForAPIOnly(GZipMiddleware):
         if not request.is_api:
             return response
 
-        return super(GZipMiddlewareForAPIOnly, self).process_response(
-            request, response)
+        return super(GZipMiddlewareForAPIOnly, self).process_response(request, response)

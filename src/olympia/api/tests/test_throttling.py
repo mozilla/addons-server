@@ -8,9 +8,7 @@ from freezegun import freeze_time
 from rest_framework.test import APIRequestFactory, force_authenticate
 
 from olympia.amo.tests import TestCase
-from olympia.api.throttling import (
-    GranularIPRateThrottle, GranularUserRateThrottle
-)
+from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 from olympia.users.models import UserProfile
 
 
@@ -30,8 +28,7 @@ class TestGranularUserRateThrottle(TestCase):
         assert self.throttle.parse_rate('456/7hour') == (456, 7 * 3600)
 
     @mock.patch('rest_framework.throttling.UserRateThrottle.allow_request')
-    def test_allow_request_if_api_throttling_setting_is_false(
-            self, allow_request_mock):
+    def test_allow_request_if_api_throttling_setting_is_false(self, allow_request_mock):
         request = RequestFactory().get('/test')
         view = object()
 

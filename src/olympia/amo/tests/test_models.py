@@ -26,8 +26,7 @@ class ManualOrderTest(TestCase):
         in that order."""
 
         semi_arbitrary_order = [40, 5299, 3615]
-        addons = amo_models.manual_order(
-            Addon.objects.all(), semi_arbitrary_order)
+        addons = amo_models.manual_order(Addon.objects.all(), semi_arbitrary_order)
         assert semi_arbitrary_order == [addon.id for addon in addons]
 
 
@@ -100,12 +99,10 @@ class TestModelBase(TestCase):
         assert kw['sender'] == Addon
 
     def test_change_is_not_recursive(self):
-
         class fn:
             called = False
 
-        def callback(old_attr=None, new_attr=None, instance=None,
-                     sender=None, **kw):
+        def callback(old_attr=None, new_attr=None, instance=None, sender=None, **kw):
             fn.called = True
             # Both save and update should be protected:
             instance.update(public_stats=True)
@@ -155,7 +152,8 @@ class TestModelBase(TestCase):
     def test_get_url_path(self):
         addon = Addon.objects.get(pk=3615)
         assert addon.get_url_path() == reverse(
-            'addons.detail', args=[addon.slug], add_prefix=True)
+            'addons.detail', args=[addon.slug], add_prefix=True
+        )
 
     def test_get_absolute_url_with_frontend_view(self):
         addon = Addon.objects.get(pk=3615)
@@ -165,45 +163,46 @@ class TestModelBase(TestCase):
             assert addon.get_absolute_url() == settings.SITE_URL + relative
         with override_settings(EXTERNAL_SITE_URL='https://example.com'):
             # When an external site url has been set
-            assert addon.get_absolute_url() == (
-                'https://example.com' + relative)
+            assert addon.get_absolute_url() == ('https://example.com' + relative)
 
     def test_get_absolute_url_with_django_view(self):
         file = Addon.objects.get(pk=3615).current_version.all_files[0]
         relative = os.path.join(
-            reverse('downloads.file', args=[file.id]), file.filename)
+            reverse('downloads.file', args=[file.id]), file.filename
+        )
         with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):
             # The normal case
             assert file.get_absolute_url(src='foo') == (
-                settings.SITE_URL + relative + '?src=foo')
+                settings.SITE_URL + relative + '?src=foo'
+            )
         with override_settings(EXTERNAL_SITE_URL='https://example.com'):
             # downloads.file is a django served view so the same.
             assert file.get_absolute_url(src='foo') == (
-                settings.SITE_URL + relative + '?src=foo')
+                settings.SITE_URL + relative + '?src=foo'
+            )
 
     def test_get_admin_url_path(self):
         addon = Addon.objects.get(pk=3615)
-        expected_url_path = reverse(
-            'admin:addons_addon_change', args=(addon.pk,))
+        expected_url_path = reverse('admin:addons_addon_change', args=(addon.pk,))
         assert addon.get_admin_url_path() == expected_url_path
 
     def test_get_admin_absolute_url(self):
         addon = Addon.objects.get(pk=3615)
-        expected_url_path = reverse(
-            'admin:addons_addon_change', args=(addon.pk,))
+        expected_url_path = reverse('admin:addons_addon_change', args=(addon.pk,))
         with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):
             # The normal case
             assert addon.get_admin_absolute_url() == (
-                settings.SITE_URL + expected_url_path)
+                settings.SITE_URL + expected_url_path
+            )
         with override_settings(EXTERNAL_SITE_URL='https://example.com'):
             # When an external site url has been set, it shouldn't matter since
             # admin must not live there.
             assert addon.get_admin_absolute_url() == (
-                settings.SITE_URL + expected_url_path)
+                settings.SITE_URL + expected_url_path
+            )
 
 
 class BasePreviewMixin(object):
-
     def get_object(self):
         raise NotImplementedError
 
@@ -262,11 +261,10 @@ class BaseQuerysetTestCase(TestCase):
             # No database hit yet, everything is still lazy.
             qs = amo_models.BaseQuerySet(Config)
             qs = qs.exclude(value='').order_by('key')[1:3]
+            qs = qs.transform(lambda items: seen_by_first_transform.extend(list(items)))
             qs = qs.transform(
-                lambda items: seen_by_first_transform.extend(list(items)))
-            qs = qs.transform(
-                lambda items: seen_by_second_transform.extend(
-                    list(reversed(items))))
+                lambda items: seen_by_second_transform.extend(list(reversed(items)))
+            )
         with self.assertNumQueries(1):
             assert list(qs) == [first, second]
         # Check that each transform function was hit correctly, once.

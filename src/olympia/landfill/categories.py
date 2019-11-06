@@ -18,7 +18,8 @@ def generate_categories(app=None, type=None):
             'weight': category_choice.weight,
         }
         category, created = Category.objects.get_or_create(
-            id=category_choice.id, defaults=defaults)
+            id=category_choice.id, defaults=defaults
+        )
         if not created:
             category.__dict__.update(**defaults)
             category.save()

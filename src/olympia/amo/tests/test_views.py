@@ -24,8 +24,12 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, get_random_slug
 from olympia.amo.tests import (
-    APITestClient, TestCase, WithDynamicEndpointsAndTransactions, check_links,
-    reverse_ns)
+    APITestClient,
+    TestCase,
+    WithDynamicEndpointsAndTransactions,
+    check_links,
+    reverse_ns,
+)
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 from olympia.zadmin.models import set_config
@@ -57,7 +61,6 @@ class Test403(TestCase):
 
 
 class Test404(TestCase):
-
     def test_404_no_app(self):
         """Make sure a 404 without an app doesn't turn into a 500."""
         # That could happen if helpers or templates expect APP to be defined.
@@ -200,8 +203,7 @@ class TestCommon(TestCase):
             ('Reviewer Tools', reverse('reviewers.dashboard')),
             ('Admin Tools', reverse('zadmin.index')),
         ]
-        check_links(
-            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
@@ -226,8 +228,7 @@ class TestCommon(TestCase):
             ('Reviewer Tools', reverse('reviewers.dashboard')),
             ('Admin Tools', reverse('zadmin.index')),
         ]
-        check_links(
-            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+        check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
 
 class TestOtherStuff(TestCase):
@@ -255,26 +256,25 @@ class TestOtherStuff(TestCase):
         title_eq('/firefox/', 'Firefox', 'Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
-    @patch('olympia.accounts.utils.default_fxa_login_url',
-           lambda request: 'https://login.com')
+    @patch(
+        'olympia.accounts.utils.default_fxa_login_url',
+        lambda request: 'https://login.com',
+    )
     def test_login_link(self):
         r = self.client.get(reverse('apps.appversions'), follow=True)
         doc = pq(r.content)
-        assert 'https://login.com' == (
-            doc('.account.anonymous a')[1].attrib['href'])
+        assert 'https://login.com' == (doc('.account.anonymous a')[1].attrib['href'])
 
     def test_tools_loggedout(self):
         r = self.client.get(reverse('apps.appversions'), follow=True)
         assert pq(r.content)('#aux-nav .tools').length == 0
 
     def test_language_selector(self):
-        doc = pq(test.Client().get(
-            '/en-US/firefox/pages/appversions/').content)
+        doc = pq(test.Client().get('/en-US/firefox/pages/appversions/').content)
         assert doc('form.languages option[selected]').attr('value') == 'en-us'
 
     def test_language_selector_variables(self):
-        r = self.client.get(
-            '/en-US/firefox/pages/appversions/?foo=fooval&bar=barval')
+        r = self.client.get('/en-US/firefox/pages/appversions/?foo=fooval&bar=barval')
         doc = pq(r.content)('form.languages')
 
         assert doc('input[type=hidden][name=foo]').attr('value') == 'fooval'
@@ -286,9 +286,12 @@ class TestOtherStuff(TestCase):
         """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
         client = test.Client()
         # Send X-Forwarded-For as it shows up in a wsgi request.
-        client.get('/en-US/developers/', follow=True,
-                   HTTP_X_FORWARDED_FOR='1.1.1.1',
-                   REMOTE_ADDR='127.0.0.1')
+        client.get(
+            '/en-US/developers/',
+            follow=True,
+            HTTP_X_FORWARDED_FOR='1.1.1.1',
+            REMOTE_ADDR='127.0.0.1',
+        )
         assert set_remote_addr_mock.call_count == 2
         assert set_remote_addr_mock.call_args_list[0] == (('1.1.1.1',), {})
         assert set_remote_addr_mock.call_args_list[1] == ((None,), {})
@@ -299,8 +302,9 @@ class TestOtherStuff(TestCase):
         rather than just identity functions."""
 
         response = self.client.get(reverse('jsi18n'))
-        self.assertCloseToNow(response['Expires'],
-                              now=datetime.now() + timedelta(days=365))
+        self.assertCloseToNow(
+            response['Expires'], now=datetime.now() + timedelta(days=365)
+        )
 
         en = self.client.get(reverse('jsi18n')).content.decode('utf-8')
 
@@ -354,23 +358,22 @@ class TestCORS(TestCase):
         assert response['Access-Control-Allow-Origin'] == '*'
 
     def test_cors_excludes_accounts_session_endpoint(self):
-        assert re.match(
-            settings.CORS_URLS_REGEX,
-            urlparse(reverse_ns('accounts.session')).path,
-        ) is None
+        assert (
+            re.match(
+                settings.CORS_URLS_REGEX, urlparse(reverse_ns('accounts.session')).path,
+            )
+            is None
+        )
 
 
 class TestContribute(TestCase):
-
     def test_contribute_json(self):
         res = self.client.get('/contribute.json')
         assert res.status_code == 200
-        assert res._headers['content-type'] == (
-            'Content-Type', 'application/json')
+        assert res._headers['content-type'] == ('Content-Type', 'application/json')
 
 
 class TestRobots(TestCase):
-
     @override_settings(ENGAGE_ROBOTS=True)
     def test_disable_collections(self):
         """Make sure /en-US/firefox/collections/ gets disabled"""
@@ -382,15 +385,13 @@ class TestRobots(TestCase):
     @override_settings(ENGAGE_ROBOTS=True)
     def test_allow_mozilla_collections(self):
         """Make sure Mozilla collections are allowed"""
-        url = '{}{}/'.format(reverse('collections.list'),
-                             settings.TASK_USER_ID)
+        url = '{}{}/'.format(reverse('collections.list'), settings.TASK_USER_ID)
         response = self.client.get('/robots.txt')
         assert response.status_code == 200
         assert 'Allow: {}'.format(url) in response.content.decode('utf-8')
 
 
 class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
-
     def setUp(self):
         super(TestAtomicRequests, self).setUp()
         self.slug = get_random_slug()
@@ -403,7 +404,9 @@ class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
         def actual_view(request):
             Addon.objects.create(slug=self.slug)
             raise RuntimeError(
-                'pretend this is an unhandled exception happening in a view.')
+                'pretend this is an unhandled exception happening in a view.'
+            )
+
         return actual_view
 
     def test_post_requests_are_wrapped_in_a_transaction(self):
@@ -434,17 +437,16 @@ class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
 
 
 class TestVersion(TestCase):
-
     def test_version_json(self):
         res = self.client.get('/__version__')
         assert res.status_code == 200
-        assert res._headers['content-type'] == (
-            'Content-Type', 'application/json')
+        assert res._headers['content-type'] == ('Content-Type', 'application/json')
         content = json.loads(force_text(res.content))
         assert content['python'] == '%s.%s' % (
-            sys.version_info.major, sys.version_info.minor)
-        assert content['django'] == '%s.%s' % (
-            django.VERSION[0], django.VERSION[1])
+            sys.version_info.major,
+            sys.version_info.minor,
+        )
+        assert content['django'] == '%s.%s' % (django.VERSION[0], django.VERSION[1])
 
 
 class TestSiteStatusAPI(TestCase):

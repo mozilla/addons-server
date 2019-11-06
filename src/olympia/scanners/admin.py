@@ -23,9 +23,7 @@ class MatchesFilter(SimpleListFilter):
         for lookup, title in self.lookup_choices:
             yield {
                 'selected': self.value() == lookup,
-                'query_string': cl.get_query_string(
-                    {self.parameter_name: lookup}, []
-                ),
+                'query_string': cl.get_query_string({self.parameter_name: lookup}, []),
                 'display': title,
             }
 
@@ -120,10 +118,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
             ', '.join(
                 [
                     '<a href="{}">{}</a>'.format(
-                        reverse(
-                            'admin:scanners_scannerrule_change',
-                            args=[rule.pk],
-                        ),
+                        reverse('admin:scanners_scannerrule_change', args=[rule.pk],),
                         rule.name,
                     )
                     for rule in obj.matched_rules.all()

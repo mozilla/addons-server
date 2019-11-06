@@ -40,16 +40,18 @@ def es_dict(items):
 
 
 def extract_update_count(update, all_apps=None):
-    doc = {'addon': update.addon_id,
-           'date': update.date,
-           'count': update.count,
-           'id': update.id,
-           '_id': '{0}-{1}'.format(update.addon_id, update.date),
-           'versions': es_dict(update.versions),
-           'os': [],
-           'locales': [],
-           'apps': [],
-           'status': []}
+    doc = {
+        'addon': update.addon_id,
+        'date': update.date,
+        'count': update.count,
+        'id': update.id,
+        '_id': '{0}-{1}'.format(update.addon_id, update.date),
+        'versions': es_dict(update.versions),
+        'os': [],
+        'locales': [],
+        'apps': [],
+        'status': [],
+    }
 
     # Only count platforms we know about.
     if update.oses:
@@ -91,26 +93,31 @@ def extract_update_count(update, all_apps=None):
         doc['apps'] = dict((app, es_dict(vals)) for app, vals in apps.items())
 
     if update.statuses:
-        doc['status'] = es_dict((k, v) for k, v in update.statuses.items()
-                                if k != 'null')
+        doc['status'] = es_dict(
+            (k, v) for k, v in update.statuses.items() if k != 'null'
+        )
     return doc
 
 
 def extract_download_count(dl):
-    return {'addon': dl.addon_id,
-            'date': dl.date,
-            'count': dl.count,
-            'sources': es_dict(dl.sources) if dl.sources else {},
-            'id': dl.id,
-            '_id': '{0}-{1}'.format(dl.addon_id, dl.date)}
+    return {
+        'addon': dl.addon_id,
+        'date': dl.date,
+        'count': dl.count,
+        'sources': es_dict(dl.sources) if dl.sources else {},
+        'id': dl.id,
+        '_id': '{0}-{1}'.format(dl.addon_id, dl.date),
+    }
 
 
 def extract_theme_user_count(user_count):
-    return {'addon': user_count.addon_id,
-            'date': user_count.date,
-            'count': user_count.count,
-            'id': user_count.id,
-            '_id': '{0}-{1}'.format(user_count.addon_id, user_count.date)}
+    return {
+        'addon': user_count.addon_id,
+        'date': user_count.date,
+        'count': user_count.count,
+        'id': user_count.id,
+        '_id': '{0}-{1}'.format(user_count.addon_id, user_count.date),
+    }
 
 
 def get_all_app_versions():
@@ -139,9 +146,8 @@ def reindex_tasks_group(index_name):
     Return the group of tasks to execute for a full reindex of stats on the
     index called `index_name` (which is not an alias but the real index name).
     """
-    from olympia.stats.management.commands.index_stats import (
-        gather_index_stats_tasks
-    )
+    from olympia.stats.management.commands.index_stats import gather_index_stats_tasks
+
     return gather_index_stats_tasks(index_name)
 
 
@@ -153,15 +159,9 @@ def get_mappings():
             'count': {'type': 'long'},
             'data': {
                 'dynamic': 'true',
-                'properties': {
-                    'v': {'type': 'long'},
-                    'k': {'type': 'keyword'}
-                }
+                'properties': {'v': {'type': 'long'}, 'k': {'type': 'keyword'}},
             },
-            'date': {
-                'format': 'dateOptionalTime',
-                'type': 'date'
-            }
+            'date': {'format': 'dateOptionalTime', 'type': 'date'},
         }
     }
 

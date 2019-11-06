@@ -7,7 +7,12 @@ from unittest import mock
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
-    APITestClient, TestCase, addon_factory, reverse_ns, user_factory)
+    APITestClient,
+    TestCase,
+    addon_factory,
+    reverse_ns,
+    user_factory,
+)
 
 
 class AddonAbuseViewSetTestBase(object):
@@ -33,14 +38,14 @@ class AddonAbuseViewSetTestBase(object):
         response = self.client.post(
             self.url,
             data={'addon': str(addon.id), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
-        self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
         assert report.message == 'abuse!'
 
     def test_report_addon_by_slug(self):
@@ -48,28 +53,28 @@ class AddonAbuseViewSetTestBase(object):
         response = self.client.post(
             self.url,
             data={'addon': addon.slug, 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
-        self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
 
     def test_report_addon_by_guid(self):
         addon = addon_factory(guid='@badman')
         response = self.client.post(
             self.url,
             data={'addon': addon.guid, 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
-        self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
         assert report.message == 'abuse!'
 
     def test_report_addon_guid_not_on_amo(self):
@@ -77,20 +82,20 @@ class AddonAbuseViewSetTestBase(object):
         response = self.client.post(
             self.url,
             data={'addon': guid, 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(guid=guid).exists()
         report = AbuseReport.objects.get(guid=guid)
         assert not report.addon
-        self.check_report(report,
-                          u'[Addon] Abuse Report for %s' % guid)
+        self.check_report(report, u'[Addon] Abuse Report for %s' % guid)
         assert report.message == 'abuse!'
 
     def test_report_addon_invalid_identifier(self):
         response = self.client.post(
-            self.url,
-            data={'addon': 'randomnotguid', 'message': 'abuse!'})
+            self.url, data={'addon': 'randomnotguid', 'message': 'abuse!'}
+        )
         assert response.status_code == 404
 
     def test_addon_not_public(self):
@@ -98,89 +103,78 @@ class AddonAbuseViewSetTestBase(object):
         response = self.client.post(
             self.url,
             data={'addon': str(addon.id), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
-        self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
         assert report.message == 'abuse!'
 
     def test_no_addon_fails(self):
-        response = self.client.post(
-            self.url,
-            data={'message': 'abuse!'})
+        response = self.client.post(self.url, data={'message': 'abuse!'})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'addon': ['This field is required.']}
+        assert json.loads(response.content) == {'addon': ['This field is required.']}
 
     def test_message_required_empty(self):
         addon = addon_factory()
         response = self.client.post(
-            self.url,
-            data={'addon': str(addon.id),
-                  'message': ''})
+            self.url, data={'addon': str(addon.id), 'message': ''}
+        )
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'message': ['This field may not be blank.']}
+            'message': ['This field may not be blank.']
+        }
 
     def test_message_required_missing(self):
         addon = addon_factory()
-        response = self.client.post(
-            self.url,
-            data={'addon': str(addon.id)})
+        response = self.client.post(self.url, data={'addon': str(addon.id)})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'message': ['This field is required.']}
+        assert json.loads(response.content) == {'message': ['This field is required.']}
 
     def test_message_not_required_if_reason_is_provided(self):
         addon = addon_factory()
         response = self.client.post(
             self.url,
             data={'addon': str(addon.id), 'reason': 'broken'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
-        self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
         assert report.message == ''
 
     def test_message_can_be_blank_if_reason_is_provided(self):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': str(addon.id), 'reason': 'broken',
-                  'message': ''},
-            REMOTE_ADDR='123.45.67.89')
+            data={'addon': str(addon.id), 'reason': 'broken', 'message': ''},
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
-        self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
         assert report.message == ''
 
     def test_message_length_limited(self):
         addon = addon_factory()
 
         response = self.client.post(
-            self.url,
-            data={'addon': str(addon.id),
-                  'message': 'a' * 10000})
+            self.url, data={'addon': str(addon.id), 'message': 'a' * 10000}
+        )
         assert response.status_code == 201
 
         response = self.client.post(
-            self.url,
-            data={'addon': str(addon.id),
-                  'message': 'a' * 10001})
+            self.url, data={'addon': str(addon.id), 'message': 'a' * 10001}
+        )
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'message': [
-                'Please ensure this field has no more than 10000 characters.'
-            ]
+            'message': ['Please ensure this field has no more than 10000 characters.']
         }
 
     def test_throttle(self):
@@ -189,13 +183,15 @@ class AddonAbuseViewSetTestBase(object):
             response = self.client.post(
                 self.url,
                 data={'addon': str(addon.id), 'message': 'abuse!'},
-                REMOTE_ADDR='123.45.67.89')
+                REMOTE_ADDR='123.45.67.89',
+            )
             assert response.status_code == 201, x
 
         response = self.client.post(
             self.url,
             data={'addon': str(addon.id), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 429
 
     def test_optional_fields(self):
@@ -217,21 +213,23 @@ class AddonAbuseViewSetTestBase(object):
             'addon_install_method': 'url',
             'report_entry_point': None,
         }
-        response = self.client.post(
-            self.url,
-            data=data,
-            REMOTE_ADDR='123.45.67.89')
+        response = self.client.post(self.url, data=data, REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201, response.content
 
         assert AbuseReport.objects.filter(guid=data['addon']).exists()
         report = AbuseReport.objects.get(guid=data['addon'])
-        self.check_report(
-            report, u'[Addon] Abuse Report for %s' % data['addon'])
+        self.check_report(report, u'[Addon] Abuse Report for %s' % data['addon'])
         assert not report.addon  # Not an add-on in database, that's ok.
         # Straightforward comparisons:
-        for field in ('message', 'client_id', 'addon_name', 'addon_summary',
-                      'addon_version', 'operating_system',
-                      'addon_install_origin'):
+        for field in (
+            'message',
+            'client_id',
+            'addon_name',
+            'addon_summary',
+            'addon_version',
+            'operating_system',
+            'addon_install_origin',
+        ):
             assert getattr(report, field) == data[field], field
         # More complex comparisons:
         assert report.addon_signature is None
@@ -240,8 +238,7 @@ class AddonAbuseViewSetTestBase(object):
         assert report.application_locale == data['lang']
         assert report.install_date == datetime(2004, 8, 15, 16, 23, 42)
         assert report.reason == 2  # Spam / Advertising
-        assert report.addon_install_method == (
-            AbuseReport.ADDON_INSTALL_METHODS.URL)
+        assert report.addon_install_method == (AbuseReport.ADDON_INSTALL_METHODS.URL)
         assert report.addon_install_source is None
         assert report.report_entry_point is None
 
@@ -265,32 +262,31 @@ class AddonAbuseViewSetTestBase(object):
             'addon_install_source': 'Something not in install source choices',
             'report_entry_point': 'Something not in entrypoint choices',
         }
-        response = self.client.post(
-            self.url,
-            data=data,
-            REMOTE_ADDR='123.45.67.89')
+        response = self.client.post(self.url, data=data, REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 400
         expected_max_length_message = (
-            'Ensure this field has no more than %d characters.')
+            'Ensure this field has no more than %d characters.'
+        )
         expected_choices_message = '"%s" is not a valid choice.'
         assert response.json() == {
             'client_id': [expected_max_length_message % 64],
             'addon_name': [expected_max_length_message % 255],
             'addon_summary': [expected_max_length_message % 255],
             'addon_version': [expected_max_length_message % 255],
-            'addon_signature': [
-                expected_choices_message % data['addon_signature']],
+            'addon_signature': [expected_choices_message % data['addon_signature']],
             'app': [expected_choices_message % data['app']],
             'appversion': [expected_max_length_message % 255],
             'lang': [expected_max_length_message % 255],
             'operating_system': [expected_max_length_message % 255],
             'install_date': [
                 'Datetime has wrong format. Use one of these formats '
-                'instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z].'],
+                'instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z].'
+            ],
             'reason': [expected_choices_message % data['reason']],
             'addon_install_origin': [expected_max_length_message % 255],
             'report_entry_point': [
-                expected_choices_message % data['report_entry_point']],
+                expected_choices_message % data['report_entry_point']
+            ],
         }
         # Note: addon_install_method and addon_install_source silently convert
         # unknown values to "other", so the values submitted here, despite not
@@ -309,13 +305,10 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(guid=data['addon']).exists()
         report = AbuseReport.objects.get(guid=data['addon'])
-        self.check_report(
-            report, u'[Addon] Abuse Report for %s' % data['addon'])
+        self.check_report(report, u'[Addon] Abuse Report for %s' % data['addon'])
         assert not report.addon  # Not an add-on in database, that's ok.
-        assert report.addon_install_method == (
-            AbuseReport.ADDON_INSTALL_METHODS.OTHER)
-        assert report.addon_install_source == (
-            AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
+        assert report.addon_install_method == (AbuseReport.ADDON_INSTALL_METHODS.OTHER)
+        assert report.addon_install_source == (AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
 
     def test_addon_unknown_install_source_and_method_not_string(self):
         addon = addon_factory()
@@ -330,13 +323,10 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(addon=addon)
-        self.check_report(
-            report, u'[Extension] Abuse Report for %s' % addon.name)
+        self.check_report(report, u'[Extension] Abuse Report for %s' % addon.name)
         assert report.addon == addon
-        assert report.addon_install_method == (
-            AbuseReport.ADDON_INSTALL_METHODS.OTHER)
-        assert report.addon_install_source == (
-            AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
+        assert report.addon_install_method == (AbuseReport.ADDON_INSTALL_METHODS.OTHER)
+        assert report.addon_install_source == (AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
 
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
@@ -377,67 +367,63 @@ class UserAbuseViewSetTestBase(object):
         response = self.client.post(
             self.url,
             data={'user': str(user.id), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
         report = AbuseReport.objects.get(user_id=user.id)
-        self.check_report(report,
-                          u'[User] Abuse Report for %s' % user.name)
+        self.check_report(report, u'[User] Abuse Report for %s' % user.name)
 
     def test_report_user_username(self):
         user = user_factory()
         response = self.client.post(
             self.url,
             data={'user': str(user.username), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
         report = AbuseReport.objects.get(user_id=user.id)
-        self.check_report(report,
-                          u'[User] Abuse Report for %s' % user.name)
+        self.check_report(report, u'[User] Abuse Report for %s' % user.name)
 
     def test_no_user_fails(self):
-        response = self.client.post(
-            self.url,
-            data={'message': 'abuse!'})
+        response = self.client.post(self.url, data={'message': 'abuse!'})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'user': ['This field is required.']}
+        assert json.loads(response.content) == {'user': ['This field is required.']}
 
     def test_message_required_empty(self):
         user = user_factory()
         response = self.client.post(
-            self.url,
-            data={'user': str(user.username), 'message': ''})
+            self.url, data={'user': str(user.username), 'message': ''}
+        )
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'message': ['This field may not be blank.']}
+            'message': ['This field may not be blank.']
+        }
 
     def test_message_required_missing(self):
         user = user_factory()
-        response = self.client.post(
-            self.url,
-            data={'user': str(user.username)})
+        response = self.client.post(self.url, data={'user': str(user.username)})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'message': ['This field is required.']}
+        assert json.loads(response.content) == {'message': ['This field is required.']}
 
     def test_throttle(self):
         user = user_factory()
         for x in range(20):
             response = self.client.post(
                 self.url,
-                data={'user': str(
-                    user.username), 'message': 'abuse!'},
-                REMOTE_ADDR='123.45.67.89')
+                data={'user': str(user.username), 'message': 'abuse!'},
+                REMOTE_ADDR='123.45.67.89',
+            )
             assert response.status_code == 201, x
 
         response = self.client.post(
             self.url,
             data={'user': str(user.username), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
+            REMOTE_ADDR='123.45.67.89',
+        )
         assert response.status_code == 429
 
 

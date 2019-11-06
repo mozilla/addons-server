@@ -41,43 +41,45 @@ MAX_TOKEN_USE_COUNT = 100
 
 class ActivityLogToken(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    version = models.ForeignKey(
-        Version, related_name='token', on_delete=models.CASCADE)
+    version = models.ForeignKey(Version, related_name='token', on_delete=models.CASCADE)
     user = models.ForeignKey(
-        'users.UserProfile', related_name='activity_log_tokens',
-        on_delete=models.CASCADE)
+        'users.UserProfile',
+        related_name='activity_log_tokens',
+        on_delete=models.CASCADE,
+    )
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     use_count = models.IntegerField(
-        default=0,
-        help_text='Stores the number of times the token has been used')
+        default=0, help_text='Stores the number of times the token has been used'
+    )
 
     class Meta:
         db_table = 'log_activity_tokens'
         constraints = [
-            models.UniqueConstraint(fields=('version', 'user'),
-                                    name='version_id'),
+            models.UniqueConstraint(fields=('version', 'user'), name='version_id'),
         ]
 
     def is_expired(self):
         return self.use_count >= MAX_TOKEN_USE_COUNT
 
     def is_valid(self):
-        return (not self.is_expired() and
-                self.version == self.version.addon.find_latest_version(
-                    channel=self.version.channel, exclude=()))
+        return not self.is_expired() and self.version == self.version.addon.find_latest_version(
+            channel=self.version.channel, exclude=()
+        )
 
     def expire(self):
         self.update(use_count=MAX_TOKEN_USE_COUNT)
 
     def increment_use(self):
         self.__class__.objects.filter(pk=self.pk).update(
-            use_count=models.expressions.F('use_count') + 1)
+            use_count=models.expressions.F('use_count') + 1
+        )
         self.use_count = self.use_count + 1
 
 
 class ActivityLogEmails(ModelBase):
     """A log of message ids of incoming emails so we don't duplicate process
     them."""
+
     messageid = models.CharField(max_length=255, unique=True)
 
     class Meta:
@@ -88,6 +90,7 @@ class AddonLog(ModelBase):
     """
     This table is for indexing the activity log by addon.
     """
+
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
 
@@ -101,8 +104,9 @@ class AddonLog(ModelBase):
             # ``arguments = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             arguments = json.loads(self.activity_log._arguments)
         except Exception:
-            log.debug('unserializing data from addon_log failed: %s' %
-                      self.activity_log.id)
+            log.debug(
+                'unserializing data from addon_log failed: %s' % self.activity_log.id
+            )
             return None
 
         new_arguments = []
@@ -120,6 +124,7 @@ class CommentLog(ModelBase):
     """
     This table is for indexing the activity log by comment.
     """
+
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
     comments = models.TextField()
 
@@ -132,6 +137,7 @@ class VersionLog(ModelBase):
     """
     This table is for indexing the activity log by version.
     """
+
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
     version = models.ForeignKey(Version, on_delete=models.CASCADE)
 
@@ -145,6 +151,7 @@ class UserLog(ModelBase):
     This table is for indexing the activity log by user.
     Note: This includes activity performed unto the user.
     """
+
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
@@ -157,6 +164,7 @@ class GroupLog(ModelBase):
     """
     This table is for indexing the activity log by access group.
     """
+
     id = PositiveAutoField(primary_key=True)
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
@@ -172,14 +180,15 @@ class DraftComment(ModelBase):
 
     This is being used by the commenting API by the code-manager.
     """
+
     id = PositiveAutoField(primary_key=True)
     version = models.ForeignKey(Version, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     filename = models.CharField(max_length=255, null=True, blank=True)
     lineno = models.PositiveIntegerField(null=True)
     canned_response = models.ForeignKey(
-        CannedResponse, null=True, default=None,
-        on_delete=models.SET_DEFAULT)
+        CannedResponse, null=True, default=None, on_delete=models.SET_DEFAULT
+    )
     comment = models.TextField(blank=True)
 
     class Meta:
@@ -203,8 +212,9 @@ class ActivityLogManager(ManagerBase):
         if isinstance(addons, Addon):
             addons = (addons,)
 
-        vals = (AddonLog.objects.filter(addon__in=addons)
-                .values_list('activity_log', flat=True))
+        vals = AddonLog.objects.filter(addon__in=addons).values_list(
+            'activity_log', flat=True
+        )
 
         if vals:
             return self.filter(pk__in=list(vals))
@@ -212,8 +222,9 @@ class ActivityLogManager(ManagerBase):
             return self.none()
 
     def for_version(self, version):
-        vals = (VersionLog.objects.filter(version=version)
-                .values_list('activity_log', flat=True))
+        vals = VersionLog.objects.filter(version=version).values_list(
+            'activity_log', flat=True
+        )
         return self.filter(pk__in=list(vals))
 
     def for_groups(self, groups):
@@ -223,13 +234,14 @@ class ActivityLogManager(ManagerBase):
         return self.filter(grouplog__group__in=groups)
 
     def for_user(self, user):
-        vals = (UserLog.objects.filter(user=user)
-                .values_list('activity_log', flat=True))
+        vals = UserLog.objects.filter(user=user).values_list('activity_log', flat=True)
         return self.filter(pk__in=list(vals))
 
     def for_developer(self):
-        return self.exclude(action__in=constants.activity.LOG_ADMINS +
-                            constants.activity.LOG_HIDE_DEVELOPER)
+        return self.exclude(
+            action__in=constants.activity.LOG_ADMINS
+            + constants.activity.LOG_HIDE_DEVELOPER
+        )
 
     def admin_events(self):
         return self.filter(action__in=constants.activity.LOG_ADMINS)
@@ -239,45 +251,55 @@ class ActivityLogManager(ManagerBase):
 
     def review_queue(self):
         qs = self._by_type()
-        return (qs.filter(action__in=constants.activity.LOG_REVIEW_QUEUE)
-                  .exclude(user__id=settings.TASK_USER_ID))
+        return qs.filter(action__in=constants.activity.LOG_REVIEW_QUEUE).exclude(
+            user__id=settings.TASK_USER_ID
+        )
 
     def review_log(self):
         qs = self._by_type()
-        return (
-            qs.filter(action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION)
-            .exclude(user__id=settings.TASK_USER_ID))
+        return qs.filter(
+            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION
+        ).exclude(user__id=settings.TASK_USER_ID)
 
     def total_ratings(self, theme=False):
         """Return the top users, and their # of reviews."""
         qs = self._by_type()
-        action_ids = ([amo.LOG.THEME_REVIEW.id] if theme
-                      else constants.activity.LOG_REVIEWER_REVIEW_ACTION)
-        return (qs.values('user', 'user__display_name', 'user__username')
-                  .filter(action__in=action_ids)
-                  .exclude(user__id=settings.TASK_USER_ID)
-                  .annotate(approval_count=models.Count('id'))
-                  .order_by('-approval_count'))
+        action_ids = (
+            [amo.LOG.THEME_REVIEW.id]
+            if theme
+            else constants.activity.LOG_REVIEWER_REVIEW_ACTION
+        )
+        return (
+            qs.values('user', 'user__display_name', 'user__username')
+            .filter(action__in=action_ids)
+            .exclude(user__id=settings.TASK_USER_ID)
+            .annotate(approval_count=models.Count('id'))
+            .order_by('-approval_count')
+        )
 
     def monthly_reviews(self, theme=False):
         """Return the top users for the month, and their # of reviews."""
         qs = self._by_type()
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
-        actions = ([constants.activity.LOG.THEME_REVIEW.id] if theme
-                   else constants.activity.LOG_REVIEWER_REVIEW_ACTION)
-        return (qs.values('user', 'user__display_name', 'user__username')
-                  .filter(created__gte=created_date,
-                          action__in=actions)
-                  .exclude(user__id=settings.TASK_USER_ID)
-                  .annotate(approval_count=models.Count('id'))
-                  .order_by('-approval_count'))
+        actions = (
+            [constants.activity.LOG.THEME_REVIEW.id]
+            if theme
+            else constants.activity.LOG_REVIEWER_REVIEW_ACTION
+        )
+        return (
+            qs.values('user', 'user__display_name', 'user__username')
+            .filter(created__gte=created_date, action__in=actions)
+            .exclude(user__id=settings.TASK_USER_ID)
+            .annotate(approval_count=models.Count('id'))
+            .order_by('-approval_count')
+        )
 
     def user_approve_reviews(self, user):
         qs = self._by_type()
         return qs.filter(
-            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION,
-            user__id=user.id)
+            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION, user__id=user.id
+        )
 
     def current_month_user_approve_reviews(self, user):
         now = datetime.now()
@@ -286,8 +308,14 @@ class ActivityLogManager(ManagerBase):
 
     def user_position(self, values_qs, user):
         try:
-            return next(i for (i, d) in enumerate(list(values_qs))
-                        if d.get('user') == user.id) + 1
+            return (
+                next(
+                    i
+                    for (i, d) in enumerate(list(values_qs))
+                    if d.get('user') == user.id
+                )
+                + 1
+            )
         except StopIteration:
             return None
 
@@ -301,9 +329,8 @@ class ActivityLogManager(ManagerBase):
         qs = self.get_queryset()
         table = 'log_activity_addon'
         return qs.extra(
-            tables=[table],
-            where=['%s.activity_log_id=%s.id'
-                   % (table, 'log_activity')])
+            tables=[table], where=['%s.activity_log_id=%s.id' % (table, 'log_activity')]
+        )
 
 
 class SafeFormatter(string.Formatter):
@@ -317,10 +344,9 @@ class SafeFormatter(string.Formatter):
 
 class ActivityLog(ModelBase):
     TYPES = sorted(
-        [(value.id, key)
-         for key, value in constants.activity.LOG_BY_ID.items()])
-    user = models.ForeignKey(
-        'users.UserProfile', null=True, on_delete=models.SET_NULL)
+        [(value.id, key) for key, value in constants.activity.LOG_BY_ID.items()]
+    )
+    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.SET_NULL)
     action = models.SmallIntegerField(choices=TYPES)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')
@@ -363,8 +389,8 @@ class ActivityLog(ModelBase):
                 activity.arguments_data = json.loads(activity._arguments)
             except Exception as e:
                 log.debug(
-                    'unserializing data from activity_log failed: %s',
-                    activity.id)
+                    'unserializing data from activity_log failed: %s', activity.id
+                )
                 log.debug(e)
                 activity.arguments_data = []
 
@@ -486,31 +512,36 @@ class ActivityLog(ModelBase):
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
                 if arg.has_listed_versions():
-                    addon = self.f(u'<a href="{0}">{1}</a>',
-                                   arg.get_url_path(), arg.name)
+                    addon = self.f(
+                        u'<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
+                    )
                 else:
                     addon = self.f(u'{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
-                rating = self.f(u'<a href="{0}">{1}</a>',
-                                arg.get_url_path(), ugettext('Review'))
+                rating = self.f(
+                    u'<a href="{0}">{1}</a>', arg.get_url_path(), ugettext('Review')
+                )
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = ugettext('Version {0}')
                 if arg.channel == amo.RELEASE_CHANNEL_LISTED:
-                    version = self.f(u'<a href="{1}">%s</a>' % text,
-                                     arg.version, arg.get_url_path())
+                    version = self.f(
+                        u'<a href="{1}">%s</a>' % text, arg.version, arg.get_url_path()
+                    )
                 else:
                     version = self.f(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
-                collection = self.f(u'<a href="{0}">{1}</a>',
-                                    arg.get_url_path(), arg.name)
+                collection = self.f(
+                    u'<a href="{0}">{1}</a>', arg.get_url_path(), arg.name
+                )
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():
-                    tag = self.f(u'<a href="{0}">{1}</a>',
-                                 arg.get_url_path(), arg.tag_text)
+                    tag = self.f(
+                        u'<a href="{0}">{1}</a>', arg.get_url_path(), arg.tag_text
+                    )
                 else:
                     tag = self.f('{0}', arg.tag_text)
             if isinstance(arg, Group) and not group:
@@ -519,17 +550,19 @@ class ActivityLog(ModelBase):
             if isinstance(arg, File) and not file_:
                 validation = 'passed'
                 if self.action in (
-                        amo.LOG.UNLISTED_SIGNED.id,
-                        amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id):
+                    amo.LOG.UNLISTED_SIGNED.id,
+                    amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id,
+                ):
                     validation = 'ignored'
 
-                file_ = self.f(u'<a href="{0}">{1}</a> (validation {2})',
-                               reverse('files.list', args=[arg.pk]),
-                               arg.filename,
-                               validation)
+                file_ = self.f(
+                    u'<a href="{0}">{1}</a> (validation {2})',
+                    reverse('files.list', args=[arg.pk]),
+                    arg.filename,
+                    validation,
+                )
                 arguments.remove(arg)
-            if (self.action == amo.LOG.CHANGE_STATUS.id and
-                    not isinstance(arg, Addon)):
+            if self.action == amo.LOG.CHANGE_STATUS.id and not isinstance(arg, Addon):
                 # Unfortunately, this action has been abused in the past and
                 # the non-addon argument could be a string or an int. If it's
                 # an int, we want to retrieve the string and translate it.
@@ -596,8 +629,8 @@ class ActivityLog(ModelBase):
         # creating a new one, especially useful for log entries created
         # in a loop.
         al = ActivityLog(
-            user=user, action=action.id,
-            created=kw.get('created', timezone.now()))
+            user=user, action=action.id, created=kw.get('created', timezone.now())
+        )
         al.set_arguments(args)
         if 'details' in kw:
             al.details = kw['details']
@@ -605,8 +638,10 @@ class ActivityLog(ModelBase):
 
         if 'details' in kw and 'comments' in al.details:
             CommentLog.objects.create(
-                comments=al.details['comments'], activity_log=al,
-                created=kw.get('created', timezone.now()))
+                comments=al.details['comments'],
+                activity_log=al,
+                created=kw.get('created', timezone.now()),
+            )
 
         for arg in args:
             if isinstance(arg, tuple):
@@ -618,23 +653,31 @@ class ActivityLog(ModelBase):
 
             if class_ == Addon:
                 AddonLog.objects.create(
-                    addon_id=id_, activity_log=al,
-                    created=kw.get('created', timezone.now()))
+                    addon_id=id_,
+                    activity_log=al,
+                    created=kw.get('created', timezone.now()),
+                )
             elif class_ == Version:
                 VersionLog.objects.create(
-                    version_id=id_, activity_log=al,
-                    created=kw.get('created', timezone.now()))
+                    version_id=id_,
+                    activity_log=al,
+                    created=kw.get('created', timezone.now()),
+                )
             elif class_ == UserProfile:
                 UserLog.objects.create(
-                    user_id=id_, activity_log=al,
-                    created=kw.get('created', timezone.now()))
+                    user_id=id_,
+                    activity_log=al,
+                    created=kw.get('created', timezone.now()),
+                )
             elif class_ == Group:
                 GroupLog.objects.create(
-                    group_id=id_, activity_log=al,
-                    created=kw.get('created', timezone.now()))
+                    group_id=id_,
+                    activity_log=al,
+                    created=kw.get('created', timezone.now()),
+                )
 
         # Index by every user
         UserLog.objects.create(
-            activity_log=al, user=user,
-            created=kw.get('created', timezone.now()))
+            activity_log=al, user=user, created=kw.get('created', timezone.now())
+        )
         return al

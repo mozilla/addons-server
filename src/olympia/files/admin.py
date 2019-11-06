@@ -15,34 +15,48 @@ class FileAdmin(admin.ModelAdmin):
     view_on_site = False
 
     raw_id_fields = ('version',)
-    list_display = (
-        '__str__', 'addon_slug', 'addon_guid')
+    list_display = ('__str__', 'addon_slug', 'addon_guid')
     search_fields = (
         '^version__addon__guid',
-        '^version__addon__slug',)
+        '^version__addon__slug',
+    )
 
-    list_select_related = (
-        'version__addon',)
+    list_select_related = ('version__addon',)
 
     readonly_fields = ('file_download_url',)
 
     fieldsets = (
-        (None, {
-            'fields': (
-                'version', 'platform', 'filename',
-                'size', 'hash', 'original_hash',
-                'status', 'file_download_url')
-        }),
-        ('Details', {
-            'fields': (
-                'cert_serial_num', 'original_status'),
-        }),
-        ('Flags', {
-            'fields': (
-                'is_restart_required', 'strict_compatibility', 'binary',
-                'binary_components', 'is_signed', 'is_experiment',
-                'is_webextension', 'is_mozilla_signed_extension')
-        }),
+        (
+            None,
+            {
+                'fields': (
+                    'version',
+                    'platform',
+                    'filename',
+                    'size',
+                    'hash',
+                    'original_hash',
+                    'status',
+                    'file_download_url',
+                )
+            },
+        ),
+        ('Details', {'fields': ('cert_serial_num', 'original_status'),}),
+        (
+            'Flags',
+            {
+                'fields': (
+                    'is_restart_required',
+                    'strict_compatibility',
+                    'binary',
+                    'binary_components',
+                    'is_signed',
+                    'is_experiment',
+                    'is_webextension',
+                    'is_mozilla_signed_extension',
+                )
+            },
+        ),
     )
 
     def addon_slug(self, instance):
@@ -54,7 +68,8 @@ class FileAdmin(admin.ModelAdmin):
     def file_download_url(self, instance):
         return format_html(
             '<a href="{}">Download file</a>',
-            reverse('admin:files_file_download', args=[instance.pk]))
+            reverse('admin:files_file_download', args=[instance.pk]),
+        )
 
     file_download_url.short_description = u'Download this file'
     file_download_url.allow_tags = True
@@ -65,13 +80,13 @@ class FileAdmin(admin.ModelAdmin):
             url(
                 r'^([^\/]+?)/download/$',
                 self.admin_site.admin_view(self.download_view),
-                name='files_file_download'),
+                name='files_file_download',
+            ),
         ]
 
         return custom_urls + urls
 
     def download_view(self, request, file_id):
         file_ = get_object_or_404(File.objects, pk=file_id)
-        addon = get_object_or_404(Addon.unfiltered,
-                                  pk=file_.version.addon_id)
+        addon = get_object_or_404(Addon.unfiltered, pk=file_.version.addon_id)
         return download_file(request, file_id, file_=file_, addon=addon)

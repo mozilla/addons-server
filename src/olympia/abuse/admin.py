@@ -7,9 +7,7 @@ from django.db.models import Count, Q, Prefetch
 from django.template import loader
 from django.utils.translation import ugettext
 
-from rangefilter.filter import (
-    DateRangeFilter as DateRangeFilterBase,
-)
+from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
 
 from olympia import amo
 from olympia.access import acl
@@ -51,8 +49,7 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         if self.value() == 'user':
             return queryset.filter(user__isnull=False)
         elif self.value() == 'addon':
-            return queryset.filter(Q(addon__isnull=False) |
-                                   Q(guid__isnull=False))
+            return queryset.filter(Q(addon__isnull=False) | Q(guid__isnull=False))
         return queryset
 
 
@@ -69,8 +66,10 @@ class FakeChoicesMixin(object):
         """
         # Grab search query parts and filter query parts as tuples of tuples.
         search_query_parts = (
-            ((admin.views.main.SEARCH_VAR, changelist.query),)
-        ) if changelist.query else ()
+            (((admin.views.main.SEARCH_VAR, changelist.query),))
+            if changelist.query
+            else ()
+        )
         filters_query_parts = tuple(
             (k, v)
             for k, v in changelist.get_filters_params().items()
@@ -95,6 +94,7 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
     Original idea:
     https://hakibenita.com/how-to-add-a-text-filter-to-django-admin
     """
+
     template = 'admin/abuse/abusereport/minimum_reports_count_filter.html'
     title = ugettext('minimum reports count (grouped by guid)')
     parameter_name = 'minimum_reports_count'
@@ -122,24 +122,33 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
     Needs FakeChoicesMixin for the fake choices the template will be using (the
     upstream implementation depends on JavaScript for this).
     """
+
     template = 'admin/abuse/abusereport/date_range_filter.html'
     title = ugettext('creation date')
 
     def _get_form_fields(self):
-        return OrderedDict((
-            (self.lookup_kwarg_gte, forms.DateField(
-                label='From',
-                widget=HTML5DateInput(),
-                localize=True,
-                required=False
-            )),
-            (self.lookup_kwarg_lte, forms.DateField(
-                label='To',
-                widget=HTML5DateInput(),
-                localize=True,
-                required=False
-            )),
-        ))
+        return OrderedDict(
+            (
+                (
+                    self.lookup_kwarg_gte,
+                    forms.DateField(
+                        label='From',
+                        widget=HTML5DateInput(),
+                        localize=True,
+                        required=False,
+                    ),
+                ),
+                (
+                    self.lookup_kwarg_lte,
+                    forms.DateField(
+                        label='To',
+                        widget=HTML5DateInput(),
+                        localize=True,
+                        required=False,
+                    ),
+                ),
+            )
+        )
 
     def choices(self, changelist):
         # We want a fake 'All' choice as per FakeChoicesMixin, but as of 0.3.15
@@ -152,14 +161,20 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
 
 class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     class Media:
-        css = {
-            'all': ('css/admin/abuse_reports.css',)
-        }
+        css = {'all': ('css/admin/abuse_reports.css',)}
 
     actions = ('delete_selected', 'mark_as_valid', 'mark_as_suspicious')
     date_hierarchy = 'modified'
-    list_display = ('target_name', 'guid', 'type', 'state', 'distribution',
-                    'reason', 'message_excerpt', 'created')
+    list_display = (
+        'target_name',
+        'guid',
+        'type',
+        'state',
+        'distribution',
+        'reason',
+        'message_excerpt',
+        'created',
+    )
     list_filter = (
         AbuseReportTypeFilter,
         'state',
@@ -203,24 +218,29 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     ADDON_METADATA_FIELDSET = 'Add-on metadata'
     fieldsets = (
         (None, {'fields': ('state', 'reason', 'message')}),
-        (None, {'fields': (
-            'created',
-            'modified',
-            'reporter',
-            'country_code',
-            'client_id',
-            'addon_signature',
-            'application',
-            'application_version',
-            'application_locale',
-            'operating_system',
-            'operating_system_version',
-            'install_date',
-            'addon_install_origin',
-            'addon_install_method',
-            'addon_install_source',
-            'report_entry_point'
-        )})
+        (
+            None,
+            {
+                'fields': (
+                    'created',
+                    'modified',
+                    'reporter',
+                    'country_code',
+                    'client_id',
+                    'addon_signature',
+                    'application',
+                    'application_version',
+                    'application_locale',
+                    'operating_system',
+                    'operating_system_version',
+                    'install_date',
+                    'addon_install_origin',
+                    'addon_install_method',
+                    'addon_install_source',
+                    'report_entry_point',
+                )
+            },
+        ),
     )
     # The first fieldset is going to be dynamically added through
     # get_fieldsets() depending on the target (add-on, user or unknown add-on),
@@ -267,12 +287,19 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         type_ = request.GET.get('type')
         if type_ == 'addon':
             search_fields = (
-                'addon__name__localized_string', 'addon__slug', 'addon_name',
-                '=guid', 'message', '=addon__id',
+                'addon__name__localized_string',
+                'addon__slug',
+                'addon_name',
+                '=guid',
+                'message',
+                '=addon__id',
             )
         elif type_ == 'user':
             search_fields = (
-                'message', '=user__id', '^user__username', '^user__email',
+                'message',
+                '=user__id',
+                '^user__username',
+                '^user__email',
             )
         else:
             search_fields = ()
@@ -302,11 +329,13 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             # filtering is actually done here, because it needs to happen after
             # all other filters have been applied in order for the aggregate
             # queryset to be correct.
-            guids = (qs.values_list('guid', flat=True)
-                       .filter(guid__isnull=False)
-                       .annotate(Count('guid'))
-                       .filter(guid__count__gte=minimum_reports_count)
-                       .order_by())
+            guids = (
+                qs.values_list('guid', flat=True)
+                .filter(guid__isnull=False)
+                .annotate(Count('guid'))
+                .filter(guid__count__gte=minimum_reports_count)
+                .order_by()
+            )
             qs = qs.filter(guid__in=list(guids))
         qs, use_distinct = super().get_search_results(request, qs, search_term)
         return qs, use_distinct
@@ -320,8 +349,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # through prefetch_related() + only_translations() (we don't care about
         # the other transforms).
         return qs.prefetch_related(
-            Prefetch(
-                'addon', queryset=Addon.objects.all().only_translations()),
+            Prefetch('addon', queryset=Addon.objects.all().only_translations()),
         )
 
     def get_fieldsets(self, request, obj=None):
@@ -331,14 +359,13 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             target = 'user'
         else:
             target = 'guid'
-        dynamic_fieldset = (
-            (None, {'fields': self.dynamic_fieldset_fields[target]}),
-        )
+        dynamic_fieldset = ((None, {'fields': self.dynamic_fieldset_fields[target]}),)
         return dynamic_fieldset + self.fieldsets
 
     def target_name(self, obj):
         name = obj.target.name if obj.target else obj.addon_name
         return '%s %s' % (name, obj.addon_version or '')
+
     target_name.short_description = ugettext('User / Add-on')
 
     def addon_card(self, obj):
@@ -357,28 +384,40 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             'addon_name': addon.name,
             'approvals_info': approvals_info,
             'reports': Paginator(
-                (AbuseReport.objects
-                    .filter(Q(addon=addon) | Q(user__in=developers))
-                    .order_by('-created')), 5).page(1),
+                (
+                    AbuseReport.objects.filter(
+                        Q(addon=addon) | Q(user__in=developers)
+                    ).order_by('-created')
+                ),
+                5,
+            ).page(1),
             'user_ratings': Paginator(
-                (Rating.without_replies
-                    .filter(addon=addon, rating__lte=3, body__isnull=False)
-                    .order_by('-created')), 5).page(1),
+                (
+                    Rating.without_replies.filter(
+                        addon=addon, rating__lte=3, body__isnull=False
+                    ).order_by('-created')
+                ),
+                5,
+            ).page(1),
             'version': addon.current_version,
         }
         return template.render(context)
+
     addon_card.short_description = ''
 
     def distribution(self, obj):
         return obj.get_addon_signature_display() if obj.addon_signature else ''
+
     distribution.short_description = ugettext('Distribution')
 
     def reporter_country(self, obj):
         return obj.country_code
+
     reporter_country.short_description = ugettext("Reporter's country")
 
     def message_excerpt(self, obj):
         return truncate_text(obj.message, 140)[0] if obj.message else ''
+
     message_excerpt.short_description = ugettext('Message excerpt')
 
     def mark_as_valid(self, request, qs):
@@ -387,8 +426,10 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         self.message_user(
             request,
             ugettext(
-                'The %d selected reports have been marked as valid.' % (
-                    qs.count())))
+                'The %d selected reports have been marked as valid.' % (qs.count())
+            ),
+        )
+
     mark_as_valid.short_description = 'Mark selected abuse reports as valid'
 
     def mark_as_suspicious(self, request, qs):
@@ -397,10 +438,13 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         self.message_user(
             request,
             ugettext(
-                'The %d selected reports have been marked as suspicious.' % (
-                    qs.count())))
-    mark_as_suspicious.short_description = (
-        ugettext('Mark selected abuse reports as suspicious'))
+                'The %d selected reports have been marked as suspicious.' % (qs.count())
+            ),
+        )
+
+    mark_as_suspicious.short_description = ugettext(
+        'Mark selected abuse reports as suspicious'
+    )
 
 
 admin.site.register(AbuseReport, AbuseReportAdmin)

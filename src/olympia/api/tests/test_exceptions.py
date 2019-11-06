@@ -14,6 +14,7 @@ from rest_framework.viewsets import GenericViewSet
 
 class DummyViewSet(GenericViewSet):
     """Dummy test viewset that raises an exception when calling list()."""
+
     def list(self, *args, **kwargs):
         raise Exception('something went wrong')
 
@@ -37,7 +38,8 @@ class TestExceptionHandlerWithViewSet(TestCase):
         assert got_request_exception_mock.send.call_count == 1
         assert got_request_exception_mock.send.call_args[0][0] == DummyViewSet
         assert isinstance(
-            got_request_exception_mock.send.call_args[1]['request'], Request)
+            got_request_exception_mock.send.call_args[1]['request'], Request
+        )
 
     # The test client connects to got_request_exception, so we need to mock it
     # otherwise it would immediately re-raise the exception.
@@ -55,7 +57,8 @@ class TestExceptionHandlerWithViewSet(TestCase):
         assert got_request_exception_mock.send.call_count == 1
         assert got_request_exception_mock.send.call_args[0][0] == DummyViewSet
         assert isinstance(
-            got_request_exception_mock.send.call_args[1]['request'], Request)
+            got_request_exception_mock.send.call_args[1]['request'], Request
+        )
 
 
 class TestExceptionHandler(TestCase):

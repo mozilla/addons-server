@@ -8,7 +8,10 @@ from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.api.fields import (
-    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
+    SlugOrPrimaryKeyRelatedField,
+    SplitField,
+    TranslationSerializerField,
+)
 from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
@@ -24,18 +27,29 @@ class CollectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Collection
-        fields = ('id', 'uuid', 'url', 'addon_count', 'author', 'description',
-                  'modified', 'name', 'slug', 'public', 'default_locale')
-        writeable_fields = (
-            'description', 'name', 'slug', 'public', 'default_locale'
+        fields = (
+            'id',
+            'uuid',
+            'url',
+            'addon_count',
+            'author',
+            'description',
+            'modified',
+            'name',
+            'slug',
+            'public',
+            'default_locale',
         )
+        writeable_fields = ('description', 'name', 'slug', 'public', 'default_locale')
         read_only_fields = tuple(set(fields) - set(writeable_fields))
         validators = [
             UniqueTogetherValidator(
                 queryset=Collection.objects.all(),
-                message=_(u'This custom URL is already in use by another one '
-                          u'of your collections.'),
-                fields=('slug', 'author')
+                message=_(
+                    u'This custom URL is already in use by another one '
+                    u'of your collections.'
+                ),
+                fields=('slug', 'author'),
             ),
         ]
 
@@ -45,31 +59,35 @@ class CollectionSerializer(serializers.ModelSerializer):
     def validate_name(self, value):
         # if we have a localised dict of values validate them all.
         if isinstance(value, dict):
-            return {locale: self.validate_name(sub_value)
-                    for locale, sub_value in value.items()}
+            return {
+                locale: self.validate_name(sub_value)
+                for locale, sub_value in value.items()
+            }
         if value.strip() == u'':
-            raise serializers.ValidationError(
-                ugettext(u'Name cannot be empty.'))
+            raise serializers.ValidationError(ugettext(u'Name cannot be empty.'))
         if DeniedName.blocked(value):
-            raise serializers.ValidationError(
-                ugettext(u'This name cannot be used.'))
+            raise serializers.ValidationError(ugettext(u'This name cannot be used.'))
         return value
 
     def validate_description(self, value):
         if has_links(clean_nl(str(value))):
             # There's some links, we don't want them.
-            raise serializers.ValidationError(
-                ugettext(u'No links are allowed.'))
+            raise serializers.ValidationError(ugettext(u'No links are allowed.'))
         return value
 
     def validate_slug(self, value):
         slug_validator(
-            value, lower=False,
-            message=ugettext(u'The custom URL must consist of letters, '
-                             u'numbers, underscores or hyphens.'))
+            value,
+            lower=False,
+            message=ugettext(
+                u'The custom URL must consist of letters, '
+                u'numbers, underscores or hyphens.'
+            ),
+        )
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This custom URL cannot be used.'))
+                ugettext(u'This custom URL cannot be used.')
+            )
 
         return value
 
@@ -88,7 +106,8 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
         # Only used for writes (this is input field), so there are no perf
         # concerns and we don't use any special caching.
         SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.public()),
-        AddonSerializer())
+        AddonSerializer(),
+    )
     notes = TranslationSerializerField(source='comments', required=False)
     collection = serializers.HiddenField(default=ThisCollectionDefault())
 
@@ -99,12 +118,10 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
             UniqueTogetherValidator(
                 queryset=CollectionAddon.objects.all(),
                 message=_(u'This add-on already belongs to the collection'),
-                fields=('addon', 'collection')
+                fields=('addon', 'collection'),
             ),
         ]
-        writeable_fields = (
-            'notes',
-        )
+        writeable_fields = ('notes',)
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def validate(self, data):
@@ -116,8 +133,7 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         request = self.context.get('request')
-        out = super(
-            CollectionAddonSerializer, self).to_representation(instance)
+        out = super(CollectionAddonSerializer, self).to_representation(instance)
         if request and is_gate_active(request, 'collections-downloads-shim'):
             out['downloads'] = 0
         return out
@@ -129,9 +145,11 @@ class CollectionWithAddonsSerializer(CollectionSerializer):
     class Meta(CollectionSerializer.Meta):
         fields = CollectionSerializer.Meta.fields + ('addons',)
         read_only_fields = tuple(
-            set(fields) - set(CollectionSerializer.Meta.writeable_fields))
+            set(fields) - set(CollectionSerializer.Meta.writeable_fields)
+        )
 
     def get_addons(self, obj):
         addons_qs = self.context['view'].get_addons_queryset()
         return CollectionAddonSerializer(
-            addons_qs, context=self.context, many=True).data
+            addons_qs, context=self.context, many=True
+        ).data

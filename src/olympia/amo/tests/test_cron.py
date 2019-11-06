@@ -67,9 +67,7 @@ class TestGC(TestCase):
         # upload = None, version is not None --> KEPT
         ScannerResult.objects.create(scanner=YARA, version=version)
         # upload is not None, version is not None --> KEPT
-        ScannerResult.objects.create(scanner=YARA,
-                                     upload=new_upload,
-                                     version=version)
+        ScannerResult.objects.create(scanner=YARA, upload=new_upload, version=version)
 
         assert ScannerResult.objects.count() == 5
 

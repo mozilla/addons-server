@@ -24,33 +24,38 @@ def _is_safe_url(url, request):
         urlparse(settings.CODE_MANAGER_URL).netloc,
     )
     require_https = request.is_secure() if request else False
-    return is_safe_url(url, allowed_hosts=allowed_hosts,
-                       require_https=require_https)
+    return is_safe_url(url, allowed_hosts=allowed_hosts, require_https=require_https)
 
 
 def fxa_config(request):
-    config = {camel_case(key): value
-              for key, value in settings.FXA_CONFIG['default'].items()
-              if key != 'client_secret'}
+    config = {
+        camel_case(key): value
+        for key, value in settings.FXA_CONFIG['default'].items()
+        if key != 'client_secret'
+    }
     request.session.setdefault('fxa_state', generate_fxa_state())
 
-    config.update(**{
-        'contentHost': settings.FXA_CONTENT_HOST,
-        'oauthHost': settings.FXA_OAUTH_HOST,
-        'profileHost': settings.FXA_PROFILE_HOST,
-        'scope': 'profile',
-        'state': request.session['fxa_state'],
-    })
+    config.update(
+        **{
+            'contentHost': settings.FXA_CONTENT_HOST,
+            'oauthHost': settings.FXA_OAUTH_HOST,
+            'profileHost': settings.FXA_PROFILE_HOST,
+            'scope': 'profile',
+            'state': request.session['fxa_state'],
+        }
+    )
     if request.user.is_authenticated:
         config['email'] = request.user.email
     return config
 
 
-def fxa_login_url(config, state, next_path=None, action=None,
-                  force_two_factor=False, request=None):
+def fxa_login_url(
+    config, state, next_path=None, action=None, force_two_factor=False, request=None
+):
     if next_path and _is_safe_url(next_path, request):
-        state += ':' + force_text(
-            urlsafe_b64encode(next_path.encode('utf-8'))).rstrip('=')
+        state += ':' + force_text(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
+            '='
+        )
     query = {
         'client_id': config['client_id'],
         'scope': 'profile',
@@ -63,7 +68,8 @@ def fxa_login_url(config, state, next_path=None, action=None,
         # assurance level >= 2 which corresponds to requiring 2FA.
         query['acr_values'] = 'AAL2'
     return '{host}/authorization?{query}'.format(
-        host=settings.FXA_OAUTH_HOST, query=urlencode(query))
+        host=settings.FXA_OAUTH_HOST, query=urlencode(query)
+    )
 
 
 def default_fxa_register_url(request):
@@ -72,7 +78,8 @@ def default_fxa_register_url(request):
         config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path_with_query(request),
-        action='signup')
+        action='signup',
+    )
 
 
 def default_fxa_login_url(request):
@@ -81,7 +88,8 @@ def default_fxa_login_url(request):
         config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path_with_query(request),
-        action='signin')
+        action='signin',
+    )
 
 
 def generate_fxa_state():
@@ -118,16 +126,16 @@ def process_fxa_event(raw_body, **kwargs):
         uid = event.get('uid')
         timestamp = event.get('ts', 0)
         if not (event_type and uid and timestamp):
-            raise ValueError(
-                'Properties event, uuid, and ts must all be non-empty')
+            raise ValueError('Properties event, uuid, and ts must all be non-empty')
     except (ValueError, KeyError, TypeError) as e:
         log.exception('Invalid account message: %s' % e)
     else:
         if event_type == 'primaryEmailChanged':
             email = event.get('email')
             if not email:
-                log.error('Email property must be non-empty for "%s" event' %
-                          event_type)
+                log.error(
+                    'Email property must be non-empty for "%s" event' % event_type
+                )
             else:
                 primary_email_change_event.delay(email, uid, timestamp)
         else:
@@ -139,11 +147,12 @@ def process_sqs_queue(queue_url):
     log.info('Processing account events from %s', queue_url)
     try:
         region = queue_url.split('.')[1]
-        available_regions = (boto3._get_default_session()
-                             .get_available_regions('sqs'))
+        available_regions = boto3._get_default_session().get_available_regions('sqs')
         if region not in available_regions:
-            log.error('SQS misconfigured, expected region, got %s from %s' % (
-                region, queue_url))
+            log.error(
+                'SQS misconfigured, expected region, got %s from %s'
+                % (region, queue_url)
+            )
         # Connect to the SQS queue.
         # Credentials are specified in EC2 as an IAM role on prod/stage/dev.
         # If you're testing locally see boto3 docs for how to specify:
@@ -154,7 +163,8 @@ def process_sqs_queue(queue_url):
             response = sqs.receive_message(
                 QueueUrl=queue_url,
                 WaitTimeSeconds=settings.FXA_SQS_AWS_WAIT_TIME,
-                MaxNumberOfMessages=10)
+                MaxNumberOfMessages=10,
+            )
             msgs = response.get('Messages', []) if response else []
             for message in msgs:
                 try:
@@ -163,8 +173,8 @@ def process_sqs_queue(queue_url):
                     # unrecognized type.  Not point leaving a backlog.
                     if 'ReceiptHandle' in message:
                         sqs.delete_message(
-                            QueueUrl=queue_url,
-                            ReceiptHandle=message['ReceiptHandle'])
+                            QueueUrl=queue_url, ReceiptHandle=message['ReceiptHandle']
+                        )
                 except Exception as exc:
                     log.exception('Error while processing message: %s' % exc)
     except Exception as exc:

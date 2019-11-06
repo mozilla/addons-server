@@ -28,7 +28,10 @@ from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
-    urlparams, user_media_path, user_media_url)
+    urlparams,
+    user_media_path,
+    user_media_url,
+)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.utils import get_sha256, write_crx_as_xpi
@@ -42,12 +45,12 @@ class File(OnChangeMixin, ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.ForeignKey(
-        'versions.Version', related_name='files',
-        on_delete=models.CASCADE)
+        'versions.Version', related_name='files', on_delete=models.CASCADE
+    )
     platform = models.PositiveIntegerField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         default=amo.PLATFORM_ALL.id,
-        db_column="platform_id"
+        db_column="platform_id",
     )
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
@@ -56,7 +59,8 @@ class File(OnChangeMixin, ModelBase):
     # any other way.
     original_hash = models.CharField(max_length=255, default='')
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
+        choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW
+    )
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     is_restart_required = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)
@@ -82,17 +86,16 @@ class File(OnChangeMixin, ModelBase):
     is_mozilla_signed_extension = models.BooleanField(default=False)
     # The user has disabled this file and this was its status.
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
-    original_status = models.PositiveSmallIntegerField(
-        default=amo.STATUS_NULL)
+    original_status = models.PositiveSmallIntegerField(default=amo.STATUS_NULL)
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
         indexes = [
-            models.Index(fields=('created', 'version'),
-                         name='created_idx'),
+            models.Index(fields=('created', 'version'), name='created_idx'),
             models.Index(fields=('binary_components',), name='files_cedd2560'),
-            models.Index(fields=('datestatuschanged', 'version'),
-                         name='statuschanged_idx'),
+            models.Index(
+                fields=('datestatuschanged', 'version'), name='statuschanged_idx'
+            ),
             models.Index(fields=('platform',), name='platform_id'),
             models.Index(fields=('status',), name='status'),
         ]
@@ -127,16 +130,14 @@ class File(OnChangeMixin, ModelBase):
             host = user_media_url('addons')
 
         return posixpath.join(
-            *map(force_bytes, [host, self.version.addon.id, self.filename]))
+            *map(force_bytes, [host, self.version.addon.id, self.filename])
+        )
 
     def get_url_path(self, src, attachment=False):
-        return self._make_download_url(
-            'downloads.file', src, attachment=attachment)
+        return self._make_download_url('downloads.file', src, attachment=attachment)
 
     def _make_download_url(self, view_name, src, attachment=False):
-        kwargs = {
-            'file_id': self.pk
-        }
+        kwargs = {'file_id': self.pk}
         if attachment:
             kwargs['type'] = 'attachment'
         url = os.path.join(reverse(view_name, kwargs=kwargs), self.filename)
@@ -159,14 +160,13 @@ class File(OnChangeMixin, ModelBase):
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload_path)
-        file_.is_restart_required = parsed_data.get(
-            'is_restart_required', False)
-        file_.strict_compatibility = parsed_data.get(
-            'strict_compatibility', False)
+        file_.is_restart_required = parsed_data.get('is_restart_required', False)
+        file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
         file_.is_experiment = parsed_data.get('is_experiment', False)
         file_.is_webextension = parsed_data.get('is_webextension', False)
         file_.is_mozilla_signed_extension = parsed_data.get(
-            'is_mozilla_signed_extension', False)
+            'is_mozilla_signed_extension', False
+        )
 
         file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
@@ -178,8 +178,7 @@ class File(OnChangeMixin, ModelBase):
             for script in parsed_data.get('content_scripts', []):
                 permissions.extend(script.get('matches', []))
             if permissions:
-                WebextPermission.objects.create(permissions=permissions,
-                                                file=file_)
+                WebextPermission.objects.create(permissions=permissions, file=file_)
 
         log.debug('New file: %r from %r' % (file_, upload))
 
@@ -212,8 +211,9 @@ class File(OnChangeMixin, ModelBase):
         parts.append(self.version.version)
 
         if addon.type not in amo.NO_COMPAT and self.version.compatible_apps:
-            apps = '+'.join(sorted([a.shortername for a in
-                                    self.version.compatible_apps]))
+            apps = '+'.join(
+                sorted([a.shortername for a in self.version.compatible_apps])
+            )
             parts.append(apps)
 
         if self.platform and self.platform != amo.PLATFORM_ALL.id:
@@ -234,8 +234,7 @@ class File(OnChangeMixin, ModelBase):
             return self.filename
         if len(m.group('slug')) < maxlen:
             return self.filename
-        return u'%s...%s' % (m.group('slug')[0:(maxlen - 3)],
-                             m.group('suffix'))
+        return u'%s...%s' % (m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
 
     def latest_xpi_url(self, attachment=False):
         addon = self.version.addon
@@ -244,14 +243,16 @@ class File(OnChangeMixin, ModelBase):
             kw['platform'] = self.platform
         if attachment:
             kw['type'] = 'attachment'
-        return os.path.join(reverse('downloads.latest', kwargs=kw),
-                            'addon-%s-latest%s' % (addon.pk, self.extension))
+        return os.path.join(
+            reverse('downloads.latest', kwargs=kw),
+            'addon-%s-latest%s' % (addon.pk, self.extension),
+        )
 
     @property
     def file_path(self):
-        return os.path.join(user_media_path('addons'),
-                            str(self.version.addon_id),
-                            self.filename)
+        return os.path.join(
+            user_media_path('addons'), str(self.version.addon_id), self.filename
+        )
 
     @property
     def addon(self):
@@ -259,8 +260,9 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def guarded_file_path(self):
-        return os.path.join(user_media_path('guarded_addons'),
-                            str(self.version.addon_id), self.filename)
+        return os.path.join(
+            user_media_path('guarded_addons'), str(self.version.addon_id), self.filename
+        )
 
     @property
     def current_file_path(self):
@@ -291,14 +293,14 @@ class File(OnChangeMixin, ModelBase):
         try:
             if storage.exists(source_path):
                 source_parent_path = os.path.dirname(source_path)
-                log.info(log_message.format(
-                    source=source_path, destination=destination_path))
+                log.info(
+                    log_message.format(source=source_path, destination=destination_path)
+                )
                 move_stored_file(source_path, destination_path)
                 # Now that the file has been deleted, remove the directory if
                 # it exists to prevent the main directory from growing too
                 # much (#11464)
-                remaining_dirs, remaining_files = storage.listdir(
-                    source_parent_path)
+                remaining_dirs, remaining_files = storage.listdir(source_parent_path)
                 if len(remaining_dirs) == len(remaining_files) == 0:
                     storage.delete(source_parent_path)
         except (UnicodeEncodeError, IOError):
@@ -310,16 +312,14 @@ class File(OnChangeMixin, ModelBase):
         if not self.filename:
             return
         src, dst = self.file_path, self.guarded_file_path
-        self.move_file(
-            src, dst, 'Moving disabled file: {source} => {destination}')
+        self.move_file(src, dst, 'Moving disabled file: {source} => {destination}')
 
     def unhide_disabled_file(self):
         """Move a file from guarded file path to the public file path."""
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
-        self.move_file(
-            src, dst, 'Moving undisabled file: {source} => {destination}')
+        self.move_file(src, dst, 'Moving undisabled file: {source} => {destination}')
 
     @cached_property
     def webext_permissions_list(self):
@@ -329,9 +329,11 @@ class File(OnChangeMixin, ModelBase):
             # Filter out any errant non-strings included in the manifest JSON.
             # Remove any duplicate permissions.
             permissions = set()
-            permissions = [p for p in self._webext_permissions.permissions
-                           if isinstance(p, str) and not
-                           (p in permissions or permissions.add(p))]
+            permissions = [
+                p
+                for p in self._webext_permissions.permissions
+                if isinstance(p, str) and not (p in permissions or permissions.add(p))
+            ]
             return permissions
 
         except WebextPermission.DoesNotExist:
@@ -357,13 +359,14 @@ def update_status_delete(sender, instance, **kw):
 
 
 models.signals.post_save.connect(
-    update_status, sender=File, dispatch_uid='version_update_status')
+    update_status, sender=File, dispatch_uid='version_update_status'
+)
 models.signals.post_delete.connect(
-    update_status_delete, sender=File, dispatch_uid='version_update_status')
+    update_status_delete, sender=File, dispatch_uid='version_update_status'
+)
 
 
-@receiver(models.signals.post_delete, sender=File,
-          dispatch_uid='cleanup_file')
+@receiver(models.signals.post_delete, sender=File, dispatch_uid='cleanup_file')
 def cleanup_file(sender, instance, **kw):
     """ On delete of the file object from the database, unlink the file from
     the file system """
@@ -376,8 +379,7 @@ def cleanup_file(sender, instance, **kw):
         except models.ObjectDoesNotExist:
             return
         if storage.exists(filename):
-            log.info('Removing filename: %s for file: %s'
-                     % (filename, instance.pk))
+            log.info('Removing filename: %s for file: %s' % (filename, instance.pk))
             storage.delete(filename)
 
 
@@ -398,8 +400,10 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
             addon = instance.version.addon.pk
         except models.ObjectDoesNotExist:
             addon = 'unknown'
-        log.info('Hash changed for file: %s, addon: %s, from: %s to: %s' %
-                 (instance.pk, addon, old, new))
+        log.info(
+            'Hash changed for file: %s, addon: %s, from: %s to: %s'
+            % (instance.pk, addon, old, new)
+        )
 
 
 def track_new_status(sender, instance, *args, **kw):
@@ -410,9 +414,9 @@ def track_new_status(sender, instance, *args, **kw):
         track_file_status_change(instance)
 
 
-models.signals.post_save.connect(track_new_status,
-                                 sender=File,
-                                 dispatch_uid='track_new_file_status')
+models.signals.post_save.connect(
+    track_new_status, sender=File, dispatch_uid='track_new_file_status'
+)
 
 
 @File.on_change
@@ -433,26 +437,30 @@ def track_file_status_change(file_):
 
 class FileUpload(ModelBase):
     """Created when a file is uploaded for validation/submission."""
+
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     path = models.CharField(max_length=255, default='')
-    name = models.CharField(max_length=255, default='',
-                            help_text="The user's original filename")
+    name = models.CharField(
+        max_length=255, default='', help_text="The user's original filename"
+    )
     hash = models.CharField(max_length=255, default='')
-    user = models.ForeignKey(
-        'users.UserProfile', null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     automated_signing = models.BooleanField(default=False)
     compat_with_app = models.PositiveIntegerField(
-        choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
+        choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True
+    )
     compat_with_appver = models.ForeignKey(
-        AppVersion, null=True, related_name='uploads_compat_for_appver',
-        on_delete=models.CASCADE)
+        AppVersion,
+        null=True,
+        related_name='uploads_compat_for_appver',
+        on_delete=models.CASCADE,
+    )
     # Not all FileUploads will have a version and addon but it will be set
     # if the file was uploaded using the new API.
     version = models.CharField(max_length=255, null=True)
-    addon = models.ForeignKey(
-        'addons.Addon', null=True, on_delete=models.CASCADE)
+    addon = models.ForeignKey('addons.Addon', null=True, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=40, null=True)
 
     objects = ManagerBase()
@@ -460,8 +468,7 @@ class FileUpload(ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
         indexes = [
-            models.Index(fields=('compat_with_app',),
-                         name='file_uploads_afe99c5e'),
+            models.Index(fields=('compat_with_app',), name='file_uploads_afe99c5e'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('uuid',), name='uuid'),
@@ -505,9 +512,10 @@ class FileUpload(ModelBase):
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             loc += ext
 
-        log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc),
-                 extra={'email': (self.user.email
-                                  if self.user and self.user.email else '')})
+        log.info(
+            'UPLOAD: %r (%s bytes) to %r' % (filename, size, loc),
+            extra={'email': (self.user.email if self.user and self.user.email else '')},
+        )
         if is_crx:
             hash_func = write_crx_as_xpi(chunks, loc)
         else:
@@ -533,7 +541,7 @@ class FileUpload(ModelBase):
         """
         absolute_url = urljoin(
             settings.EXTERNAL_SITE_URL,
-            reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex})
+            reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex}),
         )
         return '{}?access_token={}'.format(absolute_url, self.access_token)
 
@@ -552,9 +560,7 @@ class FileUpload(ModelBase):
         if self.processed:
             validation = self.load_validation()
             messages = validation['messages']
-            timeout_id = ['validator',
-                          'unexpected_exception',
-                          'validation_timeout']
+            timeout_id = ['validator', 'unexpected_exception', 'validation_timeout']
             return any(msg['id'] == timeout_id for msg in messages)
         else:
             return False
@@ -570,9 +576,8 @@ class FileUpload(ModelBase):
             is_compatibility = self.compat_with_app is not None
 
             return process_validation(
-                validation,
-                is_compatibility=is_compatibility,
-                file_hash=self.hash)
+                validation, is_compatibility=is_compatibility, file_hash=self.hash
+            )
 
     @property
     def passed_all_validations(self):
@@ -592,7 +597,8 @@ class FileUpload(ModelBase):
 class FileValidation(ModelBase):
     id = PositiveAutoField(primary_key=True)
     file = models.OneToOneField(
-        File, related_name='validation', on_delete=models.CASCADE)
+        File, related_name='validation', on_delete=models.CASCADE
+    )
     valid = models.BooleanField(default=False)
     errors = models.IntegerField(default=0)
     warnings = models.IntegerField(default=0)
@@ -608,8 +614,9 @@ class FileValidation(ModelBase):
             validation = json.loads(validation)
 
         if 'metadata' in validation:
-            if (validation['metadata'].get('contains_binary_extension') or
-                    validation['metadata'].get('contains_binary_content')):
+            if validation['metadata'].get('contains_binary_extension') or validation[
+                'metadata'
+            ].get('contains_binary_content'):
                 file.update(binary=True)
 
             if validation['metadata'].get('binary_components'):
@@ -627,24 +634,28 @@ class FileValidation(ModelBase):
             errors=validation['errors'],
             warnings=validation['warnings'],
             notices=validation['notices'],
-            valid=validation['errors'] == 0)
+            valid=validation['errors'] == 0,
+        )
 
     @property
     def processed_validation(self):
         """Return processed validation results as expected by the frontend."""
         # Import loop.
         from olympia.devhub.utils import process_validation
+
         return process_validation(
             json.loads(self.validation),
             file_hash=self.file.original_hash,
-            channel=self.file.version.channel)
+            channel=self.file.version.channel,
+        )
 
 
 class WebextPermission(ModelBase):
     NATIVE_MESSAGING_NAME = u'nativeMessaging'
     permissions = JSONField(default={})
-    file = models.OneToOneField('File', related_name='_webext_permissions',
-                                on_delete=models.CASCADE)
+    file = models.OneToOneField(
+        'File', related_name='_webext_permissions', on_delete=models.CASCADE
+    )
 
     class Meta:
         db_table = 'webext_permissions'

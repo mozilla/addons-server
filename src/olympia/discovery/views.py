@@ -10,9 +10,10 @@ from waffle import switch_is_active
 
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import (
-    DiscoveryEditorialContentSerializer, DiscoverySerializer)
-from olympia.discovery.utils import (
-    get_disco_recommendations, replace_extensions)
+    DiscoveryEditorialContentSerializer,
+    DiscoverySerializer,
+)
+from olympia.discovery.utils import get_disco_recommendations, replace_extensions
 
 
 # Permissive regexp for client IDs passed to the API, just to avoid sending
@@ -38,10 +39,10 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 
         # Base queryset for editorial content.
         qs = (
-            DiscoveryItem.objects
-                         .prefetch_related('addon___current_version__previews')
-                         .filter(**{position_field + '__gt': 0})
-                         .order_by(position_field))
+            DiscoveryItem.objects.prefetch_related('addon___current_version__previews')
+            .filter(**{position_field + '__gt': 0})
+            .order_by(position_field)
+        )
 
         # Recommendations stuff, potentially replacing some/all items in
         # the queryset with recommendations if applicable.
@@ -51,14 +52,14 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
         else:
             telemetry_id = self.request.GET.get('telemetry-client-id', None)
         if switch_is_active('disco-recommendations') and (
-                telemetry_id and VALID_CLIENT_ID.match(telemetry_id)):
+            telemetry_id and VALID_CLIENT_ID.match(telemetry_id)
+        ):
             overrides = list(
-                DiscoveryItem.objects
-                             .values_list('addon__guid', flat=True)
-                             .filter(position_override__gt=0)
-                             .order_by('position_override'))
-            recommendations = get_disco_recommendations(
-                telemetry_id, overrides)
+                DiscoveryItem.objects.values_list('addon__guid', flat=True)
+                .filter(position_override__gt=0)
+                .order_by('position_override')
+            )
+            recommendations = get_disco_recommendations(telemetry_id, overrides)
             if recommendations:
                 # if we got some recommendations then replace the
                 # extensions in the queryset with them.
@@ -82,24 +83,25 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 
     @classonlymethod
     def as_view(cls, actions=None, **initkwargs):
-        view = super(DiscoveryViewSet, cls).as_view(
-            actions=actions, **initkwargs)
+        view = super(DiscoveryViewSet, cls).as_view(actions=actions, **initkwargs)
         return non_atomic_requests(view)
 
 
 class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
     pagination_class = None
     permission_classes = []
-    queryset = DiscoveryItem.objects.all().select_related(
-        'addon').order_by('pk')
+    queryset = DiscoveryItem.objects.all().select_related('addon').order_by('pk')
     serializer_class = DiscoveryEditorialContentSerializer
 
     def filter_queryset(self, qs):
         qs = super().filter_queryset(qs)
         if self.request.query_params.get('recommended', False) == 'true':
-            qs = qs.filter(**{
-                'recommendable': True,
-                'addon___current_version__recommendation_approved': True})
+            qs = qs.filter(
+                **{
+                    'recommendable': True,
+                    'addon___current_version__recommendation_approved': True,
+                }
+            )
         return qs
 
     def list(self, request, *args, **kwargs):
@@ -111,6 +113,5 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
 
     @classonlymethod
     def as_view(cls, actions=None, **initkwargs):
-        view = super(DiscoveryItemViewSet, cls).as_view(
-            actions=actions, **initkwargs)
+        view = super(DiscoveryItemViewSet, cls).as_view(actions=actions, **initkwargs)
         return non_atomic_requests(view)

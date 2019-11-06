@@ -12,12 +12,11 @@ import olympia.core.logger
 log = olympia.core.logger.getLogger('z.discovery.extract_content_strings')
 
 
-class BaseAPIParser():
+class BaseAPIParser:
     def get_results_content(self):
         results = self.fetch_strings_from_api()
         log.info(f'Building "{self.l10n_comment}" strings.')
-        return '\n'.join(
-            self.build_output_for_item(item) for item in results)
+        return '\n'.join(self.build_output_for_item(item) for item in results)
 
     def fetch_strings_from_api(self):
         log.info(f'Fetching {self.l10n_comment} from the API.')
@@ -60,9 +59,10 @@ class BaseAPIParser():
         return ''.join(output)
 
     def build_output_for_single_value(self, value):
-        output = (
-            '{# L10n: %s #}\n'
-            '{%% trans %%}%s{%% endtrans %%}\n' % (self.l10n_comment, value))
+        output = '{# L10n: %s #}\n' '{%% trans %%}%s{%% endtrans %%}\n' % (
+            self.l10n_comment,
+            value,
+        )
         return output
 
 
@@ -75,20 +75,27 @@ class DiscoItemAPIParser(BaseAPIParser):
 class SecondaryHeroShelfAPIParser(BaseAPIParser):
     api = settings.SECONDARY_HERO_EDITORIAL_CONTENT_API
     l10n_comment = 'editorial content for the secondary hero shelves.'
-    fields = ('headline', 'description', 'cta.text', 'modules.description',
-              'modules.cta.text')
+    fields = (
+        'headline',
+        'description',
+        'cta.text',
+        'modules.description',
+        'modules.cta.text',
+    )
 
 
 class Command(BaseCommand):
-    help = ('Extract editorial disco pane and secondary hero shelf content '
-            'that need to be translated.')
+    help = (
+        'Extract editorial disco pane and secondary hero shelf content '
+        'that need to be translated.'
+    )
 
     def handle(self, *args, **options):
         disco = DiscoItemAPIParser()
         secondary_hero = SecondaryHeroShelfAPIParser()
         results_content = (
-            disco.get_results_content() + '\n' +
-            secondary_hero.get_results_content())
+            disco.get_results_content() + '\n' + secondary_hero.get_results_content()
+        )
         self.generate_file_from_api_results(results_content)
 
     def generate_file_from_api_results(self, results_content):

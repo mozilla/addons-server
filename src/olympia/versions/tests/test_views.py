@@ -37,15 +37,15 @@ class TestViews(TestCase):
     def setUp(self):
         super(TestViews, self).setUp()
         self.addon = addon_factory(
-            slug=u'my-addôn', file_kw={'size': 1024},
-            version_kw={'version': '1.0'})
+            slug=u'my-addôn', file_kw={'size': 1024}, version_kw={'version': '1.0'}
+        )
         self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
 
     def test_version_update_info(self):
         self.version.release_notes = {
             'en-US': u'Fix for an important bug',
-            'fr': u'Quelque chose en français.\n\nQuelque chose d\'autre.'
+            'fr': u'Quelque chose en français.\n\nQuelque chose d\'autre.',
         }
         self.version.save()
 
@@ -59,8 +59,11 @@ class TestViews(TestCase):
         file_.save()
 
         response = self.client.get(
-            reverse('addons.versions.update_info',
-                    args=(self.addon.slug, self.version.version)))
+            reverse(
+                'addons.versions.update_info',
+                args=(self.addon.slug, self.version.version),
+            )
+        )
         assert response.status_code == 200
         assert response['Content-Type'] == 'application/xhtml+xml'
 
@@ -74,35 +77,47 @@ class TestViews(TestCase):
         # Test update info in another language.
         with self.activate(locale='fr'):
             response = self.client.get(
-                reverse('addons.versions.update_info',
-                        args=(self.addon.slug, self.version.version)))
+                reverse(
+                    'addons.versions.update_info',
+                    args=(self.addon.slug, self.version.version),
+                )
+            )
             assert response.status_code == 200
             assert response['Content-Type'] == 'application/xhtml+xml'
-            assert b'<br/>' in response.content, (
-                'Should be using XHTML self-closing tags!')
+            assert (
+                b'<br/>' in response.content
+            ), 'Should be using XHTML self-closing tags!'
             doc = PyQuery(response.content, parser='html')
             assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
             assert doc('p').html() == (
-                u"Quelque chose en français.<br/><br/>Quelque chose d'autre.")
+                u"Quelque chose en français.<br/><br/>Quelque chose d'autre."
+            )
 
     def test_version_update_info_legacy_redirect(self):
-        response = self.client.get('/versions/updateInfo/%s' % self.version.id,
-                                   follow=True)
-        url = reverse('addons.versions.update_info',
-                      args=(self.version.addon.slug, self.version.version))
+        response = self.client.get(
+            '/versions/updateInfo/%s' % self.version.id, follow=True
+        )
+        url = reverse(
+            'addons.versions.update_info',
+            args=(self.version.addon.slug, self.version.version),
+        )
         self.assert3xx(response, url, 302)
 
     def test_version_update_info_legacy_redirect_deleted(self):
         self.version.delete()
         response = self.client.get(
-            '/en-US/firefox/versions/updateInfo/%s' % self.version.id)
+            '/en-US/firefox/versions/updateInfo/%s' % self.version.id
+        )
         assert response.status_code == 404
 
     def test_version_update_info_no_unlisted(self):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(
-            reverse('addons.versions.update_info',
-                    args=(self.addon.slug, self.version.version)))
+            reverse(
+                'addons.versions.update_info',
+                args=(self.addon.slug, self.version.version),
+            )
+        )
         assert response.status_code == 404
 
 
@@ -121,15 +136,16 @@ class TestDownloadsBase(TestCase):
             file_ = self.file
         assert response.status_code == 302
         assert response.url == (
-            urlparams('%s%s/%s' % (
-                host, self.addon.id, urlquote(file_.filename)
-            ), filehash=file_.hash))
+            urlparams(
+                '%s%s/%s' % (host, self.addon.id, urlquote(file_.filename)),
+                filehash=file_.hash,
+            )
+        )
         assert response['X-Target-Digest'] == file_.hash
 
     def assert_served_internally(self, response, guarded=True):
         assert response.status_code == 200
-        file_path = (self.file.guarded_file_path if guarded else
-                     self.file.file_path)
+        file_path = self.file.guarded_file_path if guarded else self.file.file_path
         assert response[settings.XSENDFILE_HEADER] == file_path
 
     def assert_served_locally(self, response, file_=None, attachment=False):
@@ -145,15 +161,13 @@ class TestDownloadsBase(TestCase):
 
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
-
     def setUp(self):
         super(TestDownloadsUnlistedVersions, self).setUp()
         self.make_addon_unlisted(self.addon)
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: False)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_returns_404(self):
         """File downloading isn't allowed for unlisted addons."""
         assert self.client.get(self.file_url).status_code == 404
@@ -161,8 +175,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: True)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
         self.assert_served_internally(self.client.get(self.file_url), False)
@@ -170,8 +183,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: False)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_reviewer(self):
         """File downloading isn't allowed for reviewers."""
         assert self.client.get(self.file_url).status_code == 404
@@ -179,8 +191,7 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: False)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
         self.assert_served_internally(self.client.get(self.file_url), False)
@@ -188,7 +199,6 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
 
 
 class TestDownloads(TestDownloadsBase):
-
     def test_file_404(self):
         r = self.client.get(reverse('downloads.file', args=[234]))
         assert r.status_code == 404
@@ -227,7 +237,6 @@ class TestDownloads(TestDownloadsBase):
 
 
 class TestDisabledFileDownloads(TestDownloadsBase):
-
     def test_admin_disabled_404(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.get(self.file_url).status_code == 404
@@ -282,17 +291,16 @@ class TestDisabledFileDownloads(TestDownloadsBase):
 
 
 class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
-
     def setUp(self):
         super(TestDisabledFileDownloads, self).setUp()
         self.make_addon_unlisted(self.addon)
         self.grant_permission(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'Addons:ReviewUnlisted')
+            'Addons:ReviewUnlisted',
+        )
 
 
 class TestDownloadsLatest(TestDownloadsBase):
-
     def setUp(self):
         super(TestDownloadsLatest, self).setUp()
         self.platform = 5
@@ -304,8 +312,7 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_type_none(self):
         r = self.client.get(self.latest_url)
         assert r.status_code == 302
-        url = '%s?%s' % (self.file.filename,
-                         urlencode({'filehash': self.file.hash}))
+        url = '%s?%s' % (self.file.filename, urlencode({'filehash': self.file.hash}))
         assert r['Location'].endswith(url), r['Location']
 
     def test_success(self):
@@ -314,8 +321,9 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def test_platform(self):
         # We still match PLATFORM_ALL.
-        url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.slug, 'platform': 5})
+        url = reverse(
+            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'platform': 5}
+        )
         self.assert_served_by_cdn(self.client.get(url))
 
         # And now we match the platform in the url.
@@ -324,33 +332,43 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_by_cdn(self.client.get(url))
 
         # But we can't match platform=3.
-        url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.slug, 'platform': 3})
+        url = reverse(
+            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'platform': 3}
+        )
         assert self.client.get(url).status_code == 404
 
     def test_type(self):
-        url = reverse('downloads.latest', kwargs={'addon_id': self.addon.slug,
-                                                  'type': 'attachment'})
+        url = reverse(
+            'downloads.latest',
+            kwargs={'addon_id': self.addon.slug, 'type': 'attachment'},
+        )
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_platform_and_type(self):
-        url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.slug, 'platform': 5,
-                              'type': 'attachment'})
+        url = reverse(
+            'downloads.latest',
+            kwargs={'addon_id': self.addon.slug, 'platform': 5, 'type': 'attachment'},
+        )
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
-        url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.slug, 'platform': 5,
-                              'type': 'attachment'})
+        url = reverse(
+            'downloads.latest',
+            kwargs={'addon_id': self.addon.slug, 'platform': 5, 'type': 'attachment'},
+        )
         url += self.file.filename
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_platform_multiple_objects(self):
-        f = File.objects.create(platform=3, version=self.file.version,
-                                filename='unst.xpi', status=self.file.status)
-        url = reverse('downloads.latest',
-                      kwargs={'addon_id': self.addon.slug, 'platform': 3})
+        f = File.objects.create(
+            platform=3,
+            version=self.file.version,
+            filename='unst.xpi',
+            status=self.file.status,
+        )
+        url = reverse(
+            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'platform': 3}
+        )
         self.assert_served_locally(self.client.get(url), file_=f)
 
 
@@ -372,10 +390,9 @@ class TestDownloadSource(TestCase):
         self.filename = os.path.basename(self.version.source.path)
         self.user = UserProfile.objects.get(email="del@icio.us")
         self.group = Group.objects.create(
-            name='Editors BinarySource',
-            rules='Editors:BinarySource'
+            name='Editors BinarySource', rules='Editors:BinarySource'
         )
-        self.url = reverse('downloads.source', args=(self.version.pk, ))
+        self.url = reverse('downloads.source', args=(self.version.pk,))
 
     def test_owner_should_be_allowed(self):
         self.client.login(email=self.user.email)
@@ -387,8 +404,7 @@ class TestDownloadSource(TestCase):
         content_disposition = response['Content-Disposition']
         assert filename in decode_http_header_value(content_disposition)
         expected_path = smart_text(self.version.source.path)
-        xsendfile_header = decode_http_header_value(
-            response[settings.XSENDFILE_HEADER])
+        xsendfile_header = decode_http_header_value(response[settings.XSENDFILE_HEADER])
         assert xsendfile_header == expected_path
 
     def test_anonymous_should_not_be_allowed(self):
@@ -413,8 +429,7 @@ class TestDownloadSource(TestCase):
         content_disposition = response['Content-Disposition']
         assert filename in decode_http_header_value(content_disposition)
         expected_path = smart_text(self.version.source.path)
-        xsendfile_header = decode_http_header_value(
-            response[settings.XSENDFILE_HEADER])
+        xsendfile_header = decode_http_header_value(response[settings.XSENDFILE_HEADER])
         assert xsendfile_header == expected_path
 
     def test_no_source_should_go_in_404(self):
@@ -425,8 +440,7 @@ class TestDownloadSource(TestCase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: False)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_returns_404(self):
         """File downloading isn't allowed for unlisted addons."""
         self.make_addon_unlisted(self.addon)
@@ -434,8 +448,7 @@ class TestDownloadSource(TestCase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: True)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
         self.make_addon_unlisted(self.addon)
@@ -443,8 +456,7 @@ class TestDownloadSource(TestCase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: False)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_reviewer(self):
         """File downloading isn't allowed for reviewers."""
         self.make_addon_unlisted(self.addon)
@@ -452,8 +464,7 @@ class TestDownloadSource(TestCase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
-    @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: False)
+    @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
         self.make_addon_unlisted(self.addon)

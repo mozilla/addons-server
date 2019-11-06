@@ -1,7 +1,6 @@
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory)
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 
 from ..models import Block
@@ -71,29 +70,24 @@ class TestBlockAdminAdd(TestCase):
         assert b'Add-on GUIDs (one per line)' in response.content
 
         # Submit an empty list of guids should redirect back to the page
-        response = self.client.post(
-            self.add_url, {'guids': ''}, follow=False)
+        response = self.client.post(self.add_url, {'guids': ''}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
 
         # A single invalid guid should redirect back to the page too (for now)
-        response = self.client.post(
-            self.add_url, {'guids': 'guid@'}, follow=False)
+        response = self.client.post(self.add_url, {'guids': 'guid@'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
         assert b'Addon with specified GUID does not exist' in response.content
 
         # But should continue to the django admin add page if it exists
         addon = addon_factory(guid='guid@')
-        response = self.client.post(
-            self.add_url, {'guids': 'guid@'}, follow=True)
+        response = self.client.post(self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(response, self.single_url + '?guid=guid@')
 
         # An existing block will redirect to change view instead
         block = Block.objects.create(addon=addon)
-        response = self.client.post(
-            self.add_url, {'guids': 'guid@'}, follow=True)
+        response = self.client.post(self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(
-            response,
-            reverse('admin:blocklist_block_change', args=(block.pk,))
+            response, reverse('admin:blocklist_block_change', args=(block.pk,))
         )
 
     def test_add_single(self):
@@ -103,8 +97,7 @@ class TestBlockAdminAdd(TestCase):
         self.client.login(email=user.email)
 
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
+        response = self.client.get(self.single_url + '?guid=guid@', follow=True)
         content = response.content.decode('utf-8')
         assert 'Add-on GUIDs (one per line)' not in content
         assert 'guid@' in content
@@ -114,14 +107,16 @@ class TestBlockAdminAdd(TestCase):
 
         # Create the block
         response = self.client.post(
-            self.single_url + '?guid=guid@', {
+            self.single_url + '?guid=guid@',
+            {
                 'min_version': '0',
                 'max_version': addon.current_version.version,
                 'url': 'dfd',
                 'reason': 'some reason',
                 '_save': 'Save',
             },
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         assert Block.objects.count() == 1
         assert Block.objects.first().addon == addon
@@ -133,31 +128,36 @@ class TestBlockAdminAdd(TestCase):
         self.client.login(email=user.email)
 
         addon = addon_factory(
-            guid='guid@', name='Danger Danger', version_kw={'version': '3'})
+            guid='guid@', name='Danger Danger', version_kw={'version': '3'}
+        )
         version_factory(addon=addon, version='5')
 
         response = self.client.post(
-            self.single_url + '?guid=guid@', {
+            self.single_url + '?guid=guid@',
+            {
                 'min_version': '5',
                 'max_version': '3',
                 'url': 'dfd',
                 'reason': 'some reason',
                 '_save': 'Save',
             },
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         assert b'Min version can not be greater than Max' in response.content
         assert Block.objects.count() == 0
 
         response = self.client.post(
-            self.single_url + '?guid=guid@', {
+            self.single_url + '?guid=guid@',
+            {
                 'min_version': '3',
                 'max_version': '5',
                 'url': 'dfd',
                 'reason': 'some reason',
                 '_save': 'Save',
             },
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         assert Block.objects.count() == 1
 
@@ -167,20 +167,21 @@ class TestBlockAdminAdd(TestCase):
         self.client.login(email=user.email)
 
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
+        response = self.client.get(self.single_url + '?guid=guid@', follow=True)
         assert response.status_code == 403
         assert b'Danger Danger' not in response.content
 
         # Try to create the block anyway
         response = self.client.post(
-            self.single_url + '?guid=guid@', {
+            self.single_url + '?guid=guid@',
+            {
                 'min_version': '0',
                 'max_version': addon.current_version.version,
                 'url': 'dfd',
                 'reason': 'some reason',
                 '_save': 'Save',
             },
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 403
         assert Block.objects.count() == 0

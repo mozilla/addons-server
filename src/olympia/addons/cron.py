@@ -17,7 +17,8 @@ from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_download_totals as _update_addon_download_totals,
-    update_appsupport)
+    update_appsupport,
+)
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
 from olympia.files.models import File
@@ -45,8 +46,10 @@ def update_addon_average_daily_users():
     d = cursor.fetchall()
     cursor.close()
 
-    ts = [_update_addon_average_daily_users.subtask(args=[chunk])
-          for chunk in chunked(d, 250)]
+    ts = [
+        _update_addon_average_daily_users.subtask(args=[chunk])
+        for chunk in chunked(d, 250)
+    ]
     group(ts).apply_async()
 
 
@@ -56,13 +59,14 @@ def update_addon_download_totals():
         return False
 
     qs = (
-        Addon.objects
-             .annotate(sum_download_count=Sum('downloadcount__count'))
-             .values_list('id', 'sum_download_count')
-             .order_by('id')
+        Addon.objects.annotate(sum_download_count=Sum('downloadcount__count'))
+        .values_list('id', 'sum_download_count')
+        .order_by('id')
     )
-    ts = [_update_addon_download_totals.subtask(args=[chunk])
-          for chunk in chunked(qs, 250)]
+    ts = [
+        _update_addon_download_totals.subtask(args=[chunk])
+        for chunk in chunked(qs, 250)
+    ]
     group(ts).apply_async()
 
 
@@ -99,25 +103,28 @@ def addon_last_updated():
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Addon.objects.filter(last_updated__isnull=True)
-             .values_list('id', 'created'))
+    other = Addon.objects.filter(last_updated__isnull=True).values_list('id', 'created')
     _change_last_updated(dict(other))
 
 
 def update_addon_appsupport():
     # Find all the add-ons that need their app support details updated.
-    newish = (Q(last_updated__gte=F('appsupport__created')) |
-              Q(appsupport__created__isnull=True))
+    newish = Q(last_updated__gte=F('appsupport__created')) | Q(
+        appsupport__created__isnull=True
+    )
     # Search providers don't list supported apps.
     has_app = Q(versions__apps__isnull=False) | Q(type=amo.ADDON_SEARCH)
     has_file = Q(versions__files__status__in=amo.VALID_FILE_STATUSES)
     good = Q(has_app, has_file)
-    ids = (Addon.objects.valid().distinct()
-           .filter(newish, good).values_list('id', flat=True))
+    ids = (
+        Addon.objects.valid()
+        .distinct()
+        .filter(newish, good)
+        .values_list('id', flat=True)
+    )
 
     task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
-    ts = [update_appsupport.subtask(args=[chunk])
-          for chunk in chunked(ids, 20)]
+    ts = [update_appsupport.subtask(args=[chunk]) for chunk in chunked(ids, 20)]
     group(ts).apply_async()
 
 
@@ -129,10 +136,11 @@ def hide_disabled_files():
 
     See also unhide_disabled_files().
     """
-    ids = (File.objects.filter(
-        Q(version__addon__status=amo.STATUS_DISABLED) |
-        Q(version__addon__disabled_by_user=True) |
-        Q(status=amo.STATUS_DISABLED)).values_list('id', flat=True))
+    ids = File.objects.filter(
+        Q(version__addon__status=amo.STATUS_DISABLED)
+        | Q(version__addon__disabled_by_user=True)
+        | Q(status=amo.STATUS_DISABLED)
+    ).values_list('id', flat=True)
     for chunk in chunked(ids, 300):
         qs = File.objects.select_related('version').filter(id__in=chunk)
         for file_ in qs:
@@ -149,10 +157,11 @@ def unhide_disabled_files():
 
     See also hide_disabled_files().
     """
-    ids = (File.objects.exclude(
-        Q(version__addon__status=amo.STATUS_DISABLED) |
-        Q(version__addon__disabled_by_user=True) |
-        Q(status=amo.STATUS_DISABLED)).values_list('id', flat=True))
+    ids = File.objects.exclude(
+        Q(version__addon__status=amo.STATUS_DISABLED)
+        | Q(version__addon__disabled_by_user=True)
+        | Q(status=amo.STATUS_DISABLED)
+    ).values_list('id', flat=True)
     for chunk in chunked(ids, 300):
         qs = File.objects.select_related('version').filter(id__in=chunk)
         for file_ in qs:
@@ -171,8 +180,13 @@ def deliver_hotness():
     hotness = (a-b) / b if a > 1000 and b > 1 else 0
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
-    all_ids = list((Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
-                   .values_list('id', flat=True)))
+    all_ids = list(
+        (
+            Addon.objects.filter(status__in=amo.REVIEWED_STATUSES).values_list(
+                'id', flat=True
+            )
+        )
+    )
     now = datetime.now()
     one_week = now - timedelta(days=7)
     four_weeks = now - timedelta(days=28)
@@ -180,8 +194,11 @@ def deliver_hotness():
     for ids in chunked(all_ids, 300):
         addons = Addon.objects.filter(id__in=ids).no_transforms()
         ids = [a.id for a in addons if a.id not in frozen]
-        qs = (UpdateCount.objects.filter(addon__in=ids)
-              .values_list('addon').annotate(Avg('count')))
+        qs = (
+            UpdateCount.objects.filter(addon__in=ids)
+            .values_list('addon')
+            .annotate(Avg('count'))
+        )
         thisweek = dict(qs.filter(date__gte=one_week))
         threeweek = dict(qs.filter(date__range=(four_weeks, one_week)))
         for addon in addons:

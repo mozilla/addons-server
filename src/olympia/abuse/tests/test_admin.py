@@ -4,8 +4,7 @@ from urllib.parse import parse_qsl, urlparse
 
 from django.conf import settings
 from django.contrib import admin
-from django.contrib.messages.storage import (
-    default_storage as default_messages_storage)
+from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.test import RequestFactory
 from django.urls import reverse
 
@@ -16,7 +15,11 @@ from olympia.abuse.admin import AbuseReportAdmin
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
-    addon_factory, days_ago, grant_permission, TestCase, user_factory
+    addon_factory,
+    days_ago,
+    grant_permission,
+    TestCase,
+    user_factory,
 )
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
@@ -24,12 +27,12 @@ from olympia.versions.models import VersionPreview
 
 
 class TestAbuse(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         cls.addon1 = addon_factory(guid='@guid1', name='Neo')
         cls.addon1.name.__class__.objects.create(
-            id=cls.addon1.name_id, locale='fr', localized_string='Elu')
+            id=cls.addon1.name_id, locale='fr', localized_string='Elu'
+        )
         cls.addon2 = addon_factory(guid='@guid2', name='Two')
         cls.addon3 = addon_factory(guid='@guid3', name='Three')
         cls.user = user_factory()
@@ -37,25 +40,36 @@ class TestAbuse(TestCase):
         grant_permission(cls.user, 'AbuseReports:Edit', 'Abuse Report Triage')
         # Create a few abuse reports.
         cls.report1 = AbuseReport.objects.create(
-            addon=cls.addon1, guid='@guid1', message='Foo',
+            addon=cls.addon1,
+            guid='@guid1',
+            message='Foo',
             state=AbuseReport.STATES.VALID,
-            created=days_ago(98))
+            created=days_ago(98),
+        )
         AbuseReport.objects.create(
-            addon=cls.addon2, guid='@guid2', message='Bar',
-            state=AbuseReport.STATES.VALID)
+            addon=cls.addon2,
+            guid='@guid2',
+            message='Bar',
+            state=AbuseReport.STATES.VALID,
+        )
         AbuseReport.objects.create(
-            addon=cls.addon3, guid='@guid3', message='Soap',
+            addon=cls.addon3,
+            guid='@guid3',
+            message='Soap',
             reason=AbuseReport.REASONS.OTHER,
-            created=days_ago(100))
+            created=days_ago(100),
+        )
         AbuseReport.objects.create(
-            addon=cls.addon1, guid='@guid1', message='',
-            reporter=user_factory())
+            addon=cls.addon1, guid='@guid1', message='', reporter=user_factory()
+        )
         # This is a report for an addon not in the database.
         cls.report2 = AbuseReport.objects.create(
-            guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo')
+            guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo'
+        )
         # This is one against a user.
         cls.report3 = AbuseReport.objects.create(
-            user=user_factory(username='malicious_user'), message='Ehehehehe')
+            user=user_factory(username='malicious_user'), message='Ehehehehe'
+        )
 
     def setUp(self):
         self.client.login(email=self.user.email)
@@ -63,8 +77,7 @@ class TestAbuse(TestCase):
 
     def test_list_no_permission(self):
         user_without_abusereports_edit = user_factory()
-        grant_permission(
-            user_without_abusereports_edit, 'Admin:Tools', 'Admin Group')
+        grant_permission(user_without_abusereports_edit, 'Admin:Tools', 'Admin Group')
         self.client.login(email=user_without_abusereports_edit.email)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
@@ -86,15 +99,13 @@ class TestAbuse(TestCase):
         assert doc('#result_list tbody tr').length == expected_length
 
     def test_list_filter_by_type(self):
-        response = self.client.get(
-            self.list_url, {'type': 'addon'}, follow=True)
+        response = self.client.get(self.list_url, {'type': 'addon'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 5
         assert 'Ehehehehe' not in doc('#result_list').text()
 
-        response = self.client.get(
-            self.list_url, {'type': 'user'}, follow=True)
+        response = self.client.get(self.list_url, {'type': 'user'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
@@ -106,8 +117,7 @@ class TestAbuse(TestCase):
         assert lis.text().split() == ['Users', 'All', 'All', 'All', 'All']
 
     def test_search_deactivated_if_not_filtering_by_type(self):
-        response = self.client.get(
-            self.list_url, {'q': 'Mysterious'}, follow=True)
+        response = self.client.get(self.list_url, {'q': 'Mysterious'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#changelist-search')
@@ -115,7 +125,8 @@ class TestAbuse(TestCase):
 
     def test_search_user(self):
         response = self.client.get(
-            self.list_url, {'q': 'Ehe', 'type': 'user'}, follow=True)
+            self.list_url, {'q': 'Ehe', 'type': 'user'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -124,8 +135,8 @@ class TestAbuse(TestCase):
 
         user = AbuseReport.objects.get(message='Ehehehehe').user
         response = self.client.get(
-            self.list_url, {'q': user.username[:4], 'type': 'user'},
-            follow=True)
+            self.list_url, {'q': user.username[:4], 'type': 'user'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -134,8 +145,8 @@ class TestAbuse(TestCase):
 
         user = AbuseReport.objects.get(message='Ehehehehe').user
         response = self.client.get(
-            self.list_url, {'q': user.email[:3], 'type': 'user'},
-            follow=True)
+            self.list_url, {'q': user.email[:3], 'type': 'user'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -143,8 +154,8 @@ class TestAbuse(TestCase):
         assert 'Ehehehehe' in doc('#result_list').text()
 
         response = self.client.get(
-            self.list_url, {'q': str(user.pk), 'type': 'user'},
-            follow=True)
+            self.list_url, {'q': str(user.pk), 'type': 'user'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -152,8 +163,8 @@ class TestAbuse(TestCase):
         assert 'Ehehehehe' in doc('#result_list').text()
 
         response = self.client.get(
-            self.list_url, {'q': 'NotGoingToFindAnything', 'type': 'user'},
-            follow=True)
+            self.list_url, {'q': 'NotGoingToFindAnything', 'type': 'user'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -162,7 +173,8 @@ class TestAbuse(TestCase):
 
     def test_search_addon(self):
         response = self.client.get(
-            self.list_url, {'q': 'sterious', 'type': 'addon'}, follow=True)
+            self.list_url, {'q': 'sterious', 'type': 'addon'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -170,8 +182,8 @@ class TestAbuse(TestCase):
         assert 'Mysterious' in doc('#result_list').text()
 
         response = self.client.get(
-            self.list_url, {'q': str(self.addon1.pk), 'type': 'addon'},
-            follow=True)
+            self.list_url, {'q': str(self.addon1.pk), 'type': 'addon'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -179,8 +191,8 @@ class TestAbuse(TestCase):
         assert 'Neo' in doc('#result_list').text()
 
         response = self.client.get(
-            self.list_url, {'q': 'NotGoingToFindAnything', 'type': 'addon'},
-            follow=True)
+            self.list_url, {'q': 'NotGoingToFindAnything', 'type': 'addon'}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -192,7 +204,8 @@ class TestAbuse(TestCase):
         response = self.client.get(
             self.list_url,
             {'q': '%s,%s' % (self.addon1.pk, self.addon2.pk), 'type': 'addon'},
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -202,13 +215,13 @@ class TestAbuse(TestCase):
     def test_search_multiple_users(self):
         user1 = AbuseReport.objects.get(message='Ehehehehe').user
         user2 = user_factory(username='second_user')
-        AbuseReport.objects.create(
-            user=user2, message='One more')
+        AbuseReport.objects.create(user=user2, message='One more')
 
         response = self.client.get(
             self.list_url,
             {'q': '%s,%s' % (user1.pk, user2.pk), 'type': 'user'},
-            follow=True)
+            follow=True,
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
@@ -216,8 +229,8 @@ class TestAbuse(TestCase):
 
     def test_filter_by_state(self):
         response = self.client.get(
-            self.list_url, {'state__exact': AbuseReport.STATES.VALID},
-            follow=True)
+            self.list_url, {'state__exact': AbuseReport.STATES.VALID}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 2
@@ -232,8 +245,8 @@ class TestAbuse(TestCase):
 
     def test_filter_by_reason(self):
         response = self.client.get(
-            self.list_url, {'reason__exact': AbuseReport.REASONS.OTHER},
-            follow=True)
+            self.list_url, {'reason__exact': AbuseReport.REASONS.OTHER}, follow=True
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
@@ -266,9 +279,7 @@ class TestAbuse(TestCase):
         # (because of the "All" default choice) but since 'created' is actually
         # 2 fields, and we have submitted both, we now have 6 expected items.
         assert len(lis) == 6
-        assert lis.text().split() == [
-            'All', 'All', 'All', 'From:', 'To:', 'All'
-        ]
+        assert lis.text().split() == ['All', 'All', 'All', 'From:', 'To:', 'All']
         elm = lis.eq(3).find('#id_created__range__gte')
         assert elm
         assert elm.attr('name') == 'created__range__gte'
@@ -295,9 +306,7 @@ class TestAbuse(TestCase):
         lis = doc('#changelist-filter li.selected')
         # We've got 5 filters.
         assert len(lis) == 5
-        assert lis.text().split() == [
-            'All', 'All', 'All', 'From:', 'All'
-        ]
+        assert lis.text().split() == ['All', 'All', 'All', 'From:', 'All']
         elm = lis.eq(3).find('#id_created__range__gte')
         assert elm
         assert elm.attr('name') == 'created__range__gte'
@@ -320,18 +329,14 @@ class TestAbuse(TestCase):
         lis = doc('#changelist-filter li.selected')
         # We've got 5 filters.
         assert len(lis) == 5
-        assert lis.text().split() == [
-            'All', 'All', 'All', 'To:', 'All'
-        ]
+        assert lis.text().split() == ['All', 'All', 'All', 'To:', 'All']
         elm = lis.eq(3).find('#id_created__range__lte')
         assert elm
         assert elm.attr('name') == 'created__range__lte'
         assert elm.attr('value') == some_time_ago.isoformat()
 
     def test_filter_by_minimum_reports_count_for_guid(self):
-        data = {
-            'minimum_reports_count': '2'
-        }
+        data = {'minimum_reports_count': '2'}
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -347,7 +352,10 @@ class TestAbuse(TestCase):
         # There is no label for minimum reports count, so despite having 5 lis
         # we only have 4 things in .text().
         assert lis.text().split() == [
-            'All', 'All', 'All', 'All',
+            'All',
+            'All',
+            'All',
+            'All',
         ]
         # The 4th item should contain the input though.
         elm = lis.eq(4).find('#id_minimum_reports_count')
@@ -375,14 +383,20 @@ class TestAbuse(TestCase):
         # Also, the forms we used for the 'created' filters should contain all
         # active filters and search query so that we can combine them.
         forms = doc('#changelist-filter form')
-        inputs = [(elm.name, elm.value) for elm in forms.find('input')
-                  if elm.name and elm.value != '']
+        inputs = [
+            (elm.name, elm.value)
+            for elm in forms.find('input')
+            if elm.name and elm.value != ''
+        ]
         assert set(inputs) == set(data.items())
 
         # Same for the 'search' form
         form = doc('#changelist-filter form')
-        inputs = [(elm.name, elm.value) for elm in form.find('input')
-                  if elm.name and elm.value != '']
+        inputs = [
+            (elm.name, elm.value)
+            for elm in form.find('input')
+            if elm.name and elm.value != ''
+        ]
         assert set(inputs) == set(data.items())
 
         # Gather selected filters.
@@ -392,9 +406,7 @@ class TestAbuse(TestCase):
         # (because of the "All" default choice) but since 'created' is actually
         # 2 fields, and we have submitted both, we now have 6 expected items.
         assert len(lis) == 6
-        assert lis.text().split() == [
-            'Addons', 'All', 'Other', 'From:', 'To:', 'All'
-        ]
+        assert lis.text().split() == ['Addons', 'All', 'Other', 'From:', 'To:', 'All']
         assert lis.eq(3).find('#id_created__range__gte')
         assert lis.eq(4).find('#id_created__range__lte')
 
@@ -415,18 +427,19 @@ class TestAbuse(TestCase):
 
         # self.user has AbuseReports:Edit
         request.user = self.user
-        assert list(
-            abuse_report_admin.get_actions(request).keys()) == [
-            'mark_as_valid', 'mark_as_suspicious'
+        assert list(abuse_report_admin.get_actions(request).keys()) == [
+            'mark_as_valid',
+            'mark_as_suspicious',
         ]
 
         # Advanced admins can also delete.
         request.user = user_factory()
         self.grant_permission(request.user, 'AbuseReports:Edit')
         self.grant_permission(request.user, 'Admin:Advanced')
-        assert list(
-            abuse_report_admin.get_actions(request).keys()) == [
-            'delete_selected', 'mark_as_valid', 'mark_as_suspicious'
+        assert list(abuse_report_admin.get_actions(request).keys()) == [
+            'delete_selected',
+            'mark_as_valid',
+            'mark_as_suspicious',
         ]
 
     def test_action_mark_multiple_as_valid(self):
@@ -434,16 +447,14 @@ class TestAbuse(TestCase):
         request = RequestFactory().post('/')
         request.user = self.user
         request._messages = default_messages_storage(request)
-        reports = AbuseReport.objects.filter(
-            guid__in=('@guid3', '@unknown_guid'))
+        reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
         assert reports.count() == 2
         for report in reports.all():
             assert report.state == AbuseReport.STATES.UNTRIAGED
         other_report = AbuseReport.objects.get(guid='@guid1', message='')
         assert other_report.state == AbuseReport.STATES.UNTRIAGED
 
-        action_callback = abuse_report_admin.get_actions(
-            request)['mark_as_valid'][0]
+        action_callback = abuse_report_admin.get_actions(request)['mark_as_valid'][0]
         rval = action_callback(abuse_report_admin, request, reports)
         assert rval is None  # successful actions return None
         for report in reports.all():
@@ -457,16 +468,16 @@ class TestAbuse(TestCase):
         request = RequestFactory().post('/')
         request.user = self.user
         request._messages = default_messages_storage(request)
-        reports = AbuseReport.objects.filter(
-            guid__in=('@guid3', '@unknown_guid'))
+        reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
         assert reports.count() == 2
         for report in reports.all():
             assert report.state == AbuseReport.STATES.UNTRIAGED
         other_report = AbuseReport.objects.get(guid='@guid1', message='')
         assert other_report.state == AbuseReport.STATES.UNTRIAGED
 
-        action_callback = abuse_report_admin.get_actions(
-            request)['mark_as_suspicious'][0]
+        action_callback = abuse_report_admin.get_actions(request)['mark_as_suspicious'][
+            0
+        ]
         rval = action_callback(abuse_report_admin, request, reports)
         assert rval is None  # successful actions return None
         for report in reports.all():
@@ -482,14 +493,12 @@ class TestAbuse(TestCase):
         self.grant_permission(request.user, 'AbuseReports:Edit')
         self.grant_permission(request.user, 'Admin:Advanced')
         request._messages = default_messages_storage(request)
-        reports = AbuseReport.objects.filter(
-            guid__in=('@guid3', '@unknown_guid'))
+        reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
         assert reports.count() == 2
         assert AbuseReport.objects.count() == 6
         assert AbuseReport.unfiltered.count() == 6
 
-        action_callback = abuse_report_admin.get_actions(
-            request)['delete_selected'][0]
+        action_callback = abuse_report_admin.get_actions(request)['delete_selected'][0]
         rval = action_callback(abuse_report_admin, request, reports)
         assert rval is None  # successful actions return None
         assert reports.count() == 0  # All should have been soft-deleted.
@@ -498,14 +507,17 @@ class TestAbuse(TestCase):
 
     def test_detail_addon_report(self):
         AddonApprovalsCounter.objects.create(
-            addon=self.addon1, last_human_review=datetime.now())
+            addon=self.addon1, last_human_review=datetime.now()
+        )
         Rating.objects.create(
-            addon=self.addon1, rating=2.0, body='Badd-on', user=user_factory())
+            addon=self.addon1, rating=2.0, body='Badd-on', user=user_factory()
+        )
         AutoApprovalSummary.objects.create(
-            version=self.addon1.current_version,
-            verdict=amo.AUTO_APPROVED)
+            version=self.addon1.current_version, verdict=amo.AUTO_APPROVED
+        )
         self.detail_url = reverse(
-            'admin:abuse_abusereport_change', args=(self.report1.pk,))
+            'admin:abuse_abusereport_change', args=(self.report1.pk,)
+        )
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -514,13 +526,12 @@ class TestAbuse(TestCase):
         assert 'Neo' in doc('.addon-info-and-previews h2').text()
         assert doc('.addon-info-and-previews .meta-abuse td').text() == '2'
         assert doc('.addon-info-and-previews .meta-rating td').text() == (
-            'Rated 2 out of 5 stars 1 review')
+            'Rated 2 out of 5 stars 1 review'
+        )
         assert doc('.addon-info-and-previews .last-approval-date td').text()
         assert doc('.reports-and-ratings')
-        assert doc('.reports-and-ratings h3').eq(0).text() == (
-            'Abuse Reports (2)')
-        assert doc('.reports-and-ratings h3').eq(1).text() == (
-            'Bad User Ratings (1)')
+        assert doc('.reports-and-ratings h3').eq(0).text() == ('Abuse Reports (2)')
+        assert doc('.reports-and-ratings h3').eq(1).text() == ('Bad User Ratings (1)')
         # 'addon-info-and-previews' and 'reports-and-ratings' are coming from a
         # reviewer tools template and shouldn't contain any admin-specific
         # links. It also means that all links in it should be external, in
@@ -542,7 +553,8 @@ class TestAbuse(TestCase):
 
     def test_detail_guid_report(self):
         self.detail_url = reverse(
-            'admin:abuse_abusereport_change', args=(self.report2.pk,))
+            'admin:abuse_abusereport_change', args=(self.report2.pk,)
+        )
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -552,7 +564,8 @@ class TestAbuse(TestCase):
 
     def test_detail_user_report(self):
         self.detail_url = reverse(
-            'admin:abuse_abusereport_change', args=(self.report3.pk,))
+            'admin:abuse_abusereport_change', args=(self.report3.pk,)
+        )
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)

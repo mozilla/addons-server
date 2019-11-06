@@ -14,8 +14,11 @@ from olympia.addons import indexers as addons_indexer
 from olympia.amo.celery import task
 from olympia.amo.search import get_es
 from olympia.lib.es.utils import (
-    flag_reindexing_amo, is_reindexing_amo, timestamp_index,
-    unflag_reindexing_amo)
+    flag_reindexing_amo,
+    is_reindexing_amo,
+    timestamp_index,
+    unflag_reindexing_amo,
+)
 from olympia.stats import search as stats_search
 
 
@@ -56,8 +59,7 @@ def update_aliases(actions):
 
 @task(ignore_result=False)
 def create_new_index(alias, new_index):
-    logger.info(
-        'Create the index {0}, for alias: {1}'.format(new_index, alias))
+    logger.info('Create the index {0}, for alias: {1}'.format(new_index, alias))
     get_modules()[alias].create_new_index(new_index)
 
 
@@ -102,25 +104,29 @@ class Command(BaseCommand):
         parser.add_argument(
             '--force',
             action='store_true',
-            help=('Bypass the database flag that says '
-                  'another indexation is ongoing'),
-            default=False),
+            help=(
+                'Bypass the database flag that says ' 'another indexation is ongoing'
+            ),
+            default=False,
+        ),
         parser.add_argument(
             '--wipe',
             action='store_true',
             help=('Deletes AMO indexes prior to reindexing.'),
-            default=False),
+            default=False,
+        ),
         parser.add_argument(
             '--with-stats',
             action='store_true',
             help=('Whether to also reindex AMO stats. Default: False'),
-            default=False),
+            default=False,
+        ),
         parser.add_argument(
             '--noinput',
             action='store_true',
-            help=('Do not ask for confirmation before wiping. '
-                  'Default: False'),
-            default=False),
+            help=('Do not ask for confirmation before wiping. ' 'Default: False'),
+            default=False,
+        ),
 
     def handle(self, *args, **kwargs):
         """Reindexing work.
@@ -133,8 +139,9 @@ class Command(BaseCommand):
         force = kwargs.get('force', False)
 
         if is_reindexing_amo() and not force:
-            raise CommandError('Indexation already occurring - use --force to '
-                               'bypass')
+            raise CommandError(
+                'Indexation already occurring - use --force to ' 'bypass'
+            )
 
         self.stdout.write('Starting the reindexation')
 
@@ -144,13 +151,15 @@ class Command(BaseCommand):
             skip_confirmation = kwargs.get('noinput', False)
             confirm = ''
             if not skip_confirmation:
-                confirm = input('Are you sure you want to wipe all AMO '
-                                'Elasticsearch indexes? (yes/no): ')
+                confirm = input(
+                    'Are you sure you want to wipe all AMO '
+                    'Elasticsearch indexes? (yes/no): '
+                )
 
                 while confirm not in ('yes', 'no'):
                     confirm = input('Please enter either "yes" or "no": ')
 
-            if (confirm == 'yes' or skip_confirmation):
+            if confirm == 'yes' or skip_confirmation:
                 unflag_database()
                 for index in set(modules.keys()):
                     ES.indices.delete(index, ignore=404)
@@ -199,10 +208,9 @@ class Command(BaseCommand):
 
             # Main chain for this alias: flag the database, then create the new
             # index...
-            _chain = (
-                flag_database.si(new_index, old_index, alias) |
-                create_new_index.si(alias, new_index)
-            )
+            _chain = flag_database.si(
+                new_index, old_index, alias
+            ) | create_new_index.si(alias, new_index)
             # ... Then start indexing data. gather_index_data_tasks() is a
             # function returning a group of indexing tasks.
             index_data_tasks = gather_index_data_tasks(alias, new_index)
@@ -240,7 +248,7 @@ class Command(BaseCommand):
             workflow.apply_async()
 
             if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
-                time.sleep(10)   # give celeryd some time to flag the DB
+                time.sleep(10)  # give celeryd some time to flag the DB
             while is_reindexing_amo():
                 self.stdout.write('.')
                 self.stdout.flush()

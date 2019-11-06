@@ -27,8 +27,8 @@ from olympia.amo.utils import ImageCheck
 
 
 ADDONS_TEST_FILES = os.path.join(
-    os.path.dirname(olympia.__file__),
-    'devhub', 'tests', 'addons')
+    os.path.dirname(olympia.__file__), 'devhub', 'tests', 'addons'
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -72,9 +72,10 @@ def test_page_title():
 
     # Check the dirty unicodes.
     request.APP = amo.FIREFOX
-    s = render('{{ page_title(x) }}',
-               {'request': request,
-                'x': force_bytes(u'\u05d0\u05d5\u05e1\u05e3')})
+    s = render(
+        '{{ page_title(x) }}',
+        {'request': request, 'x': force_bytes(u'\u05d0\u05d5\u05e1\u05e3')},
+    )
 
 
 def test_page_title_markup():
@@ -84,8 +85,8 @@ def test_page_title_markup():
     request.APP = amo.FIREFOX
     # Markup isn't double escaped.
     res = render(
-        '{{ page_title("{0}"|format_html("It\'s all text")) }}',
-        {'request': request})
+        '{{ page_title("{0}"|format_html("It\'s all text")) }}', {'request': request}
+    )
     assert res == 'It&#39;s all text :: Add-ons for Firefox'
 
 
@@ -100,59 +101,66 @@ def test_template_escaping():
     # Simple HTML in a translatable string, with |format_html works
     # as expected
     expected = '<a href="...">This is a test</a>'
-    original = (
-        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}')
+    original = '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}'
     assert render(original) == expected
 
     # The html provided in the translatable string won't be escaped
     # but all arguments are.
     expected = '<a href="...">This is a &lt;h1&gt;test&lt;/h1&gt;</a>'
     original = (
-        '{{ _(\'<a href="...">{0}</a>\')|format_html('
-        '"This is a <h1>test</h1>") }}')
+        '{{ _(\'<a href="...">{0}</a>\')|format_html(' '"This is a <h1>test</h1>") }}'
+    )
     assert render(original) == expected
 
     # Unless marked explicitly as safe
     expected = '<a href="...">This is a <h1>test</h1></a>'
     original = (
         '{{ _(\'<a href="...">{0}</a>\')'
-        '|format_html("This is a <h1>test</h1>"|safe) }}')
+        '|format_html("This is a <h1>test</h1>"|safe) }}'
+    )
     assert render(original) == expected
 
     # Document how newstyle gettext behaves, everything that get's passed in
     # like that needs to be escaped!
     expected = '&lt;script&gt;&lt;/script&gt;'
     assert render('{{ _(foo) }}', {'foo': '<script></script>'}) != expected
-    assert render(
-        '{{ _(foo|escape) }}', {'foo': '<script></script>'}) == expected
+    assert render('{{ _(foo|escape) }}', {'foo': '<script></script>'}) == expected
 
     # Various tests for gettext related helpers and make sure they work
     # properly just as `_()` does.
     expected = '<b>5 users</b>'
-    assert render(
-        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-        '|format_html(5) }}'
-    ) == expected
+    assert (
+        render(
+            '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
+            '|format_html(5) }}'
+        )
+        == expected
+    )
 
     # You could also mark the whole output as |safe but note that this
     # still escapes the arguments of |format_html unless explicitly
     # marked as safe
     expected = '<b>&lt;script&gt; users</b>'
-    assert render(
-        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-        '|format_html("<script>")|safe }}'
-    ) == expected
+    assert (
+        render(
+            '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
+            '|format_html("<script>")|safe }}'
+        )
+        == expected
+    )
 
 
 @patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.reverse')
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                    add_prefix=True)
+    mock_reverse.assert_called_with(
+        'viewname', args=(1,), kwargs={'z': 2}, add_prefix=True
+    )
 
     render('{{ url("viewname", 1, z=2, host="myhost") }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                    add_prefix=True)
+    mock_reverse.assert_called_with(
+        'viewname', args=(1,), kwargs={'z': 2}, add_prefix=True
+    )
 
 
 def test_url_src():
@@ -168,7 +176,8 @@ def test_drf_url():
     rendered = render(fragment, context={'request': request})
     # As no /vX/ in the request, RESTFRAMEWORK['DEFAULT_VERSION'] is used.
     assert rendered == jinja_helpers.absolutify(
-        reverse_ns('addon-detail', args=['a3615']))
+        reverse_ns('addon-detail', args=['a3615'])
+    )
 
     with pytest.raises(NoReverseMatch):
         # Without a request it can't resolve the name correctly.
@@ -177,10 +186,13 @@ def test_drf_url():
 
 def test_urlparams():
     url = '/en-US/firefox/themes/category'
-    c = {'base': url,
-         'base_frag': url + '#hash',
-         'base_query': url + '?x=y',
-         'sort': 'name', 'frag': 'frag'}
+    c = {
+        'base': url,
+        'base_frag': url + '#hash',
+        'base_query': url + '?x=y',
+        'sort': 'name',
+        'frag': 'frag',
+    }
 
     # Adding a query.
     s = render('{{ base_frag|urlparams(sort=sort) }}', c)
@@ -224,8 +236,7 @@ def test_urlparams_returns_safe_string():
     s = render('{{ "https://foo.com/"|urlparams(param="help+me") }}', {})
     assert s == 'https://foo.com/?param=help%2Bme'
 
-    s = render(
-        u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
+    s = render(u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
     assert s == 'https://foo.com/?param=obiwank%C3%A9nobi'
 
     s = render(u'{{ "https://foo.com/"|urlparams(param=42) }}', {})
@@ -284,9 +295,7 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-@patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
-    'get_outgoing_url')
+@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.' 'get_outgoing_url')
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
@@ -298,8 +307,8 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
 
 
 @patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
-    'linkify_bounce_url_callback')
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.' 'linkify_bounce_url_callback'
+)
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs[(None, 'href')] = 'bar'
@@ -314,8 +323,8 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
 
 
 @patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
-    'linkify_bounce_url_callback')
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.' 'linkify_bounce_url_callback'
+)
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs[(None, 'href')] = 'bar'
@@ -324,21 +333,20 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     mock_linkify_bounce_url_callback.side_effect = side_effect
 
     res = urlresolvers.linkify_with_outgoing(
-        'a markup <a href="http://example.com">link</a> with text')
+        'a markup <a href="http://example.com">link</a> with text'
+    )
     # Use PyQuery because the attributes could be rendered in any order.
     doc = PyQuery(res)
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
 
 def get_image_path(name):
-    return os.path.join(
-        settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', name)
+    return os.path.join(settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', name)
 
 
 def get_uploaded_file(name):
     data = open(get_image_path(name), mode='rb').read()
-    return SimpleUploadedFile(name, data,
-                              content_type=mimetypes.guess_type(name)[0])
+    return SimpleUploadedFile(name, data, content_type=mimetypes.guess_type(name)[0])
 
 
 def get_addon_file(name):
@@ -346,7 +354,6 @@ def get_addon_file(name):
 
 
 class TestAnimatedImages(TestCase):
-
     def test_animated_images(self):
         img = ImageCheck(open(get_image_path('animated.png'), mode='rb'))
         assert img.is_animated()
@@ -374,10 +381,10 @@ def test_jinja_trans_monkeypatch():
 
 
 def test_absolutify():
-    assert jinja_helpers.absolutify('/woo'), urljoin(
-        settings.SITE_URL == '/woo')
+    assert jinja_helpers.absolutify('/woo'), urljoin(settings.SITE_URL == '/woo')
     assert jinja_helpers.absolutify('https://addons.mozilla.org') == (
-        'https://addons.mozilla.org')
+        'https://addons.mozilla.org'
+    )
 
 
 def test_timesince():
@@ -393,7 +400,6 @@ def test_format_unicode():
 
 
 class TestStoragePath(TestCase):
-
     @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
     def test_without_settings(self):
         del settings.ADDONS_PATH
@@ -407,7 +413,6 @@ class TestStoragePath(TestCase):
 
 
 class TestMediaUrl(TestCase):
-
     @override_settings(USERPICS_URL=None)
     def test_without_settings(self):
         del settings.USERPICS_URL

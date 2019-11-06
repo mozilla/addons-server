@@ -11,9 +11,7 @@ class LicenseAdmin(admin.ModelAdmin):
 
 class VersionAdmin(admin.ModelAdmin):
     class Media:
-        css = {
-            'all': ('css/admin/l10n.css',)
-        }
+        css = {'all': ('css/admin/l10n.css',)}
         js = ('js/admin/l10n.js',)
 
     view_on_site = False
@@ -22,14 +20,21 @@ class VersionAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon', 'license')
 
     fieldsets = (
-        (None, {
-            'fields': (
-                'addon', 'version', 'channel', 'release_notes',
-                'approval_notes', 'license', 'source')
-        }),
-        ('Flags', {
-            'fields': ('deleted', 'recommendation_approved')
-        }),
+        (
+            None,
+            {
+                'fields': (
+                    'addon',
+                    'version',
+                    'channel',
+                    'release_notes',
+                    'approval_notes',
+                    'license',
+                    'source',
+                )
+            },
+        ),
+        ('Flags', {'fields': ('deleted', 'recommendation_approved')}),
     )
 
 

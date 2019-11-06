@@ -18,12 +18,10 @@ log = olympia.core.logger.getLogger('z.translations')
 
 
 class TranslationManager(ManagerBase):
-
     def remove_for(self, obj, locale):
         """Remove a locale for the given object."""
         ids = [getattr(obj, f.attname) for f in obj._meta.translated_fields]
-        qs = Translation.objects.filter(id__in=filter(None, ids),
-                                        locale=locale)
+        qs = Translation.objects.filter(id__in=filter(None, ids), locale=locale)
         qs.update(localized_string=None, localized_string_clean=None)
 
 
@@ -51,15 +49,12 @@ class Translation(ModelBase):
         ]
 
     def __str__(self):
-        return (
-            str(self.localized_string) if self.localized_string
-            else '')
+        return str(self.localized_string) if self.localized_string else ''
 
     def __bool__(self):
         # __bool__ is called to evaluate an object in a boolean context.
         # We want Translations to be falsy if their string is empty.
-        return (bool(self.localized_string) and
-                bool(self.localized_string.strip()))
+        return bool(self.localized_string) and bool(self.localized_string.strip())
 
     __nonzero__ = __bool__  # Python 2 compatibility.
 
@@ -135,22 +130,26 @@ class Translation(ModelBase):
         if id is None:
             # Get a sequence key for the new translation.
             with connections['default'].cursor() as cursor:
-                cursor.execute("""
+                cursor.execute(
+                    """
                     UPDATE translations_seq
                     SET id=LAST_INSERT_ID(
                         id + @@global.auto_increment_increment
                     )
-                """)
+                """
+                )
 
                 # The sequence table should never be empty. But alas, if it is,
                 # let's fix it.
                 if not cursor.rowcount > 0:
-                    cursor.execute("""
+                    cursor.execute(
+                        """
                         INSERT INTO translations_seq (id)
                         VALUES(LAST_INSERT_ID(
                             id + @@global.auto_increment_increment
                         ))
-                    """)
+                    """
+                    )
                 cursor.execute('SELECT LAST_INSERT_ID()')
                 id = cursor.fetchone()[0]
 
@@ -167,6 +166,7 @@ class Translation(ModelBase):
 
 class PurifiedTranslation(Translation):
     """Run the string through bleach to get a safe version."""
+
     allowed_tags = [
         'a',
         'abbr',
@@ -203,6 +203,7 @@ class PurifiedTranslation(Translation):
 
     def clean(self):
         from olympia.amo.utils import clean_nl
+
         super(PurifiedTranslation, self).clean()
         cleaned = self.clean_localized_string()
         self.localized_string_clean = clean_nl(cleaned).strip()
@@ -211,17 +212,21 @@ class PurifiedTranslation(Translation):
         # All links (text and markup) are normalized.
         linkify_filter = partial(
             bleach.linkifier.LinkifyFilter,
-            callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow])
+            callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow],
+        )
         # Keep only the allowed tags and attributes, escape the rest.
         cleaner = bleach.Cleaner(
-            tags=self.allowed_tags, attributes=self.allowed_attributes,
-            filters=[linkify_filter])
+            tags=self.allowed_tags,
+            attributes=self.allowed_attributes,
+            filters=[linkify_filter],
+        )
 
         return cleaner.clean(str(self.localized_string))
 
 
 class LinkifiedTranslation(PurifiedTranslation):
     """Run the string through bleach to get a linkified version."""
+
     allowed_tags = ['a']
 
     class Meta:
@@ -240,7 +245,8 @@ class NoLinksNoMarkupTranslation(LinkifiedTranslation):
 
         # Second pass: call linkify to empty the inner text of all links.
         emptied_links = bleach.linkify(
-            cleaned, callbacks=[lambda attrs, new: {'_text': ''}])
+            cleaned, callbacks=[lambda attrs, new: {'_text': ''}]
+        )
 
         # Third pass: now strip links (only links will be stripped, other
         # forbidden tags are already bleached/escaped.
@@ -253,6 +259,7 @@ class TranslationSequence(models.Model):
     """
     The translations_seq table, so migrations will create it during testing.
     """
+
     id = models.IntegerField(primary_key=True)
 
     class Meta:

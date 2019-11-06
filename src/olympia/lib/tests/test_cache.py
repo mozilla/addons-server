@@ -4,8 +4,13 @@ from django.core.cache import cache
 
 from unittest import TestCase
 from olympia.lib.cache import (
-    Message, Token, memoize, memoize_key, cache_get_or_set,
-    make_key)
+    Message,
+    Token,
+    memoize,
+    memoize_key,
+    cache_get_or_set,
+    make_key,
+)
 
 
 def test_make_key():
@@ -19,18 +24,15 @@ def test_make_key():
         assert make_key(u'é@øel', with_locale=False) == u'é@øel'
 
     with translation.override('en-US'):
-        assert (
-            make_key(u'é@øel', normalize=True) ==
-            '2798e65bbe384320c9da7930e93e63fb')
+        assert make_key(u'é@øel', normalize=True) == '2798e65bbe384320c9da7930e93e63fb'
 
     assert (
-        make_key(u'é@øel', with_locale=False, normalize=True) ==
-        'a83feada27737072d4ec741640368f07')
+        make_key(u'é@øel', with_locale=False, normalize=True)
+        == 'a83feada27737072d4ec741640368f07'
+    )
 
     with translation.override('fr'):
-        assert (
-            make_key(u'é@øel', normalize=True) ==
-            'bc5208e905c8dfcc521e4196e16cfa1a')
+        assert make_key(u'é@øel', normalize=True) == 'bc5208e905c8dfcc521e4196e16cfa1a'
 
 
 def test_cache_get_or_set():
@@ -40,6 +42,7 @@ def test_cache_get_or_set():
     def some_function():
         some_function.call_count += 1
         return 'something'  # Needed for cache_get_or_set() to work.
+
     some_function.call_count = 0
 
     cache_get_or_set('my-key', some_function)
@@ -50,7 +53,8 @@ def test_cache_get_or_set():
 
 def test_memoize_key():
     assert memoize_key('foo', ['a', 'b'], {'c': 'e'}) == (
-        'memoize:foo:9666a2a48c17dc1c308fb327c2a6e3a8')
+        'memoize:foo:9666a2a48c17dc1c308fb327c2a6e3a8'
+    )
 
 
 def test_memoize():
@@ -72,7 +76,6 @@ def test_memcached_unicode():
 
 
 class TestToken(TestCase):
-
     def test_token_pop(self):
         new = Token()
         new.save()
@@ -108,7 +111,6 @@ class TestToken(TestCase):
 
 
 class TestMessage(TestCase):
-
     def test_message_save(self):
         new = Message('abc')
         new.save('123')

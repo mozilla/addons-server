@@ -101,8 +101,15 @@ ADDON_STATICTHEME = 10
 _ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
 
 # Addon type groupings.
-GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
-                    ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
+GROUP_TYPE_ADDON = [
+    ADDON_EXTENSION,
+    ADDON_DICT,
+    ADDON_SEARCH,
+    ADDON_LPAPP,
+    ADDON_LPADDON,
+    ADDON_PLUGIN,
+    ADDON_API,
+]
 GROUP_TYPE_THEME = [ADDON_STATICTHEME]
 
 # Singular
@@ -200,7 +207,7 @@ VALID_CONTRIBUTION_DOMAINS = (
     'opencollective.com',
     'patreon.com',
     'paypal.com',
-    'paypal.me'
+    'paypal.me',
 )
 
 # Icon upload sizes
@@ -211,7 +218,7 @@ _size_tuple = namedtuple('SizeTuple', 'width height')
 ADDON_PREVIEW_SIZES = {
     'thumb': _size_tuple(640, 480),
     'min': _size_tuple(1000, 750),
-    'full': _size_tuple(2400, 1800)
+    'full': _size_tuple(2400, 1800),
 }
 
 # Static theme preview sizes
@@ -219,16 +226,19 @@ THEME_PREVIEW_SIZES = {
     'header': {
         'thumbnail': _size_tuple(473, 64),
         'full': _size_tuple(680, 92),
-        'position': 0},
+        'position': 0,
+    },
     'list': {
         'thumbnail': _size_tuple(529, 64),
         'full': _size_tuple(760, 92),
-        'position': 1},
+        'position': 1,
+    },
     # single is planned to be the new default size in 2019 Q1.
     'single': {
         'thumbnail': _size_tuple(501, 64),
         'full': _size_tuple(720, 92),
-        'position': 2},
+        'position': 2,
+    },
 }
 THEME_FRAME_COLOR_DEFAULT = 'rgba(229,230,232,1)'
 THEME_PREVIEW_TOOLBAR_HEIGHT = 92  # The template toolbar is this height.
@@ -294,9 +304,7 @@ VALIDATOR_SKELETON_RESULTS = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {
-        "listed": True,
-    },
+    "metadata": {"listed": True,},
     "messages": [],
     "message_tree": {},
     "ending_tier": 5,
@@ -309,24 +317,24 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "notices": 0,
     "success": False,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {
-        "listed": True,
-        "is_webextension": True,
-    },
+    "metadata": {"listed": True, "is_webextension": True,},
     "messages": [
-        {"id": ["validator", "unexpected_exception"],
-         "message": "Sorry, we couldn't load your WebExtension.",
-         "description": [
-            "Validation was unable to complete successfully due to an "
-            "unexpected error.",
-            "Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions "
-            "to ensure your webextension is valid or file a bug at "
-            "http://bit.ly/1POrYYU"],
-         "type": "error",
-         "fatal": True,
-         "tier": 1,
-         "for_appversions": None,
-         "uid": "35432f419340461897aa8362398339c4"}
+        {
+            "id": ["validator", "unexpected_exception"],
+            "message": "Sorry, we couldn't load your WebExtension.",
+            "description": [
+                "Validation was unable to complete successfully due to an "
+                "unexpected error.",
+                "Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions "
+                "to ensure your webextension is valid or file a bug at "
+                "http://bit.ly/1POrYYU",
+            ],
+            "type": "error",
+            "fatal": True,
+            "tier": 1,
+            "for_appversions": None,
+            "uid": "35432f419340461897aa8362398339c4",
+        }
     ],
     "message_tree": {},
     "ending_tier": 5,
@@ -369,43 +377,83 @@ ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
     # guids. Copied from mozilla-central XPIProvider.jsm.
     r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
-    r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
+    r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$',
+    re.IGNORECASE,
+)
 
 SYSTEM_ADDON_GUIDS = (
-    u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org',
-    u'@mozilla.com')
+    u'@mozilla.org',
+    u'@shield.mozilla.org',
+    u'@pioneer.mozilla.org',
+    u'@mozilla.com',
+)
 
-MOZILLA_TRADEMARK_SYMBOLS = (
-    'mozilla', 'firefox')
+MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')
 
-ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
-    '@mozilla.com', '@mozilla.org')
+ALLOWED_TRADEMARK_SUBMITTING_EMAILS = ('@mozilla.com', '@mozilla.org')
 
 # If you add/remove any sources, update the docs: /api/download_sources.html
 # Note there are some additional sources here for historical/backwards compat.
 DOWNLOAD_SOURCES_FULL = (
-    'addondetail', 'addon-detail-version', 'api', 'category', 'collection',
-    'creatured', 'developers', 'discovery-dependencies', 'discovery-upsell',
-    'discovery-video', 'email', 'find-replacement', 'fxcustomization',
-    'fxfirstrun', 'fxwhatsnew', 'homepagebrowse', 'homepagepromo',
-    'installservice', 'mostshared', 'oftenusedwith', 'prerelease-banner',
-    'recommended', 'rockyourfirefox', 'search', 'sharingapi',
-    'similarcollections', 'ss', 'userprofile', 'version-history',
-
-    'co-hc-sidebar', 'co-dp-sidebar',
-
-    'cb-hc-featured', 'cb-dl-featured', 'cb-hc-toprated', 'cb-dl-toprated',
-    'cb-hc-mostpopular', 'cb-dl-mostpopular', 'cb-hc-recentlyadded',
+    'addondetail',
+    'addon-detail-version',
+    'api',
+    'category',
+    'collection',
+    'creatured',
+    'developers',
+    'discovery-dependencies',
+    'discovery-upsell',
+    'discovery-video',
+    'email',
+    'find-replacement',
+    'fxcustomization',
+    'fxfirstrun',
+    'fxwhatsnew',
+    'homepagebrowse',
+    'homepagepromo',
+    'installservice',
+    'mostshared',
+    'oftenusedwith',
+    'prerelease-banner',
+    'recommended',
+    'rockyourfirefox',
+    'search',
+    'sharingapi',
+    'similarcollections',
+    'ss',
+    'userprofile',
+    'version-history',
+    'co-hc-sidebar',
+    'co-dp-sidebar',
+    'cb-hc-featured',
+    'cb-dl-featured',
+    'cb-hc-toprated',
+    'cb-dl-toprated',
+    'cb-hc-mostpopular',
+    'cb-dl-mostpopular',
+    'cb-hc-recentlyadded',
     'cb-dl-recentlyadded',
-
-    'hp-btn-promo', 'hp-dl-promo', 'hp-hc-featured', 'hp-dl-featured',
-    'hp-hc-upandcoming', 'hp-dl-upandcoming', 'hp-hc-mostpopular',
-    'hp-dl-mostpopular', 'hp-contest-winners',
-
-    'dp-hc-oftenusedwith', 'dp-dl-oftenusedwith', 'dp-hc-othersby',
-    'dp-dl-othersby', 'dp-btn-primary', 'dp-btn-version', 'dp-btn-devchannel',
-    'dp-hc-dependencies', 'dp-dl-dependencies', 'dp-hc-upsell', 'dp-dl-upsell',
+    'hp-btn-promo',
+    'hp-dl-promo',
+    'hp-hc-featured',
+    'hp-dl-featured',
+    'hp-hc-upandcoming',
+    'hp-dl-upandcoming',
+    'hp-hc-mostpopular',
+    'hp-dl-mostpopular',
+    'hp-contest-winners',
+    'dp-hc-oftenusedwith',
+    'dp-dl-oftenusedwith',
+    'dp-hc-othersby',
+    'dp-dl-othersby',
+    'dp-btn-primary',
+    'dp-btn-version',
+    'dp-btn-devchannel',
+    'dp-hc-dependencies',
+    'dp-dl-dependencies',
+    'dp-hc-upsell',
+    'dp-dl-upsell',
 )
 
-DOWNLOAD_SOURCES_PREFIX = (
-    'external-', 'mozcom-', 'discovery-', 'cb-btn-', 'cb-dl-')
+DOWNLOAD_SOURCES_PREFIX = ('external-', 'mozcom-', 'discovery-', 'cb-btn-', 'cb-dl-')

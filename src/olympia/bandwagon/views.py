@@ -9,15 +9,24 @@ from olympia.accounts.views import AccountViewSet
 from olympia.addons.models import Addon
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
-    AllOf, AllowReadOnlyIfPublic, AnyOf, PreventActionPermission)
+    AllOf,
+    AllowReadOnlyIfPublic,
+    AnyOf,
+    PreventActionPermission,
+)
 from olympia.translations.query import order_by_translation
 
 from .models import Collection, CollectionAddon
 from .permissions import (
-    AllowCollectionAuthor, AllowCollectionContributor, AllowContentCurators)
+    AllowCollectionAuthor,
+    AllowCollectionContributor,
+    AllowContentCurators,
+)
 from .serializers import (
-    CollectionAddonSerializer, CollectionSerializer,
-    CollectionWithAddonsSerializer)
+    CollectionAddonSerializer,
+    CollectionSerializer,
+    CollectionWithAddonsSerializer,
+)
 
 
 class CollectionViewSet(ModelViewSet):
@@ -32,16 +41,21 @@ class CollectionViewSet(ModelViewSet):
             # Collection contributors can access the featured themes collection
             # (it's community-managed) and change it's addons, but can't delete
             # or edit it's details.
-            AllOf(AllowCollectionContributor,
-                  PreventActionPermission(('create', 'list', 'update',
-                                           'destroy', 'partial_update'))),
+            AllOf(
+                AllowCollectionContributor,
+                PreventActionPermission(
+                    ('create', 'list', 'update', 'destroy', 'partial_update')
+                ),
+            ),
             # Content curators can modify existing mozilla collections as they
             # see fit, but can't list or delete them.
-            AllOf(AllowContentCurators,
-                  PreventActionPermission(('create', 'destroy', 'list'))),
+            AllOf(
+                AllowContentCurators,
+                PreventActionPermission(('create', 'destroy', 'list')),
+            ),
             # Everyone else can do read-only stuff, except list.
-            AllOf(AllowReadOnlyIfPublic,
-                  PreventActionPermission('list'))),
+            AllOf(AllowReadOnlyIfPublic, PreventActionPermission('list')),
+        ),
     ]
     lookup_field = 'slug'
 
@@ -50,24 +64,23 @@ class CollectionViewSet(ModelViewSet):
             self.account_viewset = AccountViewSet(
                 request=self.request,
                 permission_classes=[],  # We handled permissions already.
-                kwargs={'pk': self.kwargs['user_pk']})
+                kwargs={'pk': self.kwargs['user_pk']},
+            )
         return self.account_viewset
 
     def get_serializer_class(self):
-        with_addons = ('with_addons' in self.request.GET and
-                       self.action == 'retrieve')
-        return (CollectionSerializer if not with_addons
-                else CollectionWithAddonsSerializer)
+        with_addons = 'with_addons' in self.request.GET and self.action == 'retrieve'
+        return (
+            CollectionSerializer if not with_addons else CollectionWithAddonsSerializer
+        )
 
     def get_queryset(self):
         return Collection.objects.filter(
-            author=self.get_account_viewset().get_object()).order_by(
-            '-modified')
+            author=self.get_account_viewset().get_object()
+        ).order_by('-modified')
 
     def get_addons_queryset(self):
-        collection_addons_viewset = CollectionAddonViewSet(
-            request=self.request
-        )
+        collection_addons_viewset = CollectionAddonViewSet(request=self.request)
         # Set this to avoid a pointless lookup loop.
         collection_addons_viewset.collection = self.get_object()
         # This needs to be list to make the filtering work.
@@ -88,7 +101,8 @@ class TranslationAwareOrderingAliasFilter(OrderingAliasFilter):
             # how order_by_translation works.
             raise serializers.ValidationError(
                 'You can only specify one "sort" argument. Multiple '
-                'orderings are not supported')
+                'orderings are not supported'
+            )
 
         order_by = ordering[0]
 
@@ -105,9 +119,11 @@ class CollectionAddonViewSet(ModelViewSet):
     lookup_field = 'addon'
     filter_backends = (TranslationAwareOrderingAliasFilter,)
     ordering_fields = ()
-    ordering_field_aliases = {'popularity': 'addon__weekly_downloads',
-                              'name': 'name',
-                              'added': 'created'}
+    ordering_field_aliases = {
+        'popularity': 'addon__weekly_downloads',
+        'name': 'name',
+        'added': 'created',
+    }
     ordering = ('-addon__weekly_downloads',)
 
     def get_collection(self):
@@ -119,8 +135,11 @@ class CollectionAddonViewSet(ModelViewSet):
             # part of the permission checks won't do anything.
             self.collection = CollectionViewSet(
                 request=self.request,
-                kwargs={'user_pk': self.kwargs['user_pk'],
-                        'slug': self.kwargs['collection_slug']}).get_object()
+                kwargs={
+                    'user_pk': self.kwargs['user_pk'],
+                    'slug': self.kwargs['collection_slug'],
+                },
+            ).get_object()
         return self.collection
 
     def get_object(self):
@@ -132,22 +151,22 @@ class CollectionAddonViewSet(ModelViewSet):
         return super(CollectionAddonViewSet, self).get_object()
 
     def get_queryset(self):
-        qs = (
-            CollectionAddon.objects
-            .filter(collection=self.get_collection())
-            .prefetch_related('addon'))
+        qs = CollectionAddon.objects.filter(
+            collection=self.get_collection()
+        ).prefetch_related('addon')
 
         filter_param = self.request.GET.get('filter')
         # We only filter list action.
-        include_all_with_deleted = (filter_param == 'all_with_deleted' or
-                                    self.action != 'list')
+        include_all_with_deleted = (
+            filter_param == 'all_with_deleted' or self.action != 'list'
+        )
         # If deleted addons are requested, that implies all addons.
         include_all = filter_param == 'all' or include_all_with_deleted
 
         if not include_all:
             qs = qs.filter(
-                addon__status=amo.STATUS_APPROVED,
-                addon__disabled_by_user=False)
+                addon__status=amo.STATUS_APPROVED, addon__disabled_by_user=False
+            )
         elif not include_all_with_deleted:
             qs = qs.exclude(addon__status=amo.STATUS_DELETED)
         return qs

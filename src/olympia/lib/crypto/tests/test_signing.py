@@ -46,14 +46,11 @@ def _get_recommendation_data(path):
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestSigning(TestCase):
-
     def setUp(self):
         super().setUp()
 
         # Change addon file name
-        self.addon = amo.tests.addon_factory(file_kw={
-            'filename': 'webextension.xpi'
-        })
+        self.addon = amo.tests.addon_factory(file_kw={'filename': 'webextension.xpi'})
         self.addon.update(guid='xxxxx')
         self.version = self.addon.current_version
         self.file_ = self.version.all_files[0]
@@ -96,8 +93,9 @@ class TestSigning(TestCase):
         max_appversion = self.version.apps.first().max
 
         # Old, and not default to compatible.
-        max_appversion.update(application=amo.ANDROID.id,
-                              version='4', version_int=version_int('4'))
+        max_appversion.update(
+            application=amo.ANDROID.id, version='4', version_int=version_int('4')
+        )
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
@@ -117,8 +115,9 @@ class TestSigning(TestCase):
         max_appversion = self.version.apps.first().max
 
         # Old, and default to compatible.
-        max_appversion.update(application=amo.ANDROID.id,
-                              version='4', version_int=version_int('4'))
+        max_appversion.update(
+            application=amo.ANDROID.id, version='4', version_int=version_int('4')
+        )
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
         signing.sign_file(self.file_)
@@ -138,8 +137,9 @@ class TestSigning(TestCase):
         max_appversion = self.version.apps.first().max
 
         # Recent, not default to compatible.
-        max_appversion.update(application=amo.ANDROID.id,
-                              version='37', version_int=version_int('37'))
+        max_appversion.update(
+            application=amo.ANDROID.id, version='37', version_int=version_int('37')
+        )
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
@@ -214,8 +214,7 @@ class TestSigning(TestCase):
     def test_call_signing(self):
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -261,8 +260,7 @@ class TestSigning(TestCase):
         self.addon.update(guid=long_guid)
         signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == hashed
@@ -311,14 +309,11 @@ class TestSigning(TestCase):
 
         signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
 
-        assert (
-            subject_info['common_name'] ==
-            u'NavratnePeniaze@NávratnéPeniaze')
+        assert subject_info['common_name'] == u'NavratnePeniaze@NávratnéPeniaze'
         assert manifest.count('Name: ') == 4
         # Need to use .startswith() since the signature from `cose.sig`
         # changes on every test-run, so we're just not going to check it
@@ -346,14 +341,11 @@ class TestSigning(TestCase):
         # in "pending recommendation" and only *after* we approve and sign
         # them they will become "recommended". Once the `recommendable`
         # flag is turned off we won't sign further versions as recommended.
-        DiscoveryItem.objects.create(
-            addon=self.file_.version.addon,
-            recommendable=True)
+        DiscoveryItem.objects.create(addon=self.file_.version.addon, recommendable=True)
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -364,23 +356,19 @@ class TestSigning(TestCase):
         assert 'Name: META-INF/cose.manifest' in manifest
         assert 'Name: META-INF/cose.sig' in manifest
 
-        recommendation_data = _get_recommendation_data(
-            self.file_.current_file_path)
+        recommendation_data = _get_recommendation_data(self.file_.current_file_path)
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert recommendation_data['states'] == ['recommended']
 
     def test_call_signing_recommendable_unlisted(self):
         # Unlisted versions, even when the add-on is recommendable, should
         # never be recommended.
-        DiscoveryItem.objects.create(
-            addon=self.file_.version.addon,
-            recommendable=True)
+        DiscoveryItem.objects.create(addon=self.file_.version.addon, recommendable=True)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -390,13 +378,12 @@ class TestSigning(TestCase):
 
     def test_call_signing_not_recommendable(self):
         DiscoveryItem.objects.create(
-            addon=self.file_.version.addon,
-            recommendable=False)
+            addon=self.file_.version.addon, recommendable=False
+        )
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -407,13 +394,10 @@ class TestSigning(TestCase):
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestTransactionRelatedSigning(TransactionTestCase):
-
     def setUp(self):
         super().setUp()
 
-        self.addon = amo.tests.addon_factory(file_kw={
-            'filename': 'webextension.xpi'
-        })
+        self.addon = amo.tests.addon_factory(file_kw={'filename': 'webextension.xpi'})
         self.version = self.addon.current_version
 
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
@@ -475,8 +459,8 @@ class TestTasks(TestCase):
     def setUp(self):
         super(TestTasks, self).setUp()
         self.addon = amo.tests.addon_factory(
-            name=u'Rændom add-on',
-            version_kw={'version': '0.0.1'})
+            name=u'Rændom add-on', version_kw={'version': '0.0.1'}
+        )
         self.version = self.addon.current_version
         self.max_appversion = self.version.apps.first().max
         self.set_max_appversion('48')
@@ -493,8 +477,7 @@ class TestTasks(TestCase):
 
     def set_max_appversion(self, version):
         """Set self.max_appversion to the given version."""
-        self.max_appversion.update(version=version,
-                                   version_int=version_int(version))
+        self.max_appversion.update(version=version, version_int=version_int(version))
 
     def assert_backup(self):
         """Make sure there's a backup file."""
@@ -525,14 +508,14 @@ class TestTasks(TestCase):
         # We want to make sure each file has been signed.
         self.file2 = amo.tests.file_factory(version=self.version)
         self.file2.update(filename='webextension-b.xpi')
-        backup_file2_path = u'{0}.backup_signature'.format(
-            self.file2.file_path)
+        backup_file2_path = u'{0}.backup_signature'.format(self.file2.file_path)
         try:
             fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
             with amo.tests.copy_file(fpath, self.file_.file_path):
                 with amo.tests.copy_file(
-                        'src/olympia/files/fixtures/files/webextension.xpi',
-                        self.file2.file_path):
+                    'src/olympia/files/fixtures/files/webextension.xpi',
+                    self.file2.file_path,
+                ):
                     file_hash = self.file_.generate_hash()
                     file2_hash = self.file2.generate_hash()
                     assert self.version.version == '0.0.1'
@@ -553,8 +536,8 @@ class TestTasks(TestCase):
         """Use the signing server if files are approved."""
         self.file_.update(status=amo.STATUS_APPROVED)
         with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/webextension.xpi',
-                self.file_.file_path):
+            'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
+        ):
             tasks.sign_addons([self.addon.pk])
             mock_sign_file.assert_called_with(self.file_)
 
@@ -570,8 +553,8 @@ class TestTasks(TestCase):
         """Sign files which have non-ascii filenames."""
         self.file_.update(filename=u'wébextension.xpi')
         with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/webextension.xpi',
-                self.file_.file_path):
+            'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
+        ):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
             tasks.sign_addons([self.addon.pk])
@@ -586,8 +569,8 @@ class TestTasks(TestCase):
         """Sign versions which have non-ascii version numbers."""
         self.version.update(version=u'é0.0.1')
         with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/webextension.xpi',
-                self.file_.file_path):
+            'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
+        ):
             file_hash = self.file_.generate_hash()
             assert self.version.version == u'é0.0.1'
             tasks.sign_addons([self.addon.pk])
@@ -601,8 +584,8 @@ class TestTasks(TestCase):
     def test_sign_bump_old_versions_default_compat(self, mock_sign_file):
         """Sign files which are old, but default to compatible."""
         with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/webextension.xpi',
-                self.file_.file_path):
+            'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
+        ):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
             self.set_max_appversion('4')
@@ -615,9 +598,7 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_resign_and_bump_version_in_model(self, mock_sign_file):
-        fname = (
-            './src/olympia/files/fixtures/files/webextension_signed_already'
-            '.xpi')
+        fname = './src/olympia/files/fixtures/files/webextension_signed_already' '.xpi'
         with amo.tests.copy_file(fname, self.file_.file_path):
             self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
@@ -674,7 +655,8 @@ class TestTasks(TestCase):
         fname = './src/olympia/files/fixtures/files/webextension.xpi'
 
         new_current_version = amo.tests.version_factory(
-            addon=self.addon, version='0.0.2')
+            addon=self.addon, version='0.0.2'
+        )
         new_file = new_current_version.current_file
 
         with amo.tests.copy_file(fname, new_file.file_path):
@@ -702,8 +684,8 @@ class TestTasks(TestCase):
         self.file_.update(status=amo.STATUS_APPROVED)
         AddonUser.objects.create(addon=self.addon, user_id=999)
         with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/webextension.xpi',
-                self.file_.file_path):
+            'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
+        ):
             tasks.sign_addons([self.addon.pk])
             mock_sign_file.assert_called_with(self.file_)
 
@@ -714,32 +696,34 @@ class TestTasks(TestCase):
         self.file_.update(status=amo.STATUS_APPROVED)
         AddonUser.objects.create(addon=self.addon, user_id=999)
         with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/webextension.xpi',
-                self.file_.file_path):
+            'src/olympia/files/fixtures/files/webextension.xpi', self.file_.file_path
+        ):
             tasks.sign_addons([self.addon.pk])
             mock_sign_file.assert_called_with(self.file_)
 
         assert u'Rændom add-on' in mail.outbox[0].message().as_string()
 
 
-@pytest.mark.parametrize(('old', 'new'), [
-    ('1.1', '1.1.1-signed'),
-    ('1.1.1-signed.1', '1.1.1-signed.1.1-signed'),
-    ('1.1.1-signed', '1.1.1-signed-2'),
-    ('1.1.1-signed-3', '1.1.1-signed-4'),
-    ('1.1.1-signed.1-signed-16', '1.1.1-signed.1-signed-17')
-])
+@pytest.mark.parametrize(
+    ('old', 'new'),
+    [
+        ('1.1', '1.1.1-signed'),
+        ('1.1.1-signed.1', '1.1.1-signed.1.1-signed'),
+        ('1.1.1-signed', '1.1.1-signed-2'),
+        ('1.1.1-signed-3', '1.1.1-signed-4'),
+        ('1.1.1-signed.1-signed-16', '1.1.1-signed.1-signed-17'),
+    ],
+)
 def test_get_new_version_number(old, new):
     assert tasks.get_new_version_number(old) == new
 
 
 class TestSignatureInfo(object):
-
     @pytest.fixture(autouse=True)
     def setup(self):
         fixture_path = (
-            'src/olympia/lib/crypto/tests/'
-            'mozilla-generated-by-openssl.pkcs7.der')
+            'src/olympia/lib/crypto/tests/' 'mozilla-generated-by-openssl.pkcs7.der'
+        )
 
         with open(fixture_path, 'rb') as fobj:
             self.pkcs7 = fobj.read()
@@ -763,81 +747,134 @@ class TestSignatureInfo(object):
         assert self.info.signer_serial_number == 1498181554500
 
     def test_issuer(self):
-        assert self.info.issuer == collections.OrderedDict([
-            ('country_name', 'US'),
-            ('state_or_province_name', 'CA'),
-            ('locality_name', 'Mountain View'),
-            ('organization_name', 'Addons Test Signing'),
-            ('common_name', 'test.addons.signing.root.ca'),
-            ('email_address', 'opsec+stagerootaddons@mozilla.com')
-        ])
-
-    def test_signer_certificate(self):
-        assert (
-            self.info.signer_certificate['serial_number'] ==
-            self.info.signer_serial_number)
-        assert (
-            self.info.signer_certificate['issuer'] ==
-            self.info.issuer)
-
-        expected = collections.OrderedDict([
-            ('version', 'v3'),
-            ('serial_number', 1498181554500),
-            ('signature', collections.OrderedDict([
-                ('algorithm', 'sha256_rsa'), ('parameters', None)])),
-            ('issuer', collections.OrderedDict([
+        assert self.info.issuer == collections.OrderedDict(
+            [
                 ('country_name', 'US'),
                 ('state_or_province_name', 'CA'),
                 ('locality_name', 'Mountain View'),
                 ('organization_name', 'Addons Test Signing'),
                 ('common_name', 'test.addons.signing.root.ca'),
-                ('email_address', 'opsec+stagerootaddons@mozilla.com')])),
-            ('validity', collections.OrderedDict([
-                ('not_before', datetime.datetime(
-                    2017, 6, 23, 1, 32, 34, tzinfo=pytz.utc)),
-                ('not_after', datetime.datetime(
-                    2027, 6, 21, 1, 32, 34, tzinfo=pytz.utc))])),
-            ('subject', collections.OrderedDict([
-                ('organizational_unit_name', 'Testing'),
-                ('country_name', 'US'),
-                ('locality_name', 'Mountain View'),
-                ('organization_name', 'Addons Testing'),
-                ('state_or_province_name', 'CA'),
-                ('common_name', '{02b860db-e71f-48d2-a5a0-82072a93d33c}')])),
-            ('subject_public_key_info', collections.OrderedDict([
-                ('algorithm', collections.OrderedDict([
-                    ('algorithm', 'rsa'),
-                    ('parameters', None)])),
-                ('public_key', collections.OrderedDict([
-                    ('modulus', int(
-                        '85289209018591781267198931558814435907521407777661'
-                        '50749316736213617395458578680335589192171418852036'
-                        '79278813048882998104120530700223207250951695884439'
-                        '20772452388935409377024686932620042402964287828106'
-                        '51257320080972660594945900464995547687116064792520'
-                        '10385231846333656801523388692257373069803424678966'
-                        '83558316878945090150671487395382420988138292553386'
-                        '65273893489909596214808207811839117255018821125538'
-                        '88010045768747055709235990054867405484806043609964'
-                        '46844151945633093802308152276459710592644539761011'
-                        '95743982561110649516741370965629194907895538590306'
-                        '29899529219665410153860752870947521013079820756069'
-                        '47104737107240593827799410733495909560358275915879'
-                        '55064950558358425436354620230911526069861662920050'
-                        '43124539276872288437450042840027281372269967539939'
-                        '24111213120065958637042429018593980801963496240784'
-                        '12170983502746046961830237201163411151902047596357'
-                        '52875610569157058411595354595985036610666909234931'
-                        '24897289875099542550941258245633054592232417696315'
-                        '40182071794766323211615139265042704991415186206585'
-                        '75885408887756385761663648099801365729955339334103'
-                        '60468108188015261735738849468668895508239573547213'
-                        '28312488126574859733988724870493942605656816541143'
-                        '61628373225003401044258905283594542783785817504173'
-                        '841847040037917474056678747905247')),
-                    ('public_exponent', 65537)]))])),
-            ('issuer_unique_id', None),
-            ('subject_unique_id', None),
-            ('extensions', None)])
+                ('email_address', 'opsec+stagerootaddons@mozilla.com'),
+            ]
+        )
+
+    def test_signer_certificate(self):
+        assert (
+            self.info.signer_certificate['serial_number']
+            == self.info.signer_serial_number
+        )
+        assert self.info.signer_certificate['issuer'] == self.info.issuer
+
+        expected = collections.OrderedDict(
+            [
+                ('version', 'v3'),
+                ('serial_number', 1498181554500),
+                (
+                    'signature',
+                    collections.OrderedDict(
+                        [('algorithm', 'sha256_rsa'), ('parameters', None)]
+                    ),
+                ),
+                (
+                    'issuer',
+                    collections.OrderedDict(
+                        [
+                            ('country_name', 'US'),
+                            ('state_or_province_name', 'CA'),
+                            ('locality_name', 'Mountain View'),
+                            ('organization_name', 'Addons Test Signing'),
+                            ('common_name', 'test.addons.signing.root.ca'),
+                            ('email_address', 'opsec+stagerootaddons@mozilla.com'),
+                        ]
+                    ),
+                ),
+                (
+                    'validity',
+                    collections.OrderedDict(
+                        [
+                            (
+                                'not_before',
+                                datetime.datetime(
+                                    2017, 6, 23, 1, 32, 34, tzinfo=pytz.utc
+                                ),
+                            ),
+                            (
+                                'not_after',
+                                datetime.datetime(
+                                    2027, 6, 21, 1, 32, 34, tzinfo=pytz.utc
+                                ),
+                            ),
+                        ]
+                    ),
+                ),
+                (
+                    'subject',
+                    collections.OrderedDict(
+                        [
+                            ('organizational_unit_name', 'Testing'),
+                            ('country_name', 'US'),
+                            ('locality_name', 'Mountain View'),
+                            ('organization_name', 'Addons Testing'),
+                            ('state_or_province_name', 'CA'),
+                            ('common_name', '{02b860db-e71f-48d2-a5a0-82072a93d33c}'),
+                        ]
+                    ),
+                ),
+                (
+                    'subject_public_key_info',
+                    collections.OrderedDict(
+                        [
+                            (
+                                'algorithm',
+                                collections.OrderedDict(
+                                    [('algorithm', 'rsa'), ('parameters', None)]
+                                ),
+                            ),
+                            (
+                                'public_key',
+                                collections.OrderedDict(
+                                    [
+                                        (
+                                            'modulus',
+                                            int(
+                                                '85289209018591781267198931558814435907521407777661'
+                                                '50749316736213617395458578680335589192171418852036'
+                                                '79278813048882998104120530700223207250951695884439'
+                                                '20772452388935409377024686932620042402964287828106'
+                                                '51257320080972660594945900464995547687116064792520'
+                                                '10385231846333656801523388692257373069803424678966'
+                                                '83558316878945090150671487395382420988138292553386'
+                                                '65273893489909596214808207811839117255018821125538'
+                                                '88010045768747055709235990054867405484806043609964'
+                                                '46844151945633093802308152276459710592644539761011'
+                                                '95743982561110649516741370965629194907895538590306'
+                                                '29899529219665410153860752870947521013079820756069'
+                                                '47104737107240593827799410733495909560358275915879'
+                                                '55064950558358425436354620230911526069861662920050'
+                                                '43124539276872288437450042840027281372269967539939'
+                                                '24111213120065958637042429018593980801963496240784'
+                                                '12170983502746046961830237201163411151902047596357'
+                                                '52875610569157058411595354595985036610666909234931'
+                                                '24897289875099542550941258245633054592232417696315'
+                                                '40182071794766323211615139265042704991415186206585'
+                                                '75885408887756385761663648099801365729955339334103'
+                                                '60468108188015261735738849468668895508239573547213'
+                                                '28312488126574859733988724870493942605656816541143'
+                                                '61628373225003401044258905283594542783785817504173'
+                                                '841847040037917474056678747905247'
+                                            ),
+                                        ),
+                                        ('public_exponent', 65537),
+                                    ]
+                                ),
+                            ),
+                        ]
+                    ),
+                ),
+                ('issuer_unique_id', None),
+                ('subject_unique_id', None),
+                ('extensions', None),
+            ]
+        )
 
         assert self.info.signer_certificate == expected

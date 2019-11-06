@@ -8,7 +8,6 @@ from olympia.accounts import verify
 
 
 class TestProfile(TestCase):
-
     def setUp(self):
         patcher = mock.patch('olympia.accounts.verify.requests.get')
         self.get = patcher.start()
@@ -21,9 +20,10 @@ class TestProfile(TestCase):
         self.get.return_value.json.return_value = profile_data
         profile = verify.get_fxa_profile('profile-plz', {})
         assert profile == profile_data
-        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
-            'Authorization': 'Bearer profile-plz',
-        })
+        self.get.assert_called_with(
+            'https://app.fxa/v1/profile',
+            headers={'Authorization': 'Bearer profile-plz',},
+        )
 
     @override_settings(FXA_PROFILE_HOST='https://app.fxa/v1')
     def test_success_no_email(self):
@@ -32,9 +32,10 @@ class TestProfile(TestCase):
         self.get.return_value.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
             verify.get_fxa_profile('profile-plz', {})
-        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
-            'Authorization': 'Bearer profile-plz',
-        })
+        self.get.assert_called_with(
+            'https://app.fxa/v1/profile',
+            headers={'Authorization': 'Bearer profile-plz',},
+        )
 
     @override_settings(FXA_PROFILE_HOST='https://app.fxa/v1')
     def test_failure(self):
@@ -43,13 +44,13 @@ class TestProfile(TestCase):
         self.get.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
             verify.get_fxa_profile('profile-plz', {})
-        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
-            'Authorization': 'Bearer profile-plz',
-        })
+        self.get.assert_called_with(
+            'https://app.fxa/v1/profile',
+            headers={'Authorization': 'Bearer profile-plz',},
+        )
 
 
 class TestToken(TestCase):
-
     def setUp(self):
         patcher = mock.patch('olympia.accounts.verify.requests.post')
         self.post = patcher.start()
@@ -60,16 +61,18 @@ class TestToken(TestCase):
         token_data = {'access_token': 'c0de'}
         self.post.return_value.status_code = 200
         self.post.return_value.json.return_value = token_data
-        token = verify.get_fxa_token('token-plz', {
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-        })
+        token = verify.get_fxa_token(
+            'token-plz', {'client_id': 'test-client-id', 'client_secret': "don't look",}
+        )
         assert token == token_data
-        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
-            'code': 'token-plz',
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-        })
+        self.post.assert_called_with(
+            'https://app.fxa/oauth/v1/token',
+            data={
+                'code': 'token-plz',
+                'client_id': 'test-client-id',
+                'client_secret': "don't look",
+            },
+        )
 
     @override_settings(FXA_OAUTH_HOST='https://app.fxa/oauth/v1')
     def test_no_token(self):
@@ -77,15 +80,18 @@ class TestToken(TestCase):
         self.post.return_value.status_code = 200
         self.post.return_value.json.return_value = token_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_token('token-plz', {
+            verify.get_fxa_token(
+                'token-plz',
+                {'client_id': 'test-client-id', 'client_secret': "don't look",},
+            )
+        self.post.assert_called_with(
+            'https://app.fxa/oauth/v1/token',
+            data={
+                'code': 'token-plz',
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
-            })
-        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
-            'code': 'token-plz',
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-        })
+            },
+        )
 
     @override_settings(FXA_OAUTH_HOST='https://app.fxa/oauth/v1')
     def test_failure(self):
@@ -93,15 +99,18 @@ class TestToken(TestCase):
         self.post.return_value.status_code = 400
         self.post.json.return_value = token_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_token('token-plz', {
+            verify.get_fxa_token(
+                'token-plz',
+                {'client_id': 'test-client-id', 'client_secret': "don't look",},
+            )
+        self.post.assert_called_with(
+            'https://app.fxa/oauth/v1/token',
+            data={
+                'code': 'token-plz',
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
-            })
-        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
-            'code': 'token-plz',
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-        })
+            },
+        )
 
 
 class TestIdentify(TestCase):

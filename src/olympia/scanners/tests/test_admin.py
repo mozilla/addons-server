@@ -27,9 +27,7 @@ class TestScannerResultAdmin(TestCase):
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerresult_changelist')
 
-        self.admin = ScannerResultAdmin(
-            model=ScannerResult, admin_site=AdminSite()
-        )
+        self.admin = ScannerResultAdmin(model=ScannerResult, admin_site=AdminSite())
 
     def test_list_view(self):
         response = self.client.get(self.list_url)
@@ -53,16 +51,12 @@ class TestScannerResultAdmin(TestCase):
 
     def test_formatted_addon(self):
         addon = addon_factory()
-        version = version_factory(
-            addon=addon, channel=amo.RELEASE_CHANNEL_LISTED
-        )
+        version = version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
         result = ScannerResult(version=version)
 
         assert self.admin.formatted_addon(result) == (
             '<a href="{}">{} (version: {})</a>'.format(
-                reverse('reviewers.review', args=[addon.id]),
-                addon.name,
-                version.id,
+                reverse('reviewers.review', args=[addon.id]), addon.name, version.id,
             )
         )
 
@@ -160,9 +154,7 @@ class TestScannerResultAdmin(TestCase):
         with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
 
-        response = self.client.get(
-            self.list_url, {MatchesFilter.parameter_name: 'all'}
-        )
+        response = self.client.get(self.list_url, {MatchesFilter.parameter_name: 'all'})
         assert response.status_code == 200
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()

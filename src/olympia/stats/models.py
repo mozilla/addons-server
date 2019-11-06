@@ -32,7 +32,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
             models.Index(fields=('count',), name='count'),
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('addon', 'count'), name='addon_and_count'),
-            models.Index(fields=('addon', 'date'), name='addon_date_idx')
+            models.Index(fields=('addon', 'date'), name='addon_date_idx'),
         ]
         constraints = [
             models.UniqueConstraint(fields=['date', 'addon'], name='date_2'),
@@ -58,5 +58,5 @@ class UpdateCount(StatsSearchMixin, models.Model):
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('date',), name='date'),
             models.Index(fields=('addon', 'count'), name='addon_and_count'),
-            models.Index(fields=('addon', 'date'), name='addon_date_idx')
+            models.Index(fields=('addon', 'date'), name='addon_date_idx'),
         ]

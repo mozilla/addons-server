@@ -52,8 +52,9 @@ class BaseSearchIndexer(object):
 
         for field_name in field_names:
             # _translations is the suffix in TranslationSerializer.
-            mapping[doc_name]['properties']['%s_translations' % field_name] = (
-                cls.get_translations_definition())
+            mapping[doc_name]['properties'][
+                '%s_translations' % field_name
+            ] = cls.get_translations_definition()
 
     @classmethod
     def get_translations_definition(cls):
@@ -66,8 +67,8 @@ class BaseSearchIndexer(object):
             'type': 'object',
             'properties': {
                 'lang': {'type': 'text', 'index': False},
-                'string': {'type': 'text', 'index': False}
-            }
+                'string': {'type': 'text', 'index': False},
+            },
         }
 
     @classmethod
@@ -109,8 +110,7 @@ class BaseSearchIndexer(object):
                 }
 
     @classmethod
-    def attach_language_specific_analyzers_with_raw_variant(
-            cls, mapping, field_names):
+    def attach_language_specific_analyzers_with_raw_variant(cls, mapping, field_names):
         """
         Like attach_language_specific_analyzers() but with an extra field to
         storethe "raw" variant of the value, for exact matches.
@@ -123,9 +123,7 @@ class BaseSearchIndexer(object):
                 mapping[doc_name]['properties'][property_name] = {
                     'type': 'text',
                     'analyzer': analyzer,
-                    'fields': {
-                        'raw': cls.get_raw_field_definition(),
-                    }
+                    'fields': {'raw': cls.get_raw_field_definition(),},
                 }
 
     @classmethod
@@ -138,7 +136,8 @@ class BaseSearchIndexer(object):
             db_field = '%s_id' % field
 
         extend_with_me = {
-            '%s_translations' % field: [
+            '%s_translations'
+            % field: [
                 {'lang': to_language(lang), 'string': str(string)}
                 for lang, string in obj.translations[getattr(obj, db_field)]
                 if string
@@ -177,8 +176,11 @@ class BaseSearchIndexer(object):
         # index with analyzer if the string's locale matches.
         for analyzer, languages in SEARCH_ANALYZER_MAP.items():
             extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
-                set(str(string) for locale, string
-                    in obj.translations[getattr(obj, db_field)]
-                    if locale.lower() in languages and string))
+                set(
+                    str(string)
+                    for locale, string in obj.translations[getattr(obj, db_field)]
+                    if locale.lower() in languages and string
+                )
+            )
 
         return extend_with_me

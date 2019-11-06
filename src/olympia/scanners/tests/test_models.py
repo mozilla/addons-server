@@ -47,9 +47,7 @@ class TestScannerResult(TestCase):
     def test_create_different_entries_for_a_single_upload(self):
         upload = self.create_file_upload()
 
-        customs_result = ScannerResult.objects.create(
-            upload=upload, scanner=CUSTOMS
-        )
+        customs_result = ScannerResult.objects.create(upload=upload, scanner=CUSTOMS)
         wat_result = ScannerResult.objects.create(upload=upload, scanner=WAT)
 
         assert customs_result.scanner == CUSTOMS
@@ -59,9 +57,7 @@ class TestScannerResult(TestCase):
         result = self.create_yara_result()
         match = self.create_fake_yara_match()
 
-        result.add_yara_result(
-            rule=match.rule, tags=match.tags, meta=match.meta
-        )
+        result.add_yara_result(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.results == [
             {'rule': match.rule, 'tags': match.tags, 'meta': match.meta}
@@ -69,9 +65,7 @@ class TestScannerResult(TestCase):
 
     def test_save_set_has_matches(self):
         result = self.create_yara_result()
-        rule = ScannerRule.objects.create(
-            name='some rule name', scanner=result.scanner
-        )
+        rule = ScannerRule.objects.create(name='some rule name', scanner=result.scanner)
 
         result.has_matches = None
         result.save()
@@ -102,9 +96,7 @@ class TestScannerResult(TestCase):
 
         for rule in [rule1, rule2]:
             match = self.create_fake_yara_match(rule=rule)
-            result.add_yara_result(
-                rule=match.rule, tags=match.tags, meta=match.meta
-            )
+            result.add_yara_result(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.extract_rule_names() == [rule1, rule2]
 
@@ -115,15 +107,11 @@ class TestScannerResult(TestCase):
 
         for rule in [rule1, rule2, rule1, rule2]:
             match = self.create_fake_yara_match(rule=rule)
-            result.add_yara_result(
-                rule=match.rule, tags=match.tags, meta=match.meta
-            )
+            result.add_yara_result(rule=match.rule, tags=match.tags, meta=match.meta)
 
         assert result.extract_rule_names() == [rule1, rule2]
 
-    def test_extract_rule_names_returns_empty_list_for_unsupported_scanner(
-        self
-    ):
+    def test_extract_rule_names_returns_empty_list_for_unsupported_scanner(self):
         upload = self.create_file_upload()
         result = ScannerResult.objects.create(upload=upload, scanner=WAT)
         assert result.extract_rule_names() == []

@@ -34,8 +34,17 @@ logger = olympia.core.logger.getLogger('z.apps.stats.views')
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
-SERIES = ('downloads', 'usage', 'overview', 'sources', 'os',
-          'locales', 'statuses', 'versions', 'apps')
+SERIES = (
+    'downloads',
+    'usage',
+    'overview',
+    'sources',
+    'os',
+    'locales',
+    'statuses',
+    'versions',
+    'apps',
+)
 
 
 storage = get_storage_class()()
@@ -51,8 +60,12 @@ def get_series(model, extra_field=None, source=None, **filters):
     """
     extra = () if extra_field is None else (extra_field,)
     # Put a slice on it so we get more than 10 (the default), but limit to 365.
-    qs = (model.search().order_by('-date').filter(**filters)
-          .values_dict('date', 'count', *extra))
+    qs = (
+        model.search()
+        .order_by('-date')
+        .filter(**filters)
+        .values_dict('date', 'count', *extra)
+    )
     if source:
         qs = qs.source(source)
     for val in qs[:365]:
@@ -171,8 +184,10 @@ def zip_overview(downloads, updates):
 
     series = itertools.zip_longest(iterator(downloads), iterator(updates))
     for idx, (dl_count, up_count) in enumerate(series):
-        yield {'date': start_date - timedelta(days=idx),
-               'data': {'downloads': dl_count, 'updates': up_count}}
+        yield {
+            'date': start_date - timedelta(days=idx),
+            'data': {'downloads': dl_count, 'updates': up_count},
+        }
 
 
 @addon_view_stats
@@ -197,13 +212,13 @@ def sources_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    series = get_series(DownloadCount, source='sources',
-                        addon=addon.id, date__range=date_range)
+    series = get_series(
+        DownloadCount, source='sources', addon=addon.id, date__range=date_range
+    )
 
     if format == 'csv':
         series, fields = csv_fields(series)
-        return render_csv(request, addon, series,
-                          ['date', 'count'] + list(fields))
+        return render_csv(request, addon, series, ['date', 'count'] + list(fields))
     elif format == 'json':
         return render_json(request, addon, series)
 
@@ -215,9 +230,7 @@ def usage_series(request, addon, group, start, end, format):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
 
-    series = get_series(
-        UpdateCount,
-        addon=addon.id, date__range=date_range)
+    series = get_series(UpdateCount, addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -227,8 +240,7 @@ def usage_series(request, addon, group, start, end, format):
 
 @addon_view_stats
 @non_atomic_requests
-def usage_breakdown_series(request, addon, group,
-                           start, end, format, field):
+def usage_breakdown_series(request, addon, group, start, end, format, field):
     """Generate ADU breakdown of ``field``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
@@ -240,8 +252,9 @@ def usage_breakdown_series(request, addon, group,
         'versions': 'versions',
         'statuses': 'status',
     }
-    series = get_series(UpdateCount, source=fields[field],
-                        addon=addon.id, date__range=date_range)
+    series = get_series(
+        UpdateCount, source=fields[field], addon=addon.id, date__range=date_range
+    )
     if field == 'locales':
         series = process_locales(series)
 
@@ -249,8 +262,7 @@ def usage_breakdown_series(request, addon, group,
         if field == 'applications':
             series = flatten_applications(series)
         series, fields = csv_fields(series)
-        return render_csv(request, addon, series,
-                          ['date', 'count'] + list(fields))
+        return render_csv(request, addon, series, ['date', 'count'] + list(fields))
     elif format == 'json':
         return render_json(request, addon, series)
 
@@ -275,9 +287,7 @@ def flatten_applications(series):
 
 def process_locales(series):
     """Convert locale codes to pretty names, skip any unknown locales."""
-    languages = {
-        key.lower(): value['native']
-        for key, value in ALL_LANGUAGES.items()}
+    languages = {key.lower(): value['native'] for key, value in ALL_LANGUAGES.items()}
 
     for row in series:
         if 'data' in row:
@@ -304,9 +314,11 @@ def check_stats_permission(request, addon):
     Raises PermissionDenied if user is not allowed.
     """
     can_view = addon.public_stats or (
-        request.user.is_authenticated and (
-            addon.has_author(request.user) or
-            acl.action_allowed(request, amo.permissions.STATS_VIEW))
+        request.user.is_authenticated
+        and (
+            addon.has_author(request.user)
+            or acl.action_allowed(request, amo.permissions.STATS_VIEW)
+        )
     )
     if not can_view:
         raise PermissionDenied
@@ -318,9 +330,16 @@ def stats_report(request, addon, report):
     check_stats_permission(request, addon)
     stats_base_url = reverse('stats.overview', args=[addon.slug])
     view = get_report_view(request)
-    return render(request, 'stats/reports/%s.html' % report,
-                  {'addon': addon, 'report': report, 'view': view,
-                   'stats_base_url': stats_base_url})
+    return render(
+        request,
+        'stats/reports/%s.html' % report,
+        {
+            'addon': addon,
+            'report': report,
+            'view': view,
+            'stats_base_url': stats_base_url,
+        },
+    )
 
 
 def get_report_view(request):
@@ -340,7 +359,7 @@ def get_report_view(request):
     elif dates.cleaned_data.get('last'):
         return {
             'range': dates.cleaned_data['last'],
-            'last': str(dates.cleaned_data['last']) + ' days'
+            'last': str(dates.cleaned_data['last']) + ' days',
         }
 
     logger.info('Missing "start and end" or "last"')
@@ -354,10 +373,7 @@ def get_daterange_or_404(start, end):
         logger.info('Dates parsed were not valid.')
         raise http.Http404
 
-    return (
-        dates.cleaned_data['start'],
-        dates.cleaned_data['end']
-    )
+    return (dates.cleaned_data['start'], dates.cleaned_data['end'])
 
 
 def fudge_headers(response, stats):
@@ -371,16 +387,18 @@ def fudge_headers(response, stats):
 
 @allow_cross_site_request
 @non_atomic_requests
-def render_csv(request, addon, stats, fields,
-               title=None, show_disclaimer=None):
+def render_csv(request, addon, stats, fields, title=None, show_disclaimer=None):
     """Render a stats series in CSV."""
     # Start with a header from the template.
     ts = time.strftime('%c %z')
-    context = {'addon': addon, 'timestamp': ts, 'title': title,
-               'show_disclaimer': show_disclaimer}
+    context = {
+        'addon': addon,
+        'timestamp': ts,
+        'title': title,
+        'show_disclaimer': show_disclaimer,
+    }
     response = render(request, 'stats/csv_header.txt', context)
-    writer = csv.DictWriter(
-        response, fields, restval=0, extrasaction='ignore')
+    writer = csv.DictWriter(response, fields, restval=0, extrasaction='ignore')
     writer.writeheader()
     writer.writerows(stats)
 

@@ -31,13 +31,22 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
-    utc_millesecs_from_epoch)
+    image_size,
+    pngcrush_image,
+    resize_image,
+    send_html_mail_jinja,
+    send_mail,
+    utc_millesecs_from_epoch,
+)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
-    InvalidManifest, NoManifestFound, parse_addon, SafeZip,
-    UnsupportedFileType)
+    InvalidManifest,
+    NoManifestFound,
+    parse_addon,
+    SafeZip,
+    UnsupportedFileType,
+)
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
 
@@ -76,7 +85,7 @@ def validate_and_submit(addon, file_, channel):
     return validate(
         file_,
         listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-        final_task=submit_file.si(addon.pk, file_.pk, channel)
+        final_task=submit_file.si(addon.pk, file_.pk, channel),
     )
 
 
@@ -88,39 +97,49 @@ def submit_file(addon_pk, upload_pk, channel):
     if upload.passed_all_validations:
         create_version_for_upload(addon, upload, channel)
     else:
-        log.info('Skipping version creation for {upload_uuid} that failed '
-                 'validation'.format(upload_uuid=upload.uuid))
+        log.info(
+            'Skipping version creation for {upload_uuid} that failed '
+            'validation'.format(upload_uuid=upload.uuid)
+        )
 
 
 @transaction.atomic
 def create_version_for_upload(addon, upload, channel):
     fileupload_exists = addon.fileupload_set.filter(
-        created__gt=upload.created, version=upload.version).exists()
+        created__gt=upload.created, version=upload.version
+    ).exists()
     version_exists = Version.unfiltered.filter(
-        addon=addon, version=upload.version).exists()
-    if (fileupload_exists or version_exists):
-        log.info('Skipping Version creation for {upload_uuid} that would '
-                 ' cause duplicate version'.format(upload_uuid=upload.uuid))
+        addon=addon, version=upload.version
+    ).exists()
+    if fileupload_exists or version_exists:
+        log.info(
+            'Skipping Version creation for {upload_uuid} that would '
+            ' cause duplicate version'.format(upload_uuid=upload.uuid)
+        )
     else:
         # Import loop.
         from olympia.devhub.utils import add_dynamic_theme_tag
         from olympia.devhub.views import auto_sign_version
 
-        log.info('Creating version for {upload_uuid} that passed '
-                 'validation'.format(upload_uuid=upload.uuid))
+        log.info(
+            'Creating version for {upload_uuid} that passed '
+            'validation'.format(upload_uuid=upload.uuid)
+        )
         # Note: if we somehow managed to get here with an invalid add-on,
         # parse_addon() will raise ValidationError and the task will fail
         # loudly in sentry.
         parsed_data = parse_addon(upload, addon, user=upload.user)
         version = Version.from_upload(
-            upload, addon, [x[0] for x in amo.APPS_CHOICES],
+            upload,
+            addon,
+            [x[0] for x in amo.APPS_CHOICES],
             channel,
-            parsed_data=parsed_data)
+            parsed_data=parsed_data,
+        )
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
-        if (addon.status == amo.STATUS_NULL and
-                channel == amo.RELEASE_CHANNEL_LISTED):
+        if addon.status == amo.STATUS_NULL and channel == amo.RELEASE_CHANNEL_LISTED:
             addon.update(status=amo.STATUS_NOMINATED)
         auto_sign_version(version)
         add_dynamic_theme_tag(version)
@@ -156,9 +175,12 @@ def validation_task(fn):
     * `pk` is passed to each task when added to the validation chain.
     * the validation chain is defined in the `Validator` class.
     """
-    @task(bind=True,
-          ignore_result=False,  # We want to pass the results down.
-          soft_time_limit=settings.VALIDATOR_TIMEOUT)
+
+    @task(
+        bind=True,
+        ignore_result=False,  # We want to pass the results down.
+        soft_time_limit=settings.VALIDATOR_TIMEOUT,
+    )
     @use_primary_db
     @wraps(fn)
     def wrapper(task, results, pk, *args, **kwargs):
@@ -169,8 +191,9 @@ def validation_task(fn):
         try:
             # All validation tasks should receive `results`.
             if not results:
-                raise Exception('Unexpected call to a validation task without '
-                                '`results`')
+                raise Exception(
+                    'Unexpected call to a validation task without ' '`results`'
+                )
 
             if results['errors'] > 0:
                 return results
@@ -179,14 +202,19 @@ def validation_task(fn):
         except UnsupportedFileType as exc:
             results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
             annotations.insert_validation_message(
-                results, type_='error',
-                message=exc.message, msg_id='unsupported_filetype')
+                results,
+                type_='error',
+                message=exc.message,
+                msg_id='unsupported_filetype',
+            )
             return results
         except BadZipfile:
             results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
             annotations.insert_validation_message(
-                results, type_='error',
-                message=ugettext('Invalid or corrupt add-on file.'))
+                results,
+                type_='error',
+                message=ugettext('Invalid or corrupt add-on file.'),
+            )
             return results
         except Exception as exc:
             log.exception('Unhandled error during validation: %r' % exc)
@@ -196,6 +224,7 @@ def validation_task(fn):
             # But we do want to return the results after that exception has
             # been handled.
             task.ignore_result = False
+
     return wrapper
 
 
@@ -242,7 +271,8 @@ def validate_file_path(path, channel):
         # so that we don't have to call the linter or validator
         results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
         annotations.annotate_search_plugin_validation(
-            results=results, file_path=path, channel=channel)
+            results=results, file_path=path, channel=channel
+        )
         return json.dumps(results)
 
     # Annotate results with potential legacy add-ons restrictions.
@@ -264,8 +294,8 @@ def validate_file_path(path, channel):
     if is_legacy_extension:
         results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
         annotations.annotate_legacy_addon_restrictions(
-            path=path, results=results, parsed_data=data,
-            error=not is_mozilla_signed)
+            path=path, results=results, parsed_data=data, error=not is_mozilla_signed
+        )
         return json.dumps(results)
     return run_addons_linter(path, channel=channel)
 
@@ -282,8 +312,7 @@ def forward_linter_results(results, upload_pk):
 
 @task
 @use_primary_db
-def handle_upload_validation_result(all_results, upload_pk, channel,
-                                    is_mozilla_signed):
+def handle_upload_validation_result(all_results, upload_pk, channel, is_mozilla_signed):
     """Annotate a set of validation results and save them to the given
     FileUpload instance.
 
@@ -312,8 +341,10 @@ def handle_upload_validation_result(all_results, upload_pk, channel,
     if not storage.exists(upload.path):
         # TODO: actually fix this so we can get stats. It seems that
         # the file maybe gets moved but it needs more investigation.
-        log.warning('Scaled upload stats were not tracked. File is '
-                    'missing: {}'.format(upload.path))
+        log.warning(
+            'Scaled upload stats were not tracked. File is '
+            'missing: {}'.format(upload.path)
+        )
         return
 
     size = Decimal(storage.size(upload.path))
@@ -322,7 +353,8 @@ def handle_upload_validation_result(all_results, upload_pk, channel,
     # Stash separate metrics for small / large files.
     quantifier = 'over' if size > megabyte else 'under'
     statsd.timing(
-        'devhub.validation_results_processed_{}_1mb'.format(quantifier), delta)
+        'devhub.validation_results_processed_{}_1mb'.format(quantifier), delta
+    )
 
     # Scale the upload / processing time by package size (in MB)
     # so we can normalize large XPIs which naturally take longer to validate.
@@ -333,16 +365,21 @@ def handle_upload_validation_result(all_results, upload_pk, channel,
         # help account for validator setup time.
         unit = size_in_mb if size > megabyte else Decimal(1)
         scaled_delta = Decimal(delta) / unit
-        statsd.timing('devhub.validation_results_processed_per_mb',
-                      scaled_delta)
+        statsd.timing('devhub.validation_results_processed_per_mb', scaled_delta)
 
-    log.info('Time to process and save upload validation; '
-             'upload.pk={upload}; processing_time={delta}; '
-             'scaled_per_mb={scaled}; upload_size_in_mb={size_in_mb}; '
-             'created={created}; now={now}'
-             .format(delta=delta, upload=upload.pk,
-                     created=upload.created, now=now,
-                     scaled=scaled_delta, size_in_mb=size_in_mb))
+    log.info(
+        'Time to process and save upload validation; '
+        'upload.pk={upload}; processing_time={delta}; '
+        'scaled_per_mb={scaled}; upload_size_in_mb={size_in_mb}; '
+        'created={created}; now={now}'.format(
+            delta=delta,
+            upload=upload.pk,
+            created=upload.created,
+            now=now,
+            scaled=scaled_delta,
+            size_in_mb=size_in_mb,
+        )
+    )
 
 
 # We need to explicitly not ignore the result, for the sake of `views.py` code
@@ -383,28 +420,38 @@ def check_for_api_keys_in_file(results, upload_pk):
                     file_ = zipfile.read(zipinfo)
                     for key in keys:
                         if key.secret in file_.decode(errors="ignore"):
-                            log.info('Developer API key for user %s found in '
-                                     'submission.' % key.user)
+                            log.info(
+                                'Developer API key for user %s found in '
+                                'submission.' % key.user
+                            )
                             if key.user == upload.user:
-                                msg = ugettext('Your developer API key was '
-                                               'found in the submitted file. '
-                                               'To protect your account, the '
-                                               'key will be revoked.')
+                                msg = ugettext(
+                                    'Your developer API key was '
+                                    'found in the submitted file. '
+                                    'To protect your account, the '
+                                    'key will be revoked.'
+                                )
                             else:
-                                msg = ugettext('The developer API key of a '
-                                               'coauthor was found in the '
-                                               'submitted file. To protect '
-                                               'your add-on, the key will be '
-                                               'revoked.')
+                                msg = ugettext(
+                                    'The developer API key of a '
+                                    'coauthor was found in the '
+                                    'submitted file. To protect '
+                                    'your add-on, the key will be '
+                                    'revoked.'
+                                )
                             annotations.insert_validation_message(
-                                results, type_='error',
-                                message=msg, msg_id='api_key_detected',
-                                compatibility_type=None)
+                                results,
+                                type_='error',
+                                message=msg,
+                                msg_id='api_key_detected',
+                                compatibility_type=None,
+                            )
 
                             # Revoke after 2 minutes to allow the developer to
                             # fetch the validation results
                             revoke_api_key.apply_async(
-                                kwargs={'key_id': key.id}, countdown=120)
+                                kwargs={'key_id': key.id}, countdown=120
+                            )
             zipfile.close()
     except (ValidationError, BadZipfile, IOError):
         pass
@@ -418,47 +465,43 @@ def revoke_api_key(key_id):
     try:
         # Fetch the original key, do not use `get_jwt_key`
         # so we get access to a user object for logging later.
-        original_key = APIKey.objects.get(
-            type=SYMMETRIC_JWT_TYPE, id=key_id)
+        original_key = APIKey.objects.get(type=SYMMETRIC_JWT_TYPE, id=key_id)
         # Fetch the current key to compare to the original,
         # throws if the key has been revoked, which also means
         # `original_key` is not active.
         current_key = APIKey.get_jwt_key(user_id=original_key.user.id)
         if current_key.key != original_key.key:
-            log.info('User %s has already regenerated the key, nothing to be '
-                     'done.' % original_key.user)
+            log.info(
+                'User %s has already regenerated the key, nothing to be '
+                'done.' % original_key.user
+            )
         else:
             with transaction.atomic():
                 log.info('Revoking key for user %s.' % current_key.user)
                 current_key.update(is_active=None)
                 send_api_key_revocation_email(emails=[current_key.user.email])
     except APIKey.DoesNotExist:
-        log.info('User %s has already revoked the key, nothing to be done.'
-                 % original_key.user)
+        log.info(
+            'User %s has already revoked the key, nothing to be done.'
+            % original_key.user
+        )
         pass
 
 
 def run_addons_linter(path, channel):
     from .utils import fix_addons_linter_output
 
-    args = [
-        settings.ADDONS_LINTER_BIN,
-        path,
-        '--boring',
-        '--output=json'
-    ]
+    args = [settings.ADDONS_LINTER_BIN, path, '--boring', '--output=json']
 
     if channel == amo.RELEASE_CHANNEL_UNLISTED:
         args.append('--self-hosted')
 
     if not os.path.exists(path):
         raise ValueError(
-            'Path "{}" is not a file or directory or does not exist.'
-            .format(path))
+            'Path "{}" is not a file or directory or does not exist.'.format(path)
+        )
 
-    stdout, stderr = (
-        tempfile.TemporaryFile(),
-        tempfile.TemporaryFile())
+    stdout, stderr = (tempfile.TemporaryFile(), tempfile.TemporaryFile())
 
     with statsd.timer('devhub.linter'):
         process = subprocess.Popen(
@@ -466,7 +509,7 @@ def run_addons_linter(path, channel):
             stdout=stdout,
             stderr=stderr,
             # default but explicitly set to make sure we don't open a shell.
-            shell=False
+            shell=False,
         )
 
         process.wait()
@@ -503,8 +546,7 @@ def track_validation_stats(json_result):
     listed_tag = 'listed' if result['metadata']['listed'] else 'unlisted'
 
     # Track listed/unlisted success/fail.
-    statsd.incr('devhub.linter.results.{}.{}'
-                .format(listed_tag, result_kind))
+    statsd.incr('devhub.linter.results.{}.{}'.format(listed_tag, result_kind))
 
 
 @task
@@ -517,8 +559,7 @@ def pngcrush_existing_icons(addon_id):
     log.info('Crushing icons for add-on %s', addon_id)
     addon = Addon.objects.get(pk=addon_id)
     if addon.icon_type != 'image/png':
-        log.info('Aborting icon crush for add-on %s, icon type is not a PNG.',
-                 addon_id)
+        log.info('Aborting icon crush for add-on %s, icon type is not a PNG.', addon_id)
         return
     icon_dir = addon.get_icon_dir()
     pngcrush_image(os.path.join(icon_dir, '%s-64.png' % addon_id))
@@ -528,9 +569,7 @@ def pngcrush_existing_icons(addon_id):
     # original icon, but we don't necessarily have it here. We could read one
     # of the icons we modified but it does not matter just fake a hash to
     # indicate it was "manually" crushed.
-    return {
-        'icon_hash': 'mcrushed'
-    }
+    return {'icon_hash': 'mcrushed'}
 
 
 @task
@@ -572,9 +611,7 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         dest_file = '%s-original.png' % dest_folder
         os.rename(source, dest_file)
 
-        return {
-            'icon_hash': icon_hash
-        }
+        return {'icon_hash': icon_hash}
     except Exception as e:
         log.error("Error saving addon icon (%s): %s" % (dest_file, e))
 
@@ -585,14 +622,19 @@ def resize_preview(src, preview_pk, **kw):
     """Resizes preview images and stores the sizes on the preview."""
     preview = Preview.objects.get(pk=preview_pk)
     thumb_dst, full_dst, orig_dst = (
-        preview.thumbnail_path, preview.image_path, preview.original_path)
+        preview.thumbnail_path,
+        preview.image_path,
+        preview.original_path,
+    )
     sizes = {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
         (sizes['thumbnail'], sizes['original']) = resize_image(
-            src, thumb_dst, amo.ADDON_PREVIEW_SIZES['thumb'])
+            src, thumb_dst, amo.ADDON_PREVIEW_SIZES['thumb']
+        )
         (sizes['image'], _) = resize_image(
-            src, full_dst, amo.ADDON_PREVIEW_SIZES['full'])
+            src, full_dst, amo.ADDON_PREVIEW_SIZES['full']
+        )
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
@@ -611,15 +653,18 @@ def _recreate_images_for_preview(preview):
             # We have an original size image, so we can resize that.
             src = preview.original_path
             preview.sizes['image'], preview.sizes['original'] = resize_image(
-                src, preview.image_path, amo.ADDON_PREVIEW_SIZES['full'])
+                src, preview.image_path, amo.ADDON_PREVIEW_SIZES['full']
+            )
             preview.sizes['thumbnail'], _ = resize_image(
-                src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb'])
+                src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb']
+            )
         else:
             # Otherwise we can't create a new sized full image, but can
             # use it for a new thumbnail
             src = preview.image_path
             preview.sizes['thumbnail'], preview.sizes['image'] = resize_image(
-                src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb'])
+                src, preview.thumbnail_path, amo.ADDON_PREVIEW_SIZES['thumb']
+            )
         preview.save()
         return True
     except Exception as e:
@@ -629,8 +674,10 @@ def _recreate_images_for_preview(preview):
 @task
 @use_primary_db
 def recreate_previews(addon_ids, **kw):
-    log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
-             % (len(addon_ids), recreate_previews.rate_limit, addon_ids[0]))
+    log.info(
+        '[%s@%s] Getting preview sizes for addons starting at id: %s...'
+        % (len(addon_ids), recreate_previews.rate_limit, addon_ids[0])
+    )
     addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
 
     for addon in addons:
@@ -643,8 +690,10 @@ def recreate_previews(addon_ids, **kw):
 @task
 @use_primary_db
 def get_preview_sizes(ids, **kw):
-    log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
-             % (len(ids), get_preview_sizes.rate_limit, ids[0]))
+    log.info(
+        '[%s@%s] Getting preview sizes for addons starting at id: %s...'
+        % (len(ids), get_preview_sizes.rate_limit, ids[0])
+    )
     addons = Addon.objects.filter(pk__in=ids).no_transforms()
 
     for addon in addons:
@@ -659,8 +708,9 @@ def get_preview_sizes(ids, **kw):
                 }
                 preview.update(sizes=sizes)
             except Exception as err:
-                log.error('Failed to find size of preview: %s, error: %s'
-                          % (addon.pk, err))
+                log.error(
+                    'Failed to find size of preview: %s, error: %s' % (addon.pk, err)
+                )
 
 
 def failed_validation(*messages):
@@ -672,12 +722,12 @@ def failed_validation(*messages):
     return json.dumps({'errors': 1, 'success': False, 'messages': m})
 
 
-def check_content_type(response, content_type,
-                       no_ct_message, wrong_ct_message):
+def check_content_type(response, content_type, no_ct_message, wrong_ct_message):
     if not response.headers.get('Content-Type', '').startswith(content_type):
         if 'Content-Type' in response.headers:
-            raise Exception(wrong_ct_message %
-                            (content_type, response.headers['Content-Type']))
+            raise Exception(
+                wrong_ct_message % (content_type, response.headers['Content-Type'])
+            )
         else:
             raise Exception(no_ct_message % content_type)
 
@@ -693,31 +743,37 @@ def get_content_and_check_size(response, max_size, error_message):
 
 @task
 def send_welcome_email(addon_pk, emails, context, **kw):
-    log.info(u'[1@None] Sending welcome email for %s to %s.' %
-             (addon_pk, emails))
+    log.info(u'[1@None] Sending welcome email for %s to %s.' % (addon_pk, emails))
     subject = (
-        u'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!' %
-        context.get('addon_name', 'Your add-on'))
+        u'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!'
+        % context.get('addon_name', 'Your add-on')
+    )
     html_template = 'devhub/email/submission.html'
     text_template = 'devhub/email/submission.txt'
-    return send_html_mail_jinja(subject, html_template, text_template,
-                                context, recipient_list=emails,
-                                from_email=settings.ADDONS_EMAIL,
-                                use_deny_list=False,
-                                perm_setting='individual_contact')
+    return send_html_mail_jinja(
+        subject,
+        html_template,
+        text_template,
+        context,
+        recipient_list=emails,
+        from_email=settings.ADDONS_EMAIL,
+        use_deny_list=False,
+        perm_setting='individual_contact',
+    )
 
 
 def send_api_key_revocation_email(emails):
     log.info(u'[1@None] Sending API key revocation email to %s.' % emails)
     subject = ugettext(
-        u'Mozilla Security Notice: Your AMO API credentials have been revoked')
-    template = loader.get_template(
-        'devhub/email/submission_api_key_revocation.txt')
-    context = {
-        'api_keys_url': reverse('devhub.api_key')
-    }
-    send_mail(subject, template.render(context),
-              from_email=settings.ADDONS_EMAIL,
-              recipient_list=emails,
-              use_deny_list=False,
-              perm_setting='individual_contact')
+        u'Mozilla Security Notice: Your AMO API credentials have been revoked'
+    )
+    template = loader.get_template('devhub/email/submission_api_key_revocation.txt')
+    context = {'api_keys_url': reverse('devhub.api_key')}
+    send_mail(
+        subject,
+        template.render(context),
+        from_email=settings.ADDONS_EMAIL,
+        recipient_list=emails,
+        use_deny_list=False,
+        perm_setting='individual_contact',
+    )

@@ -30,65 +30,114 @@ class AddonUserInline(admin.TabularInline):
             return format_html(
                 '<a href="{}">Admin User Profile</a> ({})',
                 reverse('admin:users_userprofile_change', args=(obj.user.pk,)),
-                obj.user.email)
+                obj.user.email,
+            )
         else:
             return ''
+
     user_profile_link.short_description = 'User Profile'
 
 
 class AddonAdmin(admin.ModelAdmin):
     class Media:
-        css = {
-            'all': ('css/admin/l10n.css',)
-        }
+        css = {'all': ('css/admin/l10n.css',)}
         js = ('js/admin/l10n.js',)
 
     exclude = ('authors',)
-    list_display = ('__str__', 'type', 'guid',
-                    'status_with_admin_manage_link', 'average_rating')
+    list_display = (
+        '__str__',
+        'type',
+        'guid',
+        'status_with_admin_manage_link',
+        'average_rating',
+    )
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
     inlines = (AddonUserInline,)
-    readonly_fields = ('id', 'status_with_admin_manage_link',
-                       'average_rating', 'bayesian_rating',
-                       'total_ratings_link', 'text_ratings_count',
-                       'weekly_downloads', 'total_downloads',
-                       'average_daily_users')
+    readonly_fields = (
+        'id',
+        'status_with_admin_manage_link',
+        'average_rating',
+        'bayesian_rating',
+        'total_ratings_link',
+        'text_ratings_count',
+        'weekly_downloads',
+        'total_downloads',
+        'average_daily_users',
+    )
 
     fieldsets = (
-        (None, {
-            'fields': ('id', 'name', 'slug', 'guid', 'default_locale', 'type',
-                       'status_with_admin_manage_link'),
-        }),
-        ('Details', {
-            'fields': ('summary', 'description', 'homepage', 'eula',
-                       'privacy_policy', 'developer_comments', 'icon_type',
-                       ),
-        }),
-        ('Support', {
-            'fields': ('support_url', 'support_email'),
-        }),
-        ('Stats', {
-            'fields': ('total_ratings_link', 'average_rating',
-                       'bayesian_rating', 'text_ratings_count',
-                       'weekly_downloads', 'total_downloads',
-                       'average_daily_users'),
-        }),
-        ('Flags', {
-            'fields': ('disabled_by_user', 'view_source', 'requires_payment',
-                       'public_stats', 'is_experimental', 'reputation'),
-        }),
-        ('Dictionaries and Language Packs', {
-            'fields': ('target_locale',),
-        }))
+        (
+            None,
+            {
+                'fields': (
+                    'id',
+                    'name',
+                    'slug',
+                    'guid',
+                    'default_locale',
+                    'type',
+                    'status_with_admin_manage_link',
+                ),
+            },
+        ),
+        (
+            'Details',
+            {
+                'fields': (
+                    'summary',
+                    'description',
+                    'homepage',
+                    'eula',
+                    'privacy_policy',
+                    'developer_comments',
+                    'icon_type',
+                ),
+            },
+        ),
+        ('Support', {'fields': ('support_url', 'support_email'),}),
+        (
+            'Stats',
+            {
+                'fields': (
+                    'total_ratings_link',
+                    'average_rating',
+                    'bayesian_rating',
+                    'text_ratings_count',
+                    'weekly_downloads',
+                    'total_downloads',
+                    'average_daily_users',
+                ),
+            },
+        ),
+        (
+            'Flags',
+            {
+                'fields': (
+                    'disabled_by_user',
+                    'view_source',
+                    'requires_payment',
+                    'public_stats',
+                    'is_experimental',
+                    'reputation',
+                ),
+            },
+        ),
+        ('Dictionaries and Language Packs', {'fields': ('target_locale',),}),
+    )
 
     def queryset(self, request):
         return models.Addon.unfiltered
 
     def total_ratings_link(self, obj):
         return related_content_link(
-            obj, Rating, 'addon', related_manager='without_replies',
-            count=obj.total_ratings)
+            obj,
+            Rating,
+            'addon',
+            related_manager='without_replies',
+            count=obj.total_ratings,
+        )
+
     total_ratings_link.short_description = _(u'Ratings')
 
     def status_with_admin_manage_link(self, obj):
@@ -98,8 +147,8 @@ class AddonAdmin(admin.ModelAdmin):
         # zadmin manage page, which does implement the logging part (and more).
         # https://github.com/mozilla/addons-server/issues/7268
         link = reverse('zadmin.addon_manage', args=(obj.slug,))
-        return format_html(u'<a href="{}">{}</a>',
-                           link, obj.get_status_display())
+        return format_html(u'<a href="{}">{}</a>', link, obj.get_status_display())
+
     status_with_admin_manage_link.short_description = _(u'Status')
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -146,7 +195,8 @@ class ReplacementAddonForm(forms.ModelForm):
                 if path.startswith(site):
                     raise forms.ValidationError(
                         'Paths for [%s] should be relative, not full URLs '
-                        'including the domain name' % site)
+                        'including the domain name' % site
+                    )
                 validators.URLValidator()(path)
             else:
                 path = ('/' if not path.startswith('/') else '') + path
@@ -167,7 +217,8 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         guid_param = urlencode({'guid': obj.guid})
         return format_html(
             '<a href="{}">Test</a>',
-            reverse('addons.find_replacement') + '?%s' % guid_param)
+            reverse('addons.find_replacement') + '?%s' % guid_param,
+        )
 
     def guid_slug(self, obj):
         try:
@@ -187,12 +238,12 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         # won't be able to make any changes but they can see the list.
         if obj is not None:
             return super(ReplacementAddonAdmin, self).has_change_permission(
-                request, obj=obj)
+                request, obj=obj
+            )
         else:
-            return (
-                acl.action_allowed(request, amo.permissions.ADDONS_EDIT) or
-                super(ReplacementAddonAdmin, self).has_change_permission(
-                    request, obj=obj))
+            return acl.action_allowed(request, amo.permissions.ADDONS_EDIT) or super(
+                ReplacementAddonAdmin, self
+            ).has_change_permission(request, obj=obj)
 
 
 admin.site.register(models.DeniedGuid)

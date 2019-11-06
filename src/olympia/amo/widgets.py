@@ -3,6 +3,7 @@ from django.forms.widgets import Input
 
 class EmailWidget(Input):
     """HTML5 email type."""
+
     input_type = 'email'
 
     def __init__(self, *args, **kwargs):

@@ -22,13 +22,14 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser)
+from olympia.addons.models import Addon, AddonCategory, AddonUser
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
-    format_date, url as url_reverse, urlparams)
-from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory)
+    format_date,
+    url as url_reverse,
+    urlparams,
+)
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
@@ -43,8 +44,7 @@ from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.users.tests.test_views import UserViewBase
-from olympia.versions.models import (
-    ApplicationsVersions, Version, VersionPreview)
+from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
 from olympia.zadmin.models import set_config
 
 
@@ -73,7 +73,6 @@ class HubTest(TestCase):
 
 
 class TestDashboard(HubTest):
-
     def setUp(self):
         super(TestDashboard, self).setUp()
         self.url = reverse('devhub.addons')
@@ -85,7 +84,8 @@ class TestDashboard(HubTest):
     def test_addons_layout(self):
         doc = pq(self.client.get(self.url).content)
         assert doc('title').text() == (
-            'Manage My Submissions :: Developer Hub :: Add-ons for Firefox')
+            'Manage My Submissions :: Developer Hub :: Add-ons for Firefox'
+        )
         assert doc('.links-footer').length == 1
         assert doc('#copyright').length == 1
         assert doc('#footer-links .mobile-link').length == 0
@@ -136,8 +136,7 @@ class TestDashboard(HubTest):
         # Create 2 themes.
         staticthemes = []
         for x in range(2):
-            addon = addon_factory(
-                type=amo.ADDON_STATICTHEME, users=[self.user_profile])
+            addon = addon_factory(type=amo.ADDON_STATICTHEME, users=[self.user_profile])
             VersionPreview.objects.create(version=addon.current_version)
             staticthemes.append(addon)
         response = self.client.get(self.themes_url)
@@ -146,26 +145,27 @@ class TestDashboard(HubTest):
         assert len(doc('.item .info.statictheme')) == 2
         for addon in staticthemes:
             assert addon.current_previews[0].thumbnail_url in [
-                img.attrib['src'] for img in doc('.info.statictheme h3 img')]
+                img.attrib['src'] for img in doc('.info.statictheme h3 img')
+            ]
 
     def test_show_hide_statistics_and_new_version_for_disabled(self):
         # Not disabled: show statistics and new version links.
         self.addon.update(disabled_by_user=False)
         links = self.get_action_links(self.addon.pk)
-        assert 'Statistics' in links, ('Unexpected: %r' % links)
-        assert 'New Version' in links, ('Unexpected: %r' % links)
+        assert 'Statistics' in links, 'Unexpected: %r' % links
+        assert 'New Version' in links, 'Unexpected: %r' % links
 
         # Disabled (user): hide statistics and new version links.
         self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
-        assert 'Statistics' not in links, ('Unexpected: %r' % links)
-        assert 'New Version' not in links, ('Unexpected: %r' % links)
+        assert 'Statistics' not in links, 'Unexpected: %r' % links
+        assert 'New Version' not in links, 'Unexpected: %r' % links
 
         # Disabled (admin): hide statistics and new version links.
         self.addon.update(disabled_by_user=False, status=amo.STATUS_DISABLED)
         links = self.get_action_links(self.addon.pk)
-        assert 'Statistics' not in links, ('Unexpected: %r' % links)
-        assert 'New Version' not in links, ('Unexpected: %r' % links)
+        assert 'Statistics' not in links, 'Unexpected: %r' % links
+        assert 'New Version' not in links, 'Unexpected: %r' % links
 
     def test_public_addon(self):
         assert self.addon.status == amo.STATUS_APPROVED
@@ -175,16 +175,18 @@ class TestDashboard(HubTest):
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert item.find('p.users'), 'Expected ADU'
         assert item.find('.item-details'), 'Expected item details'
-        assert not item.find('p.incomplete'), (
-            'Unexpected message about incomplete add-on')
+        assert not item.find(
+            'p.incomplete'
+        ), 'Unexpected message about incomplete add-on'
 
         appver = self.addon.current_version.apps.all()[0]
         appver.delete()
 
     def test_dev_news(self):
         for i in range(7):
-            bp = BlogPost(title='hi %s' % i,
-                          date_posted=datetime.now() - timedelta(days=i))
+            bp = BlogPost(
+                title='hi %s' % i, date_posted=datetime.now() - timedelta(days=i)
+            )
             bp.save()
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -200,8 +202,7 @@ class TestDashboard(HubTest):
         assert doc('.item-details').length == 1
         elm = doc('.item-details .date-created')
         assert elm.length == 1
-        assert elm.remove('strong').text() == (
-            format_date(self.addon.created))
+        assert elm.remove('strong').text() == (format_date(self.addon.created))
 
     def test_sort_updated_filter(self):
         response = self.client.get(self.url)
@@ -210,8 +211,8 @@ class TestDashboard(HubTest):
         elm = doc('.item-details .date-updated')
         assert elm.length == 1
         assert elm.remove('strong').text() == (
-            trim_whitespace(
-                format_date(self.addon.last_updated)))
+            trim_whitespace(format_date(self.addon.last_updated))
+        )
 
     def test_purely_unlisted_addon_are_not_shown_as_incomplete(self):
         self.make_addon_unlisted(self.addon)
@@ -229,8 +230,7 @@ class TestDashboard(HubTest):
 
     def test_mixed_versions_addon_with_incomplete_metadata(self):
         self.make_addon_unlisted(self.addon)
-        version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version = version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
         version.update(license=None)
         self.addon.reload()
         assert not self.addon.has_complete_metadata()
@@ -239,9 +239,11 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert doc('.incomplete').text() == (
             'This add-on is missing some required information before it can be'
-            ' submitted for publication.')
+            ' submitted for publication.'
+        )
         assert doc('form.resume').attr('action') == (
-            url_reverse('devhub.request-review', self.addon.slug))
+            url_reverse('devhub.request-review', self.addon.slug)
+        )
         assert doc('button.link').text() == 'Resume'
 
     def test_no_versions_addon(self):
@@ -249,8 +251,7 @@ class TestDashboard(HubTest):
 
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert doc('.incomplete').text() == (
-            "This add-on doesn't have any versions.")
+        assert doc('.incomplete').text() == ("This add-on doesn't have any versions.")
 
 
 class TestUpdateCompatibility(TestCase):
@@ -267,8 +268,7 @@ class TestUpdateCompatibility(TestCase):
         self.create_appversion('android', '4.0')
 
     def create_appversion(self, name, version):
-        return AppVersion.objects.create(
-            application=amo.APPS[name].id, version=version)
+        return AppVersion.objects.create(application=amo.APPS[name].id, version=version)
 
     def test_no_compat(self):
         self.client.logout()
@@ -278,11 +278,14 @@ class TestUpdateCompatibility(TestCase):
         assert not doc('.item[data-addonid="4594"] li.compat')
         addon = Addon.objects.get(pk=4594)
         response = self.client.get(
-            reverse('devhub.ajax.compat.update',
-                    args=[addon.slug, addon.current_version.id]))
+            reverse(
+                'devhub.ajax.compat.update', args=[addon.slug, addon.current_version.id]
+            )
+        )
         assert response.status_code == 404
         response = self.client.get(
-            reverse('devhub.ajax.compat.status', args=[addon.slug]))
+            reverse('devhub.ajax.compat.status', args=[addon.slug])
+        )
         assert response.status_code == 404
 
     def test_compat(self):
@@ -298,8 +301,9 @@ class TestUpdateCompatibility(TestCase):
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
         assert cu
 
-        update_url = reverse('devhub.ajax.compat.update',
-                             args=[addon.slug, addon.current_version.id])
+        update_url = reverse(
+            'devhub.ajax.compat.update', args=[addon.slug, addon.current_version.id]
+        )
         assert cu.attr('data-updateurl') == update_url
 
         status_url = reverse('devhub.ajax.compat.status', args=[addon.slug])
@@ -346,8 +350,9 @@ class TestDevRequired(TestCase):
     def test_anon(self):
         self.client.logout()
         self.assertLoginRedirects(self.client.get(self.get_url), self.get_url)
-        self.assertLoginRedirects(self.client.get(
-            self.edit_page_url), self.edit_page_url)
+        self.assertLoginRedirects(
+            self.client.get(self.edit_page_url), self.edit_page_url
+        )
 
     def test_dev_get(self):
         assert self.client.get(self.get_url).status_code == 200
@@ -378,14 +383,18 @@ class TestVersionStats(TestCase):
         version = addon.current_version
         user = UserProfile.objects.get(email='admin@mozilla.com')
         for _ in range(10):
-            Rating.objects.create(addon=addon, user=user,
-                                  version=addon.current_version)
+            Rating.objects.create(addon=addon, user=user, version=addon.current_version)
 
         url = reverse('devhub.versions.stats', args=[addon.slug])
         data = json.loads(force_text(self.client.get(url).content))
-        exp = {str(version.id):
-               {'reviews': 10, 'files': 1, 'version': version.version,
-                'id': version.id}}
+        exp = {
+            str(version.id): {
+                'reviews': 10,
+                'files': 1,
+                'version': version.version,
+                'id': version.id,
+            }
+        }
         self.assertDictEqual(data, exp)
 
 
@@ -402,47 +411,54 @@ class TestDelete(TestCase):
     def test_post_not(self):
         response = self.client.post(self.get_url(), follow=True)
         assert pq(response.content)('.notification-box').text() == (
-            'URL name was incorrect. Add-on was not deleted.')
+            'URL name was incorrect. Add-on was not deleted.'
+        )
         assert self.get_addon().exists()
         self.assert3xx(response, self.get_addon()[0].get_dev_url('versions'))
 
     def test_post(self):
         self.get_addon().get().update(slug='addon-slug')
-        response = self.client.post(self.get_url(), {'slug': 'addon-slug'},
-                                    follow=True)
-        assert pq(response.content)('.notification-box').text() == (
-            'Add-on deleted.')
+        response = self.client.post(self.get_url(), {'slug': 'addon-slug'}, follow=True)
+        assert pq(response.content)('.notification-box').text() == ('Add-on deleted.')
         assert not self.get_addon().exists()
         self.assert3xx(response, reverse('devhub.addons'))
 
     def test_post_wrong_slug(self):
         self.get_addon().get().update(slug='addon-slug')
-        response = self.client.post(self.get_url(), {'slug': 'theme-slug'},
-                                    follow=True)
+        response = self.client.post(self.get_url(), {'slug': 'theme-slug'}, follow=True)
         assert pq(response.content)('.notification-box').text() == (
-            'URL name was incorrect. Add-on was not deleted.')
+            'URL name was incorrect. Add-on was not deleted.'
+        )
         assert self.get_addon().exists()
         self.assert3xx(response, self.get_addon()[0].get_dev_url('versions'))
 
     def test_post_statictheme(self):
         theme = addon_factory(
-            name='xpi name', type=amo.ADDON_STATICTHEME, slug='stheme-slug',
-            users=[self.user])
+            name='xpi name',
+            type=amo.ADDON_STATICTHEME,
+            slug='stheme-slug',
+            users=[self.user],
+        )
         response = self.client.post(
-            theme.get_dev_url('delete'), {'slug': 'stheme-slug'}, follow=True)
-        assert pq(response.content)('.notification-box').text() == (
-            'Theme deleted.')
+            theme.get_dev_url('delete'), {'slug': 'stheme-slug'}, follow=True
+        )
+        assert pq(response.content)('.notification-box').text() == ('Theme deleted.')
         assert not Addon.objects.filter(id=theme.id).exists()
         self.assert3xx(response, reverse('devhub.themes'))
 
     def test_post_statictheme_wrong_slug(self):
         theme = addon_factory(
-            name='xpi name', type=amo.ADDON_STATICTHEME, slug='stheme-slug',
-            users=[self.user])
+            name='xpi name',
+            type=amo.ADDON_STATICTHEME,
+            slug='stheme-slug',
+            users=[self.user],
+        )
         response = self.client.post(
-            theme.get_dev_url('delete'), {'slug': 'foo-slug'}, follow=True)
+            theme.get_dev_url('delete'), {'slug': 'foo-slug'}, follow=True
+        )
         assert pq(response.content)('.notification-box').text() == (
-            'URL name was incorrect. Theme was not deleted.')
+            'URL name was incorrect. Theme was not deleted.'
+        )
         assert Addon.objects.filter(id=theme.id).exists()
         self.assert3xx(response, theme.get_dev_url('versions'))
 
@@ -491,15 +507,12 @@ class TestHome(TestCase):
 
     def test_my_addons(self):
         statuses = [
-            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-                'Awaiting Review'),
-            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
-                'Approved'),
-            (amo.STATUS_DISABLED, amo.STATUS_APPROVED,
-                'Disabled by Mozilla')]
+            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
+            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW, 'Approved'),
+            (amo.STATUS_DISABLED, amo.STATUS_APPROVED, 'Disabled by Mozilla'),
+        ]
 
-        latest_version = self.addon.find_latest_version(
-            amo.RELEASE_CHANNEL_LISTED)
+        latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
         latest_file = latest_version.files.all()[0]
 
         for addon_status, file_status, status_str in statuses:
@@ -509,36 +522,37 @@ class TestHome(TestCase):
             doc = self.get_pq()
             addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
             assert addon_item.length == 1
-            assert (
-                addon_item.find('.DevHub-MyAddons-item-edit').attr('href') ==
-                self.addon.get_dev_url('edit'))
+            assert addon_item.find('.DevHub-MyAddons-item-edit').attr(
+                'href'
+            ) == self.addon.get_dev_url('edit')
             if self.addon.type != amo.ADDON_STATICTHEME:
                 assert self.addon.get_icon_url(64) in addon_item.html()
             else:
                 assert self.addon.current_previews[0].thumbnail_url in (
-                    addon_item.html())
+                    addon_item.html()
+                )
 
             assert (
-                status_str ==
-                addon_item.find('.DevHub-MyAddons-VersionStatus').text())
+                status_str == addon_item.find('.DevHub-MyAddons-VersionStatus').text()
+            )
 
         Addon.objects.all().delete()
-        assert self.get_pq()(
-            '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
+        assert self.get_pq()('.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
     def test_my_addons_recommended(self):
         DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
-        latest_version = self.addon.find_latest_version(
-            amo.RELEASE_CHANNEL_LISTED)
+        latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
         latest_file = latest_version.files.all()[0]
         latest_version.update(recommendation_approved=True)
         statuses = [
-            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-                'Awaiting Review'),
-            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
-                'Approved and recommended'),
-            (amo.STATUS_DISABLED, amo.STATUS_APPROVED,
-                'Disabled by Mozilla')]
+            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
+            (
+                amo.STATUS_APPROVED,
+                amo.STATUS_AWAITING_REVIEW,
+                'Approved and recommended',
+            ),
+            (amo.STATUS_DISABLED, amo.STATUS_APPROVED, 'Disabled by Mozilla'),
+        ]
 
         for addon_status, file_status, status_str in statuses:
             latest_file.update(status=file_status)
@@ -547,22 +561,22 @@ class TestHome(TestCase):
             doc = self.get_pq()
             addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
             assert addon_item.length == 1
-            assert (
-                addon_item.find('.DevHub-MyAddons-item-edit').attr('href') ==
-                self.addon.get_dev_url('edit'))
+            assert addon_item.find('.DevHub-MyAddons-item-edit').attr(
+                'href'
+            ) == self.addon.get_dev_url('edit')
             if self.addon.type != amo.ADDON_STATICTHEME:
                 assert self.addon.get_icon_url(64) in addon_item.html()
             else:
                 assert self.addon.current_previews[0].thumbnail_url in (
-                    addon_item.html())
+                    addon_item.html()
+                )
 
             assert (
-                status_str ==
-                addon_item.find('.DevHub-MyAddons-VersionStatus').text())
+                status_str == addon_item.find('.DevHub-MyAddons-VersionStatus').text()
+            )
 
         Addon.objects.all().delete()
-        assert self.get_pq()(
-            '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
+        assert self.get_pq()('.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
     def test_my_addons_with_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
@@ -576,9 +590,9 @@ class TestHome(TestCase):
         doc = self.get_pq()
         addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
         assert addon_item.length == 1
-        assert (
-            addon_item.find('.DevHub-MyAddons-item-edit').attr('href') ==
-            self.addon.get_dev_url('edit'))
+        assert addon_item.find('.DevHub-MyAddons-item-edit').attr(
+            'href'
+        ) == self.addon.get_dev_url('edit')
 
     def test_my_addons_no_disabled_or_deleted(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
@@ -586,9 +600,7 @@ class TestHome(TestCase):
 
         addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
         assert addon_item.length == 1
-        assert (
-            addon_item.find('.DevHub-MyAddons-VersionStatus').text() ==
-            'Invisible')
+        assert addon_item.find('.DevHub-MyAddons-VersionStatus').text() == 'Invisible'
 
 
 class TestActivityFeed(TestCase):
@@ -599,8 +611,7 @@ class TestActivityFeed(TestCase):
         assert self.client.login(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.versions.first()
-        self.action_user = UserProfile.objects.get(
-            email='reviewer@mozilla.com')
+        self.action_user = UserProfile.objects.get(email='reviewer@mozilla.com')
 
     def test_feed_for_all(self):
         response = self.client.get(reverse('devhub.feed_all'))
@@ -609,23 +620,19 @@ class TestActivityFeed(TestCase):
         assert doc('header h2').text() == 'Recent Activity for My Add-ons'
 
     def test_feed_for_addon(self):
-        response = self.client.get(
-            reverse('devhub.feed', args=[self.addon.slug]))
+        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('header h2').text() == (
-            'Recent Activity for %s' % self.addon.name)
+        assert doc('header h2').text() == ('Recent Activity for %s' % self.addon.name)
 
     def test_feed_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        response = self.client.get(
-            reverse('devhub.feed', args=[self.addon.slug]))
+        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         assert response.status_code == 200
 
     def test_feed_disabled_anon(self):
         self.client.logout()
-        response = self.client.get(
-            reverse('devhub.feed', args=[self.addon.slug]))
+        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         assert response.status_code == 302
 
     def add_log(self, action=amo.LOG.ADD_RATING):
@@ -685,8 +692,7 @@ class TestActivityFeed(TestCase):
     def test_reviewer_name_is_used_for_reviewer_actions(self):
         self.action_user.update(display_name='HîdeMe', reviewer_name='ShöwMe')
         self.add_log(action=amo.LOG.APPROVE_VERSION)
-        response = self.client.get(
-            reverse('devhub.feed', args=[self.addon.slug]))
+        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(response.content)
         assert len(doc('#recent-activity .item')) == 1
 
@@ -698,8 +704,7 @@ class TestActivityFeed(TestCase):
         # Fields are inverted compared to the test above.
         self.action_user.update(reviewer_name='HîdeMe', display_name='ShöwMe')
         self.add_log(action=amo.LOG.ADD_RATING)  # not a reviewer action.
-        response = self.client.get(
-            reverse('devhub.feed', args=[self.addon.slug]))
+        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(response.content)
         assert len(doc('#recent-activity .item')) == 1
 
@@ -768,10 +773,10 @@ class TestAPIAgreement(TestCase):
 
     def test_agreement_submit_success(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.post(reverse('devhub.api_key_agreement'), data={
-            'distribution_agreement': 'on',
-            'review_policy': 'on',
-        })
+        response = self.client.post(
+            reverse('devhub.api_key_agreement'),
+            data={'distribution_agreement': 'on', 'review_policy': 'on',},
+        )
         assert response.status_code == 302
         assert response['Location'] == reverse('devhub.api_key')
         self.user.reload()
@@ -791,22 +796,24 @@ class TestAPIAgreement(TestCase):
     @override_switch('developer-agreement-captcha', active=True)
     def test_agreement_submit_captcha_active_success(self):
         self.user.update(read_dev_agreement=None)
-        verify_data = urlencode({
-            'secret': '',
-            'remoteip': '127.0.0.1',
-            'response': 'test',
-        })
+        verify_data = urlencode(
+            {'secret': '', 'remoteip': '127.0.0.1', 'response': 'test',}
+        )
 
         responses.add(
             responses.GET,
             'https://www.google.com/recaptcha/api/siteverify?' + verify_data,
-            json={'error-codes': [], 'success': True})
+            json={'error-codes': [], 'success': True},
+        )
 
-        response = self.client.post(reverse('devhub.api_key_agreement'), data={
-            'g-recaptcha-response': 'test',
-            'distribution_agreement': 'on',
-            'review_policy': 'on',
-        })
+        response = self.client.post(
+            reverse('devhub.api_key_agreement'),
+            data={
+                'g-recaptcha-response': 'test',
+                'distribution_agreement': 'on',
+                'review_policy': 'on',
+            },
+        )
 
         assert response.status_code == 302
         assert response['Location'] == reverse('devhub.api_key')
@@ -815,23 +822,20 @@ class TestAPIAgreement(TestCase):
 
     def test_agreement_read_but_too_long_ago(self):
         set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
-        before_agreement_last_changed = (datetime(2018, 1, 1, 12, 0) -
-                                         timedelta(days=1))
+        before_agreement_last_changed = datetime(2018, 1, 1, 12, 0) - timedelta(days=1)
         self.user.update(read_dev_agreement=before_agreement_last_changed)
         response = self.client.get(reverse('devhub.api_key_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
-    @mock.patch(
-        'olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
-    def test_cant_submit_agreement_if_restricted(
-            self, is_submission_allowed_mock):
+    @mock.patch('olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    def test_cant_submit_agreement_if_restricted(self, is_submission_allowed_mock):
         is_submission_allowed_mock.return_value = False
         self.user.update(read_dev_agreement=None)
-        response = self.client.post(reverse('devhub.api_key_agreement'), data={
-            'distribution_agreement': 'on',
-            'review_policy': 'on',
-        })
+        response = self.client.post(
+            reverse('devhub.api_key_agreement'),
+            data={'distribution_agreement': 'on', 'review_policy': 'on',},
+        )
         assert response.status_code == 200
         assert response.context['agreement_form'].is_valid() is False
         self.user.reload()
@@ -840,7 +844,8 @@ class TestAPIAgreement(TestCase):
         # First call is from the form, and it's not checking the agreement,
         # it's just to see if the user is restricted.
         assert is_submission_allowed_mock.call_args_list[0] == (
-            (), {'check_dev_agreement': False}
+            (),
+            {'check_dev_agreement': False},
         )
         # Second call is from the view itself, no arguments
         assert is_submission_allowed_mock.call_args_list[1] == ((), {})
@@ -850,10 +855,10 @@ class TestAPIAgreement(TestCase):
         # picking a single restriction and making sure it's working properly.
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         self.user.update(read_dev_agreement=None)
-        response = self.client.post(reverse('devhub.api_key_agreement'), data={
-            'distribution_agreement': 'on',
-            'review_policy': 'on',
-        })
+        response = self.client.post(
+            reverse('devhub.api_key_agreement'),
+            data={'distribution_agreement': 'on', 'review_policy': 'on',},
+        )
         assert response.status_code == 200
         assert response.context['agreement_form'].is_valid() is False
         doc = pq(response.content)
@@ -863,10 +868,8 @@ class TestAPIAgreement(TestCase):
             'More information on Developer Accounts'
         )
 
-    @mock.patch(
-        'olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
-    def test_agreement_page_shown_if_restricted(
-            self, is_submission_allowed_mock):
+    @mock.patch('olympia.devhub.utils.UploadRestrictionChecker.is_submission_allowed')
+    def test_agreement_page_shown_if_restricted(self, is_submission_allowed_mock):
         # Like test_agreement_read() above, but with a restricted user: they
         # are shown the agreement page again instead of redirecting to the
         # api keys page.
@@ -908,10 +911,12 @@ class TestAPIKeyPage(TestCase):
         assert not doc('input[name=confirmation_token]')
 
     def test_view_with_credentials(self):
-        APIKey.objects.create(user=self.user,
-                              type=SYMMETRIC_JWT_TYPE,
-                              key='some-jwt-key',
-                              secret='some-jwt-secret')
+        APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='some-jwt-key',
+            secret='some-jwt-secret',
+        )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -923,7 +928,8 @@ class TestAPIKeyPage(TestCase):
 
     def test_view_without_credentials_confirmation_requested_no_token(self):
         APIKeyConfirmation.objects.create(
-            user=self.user, token='doesnt matter', confirmed_once=False)
+            user=self.user, token='doesnt matter', confirmed_once=False
+        )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -935,7 +941,8 @@ class TestAPIKeyPage(TestCase):
 
     def test_view_without_credentials_confirmation_requested_with_token(self):
         APIKeyConfirmation.objects.create(
-            user=self.user, token='secrettoken', confirmed_once=False)
+            user=self.user, token='secrettoken', confirmed_once=False
+        )
         self.url += '?token=secrettoken'
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -948,7 +955,8 @@ class TestAPIKeyPage(TestCase):
 
     def test_view_no_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
-            user=self.user, token='doesnt matter', confirmed_once=True)
+            user=self.user, token='doesnt matter', confirmed_once=True
+        )
         # Should look similar to when there are no credentials and no
         # confirmation has been requested yet, the post action is where it
         # will differ.
@@ -956,7 +964,8 @@ class TestAPIKeyPage(TestCase):
 
     def test_create_new_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
-            user=self.user, token='doesnt matter', confirmed_once=True)
+            user=self.user, token='doesnt matter', confirmed_once=True
+        )
         patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
         with patch as mock_creator:
             response = self.client.post(self.url, data={'action': 'generate'})
@@ -972,12 +981,14 @@ class TestAPIKeyPage(TestCase):
 
     def test_create_new_credentials_confirming_with_token(self):
         confirmation = APIKeyConfirmation.objects.create(
-            user=self.user, token='secrettoken', confirmed_once=False)
+            user=self.user, token='secrettoken', confirmed_once=False
+        )
         patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
         with patch as mock_creator:
-            response = self.client.post(self.url, data={
-                'action': 'generate', 'confirmation_token': 'secrettoken'
-            })
+            response = self.client.post(
+                self.url,
+                data={'action': 'generate', 'confirmation_token': 'secrettoken'},
+            )
         mock_creator.assert_called_with(self.user)
 
         assert len(mail.outbox) == 1
@@ -1017,7 +1028,8 @@ class TestAPIKeyPage(TestCase):
 
     def test_create_new_credentials_confirmation_exists_no_token_passed(self):
         confirmation = APIKeyConfirmation.objects.create(
-            user=self.user, token='doesnt matter', confirmed_once=False)
+            user=self.user, token='doesnt matter', confirmed_once=False
+        )
         response = self.client.post(self.url, data={'action': 'generate'})
         assert len(mail.outbox) == 0
         assert not APIKey.objects.filter(user=self.user).exists()
@@ -1027,10 +1039,11 @@ class TestAPIKeyPage(TestCase):
 
     def test_create_new_credentials_confirmation_exists_token_is_wrong(self):
         confirmation = APIKeyConfirmation.objects.create(
-            user=self.user, token='sometoken', confirmed_once=False)
-        response = self.client.post(self.url, data={
-            'action': 'generate', 'confirmation_token': 'wrong'
-        })
+            user=self.user, token='sometoken', confirmed_once=False
+        )
+        response = self.client.post(
+            self.url, data={'action': 'generate', 'confirmation_token': 'wrong'}
+        )
         # Nothing should have happened, the user will just be redirect to the
         # page.
         assert len(mail.outbox) == 0
@@ -1041,11 +1054,14 @@ class TestAPIKeyPage(TestCase):
 
     def test_delete_and_recreate_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
-            user=self.user, token='doesnt matter', confirmed_once=True)
-        old_key = APIKey.objects.create(user=self.user,
-                                        type=SYMMETRIC_JWT_TYPE,
-                                        key='some-jwt-key',
-                                        secret='some-jwt-secret')
+            user=self.user, token='doesnt matter', confirmed_once=True
+        )
+        old_key = APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='some-jwt-key',
+            secret='some-jwt-secret',
+        )
         response = self.client.post(self.url, data={'action': 'generate'})
         self.assert3xx(response, self.url)
 
@@ -1057,10 +1073,12 @@ class TestAPIKeyPage(TestCase):
         assert new_key.secret != old_key.secret
 
     def test_delete_and_recreate_credentials_has_not_been_confirmed_yet(self):
-        old_key = APIKey.objects.create(user=self.user,
-                                        type=SYMMETRIC_JWT_TYPE,
-                                        key='some-jwt-key',
-                                        secret='some-jwt-secret')
+        old_key = APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='some-jwt-key',
+            secret='some-jwt-secret',
+        )
         response = self.client.post(self.url, data={'action': 'generate'})
         self.assert3xx(response, self.url)
 
@@ -1075,8 +1093,7 @@ class TestAPIKeyPage(TestCase):
         assert 'revoked' in mail.outbox[0].body
         message = mail.outbox[1]
         assert message.to == [self.user.email]
-        assert not APIKey.objects.filter(
-            user=self.user, is_active=True).exists()
+        assert not APIKey.objects.filter(user=self.user, is_active=True).exists()
         assert APIKeyConfirmation.objects.filter(user=self.user).exists()
         confirmation = APIKeyConfirmation.objects.filter(user=self.user).get()
         assert confirmation.token
@@ -1089,10 +1106,12 @@ class TestAPIKeyPage(TestCase):
         assert expected_url in message.body
 
     def test_delete_credentials(self):
-        old_key = APIKey.objects.create(user=self.user,
-                                        type=SYMMETRIC_JWT_TYPE,
-                                        key='some-jwt-key',
-                                        secret='some-jwt-secret')
+        old_key = APIKey.objects.create(
+            user=self.user,
+            type=SYMMETRIC_JWT_TYPE,
+            key='some-jwt-key',
+            secret='some-jwt-secret',
+        )
         response = self.client.post(self.url, data={'action': 'revoke'})
         self.assert3xx(response, self.url)
 
@@ -1151,7 +1170,8 @@ class TestUpload(BaseUploadTest):
         assert msg['type'] == u'error'
         assert msg['message'] == (
             u'Unsupported file type, please upload a supported file '
-            '(.crx, .xpi, .xml, .zip).')
+            '(.crx, .xpi, .xml, .zip).'
+        )
         assert not msg['description']
 
     def test_redirect(self):
@@ -1184,7 +1204,7 @@ class TestUploadDetail(BaseUploadTest):
             '51.0a1',
             amo.DEFAULT_WEBEXT_MIN_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-            amo.DEFAULT_WEBEXT_MAX_VERSION
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
             cls.create_appversion('firefox', version)
@@ -1197,7 +1217,8 @@ class TestUploadDetail(BaseUploadTest):
     @classmethod
     def create_appversion(cls, application_name, version):
         return AppVersion.objects.create(
-            application=amo.APPS[application_name].id, version=version)
+            application=amo.APPS[application_name].id, version=version
+        )
 
     def post(self):
         # Has to be a binary, non xpi file.
@@ -1213,30 +1234,34 @@ class TestUploadDetail(BaseUploadTest):
             'message_tree': {},
             'messages': [],
             'rejected': False,
-            'metadata': {}}
+            'metadata': {},
+        }
 
     def upload_file(self, file, url='devhub.upload'):
         addon = os.path.join(
-            settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file)
+            settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file
+        )
         with open(addon, 'rb') as f:
-            response = self.client.post(
-                reverse(url), {'upload': f})
+            response = self.client.post(reverse(url), {'upload': f})
         assert response.status_code == 302
 
     def test_detail_json(self):
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                   args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
         assert data['validation']['errors'] == 1
         assert data['url'] == (
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         assert data['full_report_url'] == (
-            reverse('devhub.upload_detail', args=[upload.uuid.hex]))
+            reverse('devhub.upload_detail', args=[upload.uuid.hex])
+        )
 
         # We must have tiers
         assert len(data['validation']['messages'])
@@ -1250,29 +1275,33 @@ class TestUploadDetail(BaseUploadTest):
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_version',
-                                           args=[addon.slug, upload.uuid.hex]))
+        response = self.client.get(
+            reverse(
+                'devhub.upload_detail_for_version', args=[addon.slug, upload.uuid.hex]
+            )
+        )
         assert response.status_code == 200
 
     def test_upload_detail_for_version_not_an_uuid(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory()
         addon.addonuser_set.create(user=user)
-        url = reverse(
-            'devhub.upload_detail_for_version', args=[addon.slug, 'garbage'])
+        url = reverse('devhub.upload_detail_for_version', args=[addon.slug, 'garbage'])
         response = self.client.get(url)
         assert response.status_code == 404
 
     def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        addon = addon_factory(
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon = addon_factory(version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         addon.addonuser_set.create(user=user)
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_version',
-                                           args=[addon.slug, upload.uuid.hex]))
+        response = self.client.get(
+            reverse(
+                'devhub.upload_detail_for_version', args=[addon.slug, upload.uuid.hex]
+            )
+        )
         assert response.status_code == 200
 
     def test_upload_detail_for_version_deleted(self):
@@ -1283,24 +1312,26 @@ class TestUploadDetail(BaseUploadTest):
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_version',
-                                           args=[addon.slug, upload.uuid.hex]))
+        response = self.client.get(
+            reverse(
+                'devhub.upload_detail_for_version', args=[addon.slug, upload.uuid.hex]
+            )
+        )
         assert response.status_code == 404
 
     def test_detail_view(self):
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
         response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex]))
+            reverse('devhub.upload_detail', args=[upload.uuid.hex])
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         expected = 'Validation Results for animated.png'
         assert doc('header h2').text() == expected
 
         suite = doc('#addon-validator-suite')
-        expected = reverse(
-            'devhub.standalone_upload_detail',
-            args=[upload.uuid.hex])
+        expected = reverse('devhub.standalone_upload_detail', args=[upload.uuid.hex])
         assert suite.attr('data-validateurl') == expected
 
     def test_not_an_uuid_standalon_upload_detail(self):
@@ -1318,10 +1349,13 @@ class TestUploadDetail(BaseUploadTest):
         self.upload_file('valid_webextension_no_version.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
-        message = [(m['message'], m.get('type') == 'error')
-                   for m in data['validation']['messages']]
+        message = [
+            (m['message'], m.get('type') == 'error')
+            for m in data['validation']['messages']
+        ]
         expected = [(u'&#34;/version&#34; is a required property', True)]
         assert message == expected
 
@@ -1336,10 +1370,13 @@ class TestUploadDetail(BaseUploadTest):
         assert not run_addons_linter_mock.called
         upload = FileUpload.objects.get()
         response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
-        message = [(m['message'], m.get('fatal', False))
-                   for m in data['validation']['messages']]
+        message = [
+            (m['message'], m.get('fatal', False))
+            for m in data['validation']['messages']
+        ]
         # We do raise a specific error message explaining that the archive is
         # not valid instead of a generic exception.
         assert message == [
@@ -1353,10 +1390,12 @@ class TestUploadDetail(BaseUploadTest):
         self.grant_permission(user, 'Experiments:submit')
         mock_validator.return_value = json.dumps(self.validation_ok())
         self.upload_file(
-            '../../../files/fixtures/files/experiment_inside_webextension.xpi')
+            '../../../files/fixtures/files/experiment_inside_webextension.xpi'
+        )
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
@@ -1364,25 +1403,32 @@ class TestUploadDetail(BaseUploadTest):
     def test_experiment_xpi_not_allowed(self, mock_validator):
         mock_validator.return_value = json.dumps(self.validation_ok())
         self.upload_file(
-            '../../../files/fixtures/files/experiment_inside_webextension.xpi')
+            '../../../files/fixtures/files/experiment_inside_webextension.xpi'
+        )
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
-            {u'tier': 1, u'message': u'You cannot submit this type of add-on',
-             u'fatal': True, u'type': u'error'}]
+            {
+                u'tier': 1,
+                u'message': u'You cannot submit this type of add-on',
+                u'fatal': True,
+                u'type': u'error',
+            }
+        ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_allowed(self, mock_validator):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
         mock_validator.return_value = json.dumps(self.validation_ok())
-        self.upload_file(
-            '../../../files/fixtures/files/mozilla_guid.xpi')
+        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
@@ -1391,18 +1437,22 @@ class TestUploadDetail(BaseUploadTest):
         user_factory(email='bluepanda@notzilla.com')
         assert self.client.login(email='bluepanda@notzilla.com')
         mock_validator.return_value = json.dumps(self.validation_ok())
-        self.upload_file(
-            '../../../files/fixtures/files/mozilla_guid.xpi')
+        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
-            {u'tier': 1,
-             u'message': u'You cannot submit an add-on with a guid ending '
-                         u'"@mozilla.org" or "@shield.mozilla.org" or '
-                         u'"@pioneer.mozilla.org" or "@mozilla.com"',
-             u'fatal': True, u'type': u'error'}]
+            {
+                u'tier': 1,
+                u'message': u'You cannot submit an add-on with a guid ending '
+                u'"@mozilla.org" or "@shield.mozilla.org" or '
+                u'"@pioneer.mozilla.org" or "@mozilla.com"',
+                u'fatal': True,
+                u'type': u'error',
+            }
+        ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
@@ -1412,10 +1462,12 @@ class TestUploadDetail(BaseUploadTest):
         mock_validator.return_value = json.dumps(self.validation_ok())
         mock_get_signature.return_value = "Mozilla Extensions"
         self.upload_file(
-            '../../../files/fixtures/files/webextension_signed_already.xpi')
+            '../../../files/fixtures/files/webextension_signed_already.xpi'
+        )
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
@@ -1425,15 +1477,21 @@ class TestUploadDetail(BaseUploadTest):
         assert self.client.login(email='bluepanda@notzilla.com')
         mock_get_signature.return_value = 'Mozilla Extensions'
         self.upload_file(
-            '../../../files/fixtures/files/webextension_signed_already.xpi')
+            '../../../files/fixtures/files/webextension_signed_already.xpi'
+        )
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
-            {u'tier': 1,
-             u'message': u'You cannot submit a Mozilla Signed Extension',
-             u'fatal': True, u'type': u'error'}]
+            {
+                u'tier': 1,
+                u'message': u'You cannot submit a Mozilla Signed Extension',
+                u'fatal': True,
+                u'type': u'error',
+            }
+        ]
 
     def test_legacy_mozilla_signed_fx57_compat_allowed(self):
         """Legacy add-ons that are signed with the mozilla certificate
@@ -1448,22 +1506,31 @@ class TestUploadDetail(BaseUploadTest):
         """
         user_factory(email='verypinkpanda@mozilla.com')
         assert self.client.login(email='verypinkpanda@mozilla.com')
-        self.upload_file(os.path.join(
-            settings.ROOT, 'src', 'olympia', 'files', 'fixtures', 'files',
-            'legacy-addon-already-signed-0.1.0.xpi'))
+        self.upload_file(
+            os.path.join(
+                settings.ROOT,
+                'src',
+                'olympia',
+                'files',
+                'fixtures',
+                'files',
+                'legacy-addon-already-signed-0.1.0.xpi',
+            )
+        )
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
 
         msg = data['validation']['messages'][0]
 
-        assert msg['id'] == [
-            'validation', 'messages', 'legacy_addons_unsupported']
+        assert msg['id'] == ['validation', 'messages', 'legacy_addons_unsupported']
         assert msg['type'] == 'warning'
         assert msg['message'] == (
-            u'Legacy extensions are no longer supported in Firefox.')
+            u'Legacy extensions are no longer supported in Firefox.'
+        )
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_update_allowed(self, mock_validator):
@@ -1473,23 +1540,27 @@ class TestUploadDetail(BaseUploadTest):
         AddonUser.objects.create(addon=addon, user=user)
         assert self.client.login(email='pinkpanda@notzilla.com')
         mock_validator.return_value = json.dumps(self.validation_ok())
-        self.upload_file(
-            '../../../files/fixtures/files/mozilla_guid.xpi')
+        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_version',
-                                           args=[addon.slug, upload.uuid.hex]))
+        response = self.client.get(
+            reverse(
+                'devhub.upload_detail_for_version', args=[addon.slug, upload.uuid.hex]
+            )
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
     def test_legacy_langpacks_disallowed(self):
-        self.upload_file(
-            '../../../files/fixtures/files/langpack.xpi')
+        self.upload_file('../../../files/fixtures/files/langpack.xpi')
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'][0]['id'] == [
-            u'validation', u'messages', u'legacy_addons_unsupported'
+            u'validation',
+            u'messages',
+            u'legacy_addons_unsupported',
         ]
 
     def test_no_redirect_for_metadata(self):
@@ -1500,8 +1571,11 @@ class TestUploadDetail(BaseUploadTest):
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_version',
-                                           args=[addon.slug, upload.uuid.hex]))
+        response = self.client.get(
+            reverse(
+                'devhub.upload_detail_for_version', args=[addon.slug, upload.uuid.hex]
+            )
+        )
         assert response.status_code == 200
 
 
@@ -1532,47 +1606,54 @@ class TestQueuePosition(TestCase):
         self.addon.update(guid='guid@xpi')
         assert self.client.login(email='del@icio.us')
 
-        self.edit_url = reverse('devhub.versions.edit',
-                                args=[self.addon.slug, self.version.id])
+        self.edit_url = reverse(
+            'devhub.versions.edit', args=[self.addon.slug, self.version.id]
+        )
         version_files = self.version.files.all()[0]
         version_files.platform = amo.PLATFORM_LINUX.id
         version_files.save()
 
         # Add a second one also awaiting review in each queue
         addon_factory(
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
         version_factory(
-            addon=addon_factory(),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
         # And some static themes that shouldn't be counted
         addon_factory(
-            status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         version_factory(
             addon=addon_factory(type=amo.ADDON_STATICTHEME),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         addon_factory(
-            status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         version_factory(
             addon=addon_factory(type=amo.ADDON_STATICTHEME),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
 
     def test_not_in_queue(self):
         response = self.client.get(self.addon.get_dev_url('versions'))
 
         assert self.addon.status == amo.STATUS_APPROVED
-        assert (
-            pq(response.content)('.version-status-actions .dark').length == 0)
+        assert pq(response.content)('.version-status-actions .dark').length == 0
 
     def test_in_queue(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
-                    (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)]
+        statuses = [
+            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW),
+        ]
 
         for (addon_status, file_status) in statuses:
-            latest_version = self.addon.find_latest_version(
-                amo.RELEASE_CHANNEL_LISTED)
+            latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
             latest_version.files.all()[0].update(status=file_status)
             self.addon.update(status=addon_status)
 
@@ -1585,14 +1666,15 @@ class TestQueuePosition(TestCase):
             assert "Queue Position: 1 of 2" in span.text()
 
     def test_static_themes_in_queue(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
-                    (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)]
+        statuses = [
+            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW),
+        ]
 
         self.addon.update(type=amo.ADDON_STATICTHEME)
 
         for (addon_status, file_status) in statuses:
-            latest_version = self.addon.find_latest_version(
-                amo.RELEASE_CHANNEL_LISTED)
+            latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
             latest_version.files.all()[0].update(status=file_status)
             self.addon.update(status=addon_status)
 
@@ -1617,8 +1699,7 @@ class TestVersionXSS(TestCase):
         # Can't use a "/" to close the tag, as we're doing a get_url_path on
         # it, which uses addons.versions, which consumes up to the first "/"
         # encountered.
-        self.version.update(
-            version='<script>alert("Happy XSS-Xmas");<script>')
+        self.version.update(version='<script>alert("Happy XSS-Xmas");<script>')
         response = self.client.get(reverse('devhub.addons'))
         assert response.status_code == 200
         assert b'<script>alert' not in response.content
@@ -1638,7 +1719,8 @@ class TestDeleteAddon(TestCase):
         response = self.client.post(self.url, {'slug': 'nope'})
         self.assert3xx(response, self.addon.get_dev_url('versions'))
         assert response.context['title'] == (
-            'URL name was incorrect. Add-on was not deleted.')
+            'URL name was incorrect. Add-on was not deleted.'
+        )
         assert Addon.objects.count() == 1
 
     def test_success(self):
@@ -1655,10 +1737,10 @@ class TestRequestReview(TestCase):
         super(TestRequestReview, self).setUp()
         self.addon = addon_factory()
         self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED
+        )
         self.redirect_url = self.addon.get_dev_url('versions')
-        self.public_url = reverse('devhub.request-review',
-                                  args=[self.addon.slug])
+        self.public_url = reverse('devhub.request-review', args=[self.addon.slug])
         assert self.client.login(email='admin@mozilla.com')
 
     def get_addon(self):
@@ -1690,7 +1772,8 @@ class TestRequestReview(TestCase):
         self.assert3xx(response, self.redirect_url)
         assert self.get_addon().status == amo.STATUS_NOMINATED
         assert self.get_version().nomination.timetuple()[0:5] != (
-            orig_date.timetuple()[0:5])
+            orig_date.timetuple()[0:5]
+        )
 
 
 class TestRedirects(TestCase):
@@ -1706,31 +1789,26 @@ class TestRedirects(TestCase):
     def test_edit(self):
         url = self.base + 'addon/edit/3615'
         response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, reverse('devhub.addons.edit', args=['a3615']), 301)
+        self.assert3xx(response, reverse('devhub.addons.edit', args=['a3615']), 301)
 
         url = self.base + 'addon/edit/3615/'
         response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, reverse('devhub.addons.edit', args=['a3615']), 301)
+        self.assert3xx(response, reverse('devhub.addons.edit', args=['a3615']), 301)
 
     def test_status(self):
         url = self.base + 'addon/status/3615'
         response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, reverse('devhub.addons.versions', args=['a3615']), 301)
+        self.assert3xx(response, reverse('devhub.addons.versions', args=['a3615']), 301)
 
     def test_versions(self):
         url = self.base + 'versions/3615'
         response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, reverse('devhub.addons.versions', args=['a3615']), 301)
+        self.assert3xx(response, reverse('devhub.addons.versions', args=['a3615']), 301)
 
     def test_lwt_submit_redirects_to_addon_submit(self):
         url = reverse('devhub.themes.submit')
         response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, reverse('devhub.submit.distribution'), 302)
+        self.assert3xx(response, reverse('devhub.submit.distribution'), 302)
 
 
 class TestHasCompleteMetadataRedirects(TestCase):
@@ -1748,8 +1826,7 @@ class TestHasCompleteMetadataRedirects(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(status=amo.STATUS_NULL)
         self.addon = Addon.objects.get(id=3615)
-        assert self.addon.has_complete_metadata(), (
-            self.addon.get_required_metadata())
+        assert self.addon.has_complete_metadata(), self.addon.get_required_metadata()
         assert not self.addon.should_redirect_to_submit_flow()
         # We need to be logged in for any redirection into real views.
         assert self.client.login(email='admin@mozilla.com')
@@ -1759,8 +1836,7 @@ class TestHasCompleteMetadataRedirects(TestCase):
         response = func(self.request, addon_id='a3615')
         assert not self.f.called
         assert response.status_code == 302
-        assert response['Location'] == (
-            '/en-US/developers/addon/a3615/submit/details')
+        assert response['Location'] == ('/en-US/developers/addon/a3615/submit/details')
         # Check the redirection doesn't redirect also.
         redirection = self.client.get(response['Location'])
         assert redirection.status_code == 200
@@ -1786,20 +1862,19 @@ class TestHasCompleteMetadataRedirects(TestCase):
 
 
 class TestDocs(TestCase):
-
     def test_doc_urls(self):
         assert '/en-US/developers/docs/' == reverse('devhub.docs', args=[])
-        assert '/en-US/developers/docs/te' == reverse(
-            'devhub.docs', args=['te'])
-        assert '/en-US/developers/docs/te/st', reverse(
-            'devhub.docs', args=['te/st'])
+        assert '/en-US/developers/docs/te' == reverse('devhub.docs', args=['te'])
+        assert '/en-US/developers/docs/te/st', reverse('devhub.docs', args=['te/st'])
 
-        urls = [(reverse('devhub.docs', args=["getting-started"]), 301),
-                (reverse('devhub.docs', args=["how-to"]), 301),
-                (reverse('devhub.docs', args=["how-to/other-addons"]), 301),
-                (reverse('devhub.docs', args=["fake-page"]), 404),
-                (reverse('devhub.docs', args=["how-to/fake-page"]), 404),
-                (reverse('devhub.docs'), 301)]
+        urls = [
+            (reverse('devhub.docs', args=["getting-started"]), 301),
+            (reverse('devhub.docs', args=["how-to"]), 301),
+            (reverse('devhub.docs', args=["how-to/other-addons"]), 301),
+            (reverse('devhub.docs', args=["fake-page"]), 404),
+            (reverse('devhub.docs', args=["how-to/fake-page"]), 404),
+            (reverse('devhub.docs'), 301),
+        ]
 
         index = reverse('devhub.index')
 
@@ -1828,15 +1903,15 @@ class TestRemoveLocale(TestCase):
         self.addon.name = {'en-US': 'woo', 'el': 'yeah'}
         self.addon.save()
         self.addon.remove_locale('el')
-        qs = (Translation.objects.filter(localized_string__isnull=False)
-              .values_list('locale', flat=True))
+        qs = Translation.objects.filter(localized_string__isnull=False).values_list(
+            'locale', flat=True
+        )
         response = self.client.post(self.url, {'locale': 'el'})
         assert response.status_code == 200
         assert sorted(qs.filter(id=self.addon.name_id)) == ['en-US']
 
     def test_delete_default_locale(self):
-        response = self.client.post(
-            self.url, {'locale': self.addon.default_locale})
+        response = self.client.post(self.url, {'locale': self.addon.default_locale})
         assert response.status_code == 400
 
     def test_remove_version_locale(self):
@@ -1845,15 +1920,15 @@ class TestRemoveLocale(TestCase):
         version.save()
 
         self.client.post(self.url, {'locale': 'fr'})
-        res = self.client.get(reverse('devhub.versions.edit',
-                                      args=[self.addon.slug, version.pk]))
+        res = self.client.get(
+            reverse('devhub.versions.edit', args=[self.addon.slug, version.pk])
+        )
         doc = pq(res.content)
         # There's 2 fields, one for en-us, one for init.
         assert len(doc('div.trans textarea')) == 2
 
 
 class TestXssOnAddonName(amo.tests.TestXss):
-
     def test_devhub_feed_page(self):
         url = reverse('devhub.feed', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
@@ -1863,8 +1938,10 @@ class TestXssOnAddonName(amo.tests.TestXss):
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_edit_page(self):
-        url = reverse('devhub.versions.edit', args=[self.addon.slug,
-                      self.addon.current_version.id])
+        url = reverse(
+            'devhub.versions.edit',
+            args=[self.addon.slug, self.addon.current_version.id],
+        )
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_list_page(self):
@@ -1885,8 +1962,9 @@ def test_get_next_version_number():
     addon.current_version.save()
     assert get_next_version_number(addon) == '35.0'
     # "Take" 35.0
-    version_factory(addon=addon, version='35.0',
-                    file_kw={'status': amo.STATUS_DISABLED})
+    version_factory(
+        addon=addon, version='35.0', file_kw={'status': amo.STATUS_DISABLED}
+    )
     assert get_next_version_number(addon) == '36.0'
     # And 36.0, even though it's deleted.
     version_factory(addon=addon, version='36.0').delete()
@@ -1895,14 +1973,14 @@ def test_get_next_version_number():
 
 
 class TestThemeBackgroundImage(TestCase):
-
     def setUp(self):
         user = user_factory(email='regular@mozilla.com')
         assert self.client.login(email='regular@mozilla.com')
         self.addon = addon_factory(users=[user])
         self.url = reverse(
             'devhub.submit.version.previous_background',
-            args=[self.addon.slug, 'listed'])
+            args=[self.addon.slug, 'listed'],
+        )
 
     def test_wrong_user(self):
         user_factory(email='irregular@mozilla.com')
@@ -1919,7 +1997,8 @@ class TestThemeBackgroundImage(TestCase):
     def test_header_image(self):
         destination = self.addon.current_version.all_files[0].current_file_path
         zip_file = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
+        )
         copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
@@ -1931,17 +2010,12 @@ class TestThemeBackgroundImage(TestCase):
 
 
 class TestLogout(UserViewBase):
-
     def test_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(reverse('devhub.index'), follow=True)
-        assert (
-            pq(response.content)('li a.avatar').attr('href') == (
-                user.get_url_path()))
-        assert (
-            pq(response.content)('li a.avatar img').attr('src') == (
-                user.picture_url))
+        assert pq(response.content)('li a.avatar').attr('href') == (user.get_url_path())
+        assert pq(response.content)('li a.avatar img').attr('src') == (user.picture_url)
 
         response = self.client.get('/en-US/developers/logout', follow=False)
         self.assert3xx(response, '/en-US/firefox/', status_code=302)
@@ -1952,13 +2026,15 @@ class TestLogout(UserViewBase):
         self.client.login(email='jbalogh@mozilla.com')
         self.client.get(reverse('devhub.index'), follow=True)
         url = '/en-US/about'
-        response = self.client.get(urlparams(reverse('devhub.logout'), to=url),
-                                   follow=True)
+        response = self.client.get(
+            urlparams(reverse('devhub.logout'), to=url), follow=True
+        )
         self.assert3xx(response, url, status_code=302)
 
         # Test an invalid domain
-        url = urlparams(reverse('devhub.logout'), to='/en-US/about',
-                        domain='http://evil.com')
+        url = urlparams(
+            reverse('devhub.logout'), to='/en-US/about', domain='http://evil.com'
+        )
         response = self.client.get(url, follow=False)
         self.assert3xx(response, '/en-US/about', status_code=302)
 

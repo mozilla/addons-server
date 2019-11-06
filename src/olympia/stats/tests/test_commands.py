@@ -16,8 +16,9 @@ from unittest import mock
 from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.stats.management.commands import get_stats_data
-from olympia.stats.management.commands.download_counts_from_file import \
-    is_valid_source  # noqa
+from olympia.stats.management.commands.download_counts_from_file import (
+    is_valid_source,
+)  # noqa
 from olympia.stats.management.commands.update_counts_from_file import Command
 from olympia.stats.models import DownloadCount, UpdateCount
 
@@ -41,8 +42,10 @@ class FixturesFolderMixin(object):
     def setUp(self):
         super(FixturesFolderMixin, self).setUp()
         self.clean_up_files()
-        shutil.copytree(os.path.join(hive_folder, self.source_folder),
-                        os.path.join(hive_folder, self.date))
+        shutil.copytree(
+            os.path.join(hive_folder, self.source_folder),
+            os.path.join(hive_folder, self.date),
+        )
 
     def tearDown(self):
         self.clean_up_files()
@@ -60,8 +63,12 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         self.command = Command()
 
     def test_update_counts_from_file(self):
-        management.call_command('update_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command(
+            'update_counts_from_file',
+            hive_folder,
+            date=self.date,
+            stats_source=self.stats_source,
+        )
         assert UpdateCount.objects.all().count() == 1
         update_count = UpdateCount.objects.last()
         # should be identical to `statuses.userEnabled`
@@ -78,13 +85,20 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         addon_factory(
             guid='{39e6cf40-02f6-4bda-b1ee-409910ffd9f9}',
             slug='disabled-addon',
-            status=amo.STATUS_DISABLED)
+            status=amo.STATUS_DISABLED,
+        )
         addon_factory(
             guid='9c444b87-1124-4fd2-b97f-8fb7e9be1820',
-            slug='incomplete-addon', status=amo.STATUS_NULL)
+            slug='incomplete-addon',
+            status=amo.STATUS_NULL,
+        )
 
-        management.call_command('update_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command(
+            'update_counts_from_file',
+            hive_folder,
+            date=self.date,
+            stats_source=self.stats_source,
+        )
         assert UpdateCount.objects.all().count() == 2
 
         update_count = UpdateCount.objects.get(addon_id=3615)
@@ -101,8 +115,7 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert update_count.statuses == {u'userEnabled': 2}
 
         # Make sure we didn't generate any stats for incomplete add-ons
-        assert not UpdateCount.objects.filter(
-            addon__slug='incomplete-addon').exists()
+        assert not UpdateCount.objects.filter(addon__slug='incomplete-addon').exists()
 
     def test_update_version(self):
         # Initialize the known addons and their versions.
@@ -137,11 +150,9 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         self.command.update_app(uc, firefox_guid, '1.0.1', 124)
         self.command.update_app(uc, firefox_guid, '1.0a1', 125)
         self.command.update_app(uc, firefox_guid, '1.0b2', 126)
-        assert uc.applications == {firefox_guid: {
-            '1.0': 123,
-            '1.0.1': 124,
-            '1.0a1': 125,
-            '1.0b2': 126}}
+        assert uc.applications == {
+            firefox_guid: {'1.0': 123, '1.0.1': 124, '1.0a1': 125, '1.0b2': 126}
+        }
 
     def test_update_os(self):
         uc = UpdateCount(addon_id=3615)
@@ -152,19 +163,121 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
 
     def test_update_locale(self):
         current_locales = [  # Taken from the language pack index.
-            'ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'ast-ES', 'az',
-            'bb-BK', 'be', 'bg', 'bn', 'br', 'bs', 'ca',
-            'ca-valencia', 'cs', 'csb', 'cy', 'cy-GB', 'da', 'de', 'dsb', 'el',
-            'en-GB', 'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
-            'eu', 'fa', 'ff', 'fi', 'fj-FJ', 'fr', 'fur-IT', 'fy-NL', 'ga-IE',
-            'gd', 'gl', 'gu-IN', 'he', 'hi', 'hi-IN', 'hr', 'hsb', 'hu',
-            'hy-AM', 'id', 'is', 'it', 'ja', 'kk', 'km', 'kn', 'ko', 'ku',
-            'lg', 'lij', 'lt', 'lv', 'mai', 'mg', 'mk', 'ml', 'mr', 'ms',
-            'nb-NO', 'nl', 'nn-NO', 'nr', 'nso', 'or', 'pa-IN', 'pl', 'pt-BR',
-            'pt-PT', 'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
-            'ss', 'st', 'sv-SE', 'sw', 'sw-TZ', 'ta', 'ta-IN', 'ta-LK', 'te',
-            'th', 'tn', 'tr', 'ts', 'uk', 'ur', 've', 'vi', 'wa', 'wo-SN',
-            'xh', 'zap-MX-diiste', 'zh-CN', 'zh-TW', 'zu']
+            'ach',
+            'af',
+            'ak',
+            'an',
+            'ar',
+            'as',
+            'ast',
+            'ast-ES',
+            'az',
+            'bb-BK',
+            'be',
+            'bg',
+            'bn',
+            'br',
+            'bs',
+            'ca',
+            'ca-valencia',
+            'cs',
+            'csb',
+            'cy',
+            'cy-GB',
+            'da',
+            'de',
+            'dsb',
+            'el',
+            'en-GB',
+            'en-ZA',
+            'eo',
+            'es-AR',
+            'es-CL',
+            'es-ES',
+            'es-MX',
+            'et',
+            'eu',
+            'fa',
+            'ff',
+            'fi',
+            'fj-FJ',
+            'fr',
+            'fur-IT',
+            'fy-NL',
+            'ga-IE',
+            'gd',
+            'gl',
+            'gu-IN',
+            'he',
+            'hi',
+            'hi-IN',
+            'hr',
+            'hsb',
+            'hu',
+            'hy-AM',
+            'id',
+            'is',
+            'it',
+            'ja',
+            'kk',
+            'km',
+            'kn',
+            'ko',
+            'ku',
+            'lg',
+            'lij',
+            'lt',
+            'lv',
+            'mai',
+            'mg',
+            'mk',
+            'ml',
+            'mr',
+            'ms',
+            'nb-NO',
+            'nl',
+            'nn-NO',
+            'nr',
+            'nso',
+            'or',
+            'pa-IN',
+            'pl',
+            'pt-BR',
+            'pt-PT',
+            'rm',
+            'ro',
+            'ru',
+            'si',
+            'sk',
+            'sl',
+            'son',
+            'sq',
+            'sr',
+            'ss',
+            'st',
+            'sv-SE',
+            'sw',
+            'sw-TZ',
+            'ta',
+            'ta-IN',
+            'ta-LK',
+            'te',
+            'th',
+            'tn',
+            'tr',
+            'ts',
+            'uk',
+            'ur',
+            've',
+            'vi',
+            'wa',
+            'wo-SN',
+            'xh',
+            'zap-MX-diiste',
+            'zh-CN',
+            'zh-TW',
+            'zu',
+        ]
         uc = UpdateCount(addon_id=3615)
         self.command.update_locale(uc, 'foobar', 123)  # Non-existent locale.
         assert not uc.locales
@@ -202,8 +315,12 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert len(json.dumps(uc.versions)) == (2 ** 16) - 1
 
     def test_download_counts_from_file(self):
-        management.call_command('download_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command(
+            'download_counts_from_file',
+            hive_folder,
+            date=self.date,
+            stats_source=self.stats_source,
+        )
         assert DownloadCount.objects.all().count() == 2
         download_count = DownloadCount.objects.get(addon_id=3615)
         assert download_count.count == 3
@@ -215,8 +332,12 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         addon_factory(slug='disabled-addon', status=amo.STATUS_DISABLED)
         addon_factory(slug='incomplete-addon', status=amo.STATUS_NULL)
 
-        management.call_command('download_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command(
+            'download_counts_from_file',
+            hive_folder,
+            date=self.date,
+            stats_source=self.stats_source,
+        )
 
         assert DownloadCount.objects.all().count() == 3
         download_count = DownloadCount.objects.get(addon_id=3615)
@@ -224,39 +345,41 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
 
-        download_count = DownloadCount.objects.get(
-            addon__slug='disabled-addon')
+        download_count = DownloadCount.objects.get(addon__slug='disabled-addon')
         assert download_count.count == 1
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 1}
 
         # Make sure we didn't generate any stats for incomplete add-ons
-        assert not DownloadCount.objects.filter(
-            addon__slug='incomplete-addon').exists()
+        assert not DownloadCount.objects.filter(addon__slug='incomplete-addon').exists()
 
     @mock.patch(
         'olympia.stats.management.commands.download_counts_from_file.'
-        'close_old_connections')
+        'close_old_connections'
+    )
     def test_download_counts_from_file_closes_old_connections(
-            self, close_old_connections_mock):
-        management.call_command('download_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        self, close_old_connections_mock
+    ):
+        management.call_command(
+            'download_counts_from_file',
+            hive_folder,
+            date=self.date,
+            stats_source=self.stats_source,
+        )
         assert DownloadCount.objects.all().count() == 2
         close_old_connections_mock.assert_called_once()
 
     def test_is_valid_source(self):
-        assert is_valid_source('foo',
-                               fulls=['foo', 'bar'],
-                               prefixes=['baz', 'cruux'])
-        assert not is_valid_source('foob',
-                                   fulls=['foo', 'bar'],
-                                   prefixes=['baz', 'cruux'])
-        assert is_valid_source('foobaz',
-                               fulls=['foo', 'bar'],
-                               prefixes=['baz', 'cruux'])
-        assert not is_valid_source('ba',
-                                   fulls=['foo', 'bar'],
-                                   prefixes=['baz', 'cruux'])
+        assert is_valid_source('foo', fulls=['foo', 'bar'], prefixes=['baz', 'cruux'])
+        assert not is_valid_source(
+            'foob', fulls=['foo', 'bar'], prefixes=['baz', 'cruux']
+        )
+        assert is_valid_source(
+            'foobaz', fulls=['foo', 'bar'], prefixes=['baz', 'cruux']
+        )
+        assert not is_valid_source(
+            'ba', fulls=['foo', 'bar'], prefixes=['baz', 'cruux']
+        )
 
 
 class TestADICommandS3(TransactionTestCase):
@@ -270,10 +393,11 @@ class TestADICommandS3(TransactionTestCase):
         response = {
             'Body': data,
         }
-        expected_params = {'Bucket': 'test-bucket',
-                           'Key': os.path.join('amo_stats', stat,
-                                               self.date, '000000_0'),
-                           'Range': ANY}
+        expected_params = {
+            'Bucket': 'test-bucket',
+            'Key': os.path.join('amo_stats', stat, self.date, '000000_0'),
+            'Range': ANY,
+        }
         self.stubber.add_response('get_object', response, expected_params)
 
     def setUp(self):
@@ -294,8 +418,9 @@ class TestADICommandS3(TransactionTestCase):
                 self.add_response('update_counts_by_%s' % stat)
 
         mock_boto3.client.return_value = self.client
-        management.call_command('update_counts_from_file',
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command(
+            'update_counts_from_file', date=self.date, stats_source=self.stats_source
+        )
 
         assert UpdateCount.objects.all().count() == 1
         update_count = UpdateCount.objects.last()
@@ -317,8 +442,9 @@ class TestADICommandS3(TransactionTestCase):
 
         mock_boto3.client.return_value = self.client
 
-        management.call_command('download_counts_from_file',
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command(
+            'download_counts_from_file', date=self.date, stats_source=self.stats_source
+        )
         assert DownloadCount.objects.all().count() == 2
         download_count = DownloadCount.objects.get(addon_id=3615)
         assert download_count.count == 3

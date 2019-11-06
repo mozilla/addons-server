@@ -55,9 +55,8 @@ class UserEmailField(forms.ModelChoiceField):
 
     Displays disabled state as readonly thanks to UserEmailBoundField.
     """
-    default_error_messages = {
-        'invalid_choice': ugettext('No user with that email.')
-    }
+
+    default_error_messages = {'invalid_choice': ugettext('No user with that email.')}
     widget = forms.EmailInput
 
     def __init__(self, *args, **kwargs):
@@ -89,22 +88,16 @@ class UserEmailBoundField(forms.BoundField):
 
 
 class UserManager(BaseUserManager, ManagerBase):
-
     def create_user(self, username, email, fxa_id=None, **kwargs):
         # We'll send username=None when registering through FxA to generate
         # an anonymous username.
         now = timezone.now()
         user = self.model(
-            username=username,
-            email=email,
-            fxa_id=fxa_id,
-            last_login=now,
-            **kwargs
+            username=username, email=email, fxa_id=fxa_id, last_login=now, **kwargs
         )
         if username is None:
             user.anonymize_username()
-        log.debug('Creating user with email {} and username {}'.format(
-            email, username))
+        log.debug('Creating user with email {} and username {}'.format(email, username))
         user.save(using=self._db)
         return user
 
@@ -124,9 +117,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     REQUIRED_FIELDS = ['email']
     username = models.CharField(max_length=255, default='', unique=True)
     display_name = models.CharField(
-        max_length=50, default='', null=True, blank=True,
-        validators=[validators.MinLengthValidator(2),
-                    OneOrMorePrintableCharacterValidator()])
+        max_length=50,
+        default='',
+        null=True,
+        blank=True,
+        validators=[
+            validators.MinLengthValidator(2),
+            OneOrMorePrintableCharacterValidator(),
+        ],
+    )
 
     email = models.EmailField(unique=True, null=True, max_length=75)
 
@@ -141,8 +140,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     notes = models.TextField(blank=True, null=True)
     occupation = models.CharField(max_length=255, default='', blank=True)
     # This is essentially a "has_picture" flag right now
-    picture_type = models.CharField(max_length=75, default=None, null=True,
-                                    blank=True)
+    picture_type = models.CharField(max_length=75, default=None, null=True, blank=True)
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
@@ -171,8 +169,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     bypass_upload_restrictions = models.BooleanField(default=False)
 
     reviewer_name = models.CharField(
-        max_length=50, default='', null=True, blank=True,
-        validators=[validators.MinLengthValidator(2)])
+        max_length=50,
+        default='',
+        null=True,
+        blank=True,
+        validators=[validators.MinLengthValidator(2)],
+    )
 
     class Meta:
         db_table = 'users'
@@ -200,6 +202,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         be able to do anything, as each module can have its own permission
         checks. (see has_module_perms() and has_perm())"""
         from olympia.access import acl
+
         return acl.action_allowed_user(self, amo.permissions.ANY_ADMIN)
 
     def has_perm(self, perm, obj=None):
@@ -208,8 +211,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         perm is in the form "<app>.<action>_<model>".
         """
         from olympia.access import acl
+
         return acl.action_allowed_user(
-            self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm])
+            self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm]
+        )
 
     def has_module_perms(self, app_label):
         """Determine whether the user can see a particular app in the django
@@ -219,10 +224,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # admin. The is_superuser check is needed to allow superuser to access
         # modules that are not in the mapping at all (i.e. things only they
         # can access).
-        return (self.is_superuser or
-                any(self.has_perm(key)
-                    for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
-                    if key.startswith('%s.' % app_label)))
+        return self.is_superuser or any(
+            self.has_perm(key)
+            for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
+            if key.startswith('%s.' % app_label)
+        )
 
     def has_read_developer_agreement(self):
         from olympia.zadmin.models import get_config
@@ -234,10 +240,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if self.read_dev_agreement is None:
             return False
         try:
-            last_agreement_change_config = get_config(
-                'last_dev_agreement_change_date')
+            last_agreement_change_config = get_config('last_dev_agreement_change_date')
             change_config_date = datetime.strptime(
-                last_agreement_change_config, '%Y-%m-%d %H:%M')
+                last_agreement_change_config, '%Y-%m-%d %H:%M'
+            )
 
             # If the config date is in the future, instead check against the
             # fallback date
@@ -246,9 +252,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
             return self.read_dev_agreement > change_config_date
         except (ValueError, TypeError):
-            log.exception('last_developer_agreement_change misconfigured, '
-                          '"%s" is not a '
-                          'datetime' % last_agreement_change_config)
+            log.exception(
+                'last_developer_agreement_change misconfigured, '
+                '"%s" is not a '
+                'datetime' % last_agreement_change_config
+            )
             return self.read_dev_agreement > dev_agreement_change_fallback
 
     backend = 'django.contrib.auth.backends.ModelBackend'
@@ -270,11 +278,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def create_user_url(id_, src=None):
         from olympia.amo.utils import urlparams
+
         url = reverse('users.profile', args=[id_])
         return urlparams(url, src=src)
 
     def get_themes_url_path(self, src=None, args=None):
         from olympia.amo.utils import urlparams
+
         url = reverse('users.themes', args=[self.id] + (args or []))
         return urlparams(url, src=src)
 
@@ -289,8 +299,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def get_addons_listed(self):
         """Return queryset of public add-ons thi user is listed as author of.
         """
-        return self.addons.public().filter(
-            addonuser__user=self, addonuser__listed=True)
+        return self.addons.public().filter(addonuser__user=self, addonuser__listed=True)
 
     @property
     def num_addons_listed(self):
@@ -305,10 +314,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def picture_dir(self):
         from olympia.amo.templatetags.jinja_helpers import user_media_path
+
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-        return os.path.join(user_media_path('userpics'),
-                            split_id.group(2) or '0',
-                            split_id.group(1) or '0')
+        return os.path.join(
+            user_media_path('userpics'),
+            split_id.group(2) or '0',
+            split_id.group(1) or '0',
+        )
 
     @property
     def picture_path(self):
@@ -321,30 +333,34 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def picture_url(self):
         from olympia.amo.templatetags.jinja_helpers import user_media_url
+
         if not self.picture_type:
             return settings.STATIC_URL + '/img/zamboni/anon_user.png'
         else:
             split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
             modified = int(time.mktime(self.modified.timetuple()))
-            path = "/".join([
-                split_id.group(2) or '0',
-                split_id.group(1) or '0',
-                "%s.png?modified=%s" % (self.id, modified)
-            ])
+            path = "/".join(
+                [
+                    split_id.group(2) or '0',
+                    split_id.group(1) or '0',
+                    "%s.png?modified=%s" % (self.id, modified),
+                ]
+            )
             return user_media_url('userpics') + path
 
     @cached_property
     def cached_developer_status(self):
         addon_types = list(
-            self.addonuser_set
-            .exclude(addon__status=amo.STATUS_DELETED)
-            .values_list('addon__type', flat=True))
+            self.addonuser_set.exclude(addon__status=amo.STATUS_DELETED).values_list(
+                'addon__type', flat=True
+            )
+        )
 
         all_themes = [t for t in addon_types if t in amo.GROUP_TYPE_THEME]
         return {
             'is_developer': bool(addon_types),
             'is_extension_developer': len(all_themes) != len(addon_types),
-            'is_theme_developer': bool(all_themes)
+            'is_theme_developer': bool(all_themes),
         }
 
     @property
@@ -363,14 +379,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @use_primary_db
     def update_is_public(self):
         pre = self.is_public
-        is_public = (
-            self.addonuser_set.filter(
-                role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
-                listed=True,
-                addon__status=amo.STATUS_APPROVED).exists())
+        is_public = self.addonuser_set.filter(
+            role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
+            listed=True,
+            addon__status=amo.STATUS_APPROVED,
+        ).exists()
         if is_public != pre:
-            log.info('Updating %s.is_public from %s to %s' % (
-                self.pk, pre, is_public))
+            log.info('Updating %s.is_public from %s to %s' % (self.pk, pre, is_public))
             self.update(is_public=is_public)
         else:
             log.info('Not changing %s.is_public from %s' % (self.pk, pre))
@@ -397,7 +412,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         else:
             log.info('Generating username for {}'.format(self.email))
         self.username = 'anonymous-{}'.format(
-            force_text(binascii.b2a_hex(os.urandom(16))))
+            force_text(binascii.b2a_hex(os.urandom(16)))
+        )
         return self.username
 
     @property
@@ -471,18 +487,20 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # collect affected addons
         addon_ids = set(
             Addon.unfiltered.exclude(status=amo.STATUS_DELETED)
-            .filter(addonuser__user__in=users).values_list('id', flat=True))
+            .filter(addonuser__user__in=users)
+            .values_list('id', flat=True)
+        )
 
         # First addons who have other authors we aren't banning
         addon_joint_ids = set(
             AddonUser.objects.filter(addon_id__in=addon_ids)
-            .exclude(user__in=users).values_list('addon_id', flat=True))
-        AddonUser.objects.filter(
-            user__in=users, addon_id__in=addon_joint_ids).delete()
+            .exclude(user__in=users)
+            .values_list('addon_id', flat=True)
+        )
+        AddonUser.objects.filter(user__in=users, addon_id__in=addon_joint_ids).delete()
 
         # Then deal with users who are the sole author
-        addons_sole = Addon.unfiltered.filter(
-            id__in=addon_ids - addon_joint_ids)
+        addons_sole = Addon.unfiltered.filter(id__in=addon_ids - addon_joint_ids)
         # set the status to disabled - using the manager update() method
         addons_sole.update(status=amo.STATUS_DISABLED)
         # collect Files that need to be disabled now the addons are disabled
@@ -502,8 +520,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         # delete the other content associated with the user
         Collection.objects.filter(author__in=users).delete()
-        Rating.objects.filter(user__in=users).delete(
-            user_responsible=core.get_user())
+        Rating.objects.filter(user__in=users).delete(user_responsible=core.get_user())
         # And then delete the users.
         for user in users:
             user.delete(ban_user=True)
@@ -520,12 +537,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             if ban_user:
                 log.info(
                     f'User ({self}: <{self.email}>) is being partially '
-                    'anonymized and banned.')
+                    'anonymized and banned.'
+                )
                 # We don't clear email or fxa_id when banning
                 self.banned = datetime.now()
             else:
-                log.info(u'User (%s: <%s>) is being anonymized.' % (
-                    self, self.email))
+                log.info(u'User (%s: <%s>) is being anonymized.' % (self, self.email))
                 self.email = None
                 self.fxa_id = None
             # last_login_ip is kept, deleted by clear_old_last_login_ip
@@ -540,8 +557,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.anonymize_username()
             self.save()
 
-        self.delete_picture(picture_path=picture_path,
-                            original_picture_path=original_picture_path)
+        self.delete_picture(
+            picture_path=picture_path, original_picture_path=original_picture_path
+        )
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')
@@ -555,26 +573,37 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
-        log.debug(u'User (%s) logged in successfully' % user,
-                  extra={'email': user.email})
+        log.debug(
+            u'User (%s) logged in successfully' % user, extra={'email': user.email}
+        )
         user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
         return self.special_collection(
             amo.COLLECTION_MOBILE,
-            defaults={'slug': 'mobile', 'listed': False,
-                      'name': ugettext('My Mobile Add-ons')})
+            defaults={
+                'slug': 'mobile',
+                'listed': False,
+                'name': ugettext('My Mobile Add-ons'),
+            },
+        )
 
     def favorites_collection(self):
         return self.special_collection(
             amo.COLLECTION_FAVORITES,
-            defaults={'slug': 'favorites', 'listed': False,
-                      'name': ugettext('My Favorite Add-ons')})
+            defaults={
+                'slug': 'favorites',
+                'listed': False,
+                'name': ugettext('My Favorite Add-ons'),
+            },
+        )
 
     def special_collection(self, type_, defaults):
         from olympia.bandwagon.models import Collection
+
         c, new = Collection.objects.get_or_create(
-            author=self, type=type_, defaults=defaults)
+            author=self, type=type_, defaults=defaults
+        )
         if new:
             # Do an extra query to make sure this gets transformed.
             c = Collection.objects.using('default').get(id=c.id)
@@ -583,8 +612,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def addons_for_collection_type(self, type_):
         """Return the addons for the given special collection type."""
         from olympia.bandwagon.models import CollectionAddon
+
         qs = CollectionAddon.objects.filter(
-            collection__author=self, collection__type=type_)
+            collection__author=self, collection__type=type_
+        )
         return qs.values_list('addon', flat=True)
 
     @cached_property
@@ -602,7 +633,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
 class UserNotification(ModelBase):
     user = models.ForeignKey(
-        UserProfile, related_name='notifications', on_delete=models.CASCADE)
+        UserProfile, related_name='notifications', on_delete=models.CASCADE
+    )
     notification_id = models.IntegerField()
     enabled = models.BooleanField(default=False)
 
@@ -617,16 +649,16 @@ class UserNotification(ModelBase):
         return NOTIFICATIONS_BY_ID.get(self.notification_id)
 
     def __str__(self):
-        return (
-            u'{user}, {notification}, enabled={enabled}'
-            .format(
-                user=self.user.name,
-                notification=self.notification.short,
-                enabled=self.enabled))
+        return u'{user}, {notification}, enabled={enabled}'.format(
+            user=self.user.name,
+            notification=self.notification.short,
+            enabled=self.enabled,
+        )
 
 
 class DeniedName(ModelBase):
     """Denied User usernames and display_names + Collections' names."""
+
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
@@ -655,13 +687,16 @@ class DeniedName(ModelBase):
 class IPNetworkUserRestriction(ModelBase):
     id = PositiveAutoField(primary_key=True)
     network = CIDRField(
-        blank=True, null=True,
-        help_text=_(
-            'Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'))
+        blank=True,
+        null=True,
+        help_text=_('Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'),
+    )
 
-    error_message = _('Multiple add-ons violating our policies have been'
-                      ' submitted from your location. The IP address has been'
-                      ' blocked.')
+    error_message = _(
+        'Multiple add-ons violating our policies have been'
+        ' submitted from your location. The IP address has been'
+        ' blocked.'
+    )
 
     class Meta:
         db_table = 'users_user_network_restriction'
@@ -678,8 +713,7 @@ class IPNetworkUserRestriction(ModelBase):
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
             if request.user:
-                user_last_login_ip = ipaddress.ip_address(
-                    request.user.last_login_ip)
+                user_last_login_ip = ipaddress.ip_address(request.user.last_login_ip)
         except ValueError:
             # If we don't have a valid ip address, let's deny
             return False
@@ -687,12 +721,18 @@ class IPNetworkUserRestriction(ModelBase):
         restrictions = IPNetworkUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if (remote_addr in restriction.network or
-               user_last_login_ip in restriction.network):
-                log.info('Restricting request from %s %s, %s %s (%s)',
-                         'ip', remote_addr,
-                         'last_login_ip', user_last_login_ip,
-                         'network=%s' % restriction.network)
+            if (
+                remote_addr in restriction.network
+                or user_last_login_ip in restriction.network
+            ):
+                log.info(
+                    'Restricting request from %s %s, %s %s (%s)',
+                    'ip',
+                    remote_addr,
+                    'last_login_ip',
+                    user_last_login_ip,
+                    'network=%s' % restriction.network,
+                )
                 return False
 
         return True
@@ -723,10 +763,14 @@ class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
             ' glob-style wildcards to match other patterns.'
             ' E.g "@*.mail.com"\n'
             ' Please note that we do not include "@" in the match so you '
-            ' should do that in the pattern.'))
+            ' should do that in the pattern.'
+        ),
+    )
 
-    error_message = _('The email address used for your account is not '
-                      'allowed for add-on submission.')
+    error_message = _(
+        'The email address used for your account is not '
+        'allowed for add-on submission.'
+    )
 
     class Meta:
         db_table = 'users_user_email_restriction'
@@ -754,9 +798,12 @@ class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
 
         for restriction in restrictions:
             if fnmatchcase(email, restriction.email_pattern):
-                log.info('Restricting request from %s %s (%s)',
-                         'email', email,
-                         'email_pattern=%s' % restriction.email_pattern)
+                log.info(
+                    'Restricting request from %s %s (%s)',
+                    'email',
+                    email,
+                    'email_pattern=%s' % restriction.email_pattern,
+                )
                 return False
 
         return True
@@ -766,10 +813,13 @@ class DisposableEmailDomainRestriction(ModelBase):
     domain = models.CharField(
         unique=True,
         max_length=255,
-        help_text=_('Enter full disposable email domain that should be '
-                    'blocked. Wildcards are not supported: if you need those, '
-                    'or need to match against the entire email and not just '
-                    'the domain part, use "Email user restrictions" instead.'))
+        help_text=_(
+            'Enter full disposable email domain that should be '
+            'blocked. Wildcards are not supported: if you need those, '
+            'or need to match against the entire email and not just '
+            'the domain part, use "Email user restrictions" instead.'
+        ),
+    )
 
     error_message = EmailUserRestriction.error_message
 
@@ -811,31 +861,38 @@ class ReputationRestrictionMixin:
         REPUTATION_SERVICE_TIMEOUT settings set, otherwise it will always
         return True.
         """
-        if (not settings.REPUTATION_SERVICE_URL or
-                not settings.REPUTATION_SERVICE_TOKEN or
-                settings.REPUTATION_SERVICE_TIMEOUT is None):
+        if (
+            not settings.REPUTATION_SERVICE_URL
+            or not settings.REPUTATION_SERVICE_TOKEN
+            or settings.REPUTATION_SERVICE_TIMEOUT is None
+        ):
             return True  # Not configured.
         url = urljoin(
-            settings.REPUTATION_SERVICE_URL,
-            f'/type/{reputation_type}/{target}'
+            settings.REPUTATION_SERVICE_URL, f'/type/{reputation_type}/{target}'
         )
         response = requests.get(
-            url, timeout=settings.REPUTATION_SERVICE_TIMEOUT, headers={
-                'Authorization': f'APIKey {settings.REPUTATION_SERVICE_TOKEN}'
-            }
+            url,
+            timeout=settings.REPUTATION_SERVICE_TIMEOUT,
+            headers={'Authorization': f'APIKey {settings.REPUTATION_SERVICE_TOKEN}'},
         )
         if response.status_code == 200:
             try:
                 data = response.json()
                 if int(data['reputation']) <= cls.reputation_threshold:
                     # Low reputation means we should block that request.
-                    log.info('Restricting request from %s %s (%s)',
-                             reputation_type, target,
-                             'reputation=%s' % data['reputation'])
+                    log.info(
+                        'Restricting request from %s %s (%s)',
+                        reputation_type,
+                        target,
+                        'reputation=%s' % data['reputation'],
+                    )
                     return False
             except (ValueError, KeyError):
-                log.exception('Exception calling reputation service for %s %s',
-                              reputation_type, target)
+                log.exception(
+                    'Exception calling reputation service for %s %s',
+                    reputation_type,
+                    target,
+                )
         return True
 
 
@@ -853,8 +910,7 @@ class IPReputationRestriction(ReputationRestrictionMixin):
         return cls.allow_reputation('ip', remote_addr)
 
 
-class EmailReputationRestriction(
-        NormalizeEmailMixin, ReputationRestrictionMixin):
+class EmailReputationRestriction(NormalizeEmailMixin, ReputationRestrictionMixin):
     error_message = EmailUserRestriction.error_message
 
     @classmethod
@@ -862,16 +918,17 @@ class EmailReputationRestriction(
         if not request.user.is_authenticated:
             return False
 
-        return cls.allow_reputation('email', cls.normalize_email(
-            request.user.email))
+        return cls.allow_reputation('email', cls.normalize_email(request.user.email))
 
 
 class DeveloperAgreementRestriction:
-    error_message = _('Before starting, please read and accept our Firefox'
-                      ' Add-on Distribution Agreement as well as our Review'
-                      ' Policies and Rules. The Firefox Add-on Distribution'
-                      ' Agreement also links to our Privacy Notice which'
-                      ' explains how we handle your information.')
+    error_message = _(
+        'Before starting, please read and accept our Firefox'
+        ' Add-on Distribution Agreement as well as our Review'
+        ' Policies and Rules. The Firefox Add-on Distribution'
+        ' Agreement also links to our Privacy Notice which'
+        ' explains how we handle your information.'
+    )
 
     @classmethod
     def allow_request(cls, request):
@@ -879,11 +936,17 @@ class DeveloperAgreementRestriction:
         Return whether the specified request should be allowed to submit
         add-ons.
         """
-        allowed = (request.user.is_authenticated and
-                   request.user.has_read_developer_agreement())
+        allowed = (
+            request.user.is_authenticated
+            and request.user.has_read_developer_agreement()
+        )
         if not allowed:
-            log.info('Restricting request from %s %s (%s)',
-                     'developer', request.user.pk, 'agreement')
+            log.info(
+                'Restricting request from %s %s (%s)',
+                'developer',
+                request.user.pk,
+                'agreement',
+            )
         return allowed
 
 
@@ -898,12 +961,13 @@ class UserRestrictionHistory(ModelBase):
     )
 
     user = models.ForeignKey(
-        UserProfile, related_name='restriction_history',
-        on_delete=models.CASCADE)
+        UserProfile, related_name='restriction_history', on_delete=models.CASCADE
+    )
     restriction = models.PositiveSmallIntegerField(
-        default=0, choices=tuple(
+        default=0,
+        choices=tuple(
             (num, klass.__name__) for num, klass in RESTRICTION_CLASSES_CHOICES
-        )
+        ),
     )
     ip_address = models.CharField(default='', max_length=45)
     last_login_ip = models.CharField(default='', max_length=45)
@@ -913,7 +977,8 @@ class UserHistory(ModelBase):
     id = PositiveAutoField(primary_key=True)
     email = models.EmailField(max_length=75)
     user = models.ForeignKey(
-        UserProfile, related_name='history', on_delete=models.CASCADE)
+        UserProfile, related_name='history', on_delete=models.CASCADE
+    )
 
     class Meta:
         db_table = 'users_history'
@@ -925,39 +990,45 @@ class UserHistory(ModelBase):
 
 
 @UserProfile.on_change
-def watch_changes(old_attr=None, new_attr=None, instance=None,
-                  sender=None, **kw):
+def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw):
     if old_attr is None:
         old_attr = {}
     if new_attr is None:
         new_attr = {}
     changes = {
-        x for x in new_attr
-        if not x.startswith('_') and new_attr[x] != old_attr.get(x)
+        x for x in new_attr if not x.startswith('_') and new_attr[x] != old_attr.get(x)
     }
 
     # Log email changes.
     if 'email' in changes and new_attr['email'] is not None:
         log.debug('Creating user history for user: %s' % instance.pk)
-        UserHistory.objects.create(
-            email=old_attr.get('email'), user_id=instance.pk)
+        UserHistory.objects.create(email=old_attr.get('email'), user_id=instance.pk)
     # If username or display_name changes, reindex the user add-ons, if there
     # are any.
     if 'username' in changes or 'display_name' in changes:
         from olympia.addons.tasks import index_addons
+
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
 
     basket_relevant_changes = (
-        'deleted', 'display_name', 'email', 'homepage', 'last_login',
-        'location'
+        'deleted',
+        'display_name',
+        'email',
+        'homepage',
+        'last_login',
+        'location',
     )
     if any(field in changes for field in basket_relevant_changes):
         from olympia.amo.tasks import sync_object_to_basket
+
         log.info(
             'Triggering a sync of %s %s with basket because of %s change',
-            'userprofile', instance.pk, 'attribute')
+            'userprofile',
+            instance.pk,
+            'attribute',
+        )
         sync_object_to_basket.delay('userprofile', instance.pk)
 
 

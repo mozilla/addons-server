@@ -15,7 +15,6 @@ log = olympia.core.logger.getLogger('z.users')
 
 
 class UnsubscribeCode(object):
-
     @classmethod
     def create(cls, email):
         """Encode+Hash an email for an unsubscribe code."""
@@ -42,8 +41,9 @@ class UnsubscribeCode(object):
 
     @classmethod
     def make_secret(cls, token):
-        return hmac.new(force_bytes(settings.SECRET_KEY), msg=token,
-                        digestmod=hashlib.sha256).hexdigest()
+        return hmac.new(
+            force_bytes(settings.SECRET_KEY), msg=token, digestmod=hashlib.sha256
+        ).hexdigest()
 
 
 def get_task_user():
@@ -56,12 +56,12 @@ def get_task_user():
 
 def system_addon_submission_allowed(user, parsed_addon_data):
     guid = parsed_addon_data.get('guid') or ''
-    return (
-        not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or
-        user.email.endswith(u'@mozilla.com'))
+    return not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or user.email.endswith(
+        u'@mozilla.com'
+    )
 
 
 def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
-    return (
-        not parsed_addon_data.get('is_mozilla_signed_extension') or
-        user.email.endswith(u'@mozilla.com'))
+    return not parsed_addon_data.get(
+        'is_mozilla_signed_extension'
+    ) or user.email.endswith(u'@mozilla.com')

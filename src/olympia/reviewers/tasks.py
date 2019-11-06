@@ -17,11 +17,11 @@ def recalculate_post_review_weight(ids, only_current_version=False):
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
         if only_current_version:
-            summaries = [
-                AutoApprovalSummary.objects.get(version=addon.current_version)]
+            summaries = [AutoApprovalSummary.objects.get(version=addon.current_version)]
         else:
             summaries = AutoApprovalSummary.objects.filter(
-                version__in=addon.versions.all())
+                version__in=addon.versions.all()
+            )
 
         for summary in summaries:
             summary.calculate_weight()

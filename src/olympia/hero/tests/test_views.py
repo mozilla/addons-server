@@ -5,8 +5,7 @@ from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.discovery.models import DiscoveryItem
 
 from ..models import PrimaryHero, SecondaryHero, SecondaryHeroModule
-from ..serializers import (
-    PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
+from ..serializers import PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer
 
 
 class TestPrimaryHeroShelfViewSet(TestCase):
@@ -20,26 +19,31 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
         hero_a = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory(),
-                custom_description='Its a déscription!'),
+                addon=addon_factory(), custom_description='Its a déscription!'
+            ),
             image='foo.png',
-            gradient_color='#123456')
+            gradient_color='#123456',
+        )
         hero_b = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory(summary='fooo')),
+                addon=addon_factory(summary='fooo')
+            ),
             image='baa.png',
-            gradient_color='#987654')
+            gradient_color='#987654',
+        )
         hero_external = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory(homepage='https://mozilla.org/')),
+                addon=addon_factory(homepage='https://mozilla.org/')
+            ),
             image='external.png',
             gradient_color='#FABFAB',
-            is_external=True)
+            is_external=True,
+        )
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory()),
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
             image='wah.png',
-            gradient_color='#989898')
+            gradient_color='#989898',
+        )
 
         # The shelves aren't enabled so still won't show up
         response = self.client.get(self.url)
@@ -69,10 +73,13 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             'results': [
                 PrimaryHeroShelfSerializer(instance=hero_a).data,
                 PrimaryHeroShelfSerializer(instance=hero_b).data,
-                PrimaryHeroShelfSerializer(instance=hero_external).data]}
+                PrimaryHeroShelfSerializer(instance=hero_external).data,
+            ]
+        }
         # double check the different serializer representations
         assert response.json()['results'][0]['addon']['url'] == (
-            absolutify(hero_a.disco_addon.addon.get_detail_url()))
+            absolutify(hero_a.disco_addon.addon.get_detail_url())
+        )
         assert response.json()['results'][2]['external']['homepage'] == {
             'en-US': 'https://mozilla.org/'
         }
@@ -80,38 +87,41 @@ class TestPrimaryHeroShelfViewSet(TestCase):
     def test_outgoing_wrapper(self):
         PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory(homepage='https://mozilla.org/')),
+                addon=addon_factory(homepage='https://mozilla.org/')
+            ),
             image='external.png',
             gradient_color='#FABFAB',
             is_external=True,
-            enabled=True)
+            enabled=True,
+        )
         response = self.client.get(self.url, {'lang': 'en-US'})
         # We don't wrap links with outgoing by default
         assert b'outgoing.' not in response.content
         # But they should be if the param is passed.
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''}
+        )
         assert b'outgoing.' in response.content
 
     def test_all_param(self):
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory()),
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
             image='wah.png',
             gradient_color='#989898',
-            enabled=True)
+            enabled=True,
+        )
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory()),
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
             image='wah.png',
             gradient_color='#989898',
-            enabled=True)
+            enabled=True,
+        )
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory()),
+            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
             image='wah.png',
             gradient_color='#989898',
-            enabled=False)
+            enabled=False,
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -132,16 +142,12 @@ class TestSecondaryHeroShelfViewSet(TestCase):
         assert response.json() == {'results': []}
 
         hero_a = SecondaryHero.objects.create(
-            headline='Its a héadline!',
-            description='foo')
+            headline='Its a héadline!', description='foo'
+        )
         hero_b = SecondaryHero.objects.create(
-            headline='%^*',
-            description='',
-            cta_url='http://goo.gl',
-            cta_text='goozilla')
-        SecondaryHero.objects.create(
-            headline='dfdfd!',
-            description='dfdfd')
+            headline='%^*', description='', cta_url='http://goo.gl', cta_text='goozilla'
+        )
+        SecondaryHero.objects.create(headline='dfdfd!', description='dfdfd')
         SecondaryHeroModule.objects.create(shelf=hero_a)
         SecondaryHeroModule.objects.create(shelf=hero_a)
         SecondaryHeroModule.objects.create(shelf=hero_a)
@@ -162,7 +168,9 @@ class TestSecondaryHeroShelfViewSet(TestCase):
         assert response.json() == {
             'results': [
                 SecondaryHeroShelfSerializer(instance=hero_a).data,
-                SecondaryHeroShelfSerializer(instance=hero_b).data]}
+                SecondaryHeroShelfSerializer(instance=hero_b).data,
+            ]
+        }
 
     def test_outgoing_wrapper(self):
         hero = SecondaryHero.objects.create(
@@ -170,12 +178,14 @@ class TestSecondaryHeroShelfViewSet(TestCase):
             description='',
             cta_url='/addon/adblockplus/',
             cta_text='goozilla',
-            enabled=True)
+            enabled=True,
+        )
         # No outgoing wrapping by default
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert b'outgoing.' not in response.content
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''}
+        )
         # But we also don't want to wrap internal urls
         assert b'outgoing.' not in response.content
         assert b'http://testserver' in response.content
@@ -185,23 +195,21 @@ class TestSecondaryHeroShelfViewSet(TestCase):
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert b'outgoing.' not in response.content
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''}
+        )
         # This time it should be wrapped
         assert b'outgoing.' in response.content
 
     def test_all_param(self):
         SecondaryHero.objects.create(
-            headline='dfdfd!',
-            description='dfdfd',
-            enabled=True)
+            headline='dfdfd!', description='dfdfd', enabled=True
+        )
         SecondaryHero.objects.create(
-            headline='dfdfd!',
-            description='dfdfd',
-            enabled=True)
+            headline='dfdfd!', description='dfdfd', enabled=True
+        )
         SecondaryHero.objects.create(
-            headline='dfdfd!',
-            description='dfdfd',
-            enabled=False)
+            headline='dfdfd!', description='dfdfd', enabled=False
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -219,10 +227,11 @@ class TestHeroShelvesView(TestCase):
     def test_basic(self):
         phero = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
-            enabled=True)
+            enabled=True,
+        )
         shero = SecondaryHero.objects.create(
-            headline='headline', description='description',
-            enabled=True)
+            headline='headline', description='description', enabled=True
+        )
         SecondaryHeroModule.objects.create(shelf=shero)
         SecondaryHeroModule.objects.create(shelf=shero)
         SecondaryHeroModule.objects.create(shelf=shero)
@@ -241,14 +250,21 @@ class TestHeroShelvesView(TestCase):
     def test_outgoing_wrapper(self):
         PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory(homepage='http://foo.baa')),
-            enabled=True, is_external=True)
+                addon=addon_factory(homepage='http://foo.baa')
+            ),
+            enabled=True,
+            is_external=True,
+        )
         SecondaryHero.objects.create(
-            headline='headline', description='description',
-            cta_url='http://go.here/', cta_text='go here!',
-            enabled=True)
+            headline='headline',
+            description='description',
+            cta_url='http://go.here/',
+            cta_text='go here!',
+            enabled=True,
+        )
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''}
+        )
         print(response.json())
         assert 'outgoing.' in json.dumps(response.json()['primary'])
         assert 'outgoing.' in json.dumps(response.json()['secondary'])
@@ -256,16 +272,16 @@ class TestHeroShelvesView(TestCase):
     def test_shelf_randomness(self):
         addon_1 = addon_factory()
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_1),
-            enabled=True)
+            disco_addon=DiscoveryItem.objects.create(addon=addon_1), enabled=True
+        )
         addon_2 = addon_factory()
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_2),
-            enabled=True)
+            disco_addon=DiscoveryItem.objects.create(addon=addon_2), enabled=True
+        )
         addon_3 = addon_factory()
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_3),
-            enabled=True)
+            disco_addon=DiscoveryItem.objects.create(addon=addon_3), enabled=True
+        )
         addon_ids = {addon_1.id, addon_2.id, addon_3.id}
 
         response = self.client.get(self.url)

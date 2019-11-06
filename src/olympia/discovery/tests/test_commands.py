@@ -11,45 +11,34 @@ import responses
 from olympia.amo.tests import TestCase
 
 disco_fake_data = {
-    'results': [{
-        'custom_heading': 'sïïïck custom heading',
-        'custom_description': 'greât custom description'
-    }, {
-        'custom_heading': None,
-        'custom_description': 'custom description is custom '
-    }, {
-        'custom_heading': '{start_sub_heading}{addon_name}{end_sub_heading}',
-        'custom_description': ''
-    }]}
+    'results': [
+        {
+            'custom_heading': 'sïïïck custom heading',
+            'custom_description': 'greât custom description',
+        },
+        {'custom_heading': None, 'custom_description': 'custom description is custom '},
+        {
+            'custom_heading': '{start_sub_heading}{addon_name}{end_sub_heading}',
+            'custom_description': '',
+        },
+    ]
+}
 
 hero_fake_data = {
-    'results': [{
-        'headline': 'sïïïck headline',
-        'description': 'greât description',
-        'cta': {
-            'text': 'link to somewhere greât',
-            'url': 'https://great.place/',
+    'results': [
+        {
+            'headline': 'sïïïck headline',
+            'description': 'greât description',
+            'cta': {'text': 'link to somewhere greât', 'url': 'https://great.place/',},
+            'modules': [
+                {'description': 'module description',},
+                {'description': None, 'cta': {'text': 'CALL TO ACTION', 'url': None,}},
+            ],
         },
-        'modules': [
-            {
-                'description': 'module description',
-            },
-            {
-                'description': None,
-                'cta': {
-                    'text': 'CALL TO ACTION',
-                    'url': None,
-                }
-            }
-        ]
-    }, {
-        'headline': None,
-        'description': 'not custom description is not custom '
-    }, {
-        'headline': '',
-        'description': None,
-        'modules': [],
-    }]}
+        {'headline': None, 'description': 'not custom description is not custom '},
+        {'headline': '', 'description': None, 'modules': [],},
+    ]
+}
 
 expected_content = """{# L10n: editorial content for the discovery pane. #}
 {% trans %}sïïïck custom heading{% endtrans %}
@@ -81,22 +70,27 @@ expected_content = """{# L10n: editorial content for the discovery pane. #}
 
 class TestExtractDiscoStringsCommand(TestCase):
     def test_settings(self):
-        assert (
-            (settings.EDITORIAL_CONTENT_FILENAME, 'jinja2')
-            in settings.PUENTE['DOMAIN_METHODS']['django'])
+        assert (settings.EDITORIAL_CONTENT_FILENAME, 'jinja2') in settings.PUENTE[
+            'DOMAIN_METHODS'
+        ]['django']
 
     def test_basic(self):
         responses.add(
-            responses.GET, settings.DISCOVERY_EDITORIAL_CONTENT_API,
+            responses.GET,
+            settings.DISCOVERY_EDITORIAL_CONTENT_API,
             content_type='application/json',
-            body=json.dumps(disco_fake_data))
+            body=json.dumps(disco_fake_data),
+        )
         responses.add(
-            responses.GET, settings.SECONDARY_HERO_EDITORIAL_CONTENT_API,
+            responses.GET,
+            settings.SECONDARY_HERO_EDITORIAL_CONTENT_API,
             content_type='application/json',
-            body=json.dumps(hero_fake_data))
+            body=json.dumps(hero_fake_data),
+        )
 
         with tempfile.NamedTemporaryFile() as file_, override_settings(
-                EDITORIAL_CONTENT_FILENAME=file_.name):
+            EDITORIAL_CONTENT_FILENAME=file_.name
+        ):
             call_command('extract_content_strings')
 
             file_.seek(0)

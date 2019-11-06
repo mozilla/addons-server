@@ -9,7 +9,6 @@ from olympia.amo.tests import TestCase, addon_factory
 
 
 class TestAddonView(TestCase):
-
     def setUp(self):
         super(TestAddonView, self).setUp()
         self.addon = addon_factory()
@@ -18,11 +17,12 @@ class TestAddonView(TestCase):
         self.func.__name__ = 'mock_function'
         self.view = dec.addon_view(self.func)
         self.request = mock.Mock()
-        self.slug_path = (
-            'http://testserver/addon/%s/reviews' %
-            quote(self.addon.slug.encode('utf-8')))
+        self.slug_path = 'http://testserver/addon/%s/reviews' % quote(
+            self.addon.slug.encode('utf-8')
+        )
         self.request.path = self.id_path = (
-            u'http://testserver/addon/%s/reviews' % self.addon.id)
+            u'http://testserver/addon/%s/reviews' % self.addon.id
+        )
         self.request.GET = {}
 
     def test_301_by_id(self):
@@ -30,8 +30,7 @@ class TestAddonView(TestCase):
         self.assert3xx(res, self.slug_path, 301)
 
     def test_301_by_guid(self):
-        self.request.path = (
-            u'http://testserver/addon/%s/reviews' % self.addon.guid)
+        self.request.path = u'http://testserver/addon/%s/reviews' % self.addon.guid
         res = self.view(self.request, str(self.addon.guid))
         self.assert3xx(res, self.slug_path, 301)
 
@@ -40,10 +39,9 @@ class TestAddonView(TestCase):
         self.request.path = path.format(id=self.addon.id)
 
         res = self.view(self.request, str(self.addon.id))
-        redirection = (
-            u'http://testserver/addon/{slug}/reviews/{id}345/path'.format(
-                id=self.addon.id,
-                slug=quote(self.addon.slug.encode('utf8'))))
+        redirection = u'http://testserver/addon/{slug}/reviews/{id}345/path'.format(
+            id=self.addon.id, slug=quote(self.addon.slug.encode('utf8'))
+        )
         self.assert3xx(res, redirection, 301)
 
     def test_301_with_querystring(self):
@@ -111,26 +109,24 @@ class TestAddonView(TestCase):
 
 
 class TestAddonViewWithUnlisted(TestAddonView):
-
     def setUp(self):
         super(TestAddonViewWithUnlisted, self).setUp()
-        self.view = dec.addon_view_factory(
-            qs=Addon.objects.all)(self.func)
+        self.view = dec.addon_view_factory(qs=Addon.objects.all)(self.func)
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer',
-                lambda r: False)
-    @mock.patch('olympia.access.acl.check_addon_ownership',
-                lambda *args, **kwargs: False)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch(
+        'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
+    )
     def test_unlisted_addon(self):
         """Return a 404 for non authorized access."""
         self.make_addon_unlisted(self.addon)
         with self.assertRaises(http.Http404):
             self.view(self.request, self.addon.slug)
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer',
-                lambda r: False)
-    @mock.patch('olympia.access.acl.check_addon_ownership',
-                lambda *args, **kwargs: True)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch(
+        'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: True
+    )
     def test_unlisted_addon_owner(self):
         """Addon owners have access."""
         self.make_addon_unlisted(self.addon)
@@ -138,10 +134,10 @@ class TestAddonViewWithUnlisted(TestAddonView):
         request, addon = self.func.call_args[0]
         assert addon == self.addon
 
-    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer',
-                lambda r: True)
-    @mock.patch('olympia.access.acl.check_addon_ownership',
-                lambda *args, **kwargs: False)
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: True)
+    @mock.patch(
+        'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
+    )
     def test_unlisted_addon_unlisted_admin(self):
         """Unlisted addon reviewers have access."""
         self.make_addon_unlisted(self.addon)

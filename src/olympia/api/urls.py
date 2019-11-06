@@ -1,7 +1,6 @@
 from django.conf.urls import include, url
 
-from olympia.accounts.urls import (
-    accounts_v3, accounts_v4, auth_callback_patterns)
+from olympia.accounts.urls import accounts_v3, accounts_v4, auth_callback_patterns
 from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.addons.api_urls import addons_v3, addons_v4
 from olympia.ratings.api_urls import ratings_v3, ratings_v4

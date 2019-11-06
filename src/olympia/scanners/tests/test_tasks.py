@@ -308,10 +308,7 @@ class TestRunYara(UploadTest, TestCase):
         assert incr_mock.called
         assert incr_mock.call_count == 2
         incr_mock.assert_has_calls(
-            [
-                mock.call('devhub.yara.has_matches'),
-                mock.call('devhub.yara.success'),
-            ]
+            [mock.call('devhub.yara.has_matches'), mock.call('devhub.yara.success'),]
         )
         # The task should always return the results.
         assert received_results == self.results

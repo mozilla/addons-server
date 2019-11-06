@@ -14,8 +14,7 @@ from django.utils.encoding import force_bytes, force_text
 def make_key(key, with_locale=True, normalize=False):
     """Generate the full key for ``k``, with a prefix."""
     if with_locale:
-        key = u'{key}:{lang}'.format(
-            key=key, lang=translation.get_language())
+        key = u'{key}:{lang}'.format(key=key, lang=translation.get_language())
 
     if normalize:
         return force_text(hashlib.md5(force_bytes(key)).hexdigest())
@@ -77,14 +76,18 @@ def memoize(prefix, timeout=60):
     :param timeout: number of seconds to cache the key for, default 60 seconds
     :type timeout: integer
     """
+
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             def wrapped_func():
                 return func(*args, **kwargs)
+
             key = memoize_key(prefix, *args, **kwargs)
             return cache_get_or_set(key, wrapped_func, timeout=timeout)
+
         return wrapper
+
     return decorator
 
 
@@ -92,6 +95,7 @@ class Message(object):
     """
     A simple class to store an item in memcache, given a key.
     """
+
     def __init__(self, key):
         self.key = 'message:{key}'.format(key=key)
 
@@ -112,6 +116,7 @@ class Token(object):
     """
     A simple token stored in the cache.
     """
+
     _well_formed = re.compile('^[a-z0-9-]+$')
 
     def __init__(self, token=None, data=True):
@@ -157,6 +162,7 @@ class Token(object):
 
 class CacheStatTracker(BaseCache):
     """A small class used to track cache calls."""
+
     requests_limit = 5000
 
     def __init__(self, location, params):
@@ -169,8 +175,7 @@ class CacheStatTracker(BaseCache):
         # Patch back in the `location` for memcached backend to pick up.
         custom_params['LOCATION'] = location
 
-        self._real_cache = _create_cache(
-            custom_params['BACKEND'], **custom_params)
+        self._real_cache = _create_cache(custom_params['BACKEND'], **custom_params)
 
         self.requests_log = []
         self._setup_proxies()
@@ -186,18 +191,27 @@ class CacheStatTracker(BaseCache):
 
     def _proxy(self, name):
         def _real_proxy(*args, **kwargs):
-            self.requests_log.append({
-                'name': name,
-                'args': args,
-                'kwargs': kwargs,
-            })
+            self.requests_log.append(
+                {'name': name, 'args': args, 'kwargs': kwargs,}
+            )
             return getattr(self._real_cache, name)(*args, **kwargs)
+
         return _real_proxy
 
     def _setup_proxies(self):
         mappings = (
-            'add', 'get', 'set', 'delete', 'clear', 'has_key', 'incr', 'decr',
-            'get_many', 'set_many', 'delete_many')
+            'add',
+            'get',
+            'set',
+            'delete',
+            'clear',
+            'has_key',
+            'incr',
+            'decr',
+            'get_many',
+            'set_many',
+            'delete_many',
+        )
 
         for name in mappings:
             setattr(self, name, self._proxy(name))
@@ -215,5 +229,4 @@ def assert_cache_requests(num, alias='default'):
 
     executed = len(cache_using.requests_log)
 
-    assert executed == num, "%d requests executed, %d expected" % (
-        executed, num)
+    assert executed == num, "%d requests executed, %d expected" % (executed, num)

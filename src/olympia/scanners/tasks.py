@@ -38,12 +38,14 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
     - `upload_pk` is the FileUpload ID.
     """
     scanner_name = SCANNERS.get(scanner)
-    log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name,
-             upload_pk)
+    log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
 
     if not results['metadata']['is_webextension']:
-        log.info('Not running scanner "%s" for FileUpload %s, it is not a '
-                 'webextension.', scanner_name, upload_pk)
+        log.info(
+            'Not running scanner "%s" for FileUpload %s, it is not a ' 'webextension.',
+            scanner_name,
+            upload_pk,
+        )
         return results
 
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -59,9 +61,9 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
                 'api_key': api_key,
                 'download_url': upload.get_authenticated_download_url(),
             }
-            response = requests.post(url=api_url,
-                                     json=json_payload,
-                                     timeout=settings.SCANNER_TIMEOUT)
+            response = requests.post(
+                url=api_url, json=json_payload, timeout=settings.SCANNER_TIMEOUT
+            )
 
         try:
             data = response.json()
@@ -76,14 +78,14 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         scanner_result.save()
 
         statsd.incr('devhub.{}.success'.format(scanner_name))
-        log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
-                 upload_pk)
+        log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
     except Exception:
         statsd.incr('devhub.{}.failure'.format(scanner_name))
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
-        log.exception('Error in scanner "%s" task for FileUpload %s.',
-                      scanner_name, upload_pk)
+        log.exception(
+            'Error in scanner "%s" task for FileUpload %s.', scanner_name, upload_pk
+        )
 
     return results
 
@@ -152,8 +154,10 @@ def run_yara(results, upload_pk):
     log.info('Starting yara task for FileUpload %s.', upload_pk)
 
     if not results['metadata']['is_webextension']:
-        log.info('Not running yara for FileUpload %s, it is not a '
-                 'webextension.', upload_pk)
+        log.info(
+            'Not running yara for FileUpload %s, it is not a ' 'webextension.',
+            upload_pk,
+        )
         return results
 
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -167,16 +171,12 @@ def run_yara(results, upload_pk):
             zip_file = SafeZip(source=upload.path)
             for zip_info in zip_file.info_list:
                 if not zip_info.is_dir():
-                    file_content = zip_file.read(zip_info).decode(
-                        errors='ignore'
-                    )
+                    file_content = zip_file.read(zip_info).decode(errors='ignore')
                     for match in rules.match(data=file_content):
                         # Add the filename to the meta dict.
                         meta = {**match.meta, 'filename': zip_info.filename}
                         scanner_result.add_yara_result(
-                            rule=match.rule,
-                            tags=match.tags,
-                            meta=meta
+                            rule=match.rule, tags=match.tags, meta=meta
                         )
             zip_file.close()
 
@@ -191,8 +191,7 @@ def run_yara(results, upload_pk):
         statsd.incr('devhub.yara.failure')
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
-        log.exception('Error in scanner "yara" task for FileUpload %s.',
-                      upload_pk)
+        log.exception('Error in scanner "yara" task for FileUpload %s.', upload_pk)
 
     return results
 
@@ -213,9 +212,7 @@ def run_action(version_id):
     version = Version.objects.get(pk=version_id)
 
     rule = (
-        ScannerRule.objects.filter(
-            scannerresult__version=version, is_active=True
-        )
+        ScannerRule.objects.filter(scannerresult__version=version, is_active=True)
         .order_by(
             # The `-` sign means descending order.
             '-action'

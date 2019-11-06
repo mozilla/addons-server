@@ -6,7 +6,5 @@ def generate_translations(item):
     fr_prefix = u'(français) '
     es_prefix = u'(español) '
     oldname = str(item.name)
-    item.name = {'en': oldname,
-                 'fr': fr_prefix + oldname,
-                 'es': es_prefix + oldname}
+    item.name = {'en': oldname, 'fr': fr_prefix + oldname, 'es': es_prefix + oldname}
     item.save()

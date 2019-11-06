@@ -23,8 +23,7 @@ def activitylog_count(type):
 
 
 class TestCollections(TestCase):
-    fixtures = ('base/addon_3615', 'bandwagon/test_models',
-                'base/user_4043307')
+    fixtures = ('base/addon_3615', 'bandwagon/test_models', 'base/user_4043307')
 
     def setUp(self):
         super(TestCollections, self).setUp()
@@ -35,7 +34,8 @@ class TestCollections(TestCase):
     def test_description(self):
         c = Collection.objects.create(
             description='<a href="http://example.com">example.com</a> '
-                        'http://example.com <b>foo</b> some text')
+            'http://example.com <b>foo</b> some text'
+        )
         # All markup escaped, links are stripped.
         assert str(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
 
@@ -49,8 +49,11 @@ class TestCollections(TestCase):
         listed_count = Collection.objects.listed().count()
         # Make a private collection.
         Collection.objects.create(
-            name='Hello', uuid='4e2a1acc39ae47ec956f46e080ac7f69',
-            listed=False, author=self.user)
+            name='Hello',
+            uuid='4e2a1acc39ae47ec956f46e080ac7f69',
+            listed=False,
+            author=self.user,
+        )
 
         assert Collection.objects.listed().count() == listed_count
 
@@ -95,10 +98,7 @@ class TestCollectionQuerySet(TestCase):
         collection = Collection.objects.create(author=user)
         addon = Addon.objects.all()[0]
 
-        qset = (
-            Collection.objects
-            .filter(pk=collection.id)
-            .with_has_addon(addon.id))
+        qset = Collection.objects.filter(pk=collection.id).with_has_addon(addon.id)
 
         assert not qset.first().has_addon
 
@@ -110,6 +110,7 @@ class TestCollectionQuerySet(TestCase):
 class TestFeaturedCollectionSignals(TestCase):
     """The signal needs to fire for all cases when Addon.is_featured would
     potentially change."""
+
     MOCK_TARGET = 'olympia.bandwagon.models.Collection.update_featured_status'
 
     def setUp(self):
@@ -129,8 +130,8 @@ class TestFeaturedCollectionSignals(TestCase):
 
         # Featuring the collection indexes the add-ons in it.
         FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
+            collection=self.collection, application=self.collection.application
+        )
         assert index_addons.delay.call_count == 1
         assert index_addons.delay.call_args[0] == ([self.addon.pk],)
         index_addons.delay.reset_mock()
@@ -140,8 +141,7 @@ class TestFeaturedCollectionSignals(TestCase):
         # the one we just added and not the rest).
         self.collection.add_addon(extra_addon)
         assert index_addons.delay.call_count == 1
-        assert index_addons.delay.call_args[0] == (
-            [self.addon.pk, extra_addon.pk],)
+        assert index_addons.delay.call_args[0] == ([self.addon.pk, extra_addon.pk],)
         index_addons.delay.reset_mock()
 
         # Removing an add-on needs just reindexes the add-on that has been
@@ -152,8 +152,8 @@ class TestFeaturedCollectionSignals(TestCase):
 
     def test_addon_added_to_featured_collection(self):
         FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
+            collection=self.collection, application=self.collection.application
+        )
 
         with mock.patch(self.MOCK_TARGET) as function_mock:
             self.collection.add_addon(addon_factory())
@@ -163,8 +163,8 @@ class TestFeaturedCollectionSignals(TestCase):
         addon = addon_factory()
         self.collection.add_addon(addon)
         FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
+            collection=self.collection, application=self.collection.application
+        )
 
         with mock.patch(self.MOCK_TARGET) as function_mock:
             self.collection.remove_addon(addon)
@@ -172,8 +172,8 @@ class TestFeaturedCollectionSignals(TestCase):
 
     def test_featured_collection_deleted(self):
         FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
+            collection=self.collection, application=self.collection.application
+        )
 
         with mock.patch(self.MOCK_TARGET) as function_mock:
             self.collection.delete()
@@ -182,14 +182,14 @@ class TestFeaturedCollectionSignals(TestCase):
     def test_collection_becomes_featured(self):
         with mock.patch(self.MOCK_TARGET) as function_mock:
             FeaturedCollection.objects.create(
-                collection=self.collection,
-                application=self.collection.application)
+                collection=self.collection, application=self.collection.application
+            )
             function_mock.assert_called()
 
     def test_collection_stops_being_featured(self):
         featured = FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
+            collection=self.collection, application=self.collection.application
+        )
 
         with mock.patch(self.MOCK_TARGET) as function_mock:
             featured.delete()

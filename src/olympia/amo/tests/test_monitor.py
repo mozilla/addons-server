@@ -14,9 +14,8 @@ class TestMonitor(TestCase):
     def test_memcache(self, mock_socket):
         mocked_caches = {
             'default': {
-                'BACKEND': 'django.core.cache.backends.memcached'
-                           '.MemcachedCache',
-                'LOCATION': '127.0.0.1:6666'
+                'BACKEND': 'django.core.cache.backends.memcached' '.MemcachedCache',
+                'LOCATION': '127.0.0.1:6666',
             }
         }
         cache_info = mocked_caches['default']['LOCATION'].split(':')
@@ -30,7 +29,8 @@ class TestMonitor(TestCase):
             connect_call_args = mock_socket_instance.connect.call_args_list
             assert len(connect_call_args) == 1
             mock_socket_instance.connect.assert_called_with(
-                (cache_info[0], int(cache_info[1])))
+                (cache_info[0], int(cache_info[1]))
+            )
 
             # Expect memcached_results to contain cache info and then a boolean
             # indicating everything is OK.
