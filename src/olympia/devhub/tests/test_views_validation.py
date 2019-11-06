@@ -27,14 +27,17 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
         super(TestUploadValidation, self).setUp()
         assert self.client.login(email='regular@mozilla.com')
 
-    def test_no_html_in_messages(self):
+    def test_only_safe_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid_webextension.xpi')
         resp = self.client.get(reverse('devhub.upload_detail',
                                        args=[upload.uuid.hex, 'json']))
         assert resp.status_code == 200
         data = json.loads(resp.content)
         msg = data['validation']['messages'][0]
-        assert msg['message'] == 'The value of &lt;em:id&gt; is invalid.'
+        assert msg['message'] == (
+            'The value of &lt;em:id&gt; is invalid. '
+            'See <a href="https://mozilla.org" rel="nofollow">mozilla.org</a> '
+            'for more information')
         assert msg['description'][0] == '&lt;iframe&gt;'
         assert msg['context'] == (
             [u'<em:description>...', u'<foo/>'])
@@ -178,12 +181,16 @@ class TestFileValidation(TestCase):
             args=[other_addon.slug, self.file.id])
         assert self.client.get(url, follow=True).status_code == 404
 
-    def test_no_html_in_messages(self):
+    def test_only_safe_html_in_messages(self):
         response = self.client.post(self.json_url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)
         msg = data['validation']['messages'][0]
-        assert msg['message'] == 'The value of &lt;em:id&gt; is invalid.'
+
+        assert msg['message'] == (
+            'The value of &lt;em:id&gt; is invalid. '
+            'See <a href="https://mozilla.org" rel="nofollow">mozilla.org</a> '
+            'for more information')
         assert msg['description'][0] == '&lt;iframe&gt;'
         assert msg['context'] == (
             [u'<em:description>...', u'<foo/>'])
