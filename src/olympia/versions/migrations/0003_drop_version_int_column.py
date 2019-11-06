@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('versions', '0001_initial'),
+        ('versions', '0002_version_needs_human_review.py'),
     ]
 
     operations = [
