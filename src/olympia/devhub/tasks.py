@@ -298,19 +298,6 @@ def handle_upload_validation_result(all_results, upload_pk, channel,
 
     upload = FileUpload.objects.get(pk=upload_pk)
 
-    # Check for API keys in submissions.
-    # Make sure it is extension-like, e.g. no search plugin
-    try:
-        results = check_for_api_keys_in_file(results=results, upload=upload)
-    except (ValidationError, BadZipfile, IOError):
-        pass
-
-    # Annotate results with potential webext warnings on new versions.
-    if upload.addon_id and upload.version:
-        annotations.annotate_webext_incompatibilities(
-            results=results, file_=None, addon=upload.addon,
-            version_string=upload.version, channel=channel)
-
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
 
@@ -368,15 +355,13 @@ def handle_file_validation_result(results, file_id, *args):
     instance."""
 
     file_ = File.objects.get(pk=file_id)
-
-    annotations.annotate_webext_incompatibilities(
-        results=results, file_=file_, addon=file_.version.addon,
-        version_string=file_.version.version, channel=file_.version.channel)
-
     return FileValidation.from_json(file_, results).pk
 
 
-def check_for_api_keys_in_file(results, upload):
+@validation_task
+def check_for_api_keys_in_file(results, upload_pk):
+    upload = FileUpload.objects.get(pk=upload_pk)
+
     if upload.addon:
         users = upload.addon.authors.all()
     else:
@@ -390,35 +375,39 @@ def check_for_api_keys_in_file(results, upload):
         except APIKey.DoesNotExist:
             pass
 
-    if len(keys) > 0:
-        zipfile = SafeZip(source=upload.path)
-        for zipinfo in zipfile.info_list:
-            if zipinfo.file_size >= 64:
-                file_ = zipfile.read(zipinfo)
-                for key in keys:
-                    if key.secret in file_.decode(errors="ignore"):
-                        log.info('Developer API key for user %s found in '
-                                 'submission.' % key.user)
-                        if key.user == upload.user:
-                            msg = ugettext('Your developer API key was found '
-                                           'in the submitted file. To protect '
-                                           'your account, the key will be '
-                                           'revoked.')
-                        else:
-                            msg = ugettext('The developer API key of a '
-                                           'coauthor was found in the '
-                                           'submitted file. To protect your '
-                                           'add-on, the key will be revoked.')
-                        annotations.insert_validation_message(
-                            results, type_='error',
-                            message=msg, msg_id='api_key_detected',
-                            compatibility_type=None)
+    try:
+        if len(keys) > 0:
+            zipfile = SafeZip(source=upload.path)
+            for zipinfo in zipfile.info_list:
+                if zipinfo.file_size >= 64:
+                    file_ = zipfile.read(zipinfo)
+                    for key in keys:
+                        if key.secret in file_.decode(errors="ignore"):
+                            log.info('Developer API key for user %s found in '
+                                     'submission.' % key.user)
+                            if key.user == upload.user:
+                                msg = ugettext('Your developer API key was '
+                                               'found in the submitted file. '
+                                               'To protect your account, the '
+                                               'key will be revoked.')
+                            else:
+                                msg = ugettext('The developer API key of a '
+                                               'coauthor was found in the '
+                                               'submitted file. To protect '
+                                               'your add-on, the key will be '
+                                               'revoked.')
+                            annotations.insert_validation_message(
+                                results, type_='error',
+                                message=msg, msg_id='api_key_detected',
+                                compatibility_type=None)
 
-                        # Revoke after 2 minutes to allow the developer to
-                        # fetch the validation results
-                        revoke_api_key.apply_async(
-                            kwargs={'key_id': key.id}, countdown=120)
-        zipfile.close()
+                            # Revoke after 2 minutes to allow the developer to
+                            # fetch the validation results
+                            revoke_api_key.apply_async(
+                                kwargs={'key_id': key.id}, countdown=120)
+            zipfile.close()
+    except (ValidationError, BadZipfile, IOError):
+        pass
 
     return results
 

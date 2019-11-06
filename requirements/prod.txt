@@ -1,6 +1,6 @@
-Django==2.2.6 \
-    --hash=sha256:4025317ca01f75fc79250ff7262a06d8ba97cd4f82e93394b2a0a6a4a925caeb \
-    --hash=sha256:a8ca1033acac9f33995eb2209a6bf18a4681c3e5269a878e9a7e0b7384ed1ca3
+Django==2.2.7 \
+    --hash=sha256:16040e1288c6c9f68c6da2fe75ebde83c0a158f6f5d54f4c5177b0c1478c5b86 \
+    --hash=sha256:89c2007ca4fa5b351a51a279eccff298520783b713bf28efb89dfb81c80ea49b
 Babel==2.7.0 \
     --hash=sha256:af92e6106cb7c55286b25b38ad7695f8b4efb36a90ba483d7f7a6628c46158ab \
     --hash=sha256:e86135ae101e31e2c8ec20a4e0c5220f4eed12487d5cf3f78be7e98d3a57fc28
@@ -110,15 +110,15 @@ billiard==3.6.0.0 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.10.4 \
-    --hash=sha256:63b80dd065221a3143f80559392769a94c303e616bdb956d66685cd3160d409e \
-    --hash=sha256:bf315a5aafab7e429ed08acce36f4c50de18024b1087e5050d5b7f0681862549
+boto3==1.10.8 \
+    --hash=sha256:16425b461149e57cecf1afef53382f187ed325dddb764b1047aa47f78197d9e2 \
+    --hash=sha256:593f67dcf6417b8c39641236761604cf47134bc27c25ef4d7c3d22da824e2c05
 celery==4.3.0 \
     --hash=sha256:4c4532aa683f170f40bd76f928b70bc06ff171a959e06e71bf35f2f9d6031ef9 \
     --hash=sha256:528e56767ae7e43a16cfef24ee1062491f5754368d38fcfffa861cdb9ef219be
-botocore==1.13.4 \
-    --hash=sha256:3773a28e139ccd41435afe64ee5945e5ccd1b84706f54bcb971788d71f7f138c \
-    --hash=sha256:efd131a59107ceb3c9a0f885d947f1b150ab68a875bbec05004d9768e45e6a0f
+botocore==1.13.9 \
+    --hash=sha256:61ad58e737e7a5d61308599606cd5a435cc3b97eb7fa693f99663c91bf1706d1 \
+    --hash=sha256:8cb038c110822681925a1f5d9005dc2bbc4259fff89d4abfaaf803a3489d0ee3
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -182,9 +182,9 @@ django-statsd-mozilla==0.4.0 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
 django-tables2==1.21.2 \
     --hash=sha256:c5c979201b7a2f7e88f2784dcd478e0c809d3a2053dea576cb71ce51676bbf7a # pyup: <2
-django-waffle==0.17.0 \
-    --hash=sha256:3e0ae529315de89c51b362c4d5a59bb0e3a026a3787c03501726f5bb7148e72e \
-    --hash=sha256:ee06ac29a3391f0893cfab1ed47bda65506ef136b4ceed5d1436df88bb17d02f
+django-waffle==0.18.0 \
+    --hash=sha256:5b8556dfde1caf66c33d754f0708f504fdcd0065a824d6be1f0c5d87d3a10d00 \
+    --hash=sha256:e1aafced6e0dc5cadeafe30047224840c591ffe3ff4aa5259ec74f0b82ceb64f
 # djangorestframework is required by drf-nested-routers
 djangorestframework==3.10.3 \
     --hash=sha256:5488aed8f8df5ec1d70f04b2114abc52ae6729748a176c453313834a9ee179c8 \
@@ -293,9 +293,9 @@ pyquery==1.4.1 \
     --hash=sha256:710eac327b87f15f74a95c3378c6ba62ef6fcfb0a6d009a7d33349c9f7e65835 \
     --hash=sha256:8fcf77c72e3d602ce10a0bd4e65f57f0945c18e15627e49130c27172d4939d98
 # python-dateutil is required by elasticsearch-dsl
-python-dateutil==2.8.0 \
-    --hash=sha256:7e6584c74aeed623791615e26efd690f29817a27c73085b78e4bad02493df2fb \
-    --hash=sha256:c89805f6f4d64db21ed966fda138f8a5ed7a4fdbc1a8ee329ce1b74e3c74da9e
+python-dateutil==2.8.1 \
+    --hash=sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c \
+    --hash=sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a
 # pytz is required by Babel, celery
 pytz==2019.3 \
     --hash=sha256:1c557d7d0e871de1f5ccd5833f60fb2550652da6be2693c1e02300743d21500d \
@@ -330,9 +330,9 @@ django-jinja==2.4.1 \
 requests-hawk==1.0.0 \
     --hash=sha256:aef0dff8053dcae2057774516386bed0a3bc03fabea9e18f3aa98f02672ea5d0 \
     --hash=sha256:c2626ab31ebef0c81b97781c44c2275bfcc6d8e8520fc4ced495f0f386f8fe26
-mohawk==1.0.0 \
-    --hash=sha256:aa57e6626a6ea323ab714779f23734de1d1feca8cb6fc00b65e65ce115c1696a \
-    --hash=sha256:fca4e34d8f5492f1c33141c98b96e168a089e5692ce65fb747e4bb613f5fe552
+mohawk==1.1.0 \
+    --hash=sha256:3ed296a30453d0b724679e0fd41e4e940497f8e461a9a9c3b7f36e43bab0fa09 \
+    --hash=sha256:d2a0e3ab10a209cc79e95e28f2dd54bd4a73fd1998ffe27b7ba0f962b6be9723
 basket-client==1.0.0 \
     --hash=sha256:fee512c8deabde53aa33b08fa34a992de3085e781be192c4120adb086d0d20c1 \
     --hash=sha256:f9f9ff4870cc1d171ff9f00a8d968336d0e74178f5ac1612bc85be39a3f0cc2c

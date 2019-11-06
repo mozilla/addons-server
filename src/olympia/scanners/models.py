@@ -3,7 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields.json import JSONField
 
 from olympia.amo.models import ModelBase
-from olympia.constants.scanners import SCANNERS, ACTIONS, NO_ACTION, YARA
+from olympia.constants.scanners import (
+    ACTIONS,
+    CUSTOMS,
+    NO_ACTION,
+    SCANNERS,
+    YARA,
+)
 from olympia.files.models import FileUpload
 
 
@@ -48,10 +54,12 @@ class ScannerResult(ModelBase):
     def extract_rule_names(self):
         """This method parses the raw results and returns the (matched) rule
         names. Not all scanners have rules that necessarily match."""
-        if self.scanner is not YARA:
-            # We do not have support for other scanners yet.
-            return []
-        return sorted({result['rule'] for result in self.results})
+        if self.scanner == YARA:
+            return sorted({result['rule'] for result in self.results})
+        if self.scanner == CUSTOMS and 'matchedRules' in self.results:
+            return self.results['matchedRules']
+        # We do not have support for the remaining scanners (yet).
+        return []
 
     def save(self, *args, **kwargs):
         matched_rules = ScannerRule.objects.filter(
@@ -68,7 +76,6 @@ class ScannerResult(ModelBase):
 class ScannerRule(ModelBase):
     name = models.CharField(
         max_length=200,
-        unique=True,
         help_text=_('This is the exact name of the rule used by a scanner.'),
     )
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
@@ -79,6 +86,7 @@ class ScannerRule(ModelBase):
 
     class Meta:
         db_table = 'scanners_rules'
+        unique_together = ('name', 'scanner')
 
     def __str__(self):
         return self.name

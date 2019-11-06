@@ -634,14 +634,6 @@ class TestParseXpi(TestCase):
         # restart.
         assert result['is_restart_required']
 
-    def test_parse_theme_by_type(self):
-        result = self.parse(filename='theme-type.xpi')
-        assert result['type'] == amo.ADDON_THEME
-
-    def test_parse_theme_with_internal_name(self):
-        result = self.parse(filename='theme-internal-name.xpi')
-        assert result['type'] == amo.ADDON_THEME
-
     def test_parse_no_type(self):
         result = self.parse(filename='no-type.xpi')
         assert result['type'] == amo.ADDON_EXTENSION

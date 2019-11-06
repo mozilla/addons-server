@@ -478,7 +478,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
     def test_name_not_unique_between_types(self):
         """We don't enforce name uniqueness between add-ons types."""
-        addon_factory(name='Beastify', type=amo.ADDON_THEME)
+        addon_factory(name='Beastify', type=amo.ADDON_STATICTHEME)
         assert get_addon_count('Beastify') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the

@@ -24,6 +24,7 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.scanners import CUSTOMS, WAT, YARA
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
@@ -200,30 +201,6 @@ class TestVersion(TestCase):
         v = Version.objects.get(pk=81551)
         assert amo.PLATFORM_ALL in v.supported_platforms
 
-    def test_major_minor(self):
-        """Check that major/minor/alpha is getting set."""
-        v = Version(version='3.0.12b2')
-        assert v.major == 3
-        assert v.minor1 == 0
-        assert v.minor2 == 12
-        assert v.minor3 is None
-        assert v.alpha == 'b'
-        assert v.alpha_ver == 2
-
-        v = Version(version='3.6.1apre2+')
-        assert v.major == 3
-        assert v.minor1 == 6
-        assert v.minor2 == 1
-        assert v.alpha == 'a'
-        assert v.pre == 'pre'
-        assert v.pre_ver == 2
-
-        v = Version(version='')
-        assert v.major is None
-        assert v.minor1 is None
-        assert v.minor2 is None
-        assert v.minor3 is None
-
     def test_is_restart_required(self):
         version = Version.objects.get(pk=81551)
         file_ = version.all_files[0]
@@ -381,19 +358,6 @@ class TestVersion(TestCase):
         assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
         assert not hide_disabled_file_mock.called
 
-    def test_version_int(self):
-        version = Version.objects.get(pk=81551)
-        version.save()
-        assert version.version_int == 2017200200100
-
-    def test_large_version_int(self):
-        # This version will fail to be written to the version_int
-        # table because the resulting int is bigger than mysql bigint.
-        version = Version.objects.get(pk=81551)
-        version.version = '1237.2319.32161734.2383290.34'
-        version.save()
-        assert version.version_int is None
-
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_APPROVED
         version.deleted = False
@@ -533,7 +497,7 @@ class TestVersion(TestCase):
             addon=addon, auto_approval_disabled=False)
         assert version.is_ready_for_auto_approval
 
-        addon.update(type=amo.ADDON_THEME)
+        addon.update(type=amo.ADDON_STATICTHEME)
         assert not version.is_ready_for_auto_approval
 
         addon.update(type=amo.ADDON_LPAPP)
@@ -620,6 +584,61 @@ class TestVersion(TestCase):
             addon=addon, file_kw={'status': amo.STATUS_NOMINATED})
         new_version.delete()
         assert sync_object_to_basket_mock.delay.call_count == 0
+
+    def test_can_be_disabled_and_deleted(self):
+        addon = Addon.objects.get(id=3615)
+        # A non-recommended addon can have it's versions disabled.
+        assert addon.current_version.can_be_disabled_and_deleted()
+
+        DiscoveryItem.objects.create(recommendable=True, addon=addon)
+        addon.current_version.update(recommendation_approved=True)
+        addon = addon.reload()
+        assert addon.is_recommended
+        # But a recommended one can't be disabled
+        assert not addon.current_version.can_be_disabled_and_deleted()
+
+        previous_version = addon.current_version
+        version_factory(addon=addon, recommendation_approved=True)
+        addon = addon.reload()
+        assert previous_version != addon.current_version
+        assert addon.current_version.recommendation_approved
+        assert previous_version.recommendation_approved
+        # unless the previous version is also recommendation_approved
+        assert addon.current_version.can_be_disabled_and_deleted()
+        assert previous_version.can_be_disabled_and_deleted()
+
+        previous_version.update(recommendation_approved=False)
+        # double-check by removing the recommendation_approved from previous
+        assert not addon.current_version.can_be_disabled_and_deleted()
+        previous_version.update(recommendation_approved=True)  # reset status
+
+        # Check the scenario when some of the previous versions are approved
+        # but not the most recent previous - i.e. the one that would become the
+        # new current_version.
+        version_a = previous_version.reload()
+        version_b = addon.current_version
+        version_c = version_factory(addon=addon)
+        version_d = version_factory(addon=addon, recommendation_approved=True)
+        version_c.is_user_disabled = True  # disabled version_c
+        addon = addon.reload()
+        version_b = version_b.reload()
+        assert version_d == addon.current_version
+        assert version_a.recommendation_approved
+        assert version_b.recommendation_approved
+        assert not version_c.recommendation_approved  # ignored cuz disabled
+        assert version_d.recommendation_approved
+        assert version_a.can_be_disabled_and_deleted()
+        assert version_b.can_be_disabled_and_deleted()
+        assert version_c.can_be_disabled_and_deleted()
+        assert version_d.can_be_disabled_and_deleted()
+        assert addon.is_recommended
+        # now un-approve version_b
+        version_b.update(recommendation_approved=False)
+        assert version_a.can_be_disabled_and_deleted()
+        assert version_b.can_be_disabled_and_deleted()
+        assert version_c.can_be_disabled_and_deleted()
+        assert not version_d.can_be_disabled_and_deleted()
+        assert addon.is_recommended
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [

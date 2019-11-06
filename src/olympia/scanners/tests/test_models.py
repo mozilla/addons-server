@@ -70,8 +70,7 @@ class TestScannerResult(TestCase):
     def test_save_set_has_matches(self):
         result = self.create_yara_result()
         rule = ScannerRule.objects.create(
-            name='some rule name',
-            scanner=result.scanner
+            name='some rule name', scanner=result.scanner
         )
 
         result.has_matches = None
@@ -122,6 +121,25 @@ class TestScannerResult(TestCase):
 
         assert result.extract_rule_names() == [rule1, rule2]
 
-    def test_extract_rule_names_returns_empty_list_when_not_yara(self):
-        result = self.create_customs_result()
+    def test_extract_rule_names_returns_empty_list_for_unsupported_scanner(
+        self
+    ):
+        upload = self.create_file_upload()
+        result = ScannerResult.objects.create(upload=upload, scanner=WAT)
         assert result.extract_rule_names() == []
+
+    def test_extract_rule_names_with_no_customs_matched_rules_attribute(self):
+        result = self.create_customs_result()
+        result.results = {}
+        assert result.extract_rule_names() == []
+
+    def test_extract_rule_names_with_no_customs_results(self):
+        result = self.create_customs_result()
+        result.results = {'matchedRules': []}
+        assert result.extract_rule_names() == []
+
+    def test_extract_rule_names_with_customs_results(self):
+        result = self.create_customs_result()
+        rules = ['rule-1', 'rule-2']
+        result.results = {'matchedRules': rules}
+        assert result.extract_rule_names() == rules

@@ -533,8 +533,8 @@ class AddonSerializerOutputTestMixin(object):
         self.addon.update(type=amo.ADDON_SEARCH)
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
-            'android': {'max': '9999', 'min': '11.0'},
-            'firefox': {'max': '9999', 'min': '4.0'},
+            'android': {'max': '65535', 'min': '11.0'},
+            'firefox': {'max': '65535', 'min': '4.0'},
         }
         assert result_version['is_strict_compatibility_enabled'] is False
 
