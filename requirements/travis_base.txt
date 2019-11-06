@@ -41,6 +41,6 @@ packaging==19.2 \
     --hash=sha256:28b924174df7a2fa32c1953825ff29c61e2f5e082343165438812f00d3a7fc47 \
     --hash=sha256:d9551545c6d761f3def1677baf08ab2a3ca17c56879e70fecba2fc4dde4ed108
 # pyparsing is required by packaging
-pyparsing==2.4.3 \
-    --hash=sha256:0961bf3429691b9cd7e3695a37ee8bc18e95c56ac1271dc2bbc41697062d1b6d \
-    --hash=sha256:8997c62f779045b07273e124bbe1d03e2eebb9a38a7ef0798fea4bae72b4b6a3
+pyparsing==2.4.4 \
+    --hash=sha256:4acadc9a2b96c19fe00932a38ca63e601180c39a189a696abce1eaab641447e1 \
+    --hash=sha256:61b5ed888beab19ddccab3478910e2076a6b5a0295dffc43021890e136edf764
