@@ -12,15 +12,11 @@ class DevHubAgreement(Base):
 
     def wait_for_page_to_load(self):
         self.wait.until(
-            lambda _: self.is_element_displayed(
-                *self._addon_agreement_links_locator
-            )
+            lambda _: self.is_element_displayed(*self._addon_agreement_links_locator)
         )
         return self
 
     def accept_agreement(self):
-        self.selenium.find_element(
-            *self._distribution_agreement_locator
-        ).click()
+        self.selenium.find_element(*self._distribution_agreement_locator).click()
         self.selenium.find_element(*self._review_policy_locator).click()
         self.selenium.find_element(*self._accept_button_locator).click()

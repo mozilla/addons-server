@@ -22,4 +22,5 @@ class Categories(Region):
         def click(self):
             self.root.click()
             from pages.desktop.category import Category
+
             return Category(self.selenium, self.page)

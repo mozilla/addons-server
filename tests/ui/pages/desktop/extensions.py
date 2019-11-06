@@ -14,8 +14,7 @@ class Extensions(Base):
     _trending_addons_locator = (By.CLASS_NAME, 'TrendingAddons')
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.is_element_displayed(*self._title_locator))
+        self.wait.until(lambda _: self.is_element_displayed(*self._title_locator))
         return self
 
     @property
@@ -34,6 +33,7 @@ class Extensions(Base):
     @property
     def categories(self):
         from regions.desktop.categories import Categories
+
         return Categories(self)
 
     class ExtensionHeader(Region):

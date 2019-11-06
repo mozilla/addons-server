@@ -13,8 +13,8 @@ class Search(Page):
 
     def wait_for_page_to_load(self):
         self.wait.until(
-            expected.invisibility_of_element_located(
-                (By.CLASS_NAME, 'LoadingText')))
+            expected.invisibility_of_element_located((By.CLASS_NAME, 'LoadingText'))
+        )
         return self
 
     @property
@@ -52,8 +52,7 @@ class Search(Page):
         class ResultListItems(Region):
 
             _rating_locator = (By.CSS_SELECTOR, '.Rating--small')
-            _search_item_name_locator = (By.CSS_SELECTOR,
-                                         '.SearchResult-contents > h2')
+            _search_item_name_locator = (By.CSS_SELECTOR, '.SearchResult-contents > h2')
             _users_locator = (By.CLASS_NAME, 'SearchResult-users-text')
 
             @property
@@ -70,12 +69,10 @@ class Search(Page):
             @property
             def users(self):
                 users = self.find_element(*self._users_locator).text
-                return int(
-                    users.split()[0].replace(',', '').replace('users', ''))
+                return int(users.split()[0].replace(',', '').replace('users', ''))
 
             @property
             def rating(self):
                 """Returns the rating"""
-                rating = self.find_element(
-                    *self._rating_locator).get_property('title')
+                rating = self.find_element(*self._rating_locator).get_property('title')
                 return int(rating.split()[1])

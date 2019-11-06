@@ -16,6 +16,7 @@ class DevHub(Base):
     to upload an addon.
 
     """
+
     URL_TEMPLATE = 'developers/'
 
     _root_locator = (By.CLASS_NAME, 'DevHub-Navigation')
@@ -40,9 +41,7 @@ class DevHub(Base):
     _submit_upload_btn_locator = (By.ID, 'submit-upload-file-finish')
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.is_element_displayed(*self._overview_locator)
-        )
+        self.wait.until(lambda _: self.is_element_displayed(*self._overview_locator))
         return self
 
     @property
@@ -52,9 +51,7 @@ class DevHub(Base):
     def login(self, email, password):
         login_page = self.header.click_login()
         login_page.login(email, password)
-        self.wait.until(
-            lambda _: self.is_element_displayed(*self._avatar_locator)
-        )
+        self.wait.until(lambda _: self.is_element_displayed(*self._avatar_locator))
         return self
 
     @property
@@ -88,8 +85,7 @@ class DevHub(Base):
             except NoSuchElementException:
                 pass
             try:
-                self.selenium.find_element(
-                    *self._continue_sub_btn_locator).click()
+                self.selenium.find_element(*self._continue_sub_btn_locator).click()
             except NoSuchElementException as e:
                 print(e)
                 self.selenium.refresh
@@ -101,15 +97,12 @@ class DevHub(Base):
         count = 0
         while upload_finished is not True and count <= 5:
             try:
-                upload = self.selenium.find_element(
-                    *self._upload_addon_locator)
+                upload = self.selenium.find_element(*self._upload_addon_locator)
                 upload.send_keys(file_path)
                 self.wait.until(
-                    expected.element_to_be_clickable(
-                        self._submit_upload_btn_locator)
+                    expected.element_to_be_clickable(self._submit_upload_btn_locator)
                 )
-                self.selenium.find_element(
-                    *self._submit_upload_btn_locator).click()
+                self.selenium.find_element(*self._submit_upload_btn_locator).click()
             except TimeoutException:
                 upload_finished = False
             except Exception as e:
@@ -149,7 +142,7 @@ class DevHub(Base):
 
         _register_link_locator = (
             By.CSS_SELECTOR,
-            '.DevHub-Navigation-Register > a:nth-child(1)'
+            '.DevHub-Navigation-Register > a:nth-child(1)',
         )
         _sign_in_locator = (
             By.CSS_SELECTOR,

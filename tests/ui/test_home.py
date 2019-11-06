@@ -50,8 +50,8 @@ def test_title_routes_to_home(base_url, selenium):
 
 
 @pytest.mark.parametrize(
-    'i, page_url',
-    enumerate(['language-tools', 'search-tools', 'android']))
+    'i, page_url', enumerate(['language-tools', 'search-tools', 'android'])
+)
 @pytest.mark.nondestructive
 def test_more_dropdown_navigates_correctly(base_url, selenium, i, page_url):
     page = Home(selenium, base_url).open()
@@ -62,17 +62,19 @@ def test_more_dropdown_navigates_correctly(base_url, selenium, i, page_url):
 @pytest.mark.desktop_only
 @pytest.mark.parametrize(
     'i, links',
-    enumerate([
-        'about',
-        'blog.mozilla.org',
-        'extensionworkshop',
-        'developers',
-        'AMO/Policy',
-        'discourse',
-        '#Contact_us',
-        'review_guide',
-        'status',
-    ])
+    enumerate(
+        [
+            'about',
+            'blog.mozilla.org',
+            'extensionworkshop',
+            'developers',
+            'AMO/Policy',
+            'discourse',
+            '#Contact_us',
+            'review_guide',
+            'status',
+        ]
+    ),
 )
 @pytest.mark.nondestructive
 def test_add_ons_footer_links(base_url, selenium, i, links):
@@ -84,14 +86,16 @@ def test_add_ons_footer_links(base_url, selenium, i, links):
 @pytest.mark.desktop_only
 @pytest.mark.parametrize(
     'i, links',
-    enumerate([
-        'firefox/new',
-        'firefox/mobile',
-        'firefox/mobile',
-        'firefox/mobile',
-        'firefox',
-        'firefox/channel/desktop',
-    ])
+    enumerate(
+        [
+            'firefox/new',
+            'firefox/mobile',
+            'firefox/mobile',
+            'firefox/mobile',
+            'firefox',
+            'firefox/channel/desktop',
+        ]
+    ),
 )
 @pytest.mark.nondestructive
 def test_firefox_footer_links(base_url, selenium, i, links):

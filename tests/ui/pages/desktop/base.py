@@ -11,11 +11,11 @@ class Base(Page):
 
     def __init__(self, selenium, base_url, locale='en-US', **kwargs):
         super(Base, self).__init__(
-            selenium, base_url, locale=locale, timeout=30, **kwargs)
+            selenium, base_url, locale=locale, timeout=30, **kwargs
+        )
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.find_element(*self._amo_header).is_displayed())
+        self.wait.until(lambda _: self.find_element(*self._amo_header).is_displayed())
         return self
 
     @property
@@ -49,23 +49,33 @@ class Header(Region):
 
     _root_locator = (By.CLASS_NAME, 'Header')
     _header_title_locator = (By.CLASS_NAME, 'Header-title')
-    _explore_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(1) \
-                        > a:nth-child(1)')
+    _explore_locator = (
+        By.CSS_SELECTOR,
+        '.SectionLinks > li:nth-child(1) \
+                        > a:nth-child(1)',
+    )
     _firefox_logo_locator = (By.CLASS_NAME, 'Header-title')
-    _extensions_locator = (By.CSS_SELECTOR, '.SectionLinks \
-                           > li:nth-child(2) > a:nth-child(1)')
+    _extensions_locator = (
+        By.CSS_SELECTOR,
+        '.SectionLinks \
+                           > li:nth-child(2) > a:nth-child(1)',
+    )
     _login_locator = (By.CLASS_NAME, 'Header-authenticate-button')
-    _logout_locator = (
-        By.CSS_SELECTOR, '.DropdownMenu-items .Header-logout-button')
+    _logout_locator = (By.CSS_SELECTOR, '.DropdownMenu-items .Header-logout-button')
     _more_dropdown_locator = (
         By.CSS_SELECTOR,
-        '.Header-SectionLinks .SectionLinks-dropdown')
+        '.Header-SectionLinks .SectionLinks-dropdown',
+    )
     _more_dropdown_link_locator = (By.CSS_SELECTOR, '.DropdownMenuItem a')
-    _themes_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(3) > \
-                       a:nth-child(1)')
+    _themes_locator = (
+        By.CSS_SELECTOR,
+        '.SectionLinks > li:nth-child(3) > \
+                       a:nth-child(1)',
+    )
     _user_locator = (
         By.CSS_SELECTOR,
-        '.Header-user-and-external-links .DropdownMenu-button-text')
+        '.Header-user-and-external-links .DropdownMenu-button-text',
+    )
 
     def click_explore(self):
         self.find_element(*self._firefox_logo_locator).click()
@@ -73,24 +83,26 @@ class Header(Region):
     def click_extensions(self):
         self.find_element(*self._extensions_locator).click()
         from pages.desktop.extensions import Extensions
-        return Extensions(
-            self.selenium, self.page.base_url).wait_for_page_to_load()
+
+        return Extensions(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     def click_themes(self):
         self.find_element(*self._themes_locator).click()
         from pages.desktop.themes import Themes
-        return Themes(
-            self.selenium, self.page.base_url).wait_for_page_to_load()
+
+        return Themes(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     def click_title(self):
         self.find_element(*self._header_title_locator).click()
 
         from pages.desktop.home import Home
+
         return Home(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     def click_login(self):
         self.find_element(*self._login_locator).click()
         from pages.desktop.login import Login
+
         return Login(self.selenium, self.page.base_url)
 
     def click_logout(self):
@@ -104,8 +116,7 @@ class Header(Region):
         action.pause(2)
         action.click(logout)
         action.perform()
-        self.wait.until(lambda s: self.is_element_displayed(
-            *self._login_locator))
+        self.wait.until(lambda s: self.is_element_displayed(*self._login_locator))
 
     def more_menu(self, item=None):
         menu = self.find_element(*self._more_dropdown_locator)
@@ -125,9 +136,13 @@ class Header(Region):
 
         _root_locator = (By.CLASS_NAME, 'AutoSearchInput')
         _search_suggestions_list_locator = (
-            By.CLASS_NAME, 'AutoSearchInput-suggestions-list')
+            By.CLASS_NAME,
+            'AutoSearchInput-suggestions-list',
+        )
         _search_suggestions_item_locator = (
-            By.CLASS_NAME, 'AutoSearchInput-suggestions-item')
+            By.CLASS_NAME,
+            'AutoSearchInput-suggestions-item',
+        )
         _search_textbox_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
 
         def search_for(self, term, execute=True):
@@ -138,6 +153,7 @@ class Header(Region):
             if execute:
                 textbox.send_keys(Keys.ENTER)
                 from pages.desktop.search import Search
+
                 return Search(self.selenium, self.page).wait_for_page_to_load()
             return self.search_suggestions
 
@@ -145,11 +161,11 @@ class Header(Region):
         def search_suggestions(self):
             self.wait.until(
                 lambda _: self.is_element_displayed(
-                    *self._search_suggestions_list_locator)
+                    *self._search_suggestions_list_locator
+                )
             )
             el_list = self.find_element(*self._search_suggestions_list_locator)
-            items = el_list.find_elements(
-                *self._search_suggestions_item_locator)
+            items = el_list.find_elements(*self._search_suggestions_item_locator)
             return [self.SearchSuggestionItem(self.page, el) for el in items]
 
         class SearchSuggestionItem(Region):
@@ -164,6 +180,7 @@ class Header(Region):
             def select(self):
                 self.root.click()
                 from pages.desktop.details import Detail
+
                 return Detail(self.selenium, self.page).wait_for_page_to_load()
 
 

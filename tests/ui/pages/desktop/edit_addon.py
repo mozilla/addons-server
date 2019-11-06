@@ -19,10 +19,7 @@ class EditAddon(Base):
     )
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _:
-                self.is_element_displayed(*self._addon_name_locator)
-        )
+        self.wait.until(lambda _: self.is_element_displayed(*self._addon_name_locator))
         return self
 
     @property

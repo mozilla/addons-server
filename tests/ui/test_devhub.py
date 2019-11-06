@@ -60,7 +60,8 @@ def test_devhub_register(base_url, selenium):
 @pytest.mark.nondestructive
 @pytest.mark.allow_external_http_requests
 def test_devhub_addon_upload_approve_install(
-        base_url, selenium, devhub_upload, firefox, firefox_notifications):
+    base_url, selenium, devhub_upload, firefox, firefox_notifications
+):
     """Test uploading an addon via devhub."""
     'ui-test-addon-2' in devhub_upload.addons[-1].name
     # We have to wait for approval

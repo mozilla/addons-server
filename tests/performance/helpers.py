@@ -68,6 +68,7 @@ class EventMarker(object):
     """
     Simple event marker that logs on every call.
     """
+
     def __init__(self, name):
         self.name = name
 
@@ -113,8 +114,7 @@ def get_fxa_account():
     password = ''.join([random.choice(string.ascii_letters) for i in range(8)])
     FxAccount = collections.namedtuple('FxAccount', 'email password')
     fxa_account = FxAccount(email=account.email, password=password)
-    session = fxa_client.create_account(fxa_account.email,
-                                        fxa_account.password)
+    session = fxa_client.create_account(fxa_account.email, fxa_account.password)
     account.fetch()
     message = account.wait_for_email(lambda m: 'x-verify-code' in m['headers'])
     session.verify_email_code(message['headers']['x-verify-code'])
@@ -141,6 +141,6 @@ def get_the_only_form_without_id(response_content):
             target_form = form
     if target_form is None:
         raise ValueError(
-            'Could not find only one form without an ID; found: {}'
-            .format(html.forms))
+            'Could not find only one form without an ID; found: {}'.format(html.forms)
+        )
     return target_form

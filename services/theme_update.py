@@ -3,8 +3,7 @@ import re
 from time import time
 from wsgiref.handlers import format_date_time
 
-from services.utils import (
-    get_cdn_url, log_configure, log_exception, mypool, settings)
+from services.utils import get_cdn_url, log_configure, log_exception, mypool, settings
 
 # This has to be imported after the settings (utils).
 from django_statsd.clients import statsd
@@ -14,28 +13,27 @@ log_configure()
 
 
 class ThemeUpdate(object):
-
     def __init__(self, locale, id_, qs=None):
         self.from_gp = qs == 'src=gp'
         self.addon_id = id_
         self.cursor = mypool.connect().cursor()
 
     def get_headers(self, length):
-        return [('Cache-Control', 'public, max-age=86400'),
-                ('Content-Length', str(length)),
-                ('Content-Type', 'application/json'),
-                ('Expires', format_date_time(time() + 86400)),
-                ('Last-Modified', format_date_time(time()))]
+        return [
+            ('Cache-Control', 'public, max-age=86400'),
+            ('Content-Length', str(length)),
+            ('Content-Type', 'application/json'),
+            ('Expires', format_date_time(time() + 86400)),
+            ('Last-Modified', format_date_time(time())),
+        ]
 
 
 class MigratedUpdate(ThemeUpdate):
-
     def get_data(self):
         if hasattr(self, 'data'):
             return self.data
 
-        primary_key = (
-            'getpersonas_id' if self.from_gp else 'lightweight_theme_id')
+        primary_key = 'getpersonas_id' if self.from_gp else 'lightweight_theme_id'
 
         """sql from:
             MigratedLWT.objects.filter(lightweight_theme_id=xxx).values_list(
@@ -55,11 +53,12 @@ class MigratedUpdate(ThemeUpdate):
         LEFT OUTER JOIN `files` ON (
             `versions`.`id` = `files`.`version_id` )
         WHERE `migrated_personas`.{primary_key}=%(id)s
-        """.format(primary_key=primary_key)
+        """.format(
+            primary_key=primary_key
+        )
         self.cursor.execute(sql, {'id': self.addon_id})
         row = self.cursor.fetchone()
-        self.data = (
-            dict(zip(('stheme_id', 'filename', 'hash'), row)) if row else {})
+        self.data = dict(zip(('stheme_id', 'filename', 'hash'), row)) if row else {}
         return self.data
 
     @property
@@ -71,7 +70,7 @@ class MigratedUpdate(ThemeUpdate):
             response = {
                 "converted_theme": {
                     "url": get_cdn_url(self.data['stheme_id'], self.data),
-                    "hash": self.data['hash']
+                    "hash": self.data['hash'],
                 }
             }
             return json.dumps(response)
@@ -104,8 +103,8 @@ def application(environ, start_response):
             is_migrated = update.is_migrated
             if is_migrated:
                 output = (
-                    update.get_json() if settings.MIGRATED_LWT_UPDATES_ENABLED
-                    else None)
+                    update.get_json() if settings.MIGRATED_LWT_UPDATES_ENABLED else None
+                )
             else:
                 output = None
 

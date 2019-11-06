@@ -55,7 +55,8 @@ PLATFORM_NAMES_TO_CONSTANTS = {
 }
 
 
-version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
+version_re = re.compile(
+    r"""(?P<major>\d+)         # major (x in x.y)
                             \.(?P<minor1>\d+)      # minor1 (y in x.y)
                             \.?(?P<minor2>\d+|\*)? # minor2 (z in x.y.z)
                             \.?(?P<minor3>\d+|\*)? # minor3 (w in x.y.z.w)
@@ -63,7 +64,9 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             (?P<alpha_ver>\d*)     # alpha/beta version
                             (?P<pre>pre)?          # pre release
                             (?P<pre_ver>\d)?       # pre release version
-                          """, re.VERBOSE)
+                          """,
+    re.VERBOSE,
+)
 
 
 def get_cdn_url(id, row):
@@ -75,8 +78,9 @@ def get_cdn_url(id, row):
 
 def getconn():
     db = settings.SERVICES_DATABASE
-    return mysql.connect(host=db['HOST'], user=db['USER'],
-                         passwd=db['PASSWORD'], db=db['NAME'])
+    return mysql.connect(
+        host=db['HOST'], user=db['USER'], passwd=db['PASSWORD'], db=db['NAME']
+    )
 
 
 mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
@@ -91,13 +95,13 @@ def log_configure():
             'mozlog': {
                 'level': 'DEBUG',
                 'class': 'logging.StreamHandler',
-                'formatter': 'json'
+                'formatter': 'json',
             },
         },
         'formatters': {
             'json': {
                 '()': olympia.core.logger.JsonFormatter,
-                'logger_name': 'http_app_addons'
+                'logger_name': 'http_app_addons',
             },
         },
     }

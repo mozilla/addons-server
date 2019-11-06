@@ -13,8 +13,8 @@ class Detail(Base):
 
     def wait_for_page_to_load(self):
         self.wait.until(
-            expected.invisibility_of_element_located(
-                (By.CLASS_NAME, 'LoadingText')))
+            expected.invisibility_of_element_located((By.CLASS_NAME, 'LoadingText'))
+        )
         return self
 
     @property

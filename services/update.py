@@ -7,7 +7,12 @@ from urllib.parse import parse_qsl
 from time import time
 
 from services.utils import (
-    get_cdn_url, log_configure, mypool, settings, PLATFORM_NAMES_TO_CONSTANTS)
+    get_cdn_url,
+    log_configure,
+    mypool,
+    settings,
+    PLATFORM_NAMES_TO_CONSTANTS,
+)
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
@@ -28,7 +33,6 @@ error_log = olympia.core.logger.getLogger('z.services')
 
 
 class Update(object):
-
     def __init__(self, data, compat_mode='strict'):
         self.conn, self.cursor = None, None
         self.data = data.copy()
@@ -61,11 +65,14 @@ class Update(object):
                        inactive = 0 AND
                        status NOT IN (%(STATUS_DELETED)s, %(STATUS_DISABLED)s)
                  LIMIT 1;"""
-        self.cursor.execute(sql, {
-            'guid': self.data['id'],
-            'STATUS_DELETED': base.STATUS_DELETED,
-            'STATUS_DISABLED': base.STATUS_DISABLED,
-        })
+        self.cursor.execute(
+            sql,
+            {
+                'guid': self.data['id'],
+                'STATUS_DELETED': base.STATUS_DELETED,
+                'STATUS_DISABLED': base.STATUS_DISABLED,
+            },
+        )
         result = self.cursor.fetchone()
         if result is None:
             return False
@@ -89,7 +96,8 @@ class Update(object):
         data['STATUS_APPROVED'] = base.STATUS_APPROVED
         data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
 
-        sql = ["""
+        sql = [
+            """
             SELECT
                 addons.guid as guid, addons.addontype_id as type,
                 addons.inactive as disabled_by_user, appmin.version as min,
@@ -112,11 +120,13 @@ class Update(object):
                 AND appmax.application_id = %(app_id)s
             INNER JOIN files
                 ON files.version_id = versions.id AND (files.platform_id = 1
-            """]
+            """
+        ]
         if data.get('appOS'):
             sql.append(' OR files.platform_id = %(appOS)s')
 
-        sql.append("""
+        sql.append(
+            """
             )
             -- Find a reference to the user's current version, if it exists.
             -- These should never be inner joins. We need results even if we
@@ -129,7 +139,8 @@ class Update(object):
                 versions.deleted = 0 AND
                 versions.channel = %(RELEASE_CHANNEL_LISTED)s AND
                 files.status = %(STATUS_APPROVED)s
-        """)
+        """
+        )
 
         sql.append('AND appmin.version_int <= %(version_int)s ')
 
@@ -139,11 +150,13 @@ class Update(object):
         elif self.compat_mode == 'normal':
             # When file has strict_compatibility enabled, or file has binary
             # components, default to compatible is disabled.
-            sql.append("""AND
+            sql.append(
+                """AND
                 CASE WHEN files.strict_compatibility = 1 OR
                           files.binary_components = 1
                 THEN appmax.version_int >= %(version_int)s ELSE 1 END
-            """)
+            """
+            )
             # Filter out versions that don't have the minimum maxVersion
             # requirement to qualify for default-to-compatible.
             d2c_min = applications.D2C_MIN_VERSIONS.get(data['app_id'])
@@ -160,12 +173,27 @@ class Update(object):
         result = self.cursor.fetchone()
 
         if result:
-            row = dict(zip([
-                'guid', 'type', 'disabled_by_user', 'min', 'max',
-                'file_id', 'file_status', 'hash', 'filename', 'version_id',
-                'datestatuschanged', 'strict_compat', 'releasenotes',
-                'version'],
-                list(result)))
+            row = dict(
+                zip(
+                    [
+                        'guid',
+                        'type',
+                        'disabled_by_user',
+                        'min',
+                        'max',
+                        'file_id',
+                        'file_status',
+                        'hash',
+                        'filename',
+                        'version_id',
+                        'datestatuschanged',
+                        'strict_compat',
+                        'releasenotes',
+                        'version',
+                    ],
+                    list(result),
+                )
+            )
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
             row['url'] = get_cdn_url(data['id'], row)
             row['appguid'] = applications.APPS_ALL[data['app_id']].guid
@@ -191,24 +219,14 @@ class Update(object):
         return {}
 
     def get_no_updates_output(self):
-        return {
-            'addons': {
-                self.data['guid']: {
-                    'updates': []
-                }
-            }
-        }
+        return {'addons': {self.data['guid']: {'updates': []}}}
 
     def get_success_output(self):
         data = self.data['row']
         update = {
             'version': data['version'],
             'update_link': data['url'],
-            'applications': {
-                'gecko': {
-                    'strict_min_version': data['min']
-                }
-            }
+            'applications': {'gecko': {'strict_min_version': data['min']}},
         }
         if data['strict_compat']:
             update['applications']['gecko']['strict_max_version'] = data['max']
@@ -216,25 +234,24 @@ class Update(object):
             update['update_hash'] = data['hash']
         if data['releasenotes']:
             update['update_info_url'] = '%s%s%s/%%APP_LOCALE%%/' % (
-                settings.SITE_URL, '/versions/updateInfo/', data['version_id'])
-        return {
-            'addons': {
-                self.data['guid']: {
-                    'updates': [update]
-                }
-            }
-        }
+                settings.SITE_URL,
+                '/versions/updateInfo/',
+                data['version_id'],
+            )
+        return {'addons': {self.data['guid']: {'updates': [update]}}}
 
     def format_date(self, secs):
         return '%s GMT' % formatdate(time() + secs)[:25]
 
     def get_headers(self, length):
         content_type = 'application/json'
-        return [('Content-Type', content_type),
-                ('Cache-Control', 'public, max-age=3600'),
-                ('Last-Modified', self.format_date(0)),
-                ('Expires', self.format_date(3600)),
-                ('Content-Length', str(length))]
+        return [
+            ('Content-Type', content_type),
+            ('Cache-Control', 'public, max-age=3600'),
+            ('Last-Modified', self.format_date(0)),
+            ('Expires', self.format_date(3600)),
+            ('Content-Length', str(length)),
+        ]
 
 
 def log_exception(data):

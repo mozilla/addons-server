@@ -38,19 +38,16 @@ def test_legacy_extensions_do_not_load(base_url, selenium):
 
 
 @pytest.mark.xfail(strict=False)
-@pytest.mark.parametrize('category, sort_attr', [
-    ['Most Users', 'users'],
-    ['Top Rated', 'rating']])
+@pytest.mark.parametrize(
+    'category, sort_attr', [['Most Users', 'users'], ['Top Rated', 'rating']]
+)
 def test_sorting_by(base_url, selenium, category, sort_attr):
     """Test searching for an addon and sorting."""
     Home(selenium, base_url).open()
     addon_name = 'Ui-Addon'
-    selenium.get('{}/search/?&q={}&sort={}'.format(
-        base_url, addon_name, sort_attr)
-    )
+    selenium.get('{}/search/?&q={}&sort={}'.format(base_url, addon_name, sort_attr))
     search_page = Search(selenium, base_url)
-    results = [getattr(i, sort_attr)
-               for i in search_page.result_list.extensions]
+    results = [getattr(i, sort_attr) for i in search_page.result_list.extensions]
     assert sorted(results, reverse=True) == results
 
 
@@ -102,8 +99,7 @@ def test_esc_key_closes_suggestion_list(base_url, selenium):
     # Send ESC key to browser
     action.send_keys(Keys.ESCAPE).perform()
     with pytest.raises(NoSuchElementException):
-        selenium.find_element_by_css_selector(
-            'AutoSearchInput-suggestions-list')
+        selenium.find_element_by_css_selector('AutoSearchInput-suggestions-list')
 
 
 @pytest.mark.nondestructive

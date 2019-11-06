@@ -12,9 +12,7 @@ class ManageSubmissions(Base):
     _addon_submissions_locator = (By.CLASS_NAME, 'addon')
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.is_element_displayed(*self._page_title_locator)
-        )
+        self.wait.until(lambda _: self.is_element_displayed(*self._page_title_locator))
         return self
 
     @property

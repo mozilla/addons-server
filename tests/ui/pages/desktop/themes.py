@@ -11,8 +11,7 @@ class Themes(Base):
     _title_locator = (By.CLASS_NAME, 'LandingPage-addonType-name')
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.is_element_displayed(*self._title_locator))
+        self.wait.until(lambda _: self.is_element_displayed(*self._title_locator))
         return self.find_element(*self._title_locator)
 
     @property

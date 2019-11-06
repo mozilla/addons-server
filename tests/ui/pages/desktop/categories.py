@@ -14,8 +14,8 @@ class Categories(Base):
 
     def wait_for_page_to_load(self):
         self.wait.until(
-            expected.invisibility_of_element_located(
-                (By.CLASS_NAME, 'LoadingText')))
+            expected.invisibility_of_element_located((By.CLASS_NAME, 'LoadingText'))
+        )
 
     @property
     def category_list(self):
@@ -36,4 +36,5 @@ class Categories(Base):
             else:
                 self.find_element(*self._link_locator).click()
             from pages.desktop.category import Category
+
             return Category(self.selenium, self.page)

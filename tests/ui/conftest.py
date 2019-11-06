@@ -26,9 +26,7 @@ def firefox_options(firefox_options):
     '-headless': Firefox will run headless
 
     """
-    firefox_options.set_preference(
-        'extensions.install.requireBuiltInCerts', False
-    )
+    firefox_options.set_preference('extensions.install.requireBuiltInCerts', False)
     firefox_options.set_preference('xpinstall.signatures.required', False)
     firefox_options.set_preference('extensions.webapi.testing', True)
     firefox_options.set_preference('ui.popup.disable_autohide', True)
@@ -80,7 +78,8 @@ def fxa_account(request):
         if request.node.get_closest_marker('fxa_login'):
             pytest.skip(
                 'Skipping test because no fxa account was found.'
-                ' Are FXA_EMAIL and FXA_PASSWORD environment variables set?')
+                ' Are FXA_EMAIL and FXA_PASSWORD environment variables set?'
+            )
     return fxa_account
 
 

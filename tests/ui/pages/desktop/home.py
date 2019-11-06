@@ -8,9 +8,7 @@ class Home(Base):
     """Addons Home page"""
 
     _extensions_category_locator = (By.CLASS_NAME, 'Home-CuratedCollections')
-    _featured_extensions_locator = (
-        By.CLASS_NAME, 'Home-RecommendedExtensions'
-    )
+    _featured_extensions_locator = (By.CLASS_NAME, 'Home-RecommendedExtensions')
     _featured_themes_locator = (By.CLASS_NAME, 'Home-FeaturedThemes')
     _hero_locator = (By.CLASS_NAME, 'HeroRecommendation')
     _popular_extensions_locator = (By.CLASS_NAME, 'Home-PopularExtensions')
@@ -19,9 +17,7 @@ class Home(Base):
     _toprated_themes_locator = (By.CLASS_NAME, 'Home-TopRatedThemes')
 
     def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.is_element_displayed(*self._hero_locator)
-        )
+        self.wait.until(lambda _: self.is_element_displayed(*self._hero_locator))
         return self
 
     @property
@@ -73,8 +69,7 @@ class Home(Base):
 
         class CategoryDetail(Region):
             _extension_link_locator = (By.CLASS_NAME, 'Home-SubjectShelf-link')
-            _extension_name_locator = (
-                By.CSS_SELECTOR, '.Home-SubjectShelf-link span')
+            _extension_name_locator = (By.CSS_SELECTOR, '.Home-SubjectShelf-link span')
 
             @property
             def name(self):
@@ -83,6 +78,7 @@ class Home(Base):
             def click(self):
                 self.root.click()
                 from pages.desktop.extensions import Extensions
+
                 return Extensions(self.selenium, self.page.base_url)
 
     class Extensions(Region):
@@ -99,6 +95,7 @@ class Home(Base):
         def browse_all(self):
             self.find_element(*self._browse_all_locator).click()
             from pages.desktop.search import Search
+
             search = Search(self.selenium, self.page.base_url)
             return search.wait_for_page_to_load()
 
@@ -116,6 +113,7 @@ class Home(Base):
         def browse_all(self):
             self.find_element(*self._browse_all_locator).click()
             from pages.desktop.search import Search
+
             search = Search(self.selenium, self.page.base_url)
             return search.wait_for_page_to_load()
 
@@ -131,4 +129,5 @@ class Home(Base):
         def click(self):
             self.find_element(*self._extension_link_locator).click()
             from pages.desktop.extensions import Extensions
+
             return Extensions(self.selenium, self.page.base_url)
