@@ -195,6 +195,10 @@ setup-codestyle:
 lint-codestyle: ## lint the code
 	flake8 src/ services/ tests/
 
+.PHONY: run-black
+run-black: ## lint the code
+	black src/ services/ tests/
+
 .PHONY: docs
 docs: ## build the documentation
 	$(MAKE) -C docs html SPHINXOPTS='-nW'
