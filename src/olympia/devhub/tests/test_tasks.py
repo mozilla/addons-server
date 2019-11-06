@@ -747,7 +747,7 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
         assert upload.processed_validation['messages'] == [{
             'compatibility_type': None,
             'description': [],
-            'id': ['validation', 'messages', 'legacy_addons_unsupported'],
+            'id': ['validation', 'messages', 'opensearch_unsupported'],
             'message': (
                 'Open Search add-ons are <a '
                 'href="https://blog.mozilla.org/addons/2019/10/15/'

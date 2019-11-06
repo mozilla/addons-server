@@ -91,5 +91,5 @@ def annotate_search_plugin_restriction(results, file_path, channel):
             doc_link_close='</a>')
 
     insert_validation_message(
-        results, type_='error', message=msg, msg_id='legacy_addons_unsupported'
+        results, type_='error', message=msg, msg_id='opensearch_unsupported'
     )
