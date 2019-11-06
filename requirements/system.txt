@@ -110,9 +110,9 @@ pyasn1==0.4.7 \
     --hash=sha256:c39d11c72f0e5e71faa35c8c8ef5ee9b810ec99a3c64f05133f1325fe5636bba \
     --hash=sha256:f124185ccc1c1c5e782aa58d46bc28be279673a482334d70de6735d05d8b4b10
 # pyparsing is required by packaging
-pyparsing==2.4.3 \
-    --hash=sha256:0961bf3429691b9cd7e3695a37ee8bc18e95c56ac1271dc2bbc41697062d1b6d \
-    --hash=sha256:8997c62f779045b07273e124bbe1d03e2eebb9a38a7ef0798fea4bae72b4b6a3
+pyparsing==2.4.4 \
+    --hash=sha256:4acadc9a2b96c19fe00932a38ca63e601180c39a189a696abce1eaab641447e1 \
+    --hash=sha256:61b5ed888beab19ddccab3478910e2076a6b5a0295dffc43021890e136edf764
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
 setuptools==41.6.0 \
     --hash=sha256:3e8e8505e563631e7cb110d9ad82d135ee866b8146d5efe06e42be07a72db20a \
