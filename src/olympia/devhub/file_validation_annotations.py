@@ -86,8 +86,8 @@ def annotate_search_plugin_restriction(results, file_path, channel):
                 '">'),
             blog_link_close='</a>',
             doc_link_open=(
-                '<a href="https://developer.mozilla.org/docs/Mozilla/'
-                'Add-ons/WebExtensions/Your_first_WebExtension">'),
+                '<a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/'
+                'WebExtensions/manifest.json/chrome_settings_overrides">'),
             doc_link_close='</a>')
 
     insert_validation_message(

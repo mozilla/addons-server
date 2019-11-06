@@ -753,9 +753,10 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
                 'href="https://blog.mozilla.org/addons/2019/10/15/'
                 'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/"'
                 ' rel="nofollow">no longer supported on AMO</a>. You can '
-                'create a <a href="https://developer.mozilla.org/docs/Mozilla/'
-                'Add-ons/WebExtensions/Your_first_WebExtension" '
-                'rel="nofollow">search extension instead</a>.'),
+                'create a <a href="https://developer.mozilla.org/docs/Mozilla'
+                '/Add-ons/WebExtensions/manifest.json/'
+                'chrome_settings_overrides" rel="nofollow">search extension '
+                'instead</a>.'),
             'tier': 1,
             'type': 'error'}]
 
