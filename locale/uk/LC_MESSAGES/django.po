@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-05 11:57+0000\n"
+"PO-Revision-Date: 2019-11-07 08:49+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -899,7 +899,7 @@ msgid "Plugins"
 msgstr "Плагіни"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Застарілі LWT"
 
 msgid "Themes (Static)"
 msgstr "Теми (Статичні)"
@@ -1048,7 +1048,7 @@ msgid "User Interface"
 msgstr "Інтерфейс користувача"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Завантажте розширення Firefox для користувацького інтерфейсу, щоб змінювати вигляд веб-сторінок для простішого читання, пошуку, перегляду тощо."
 
 msgid "Animals"
 msgstr "Тварини"
@@ -1081,25 +1081,25 @@ msgid "Abstract"
 msgstr "Абстрактні"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Завантажте художні та концептуальні теми для Firefox. До цієї категорії належать барвисті палітри та форми, фантазійні пейзажі, грайливі коти, психоделічні квіти."
 
 msgid "Causes"
 msgstr "Активізм"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Завантажте теми Firefox для специфічних інтересів. До цієї категорії входять спортивні теми, святкові, благодійні справи, національності, а також багато інших."
 
 msgid "Fashion"
 msgstr "Мода"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Завантажте теми для Firefox, які відзначають стиль в усіх його проявах — візерунки, квіткові, текстури, моделі та інші."
 
 msgid "Film and TV"
 msgstr "Фільми й телебачення"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Завантажте теми Firefox з фільмами і телебаченням. Ця категорія містить, наприклад, аніме Uchiha Madara, фільм Матриця, шоу Гра престолів, а також багато інших."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
