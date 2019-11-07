@@ -337,7 +337,6 @@ class TestAddonModels(TestCase):
                 'base/addon_5299_gcal',
                 'base/addon_3615',
                 'base/addon_3723_listed',
-                'base/addon_6704_grapple.json',
                 'base/addon_4594_a9',
                 'base/addon_4664_twitterbar',
                 'addons/featured',
@@ -668,11 +667,6 @@ class TestAddonModels(TestCase):
         addon.icon_hash = 'somehash'
         assert addon.get_icon_url(32).endswith(
             '/3/3615-32.png?modified=somehash')
-
-        addon = Addon.objects.get(pk=6704)
-        addon.icon_type = None
-        assert addon.get_icon_url(32).endswith('/icons/default-theme.png'), (
-            'No match for %s' % addon.get_icon_url(32))
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
@@ -2449,7 +2443,7 @@ class TestRemoveLocale(TestCase):
         assert sorted(qs.filter(id=a.description_id)) == ['en-US', 'he']
 
     def test_remove_version_locale(self):
-        addon = Addon.objects.create(type=amo.ADDON_THEME)
+        addon = Addon.objects.create(type=amo.ADDON_DICT)
         version = Version.objects.create(addon=addon)
         version.release_notes = {'fr': 'oui'}
         version.save()
@@ -2462,7 +2456,7 @@ class TestAddonWatchDisabled(TestCase):
 
     def setUp(self):
         super(TestAddonWatchDisabled, self).setUp()
-        self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,
+        self.addon = Addon(type=amo.ADDON_DICT, disabled_by_user=False,
                            status=amo.STATUS_APPROVED)
         self.addon.save()
 
@@ -2523,7 +2517,7 @@ class TestTrackAddonStatusChange(TestCase):
     def test_ignore_non_status_changes(self):
         addon = self.create_addon()
         with patch('olympia.addons.models.track_addon_status_change') as mock_:
-            addon.update(type=amo.ADDON_THEME)
+            addon.update(type=amo.ADDON_DICT)
         assert not mock_.called, (
             'Unexpected call: {}'.format(self.mock_incr.call_args)
         )

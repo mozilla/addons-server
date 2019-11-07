@@ -203,7 +203,7 @@ class RDFExtractor(object):
     # https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#type
     TYPES = {
         '2': amo.ADDON_EXTENSION,
-        '4': amo.ADDON_THEME,
+        '4': amo.ADDON_EXTENSION,  # Really a XUL theme but now unsupported.
         '8': amo.ADDON_LPAPP,
         '64': amo.ADDON_DICT,
         '128': amo.ADDON_EXTENSION,  # Telemetry Experiment
@@ -280,11 +280,6 @@ class RDFExtractor(object):
             # If it's an experiment, we need to store that for later.
             self.is_experiment = self.package_type in self.EXPERIMENT_TYPES
             return self.TYPES[self.package_type]
-
-        # Look for Complete Themes.
-        is_complete_theme = self.find('internalName')
-        if is_complete_theme:
-            return amo.ADDON_THEME
 
         # Look for dictionaries.
         is_dictionary = (
@@ -611,8 +606,8 @@ def extract_search(content):
                 ugettext('Could not parse uploaded file, missing or empty '
                          '<%s> element') % tag)
 
-    # Only catch basic errors, most of that validation already happened in
-    # devhub.tasks:annotate_search_plugin_validation
+    # Only catch basic errors, we don't accept any new uploads and validation
+    # has happened on upload in the past.
     try:
         dom = minidom.parse(content)
     except DefusedXmlException:

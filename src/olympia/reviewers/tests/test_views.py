@@ -2629,11 +2629,11 @@ class BaseTestQueueSearch(SearchTest):
                 'file_status': amo.STATUS_AWAITING_REVIEW,
                 'needs_admin_code_review': True,
             }),
-            ('Justin Bieber Theme', {
+            ('Bieber Lang', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
-                'type': amo.ADDON_THEME,
+                'type': amo.ADDON_LPAPP,
             }),
             ('Justin Bieber Search Bar', {
                 'version_str': '0.1',
@@ -2713,7 +2713,7 @@ class BaseTestQueueSearch(SearchTest):
     def test_search_by_addon_name_admin(self):
         self.login_as_admin()
         self.generate_files(['Not Needing Admin Review', 'Needs Admin Review',
-                             'Justin Bieber Theme'])
+                             'Bieber Lang'])
         response = self.search(text_query='admin')
         assert response.status_code == 200
         assert sorted(self.named_addons(response)) == [
@@ -2760,7 +2760,7 @@ class BaseTestQueueSearch(SearchTest):
 
     def test_search_by_addon_name(self):
         self.generate_files(['Not Needing Admin Review', 'Needs Admin Review',
-                             'Justin Bieber Theme'])
+                             'Bieber Lang'])
         response = self.search(text_query='admin', searching='True')
         assert response.status_code == 200
         assert sorted(self.named_addons(response)) == (
@@ -2823,11 +2823,11 @@ class TestQueueSearch(BaseTestQueueSearch):
         self.url = reverse('reviewers.queue_extension')
 
     def test_search_by_addon_type(self):
-        self.generate_files(['Not Needing Admin Review', 'Justin Bieber Theme',
+        self.generate_files(['Not Needing Admin Review', 'Bieber Lang',
                              'Justin Bieber Search Bar'])
-        response = self.search(addon_type_ids=[amo.ADDON_THEME])
+        response = self.search(addon_type_ids=[amo.ADDON_LPAPP])
         assert response.status_code == 200
-        assert self.named_addons(response) == ['Justin Bieber Theme']
+        assert self.named_addons(response) == ['Bieber Lang']
 
     def test_search_by_addon_type_any(self):
         self.generate_file('Not Needing Admin Review')
@@ -2836,13 +2836,13 @@ class TestQueueSearch(BaseTestQueueSearch):
         assert self.named_addons(response), 'Expected some add-ons'
 
     def test_search_by_many_addon_types(self):
-        self.generate_files(['Not Needing Admin Review', 'Justin Bieber Theme',
+        self.generate_files(['Not Needing Admin Review', 'Bieber Lang',
                              'Bieber Dictionary'])
         response = self.search(
-            addon_type_ids=[amo.ADDON_THEME, amo.ADDON_DICT])
+            addon_type_ids=[amo.ADDON_LPAPP, amo.ADDON_DICT])
         assert response.status_code == 200
         assert sorted(self.named_addons(response)) == (
-            ['Bieber Dictionary', 'Justin Bieber Theme'])
+            ['Bieber Dictionary', 'Bieber Lang'])
 
     def test_search_by_app(self):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
@@ -4346,6 +4346,28 @@ class TestReview(ReviewBase):
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
         self.assert3xx(response, reverse('reviewers.queue_auto_approved'))
+
+    def test_reject_multiple_versions(self):
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
+
+        response = self.client.post(self.url, {
+            'action': 'reject_multiple_versions',
+            'comments': 'multireject!',
+            'versions': [old_version.pk, self.version.pk],
+        })
+
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needs_human_review
+            file_ = version.files.all().get()
+            assert file_.status == amo.STATUS_DISABLED
 
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.

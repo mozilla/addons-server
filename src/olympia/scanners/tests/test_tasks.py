@@ -21,6 +21,7 @@ from olympia.scanners.tasks import (
     run_customs,
     run_wat,
     run_yara,
+    _flag_for_human_review,
     _no_action,
     run_action,
 )
@@ -391,8 +392,12 @@ class TestNoAction(TestCase):
 
 class TestFlagForHumanReview(TestCase):
     def test_flags_a_version_for_human_review(self):
-        # TODO: implement me
-        pass
+        version = version_factory(addon=addon_factory())
+        assert not version.needs_human_review
+        _flag_for_human_review(version)
+        assert version.needs_human_review
+        version.reload()
+        assert version.needs_human_review
 
 
 class TestRunAction(TestCase):

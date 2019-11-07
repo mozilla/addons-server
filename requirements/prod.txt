@@ -41,8 +41,11 @@ MarkupSafe==1.1.1 \
 # maxminddb is required by geoip2
 maxminddb==1.5.1 \
     --hash=sha256:449a1713d37320d777d0db286286ab22890f0a176492ecf3ad8d9319108f2f79
-mysqlclient==1.4.4 \
-    --hash=sha256:9c737cc55a5dc8dd3583a942d5a9b21be58d16f00f5fefca4e575e7d9682e98c
+mysqlclient==1.4.5 \
+    --hash=sha256:5c008e74b1c4a42271172c35f28a698cf79a7cba5d2bc811125e963f28001c34 \
+    --hash=sha256:6ad22de8ea3aba03ce1b202ed175e0c7a8b82fcdab8f57b1649c596550ed785a \
+    --hash=sha256:a66a7a5f4ec71e8952e27a91a3fa8e0a3ab0682e223f1a007a77518058d0d1b5 \
+    --hash=sha256:e80109b0ae8d952b900b31b623181532e5e89376d707dcbeb63f99e69cefe559
 scandir==1.10.0 \
     --hash=sha256:2586c94e907d99617887daed6c1d102b5ca28f1085f90446554abf1faf73123e \
     --hash=sha256:2ae41f43797ca0c11591c0c35f2f5875fa99f8797cb1a1fd440497ec0ae4b022 \
@@ -110,15 +113,15 @@ billiard==3.6.0.0 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.10.8 \
-    --hash=sha256:16425b461149e57cecf1afef53382f187ed325dddb764b1047aa47f78197d9e2 \
-    --hash=sha256:593f67dcf6417b8c39641236761604cf47134bc27c25ef4d7c3d22da824e2c05
+boto3==1.10.11 \
+    --hash=sha256:33ffedfd26e06dec914e836582bae5e680d046155add460760abf6c1a9145130 \
+    --hash=sha256:82f3565d406d1274efe10539e968df15aed50f6322666a4f3fd04e28bd0a662d
 celery==4.3.0 \
     --hash=sha256:4c4532aa683f170f40bd76f928b70bc06ff171a959e06e71bf35f2f9d6031ef9 \
     --hash=sha256:528e56767ae7e43a16cfef24ee1062491f5754368d38fcfffa861cdb9ef219be
-botocore==1.13.8 \
-    --hash=sha256:5cc7e0bfa41eb2789674485fdda62ce44ff5e3fee8accb4e0ef317ebdf1a319a \
-    --hash=sha256:b565ce26203ce94fc94f8056951fedc16e1e0b02d1fbdbf8dca420e1fbe05d81
+botocore==1.13.12 \
+    --hash=sha256:0095818b1f1e2698c3fe0ccc6bd4ed8c735fce37d9a99d7f304047bfd8272ec8 \
+    --hash=sha256:9303675e019b4a7389bfbec264068435d2111739b46baa7ebd08391e64dddfb4
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -273,8 +276,8 @@ more-itertools==7.2.0 \
 python-memcached==1.59 \
     --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
     --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
-newrelic==5.2.1.129 \
-    --hash=sha256:da9adab674d9fe7aa8fbabb6691b33fb7be94a32b6a80548ec7018be9df8ef65
+newrelic==5.2.2.130 \
+    --hash=sha256:2f733338004ea2dc4d51cacc5165165b052404f8344ce0194699dc3ed1a7c6ea
 nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5

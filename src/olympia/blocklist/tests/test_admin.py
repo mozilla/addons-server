@@ -135,6 +135,33 @@ class TestBlockAdminAdd(TestCase):
         assert log.details['max_version'] == addon.current_version.version
         assert log.details['reason'] == 'some reason'
 
+    def test_review_links(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        response = self.client.get(
+            self.single_url + '?guid=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' in content
+        assert 'Review Unlisted' not in content  # Theres only a listed version
+
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(
+            self.single_url + '?guid=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' in content
+        assert 'Review Unlisted' in content, content
+
+        addon.current_version.delete(hard=True)
+        response = self.client.get(
+            self.single_url + '?guid=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' not in content
+        assert 'Review Unlisted' in content
+
     def test_can_not_set_min_version_above_max_version(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')

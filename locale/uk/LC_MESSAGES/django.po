@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-04 13:40+0000\n"
+"PO-Revision-Date: 2019-11-07 09:03+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -899,7 +899,7 @@ msgid "Plugins"
 msgstr "Плагіни"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Застарілі LWT"
 
 msgid "Themes (Static)"
 msgstr "Теми (Статичні)"
@@ -1048,7 +1048,7 @@ msgid "User Interface"
 msgstr "Інтерфейс користувача"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Завантажте розширення Firefox для користувацького інтерфейсу, щоб змінювати вигляд веб-сторінок для простішого читання, пошуку, перегляду тощо."
 
 msgid "Animals"
 msgstr "Тварини"
@@ -1081,34 +1081,36 @@ msgid "Abstract"
 msgstr "Абстрактні"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Завантажте художні та концептуальні теми для Firefox. До цієї категорії належать барвисті палітри та форми, фантазійні пейзажі, грайливі коти, психоделічні квіти."
 
 msgid "Causes"
 msgstr "Активізм"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Завантажте теми Firefox для специфічних інтересів. До цієї категорії входять спортивні теми, святкові, благодійні справи, національності, а також багато інших."
 
 msgid "Fashion"
 msgstr "Мода"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Завантажте теми для Firefox, які відзначають стиль в усіх його проявах — візерунки, квіткові, текстури, моделі та інші."
 
 msgid "Film and TV"
 msgstr "Фільми й телебачення"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Завантажте теми Firefox з фільмами і телебаченням. Ця категорія містить, наприклад, аніме Uchiha Madara, фільм Матриця, шоу Гра престолів, а також багато інших."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Завантажте теми для Firefox на тематику браузера Firefox. Ця категорія містить барвисті, різноманітні зображення логотипу Firefox, а також більш загальну тематику браузера."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
 msgstr ""
+"Завантажте теми для Firefox з японським стилем Firefox. До цієї категорії входять теми із зображенням милого талісмана Фокске в різних варіантах з використанням різноманітних зображень заднього "
+"плану."
 
 msgid "Holiday"
 msgstr "Святкові"
@@ -1120,10 +1122,10 @@ msgid "Music"
 msgstr "Музичні"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Завантажте теми для Firefox з оформленням музичних інтересів та виконавців. Ця категорія містить такі популярні гурти, як Nirvana та BTS, музичні інструменти, відео та багато іншого."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Завантажте теми Firefox з тваринами і пейзажами. Ця категорія містить квіти, світанки, лисиці, планети, котики, птахи та багато інших."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Завантажуйте теми Firefox — вони цікаві, креативні та унікальні."
@@ -1132,28 +1134,28 @@ msgid "Scenery"
 msgstr "Пейзажі"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Завантажте теми для Firefox присвячених оточенню та навколишньому світу. До цієї категорії входять заходи сонця, пляжі, ілюстрації, міста тощо."
 
 msgid "Seasonal"
 msgstr "Пори року"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Завантажте теми Firefox присвячених порам року — осінь, зима, весна й літо. Осінні листопади, засніжені гірські вершини, сонячні літні дні та весняні квіти."
 
 msgid "Solid"
 msgstr "Суцільні"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Завантажте теми для Firefox з суцільними та градієнтними кольорами, щоб зробити свій браузер особливим. Ця категорія містить яскраво-червоні, пастельні, світло-сірі та багато інших кольорів."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Завантажте теми для Firefox присвячені спорту. Ця категорія включає прапори країн, спортивні команди, футбол, хокей та інші."
 
 msgid "Websites"
 msgstr "Веб-сайти"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Завантажте теми Firefox, що відображають суть Інтернету — захопливі, незвичні й самобутні."
 
 msgid "General"
 msgstr "Загальне"
@@ -3887,7 +3889,6 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Працюйте швидше {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
 msgstr "Виконуйте різні дії швидше за допомогою жестів миші."
 
@@ -3928,16 +3929,14 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Позбудьтеся небажаної пошти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Використовуйте тимчасові адреси електронної пошти для анонімності та уникнення спаму."
+msgstr "Позбудьтеся спаму. Використовуйте тимчасові адреси електронної пошти для анонімності та уникнення спаму."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Оберіть свій рівень приватності {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr "Легко змінюйте вбудовані налаштування приватності в Firefox."
 
@@ -3946,7 +3945,6 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Отримуйте миттєві переклади {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr "Миттєво перекладайте підсвічений текст натисканням виринаючої кнопки."
 
@@ -3963,9 +3961,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Веб-версія WhatsApp {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Отримуйте доступ до WhatsApp з панелі інструментів Firefox, щоб бачити сповіщення про нові розмови."
+msgstr "WhatsApp онлайн. Отримуйте доступ до WhatsApp з панелі інструментів Firefox, щоб бачити сповіщення про нові розмови."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3980,9 +3977,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Створіть чорний список веб-сайтів {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Обмежте для Firefox доступ до визначених вами веб-сайтів."
+msgstr "Обмежте для Firefox доступ до визначених вами веб-сайтів. Чудовий інструмент для самодисципліни."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4021,9 +4017,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Легко обирайте розташування закладок {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Кращий спосіб зберігання закладок, якщо ви використовуєте багато тек."
+msgstr "Ефективніший спосіб зберігання закладок, якщо ви використовуєте багато тек."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4042,7 +4037,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Видобувайте посилання {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Миттєво відображайте всі посилання з веб-сторінки в нових вкладках."
 
@@ -4051,9 +4045,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Уникайте перенаправлень і стеження {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Позбавтеся сторінок перенаправлення й параметрів стеження в URL-адресах."
+msgstr "Позбавтеся сторінок перенаправлення й параметрів стеження в URL-адресах. Працює автоматично."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4068,9 +4061,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Завантажуйте відео YouTube {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Завантажуйте відео та/або аудіо."
+msgstr "Завантажуйте YouTube відео та/або аудіо."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4117,9 +4109,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Насолоджуйтеся музикою з усього світу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Отримайте доступ до понад 30 тисяч радіостанцій з усього світу."
+msgstr "Насолоджуйтеся музикою з понад 30 тисяч радіостанцій з усього світу."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4142,18 +4133,16 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Переглядайте Інтернет безпечно {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Переходьте до захищеної версії веб-сайту, якщо вона доступна."
+msgstr "Автоматично переходьте до захищеної версії веб-сайту, якщо вона доступна."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Видаляйте історію навігації {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Вкажіть власне число днів зберігання історії браузера, після чого вона буде автоматично стиратись."
+msgstr "Видаліть свою історію перегляду. Вкажіть власне число днів зберігання історії браузера, після чого вона буде автоматично стиратись."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4176,9 +4165,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Автоматично заповнюйте форми {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Зберігайте введені дані для автоматичного їх заповнення наступного разу."
+msgstr "Автоматично заповнюйте форми. Зберігайте введені дані для автоматичного їх заповнення наступного разу."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4193,18 +4181,16 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Зупиніть викрадання вкладки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Не дозволяйте відкритим посиланням контролювати вашу вкладку й завантажувати небажаний вміст."
+msgstr "Обмежте сторонній доступ до вкладок. Не дозволяйте відкритим посиланням контролювати вашу вкладку й завантажувати небажаний вміст."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Легко отримуйте доступ до Wikipedia {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Виконуйте пошук по Wikipedia, підсвітивши текст й натиснувши на праву кнопку миші."
+msgstr "Легко виконуйте пошук по Wikipedia, підсвітивши текст й натиснувши на праву кнопку миші."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4227,27 +4213,24 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Станьте знавцем Amazon {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "При пошуку сторінок продукту в інших онлайн-магазинах, якщо це також доступно в Amazon, ви можете просто натиснути кнопку і перевірити сторінку продукту на Amazon."
+msgstr "Купуйте в Amazon. При пошуку сторінок продукту в інших онлайн-магазинах, якщо це також доступно в Amazon, ви можете просто натиснути кнопку і перевірити сторінку продукту на Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Виключний контроль вкладки {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Різні можливості керування вкладками — закривайте дублікати, об'єднуйте вікна, копіюйте заголовок вкладки та інше."
+msgstr "Насолоджуйтесь повним контролем керування вкладками — закривайте дублікати, об'єднуйте вікна, копіюйте заголовок вкладки та інше."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Захоплюйтесь самонавчанням {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Завантажуйте випадкову статтю з Wikipedia щоразу при відкритті нової вкладки."
+msgstr "Завжди вивчайте щось нове. Завантажуйте випадкову статтю з Wikipedia щоразу при відкритті нової вкладки."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4278,9 +4261,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Пошук у Firefox {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Легко отримуйте доступ до своїх відкритих вкладок, закладок та історії."
+msgstr "Виконуйте пошук в Firefox, легко отримуючи доступ до своїх відкритих вкладок, закладок та історії."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4343,32 +4325,30 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Робіть покупки з упевненістю {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Додаткова перевірка, щоб упевнитися що ви купуєте на сайті, вартому довіри."
+msgstr "Купуйте з упевненістю. Це розширення дозволяє виконувати додаткову перевірку, щоб упевнитися що ви купуєте на сайті, вартому довіри."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Стежте за продуктивністю {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Вимірюйте кількість часу, проведеного за комп'ютером, або в певній програмі, наприклад, Trello, JIRA, Basecamp, GitHub, та багатьох інших."
+msgstr "Стежте за продуктивністю. Вимірюйте кількість часу, проведеного за комп'ютером, або в певній програмі, наприклад, Trello, JIRA, Basecamp, GitHub, та багатьох інших."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Робіть вирізки веб-вмісту, наприклад, статей, відео, зображень та інших матеріалів, щоб зберігати й використовувати їх у власних проектах або для співпраці в реальному часі."
+msgstr ""
+"Зберігайте свої улюблені матеріали в Інтернеті. Робіть вирізки веб-вмісту, наприклад, статей, відео, зображень та інших матеріалів, щоб зберігати й використовувати їх у власних проектах або для "
+"співпраці в реальному часі."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Безпечно переглядайте Інтернет {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Дозволяйте виконання веб-вмісту лише для сайтів, яким ви довіряєте."
+msgstr "Дозволяйте виконання веб-вмісту лише для сайтів, яким ви довіряєте. Користуйтесь Інтернетом безпечно."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4443,18 +4423,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Розберіться з надокучливим аудіо {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Якщо звук на веб-сайті надто тихий чи гучний, SoundFixer може допомогти виправити це."
+msgstr "Виправте аудіо. Якщо звук на веб-сайті надто тихий чи гучний, SoundFixer може допомогти."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Редагування перед друком {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій веб-сторінці, яку ви хочете роздрукувати."
+msgstr "Редагуйте веб-сторінку перед друком. Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій веб-сторінці, яку ви хочете роздрукувати."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4485,18 +4463,16 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ховайте свої сліди {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Виконуйте пошук з вищою безпекою з блокуванням стеження, розумним шифруванням, приватним пошуком та іншими можливостями."
+msgstr "Виконуйте пошук з розширеним захистом від стеження, розумним шифруванням, а також іншими засобами захисту приватності."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Спростіть роботу з вкладками {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Організуйте свої відкриті вкладки у вертикальній бічній панелі."
+msgstr "Спростіть вкладки. Організуйте свої відкриті вкладки у вертикальній бічній панелі."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4511,9 +4487,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Переглядайте зображення цілком {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr "Перемикання в повноекранний режим перегляду відео одним натисканням кнопки."
+msgstr "Перемикайтесь в повноекранний режим перегляду відео однією кнопкою миші."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4536,9 +4511,8 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Припиніть намагатися зрозуміти нісенітниці {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Розумне розширення, що допомагає вам швидко зрозуміти, з чим ви погоджуєтесь."
+msgstr "Зробіть текст заплутаних ліцензійних угод зрозумілим. Розумне розширення, що допомагає вам швидко зрозуміти, з чим ви погоджуєтесь."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4557,9 +4531,8 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокуйте рекламу й інші сторонні елементи {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Блокуйте не лише надокучливу рекламу, але й захистіть себе від зловмисних програм і стеження."
+msgstr "Блокуйте рекламу та отримайте вдосконалений захист від зловмисних програм і стеження."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4574,21 +4547,18 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Легко зберігайте зображення {start_sub_heading}використовуючи {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Завантажте лише зображення з поточної вкладки."
+msgstr "Легко зберігайте зображення — просто завантажте їх з поточної вкладки."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Вимірюйте веб-сторінки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Додайте цифрову лінійку на будь-яких веб-сторінках, щоб перевіряти висоту, ширину та вирівнювання елементів сторінки."
+msgstr "Вимірюйте веб-сторінки. Додайте цифрову лінійку на будь-яких веб-сторінках, щоб перевіряти висоту, ширину та вирівнювання елементів сторінки."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy the benefits of strong password management."
 msgstr "Отримайте переваги надійного керування паролями."
 
@@ -4605,9 +4575,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Блокуйте надокучливі веб-сайти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Перелічіть веб-сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
+msgstr "Блокуйте відволікаючі веб-сайти. Вкажіть сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4622,9 +4591,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Змініть вигляд Firefox {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Легко створюйте власні візуальні теми, щоб надати Firefox вигляду, який вам до вподоби."
+msgstr "Змініть зовнішній вигляд браузера. Легко створюйте власні теми оформлення, щоб надати Firefox вигляду, який вам до вподоби."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4647,9 +4615,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Стежте за цінами продуктів {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Отримуйте сповіщення, коли знижується ціна на продукти, що вас цікавлять, на Amazon, Best Buy, eBay, Home Depot та Walmart."
+msgstr "Відстежуйте й отримуйте сповіщення, коли знижується ціна на продукти, що вас цікавлять, на Amazon, Best Buy, eBay, Home Depot та Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4676,16 +4643,14 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Застарілі розширення більше не підтримуються в Firefox."
+msgstr "Розширення - це наче програми для вашого браузера."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
@@ -4706,9 +4671,8 @@ msgid "Learn More"
 msgstr "Дізнатись більше"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Розширення"
+msgstr "Знайдіть більше розширень"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5830,9 +5794,8 @@ msgstr "Не знайдено відгуків для цього періоду.
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "за джерелом"
+msgstr "Джерело:"
 
 msgid "Dismiss this announcement"
 msgstr "Ігнорувати це оголошення"
@@ -6301,9 +6264,8 @@ msgstr "Ви впевнені, що хочете прибрати всі <b>{0}<
 msgid "Delete Locale"
 msgstr "Видалити локаль"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Закрити історію перевірок"
+msgstr "Історія обмежень користувача"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6320,13 +6282,12 @@ msgstr "Користувачів \"%(users)s\" було заблоковано."
 msgid "Ban selected users"
 msgstr "Заблокувати вибраних користувачів"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Користувачів \"%(users)s\" було заблоковано."
+msgstr "Для користувачів \"%(users)s\" скинуто їхні API ключі."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Керувати API Ключами"
+msgstr "Скинути ключ API"
 
 msgid "Profile Photo"
 msgstr "Світлина профілю"

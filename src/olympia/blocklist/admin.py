@@ -152,8 +152,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             if v == amo.RELEASE_CHANNEL_UNLISTED)
         if has_unlisted:
             url = reverse(
-                'reviewers.review', args=('unlisted'),
-                kwargs={'addon_id': self.addon_instance.pk})
+                'reviewers.review',
+                args=('unlisted', self.addon_instance.pk))
             return format_html(
                 '<a href="{}">{}</a>', url, _('Review Unlisted'))
         return ''
