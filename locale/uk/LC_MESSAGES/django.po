@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-07 08:49+0000\n"
+"PO-Revision-Date: 2019-11-07 09:03+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1102,13 +1102,15 @@ msgid "Download Firefox themes with movies and television. This category include
 msgstr "Завантажте теми Firefox з фільмами і телебаченням. Ця категорія містить, наприклад, аніме Uchiha Madara, фільм Матриця, шоу Гра престолів, а також багато інших."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Завантажте теми для Firefox на тематику браузера Firefox. Ця категорія містить барвисті, різноманітні зображення логотипу Firefox, а також більш загальну тематику браузера."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
 msgstr ""
+"Завантажте теми для Firefox з японським стилем Firefox. До цієї категорії входять теми із зображенням милого талісмана Фокске в різних варіантах з використанням різноманітних зображень заднього "
+"плану."
 
 msgid "Holiday"
 msgstr "Святкові"
@@ -1120,10 +1122,10 @@ msgid "Music"
 msgstr "Музичні"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Завантажте теми для Firefox з оформленням музичних інтересів та виконавців. Ця категорія містить такі популярні гурти, як Nirvana та BTS, музичні інструменти, відео та багато іншого."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Завантажте теми Firefox з тваринами і пейзажами. Ця категорія містить квіти, світанки, лисиці, планети, котики, птахи та багато інших."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Завантажуйте теми Firefox — вони цікаві, креативні та унікальні."
@@ -1132,28 +1134,28 @@ msgid "Scenery"
 msgstr "Пейзажі"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Завантажте теми для Firefox присвячених оточенню та навколишньому світу. До цієї категорії входять заходи сонця, пляжі, ілюстрації, міста тощо."
 
 msgid "Seasonal"
 msgstr "Пори року"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Завантажте теми Firefox присвячених порам року — осінь, зима, весна й літо. Осінні листопади, засніжені гірські вершини, сонячні літні дні та весняні квіти."
 
 msgid "Solid"
 msgstr "Суцільні"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Завантажте теми для Firefox з суцільними та градієнтними кольорами, щоб зробити свій браузер особливим. Ця категорія містить яскраво-червоні, пастельні, світло-сірі та багато інших кольорів."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Завантажте теми для Firefox присвячені спорту. Ця категорія включає прапори країн, спортивні команди, футбол, хокей та інші."
 
 msgid "Websites"
 msgstr "Веб-сайти"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Завантажте теми Firefox, що відображають суть Інтернету — захопливі, незвичні й самобутні."
 
 msgid "General"
 msgstr "Загальне"
