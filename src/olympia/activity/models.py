@@ -24,6 +24,7 @@ from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
+from olympia.blocklist.models import Block
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import CannedResponse
@@ -166,6 +167,19 @@ class GroupLog(ModelBase):
         ordering = ('-created',)
 
 
+class BlockLog(ModelBase):
+    """
+    This table is for indexing the activity log by Blocklist Block.
+    """
+    id = PositiveAutoField(primary_key=True)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    block = models.ForeignKey(Block, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'log_activity_block'
+        ordering = ('-created',)
+
+
 class DraftComment(ModelBase):
     """A model that allows us to draft comments for reviews before we have
     an ActivityLog instance ready.
@@ -224,6 +238,11 @@ class ActivityLogManager(ManagerBase):
 
     def for_user(self, user):
         vals = (UserLog.objects.filter(user=user)
+                .values_list('activity_log', flat=True))
+        return self.filter(pk__in=list(vals))
+
+    def for_block(self, block):
+        vals = (BlockLog.objects.filter(block=block)
                 .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
@@ -631,6 +650,10 @@ class ActivityLog(ModelBase):
             elif class_ == Group:
                 GroupLog.objects.create(
                     group_id=id_, activity_log=al,
+                    created=kw.get('created', timezone.now()))
+            elif class_ == Block:
+                BlockLog.objects.create(
+                    block_id=id_, activity_log=al,
                     created=kw.get('created', timezone.now()))
 
         # Index by every user

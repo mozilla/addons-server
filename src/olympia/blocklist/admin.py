@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.db.models import Prefetch
 from django.forms.fields import ChoiceField
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -44,23 +43,22 @@ class BlockAdminAddMixin():
             guids = guids_data.split(',') if guids_data else []
             if len(guids) == 1:
                 guid = guids[0]
+                # If the guid already has a Block go to the change view
+                existing = Block.objects.filter(guid=guid).first()
+                if existing:
+                    return redirect(
+                        'admin:blocklist_block_change', existing.id)
+
                 if not Addon.unfiltered.filter(guid=guid).exists():
                     # We might want to do something better than this eventually
                     # - e.g. go to the multi_view once implemented.
                     errors.append(
                         _('Addon with specified GUID does not exist'))
                 else:
-                    # If the guid already has a Block go to the change view
-                    existing = Block.objects.filter(addon__guid=guid).first()
-                    if existing:
-                        return redirect(
-                            'admin:blocklist_block_change',
-                            existing.id)
-                    else:
-                        # Otherwise proceed to the single guid add view
-                        return redirect(
-                            reverse('admin:blocklist_block_add_single') +
-                            f'?guid={guid}')
+                    # Otherwise proceed to the single guid add view
+                    return redirect(
+                        reverse('admin:blocklist_block_add_single') +
+                        f'?guid={guid}')
             elif len(guids) > 1:
                 # If there's > 1 guid go to multi view.
                 return redirect(
@@ -115,6 +113,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     actions = ['delete_selected']
 
     addon_instance = None
+    _guid = None  # set for new Blocks, before obj.guid is set
 
     class Media:
         css = {
@@ -122,7 +121,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         }
 
     def addon_guid(self, obj):
-        return self.addon_instance.guid
+        return self._guid if self._guid else self.addon_instance.guid
     addon_guid.short_description = 'Add-on GUID'
 
     def addon_name(self, obj):
@@ -165,7 +164,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         history_format_string = (
             '<li>{}. {} {} Versions {} - {}<ul><li>{}</li></ul></li>')
 
-        logs = ActivityLog.objects.for_addons((obj.addon,)).filter(
+        logs = ActivityLog.objects.for_block(obj).filter(
             action__in=Block.ACTIVITY_IDS).order_by('created')
         log_entries_gen = (
             (log.created.date(),
@@ -210,7 +209,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.updated_by = request.user
         if not change:
-            obj.addon = self.addon_instance
+            obj.guid = self._guid
         action = (
             amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
             amo.LOG.BLOCKLIST_BLOCK_ADDED)
@@ -223,25 +222,21 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             'include_in_legacy': obj.include_in_legacy,
         }
         super().save_model(request, obj, form, change)
-        ActivityLog.create(action, obj.addon, obj.guid, details=details)
+        ActivityLog.create(action, obj.addon, obj.guid, obj, details=details)
 
     def delete_model(self, request, obj):
+        args = [amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid]
         super().delete_model(request, obj)
-        ActivityLog.create(
-            amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid)
-
-    def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related(
-            Prefetch(
-                'addon', queryset=Addon.unfiltered.all().only_translations()),
-        )
+        ActivityLog.create(*args)
 
     def _get_addon_versions(self):
         """Add some caching on the version queries.
         We add it to the addon_instance object rather than self because the
         ModelAdmin instance can be reused by subsequent requests.
         """
-        if not hasattr(self.addon_instance, '_addon_versions_cache'):
+        if not self.addon_instance:
+            return {}
+        elif not hasattr(self.addon_instance, '_addon_versions_cache'):
             qs = self.addon_instance.versions(
                 manager='unfiltered_for_relations').values(
                 'version', 'channel')
@@ -253,8 +248,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         if obj:
             self.addon_instance = obj.addon
         else:
-            self.addon_instance = Addon.unfiltered.filter(
-                guid=request.GET.get('guid')).first()
+            self._guid = request.GET.get('guid')
+            self.addon_instance = Block(guid=self._guid).addon
         return super().get_form(request, obj=obj, **kwargs)
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
