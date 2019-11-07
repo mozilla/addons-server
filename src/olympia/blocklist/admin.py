@@ -4,10 +4,11 @@ from django.forms.fields import ChoiceField
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 
@@ -103,8 +104,10 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         'addon_name',
         'addon_updated',
         'users',
-        'review_listed',
-        'review_unlisted',
+        'review_listed_link',
+        'review_unlisted_link',
+        'block_history',
+        'url_link',
     )
     ordering = ['-modified']
     view_on_site = False
@@ -131,7 +134,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def users(self, obj):
         return self.addon_instance.average_daily_users
 
-    def review_listed(self, obj):
+    def review_listed_link(self, obj):
         has_listed = any(
             True for v in self._get_addon_versions().values()
             if v == amo.RELEASE_CHANNEL_LISTED)
@@ -143,7 +146,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                 '<a href="{}">{}</a>', url, _('Review Listed'))
         return ''
 
-    def review_unlisted(self, obj):
+    def review_unlisted_link(self, obj):
         has_unlisted = any(
             True for v in self._get_addon_versions().values()
             if v == amo.RELEASE_CHANNEL_UNLISTED)
@@ -155,31 +158,77 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                 '<a href="{}">{}</a>', url, _('Review Unlisted'))
         return ''
 
+    def url_link(self, obj):
+        return format_html('<a href="{}">{}</a>', obj.url, obj.url)
+
+    def block_history(self, obj):
+        history_format_string = (
+            '<li>{}. {} {} Versions {} - {}<ul><li>{}</li></ul></li>')
+
+        logs = ActivityLog.objects.for_addons((obj.addon,)).filter(
+            action__in=Block.ACTIVITY_IDS).order_by('created')
+        log_entries_gen = (
+            (log.created.date(),
+             log.user.name,
+             str(log),
+             log.details.get('min_version'),
+             log.details.get('max_version'),
+             log.details.get('reason'))
+            for log in logs)
+        return format_html(
+            '<ul>\n{}\n</ul>',
+            format_html_join('\n', history_format_string, log_entries_gen))
+
     def get_fieldsets(self, request, obj):
-        return (
-            (None, {
+        details = (
+            None, {
                 'fields': (
                     'addon_guid',
                     'addon_name',
                     'addon_updated',
                     'users',
-                    ('review_listed', 'review_unlisted'))
-            }),
-            ('Add New Block' if not obj else 'Edit Block', {
+                    ('review_listed_link', 'review_unlisted_link'))
+            })
+        history = (
+            'Block History', {
+                'fields': (
+                    'block_history',
+                )
+            })
+        edit = (
+            'Add New Block' if not obj else 'Edit Block', {
                 'fields': (
                     'min_version',
                     'max_version',
-                    'url',
+                    'url' if not obj else ('url', 'url_link'),
                     'reason',
                     'include_in_legacy'),
-            }),
-        )
+            })
+
+        return (details, history, edit) if obj is not None else (details, edit)
 
     def save_model(self, request, obj, form, change):
         obj.updated_by = request.user
         if not change:
             obj.addon = self.addon_instance
+        action = (
+            amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
+            amo.LOG.BLOCKLIST_BLOCK_ADDED)
+        details = {
+            'guid': obj.guid,
+            'min_version': obj.min_version,
+            'max_version': obj.max_version,
+            'url': obj.url,
+            'reason': obj.reason,
+            'include_in_legacy': obj.include_in_legacy,
+        }
         super().save_model(request, obj, form, change)
+        ActivityLog.create(action, obj.addon, obj.guid, details=details)
+
+    def delete_model(self, request, obj):
+        super().delete_model(request, obj)
+        ActivityLog.create(
+            amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid)
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related(
