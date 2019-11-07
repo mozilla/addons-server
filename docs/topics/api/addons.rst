@@ -190,7 +190,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
     :>json boolean is_featured: The add-on appears in a featured collection.
     :>json boolean is_recommended: The add-on is recommended by Mozilla.
-    :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
     :>json string|object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json object|null latest_unlisted_version: Object holding the latest unlisted :ref:`version <version-detail-object>` of the add-on. This field is only present if the user has unlisted reviewer permissions, or is listed as a developer of the add-on.
