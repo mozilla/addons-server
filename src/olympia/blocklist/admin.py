@@ -165,14 +165,15 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         history_format_string = (
             '<li>{}. {} {} Versions {} - {}<ul><li>{}</li></ul></li>')
 
-        logs = ActivityLog.objects.for_addons((obj.addon,)).order_by('created')
+        logs = ActivityLog.objects.for_addons((obj.addon,)).filter(
+            action__in=Block.ACTIVITY_IDS).order_by('created')
         log_entries_gen = (
             (log.created.date(),
              log.user.name,
              str(log),
-             log.details['min_version'],
-             log.details['max_version'],
-             log.details['reason'])
+             log.details.get('min_version'),
+             log.details.get('max_version'),
+             log.details.get('reason'))
             for log in logs)
         return format_html(
             '<ul>\n{}\n</ul>',

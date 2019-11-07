@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.users.models import UserProfile
@@ -20,6 +21,11 @@ class Block(ModelBase):
     include_in_legacy = models.BooleanField(
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
+
+    ACTIVITY_IDS = (
+        amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
+        amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
+        amo.LOG.BLOCKLIST_BLOCK_DELETED.id)
 
     def __str__(self):
         return f'Block: {self.guid}'
