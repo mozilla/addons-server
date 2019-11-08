@@ -1,19 +1,14 @@
 import random
-
 from collections import OrderedDict
 from datetime import datetime, timedelta
 
+import django_tables2 as tables
+import olympia.core.logger
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import loader
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _, ungettext
-
-import django_tables2 as tables
-import jinja2
-
-import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -26,8 +21,11 @@ from olympia.amo.utils import to_language
 from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
-    ReviewerScore, ViewUnlistedAllList, get_flags, get_flags_for_row)
+    AutoApprovalSummary, ReviewerScore, ViewUnlistedAllList, get_flags,
+    get_flags_for_row)
 from olympia.users.models import UserProfile
+
+import jinja2
 
 
 log = olympia.core.logger.getLogger('z.mailer')
@@ -824,22 +822,27 @@ class ReviewBase(object):
         # and accidently submitted some comments from another action.
         self.data['comments'] = ''
 
-        if channel == amo.RELEASE_CHANNEL_LISTED and self.human_review:
-            # Clear needs_human_review flags on past versions in channel.
-            self.unset_past_needs_human_review()
-
-            version.autoapprovalsummary.update(confirmed=True)
-            AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-        else:
-            # For now, for unlisted versions, only drop the needs_human_review
-            # flag on the latest version.
-            if self.version.needs_human_review:
-                self.version.update(needs_human_review=False)
-
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
-        # Assign reviewer incentive scores.
         if self.human_review:
+            # Mark the approval as confirmed (handle DoesNotExist, it may have
+            # been auto-approved before we unified workflow for unlisted and
+            # listed).
+            try:
+                version.autoapprovalsummary.update(confirmed=True)
+            except AutoApprovalSummary.DoesNotExist:
+                pass
+
+            if channel == amo.RELEASE_CHANNEL_LISTED:
+                # Clear needs_human_review flags on past versions in channel.
+                self.unset_past_needs_human_review()
+                AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+            else:
+                # For now, for unlisted versions, only drop the
+                # needs_human_review flag on the latest version.
+                if self.version.needs_human_review:
+                    self.version.update(needs_human_review=False)
+
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
                 self.user, self.addon, self.addon.status,

@@ -3,36 +3,34 @@ from datetime import datetime, timedelta
 from unittest import mock
 from unittest.mock import Mock, patch
 
+import pytest
+import responses
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.utils import translation
-
-import pytest
-import responses
-
-from pyquery import PyQuery as pq
-
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    TestCase, file_factory, version_factory, addon_factory)
+    TestCase, addon_factory, file_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
+from olympia.lib.crypto.tests.test_signing import (
+    _get_recommendation_data, _get_signature_details)
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ViewExtensionQueue)
 from olympia.reviewers.utils import (
-    ReviewAddon, ReviewFiles, ReviewHelper,
-    ViewUnlistedAllListTable, view_table_factory)
+    ReviewAddon, ReviewFiles, ReviewHelper, ViewUnlistedAllListTable,
+    view_table_factory)
 from olympia.users.models import UserProfile
-from olympia.lib.crypto.tests.test_signing import (
-    _get_signature_details, _get_recommendation_data)
+from pyquery import PyQuery as pq
+
 
 pytestmark = pytest.mark.django_db
 
@@ -966,8 +964,37 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_unlisted_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        AutoApprovalSummary.objects.create(
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
+        self.file = self.version.files.all()[0]
+        self.helper = self.get_helper()  # To make it pick up the new version.
+        self.helper.set_data(self.get_data())
+
+        # Confirm approval action should be available since the version
+        # we are looking at is unlisted and reviewer has permission.
+        assert 'confirm_auto_approved' in self.helper.actions
+
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is True
+
+        assert (
+            AddonApprovalsCounter.objects.filter(addon=self.addon).count() ==
+            0)  # Not incremented since it was unlisted.
+
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.version]
+
+    def test_unlisted_version_addon_confirm_auto_approval_no_summary(self):
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.version = version_factory(
             addon=self.addon, version='3.0',
             channel=amo.RELEASE_CHANNEL_UNLISTED)
