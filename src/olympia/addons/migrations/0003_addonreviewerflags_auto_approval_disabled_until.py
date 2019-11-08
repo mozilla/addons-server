@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='addonreviewerflags',
-            name='auto_approval_disabled_until',
+            name='auto_approval_delayed_until',
             field=models.DateTimeField(default=None, null=True),
         ),
     ]

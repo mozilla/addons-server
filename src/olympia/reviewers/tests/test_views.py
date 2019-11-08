@@ -1574,26 +1574,26 @@ class TestExtensionQueue(QueueTest):
             self.addons['Nominated One'], self.addons['Pending One']]
         self._test_results()
 
-    def test_webextension_with_auto_approval_disabled_until_past_filtered_out(
+    def test_webextension_with_auto_approval_delayed_until_past_filtered_out(
             self):
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED).files.update(
             is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'],
-            auto_approval_disabled_until=datetime.now() - timedelta(hours=24))
+            auto_approval_delayed_until=datetime.now() - timedelta(hours=24))
         self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED).files.update(
             is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
-            auto_approval_disabled_until=datetime.now() - timedelta(hours=24))
+            auto_approval_delayed_until=datetime.now() - timedelta(hours=24))
 
         self.expected_addons = [
             self.addons['Nominated One'], self.addons['Pending One']]
         self._test_results()
 
-    def test_webextension_with_auto_approval_disabled_until_does_show_up(self):
+    def test_webextension_with_auto_approval_delayed_until_does_show_up(self):
         self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED).files.update(
             is_webextension=True)
@@ -1606,13 +1606,13 @@ class TestExtensionQueue(QueueTest):
             is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
-            auto_approval_disabled_until=datetime.now() + timedelta(hours=24))
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=24))
         self.addons['Nominated One'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED).files.update(
             is_webextension=True)
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated One'],
-            auto_approval_disabled_until=datetime.now() + timedelta(hours=24))
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=24))
 
         self.expected_addons = [
             self.addons['Nominated One'], self.addons['Pending One']]
@@ -3483,7 +3483,7 @@ class TestReview(ReviewBase):
             needs_admin_code_review=True,
             needs_admin_content_review=True,
             needs_admin_theme_review=True,
-            auto_approval_disabled_until=datetime.now() + timedelta(hours=1))
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=1))
         self.login_as_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3495,7 +3495,7 @@ class TestReview(ReviewBase):
         assert not doc('#clear_admin_theme_review')
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
-        assert not doc('#clear_auto_approval_disabled_until')
+        assert not doc('#clear_auto_approval_delayed_until')
         assert not doc('#clear_pending_info_request')
 
     def test_extra_actions_admin_disable_enable(self):
@@ -3512,23 +3512,23 @@ class TestReview(ReviewBase):
         assert 'hidden' in elem.getparent().attrib.get('class', '')
 
         # Not present because it hasn't been set yet
-        assert not doc('#clear_auto_approval_disabled_until')
+        assert not doc('#clear_auto_approval_delayed_until')
 
         flags = AddonReviewerFlags.objects.create(
-            addon=self.addon, auto_approval_disabled_until=self.days_ago(1))
+            addon=self.addon, auto_approval_delayed_until=self.days_ago(1))
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         # Still not present because it's in the past.
-        assert not doc('#clear_auto_approval_disabled_until')
+        assert not doc('#clear_auto_approval_delayed_until')
 
         flags.update(
-            auto_approval_disabled_until=datetime.now() + timedelta(hours=24))
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=24))
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#clear_auto_approval_disabled_until')
+        assert doc('#clear_auto_approval_delayed_until')
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()

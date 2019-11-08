@@ -1469,9 +1469,9 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
-    def auto_approval_disabled_until(self):
+    def auto_approval_delayed_until(self):
         try:
-            return self.addonreviewerflags.auto_approval_disabled_until
+            return self.addonreviewerflags.auto_approval_delayed_until
         except AddonReviewerFlags.DoesNotExist:
             return None
 
@@ -1639,7 +1639,7 @@ class AddonReviewerFlags(ModelBase):
     needs_admin_content_review = models.BooleanField(default=False)
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
-    auto_approval_disabled_until = models.DateTimeField(
+    auto_approval_delayed_until = models.DateTimeField(
         default=None, null=True)
     pending_info_request = models.DateTimeField(default=None, null=True)
     notified_about_expiring_info_request = models.BooleanField(default=False)

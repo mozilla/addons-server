@@ -216,14 +216,14 @@ def _delay_auto_approval(version):
     in_twenty_four_hours = datetime.now() + timedelta(hours=24)
     AddonReviewerFlags.objects.update_or_create(
         addon=version.addon,
-        defaults={'auto_approval_disabled_until': in_twenty_four_hours})
+        defaults={'auto_approval_delayed_until': in_twenty_four_hours})
 
 
 def _delay_auto_approval_indefinitely(version):
     """Delay auto-approval for the whole add-on indefinitely."""
     AddonReviewerFlags.objects.update_or_create(
         addon=version.addon,
-        defaults={'auto_approval_disabled_until': datetime.max})
+        defaults={'auto_approval_delayed_until': datetime.max})
 
 
 @task

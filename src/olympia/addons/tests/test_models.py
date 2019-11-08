@@ -1391,18 +1391,18 @@ class TestAddonModels(TestCase):
         flags.update(auto_approval_disabled=True)
         assert addon.auto_approval_disabled is True
 
-    def test_auto_approval_disabled_until_property(self):
+    def test_auto_approval_delayed_until_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
-        assert addon.auto_approval_disabled_until is None
+        assert addon.auto_approval_delayed_until is None
         # Flag present, value is None (default): None.
         flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert flags.auto_approval_disabled_until is None
-        assert addon.auto_approval_disabled_until is None
+        assert flags.auto_approval_delayed_until is None
+        assert addon.auto_approval_delayed_until is None
         # Flag present, value is a date.
         in_the_past = self.days_ago(1)
-        flags.update(auto_approval_disabled_until=in_the_past)
-        assert addon.auto_approval_disabled_until == in_the_past
+        flags.update(auto_approval_delayed_until=in_the_past)
+        assert addon.auto_approval_delayed_until == in_the_past
 
     def test_needs_admin_code_review_property(self):
         addon = Addon.objects.get(pk=3615)

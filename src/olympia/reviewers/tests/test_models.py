@@ -1580,7 +1580,7 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 
-    def test_check_has_auto_approval_disabled_until(self):
+    def test_check_has_auto_approval_delayed_until(self):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is False
 
@@ -1589,12 +1589,12 @@ class TestAutoApprovalSummary(TestCase):
             self.version) is False
 
         past_date = datetime.now() - timedelta(hours=1)
-        flags.update(auto_approval_disabled_until=past_date)
+        flags.update(auto_approval_delayed_until=past_date)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is False
 
         future_date = datetime.now() + timedelta(hours=1)
-        flags.update(auto_approval_disabled_until=future_date)
+        flags.update(auto_approval_delayed_until=future_date)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 

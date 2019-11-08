@@ -226,7 +226,7 @@ class ExtensionQueueMixin:
             f'((addons.addontype_id IN ({types}) '
             'AND files.is_webextension = 0) '
             'OR addons_addonreviewerflags.auto_approval_disabled = 1 '
-            'OR addons_addonreviewerflags.auto_approval_disabled_until > NOW()'
+            'OR addons_addonreviewerflags.auto_approval_delayed_until > NOW()'
             ')'
         )
         return query
@@ -1132,8 +1132,8 @@ class AutoApprovalSummary(ModelBase):
         addon = version.addon
         return (
             bool(addon.auto_approval_disabled) or
-            bool(addon.auto_approval_disabled_until and
-                 datetime.now() < addon.auto_approval_disabled_until)
+            bool(addon.auto_approval_delayed_until and
+                 datetime.now() < addon.auto_approval_delayed_until)
         )
 
     @classmethod
