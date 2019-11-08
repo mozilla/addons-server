@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-08 13:27+0000\n"
+"PO-Revision-Date: 2019-11-08 14:11+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2763,7 +2763,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Натисніть кнопку підтвердження нижче, щоб створити API облікових даних для користувача <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Посилання для підтвердження буде надіслано на вашу адресу електронної пошти. Після підтвердження ви знайдете свої ключі API на цій сторінці."
 
 msgid "You don't have any API credentials."
 msgstr "У вас немає жодних облікових даних API."
@@ -3306,7 +3306,7 @@ msgstr "Миттєві оновлення погоди {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Миттєвий прогноз погоди з усього світу."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3906,7 +3906,7 @@ msgstr "Завантажуйте зображення {start_sub_heading}за д
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Завантажте зображення, які ви знаходите в Інтернеті."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4086,7 +4086,7 @@ msgstr "Прокручування екрану, як в телефоні {start
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Прокрутка робочого столу, як в мобільному телефоні. Функції перетягування \"grab-n-drag\" жестами миші."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4102,7 +4102,7 @@ msgstr "Підсвічуйте текст {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Підсвічуйте текст на веб-сторінках для його збереження і відкладеного доступу."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4174,7 +4174,7 @@ msgstr "Переглядайте Інтернет приватно {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Виконуйте приватний пошук лише в один клік."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4318,7 +4318,7 @@ msgstr "Відстежуйте історію цін Amazon {start_sub_heading}�
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Стежте за історією цін в Amazon. Робіть виважені рішення щодо покупок."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4388,7 +4388,7 @@ msgstr "Закривайте надокучливі вікна {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Закрийте дратівливі виринаючі вікна в один клік."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4440,7 +4440,7 @@ msgstr "Відстежуйте історію цін Amazon {start_sub_heading}�
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Стежте за історією цін в Amazon. Робіть виважені рішення щодо покупок, отримуючи попередження про зміни цін на продукти в Amazon, які вас цікавлять."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4524,7 +4524,7 @@ msgstr "Вдоскональте процес читання {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Читайте чіткіше й легше. Приберіть з веб-сторінок все зайве, окрім тексту."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
