@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-07 09:03+0000\n"
+"PO-Revision-Date: 2019-11-08 13:27+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1495,13 +1495,13 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Перед зміною вашої типової локалі, ви повинні мати ім'я, коротку інформацію і опис на цій локалі. Вам не вистачає %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Користувачів не можна додавати безпосередньо"
 
 msgid "An author can only be present once."
 msgstr "Автора можна зазначити лише один раз."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Обліковий запис повинен мати відображуване ім'я, щоб додати його автором."
 
 msgid "Must have at least one owner."
 msgstr "Необхідний хоча б один власник."
@@ -1564,7 +1564,7 @@ msgid "Need to select at least one application."
 msgstr "Необхідно обрати принаймні одну програму."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Нещодавно ви відправили забагато вивантажень. Повторіть наступну спробу трохи згодом."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Версія {version} була раніше завантажена і видалена."
@@ -1673,10 +1673,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Неправильна назва URL. Додаток не був видалений."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Запрошення прийнято."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Запрошення відхилено."
 
 msgid "An author has been added to your add-on"
 msgstr "До вашого додатка був доданий автор"
@@ -1685,7 +1685,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Запрошення автора для {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Електронний лист для підтвердження надіслано на адресу {email}"
 
 msgid "An author role has been changed on your add-on"
 msgstr "Роль автора вашого додатка було змінено"
@@ -1721,7 +1721,7 @@ msgid "There was an error uploading your preview."
 msgstr "При вивантаженні вашого попереднього перегляду сталася помилка."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Остання затверджена версія рекомендованого розширення не може бути видалена чи вимкнена. Зв'яжіться з адміністраторами сайту додатків (AMO), якщо вам необхідна допомога."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1998,16 +1998,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Попередній перегляд все ще генерується. Поверніться сюди згодом чи оновіть сторінку."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Вас запросили стати автором для {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Прийнявши запрошення, ви отримаєте доступ до редагування додатка, а також можете відобразити своє ім'я в списку авторів на веб-сайті. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Натисніть кнопку Прийняти внизу, щоб підтвердити долучення до авторів {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Відхилити"
 
 msgid "Manage Authors & License"
 msgstr "Керування авторами і ліцензією"
@@ -2019,10 +2019,10 @@ msgid "About author roles"
 msgstr "Про ролі автора"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Автори, які очікують підтвердження"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Автори, яких додано до цього додатка, але ще не підтверджено."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2760,7 +2760,7 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Натисніть кнопку підтвердження нижче, щоб створити API облікових даних для користувача <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr ""
