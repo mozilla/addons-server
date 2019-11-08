@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-08 14:11+0000\n"
+"PO-Revision-Date: 2019-11-08 14:19+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4600,7 +4600,7 @@ msgstr "Зберігайте нотатки {start_sub_heading}за допомо
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Зберігайте особисті примітки будь-де в Інтернеті. Просто скористайтеся бічною панеллю для прикріплення приміток для окремих веб-сторінок."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4624,7 +4624,7 @@ msgstr "Зробіть Інтернет темним {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Увімкніть темну тему в Інтернеті, чи оберіть власну колірну схему, щоб надати веб-вмісту особливого стилю."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4632,7 +4632,7 @@ msgstr "Вдоскональте пошук на Android {start_sub_heading}за
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Отримайте сторінку з більшими можливостями пошуку на Firefox для Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4640,7 +4640,7 @@ msgstr "Допомога з відтворення відео на Android {star
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Деякі сайти мають труднощі з відтворенням відео на Firefox для Android. Це розширення допомагає вирішити проблеми."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4648,7 +4648,7 @@ msgstr "Розширення - це наче програми для вашог�
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Вони розширюють можливості Firefox для швидшого та безпечнішого перегляду, або ж просто для розваги."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4656,15 +4656,15 @@ msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "Синхронізуйте розширення на різних пристроях"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Приватність за межами браузерних розширень"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Медіа-покращувачі для Firefox"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -4741,7 +4741,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Розмір файлу в архіві перевищує обмеження: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Нестиснений розмір занадто великий"
 
 msgid "Invalid archive."
 msgstr "Некоректний архів."
@@ -5262,10 +5262,10 @@ msgid "Is recommendable"
 msgstr "Рекомендований"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Затримка, тому що це перша оприлюднена версія"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Ви не можете надіслати коментар, якщо визначено \"canned_response\"."
 
 msgid "Type"
 msgstr "Тип"
@@ -5792,7 +5792,7 @@ msgid "No reviews found for this period."
 msgstr "Не знайдено відгуків для цього періоду."
 
 msgid "Method:"
-msgstr ""
+msgstr "Метод:"
 
 msgid "Source:"
 msgstr "Джерело:"
@@ -6339,6 +6339,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Для блокування введіть повний доступний домен адреси електронної пошти. Символи-замінники Wildcards не підтримуються: якщо вони вам потрібні, або вам необхідно перевіряти відповідність адреси "
+"цілком, а не лише домену, використайте натомість \"Обмеження користувацьких адрес електронної пошти\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
