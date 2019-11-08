@@ -52,11 +52,6 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
 
         self.view_class = VersionView
 
-        auto_sign_version_patcher = mock.patch(
-            'olympia.devhub.views.auto_sign_version')
-        self.auto_sign_version = auto_sign_version_patcher.start()
-        self.addCleanup(auto_sign_version_patcher.stop)
-
     def url(self, guid, version, pk=None):
         if guid is None:
             args = [version]
@@ -122,7 +117,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
         assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_new_addon_random_slug_unlisted_channel(self):
@@ -195,7 +189,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
-        self.auto_sign_version.assert_called_with(version)
         assert not version.all_files[0].is_mozilla_signed_extension
         assert not version.addon.tags.filter(tag_text='dynamic theme').exists()
 
@@ -245,7 +238,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
 
     def test_version_added_is_experiment_reject_no_perm(self):
         guid = '@experiment-inside-webextension-guid'
@@ -279,7 +271,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
         assert latest_version.all_files[0].is_mozilla_signed_extension
 
     def test_mozilla_signed_not_allowed_not_mozilla(self):
@@ -315,7 +306,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
 
     def test_system_addon_not_allowed_not_mozilla(self):
         guid = 'systemaddon@mozilla.com'
@@ -351,9 +341,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 202
         addon = Addon.unfiltered.filter(guid=guid).get()
         assert addon.versions.count() == 2
-        latest_version = addon.find_latest_version(
+        addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.auto_sign_version.assert_called_with(latest_version)
 
     def test_invalid_version_response_code(self):
         # This raises an error in parse_addon which is not covered by
@@ -695,8 +684,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(
-            latest_version)
 
     def test_post_addon_restricted(self):
         Addon.objects.all().get().delete()
@@ -808,8 +795,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(
-            latest_version)
 
     def test_addon_does_not_exist_webextension_with_invalid_guid_in_url(self):
         guid = 'custom-invalid-guid-provided'

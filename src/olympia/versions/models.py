@@ -85,13 +85,10 @@ class VersionManager(ManagerBase):
     def auto_approvable(self):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
-        qs = self.filter(
-            channel=amo.RELEASE_CHANNEL_LISTED,
+        qs = self.exclude(addon__status=amo.STATUS_DISABLED).filter(
             addon__type__in=(
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
                 amo.ADDON_SEARCH),
-            addon__disabled_by_user=False,
-            addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW).filter(
             Q(files__is_webextension=True) | Q(addon__type=amo.ADDON_SEARCH))
         return qs

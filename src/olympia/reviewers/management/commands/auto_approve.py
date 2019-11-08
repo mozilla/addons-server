@@ -28,7 +28,7 @@ LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
 
 
 class Command(BaseCommand):
-    help = 'Auto-approve add-ons based on predefined criteria'
+    help = 'Auto-approve add-on versions based on predefined criteria'
 
     def add_arguments(self, parser):
         """Handle command arguments."""
@@ -37,7 +37,8 @@ class Command(BaseCommand):
             action='store_true',
             dest='dry_run',
             default=False,
-            help='Do everything except actually approving add-ons.')
+            help='Fetch version candidates and perform all checks but do not '
+                 'actually approve anything.')
 
     def fetch_candidates(self):
         """Return a queryset with the Version instances that should be
@@ -144,17 +145,22 @@ class Command(BaseCommand):
         sign the files, send the e-mail, etc."""
         # Note: this should automatically use the TASK_USER_ID user.
         helper = ReviewHelper(addon=version.addon, version=version)
-        helper.handler.data = {
-            # The comment is not translated on purpose, to behave like regular
-            # human approval does.
-            'comments': u'This version has been screened and approved for the '
-                        u'public. Keep in mind that other reviewers may look '
-                        u'into this version in the future and determine that '
-                        u'it requires changes or should be taken down. In '
-                        u'that case, you will be notified again with details '
-                        u'and next steps.'
-                        u'\r\n\r\nThank you!'
-        }
+        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+            helper.handler.data = {
+                # The comment is not translated on purpose, to behave like
+                # regular human approval does.
+                'comments':
+                    'This version has been screened and approved for the '
+                    'public. Keep in mind that other reviewers may look into '
+                    'this version in the future and determine that it '
+                    'requires changes or should be taken down. In that case, '
+                    'you will be notified again with details and next steps.'
+                    '\r\n\r\nThank you!'
+            }
+        else:
+            helper.handler.data = {
+                'comments': 'automatic validation'
+            }
         helper.handler.process_public()
         statsd.incr('reviewers.auto_approve.approve.success')
 

@@ -497,8 +497,6 @@ class ReviewBase(object):
 
     def set_data(self, data):
         self.data = data
-        if 'addon_files' in data:
-            self.files = data['addon_files']
 
     def set_files(self, status, files, hide_disabled_file=False):
         """Change the files to be the new status."""
@@ -655,6 +653,13 @@ class ReviewBase(object):
             perm_setting='individual_contact',
             detail_kwargs={'reviewtype': self.review_type.split('_')[1]})
 
+    def sign_files(self):
+        for file_ in self.files:
+            if file_.is_experiment:
+                ActivityLog.create(
+                    amo.LOG.EXPERIMENT_SIGNED, file_, user=self.user)
+            sign_file(file_)
+
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
         update_reviewed = (
@@ -675,8 +680,7 @@ class ReviewBase(object):
         assert not self.content_review_only
 
         # Sign addon.
-        for file_ in self.files:
-            sign_file(file_)
+        self.sign_files()
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -924,8 +928,9 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
+        self.sign_files()
         for file_ in self.files:
-            sign_file(file_)
+            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_, user=self.user)
 
         self.set_files(amo.STATUS_APPROVED, self.files)
 

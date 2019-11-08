@@ -195,12 +195,9 @@ class TestReviewHelperBase(TestCase):
                     f.write('test data\n')
         self.addCleanup(self.remove_paths)
 
-    def setup_data(self, status, delete=None,
-                   file_status=amo.STATUS_AWAITING_REVIEW,
+    def setup_data(self, status, file_status=amo.STATUS_AWAITING_REVIEW,
                    channel=amo.RELEASE_CHANNEL_LISTED,
                    content_review_only=False, type=amo.ADDON_EXTENSION):
-        if delete is None:
-            delete = []
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         self.addon.update(status=status, type=type)
@@ -211,15 +208,16 @@ class TestReviewHelperBase(TestCase):
             self.file.reload()
         self.helper = self.get_helper(content_review_only=content_review_only)
         data = self.get_data().copy()
-        for key in delete:
-            del data[key]
         self.helper.set_data(data)
 
     def get_data(self):
-        return {'comments': 'foo', 'addon_files': self.version.files.all(),
-                'action': 'public', 'operating_systems': 'osx',
-                'applications': 'Firefox',
-                'info_request': self.addon.pending_info_request}
+        return {
+            'comments': 'foo',
+            'action': 'public',
+            'operating_systems': 'osx',
+            'applications': 'Firefox',
+            'info_request': self.addon.pending_info_request
+        }
 
     def get_helper(self, content_review_only=False):
         return ReviewHelper(
@@ -383,9 +381,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
-        self.helper.set_data({'addon_files': self.version.files.all()})
         self.helper.handler.set_files(amo.STATUS_APPROVED,
-                                      self.helper.handler.data['addon_files'])
+                                      self.version.files.all())
 
         self.file = self.version.files.all()[0]
         assert self.file.status == amo.STATUS_APPROVED
@@ -457,7 +454,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_send_reviewer_reply(self):
         assert not self.addon.pending_info_request
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.reviewer_reply()
 
         assert not self.addon.pending_info_request
@@ -468,7 +465,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
 
     def test_request_more_information(self):
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.data['info_request'] = True
         self.helper.handler.reviewer_reply()
 
@@ -484,7 +481,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_request_more_information_custom_deadline(self):
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.data['info_request'] = True
         self.helper.handler.data['info_request_deadline'] = 42
         self.helper.handler.reviewer_reply()
@@ -501,7 +498,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_request_more_information_reset_notified_flag(self):
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
 
         flags = AddonReviewerFlags.objects.create(
             addon=self.addon,
@@ -533,7 +530,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.name = {
             'es': '¿Dónde está la biblioteca?'
         }
-        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.setup_data(amo.STATUS_NOMINATED)
         with translation.override('es'):
             assert translation.get_language() == 'es'
             self.helper.handler.process_public()
@@ -547,14 +544,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'Your add-on, Delicious Bookmarks ' in mail.outbox[0].body
 
     def test_nomination_to_public_no_files(self):
-        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_public()
 
         assert self.addon.versions.all()[0].files.all()[0].status == (
             amo.STATUS_APPROVED)
 
     def test_nomination_to_public_and_current_version(self):
-        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.setup_data(amo.STATUS_NOMINATED)
         self.addon = Addon.objects.get(pk=3615)
         self.addon.update(_current_version=None)
         assert not self.addon.current_version

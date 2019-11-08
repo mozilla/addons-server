@@ -1758,6 +1758,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1775,6 +1776,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1787,6 +1789,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1798,6 +1801,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1809,6 +1813,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1821,6 +1826,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': True,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1833,6 +1839,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': True,
             'should_be_delayed': False,
@@ -1845,6 +1852,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': True,
@@ -1854,6 +1862,7 @@ class TestAutoApprovalSummary(TestCase):
     def test_verdict_info_prettifier(self):
         verdict_info = {
             'has_auto_approval_disabled': True,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': True,
             'should_be_delayed': True,

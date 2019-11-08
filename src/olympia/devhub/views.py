@@ -46,7 +46,6 @@ from olympia.devhub.utils import (
     UploadRestrictionChecker, wizard_unsupported_properties)
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
-from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
@@ -1145,30 +1144,6 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_):
-    """If the file should be automatically reviewed and signed, do it."""
-    addon = file_.version.addon
-
-    if file_.is_experiment:  # See bug 1220097.
-        ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_)
-    elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        # Sign automatically without manual review.
-        helper = ReviewHelper(request=None, addon=addon,
-                              version=file_.version)
-        # Provide the file to review/sign to the helper.
-        helper.set_data({'addon_files': [file_],
-                         'comments': 'automatic validation'})
-        helper.handler.process_public()
-        ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_)
-
-
-def auto_sign_version(version, **kwargs):
-    # Sign all the unapproved files submitted, one for each platform.
-    for file_ in version.files.exclude(status=amo.STATUS_APPROVED):
-        auto_sign_file(file_, **kwargs)
-
-
 @dev_required
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created')
@@ -1336,8 +1311,6 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
-        # auto-sign versions (the method checks eligibility)
-        auto_sign_version(version)
         add_dynamic_theme_tag(version)
         return redirect(next_view, *url_args)
     is_admin = acl.action_allowed(request,
