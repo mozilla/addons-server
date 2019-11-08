@@ -7,6 +7,8 @@ from django.db import transaction
 
 from django_statsd.clients import statsd
 
+import waffle
+
 import olympia.core.logger
 
 from olympia import amo
@@ -17,6 +19,7 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
 from olympia.reviewers.utils import ReviewHelper
 from olympia.versions.models import Version
+from olympia.scanners.tasks import run_action
 
 
 log = olympia.core.logger.getLogger('z.reviewers.auto_approve')
@@ -84,6 +87,18 @@ class Command(BaseCommand):
                 log.info('Processing %s version %s...',
                          str(version.addon.name),
                          str(version.version))
+
+                if waffle.switch_is_active('run-action-in-auto-approve'):
+                    # We want to execute `run_action()` only once.
+                    summary_exists = AutoApprovalSummary.objects.filter(
+                        version=version
+                    ).exists()
+                    if summary_exists:
+                        log.debug('Not running run_action() because it has '
+                                  'already been executed')
+                    else:
+                        run_action(version.id)
+
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)
                 self.stats.update({k: int(v) for k, v in info.items()})

@@ -859,10 +859,11 @@ class ReviewBase(object):
             self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
             self.log_action(action_id, version=version, files=files,
                             timestamp=timestamp)
-        # Unset needs_human_review on those versions, we consider that the
-        # reviewer looked at them.
-        if self.human_review:
-            self.data['versions'].update(needs_human_review=False)
+            if self.human_review:
+                # Unset needs_human_review on rejected versions, we consider
+                # that the reviewer looked at them before rejecting.
+                if version.needs_human_review:
+                    version.update(needs_human_review=False)
 
         self.addon.update_status()
         self.data['version_numbers'] = u', '.join(

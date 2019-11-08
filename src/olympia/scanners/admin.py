@@ -46,6 +46,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'channel',
         'scanner',
         'formatted_matched_rules',
+        'created',
     )
     list_filter = ('scanner', MatchesFilter)
     list_select_related = ('version',)

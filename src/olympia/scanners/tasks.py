@@ -226,8 +226,12 @@ def _delay_auto_approval_indefinitely(version):
         defaults={'auto_approval_delayed_until': datetime.max})
 
 
-@task
 def run_action(version_id):
+    """This function tries to find an action to execute for a given version,
+    based on the scanner results and associated rules.
+
+    It is not run as a Celery task but as a simple function, in the
+    auto_approve CRON."""
     log.info('Checking rules and actions for version %s.', version_id)
     version = Version.objects.get(pk=version_id)
 

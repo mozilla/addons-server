@@ -639,6 +639,17 @@ class Version(OnChangeMixin, ModelBase):
             for name, background in utils.get_background_images(
                 file_obj, theme_data=None, header_only=header_only).items()}
 
+    def can_be_disabled_and_deleted(self):
+        addon = self.addon
+        if self.recommendation_approved and self == addon.current_version:
+            previous_version = addon.versions.valid().filter(
+                channel=self.channel).exclude(id=self.id).first()
+            previous_approved = (
+                previous_version and previous_version.recommendation_approved)
+            if addon.is_recommended and not previous_approved:
+                return False
+        return True
+
 
 def generate_static_theme_preview(theme_data, version_pk):
     """This redirection is so we can mock generate_static_theme_preview, where

@@ -1322,7 +1322,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         message = [(m['message'], m.get('type') == 'error')
                    for m in data['validation']['messages']]
-        expected = [(u'&#34;/version&#34; is a required property', True)]
+        expected = [(u'"/version" is a required property', True)]
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1344,7 +1344,7 @@ class TestUploadDetail(BaseUploadTest):
         # not valid instead of a generic exception.
         assert message == [
             ('Invalid or corrupt add-on file.', False),
-            ('Sorry, we couldn&#39;t load your WebExtension.', True),
+            ('Sorry, we couldn\'t load your WebExtension.', True),
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')

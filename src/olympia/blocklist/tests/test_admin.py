@@ -1,5 +1,7 @@
 from pyquery import PyQuery as pq
 
+from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
@@ -111,6 +113,7 @@ class TestBlockAdminAdd(TestCase):
         assert 'Danger Danger' in content
         assert str(addon.average_daily_users) in content
         assert Block.objects.count() == 0  # Check we didn't create it already
+        assert 'Block History' not in content  # Only shown for edits
 
         # Create the block
         response = self.client.post(
@@ -125,6 +128,39 @@ class TestBlockAdminAdd(TestCase):
         assert response.status_code == 200
         assert Block.objects.count() == 1
         assert Block.objects.first().addon == addon
+        log = ActivityLog.objects.for_addons(addon).last()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert log.arguments == [addon, addon.guid]
+        assert log.details['min_version'] == '0'
+        assert log.details['max_version'] == addon.current_version.version
+        assert log.details['reason'] == 'some reason'
+
+    def test_review_links(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        response = self.client.get(
+            self.single_url + '?guid=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' in content
+        assert 'Review Unlisted' not in content  # Theres only a listed version
+
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(
+            self.single_url + '?guid=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' in content
+        assert 'Review Unlisted' in content, content
+
+        addon.current_version.delete(hard=True)
+        response = self.client.get(
+            self.single_url + '?guid=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' not in content
+        assert 'Review Unlisted' in content
 
     def test_can_not_set_min_version_above_max_version(self):
         user = user_factory()
@@ -184,3 +220,120 @@ class TestBlockAdminAdd(TestCase):
             follow=True)
         assert response.status_code == 403
         assert Block.objects.count() == 0
+
+
+class TestBlockAdminEdit(TestCase):
+    def setUp(self):
+        self.addon = addon_factory(guid='guid@', name='Danger Danger')
+        self.block = Block.objects.create(addon=self.addon)
+        self.change_url = reverse(
+            'admin:blocklist_block_change', args=(self.block.pk,))
+        self.delete_url = reverse(
+            'admin:blocklist_block_delete', args=(self.block.pk,))
+
+    def test_edit(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        response = self.client.get(self.change_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'guid@' in content
+        assert 'Danger Danger' in content
+        assert str(self.addon.average_daily_users) in content
+        assert 'Block History' in content
+
+        # Change the block
+        response = self.client.post(
+            self.change_url, {
+                'addon_id': addon_factory().id,  # new addon should be ignored
+                'min_version': '0',
+                'max_version': self.addon.current_version.version,
+                'url': 'https://foo.baa',
+                'reason': 'some other reason',
+                '_continue': 'Save and continue editing',
+            },
+            follow=True)
+        assert response.status_code == 200
+        assert Block.objects.count() == 1  # check we didn't create another
+        assert Block.objects.first().addon == self.addon  # wasn't changed
+        log = ActivityLog.objects.for_addons(self.addon).last()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
+        assert log.arguments == [self.addon, self.addon.guid]
+        assert log.details['min_version'] == '0'
+        assert log.details['max_version'] == self.addon.current_version.version
+        assert log.details['reason'] == 'some other reason'
+
+        # Check the block history contains the edit just made.
+        content = response.content.decode('utf-8')
+        assert f'{user.name} Edited Block for {self.block.guid}' in content
+        assert f'Versions 0 - {self.addon.current_version.version}' in content
+
+    def test_can_not_edit_without_permission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+
+        response = self.client.get(self.change_url, follow=True)
+        assert response.status_code == 403
+        assert b'Danger Danger' not in response.content
+
+        # Try to edit the block anyway
+        response = self.client.post(
+            self.change_url, {
+                'min_version': '0',
+                'max_version': self.addon.current_version.version,
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 403
+        assert Block.objects.count() == 1
+
+    def test_can_delete(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+        assert Block.objects.count() == 1
+
+        # Can access delete confirmation page.
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 200
+        assert Block.objects.count() == 1
+
+        # Can actually delete.
+        response = self.client.post(
+            self.delete_url,
+            {'post': 'yes'},
+            follow=True)
+        assert response.status_code == 200
+        assert Block.objects.count() == 0
+
+        log = ActivityLog.objects.for_addons(self.addon).last()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_DELETED.id
+        assert log.arguments == [self.addon, self.addon.guid]
+
+    def test_can_not_delete_without_permission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        assert Block.objects.count() == 1
+
+        # Can't access delete confirmation page.
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 403
+
+        # Can't actually delete either.
+        response = self.client.post(
+            self.delete_url,
+            {'post': 'yes'},
+            follow=True)
+        assert response.status_code == 403
+        assert Block.objects.count() == 1
+
+        assert not ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
