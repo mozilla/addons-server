@@ -1,6 +1,10 @@
 import json
+import re
+
+import yara
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields.json import JSONField
@@ -112,6 +116,7 @@ class ScannerRule(ModelBase):
         choices=ACTIONS.items(), default=NO_ACTION
     )
     is_active = models.BooleanField(default=True)
+    definition = models.TextField(null=True, blank=True)
 
     class Meta:
         db_table = 'scanners_rules'
@@ -119,6 +124,32 @@ class ScannerRule(ModelBase):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        if self.scanner == YARA:
+            self.clean_yara()
+
+    def clean_yara(self):
+        if not self.definition:
+            raise ValidationError(_('Yara rules should have a definition'))
+
+        if 'rule {}'.format(self.name) not in self.definition:
+            raise ValidationError(
+                _(
+                    'The name of the rule in the definition should match the '
+                    'name of the scanner rule'
+                )
+            )
+
+        if len(re.findall(r'rule\s+.+?\s+{', self.definition)) > 1:
+            raise ValidationError(
+                _('Only one Yara rule is allowed in the definition')
+            )
+
+        try:
+            yara.compile(source=self.definition)
+        except Exception:
+            raise ValidationError(_('The definition is not valid'))
 
 
 class ScannerMatch(ModelBase):
