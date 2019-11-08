@@ -31,6 +31,7 @@ from django.core.paginator import (
 from django.core.validators import ValidationError, validate_slug
 from django.forms.fields import Field
 from django.http import HttpResponse
+from django.http.response import HttpResponseRedirectBase
 from django.template import engines, loader
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
@@ -1042,3 +1043,10 @@ class StopWatch():
         log.debug(
             "%s: %s", self.prefix + label, now - self._timestamp)
         self._timestamp = now
+
+
+class HttpResponseTemporaryRedirect(HttpResponseRedirectBase):
+    """This is similar to a 302 but keeps the request method and body so we can
+    redirect POSTs too."""
+
+    status_code = 307
