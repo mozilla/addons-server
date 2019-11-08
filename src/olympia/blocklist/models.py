@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -29,7 +30,7 @@ class Block(ModelBase):
     def __str__(self):
         return f'Block: {self.guid}'
 
-    @property
+    @cached_property
     def addon(self):
         return Addon.unfiltered.filter(
             guid=self.guid).only_translations().first()

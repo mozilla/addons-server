@@ -112,47 +112,44 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     list_select_related = ('updated_by',)
     actions = ['delete_selected']
 
-    addon_instance = None
-    _guid = None  # set for new Blocks, before obj.guid is set
-
     class Media:
         css = {
             'all': ('css/admin/blocklist_block.css',)
         }
 
     def addon_guid(self, obj):
-        return self._guid if self._guid else self.addon_instance.guid
+        return obj.guid
     addon_guid.short_description = 'Add-on GUID'
 
     def addon_name(self, obj):
-        return self.addon_instance.name
+        return obj.addon.name
 
     def addon_updated(self, obj):
-        return self.addon_instance.modified
+        return obj.addon.modified
 
     def users(self, obj):
-        return self.addon_instance.average_daily_users
+        return obj.addon.average_daily_users
 
     def review_listed_link(self, obj):
         has_listed = any(
-            True for v in self._get_addon_versions().values()
+            True for v in self._get_addon_versions(obj).values()
             if v == amo.RELEASE_CHANNEL_LISTED)
         if has_listed:
             url = reverse(
                 'reviewers.review',
-                kwargs={'addon_id': self.addon_instance.pk})
+                kwargs={'addon_id': obj.addon.pk})
             return format_html(
                 '<a href="{}">{}</a>', url, _('Review Listed'))
         return ''
 
     def review_unlisted_link(self, obj):
         has_unlisted = any(
-            True for v in self._get_addon_versions().values()
+            True for v in self._get_addon_versions(obj).values()
             if v == amo.RELEASE_CHANNEL_UNLISTED)
         if has_unlisted:
             url = reverse(
                 'reviewers.review',
-                args=('unlisted', self.addon_instance.pk))
+                args=('unlisted', obj.addon.pk))
             return format_html(
                 '<a href="{}">{}</a>', url, _('Review Unlisted'))
         return ''
@@ -206,10 +203,19 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
 
         return (details, history, edit) if obj is not None else (details, edit)
 
+    def render_change_form(self, request, context, add=False, change=False,
+                           form_url='', obj=None):
+        if add:
+            context['adminform'].form.instance.guid = self.get_request_guid(
+                request)
+        return super().render_change_form(
+            request, context, add=add, change=change, form_url=form_url,
+            obj=obj)
+
     def save_model(self, request, obj, form, change):
         obj.updated_by = request.user
         if not change:
-            obj.guid = self._guid
+            obj.guid = self.get_request_guid(request)
         action = (
             amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
             amo.LOG.BLOCKLIST_BLOCK_ADDED)
@@ -229,33 +235,36 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         super().delete_model(request, obj)
         ActivityLog.create(*args)
 
-    def _get_addon_versions(self):
+    def _get_addon_versions(self, obj):
         """Add some caching on the version queries.
-        We add it to the addon_instance object rather than self because the
+        We add it to the object rather than self because the
         ModelAdmin instance can be reused by subsequent requests.
         """
-        if not self.addon_instance:
+        if not obj or not obj.addon:
             return {}
-        elif not hasattr(self.addon_instance, '_addon_versions_cache'):
-            qs = self.addon_instance.versions(
+        elif not hasattr(obj, '_addon_versions_cache'):
+            qs = obj.addon.versions(
                 manager='unfiltered_for_relations').values(
                 'version', 'channel')
-            self.addon_instance._addon_versions_cache = {
+            obj._addon_versions_cache = {
                 version['version']: version['channel'] for version in qs}
-        return self.addon_instance._addon_versions_cache
+        return obj._addon_versions_cache
+
+    def get_request_guid(self, request):
+        return request.GET.get('guid')
 
     def get_form(self, request, obj=None, **kwargs):
-        if obj:
-            self.addon_instance = obj.addon
-        else:
-            self._guid = request.GET.get('guid')
-            self.addon_instance = Block(guid=self._guid).addon
+        # Grab the obj here so we can reference it in formfield_for_db_field,
+        # or create a new Block instance otherwise.
+        request._obj = (
+            Block(guid=self.get_request_guid(request)) if not obj else obj)
         return super().get_form(request, obj=obj, **kwargs)
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name in ('min_version', 'max_version'):
             kwargs['choices'] = (
                 (version, version) for version in
-                ([db_field.default] + list(self._get_addon_versions().keys())))
+                ([db_field.default] + list(
+                    self._get_addon_versions(request._obj).keys())))
             return ChoiceField(**kwargs)
         return super().formfield_for_dbfield(db_field, request, **kwargs)
