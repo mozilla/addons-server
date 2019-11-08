@@ -21,7 +21,6 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.addons.models import AddonReviewerFlags
-from olympia.amo.celery import task
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
