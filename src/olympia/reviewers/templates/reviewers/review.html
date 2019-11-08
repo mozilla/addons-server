@@ -245,6 +245,16 @@
                     data-toggle-button-selector="#disable_auto_approval"
                     id="enable_auto_approval" type="button">{{ _('Enable Auto-Approval') }}</button>
           </li>
+          {% if addon.auto_approval_delayed_until and addon.auto_approval_delayed_until > now %}
+            {# This flag is only meant to be enabled by scanners, but admins can still unset it. #}
+            <li>
+              <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                      data-api-method="patch"
+                      data-api-data="{&quot;auto_approval_delayed_until&quot;: null}"
+                      title="{{ _('Auto-Approval currently disabled until {date}')|format_html(date=addon.auto_approval_delayed_until|datetime) }}"
+                      id="clear_auto_approval_delayed_until" type="button">{{ _('Clear Auto-Approval Extra Delay') }}</button>
+            </li>
+          {% endif %}
         {% endif %}
         {% if addon.pending_info_request %}
           <li>

@@ -225,7 +225,10 @@ class ExtensionQueueMixin:
         query['where'].append(
             f'((addons.addontype_id IN ({types}) '
             'AND files.is_webextension = 0) '
-            'OR addons_addonreviewerflags.auto_approval_disabled = 1)')
+            'OR addons_addonreviewerflags.auto_approval_disabled = 1 '
+            'OR addons_addonreviewerflags.auto_approval_delayed_until > NOW()'
+            ')'
+        )
         return query
 
 
@@ -813,10 +816,15 @@ class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
     version = models.OneToOneField(
         Version, on_delete=models.CASCADE, primary_key=True)
-    is_locked = models.BooleanField(default=False)
-    has_auto_approval_disabled = models.BooleanField(default=False)
-    is_recommendable = models.BooleanField(default=False)
-    should_be_delayed = models.BooleanField(default=False)
+    is_locked = models.BooleanField(
+        default=False, help_text=_('Is locked by a reviewer'))
+    has_auto_approval_disabled = models.BooleanField(
+        default=False, help_text=_('Has auto-approval disabled flag set'))
+    is_recommendable = models.BooleanField(
+        default=False, help_text=_('Is recommendable'))
+    should_be_delayed = models.BooleanField(
+        default=False,
+        help_text=_("Delayed because it's the first listed version"))
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -826,6 +834,19 @@ class AutoApprovalSummary(ModelBase):
 
     class Meta:
         db_table = 'editors_autoapprovalsummary'
+
+    # List of fields to check when determining whether a version should be
+    # auto-approved or not. Each should be a boolean, a value of true means
+    # the version will *not* auto-approved. Each should have a corresponding
+    # check_<reason>(version) classmethod defined that will be used by
+    # create_summary_for_version() to set the corresponding field on the
+    # instance.
+    auto_approval_verdict_fields = (
+        'has_auto_approval_disabled',
+        'is_locked',
+        'is_recommendable',
+        'should_be_delayed'
+    )
 
     def __str__(self):
         return u'%s %s' % (self.version.addon.name, self.version)
@@ -1001,21 +1022,9 @@ class AutoApprovalSummary(ModelBase):
             success_verdict = amo.AUTO_APPROVED
             failure_verdict = amo.NOT_AUTO_APPROVED
 
-        # Currently the only thing that can prevent approval are:
-        # - a reviewer lock (someone is currently looking at this add-on)
-        # - auto-approval disabled flag set on the add-on
-        # - recommendable flag set to True - such add-ons need to be manually
-        #   reviewed.
-        # - no listed versions published yet and submission is too recent: this
-        #   is the first version to be  approved, and those are delayed 24
-        #   hours to catch potential spam.
-        #
-        # create_summary_for_version() should set properties accordingly.
         verdict_info = {
-            'is_locked': self.is_locked,
-            'has_auto_approval_disabled': self.has_auto_approval_disabled,
-            'is_recommendable': self.is_recommendable,
-            'should_be_delayed': self.should_be_delayed,
+            key: bool(getattr(self, key))
+            for key in self.auto_approval_verdict_fields
         }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
@@ -1031,17 +1040,11 @@ class AutoApprovalSummary(ModelBase):
     def verdict_info_prettifier(cls, verdict_info):
         """Return a generator of strings representing the a verdict_info
         (as computed by calculate_verdict()) in human-readable form."""
-        mapping = {
-            'is_locked': ugettext('Is locked by a reviewer'),
-            'has_auto_approval_disabled': ugettext(
-                'Has auto-approval disabled flag set'),
-            'is_recommendable': ugettext('Is recommendable'),
-            'should_be_delayed': ugettext(
-                "Delayed because it's the first listed version")
-        }
-        return list(
-            mapping[key] for key, value in sorted(verdict_info.items())
-            if value)
+        return (
+            str(cls._meta.get_field(key).help_text)
+            for key, value in sorted(verdict_info.items())
+            if value
+        )
 
     @classmethod
     def _count_linter_flag(cls, version, flag):
@@ -1110,9 +1113,10 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_is_locked(cls, version):
-        # Langpacks are submitted as part of Firefox release process and should
-        # never be blocked by a reviewer having opened the review page - they
-        # should always be auto-approved anyway.
+        """Check whether the add-on is locked by a reviewer.
+
+        Doesn't apply to langpacks, which are submitted as part of Firefox
+        release process and should always be auto-approved."""
         is_langpack = version.addon.type == amo.ADDON_LPAPP
         locked_by = get_reviewing_cache(version.addon.pk)
         return (
@@ -1122,10 +1126,19 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_has_auto_approval_disabled(cls, version):
-        return bool(version.addon.auto_approval_disabled)
+        """Check whether the add-on has auto approval disabled by a reviewer
+        or automated scanners.
+        """
+        addon = version.addon
+        return (
+            bool(addon.auto_approval_disabled) or
+            bool(addon.auto_approval_delayed_until and
+                 datetime.now() < addon.auto_approval_delayed_until)
+        )
 
     @classmethod
     def check_is_recommendable(cls, version):
+        """Check whether the add-on is recommendable."""
         try:
             item = version.addon.discoveryitem
         except DiscoveryItem.DoesNotExist:
@@ -1136,10 +1149,11 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_should_be_delayed(cls, version):
-        # 'Nominated' addons - add-ons that are waiting for approval of their
-        # first listed version - should have their auto-approval delayed for
-        # 24 hours to give us time to catch spam. Langpacks are exempted from
-        # this since they are submitted as part of Firefox release process.
+        """Check whether the add-on new enough that the auto-approval of the
+        version should be delayed for 24 hours to catch spam.
+
+        Doesn't apply to langpacks, which are submitted as part of Firefox
+        release process and should always be auto-approved."""
         addon = version.addon
         is_langpack = addon.type == amo.ADDON_LPAPP
         now = datetime.now()
@@ -1174,14 +1188,10 @@ class AutoApprovalSummary(ModelBase):
             raise AutoApprovalNotEnoughFilesError()
 
         data = {
-            'version': version,
-            'is_locked': cls.check_is_locked(version),
-            'has_auto_approval_disabled': cls.check_has_auto_approval_disabled(
-                version),
-            'is_recommendable': cls.check_is_recommendable(version),
-            'should_be_delayed': cls.check_should_be_delayed(version),
+            field: getattr(cls, f'check_{field}')(version)
+            for field in cls.auto_approval_verdict_fields
         }
-        instance = cls(**data)
+        instance = cls(version=version, **data)
         verdict_info = instance.calculate_verdict(dry_run=dry_run)
         instance.calculate_weight()
         # We can't do instance.save(), because we want to handle the case where
