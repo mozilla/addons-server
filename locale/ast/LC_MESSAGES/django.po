@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-09-24 01:47+0000\n"
+"PO-Revision-Date: 2019-11-09 01:55+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -19,9 +19,8 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#, fuzzy
 msgid "Users"
-msgstr "Nome d'usuariu"
+msgstr "Usuarios"
 
 msgid "Addons"
 msgstr "Complementos"
@@ -32,13 +31,11 @@ msgstr ""
 msgid "creation date"
 msgstr ""
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Complementu"
+msgstr ""
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Descripción"
+msgstr "Distribución"
 
 msgid "Reporter's country"
 msgstr ""
@@ -76,9 +73,8 @@ msgstr ""
 msgid "This display name cannot be used."
 msgstr ""
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "Esti nome nun pue usase."
+msgstr ""
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -277,10 +273,10 @@ msgstr "Nun s'alcontró"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
@@ -405,9 +401,8 @@ msgstr ""
 msgid "Invalid token or hash."
 msgstr ""
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "Direición de corréu"
+msgstr ""
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -422,9 +417,8 @@ msgstr ""
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Más información tocante a les llicencies de Creative Commons"
+msgstr ""
 
 msgid "Application Versions"
 msgstr ""
@@ -450,8 +444,8 @@ msgstr "Versiones"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -1216,17 +1210,14 @@ msgstr "Tema estáticu"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Pruebes de seguranza"
+msgstr "Seguranza"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Política de privacidá"
+msgstr "Privacidá"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Developer Hub"
+msgstr ""
 
 msgid "No Reputation"
 msgstr ""
@@ -1564,8 +1555,7 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -1674,9 +1664,8 @@ msgstr "Los iconos nun puen ser animaos."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Les imáxenes han ser PNG o JPG."
+msgstr ""
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr ""
@@ -1777,7 +1766,6 @@ msgstr ""
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr ""
 
-#, fuzzy
 msgid "More information on Developer Accounts"
 msgstr "Más información tocante a les llicencies de Creative Commons"
 
@@ -1795,9 +1783,8 @@ msgstr ""
 msgid "more add-ons..."
 msgstr "más complementos..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Estensiones"
+msgstr ""
 
 msgid "Documentation"
 msgstr "Documentación"
@@ -1808,9 +1795,8 @@ msgstr ""
 msgid "Themes"
 msgstr "Temes"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Developer Hub"
+msgstr ""
 
 msgid "Add-on Validator"
 msgstr ""
@@ -1885,9 +1871,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -1995,16 +1979,14 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Fontes adicionales:"
+msgstr "Detalles adicionales"
 
 msgid "Edit"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Recursos adicionales"
+msgstr ""
 
 msgid "Tags"
 msgstr "Etiquetes"
@@ -2049,13 +2031,11 @@ msgid "Describe Add-on"
 msgstr ""
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Versión {0}"
+msgstr ""
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Sumariu"
+msgstr "Nome y sumariu"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2111,8 +2091,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 #, python-format
@@ -2123,8 +2102,8 @@ msgid "Email"
 msgstr "Corréu"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2372,9 +2351,8 @@ msgstr[1] "<strong>{0}</strong> usuarios activos"
 msgid "Submit a New Version"
 msgstr ""
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Sumariu:"
+msgstr "Nome y sumariu:"
 
 msgid "required"
 msgstr "ríquese"
@@ -2400,9 +2378,8 @@ msgstr ""
 msgid "Summary:"
 msgstr "Sumariu:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Descripción"
+msgstr "Descripción:"
 
 msgid "This add-on is experimental"
 msgstr "Esti complementu ye esperimental"
@@ -2566,8 +2543,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -2684,8 +2661,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2713,9 +2690,8 @@ msgstr ""
 msgid "Invisible"
 msgstr "Invisible"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "Reseñes aprobaes"
+msgstr ""
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3192,9 +3168,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Una configuración cenciella déxate tomar el control de los anuncios que ves y cómo te rastrexen n'internet."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3249,9 +3224,8 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funciona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope y otros sitios de videu."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4385,104 +4359,92 @@ msgid "Search with enhanced tracker blocking, smart encryption, and other privac
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquia anuncios {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquia anuncios {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ameyora Reddit {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "WhatsApp na web {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ameyora Reddit {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquia anuncios {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquia anuncios {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ameyora Reddit {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4493,108 +4455,96 @@ msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquia anuncios {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ameyora Reddit {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquia anuncios {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Llei ficheros ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquia anuncios {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Controla la reproducción de vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Les estensiones heredaes yá nun se sofiten en Firefox."
+msgstr "Les estensiones son como aplicaciones pa Firefox"
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Estensiones"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
@@ -4613,9 +4563,8 @@ msgid "Learn More"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Estensiones"
+msgstr ""
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4718,9 +4667,8 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Nun pues unviar esta triba de complementu"
+msgstr "Nun pues unviar un paquete de llingua"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
@@ -4869,8 +4817,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -4916,8 +4863,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Entugues frecuentes tocante a les reseñes"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5007,13 +4954,11 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 
-#, fuzzy
 msgid "User"
-msgstr "Nome d'usuariu"
+msgstr "Usuariu"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Direición de corréu"
+msgstr "Direición IP"
 
 msgid "Spam or otherwise non-review content"
 msgstr ""
@@ -5284,9 +5229,8 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Complementos d'Android"
+msgstr ""
 
 msgid "Recommended ({0})"
 msgstr ""
@@ -5387,9 +5331,8 @@ msgstr ""
 msgid "Add-on Information for {0}"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Complementu"
+msgstr ""
 
 msgid "Internal AMO ID"
 msgstr ""
@@ -5719,9 +5662,8 @@ msgstr ""
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "Códigu fonte"
+msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr ""
@@ -5847,9 +5789,9 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "La versión yá esiste."
+msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
@@ -6031,11 +5973,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6249,8 +6191,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "an add-on developer replies to my review"
