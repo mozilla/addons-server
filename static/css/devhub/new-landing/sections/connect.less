@@ -114,7 +114,13 @@
             border-radius: 0.25rem;
             border-width: 0;
             cursor: pointer;
-            transition: background-color 0.25s ease-out;
+            transition: all 0.25s ease-out;
+
+            &:active,
+            &:hover,
+            &:focus {
+                color: @color-button-register;
+            }
         }
     }
 
