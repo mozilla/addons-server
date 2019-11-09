@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-03 08:49+0000\n"
+"PO-Revision-Date: 2019-11-02 19:10+0000\n"
 "Last-Translator: Amer Hussam <Amer.h@msc-jo.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -35,9 +35,8 @@ msgstr "إضافات"
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
 
-#, fuzzy
 msgid "creation date"
-msgstr "أضِف تعليقًا"
+msgstr "تاريخ الإنشاء"
 
 #, fuzzy
 msgid "User / Add-on"
