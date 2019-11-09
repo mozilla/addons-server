@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-25 09:03+0000\n"
+"PO-Revision-Date: 2019-11-09 08:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -2762,9 +2762,8 @@ msgstr "Shfuqizoje"
 msgid "Revoke and regenerate credentials"
 msgstr "Shfuqizoji dhe riprodhoji kredencialet"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Prodho kredenciale të reja"
+msgstr "Ripohojeni dhe prodhoni kredenciale të reja"
 
 msgid "Generate new credentials"
 msgstr "Prodho kredenciale të reja"
@@ -4643,18 +4642,16 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Firefox për Android. Ky zgjerim sjell zgjidhje."
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Zgjerimet e dikurshme nuk mbulohen më në Firefox."
+msgstr "Zgjerimet janë si aplikacione për Firefox-in."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Ato i shtojnë Firefox-it veçori për ta bërë shfletimin më të shpejtë, më të parrezik, ose thjesht më zbavitës."
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Shfletoni tërë zgjerimet"
+msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
@@ -4674,9 +4671,8 @@ msgstr "Mësoni Më Tepër"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Zgjerime"
+msgstr "Eksploroni zgjerime"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5793,9 +5789,8 @@ msgstr "S’u gjetën shqyrtime për këtë periudhë."
 msgid "Method:"
 msgstr "Metodë:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "sipas Burimesh"
+msgstr "Burim:"
 
 msgid "Dismiss this announcement"
 msgstr "Hidhe tej këtë njoftim"
@@ -6280,13 +6275,12 @@ msgstr "Përdoruesit \"%(users)s\" janë dëbuar."
 msgid "Ban selected users"
 msgstr "Dëboni përdorues të përzgjedhur"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Përdoruesit \"%(users)s\" janë dëbuar."
+msgstr "Kyçet API të përdoruesve \"%(users)s\" u ricaktuan."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Administroni Kyçe API"
+msgstr "Ricaktoni Kyçe API"
 
 msgid "Profile Photo"
 msgstr "Foto Profili"
