@@ -111,8 +111,16 @@
             height: 32px;
             .button(@color-scheme-dark-background, @color-scheme-dark-text);
             font-size: 14px;
-            border-radius: 4px;
+            border-radius: 0.25rem;
             border-width: 0;
+            cursor: pointer;
+            transition: all 0.25s ease-out;
+
+            &:active,
+            &:hover,
+            &:focus {
+                color: @color-button-register;
+            }
         }
     }
 
