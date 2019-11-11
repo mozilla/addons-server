@@ -1683,6 +1683,7 @@ DRF_API_GATES = {
         'del-ratings-flags',
         'activity-user-shim',
         'autocomplete-sort-param',
+        'is-source-public-shim',
     ),
     'v4': (
         'l10n_flat_input_output',

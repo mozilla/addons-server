@@ -299,7 +299,7 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField()
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
-    is_source_public = serializers.BooleanField(source='view_source')
+    is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='current_previews')
@@ -369,6 +369,8 @@ class AddonSerializer(serializers.ModelSerializer):
                     data[key] = self.outgoingify(data[key])
         if request and is_gate_active(request, 'del-addons-created-field'):
             data.pop('created', None)
+        if request and not is_gate_active(request, 'is-source-public-shim'):
+            data.pop('is_source_public', None)
         return data
 
     def outgoingify(self, data):
@@ -439,6 +441,9 @@ class AddonSerializer(serializers.ModelSerializer):
             'count': obj.total_ratings,
             'text_count': obj.text_ratings_count,
         }
+
+    def get_is_source_public(self, obj):
+        return False
 
 
 class AddonSerializerWithUnlistedData(AddonSerializer):
