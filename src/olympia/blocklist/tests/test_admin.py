@@ -1,3 +1,5 @@
+import datetime
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -122,7 +124,7 @@ class TestBlockAdminAdd(TestCase):
                 'max_version': addon.current_version.version,
                 'url': 'dfd',
                 'reason': 'some reason',
-                '_save': 'Save',
+                '_continue': 'Save',
             },
             follow=True)
         assert response.status_code == 200
@@ -134,6 +136,13 @@ class TestBlockAdminAdd(TestCase):
         assert log.details['min_version'] == '0'
         assert log.details['max_version'] == addon.current_version.version
         assert log.details['reason'] == 'some reason'
+
+        content = response.content.decode('utf-8')
+        todaysdate = datetime.datetime.now().date()
+        assert f'<a href="dfd">{todaysdate}</a>' in content
+        assert f'Block added by {user.name}: guid@' in content
+        assert f'versions 0 - {addon.current_version.version}' in content
+        assert f'Included in legacy blocklist' not in content
 
     def test_review_links(self):
         user = user_factory()
@@ -253,6 +262,7 @@ class TestBlockAdminEdit(TestCase):
                 'max_version': self.addon.current_version.version,
                 'url': 'https://foo.baa',
                 'reason': 'some other reason',
+                'include_in_legacy': True,
                 '_continue': 'Save and continue editing',
             },
             follow=True)
@@ -268,8 +278,11 @@ class TestBlockAdminEdit(TestCase):
 
         # Check the block history contains the edit just made.
         content = response.content.decode('utf-8')
-        assert f'{user.name} Edited Block for {self.block.guid}' in content
-        assert f'Versions 0 - {self.addon.current_version.version}' in content
+        todaysdate = datetime.datetime.now().date()
+        assert f'<a href="https://foo.baa">{todaysdate}</a>' in content
+        assert f'Block edited by {user.name}: {self.block.guid}' in content
+        assert f'versions 0 - {self.addon.current_version.version}' in content
+        assert f'Included in legacy blocklist' in content
 
     def test_can_not_edit_without_permission(self):
         user = user_factory()

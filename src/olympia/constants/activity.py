@@ -660,7 +660,7 @@ class BLOCKLIST_BLOCK_ADDED(_LOG):
     id = 156
     keep = True
     action_class = 'add'
-    format = _('Added Block for {0} ({addon}) to Blocklist.')
+    format = _('Block for {0} added to Blocklist.')
     short = _('Block added')
 
 
@@ -668,7 +668,7 @@ class BLOCKLIST_BLOCK_EDITED(_LOG):
     id = 157
     keep = True
     action_class = 'edit'
-    format = _('Edited Block for {0} ({addon}) in Blocklist.')
+    format = _('Block for {0} edited in Blocklist.')
     short = _('Block edited')
 
 
@@ -676,7 +676,7 @@ class BLOCKLIST_BLOCK_DELETED(_LOG):
     id = 158
     keep = True
     action_class = 'delete'
-    format = _('Deleted Block for {0} ({addon}) from Blocklist.')
+    format = _('Block for {0} deleted from Blocklist.')
     short = _('Block deleted')
 
 

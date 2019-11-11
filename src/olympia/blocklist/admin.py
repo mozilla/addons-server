@@ -4,7 +4,8 @@ from django.forms.fields import ChoiceField
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
-from django.utils.html import format_html, format_html_join
+from django.utils.html import format_html, conditional_escape
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo
@@ -91,6 +92,42 @@ class BlockAdminAddMixin():
         raise NotImplementedError
 
 
+def format_block_history(logs):
+    def format_html_join_kw(sep, format_string, kwargs_generator):
+        return mark_safe(conditional_escape(sep).join(
+            format_html(format_string, **kwargs)
+            for kwargs in kwargs_generator
+        ))
+
+    history_format_string = (
+        '<li>'
+        '{date}. {action} by {name}: {guid}, versions {min} - {max}. {legacy}'
+        '<ul><li>{reason}</li></ul>'
+        '</li>')
+    guid_url_format_string = '<a href="{url}">{text}</a>'
+
+    log_entries_gen = (
+        {'date': (
+            format_html(
+                guid_url_format_string,
+                url=log.details.get('url'),
+                text=log.created.date())
+            if log.details.get('url') else log.created.date()),
+         'action': amo.LOG_BY_ID[log.action].short,
+         'name': log.author_name,
+         'guid': log.details.get('guid'),
+         'min': log.details.get('min_version'),
+         'max': log.details.get('max_version'),
+         'legacy': (
+            'Included in legacy blocklist.'
+            if log.details.get('include_in_legacy') else ''),
+         'reason': log.details.get('reason')}
+        for log in logs)
+    return format_html(
+        '<ul>\n{}\n</ul>',
+        format_html_join_kw('\n', history_format_string, log_entries_gen))
+
+
 @admin.register(Block)
 class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     list_display = (
@@ -162,22 +199,9 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return format_html('<a href="{}">{}</a>', obj.url, obj.url)
 
     def block_history(self, obj):
-        history_format_string = (
-            '<li>{}. {} {} Versions {} - {}<ul><li>{}</li></ul></li>')
-
-        logs = ActivityLog.objects.for_addons((obj.addon,)).filter(
-            action__in=Block.ACTIVITY_IDS).order_by('created')
-        log_entries_gen = (
-            (log.created.date(),
-             log.user.name,
-             str(log),
-             log.details.get('min_version'),
-             log.details.get('max_version'),
-             log.details.get('reason'))
-            for log in logs)
-        return format_html(
-            '<ul>\n{}\n</ul>',
-            format_html_join('\n', history_format_string, log_entries_gen))
+        return format_block_history(
+            ActivityLog.objects.for_addons((obj.addon,)).filter(
+                action__in=Block.ACTIVITY_IDS).order_by('created'))
 
     def get_fieldsets(self, request, obj):
         details = (
