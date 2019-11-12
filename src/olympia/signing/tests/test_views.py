@@ -1,33 +1,29 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-
 from datetime import datetime, timedelta
+from unittest import mock
 
+import responses
 from django.conf import settings
 from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils import translation
-
-from unittest import mock
-import responses
 from freezegun import freeze_time
-from rest_framework.response import Response
-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, create_default_webext_appversion, developer_factory,
-    get_random_ip, reverse_ns, TestCase)
+    TestCase, addon_factory, create_default_webext_appversion,
+    developer_factory, get_random_ip, reverse_ns)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.files.models import File, FileUpload
 from olympia.signing.views import VersionView
 from olympia.users.models import (
-    EmailUserRestriction, IPNetworkUserRestriction, UserProfile
-)
+    EmailUserRestriction, IPNetworkUserRestriction, UserProfile)
 from olympia.versions.models import Version
+from rest_framework.response import Response
 
 
 class SigningAPITestMixin(APIKeyAuthTestMixin):
@@ -341,8 +337,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 202
         addon = Addon.unfiltered.filter(guid=guid).get()
         assert addon.versions.count() == 2
-        addon.find_latest_version(
+        latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
     def test_invalid_version_response_code(self):
         # This raises an error in parse_addon which is not covered by
