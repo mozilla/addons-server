@@ -1,11 +1,5 @@
-from collections import OrderedDict
-from functools import partial
-
-from django import forms
 from django.contrib import admin
-from django.core.exceptions import FieldError
 from django.forms.fields import ChoiceField
-from django.forms.models import modelform_defines_fields, modelform_factory
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
@@ -256,74 +250,27 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                 version['version']: version['channel'] for version in qs}
         return obj._addon_versions_cache
 
+    def _get_version_choices(self, obj, field):
+        default = obj._meta.get_field(field).default
+        return (
+            (version, version) for version in (
+                [default] + list(self._get_addon_versions(obj).keys())
+            )
+        )
+
     def get_request_guid(self, request):
         return request.GET.get('guid')
 
     def get_form(self, request, obj=None, change=False, **kwargs):
-        """"
-        The following is a copy of ModelAdmin.get_form, with a change to set
-        `obj = Block` if not set and a patch to 'formfield_callback' partial
-        function to also pass on `obj`. See:
-        https://github.com/django/django/blob/2.2.7/django/contrib/admin/options.py#L661  # noqa
-        """
-        if 'fields' in kwargs:
-            fields = kwargs.pop('fields')
-        else:
-            fields = admin.utils.flatten_fieldsets(
-                self.get_fieldsets(request, obj))
-        excluded = self.get_exclude(request, obj)
-        exclude = [] if excluded is None else list(excluded)
-        readonly_fields = self.get_readonly_fields(request, obj)
-        exclude.extend(readonly_fields)
-        # Exclude all fields if it's a change form and the user doesn't have
-        # the change permission.
-        if (change and hasattr(request, 'user') and
-                not self.has_change_permission(request, obj)):
-            exclude.extend(fields)
-        if (excluded is None and hasattr(self.form, '_meta') and
-                self.form._meta.exclude):
-            # Take the custom ModelForm's Meta.exclude into account only if the
-            # ModelAdmin doesn't define its own.
-            exclude.extend(self.form._meta.exclude)
-        # if exclude is an empty list we pass None to be consistent with the
-        # default on modelform_factory
-        exclude = exclude or None
-
-        # Remove declared form fields which are in readonly_fields.
-        new_attrs = OrderedDict.fromkeys(
-            f for f in readonly_fields
-            if f in self.form.declared_fields
-        )
-        form = type(self.form.__name__, (self.form,), new_attrs)
-
+        form = super().get_form(request, obj=obj, change=change, **kwargs)
         obj = Block(guid=self.get_request_guid(request)) if not obj else obj
-        defaults = {
-            'form': form,
-            'fields': fields,
-            'exclude': exclude,
-            'formfield_callback': partial(
-                self.formfield_for_dbfield, request=request, obj=obj),
-            **kwargs,
-        }
-
-        if (defaults['fields'] is None and
-                not modelform_defines_fields(defaults['form'])):
-            defaults['fields'] = forms.ALL_FIELDS
-
-        try:
-            return modelform_factory(self.model, **defaults)
-        except FieldError as e:
-            raise FieldError(
-                '%s. Check fields/fieldsets/exclude attributes of class %s.'
-                % (e, self.__class__.__name__)
-            )
+        form.base_fields['min_version'].choices = self._get_version_choices(
+            obj, 'min_version')
+        form.base_fields['max_version'].choices = self._get_version_choices(
+            obj, 'max_version')
+        return form
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
-        obj = kwargs.pop('obj')
         if db_field.name in ('min_version', 'max_version'):
-            kwargs['choices'] = (
-                 (version, version) for version in
-                 ([db_field.default] + list(
-                     self._get_addon_versions(obj).keys())))
             return ChoiceField(**kwargs)
         return super().formfield_for_dbfield(db_field, request, **kwargs)
