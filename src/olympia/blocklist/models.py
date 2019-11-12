@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -10,8 +11,7 @@ from olympia.versions.compare import addon_version_int
 
 
 class Block(ModelBase):
-    addon = models.ForeignKey(
-        Addon, null=False, on_delete=models.CASCADE)
+    guid = models.CharField(max_length=255, unique=True, null=False)
     min_version = models.CharField(max_length=255, blank=False, default='0')
     max_version = models.CharField(max_length=255, blank=False, default='*')
     url = models.CharField(max_length=255, blank=True)
@@ -30,9 +30,10 @@ class Block(ModelBase):
     def __str__(self):
         return f'Block: {self.guid}'
 
-    @property
-    def guid(self):
-        return self.addon.guid if self.addon else None
+    @cached_property
+    def addon(self):
+        return Addon.unfiltered.filter(
+            guid=self.guid).only_translations().first()
 
     def clean(self):
         min_vint = addon_version_int(self.min_version)

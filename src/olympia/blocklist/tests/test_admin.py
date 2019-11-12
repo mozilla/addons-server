@@ -39,7 +39,7 @@ class TestBlockAdminList(TestCase):
 
     def test_can_list(self):
         addon = addon_factory()
-        Block.objects.create(addon=addon)
+        Block.objects.create(guid=addon.guid)
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Reviews:Admin')
@@ -50,7 +50,7 @@ class TestBlockAdminList(TestCase):
 
     def test_can_not_list_without_permission(self):
         addon = addon_factory()
-        Block.objects.create(addon=addon)
+        Block.objects.create(guid=addon.guid)
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
@@ -92,7 +92,7 @@ class TestBlockAdminAdd(TestCase):
         self.assertRedirects(response, self.single_url + '?guid=guid@')
 
         # An existing block will redirect to change view instead
-        block = Block.objects.create(addon=addon)
+        block = Block.objects.create(guid=addon.guid)
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(
@@ -129,13 +129,17 @@ class TestBlockAdminAdd(TestCase):
             follow=True)
         assert response.status_code == 200
         assert Block.objects.count() == 1
-        assert Block.objects.first().addon == addon
+        block = Block.objects.first()
+        assert block.addon == addon
         log = ActivityLog.objects.for_addons(addon).last()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
-        assert log.arguments == [addon, addon.guid]
+        assert log.arguments == [addon, addon.guid, block]
         assert log.details['min_version'] == '0'
         assert log.details['max_version'] == addon.current_version.version
         assert log.details['reason'] == 'some reason'
+        block_log = ActivityLog.objects.for_block(block).filter(
+            action=log.action).last()
+        assert block_log == log
 
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
@@ -234,7 +238,7 @@ class TestBlockAdminAdd(TestCase):
 class TestBlockAdminEdit(TestCase):
     def setUp(self):
         self.addon = addon_factory(guid='guid@', name='Danger Danger')
-        self.block = Block.objects.create(addon=self.addon)
+        self.block = Block.objects.create(guid=self.addon.guid)
         self.change_url = reverse(
             'admin:blocklist_block_change', args=(self.block.pk,))
         self.delete_url = reverse(
@@ -271,10 +275,13 @@ class TestBlockAdminEdit(TestCase):
         assert Block.objects.first().addon == self.addon  # wasn't changed
         log = ActivityLog.objects.for_addons(self.addon).last()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
-        assert log.arguments == [self.addon, self.addon.guid]
+        assert log.arguments == [self.addon, self.addon.guid, self.block]
         assert log.details['min_version'] == '0'
         assert log.details['max_version'] == self.addon.current_version.version
         assert log.details['reason'] == 'some other reason'
+        block_log = ActivityLog.objects.for_block(self.block).filter(
+            action=log.action).last()
+        assert block_log == log
 
         # Check the block history contains the edit just made.
         content = response.content.decode('utf-8')
@@ -349,4 +356,6 @@ class TestBlockAdminEdit(TestCase):
         assert Block.objects.count() == 1
 
         assert not ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
+        assert not ActivityLog.objects.for_block(self.block).filter(
             action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()

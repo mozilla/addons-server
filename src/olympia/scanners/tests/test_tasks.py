@@ -405,18 +405,22 @@ class TestActions(TestCase):
     def test_delay_auto_approval(self):
         addon = addon_factory()
         version = addon.current_version
+        assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval(version)
         self.assertCloseToNow(
             addon.auto_approval_delayed_until,
             now=datetime.now() + timedelta(hours=24))
+        assert version.needs_human_review
 
     def test_delay_auto_approval_indefinitely(self):
         addon = addon_factory()
         version = addon.current_version
+        assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely(version)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert version.needs_human_review
 
 
 class TestRunAction(TestCase):
