@@ -24,3 +24,13 @@ ACTIONS = {
     DELAY_AUTO_APPROVAL: _('Delay auto-approval'),
     DELAY_AUTO_APPROVAL_INDEFINITELY: _('Delay auto-approval indefinitely'),
 }
+
+UNKNOWN = 0
+TRUE_POSITIVE = 1
+FALSE_POSITIVE = 2
+
+RESULT_STATES = {
+    UNKNOWN: _('Unknown'),
+    TRUE_POSITIVE: _('True positive'),
+    FALSE_POSITIVE: _('False positive'),
+}

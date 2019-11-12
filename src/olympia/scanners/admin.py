@@ -111,7 +111,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     channel.short_description = 'Channel'
 
     def formatted_results(self, obj):
-        return format_html('<pre>{}</pre>', json.dumps(obj.results, indent=2))
+        return format_html('<pre>{}</pre>', obj.get_pretty_results())
 
     formatted_results.short_description = 'Results'
 
@@ -121,8 +121,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
                 [
                     '<a href="{}">{}</a>'.format(
                         reverse(
-                            'admin:scanners_scannerrule_change',
-                            args=[rule.pk],
+                            'admin:scanners_scannerrule_change', args=[rule.pk]
                         ),
                         rule.name,
                     )
