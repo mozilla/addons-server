@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
-
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
@@ -95,7 +94,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # Add a dictionary: it should also be considered.
         dictionary = addon_factory(
-            name='Disctionary',
+            name='Dictionary',
             type=amo.ADDON_DICT, status=amo.STATUS_NOMINATED, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
