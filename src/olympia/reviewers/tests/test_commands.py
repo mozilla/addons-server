@@ -180,6 +180,15 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 'is_webextension': True}
         )
 
+        # Pure unlisted upload. Addon status is "incomplete" as a result, but
+        # it should still be considered because unlisted versions don't care
+        # about that.
+        pure_unlisted = addon_factory(name='Pure unlisted', version_kw={
+            'nomination': self.days_ago(12)}, file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NULL)
+        pure_unlisted_version = pure_unlisted.versions.get()
+
         # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
@@ -218,6 +227,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # We should find these versions, in this exact order.
         expected = [(version.addon, version) for version in [
+            pure_unlisted_version,
             user_disabled_addon_version,
             complex_addon_2_version,
             complex_addon_version,

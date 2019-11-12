@@ -1121,9 +1121,10 @@ class AutoApprovalSummary(ModelBase):
 
         Only applies to listed versions."""
         return (
-            version.channel == amo.RELEASE_CHANNEL_LISTED and
-            version.addon.is_disabled and
-            version.status != amo.STATUS_NULL)
+            version.channel == amo.RELEASE_CHANNEL_LISTED and (
+                version.addon.is_disabled or
+                version.addon.status == amo.STATUS_NULL)
+        )
 
     @classmethod
     def check_is_locked(cls, version):
