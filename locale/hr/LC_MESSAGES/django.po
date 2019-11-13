@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 14:16+0000\n"
+"PO-Revision-Date: 2019-11-13 14:31+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1294,10 +1294,10 @@ msgid "New Search Provider Review"
 msgstr "Nova recenzija pružatelja usluge za pretragu"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Preliminarna recenzija ponuđača usluge traženja"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Aktualizirana recenzija ponuđača usluge traženja"
 
 msgid "New Complete Theme Review"
 msgstr ""
@@ -1384,7 +1384,7 @@ msgid "Nazi or other hate content"
 msgstr "Nacistički ili drugi sadržaj mržnje"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Sadržaj s klevetama"
 
 msgid "Online gambling"
 msgstr "Online kockanje"
@@ -1393,10 +1393,10 @@ msgid "Spam content"
 msgstr "Nepoželjni sadržaj"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Niske kvalitete, razvučeno ili prazna slika"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Problem poravnanja slike zaglavlja"
 
 #, fuzzy
 msgid "no action"
@@ -1416,7 +1416,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Nedavne promjene za Moji dodaci"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Stara proširenja se više ne podržavaju u Firefoxu."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
@@ -1516,13 +1516,13 @@ msgid "License text is required when choosing Other."
 msgstr "Tekst licence je potreban pri odabiru Ostalo."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Ovaj dodatak sadrži korisnički ugovor o licenci"
 
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Ovaj dodatak sadrži pravila o privatnosti"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Molimo Vas, odredite Policu Privatnosti za vaš dodatak:"
