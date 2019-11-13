@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 19:13+0000\n"
+"PO-Revision-Date: 2019-11-13 19:21+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2507,22 +2507,22 @@ msgid "Submission Complete"
 msgstr "Prijava završena"
 
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Verzija poslana za pregled"
 
 msgid "Preview of the version submitted"
 msgstr "Pregled verzije poslan"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Gotovo! Ova će verzija biti dostupna, nakon što prođe pregled. Dobit ćeš obavijest nakon što je pregledana."
 
 msgid "Version Submitted"
 msgstr "Verzija poslana"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Gotovo! Ova će verzija uskoro biti dostupna na našoj web stranici."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Gotovo! Ova je verzija poslana na pregled. Dobit ćeš obavijest nakon što je pregledana ili ako naši recenzenti imaju bilo kakva pitanja."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
