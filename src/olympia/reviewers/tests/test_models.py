@@ -122,6 +122,34 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
         # Time zone will be off, hard to test this.
         assert row.waiting_time_hours is not None
 
+    def test_flags_auto_approval_delayed_indefinitely(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.new_addon(), auto_approval_delayed_until=datetime.max)
+
+        queue = self.Queue.objects.get()
+        assert queue.flags == [
+            ('auto-approval-delayed-indefinitely',
+             'Auto-approval delayed indefinitely')
+        ]
+
+    def test_flags_auto_approval_delayed_temporarily(self):
+        reviewer_flags = AddonReviewerFlags.objects.create(
+            addon=self.new_addon(),
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=1))
+
+        queue = self.Queue.objects.get()
+        assert queue.flags == [
+            ('auto-approval-delayed-temporarily',
+             'Auto-approval delayed temporarily')
+        ]
+
+        # Ignored if it's in the past.
+        reviewer_flags.update(
+            auto_approval_delayed_until=datetime.now() - timedelta(hours=1))
+
+        queue = self.Queue.objects.get()
+        assert queue.flags == []
+
     def test_flags_needs_admin_code_review(self):
         AddonReviewerFlags.objects.create(
             addon=self.new_addon(), needs_admin_code_review=True)

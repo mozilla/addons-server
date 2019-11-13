@@ -48,6 +48,11 @@ VIEW_QUEUE_FLAGS = (
     ('expired_info_request', 'expired-info', _('Expired Information Request')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
+    ('auto_approval_delayed_temporarily', 'auto-approval-delayed-temporarily',
+        _('Auto-approval delayed temporarily')),
+    ('auto_approval_delayed_indefinitely',
+        'auto-approval-delayed-indefinitely',
+        _('Auto-approval delayed indefinitely')),
 )
 
 
@@ -121,6 +126,8 @@ class ViewQueue(RawSQLModel):
     latest_version = models.CharField(max_length=255)
     pending_info_request = models.DateTimeField()
     expired_info_request = models.NullBooleanField()
+    auto_approval_delayed_temporarily = models.NullBooleanField()
+    auto_approval_delayed_indefinitely = models.NullBooleanField()
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
@@ -147,6 +154,12 @@ class ViewQueue(RawSQLModel):
                 ('expired_info_request', (
                     'TIMEDIFF(addons_addonreviewerflags.pending_info_request,'
                     'NOW()) < 0')),
+                ('auto_approval_delayed_temporarily', (
+                    'TIMEDIFF(addons_addonreviewerflags.auto_approval_delayed_until, NOW()) > 0 AND '
+                    'EXTRACT(YEAR FROM addons_addonreviewerflags.auto_approval_delayed_until) != 9999')),
+                ('auto_approval_delayed_indefinitely', (
+                    'TIMEDIFF(addons_addonreviewerflags.auto_approval_delayed_until, NOW()) > 0 AND '
+                    'EXTRACT(YEAR FROM addons_addonreviewerflags.auto_approval_delayed_until) = 9999')),
                 ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),

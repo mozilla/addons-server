@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 
+import pytest
 from django import forms
 from django.conf import settings
 from django.core import mail
 from django.utils import translation
-
-import pytest
-
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
@@ -1403,6 +1400,44 @@ class TestAddonModels(TestCase):
         in_the_past = self.days_ago(1)
         flags.update(auto_approval_delayed_until=in_the_past)
         assert addon.auto_approval_delayed_until == in_the_past
+
+    def test_auto_approval_delayed_indefinitely_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_indefinitely is False
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(auto_approval_delayed_until=in_the_past)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # In the future, but not far enough.
+        in_the_future = datetime.now() + timedelta(hours=24)
+        flags.update(auto_approval_delayed_until=in_the_future)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # This time it's truly delayed indefinitely.
+        flags.update(auto_approval_delayed_until=datetime.max)
+        assert addon.auto_approval_delayed_indefinitely is True
+
+    def test_auto_approval_delayed_temporarily_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_temporarily is False
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert addon.auto_approval_delayed_temporarily is False
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(auto_approval_delayed_until=in_the_past)
+        assert addon.auto_approval_delayed_temporarily is False
+        # Flag present, now properly in the future.
+        in_the_future = datetime.now() + timedelta(hours=24)
+        flags.update(auto_approval_delayed_until=in_the_future)
+        assert addon.auto_approval_delayed_temporarily is True
+        # Not considered temporary any more if it's until the end of time!
+        flags.update(auto_approval_delayed_until=datetime.max)
+        assert addon.auto_approval_delayed_temporarily is False
 
     def test_needs_admin_code_review_property(self):
         addon = Addon.objects.get(pk=3615)
