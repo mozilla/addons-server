@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 16:10+0000\n"
+"PO-Revision-Date: 2019-11-13 16:31+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3099,26 +3099,28 @@ msgid "Listing visibility"
 msgstr "Vidljivost popisa"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Vidljivo:{label_close} Vidljiv svima na {site_url} i uključen u rezultate pretraživanja i na stranicama proizvoda."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
+"{label_open}Nevidljivo:{label_close} Neće biti uključen u rezultate pretraživanja, a na stranici proizvoda dodatka će biti označen kao deaktiviran. Prijave za nove verzije proizvoda se neće "
+"prihvaćati u ovom stanju."
 
 msgid "Listed versions"
 msgstr "Navedene verzije"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Trenutačno na AMO-u"
 
 msgid "Validation"
 msgstr "Provjera valjanosti"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Izbriši/Deaktiviraj"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Sljedeća verzija ovog dodatka"
 
 msgid "Other versions"
 msgstr "Ostale verzije"
@@ -3133,44 +3135,44 @@ msgid "Version"
 msgstr "Inačica"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Izbriši verziju {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "Izbrisat ćeš trenutačnu verziju svog dodatka. Ovo može promijeniti stanje ili javni prikaz dodatka u popisu, ako je ovo jedina javna verzija tvog dodatka."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Brisanjem ove verzije trajno će se izbrisati:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Važno:</strong> Nakon što se verzija izbriše, ne možeš prenijeti novu verziju s istim brojem verzije."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Sigurno želiš izbrisati ovu verziju?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Izbriši verziju"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Deaktiviraj verziju"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Sakrij dodatak"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Skrivanjem dodatka ćeš spriječiti da se dodatak pojavi bilo gdje u našoj galeriji i korisnici će prestati primati automatske nadogradnje."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Datoteke koje čekaju na pregled bit će deaktivirane i morat ćeš prenijeti nove verzije."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Zaista želiš sakriti tvoje dodatke?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Otkazivanjem zahtjeva za pregled, dodatak će se označiti kao nepotpun, a sve verzije koje čekaju pregled bit će deaktivirane."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Zaista želiš otkazati zahtjev za pregled?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentacija dodataka :: Razvojni centar"
@@ -3185,9 +3187,9 @@ msgstr[2] "{0} pogrešaka"
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} upozorenje"
+msgstr[1] "{0} upozorenja"
+msgstr[2] "{0} upozorenja"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3207,15 +3209,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Prevedi jednostavno {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Označi bilo koji tekst, klikni desnom tipkom miša i trenutno prevedi."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Traži slike {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
