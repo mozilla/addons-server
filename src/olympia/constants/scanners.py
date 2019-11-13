@@ -5,11 +5,7 @@ CUSTOMS = 1
 WAT = 2
 YARA = 3
 
-SCANNERS = {
-    CUSTOMS: 'customs',
-    WAT: 'wat',
-    YARA: 'yara',
-}
+SCANNERS = {CUSTOMS: 'customs', WAT: 'wat', YARA: 'yara'}
 
 # Action IDs are also used for severity (the higher, the more severe).
 # The field is a PositiveSmallIntegerField, it should go up to 65535.
@@ -25,7 +21,7 @@ ACTIONS = {
     DELAY_AUTO_APPROVAL_INDEFINITELY: _('Delay auto-approval indefinitely'),
 }
 
-UNKNOWN = 0
+UNKNOWN = None
 TRUE_POSITIVE = 1
 FALSE_POSITIVE = 2
 

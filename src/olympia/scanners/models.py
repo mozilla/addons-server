@@ -38,8 +38,7 @@ class ScannerResult(ModelBase):
         'ScannerRule', through='ScannerMatch'
     )
     state = models.PositiveSmallIntegerField(
-        choices=RESULT_STATES.items(),
-        default=UNKNOWN
+        choices=RESULT_STATES.items(), null=True, blank=True, default=UNKNOWN
     )
 
     class Meta:
