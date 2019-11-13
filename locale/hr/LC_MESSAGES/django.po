@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 15:11+0000\n"
+"PO-Revision-Date: 2019-11-13 15:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2009,7 +2009,7 @@ msgid "Authors pending confirmation"
 msgstr "Čeka se na potvrdu o autorstvu"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autori koji su dodani ovom dodatku, ali koji nisu potvrdili poziv."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2173,37 +2173,39 @@ msgid ""
 msgstr ""
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "Javni statistički podaci?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Statistički podaci o ovom dodatku su javno vidljivi."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Ne, statistički podaci o ovom dodatku nisu javno vidljivi."
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Univerzalni jedinstveni identifikator"
 
 # 75%
 msgid "UUID"
 msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "Univerzalni jedinstveni identifikator tvog dodatka je naveden u instalacijskom manifestu dodatka i jedinstveno ga identificira. Kad pošalješ dodatak, identifikator se više ne može mijenjati."
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Savjeti"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Savjeti su mjesto za pružanje informacija recenzentima, relevantnih za tvoj dodatak, bez obzira na verziju. Koristi je za pružanje informacija o načinima za testiranje dodatka i bilo koju dodatnu "
+"informaciju koja može pomoći. Ovu ploču mogu uređivati i recenzenti."
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Mediji dodatka {0}"
 
 msgid "Add-on icon"
 msgstr "Ikona dodatka"
@@ -2212,6 +2214,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Učitaj ikonu za dodatak ili odaberi jednu od naših. Ikona se prikazuje u blizini tvog dodatka, gdje god se dodatak nalazio. Učitana slika mora biti .png ili .jpg. Ovo je relevantno samo za navedene "
+"dodatke."
 
 msgid "Select an icon for your add-on:"
 msgstr "Odaberite ikonu za Vaš dodatak:"
