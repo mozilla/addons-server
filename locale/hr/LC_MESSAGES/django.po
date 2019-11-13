@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 14:49+0000\n"
+"PO-Revision-Date: 2019-11-13 15:11+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1606,7 +1606,7 @@ msgstr "Mozillina sigurnosna obavijest: tvoje AMO API vjerodajnice su opozvane"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Provjera je stvorila previše grešaka/upozorenja, tako da je %s poruka odrezano. Nakon odrađivanja vidljivih poruka, moći ćeš vidjeti ostale."
 
 msgid "Updated"
 msgstr "Ažurirano"
@@ -1615,7 +1615,7 @@ msgid "Name"
 msgstr "Ime"
 
 msgid "Created"
-msgstr ""
+msgstr "Stvoreno"
 
 msgid "Downloads"
 msgstr "Preuzimanja"
@@ -1655,7 +1655,7 @@ msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Naziv URL-a nije točan. Dodatak nije izbrisan."
 
 msgid "Invitation accepted."
 msgstr "Pozivnica prihvaćena."
@@ -1910,13 +1910,13 @@ msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_ur
 msgstr ""
 
 msgid "View and update application compatibility ranges"
-msgstr ""
+msgstr "Pogledaj i aktualiziraj raspone kompatibilnosti aplikacije"
 
 msgid "Compatibility"
 msgstr "Kompatibilnost"
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Aktualiziraj kompatibilnost"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
@@ -1973,7 +1973,7 @@ msgid "Edit Product Page"
 msgstr "Uredi stranicu proizvoda"
 
 msgid "None"
-msgstr ""
+msgstr "Ništa"
 
 msgid "Preview"
 msgstr "Pregled"
@@ -1982,16 +1982,16 @@ msgid "Preview of listed version"
 msgstr "Pregled navedene verzije"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Pregled se još uvijek generira – vrati se kasnije ili osvježi stranicu."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Pozvan/a si da postaneš autor dodatka {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Prihvaćanjem pozivnice moći ćeš uređivati dodatak i prikazati svoje ime na popisu autora na web stranici. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Klikni donji gumb „Prihvati”, kako bi te se dodalo kao autora za {addon_name}."
 
 msgid "Decline"
 msgstr "Odbij"
@@ -2006,7 +2006,7 @@ msgid "About author roles"
 msgstr "O ulogama autora"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Čeka se na potvrdu o autorstvu"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
