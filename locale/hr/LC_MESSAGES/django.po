@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 17:50+0000\n"
+"PO-Revision-Date: 2019-11-13 18:10+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1083,67 +1083,67 @@ msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Preuzmi Firefox motive koji slave stil svih oblika – mustre, cvijeće, teksture i još mnogo toga."
 
 msgid "Film and TV"
 msgstr "Film i TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Preuzmi Firefox filmske i televizijske motive. U ovu kategoriju spadaju anime poput Uchiha Madara, filmovi poput The Matrix, emisije (Game of Thrones) i još mnogo toga."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Preuzmi Firefox motive s motivom Firefox preglednika. Ova kategorija uključuje šarene, raznolike slike Firefox logotipa, uključujući opće motive s lisicama."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr "Preuzmi Firefoxove teme s japanskim Firefoxom. Ova kategorija uključuje teme koje prikazuju simpatičnu maskotu Foxkeh u raznim pozama u raznolikim krajolicima."
+msgstr "Preuzmi Firefox motive s japanskim Firefoxom. Ova kategorija uključuje motive koji prikazuju simpatičnu maskotu Foxkeh u raznim pozama i u raznolikim krajolicima."
 
 msgid "Holiday"
 msgstr "Blagdan"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Preuzmi Firefox motive s praznicima. Ova kategorija uključuje Božić, Noć vještica, Dan zahvalnosti, Dan svetog Patrika, Uskrs i još mnogo toga."
 
 msgid "Music"
 msgstr "Glazba"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "Preuzmi muzičke i umjetničke Firefox teme. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
+msgstr "Preuzmi muzičke i umjetničke Firefox motive. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Preuzmi Firefoxove teme sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
+msgstr "Preuzmi Firefoxov motive sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Preuzmi Firefox motive koji su zanimljivi, kreativni i jedinstveni."
 
 msgid "Scenery"
 msgstr "Pejzaž"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Preuzmi Firefox motive koji sadrže okoliš i prirodni svijet. Ova kategorija uključuje zalaske sunca, plaže, ilustracije, siluete gradova i još mnogo toga."
 
 msgid "Seasonal"
 msgstr "Sezonske"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Preuzmi Firefox skylines za sva četiri godišnja doba – jesen, zimu, proljeće i ljeto. Jesensko lišće, snježni planinski vrhovi, sunčani ljetni dani i proljetno cvijeće."
 
 msgid "Solid"
 msgstr "Jednobojne"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Preuzmi Firefox motive s punim i prijelaznim bojama za individualiziranje preglednika. Ova kategorija uključuje jake crvene boje, pastelne boje, meke sive boje i još mnogo toga."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Preuzmi Firefox motive s različitim sportovima. Ova kategorija uključuje zastave država, sportske momčadi, nogomet, hokej i još mnogo toga."
 
 msgid "Websites"
 msgstr "Web stranice"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Preuzmi Firefox motive koji otkrivaju bit interneta – zadivljujuće, neobične i prepoznatljive."
 
 msgid "General"
 msgstr "Opće"
@@ -1227,7 +1227,7 @@ msgid "Add-on"
 msgstr "Dodatak"
 
 msgid "Static Theme"
-msgstr "Statička tema"
+msgstr "Statički motiv"
 
 msgid "Persona"
 msgstr "Persona"
@@ -1285,10 +1285,10 @@ msgid "Updated Language Pack Review"
 msgstr "Aktualizirana recenzija jezičnog paketa"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Pregled motiva"
 
 msgid "Theme (Static) Review"
-msgstr "Pregled teme (statička)"
+msgstr "Pregled (statičkih) motiva"
 
 msgid "New Search Provider Review"
 msgstr "Nova recenzija pružatelja usluge za pretragu"
