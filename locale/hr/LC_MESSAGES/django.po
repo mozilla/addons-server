@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 15:50+0000\n"
+"PO-Revision-Date: 2019-11-13 16:10+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3047,29 +3047,29 @@ msgstr "Datoteka {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Izrađeno %(created)s i promijenjeno u %(status)s %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Izrađeno %(created)s i promijenjeno u %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Stanje i verzije"
 
 msgid "Edit this version"
 msgstr "Uredi ovu inačicu"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 datoteka"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Reaktiviraj verziju"
 
 msgid "Review History"
-msgstr ""
+msgstr "Povijest recenzija"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Zatvori povijest recenzija"
 
 msgid "Request Review"
 msgstr "Zatraži recenziju"
@@ -3078,19 +3078,19 @@ msgid "Cancel Review Request"
 msgstr "Otkaži zahtjev za revizijom"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Učitavanje povijesti recenzija …"
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Imali smo problem s prikupljanjem napomena recenzenata"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Učitaj starije …"
 
 msgid "by"
 msgstr "od"
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Dodaj odgovor"
 
 msgid "Reply"
 msgstr "Odgovori"
