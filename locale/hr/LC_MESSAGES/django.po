@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 15:30+0000\n"
+"PO-Revision-Date: 2019-11-13 15:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2272,7 +2272,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimalna veličina je 1000 × 750 i potreban je omjer 4 : 3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Snimke zaslona na tvojoj stranici proizvoda uvelike povećavaju šanse da se dodatak instalira i prikazuje na početnoj stranici."
 
 msgid "Continue"
 msgstr "Nastavi"
@@ -2523,10 +2523,10 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Upravljanje popisom"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Ovu verziju možeš i urediti, dodavanjem napomena o verziji ili dodavanjem izvornog koda, ako tvoja prijava uključuje umanjen, nečitljiv ili sastavljeni kȏd."
 
 # 91%
 msgid "Edit version {0}"
@@ -2536,14 +2536,14 @@ msgid "Version Signed"
 msgstr "Verzija potpisana"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "Gotovo! Ova verzija je potpisana i spremna za samodistribuciju. Možeš je preuzeti klikom na donji gumb."
 
 # 75%
 msgid "Download {0}"
 msgstr "Preuzimanje {0}"
 
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "Idi na Moje prijave"
 
 msgid "Source Code Upload"
 msgstr "Prijenos izvornog koda"
@@ -3008,7 +3008,7 @@ msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Upravljanje verzijom {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
@@ -3024,24 +3024,26 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informacije o promjenama u ovom izdanju, novim funkcijama, poznatim programskim greškama i ostalim korisnim informacijama, specifičnim za ovo izdanje/verziju. Ove informacije se prikazuju i u "
+"upravljaču dodacima prilikom aktualiziranja."
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Stanje odobravanja"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Napomene za recenzente"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Ako želiš, navedi sve podatke koji mogu biti korisni recenzentu ovog dodatka, poput podataka o testnom računu."
 
 msgid "Source code"
-msgstr ""
+msgstr "Izvorni kȏd"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Ako tvoj dodatak sadrži binarni ili skriveni kȏd, ovdje omogući recenzentima pristup izvornom kodu."
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Datoteka {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
