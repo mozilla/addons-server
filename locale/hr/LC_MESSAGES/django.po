@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 16:31+0000\n"
+"PO-Revision-Date: 2019-11-13 16:51+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4044,31 +4044,31 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Izbriši podatke {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Izbriši predmemoriju preglednika klikom ili pritiskom na tipku."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Označi tekst {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Označi tekst na web stranicama za spremanje i kasniji pristupu istome."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Uživaj u muzici iz cijelog svijeta {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Uživaj u muzici od 30 000 radio stanica iz cijelog svijeta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Slušaj videozapise {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -4076,31 +4076,31 @@ msgstr "Uštedi propusnost veze i puštaj audio sadržaj direktno s YouTube-a."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Pretvori tekst u slike {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Pretvori riječi u prelijepe naslove i tekstove za prekrivanje slika."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Surfaj sigurno {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Automatski posjeti sigurnu verziju web stranice, ako postoji."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Izbriši svoju povijest posjećenih stranica {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Izbriši svoju povijest posjećenih stranica. Odredi prilagođeni broj dana za zadržavanje povijesti preglednika prije nego što se automatski očisti."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ukloni oglase u pretrazi {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -4108,7 +4108,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Sigurno upravljaj lozinkama {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -4124,7 +4124,7 @@ msgstr "Automatski ispuni obrasce. Spremi upisane podatke jednom i obrasci će s
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Surfaj privatno {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
