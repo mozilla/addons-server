@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 19:21+0000\n"
+"PO-Revision-Date: 2019-11-13 19:51+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2864,9 +2864,9 @@ msgstr ""
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Odaberi <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
+msgstr[1] "Odaberi <b>do {0}</b> {1} kategorije za ovaj dodatak:"
+msgstr[2] "Odaberi <b>do {0}</b> {1} kategorija za ovaj dodatak:"
 
 msgid "End-User License Agreement"
 msgstr "End_User Ugovor o licenci"
@@ -2907,13 +2907,13 @@ msgid "WebExtensions API"
 msgstr "Proširenja"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: izgradnje i proširenja za testiranje"
 
 msgid "Promote"
 msgstr ""
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Gumb za „Preuzmi dodatak”"
 
 msgid "Recommended Extensions program"
 msgstr ""
@@ -3329,7 +3329,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Jednostavno pronađi slike {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -3337,7 +3337,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Uživaj u vizualnim zabilješkama {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
@@ -3345,7 +3345,7 @@ msgstr "Bolja vizualizacija zabilježaka. Pristupi svojim omiljenim web lokacija
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Pristupi znanju {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -3353,7 +3353,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ukloni YouTube oglase {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
@@ -3361,7 +3361,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Čitaj svagdje {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
@@ -3369,7 +3369,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Oboji svoje kartice kodovima {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
@@ -3377,7 +3377,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Spriječi rudarstvo kriptovaluta {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
@@ -3385,7 +3385,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Automatska provjera gramatike {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
