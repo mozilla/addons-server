@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-09 16:45+0000\n"
+"PO-Revision-Date: 2019-11-13 08:36+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1452,8 +1452,8 @@ msgstr[1] "\"{0}\" es tags reservate e non pote ser usate."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Tu ha {0} tag de troppo."
-msgstr[1] "Tu ha {0} tags de troppo."
+msgstr[0] "Tu ha {0} etiquetta in excesso."
+msgstr[1] "Tu ha {0} etiquettas in excesso."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -1554,7 +1554,7 @@ msgid "Need to select at least one application."
 msgstr "Il es necesse al minus eliger un application compatibile."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Tu ha inviate trop cargas recentemente. Reproba post alcun tempore."
+msgstr "Tu ha incargate troppo de files recentemente. Reproba post alcun tempore."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Le version {version} esseva jam cargate e delite."
@@ -1612,7 +1612,7 @@ msgstr "Aviso de securitate de Mozilla: Tu credentiales API de AMO ha essite rev
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Le validation generava trop errores//avisos assi le messages de %s esseva truncate. Post haber affrontate le messages visibile, tu potera vider los altere."
+msgstr "Le validation ha producite troppo de errores/avisos, dunque %s messages ha essite truncate. Post haber corrigite le messages visibile, tu potera vider le alteres."
 
 msgid "Updated"
 msgstr "Actualisate"
@@ -4722,7 +4722,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "File excedente le dimension limite in le archivo: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr "Le grandor non comprimite es troppo grande"
+msgstr "Le dimension non comprimite es troppo grande"
 
 msgid "Invalid archive."
 msgstr "Archivo non valide."
