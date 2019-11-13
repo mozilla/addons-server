@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 17:06+0000\n"
+"PO-Revision-Date: 2019-11-13 17:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -109,7 +109,7 @@ msgid "Need help?"
 msgstr "Trebate pomoć?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Razvijatelji dodataka ili motiva ne mogu izbrisati svoj račun. Moraš izbrisati sve dodatke i motive povezane s ovim računom ili ih prenijeti drugim korisnicima."
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -160,7 +160,7 @@ msgid "My Add-ons"
 msgstr "Moji dodaci"
 
 msgid "My Themes"
-msgstr "Moje teme"
+msgstr "Moji motivi"
 
 msgid "Tools"
 msgstr "Alati"
@@ -187,7 +187,7 @@ msgid "Submit a New Add-on"
 msgstr "Dodaj novi dodatak"
 
 msgid "Submit a New Theme"
-msgstr "Dodaj novu temu"
+msgstr "Pošalji novi motiv"
 
 msgid "Developer Hub"
 msgstr "Razvojni centar"
@@ -268,7 +268,7 @@ msgid "Browse all extensions"
 msgstr "Pregledaj sve dodatke"
 
 msgid "Browse all themes"
-msgstr "Pretraži sve dodatke"
+msgstr "Pregledaj sve motive"
 
 msgid "Add-ons Home Page"
 msgstr "Naslovnica dodataka"
@@ -792,13 +792,13 @@ msgid "Admin content-review requested"
 msgstr "Administratorski pregled sadržaja zatražen"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} administratorski pregled teme zatražen."
+msgstr "{addon} {version} administratorski pregled motiva zatražen."
 
 msgid "Admin theme-review requested"
-msgstr "Administratorski pregled teme zatražen"
+msgstr "Administratorski pregled motiva zatražen"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} je premješten iz laganih tema."
+msgstr "{addon} je premješten iz lakih motiva."
 
 msgid "User {user} api key reset."
 msgstr "Api ključ korisnika {user} resetiran."
@@ -852,7 +852,7 @@ msgid "Extension"
 msgstr "Ekstenzija"
 
 msgid "Complete Theme"
-msgstr "Kompletna tema"
+msgstr "Kompletni motiv"
 
 msgid "Dictionary"
 msgstr "Rječnik"
@@ -873,13 +873,13 @@ msgid "Deprecated LWT"
 msgstr "Zastarjela LWT tema"
 
 msgid "Theme (Static)"
-msgstr "Tema (statička)"
+msgstr "Motiv (statički)"
 
 msgid "Extensions"
 msgstr "Proširenja"
 
 msgid "Complete Themes"
-msgstr "Kompletne teme"
+msgstr "Kompletni motivi"
 
 msgid "Dictionaries"
 msgstr "Riječnici"
@@ -900,7 +900,7 @@ msgid "Deprecated LWTs"
 msgstr "Zastarjele LWT teme"
 
 msgid "Themes (Static)"
-msgstr "Teme (statičke)"
+msgstr "Motivi (statički)"
 
 msgid "Alerts & Updates"
 msgstr "Upozorenja i obavijesti"
@@ -912,7 +912,7 @@ msgid "Appearance"
 msgstr "Izgled"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Preuzmi proširenja koja mijenjaju izgled web stranica i preglednika Firefox. Ova kategorija uključuje proširenja za tamne motive, upravljanje karticama i još mnogo toga."
 
 msgid "Bookmarks"
 msgstr "Zabilješke"
@@ -1071,13 +1071,13 @@ msgid "Abstract"
 msgstr "Abstraktno"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr "Preuzmi Firefoxove umjetničke i konceptualne teme. Ova kategorija uključuje šarene palete i oblike, fantastične pejzaže, razigrane mačke, psihodelično cvijeće."
+msgstr "Preuzmi Firefoxove umjetničke i konceptualne motive. Ova kategorija uključuje šarene palete i oblike, fantastične pejzaže, razigrane mačke, psihodelično cvijeće."
 
 msgid "Causes"
 msgstr "Povodi"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Preuzmi Firefox motive za posebne interese i teme. Ova kategorija uključuje sportske teme, praznike, filantropske povode, nacionalnosti i još mnogo toga."
 
 msgid "Fashion"
 msgstr "Moda"

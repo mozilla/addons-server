@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 13:13+0000\n"
+"PO-Revision-Date: 2019-11-13 17:37+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -153,7 +153,7 @@ msgstr "Video mora biti u WebM formatu."
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema nije kompatibilna sa vašom verzijom {0}"
+msgstr "Motiv nije kompatibilan s tvojom {0} verzijom"
 
 msgid "Flagged for review"
 msgstr "Označeno za pregled"
@@ -171,7 +171,7 @@ msgid "Category"
 msgstr "Kategorija"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "Pretraži teme za <b>{0}</b>"
+msgstr "Pretraži motive za <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
 msgstr "Pretraži aplikacije za <b>{0}</b>"
@@ -781,7 +781,7 @@ msgid "No results found"
 msgstr "Nema rezultata"
 
 msgid "Theme"
-msgstr "Tema"
+msgstr "Motiv"
 
 msgid "Reviewer"
 msgstr "Ocjenitelj"
