@@ -139,13 +139,9 @@ Once validation is completed (whether it passes or fails) then the
 passed using the ``valid`` property and check the results with
 ``validation_results``.
 
-If validation passed then your add-on will be submitted for review.
-In the case of unlisted add-ons this will happen automatically.  If your add-on
-is listed then it will be reviewed by a human and that will take a bit longer.
-You can check the ``automated_signing`` property to see if signing will happen
-automatically or after a manual review. Once review is complete then the
-``reviewed`` property will be set and you can check the results with the
-``passed_review`` property.
+If validation passed then your add-on will be submitted for automated or
+manual review. Once review is complete then then ``reviewed`` property will be
+set and you can check the results with the ``passed_review`` property.
 
 .. http:get:: /api/v4/addons/(string:guid)/versions/(string:version)/[uploads/(string:upload-pk)/]
 

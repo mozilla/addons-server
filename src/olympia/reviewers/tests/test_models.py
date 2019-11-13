@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
 import time
-
 from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
 from django.core import mail
-
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
@@ -20,11 +18,10 @@ from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
+    AutoApprovalSummary, CannedResponse, ReviewerScore, ReviewerSubscription,
     ViewExtensionQueue, ViewRecommendedQueue, ViewThemeFullReviewQueue,
     ViewThemePendingQueue, ViewUnlistedAllList, send_notifications,
-    set_reviewing_cache, CannedResponse)
-
+    set_reviewing_cache)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -1698,6 +1695,29 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_should_be_delayed(
             self.version) is False
 
+    def test_check_is_listing_disabled(self):
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is False
+
+        # Listed versions belonging to Add-ons which have their listing set to
+        # "Invisible" shouldn't be approved.
+        self.addon.update(disabled_by_user=True)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is True
+
+        # Listed versions belonging to incomplete shouldn't be approved either.
+        self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is True
+
+        # Doesn't affect unlisted versions.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is False
+        self.addon.update(disabled_by_user=True, status=amo.STATUS_APPROVED)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is False
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1715,9 +1735,26 @@ class TestAutoApprovalSummary(TestCase):
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(
             self, calculate_verdict_mock, calculate_weight_mock):
+        def create_dynamic_patch(name):
+            patcher = mock.patch.object(
+                AutoApprovalSummary, name,
+                spec=getattr(AutoApprovalSummary, name))
+            thing = patcher.start()
+            thing.return_value = False
+            self.addCleanup(patcher.stop)
+            return thing
+
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
+        dynamic_mocks = [
+            create_dynamic_patch(f'check_{field}')
+            for field in AutoApprovalSummary.auto_approval_verdict_fields]
+
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,)
+
+        for mocked_method in dynamic_mocks:
+            assert mocked_method.call_count == 1
+            mocked_method.assert_called_with(self.version)
         assert calculate_weight_mock.call_count == 1
         assert calculate_verdict_mock.call_count == 1
         assert calculate_verdict_mock.call_args == ({
@@ -1758,6 +1795,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1775,6 +1813,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1787,6 +1826,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1798,6 +1838,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1809,6 +1850,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1821,6 +1863,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': True,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1833,6 +1876,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': True,
             'should_be_delayed': False,
@@ -1845,6 +1889,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': True,
@@ -1854,6 +1899,7 @@ class TestAutoApprovalSummary(TestCase):
     def test_verdict_info_prettifier(self):
         verdict_info = {
             'has_auto_approval_disabled': True,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': True,
             'should_be_delayed': True,

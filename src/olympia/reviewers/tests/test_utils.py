@@ -3,36 +3,34 @@ from datetime import datetime, timedelta
 from unittest import mock
 from unittest.mock import Mock, patch
 
+import pytest
+import responses
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.utils import translation
-
-import pytest
-import responses
-
-from pyquery import PyQuery as pq
-
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    TestCase, file_factory, version_factory, addon_factory)
+    TestCase, addon_factory, file_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
+from olympia.lib.crypto.tests.test_signing import (
+    _get_recommendation_data, _get_signature_details)
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ViewExtensionQueue)
 from olympia.reviewers.utils import (
-    ReviewAddon, ReviewFiles, ReviewHelper,
-    ViewUnlistedAllListTable, view_table_factory)
+    ReviewAddon, ReviewFiles, ReviewHelper, ViewUnlistedAllListTable,
+    view_table_factory)
 from olympia.users.models import UserProfile
-from olympia.lib.crypto.tests.test_signing import (
-    _get_signature_details, _get_recommendation_data)
+from pyquery import PyQuery as pq
+
 
 pytestmark = pytest.mark.django_db
 
@@ -195,12 +193,9 @@ class TestReviewHelperBase(TestCase):
                     f.write('test data\n')
         self.addCleanup(self.remove_paths)
 
-    def setup_data(self, status, delete=None,
-                   file_status=amo.STATUS_AWAITING_REVIEW,
+    def setup_data(self, status, file_status=amo.STATUS_AWAITING_REVIEW,
                    channel=amo.RELEASE_CHANNEL_LISTED,
                    content_review_only=False, type=amo.ADDON_EXTENSION):
-        if delete is None:
-            delete = []
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         self.addon.update(status=status, type=type)
@@ -211,15 +206,16 @@ class TestReviewHelperBase(TestCase):
             self.file.reload()
         self.helper = self.get_helper(content_review_only=content_review_only)
         data = self.get_data().copy()
-        for key in delete:
-            del data[key]
         self.helper.set_data(data)
 
     def get_data(self):
-        return {'comments': 'foo', 'addon_files': self.version.files.all(),
-                'action': 'public', 'operating_systems': 'osx',
-                'applications': 'Firefox',
-                'info_request': self.addon.pending_info_request}
+        return {
+            'comments': 'foo',
+            'action': 'public',
+            'operating_systems': 'osx',
+            'applications': 'Firefox',
+            'info_request': self.addon.pending_info_request
+        }
 
     def get_helper(self, content_review_only=False):
         return ReviewHelper(
@@ -383,9 +379,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
-        self.helper.set_data({'addon_files': self.version.files.all()})
         self.helper.handler.set_files(amo.STATUS_APPROVED,
-                                      self.helper.handler.data['addon_files'])
+                                      self.version.files.all())
 
         self.file = self.version.files.all()[0]
         assert self.file.status == amo.STATUS_APPROVED
@@ -457,7 +452,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_send_reviewer_reply(self):
         assert not self.addon.pending_info_request
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.reviewer_reply()
 
         assert not self.addon.pending_info_request
@@ -468,7 +463,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
 
     def test_request_more_information(self):
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.data['info_request'] = True
         self.helper.handler.reviewer_reply()
 
@@ -484,7 +479,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_request_more_information_custom_deadline(self):
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.data['info_request'] = True
         self.helper.handler.data['info_request_deadline'] = 42
         self.helper.handler.reviewer_reply()
@@ -501,7 +496,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_request_more_information_reset_notified_flag(self):
-        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED)
 
         flags = AddonReviewerFlags.objects.create(
             addon=self.addon,
@@ -533,7 +528,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.name = {
             'es': '¿Dónde está la biblioteca?'
         }
-        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.setup_data(amo.STATUS_NOMINATED)
         with translation.override('es'):
             assert translation.get_language() == 'es'
             self.helper.handler.process_public()
@@ -547,14 +542,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'Your add-on, Delicious Bookmarks ' in mail.outbox[0].body
 
     def test_nomination_to_public_no_files(self):
-        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_public()
 
         assert self.addon.versions.all()[0].files.all()[0].status == (
             amo.STATUS_APPROVED)
 
     def test_nomination_to_public_and_current_version(self):
-        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.setup_data(amo.STATUS_NOMINATED)
         self.addon = Addon.objects.get(pk=3615)
         self.addon.update(_current_version=None)
         assert not self.addon.current_version
@@ -969,8 +964,37 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_unlisted_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        AutoApprovalSummary.objects.create(
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
+        self.file = self.version.files.all()[0]
+        self.helper = self.get_helper()  # To make it pick up the new version.
+        self.helper.set_data(self.get_data())
+
+        # Confirm approval action should be available since the version
+        # we are looking at is unlisted and reviewer has permission.
+        assert 'confirm_auto_approved' in self.helper.actions
+
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is True
+
+        assert (
+            AddonApprovalsCounter.objects.filter(addon=self.addon).count() ==
+            0)  # Not incremented since it was unlisted.
+
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.version]
+
+    def test_unlisted_version_addon_confirm_auto_approval_no_summary(self):
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.version = version_factory(
             addon=self.addon, version='3.0',
             channel=amo.RELEASE_CHANNEL_UNLISTED)

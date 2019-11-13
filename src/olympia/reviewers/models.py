@@ -825,6 +825,9 @@ class AutoApprovalSummary(ModelBase):
     should_be_delayed = models.BooleanField(
         default=False,
         help_text=_("Delayed because it's the first listed version"))
+    is_listing_disabled = models.NullBooleanField(
+        default=None,
+        help_text=_('Has incomplete or disabled listing'))
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -843,6 +846,7 @@ class AutoApprovalSummary(ModelBase):
     # instance.
     auto_approval_verdict_fields = (
         'has_auto_approval_disabled',
+        'is_listing_disabled',
         'is_locked',
         'is_recommendable',
         'should_be_delayed'
@@ -1112,6 +1116,17 @@ class AutoApprovalSummary(ModelBase):
                    for file_ in version.all_files)
 
     @classmethod
+    def check_is_listing_disabled(cls, version):
+        """Check whether the add-on is disabled or incomplete.
+
+        Only applies to listed versions."""
+        return (
+            version.channel == amo.RELEASE_CHANNEL_LISTED and (
+                version.addon.is_disabled or
+                version.addon.status == amo.STATUS_NULL)
+        )
+
+    @classmethod
     def check_is_locked(cls, version):
         """Check whether the add-on is locked by a reviewer.
 
@@ -1138,14 +1153,19 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_is_recommendable(cls, version):
-        """Check whether the add-on is recommendable."""
+        """Check whether the add-on is recommendable.
+
+        Only applies to listed versions."""
         try:
             item = version.addon.discoveryitem
         except DiscoveryItem.DoesNotExist:
             recommendable = False
         else:
             recommendable = item.recommendable
-        return bool(recommendable)
+        return (
+            version.channel == amo.RELEASE_CHANNEL_LISTED and
+            bool(recommendable)
+        )
 
     @classmethod
     def check_should_be_delayed(cls, version):
@@ -1153,7 +1173,9 @@ class AutoApprovalSummary(ModelBase):
         version should be delayed for 24 hours to catch spam.
 
         Doesn't apply to langpacks, which are submitted as part of Firefox
-        release process and should always be auto-approved."""
+        release process and should always be auto-approved.
+        Only applies to listed versions.
+        """
         addon = version.addon
         is_langpack = addon.type == amo.ADDON_LPAPP
         now = datetime.now()
@@ -1164,6 +1186,7 @@ class AutoApprovalSummary(ModelBase):
             content_review = None
         return (
             not is_langpack and
+            version.channel == amo.RELEASE_CHANNEL_LISTED and
             version.addon.status == amo.STATUS_NOMINATED and
             now - nomination < timedelta(hours=24) and
             content_review is None)

@@ -509,15 +509,16 @@ class TestVersion(TestCase):
         # Test with an unlisted version. Note that it's the only version, so
         # the add-on status is reset to STATUS_NULL at this point.
         version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert not version.is_ready_for_auto_approval
+        assert version.is_ready_for_auto_approval
 
-        # Retest with the addon being approved or nominated
+        # Retest with an unlisted version again and the addon being approved or
+        # nominated
         addon.reload()
         addon.update(status=amo.STATUS_NOMINATED)
-        assert not version.is_ready_for_auto_approval
+        assert version.is_ready_for_auto_approval
 
         addon.update(status=amo.STATUS_APPROVED)
-        assert not version.is_ready_for_auto_approval
+        assert version.is_ready_for_auto_approval
 
     def test_is_ready_for_auto_approval_addon_status(self):
         addon = Addon.objects.get(id=3615)

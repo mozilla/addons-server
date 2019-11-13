@@ -104,7 +104,6 @@ def create_version_for_upload(addon, upload, channel):
     else:
         # Import loop.
         from olympia.devhub.utils import add_dynamic_theme_tag
-        from olympia.devhub.views import auto_sign_version
 
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
@@ -122,7 +121,6 @@ def create_version_for_upload(addon, upload, channel):
         if (addon.status == amo.STATUS_NULL and
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
-        auto_sign_version(version)
         add_dynamic_theme_tag(version)
 
 

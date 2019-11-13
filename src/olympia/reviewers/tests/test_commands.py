@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
-
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
@@ -47,7 +46,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.user = user_factory(
             id=settings.TASK_USER_ID, username='taskuser',
             email='taskuser@mozilla.com')
-        self.addon = addon_factory(average_daily_users=666)
+        self.addon = addon_factory(name='Basic Addøn', average_daily_users=666)
         self.version = version_factory(
             addon=self.addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
@@ -63,6 +62,10 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # be considered. Make sure its nomination date is in the past to test
         # ordering.
         self.version.update(nomination=self.days_ago(1))
+        # Add a second file to self.version to test the distinct().
+        file_factory(
+            version=self.version, status=amo.STATUS_AWAITING_REVIEW,
+            is_webextension=True)
         # Add reviewer flags disabling auto-approval for this add-on. It would
         # still be fetched as a candidate, just rejected later on when
         # calculating the verdict.
@@ -70,9 +73,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             addon=self.addon, auto_approval_disabled=True)
 
         # Add nominated add-on: it should be considered.
-        new_addon = addon_factory(status=amo.STATUS_NOMINATED, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
+        new_addon = addon_factory(
+            name='New Addon',
+            status=amo.STATUS_NOMINATED, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
         new_addon_version = new_addon.versions.all()[0]
         new_addon_version.update(nomination=self.days_ago(2))
         # Even add an empty reviewer flags instance, that should not matter.
@@ -80,6 +85,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # Add langpack: it should be considered.
         langpack = addon_factory(
+            name='Langpack',
             type=amo.ADDON_LPAPP, status=amo.STATUS_NOMINATED, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
@@ -88,6 +94,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # Add a dictionary: it should also be considered.
         dictionary = addon_factory(
+            name='Dictionary',
             type=amo.ADDON_DICT, status=amo.STATUS_NOMINATED, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
@@ -95,8 +102,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         dictionary_version.update(nomination=self.days_ago(4))
 
         # search engine plugins are considered now
-        search_addon = addon_factory(type=amo.ADDON_SEARCH)
-        version_factory(
+        search_addon = addon_factory(name='Search', type=amo.ADDON_SEARCH)
+        search_addon_version = version_factory(
             addon=search_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
@@ -107,6 +114,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # weight assigned etc - they will not be auto-approved but that's
         # handled at a later stage, when calculating the verdict.
         recommendable_addon_nominated = addon_factory(
+            name='Recommendable Addon',
             status=amo.STATUS_NOMINATED,
             version_kw={
                 'recommendation_approved': True,
@@ -116,66 +124,100 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
         )
-        recommended_addon = version_factory(
-            addon=addon_factory(),
+        DiscoveryItem.objects.create(
+            recommendable=True, addon=recommendable_addon_nominated)
+
+        recommended_addon = addon_factory(name='Recommended Addon',)
+        recommended_addon_version = version_factory(
+            addon=recommended_addon,
             recommendation_approved=True,
             nomination=self.days_ago(7),
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True
-            }).addon
-        DiscoveryItem.objects.create(
-            recommendable=True, addon=recommendable_addon_nominated)
+            })
         DiscoveryItem.objects.create(
             recommendable=True, addon=recommended_addon)
+
+        # Add-on with 3 versions:
+        # - one webext, listed, public.
+        # - one non-listed webext version awaiting review.
+        # - one listed non-webext awaiting review (should be ignored)
+        complex_addon = addon_factory(
+            name='Complex Addon', file_kw={'is_webextension': True})
+        complex_addon_version = version_factory(
+            nomination=self.days_ago(8),
+            addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True,
+                     'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            nomination=self.days_ago(9),
+            addon=complex_addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW}
+        )
+
+        # Add-on with an already public version and an unlisted webext
+        # awaiting review.
+        complex_addon_2 = addon_factory(
+            name='Second Complex Addon', file_kw={'is_webextension': True})
+        complex_addon_2_version = version_factory(
+            addon=complex_addon_2, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            nomination=self.days_ago(10),
+            file_kw={'is_webextension': True,
+                     'status': amo.STATUS_AWAITING_REVIEW}
+        )
+
+        # Disabled version with a webext waiting review (Still has to be
+        # considered because unlisted doesn't care about disabled by user
+        # state - that check happens later when processing).
+        user_disabled_addon = addon_factory(
+            name='Disabled by user waiting review',
+            disabled_by_user=True)
+        user_disabled_addon_version = version_factory(
+            nomination=self.days_ago(11),
+            addon=user_disabled_addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True}
+        )
+
+        # Pure unlisted upload. Addon status is "incomplete" as a result, but
+        # it should still be considered because unlisted versions don't care
+        # about that.
+        pure_unlisted = addon_factory(name='Pure unlisted', version_kw={
+            'nomination': self.days_ago(12)}, file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NULL)
+        pure_unlisted_version = pure_unlisted.versions.get()
 
         # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
-        addon_factory(file_kw={'is_webextension': True})
+        addon_factory(name='Already Public', file_kw={'is_webextension': True})
 
-        # Disabled add-on with updates.
-        disabled_addon = addon_factory(disabled_by_user=True)
+        # Mozilla Disabled add-on with updates.
+        disabled_addon = addon_factory(
+            name='Mozilla Disabled', status=amo.STATUS_DISABLED,
+        )
         version_factory(addon=disabled_addon, file_kw={
             'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
+            'is_webextension': True}
+        )
 
         # Add-on with deleted version.
-        addon_with_deleted_version = addon_factory()
+        addon_with_deleted_version = addon_factory(
+            name='With deleted version awaiting review')
         deleted_version = version_factory(
             addon=addon_with_deleted_version, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
-                'is_webextension': True})
+                'is_webextension': True}
+        )
         deleted_version.delete()
 
         # Add-on with a non-webextension update.
-        non_webext_addon = addon_factory()
+        non_webext_addon = addon_factory(name='Non Webext waiting review')
         version_factory(addon=non_webext_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW})
-
-        # Add-on with 3 versions:
-        # - one webext, listed, public.
-        # - one non-listed webext version
-        # - one listed non-webext awaiting review.
-        complex_addon = addon_factory(file_kw={'is_webextension': True})
-        version_factory(
-            addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True})
-        version_factory(addon=complex_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW})
-
-        # Finally, add a second file to self.version to test the distinct().
-        file_factory(
-            version=self.version, status=amo.STATUS_AWAITING_REVIEW,
-            is_webextension=True)
-
-        # Add-on with an already public version and an unlisted webext
-        # still awaiting review
-        complex_addon_2 = addon_factory(file_kw={'is_webextension': True})
-        version_factory(
-            addon=complex_addon_2, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True,
-                     'status': amo.STATUS_AWAITING_REVIEW})
+            'status': amo.STATUS_AWAITING_REVIEW}
+        )
 
         # ---------------------------------------------------------------------
         # Gather the candidates.
@@ -183,14 +225,22 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         command.post_review = True
         qs = command.fetch_candidates()
 
-        # 5 versions should be found. Because of the nomination date,
-        # search_version should be first (its nomination date is the
-        # oldest) followed etc.
-        assert len(qs) == 7
-        assert [v.addon.pk for v in qs] == [a.pk for a in (
-            recommended_addon, recommendable_addon_nominated,
-            search_addon, dictionary, langpack, new_addon, self.addon,
-        )]
+        # We should find these versions, in this exact order.
+        expected = [(version.addon, version) for version in [
+            pure_unlisted_version,
+            user_disabled_addon_version,
+            complex_addon_2_version,
+            complex_addon_version,
+            recommended_addon_version,
+            recommendable_addon_nominated.current_version,
+            search_addon_version,
+            dictionary.current_version,
+            langpack.current_version,
+            new_addon.current_version,
+            self.version,
+        ]]
+
+        assert [(version.addon, version) for version in qs] == expected
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.statsd.incr')
@@ -304,10 +354,15 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
         assert sign_file_mock.call_count == 1
         assert get_reviewing_cache(self.addon.pk) is None
-        self._check_stats({'total': 1, 'error': 1, 'is_locked': 0,
-                           'has_auto_approval_disabled': 0,
-                           'is_recommendable': 0,
-                           'should_be_delayed': 0})
+        self._check_stats({
+            'total': 1,
+            'error': 1,
+            'has_auto_approval_disabled': 0,
+            'is_listing_disabled': 0,
+            'is_locked': 0,
+            'is_recommendable': 0,
+            'should_be_delayed': 0
+        })
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
@@ -467,10 +522,16 @@ class TestAutoApproveCommandTransactions(
         assert get_reviewing_cache(self.addons[0].pk) is None
         assert get_reviewing_cache(self.addons[1].pk) is None
 
-        self._check_stats({'total': 2, 'error': 1, 'is_locked': 0,
-                           'has_auto_approval_disabled': 0,
-                           'auto_approved': 1, 'is_recommendable': 0,
-                           'should_be_delayed': 0})
+        self._check_stats({
+            'total': 2,
+            'error': 1,
+            'auto_approved': 1,
+            'has_auto_approval_disabled': 0,
+            'is_listing_disabled': 0,
+            'is_locked': 0,
+            'is_recommendable': 0,
+            'should_be_delayed': 0
+        })
 
 
 class TestRecalculatePostReviewWeightsCommand(TestCase):
