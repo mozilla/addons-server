@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 18:10+0000\n"
+"PO-Revision-Date: 2019-11-13 18:31+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1285,10 +1285,10 @@ msgid "Updated Language Pack Review"
 msgstr "Aktualizirana recenzija jezičnog paketa"
 
 msgid "Theme Review"
-msgstr "Pregled motiva"
+msgstr "Recenzija motiva"
 
 msgid "Theme (Static) Review"
-msgstr "Pregled (statičkih) motiva"
+msgstr "Recenzija (statičkog) motiva"
 
 msgid "New Search Provider Review"
 msgstr "Nova recenzija pružatelja usluge za pretragu"
@@ -1300,13 +1300,13 @@ msgid "Updated Search Provider Review"
 msgstr "Aktualizirana recenzija ponuđača usluge traženja"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "Novi pregled kompletnog motiva"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Preliminarni pregled kompletnog motiva"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Aktualizirani pregled kompletnog motiva"
 
 msgid "Moderated Add-on Review"
 msgstr "Moderirana recenzija dodataka"
@@ -1646,13 +1646,13 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodatak se ne može izbrisati. Umjesto toga deaktiviraj ovaj dodatak."
 
 msgid "Theme deleted."
-msgstr "Tema izbrisana."
+msgstr "Motiv izbrisan."
 
 msgid "Add-on deleted."
 msgstr "Dodatak izbrisan."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Naziv URL-a nije točan. Motiv nije izbrisan."
 
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Naziv URL-a nije točan. Dodatak nije izbrisan."
@@ -1825,7 +1825,7 @@ msgid "Extension Development"
 msgstr "Razvoj proširenja"
 
 msgid "Themes"
-msgstr "Teme"
+msgstr "Motivi"
 
 # 100%
 msgid "Developer Policies"
@@ -1965,9 +1965,9 @@ msgstr "Starija aktivnost za Moji dodaci"
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> tema"
-msgstr[1] "<b>{0}</b> teme"
-msgstr[2] "<b>{0}</b> tema"
+msgstr[0] "<b>{0}</b> motiv"
+msgstr[1] "<b>{0}</b> motiva"
+msgstr[2] "<b>{0}</b> motiva"
 
 msgid "Edit Product Page"
 msgstr "Uredi stranicu proizvoda"
@@ -2637,29 +2637,29 @@ msgid "Administrative overrides"
 msgstr ""
 
 msgid "Create a Theme Version"
-msgstr "Stvori verziju teme"
+msgstr "Stvori verziju motiva"
 
 msgid "Create a Theme"
-msgstr "Stvori temu"
+msgstr "Stvori motiv"
 
 # 80%
 msgid "Sign Add-on"
 msgstr "Potpiši dodatak"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "Generiraj motiv"
 
 msgid "Theme generator"
-msgstr ""
+msgstr "Generator motiva"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
 msgstr ""
 
 msgid "Theme name"
-msgstr "Naziv teme"
+msgstr "Naziv motiva"
 
 msgid "Select a header image for your theme"
-msgstr "Odaberi sliku zaglavlja za tvoju temu"
+msgstr "Odaberi sliku zaglavlja za tvoj motiv"
 
 msgid "Recommended height: 200 pixels"
 msgstr "Preporučena visina: 200 piksela"
@@ -2677,7 +2677,7 @@ msgid "Select a different header image"
 msgstr "Odaberi jednu drugu sliku zaglavlja"
 
 msgid "Select colors for your theme"
-msgstr "Odaberi boje za tvoju temu"
+msgstr "Odaberi boje za tvoj motiv"
 
 msgid "optional"
 msgstr "opcionalno"
@@ -2686,10 +2686,10 @@ msgid "Browser preview"
 msgstr "Pregled preglednika"
 
 msgid "Uploading Theme"
-msgstr "Slanje teme"
+msgstr "Prijenos motiva"
 
 msgid "Finish Theme"
-msgstr "Završi temu"
+msgstr "Završi motiv"
 
 msgid "Back"
 msgstr "Natrag"
@@ -2957,13 +2957,13 @@ msgid "View All Submissions"
 msgstr "Prikaži sva slanja"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Ovdje se pregledava i upravlja vlastitim dodacima i motivima. Za objavljivanje prvog vlastitog dodatka, klikni „Pošalji svoj prvi dodatak” ili „Pošalji svoj prvi motiv”."
 
 msgid "Submit Your First Add-on"
 msgstr ""
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Pošalji svoj prvi motiv"
 
 msgid "Add-on Developer Hub"
 msgstr "Razvojni centar za dodatke"
@@ -4544,7 +4544,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Promijeni izgled preglednika. Jednostavno dizajniraj vlastite vizualne motive kako bi Firefox izgledao kako želiš."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4716,7 +4716,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Maksimalna veličina za WebExtension motive je {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr ""
@@ -5170,7 +5170,7 @@ msgid "Needs Admin Content Review"
 msgstr "Potreban je administratorski pregled sadržaja"
 
 msgid "Needs Admin Static Theme Review"
-msgstr "Potreban je administratorski pregled statičke teme"
+msgstr "Potreban je administratorski pregled statičkog motiva"
 
 msgid "Requires Restart"
 msgstr "Zahtjeva ponovno pokretanje"
@@ -5345,7 +5345,7 @@ msgstr "Aktualiziranja ({0})"
 
 # 100%
 msgid "Theme Review Guide"
-msgstr "Vodič za pregled tema"
+msgstr "Vodič za pregled motiva"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5448,7 +5448,7 @@ msgid "Bad User Ratings ({num})"
 msgstr "Loše ocjene korisnika ({num})"
 
 msgid "Theme Images"
-msgstr "Slike teme"
+msgstr "Slike motiva"
 
 msgid "Rendered Preview"
 msgstr "Iscrtani pregled"
@@ -5703,7 +5703,7 @@ msgid "Clear Admin Content Review Flag"
 msgstr "Izbriši oznaku za administratorski pregled sadržaja"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Izbriši oznaku za administratorski pregled statičke teme"
+msgstr "Izbriši oznaku za administratorski pregled statičkog motiva"
 
 msgid "(admin)"
 msgstr ""
@@ -5787,7 +5787,7 @@ msgid "You have <span>{0}</span> points."
 msgstr ""
 
 msgid "Theme"
-msgstr "Tema"
+msgstr "Motiv"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
