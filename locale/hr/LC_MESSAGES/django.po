@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 18:31+0000\n"
+"PO-Revision-Date: 2019-11-13 18:51+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2278,25 +2278,25 @@ msgid "Continue"
 msgstr "Nastavi"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Smiju li drugi dijeliti tvoj dodatak, pod uvjetom da te nevedu kao autora/autoricu?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Smiju li drugi koristiti tvoj dodatak u komercijalne svrhe?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "Smiju li drugi izraditi izvedena djela iz tvog dodatka?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Da, pod uvjetom da dijele pod istim uvjetima"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Davatelj licence dozvoljava drugima distribuciju izvedenih djela samo pod istom licencom ili onom, koja je kompatibilna s onom licencom, koja upravlja djelom davatelja licence."
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Tvoj dodatak će se objaviti pod sljedećom licencom:"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Odaberi jednu drugu licencu."
 
 msgid "More information on Creative Commons licenses"
 msgstr "Daljnje informacije o Creative Commons licencama"
@@ -2332,18 +2332,20 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Brisanjem tvog dodatka, trajno će se izbrisati sve verzije i datoteke koje si poslao/la za ovaj dodatak, navedene ili ne. ID oznaka dodatka će i dalje biti povezan s tvojim računom, tako da drugi "
+"neće moći slati verzije s istom ID oznakom."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Upiši sljedeći tekst kao potvrdu tvoje odluke: {slug}"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Reci nam zašto brišeš dodatak:"
 
 msgid "Actions"
 msgstr "Radnje"
 
 msgid "Resume the submission process for this add-on"
-msgstr ""
+msgstr "Nastavi s postupkom prijave ovog dodatka"
 
 msgid "Resume"
 msgstr "Nastavi"
@@ -2370,13 +2372,13 @@ msgid "Statistics"
 msgstr "Statistike"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Upravljaj stanjem i verzijama"
 
 msgid "View Recent Changes"
 msgstr "Pogledaj nedavne promjene"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Ovom dodatku nedostaju neke tražene informacije, prije nego što se može poslati na objavljivanje."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Ovaj dodatak nema verzija."
