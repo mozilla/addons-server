@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 14:31+0000\n"
+"PO-Revision-Date: 2019-11-13 14:49+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1519,7 +1519,7 @@ msgid "This add-on has an End-User License Agreement"
 msgstr "Ovaj dodatak sadrži korisnički ugovor o licenci"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Odredi korisnički ugovor o licenci za svoj dodatak:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "Ovaj dodatak sadrži pravila o privatnosti"
@@ -1528,16 +1528,16 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Molimo Vas, odredite Policu Privatnosti za vaš dodatak:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Nepodržana vrsta datoteke, prenesi arhivsku datoteku {extensions}."
 
 msgid "Invalid or broken archive."
-msgstr ""
+msgstr "Neispravna ili pokvarena arhiva."
 
 msgid "View current"
-msgstr ""
+msgstr "Pogledaj trenutačnu"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Neispravan raspon verzija."
 
 msgid "Need at least one compatible application."
 msgstr "Potrebna je barem jedna kompatibilna aplikacija."
@@ -1546,22 +1546,22 @@ msgid "There was an error with your upload. Please try again."
 msgstr "Dogodila se greška prilikom Vašeg učitavanja. Molimo, pokušajte ponovno."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Zanemari neuspjelu provjeru"
 
 msgid "Need to select at least one application."
 msgstr "Moraš odabrati barem jednu aplikaciju."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Nedavno si poslao/la previše prijenosa. Pokušaj ponovo nakon nekog vremena."
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Verzija {version} je već prije bila prenesena i izbrisana."
 
 msgid "Version {version} already exists."
 msgstr "Verzija {version} već postoji."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Nastaviti s postojećim prijenosom umjesto toga?"
 
 msgid "Yes"
 msgstr "Da"
@@ -1573,10 +1573,10 @@ msgid "You have not uploaded a source file."
 msgstr "Moraš prenijeti izvornu datoteku."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Izvorna datoteka prenesena, ali je naznačeno da ona nije potrebna."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Pazi da ime i sažetak ukupno nemaju više od {limit_value} znakova (imaju {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -1587,22 +1587,22 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazano ime"
 
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr ""
+msgstr "Kategorije se ne mogu mijenjati dok se tvoj dodatak predstavlja."
 
 msgid "Invalid or corrupt add-on file."
-msgstr ""
+msgstr "Neispravna ili oštećena datoteka dodatka."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Tvoj razvijateljski API ključ je pronađen u poslanoj datoteci. Kako bi se zaštitio tvoj račun, ključ će biti opozvan."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "Razvijateljski API ključ suatora je pronađen u poslanoj datoteci. Kako bi se zaštitio tvoj dodatak, ključ će biti opozvan."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozillina sigurnosna obavijest: tvoje AMO API vjerodajnice su opozvane"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
