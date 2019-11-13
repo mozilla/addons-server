@@ -155,11 +155,15 @@ class ViewQueue(RawSQLModel):
                     'TIMEDIFF(addons_addonreviewerflags.pending_info_request,'
                     'NOW()) < 0')),
                 ('auto_approval_delayed_temporarily', (
-                    'TIMEDIFF(addons_addonreviewerflags.auto_approval_delayed_until, NOW()) > 0 AND '
-                    'EXTRACT(YEAR FROM addons_addonreviewerflags.auto_approval_delayed_until) != 9999')),
+                    'TIMEDIFF(addons_addonreviewerflags.'
+                    'auto_approval_delayed_until, NOW()) > 0 AND '
+                    'EXTRACT(YEAR FROM addons_addonreviewerflags.'
+                    'auto_approval_delayed_until) != 9999')),
                 ('auto_approval_delayed_indefinitely', (
-                    'TIMEDIFF(addons_addonreviewerflags.auto_approval_delayed_until, NOW()) > 0 AND '
-                    'EXTRACT(YEAR FROM addons_addonreviewerflags.auto_approval_delayed_until) = 9999')),
+                    'TIMEDIFF(addons_addonreviewerflags.'
+                    'auto_approval_delayed_until, NOW()) > 0 AND '
+                    'EXTRACT(YEAR FROM addons_addonreviewerflags.'
+                    'auto_approval_delayed_until) = 9999')),
                 ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
