@@ -88,9 +88,8 @@ zope.interface==4.7.1 \
 pytest-fxa==1.4.0 \
     --hash=sha256:778dfdb019f1e0af8744704fe5f7ac5c08fd5d45ff054023b0a18d5f99d737f1 \
     --hash=sha256:b75967e74e9b2f3ffa5558421fdf61c7fff5948fc9d7e357e7147c682988ecc1
-zope.component==4.5 \
-    --hash=sha256:6edfd626c3b593b72895a8cfcf79bff41f4619194ce996a85bce31ac02b94e55 \
-    --hash=sha256:984a06ba3def0b02b1117fa4c45b56e772e8c29c0340820fbf367e440a93a3a4
+zope.component==4.6 \
+    --hash=sha256:ec2afc5bbe611dcace98bb39822c122d44743d635dafc7315b9aef25097db9e6
 zope.deferredimport==4.3.1 \
     --hash=sha256:57b2345e7b5eef47efcd4f634ff16c93e4265de3dcf325afc7315ade48d909e1 \
     --hash=sha256:9a0c211df44aa95f1c4e6d2626f90b400f56989180d3ef96032d708da3d23e0a
