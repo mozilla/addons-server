@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 18:51+0000\n"
+"PO-Revision-Date: 2019-11-13 19:13+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2386,9 +2386,9 @@ msgstr "Ovaj dodatak nema verzija."
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<strong>{0}</strong> preuzimanje tjedno"
+msgstr[1] "<strong>{0}</strong> preuzimanja tjedno"
+msgstr[2] "<strong>{0}</strong> preuzimanja tjedno"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -2411,19 +2411,21 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Upozorenje: imaš naziv/sažetak u drugim jezicima, koji će se automatski odrezati, kako bi odgovarali ograničenju od %(max_length)s znakova. Uredi ih putem „Uredi stranicu proizvoda”, nakon što "
+"postupak prijave završi."
 
 msgid "Add-on URL:"
 msgstr "URL dodatka:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Za URL koristi samo slova, brojke, podvlake i crtice."
 
 # 80%
 msgid "Name:"
 msgstr "Ime:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Naziv koji se prikazuje na ovoj web stranici. Može se razlikovati od naziva dodatka koji se prikazuje unutar Firefoxa"
 
 msgid "Summary:"
 msgstr "Sažetak:"
@@ -2436,6 +2438,8 @@ msgstr "Ovo je eksperimentalni dodatak"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Označi ovu opciju, ako je tvoj dodatak eksperimentalan ili na neki drugi način nije spreman za opću upotrebu. Dodatak će biti naveden, ali će biti manje vidljiv. Tu postavku možeš kasnije "
+"promijeniti."
 
 msgid "Select a category for this add-on:"
 msgstr "Odaberi kategoriju za ovaj dodatak:"
@@ -2450,16 +2454,16 @@ msgid "License:"
 msgstr "Licenca:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Odaberi licencu, koja je primjerena za prava koja daješ."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Ako tvoj dodatak prenosi bilo koje podatke s računala korisnika, moraš navesti pravila o privatnosti, koja objašnjavaju, koji se podaci šalju i kako se koriste."
 
 msgid "Notes to Reviewer:"
 msgstr "Napomene za recenzenta:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Treba li naši recenzenti naročito paziti na nešto prilikom pregleda ovog dodatka?"
 
 msgid "Remember"
 msgstr "Zapamti"
@@ -2469,9 +2473,11 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Ako šalješ izvorni kȏd, ali ne uključiš upute, ovdje ih moraš navesti. Upiši upute za pojedinačne korake za gradnju, kako bi se izradila točna kopija koda dodatka, prema %(policy_requirements_open)s"
+" zahtjevima pravila %(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Ove bilješke ćeš vidjeti samo ti i tvoji recenzenti."
 
 msgid "Submit Version"
 msgstr "Pošalji verziju"
@@ -2486,19 +2492,19 @@ msgid "Release Notes:"
 msgstr "Napomene o izdanju:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "Obavijesti korisnike što je novo i što se promijenilo u ovoj verziji."
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Ove bilješke će se pojaviti na stranici s detaljima."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Kako distribuirati ovu verziju"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Više informacija o distribuciji i potpisivanju dodatka"
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Prijava završena"
 
 msgid "Version Submitted for Review"
 msgstr ""
