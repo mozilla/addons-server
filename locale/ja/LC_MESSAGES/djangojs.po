@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-08-12 14:39+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -25,7 +25,8 @@ msgstr "サーバーへの接続中に問題が発生しました。"
 msgid "Select a file..."
 msgstr "ファイルを選択..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "アドオンは .zip .xpi .crx .jar .xml のいずれかの拡張子を持つファイルにしてください"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -690,12 +691,6 @@ msgstr "このローカライズを削除"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} が初めてこのページを見ました。"
-
-msgid "Receipt checked by app."
-msgstr "レシートがアプリによって検証されました。"
-
-msgid "Receipt was not checked by app."
-msgstr "レシートがアプリによって検証されませんでした。"
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} が初めてこのアドオンを見ました。"

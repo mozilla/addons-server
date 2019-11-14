@@ -1,19 +1,14 @@
 import random
-
 from collections import OrderedDict
 from datetime import datetime, timedelta
 
+import django_tables2 as tables
+import olympia.core.logger
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import loader
 from django.utils import translation
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
-
-import django_tables2 as tables
-import jinja2
-
-import olympia.core.logger
-
+from django.utils.translation import ugettext_lazy as _, ungettext
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -26,8 +21,11 @@ from olympia.amo.utils import to_language
 from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
-    ReviewerScore, ViewUnlistedAllList, get_flags, get_flags_for_row)
+    AutoApprovalSummary, ReviewerScore, ViewUnlistedAllList, get_flags,
+    get_flags_for_row)
 from olympia.users.models import UserProfile
+
+import jinja2
 
 
 log = olympia.core.logger.getLogger('z.mailer')
@@ -107,12 +105,10 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
 
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
+    id = tables.Column(verbose_name=_('ID'))
     addon_name = tables.Column(verbose_name=_(u'Add-on'))
     guid = tables.Column(verbose_name=_(u'GUID'))
-    authors = tables.Column(verbose_name=_(u'Authors'),
-                            orderable=False)
-    review_date = tables.Column(verbose_name=_(u'Last Review'))
-    version_date = tables.Column(verbose_name=_(u'Last Update'))
+    authors = tables.Column(verbose_name=_(u'Authors'), orderable=False)
 
     class Meta(ReviewerQueueTable.Meta):
         model = ViewUnlistedAllList
@@ -123,22 +119,10 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
             record.addon_slug if record.addon_slug is not None else record.id,
         ])
         self.increment_item()
-        return safe_substitute(u'<a href="%s">%s <em>%s</em></a>',
-                               url, record.addon_name, record.latest_version)
+        return safe_substitute(u'<a href="%s">%s</a>', url, record.addon_name)
 
     def render_guid(self, record):
         return safe_substitute(u'%s', record.guid)
-
-    def render_version_date(self, record):
-        return safe_substitute(u'<span>%s</span>', record.version_date)
-
-    def render_review_date(self, record):
-        if record.review_version_num is None:
-            return ugettext('No Reviews')
-        return safe_substitute(
-            u'<span class="addon-review-text">'
-            u'<a href="#"><em>%s</em> on %s</a></span>',
-            record.review_version_num, record.review_date)
 
     def render_authors(self, record):
         authors = record.authors
@@ -155,7 +139,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
     @classmethod
     def default_order_by(cls):
-        return '-version_date'
+        return '-id'
 
 
 def view_table_factory(viewqueue):
@@ -251,6 +235,36 @@ class ContentReviewTable(AutoApprovedTable):
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['content', record.slug])
+
+
+class NeedsHumanReviewTable(AutoApprovedTable):
+    def render_addon_name(self, record):
+        rval = [jinja2.escape(record.name)]
+        versions_flagged_by_scanners = record.versions.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            needs_human_review=True).count()
+        if versions_flagged_by_scanners:
+            url = reverse('reviewers.review', args=[record.slug])
+            rval.append(
+                '<a href="%s">%s</a>' % (
+                    url,
+                    _('Listed versions needing human review ({0})').format(
+                        versions_flagged_by_scanners)
+                )
+            )
+        unlisted_versions_flagged_by_scanners = record.versions.filter(
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            needs_human_review=True).count()
+        if unlisted_versions_flagged_by_scanners:
+            url = reverse('reviewers.review', args=['unlisted', record.slug])
+            rval.append(
+                '<a href="%s">%s</a>' % (
+                    url,
+                    _('Unlisted versions needing human review ({0})').format(
+                        unlisted_versions_flagged_by_scanners)
+                )
+            )
+        return ''.join(rval)
 
 
 class ReviewHelper(object):
@@ -460,10 +474,12 @@ class ReviewBase(object):
         self.request = request
         if request:
             self.user = self.request.user
+            self.human_review = True
         else:
             # Use the addons team go-to user "Mozilla" for the automatic
             # validations.
             self.user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+            self.human_review = False
         self.addon = addon
         self.version = version
         self.review_type = (
@@ -473,14 +489,12 @@ class ReviewBase(object):
         self.content_review_only = content_review_only
 
     def set_addon(self, **kw):
-        """Alters addon and sets reviewed timestamp on version."""
+        """Alter addon, set reviewed timestamp on version being reviewed."""
         self.addon.update(**kw)
         self.version.update(reviewed=datetime.now())
 
     def set_data(self, data):
         self.data = data
-        if 'addon_files' in data:
-            self.files = data['addon_files']
 
     def set_files(self, status, files, hide_disabled_file=False):
         """Change the files to be the new status."""
@@ -502,6 +516,22 @@ class ReviewBase(object):
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
             self.version.update(recommendation_approved=True)
+
+    def unset_past_needs_human_review(self):
+        """Clear needs_human_review flag on past listed versions.
+
+        To be called when approving a listed version: For listed, the version
+        reviewers are approving is always the latest listed one, and then users
+        are supposed to automatically get the update to that version, so we
+        don't need to care about older ones anymore.
+        """
+        # Do a mass UPDATE.
+        self.addon.versions.filter(
+            needs_human_review=True,
+            channel=self.version.channel).update(
+            needs_human_review=False)
+        # Also reset it on self.version in case this instance is saved later.
+        self.version.needs_human_review = False
 
     def log_action(self, action, version=None, files=None,
                    timestamp=None):
@@ -621,6 +651,13 @@ class ReviewBase(object):
             perm_setting='individual_contact',
             detail_kwargs={'reviewtype': self.review_type.split('_')[1]})
 
+    def sign_files(self):
+        for file_ in self.files:
+            if file_.is_experiment:
+                ActivityLog.create(
+                    amo.LOG.EXPERIMENT_SIGNED, file_, user=self.user)
+            sign_file(file_)
+
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
         update_reviewed = (
@@ -641,8 +678,7 @@ class ReviewBase(object):
         assert not self.content_review_only
 
         # Sign addon.
-        for file_ in self.files:
-            sign_file(file_)
+        self.sign_files()
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -654,10 +690,14 @@ class ReviewBase(object):
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
 
+        # Clear needs_human_review flags on past listed versions.
+        if self.human_review:
+            self.unset_past_needs_human_review()
+
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
         # approval.
-        if self.request:
+        if self.human_review:
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         else:
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
@@ -674,9 +714,9 @@ class ReviewBase(object):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             ReviewerScore.award_points(
-                self.request.user, self.addon, status, version=self.version)
+                self.user, self.addon, status, version=self.version)
 
     def process_sandbox(self):
         """Set an addon or a version back to sandbox."""
@@ -696,6 +736,11 @@ class ReviewBase(object):
         self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
 
+        # Unset needs_human_review on the latest version - it's the only
+        # version we can be certain that the reviewer looked at.
+        if self.human_review:
+            self.version.update(needs_human_review=False)
+
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_rejected' % self.review_type
         subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
@@ -705,9 +750,9 @@ class ReviewBase(object):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             ReviewerScore.award_points(
-                self.request.user, self.addon, status, version=self.version)
+                self.user, self.addon, status, version=self.version)
 
     def process_super_review(self):
         """Mark an add-on as needing admin code, content, or theme review."""
@@ -752,10 +797,10 @@ class ReviewBase(object):
         self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
-                self.request.user, self.addon, self.addon.status,
+                self.user, self.addon, self.addon.status,
                 version=version, post_review=is_post_review,
                 content_review=self.content_review_only)
 
@@ -776,16 +821,31 @@ class ReviewBase(object):
         # so override the text in case the reviewer switched between actions
         # and accidently submitted some comments from another action.
         self.data['comments'] = ''
-        if channel == amo.RELEASE_CHANNEL_LISTED:
-            version.autoapprovalsummary.update(confirmed=True)
-            AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
-        # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
+            # Mark the approval as confirmed (handle DoesNotExist, it may have
+            # been auto-approved before we unified workflow for unlisted and
+            # listed).
+            try:
+                version.autoapprovalsummary.update(confirmed=True)
+            except AutoApprovalSummary.DoesNotExist:
+                pass
+
+            if channel == amo.RELEASE_CHANNEL_LISTED:
+                # Clear needs_human_review flags on past versions in channel.
+                self.unset_past_needs_human_review()
+                AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+            else:
+                # For now, for unlisted versions, only drop the
+                # needs_human_review flag on the latest version.
+                if self.version.needs_human_review:
+                    self.version.update(needs_human_review=False)
+
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
-                self.request.user, self.addon, self.addon.status,
+                self.user, self.addon, self.addon.status,
                 version=version, post_review=is_post_review,
                 content_review=self.content_review_only)
 
@@ -806,6 +866,12 @@ class ReviewBase(object):
             self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
             self.log_action(action_id, version=version, files=files,
                             timestamp=timestamp)
+            if self.human_review:
+                # Unset needs_human_review on rejected versions, we consider
+                # that the reviewer looked at them before rejecting.
+                if version.needs_human_review:
+                    version.update(needs_human_review=False)
+
         self.addon.update_status()
         self.data['version_numbers'] = u', '.join(
             str(v.version) for v in self.data['versions'])
@@ -830,9 +896,9 @@ class ReviewBase(object):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.human_review:
             ReviewerScore.award_points(
-                self.request.user, self.addon, status, version=latest_version,
+                self.user, self.addon, status, version=latest_version,
                 post_review=True, content_review=self.content_review_only)
 
 
@@ -865,8 +931,9 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
+        self.sign_files()
         for file_ in self.files:
-            sign_file(file_)
+            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_, user=self.user)
 
         self.set_files(amo.STATUS_APPROVED, self.files)
 

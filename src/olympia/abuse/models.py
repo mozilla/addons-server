@@ -117,6 +117,7 @@ class AbuseReport(ModelBase):
         ('UNINSTALL', 1, 'Uninstall'),
         ('MENU', 2, 'Menu'),
         ('TOOLBAR_CONTEXT_MENU', 3, 'Toolbar context menu'),
+        ('AMO', 4, 'AMO'),
     )
     STATES = Choices(
         ('UNTRIAGED', 1, 'Untriaged'),

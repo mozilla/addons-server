@@ -68,39 +68,6 @@
         }
     },
     {
-        "pk": 1002,
-        "model": "addons.addon",
-        "fields": {
-            "slug": "1002",
-            "eula": null,
-            "view_source": 0,
-            "total_downloads": 13265,
-            "developer_comments": null,
-            "disabled_by_user": 0,
-            "guid": "{f20592f7-9db4-4ce1-b4b0-8c509a949949}",
-            "weekly_downloads": 0,
-            "support_url": null,
-            "average_rating": "4.67",
-            "average_daily_users": 1482,
-            "bayesian_rating": 4.12392,
-            "homepage": null,
-            "support_email": null,
-            "public_stats": 0,
-            "status": 3,
-            "privacy_policy": null,
-            "description": null,
-            "default_locale": "en-US",
-            "target_locale": "",
-            "name": null,
-            "created": "2004-06-11 18:23:31",
-            "type": 2,
-            "icon_type": "",
-            "modified": "2008-05-22 11:59:13",
-            "summary": null,
-            "total_ratings": 3
-        }
-    },
-    {
         "pk": 1003,
         "model": "addons.addon",
         "fields": {

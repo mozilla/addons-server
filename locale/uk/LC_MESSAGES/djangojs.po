@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-03-26 07:24+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-30 08:09+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -27,8 +27,8 @@ msgstr "Виникла проблема при спробі зв'язатись 
 msgid "Select a file..."
 msgstr "Виберіть файл..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Розширення вашого додатка повинно бути .zip, .xpi, .crx, .jar або .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Розширення вашого додатка повинно бути .zip, .xpi, .crx або .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -728,12 +728,6 @@ msgstr "Вилучити цю локалізацію"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} переглядав цю сторінку першим."
-
-msgid "Receipt checked by app."
-msgstr "Чек перевірено застосунком."
-
-msgid "Receipt was not checked by app."
-msgstr "Чек не було перевірено застосунком."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} переглядав цей додаток першим."

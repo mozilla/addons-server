@@ -1,3 +1,5 @@
+import json
+
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.discovery.models import DiscoveryItem
@@ -75,6 +77,22 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             'en-US': 'https://mozilla.org/'
         }
 
+    def test_outgoing_wrapper(self):
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory(homepage='https://mozilla.org/')),
+            image='external.png',
+            gradient_color='#FABFAB',
+            is_external=True,
+            enabled=True)
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        # We don't wrap links with outgoing by default
+        assert b'outgoing.' not in response.content
+        # But they should be if the param is passed.
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+        assert b'outgoing.' in response.content
+
     def test_all_param(self):
         PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
@@ -146,6 +164,31 @@ class TestSecondaryHeroShelfViewSet(TestCase):
                 SecondaryHeroShelfSerializer(instance=hero_a).data,
                 SecondaryHeroShelfSerializer(instance=hero_b).data]}
 
+    def test_outgoing_wrapper(self):
+        hero = SecondaryHero.objects.create(
+            headline='%^*',
+            description='',
+            cta_url='/addon/adblockplus/',
+            cta_text='goozilla',
+            enabled=True)
+        # No outgoing wrapping by default
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert b'outgoing.' not in response.content
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+        # But we also don't want to wrap internal urls
+        assert b'outgoing.' not in response.content
+        assert b'http://testserver' in response.content
+
+        # update the cta to an external url - test the no wrap param case first
+        hero.update(cta_url='http://goo.gl')
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert b'outgoing.' not in response.content
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+        # This time it should be wrapped
+        assert b'outgoing.' in response.content
+
     def test_all_param(self):
         SecondaryHero.objects.create(
             headline='dfdfd!',
@@ -194,6 +237,21 @@ class TestHeroShelvesView(TestCase):
             'primary': PrimaryHeroShelfSerializer(instance=phero).data,
             'secondary': SecondaryHeroShelfSerializer(instance=shero).data,
         }
+
+    def test_outgoing_wrapper(self):
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory(homepage='http://foo.baa')),
+            enabled=True, is_external=True)
+        SecondaryHero.objects.create(
+            headline='headline', description='description',
+            cta_url='http://go.here/', cta_text='go here!',
+            enabled=True)
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
+        print(response.json())
+        assert 'outgoing.' in json.dumps(response.json()['primary'])
+        assert 'outgoing.' in json.dumps(response.json()['secondary'])
 
     def test_shelf_randomness(self):
         addon_1 = addon_factory()

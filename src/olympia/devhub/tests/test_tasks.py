@@ -27,8 +27,8 @@ from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
-from olympia.devhub import tasks, file_validation_annotations as annotations
-from olympia.files.models import File, FileValidation
+from olympia.devhub import tasks
+from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
 from olympia.files.tests.test_models import UploadTest
 from olympia.versions.models import Version
@@ -224,8 +224,8 @@ class TestMeasureValidationTime(UploadTest, TestCase):
 
     def handle_upload_validation_result(self,
                                         channel=amo.RELEASE_CHANNEL_LISTED):
-        validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        tasks.handle_upload_validation_result(validation, self.upload.pk,
+        results = [amo.VALIDATOR_SKELETON_RESULTS.copy()]
+        tasks.handle_upload_validation_result(results, self.upload.pk,
                                               channel, False)
 
     def test_track_upload_validation_results_time(self):
@@ -427,28 +427,33 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         addon = addon_factory()
         self.file = addon.current_version.all_files[0]
         assert not self.file.has_been_validated
-        file_validation_id = tasks.validate(
-            self.file, synchronous=True).get()
+        file_validation_id = tasks.validate(self.file).get()
         assert json.dumps(file_validation_id)
         # Not `self.file.reload()`. It won't update the `validation` FK.
         self.file = File.objects.get(pk=self.file.pk)
         assert self.file.has_been_validated
 
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_validates_search_plugins_inline(self, run_addons_linter_mock):
-        addon = addon_factory(file_kw={
-            'filename': 'opensearch/sp_updateurl.xml'})
-        file_ = addon.current_version.current_file
-        tasks.validate(file_, synchronous=True).get()
-
-        assert not run_addons_linter_mock.called
-
-        file_.refresh_from_db()
-        validation = file_.validation.processed_validation
-
-        assert validation['errors'] == 2
-        assert validation['messages'][0]['message'].startswith(
-            'OpenSearch: &lt;updateURL&gt; elements')
+    def test_binary_flag_set_on_addon_for_binary_extensions(self):
+        results = {
+            "errors": 0,
+            "success": True,
+            "warnings": 0,
+            "notices": 0,
+            "message_tree": {},
+            "messages": [],
+            "metadata": {
+                "contains_binary_extension": True,
+                "version": "1.0",
+                "name": "gK0Bes Bot",
+                "id": "gkobes@gkobes"
+            }
+        }
+        self.addon = addon_factory()
+        self.file = self.addon.current_version.all_files[0]
+        assert not self.addon.binary
+        tasks.handle_file_validation_result(results, self.file.pk)
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        assert self.addon.binary
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_calls_run_linter(self, run_addons_linter_mock):
@@ -493,50 +498,6 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
             assert not result['warnings']
             assert not result['errors']
 
-    @mock.patch('olympia.devhub.tasks.repack_fileupload')
-    @mock.patch('olympia.devhub.tasks.parse_addon')
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_upload_is_repacked_before_linter_runs(
-            self, run_addons_linter_mock, parse_addon_mock,
-            repack_fileupload_mock):
-        """When validating new uploads, we are repacking before handing the xpi
-        to the linter."""
-        run_addons_linter_mock.return_value = json.dumps(
-            {'errors': 0, 'warnings': 0, 'notices': 0}
-        )
-        parse_addon_mock.return_value = {
-            'is_webextension': True
-        }
-        upload = self.get_upload(
-            abspath=self.valid_path, with_validation=False)
-        assert not upload.valid
-        tasks.validate(upload, listed=True)
-        assert parse_addon_mock.called
-        assert repack_fileupload_mock.called
-        upload.reload()
-        assert upload.valid, upload.validation
-
-    @mock.patch('olympia.devhub.tasks.repack_fileupload')
-    @mock.patch('olympia.devhub.tasks.parse_addon')
-    @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_file_is_not_repacked_before_linter_runs(
-            self, run_addons_linter_mock, parse_addon_mock,
-            repack_fileupload_mock):
-        """When validating existing File instances, we are *not* repacking."""
-        run_addons_linter_mock.return_value = json.dumps(
-            {'errors': 0, 'warnings': 0, 'notices': 0}
-        )
-        parse_addon_mock.return_value = {
-            'is_webextension': True
-        }
-        addon = addon_factory()
-        file_ = addon.current_version.all_files[0]
-        assert not FileValidation.objects.filter(file=file_).exists()
-        tasks.validate(file_).get()
-        assert parse_addon_mock.called
-        assert not repack_fileupload_mock.called
-        assert FileValidation.objects.filter(file=file_).exists()
-
 
 class TestValidateFilePath(ValidatorTestCase):
 
@@ -563,14 +524,6 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['success']
         assert result['errors']
         assert not result['warnings']
-
-    def test_returns_skeleton_for_search_plugin(self):
-        result = json.loads(tasks.validate_file_path(
-            get_addon_file('searchgeek-20090701.xml'),
-            channel=amo.RELEASE_CHANNEL_LISTED))
-
-        expected = amo.VALIDATOR_SKELETON_RESULTS
-        assert result == expected
 
     @mock.patch('olympia.devhub.tasks.parse_addon')
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -615,66 +568,6 @@ class TestWebextensionIncompatibilities(UploadTest, ValidatorTestCase):
             for file in version.files.all():
                 file.update(**kw)
 
-    def test_webextension_upgrade_is_annotated(self):
-        assert all(f.is_webextension is False
-                   for f in self.addon.current_version.all_files)
-
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, with_validation=False, addon=self.addon,
-            version='0.1')
-        tasks.validate(upload, listed=True)
-
-        upload.refresh_from_db()
-        assert upload.processed_validation['is_upgrade_to_webextension']
-
-        expected = ['validation', 'messages', 'webext_upgrade']
-        assert upload.processed_validation['messages'][0]['id'] == expected
-        assert upload.processed_validation['warnings'] == 1
-        assert upload.valid
-
-    def test_new_webextension_is_not_annotated(self):
-        """https://github.com/mozilla/addons-server/issues/3679"""
-        previous_file = self.addon.current_version.all_files[-1]
-        previous_file.is_webextension = True
-        previous_file.status = amo.STATUS_AWAITING_REVIEW
-        previous_file.save()
-
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, with_validation=False, addon=self.addon,
-            version='0.1')
-        tasks.validate(upload, listed=True)
-
-        upload.refresh_from_db()
-        validation = upload.processed_validation
-
-        assert 'is_upgrade_to_webextension' not in validation
-        expected = ['validation', 'messages', 'webext_upgrade']
-        assert not any(msg['id'] == expected for msg in validation['messages'])
-        assert validation['warnings'] == 0
-        assert upload.valid
-
-    def test_webextension_webext_to_webext_not_annotated(self):
-        previous_file = self.addon.current_version.all_files[-1]
-        previous_file.is_webextension = True
-        previous_file.save()
-
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, with_validation=False, addon=self.addon,
-            version='0.1')
-        tasks.validate(upload, listed=True)
-        upload.refresh_from_db()
-
-        validation = upload.processed_validation
-
-        assert 'is_upgrade_to_webextension' not in validation
-        expected = ['validation', 'messages', 'webext_upgrade']
-        assert not any(msg['id'] == expected for msg in validation['messages'])
-        assert validation['warnings'] == 0
-        assert upload.valid
-
     def test_webextension_no_webext_no_warning(self):
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')
@@ -686,7 +579,6 @@ class TestWebextensionIncompatibilities(UploadTest, ValidatorTestCase):
 
         validation = upload.processed_validation
 
-        assert 'is_upgrade_to_webextension' not in validation
         expected = ['validation', 'messages', 'webext_upgrade']
         assert not any(msg['id'] == expected for msg in validation['messages'])
 
@@ -850,9 +742,23 @@ class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
 
         upload.refresh_from_db()
 
-        assert upload.processed_validation['errors'] == 0
-        assert upload.processed_validation['messages'] == []
-        assert upload.valid
+        assert not upload.valid
+        assert upload.processed_validation['errors'] == 1
+        assert upload.processed_validation['messages'] == [{
+            'compatibility_type': None,
+            'description': [],
+            'id': ['validation', 'messages', 'opensearch_unsupported'],
+            'message': (
+                'Open Search add-ons are <a '
+                'href="https://blog.mozilla.org/addons/2019/10/15/'
+                'search-engine-add-ons-to-be-removed-from-addons-mozilla-org/"'
+                ' rel="nofollow">no longer supported on AMO</a>. You can '
+                'create a <a href="https://developer.mozilla.org/docs/Mozilla'
+                '/Add-ons/WebExtensions/manifest.json/'
+                'chrome_settings_overrides" rel="nofollow">search extension '
+                'instead</a>.'),
+            'tier': 1,
+            'type': 'error'}]
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
@@ -1188,256 +1094,38 @@ class TestAPIKeyInSubmission(UploadTest, TestCase):
         assert not upload.valid
 
 
-@pytest.mark.parametrize('fixture, success, message', [
-    ('pass.xml', True, ''),
-    # xmlns attribute is present
-    ('no_xmlns.xml', False, 'Missing XMLNS attribute.'),
-    # an xmlns attribute is an invvalid value
-    ('bad_xmlns.xml', False, 'Bad XMLNS attribute.'),
-    # Broken XML
-    ('bad_xml.xml', False, 'XML Parse Error.'),
-    # Tests that there is no updateURL element in the provider
-    ('sp_updateurl.xml', False,
-     '<updateURL> elements are banned in OpenSearch providers.'),
-    # the provider is indeed OpenSearch
-    ('sp_notos.xml', False, 'Invalid Document Root.'),
-    # the provider has a <ShortName> element
-    ('sp_no_shortname.xml', False, 'Missing <ShortName> elements.'),
-    ('sp_dup_shortname.xml', False, 'Too many <ShortName> elements.'),
-    ('sp_long_shortname.xml', False, '<ShortName> element too long.'),
-    # the provider has a <Description> element.'
-    ('sp_no_description.xml', False,
-     'Invalid number of <Description> elements.'),
-    # the provider has a <Url> element.'
-    ('sp_no_url.xml', False, 'Missing <Url> elements.'),
-    # the provider is passing the proper attributes for its urls.'
-    ('sp_bad_url_atts.xml', False,
-     'Missing <Url> element with \'text/html\' type.'),
-    # Test that there's no traceback for a missing template attribute
-    ('sp_no_template_attr.xml', False,
-     '<Url> element missing template attribute.'),
-    # a search term field is provided for the <Url> element.'
-    ('sp_no_url_template.xml', False,
-     '<Url> element missing template placeholder.'),
-    # a valid inline search term field is provided.'
-    ('sp_inline_template.xml', True, ''),
-    # a valid search term field is provided in a <Param />'
-    ('sp_param_template.xml', True, ''),
-    # necessary attributes are provided in a <Param />'
-    ('sp_bad_param_atts.xml', False,
-     '`<Param>` element missing \'name/value\'.'),
-    # Test malicious XML is detected properly
-    ('lol.xml', False, 'XML Security error.'),
-])
-def test_opensearch_validation(fixture, success, message):
-    """Tests that the OpenSearch validation doesn't find anything worrying."""
-    fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files/opensearch/',
-        fixture)
+class TestValidationTask(TestCase):
 
-    results = {
-        'messages': [],
-        'errors': 0,
-        'metadata': {}
-    }
+    def setUp(self):
+        TestValidationTask.fake_task_has_been_called = False
 
-    annotations.annotate_search_plugin_validation(
-        results, fixture_path, channel=amo.RELEASE_CHANNEL_LISTED)
+    @tasks.validation_task
+    def fake_task(results, pk):
+        TestValidationTask.fake_task_has_been_called = True
+        return {**results, 'fake_task_results': 1}
 
-    if success:
-        assert not results['errors']
-        assert not results['messages']
-    else:
-        assert results['errors']
-        assert results['messages']
+    def test_returns_validator_results_when_received_results_is_none(self):
+        results = self.fake_task(None, 123)
+        assert not self.fake_task_has_been_called
+        assert results == amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT
 
-        expected = 'OpenSearch: {}'.format(message)
-        assert any(
-            message['message'] == expected for message in results['messages'])
+    def test_returns_results_when_received_results_have_errors(self):
+        results = {'errors': 1}
+        returned_results = self.fake_task(results, 123)
+        assert not self.fake_task_has_been_called
+        assert results == returned_results
+
+    def test_runs_wrapped_task(self):
+        results = {'errors': 0}
+        returned_results = self.fake_task(results, 123)
+        assert TestValidationTask.fake_task_has_been_called
+        assert results != returned_results
+        assert 'fake_task_results' in returned_results
 
 
-def test_opensearch_validation_rel_self_url():
-    """Tests that rel=self urls are ignored for unlisted addons."""
-    fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files',
-        'opensearch/rel_self_url.xml')
+class TestForwardLinterResults(TestCase):
 
-    results = {
-        'messages': [],
-        'errors': 0,
-        'metadata': {}
-    }
-
-    annotations.annotate_search_plugin_validation(
-        results, fixture_path, channel=amo.RELEASE_CHANNEL_UNLISTED)
-
-    assert not results['errors']
-
-    annotations.annotate_search_plugin_validation(
-        results, fixture_path, channel=amo.RELEASE_CHANNEL_LISTED)
-
-    assert results['errors']
-
-
-class TestHandleUploadValidationResult(UploadTest, TestCase):
-    @mock.patch('olympia.devhub.tasks.run_customs')
-    def test_calls_run_customs_with_mock(self, run_customs_mock):
-        self.create_switch('enable-customs', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert run_customs_mock.called
-        run_customs_mock.assert_called_with(upload.pk)
-
-    @mock.patch('olympia.devhub.tasks.run_customs')
-    def test_does_not_run_customs_when_validation_has_errors_with_mock(
-            self, run_customs_mock):
-        self.create_switch('enable-customs', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('invalid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_customs_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_customs')
-    def test_does_not_run_customs_when_switch_is_off_with_mock(
-            self, run_customs_mock):
-        self.create_switch('enable-customs', active=False)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_customs_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_calls_run_yara_with_mock(self, run_yara_mock):
-        self.create_switch('enable-yara', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert run_yara_mock.called
-        run_yara_mock.assert_called_with(upload.pk)
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_does_not_run_yara_when_validation_has_errors_with_mock(
-            self, run_yara_mock):
-        self.create_switch('enable-yara', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('invalid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_yara_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_yara')
-    def test_does_not_run_yara_when_switch_is_off_with_mock(
-            self, run_yara_mock):
-        self.create_switch('enable-yara', active=False)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_yara_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_wat')
-    def test_calls_run_wat_with_mock(self, run_wat_mock):
-        self.create_switch('enable-wat', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert run_wat_mock.called
-        run_wat_mock.assert_called_with(upload.pk)
-
-    @mock.patch('olympia.devhub.tasks.run_wat')
-    def test_does_not_run_wat_when_validation_has_errors_with_mock(
-            self, run_wat_mock):
-        self.create_switch('enable-wat', active=True)
-        upload = self.get_upload(
-            abspath=get_addon_file('invalid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_wat_mock.called
-
-    @mock.patch('olympia.devhub.tasks.run_wat')
-    def test_does_not_run_wat_when_switch_is_off_with_mock(
-            self, run_wat_mock):
-        self.create_switch('enable-wat', active=False)
-        upload = self.get_upload(
-            abspath=get_addon_file('valid_webextension.xpi'),
-            with_validation=False
-        )
-
-        tasks.handle_upload_validation_result(
-            results=amo.VALIDATOR_SKELETON_RESULTS.copy(),
-            upload_pk=upload.pk,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            is_mozilla_signed=False
-        )
-
-        assert not run_wat_mock.called
+    def test_returns_received_results(self):
+        results = {'errors': 1}
+        returned_results = tasks.forward_linter_results(results, 123)
+        assert results == returned_results

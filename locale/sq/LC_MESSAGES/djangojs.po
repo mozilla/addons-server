@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2017-12-08 16:22+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-07 09:47+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -29,8 +29,8 @@ msgstr "Pati një problem gjatë kontaktimit me shërbyesin."
 msgid "Select a file..."
 msgstr "Përzgjidhni një kartelë…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Shtesa juaj do të duhej të përfundonte me .zip, .xpi, .crx, .jar ose .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Shtesa juaj do të duhej të përfundonte me .zip, .xpi, .crx, ose .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -714,12 +714,6 @@ msgstr "Hiqe këtë përkthim"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} po e shihte së pari këtë faqe."
-
-msgid "Receipt checked by app."
-msgstr "Dëftesa u kontrollua nga aplikacioni."
-
-msgid "Receipt was not checked by app."
-msgstr "Dëftesa nuk qe kontrolluar nga aplikacioni."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} po e shihte i pari këtë shtesë."

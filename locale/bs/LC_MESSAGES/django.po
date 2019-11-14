@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -456,9 +456,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ovaj prilagođeni URL već koristi druga vaša kolekcija."
 
@@ -792,6 +789,10 @@ msgstr "Zatražen adminov pregled teme"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} se premjestio iz laganih tema."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Korisnik {user} je ograničen."
 
 msgid "Firefox"
 msgstr ""
@@ -1393,6 +1394,13 @@ msgstr "Nizak kvalitet, razvučeno ili prazna slika"
 msgid "Header image alignment problem"
 msgstr "Problem poravnanja slike zaglavlja"
 
+#, fuzzy
+msgid "no action"
+msgstr "Akcije"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr ""
 
@@ -1411,9 +1419,6 @@ msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dozvoljavamo i potičemo nadogradnju, ali ne možete pokrenuti ovaj proces. Jednom kada vaši korisnici budu imali instaliran WebExtension, neće biti u mogućnosti instalirati dodatak naslijeđa."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -2193,18 +2198,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr "Prikazati izvor?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Ovaj izvorni kod dodatka je javno vidljiv."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Ne, ovaj izvorni kod dodatka nije javno vidljiv."
-
 msgid "Public Stats?"
 msgstr ""
 
@@ -2932,41 +2925,22 @@ msgstr "Molimo uključite instrukcije za način kako reprodukovati konačnu verz
 msgid "Read more about the source code review policy."
 msgstr "Pročitajte više o politici pregleda izvornog koda."
 
-msgid "Latest News"
+msgid "Build best-in-class extensions and themes"
 msgstr ""
 
-msgid "Read more in our Blog"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Testovi proširenja"
 
 msgid "Resources"
 msgstr ""
 
-msgid "Porting"
-msgstr ""
-
-msgid "Community"
-msgstr ""
-
-msgid "About"
-msgstr ""
-
-msgid "Forum"
-msgstr ""
-
-msgid "Blog"
-msgstr ""
-
-msgid "Contact Us"
-msgstr ""
-
-msgid "Support"
-msgstr ""
-
-msgid "Report Bug"
-msgstr "Prijavi grešku"
-
-msgid "Site Status"
-msgstr "Status stranice"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "Testovi proširenja"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: napravi i testiraj proširenja"
@@ -2974,20 +2948,11 @@ msgstr "Web-Ext: napravi i testiraj proširenja"
 msgid "Promote"
 msgstr "Unaprijedi"
 
-msgid "Get Your Add-on Featured"
-msgstr ""
-
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
-msgid "Legal"
-msgstr "Pravno"
-
-msgid "Report Trademark Abuse"
-msgstr "Prijavite zloupotrebu zaštitnog znaka"
-
-msgid "Legal Notices"
-msgstr "Pravne napomene"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr ""
@@ -3019,38 +2984,15 @@ msgstr "Ne trebate vještine za kodiranje da bi nam pomogli zadržati Firefox na
 msgid "See how"
 msgstr "Pogledajte kako"
 
-msgid "Manage Your Add-on"
-msgstr "Upravljajte vašim dodatkom"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Prijavite se da uredite i ažurirate vaš dodatak"
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr ""
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-
-msgid "Learn More"
-msgstr ""
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Pročitajte više o politici pregleda izvornog koda."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Prikazan na ovoj stranici nakon prolaska pregleda koda. Automatska ažuriranja su podržana od ove stranice."
@@ -3074,6 +3016,12 @@ msgstr "Centar za programere dodatka"
 msgid "Docs"
 msgstr "Dokumenti"
 
+msgid "Support"
+msgstr ""
+
+msgid "Blog"
+msgstr ""
+
 msgid "Sign Out"
 msgstr "Odjava"
 
@@ -3084,63 +3032,23 @@ msgid "User Photo"
 msgstr "Fotografija korisnika"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Registracija</a> ili <a href=\"%(login)s\">Prijava</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Prilagodi Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Dodaci dozvoljavaju milionima Firefox korisnika da uvećaju njihovo iskustvo pretraživanja. Ako poznajete %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s i "
-"%(css_link_open)sCSS%(link_close)s, već imate sve neophodne vještine da napravite odličan dodatak."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Naučite kako napraviti dodatak"
 
-msgid "Port a Chrome Extension"
+msgid "Ready to submit or manage your extension?"
 msgstr ""
 
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
-"Firefox podržava WebExtension API-e, koji su u većini slučajeva kompatibilni sa API proširenja podržanih od strane Chromea, Opere i Edge, tako da vaše proširenje biti pokrenuto u Firefoxu sa samo "
-"nekoliko promjena."
-
-msgid "Learn How"
-msgstr "Saznajte kako"
-
-msgid "Publish Your Add-on"
-msgstr "Objavite vaš dodatak"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Imate spreman dodatak? Pošaljite vaše proširenje ili temu da budu objavljeni na addons.mozilla.org ili potpišite i distribuirajte vaše proširenje na vlastiti način."
-
-msgid "Sign In"
-msgstr "Prijavi se"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Alat komandne linije za izgranju, pokretanje i testiranje proširenja."
-
-msgid "Automated code tests for your add-on."
-msgstr "Automatizovani kodni testovi za vaš dodatak."
-
-msgid "Compatibility Test"
-msgstr "Test kompatibilnosti"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Provjerite je li vaše proširenje kompatibilno sa Firefoxom."
-
-msgid "Live Testing"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
 
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -3206,12 +3114,6 @@ msgstr ""
 
 msgid "Close Review History"
 msgstr "Zatvori historiju pregledanja"
-
-msgid "Not validated."
-msgstr "Nije provjereno."
-
-msgid "Validate now."
-msgstr "Provjeri sada."
 
 msgid "Request Review"
 msgstr "Zatraži pregled"
@@ -4906,6 +4808,40 @@ msgstr "Blokiranje reklama i zaštita privatnosti {start_sub_heading}sa {addon_n
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Sve verzije"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Testovi proširenja"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4961,7 +4897,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4969,6 +4904,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -5103,49 +5039,6 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
-msgstr ""
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "Status stranice"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Prijavi grešku"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Prijavi grešku"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Nije pregledano"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Verzija poslana"
-
-msgid "View Rating on site"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Pošaljite novu datoteku"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Pošaljite novu datoteku"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
@@ -6142,6 +6035,12 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Neispravna verzija raspona."
@@ -6400,11 +6299,20 @@ msgstr ""
 msgid "Footer logo"
 msgstr ""
 
+msgid "Legal Notices"
+msgstr "Pravne napomene"
+
+msgid "Report Trademark Abuse"
+msgstr "Prijavite zloupotrebu zaštitnog znaka"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
 msgstr ""
+
+msgid "Site Status"
+msgstr "Status stranice"
 
 msgid "Report a bug"
 msgstr ""
@@ -6415,6 +6323,12 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Forum"
 msgstr ""
 
 msgid "Download Firefox"
@@ -6512,6 +6426,13 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+msgid "Reset API Key"
 msgstr ""
 
 msgid "Profile Photo"

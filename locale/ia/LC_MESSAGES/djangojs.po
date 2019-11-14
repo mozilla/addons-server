@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-03 21:59+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-27 17:10+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -27,8 +27,8 @@ msgstr "Il ha habite un problema con le connexion al servitor."
 msgid "Select a file..."
 msgstr "Elige un file..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, .jar o .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -84,16 +84,16 @@ msgstr "Le validation de tu additivo vadeva foras tempore limite, illo essera re
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Tu additivo esseva validate sin errores e con {0} aviso."
+msgstr[0] "Tu additivo ha essite validate sin errores e con {0} aviso."
 msgstr[1] "Tu additivo esseva validate sin errores e con {0} avisos."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Tu additivo esseva validate sin errores e {0} con message."
-msgstr[1] "Tu additivo esseva validate sin errores e {0} con messages."
+msgstr[0] "Tu additivo ha essite validate sin errores e con {0} message."
+msgstr[1] "Tu additivo ha essite validate sin errores e con {0} messages."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "Tu additivo esseva validate sin errores o avisos."
+msgstr "Tu additivo ha essite validate sin errores o avisos."
 
 msgid "Your submission will be automatically signed."
 msgstr "Tu submission essera signate automaticamente."
@@ -282,7 +282,7 @@ msgid "Add-ons Manager Promo"
 msgstr "Gestor de additivos in promotion"
 
 msgid "Add-ons Manager Featured"
-msgstr "Gestor de additivos in evidentia"
+msgstr "Promovite in le gestor de additivos"
 
 msgid "Add-ons Manager Learn More"
 msgstr "Gestor de additivos, Saper plus"
@@ -297,7 +297,7 @@ msgid "Homepage Promo"
 msgstr "Promotion del pagina principal"
 
 msgid "Homepage Featured"
-msgstr "Pagina principal consiliate"
+msgstr "Promovite in le pagina initial"
 
 msgid "Homepage Up and Coming"
 msgstr "Pagina principal emergente"
@@ -306,13 +306,13 @@ msgid "Homepage Most Popular"
 msgstr "Pagina principal plus popular"
 
 msgid "Detail Page"
-msgstr "Pagina de detalio del additivo"
+msgstr "Pagina de detalios"
 
 msgid "Detail Page (bottom)"
-msgstr "Pagina de detalio del additivo (fundo)"
+msgstr "Pagina de detalios (fundo)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Pagina de detalio del additivo (canal de disveloppamento)"
+msgstr "Pagina de detalios (canal de disveloppamento)"
 
 msgid "Often Used With"
 msgstr "Sovente usate con"
@@ -324,7 +324,7 @@ msgid "Dependencies"
 msgstr "Dependentias"
 
 msgid "Upsell"
-msgstr "Promotion"
+msgstr "Promotion additional"
 
 msgid "Meet the Developer"
 msgstr "Incontra le disveloppator"
@@ -333,10 +333,10 @@ msgid "User Profile"
 msgstr "Profilo de usator"
 
 msgid "Version History"
-msgstr "Chronologia del versiones"
+msgstr "Historia de versiones"
 
 msgid "Sharing"
-msgstr "Compartimento"
+msgstr "Compartition"
 
 msgid "Category Pages"
 msgstr "Paginas de categoria"
@@ -345,19 +345,19 @@ msgid "Collections"
 msgstr "Collectiones"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Galeria del categorias de accesso favorite"
+msgstr "Carosello de additivos promovite in le pagina initial del categoria"
 
 msgid "Category Landing Top Rated"
-msgstr "Categorias de accesso de los melio valutate"
+msgstr "Le additivos le melio evalutate in le pagina initial del categoria"
 
 msgid "Category Landing Most Popular"
-msgstr "Categorias de accesso de los plus popular"
+msgstr "Le additivos le plus popular in le pagina initial del categoria"
 
 msgid "Category Landing Recently Added"
-msgstr "Categorias de accesso de los plus recente"
+msgstr "Additivos recentemente addite in le pagina initial del categoria"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Explora le lista ordinate per los plus favorite"
+msgstr "Explora le lista ordinate per additivo promovite"
 
 msgid "Browse Listing Users Sort"
 msgstr "Explora le lista ordinate per usatores"
@@ -712,12 +712,6 @@ msgstr "Remover iste localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visualisava antea iste pagina."
-
-msgid "Receipt checked by app."
-msgstr "Quitantia verificate per le application."
-
-msgid "Receipt was not checked by app."
-msgstr "La quitantia non ha essite verificate per le application."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} visualisava antea iste additivo."

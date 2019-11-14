@@ -152,13 +152,13 @@ function initReviewActions() {
     }
 
     /* Item History */
-    $('#review-files tr.listing-header').click(function() {
+    $('.review-files tr.listing-header').click(function() {
         $(this).next('tr.listing-body').toggle();
     });
 
     var storage = z.Storage(),
         eh_setting = storage.get('reviewers_history'),
-        eh_els = $('#review-files tr.listing-body'),
+        eh_els = $('#history .review-files tr.listing-body'),
         eh_size = eh_els.length;
     if(!eh_setting) eh_setting = 3;
 
@@ -181,21 +181,6 @@ function initReviewActions() {
         $(format('#history a[data-num="{0}"]', eh_setting)).addClass('on');
     }
     highlightHistory();
-
-    function check_receipt() {
-        var $node = $('#receipt-check-result');
-        if ($node) {
-            $.getJSON($node.data('url'), function(data) {
-                if (data.status) {
-                    $node.text(gettext('Receipt checked by app.'));
-                } else {
-                    $node.text(gettext('Receipt was not checked by app.'));
-                    setTimeout(check_receipt, 10000);
-                }
-            });
-        }
-    }
-    check_receipt();
 }
 
 function callReviewersAPI(apiUrl, method, data, successCallback) {
@@ -237,7 +222,7 @@ function initExtraReviewActions() {
     }));
 
     // One-off-style buttons.
-    $('#clear_admin_code_review, #clear_admin_content_review, #clear_pending_info_request').click(_pd(function() {
+    $('#clear_admin_code_review, #clear_admin_content_review, #clear_pending_info_request, #clear_auto_approval_disabled_until').click(_pd(function() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
         var data = $button.data('api-data') || null;

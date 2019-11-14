@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2018-10-19 21:53+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,8 @@ msgstr "Ada masalah menghubungi pelayan."
 msgid "Select a file..."
 msgstr "Pilih fail..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Add-on anda sepatutnya berakhir dengan .zip, .xpi, .crx, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -693,12 +694,6 @@ msgstr "Buang lokalisasi ini"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} telah meninjau halaman ini terlebih dahulu."
-
-msgid "Receipt checked by app."
-msgstr "Resit disemak oleh aplikasi."
-
-msgid "Receipt was not checked by app."
-msgstr "Resit tidak disemak oleh aplikasi."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} telah meninjau add-on ini terlebih dahulu."

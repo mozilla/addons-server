@@ -89,7 +89,7 @@ AUTHOR_CHOICES = (
 # Addon types
 ADDON_ANY = 0
 ADDON_EXTENSION = 1
-ADDON_THEME = 2
+_ADDON_THEME = 2
 ADDON_DICT = 3
 ADDON_SEARCH = 4
 ADDON_LPAPP = 5
@@ -103,12 +103,12 @@ _ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
 # Addon type groupings.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
                     ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
-GROUP_TYPE_THEME = [ADDON_THEME, ADDON_STATICTHEME]
+GROUP_TYPE_THEME = [ADDON_STATICTHEME]
 
 # Singular
 ADDON_TYPE = {
     ADDON_EXTENSION: _(u'Extension'),
-    ADDON_THEME: _(u'Complete Theme'),
+    _ADDON_THEME: _(u'Deprecated Complete Theme'),
     ADDON_DICT: _(u'Dictionary'),
     ADDON_SEARCH: _(u'Search Engine'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
@@ -121,7 +121,7 @@ ADDON_TYPE = {
 # Plural
 ADDON_TYPES = {
     ADDON_EXTENSION: _(u'Extensions'),
-    ADDON_THEME: _(u'Complete Themes'),
+    _ADDON_THEME: _(u'Deprecated Complete Themes'),
     ADDON_DICT: _(u'Dictionaries'),
     ADDON_SEARCH: _(u'Search Tools'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),
@@ -135,20 +135,13 @@ ADDON_TYPES = {
 ADDON_SEARCH_TYPES = [
     ADDON_ANY,
     ADDON_EXTENSION,
-    ADDON_THEME,
+    _ADDON_THEME,
     ADDON_DICT,
     ADDON_SEARCH,
     ADDON_LPAPP,
     _ADDON_PERSONA,
     ADDON_STATICTHEME,
 ]
-
-# Icons
-ADDON_ICONS = {
-    ADDON_ANY: 'default-addon.png',
-    ADDON_THEME: 'default-theme.png',
-    ADDON_STATICTHEME: 'default-theme.png',
-}
 
 # We use these slugs in browse page urls.
 ADDON_SLUGS = {
@@ -162,7 +155,7 @@ ADDON_SLUGS = {
 # These are used in the update API.
 ADDON_SLUGS_UPDATE = {
     ADDON_EXTENSION: 'extension',
-    ADDON_THEME: 'theme',
+    _ADDON_THEME: 'theme',
     ADDON_DICT: 'extension',
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
@@ -177,7 +170,7 @@ ADDON_SLUGS_UPDATE = {
 ADDON_SEARCH_SLUGS = {
     'any': ADDON_ANY,
     'extension': ADDON_EXTENSION,
-    'theme': ADDON_THEME,
+    'theme': _ADDON_THEME,
     'dictionary': ADDON_DICT,
     'search': ADDON_SEARCH,
     'language': ADDON_LPAPP,
@@ -187,7 +180,7 @@ ADDON_SEARCH_SLUGS = {
 
 ADDON_TYPE_CHOICES_API = {
     ADDON_EXTENSION: 'extension',
-    ADDON_THEME: 'theme',
+    _ADDON_THEME: 'theme',
     ADDON_DICT: 'dictionary',
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'language',
@@ -251,7 +244,7 @@ SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 # Acceptable Add-on file extensions.
 # This is being used by `parse_addon` so please make sure we don't have
 # to touch add-ons before removing anything from this list.
-VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
+VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.xml', '.zip')
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.

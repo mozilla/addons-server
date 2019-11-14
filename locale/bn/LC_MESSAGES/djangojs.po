@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2018-10-19 14:01+0000\n"
-"Last-Translator: Rajan Dey <feb17rajandey@gmail.com>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2017-09-28 10:22+0000\n"
+"Last-Translator: Shahriar Shanto <shahriar083@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,8 @@ msgstr "সার্ভারের সঙ্গে যোগাযোগ কর
 msgid "Select a file..."
 msgstr "ফাইল নির্বাচন করুন..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml দিয়ে শেষ হতে হবে"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, অথবা .xml দিয়ে শেষ হতে হবে"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -67,7 +67,7 @@ msgid "Validating {0}"
 msgstr "বৈধতা যাচাই {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "আপনার অ্যাড-অন সর্বোচ্চ সাইজ {0} এর চেয়ে বড়।"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "সার্ভার হতে একটি খালি প্রতিক্রিয়া এসেছে; অবস্থা : {0}"
@@ -130,7 +130,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ফাইলটি সর্বোচ্চ সাইজ {0} এর চেয়েও বড়।"
 
 msgid "You cancelled the upload."
 msgstr "আপনি আপলোড বাতিল করেছেন।"
@@ -340,13 +340,13 @@ msgid "Collections"
 msgstr "সংগ্রহসমূহ"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "ল্যান্ডিং বিভাগ আলোচিত ক্যারাউজেল"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "ল্যান্ডিং বিভাগ শীর্ষ রেটেড"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "ল্যান্ডিংয় বিভাগ সর্বাধিক জনপ্রিয়"
 
 msgid "Category Landing Recently Added"
 msgstr ""
@@ -355,22 +355,22 @@ msgid "Browse Listing Featured Sort"
 msgstr ""
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "ব্রাউজার ব্যবহারকারীর সাজানো তালিকা"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "ব্রাউজারে রেটিং তালিকা সাজানোর ক্রম"
 
 msgid "Browse Listing Created Sort"
 msgstr ""
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "নাম অনুসারে সাজানো তালিকা ব্রাউজ করুন"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "জনপ্রিয়তা অনুসারে সাজানো তালিকা ব্রাউজ করুন"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "হালনাগাদ অনুসারে সাজানো তালিকা ব্রাউজ করুন"
 
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Listing Up এবং Coming Sort ব্রাউজ করুন"
@@ -451,7 +451,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "{0} হতে {1} প্ল্যাটফর্ম"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -515,7 +515,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "অ্যাডস-অন ডাউনলোড হয়েছে {0} থেকে {1} "
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -523,7 +523,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "অ্যাড-অন তৈরী করা হয়েছে {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -555,7 +555,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "সংগ্রহগুলো তৈরী হয়েছে {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -563,7 +563,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "সাবস্ক্রাইবার {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
@@ -571,7 +571,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "রেটিং {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -587,7 +587,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "ইনস্টলস {0} থেকে {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
@@ -611,7 +611,7 @@ msgid "Other"
 msgstr "অন্যান্য"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "প্রথমে একটি অ্যাপ্লিকেশন নির্বাচন করুন"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -638,7 +638,7 @@ msgid "Download for {0} anyway"
 msgstr "{0} এর জন্য যেকোনভাবে ডাউনলোড করুন"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "আপনার প্লাটফরমের জন্য পাওয়া যায়নি"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
@@ -648,38 +648,38 @@ msgid "View other versions"
 msgstr "অন্যান্য ভার্সনগুলো দেখুন"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "{app} {min} - {max} এর সহিত কাজ করবে"
 
 msgid "Works with {app}"
 msgstr "{app} এর সাথে কাজ করুন"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "শুধুমাত্র Firefox দিয়ে — Firefox নিন এখনই!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
 
 msgid "Changes Saved"
-msgstr "পরিবর্তন সংরক্ষিত"
+msgstr "পরিবর্তন সংরক্ষণ করা হয়েছে"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "নতুন সম্পাদকের ইমেইল ঠিকানা দিন"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "আপনার ফাইল আপলোড করার সময় একটি ত্রুটি পাওয়া গেছে।"
 
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ফাইল"
-msgstr[1] ""
+msgstr[1] "{files} ফাইল"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} ব্যবহারকারীদের মন্তব্য"
 msgstr[1] ""
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "ছবির পরিবর্তন প্রক্রিয়াধীন"
 
 msgid "No results found."
 msgstr "কোন ফলাফল পাওয়া যায়নি।"
@@ -706,40 +706,34 @@ msgid "Remove this localization"
 msgstr "এই স্থানীয়করণ অপসারণ করুন"
 
 msgid "{name} was viewing this page first."
-msgstr ""
-
-msgid "Receipt checked by app."
-msgstr ""
-
-msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "{name} আগে এই পাতাটি দেখছিলেন।"
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} আগে এই পাতাটি দেখছিলেন।"
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "লোড হচ্ছে &hellip;"
 
 msgid "Version Notes"
 msgstr "ভার্সন এর নোটসমূহ"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "পর্যালোচকের জন্য নোট"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "কোনো সংস্করণ নোট পাওয়া যায় নি"
 
 msgid "Review Text"
-msgstr ""
+msgstr "পর্যালোচনা লেখা"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "ফাইলটি খুঁজে পাওয়া যায়নি"
 
 msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "পর্যালোচনার সংখ্যা"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
@@ -775,7 +769,7 @@ msgid "All tests passed successfully."
 msgstr "সকল পরীক্ষায় সফলভাবে উত্তীর্ণ হয়েছে।"
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "এই পরীক্ষাগুলো করা হয়নি।"
 
 msgid "Tests"
 msgstr "পরীক্ষাসমূহ"
@@ -787,16 +781,16 @@ msgid "Warning"
 msgstr "সর্তকবার্তা"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} লাইন {1} কলাম {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} এর {1}"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "অ্যাপটি যাচাইকরণ প্রক্রিয়ায় ব্যার্থ হয়েছে।"
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "অ্যাপ যাচাই প্রক্রিয়ায় উত্তীর্ণ হয়েছে।"
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -814,7 +808,7 @@ msgstr[0] "{0} টি নটিশ"
 msgstr[1] ""
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "যাচাই প্রক্রিয়া শেষ হয়নি অথবা ত্রুটির সাথে শেষ হয়েছে"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "অভ্যন্তরীণ সার্ভারে সমস্যা"

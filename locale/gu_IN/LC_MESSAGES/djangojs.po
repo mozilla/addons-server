@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-07-11 16:56+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,8 @@ msgstr "સર્વરનો સંપર્ક કરવામાં એક �
 msgid "Select a file..."
 msgstr "ફાઇલ પસંદ કરો..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "તમારુ એડ-ઓન .zip, .xpi, .crx, .jar અથવા .xml થી સમાપ્ત થવું જોઈએ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -710,12 +711,6 @@ msgstr "આ સ્થાનિકીકરણ દૂર કરો"
 
 msgid "{name} was viewing this page first."
 msgstr ""
-
-msgid "Receipt checked by app."
-msgstr ""
-
-msgid "Receipt was not checked by app."
-msgstr "એપ્લિકેશન દ્વારા રસીદની તપાસ કરવામાં આવી ન હતી."
 
 msgid "{name} was viewing this add-on first."
 msgstr ""

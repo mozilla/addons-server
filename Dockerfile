@@ -2,8 +2,14 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# Run everything as olympia user, by default.
-USER olympia
+ARG GROUP_ID=1000
+ARG USER_ID=1000
+
+# Run all initial setup with root user. This is the default but mentioned here
+# for documentation.
+# We won't switch to the `olympia` user inside the dockerfile
+# but rather use the `user` option in docker-compose.yml instead
+USER root
 
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
@@ -56,9 +62,9 @@ RUN mkdir -p /usr/local/share/GeoIP \
  && gunzip -c /tmp/GeoLite2-Country.mmdb.gz > /usr/local/share/GeoIP/GeoLite2-Country.mmdb \
  && rm -f /tmp/GeoLite2-Country.mmdb.gz
 
+# Install `file` and `libmagic` from the `buster` repositories for an up-to-date
+# file-detection.
 RUN apt-get update && apt-get -t buster install -y \
-       # For an up-to-date `file` and `libmagic-dev` library for better file
-       # detection.
        file \
        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -74,15 +80,34 @@ ENV LC_ALL en_US.UTF-8
 COPY . /code
 WORKDIR /code
 
+RUN groupadd -g ${GROUP_ID} olympia
+RUN useradd -g ${GROUP_ID} -u ${USER_ID} -Md /deps/ olympia
+
+# Create /deps/ and move ownership over to `olympia` user so that
+# we can install things there
+# Also run `chown` on `/code/` which technically doesn't change permissions
+# on the host but ensures that the image knows about correct permissions.
+RUN mkdir /deps/ && chown -R olympia:olympia /deps/ /code/
+
 ENV PIP_BUILD=/deps/build/
 ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
+
+# Allow us to install all dependencies to the `olympia` users
+# home directory (which is `/deps/`)
+ENV PIP_USER=true
+ENV PYTHONUSERBASE=/deps
+
+# Make sure that installed binaries are accessible
+ENV PATH $PYTHONUSERBASE/bin:$PATH
+
 ENV NPM_CONFIG_PREFIX=/deps/
 ENV SWIG_FEATURES="-D__x86_64__"
 
-# Install all python requires
-RUN mkdir -p /deps/{build,cache,src}/ && \
-    ln -s /code/package.json /deps/package.json && \
+# From now on run everything with the `olympia` user by default.
+USER olympia
+
+RUN ln -s /code/package.json /deps/package.json && \
     make update_deps && \
     rm -rf /deps/build/ /deps/cache/
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -474,9 +474,6 @@ msgid ""
 msgstr ""
 "Jika aplikasi anda yang disokong tidak memerlukan fail manifes, anda masih perlu sertakan satu sifat seperti yang dinyatakan %(amo_manifests_mdn_link_open)sdi sini%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Teks yang dimasukkan telah ditanda sebagai spam."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL penyesuaian ini sudah digunakan oleh satu lagi koleksi anda."
 
@@ -808,6 +805,10 @@ msgstr "Perlu semakan pentadbir tema"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} dipindahkan daripada tema ringkas."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Gambar pengguna {user} dibuang."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1405,6 +1406,13 @@ msgstr "Rendah kualiti, diregangkan, atau imej kosong"
 msgid "Header image alignment problem"
 msgstr "Masalah penjajaran imej pengepala"
 
+#, fuzzy
+msgid "no action"
+msgstr "Tindakan Lanjutan"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Core"
 
@@ -1423,9 +1431,6 @@ msgstr "Add-ons untuk Thunderbird dan SeaMonkey kini disenarai dan dikekalkan di
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Teks dalam medan \"{field}\" telah ditandakan sebagai spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug ini sedang digunakan. Sila pilih yang lain."
@@ -2184,18 +2189,6 @@ msgstr ""
 "Maklumat yang mungkin ingin diketahui oleh pengguna akhir dan tidak semestinya berkaitan ringkasan dan keterangan add-on. Biasanya digunakan untuk menyenaraikan pepijat utama yang ketahui, maklumat "
 "perihal cara melaporkan pepijat, tarikh keluaran versi baru, dsb. Ini hanya berkenaan add-on yang tersenarai."
 
-msgid "View Source?"
-msgstr "Tinjau Sumber?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Samada sumber add-on anda mahu dipaparkan pada paparan dalam talian kami. Ini hanya berkenaan add-on yang tersenarai."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Kod sumber add-on ini dipamer kepada umum."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Tidak, kod sumber add-on ini tidak boleh dipamer kepada umum."
-
 msgid "Public Stats?"
 msgstr "Statistik Umum?"
 
@@ -2921,41 +2914,22 @@ msgstr "Sila sertakan arahan perihal cara menghasilkan semula fail add-on penama
 msgid "Read more about the source code review policy."
 msgstr "Baca selanjutnya perihal polisi semakan kod sumber."
 
-msgid "Latest News"
-msgstr "Berita Terkini"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Baca selanjutnya dalam Blog kami"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Ekstensi"
 
 msgid "Resources"
 msgstr "Sumber"
 
-msgid "Porting"
-msgstr "Pemindahan"
-
-msgid "Community"
-msgstr "Komuniti"
-
-msgid "About"
-msgstr "Perihal"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Hubungi Kami"
-
-msgid "Support"
-msgstr "Sokongan"
-
-msgid "Report Bug"
-msgstr "Lapor Pepijat"
-
-msgid "Site Status"
-msgstr "Status Laman"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: bina & uji ekstensi"
@@ -2963,20 +2937,11 @@ msgstr "Web-Ext: bina & uji ekstensi"
 msgid "Promote"
 msgstr "Mempromosi"
 
-msgid "Get Your Add-on Featured"
-msgstr "Jadikan Add-on Anda Sorotan"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Butang \"Dapatkan Add-on\""
 
-msgid "Legal"
-msgstr "Legal"
-
-msgid "Report Trademark Abuse"
-msgstr "Lapor Penyalahgunaan Cap Dagangan"
-
-msgid "Legal Notices"
-msgstr "Notis Undang-undang"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Menyumbang"
@@ -3008,38 +2973,15 @@ msgstr "Anda tidak perlu ada kemahiran pengkodan untuk membantu mengekalkan Fire
 msgid "See how"
 msgstr "Lihat caranya"
 
-msgid "Manage Your Add-on"
-msgstr "Urus Add-on Anda"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Daftar masuk untuk Mengedit dan Mengemaskini Add-on Anda"
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr "Selamat Kembali"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Anda mahu ekstensi anda dipaparkan di %(amo_link_open)saddons.mozilla.org%(amo_link_close)s Anda boleh ketahuinya dalam polisi ekstensi serlahan yang disediakan."
-
-msgid "Learn More"
-msgstr "Ketahui Selanjutnya"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Baca selanjutnya perihal polisi semakan kod sumber."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Disenaraikan dalam laman ini setelah lulus semakan kod. Kemaskini automatik diuruskan oleh laman ini."
@@ -3063,6 +3005,12 @@ msgstr "Hab Pembangun Add-on"
 msgid "Docs"
 msgstr "Dokumen"
 
+msgid "Support"
+msgstr "Sokongan"
+
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Daftar Keluar"
 
@@ -3073,64 +3021,24 @@ msgid "User Photo"
 msgstr "Foto Pengguna"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Daftar</a> atau <a href=\"%(login)s\">Daftar Masuk</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Penyesuaian Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Add-ons membolehkan jutaan pengguna Firefox menambah pengalaman pelayaran. Jika anda tahu %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, dan %(css_link_open)sCSS"
-"%(link_close)s, anda sudah ada semua kemahiran yang diperlukan untuk menghasilkan add-on yang bagus."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Belajar Cara Membina Add-on"
 
-msgid "Port a Chrome Extension"
-msgstr "Port Ekstensi Chrome"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox menyokong APIs WebExtension, yang dalam kebanyakan keadaan serasi dengan ekstensi APIs yang disokong oleh Chrome, Opera dan.Edge, supaya ekstensi dapat berfungsi dalam Firefox dengan hanya "
-"sedikit perubahan."
 
-msgid "Learn How"
-msgstr "Belajar Caranya"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Terbitkan Add-on Anda"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Add-on anda sudah siap? Hantar ekstensi atau tema anda untuk disenaraikan dalam addons.mozilla.org atau tandatangan dan anda edarkan sendiri ekstensi tersebut."
-
-msgid "Sign In"
-msgstr "Daftar Masuk"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Alatan baris arahan untuk membina, melaksana dan menguji ekstensi."
-
-msgid "Automated code tests for your add-on."
-msgstr "Ujian kod automatik untuk add-on anda."
-
-msgid "Compatibility Test"
-msgstr "Ujian Keserasian"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Semak untuk melihat samada ekstensi anda serasi dengan Firefox."
-
-msgid "Live Testing"
-msgstr "Ujian Langsung"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Pasang ekstensi sementara dalam Firefox untuk ujian dan menyahpepijat secara langsung."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Urus Versi {0}"
@@ -3195,12 +3103,6 @@ msgstr "Sejarah Semakan"
 
 msgid "Close Review History"
 msgstr "Tutup Sejarah Semakan"
-
-msgid "Not validated."
-msgstr "Tidak disahkan."
-
-msgid "Validate now."
-msgstr "Sahkan sekarang."
 
 msgid "Request Review"
 msgstr "Minta Semakan"
@@ -4809,6 +4711,41 @@ msgstr "Cari video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Ekstensi legasi tidak lagi disokong di Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Layari semua ekstensi"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Ketahui Selanjutnya"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Ekstensi"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Pemerhati fail dikunci, mengekstrak %s mungkin sedang dilaksanakan. Sila cuba lagi dalam kira-kira 5 minit."
@@ -4864,7 +4801,6 @@ msgstr "Tidak dapat menghuraikan fail yang dimuat naik."
 msgid "Unsupported archive type."
 msgstr "Jenis arkib tidak disokong."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nama fail dalam arkib tidak sah. Sila pastikan semua nama fail dalam kod utf-8 atau latin1."
 
@@ -4872,6 +4808,7 @@ msgstr "Nama fail dalam arkib tidak sah. Sila pastikan semua nama fail dalam kod
 msgid "Invalid file name in archive: {0}"
 msgstr "Nama fail tidak sah dalam arkib: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Saiz fail melebihi had dalam arkib: {0}"
 
@@ -5007,42 +4944,6 @@ msgstr "Tiada fail yang dimuat naik."
 
 msgid "Fetching file."
 msgstr "Mendapatkan fail."
-
-msgid "Reported Status"
-msgstr "Status Dilaporkan"
-
-msgid "Reported Spam"
-msgstr "Spam Dilaporkan"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Ham Dilaporkan"
-
-msgid "Not Reported"
-msgstr "Tidak Dilaporkan"
-
-msgid "Content Submitted"
-msgstr "Kandungan Dihantar"
-
-msgid "View Rating on site"
-msgstr "Lihat Kadar di laman"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Hantar Ham ke Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Hantar Spam ke Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s Laporan Ham dikemukakan sebagai Spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s Laporan Spam dikemukakan sebagai Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Perihal Add-ons Mozilla"
@@ -6046,6 +5947,12 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Permintaan Info Tamat Tempoh ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Julat versi tidak sah."
@@ -6312,11 +6219,20 @@ msgstr "Kembali ke Add-ons"
 msgid "Footer logo"
 msgstr "Logo pembawah"
 
+msgid "Legal Notices"
+msgstr "Notis Undang-undang"
+
+msgid "Report Trademark Abuse"
+msgstr "Lapor Penyalahgunaan Cap Dagangan"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Laman web yang baru menyokong klien mudah alih dan desktop"
 
 msgid "View the new site"
 msgstr "Layari laman baru"
+
+msgid "Site Status"
+msgstr "Status Laman"
 
 msgid "Report a bug"
 msgstr "Laporkan pepijat"
@@ -6330,6 +6246,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "mengenal <b>add-ons</b>"
+
+msgid "About"
+msgstr "Perihal"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Muat turun Firefox"
@@ -6427,6 +6349,14 @@ msgstr "Pengguna \"%(users)s\" telah disekat."
 
 msgid "Ban selected users"
 msgstr "Sekat pengguna yang dipilih"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Pengguna \"%(users)s\" telah disekat."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Urus Kekunci API"
 
 msgid "Profile Photo"
 msgstr "Foto Profil"

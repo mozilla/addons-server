@@ -14,8 +14,8 @@ from olympia.amo.utils import chunked
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.files.models import FileUpload
-from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.es.utils import raise_if_reindex_in_progress
+from olympia.scanners.models import ScannerResult
 
 from . import tasks
 
@@ -37,16 +37,11 @@ def gc(test_result=True):
         Collection.objects.filter(created__lt=days_ago(2),
                                   type=amo.COLLECTION_ANONYMOUS)
         .values_list('id', flat=True))
-    akismet_reports_to_delete = (
-        AkismetReport.objects.filter(created__lt=days_ago(90))
-        .values_list('id', flat=True))
 
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
-    for chunk in chunked(akismet_reports_to_delete, 100):
-        tasks.delete_akismet_reports.delay(chunk)
     # Incomplete addons cannot be deleted here because when an addon is
     # rejected during a review it is marked as incomplete. See bug 670295.
 
@@ -62,6 +57,9 @@ def gc(test_result=True):
             except OSError:
                 pass
         file_upload.delete()
+
+    # Delete stale ScannerResults.
+    ScannerResult.objects.filter(upload=None, version=None).delete()
 
 
 def category_totals():

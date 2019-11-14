@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-09-25 04:15+0000\n"
-"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-08-16 16:22+0000\n"
+"Last-Translator: Sanjna <randhawasanjna75@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -467,9 +467,6 @@ msgstr ""
 "ਜੇ ਤੁਹਾਡੀ ਸਹਾਇਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਦੀ ਲੋੜ ਨਹੀਂ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਅਜੇ ਵੀ ਲੋੜੀਂਦੀ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨਾਲ ਇੱਕ ਨੂੰ ਸ਼ਾਮਿਲ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ ਜਿਵੇਂ ਕਿ ਖਾਸ "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s ਹੈ।"
 
-msgid "The text entered has been flagged as spam."
-msgstr "ਦਰਜ ਕੀਤੀ ਗਈ ਟੈਕਸਟ ਨੂੰ ਸਪੈਮ ਦੇ ਰੂਪ ਵਿੱਚ ਫਲੈਗ ਕੀਤਾ ਗਿਆ ਹੈ।"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "ਇਹ ਕਸਟਮ URL ਤੁਹਾਡੇ ਸੰਗ੍ਰਹਿ ਵਿੱਚੋਂ ਕਿਸੇ ਹੋਰ ਦੁਆਰਾ ਪਹਿਲਾਂ ਤੋਂ ਵਰਤਿਆ ਗਿਆ ਹੈ।"
 
@@ -804,6 +801,10 @@ msgstr "ਐਡਮਿਨ ਥੀਮ-ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕ�
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} ਇੱਕ ਹਲਕੇ ਥੀਮ ਤੋਂ ਪਰਵਾਸ ਕੀਤਾ ਗਿਆ ਸੀ।"
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "ਵਰਤੋਂਕਾਰ {user} ਦੀ ਤਸਵੀਰ ਮਿਟਾਈ ਗਈ।"
+
 msgid "Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ"
 
@@ -960,7 +961,7 @@ msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬ੍ਰਾਉਜ਼ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਰੋਕਣ, ਟ੍ਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ "
+"ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬਰਾਉਜ਼ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕਣ, ਟਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ "
 "ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
@@ -1014,7 +1015,7 @@ msgid "Performance"
 msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫਾਇਰਫਾਕਸ ਨੂੰ ਕਾਰਗੁਜ਼ਾਰੀ ਬੜ੍ਹਾਵਾ ਦੇਣਗੇ। ਤੰਗ ਕਰਨ ਵਾਲੇ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਰੋਕ ਕੇ ਅਤੇ ਉਹਨਾਂ ਦੁਆਰਾ ਹੋਰ ਜ਼ਿਆਦਾ ਉਤਪਾਦਕ ਅਤੇ ਕਾਰਜਸ਼ੀਲ ਹੋਣ ਵਿੱਚ ਐਕਸਟੈਂਸ਼ਨਾਂ ਲੱਭੋ।"
+msgstr "ਇਕਸਟੈਂਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫਾਇਰਫਾਕਸ ਨੂੰ ਕਾਰਗੁਜ਼ਾਰੀ ਸੁਧਾਰਨ ਲਈ। ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕ ਕੇ ਅਤੇ ਉਹਨਾਂ ਰਾਹੀਂ ਹੋਰ ਜ਼ਿਆਦਾ ਉਤਪਾਦਕ ਅਤੇ ਕਾਰਜਸ਼ੀਲ ਹੋਣ ਵਿੱਚ ਇਕਸਟੈਂਸ਼ਨਾਂ ਲੱਭੋ।"
 
 msgid "Photos & Media"
 msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਮੀਡੀਆ"
@@ -1027,8 +1028,8 @@ msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਪਰਦੇਦਾਰੀ"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਸਪੰਨੀ ਇਸ਼ਤਿਜਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ "
-"ਅਤੀਤ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
+"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਲੁਕਾਏ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ ਅਤੀਤ"
+" ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
 
 msgid "Social Networking"
 msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
@@ -1405,6 +1406,13 @@ msgstr "ਘੱਟ-ਗੁਣਵੱਤਾ, ਕਸਵੀਂ ਜਾਂ ਖਾਲੀ 
 msgid "Header image alignment problem"
 msgstr "ਹੈਡਰ ਈਮੇਜ ਅਲਾਈਨਮੈੰਟ ਸਮੱਸਿਆ"
 
+#, fuzzy
+msgid "no action"
+msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "ਕੋਰ"
 
@@ -1423,9 +1431,8 @@ msgstr "ਥੰਡਰਬਰਡ ਅਤੇ ਸੀਮੌਂਕੀ ਲਈ ਐਡਆ�
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] ਦਰਜ ਕੀਤੀ ਗਈ ਟੈਕਸਟ \"{field}\" ਫੀਲਡ ਵਿਚ ਨੂੰ ਸਪੈਮ ਦੇ ਰੂਪ ਵਿੱਚ ਫਲੈਗ ਕੀਤਾ ਗਿਆ ਹੈ।"
+"ਅਸੀਂ ਅਪਗ੍ਰੇਡ ਦੀ ਆਗਿਆ ਦਿੰਦੇ ਹਾਂ ਅਤੇ ਉਤਸ਼ਾਹਤ ਕਰਦੇ ਹਾਂ ਪਰ ਤੁਸੀਂ ਇਸ ਪ੍ਰਕਿਰਿਆ ਨੂੰ ਉਲਟਾ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਇੱਕ ਵਾਰ ਜਦੋਂ ਤੁਹਾਡੇ ਉਪਭੋਗਤਾਵਾਂ ਨੇ ਵੈਬ ਐਕਸਟੈਂਸ਼ਨ ਸਥਾਪਤ ਕਰ ਲਿਆ, ਤਾਂ ਉਹ ਪੁਰਾਤਨ ਐਡ-ਆਨ ਸਥਾਪਤ ਕਰਨ ਦੇ ਯੋਗ "
+"ਨਹੀਂ ਹੋਣਗੇ।"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "ਇਹ ਸਲੱਗ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
@@ -1483,12 +1490,11 @@ msgstr "ਤੁਹਾਡਾ ਮੂਲ ਲੋਕੇਲ ਬਦਲਣ ਤੋਂ ਪ�
 msgid "Users can not be added directly"
 msgstr "ਵਰਤੋਂਕਾਰ ਸਿੱਧੇ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "ਇੱਕ ਲੇਖਕ ਕੇਵਲ ਇੱਕ ਵਾਰ ਸੂਚੀਬੱਧ ਹੋ ਸਕਦਾ।"
+msgstr "ਇੱਕ ਲੇਖਕ ਸਿਰਫ ਇੱਕ ਵਾਰ ਮੌਜੂਦ ਹੋ ਸਕਦਾ ਹੈ।"
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "ਇਸ ਨੂੰ ਲੇਖਕ ਦੇ ਤੌਰ ਤੇ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ ਖਾਤੇ ਨੂੰ ਪ੍ਰਦਰਸ਼ਤ ਨਾਮ ਦੀ ਜ਼ਰੂਰਤ ਹੁੰਦੀ ਹੈ।"
 
 msgid "Must have at least one owner."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
@@ -1551,7 +1557,7 @@ msgid "Need to select at least one application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਚੁਣਨ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਹਾਲ ਹੀ ਵਿੱਚ ਬਹੁਤ ਸਾਰੇ ਅਪਲੋਡ ਕੀਤੇ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਸਮੇਂ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਲੱਦੀ ਅਤੇ ਮਿਟਾਈ ਗਈ।"
@@ -1708,7 +1714,7 @@ msgid "There was an error uploading your preview."
 msgstr "ਤੁਹਾਡੀ ਝਲਕ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਵਿੱਚ ਖਾਮੀ ਆਈ।"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "ਸਿਫਾਰਸ਼ੀ ਐਕਸਟੈਂਸ਼ਨ ਦਾ ਨਵੀਨਤਮ ਸੰਸਕਰਣ ਨੂੰ ਹਟਾਇਆ ਜਾਂ ਅਸਮਰਥਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। AMO ਐਡਮਿਨਜ਼ ਨੂੰ ਸੰਪਰਕ ਕਰੋ ਜੇ ਤੁਹਾਨੂੰ ਇਸ ਬਾਰੇ ਮਦਦ ਦੀ ਲੋਡ਼ ਹੈ।"
 
 #, python-format
 msgid "Version %s disabled."
@@ -1982,7 +1988,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਵਰਕਾ ਸੱਜਰਾ ਕਰੋ।"
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "ਤੁਹਾਨੂੰ {addon_name}ਦੇ ਲੇਖਕ ਬਣਨ ਲਈ ਸੱਦਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr ""
@@ -2003,10 +2009,10 @@ msgid "About author roles"
 msgstr "ਲੇਖਕ ਦੀਆਂ ਭੂਮਿਕਾਵਾਂ ਬਾਰੇ"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "ਲੇਖਕਾਂ ਦੀ ਪੁਸ਼ਟੀਕਰਣ ਲੰਬਤ ਹੈ"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "ਲੇਖਕ ਜੋ ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤੇ ਗਏ ਹਨ ਪਰ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕੀਤੀ ਹੈ।"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2178,18 +2184,6 @@ msgstr ""
 "ਅੰਤ ਵਰਤੋਂਕਾਰ ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋਣ ਜੋ ਜ਼ਰੂਰੀ ਨਹੀਂ ਐਡ-ਆਨ ਦੇ ਸੰਖੇਪ ਵਰਣਨ ਜਾਂ ਵੇਰਵੇ ਤੇ ਲਾਗੂ ਹੋਵੋ। ਆਮ ਵਰਤੋਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਜਾਣੂ ਬੱਗਾਂ ਦੀ ਸੂਚੀ, ਬੱਗਾਂ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਭੇਜੀਏ ਦੀ ਜਾਣਕਾਰੀ, ਨਵੇਂ ਵਰਜਨ "
 "ਦੇ ਜਾਰੀ ਹੋਣ ਦੀ ਤਰੀਕ ਦਾ ਅਨੁਮਾਨ, ਆਦਿ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-msgid "View Source?"
-msgstr "ਸਰੋਤ ਵੇਖੋ?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "ਚਾਹੇ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਸੋਰਸ ਸਾਡੇ ਆਨਲਾਈਨ ਦਰਸ਼ਕ ਵਿੱਚ ਵਿਖਾਇਆ ਜਾਵੇ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਸੋਰਸ ਕੋਡ ਜਨਤਕ ਤੌਰ ਤੇ ਵੇਖਣਯੋਗ ਹੈ।"
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "ਨਹੀਂ, ਇਸ ਐਡ-ਆਨ ਦਾ ਸੋਰਸ ਕੋਡ ਜਨਤਕ ਤੌਰ ਤੇ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ।"
-
 msgid "Public Stats?"
 msgstr "ਜਨਤਕ ਅੰਕੜੇ?"
 
@@ -2265,7 +2259,7 @@ msgid "PNG and JPG supported."
 msgstr "PNG ਅਤੇ JPG ਸਮਰਥਿਤ।"
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "ਆਈਕਾਨ ਵਰਗ ਅਤੇ 128x128 ਪਿਕਸਲ ਦਾ ਨਿਊਨਤਮ ਆਕਾਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "ਆਈਕਾਨ ਨੂੰ 128x128 ਪਿਕਸਲ ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ ਜੇ ਵੱਡਾ ਹੋਵੇ।"
@@ -2426,6 +2420,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"ਚੇਤਾਵਨੀ: ਤੁਹਾਡੇ ਕੋਲ ਹੋਰ ਲੋਕਲ ਵਿੱਚ ਨਾਮ/summary ਮੁੱਲ ਹਨ ਜੋ ਕਿ ਆਟੋਮੈਟਿਕ ਹੀ %(max_length)s ਦੇ ਅੱਖਰਾਂ ਦੇ ਅਨੁਸਾਰ ਫਿੱਟ ਕੀਤੇ ਜਾਣਗੇ।  ਸਬਮਿਸ਼ਨ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋਣ ਤੋਂ ਬਾਦ ਇਨ੍ਹਾਂ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ Edit "
+"Product Page ਵੱਲ ਜਾਓ।"
 
 msgid "Add-on URL:"
 msgstr "ਐਡ-ਆਨ URL:"
@@ -2903,41 +2899,22 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਐਡੀਸ਼ਨ ਲਈ ਆਖਰ�
 msgid "Read more about the source code review policy."
 msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
 
-msgid "Latest News"
-msgstr "ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਬਲੌਗ ਪੜ੍ਹੋ"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "ਇਕਸਟੈਂਸ਼ਨ ਵਰਕਸ਼ਾਪ"
 
 msgid "Resources"
 msgstr "ਸਰੋਤ"
 
-msgid "Porting"
-msgstr "ਪੋਰਟਿੰਗ"
-
-msgid "Community"
-msgstr "ਭਾਈਚਾਰਾ"
-
-msgid "About"
-msgstr "ਬਾਰੇ"
-
-msgid "Forum"
-msgstr "ਫ਼ੋਰਮ"
-
-msgid "Blog"
-msgstr "ਬਲੌਗ"
-
-msgid "Contact Us"
-msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
-
-msgid "Support"
-msgstr "ਸਹਿਯੋਗ"
-
-msgid "Report Bug"
-msgstr "ਬੱਗ ਰਿਪੋਰਟ ਕਰੋ"
-
-msgid "Site Status"
-msgstr "ਸਾਈਟ ਦੀ ਸਥਿਤੀ"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "ਵੈਬ-ਐਕਸਟੈਂਟ: ਬਿਲਡ ਅਤੇ ਟੈਸਟ ਐਕਸਟੈਂਸ਼ਨ"
@@ -2945,20 +2922,11 @@ msgstr "ਵੈਬ-ਐਕਸਟੈਂਟ: ਬਿਲਡ ਅਤੇ ਟੈਸਟ ਐ
 msgid "Promote"
 msgstr "ਉਤਸ਼ਾਹਿਤ"
 
-msgid "Get Your Add-on Featured"
-msgstr "ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਫੀਚਰ ਕਰੋ"
-
 msgid "\"Get The Add-on\" button"
 msgstr "\"ਐਡ-ਆਨ ਪ੍ਰਾਪਤ ਕਰੋ\" ਬਟਨ"
 
-msgid "Legal"
-msgstr "ਕਨੂੰਨੀ"
-
-msgid "Report Trademark Abuse"
-msgstr "ਟਰੇਡਮਾਰਕ ਦੁਰਵਿਅਵਹਾਰ ਰਿਪੋਰਟ"
-
-msgid "Legal Notices"
-msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "ਯੋਗਦਾਨ ਪਾਓ"
@@ -2990,38 +2958,15 @@ msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਸਭ ਤੋਂ ਵੱਧ ਅਨੁ�
 msgid "See how"
 msgstr "ਵੇਖੋ ਕਿਵੇਂ"
 
-msgid "Manage Your Add-on"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਸਾਂਭ-ਸੰਭਾਲ੍ਹ ਕਰੋ"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੋਧਣ ਅਤੇ ਅਪਡੇਟ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ"
-
-msgid "Write one code base for many browsers"
-msgstr "ਬਹੁਤ ਸਾਰੇ ਬਰਾਊਜ਼ਰਾਂ ਲਈ ਕੋਡ ਬੇਸ ਲਿਖੋ"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Get involved"
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "ਕ੍ਰਾਸ-ਬ੍ਰਾਊਜ਼ਰ ਡਿਵੈਲਪਮੈਂਟ ਲਈ ਬਿਹਤਰੀਨ ਪ੍ਰੈਕਟਿਸਿਸ ਦੇਖੋ"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Welcome Back"
-msgstr "ਜੀ ਆਇਆ ਨੂੰ"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "%(amo_link_open)saddons.mozilla.org%(amo_link_close)sਤੇ ਤੁਹਾਡੇ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਸਾਡੀ ਫੀਚਰਡ ਐਕਸਟੈਂਸ਼ਨ ਨੀਤੀ ਤੁਹਾਨੂੰ ਦੱਸੇਗੀ ਕਿ ਤੁਹਾਨੂੰ ਕੀ ਜਾਣਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ।"
-
-msgid "Learn More"
-msgstr "ਹੋਰ ਜਾਣੋ"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਆਨ-ਬੋਰਡਿੰਗ ਲਈ ਸਾਡੇ ਸਰਵੋਤਮ ਅਭਿਆਸ ਦੀ ਪਾਲਣਾ ਕਰਕੇ ਤੁਸੀਂ ਆਪਣੇ ਵਿਸਥਾਰ ਵਿੱਚ ਵਿਸ਼ਵਾਸ ਅਤੇ ਭਰੋਸਾ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਮਦਦ ਕਰ ਸਕਦੇ ਹੋ।"
-
-msgid "See Best Practices"
-msgstr "ਵਧੀਆ ਪ੍ਰੈਕਟਿਸਾਂ ਦੇਖੋ"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "ਕੋਡ ਰਿਵਿਊ ਪਾਸ ਕਰਨ ਤੋਂ ਬਾਅਦ ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਬੱਧ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
@@ -3045,6 +2990,12 @@ msgstr "ਐਡਆਨ ਡਿਵੈਲਪਰ ਹੱਬ"
 msgid "Docs"
 msgstr "ਦਸਤਾਵੇਜ਼"
 
+msgid "Support"
+msgstr "ਸਹਿਯੋਗ"
+
+msgid "Blog"
+msgstr "ਬਲੌਗ"
+
 msgid "Sign Out"
 msgstr "ਸਾਈਨ ਆਉਟ"
 
@@ -3055,63 +3006,24 @@ msgid "User Photo"
 msgstr "ਵਰਤੋਂਕਾਰ ਫੋਟੋ"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">ਰਜਿਸਟਰ ਕਰੋ</a> ਜਾਂ <a href=\"%(login)s\">ਸਾਈਨ ਇਨ ਕਰੋ</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"ਐਡਆਨ, ਲੱਖਾਂ ਫਾਇਰਫਾਕਸ ਵਰਤੋਂਕਾਰ ਆਪਣੇ ਬਰਾਊਜ਼ਿੰਗ ਤਜਰਬੇ ਨੂੰ ਵਧਾਉਂਦੇ ਹਨ। ਜੇ ਤੁਸੀਂ (html_link_open)sHTML(link_close)s, %(js_link_open)sJavaScript%(link_close)s, ਅਤੇ %(css_link_open)sCSS%(link_close)s ਜਾਣਦੇ"
-" ਹੋ, ਤਾਂ ਤੁਹਾਡੇ ਕੋਲ ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਸ਼ਾਨਦਾਰ ਐਡਆਨ ਬਣਾਉਣ ਲਈ ਪਹਿਲਾਂ ਹੀ ਬਹੁਤ ਹੁਨਰ ਹਨ।"
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "ਐਡਆਨ ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
 
-msgid "Port a Chrome Extension"
-msgstr "Chrome ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਪੋਰਟ ਕਰੋ"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"ਫਾਇਰਫਾਕਸ ਵੈੱਬ ਐਕਸਟੇਂਸ਼ਨ API ਨੂੰ ਸਹਿਯੋਗ ਦਿੰਦਾ ਹੈ, ਜੋ ਕਿ ਬਹੁਤੇ ਕੇਸਾਂ ਵਿੱਚ ਕਰੋਮ, ਓਪੇਰਾ ਅਤੇ ਐਜ ਦੁਆਰਾ ਸਹਿਯੋਗੀ ਐਕਸਟੈਂਸ਼ਨ API ਦੇ ਅਨੁਕੂਲ ਹਨ, ਤਾਂ ਕਿ ਤੁਹਾਡੇ ਐਕਸਟੈਨਸ਼ਨ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਕੇਵਲ ਕੁਝ ਬਦਲਾਅ ਹੀ ਚੱਲੇ।"
 
-msgid "Learn How"
-msgstr "ਸਿੱਖੋ ਕਿ ਕਿਵੇਂ"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੋ"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "ਕੀ ਐਡਆਨ ਤਿਆਰ ਹੈ? addons.mozilla.org ਤੇ ਸੂਚੀਬੱਧ ਹੋਣ ਲਈ ਆਪਣੀ ਐਕਸਟੈਂਸ਼ਨ ਜਾਂ ਥੀਮ ਦਰਜ਼ ਕਰੋ ਜਾਂ ਆਪਣੇ ਐਕਸਟੈਨਸ਼ਨ ਤੇ ਦਸਤਖਤ ਕਰੋ ਅਤੇ ਵੰਡੋ।"
-
-msgid "Sign In"
-msgstr "ਸਾਇਨ ਇਨ"
-
-msgid "Web-Ext"
-msgstr "ਵੈਬ-ਐਕਸਟੈਂਸ਼ਨ"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਬਣਾਉਣ, ਰਨ ਅਤੇ ਟੈਸਟ ਕਰਨ ਲਈ ਇੱਕ ਕਮਾਂਡ ਲਾਈਨ ਟੂਲ।"
-
-msgid "Automated code tests for your add-on."
-msgstr "ਤੁਹਾਡੇ ਐਡਆਨ ਲਈ ਆਟੋਮੇਟਿਡ ਕੋਡ ਟੈਸਟ।"
-
-msgid "Compatibility Test"
-msgstr "ਅਨੁਕੂਲਤਾ ਟੈਸਟ"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "ਇਹ ਵੇਖਣ ਲਈ ਜਾਂਚ ਕਰੋ ਕਿ ਕੀ ਤੁਹਾਡਾ ਐਕਸਟੈਂਸ਼ਨ ਫਾਇਰਫਾਕਸ ਦੇ ਅਨੁਕੂਲ ਹੈ।"
-
-msgid "Live Testing"
-msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬਗਿੰਗ ਲਈ ਅਸਥਾਈ ਰੂਪ ਵਿੱਚ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਆਪਣਾ ਐਕਸਟੈਂਸ਼ਨ ਇੰਸਟਾਲ ਕਰੋ।"
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "ਵਰਜਨ {0} ਸੰਭਾਲ੍ਹੋ"
@@ -3174,12 +3086,6 @@ msgstr "ਸਮੀਖਿਆ ਅਤੀਤ"
 
 msgid "Close Review History"
 msgstr "ਪੜਤਾਲ ਅਤੀਤ ਬੰਦ ਕਰੋ"
-
-msgid "Not validated."
-msgstr "ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ।"
-
-msgid "Validate now."
-msgstr "ਹੁਣੇ ਪ੍ਰਮਾਣਿਤ ਕਰਵਾਓ।"
 
 msgid "Request Review"
 msgstr "ਰਿਵਿਊ ਲਈ ਬੇਨਤੀ"
@@ -3336,9 +3242,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਇਸ਼ਤਿਹਾਰ ਰੋਕਣਾ ਅਤੇ ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "ਇੱਕ ਸਧਾਰਨ ਸੈੱਟ-ਅੱਪ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦੁਆਰਾ ਦੇਖੀਆਂ ਗਈਆਂ ਵਿਗਿਆਪਨਾਂ ਤੇ ਨਿਯੰਤਰਣ ਅਤੇ ਤੁਹਾਨੂੰ ਇੰਟਰਨੈੱਟ ਤੇ ਕਿਵੇਂ ਟ੍ਰੈਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
+msgstr "ਇਸ਼ਤਿਹਾਰ ਪਾਬੰਦੀ ਅਤੇ ਪਰਦੇਦਾਰੀ ਸੁਰੱਖਿਆ। ਸਧਾਰਨ ਸੈੱਟ-ਅੱਪ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦੁਆਰਾ ਦੇਖਾਏ ਇਸ਼ਤਿਹਾਰਾਂ ਨਾਂ ਤੇ ਕੰਟਰੋਲ ਅਤੇ ਤੁਹਾਨੂੰ ਇੰਟਰਨੈੱਟ ਤੇ ਕਿਵੇਂ ਟਰੈਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3372,7 +3277,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੁ
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "ਵਿਸ਼ਵ ਭਰ ਤੋਂ ਤੁਰੰਤ ਮੌਸਮ ਦੇ ਅਪਡੇਟਸ।"
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3419,12 +3324,11 @@ msgstr "ਸਾਰੇ ਸਾਧਨਾਂ ਤੇ ਰਾਜ ਕਰਨ ਲਈ ਇੱ
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਨਾਲ{end_sub_heading} ਇਸ਼ਤਿਹਾਰਾਂ ‘ਤੇ ਪਾਬੰਦੀ ਲਾਓ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "ਇੱਕ ਹਲਕਾ ਅਤੇ ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਵਿਗਿਆਪਨ ਬਲੌਕਰ। uBlock ਮੂਲ ਹਜ਼ਾਰਾਂ ਸਮੱਗਰੀ ਫਿਲਟਰਾਂ ਨੂੰ ਮੈਮੋਰੀ ਦੇ ਇੱਕ ਸਮੂਹ ਨੂੰ ਚਚਣ ਤੋਂ ਬਿਨਾਂ ਲਾਗੂ ਕਰਦੀ ਹੈ।"
+msgstr "ਹਲਕਾ ਅਤੇ ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਇਸ਼ਤਿਹਾਰ ਰੋਕੂ। uBlock Origin ਬਹੁਤੀ ਮੈਮੋਰੀ ਵਰਤੇ ਬਿਨਾਂ ਹਜ਼ਾਰਾਂ ਸਮੱਗਰੀ ਫਿਲਟਰਾਂ ਨੂੰ ਲਾਗੂ ਕਰਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3432,7 +3336,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀ
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ਨਵੀਆਂ YouTube ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ, ਜਿਵੇਂ ਕਿ ਸਿਨੇਮਾ ਮੋਡ, ਵਿਗਿਆਪਨ ਨੂੰ ਰੋਕਣਾ, ਆਟੋ-ਪਲੇ ਨਿਯੰਤਰਣ, ਅਤੇ ਹੋਰ ਬਹੁਤਿਆਂ ਦਾ ਇੱਕ ਅਨੰਦ ਮਾਣੋ।"
+msgstr "ਨਵੇਂ YouTube ਫ਼ੀਚਰਾਂ, ਜਿਵੇਂ ਕਿ ਸਿਨੇਮਾ ਮੋਡ, ਇਸ਼ਤਿਹਾਰ ਨੂੰ ਰੋਕਣਾ, ਆਟੋ-ਪਲੇ ਕੰਟਰੋਲ, ਅਤੇ ਹੋਰ ਬਹੁਤਿਆਂ ਦੇ ਸਮੂਹ ਦਾ ਆਨੰਦ ਲਵੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3461,11 +3365,11 @@ msgstr "ਆਟੋਮੈਟਿਕ ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ �
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} YouTube ਵਿਗਿਆਪਨ ਹਟਾਓ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} YouTube ਇਸ਼ਤਿਹਾਰ ਹਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr "YouTube ਤੇ ਨਜ਼ਰ ਆਉਣ ਤੋਂ ਤੰਗ ਕਰਨ ਵਾਲੇ ਵਿਗਿਆਪਨ ਅਤੇ ਐਨੋਟੇਸ਼ਨ ਨੂੰ ਬਲੌਕ ਕਰੋ।"
+msgstr "YouTube ‘ਤੇ ਦਿਖਣ ਵਾਲੇ ਖਿਝਾਊ ਇਸ਼ਤਿਹਾਰਾਂ ਅਤੇ ਵਿਆਖਿਆ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3618,11 +3522,11 @@ msgstr "ਇੱਕ ਹੀ ਚੀਜ ਨੂੰ ਦੁਹਰਾਓਨ ਤੋਂ ਰ
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਈਮੇਲ ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਈਮੇਲ ਇਸ਼ਤਿਹਾਰਾਂ ‘ਤੇ ਰੋਕ ਲਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr "ਆਪਣੇ ਵੈਬ-ਅਧਾਰਿਤ ਇਨਬਾਕਸ ਤੋਂ ਵਿਗਿਆਪਨ ਹਟਾ ਕੇ ਜ਼ਿਆਦਾ ਸਕ੍ਰੀਨ ਸਪੇਸ ਪ੍ਰਾਪਤ ਕਰੋ।"
+msgstr "ਆਪਣੇ ਵੈਬ-ਅਧਾਰਿਤ ਇਨਬਾਕਸ ਤੋਂ ਇਸ਼ਤਿਹਾਰ ਹਟਾ ਕੇ ਹੋਰ ਸਕਰੀਨ ਥਾਂ ਲਵੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3664,7 +3568,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਟਰ
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr "ਜਦੋਂ ਤੁਸੀਂ ਵੈਬ ਬ੍ਰਾਊਜ਼ ਕਰਦੇ ਹੋ ਤਾਂ ਟਰੈਕਿੰਗ ਸੁਰੱਖਿਆ ਦੀ ਇੱਕ ਵਾਧੂ ਪਰਤ ਹਾਸਲ ਕਰੋ।"
+msgstr "ਜਦੋਂ ਤੁਸੀਂ ਵੈਬ ਬਰਾਊਜ਼ ਕਰਦੇ ਹੋ ਤਾਂ ਟਰੈਕਿੰਗ ਸੁਰੱਖਿਆ ਦੀ ਇੱਕ ਵਾਧੂ ਪਰਤ ਹਾਸਲ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3959,9 +3863,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} YouTube ਦੇ ਨਾਲ ਬਣਾਓ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "ਪੌਪ-ਆਊਟ ਵਿਡਿਓ ਵਿੱਚ ਵਿਡੀਓਜ਼ ਚਲਾਉ, ਸਿਰਫ ਮੈਂਬਰ ਚੈਨਲਾਂ ਵਿੱਚ ਵਿਗਿਆਪਨ ਦੇਖੋ, ਵੀਡੀਓ ਸਕ੍ਰੀਨਸ਼ੌਟਸ ਲਓ, ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
+msgstr "ਆਪਣਾ YouTube ਬਣਾਓ। ਪੌਪ-ਆਉਟ ਵਿੰਡੋ ਵਿੱਚ ਵਿਡੀਓਜ਼ਚਲਾਓ, ਸਿਰਫ ਮੈਂਬਰ ਚੈਨਲਾਂ ਵਿੱਚ ਇਸ਼ਤਿਕਾਰ ਦੇਖੋ, ਵਿਡੀਓ ਸਕਰੀਨਸ਼ਾਟ ਲਓ, ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4003,7 +3906,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤਸ
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "ਉਹ ਤਸਵੀਰਾਂ ਡਾਉਨਲੋਡ ਕਰੋ ਜੋ ਤੁਸੀਂ ਵੈੱਬ ਤੇ ਪਾਉਂਦੇ ਹੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4163,12 +4066,11 @@ msgstr "ਖੋਜ ਇੰਜਣਾਂ ਨੂੰ ਜਾਣਨ ਤੋਂ ਰੋਕ�
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} YouTube ਵੀਡੀਓਜ਼ ਡਾਊਨਲੋਡ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} YouTube ਵੀਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "ਵੀਡੀਓ ਅਤੇ/ਜਾਂ ਔਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ।"
+msgstr "YouTube ਵੀਡੀਓ ਅਤੇ/ਜਾਂ ਆਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4192,7 +4094,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਫੋ
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਡੈਸਕਟਾਪ ਲਈ ਫੋਨ-ਵਰਗੇ ਸਕ੍ਰੌਲਿੰਗ। \"ਗ੍ਰੈਬ-ਐਨ-ਡ੍ਰੈਗ\" ਸ਼ੈਲੀ ਦੇ ਮਾਓਸ ਦੀ ਹਰਕਤ।"
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4208,7 +4110,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਟੈ
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "ਸੁਰੱਖਿਅਤ ਕਰਨ ਅਤੇ ਬਾਅਦ ਵਿੱਚ ਐਕਸੈਸ ਕਰਨ ਲਈ ਵੈਬ ਪੇਜਾਂ ਤੇ ਟੈਕਸਟ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4255,11 +4157,11 @@ msgstr "ਬ੍ਰਾਉਜ਼ਰ ਅਤੀਤ ਨੂੰ ਆਪਣੇ-ਆਪ ਸ�
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਹਟਾਓ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਇਸ਼ਤਿਹਾਰ ਹਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr "ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ ਦੇ ਅੰਦਰ ਵਿਗਿਆਪਨ ਦਿਖਾਉਣ ਤੋਂ ਰੋਕੋ।"
+msgstr "ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ ਦੇ ਵਿੱਚ ਇਸ਼ਤਿਹਾਰ ਵਿਖਾਉਣ ਤੋਂ ਰੋਕੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4284,7 +4186,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "ਸਿਰਫ ਇੱਕ ਕਲਿੱਕ ਨਾਲ ਨਿਜੀ ਤੌਰ ਤੇ ਖੋਜ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4426,7 +4328,7 @@ msgstr "ਪਾਸਵਰਡ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿ�
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "ਇੱਕ ਸਧਾਰਨ ਇਸ਼ਟਿਹਾਰ ਬਲੌਕਰ ਜੋ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਉਹ ਸਮਗਰੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਤੇ ਕੇਂਦਰਿਤ ਹੈ।"
+msgstr "ਸਧਾਰਨ ਇਸ਼ਤਿਹਾਰ ਰੋਕੂ, ਜੋ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਉਹ ਸਮੱਗਰੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਤੇ ਕੇਂਦਰਿਤ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4434,7 +4336,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਐਮ
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "ਅਮੇਜ਼ਨ ਦੀ ਕੀਮਤ ਦੇ ਇਤਿਹਾਸ ਨੂੰ ਟਰੈਕ ਕਰੋ। ਖਰੀਦੇ ਖਰੀਦਾਰੀ ਦੇ ਫੈਸਲੇ ਲਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4506,7 +4408,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੰ
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "ਸਧਾਰਣ ਕਲਿੱਕ ਨਾਲ ਤੰਗ ਕਰਨ ਵਾਲੇ ਪੌਪ-ਅਪਸ ਨੂੰ ਬੰਦ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4550,9 +4452,8 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍ਰਿੰਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਾਦਨ ਕਰੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "ਵਿਲੱਖਣ ਵਿਜ਼ੁਅਲ ਬਦਲਾਵ ਕਰੋ—ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਨੂੰ ਛਾਪਣ ਲਈ ਵਿਗਿਆਪਨ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾਓ।"
+msgstr "ਵਿਲੱਖਣ ਦਿੱਖ ਤਬਦਾਲੇ ਕਰੋ—ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਨੂੰ ਛਾਪਣ ਲਈ ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4603,7 +4504,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਕੂ
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "ਆਟੋਮੈਟਿਕ ਅਣਚਾਹੇ ਕੂਕੀਜ਼ ਮਿਟਾਓ। ਸਫੈਦ ਅਤੇ ਬਲੈਕਲਿਸਟ ਸਮਰਥਨ ਪੇਸ਼ ਕਰਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4621,7 +4522,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਬਾ
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "ਨਿਸ਼ਕਿਰਿਆ ਟੈਬਸ ਨਾਲ ਮਹੱਤਵਪੂਰਨ ਮੈਮੋਰੀ ਸਪੇਸ ਬਰਬਾਦ ਕਰਨਾ ਬੰਦ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4656,9 +4557,8 @@ msgid "Read with more clarity and ease. Remove the clutter around text on web pa
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ"
+msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਇਸ਼ਤਿਹਾਰਾਂ ‘ਤੇ ਰੋਕ ਲਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
@@ -4671,7 +4571,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀ
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "ਬਹੁ-ਥ੍ਰੈਡਿੰਗ ਡਾਉਨਲੋਡ ਸਹਾਇਤਾ ਦਾ ਅਨੰਦ ਮਾਣੋ। ਡਾਉਨਲੋਡ ਲਈ ਆਟੋਮੈਟਿਕ ਵੱਖ-ਵੱਖ ਮੀਡੀਆ ਉਪਲਬਧਾਂ ਦਾ ਪਤਾ ਲਗਾਓ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4720,7 +4620,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿ
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "ਆਰਕਾਈਵਡ, ਮਰੇ, ਜਾਂ ਅਸਫਲ ਵੈਬ ਪੰਨਿਆਂ ਨੂੰ ਲੱਭੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4741,13 +4641,12 @@ msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach n
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਹਟਾਓ"
+msgstr "{start_sub_heading}{addon_name} ਨਾਲ{end_sub_heading} ਆਵਾਜ਼ ਰਾਹੀਂ ਸਰਗਰਮ ਕੀਤੀ ਖੋਜ"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Google, Yahoo ਅਤੇ DuckDuckGo ਤੇ ਵੌਇਸ ਖੋਜ ਨੂੰ ਸਮਰੱਥ ਕਰਨ ਲਈ ਸਪੀਚ ਪਛਾਣ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4774,7 +4673,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋ
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "ਐਂਡਰਾਇਡ ਲਈ ਫਾਇਰਫਾਕਸ ਉੱਤੇ ਇੱਕ ਹੋਰ ਤਕਨੀਕੀ ਖੋਜ ਸਫ਼ਾ ਪ੍ਰਾਪਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4783,7 +4682,42 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀ
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
+msgstr "ਕੁਝ ਸਾਈਟਸ ਨੂੰ ਐਡਰਾਇਡ ਲਈ ਫਾਇਰਫਾਕਸ ਉੱਤੇ ਵੀਡੀਓ ਖੇਡਣ ਵਿੱਚ ਮੁਸ਼ਕਲ ਆਉਂਦੀ ਹੈ। ਇਹ ਐਕਸਟੈਂਸ਼ਨ ਫਿਕਸ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਪੁਰਾਣੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ।"
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "ਹੋਰ ਜਾਣੋ"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "ਵਾਧਰੇ"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4822,7 +4756,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "ਸਭ ਤੋਂ ਘੱਟ ਸਮਰਥਿਤ \"ਸਖਤ_ਮੰਨ_ਵਰਜਨ\" 42.0 ਹੈ।"
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "{app} ਲਈ ਅਣਜਾਣ \"strict_min_version\" {appver}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -4840,7 +4774,6 @@ msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕ�
 msgid "Unsupported archive type."
 msgstr "ਅਸਮਰਥਿਤ ਅਕਾਇਵ ਪ੍ਰਕਾਰ।"
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "ਅਕਾਇਵ ਵਿੱਚ ਗਲਤ ਫਾਇਲ ਨਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਸਾਰੇ ਫਾਈਲਾਂ ਦੇ ਨਾਂ utf-8 ਜਾਂ latin1 ਏਨਕੋਡ ਕੀਤੇ ਗਏ ਹੋਣ।"
 
@@ -4848,6 +4781,7 @@ msgstr "ਅਕਾਇਵ ਵਿੱਚ ਗਲਤ ਫਾਇਲ ਨਾਂ। ਕਿ�
 msgid "Invalid file name in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
@@ -4982,42 +4916,6 @@ msgstr "ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਵਿੱਚ ਕੋਈ ਫ਼�
 
 msgid "Fetching file."
 msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
-
-msgid "Reported Status"
-msgstr "ਉਪਭੋਗੀ ਦੀ ਸੂਚਨਾ ਦਿਓ"
-
-msgid "Reported Spam"
-msgstr "ਰਿਪੋਰਟ ਕੀਤੀ ਸਪੈਮ"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "ਰਿਪੋਰਟ ਕੀਤੀ ਹੈਮ"
-
-msgid "Not Reported"
-msgstr "ਰਿਪੋਰਟ ਨਹੀਂ ਕੀਤੀ ਗਈ"
-
-msgid "Content Submitted"
-msgstr "ਸਮੱਗਰੀ ਪ੍ਰਸਤੁਤ ਕੀਤੀ"
-
-msgid "View Rating on site"
-msgstr "ਸਾਈਟ ਤੇ ਰੇਟਿੰਗ ਦੇਖੋ"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "ਅਕਿਮਮਤ ਦੇ ਲਈ ਹੈਮ ਜਮ੍ਹਾਂ ਕਰੋ"
-
-msgid "Submit Spam to Akismet"
-msgstr "ਸਪੈਮ ਨੂੰ ਅਕਿਮਮਤ ਵਿੱਚ ਦਰਜ ਕਰੋ"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s ਹੈਮ ਸਪੈਮ ਦੇ ਤੌਰ ਤੇ ਰਿਪੋਰਟ ਪੇਸ਼ ਕਰਦਾ ਹੈ"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s ਸਪੈਮ ਦੀ ਰਿਪੋਰਟ ਹਾਮ ਵਜੋਂ ਪੇਸ਼ ਕੀਤੀ ਗਈ"
 
 msgid "About Mozilla Add-ons"
 msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨਾਂ ਬਾਰੇ"
@@ -5196,7 +5094,7 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"ਐਡ-ਆਨ ਦੀ ਕਿਸੇ ਕੰਮ ਲਈ ਆਲੋਚਨਾ ਕਰਨਾ ਜੋ ਲਈ ਉਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ। ਮਿਸਾਲ ਲਈ, ਵਿਗਿਆਪਨ ਵਿਖਾਉਣ ਜਾਂ ਲੌੜੀਂਦਾ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਨੂੰ ਨਕਾਰਆਤਮਕ ਸਮੀਖਿਆ ਦੇਣਾ, ਜਦੋਂ ਐਡ-ਆਨ ਇਸੇ ਕਾਰਜ ਲਈ ਬਣਿਆ ਹੋਵੇ, ਜਾਂ ਐਡ-ਆਨ ਨੂੰ ਕੰਮ "
+"ਐਡ-ਆਨ ਦੀ ਕਿਸੇ ਕੰਮ ਲਈ ਆਲੋਚਨਾ ਕਰਨਾ ਜੋ ਲਈ ਉਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ। ਮਿਸਾਲ ਲਈ, ਇਸ਼ਤਿਹਾਰ ਵਿਖਾਉਣ ਜਾਂ ਲੌੜੀਂਦਾ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਨੂੰ ਨਕਾਰਆਤਮਕ ਸਮੀਖਿਆ ਦੇਣਾ, ਜਦੋਂ ਐਡ-ਆਨ ਇਸੇ ਕਾਰਜ ਲਈ ਬਣਿਆ ਹੋਵੇ, ਜਾਂ ਐਡ-ਆਨ ਨੂੰ ਕੰਮ "
 "ਕਰਨ ਲਈ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇ।"
 
 msgid "How can I report a problematic review?"
@@ -5267,7 +5165,7 @@ msgstr "ਤੁਸੀਂ ਐਡਆਨ ਦੇ ਉਸੇ ਵਰਜਨ ਲਈ ਇਕ
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "ਅਵੈਧ flag [%s] - ਇੱਕ [%s] ਵਿੱਚ ਹੋਣਾ ਜਰੂਰੀ ਹੈ"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "ਇਸ ਰੇਟਿੰਗ ਨੂੰ ਫਲੈਗ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਕਿਉਂਕਿ ਇਸਦਾ ਕੋਈ ਸਮੀਖਿਆ ਪਾਠ ਨਹੀਂ ਹੈ।"
@@ -5394,7 +5292,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "ਖ਼ਤਰਾ ਟੁੱਟਣ ਤੇ ਉਪਲਬਧ ਨਹੀਂ।"
 
 #, fuzzy
 msgid "Is locked by a reviewer"
@@ -5408,7 +5306,7 @@ msgid "Is recommendable"
 msgstr "ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "ਦੇਰੀ ਕਰਕੇ ਕਿਉਂਕਿ ਇਹ ਪਹਿਲਾ ਸੂਚੀਬੱਧ ਵਰਜਨ ਹੈ"
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
@@ -5938,7 +5836,7 @@ msgid "No reviews found for this period."
 msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
 
 msgid "Method:"
-msgstr ""
+msgstr "ਢੰਗ:"
 
 #, fuzzy
 msgid "Source:"
@@ -6022,16 +5920,22 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "ਮਿਆਦ ਪੁੱਗੀ ਜਾਣਕਾਰੀ ਬੇਨਤੀ ({0})"
 msgstr[1] "ਮਿਆਦ ਪੁੱਗ ਗਈ ਜਾਣਕਾਰੀ ਬੇਨਤੀਆਂ ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "ਗਲਤ \"%s\" ਪੈਰਾਮੀਟਰ ਹੈ।"
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "\"%s\" ਅਤੇ \"%s\" ਪੈਰਾਮੀਟਰ ਦਾ ਅਯੋਗ ਸੰਜੋਗ।"
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "AMO ਤੇ ਵਾਪਸ ਇਸ ਸਮੇਂ ਅਯੋਗ ਹੈ"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
@@ -6288,11 +6192,20 @@ msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ"
 msgid "Footer logo"
 msgstr "ਫੁਟਰ ਲੋਗੋ"
 
+msgid "Legal Notices"
+msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
+
+msgid "Report Trademark Abuse"
+msgstr "ਟਰੇਡਮਾਰਕ ਦੁਰਵਿਅਵਹਾਰ ਰਿਪੋਰਟ"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "ਨਵੀਂ ਵੈਬਸਾਈਟ ਮੋਬਾਈਲ ਅਤੇ ਡੈਸਕਟੌਪ ਕਲਾਇੰਟਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦੀ ਹੈ"
 
 msgid "View the new site"
 msgstr "ਨਵੀਂ ਸਾਈਟ ਦੇਖੋ"
+
+msgid "Site Status"
+msgstr "ਸਾਈਟ ਦੀ ਸਥਿਤੀ"
 
 msgid "Report a bug"
 msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
@@ -6306,6 +6219,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
+
+msgid "About"
+msgstr "ਬਾਰੇ"
+
+msgid "Forum"
+msgstr "ਫ਼ੋਰਮ"
 
 msgid "Download Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ ਡਾਊਨਲੋਡ ਕਰੋ"
@@ -6403,6 +6322,14 @@ msgstr "ਉਪਭੋਗੀ \"%(users)s\" ਤੇ ਪਾਬੰਦੀ ਲਗਾ ਦ
 
 msgid "Ban selected users"
 msgstr "ਚੁਣੇ ਹੋਏ ਵਰਤੋਂਕਾਰਾਂ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਓ"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "ਉਪਭੋਗੀ \"%(users)s\" ਤੇ ਪਾਬੰਦੀ ਲਗਾ ਦਿੱਤੀ ਗਈ ਹੈ।"
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰੋ"
 
 msgid "Profile Photo"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"

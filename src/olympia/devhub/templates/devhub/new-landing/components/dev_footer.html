@@ -1,0 +1,69 @@
+<footer class="DevHub-Footer content">
+  <div>
+    <h3 class="DevHub-Footer-sections-header">{{ _('Resources') }}</h3>
+
+    <div class="DevHub-Footer-sections">
+      <section class="DevHub-Footer-section">
+        <h4>{{ _('Documentation') }}</h4>
+        <ul>
+          <li><a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('WebExtensions API') }}</a></li>
+          <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/extension-basics/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Extensions') }}</a></li>
+          <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/themes/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Themes') }}</a></li>
+        </ul>
+      </section>
+
+      <section class="DevHub-Footer-section">
+        <h4>{{ _('Tools') }}</h4>
+        <ul>
+          <li><a href="https://github.com/mozilla/web-ext">{{ _('Web-Ext: build & test extensions') }}</a></li>
+          <li><a href="{{ url('devhub.validate_addon') }}">{{ _('Add-on Validator') }}</a></li>
+          <li><a href="{{ url('devhub.api_key') }}">{{ _('Manage API Keys') }}</a></li>
+        </ul>
+      </section>
+
+      <section class="DevHub-Footer-section">
+        <h4>{{ _('Promote') }}</h4>
+        <ul>
+          <li><a href="https://blog.mozilla.org/addons/2015/11/10/promote-your-add-ons-with-the-get-the-add-on-button/">{{ _('"Get The Add-on" button') }}</a></li>
+          <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/recommended-extensions/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-resource-link">{{ _('Recommended Extensions program') }}</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <h3 class="DevHub-Footer-sections-header">{{ _('Contribute') }}</h3>
+
+    <div class="DevHub-Footer-sections">
+      <section class="DevHub-Footer-section">
+        <h4>{{ _('Review Add-ons') }}</h4>
+        <p>
+          {% trans %}
+          Volunteer reviewers help keep add-ons safe and
+          reliable to use. They enjoy great perks too!
+          {% endtrans %}
+        </p>
+        <a href="https://wiki.mozilla.org/Add-ons/Reviewers">{{ _('Join us!') }}</a>
+      </section>
+
+      <section class="DevHub-Footer-section">
+        <h4>{{ _('Write Some Code') }}</h4>
+        <p>
+          {% trans %}
+          Help make add-ons better by contributing your coding skills.
+          {% endtrans %}
+        </p>
+        <a href="https://wiki.mozilla.org/Add-ons/Contribute/Code">{{ _('Get started') }}</a>
+      </section>
+
+      <section class="DevHub-Footer-section">
+        <h4>{{ _('More Ways to Participate') }}</h4>
+        <p>
+          {% trans %}
+          You don't need coding skills to help keep Firefox
+          the most customizable browser available!
+          {% endtrans %}
+        </p>
+        <a href="https://wiki.mozilla.org/Add-ons/Contribute">{{ _('See how') }}</a>
+      </section>
+    </div>
+  </div>
+</footer>

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import logging
 
 from unittest import mock
@@ -10,6 +11,17 @@ from olympia.users.models import UserProfile
 
 
 class LoggerTests(TestCase):
+    def make_fake_record(self, msg='Some fake message', level=logging.NOTSET):
+        return logging.LogRecord(
+            'loggername',  # name
+            level,  # level
+            '/some/path',  # pathname
+            42,  # lineno
+            msg,  # msg
+            (),  # args
+            None,  # exc_info
+        )
+
     @mock.patch('olympia.core.get_remote_addr', lambda: '127.0.0.1')
     @mock.patch('olympia.core.get_user', lambda: UserProfile(username=u'fôo'))
     def test_get_logger_adapter(self):
@@ -61,19 +73,50 @@ class LoggerTests(TestCase):
         extra = {'extra': {'email': u'foo@bar.com'}}
         assert log.process('test msg', extra) == ('test msg', expected_kwargs)
 
-    def test_formatter(self):
-        formatter = olympia.core.logger.Formatter()
-        record = logging.makeLogRecord({})
-        formatter.format(record)
-        assert 'USERNAME' in record.__dict__
-        assert 'REMOTE_ADDR' in record.__dict__
-
     def test_json_formatter(self):
         formatter = olympia.core.logger.JsonFormatter()
-        record = logging.makeLogRecord({})
+        record = self.make_fake_record()
         # These would be set by the adapter.
         record.__dict__['USERNAME'] = 'foo'
         record.__dict__['REMOTE_ADDR'] = '127.0.0.1'
-        formatter.format(record)
+        formatted = json.loads(formatter.format(record))
         assert record.__dict__['uid'] == 'foo'
         assert record.__dict__['remoteAddressChain'] == '127.0.0.1'
+        assert formatted['Fields'] == {
+            'msg': 'Some fake message',
+            'uid': 'foo',
+            'remoteAddressChain': '127.0.0.1',
+        }
+
+    def test_json_formatter_severity(self):
+        formatter = olympia.core.logger.JsonFormatter()
+
+        record = self.make_fake_record(level=logging.NOTSET)
+        formatted = json.loads(formatter.format(record))
+        assert formatted['severity'] == 0  # For Stackdriver
+        assert formatted['Severity'] == 7  # For MozLog 2.0 (7 is default)
+
+        record = self.make_fake_record(level=logging.DEBUG)
+        formatted = json.loads(formatter.format(record))
+        assert formatted['severity'] == 100  # For Stackdriver
+        assert formatted['Severity'] == 7  # For MozLog 2.0
+
+        record = self.make_fake_record(level=logging.INFO)
+        formatted = json.loads(formatter.format(record))
+        assert formatted['severity'] == 200  # For Stackdriver
+        assert formatted['Severity'] == 6  # For MozLog 2.0
+
+        record = self.make_fake_record(level=logging.WARNING)
+        formatted = json.loads(formatter.format(record))
+        assert formatted['severity'] == 400  # For Stackdriver
+        assert formatted['Severity'] == 4  # For MozLog 2.0
+
+        record = self.make_fake_record(level=logging.ERROR)
+        formatted = json.loads(formatter.format(record))
+        assert formatted['severity'] == 500  # For Stackdriver
+        assert formatted['Severity'] == 3  # For MozLog 2.0
+
+        record = self.make_fake_record(level=logging.CRITICAL)
+        formatted = json.loads(formatter.format(record))
+        assert formatted['severity'] == 600  # For Stackdriver
+        assert formatted['Severity'] == 2  # For MozLog 2.0

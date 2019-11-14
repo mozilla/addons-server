@@ -1,0 +1,26 @@
+.field-review_listed_link label,
+.field-review_unlisted_link label,
+.field-block_history label,
+.fieldBox.field-url_link label {
+    display: none;
+}
+
+.fieldBox.field-url_link div.readonly,
+.form-row.field-block_history div.readonly {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.field-block_history div.readonly li {
+    list-style-type: disc;
+}
+
+.field-block_history div.readonly li ul{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.field-block_history div.readonly li ul li {
+    list-style-type: none;
+    font-style: italic;
+}

@@ -96,8 +96,8 @@ ADDONS_LINTER_BIN = env(
 DELETION_EMAIL = 'amo-notifications+deletion@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 
-DRF_API_VERSIONS = ['v3', 'v4', 'v5']
-DRF_API_REGEX = r'^/?api/(?:v3|v4|v5)/'
+DRF_API_VERSIONS = ['auth', 'v3', 'v4', 'v5']
+DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
 
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
@@ -280,6 +280,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/new-key-email.ltxt',
     r'^devhub\/email\/submission_api_key_revocation.txt',
     r'^devhub\/email\/api_key_confirmation.ltxt',
+    r'^blocklist\/',
 
     # Django specific templates
     r'^registration\/',
@@ -468,6 +469,7 @@ INSTALLED_APPS = (
     'olympia.api',
     'olympia.applications',
     'olympia.bandwagon',
+    'olympia.blocklist',
     'olympia.browse',
     'olympia.devhub',
     'olympia.discovery',
@@ -695,7 +697,7 @@ MINIFY_BUNDLES = {
         ),
     },
     'js': {
-        # JS files common to the entire site (pre-impala).
+        # JS files common to the entire site, apart from dev-landing.
         'common': (
             'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
@@ -899,6 +901,10 @@ MINIFY_BUNDLES = {
             'js/node_lib/jquery.minicolors.js',
             'js/node_lib/jszip.js',
         ),
+        'devhub/new-landing/js': (
+            'js/common/lang_switcher.js',
+            'js/lib/basket-client.js',
+        ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
@@ -1092,6 +1098,10 @@ CELERY_TASK_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
+    'olympia.devhub.tasks.create_initial_validation_results': {
+        'queue': 'devhub'},
+    'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
@@ -1102,9 +1112,9 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
-    'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
-    'olympia.yara.tasks.run_yara': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1171,8 +1181,6 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
-    'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
-
 
     # Stats
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
@@ -1449,7 +1457,7 @@ NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
 ASYNC_SIGNALS = True
 
 # Number of seconds before celery tasks will abort addon validation:
-VALIDATOR_TIMEOUT = 110
+VALIDATOR_TIMEOUT = 360
 
 # Max number of warnings/errors to show from validator. Set to None for no
 # limit.
@@ -1474,14 +1482,6 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 
 # How long to delay tasks relying on file system to cope with NFS lag.
 NFS_LAG_DELAY = 3
-
-# An approved list of domains that the authentication script will redirect to
-# upon successfully logging in or out.
-VALID_LOGIN_REDIRECTS = {
-    'builder': 'https://builder.addons.mozilla.org',
-    'builderstage': 'https://builder-addons.allizom.org',
-    'buildertrunk': 'https://builder-addons-dev.allizom.org',
-}
 
 # Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
@@ -1670,6 +1670,7 @@ JWT_AUTH = {
 }
 
 DRF_API_GATES = {
+    'auth': (),
     'v3': (
         'ratings-rating-shim',
         'ratings-title-shim',
@@ -1682,6 +1683,7 @@ DRF_API_GATES = {
         'del-ratings-flags',
         'activity-user-shim',
         'autocomplete-sort-param',
+        'is-source-public-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1781,6 +1783,9 @@ SHELL_PLUS_POST_IMPORTS = (
     ('olympia', 'amo'),
 )
 
+FXA_CONTENT_HOST = 'https://accounts.firefox.com'
+FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
+FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 
@@ -1842,13 +1847,15 @@ BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
-
-AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
-AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
-AKISMET_API_TIMEOUT = 5
-AKISMET_REAL_SUBMIT = False
+MOZILLA_NEWLETTER_URL = env(
+    'MOZILLA_NEWSLETTER_URL',
+    default='https://www.mozilla.org/en-US/newsletter/')
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
+
+EXTENSION_WORKSHOP_URL = env(
+    'EXTENSION_WORKSHOP_URL',
+    default='https://extensionworkshop-dev.allizom.org')
 
 # Sectools
 SCANNER_TIMEOUT = 60  # seconds

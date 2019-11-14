@@ -13,20 +13,20 @@ from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import waffle
 
+from csp.decorators import csp_update
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.utils import redirect_for_login, _is_safe_url
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
@@ -43,11 +43,9 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
-    fetch_existing_translations_from_addon, get_addon_akismet_reports,
     UploadRestrictionChecker, wizard_unsupported_properties)
-from olympia.files.models import File, FileUpload, FileValidation
+from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
-from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
@@ -108,8 +106,10 @@ def addon_listing(request, theme=False):
     return filter_.qs, filter_
 
 
+@csp_update(CONNECT_SRC=settings.MOZILLA_NEWLETTER_URL,
+            FORM_ACTION=settings.MOZILLA_NEWLETTER_URL)
 def index(request):
-    ctx = {'blog_posts': _get_posts()}
+    ctx = {}
     if request.user.is_authenticated:
         user_addons = Addon.objects.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
@@ -595,33 +595,12 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
         automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
-    from olympia.lib.akismet.tasks import akismet_comment_check   # circ import
-
-    if (channel == amo.RELEASE_CHANNEL_LISTED):
-        existing_data = (
-            fetch_existing_translations_from_addon(
-                upload.addon, ('name', 'summary', 'description'))
-            if addon and addon.has_listed_versions() else ())
-        akismet_reports = get_addon_akismet_reports(
-            user=user,
-            user_agent=request.META.get('HTTP_USER_AGENT'),
-            referrer=request.META.get('HTTP_REFERER'),
-            upload=upload,
-            existing_data=existing_data)
-    else:
-        akismet_reports = []
-    if akismet_reports:
-        pretask = akismet_comment_check.si(
-            [report.id for _, report in akismet_reports])
-    else:
-        pretask = None
     if submit:
         tasks.validate_and_submit(
-            addon, upload, channel=channel, pretask=pretask)
+            addon, upload, channel=channel)
     else:
         tasks.validate(
-            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-            pretask=pretask)
+            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
     return upload
 
@@ -694,17 +673,7 @@ def file_validation(request, addon_id, addon, file_id):
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, version__addon=addon, id=file_id)
-    try:
-        result = file.validation
-    except FileValidation.DoesNotExist:
-        if request.method != 'POST':
-            return http.HttpResponseNotAllowed(['POST'])
-
-        # This API is, unfortunately, synchronous, so wait for the
-        # task to complete and return the result directly.
-        pk = tasks.validate(file, synchronous=True).get()
-        result = FileValidation.objects.get(pk=pk)
-
+    result = file.validation
     response = JsonResponse({
         'validation': result.processed_validation,
         'error': None,
@@ -1125,14 +1094,14 @@ def _log_max_version_change(addon, version, appversion):
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(addon.versions.all(), pk=version_id)
-    if (addon.is_recommended and
-            version.recommendation_approved and
-            version == addon.current_version):
+    if not version.can_be_disabled_and_deleted():
         # Developers shouldn't be able to delete/disable the current version
         # of an approved add-on.
-        msg = ugettext('The latest approved version of a Recommended extension'
-                       ' cannot be deleted or disabled. Please contact AMO '
-                       'Admins if you need help with this.')
+        msg = ugettext(
+            'The latest approved version of this Recommended extension cannot '
+            'be deleted or disabled because the previous version was not '
+            'approved for recommendation. '
+            'Please contact AMO Admins if you need help with this.')
         messages.error(request, msg)
     elif 'disable_version' in request.POST:
         messages.success(
@@ -1173,30 +1142,6 @@ def check_validation_override(request, form, addon, version):
                 u'lack complete validation results. Please '
                 u'take due care when reviewing it.')})
         helper.actions['super']['method']()
-
-
-def auto_sign_file(file_):
-    """If the file should be automatically reviewed and signed, do it."""
-    addon = file_.version.addon
-
-    if file_.is_experiment:  # See bug 1220097.
-        ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_)
-    elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        # Sign automatically without manual review.
-        helper = ReviewHelper(request=None, addon=addon,
-                              version=file_.version)
-        # Provide the file to review/sign to the helper.
-        helper.set_data({'addon_files': [file_],
-                         'comments': 'automatic validation'})
-        helper.handler.process_public()
-        ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_)
-
-
-def auto_sign_version(version, **kwargs):
-    # Sign all the unapproved files submitted, one for each platform.
-    for file_ in version.files.exclude(status=amo.STATUS_APPROVED):
-        auto_sign_file(file_, **kwargs)
 
 
 @dev_required
@@ -1366,8 +1311,6 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
-        # auto-sign versions (the method checks eligibility)
-        auto_sign_version(version)
         add_dynamic_theme_tag(version)
         return redirect(next_view, *url_args)
     is_admin = acl.action_allowed(request,
@@ -1880,30 +1823,16 @@ def theme_background_image(request, addon_id, addon, channel):
             else {})
 
 
-def _clean_next_url(request):
-    gets = request.GET.copy()
-    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
-
-    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
-        log.info(u'Unsafe redirect to %s' % url)
-        url = settings.LOGIN_REDIRECT_URL
-
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
-
-    gets['to'] = url
-    request.GET = gets
-    return request
-
-
 def logout(request):
     user = request.user
     if not user.is_anonymous:
-        log.debug(u"User (%s) logged out" % user)
+        log.debug('User (%s) logged out' % user)
 
-    if 'to' in request.GET:
-        request = _clean_next_url(request)
+    if 'to' in request.GET and not _is_safe_url(request.GET['to'], request):
+        log.info('Unsafe redirect to %s' % request.GET['to'])
+        gets = request.GET.copy()
+        gets['to'] = settings.LOGIN_REDIRECT_URL
+        request.GET = gets
 
     next_url = request.GET.get('to')
     if not next_url:

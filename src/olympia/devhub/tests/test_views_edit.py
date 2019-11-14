@@ -6,8 +6,6 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
 
-from unittest import mock
-
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -23,7 +21,6 @@ from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.forms import DescribeForm
-from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.cache import memoize_key
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
@@ -321,118 +318,6 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         # Clear relevant featured caches
         cache.delete(memoize_key('addons:featured', amo.FIREFOX, None))
-
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
-        data = self.get_dict()
-
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_ham(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        data = self.get_dict()
-
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 3
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.all()[1]
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-        description_report = AkismetReport.objects.all()[2]
-        assert description_report.comment_type == 'product-description'
-        assert description_report.comment == data['description']
-
-        assert comment_check_mock.call_count == 3
-        assert b'spam' not in response.content
-
-        # And metadata was updated
-        addon = self.get_addon()
-        assert str(addon.name) == data['name']
-        assert str(addon.summary) == data['summary']
-        assert str(addon.description) == data['description']
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam_logging_only(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        data = self.get_dict()
-
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 3
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.all()[1]
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-        description_report = AkismetReport.objects.all()[2]
-        assert description_report.comment_type == 'product-description'
-        assert description_report.comment == data['description']
-
-        assert comment_check_mock.call_count == 3
-        # But because we're not taking any action from the spam, don't report.
-        assert b'spam' not in response.content
-
-        # And metadata was updated
-        addon = self.get_addon()
-        assert str(addon.name) == data['name']
-        assert str(addon.summary) == data['summary']
-        assert str(addon.description) == data['description']
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam_action_taken(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        old_name = self.addon.name
-        old_summary = self.addon.summary
-        old_description = self.addon.description
-        data = self.get_dict()
-
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 3
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.all()[1]
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-        description_report = AkismetReport.objects.all()[2]
-        assert description_report.comment_type == 'product-description'
-        assert description_report.comment == data['description']
-
-        assert comment_check_mock.call_count == 3
-        self.assertFormError(
-            response, 'form', 'name',
-            'The text entered has been flagged as spam.')
-        self.assertFormError(
-            response, 'form', 'description',
-            'The text entered has been flagged as spam.')
-        self.assertFormError(
-            response, 'form', 'summary',
-            'The text entered has been flagged as spam.')
-
-        # And metadata was NOT updated
-        addon = self.get_addon()
-        assert str(addon.name) == str(old_name)
-        assert str(addon.summary) == str(old_summary)
-        assert str(addon.description) == str(old_description)
 
     def test_edit_xss(self):
         """
@@ -1565,7 +1450,6 @@ class TestEditTechnical(BaseTestEdit):
         # Turn everything on
         data = {
             'developer_comments': 'Test comment!',
-            'view_source': 'on',
             'whiteboard-public': 'Whiteboard info.'
         }
 
@@ -1578,28 +1462,6 @@ class TestEditTechnical(BaseTestEdit):
                 assert str(getattr(addon, k)) == str(data[k])
             elif k == 'whiteboard-public':
                 assert str(addon.whiteboard.public) == str(data[k])
-            else:
-                assert getattr(addon, k) == (data[k] == 'on')
-
-        # Andddd offf
-        data = {'developer_comments': 'Test comment!'}
-        response = self.client.post(self.technical_edit_url, data)
-        addon = self.get_addon()
-
-        assert not addon.view_source
-
-    def test_technical_devcomment_notrequired(self):
-        data = {
-            'developer_comments': '',
-            'view_source': 'on'
-        }
-        response = self.client.post(self.technical_edit_url, data)
-        assert response.context['form'].errors == {}
-
-        addon = self.get_addon()
-        for k in data:
-            if k == 'developer_comments':
-                assert str(getattr(addon, k)) == str(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 

@@ -25,6 +25,7 @@ from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
+from olympia.versions.models import ApplicationsVersions
 
 
 class TestNewUploadForm(TestCase):
@@ -36,6 +37,31 @@ class TestNewUploadForm(TestCase):
         request.user = user_factory()
         form = forms.NewUploadForm(data, request=request)
         assert form.fields['compatible_apps'].initial == [amo.FIREFOX.id]
+
+    def test_previous_compatible_apps_initially_selected(self):
+        addon = addon_factory()
+
+        appversion = AppVersion.objects.create(
+            application=amo.ANDROID.id, version='1.0')
+        ApplicationsVersions.objects.create(
+            version=addon.current_version, application=amo.ANDROID.id,
+            min=appversion, max=appversion)
+
+        upload = FileUpload.objects.create(valid=False)
+        data = {'upload': upload.uuid}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+
+        # Without an add-on, we only pre-select the default which is Firefox
+        form = forms.NewUploadForm(data, request=request)
+        assert form.fields['compatible_apps'].initial == [
+            amo.FIREFOX.id]
+
+        # with an add-on provided we select the platforms based on the current
+        # version
+        form = forms.NewUploadForm(data, request=request, addon=addon)
+        assert form.fields['compatible_apps'].initial == [
+            amo.FIREFOX.id, amo.ANDROID.id]
 
     def test_compat_apps_widget_custom_label_class_rendered(self):
         """We are setting a custom class at the label

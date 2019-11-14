@@ -1,11 +1,3 @@
-.DevHub-MyAddons {
-  min-width: @grid-max;
-}
-
-.DevHub-MyAddons-copy {
-  max-width: 32em;
-}
-
 .DevHub-MyAddons-item {
   display: flex;
   align-items: center;
@@ -16,7 +8,7 @@
 .DevHub-MyAddons-item-modified {
   margin-left: auto;
   align-self: flex-end;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: right;
   max-width: 280px;
@@ -26,6 +18,10 @@
     margin-right: auto;
     margin-left: 0;
   }
+
+  @media @medium {
+    display: flex;
+  }
 }
 
 .DevHub-MyAddons-item-details {
@@ -33,7 +29,7 @@
   display: flex;
   flex-flow: column;
   overflow-wrap: break-word;
-  min-width: 0px;
+  min-width: 0;
 
   a {
     .link(@color-button-default);
@@ -126,83 +122,23 @@
   justify-content: flex-start;
 }
 
-.DevHub-MyAddons-item-buttons-all-submissions {
-  .link(@color-button-default);
+.DevHub-MyAddons-item-buttons-all {
+  .link(@color-text);
 
   font-size: 15px;
 }
 
 .DevHub-MyAddons-item-buttons-submit {
+  display: none;
+
   margin-left: auto;
 
   html[dir=rtl] & {
     margin-right: auto;
     margin-left: 0;
   }
-}
 
-.DevHub-MyAddons-whatsnew-container {
-  border: 8px solid @color-callout-border;
-  background: #fff;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  padding: 30px;
-  margin: 30px 0 60px;
-  position: relative;
-  background-image: url("../../../img/developers/new-landing/whatsnew-background.png");
-  background-repeat: no-repeat;
-  background-position: right 10px bottom 10px;
-
-  html[dir=rtl] & {
-    background-position: left 35px bottom 10px;
-  }
-
-  &::before {
-    content: '';
-    background-image: url("../../../img/developers/new-landing/whatsnew-rocket.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    width: 100%;
-    height: 155px;
-    left: -8px;
-    bottom: -8px;
-    pointer-events: none;
-
-    html[dir=rtl] & {
-      transform: scaleX(-1);
-      left: auto;
-      right: -8px;
-    }
-
-    @media @retina {
-      background-image: url("../../../img/developers/new-landing/whatsnew-rocket-2x.png");
-    }
-  }
-
-  div {
-    flex: 0 0 30%;
-  }
-
-  div:first-child {
-    text-align: right;
-    min-height: 170px;
-
-    html[dir=rtl] & {
-      text-align: left;
-    }
-  }
-
-  p,
-  .Button {
-    font-size: 14px;
-    margin-top: 0;
-  }
-
-  h2 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 0;
+  @media @large {
+    display: inline;
   }
 }

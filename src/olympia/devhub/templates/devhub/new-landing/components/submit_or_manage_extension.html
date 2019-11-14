@@ -1,0 +1,18 @@
+<section class="DevHub-submit-addon content scheme-default">
+  <div class="DevHub-content-container submit-or-manage">
+    <div class="DevHub-content-copy">
+      <h2 class="DevHub-content-header DevHub-content-header--submit-or-manage">{{ _('Ready to submit or manage your extension?') }}</h2>
+      <div class="Color-Rule"></div>
+      <p>
+        {% trans %}
+        Sign in to the Developer Hub to submit or manage extensions and themes.
+        {% endtrans %}
+      </p>
+      <a href="{{ register_link() }}">{{ _('Register for a developer account or log in to the Developer Hub') }}</a>
+    </div>
+    <div class="DevHub-content-image-wrapper DevHub-content-image-wrapper--submit-or-manage">
+      <img class="DevHub-content-image DevHub-content-image--submit-or-manage"
+           src="{{ STATIC_URL }}img/developers/new-landing/mozlondon_photo.jpeg" alt="developers working on add-ons">
+    </div>
+  </div>
+</section>

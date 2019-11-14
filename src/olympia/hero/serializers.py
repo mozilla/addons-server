@@ -5,6 +5,7 @@ from rest_framework import serializers
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
 from .models import PrimaryHero, SecondaryHero, SecondaryHeroModule
@@ -37,8 +38,12 @@ class CTAMixin():
 
     def get_cta(self, obj):
         if obj.cta_url and obj.cta_text:
+            url = absolutify(obj.cta_url)
+            should_wrap = (
+                'request' in self.context and
+                'wrap_outgoing_links' in self.context['request'].GET)
             return {
-                'url': absolutify(obj.cta_url),
+                'url': get_outgoing_url(url) if should_wrap else url,
                 'text': ugettext(obj.cta_text),
             }
         else:

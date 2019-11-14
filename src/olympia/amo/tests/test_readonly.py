@@ -20,7 +20,10 @@ def read_only_mode(client, settings, db):
 
     from olympia.lib.settings_base import read_only_mode
 
-    env = {key: getattr(settings, key) for key in settings._explicit_settings}
+    env = {
+        'REPLICA_DATABASES': settings.REPLICA_DATABASES,
+        'DATABASES': settings.DATABASES,
+    }
 
     read_only_mode(env)
 
@@ -41,7 +44,7 @@ def test_db_error(read_only_mode):
 
 
 def test_bail_on_post(read_only_mode, client):
-    response = client.post('/en-US/firefox/')
+    response = client.post('/en-US/developers/')
     assert response.status_code == 503
     title = pq(response.content)('title').text()
     assert title.startswith('Maintenance in progress'), title

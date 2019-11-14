@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
-"PO-Revision-Date: 2019-08-07 10:53+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-10 09:08+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -19,13 +19,13 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "вид"
 
 msgid "Users"
 msgstr "Потребители"
 
 msgid "Addons"
-msgstr ""
+msgstr "Добавки"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
@@ -461,9 +461,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr "Въведеният текст е отбелязан като спам."
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Това име вече се използва от друг ваш списък."
@@ -599,9 +596,8 @@ msgstr "{addon} добавена в {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} премахната от {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "Написан {review} за {addon}."
+msgstr ""
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -646,9 +642,8 @@ msgstr "{user} одобри {review} за {addon}."
 msgid "Review {rating} for {addon} deleted."
 msgstr "Отзива {review} към {addon} е изтрит."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} изтри {review} за {addon}."
+msgstr "{user} е изтрил {rating} за {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -660,7 +655,7 @@ msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
 msgid "Password changed."
-msgstr "Паролата смененеа."
+msgstr "Паролата е променена."
 
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} одобрена, но изчаква да бъде направена публична."
@@ -817,6 +812,10 @@ msgstr "Заявена рецензия"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} премина предварителна проверка."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Снимката на потребителят {user} е изтрита."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -885,7 +884,7 @@ msgid "Plugin"
 msgstr "Приставка"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "Остарял LWT"
 
 msgid "Theme (Static)"
 msgstr "Тема (статична)"
@@ -915,7 +914,7 @@ msgid "Plugins"
 msgstr "Приставки"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Остарели LWT"
 
 msgid "Themes (Static)"
 msgstr "Теми (статични)"
@@ -1258,9 +1257,8 @@ msgstr "Поверителност"
 msgid "Development Practices"
 msgstr "Новини за разработчици"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Репутация"
+msgstr "Без репутация"
 
 msgid "Good (1)"
 msgstr "Добър (1)"
@@ -1427,6 +1425,13 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr ""
 
+#, fuzzy
+msgid "no action"
+msgstr "Още действия"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Ядро"
 
@@ -1446,9 +1451,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Разрешаваме и насърчаваме надстройката, но този процес е еднопосочен. След като веднъж потребителите ви имат инсталирано изданието като WebExtension, те няма да могат да инсталират старата добавка."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Това име вече се използва. Моля, изберете друго."
@@ -2227,18 +2229,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr "Виж изходния код?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Изходният код на добавката е публично достъпен."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Не, изходният код на тази добавка не е видим публично."
-
 msgid "Public Stats?"
 msgstr "Публични статистики?"
 
@@ -2970,41 +2960,23 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr ""
 
-msgid "Latest News"
-msgstr "Последни новини"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Прочетете повече в блога"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Разширения"
 
 msgid "Resources"
 msgstr "Ресурси"
 
-msgid "Porting"
-msgstr "Мигриране"
-
-msgid "Community"
-msgstr "Общност"
-
-msgid "About"
-msgstr "Относно"
-
-msgid "Forum"
-msgstr "Форум"
-
-msgid "Blog"
-msgstr "Блог"
-
-msgid "Contact Us"
-msgstr "Контакти"
-
-msgid "Support"
-msgstr "Поддръжка"
-
-msgid "Report Bug"
-msgstr "Доклад за дефект"
-
-msgid "Site Status"
-msgstr "Състояние на страницата"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3012,20 +2984,11 @@ msgstr ""
 msgid "Promote"
 msgstr "Насърчаване"
 
-msgid "Get Your Add-on Featured"
-msgstr "Направете добавката си препоръчана"
-
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
-msgid "Legal"
-msgstr "Правни въпроси"
-
-msgid "Report Trademark Abuse"
-msgstr "Доклад на злоупотреба със запазена марка"
-
-msgid "Legal Notices"
-msgstr "Правни бележки"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Даряване"
@@ -3057,37 +3020,13 @@ msgstr ""
 msgid "See how"
 msgstr "Вижте как"
 
-msgid "Manage Your Add-on"
+msgid "Get involved"
 msgstr ""
 
-msgid "Sign In to Edit and Update Your Add-on"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "Write one code base for many browsers"
-msgstr ""
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr "Добре дошли"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-
-msgid "Learn More"
-msgstr "Научете повече"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
+msgid "Learn more about the developer community"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3114,6 +3053,12 @@ msgstr ""
 msgid "Docs"
 msgstr "Документация"
 
+msgid "Support"
+msgstr "Поддръжка"
+
+msgid "Blog"
+msgstr "Блог"
+
 msgid "Sign Out"
 msgstr "Изход"
 
@@ -3124,61 +3069,23 @@ msgid "User Photo"
 msgstr "Снимка на потребителя"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
 msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Персонализирайте Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+#, fuzzy
+msgid "Learn how to make an extension"
+msgstr "Преглед на всички разширения"
+
+msgid "Ready to submit or manage your extension?"
 msgstr ""
 
-msgid "Learn How to Make an Add-on"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
 
-msgid "Port a Chrome Extension"
-msgstr ""
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
-
-msgid "Learn How"
-msgstr "Научете как"
-
-msgid "Publish Your Add-on"
-msgstr ""
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
-
-msgid "Sign In"
-msgstr "Вписване"
-
-msgid "Web-Ext"
-msgstr ""
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr ""
-
-msgid "Automated code tests for your add-on."
-msgstr ""
-
-# 75%
-# 80%
-msgid "Compatibility Test"
-msgstr "Проверка за съвместимост"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
-
-msgid "Live Testing"
-msgstr "Изпробване наживо"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -3241,12 +3148,6 @@ msgid "Review History"
 msgstr "История на рецензиите"
 
 msgid "Close Review History"
-msgstr ""
-
-msgid "Not validated."
-msgstr ""
-
-msgid "Validate now."
 msgstr ""
 
 msgid "Request Review"
@@ -4774,6 +4675,41 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Преглед на всички разширения"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Научете повече"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Разширения"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4829,7 +4765,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4837,6 +4772,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
@@ -4971,50 +4907,6 @@ msgstr "Няма файлове в качения файл."
 
 msgid "Fetching file."
 msgstr "Зареждане на файл."
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "Състояние на страницата"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Тип на доклада"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Доклад за дефект"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Без оценка"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Изданието е изпратена"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Мобилна версия"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Качване на тема"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Качване на тема"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Относно Добавки от Mozilla"
@@ -5246,7 +5138,7 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr ""
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Не може да оставяте отзив за собствената си добавка."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
@@ -6050,6 +5942,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Поискана е повече информация"
 msgstr[1] "Поискана е повече информация"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Невалиден обхват на версиите."
@@ -6308,12 +6206,21 @@ msgstr "Назад към добавките"
 msgid "Footer logo"
 msgstr ""
 
+msgid "Legal Notices"
+msgstr "Правни бележки"
+
+msgid "Report Trademark Abuse"
+msgstr "Доклад на злоупотреба със запазена марка"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 #, fuzzy
 msgid "View the new site"
 msgstr "Мобилна версия"
+
+msgid "Site Status"
+msgstr "Състояние на страницата"
 
 msgid "Report a bug"
 msgstr "Доклад за дефект"
@@ -6327,6 +6234,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "запознайте се с <b>добавките</b>"
+
+msgid "About"
+msgstr "Относно"
+
+msgid "Forum"
+msgstr "Форум"
 
 msgid "Download Firefox"
 msgstr "Изтегляне на Firefox"
@@ -6426,6 +6339,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Управление на ППИ"
 
 msgid "Profile Photo"
 msgstr "Профилна снимка"

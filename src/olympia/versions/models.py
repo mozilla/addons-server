@@ -35,10 +35,9 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
-from olympia.scanners.models import ScannersResult
-from olympia.yara.models import YaraResult
+from olympia.scanners.models import ScannerResult
 
-from .compare import version_dict, version_int
+from .compare import version_int
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -86,12 +85,10 @@ class VersionManager(ManagerBase):
     def auto_approvable(self):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
-        qs = self.filter(
+        qs = self.exclude(addon__status=amo.STATUS_DISABLED).filter(
             addon__type__in=(
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
                 amo.ADDON_SEARCH),
-            addon__disabled_by_user=False,
-            addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW).filter(
             Q(files__is_webextension=True) | Q(addon__type=amo.ADDON_SEARCH))
         return qs
@@ -101,8 +98,8 @@ class UnfilteredVersionManagerForRelations(VersionManager):
     """Like VersionManager, but defaults to include deleted objects.
 
     Designed to be used in reverse relations of Versions like this:
-    <Addon>.versions(manager=unfiltered_for_relations).all(), for when you want
-    to use the related manager but need to include deleted versions.
+    <Addon>.versions(manager='unfiltered_for_relations').all(), for when you
+    want to use the related manager but need to include deleted versions.
 
     unfiltered_for_relations = UnfilteredVersionManagerForRelations() is
     defined in Version for this to work.
@@ -143,7 +140,6 @@ class Version(OnChangeMixin, ModelBase):
     approval_notes = models.TextField(
         db_column='approvalnotes', default='', null=True, blank=True)
     version = models.CharField(max_length=255, default='0.1')
-    version_int = models.BigIntegerField(null=True, editable=False)
 
     nomination = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
@@ -161,6 +157,10 @@ class Version(OnChangeMixin, ModelBase):
 
     recommendation_approved = models.BooleanField(null=False, default=False)
 
+    # FIXME: Convert needs_human_review into a BooleanField(default=False) in
+    # future push following the one where the field was introduced.
+    needs_human_review = models.NullBooleanField(default=None)
+
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
@@ -177,32 +177,12 @@ class Version(OnChangeMixin, ModelBase):
         base_manager_name = 'unfiltered'
         ordering = ['-created', '-modified']
         indexes = [
-            models.Index(fields=('version_int',), name='version_int_idx'),
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('license',), name='license_id'),
         ]
 
-    def __init__(self, *args, **kwargs):
-        super(Version, self).__init__(*args, **kwargs)
-        self.__dict__.update(version_dict(self.version or ''))
-
     def __str__(self):
         return jinja2.escape(self.version)
-
-    def save(self, *args, **kw):
-        if not self.version_int and self.version:
-            v_int = version_int(self.version)
-            # Magic number warning, this is the maximum size
-            # of a big int in MySQL to prevent version_int overflow, for
-            # people who have rather crazy version numbers.
-            # http://dev.mysql.com/doc/refman/5.5/en/numeric-types.html
-            if v_int < 9223372036854775807:
-                self.version_int = v_int
-            else:
-                log.error('No version_int written for version %s, %s' %
-                          (self.pk, self.version))
-        super(Version, self).save(*args, **kw)
-        return self
 
     @classmethod
     def from_upload(cls, upload, addon, selected_apps, channel,
@@ -291,21 +271,14 @@ class Version(OnChangeMixin, ModelBase):
 
         version_uploaded.send(instance=version, sender=Version)
 
-        try:
-            yara_result = YaraResult.objects.get(upload_id=upload.id)
-            yara_result.version = version
-            yara_result.save()
-        except YaraResult.DoesNotExist:
-            log.exception('Could not find a YaraResult for FileUpload %s',
-                          upload.id)
-
-        try:
-            ScannersResult.objects.filter(upload_id=upload.id).update(
-                version=version
-            )
-        except ScannersResult.DoesNotExist:
-            log.exception('Could not find ScannersResults for FileUpload %s',
-                          upload.id)
+        if version.is_webextension:
+            if (
+                    waffle.switch_is_active('enable-yara') or
+                    waffle.switch_is_active('enable-customs') or
+                    waffle.switch_is_active('enable-wat')
+            ):
+                ScannerResult.objects.filter(upload_id=upload.id).update(
+                    version=version)
 
         # Extract this version into git repository
         transaction.on_commit(
@@ -597,8 +570,8 @@ class Version(OnChangeMixin, ModelBase):
 
     def disable_old_files(self):
         """
-        Disable files from versions older than the current one and awaiting
-        review. Used when uploading a new version.
+        Disable files from versions older than the current one in the same
+        channel and awaiting review. Used when uploading a new version.
 
         Does nothing if the current instance is unlisted.
         """
@@ -606,6 +579,7 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
+                                     version__channel=self.channel,
                                      status=amo.STATUS_AWAITING_REVIEW)
             # Use File.update so signals are triggered.
             for f in qs:
@@ -661,6 +635,17 @@ class Version(OnChangeMixin, ModelBase):
             name: force_text(b64encode(background))
             for name, background in utils.get_background_images(
                 file_obj, theme_data=None, header_only=header_only).items()}
+
+    def can_be_disabled_and_deleted(self):
+        addon = self.addon
+        if self.recommendation_approved and self == addon.current_version:
+            previous_version = addon.versions.valid().filter(
+                channel=self.channel).exclude(id=self.id).first()
+            previous_approved = (
+                previous_version and previous_version.recommendation_approved)
+            if addon.is_recommended and not previous_approved:
+                return False
+        return True
 
 
 def generate_static_theme_preview(theme_data, version_pk):

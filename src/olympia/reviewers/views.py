@@ -67,7 +67,8 @@ from olympia.reviewers.serializers import (
     FileEntriesSerializer, DraftCommentSerializer, CannedResponseSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
-    ReviewHelper, ViewUnlistedAllListTable, view_table_factory)
+    NeedsHumanReviewTable, ReviewHelper, ViewUnlistedAllListTable,
+    view_table_factory)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -173,6 +174,12 @@ def dashboard(request):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         ),
         ))
+        sections[ugettext('Flagged By Scanners')] = [(
+            ugettext('Flagged By Scanners ({0})').format(
+                Addon.objects.get_needs_human_review_queue(
+                    admin_reviewer=admin_reviewer).count()),
+            reverse('reviewers.queue_needs_human_review'))
+        ]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
@@ -525,6 +532,9 @@ def fetch_queue_counts(admin_reviewer):
         'content_review': (
             Addon.objects.get_content_review_queue(
                 admin_reviewer=admin_reviewer).count),
+        'needs_human_review': (
+            Addon.objects.get_needs_human_review_queue(
+                admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
     return {queue: count() for (queue, count) in counts.items()}
@@ -626,6 +636,15 @@ def queue_expired_info_requests(request):
             disabled_by_user=False)
         .order_by('addonreviewerflags__pending_info_request'))
     return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
+                  qs=qs, SearchForm=None)
+
+
+@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+def queue_needs_human_review(request):
+    admin_reviewer = is_admin_reviewer(request)
+    qs = Addon.objects.get_needs_human_review_queue(
+        admin_reviewer=admin_reviewer)
+    return _queue(request, NeedsHumanReviewTable, 'needs_human_review',
                   qs=qs, SearchForm=None)
 
 
@@ -733,6 +752,21 @@ def review(request, addon, channel=None):
             request, ugettext('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.dashboard'))
 
+    # Queryset to be paginated for versions. We use the default ordering to get
+    # most recently created first (Note that the template displays each page
+    # in reverse order, older first).
+    versions_qs = (
+        # We want to load all Versions, even deleted ones, while using the
+        # addon.versions related manager to get `addon` property pre-cached on
+        # each version.
+        addon.versions(manager='unfiltered_for_relations')
+             .filter(channel=channel)
+             .select_related('autoapprovalsummary')
+        # Add activity transformer to prefetch all related activity logs on
+        # top of the regular transformers.
+             .transform(Version.transformer_activity)
+    )
+
     form_initial = {
         # Get the current info request state to set as the default.
         'info_request': addon.pending_info_request,
@@ -833,21 +867,6 @@ def review(request, addon, channel=None):
     # the comments form).
     actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
-    # Queryset to be paginated for versions. We use the default ordering to get
-    # most recently created first (Note that the template displays each page
-    # in reverse order, older first).
-    versions_qs = (
-        # We want to load all Versions, even deleted ones, while using the
-        # addon.versions related manager to get `addon` property pre-cached on
-        # each version.
-        addon.versions(manager='unfiltered_for_relations')
-             .filter(channel=channel)
-             .select_related('autoapprovalsummary')
-        # Add activity transformer to prefetch all related activity logs on
-        # top of the regular transformers.
-             .transform(Version.transformer_activity)
-    )
-
     deleted_addon_ids = (
         ReusedGUID.objects.filter(guid=addon.guid).values_list(
             'addon_id', flat=True) if addon.guid else [])
@@ -857,10 +876,12 @@ def review(request, addon, channel=None):
     count = pager.paginator.count
 
     auto_approval_info = {}
+    version_ids = []
     # Now that we've paginated the versions queryset, iterate on them to
     # generate auto approvals info. Note that the variable should not clash
     # the already existing 'version'.
     for a_version in pager.object_list:
+        version_ids.append(a_version.pk)
         if not a_version.is_ready_for_auto_approval:
             continue
         try:
@@ -871,6 +892,12 @@ def review(request, addon, channel=None):
         # Call calculate_verdict() again, it will use the data already stored.
         verdict_info = summary.calculate_verdict(pretty=True)
         auto_approval_info[a_version.pk] = verdict_info
+
+    # We want to notify the reviewer if there are versions needing extra
+    # attention that are not present in the versions history (which is
+    # paginated).
+    versions_flagged_by_scanners = versions_qs.filter(
+        needs_human_review=True).exclude(pk__in=version_ids).count()
 
     flags = get_flags(addon, version) if version else []
 
@@ -895,12 +922,13 @@ def review(request, addon, channel=None):
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         content_review_only=content_review_only, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
-        form=form, is_admin=is_admin, num_pages=num_pages, pager=pager,
-        reports=reports, show_diff=show_diff,
+        form=form, is_admin=is_admin, now=datetime.now(), num_pages=num_pages,
+        pager=pager, reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes_log=user_changes_log, user_ratings=user_ratings,
+        versions_flagged_by_scanners=versions_flagged_by_scanners,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)

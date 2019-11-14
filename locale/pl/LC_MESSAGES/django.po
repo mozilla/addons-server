@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -483,9 +483,6 @@ msgstr ""
 "Jeśli obsługiwana aplikacja nie wymaga pliku manifest, nadal należy dołączyć taki plik z wymaganymi właściwościami, które określono %(amo_manifests_mdn_link_open)stutaj"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ten niestandardowy adres URL już używany przez inną Twoją kolekcję."
 
@@ -819,6 +816,10 @@ msgstr "Poproszono o sprawdzenie motywu przez administratora"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "Dodatek {addon} został zmigrowany z lekkiego motywu."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Zdjęcie użytkownika {user} zostało usunięte."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1425,6 +1426,13 @@ msgstr "Obraz niskiej jakości, rozciągnięty lub pusty"
 msgid "Header image alignment problem"
 msgstr "Problem z wyrównaniem obrazu nagłówka"
 
+#, fuzzy
+msgid "no action"
+msgstr "Więcej działań"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Podstawowy"
 
@@ -1446,9 +1454,6 @@ msgstr ""
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Zezwalamy na aktualizację i zachęcamy do niej, ale tego procesu nie można odwrócić. Kiedy użytkownicy zainstalują rozszerzenie WebExtension, nie będą mogli zainstalować przestarzałego dodatku."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ten ciąg słów jest już używany. Wybierz inny."
@@ -2237,18 +2242,6 @@ msgstr ""
 "Wszelkie informacje, których użytkownik może chcieć się dowiedzieć, a które nie są odpowiednie dla podsumowania i opisu dodatku. Typowe zastosowania to lista głównych znanych błędów, informacje, "
 "jak zgłaszać błędy, przewidywana data premiery nowej wersji itp. Dotyczy tylko wyświetlanych dodatków."
 
-msgid "View Source?"
-msgstr "Wyświetlać kod źródłowy?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Czy kod źródłowy dodatku może być wyświetlany w przeglądarce online. Dotyczy tylko wyświetlanych dodatków."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Kod źródłowy tego dodatku jest upubliczniony."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Nie, kod źródłowy tego dodatku nie jest upubliczniony."
-
 msgid "Public Stats?"
 msgstr "Upublicznić statystyki?"
 
@@ -2982,42 +2975,23 @@ msgstr "Dołącz instrukcje reprodukcji końcowego pliku dodatku w postaci pliku
 msgid "Read more about the source code review policy."
 msgstr "Dowiedz się więcej o zasadach sprawdzania kodu źródłowego."
 
-msgid "Latest News"
-msgstr "Najnowsze wiadomości"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Przeczytaj więcej na naszym blogu"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Rozszerzenia"
 
 msgid "Resources"
 msgstr "Zasoby"
 
-msgid "Porting"
-msgstr "Portowanie"
-
-msgid "Community"
-msgstr "Społeczność"
-
-msgid "About"
-msgstr "Wszystko o…"
-
-msgid "Forum"
-msgstr "Forum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Kontakt z nami"
-
-msgid "Support"
-msgstr "Pomoc"
-
-msgid "Report Bug"
-msgstr "Zgłoś błąd"
-
-msgid "Site Status"
-msgstr "Status witryny"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: budowanie i testowanie rozszerzeń"
@@ -3025,20 +2999,11 @@ msgstr "Web-Ext: budowanie i testowanie rozszerzeń"
 msgid "Promote"
 msgstr "Promuj"
 
-msgid "Get Your Add-on Featured"
-msgstr "Wyróżnij swój dodatek"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Przycisk „Pobierz dodatek”"
 
-msgid "Legal"
-msgstr "Informacje prawne"
-
-msgid "Report Trademark Abuse"
-msgstr "Zgłoś nadużycie znaku towarowego"
-
-msgid "Legal Notices"
-msgstr "Informacje prawne"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Przekaż dotację"
@@ -3070,40 +3035,15 @@ msgstr "Nie potrzebujesz umiejętności kodowania, aby sprawić, by Firefox pozo
 msgid "See how"
 msgstr "Zobacz jak"
 
-msgid "Manage Your Add-on"
-msgstr "Zarządzaj swoim dodatkiem"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Zaloguj się, aby edytować i aktualizować swój dodatek"
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr "Witaj ponownie"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-"Chcesz, by Twoje rozszerzenie zostało wyróżnione na stronie %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Nasze zasady dotyczące polecanych rozszerzeń zawierają wszystko, co musisz "
-"wiedzieć."
-
-msgid "Learn More"
-msgstr "Dowiedz się więcej"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Dowiedz się więcej o zasadach sprawdzania kodu źródłowego."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Wyświetlany w tej witrynie po pomyślnym sprawdzeniu kodu. Automatyczne aktualizacje są obsługiwane przez tę witrynę."
@@ -3128,6 +3068,13 @@ msgstr "Strefa autora dodatków"
 msgid "Docs"
 msgstr "Dokumentacja"
 
+msgid "Support"
+msgstr "Pomoc"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Wyloguj się"
 
@@ -3138,64 +3085,23 @@ msgid "User Photo"
 msgstr "Zdjęcie użytkownika"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Zarejestruj się</a> lub <a href=\"%(login)s\">zaloguj się</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Dostosuj Firefoksa"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Dodatki pomagają milionom użytkowników Firefoksa rozszerzać funkcje przeglądania. Jeśli znasz języki %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s i "
-"%(css_link_open)sCSS%(link_close)s, masz wszystkie niezbędne umiejętności, aby utworzyć doskonały dodatek."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Dowiedz się, jak utworzyć dodatek"
 
-msgid "Port a Chrome Extension"
-msgstr "Portuj rozszerzenie Chrome"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox obsługuje interfejsy API WebExtension, które w większości przypadków są kompatybilne z interfejsami API rozszerzeń używanymi przez przeglądarki Chrome, Opera i Edge. Oznacza to, że Twoje "
-"rozszerzenia będą działać w Firefoksie po dokonaniu zaledwie kilku zmian."
 
-msgid "Learn How"
-msgstr "Dowiedz się, jak to zrobić"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Opublikuj swój dodatek"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Masz gotowy dodatek? Prześlij swoje rozszerzenie lub motyw w celu umieszczenia na stronie addons.mozilla.org lub zaloguj się i zajmij samodzielnie dystrybucją."
-
-msgid "Sign In"
-msgstr "Zaloguj się"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Narzędzie wiersza poleceń do budowania, uruchamiania i testowania rozszerzeń."
-
-msgid "Automated code tests for your add-on."
-msgstr "Automatyczne testy kodu dla Twojego dodatku."
-
-msgid "Compatibility Test"
-msgstr "Test kompatybilności"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Sprawdź, czy Twoje rozszerzenie jest zgodne z Firefoksem."
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "Strona dodatku"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -3262,12 +3168,6 @@ msgstr "Historia opinii"
 
 msgid "Close Review History"
 msgstr "Zamknij historię sprawdzania"
-
-msgid "Not validated."
-msgstr "Nie sprawdzono"
-
-msgid "Validate now."
-msgstr "Sprawdź teraz"
 
 msgid "Request Review"
 msgstr "Poproś o sprawdzenie"
@@ -4879,6 +4779,41 @@ msgstr "Znajduj filmy {start_sub_heading}przy użyciu dodatku {addon_name}{end_s
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Przejrzyj wszystkie rozszerzenia"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Dowiedz się więcej"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Rozszerzenia"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Przeglądarka plików jest zablokowana, może trwać wyodrębnianie pliku %s. Spróbuj ponownie za około 5 minut."
@@ -4934,7 +4869,6 @@ msgstr "Nie można przetworzyć przesłanego pliku."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nieprawidłowa nazwa pliku w archiwum. Upewnij się, że wszystkie nazwy plików są zakodowane w formacie utf-8 lub latin1."
 
@@ -4942,6 +4876,7 @@ msgstr "Nieprawidłowa nazwa pliku w archiwum. Upewnij się, że wszystkie nazwy
 msgid "Invalid file name in archive: {0}"
 msgstr "Nieprawidłowa nazwa pliku w archiwum: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Plik przekracza limit rozmiaru w archiwum: {0}"
 
@@ -5077,50 +5012,6 @@ msgstr "Brak plików w przesyłanym pliku."
 
 msgid "Fetching file."
 msgstr "Pobieranie pliku."
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "Status witryny"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Typ zgłoszenia"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Zgłoś błąd"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Brak ocen"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Przesłana wersja"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Wyświetl nową witrynę"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Prześlij nowy plik"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Prześlij nowy plik"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozilla Add-ons"
@@ -6142,6 +6033,12 @@ msgstr[0] "Wygasła prośba o informacje ({0})"
 msgstr[1] "Wygasłe prośby o informacje ({0})"
 msgstr[2] "Wygasłe prośby o informacje ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Nieprawidłowy zakres wersji."
@@ -6411,11 +6308,20 @@ msgstr "Dodatki"
 msgid "Footer logo"
 msgstr "Logo stopki"
 
+msgid "Legal Notices"
+msgstr "Informacje prawne"
+
+msgid "Report Trademark Abuse"
+msgstr "Zgłoś nadużycie znaku towarowego"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Nowa witryna obsługuje klienty mobilne i komputerowe"
 
 msgid "View the new site"
 msgstr "Wyświetl nową witrynę"
+
+msgid "Site Status"
+msgstr "Status witryny"
 
 msgid "Report a bug"
 msgstr "Zgłoś błąd"
@@ -6429,6 +6335,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "poznaj <b>dodatki</b>"
+
+msgid "About"
+msgstr "Wszystko o…"
+
+msgid "Forum"
+msgstr "Forum"
 
 msgid "Download Firefox"
 msgstr "Pobierz Firefoksa"
@@ -6527,6 +6439,14 @@ msgstr "Użytkownicy „%(users)s” zostali zablokowani."
 
 msgid "Ban selected users"
 msgstr "Zablokuj wybranych użytkowników"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Użytkownicy „%(users)s” zostali zablokowani."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Zarządzaj kluczami API"
 
 msgid "Profile Photo"
 msgstr "Zdjęcie do profilu"

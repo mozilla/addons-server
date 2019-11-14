@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-08-16 18:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -26,7 +26,8 @@ msgstr "సర్వర్‌ని సంప్రదించడంలో స�
 msgid "Select a file..."
 msgstr "ఫైలును ఎంచుకోండి..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "మీ పొడగింతను .zip, .xpi, .crx, .jar లేదా .xml తో ముగించాలి"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -707,12 +708,6 @@ msgstr "ఈ స్థానికీకరణను తీసివేయి"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} మొదట ఈ పేజీని చూస్తున్నారు."
-
-msgid "Receipt checked by app."
-msgstr "అనువర్తనం ద్వారా రసీదు తనిఖీ చేయబడింది."
-
-msgid "Receipt was not checked by app."
-msgstr "అనువర్తనం ద్వారా రసీదు తనిఖీ చేయబడలేదు."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} మొదట ఈ పొడగింపును స్తున్నారు."

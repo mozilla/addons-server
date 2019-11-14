@@ -543,7 +543,7 @@ function initVersions() {
             var el = $(d.click_target),
                 version = versions[el.data('version')],
                 is_current = el.data('is-current') === 1,
-                is_recommended = el.data('is-recommended') === 1,
+                can_be_disabled =  el.data('can-be-disabled') === 1,
                 header = $('h3', this),
                 files = $('#del-files', this),
                 reviews = $('#del-reviews', this);
@@ -558,8 +558,8 @@ function initVersions() {
             $('.current-version-warning', this).toggle(is_current);
             // If the version is recommended and current, show the warning and
             // hide the whole form.
-            $('.recommended-version-warning', this).toggle(is_recommended && is_current);
-            $('form', this).toggle(!(is_recommended && is_current));
+            $('.recommended-version-warning', this).toggle(!can_be_disabled);
+            $('form', this).toggle(can_be_disabled);
             return true;
         }});
 

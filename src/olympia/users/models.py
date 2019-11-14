@@ -47,45 +47,26 @@ def generate_auth_id():
     return random.SystemRandom().randint(1, 4294967295)
 
 
-class UserForeignKey(models.ForeignKey):
+class UserEmailField(forms.ModelChoiceField):
     """
-    A replacement for  models.ForeignKey('users.UserProfile').
+    Field to use for ForeignKeys to UserProfile, to use email instead of pk.
+    Requires the form to set the email value in the initial data instead of the
+    pk.
 
-    This field uses UserEmailField to make form fields key off the user's email
-    instead of the primary key id.  We also hook up autocomplete automatically.
+    Displays disabled state as readonly thanks to UserEmailBoundField.
     """
+    default_error_messages = {
+        'invalid_choice': ugettext('No user with that email.')
+    }
+    widget = forms.EmailInput
 
     def __init__(self, *args, **kwargs):
-        # "to" is passed here from the migration framework; we ignore it
-        # since it's the same for every instance.
-        kwargs.pop('to', None)
-        self.to = 'users.UserProfile'
-        if 'on_delete' not in kwargs:
-            kwargs['on_delete'] = models.CASCADE
-        super(UserForeignKey, self).__init__(self.to, *args, **kwargs)
+        if kwargs.get('to_field_name') is None:
+            kwargs['to_field_name'] = 'email'
+        super().__init__(*args, **kwargs)
 
-    def value_from_object(self, obj):
-        return getattr(obj, self.name).email
-
-    def deconstruct(self):
-        name, path, args, kwargs = super(UserForeignKey, self).deconstruct()
-        kwargs['to'] = self.to
-        return (name, path, args, kwargs)
-
-    def formfield(self, **kw):
-        defaults = {'form_class': UserEmailField}
-        defaults.update(kw)
-        return models.Field.formfield(self, **defaults)
-
-
-class UserEmailField(forms.EmailField):
-    def clean(self, value):
-        if value in validators.EMPTY_VALUES:
-            raise forms.ValidationError(self.error_messages['required'])
-        try:
-            return UserProfile.objects.filter(deleted=False).get(email=value)
-        except UserProfile.DoesNotExist:
-            raise forms.ValidationError(ugettext('No user with that email.'))
+    def limit_choices_to(self):
+        return {'deleted': False}
 
     def widget_attrs(self, widget):
         return {'class': 'author-email'}
@@ -547,7 +528,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     self, self.email))
                 self.email = None
                 self.fxa_id = None
-                self.last_login_ip = ''
+            # last_login_ip is kept, deleted by clear_old_last_login_ip
+            # command after 6 months.
             self.biography = ''
             self.display_name = None
             self.homepage = ''

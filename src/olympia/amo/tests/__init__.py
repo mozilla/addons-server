@@ -194,7 +194,8 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            assert e.text() == text, u'Expected %s, got %s' % (text, e.text())
+            assert e.text() == text, (
+                f'At index {idx}, expected {text}, got {e.text()}')
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
@@ -612,7 +613,7 @@ class AMOPaths(object):
         return os.path.join(settings.ROOT, path)
 
     def xpi_path(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar']:
+        if os.path.splitext(name)[-1] not in ['.xml', '.xpi']:
             return self.file_fixture_path(name + '.xpi')
         return self.file_fixture_path(name)
 

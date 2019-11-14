@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-08-12 15:00+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -471,9 +471,6 @@ msgstr ""
 "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
 "れています。"
 
-msgid "The text entered has been flagged as spam."
-msgstr "入力されたテキストはスパムとして扱われています。"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
 
@@ -805,6 +802,10 @@ msgstr "管理者テーマ審査が申請されました"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} が軽量テーマから移行されました。"
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "ユーザー {user} の写真が削除されました。"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1402,6 +1403,13 @@ msgstr "低画質、引き延ばしもしくは空白の画像"
 msgid "Header image alignment problem"
 msgstr "ヘッダー画像の整列問題"
 
+#, fuzzy
+msgid "no action"
+msgstr "その他のアクション"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "コア"
 
@@ -1420,9 +1428,6 @@ msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] \"{field}\" 内のテキストはスパムのフラグが付けられています。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
@@ -2172,18 +2177,6 @@ msgstr ""
 "アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザーが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当"
 "該アドオンにのみ関係します。"
 
-msgid "View Source?"
-msgstr "ソースコードを表示"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "このアドオンのソースコードを当サイトのオンラインビューアで表示しても良いかどうか。当該アドオンにのみ関係します。"
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "このアドオンのソースコードを一般に公開します。"
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "いいえ、このアドオンのソースコードを一般には公開しません。"
-
 msgid "Public Stats?"
 msgstr "統計情報を公開しますか？"
 
@@ -2905,42 +2898,23 @@ msgstr "最終的なアドオンのファイルを再現するための手順を
 msgid "Read more about the source code review policy."
 msgstr "ソースコードのレビューポリシーについての詳細をお読みください。"
 
-msgid "Latest News"
-msgstr "最新ニュース"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "詳しくはブログをご覧ください"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "拡張機能ワークショップ"
 
 msgid "Resources"
 msgstr "資料"
 
-msgid "Porting"
-msgstr "移植"
-
-msgid "Community"
-msgstr "コミュニティ"
-
-msgid "About"
-msgstr "概要"
-
-msgid "Forum"
-msgstr "フォーラム"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "ブログ"
-
-msgid "Contact Us"
-msgstr "問い合わせ"
-
-msgid "Support"
-msgstr "サポート"
-
-msgid "Report Bug"
-msgstr "バグを報告"
-
-msgid "Site Status"
-msgstr "サイトステータス"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: 拡張機能を開発、テスト"
@@ -2948,20 +2922,11 @@ msgstr "Web-Ext: 拡張機能を開発、テスト"
 msgid "Promote"
 msgstr "宣伝"
 
-msgid "Get Your Add-on Featured"
-msgstr "自分のアドオンをおすすめにしてもらう"
-
 msgid "\"Get The Add-on\" button"
 msgstr "「アドオンを入手」ボタン"
 
-msgid "Legal"
-msgstr "法的情報"
-
-msgid "Report Trademark Abuse"
-msgstr "商標の不正利用を報告"
-
-msgid "Legal Notices"
-msgstr "法的通知"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "寄付"
@@ -2993,38 +2958,15 @@ msgstr "Firefox を最もカスタマイズ自在なブラウザとして保つ�
 msgid "See how"
 msgstr "詳しくはこちら"
 
-msgid "Manage Your Add-on"
-msgstr "自分のアドオンを管理"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "ログインしてアドオンを編集・更新"
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr "お帰りなさい"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s でおすすめしてもらいたいですか？おすすめ拡張機能ポリシーで、必要な内容をご覧ください。"
-
-msgid "Learn More"
-msgstr "詳細"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "ソースコードのレビューポリシーについての詳細をお読みください。"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
@@ -3050,6 +2992,13 @@ msgstr "アドオン開発者センター"
 msgid "Docs"
 msgstr "ドキュメント"
 
+msgid "Support"
+msgstr "サポート"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "ブログ"
+
 msgid "Sign Out"
 msgstr "ログアウト"
 
@@ -3060,62 +3009,24 @@ msgid "User Photo"
 msgstr "ユーザー写真"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">ユーザー登録</a> / <a href=\"%(login)s\">ログイン</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Firefox をカスタマイズ"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"アドオンを使って数多くの Firefox ユーザーがブラウジング体験を向上させています。あなたがもし %(html_link_open)sHTML%(link_close)s や %(js_link_open)sJavaScript%(link_close)s、%(css_link_open)sCSS"
-"%(link_close)s を知っているなら、素晴らしいアドオンを作るのに必要な技術を既にお持ちです。"
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "アドオンの作り方を学ぶ"
 
-msgid "Port a Chrome Extension"
-msgstr "Chrome 拡張機能を移植"
+msgid "Ready to submit or manage your extension?"
+msgstr ""
 
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox は、Chrome や Opera、Edge が提供している拡張機能 API と多くの場合互換性がある WebExtension API に対応していますので、あなたの拡張機能は少し変更を加えるだけで Firefox でも動作します。"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Learn How"
-msgstr "手順を見る"
-
-msgid "Publish Your Add-on"
-msgstr "アドオンを公開"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "アドオンの準備ができていますか？ あなたの拡張機能やテーマを addons.mozilla.org に掲載するために登録するか、拡張機能を自分自身で配布するために署名を付与しましょう。"
-
-msgid "Sign In"
-msgstr "ログイン"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "拡張機能を開発、実行、テストするためのコマンドラインツール。"
-
-msgid "Automated code tests for your add-on."
-msgstr "このアドオンの自動コードテストです。"
-
-msgid "Compatibility Test"
-msgstr "互換性テスト"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "あなたの拡張機能が Firefox と互換性があるかどうか確認してみましょう。"
-
-msgid "Live Testing"
-msgstr "ライブテスト"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "実際の動作テストとデバッグを行うため、あなたの拡張機能を Firefox へ一時的にインストールします。"
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "バージョン {0}を管理"
@@ -3179,12 +3090,6 @@ msgstr "審査履歴"
 
 msgid "Close Review History"
 msgstr "審査履歴を閉じる"
-
-msgid "Not validated."
-msgstr "未検証"
-
-msgid "Validate now."
-msgstr "今すぐ検証"
 
 msgid "Request Review"
 msgstr "審査を申請"
@@ -4772,6 +4677,42 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 動画の�
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "旧式の拡張機能は Firefox でサポートされなくなりました。"
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "すべての拡張機能を見る"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "詳細"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "拡張機能"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "ファイルビューアーはロックされており、%sの抽出が行われている可能性があります。約 5 分後に再度試してください。"
@@ -4827,7 +4768,6 @@ msgstr "アップロードされたファイルを解析できませんでした
 msgid "Unsupported archive type."
 msgstr "サポートされていないアーカイブ形式です。"
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "アーカイブ内に不正なファイル名が含まれています。ファイル名がすべて UTF-8 または Latin 1 エンコードになっていることを確認してください。"
 
@@ -4835,6 +4775,7 @@ msgstr "アーカイブ内に不正なファイル名が含まれています。
 msgid "Invalid file name in archive: {0}"
 msgstr "アーカイブ内のファイル名が不正です: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "アーカイブ内のファイルがサイズ制限を超えています: {0}"
 
@@ -4970,42 +4911,6 @@ msgstr "アップロードされたファイルにはファイルが含まれて
 
 msgid "Fetching file."
 msgstr "ファイルを取得しています。"
-
-msgid "Reported Status"
-msgstr "報告されたステータス"
-
-msgid "Reported Spam"
-msgstr "報告されたスパム"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "報告されたハム (非スパム)"
-
-msgid "Not Reported"
-msgstr "報告なし"
-
-msgid "Content Submitted"
-msgstr "登録されたコンテンツ"
-
-msgid "View Rating on site"
-msgstr "サイトで評価を見る"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "ハム (非スパム) を Akismet へ送信"
-
-msgid "Submit Spam to Akismet"
-msgstr "スパムを Akismet へ送信"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "%s ハム報告をスパムとして送信しました"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "%s スパム報告をハムとして送信しました"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla アドオンサイトについて"
@@ -5996,6 +5901,12 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "期限切れとなった情報請求 ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "無効な \"%s\" パラメータです。"
@@ -6261,11 +6172,20 @@ msgstr "アドオンのページへ戻る"
 msgid "Footer logo"
 msgstr "フッターロゴ"
 
+msgid "Legal Notices"
+msgstr "法的通知"
+
+msgid "Report Trademark Abuse"
+msgstr "商標の不正利用を報告"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "新しいウェブサイトはモバイルとデスクトップのクライアントに対応"
 
 msgid "View the new site"
 msgstr "新しいサイトを見る"
+
+msgid "Site Status"
+msgstr "サイトステータス"
 
 msgid "Report a bug"
 msgstr "バグを報告"
@@ -6280,6 +6200,12 @@ msgstr ""
 # フッタ左端
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>アドオン</b> について知る"
+
+msgid "About"
+msgstr "概要"
+
+msgid "Forum"
+msgstr "フォーラム"
 
 msgid "Download Firefox"
 msgstr "Firefox をダウンロード"
@@ -6378,6 +6304,14 @@ msgstr "ユーザー「%(users)s」のアカウントが停止されました。
 
 msgid "Ban selected users"
 msgstr "選択したユーザーのアカウントを停止"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API キーを管理"
 
 msgid "Profile Photo"
 msgstr "プロファイル写真"

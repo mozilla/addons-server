@@ -17,7 +17,6 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import get_email_backend
 from olympia.bandwagon.models import Collection
-from olympia.lib.akismet.models import AkismetReport
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -64,13 +63,6 @@ def delete_logs(items, **kw):
     log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
         action__in=amo.LOG_KEEP).delete()
-
-
-@task
-def delete_akismet_reports(items, **kw):
-    log.info('[%s@%s] Deleting akismet reports' %
-             (len(items), delete_akismet_reports.rate_limit))
-    AkismetReport.objects.filter(pk__in=items).delete()
 
 
 @task

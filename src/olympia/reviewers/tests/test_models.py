@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
 import time
-
 from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
 from django.core import mail
-
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
-from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
@@ -21,11 +18,10 @@ from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
+    AutoApprovalSummary, CannedResponse, ReviewerScore, ReviewerSubscription,
     ViewExtensionQueue, ViewRecommendedQueue, ViewThemeFullReviewQueue,
     ViewThemePendingQueue, ViewUnlistedAllList, send_notifications,
-    set_reviewing_cache, CannedResponse)
-
+    set_reviewing_cache)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -287,62 +283,6 @@ class TestUnlistedAllList(TestCase):
         self.assertSetEqual(set(row.authors),
                             {(ernie.id, 'ernie'), (bert.id, 'bert')})
 
-    def test_last_reviewed_version(self):
-        today = datetime.today().date()
-        addon = self.new_addon(version='1.0')
-        v2 = version_factory(addon=addon, version='2.0', channel=self.channel)
-        log = ActivityLog.create(amo.LOG.APPROVE_VERSION, v2, v2.addon,
-                                 user=UserProfile.objects.get(pk=999))
-        version_factory(addon=addon, version='3.0', channel=self.channel)
-        row = self.Queue.objects.all()[0]
-        assert row.review_date == today
-        assert row.review_version_num == '2.0'
-        assert row.review_log_id == log.id
-
-    def test_no_developer_actions(self):
-        addon = self.new_addon(version='1.0')
-        ActivityLog.create(amo.LOG.ADD_VERSION, addon.latest_unlisted_version,
-                           addon, user=UserProfile.objects.get(pk=999))
-        row = self.Queue.objects.all()[0]
-        assert row.review_version_num is None
-
-        ver2 = version_factory(version='2.0', addon=addon,
-                               channel=self.channel)
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, ver2, addon,
-                           user=UserProfile.objects.get(pk=999))
-        row = self.Queue.objects.all()[0]
-        assert row.review_version_num == '2.0'
-
-        ver3 = version_factory(version='3.0', addon=addon,
-                               channel=self.channel)
-        ActivityLog.create(amo.LOG.EDIT_VERSION, ver3, addon,
-                           user=UserProfile.objects.get(pk=999))
-        row = self.Queue.objects.all()[0]
-        # v2.0 is still the last reviewed version.
-        assert row.review_version_num == '2.0'
-
-    def test_no_automatic_reviews(self):
-        ver = self.new_addon(
-            name='addon789', version='1.0').latest_unlisted_version
-        ActivityLog.create(
-            amo.LOG.APPROVE_VERSION, ver, ver.addon,
-            user=UserProfile.objects.get(pk=settings.TASK_USER_ID))
-        row = self.Queue.objects.all()[0]
-        assert row.review_version_num is None
-
-    def test_latest_version(self):
-        addon = addon_factory(
-            version_kw={'version': u'0.1', 'channel': self.channel,
-                        'created': self.days_ago(2)},
-            file_kw={'created': self.days_ago(2)})
-        version_factory(
-            addon=addon, version=u'0.2', channel=self.channel,
-            created=self.days_ago(1), file_kw={'created': self.days_ago(1)})
-        version_factory(
-            addon=addon, version=u'0.3', channel=self.channel)
-        row = self.Queue.objects.get()
-        assert row.latest_version == '0.3'
-
     def test_addons_disabled_by_user_are_hidden(self):
         self.new_addon().update(disabled_by_user=True)
         assert list(self.Queue.objects.all()) == []
@@ -398,8 +338,6 @@ class TestUnlistedAllList(TestCase):
         assert self.Queue.objects.all().count() == 3
         assert [addon.addon_name for addon in self.Queue.objects.all()] == [
             'UnlistedListed', 'ListedUnlisted', 'JustUnlisted']
-        assert ([addon.latest_version for addon in self.Queue.objects.all()] ==
-                ['0.1', '0.2', '0.2'])
 
 
 class TestReviewerSubscription(TestCase):
@@ -505,7 +443,6 @@ class TestReviewerScore(TestCase):
         types = {
             amo.ADDON_ANY: None,
             amo.ADDON_EXTENSION: 'ADDON',
-            amo.ADDON_THEME: 'XUL_THEME',
             amo.ADDON_DICT: 'DICT',
             amo.ADDON_SEARCH: 'SEARCH',
             amo.ADDON_LPAPP: 'LP',
@@ -1630,13 +1567,31 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_check_has_auto_approval_disabled(self):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
-            self.version) == 0
+            self.version) is False
 
         flags = AddonReviewerFlags.objects.create(addon=self.addon)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
-            self.version) == 0
+            self.version) is False
 
         flags.update(auto_approval_disabled=True)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is True
+
+    def test_check_has_auto_approval_delayed_until(self):
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        past_date = datetime.now() - timedelta(hours=1)
+        flags.update(auto_approval_delayed_until=past_date)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
+        future_date = datetime.now() + timedelta(hours=1)
+        flags.update(auto_approval_delayed_until=future_date)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 
@@ -1684,6 +1639,38 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_should_be_delayed(
             self.version) is False
 
+    def test_check_should_be_delayed_only_until_first_content_review(self):
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
+        # Delete current_version, making self.version the first listed version
+        # submitted and add-on creation date recent.
+        self.addon.current_version.delete()
+        self.addon.update(created=datetime.now())
+        self.addon.update_status()
+
+        # Also remove AddonApprovalsCounter to start fresh.
+        self.addon.addonapprovalscounter.delete()
+
+        # Set a recent nomination date. It should be delayed.
+        self.version.update(nomination=datetime.now() - timedelta(hours=12))
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is True
+
+        # Add AddonApprovalsCounter with default values, it should still be
+        # delayed.
+        self.addon.addonapprovalscounter = (
+            AddonApprovalsCounter.objects.create(addon=self.addon))
+        assert self.addon.addonapprovalscounter.last_content_review is None
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is True
+
+        # Once there is a content review, it should no longer be delayed.
+        self.addon.addonapprovalscounter.update(
+            last_content_review=datetime.now())
+        assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
     def test_check_should_be_delayed_langpacks_are_exempted(self):
         self.addon.update(type=amo.ADDON_LPAPP)
         assert AutoApprovalSummary.check_should_be_delayed(
@@ -1708,6 +1695,29 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_should_be_delayed(
             self.version) is False
 
+    def test_check_is_listing_disabled(self):
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is False
+
+        # Listed versions belonging to Add-ons which have their listing set to
+        # "Invisible" shouldn't be approved.
+        self.addon.update(disabled_by_user=True)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is True
+
+        # Listed versions belonging to incomplete shouldn't be approved either.
+        self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is True
+
+        # Doesn't affect unlisted versions.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is False
+        self.addon.update(disabled_by_user=True, status=amo.STATUS_APPROVED)
+        assert AutoApprovalSummary.check_is_listing_disabled(
+            self.version) is False
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1725,9 +1735,26 @@ class TestAutoApprovalSummary(TestCase):
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(
             self, calculate_verdict_mock, calculate_weight_mock):
+        def create_dynamic_patch(name):
+            patcher = mock.patch.object(
+                AutoApprovalSummary, name,
+                spec=getattr(AutoApprovalSummary, name))
+            thing = patcher.start()
+            thing.return_value = False
+            self.addCleanup(patcher.stop)
+            return thing
+
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
+        dynamic_mocks = [
+            create_dynamic_patch(f'check_{field}')
+            for field in AutoApprovalSummary.auto_approval_verdict_fields]
+
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,)
+
+        for mocked_method in dynamic_mocks:
+            assert mocked_method.call_count == 1
+            mocked_method.assert_called_with(self.version)
         assert calculate_weight_mock.call_count == 1
         assert calculate_verdict_mock.call_count == 1
         assert calculate_verdict_mock.call_args == ({
@@ -1768,6 +1795,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1785,6 +1813,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1797,6 +1826,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1808,6 +1838,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1819,6 +1850,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict(dry_run=True)
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1831,6 +1863,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': True,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
@@ -1843,6 +1876,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': True,
             'should_be_delayed': False,
@@ -1855,6 +1889,7 @@ class TestAutoApprovalSummary(TestCase):
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
+            'is_listing_disabled': False,
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': True,
@@ -1864,6 +1899,7 @@ class TestAutoApprovalSummary(TestCase):
     def test_verdict_info_prettifier(self):
         verdict_info = {
             'has_auto_approval_disabled': True,
+            'is_listing_disabled': False,
             'is_locked': True,
             'is_recommendable': True,
             'should_be_delayed': True,

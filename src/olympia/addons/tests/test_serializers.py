@@ -229,7 +229,6 @@ class AddonSerializerOutputTestMixin(object):
         assert result['is_experimental'] == self.addon.is_experimental is False
         assert result['is_featured'] == self.addon.is_featured() is False
         assert result['is_recommended'] == self.addon.is_recommended is False
-        assert result['is_source_public'] == self.addon.view_source
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         assert result['name'] == {'en-US': self.addon.name}
@@ -354,10 +353,16 @@ class AddonSerializerOutputTestMixin(object):
         assert result['is_disabled'] is True
 
     def test_is_source_public(self):
-        self.addon = addon_factory(view_source=True)
+        self.addon = addon_factory()
         result = self.serialize()
 
-        assert result['is_source_public'] is True
+        assert 'is_source_public' not in result
+
+        # It's only present in v3
+        gates = {None: ('is-source-public-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert result['is_source_public'] is False
 
     def test_is_experimental(self):
         self.addon = addon_factory(is_experimental=True)
@@ -533,8 +538,8 @@ class AddonSerializerOutputTestMixin(object):
         self.addon.update(type=amo.ADDON_SEARCH)
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
-            'android': {'max': '9999', 'min': '11.0'},
-            'firefox': {'max': '9999', 'min': '4.0'},
+            'android': {'max': '65535', 'min': '11.0'},
+            'firefox': {'max': '65535', 'min': '4.0'},
         }
         assert result_version['is_strict_compatibility_enabled'] is False
 
@@ -1121,7 +1126,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         # Set a filename to make sure the file actually exists.
         # file_factory (used via addon_factory) copies files that exists
         # as fixtures in src/olympia/files/fixtures/files to their rightful
-        # place. We need that to test the localepicker properly.
+        # place.
         file_kw = {'filename': 'langpack-localepicker.xpi'}
         self.addon = addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
 

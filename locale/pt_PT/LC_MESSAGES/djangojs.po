@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-04-30 16:58+0000\n"
 "Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
 "Language-Team: \n"
@@ -26,7 +26,8 @@ msgstr "Ocorreu um problema ao contactar o servidor."
 msgid "Select a file..."
 msgstr "Selecionar um ficheiro..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "O seu extra deverá terminar com .zip, .xpi, .crx, .jar ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -710,12 +711,6 @@ msgstr "Remover esta tradução"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} estava a ver esta página primeiro."
-
-msgid "Receipt checked by app."
-msgstr "Recibo verificado pela aplicação."
-
-msgid "Receipt was not checked by app."
-msgstr "O recibo não foi verificado pela aplicação."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} estava a ver primeiro este extra."

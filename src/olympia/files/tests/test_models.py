@@ -320,6 +320,14 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.addon.update(status=amo.STATUS_DISABLED)
         assert f.current_file_path.endswith(guarded_fp)
 
+    def test_has_been_validated_returns_false_when_no_validation(self):
+        file = File()
+        assert not file.has_been_validated
+
+    def test_has_been_validated_returns_true_when_validation_exists(self):
+        file = File(validation=FileValidation())
+        assert file.has_been_validated
+
 
 class TestTrackFileStatusChange(TestCase):
 
@@ -599,10 +607,6 @@ class TestParseXpi(TestCase):
         assert e.exception.messages[0] == (
             'The type (4) does not match the type of your add-on on AMO (1)')
 
-    def test_unknown_app(self):
-        data = self.parse(filename='theme-invalid-app.jar')
-        assert data['apps'] == []
-
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
             # This file doesn't exist, it will raise an IOError that should
@@ -629,18 +633,6 @@ class TestParseXpi(TestCase):
         # It's not a real dictionary, it's an extension, so it will require a
         # restart.
         assert result['is_restart_required']
-
-    def test_parse_jar(self):
-        result = self.parse(filename='theme.jar')
-        assert result['type'] == amo.ADDON_THEME
-
-    def test_parse_theme_by_type(self):
-        result = self.parse(filename='theme-type.xpi')
-        assert result['type'] == amo.ADDON_THEME
-
-    def test_parse_theme_with_internal_name(self):
-        result = self.parse(filename='theme-internal-name.xpi')
-        assert result['type'] == amo.ADDON_THEME
 
     def test_parse_no_type(self):
         result = self.parse(filename='no-type.xpi')
@@ -1218,12 +1210,6 @@ class TestFileFromUpload(UploadTest):
             upload, self.version, self.platform, parsed_data=parsed_data)
         assert file_.strict_compatibility
 
-    def test_theme_extension(self):
-        upload = self.upload('theme.jar')
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={})
-        assert file_.filename.endswith('.xpi')
-
     def test_extension_extension(self):
         upload = self.upload('extension.xpi')
         file_ = File.from_upload(
@@ -1390,9 +1376,6 @@ def test_parse_addon(search_mock, xpi_mock):
     parse_addon('file.xml', None, user=user)
     search_mock.assert_called_with('file.xml', None)
 
-    parse_addon('file.jar', None, user=user)
-    xpi_mock.assert_called_with('file.jar', None, minimal=False, user=user)
-
 
 def test_parse_xpi():
     """Fire.fm can sometimes give us errors.  Let's prevent that."""
@@ -1400,73 +1383,3 @@ def test_parse_xpi():
                           'src/olympia/files/fixtures/files/firefm.xpi')
     rdf = parse_xpi(firefm)
     assert rdf['name'] == 'Fire.fm'
-
-
-class LanguagePackBase(UploadTest):
-    fixtures = ['base/appversion']
-
-    def setUp(self):
-        super(LanguagePackBase, self).setUp()
-        self.addon = Addon.objects.create(type=amo.ADDON_LPAPP)
-        self.platform = amo.PLATFORM_ALL.id
-        self.version = Version.objects.create(addon=self.addon)
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.addon._current_version = self.version
-
-
-class TestLanguagePack(LanguagePackBase):
-
-    def file_create(self, path):
-        return (File.objects.create(platform=self.platform,
-                                    version=self.version,
-                                    filename=self.xpi_path(path)))
-
-    def test_extract(self):
-        obj = self.file_create('langpack-localepicker')
-        assert 'title=Select a language' in obj.get_localepicker()
-
-    def test_extract_no_chrome_manifest(self):
-        obj = self.file_create('langpack')
-        assert obj.get_localepicker() == ''
-
-    def test_zip_invalid(self):
-        obj = self.file_create('search.xml')
-        assert obj.get_localepicker() == ''
-
-    @mock.patch('olympia.files.utils.SafeZip.read')
-    def test_no_locale_browser(self, read_mock):
-        read_mock.return_value = 'some garbage'
-        obj = self.file_create('langpack-localepicker')
-        assert obj.get_localepicker() == ''
-
-    @mock.patch('olympia.files.utils.SafeZip.read')
-    def test_corrupt_locale_browser_path(self, read_mock):
-        read_mock.return_value = 'locale browser de woot?!'
-        obj = self.file_create('langpack-localepicker')
-        assert obj.get_localepicker() == ''
-        read_mock.return_value = 'locale browser de woo:t?!as'
-        # Result should be 'locale browser de woo:t?!as', but we have caching.
-        assert obj.get_localepicker() == ''
-
-    @mock.patch('olympia.files.utils.SafeZip.read')
-    def test_corrupt_locale_browser_data(self, read_mock):
-        read_mock.return_value = 'locale browser de jar:install.rdf!foo'
-        obj = self.file_create('langpack-localepicker')
-        assert obj.get_localepicker() == ''
-
-    def test_hits_cache(self):
-        obj = self.file_create('langpack-localepicker')
-        assert 'title=Select a language' in obj.get_localepicker()
-        obj.update(filename='garbage')
-        assert 'title=Select a language' in obj.get_localepicker()
-
-    @mock.patch('olympia.files.models.File.get_localepicker')
-    def test_cache_on_create(self, get_localepicker):
-        self.file_create('langpack-localepicker')
-        assert get_localepicker.called
-
-    @mock.patch('olympia.files.models.File.get_localepicker')
-    def test_cache_not_on_create(self, get_localepicker):
-        self.addon.update(type=amo.ADDON_DICT)
-        self.file_create('langpack-localepicker')
-        assert not get_localepicker.called

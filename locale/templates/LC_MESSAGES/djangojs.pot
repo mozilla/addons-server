@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr ""
 
 #: static/js/common/upload-addon.js:65
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -794,7 +794,7 @@ msgid "Other"
 msgstr ""
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1167
-#: static/js/zamboni/reviewers.js:445
+#: static/js/zamboni/reviewers.js:430
 msgid "Select an application first"
 msgstr ""
 
@@ -923,47 +923,39 @@ msgstr ""
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:190
-msgid "Receipt checked by app."
-msgstr ""
-
-#: static/js/zamboni/reviewers.js:192
-msgid "Receipt was not checked by app."
-msgstr ""
-
-#: static/js/zamboni/reviewers.js:373
+#: static/js/zamboni/reviewers.js:358
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:384 static/js/zamboni/reviewers.js:406
+#: static/js/zamboni/reviewers.js:369 static/js/zamboni/reviewers.js:391
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:389
+#: static/js/zamboni/reviewers.js:374
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:394
+#: static/js/zamboni/reviewers.js:379
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:399
+#: static/js/zamboni/reviewers.js:384
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:411
+#: static/js/zamboni/reviewers.js:396
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:416
+#: static/js/zamboni/reviewers.js:401
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:480
+#: static/js/zamboni/reviewers.js:465
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:535
+#: static/js/zamboni/reviewers.js:520
 msgid "Number of Reviews"
 msgstr ""
 

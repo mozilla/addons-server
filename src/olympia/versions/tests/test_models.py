@@ -23,7 +23,8 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.constants.scanners import CUSTOMS
+from olympia.constants.scanners import CUSTOMS, WAT, YARA
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
@@ -33,8 +34,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview, source_upload_path)
-from olympia.scanners.models import ScannersResult
-from olympia.yara.models import YaraResult
+from olympia.scanners.models import ScannerResult
 
 
 pytestmark = pytest.mark.django_db
@@ -201,30 +201,6 @@ class TestVersion(TestCase):
         v = Version.objects.get(pk=81551)
         assert amo.PLATFORM_ALL in v.supported_platforms
 
-    def test_major_minor(self):
-        """Check that major/minor/alpha is getting set."""
-        v = Version(version='3.0.12b2')
-        assert v.major == 3
-        assert v.minor1 == 0
-        assert v.minor2 == 12
-        assert v.minor3 is None
-        assert v.alpha == 'b'
-        assert v.alpha_ver == 2
-
-        v = Version(version='3.6.1apre2+')
-        assert v.major == 3
-        assert v.minor1 == 6
-        assert v.minor2 == 1
-        assert v.alpha == 'a'
-        assert v.pre == 'pre'
-        assert v.pre_ver == 2
-
-        v = Version(version='')
-        assert v.major is None
-        assert v.minor1 is None
-        assert v.minor2 is None
-        assert v.minor3 is None
-
     def test_is_restart_required(self):
         version = Version.objects.get(pk=81551)
         file_ = version.all_files[0]
@@ -346,8 +322,26 @@ class TestVersion(TestCase):
         version = Version.objects.create(addon=addon)
         version.disable_old_files()
         assert qs.all()[0].status == amo.STATUS_DISABLED
-        addon.current_version.all_files[0]
         assert hide_disabled_file_mock.called
+
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
+    def test_new_version_dont_disable_old_unlisted_unreviewed(
+            self, hide_disabled_file_mock):
+        addon = Addon.objects.get(id=3615)
+        old_version = version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        new_version = Version.objects.create(addon=addon)
+        new_version.disable_old_files()
+        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert not hide_disabled_file_mock.called
+
+        # Doesn't happen even if the new version is also unlisted.
+        new_version = Version.objects.create(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        new_version.disable_old_files()
+        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert not hide_disabled_file_mock.called
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_unlisted_dont_disable_old_unreviewed(
@@ -363,19 +357,6 @@ class TestVersion(TestCase):
         old_version.reload()
         assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
         assert not hide_disabled_file_mock.called
-
-    def test_version_int(self):
-        version = Version.objects.get(pk=81551)
-        version.save()
-        assert version.version_int == 2017200200100
-
-    def test_large_version_int(self):
-        # This version will fail to be written to the version_int
-        # table because the resulting int is bigger than mysql bigint.
-        version = Version.objects.get(pk=81551)
-        version.version = '1237.2319.32161734.2383290.34'
-        version.save()
-        assert version.version_int is None
 
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_APPROVED
@@ -516,7 +497,7 @@ class TestVersion(TestCase):
             addon=addon, auto_approval_disabled=False)
         assert version.is_ready_for_auto_approval
 
-        addon.update(type=amo.ADDON_THEME)
+        addon.update(type=amo.ADDON_STATICTHEME)
         assert not version.is_ready_for_auto_approval
 
         addon.update(type=amo.ADDON_LPAPP)
@@ -525,8 +506,19 @@ class TestVersion(TestCase):
         addon.update(type=amo.ADDON_DICT)
         assert version.is_ready_for_auto_approval
 
+        # Test with an unlisted version. Note that it's the only version, so
+        # the add-on status is reset to STATUS_NULL at this point.
         version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert not version.is_ready_for_auto_approval
+        assert version.is_ready_for_auto_approval
+
+        # Retest with an unlisted version again and the addon being approved or
+        # nominated
+        addon.reload()
+        addon.update(status=amo.STATUS_NOMINATED)
+        assert version.is_ready_for_auto_approval
+
+        addon.update(status=amo.STATUS_APPROVED)
+        assert version.is_ready_for_auto_approval
 
     def test_is_ready_for_auto_approval_addon_status(self):
         addon = Addon.objects.get(id=3615)
@@ -594,6 +586,61 @@ class TestVersion(TestCase):
         new_version.delete()
         assert sync_object_to_basket_mock.delay.call_count == 0
 
+    def test_can_be_disabled_and_deleted(self):
+        addon = Addon.objects.get(id=3615)
+        # A non-recommended addon can have it's versions disabled.
+        assert addon.current_version.can_be_disabled_and_deleted()
+
+        DiscoveryItem.objects.create(recommendable=True, addon=addon)
+        addon.current_version.update(recommendation_approved=True)
+        addon = addon.reload()
+        assert addon.is_recommended
+        # But a recommended one can't be disabled
+        assert not addon.current_version.can_be_disabled_and_deleted()
+
+        previous_version = addon.current_version
+        version_factory(addon=addon, recommendation_approved=True)
+        addon = addon.reload()
+        assert previous_version != addon.current_version
+        assert addon.current_version.recommendation_approved
+        assert previous_version.recommendation_approved
+        # unless the previous version is also recommendation_approved
+        assert addon.current_version.can_be_disabled_and_deleted()
+        assert previous_version.can_be_disabled_and_deleted()
+
+        previous_version.update(recommendation_approved=False)
+        # double-check by removing the recommendation_approved from previous
+        assert not addon.current_version.can_be_disabled_and_deleted()
+        previous_version.update(recommendation_approved=True)  # reset status
+
+        # Check the scenario when some of the previous versions are approved
+        # but not the most recent previous - i.e. the one that would become the
+        # new current_version.
+        version_a = previous_version.reload()
+        version_b = addon.current_version
+        version_c = version_factory(addon=addon)
+        version_d = version_factory(addon=addon, recommendation_approved=True)
+        version_c.is_user_disabled = True  # disabled version_c
+        addon = addon.reload()
+        version_b = version_b.reload()
+        assert version_d == addon.current_version
+        assert version_a.recommendation_approved
+        assert version_b.recommendation_approved
+        assert not version_c.recommendation_approved  # ignored cuz disabled
+        assert version_d.recommendation_approved
+        assert version_a.can_be_disabled_and_deleted()
+        assert version_b.can_be_disabled_and_deleted()
+        assert version_c.can_be_disabled_and_deleted()
+        assert version_d.can_be_disabled_and_deleted()
+        assert addon.is_recommended
+        # now un-approve version_b
+        version_b.update(recommendation_approved=False)
+        assert version_a.can_be_disabled_and_deleted()
+        assert version_b.can_be_disabled_and_deleted()
+        assert version_c.can_be_disabled_and_deleted()
+        assert not version_d.can_be_disabled_and_deleted()
+        assert addon.is_recommended
+
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
     (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
@@ -650,6 +697,10 @@ class TestVersionFromUpload(UploadTest, TestCase):
 
 class TestExtensionVersionFromUpload(TestVersionFromUpload):
     filename = 'extension.xpi'
+
+    def setUp(self):
+        super(TestExtensionVersionFromUpload, self).setUp()
+        self.dummy_parsed_data['is_webextension'] = True
 
     def test_carry_over_old_license(self):
         version = Version.from_upload(
@@ -893,8 +944,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # _current_version changes, which isn't the case here.
         assert sync_object_to_basket_mock.delay.call_count == 0
 
-    def test_set_version_to_scanners_result(self):
-        scanners_result = ScannersResult.objects.create(
+    def test_set_version_to_customs_scanners_result(self):
+        self.create_switch('enable-customs', active=True)
+        scanners_result = ScannerResult.objects.create(
             upload=self.upload, scanner=CUSTOMS)
         assert scanners_result.version is None
 
@@ -904,33 +956,74 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                                       amo.RELEASE_CHANNEL_LISTED,
                                       parsed_data=self.dummy_parsed_data)
 
+        assert version.is_webextension
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
-    def test_does_not_raise_when_scanners_result_does_not_exist(self):
+    def test_set_version_to_wat_scanners_result(self):
+        self.create_switch('enable-wat', active=True)
+        scanners_result = ScannerResult.objects.create(
+            upload=self.upload, scanner=WAT)
+        assert scanners_result.version is None
+
+        version = Version.from_upload(self.upload,
+                                      self.addon,
+                                      [self.selected_app],
+                                      amo.RELEASE_CHANNEL_LISTED,
+                                      parsed_data=self.dummy_parsed_data)
+
+        assert version.is_webextension
+        scanners_result.refresh_from_db()
+        assert scanners_result.version == version
+
+    def test_set_version_to_yara_scanners_result(self):
+        self.create_switch('enable-yara', active=True)
+        scanners_result = ScannerResult.objects.create(
+            upload=self.upload, scanner=YARA)
+        assert scanners_result.version is None
+
+        version = Version.from_upload(self.upload,
+                                      self.addon,
+                                      [self.selected_app],
+                                      amo.RELEASE_CHANNEL_LISTED,
+                                      parsed_data=self.dummy_parsed_data)
+
+        assert version.is_webextension
+        scanners_result.refresh_from_db()
+        assert scanners_result.version == version
+
+    def test_does_nothing_when_no_scanner_is_enabled(self):
+        self.create_switch('enable-customs', active=False)
+        self.create_switch('enable-wat', active=False)
+        self.create_switch('enable-yara', active=False)
+        scanners_result = ScannerResult.objects.create(
+            upload=self.upload, scanner=CUSTOMS)
+        assert scanners_result.version is None
+
         Version.from_upload(self.upload,
                             self.addon,
                             [self.selected_app],
                             amo.RELEASE_CHANNEL_LISTED,
                             parsed_data=self.dummy_parsed_data)
 
-    def test_set_version_to_yara_result(self):
-        yara_result = YaraResult.objects.create(upload=self.upload)
-        assert yara_result.version is None
+        scanners_result.refresh_from_db()
+        assert scanners_result.version is None
 
-        version = Version.from_upload(self.upload, self.addon,
-                                      [self.selected_app],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=self.dummy_parsed_data)
+    def test_does_not_update_scanners_results_when_not_a_webextension(self):
+        self.create_switch('enable-customs', active=True)
+        scanners_result = ScannerResult.objects.create(
+            upload=self.upload, scanner=CUSTOMS)
+        assert scanners_result.version is None
 
-        yara_result.refresh_from_db()
-        assert yara_result.version == version
-
-    def test_does_not_raise_when_yara_result_does_not_exist(self):
-        Version.from_upload(self.upload, self.addon,
+        self.dummy_parsed_data['is_webextension'] = False
+        Version.from_upload(self.upload,
+                            self.addon,
                             [self.selected_app],
                             amo.RELEASE_CHANNEL_LISTED,
                             parsed_data=self.dummy_parsed_data)
+
+        scanners_result.refresh_from_db()
+        assert scanners_result.version is None
 
 
 class TestExtensionVersionFromUploadTransactional(

@@ -15,7 +15,6 @@ from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
-from django.utils.encoding import force_text
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
@@ -49,7 +48,7 @@ from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
-from olympia.users.models import UserForeignKey, UserProfile
+from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version, VersionPreview, inherit_nomination
 
@@ -320,6 +319,51 @@ class AddonManager(ManagerBase):
         if not admin_reviewer:
             qs = qs.exclude(
                 addonreviewerflags__needs_admin_content_review=True)
+        return qs
+
+    def get_needs_human_review_queue(self, admin_reviewer=False):
+        """Return a queryset of Addon objects that have been approved but
+        contain versions that were automatically flagged as needing human
+        review (regardless of channel)."""
+        qs = (
+            self.get_queryset()
+            # All valid statuses, plus incomplete as well because the add-on
+            # could be purely unlisted (so we can't use valid_q(), which
+            # filters out current_version=None). We know the add-ons are likely
+            # to have a version since they got the needs_human_review flag, so
+            # returning incomplete ones is acceptable.
+            .filter(
+                status__in=[
+                    amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL
+                ],
+                versions__files__status__in=[
+                    amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+                ],
+                versions__needs_human_review=True
+            )
+            # We don't want the default transformer.
+            # See get_auto_approved_queue()
+            .only_translations()
+            # We need those joins for the queue to work without making extra
+            # queries. See get_auto_approved_queue()
+            .select_related(
+                'addonapprovalscounter',
+                'addonreviewerflags',
+                '_current_version__autoapprovalsummary',
+            )
+            .prefetch_related(
+                '_current_version__files'
+            )
+            .order_by(
+                'created',
+            )
+            # There could be several versions matching for a single add-on so
+            # we need a distinct.
+            .distinct()
+        )
+        if not admin_reviewer:
+            qs = qs.exclude(
+                addonreviewerflags__needs_admin_code_review=True)
         return qs
 
 
@@ -948,13 +992,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         # Figure out what to return for an image URL
         if not self.icon_type:
-            if self.type == amo.ADDON_THEME:
-                icon = amo.ADDON_ICONS[amo.ADDON_THEME]
-                return "%simg/icons/%s" % (settings.STATIC_URL, icon)
-            else:
-                if not use_default:
-                    return None
-                return self.get_default_icon_url(size)
+            return self.get_default_icon_url(size) if use_default else None
         elif icon_type_split[0] == 'icon':
             return '{0}img/addon-icons/{1}-{2}.png'.format(
                 settings.STATIC_URL,
@@ -1376,19 +1414,6 @@ class Addon(OnChangeMixin, ModelBase):
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
 
-    def get_localepicker(self):
-        """For language packs, gets the contents of localepicker."""
-        if (self.type == amo.ADDON_LPAPP and
-                self.status == amo.STATUS_APPROVED and
-                self.current_version):
-            files = (self.current_version.files
-                         .filter(platform=amo.PLATFORM_ANDROID.id))
-            try:
-                return force_text(files[0].get_localepicker())
-            except IndexError:
-                pass
-        return ''
-
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
@@ -1409,6 +1434,11 @@ class Addon(OnChangeMixin, ModelBase):
                 version and version.all_files[0] and
                 (not version.all_files[0].is_webextension or
                  version.all_files[0].webext_permissions_list))
+
+    # Aliases for addonreviewerflags below are not just useful in case
+    # AddonReviewerFlags does not exist for this add-on: they are also used
+    # by reviewer tools get_flags() function to return flags shown to reviewers
+    # in both the review queues and the review page.
 
     @property
     def needs_admin_code_review(self):
@@ -1435,6 +1465,13 @@ class Addon(OnChangeMixin, ModelBase):
     def auto_approval_disabled(self):
         try:
             return self.addonreviewerflags.auto_approval_disabled
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def auto_approval_delayed_until(self):
+        try:
+            return self.addonreviewerflags.auto_approval_delayed_until
         except AddonReviewerFlags.DoesNotExist:
             return None
 
@@ -1602,6 +1639,8 @@ class AddonReviewerFlags(ModelBase):
     needs_admin_content_review = models.BooleanField(default=False)
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
+    auto_approval_delayed_until = models.DateTimeField(
+        default=None, null=True)
     pending_info_request = models.DateTimeField(default=None, null=True)
     notified_about_expiring_info_request = models.BooleanField(default=False)
 
@@ -1653,7 +1692,7 @@ class AddonCategory(models.Model):
 class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    user = UserForeignKey()
+    user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(_(u'Listed'), default=True)
@@ -1712,7 +1751,7 @@ models.signals.post_save.connect(addon_user_sync,
 class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    user = UserForeignKey()
+    user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(_(u'Listed'), default=True)

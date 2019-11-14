@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-09 10:10+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-07-14 11:44+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -477,9 +477,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "The text entered has been flagged as spam."
-msgstr "Girilen metin spam olarak işaretlendi."
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu kısa ad başka bir koleksiyonunuz tarafından kullanılıyor."
@@ -828,6 +825,10 @@ msgstr "Yönetici tema incelemesi istendi"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} hafif bir temadan taşındı."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "{user} adlı kullanıcı kısıtlandı."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1440,6 +1441,13 @@ msgstr "Düşük kaliteli, esnetilmiş veya boş resim"
 msgid "Header image alignment problem"
 msgstr "Tepe resmi hizalama sorunu"
 
+#, fuzzy
+msgid "no action"
+msgstr "Diğer eylemler:"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Çekirdek"
 
@@ -1458,10 +1466,6 @@ msgstr "Thunderbird ve SeaMonkey eklentileri artık addons.thunderbird.net adres
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Yükseltmeye izin veriyoruz ve hatta öneriyoruz ama bu işlemi geri alamazsınız. Kullanıcılarınız bir kez WebExtension'ı yükledikten sonra eski nesil eklentiyi yükleyemezler."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Girilen metin spam olarak işaretlendi."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Bu kısa ad zaten kullanımda. Lütfen başka bir kısa ad seçin."
@@ -2245,18 +2249,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "View Source?"
-msgstr "Kaynak görüntülensin mi?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Bu eklentinin kaynak kodu herkese açık olarak görüntülenebilir."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Hayır, bu eklentinin kaynak kodu herkese açık olarak görüntülenemez."
-
 msgid "Public Stats?"
 msgstr "İstatistikler herkese açık mı?"
 
@@ -2986,44 +2978,23 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Kaynak kodu inceleme politikasıyla ilgili daha fazla bilgi edinin."
 
-msgid "Latest News"
-msgstr "Son Haberler"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Daha fazlasını blogumuzda okuyun"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Eklentiler"
 
 msgid "Resources"
 msgstr "Kaynaklar"
 
-# 100%
-msgid "Porting"
-msgstr "Dönüştürme"
-
-# 87%
-# 100%
-msgid "Community"
-msgstr "Topluluk"
-
-msgid "About"
-msgstr "Hakkında"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Bize Ulaşın"
-
-msgid "Support"
-msgstr "Destek"
-
-msgid "Report Bug"
-msgstr "Hata bildir"
-
-msgid "Site Status"
-msgstr "Site durumu"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: Eklentileri geliştirip test edin"
@@ -3031,22 +3002,11 @@ msgstr "Web-Ext: Eklentileri geliştirip test edin"
 msgid "Promote"
 msgstr "Tanıtım"
 
-# 75%
-# 100%
-msgid "Get Your Add-on Featured"
-msgstr "Eklentinizi öne çıkarın"
-
 msgid "\"Get The Add-on\" button"
 msgstr "\"Eklentiyi indir\" düğmesi"
 
-msgid "Legal"
-msgstr "Yasal"
-
-msgid "Report Trademark Abuse"
-msgstr "Marka ihlali bildir"
-
-msgid "Legal Notices"
-msgstr "Yasal uyarılar"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Katkıda bulunun"
@@ -3078,40 +3038,15 @@ msgstr "En özelleştirilebilir tarayıcıyı Firefox'u kullanabilmeniz için ko
 msgid "See how"
 msgstr "Nasıl olduğunu görün"
 
-# 75%
-# 100%
-msgid "Manage Your Add-on"
-msgstr "Eklentinizi yönetin"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Eklentinizi düzenlemek ve güncellemek için giriş yapın"
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr "Yeniden hoş geldiniz"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-
-msgid "Learn More"
-msgstr "Daha fazla bilgi"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Kaynak kodu inceleme politikasıyla ilgili daha fazla bilgi edinin."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Kod incelemesinden geçerek bu sitede listelenmiştir. Otomatik güncellemeler bu site tarafından ele alınmaktadır."
@@ -3135,6 +3070,12 @@ msgstr "Eklenti Geliştirici Merkezi"
 msgid "Docs"
 msgstr "Belgeler"
 
+msgid "Support"
+msgstr "Destek"
+
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Çıkış yap"
 
@@ -3145,62 +3086,23 @@ msgid "User Photo"
 msgstr "Kullanıcı Fotoğrafı"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Kaydol</a> veya <a href=\"%(login)s\">giriş yap</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Firefox’u özelleştirin"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Eklenti yapmayı öğrenin"
 
-msgid "Port a Chrome Extension"
-msgstr "Chrome uzantısını dönüştürün"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
-"Firefox, çoğu durumda Chrome, Opera ve Edge tarafından desteklenen uzantı API'larıyla uyumlu olan WebExtension API'larını destekler; bu nedenle Firefox'ta uzantılarınız yalnızca birkaç değişiklikle "
-"çalışacaktır."
-
-msgid "Learn How"
-msgstr "Nasıl yapılacağını öğrenin"
-
-msgid "Publish Your Add-on"
-msgstr "Eklentinizi yayımlayın"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
 
-msgid "Sign In"
-msgstr "Giriş yapın"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Eklenti oluşturmak, çalıştırmak ve test etmek için bir komut satırı aracı."
-
-msgid "Automated code tests for your add-on."
-msgstr "Eklentileriniz için otomatik kod testleri."
-
-msgid "Compatibility Test"
-msgstr "Uyumluluk testi"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Eklentinizin Firefox ile uyumlu olup olmadığını kontrol edin."
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "Listelemeyi gör"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -3267,12 +3169,6 @@ msgstr "İnceleme Geçmişi"
 
 msgid "Close Review History"
 msgstr "İnceleme geçmişini kapat"
-
-msgid "Not validated."
-msgstr "Doğrulanmadı."
-
-msgid "Validate now."
-msgstr "Şimdi doğrulayın."
 
 msgid "Request Review"
 msgstr "İncelenmesini iste"
@@ -4829,6 +4725,44 @@ msgstr "Videoları {start_sub_heading}{addon_name} ile{end_sub_heading} indirin"
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Eski teknoloji eklentiler artık Firefox'ta desteklenmemektedir."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+# 95%
+# 100%
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Tüm eklentilere göz atın"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Daha fazla bilgi"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Eklentiler"
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr ""
@@ -4884,7 +4818,6 @@ msgstr "Yüklenen dosya çözümlenemedi."
 msgid "Unsupported archive type."
 msgstr "Desteklenmeyen arşiv türü."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4892,6 +4825,7 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr "Arşivdeki geçersiz dosya adı: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Arşivde boyut sınırını aşan dosya: {0}"
 
@@ -5030,50 +4964,6 @@ msgstr "Yüklenen dosyada dosya yok."
 
 msgid "Fetching file."
 msgstr "Dosya getiriliyor."
-
-#, fuzzy
-msgid "Reported Status"
-msgstr "Site durumu"
-
-#, fuzzy
-msgid "Reported Spam"
-msgstr "Rapor Türü"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Reported Ham"
-msgstr "Hata bildir"
-
-#, fuzzy
-msgid "Not Reported"
-msgstr "Henüz puanlanmamış"
-
-#, fuzzy
-msgid "Content Submitted"
-msgstr "Sürüm gönderildi"
-
-#, fuzzy
-msgid "View Rating on site"
-msgstr "Yeni siteye bak"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
-msgid "Submit Ham to Akismet"
-msgstr "Yeni dosya gönder"
-
-#, fuzzy
-msgid "Submit Spam to Akismet"
-msgstr "Yeni dosya gönder"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla Eklentileri Hakkında"
@@ -6128,6 +6018,12 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Daha Fazla Bilgi İstendi: {0}"
 msgstr[1] ""
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Geçersiz sürüm aralığı."
@@ -6399,11 +6295,20 @@ msgstr "Eklentilere dön"
 msgid "Footer logo"
 msgstr "Altbilgi logosu"
 
+msgid "Legal Notices"
+msgstr "Yasal uyarılar"
+
+msgid "Report Trademark Abuse"
+msgstr "Marka ihlali bildir"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Yeni web sitesi mobil ve masaüstü istemcileri destekliyor"
 
 msgid "View the new site"
 msgstr "Yeni siteye bak"
+
+msgid "Site Status"
+msgstr "Site durumu"
 
 msgid "Report a bug"
 msgstr "Hata bildir"
@@ -6415,6 +6320,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>eklentileri</b> tanıyın"
+
+msgid "About"
+msgstr "Hakkında"
+
+msgid "Forum"
+msgstr "Forum"
 
 # 100%
 msgid "Download Firefox"
@@ -6516,6 +6427,14 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr "Seçilen kullanıcıları engelle"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "API Anahtarlarını Yönet"
 
 msgid "Profile Photo"
 msgstr "Profil Resmi"

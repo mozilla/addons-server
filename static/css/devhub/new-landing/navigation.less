@@ -1,60 +1,155 @@
 .DevHub-Navigation {
-  > div {
-    padding-top: 5px;
+  box-shadow: 0 4px 16px rgba(12,12,13,0.1);
+
+  .DevHub-Navigation-list-wrapper {
+    padding: 5px @side-margin;
+    height: 100%;
+
+    @media @medium {
+      padding: 5px @medium-side-margin;
+    }
   }
 
   ul {
-    align-items: center;
+
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
     width: 100%;
 
+    @media @large {
+      align-items: center;
+    }
+
     li {
-      margin: 10px auto;
+      margin: 25px 0 0 0;
 
       @media @large {
         margin: 10px;
         width: auto;
       }
 
-      &:first-child {
-        margin: 0 auto 0 0;
-
-        html[dir=rtl] & {
-          margin: 0 0 0 auto;
-        }
-      }
-
-      &.avatar {
+      &.in-hamburger-menu {
         display: none;
 
         @media @large {
           display: inline;
         }
+      }
 
-        img {
-          max-width: 40px;
-          max-height: 40px;
-          border-radius: 50%;
+      &:first-child {
+        margin: 0;
+        flex-grow: 1;
+
+        html[dir=rtl] & {
+          margin: 0;
         }
       }
 
-      &.DevHub-Navigation-Register,
-      &.DevHub-Navigation-SignOut {
+      &.DevHub-Navigation-Logo-And-Close {
+        display: flex;
+
+        .DevHub-Navigation-Logo {
+          flex-grow: 1;
+        }
+      }
+
+      &.DevHub-Navigation-Register {
+        .Button {
+          .button(@color-button-register-text, @color-button-register);
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+        a {
+          width: 100%;
+        }
+
         @media @large {
-          margin-left: 40px;
+          margin-left: 50px;
+          margin-right: 0;
 
           a {
             margin: 0 2px;
+            width: auto;
           }
 
           html[dir=rtl] & {
-            margin-right: 40px;
-            margin-left: 10px;
+            margin-right: 50px;
+            margin-left: 0;
           }
         }
+      }
+
+      &.DevHub-Navigation-SignOut {
+        text-align: center;
+        margin: 0 -10px;
+        line-height: 2;
+
+        a {
+          width: 100%;
+          margin: 0 10px;
+          padding: 5px 0;
+
+          @media @notlarge {
+            .button(@color-button-signout-text, @color-button-signout);
+          }
+        }
+
+        .avatar img {
+          max-width: 24px;
+          max-height: 24px;
+          border-radius: 50%;
+          vertical-align: middle;
+          margin-top: -2px;
+        }
+
+        @media @large {
+          .avatar {
+            span {
+              display: none;
+            }
+
+            img {
+              max-width: 40px;
+              max-height: 40px;
+            }
+          }
+        }
+      }
+
+      &.DevHub-Navigation-Open,
+      .DevHub-Navigation-Close {
+        margin: 0 0 0 auto;
+        padding: 0 0 0 @side-margin;
+        border: 0 solid #e5e5e5;
+        border-width: 0 0 0 1px;
+
+        @media @large {
+          display: none;
+        }
+
+        html[dir=rtl] & {
+          margin: 0 auto 0 0;
+          padding: 0 @side-margin 0 0;
+          border-width: 0 1px 0 0;
+        }
+
+        a {
+          padding: 1px 4px;
+          display: inline-block;
+          font-weight: 800;
+          font-size: 22px;
+        }
+      }
+
+      .DevHub-Navigation-Close {
+          display: none;
+          border-width: 0;
+
+          html[dir=rtl] & {
+            border-width: 0;
+          }
       }
 
       a {
@@ -65,16 +160,39 @@
 
   // Schemas:
   &.scheme-light {
-    min-width: @grid-max;
-
     ul li a {
       color: @color-scheme-light-text;
     }
   }
 
-  &.scheme-medium {
-    ul li a {
-      color: @color-scheme-medium-text;
+  @media @notlarge {
+  &:target {
+    height: 100vh;
+    margin-bottom: 24px;
+
+    .in-hamburger-menu {
+        display: list-item;
     }
-  }
+
+    ul {
+      flex-direction: column;
+      height: 100%;
+
+      .DevHub-Navigation-Logo-And-Close {
+         flex-grow: 0;
+      }
+
+      .DevHub-Navigation-Open {
+        display: none;
+      }
+
+      .DevHub-Navigation-Close {
+        display: inline;
+      }
+
+      .DevHub-Navigation-SignOut {
+        display: flex;
+      }
+    }
+  }}
 }

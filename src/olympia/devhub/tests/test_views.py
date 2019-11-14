@@ -9,7 +9,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test import RequestFactory
-from django.test.utils import override_settings
 from django.utils.encoding import force_text
 from django.utils.translation import trim_whitespace
 
@@ -40,7 +39,6 @@ from olympia.devhub.views import get_next_version_number
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
-from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
@@ -1153,7 +1151,7 @@ class TestUpload(BaseUploadTest):
         assert msg['type'] == u'error'
         assert msg['message'] == (
             u'Unsupported file type, please upload a supported file '
-            '(.crx, .xpi, .jar, .xml, .json, .zip).')
+            '(.crx, .xpi, .xml, .zip).')
         assert not msg['description']
 
     def test_redirect(self):
@@ -1324,7 +1322,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         message = [(m['message'], m.get('type') == 'error')
                    for m in data['validation']['messages']]
-        expected = [(u'&#34;/version&#34; is a required property', True)]
+        expected = [(u'"/version" is a required property', True)]
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1346,7 +1344,7 @@ class TestUploadDetail(BaseUploadTest):
         # not valid instead of a generic exception.
         assert message == [
             ('Invalid or corrupt add-on file.', False),
-            ('Sorry, we couldn&#39;t load your WebExtension.', True),
+            ('Sorry, we couldn\'t load your WebExtension.', True),
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1505,114 +1503,6 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
-
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        comment_check_mock.assert_called_once()
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get(upload_instance=upload)
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Beastify'  # the addon's name
-        assert b'spam' not in response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_logging_only(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get(upload_instance=upload)
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Beastify'  # the addon's name
-        assert report.result == AkismetReport.MAYBE_SPAM
-        assert b'spam' not in response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_action_taken(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get(upload_instance=upload)
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Beastify'  # the addon's name
-        assert b'spam' in response.content
-        assert report.result == AkismetReport.MAYBE_SPAM
-        data = json.loads(force_text(response.content))
-        assert data['validation']['messages'][0]['id'] == [
-            u'validation', u'messages', u'akismet_is_spam_name'
-        ]
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_reports_created_l10n(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        self.upload_file('notify-link-clicks-i18n-edited.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        # there are 8 because 4 locales and name and summary in each.
-        assert comment_check_mock.call_count == 8
-        assert AkismetReport.objects.count() == 8
-        assert AkismetReport.objects.filter(
-            upload_instance=upload).count() == 8
-        report = AkismetReport.objects.filter(upload_instance=upload).first()
-        # Just check the first one
-        assert report.comment_type == 'product-name'
-        names = [
-            u'Meine Beispielerweiterung',  # de
-            u'Notify link clicks i18n',  # en
-            u'リンクを通知する',  # ja
-            u'Varsling ved trykk på lenke i18n',  # nb_NO
-        ]
-        assert report.comment in names
-        assert b'spam' not in response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    def test_akismet_reports_not_created_for_unlisted(self):
-        self.upload_file('valid_webextension.xpi', 'devhub.upload_unlisted')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
 
 
 def assert_json_error(request, field, msg):
@@ -1991,7 +1881,7 @@ def test_get_next_version_number():
     version_factory(addon=addon, version='2')
     assert get_next_version_number(addon) == '3.0'
     # We just iterate the major version number
-    addon.current_version.update(version='34.45.0a1pre', version_int=None)
+    addon.current_version.update(version='34.45.0a1pre')
     addon.current_version.save()
     assert get_next_version_number(addon) == '35.0'
     # "Take" 35.0
@@ -2047,16 +1937,16 @@ class TestLogout(UserViewBase):
         self.client.login(email=user.email)
         response = self.client.get(reverse('devhub.index'), follow=True)
         assert (
-            pq(response.content)('li.avatar a').attr('href') == (
+            pq(response.content)('li a.avatar').attr('href') == (
                 user.get_url_path()))
         assert (
-            pq(response.content)('li.avatar a img').attr('src') == (
+            pq(response.content)('li a.avatar img').attr('src') == (
                 user.picture_url))
 
         response = self.client.get('/en-US/developers/logout', follow=False)
         self.assert3xx(response, '/en-US/firefox/', status_code=302)
         response = self.client.get(reverse('devhub.index'), follow=True)
-        assert not pq(response.content)('li.avatar')
+        assert not pq(response.content)('li a.avatar')
 
     def test_redirect(self):
         self.client.login(email='jbalogh@mozilla.com')
@@ -2065,13 +1955,6 @@ class TestLogout(UserViewBase):
         response = self.client.get(urlparams(reverse('devhub.logout'), to=url),
                                    follow=True)
         self.assert3xx(response, url, status_code=302)
-
-        url = urlparams(reverse('devhub.logout'), to='/addon/new',
-                        domain='builder')
-        response = self.client.get(url, follow=False)
-        self.assert3xx(
-            response, 'https://builder.addons.mozilla.org/addon/new',
-            status_code=302)
 
         # Test an invalid domain
         url = urlparams(reverse('devhub.logout'), to='/en-US/about',
