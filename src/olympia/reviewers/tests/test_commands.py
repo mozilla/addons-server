@@ -390,7 +390,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             'total': 1,
             'error': 1,
             'has_auto_approval_disabled': 0,
-            'is_listing_disabled': 0,
             'is_locked': 0,
             'is_recommendable': 0,
             'should_be_delayed': 0
@@ -559,7 +558,6 @@ class TestAutoApproveCommandTransactions(
             'error': 1,
             'auto_approved': 1,
             'has_auto_approval_disabled': 0,
-            'is_listing_disabled': 0,
             'is_locked': 0,
             'is_recommendable': 0,
             'should_be_delayed': 0
