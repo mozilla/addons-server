@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
+
 from base64 import b64encode
 
 import django.dispatch
-import olympia.core.logger
-import waffle
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
@@ -13,8 +13,15 @@ from django.db.models import Q
 from django.utils.encoding import force_text
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
+
+import jinja2
+import waffle
+
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
+
+import olympia.core.logger
+
 from olympia import activity, amo
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
@@ -26,11 +33,9 @@ from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
-from olympia.scanners.models import ScannerResult
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
-
-import jinja2
+from olympia.scanners.models import ScannerResult
 
 from .compare import version_int
 
