@@ -1723,29 +1723,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_should_be_delayed(
             self.version) is False
 
-    def test_check_is_listing_disabled(self):
-        assert AutoApprovalSummary.check_is_listing_disabled(
-            self.version) is False
-
-        # Listed versions belonging to Add-ons which have their listing set to
-        # "Invisible" shouldn't be approved.
-        self.addon.update(disabled_by_user=True)
-        assert AutoApprovalSummary.check_is_listing_disabled(
-            self.version) is True
-
-        # Listed versions belonging to incomplete shouldn't be approved either.
-        self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
-        assert AutoApprovalSummary.check_is_listing_disabled(
-            self.version) is True
-
-        # Doesn't affect unlisted versions.
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert AutoApprovalSummary.check_is_listing_disabled(
-            self.version) is False
-        self.addon.update(disabled_by_user=True, status=amo.STATUS_APPROVED)
-        assert AutoApprovalSummary.check_is_listing_disabled(
-            self.version) is False
-
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 

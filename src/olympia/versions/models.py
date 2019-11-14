@@ -86,8 +86,7 @@ class VersionManager(ManagerBase):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
         qs = (
-            self.exclude(
-                addon__status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED))
+            self
             .filter(
                 addon__type__in=(
                     amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
@@ -96,6 +95,21 @@ class VersionManager(ManagerBase):
             .filter(
                 Q(files__is_webextension=True) |
                 Q(addon__type=amo.ADDON_SEARCH)
+            )
+            .filter(
+                # For listed, add-on can't be incomplete, deleted or disabled.
+                # It also cannot be disabled by user ("invisible").
+                Q(
+                    channel=amo.RELEASE_CHANNEL_LISTED, addon__status__in=(
+                        amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
+                    addon__disabled_by_user=False
+                ) |
+                # For unlisted, add-on can't be deleted or disabled.
+                Q(
+                    channel=amo.RELEASE_CHANNEL_UNLISTED, addon__status__in=(
+                        amo.STATUS_NULL, amo.STATUS_NOMINATED,
+                        amo.STATUS_APPROVED)
+                )
             )
         )
         return qs

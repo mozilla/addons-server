@@ -842,9 +842,6 @@ class AutoApprovalSummary(ModelBase):
     should_be_delayed = models.BooleanField(
         default=False,
         help_text=_("Delayed because it's the first listed version"))
-    is_listing_disabled = models.NullBooleanField(
-        default=None,
-        help_text=_('Has incomplete or disabled listing'))
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -863,7 +860,6 @@ class AutoApprovalSummary(ModelBase):
     # instance.
     auto_approval_verdict_fields = (
         'has_auto_approval_disabled',
-        'is_listing_disabled',
         'is_locked',
         'is_recommendable',
         'should_be_delayed'
@@ -1131,17 +1127,6 @@ class AutoApprovalSummary(ModelBase):
     def check_uses_native_messaging(cls, version):
         return any('nativeMessaging' in file_.webext_permissions_list
                    for file_ in version.all_files)
-
-    @classmethod
-    def check_is_listing_disabled(cls, version):
-        """Check whether the add-on is disabled or incomplete.
-
-        Only applies to listed versions."""
-        return (
-            version.channel == amo.RELEASE_CHANNEL_LISTED and (
-                version.addon.is_disabled or
-                version.addon.status == amo.STATUS_NULL)
-        )
 
     @classmethod
     def check_is_locked(cls, version):
