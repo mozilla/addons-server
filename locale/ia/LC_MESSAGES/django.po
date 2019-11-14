@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 20:42+0000\n"
+"PO-Revision-Date: 2019-11-14 00:34+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3999,7 +3999,7 @@ msgstr "Elige facilemente le locos del marcapaginas {start_sub_heading}con {addo
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Un maniera plus efficiente pro reservar marcapaginas si tu los organisa in plure plicas."
+msgstr "Un maniera plus efficiente de salvar marcapaginas si tu los organisa in plure dossiers."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6325,7 +6325,7 @@ msgstr ""
 "Firefox alsi se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
 
 msgid "an add-on developer replies to my review"
-msgstr "un disveloppator de additivos replica a mi revision"
+msgstr "le disveloppator de un additivo responde a mi recension"
 
 msgid "new add-ons or Firefox features are available"
 msgstr "nove additivos o functionalitates de Firefox es disponibile"
