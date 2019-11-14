@@ -219,6 +219,16 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             'status': amo.STATUS_AWAITING_REVIEW}
         )
 
+        # Somehow deleted add-on with a file still waiting for review.
+        deleted_addon = addon_factory(
+            name='Deleted Awaiting Review Somehow', status=amo.STATUS_DELETED,
+        )
+        version_factory(
+            addon=deleted_addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True}
+        )
+
         # ---------------------------------------------------------------------
         # Gather the candidates.
         command = auto_approve.Command()
