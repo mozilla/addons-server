@@ -1487,6 +1487,18 @@ class Addon(OnChangeMixin, ModelBase):
         info_request = self.pending_info_request
         return info_request and info_request < datetime.now()
 
+    @property
+    def auto_approval_delayed_indefinitely(self):
+        return self.auto_approval_delayed_until == datetime.max
+
+    @property
+    def auto_approval_delayed_temporarily(self):
+        return (
+            bool(self.auto_approval_delayed_until) and
+            self.auto_approval_delayed_until != datetime.max and
+            self.auto_approval_delayed_until > datetime.now()
+        )
+
     @classmethod
     def get_lookup_field(cls, identifier):
         lookup_field = 'pk'
