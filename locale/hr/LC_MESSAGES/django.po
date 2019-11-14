@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 23:28+0000\n"
+"PO-Revision-Date: 2019-11-14 00:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2618,7 +2618,7 @@ msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
 msgid "Upload source code:"
-msgstr ""
+msgstr "Prenesi izvorni kȏd:"
 
 msgid "Add-on Distribution Agreement"
 msgstr ""
@@ -2732,7 +2732,7 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Nemaš API vjerodajnice."
 
 msgid "Revoke"
 msgstr "Opozovi"
@@ -2741,10 +2741,10 @@ msgid "Revoke and regenerate credentials"
 msgstr "Opozovi i obnovi vjerodajnice"
 
 msgid "Confirm and generate new credentials"
-msgstr ""
+msgstr "Potvrdi i generiraj nove vjerodajnice"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Stvori nove vjerodajnice"
 
 msgid "Invisible"
 msgstr "Nevidljiv"
@@ -2753,7 +2753,7 @@ msgid "Approved and recommended"
 msgstr "Odobreno i preporučeno"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Ispuni svoj dodatak dodavanjem verzije ili nedostajućih metapodataka."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
@@ -2773,7 +2773,7 @@ msgstr "Stvoreno:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr ""
+msgstr "Zadnje aktualiziranje:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -2852,13 +2852,13 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Dozvoljeni HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Neki HTML podržan."
 
 msgid "Remove this application"
-msgstr ""
+msgstr "Ukloni ovaj program"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
@@ -2946,7 +2946,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "Vidi kako"
 
 msgid "Get involved"
 msgstr ""
@@ -2968,7 +2968,7 @@ msgid "This is where you view and manage your add-ons and themes. To publish you
 msgstr "Ovdje se pregledava i upravlja vlastitim dodacima i motivima. Za objavljivanje prvog vlastitog dodatka, klikni „Pošalji svoj prvi dodatak” ili „Pošalji svoj prvi motiv”."
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Pošalji svoj prvi dodatak"
 
 msgid "Submit Your First Theme"
 msgstr "Pošalji svoj prvi motiv"
@@ -2977,7 +2977,7 @@ msgid "Add-on Developer Hub"
 msgstr "Razvojni centar za dodatke"
 
 msgid "Docs"
-msgstr ""
+msgstr "Dokumentacije"
 
 msgid "Support"
 msgstr "Podrška"
