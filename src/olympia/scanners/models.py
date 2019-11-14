@@ -1,3 +1,5 @@
+import json
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields.json import JSONField
@@ -7,7 +9,9 @@ from olympia.constants.scanners import (
     ACTIONS,
     CUSTOMS,
     NO_ACTION,
+    RESULT_STATES,
     SCANNERS,
+    UNKNOWN,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -33,6 +37,9 @@ class ScannerResult(ModelBase):
     matched_rules = models.ManyToManyField(
         'ScannerRule', through='ScannerMatch'
     )
+    state = models.PositiveSmallIntegerField(
+        choices=RESULT_STATES.items(), null=True, blank=True, default=UNKNOWN
+    )
 
     class Meta:
         db_table = 'scanners_results'
@@ -43,7 +50,10 @@ class ScannerResult(ModelBase):
                 'version_id_ad9eb8a6_uniq',
             )
         ]
-        indexes = [models.Index(fields=('has_matches',))]
+        indexes = [
+            models.Index(fields=('has_matches',)),
+            models.Index(fields=('state',)),
+        ]
 
     def add_yara_result(self, rule, tags=None, meta=None):
         """This method is used to store a Yara result."""
@@ -71,6 +81,12 @@ class ScannerResult(ModelBase):
         # ...then add the associated rules.
         for scanner_rule in matched_rules:
             self.matched_rules.add(scanner_rule)
+
+    def get_scanner_name(self):
+        return SCANNERS.get(self.scanner)
+
+    def get_pretty_results(self):
+        return json.dumps(self.results, indent=2)
 
 
 class ScannerRule(ModelBase):

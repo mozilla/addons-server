@@ -143,3 +143,12 @@ class TestScannerResult(TestCase):
         rules = ['rule-1', 'rule-2']
         result.results = {'matchedRules': rules}
         assert result.extract_rule_names() == rules
+
+    def test_get_scanner_name(self):
+        result = self.create_customs_result()
+        assert result.get_scanner_name() == 'customs'
+
+    def test_get_pretty_results(self):
+        result = self.create_customs_result()
+        result.results = {'foo': 'bar'}
+        assert result.get_pretty_results() == '{\n  "foo": "bar"\n}'
