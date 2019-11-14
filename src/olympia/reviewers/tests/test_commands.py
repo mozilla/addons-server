@@ -169,12 +169,13 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # Disabled version with a webext waiting review (Still has to be
         # considered because unlisted doesn't care about disabled by user
-        # state - that check happens later when processing).
+        # state.
         user_disabled_addon = addon_factory(
             name='Disabled by user waiting review',
             disabled_by_user=True)
         user_disabled_addon_version = version_factory(
             nomination=self.days_ago(11),
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
             addon=user_disabled_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True}
@@ -184,6 +185,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # it should still be considered because unlisted versions don't care
         # about that.
         pure_unlisted = addon_factory(name='Pure unlisted', version_kw={
+            'channel': amo.RELEASE_CHANNEL_UNLISTED,
             'nomination': self.days_ago(12)}, file_kw={
             'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
         }, status=amo.STATUS_NULL)
@@ -227,6 +229,26 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             addon=deleted_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True}
+        )
+
+        # listed version belonging to an add-on disabled by user
+        addon_factory(
+            name='Listed Disabled by user',
+            disabled_by_user=True,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True
+            }
+        )
+
+        # Incomplete listed addon
+        addon_factory(
+            name='Incomplete listed',
+            status=amo.STATUS_NULL,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True
+            }
         )
 
         # ---------------------------------------------------------------------
@@ -368,7 +390,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             'total': 1,
             'error': 1,
             'has_auto_approval_disabled': 0,
-            'is_listing_disabled': 0,
             'is_locked': 0,
             'is_recommendable': 0,
             'should_be_delayed': 0
@@ -537,7 +558,6 @@ class TestAutoApproveCommandTransactions(
             'error': 1,
             'auto_approved': 1,
             'has_auto_approval_disabled': 0,
-            'is_listing_disabled': 0,
             'is_locked': 0,
             'is_recommendable': 0,
             'should_be_delayed': 0
