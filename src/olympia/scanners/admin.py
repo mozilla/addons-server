@@ -104,6 +104,11 @@ class ScannerResultAdmin(admin.ModelAdmin):
 
     ordering = ('-created',)
 
+    class Media:
+        css = {
+            'all': ('css/admin/scannerresult.css',)
+        }
+
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
         # We also need to fetch the add-ons though, and because we need their
@@ -234,7 +239,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return format_html(
             '<a class="button" href="{}">Report as false positive</a>'
             '&nbsp;'
-            '<a class="button" href="{}">Mark as true positive</a>',
+            '<a class="button default" href="{}">Mark as true positive</a>',
             reverse(
                 'admin:scanners_scannerresult_handlefalsepositive',
                 args=[obj.pk],
