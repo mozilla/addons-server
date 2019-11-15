@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-15 22:30+0000\n"
+"PO-Revision-Date: 2019-11-15 22:35+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -49,21 +49,21 @@ msgstr "Xya' ketal chi ri taq %d rutzijol samaj echa'on e ütz."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Ri %d rutzijol xcha' xya' ketal achi'el e ya'öl k'ayewal. "
 
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Rutzijol k'ayewal o ruk'utuxik to'ïk pa jun itzel k'ojlib'äl"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Tatz'eta' chi re k'ojlib'äl re' man nik'o ta chi re ri {max_length} taq tz'ib'."
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Jalon pa:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Ruma %(filter_title)s"
 
 msgid "All"
 msgstr "Ronojel"
@@ -113,7 +113,7 @@ msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Man k'o ta ri Rutzijol [%s]"
 
 msgid "Review"
 msgstr "Tzijoxïk"
@@ -210,10 +210,10 @@ msgid "Error verifying input, please try again."
 msgstr "Xsach toq yerujikib'a' taq tzij, tatojtob'ej chik."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Tatz'ib'aj jun okel IP4 p IP 6 k'amab'ey."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Yechup jumej jujun taq b'anikil ruma yojsamäj richin niqachojmirisaj ri Ajk'amaya'l ruxaq. Xkojtikïr chik xtik'oje' ronojel ri quchuq'a'."
@@ -875,7 +875,7 @@ msgid "Plugin"
 msgstr "Nak'ab'äl"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "Man okel ta ri LWT"
 
 msgid "Theme (Static)"
 msgstr "Wachinel (Molob'a')"
@@ -902,7 +902,7 @@ msgid "Plugins"
 msgstr "Taq nak'ab'äl"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Man okel ta ri LWTs"
 
 msgid "Themes (Static)"
 msgstr "Taq Wachinel (Molob'a')"
