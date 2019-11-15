@@ -22,6 +22,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
+from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.discovery.models import DiscoveryItem
@@ -1693,6 +1694,21 @@ class TestAddonModels(TestCase):
         sync_object_to_basket_mock.reset_mock()
         extra_author.delete()
         assert sync_object_to_basket_mock.delay.call_count == 0
+
+    def test_block_property(self):
+        addon = Addon.objects.get(id=3615)
+        assert addon.block is None
+        assert not addon.is_addon_blocklisted
+
+        del addon.block
+        block = Block.objects.create(guid=addon.guid)
+        assert addon.block == addon.block
+        assert addon.is_addon_blocklisted
+
+        del addon.block
+        block.update(guid='not-a-guid')
+        assert addon.block is None
+        assert not addon.is_addon_blocklisted
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):

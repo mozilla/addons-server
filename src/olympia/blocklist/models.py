@@ -41,3 +41,9 @@ class Block(ModelBase):
         if min_vint > max_vint:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
+
+    def is_version_blocked(self, version):
+        version_vint = addon_version_int(version)
+        min_vint = addon_version_int(self.min_version)
+        max_vint = addon_version_int(self.max_version)
+        return version_vint >= min_vint and version_vint <= max_vint

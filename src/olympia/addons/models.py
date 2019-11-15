@@ -1512,6 +1512,17 @@ class Addon(OnChangeMixin, ModelBase):
                 lookup_field = 'slug'
         return lookup_field
 
+    @cached_property
+    def block(self):
+        from olympia.blocklist.models import Block
+
+        # Block.guid is unique so it's either on the list or not.
+        return Block.objects.filter(guid=self.guid).last()
+
+    @property
+    def is_addon_blocklisted(self):
+        return self.block is not None
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
