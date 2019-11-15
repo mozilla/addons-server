@@ -1,6 +1,7 @@
-from olympia.amo.tests import TestCase, addon_factory
+from django.test.utils import override_settings
 
-from olympia.constants.scanners import CUSTOMS, WAT, YARA
+from olympia.amo.tests import TestCase, addon_factory
+from olympia.constants.scanners import CUSTOMS, WAT, YARA, FALSE_POSITIVE
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult, ScannerRule
 
@@ -20,6 +21,10 @@ class TestScannerResult(TestCase):
     def create_customs_result(self):
         upload = self.create_file_upload()
         return ScannerResult.objects.create(upload=upload, scanner=CUSTOMS)
+
+    def create_wat_result(self):
+        upload = self.create_file_upload()
+        return ScannerResult.objects.create(upload=upload, scanner=WAT)
 
     def create_fake_yara_match(
         self, rule='some-yara-rule', tags=None, description='some description'
@@ -152,3 +157,41 @@ class TestScannerResult(TestCase):
         result = self.create_customs_result()
         result.results = {'foo': 'bar'}
         assert result.get_pretty_results() == '{\n  "foo": "bar"\n}'
+
+    def test_get_customs_git_repository(self):
+        result = self.create_customs_result()
+        git_repo = 'some git repo'
+
+        with override_settings(CUSTOMS_GIT_REPOSITORY=git_repo):
+            assert result.get_git_repository() == git_repo
+
+    def test_get_yara_git_repository(self):
+        result = self.create_yara_result()
+        git_repo = 'some git repo'
+
+        with override_settings(YARA_GIT_REPOSITORY=git_repo):
+            assert result.get_git_repository() == git_repo
+
+    def test_get_git_repository_returns_none_if_not_supported(self):
+        result = self.create_wat_result()
+        assert result.get_git_repository() is None
+
+    def test_can_report_feedback_is_false_when_there_is_no_match(self):
+        result = self.create_customs_result()
+        assert not result.can_report_feedback()
+
+    def test_can_report_feedback(self):
+        result = self.create_customs_result()
+        result.has_matches = True
+        assert result.can_report_feedback()
+
+    def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
+        result = self.create_customs_result()
+        result.has_matches = True
+        result.state = FALSE_POSITIVE
+        assert not result.can_report_feedback()
+
+    def test_can_report_feedback_is_false_when_scanner_is_wat(self):
+        result = self.create_wat_result()
+        result.has_matches = True
+        assert not result.can_report_feedback()

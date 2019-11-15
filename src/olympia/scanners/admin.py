@@ -1,11 +1,21 @@
-from django.contrib import admin
+from django.conf.urls import url
+from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Prefetch
+from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.utils.html import format_html
+from django.utils.http import urlencode
 from django.utils.translation import ugettext
 
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
+from olympia.constants.scanners import (
+    FALSE_POSITIVE,
+    RESULT_STATES,
+    TRUE_POSITIVE,
+    UNKNOWN,
+)
 
 from .models import ScannerResult, ScannerRule
 
@@ -33,6 +43,36 @@ class MatchesFilter(SimpleListFilter):
         return queryset.filter(has_matches=True)
 
 
+class StateFilter(SimpleListFilter):
+    title = ugettext('state')
+    parameter_name = 'state'
+
+    def lookups(self, request, model_admin):
+        return (('all', 'All'), *RESULT_STATES.items())
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            selected = (
+                lookup == UNKNOWN
+                if self.value() is None
+                else self.value() == str(lookup)
+            )
+            yield {
+                'selected': selected,
+                'query_string': cl.get_query_string(
+                    {self.parameter_name: lookup}, []
+                ),
+                'display': title,
+            }
+
+    def queryset(self, request, queryset):
+        if self.value() == 'all':
+            return queryset
+        if self.value() is None:
+            return queryset.filter(state=UNKNOWN)
+        return queryset.filter(state=self.value())
+
+
 @admin.register(ScannerResult)
 class ScannerResultAdmin(admin.ModelAdmin):
     actions = None
@@ -45,8 +85,10 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'scanner',
         'formatted_matched_rules',
         'created',
+        'state',
+        'result_actions',
     )
-    list_filter = ('scanner', MatchesFilter)
+    list_filter = ('scanner', MatchesFilter, StateFilter)
     list_select_related = ('version',)
 
     fields = (
@@ -55,6 +97,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'formatted_addon',
         'channel',
         'scanner',
+        'created',
+        'state',
         'formatted_results',
     )
 
@@ -129,6 +173,80 @@ class ScannerResultAdmin(admin.ModelAdmin):
         )
 
     formatted_matched_rules.short_description = 'Matched rules'
+
+    def handle_true_positive(self, request, pk, *args, **kwargs):
+        result = self.get_object(request, pk)
+        result.update(state=TRUE_POSITIVE)
+
+        messages.add_message(
+            request,
+            messages.INFO,
+            'Scanner result {} has been marked as true positive.'.format(pk),
+        )
+
+        return redirect('admin:scanners_scannerresult_changelist')
+
+    def handle_false_positive(self, request, pk, *args, **kwargs):
+        result = self.get_object(request, pk)
+        result.update(state=FALSE_POSITIVE)
+
+        title = 'False positive report for ScannerResult {}'.format(pk)
+        body = render_to_string(
+            'admin/false_positive_report.md', {'result': result}
+        )
+        labels = ','.join(
+            [
+                # Default label added to all issues
+                'false positive report'
+            ] + [
+                'rule: {}'.format(rule.name)
+                for rule in result.matched_rules.all()
+            ]
+        )
+
+        return redirect(
+            'https://github.com/{}/issues/new?{}'.format(
+                result.get_git_repository(),
+                urlencode({'title': title, 'body': body, 'labels': labels}),
+            )
+        )
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            url(
+                r'^(?P<pk>.+)/report-false-positive/$',
+                self.admin_site.admin_view(self.handle_false_positive),
+                name='scanners_scannerresult_handlefalsepositive',
+            ),
+            url(
+                r'^(?P<pk>.+)/report-true-positive/$',
+                self.admin_site.admin_view(self.handle_true_positive),
+                name='scanners_scannerresult_handletruepositive',
+            ),
+        ]
+        return custom_urls + urls
+
+    def result_actions(self, obj):
+        if not obj.can_report_feedback():
+            return
+
+        return format_html(
+            '<a class="button" href="{}">Report as false positive</a>'
+            '&nbsp;'
+            '<a class="button" href="{}">Mark as true positive</a>',
+            reverse(
+                'admin:scanners_scannerresult_handlefalsepositive',
+                args=[obj.pk],
+            ),
+            reverse(
+                'admin:scanners_scannerresult_handletruepositive',
+                args=[obj.pk],
+            ),
+        )
+
+    result_actions.short_description = 'Actions'
+    result_actions.allow_tags = True
 
 
 @admin.register(ScannerRule)

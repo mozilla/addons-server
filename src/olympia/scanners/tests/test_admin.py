@@ -1,7 +1,9 @@
 import json
 
 from django.contrib.admin.sites import AdminSite
+from django.test.utils import override_settings
 from django.utils.html import format_html
+from django.utils.http import urlencode
 
 from pyquery import PyQuery as pq
 
@@ -13,8 +15,19 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.scanners import CUSTOMS, WAT, YARA
-from olympia.scanners.admin import ScannerResultAdmin, MatchesFilter
+from olympia.constants.scanners import (
+    CUSTOMS,
+    FALSE_POSITIVE,
+    TRUE_POSITIVE,
+    UNKNOWN,
+    WAT,
+    YARA,
+)
+from olympia.scanners.admin import (
+    MatchesFilter,
+    ScannerResultAdmin,
+    StateFilter,
+)
 from olympia.scanners.models import ScannerResult, ScannerRule
 
 
@@ -137,7 +150,7 @@ class TestScannerResultAdmin(TestCase):
         # The name of the deleted add-on should be displayed.
         assert str(deleted_addon.name) in html.text()
 
-    def test_list_shows_matches_only_by_default(self):
+    def test_list_shows_matches_and_unknown_state_only_by_default(self):
         # Create one entry without matches
         ScannerResult.objects.create(scanner=YARA)
         # Create one entry with matches
@@ -145,6 +158,10 @@ class TestScannerResultAdmin(TestCase):
         with_matches = ScannerResult(scanner=YARA)
         with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
+        # Create a false positive
+        false_positive = ScannerResult(scanner=YARA, state=FALSE_POSITIVE)
+        false_positive.add_yara_result(rule=rule.name)
+        false_positive.save()
 
         response = self.client.get(self.list_url)
         assert response.status_code == 200
@@ -159,14 +176,91 @@ class TestScannerResultAdmin(TestCase):
         with_matches = ScannerResult(scanner=YARA)
         with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
+        # Create a false positive
+        false_positive = ScannerResult(scanner=YARA, state=FALSE_POSITIVE)
+        false_positive.add_yara_result(rule=rule.name)
+        false_positive.save()
 
         response = self.client.get(
-            self.list_url, {MatchesFilter.parameter_name: 'all'}
+            self.list_url,
+            {
+                MatchesFilter.parameter_name: 'all',
+                StateFilter.parameter_name: 'all',
+            },
         )
         assert response.status_code == 200
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()
         assert html('#result_list tbody tr').length == expected_length
+
+    def test_handle_true_positive(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.state == UNKNOWN
+
+        response = self.client.get(
+            reverse(
+                'admin:scanners_scannerresult_handletruepositive',
+                args=[result.pk],
+            ),
+            follow=True,
+        )
+
+        result.refresh_from_db()
+        assert result.state == TRUE_POSITIVE
+        # The action should send a redirect.
+        last_url, status_code = response.redirect_chain[-1]
+        assert status_code == 302
+        # The action should redirect to the list view and the default list
+        # filters should hide the result (because its state is not UNKNOWN
+        # anymore).
+        html = pq(response.content)
+        assert html('#result_list tbody tr').length == 0
+        # A confirmation message should also appear.
+        assert html('.messagelist .info').length == 1
+
+    @override_settings(YARA_GIT_REPOSITORY='git/repo')
+    def test_handle_false_positive(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.state == UNKNOWN
+
+        response = self.client.get(
+            reverse(
+                'admin:scanners_scannerresult_handlefalsepositive',
+                args=[result.pk],
+            )
+        )
+
+        result.refresh_from_db()
+        assert result.state == FALSE_POSITIVE
+        # This action should send a redirect to GitHub.
+        assert response.status_code == 302
+        # We create a GitHub issue draft by passing some query parameters to
+        # GitHub.
+        assert response['Location'].startswith(
+            'https://github.com/git/repo/issues/new?'
+        )
+        assert (
+            urlencode(
+                {
+                    'title': 'False positive report for '
+                    'ScannerResult {}'.format(result.pk)
+                }
+            )
+            in response['Location']
+        )
+        assert urlencode({'body': '### Report'}) in response['Location']
+        assert (
+            urlencode({'labels': 'false positive report'})
+            in response['Location']
+        )
 
 
 class TestScannerRuleAdmin(TestCase):
