@@ -3,13 +3,7 @@
 from django.db import migrations
 import olympia.hero.models
 
-
-def blank_removed_featured_images(apps, schema_editor):
-    PrimaryHero = apps.get_model('hero', 'PrimaryHero')
-    for shelf in PrimaryHero.objects.all():
-        if shelf.image:
-            shelf.image = ''
-            shelf.save()
+from . import blank_featured_images
 
 
 class Migration(migrations.Migration):
@@ -19,7 +13,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(blank_removed_featured_images),
+        migrations.RunPython(blank_featured_images),
         migrations.AlterField(
             model_name='primaryhero',
             name='image',
