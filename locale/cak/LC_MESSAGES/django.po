@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 23:14+0000\n"
+"PO-Revision-Date: 2019-11-15 22:30+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -26,7 +26,7 @@ msgid "Addons"
 msgstr "Taq tz'aqat"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "ko'öl rutzijol (molon ruma ri guid)"
 
 msgid "creation date"
 msgstr "ruq'ijul tz'ukuj"
@@ -38,10 +38,10 @@ msgid "Distribution"
 msgstr "Rujachik"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Ramaq' ri ya'öl rutzijol"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Ch'uti tzijol"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
