@@ -118,7 +118,6 @@ class FileViewer(object):
 
         with lock(settings.TMP_PATH, lock_name, timeout=2) as lock_attained:
             if lock_attained:
-                print('AAAAAAAAAAAAAAAAAAAAAAA')
                 if self.is_extracted():
                     # Be vigilent with existing files. It's better to delete
                     # and re-extract than to trust whatever we have

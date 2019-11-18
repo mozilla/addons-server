@@ -1338,7 +1338,7 @@ def run_with_timeout(seconds):
     """
     def timeout_handler(signum, frame):
         """
-        Since Python 3.5 `f` is retried automatically when interrupted.
+        Since Python 3.5 `fcntl` is retried automatically when interrupted.
 
         We need an exception to stop it. This exception will propagate on
         to the main thread, make sure `flock` is called there.
