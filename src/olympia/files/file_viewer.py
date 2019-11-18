@@ -20,7 +20,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.lib.cache import cache_get_or_set, Message
 from olympia.files.utils import (
-    atomic_lock, extract_xpi, get_all_files, get_sha256)
+    lock, extract_xpi, get_all_files, get_sha256)
 
 task_log = olympia.core.logger.getLogger('z.task')
 
@@ -38,8 +38,6 @@ denied_magic_numbers = (
     (0x46, 0x57, 0x53),  # Uncompressed SWF
     (0x43, 0x57, 0x53),  # ZLIB compressed SWF
 )
-
-LOCKED_LIFETIME = 60 * 5
 
 SYNTAX_HIGHLIGHTER_ALIAS_MAPPING = {
     'xul': 'xml',
@@ -116,12 +114,11 @@ class FileViewer(object):
         :returns: `True` if successfully extracted,
                   `False` in case of an existing lock.
         """
-        lock = atomic_lock(
-            settings.TMP_PATH, 'file-viewer-%s' % self.file.pk,
-            lifetime=LOCKED_LIFETIME)
+        lock_name = f'file-viewer-{self.file.pk}'
 
-        with lock as lock_attained:
+        with lock(settings.TMP_PATH, lock_name, timeout=2) as lock_attained:
             if lock_attained:
+                print('AAAAAAAAAAAAAAAAAAAAAAA')
                 if self.is_extracted():
                     # Be vigilent with existing files. It's better to delete
                     # and re-extract than to trust whatever we have

@@ -3,13 +3,13 @@ import mimetypes
 import os
 import shutil
 import zipfile
+import fcntl
 
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 
-import flufl.lock
 import pytest
 
 from freezegun import freeze_time
@@ -20,6 +20,8 @@ from olympia.amo.tests import TestCase
 from olympia.files.file_viewer import DiffHelper, FileViewer, extract_file
 from olympia.files.models import File
 from olympia.files.utils import SafeZip, get_all_files
+
+from olympia.files.tests.test_utils import _run_lock_holding_process
 
 
 root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
@@ -84,36 +86,22 @@ class TestFileViewer(TestCase):
         # Lock was successfully attained
         assert self.viewer.extract()
 
-        lock = flufl.lock.Lock(os.path.join(
-            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
-        ))
+        lock_name = f'file-viewer-{self.viewer.file.pk}'
 
-        assert not lock.is_locked
-
-        lock.lock()
-
-        assert lock.is_locked
-
-        # Not extracting, the viewer is locked, lock could not be attained
-        assert not self.viewer.extract()
+        with _run_lock_holding_process(lock_name, sleep=3):
+            # Not extracting, the viewer is locked, lock could not be attained
+            assert not self.viewer.extract()
 
     def test_extract_file_locked_message(self):
         self.viewer.src = get_file('dictionary-test.xpi')
         assert not self.viewer.is_extracted()
 
-        lock = flufl.lock.Lock(os.path.join(
-            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
-        ))
+        lock_name = f'file-viewer-{self.viewer.file.pk}'
 
-        assert not lock.is_locked
-
-        lock.lock()
-
-        assert lock.is_locked
-
-        msg = extract_file(self.viewer)
-        assert str(msg.get()).startswith(u'File viewer is locked')
-        msg.delete()
+        with _run_lock_holding_process(lock_name, sleep=3):
+            msg = extract_file(self.viewer)
+            assert str(msg.get()).startswith(u'File viewer is locked')
+            msg.delete()
 
     def test_cleanup(self):
         self.viewer.extract()

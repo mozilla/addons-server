@@ -7,6 +7,7 @@ import os
 import io
 import re
 import shutil
+import signal
 import stat
 import struct
 import tarfile
@@ -24,7 +25,6 @@ from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
 
-import flufl.lock
 import rdflib
 
 from xml.parsers.expat import ExpatError
@@ -71,11 +71,6 @@ default = (
     'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
     'updateType=%UPDATE_TYPE%'
 )
-
-# number of times this lock has been aquired and not yet released
-# could be helpful to debug potential race-conditions and multiple-locking
-# scenarios.
-_lock_count = {}
 
 
 def get_filepath(fileorpath):
@@ -1331,54 +1326,89 @@ def get_background_images(file_obj, theme_data, header_only=False):
     return images
 
 
+import fcntl, errno
+from contextlib import contextmanager
+
+
+@contextmanager
+def run_with_timeout(seconds):
+    """Implement timeouts via `signal`.
+
+    This is being used to implement timeout handling when acquiring locks.
+    """
+    def timeout_handler(signum, frame):
+        """
+        Since Python 3.5 `f` is retried automatically when interrupted.
+
+        We need an exception to stop it. This exception will propagate on
+        to the main thread, make sure `flock` is called there.
+        """
+        raise TimeoutError
+
+    original_handler = signal.signal(signal.SIGALRM, timeout_handler)
+
+    try:
+        signal.alarm(seconds)
+        yield
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, original_handler)
+
+
 @contextlib.contextmanager
-def atomic_lock(lock_dir, lock_name, lifetime=60):
-    """A atomic, NFS safe implementation of a file lock.
+def lock(lock_dir, lock_name, timeout=6):
+    """A wrapper around fcntl to be used as a context manager.
 
-    Uses `flufl.lock` under the hood. Can be used as a context manager::
+    Additionally this helper allows the caller to wait for a lock for a certain
+    amount of time.
 
-        with atomic_lock(settings.TMP_PATH, 'extraction-1234'):
+    Example::
+
+        with lock(settings.TMP_PATH, 'extraction-1234'):
             extract_xpi(...)
 
+
+    The lock is properly released at the end of the context block.
+
+    This locking mechanism should work perfectly fine with NFS v4 and EFS
+    (which uses the NFS v4.1 protocol).
+
+    :param timeout: Timeout for how long we expect to wait for a lock in
+                    seconds. If 0 the function returns immediately, otherwise
+                    it blocks the execution.
     :return: `True` if the lock was attained, we are owning the lock,
              `False` if there is an already existing lock.
     """
-    lock_name = lock_name + '.lock'
-    count = _lock_count.get(lock_name, 0)
+    lock_name = f'{lock_name}.lock'
 
-    log.debug('Acquiring lock %s, count is %d.' % (lock_name, count))
+    log.debug(f'Acquiring lock {lock_name}.')
 
-    lock_name = os.path.join(lock_dir, lock_name)
-    lock = flufl.lock.Lock(lock_name, lifetime=timedelta(seconds=lifetime))
+    lock_path = os.path.join(lock_dir, lock_name)
 
-    try:
-        # set `timeout=0` to avoid any process blocking but catch the
-        # TimeOutError raised instead.
-        lock.lock(timeout=timedelta(seconds=0))
-    except flufl.lock.AlreadyLockedError:
-        # This process already holds the lock
-        yield False
-    except flufl.lock.TimeOutError:
-        # Some other process holds the lock.
-        # Let's break the lock if it has expired. Unfortunately
-        # there's a bug in flufl.lock so let's do this manually.
-        # Bug: https://gitlab.com/warsaw/flufl.lock/merge_requests/1
-        release_time = lock._releasetime
-        max_release_time = release_time + flufl.lock._lockfile.CLOCK_SLOP
+    with open(lock_path, 'w') as lockfd:
+        lockfd.write(f'{os.getpid()}')
+        fileno = lockfd.fileno()
 
-        if (release_time != -1 and datetime.now() > max_release_time):
-            # Break the lock and try to aquire again
-            lock._break()
-            lock.lock(timeout=timedelta(seconds=0))
-            yield lock.is_locked
-        else:
-            # Already locked
+        try:
+            with run_with_timeout(timeout):
+                fcntl.flock(fileno, fcntl.LOCK_EX)
+        except (BlockingIOError, TimeoutError):
+            # Another process already holds the lock.
+            # In theory, in this case we'd always catch
+            # `TimeoutError` but for the sake of completness let's
+            # catch `BlockingIOError` too to be on the safe side.
             yield False
-    else:
-        # Is usually `True` but just in case there were some weird `lifetime`
-        # values set we return the check if we really attained the lock.
-        yield lock.is_locked
+        else:
+            # We successfully acquired the lock.
+            yield True
+        finally:
+            # Always release the lock after the parent context
+            # block has finised.
+            log.debug(f'Releasing lock {lock_name}.')
+            fcntl.flock(fileno, fcntl.LOCK_UN)
+            lockfd.close()
 
-    if lock.is_locked:
-        log.debug('Releasing lock %s.' % lock.details[2])
-        lock.unlock()
+            try:
+                os.unlink(lock_path)
+            except FileNotFoundError:
+                pass

@@ -12,7 +12,7 @@ import waffle
 import olympia.core.logger
 
 from olympia import amo
-from olympia.files.utils import atomic_lock
+from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
@@ -24,7 +24,7 @@ from olympia.scanners.tasks import run_action
 
 log = olympia.core.logger.getLogger('z.reviewers.auto_approve')
 
-LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
+LOCK_NAME = 'auto-approve'  # Name of the lock() used.
 
 
 class Command(BaseCommand):
@@ -58,7 +58,7 @@ class Command(BaseCommand):
 
         # Get a lock before doing anything, we don't want to have multiple
         # instances of the command running in parallel.
-        lock = atomic_lock(settings.TMP_PATH, LOCK_NAME, lifetime=15 * 60)
+        lock = lock(settings.TMP_PATH, LOCK_NAME)
         with lock as lock_attained:
             if lock_attained:
                 qs = self.fetch_candidates()

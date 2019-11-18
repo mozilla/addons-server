@@ -5,6 +5,8 @@ import shutil
 import tempfile
 import time
 import zipfile
+import multiprocessing
+import contextlib
 
 from datetime import timedelta
 from unittest import mock
@@ -14,7 +16,6 @@ from django.conf import settings
 from django.forms import ValidationError
 from django.test.utils import override_settings
 
-import flufl.lock
 import lxml
 import pytest
 
@@ -26,7 +27,6 @@ from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils
-from olympia.files.tests.test_file_viewer import get_file
 
 
 pytestmark = pytest.mark.django_db
@@ -933,56 +933,45 @@ def test_get_all_files_prefix_with_strip_prefix():
     ]
 
 
-def test_atomic_lock_with():
-    lock = flufl.lock.Lock('/tmp/test-atomic-lock1.lock')
-
-    assert not lock.is_locked
-
-    lock.lock()
-
-    assert lock.is_locked
-
-    with utils.atomic_lock('/tmp/', 'test-atomic-lock1') as lock_attained:
-        assert not lock_attained
-
-    lock.unlock()
-
-    with utils.atomic_lock('/tmp/', 'test-atomic-lock1') as lock_attained:
+def test_lock_with_lock_attained():
+    with utils.lock(settings.TMP_PATH, 'test-lock-lock2') as lock_attained:
         assert lock_attained
 
 
-def test_atomic_lock_with_lock_attained():
-    with utils.atomic_lock('/tmp/', 'test-atomic-lock2') as lock_attained:
-        assert lock_attained
+@contextlib.contextmanager
+def _run_lock_holding_process(lock_name, sleep):
+    def _other_process_holding_lock():
+        with utils.lock(settings.TMP_PATH, lock_name) as lock_attained:
+            assert lock_attained
+            time.sleep(sleep)
+
+    other_process = multiprocessing.Process(target=_other_process_holding_lock)
+    other_process.start()
+
+    # Give the process some time to acquire the lock
+    time.sleep(0.2)
+
+    yield other_process
+
+    other_process.join()
 
 
-@mock.patch.object(flufl.lock._lockfile, 'CLOCK_SLOP', timedelta(seconds=0))
-def test_atomic_lock_lifetime():
-    def _get_lock():
-        return utils.atomic_lock('/tmp/', 'test-atomic-lock3', lifetime=1)
+def test_lock_timeout():
+    with _run_lock_holding_process('test-lock-lock3', sleep=2):
+        # Waiting for 3 seconds allows us to attain the lock from the parent
+        # process.
+        with utils.lock(settings.TMP_PATH, 'test-lock-lock3', timeout=3) as lock_attained:
+            assert lock_attained
 
-    with _get_lock() as lock_attained:
-        assert lock_attained
-
-        lock2 = flufl.lock.Lock('/tmp/test-atomic-lock3.lock')
-
-        with pytest.raises(flufl.lock.TimeOutError):
-            # We have to apply `timedelta` to actually raise an exception,
-            # otherwise `.lock()` will wait for 2 seconds and get the lock
-            # for us. We get a `TimeOutError` because we were locking
-            # with a different claim file
-            lock2.lock(timeout=timedelta(seconds=0))
-
-        with _get_lock() as lock_attained2:
-            assert not lock_attained2
-
-        time.sleep(2)
-
-        with _get_lock() as lock_attained2:
-            assert lock_attained2
+    with _run_lock_holding_process('test-lock-lock3', sleep=2):
+        # Waiting only 1 second fails to acquire the lock
+        with utils.lock(settings.TMP_PATH, 'test-lock-lock3', timeout=1) as lock_attained:
+            assert not lock_attained
 
 
 def test_parse_search_empty_shortname():
+    from olympia.files.tests.test_file_viewer import get_file
+
     fname = get_file('search_empty_shortname.xml')
 
     with pytest.raises(forms.ValidationError) as excinfo:

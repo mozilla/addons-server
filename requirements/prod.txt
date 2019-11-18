@@ -383,11 +383,6 @@ sqlparse==0.3.0 \
 python-magic==0.4.15 \
     --hash=sha256:f2674dcfad52ae6c49d4803fa027809540b130db1dec928cfbb9240316831375 \
     --hash=sha256:f3765c0f582d2dfc72c15f3b5a82aecfae9498bd29ca840d72f37d7bd38bfcd5
-# atpublic is required by flufl.lock
-atpublic==1.0 \
-    --hash=sha256:7dca670499e9a9d3aae5a8914bc799475fe24be3bcd29c8129642dda665f7a44
-flufl.lock==3.2 \
-    --hash=sha256:a8d66accc9ab41f09961cd8f8db39f9c28e97e2769659a3567c63930a869ff5b
 yara-python==3.11.0 \
     --hash=sha256:105d851e050b32951ee577148c7f1b18c0a7c64432fef8159069191d522fba86 \
     --hash=sha256:1d35c7f606465015de02143dfa4e1ad2f4ee85fdb5d5af756b51b2bac62ac7bc \
