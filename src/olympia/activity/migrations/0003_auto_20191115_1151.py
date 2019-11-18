@@ -7,7 +7,7 @@ from olympia import amo
 
 def set_guid_from_block(apps, schema_editor):
     BlockLog = apps.get_model('activity', 'BlockLog')
-    for log in BlockLog.objects.filter(guid=None):
+    for log in BlockLog.objects.filter(guid=''):
         log.update(guid=log.block.guid)
 
     ActivityLog = apps.get_model('activity', 'ActivityLog')
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blocklog',
             name='guid',
-            field=models.CharField(max_length=255, null=True),
+            field=models.CharField(max_length=255, null=True, default=''),
         ),
         migrations.AlterField(
             model_name='blocklog',
