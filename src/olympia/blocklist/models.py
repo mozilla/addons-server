@@ -1,5 +1,5 @@
 import datetime
-from collections import defaultdict, namedtuple
+from collections import defaultdict, namedtuple, OrderedDict
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -64,12 +64,12 @@ class Block(ModelBase):
         # set cached_property self.addon in a db efficient way beforehand.
         """
         addon_ids = [block.addon.id for block in blocks]
-        qs = Version.unfiltered.filter(addon_id__in=addon_ids).values(
-            'addon_id', 'version', 'channel')
-        addons_versions = defaultdict(dict)
+        qs = Version.unfiltered.filter(addon_id__in=addon_ids).order_by(
+            'id').values('addon_id', 'version', 'id', 'channel')
+        addons_versions = defaultdict(OrderedDict)
         for version in qs:
             addons_versions[str(version['addon_id'])][version['version']] = (
-                version['channel'])
+                version['id'], version['channel'])
         for block in blocks:
             block.addon_versions = addons_versions[str(block.addon.id)]
 
@@ -88,8 +88,8 @@ class Block(ModelBase):
 
     def review_listed_link(self):
         has_listed = any(
-            True for v in self.addon_versions.values()
-            if v == amo.RELEASE_CHANNEL_LISTED)
+            True for id_, chan in self.addon_versions.values()
+            if chan == amo.RELEASE_CHANNEL_LISTED)
         if has_listed:
             url = reverse(
                 'reviewers.review',
@@ -100,8 +100,8 @@ class Block(ModelBase):
 
     def review_unlisted_link(self):
         has_unlisted = any(
-            True for v in self.addon_versions.values()
-            if v == amo.RELEASE_CHANNEL_UNLISTED)
+            True for id_, chan in self.addon_versions.values()
+            if chan == amo.RELEASE_CHANNEL_UNLISTED)
         if has_unlisted:
             url = reverse(
                 'reviewers.review',
