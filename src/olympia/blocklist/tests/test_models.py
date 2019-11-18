@@ -24,4 +24,4 @@ class TestBlock(TestCase):
         assert block.is_version_blocked('10')
         assert block.is_version_blocked('9')
         assert block.is_version_blocked('10.1')
-        assert block.is_version_blocked('10.%s' % (MAX_VERSION_PART +1))
+        assert block.is_version_blocked('10.%s' % (MAX_VERSION_PART + 1))
