@@ -13,8 +13,9 @@ import struct
 import tarfile
 import tempfile
 import zipfile
+import fcntl
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django import forms
 from django.conf import settings
@@ -1326,11 +1327,7 @@ def get_background_images(file_obj, theme_data, header_only=False):
     return images
 
 
-import fcntl, errno
-from contextlib import contextmanager
-
-
-@contextmanager
+@contextlib.contextmanager
 def run_with_timeout(seconds):
     """Implement timeouts via `signal`.
 

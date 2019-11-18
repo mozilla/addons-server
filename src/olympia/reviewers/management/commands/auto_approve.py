@@ -58,8 +58,7 @@ class Command(BaseCommand):
 
         # Get a lock before doing anything, we don't want to have multiple
         # instances of the command running in parallel.
-        lock = lock(settings.TMP_PATH, LOCK_NAME)
-        with lock as lock_attained:
+        with lock(settings.TMP_PATH, LOCK_NAME) as lock_attained:
             if lock_attained:
                 qs = self.fetch_candidates()
                 self.stats['total'] = len(qs)

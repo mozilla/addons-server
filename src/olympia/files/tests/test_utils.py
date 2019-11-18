@@ -8,7 +8,6 @@ import zipfile
 import multiprocessing
 import contextlib
 
-from datetime import timedelta
 from unittest import mock
 
 from django import forms
@@ -960,12 +959,14 @@ def test_lock_timeout():
     with _run_lock_holding_process('test-lock-lock3', sleep=2):
         # Waiting for 3 seconds allows us to attain the lock from the parent
         # process.
-        with utils.lock(settings.TMP_PATH, 'test-lock-lock3', timeout=3) as lock_attained:
+        lock = utils.lock(settings.TMP_PATH, 'test-lock-lock3', timeout=3)
+        with lock as lock_attained:
             assert lock_attained
 
     with _run_lock_holding_process('test-lock-lock3', sleep=2):
         # Waiting only 1 second fails to acquire the lock
-        with utils.lock(settings.TMP_PATH, 'test-lock-lock3', timeout=1) as lock_attained:
+        lock = utils.lock(settings.TMP_PATH, 'test-lock-lock3', timeout=1)
+        with lock as lock_attained:
             assert not lock_attained
 
 

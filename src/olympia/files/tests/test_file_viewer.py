@@ -3,7 +3,6 @@ import mimetypes
 import os
 import shutil
 import zipfile
-import fcntl
 
 from django import forms
 from django.conf import settings
