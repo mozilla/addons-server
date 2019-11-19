@@ -473,7 +473,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
 
         assert run_action_mock.called
-        run_action_mock.assert_called_with(self.version.id)
+        run_action_mock.assert_called_with(self.version)
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.run_action'
@@ -486,7 +486,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
 
         assert run_action_mock.called
-        run_action_mock.assert_called_with(self.version.id)
+        run_action_mock.assert_called_with(self.version)
 
         run_action_mock.reset_mock()
         call_command('auto_approve')

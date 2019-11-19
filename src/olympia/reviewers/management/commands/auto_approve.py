@@ -100,7 +100,7 @@ class Command(BaseCommand):
                         log.debug('Not running run_action() because it has '
                                   'already been executed')
                     else:
-                        run_action(version.id)
+                        run_action(version)
 
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)
