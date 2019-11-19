@@ -11,7 +11,7 @@ from django.views.decorators.cache import cache_page
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import action
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
@@ -22,7 +22,6 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
@@ -31,7 +30,7 @@ from olympia.api.permissions import (
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
     AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
-    AddonCategoryQueryParam, AddonTypeQueryParam, AutoCompleteSortFilter,
+    AddonTypeQueryParam, AutoCompleteSortFilter,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
 from olympia.translations.query import order_by_translation
@@ -47,7 +46,7 @@ from .serializers import (
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import (
     get_addon_recommendations, get_addon_recommendations_invalid,
-    get_creatured_ids, get_featured_ids, is_outcome_recommended)
+    is_outcome_recommended)
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -97,22 +96,6 @@ class BaseFilter(object):
     def filter(self, field):
         """Get the queryset for the given field."""
         return getattr(self, 'filter_{0}'.format(field))()
-
-    def filter_featured(self):
-        ids = self.model.featured_random(self.request.APP, self.request.LANG)
-        return manual_order(self.base_queryset, ids, 'addons.id')
-
-    def filter_free(self):
-        if self.model == Addon:
-            return self.base_queryset.top_free(self.request.APP, listed=False)
-        else:
-            return self.base_queryset.top_free(listed=False)
-
-    def filter_paid(self):
-        if self.model == Addon:
-            return self.base_queryset.top_paid(self.request.APP, listed=False)
-        else:
-            return self.base_queryset.top_paid(listed=False)
 
     def filter_popular(self):
         return self.base_queryset.order_by('-weekly_downloads')
@@ -433,10 +416,7 @@ class AddonAutoCompleteSearchView(AddonSearchView):
         return Response({'results': serializer.data})
 
 
-class AddonFeaturedView(GenericAPIView):
-    authentication_classes = []
-    permission_classes = []
-    serializer_class = AddonSerializer
+class AddonFeaturedView(AddonSearchView):
     # We accept the 'page_size' parameter but we do not allow pagination for
     # this endpoint since the order is random.
     pagination_class = None
@@ -445,61 +425,18 @@ class AddonFeaturedView(GenericAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
 
-        # Simulate pagination-like results, without actual pagination.
-        return Response({'results': serializer.data})
-
-    @classmethod
-    def as_view(cls, **kwargs):
-        view = super(AddonFeaturedView, cls).as_view(**kwargs)
-        return non_atomic_requests(view)
-
-    def get_queryset(self):
-        return Addon.objects.valid()
-
-    def filter_queryset(self, queryset):
-        # We can pass the optional lang parameter to either get_creatured_ids()
-        # or get_featured_ids() below to get locale-specific results in
-        # addition to the generic ones.
-        lang = self.request.GET.get('lang')
-        if 'category' in self.request.GET:
-            # If a category is passed then the app and type parameters are
-            # mandatory because we need to find a category in the constants to
-            # pass to get_creatured_ids(), and category slugs are not unique.
-            # AddonCategoryQueryParam parses the request parameters for us to
-            # determine the category.
-            try:
-                categories = AddonCategoryQueryParam(self.request).get_value()
-            except ValueError:
-                raise exceptions.ParseError(
-                    'Invalid app, category and/or type parameter(s).')
-            ids = []
-            for category in categories:
-                ids.extend(get_creatured_ids(category, lang))
-        else:
-            # If no category is passed, only the app parameter is mandatory,
-            # because get_featured_ids() needs it to find the right collection
-            # to pick addons from. It can optionally filter by type, so we
-            # parse request for that as well.
-            try:
-                app = AddonAppQueryParam(
-                    self.request).get_object_from_reverse_dict()
-                types = None
-                if 'type' in self.request.GET:
-                    types = AddonTypeQueryParam(self.request).get_value()
-            except ValueError:
-                raise exceptions.ParseError(
-                    'Invalid app, category and/or type parameter(s).')
-            ids = get_featured_ids(app, lang=lang, types=types)
-        # ids is going to be a random list of ids, we just slice it to get
-        # the number of add-ons that was requested. We do it before calling
-        # manual_order(), since it'll use the ids as part of a id__in filter.
         try:
             page_size = int(
                 self.request.GET.get('page_size', api_settings.PAGE_SIZE))
         except ValueError:
             raise exceptions.ParseError('Invalid page_size parameter')
-        ids = ids[:page_size]
-        return manual_order(queryset, ids, 'addons.id')
+        # Simulate pagination-like results, without actual pagination.
+        return Response({'results': serializer.data[:page_size]})
+
+    def filter_queryset(self, qs):
+        qs = super().filter_queryset(qs)
+        qs = qs.query(query.Bool(must=[Q('term', is_recommended=True)]))
+        return qs.query('function_score', functions=[query.SF('random_score')])
 
 
 class StaticCategoryView(ListAPIView):

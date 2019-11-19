@@ -21,7 +21,6 @@ from olympia.amo.tests import (
     ESTestCase, TestCase, addon_factory, collection_factory, file_factory,
     user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.discovery.models import DiscoveryItem
@@ -227,7 +226,6 @@ class AddonSerializerOutputTestMixin(object):
         }
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
-        assert result['is_featured'] == self.addon.is_featured() is False
         assert result['is_recommended'] == self.addon.is_recommended is False
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
@@ -438,14 +436,20 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_is_featured(self):
         self.addon = addon_factory()
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=collection.application)
-        collection.add_addon(self.addon)
-        assert self.addon.is_featured()
-
+        # As we've dropped featuring, we're faking it with recommended status
+        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
         result = self.serialize()
-        assert result['is_featured'] is True
+
+        assert 'is_featured' not in result
+
+        # It's only present in v3
+        gates = {None: ('is-featured-addon-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert result['is_featured'] is False
+            self.addon.current_version.update(recommendation_approved=True)
+            result = self.serialize()
+            assert result['is_featured'] is True
 
     def test_is_recommended(self):
         self.addon = addon_factory()

@@ -371,6 +371,8 @@ class AddonSerializer(serializers.ModelSerializer):
             data.pop('created', None)
         if request and not is_gate_active(request, 'is-source-public-shim'):
             data.pop('is_source_public', None)
+        if request and not is_gate_active(request, 'is-featured-addon-shim'):
+            data.pop('is_featured', None)
         return data
 
     def outgoingify(self, data):
@@ -393,12 +395,9 @@ class AddonSerializer(serializers.ModelSerializer):
         return bool(getattr(obj, 'has_eula', obj.eula))
 
     def get_is_featured(self, obj):
-        # obj._is_featured is set from ES, so will only be present for list
-        # requests.
-        if not hasattr(obj, '_is_featured'):
-            # Any featuring will do.
-            obj._is_featured = obj.is_featured(app=None, lang=None)
-        return obj._is_featured
+        # featured is gone, but we need to keep the API backwards compatible so
+        # fake it with recommended status instead.
+        return obj.is_recommended
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -621,8 +620,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         obj.average_rating = ratings.get('average')
         obj.total_ratings = ratings.get('count')
         obj.text_ratings_count = ratings.get('text_count')
-
-        obj._is_featured = data.get('is_featured', False)
 
         return obj
 

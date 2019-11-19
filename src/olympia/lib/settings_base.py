@@ -1684,6 +1684,7 @@ DRF_API_GATES = {
         'activity-user-shim',
         'autocomplete-sort-param',
         'is-source-public-shim',
+        'is-featured-addon-shim',
     ),
     'v4': (
         'l10n_flat_input_output',

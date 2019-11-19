@@ -28,7 +28,6 @@ urls = [
     url(r'^autocomplete/$', AddonAutoCompleteSearchView.as_view(),
         name='addon-autocomplete'),
     url(r'^search/$', AddonSearchView.as_view(), name='addon-search'),
-    url(r'^featured/$', AddonFeaturedView.as_view(), name='addon-featured'),
     url(r'^categories/$', StaticCategoryView.as_view(), name='category-list'),
     url(r'^language-tools/$', LanguageToolsView.as_view(),
         name='addon-language-tools'),
@@ -41,6 +40,8 @@ urls = [
 
 addons_v3 = urls + [
     url(r'^compat-override/$', CompatOverrideView.as_view(),
-        name='addon-compat-override')]
+        name='addon-compat-override'),
+    url(r'^featured/$', AddonFeaturedView.as_view(), name='addon-featured'),
+]
 
 addons_v4 = urls

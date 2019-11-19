@@ -10,26 +10,6 @@ Add-ons
     The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
---------
-Featured
---------
-
-.. _addon-featured:
-
-This endpoint allows you to list featured add-ons matching some parameters.
-Results are sorted randomly and therefore, the standard pagination parameters
-are not accepted. The query parameter ``page_size`` is allowed but only serves
-to customize the number of results returned, clients can not request a specific
-page.
-
-.. http:get:: /api/v4/addons/featured/
-
-    :query string app: **Required**. Filter by :ref:`add-on application <addon-detail-application>` availability.
-    :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
-    :query string lang: Request add-ons featured for this specific language to be returned alongside add-ons featured globally. Also activate translations for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
-    :query int page_size: Maximum number of results to return. Defaults to 25.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`.
 
 ------
 Search
@@ -48,9 +28,6 @@ This endpoint allows you to search through public add-ons.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string color: (Experimental) Filter by color in RGB hex format, trying to find themes that approximately match the specified color. Only works for static themes.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
-    :query boolean featured: Filter to only featured add-ons.  Only ``featured=true`` is supported.
-        If ``app`` is provided as a parameter then only featured collections targeted to that application are taken into account.
-        If ``lang`` is provided then only featured collections targeted to that language, (and collections for all languages), are taken into account. Both ``app`` and ``lang`` can be provided to filter to addons that are featured in collections that application and for that language, (and for all languages).
     :query string guid: Filter by exact add-on guid. Multiple guids can be specified, separated by comma(s), in which case any add-ons matching any of the guids will be returned.  As guids are unique there should be at most one add-on result per guid specified. For usage with Firefox, instead of separating multiple guids by comma(s), a single guid can be passed in base64url format, prefixed by the ``rta:`` string.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
@@ -76,8 +53,7 @@ This endpoint allows you to search through public add-ons.
          downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
             random  Random ordering. Only available when no search query is
-                    passed and when filtering to only return featured or
-                    recommended add-ons.
+                    passed and when filtering to only return recommended add-ons.
             rating  Bayesian rating, descending.
        recommended  Recommended add-ons above non-recommend add-ons. Only
                     available combined with another sort - ignored on its own.
@@ -188,7 +164,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object icons: An object holding the URLs to an add-ons icon including a cachebusting query string as values and their size as properties. Currently exposes 32, 64, 128 pixels wide icons.
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
-    :>json boolean is_featured: The add-on appears in a featured collection.
     :>json boolean is_recommended: The add-on is recommended by Mozilla.
     :>json string|object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
