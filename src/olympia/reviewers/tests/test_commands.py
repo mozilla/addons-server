@@ -191,6 +191,14 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         }, status=amo.STATUS_NULL)
         pure_unlisted_version = pure_unlisted.versions.get()
 
+        # Unlisted static theme.
+        unlisted_theme = addon_factory(name='Unlisted theme', version_kw={
+            'channel': amo.RELEASE_CHANNEL_UNLISTED,
+            'nomination': self.days_ago(13)}, file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+        unlisted_theme_version = unlisted_theme.versions.get()
+
         # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
@@ -251,6 +259,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             }
         )
 
+        # Listed static theme
+        addon_factory(name='Listed theme', file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME)
+
         # ---------------------------------------------------------------------
         # Gather the candidates.
         command = auto_approve.Command()
@@ -259,6 +272,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # We should find these versions, in this exact order.
         expected = [(version.addon, version) for version in [
+            unlisted_theme_version,
             pure_unlisted_version,
             user_disabled_addon_version,
             complex_addon_2_version,
