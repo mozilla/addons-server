@@ -131,25 +131,45 @@ class ScannerRule(ModelBase):
 
     def clean_yara(self):
         if not self.definition:
-            raise ValidationError(_('Yara rules should have a definition'))
+            raise ValidationError(
+                {'definition': _('Yara rules should have a definition')}
+            )
 
         if 'rule {}'.format(self.name) not in self.definition:
             raise ValidationError(
-                _(
-                    'The name of the rule in the definition should match the '
-                    'name of the scanner rule'
-                )
+                {
+                    'definition': _(
+                        'The name of the rule in the definition should match '
+                        'the name of the scanner rule'
+                    )
+                }
             )
 
         if len(re.findall(r'rule\s+.+?\s+{', self.definition)) > 1:
             raise ValidationError(
-                _('Only one Yara rule is allowed in the definition')
+                {
+                    'definition': _(
+                        'Only one Yara rule is allowed in the definition'
+                    )
+                }
             )
 
         try:
             yara.compile(source=self.definition)
+        except yara.SyntaxError as syntaxError:
+            raise ValidationError({
+                'definition': _('The definition is not valid: %(error)s') % {
+                    'error': syntaxError,
+                }
+            })
         except Exception:
-            raise ValidationError(_('The definition is not valid'))
+            raise ValidationError(
+                {
+                    'definition': _(
+                        'An error occurred when compiling the definition'
+                    )
+                }
+            )
 
 
 class ScannerMatch(ModelBase):
