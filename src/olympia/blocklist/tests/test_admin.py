@@ -115,7 +115,7 @@ class TestBlockAdminAdd(TestCase):
         assert 'Danger Danger' in content
         assert str(addon.average_daily_users) in content
         assert Block.objects.count() == 0  # Check we didn't create it already
-        assert 'Block History' not in content  # Only shown for edits
+        assert 'Block History' in content
 
         # Create the block
         response = self.client.post(
@@ -140,6 +140,9 @@ class TestBlockAdminAdd(TestCase):
         block_log = ActivityLog.objects.for_block(block).filter(
             action=log.action).last()
         assert block_log == log
+        block_log_by_guid = ActivityLog.objects.for_guidblock('guid@').filter(
+            action=log.action).last()
+        assert block_log_by_guid == log
 
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
@@ -243,6 +246,7 @@ class TestBlockAdminEdit(TestCase):
             'admin:blocklist_block_change', args=(self.block.pk,))
         self.delete_url = reverse(
             'admin:blocklist_block_delete', args=(self.block.pk,))
+        self.single_url = reverse('admin:blocklist_block_add_single')
 
     def test_edit(self):
         user = user_factory()
@@ -282,6 +286,9 @@ class TestBlockAdminEdit(TestCase):
         block_log = ActivityLog.objects.for_block(self.block).filter(
             action=log.action).last()
         assert block_log == log
+        block_log_by_guid = ActivityLog.objects.for_guidblock('guid@').filter(
+            action=log.action).last()
+        assert block_log_by_guid == log
 
         # Check the block history contains the edit just made.
         content = response.content.decode('utf-8')
@@ -319,6 +326,7 @@ class TestBlockAdminEdit(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
         assert Block.objects.count() == 1
+        guid = self.block.guid
 
         # Can access delete confirmation page.
         response = self.client.get(self.delete_url, follow=True)
@@ -335,7 +343,17 @@ class TestBlockAdminEdit(TestCase):
 
         log = ActivityLog.objects.for_addons(self.addon).last()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_DELETED.id
-        assert log.arguments == [self.addon, self.addon.guid]
+        assert log.arguments == [self.addon, self.addon.guid, None]
+
+        # The BlockLog is still there too so it can be referenced by guid
+        blocklog = ActivityLog.objects.for_guidblock(guid).first()
+        assert log == blocklog
+
+        # And if we try to add the guid again the old history is there
+        response = self.client.get(
+            self.single_url + '?guid=guid@', follow=True)
+        content = response.content.decode('utf-8')
+        assert f'Block deleted by {user.name}: guid@.' in content
 
     def test_can_not_delete_without_permission(self):
         user = user_factory()

@@ -99,10 +99,11 @@ def format_block_history(logs):
 
     history_format_string = (
         '<li>'
-        '{date}. {action} by {name}: {guid}, versions {min} - {max}. {legacy}'
+        '{date}. {action} by {name}: {guid}{versions}. {legacy}'
         '<ul><li>{reason}</li></ul>'
         '</li>')
     guid_url_format_string = '<a href="{url}">{text}</a>'
+    versions_format_string = ', versions {min} - {max}'
 
     log_entries_gen = (
         {'date': (
@@ -114,12 +115,16 @@ def format_block_history(logs):
          'action': amo.LOG_BY_ID[log.action].short,
          'name': log.author_name,
          'guid': log.details.get('guid'),
-         'min': log.details.get('min_version'),
-         'max': log.details.get('max_version'),
+         'versions': (
+            format_html(
+                versions_format_string, **{
+                    'min': log.details.get('min_version'),
+                    'max': log.details.get('max_version')})
+            if 'min_version' in log.details else ''),
          'legacy': (
             'Included in legacy blocklist.'
             if log.details.get('include_in_legacy') else ''),
-         'reason': log.details.get('reason')}
+         'reason': log.details.get('reason') or ''}
         for log in logs)
     return format_html(
         '<ul>\n{}\n</ul>',
@@ -196,7 +201,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
 
     def block_history(self, obj):
         return format_block_history(
-            ActivityLog.objects.for_block(obj).filter(
+            ActivityLog.objects.for_guidblock(obj.guid).filter(
                 action__in=Block.ACTIVITY_IDS).order_by('created'))
 
     def get_fieldsets(self, request, obj):
@@ -225,7 +230,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                     'include_in_legacy'),
             })
 
-        return (details, history, edit) if obj is not None else (details, edit)
+        return (details, history, edit)
 
     def render_change_form(self, request, context, add=False, change=False,
                            form_url='', obj=None):
@@ -255,9 +260,18 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         ActivityLog.create(action, obj.addon, obj.guid, obj, details=details)
 
     def delete_model(self, request, obj):
-        args = [amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid]
+        self.activity_log_delete(obj)
         super().delete_model(request, obj)
-        ActivityLog.create(*args)
+
+    def delete_queryset(self, request, queryset):
+        for obj in queryset:
+            self.activity_log_delete(obj)
+        super().delete_queryset(request, queryset)
+
+    def activity_log_delete(self, obj):
+        ActivityLog.create(
+            amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid, obj,
+            details={'guid': obj.guid})
 
     def _get_addon_versions(self, obj):
         """Add some caching on the version queries.

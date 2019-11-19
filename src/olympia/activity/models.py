@@ -173,7 +173,8 @@ class BlockLog(ModelBase):
     """
     id = PositiveAutoField(primary_key=True)
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
-    block = models.ForeignKey(Block, on_delete=models.CASCADE)
+    block = models.ForeignKey(Block, on_delete=models.SET_NULL, null=True)
+    guid = models.CharField(max_length=255, null=False)
 
     class Meta:
         db_table = 'log_activity_block'
@@ -243,6 +244,11 @@ class ActivityLogManager(ManagerBase):
 
     def for_block(self, block):
         vals = (BlockLog.objects.filter(block=block)
+                .values_list('activity_log', flat=True))
+        return self.filter(pk__in=list(vals))
+
+    def for_guidblock(self, guid):
+        vals = (BlockLog.objects.filter(guid=guid)
                 .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
@@ -653,7 +659,7 @@ class ActivityLog(ModelBase):
                     created=kw.get('created', timezone.now()))
             elif class_ == Block:
                 BlockLog.objects.create(
-                    block_id=id_, activity_log=al,
+                    block_id=id_, activity_log=al, guid=arg.guid,
                     created=kw.get('created', timezone.now()))
 
         # Index by every user
