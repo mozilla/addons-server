@@ -12,6 +12,7 @@ import waffle
 import olympia.core.logger
 
 from olympia import amo
+from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import atomic_lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
@@ -46,6 +47,7 @@ class Command(BaseCommand):
         return Version.objects.auto_approvable().order_by(
             'nomination', 'created').distinct()
 
+    @use_primary_db
     def handle(self, *args, **options):
         """Command entry point."""
         self.dry_run = options.get('dry_run', False)
@@ -98,7 +100,7 @@ class Command(BaseCommand):
                         log.debug('Not running run_action() because it has '
                                   'already been executed')
                     else:
-                        run_action(version.id)
+                        run_action(version)
 
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)

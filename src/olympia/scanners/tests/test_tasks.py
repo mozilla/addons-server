@@ -441,7 +441,7 @@ class TestRunAction(TestCase):
     def test_runs_no_action(self, no_action_mock):
         self.scanner_rule.update(action=NO_ACTION)
 
-        run_action(self.version.id)
+        run_action(self.version)
 
         assert no_action_mock.called
         no_action_mock.assert_called_with(self.version)
@@ -450,7 +450,7 @@ class TestRunAction(TestCase):
     def test_runs_flag_for_human_review(self, flag_for_human_review_mock):
         self.scanner_rule.update(action=FLAG_FOR_HUMAN_REVIEW)
 
-        run_action(self.version.id)
+        run_action(self.version)
 
         assert flag_for_human_review_mock.called
         flag_for_human_review_mock.assert_called_with(self.version)
@@ -459,7 +459,7 @@ class TestRunAction(TestCase):
     def test_runs_delay_auto_approval(self, _delay_auto_approval_mock):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL)
 
-        run_action(self.version.id)
+        run_action(self.version)
 
         assert _delay_auto_approval_mock.called
         _delay_auto_approval_mock.assert_called_with(self.version)
@@ -469,7 +469,7 @@ class TestRunAction(TestCase):
             self, _delay_auto_approval_indefinitely_mock):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
 
-        run_action(self.version.id)
+        run_action(self.version)
 
         assert _delay_auto_approval_indefinitely_mock.called
         _delay_auto_approval_indefinitely_mock.assert_called_with(self.version)
@@ -478,7 +478,7 @@ class TestRunAction(TestCase):
     def test_returns_when_no_action_found(self, log_mock):
         self.scanner_rule.delete()
 
-        run_action(self.version.id)
+        run_action(self.version)
 
         log_mock.assert_called_with(
             'No action to execute for version %s.', self.version.id
@@ -489,7 +489,7 @@ class TestRunAction(TestCase):
         self.scanner_rule.update(action=12345)
 
         with pytest.raises(Exception, match='invalid action 12345'):
-            run_action(self.version.id)
+            run_action(self.version)
 
     @mock.patch('olympia.scanners.tasks._no_action')
     @mock.patch('olympia.scanners.tasks._flag_for_human_review')
@@ -503,7 +503,7 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        run_action(self.version.id)
+        run_action(self.version)
 
         assert not no_action_mock.called
         assert flag_for_human_review_mock.called
@@ -524,7 +524,7 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        run_action(self.version.id)
+        run_action(self.version)
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called
