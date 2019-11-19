@@ -91,6 +91,11 @@ class TestBlockAdminAdd(TestCase):
             self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(response, self.single_url + '?guid=guid@')
 
+        # Multiple guids are redirected to the multiple guid view
+        response = self.client.post(
+            self.add_url, {'guids': 'guid@\nfoo@baa'}, follow=True)
+        self.assertRedirects(response, self.multi_url, status_code=307)
+
         # An existing block will redirect to change view instead
         block = Block.objects.create(guid=addon.guid)
         response = self.client.post(
@@ -236,6 +241,152 @@ class TestBlockAdminAdd(TestCase):
             follow=True)
         assert response.status_code == 403
         assert Block.objects.count() == 0
+
+
+class TestBlockAdminAddMultiple(TestCase):
+    def setUp(self):
+        self.multi_url = reverse('admin:blocklist_block_add_multiple')
+
+    def test_add_multiple(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        existing = Block.objects.create(
+            addon=addon_factory(guid='foo@baa'),
+            min_version="1",
+            max_version="99",
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'guid@' in content
+        assert 'Danger Danger' in content
+        assert str(addon.average_daily_users) in content
+        assert 'foo@baa' in content
+        assert 'invalid@' in content
+        assert Block.objects.count() == 1  # Check we didn't create already
+
+        # Create the block
+        response = self.client.post(
+            self.multi_url, {
+                'input_guids': 'guid@\nfoo@baa\ninvalid@',
+                'min_version': '0',
+                'max_version': '*',
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 200
+        assert Block.objects.count() == 2
+
+        new_block = Block.objects.last()
+        assert new_block.addon == addon
+        log = ActivityLog.objects.for_addons(addon).last()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert log.arguments == [addon, addon.guid, new_block]
+        assert log.details['min_version'] == '0'
+        assert log.details['max_version'] == '*'
+        assert log.details['reason'] == 'some reason'
+        block_log = ActivityLog.objects.for_block(new_block).filter(
+            action=log.action).last()
+        assert block_log == log
+
+        existing = existing.reload()
+        assert Block.objects.first() == existing
+        # confirm properties were updated
+        assert existing.min_version == '0'
+        assert existing.max_version == '*'
+        assert existing.reason == 'some reason'
+        assert existing.url == 'dfd'
+        assert existing.include_in_legacy is False
+        log = ActivityLog.objects.for_addons(existing.addon).last()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
+        assert log.arguments == [existing.addon, existing.guid, existing]
+        assert log.details['min_version'] == '0'
+        assert log.details['max_version'] == '*'
+        assert log.details['reason'] == 'some reason'
+        block_log = ActivityLog.objects.for_block(existing).filter(
+            action=log.action).last()
+        assert block_log == log
+
+    def test_review_links(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        Block.objects.create(
+            addon=addon_factory(guid='foo@baa'),
+            min_version="1",
+            max_version="99",
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' in content
+        assert 'Review Unlisted' not in content
+
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' in content
+        assert 'Review Unlisted' in content, content
+
+        addon.current_version.delete(hard=True)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Review Listed' not in content
+        assert 'Review Unlisted' in content
+
+    def test_can_not_add_without_permission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+
+        addon_factory(guid='guid@', name='Danger Danger')
+        existing = Block.objects.create(
+            addon=addon_factory(guid='foo@baa'),
+            min_version="1",
+            max_version="99",
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            follow=True)
+        assert response.status_code == 403
+        assert b'Danger Danger' not in response.content
+
+        # Try to create the block anyway
+        response = self.client.post(
+            self.multi_url, {
+                'input_guids': 'guid@\nfoo@baa\ninvalid@',
+                'min_version': '0',
+                'max_version': '*',
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 403
+        assert Block.objects.count() == 1
+        existing = existing.reload()
+        assert existing.min_version == '1'  # check the values didn't update.
 
 
 class TestBlockAdminEdit(TestCase):

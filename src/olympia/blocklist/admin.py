@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import PermissionDenied
 from django.forms.fields import ChoiceField
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -11,7 +12,9 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import HttpResponseTemporaryRedirect
 
+from .forms import MultiBlockForm
 from .models import Block
 
 
@@ -41,7 +44,7 @@ class BlockAdminAddMixin():
         errors = []
         if request.method == 'POST':
             guids_data = request.POST.get('guids')
-            guids = guids_data.split(',') if guids_data else []
+            guids = guids_data.splitlines() if guids_data else []
             if len(guids) == 1:
                 guid = guids[0]
                 # If the guid already has a Block go to the change view
@@ -62,8 +65,8 @@ class BlockAdminAddMixin():
                         f'?guid={guid}')
             elif len(guids) > 1:
                 # If there's > 1 guid go to multi view.
-                return redirect(
-                    'admin:blocklist_block_add_multiple')
+                return HttpResponseTemporaryRedirect(
+                    reverse('admin:blocklist_block_add_multiple'))
 
         context = {}
         context.update({
@@ -87,7 +90,53 @@ class BlockAdminAddMixin():
             request, form_url=form_url, extra_context=extra_context)
 
     def add_multiple_view(self, request, **kwargs):
-        raise NotImplementedError
+        if not self.has_add_permission(request):
+            raise PermissionDenied
+        guids_data = request.POST.get('guids', request.GET.get('guids'))
+        context = {}
+        if guids_data:
+            # If we get a guids param it's a redirect from input_guids_view.
+            form = MultiBlockForm(
+                initial={'input_guids': guids_data}, request=request)
+        elif request.method == 'POST':
+            # Otherwise, if its a POST try to process the form.
+            form = MultiBlockForm(request.POST, request=request)
+            if form.is_valid():
+                # Create and/or update the blocks.
+                added_blocks, updated_blocks = form.save()
+                # Then log what we did, both ActivityLog and django's LogEntry.
+                for obj in added_blocks:
+                    self.log_addition(request, obj, [{'added': {}}])
+                    self.activity_log_save(obj, change=False)
+                for obj in updated_blocks:
+                    self.log_change(request, obj, {'changed': {'fields': []}})
+                    self.activity_log_save(obj, change=True)
+                if request.POST.get('_addanother'):
+                    return redirect('admin:blocklist_block_add')
+                else:
+                    return redirect('admin:blocklist_block_changelist')
+            else:
+                guids_data = request.POST.get('input_guids')
+        else:
+            # if its not a POST and no ?guids there's nothing to do so go back
+            return redirect('admin:blocklist_block_add')
+        context.update({
+            'form': form,
+            'add': True,
+            'change': False,
+            'has_view_permission': self.has_view_permission(request, None),
+            'has_add_permission': self.has_add_permission(request),
+            'has_change_permission': self.has_change_permission(request, None),
+            'app_label': 'blocklist',
+            'opts': self.model._meta,
+            'title': 'Block Add-ons',
+            'save_as': False,
+        })
+        objects = form.process_input_guids(guids_data)
+        context.update(objects)
+        Block.preload_addon_versions(objects['new'])
+        return TemplateResponse(
+            request, "blocklist/multiple_block.html", context)
 
 
 def format_block_history(logs):
@@ -172,30 +221,6 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def users(self, obj):
         return obj.addon.average_daily_users
 
-    def review_listed_link(self, obj):
-        has_listed = any(
-            True for v in self._get_addon_versions(obj).values()
-            if v == amo.RELEASE_CHANNEL_LISTED)
-        if has_listed:
-            url = reverse(
-                'reviewers.review',
-                kwargs={'addon_id': obj.addon.pk})
-            return format_html(
-                '<a href="{}">{}</a>', url, _('Review Listed'))
-        return ''
-
-    def review_unlisted_link(self, obj):
-        has_unlisted = any(
-            True for v in self._get_addon_versions(obj).values()
-            if v == amo.RELEASE_CHANNEL_UNLISTED)
-        if has_unlisted:
-            url = reverse(
-                'reviewers.review',
-                args=('unlisted', obj.addon.pk))
-            return format_html(
-                '<a href="{}">{}</a>', url, _('Review Unlisted'))
-        return ''
-
     def url_link(self, obj):
         return format_html('<a href="{}">{}</a>', obj.url, obj.url)
 
@@ -245,6 +270,10 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         obj.updated_by = request.user
         if not change:
             obj.guid = self.get_request_guid(request)
+        super().save_model(request, obj, form, change)
+        self.activity_log_save(obj, change)
+
+    def activity_log_save(self, obj, change):
         action = (
             amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
             amo.LOG.BLOCKLIST_BLOCK_ADDED)
@@ -256,7 +285,6 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             'reason': obj.reason,
             'include_in_legacy': obj.include_in_legacy,
         }
-        super().save_model(request, obj, form, change)
         ActivityLog.create(action, obj.addon, obj.guid, obj, details=details)
 
     def delete_model(self, request, obj):
@@ -273,26 +301,11 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid, obj,
             details={'guid': obj.guid})
 
-    def _get_addon_versions(self, obj):
-        """Add some caching on the version queries.
-        We add it to the object rather than self because the
-        ModelAdmin instance can be reused by subsequent requests.
-        """
-        if not obj or not obj.addon:
-            return {}
-        elif not hasattr(obj, '_addon_versions_cache'):
-            qs = obj.addon.versions(
-                manager='unfiltered_for_relations').values(
-                'version', 'channel')
-            obj._addon_versions_cache = {
-                version['version']: version['channel'] for version in qs}
-        return obj._addon_versions_cache
-
     def _get_version_choices(self, obj, field):
         default = obj._meta.get_field(field).default
         return (
             (version, version) for version in (
-                [default] + list(self._get_addon_versions(obj).keys())
+                [default] + list(obj.addon_versions.keys())
             )
         )
 
