@@ -91,7 +91,7 @@ class TestBlockAdminAdd(TestCase):
             self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(response, self.single_url + '?guid=guid@')
 
-        # Multiple guids are redirected to the mulitple guid view
+        # Multiple guids are redirected to the multiple guid view
         response = self.client.post(
             self.add_url, {'guids': 'guid@\nfoo@baa'}, follow=True)
         self.assertRedirects(response, self.multi_url, status_code=307)

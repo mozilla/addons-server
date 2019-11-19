@@ -50,14 +50,16 @@ class Block(ModelBase):
 
     @cached_property
     def addon_versions(self):
-        # preload_addon_versions will set this property for us.
+        # preload_addon_versions will set this cached_property so overwrite it.
         self.preload_addon_versions([self])
         return self.addon_versions
 
     @classmethod
     def preload_addon_versions(cls, blocks):
-        # if you're calling this on a list of blocks it's expected that you've
+        """Preload block.addon_versions into a list of blocks.
+        If you're calling this on a list of blocks it's expected that you've
         # set cached_property self.addon in a db efficient way beforehand.
+        """
         addon_ids = [block.addon.id for block in blocks]
         qs = Version.unfiltered.filter(addon_id__in=addon_ids).values(
             'addon_id', 'version', 'channel')
