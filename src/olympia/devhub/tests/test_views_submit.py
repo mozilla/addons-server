@@ -1767,6 +1767,69 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             reverse('devhub.submit.version.upload', args=[
                 self.addon.slug, 'unlisted']))
 
+    def test_unlisted_redirects_to_next_step_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.post(self.url, {'channel': 'unlisted'})
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.upload', args=[
+                self.addon.slug, 'unlisted']))
+
+    def test_listed_not_available_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.post(self.url, {'channel': 'listed'})
+        # Not redirected, instead the page is shown with an error.
+        assert response.status_code == 200
+        doc = pq(response.content)
+        errorlist = doc('.errorlist')
+        assert errorlist.text().startswith('Select a valid choice.')
+
+    def test_preselected_channel(self):
+        response = self.client.get(self.url, {'channel': 'listed'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        channel_input = doc('form.addon-submit-distribute input.channel')
+        channel_input[0].attrib == {
+            'type': 'radio',
+            'name': 'channel',
+            'value': 'listed',
+            'class': 'channel',
+            'required': '',
+            'id': 'id_channel_0',
+            'checked': 'checked'
+        }
+        channel_input[1].attrib == {
+            'type': 'radio',
+            'name': 'channel',
+            'value': 'unlisted',
+            'class': 'channel',
+            'required': '',
+            'id': 'id_channel_1',
+        }
+        # There should not be a warning, the add-on is not disabled.
+        assert not doc('p.status-disabled')
+
+    def test_no_preselected_channel_if_addon_is_invisible(self):
+        # If add-on is "Invisible", the only choice available is "unlisted",
+        # and there is no preselection (there is no point for the user to
+        # land on this page in the first place, the link should be hidden).
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url, {'channel': 'unlisted'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        channel_input = doc('form.addon-submit-distribute input.channel')
+        assert len(channel_input) == 1
+        channel_input[0].attrib == {
+            'type': 'radio',
+            'name': 'channel',
+            'value': 'unlisted',
+            'class': 'channel',
+            'required': '',
+            'id': 'id_channel_0',
+        }
+        # There should be a warning.
+        assert doc('p.status-disabled')
+
     def test_no_redirect_for_metadata(self):
         self.addon.update(status=amo.STATUS_NULL)
         AddonCategory.objects.filter(addon=self.addon).delete()
@@ -1924,6 +1987,7 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('.addon-submit-distribute a').attr('href') == (
             distribution_url + '?channel=' + channel_text)
+        assert not doc('p.status-disabled')
 
     def test_url_is_404_for_disabled_addons(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -2172,6 +2236,21 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
                 'devhub.submit.version.source',
                 args=[self.addon.slug, version.pk]))
 
+    def test_redirect_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        # We should be redirected to the "distribution" page, because we tried
+        # to access the listed upload page while the add-on was "invisible".
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, reverse('devhub.submit.version.distribution',
+                              args=[self.addon.slug]), 302)
+
+        # Same for posts.
+        response = self.post(expected_status=302)
+        self.assert3xx(
+            response, reverse('devhub.submit.version.distribution',
+                              args=[self.addon.slug]), 302)
+
 
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
@@ -2193,6 +2272,17 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
+
+    def test_show_warning_and_remove_change_link_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Channel should be 'unlisted' with a warning shown, no choice about it
+        # since the add-on is "invisible".
+        assert doc('p.status-disabled')
+        # The link to select another distribution channel should be absent.
+        assert not doc('.addon-submit-distribute a')
 
 
 class TestVersionSubmitSource(TestAddonSubmitSource):

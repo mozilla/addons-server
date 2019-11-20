@@ -1207,10 +1207,16 @@ def submit_version_agreement(request, addon_id, addon):
 
 @transaction.atomic
 def _submit_distribution(request, addon, next_view):
-    # Accept GET for the first load so we can preselect the channel.
-    form = forms.DistributionChoiceForm(
-        request.POST if request.method == 'POST' else
-        request.GET if request.GET.get('channel') else None)
+    # Accept GET for the first load so we can preselect the channel, but only
+    # when there is no addon or the add-on is not "invisible".
+    if request.method == 'POST':
+        data = request.POST
+    elif 'channel' in request.GET and (
+            not addon or not addon.disabled_by_user):
+        data = request.GET
+    else:
+        data = None
+    form = forms.DistributionChoiceForm(data, addon=addon)
 
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
@@ -1218,7 +1224,7 @@ def _submit_distribution(request, addon, next_view):
         args.append(data['channel'])
         return redirect(next_view, *args)
     return render(request, 'devhub/addons/submit/distribute.html',
-                  {'distribution_form': form,
+                  {'addon': addon, 'distribution_form': form,
                    'submit_notification_warning':
                        get_config('submit_notification_warning'),
                    'submit_page': 'version' if addon else 'addon'})
@@ -1279,6 +1285,11 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
 
     next_view is the view that will be redirected to.
     """
+    if (addon and addon.disabled_by_user and
+            channel == amo.RELEASE_CHANNEL_LISTED):
+        # Listed versions can not be submitted while the add-on is set to
+        # "invisible" (disabled_by_user).
+        return redirect('devhub.submit.version.distribution', addon.slug)
     form = forms.NewUploadForm(
         request.POST or None,
         request.FILES or None,
@@ -1373,9 +1384,12 @@ def submit_version_upload(request, addon_id, addon, channel):
 def submit_version_auto(request, addon_id, addon):
     if not UploadRestrictionChecker(request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
-    # choose the channel we need from the last upload
+    # Choose the channel we need from the last upload, unless that channel
+    # would be listed and addon is set to "Invisible".
     last_version = addon.find_latest_version(None, exclude=())
-    if not last_version:
+    if not last_version or (
+            last_version.channel == amo.RELEASE_CHANNEL_LISTED and
+            addon.disabled_by_user):
         return redirect('devhub.submit.version.distribution', addon.slug)
     channel = last_version.channel
     return _submit_upload(

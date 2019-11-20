@@ -1217,11 +1217,23 @@ class DistributionChoiceForm(forms.Form):
         u'updateURL or external application updates.</span>')
 
     channel = forms.ChoiceField(
-        choices=(
-            ('listed', mark_safe_lazy(LISTED_LABEL)),
-            ('unlisted', mark_safe_lazy(UNLISTED_LABEL))),
+        choices=[],
         initial='listed',
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
+
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon', None)
+        super().__init__(*args, **kwargs)
+        choices = [
+            ('listed', mark_safe_lazy(self.LISTED_LABEL)),
+            ('unlisted', mark_safe_lazy(self.UNLISTED_LABEL))
+        ]
+        if self.addon and self.addon.disabled_by_user:
+            # If the add-on is disabled, 'listed' is not a valid choice,
+            # "invisible" add-ons can not upload new listed versions.
+            choices.pop(0)
+
+        self.fields['channel'].choices = choices
 
 
 class AgreementForm(forms.Form):
