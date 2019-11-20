@@ -21,6 +21,10 @@ from .tasks import create_blocks_from_multi_block
 from .utils import block_activity_log_delete, block_activity_log_save
 
 
+# The limit for how many GUIDs should be fully loaded with all metadata
+GUID_FULL_LOAD_LIMIT = 100
+
+
 class BlockAdminAddMixin():
 
     def get_urls(self):
@@ -137,11 +141,14 @@ class BlockAdminAddMixin():
             'title': 'Block Add-ons',
             'save_as': False,
         })
-        objects = MultiBlockSubmit.process_input_guids(guids_data)
+        load_full_objects = guids_data.count('\n') < GUID_FULL_LOAD_LIMIT
+        objects = MultiBlockSubmit.process_input_guids(
+            guids_data, load_full_objects=load_full_objects)
         context.update(objects)
-        Block.preload_addon_versions(objects['new'])
+        if load_full_objects:
+            Block.preload_addon_versions(objects['new'])
         return TemplateResponse(
-            request, "blocklist/multiple_block.html", context)
+            request, 'blocklist/multiple_block.html', context)
 
 
 def format_block_history(logs):

@@ -1,5 +1,5 @@
 import datetime
-from collections import defaultdict
+from collections import defaultdict, namedtuple
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -126,16 +126,35 @@ class MultiBlockSubmit(ModelBase):
         help_text='Include in legacy xml blocklist too, as well as new v3')
 
     @classmethod
-    def process_input_guids(cls, guids):
+    def process_input_guids(cls, guids, load_full_objects=True):
+        """Process a line-return seperated list of guids into a list of invalid
+        guids, a list of existing Block instances (for guids that are already
+        blocked), and a list of new Block instances (unsaved).
+
+        If `load_full_objects=False` is passed the Block instances are fake
+        (namedtuples) with only minimal data available in the "Block" objects:
+         block.guid and block.addon.average_daily_users.
+        """
+        FakeBlock = namedtuple('FakeBlock', ('guid', 'addon'))
+        FakeAddon = namedtuple('FakeAddon', ('average_daily_users'))
         all_guids = set(guids.splitlines())
 
-        existing = list(Block.objects.filter(guid__in=all_guids))
+        block_qs = Block.objects.filter(guid__in=all_guids)
+        existing = (
+            list(block_qs)
+            if load_full_objects else
+            [FakeBlock(guid=guid, addon=FakeAddon(0))
+             for guid in block_qs.values_list('guid', flat=True)])
         remaining = all_guids - {block.guid for block in existing}
 
         addon_qs = Addon.unfiltered.filter(guid__in=remaining).order_by(
             '-average_daily_users')
-        new = [
-            Block(addon=addon) for addon in addon_qs.only_translations()]
+        new = (
+            [Block(addon=addon) for addon in addon_qs.only_translations()]
+            if load_full_objects else
+            [FakeBlock(guid=guid, addon=FakeAddon(addon_users))
+             for guid, addon_users in addon_qs.values_list(
+                'guid', 'average_daily_users')])
 
         invalid = remaining - {block.guid for block in new}
 

@@ -1,5 +1,7 @@
 import datetime
 
+from unittest import mock
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -315,6 +317,36 @@ class TestBlockAdminAddMultiple(TestCase):
         block_log = ActivityLog.objects.for_block(existing).filter(
             action=log.action).last()
         assert block_log == log
+
+    @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
+    def test_add_multiple_bulk_so_fake_block_objects(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        Block.objects.create(
+            addon=addon_factory(guid='foo@baa'),
+            min_version="1",
+            max_version="99",
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            follow=True)
+        content = response.content.decode('utf-8')
+        # This metadata should exist
+        assert 'guid@' in content
+        assert str(addon.average_daily_users) in content
+        assert 'foo@baa' in content
+        assert 'invalid@' in content
+
+        # But these shouldn't have been loaded
+        assert 'Danger Danger' not in content
+        assert 'Review Listed' not in content
+        assert 'Review Unlisted' not in content
 
     def test_review_links(self):
         user = user_factory()
