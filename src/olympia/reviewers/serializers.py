@@ -371,7 +371,9 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         serializers.PrimaryKeyRelatedField(
             queryset=CannedResponse.objects.all(),
             required=False),
-        CannedResponseSerializer())
+        CannedResponseSerializer(),
+        allow_null=True,
+        required=False)
 
     class Meta:
         model = DraftComment
@@ -392,4 +394,8 @@ class DraftCommentSerializer(serializers.ModelSerializer):
                 {'comment': ugettext(
                     'You can\'t submit a comment if `canned_response` is '
                     'defined.')})
+        if not data.get('canned_response') and not data.get('comment'):
+            raise serializers.ValidationError(
+                {'comment': ugettext(
+                    'You can\'t submit an empty comment.')})
         return data
