@@ -17,6 +17,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
 from .models import Block, MultiBlockSubmit
+from .tasks import create_blocks_from_multi_block
+from .utils import block_activity_log_delete, block_activity_log_save
 
 
 class BlockAdminAddMixin():
@@ -108,16 +110,12 @@ class BlockAdminAddMixin():
             # Otherwise, if its a POST try to process the form.
             form = MultiBlockForm(request.POST)
             if form.is_valid():
-                # Create and/or update the blocks.
+                # Save the object so we have the guids
                 obj = form.save()
-                added_blocks, updated_blocks = obj.save_to_blocks(request.user)
-                # Then log what we did, both ActivityLog and django's LogEntry.
-                for obj in added_blocks:
-                    self.log_addition(request, obj, [{'added': {}}])
-                    self.activity_log_save(obj, change=False)
-                for obj in updated_blocks:
-                    self.log_change(request, obj, {'changed': {'fields': []}})
-                    self.activity_log_save(obj, change=True)
+                obj.update(updated_by=request.user)
+                self.log_addition(request, obj, [{'added': {}}])
+                # Then launch a task to async save the individual blocks
+                create_blocks_from_multi_block.delay(obj.id)
                 if request.POST.get('_addanother'):
                     return redirect('admin:blocklist_block_add')
                 else:
@@ -278,35 +276,16 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         if not change:
             obj.guid = self.get_request_guid(request)
         super().save_model(request, obj, form, change)
-        self.activity_log_save(obj, change)
-
-    def activity_log_save(self, obj, change):
-        action = (
-            amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
-            amo.LOG.BLOCKLIST_BLOCK_ADDED)
-        details = {
-            'guid': obj.guid,
-            'min_version': obj.min_version,
-            'max_version': obj.max_version,
-            'url': obj.url,
-            'reason': obj.reason,
-            'include_in_legacy': obj.include_in_legacy,
-        }
-        ActivityLog.create(action, obj.addon, obj.guid, obj, details=details)
+        block_activity_log_save(obj, change)
 
     def delete_model(self, request, obj):
-        self.activity_log_delete(obj)
+        block_activity_log_delete(obj, request.user)
         super().delete_model(request, obj)
 
     def delete_queryset(self, request, queryset):
         for obj in queryset:
-            self.activity_log_delete(obj)
+            block_activity_log_delete(obj, request.user)
         super().delete_queryset(request, queryset)
-
-    def activity_log_delete(self, obj):
-        ActivityLog.create(
-            amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid, obj,
-            details={'guid': obj.guid})
 
     def _get_version_choices(self, obj, field):
         default = obj._meta.get_field(field).default

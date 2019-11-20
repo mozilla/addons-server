@@ -15,6 +15,8 @@ from django.utils.translation import gettext_lazy as _
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import Version
 
+from .utils import block_activity_log_save
+
 
 class Block(ModelBase):
     guid = models.CharField(max_length=255, unique=True, null=False)
@@ -51,7 +53,7 @@ class Block(ModelBase):
 
     @cached_property
     def addon_versions(self):
-        # preload_addon_versions will set this cached_property so overwrite it.
+        # preload_addon_versions will overwrite this cached_property.
         self.preload_addon_versions([self])
         return self.addon_versions
 
@@ -143,13 +145,13 @@ class MultiBlockSubmit(ModelBase):
             'new': list(new),
         }
 
-    def save_to_blocks(self, user):
+    def save_to_blocks(self):
         common_args = {
             'min_version': self.min_version,
             'max_version': self.max_version,
             'url': self.url,
             'reason': self.reason,
-            'updated_by': user,
+            'updated_by': self.updated_by,
             'include_in_legacy': self.include_in_legacy,
         }
         processed_guids = self.process_input_guids(self.input_guids)
@@ -159,9 +161,12 @@ class MultiBlockSubmit(ModelBase):
             for field, val in common_args.items():
                 setattr(obj, field, val)
             obj.save()
+            block_activity_log_save(obj, change=False)
+
         objects_to_update = processed_guids['existing']
         common_args.update(modified=datetime.datetime.now())
         for obj in objects_to_update:
             obj.update(**common_args)
+            block_activity_log_save(obj, change=True)
 
         return (objects_to_add, objects_to_update)
