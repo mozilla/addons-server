@@ -1,3 +1,4 @@
+import datetime
 from collections import defaultdict
 
 from django.core.exceptions import ValidationError
@@ -106,3 +107,61 @@ class Block(ModelBase):
             return format_html(
                 '<a href="{}">{}</a>', url, _('Review Unlisted'))
         return ''
+
+
+class MultiBlockSubmit(ModelBase):
+    input_guids = models.TextField()
+    min_version = models.CharField(
+        choices=(('0', '0'),), default='0', max_length=1)
+    max_version = models.CharField(
+        choices=(('*', '*'),), default='*', max_length=1)
+    url = models.CharField(max_length=255, blank=True)
+    reason = models.TextField(blank=True)
+    updated_by = models.ForeignKey(
+        UserProfile, null=True, on_delete=models.SET_NULL)
+    include_in_legacy = models.BooleanField(
+        default=False,
+        help_text='Include in legacy xml blocklist too, as well as new v3')
+
+    @classmethod
+    def process_input_guids(cls, guids):
+        all_guids = set(guids.splitlines())
+
+        existing = list(Block.objects.filter(guid__in=all_guids))
+        remaining = all_guids - {block.guid for block in existing}
+
+        addon_qs = Addon.unfiltered.filter(guid__in=remaining).order_by(
+            '-average_daily_users')
+        new = [
+            Block(addon=addon) for addon in addon_qs.only_translations()]
+
+        invalid = remaining - {block.guid for block in new}
+
+        return {
+            'invalid': list(invalid),
+            'existing': list(existing),
+            'new': list(new),
+        }
+
+    def save_to_blocks(self, user):
+        common_args = {
+            'min_version': self.min_version,
+            'max_version': self.max_version,
+            'url': self.url,
+            'reason': self.reason,
+            'updated_by': user,
+            'include_in_legacy': self.include_in_legacy,
+        }
+        processed_guids = self.process_input_guids(self.input_guids)
+
+        objects_to_add = processed_guids['new']
+        for obj in objects_to_add:
+            for field, val in common_args.items():
+                setattr(obj, field, val)
+            obj.save()
+        objects_to_update = processed_guids['existing']
+        common_args.update(modified=datetime.datetime.now())
+        for obj in objects_to_update:
+            obj.update(**common_args)
+
+        return (objects_to_add, objects_to_update)

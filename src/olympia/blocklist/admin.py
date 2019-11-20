@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
+from django.forms import modelform_factory
 from django.forms.fields import ChoiceField
+from django.forms.widgets import HiddenInput
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
@@ -14,8 +16,7 @@ from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
-from .forms import MultiBlockForm
-from .models import Block
+from .models import Block, MultiBlockSubmit
 
 
 class BlockAdminAddMixin():
@@ -94,16 +95,22 @@ class BlockAdminAddMixin():
             raise PermissionDenied
         guids_data = request.POST.get('guids', request.GET.get('guids'))
         context = {}
+        fields = (
+            'input_guids', 'min_version', 'max_version', 'url', 'reason',
+            'include_in_legacy')
+        MultiBlockForm = modelform_factory(
+            MultiBlockSubmit, fields=fields,
+            widgets={'input_guids': HiddenInput()})
         if guids_data:
             # If we get a guids param it's a redirect from input_guids_view.
-            form = MultiBlockForm(
-                initial={'input_guids': guids_data}, request=request)
+            form = MultiBlockForm(initial={'input_guids': guids_data})
         elif request.method == 'POST':
             # Otherwise, if its a POST try to process the form.
-            form = MultiBlockForm(request.POST, request=request)
+            form = MultiBlockForm(request.POST)
             if form.is_valid():
                 # Create and/or update the blocks.
-                added_blocks, updated_blocks = form.save()
+                obj = form.save()
+                added_blocks, updated_blocks = obj.save_to_blocks(request.user)
                 # Then log what we did, both ActivityLog and django's LogEntry.
                 for obj in added_blocks:
                     self.log_addition(request, obj, [{'added': {}}])
@@ -132,7 +139,7 @@ class BlockAdminAddMixin():
             'title': 'Block Add-ons',
             'save_as': False,
         })
-        objects = form.process_input_guids(guids_data)
+        objects = MultiBlockSubmit.process_input_guids(guids_data)
         context.update(objects)
         Block.preload_addon_versions(objects['new'])
         return TemplateResponse(
