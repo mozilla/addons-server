@@ -164,7 +164,14 @@ def run_yara(results, upload_pk):
         scanner_result = ScannerResult(upload=upload, scanner=YARA)
 
         with statsd.timer('devhub.yara'):
-            rules = yara.compile(filepath=settings.YARA_RULES_FILEPATH)
+            # Retrieve then concatenate all the active/valid Yara rules.
+            all_yara_definitions = '\n'.join(
+                ScannerRule.objects.filter(
+                    scanner=YARA, is_active=True, definition__isnull=False
+                ).values_list('definition', flat=True)
+            )
+
+            rules = yara.compile(source=all_yara_definitions)
 
             zip_file = SafeZip(source=upload.path)
             for zip_info in zip_file.info_list:
