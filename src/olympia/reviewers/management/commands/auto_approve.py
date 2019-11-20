@@ -5,21 +5,22 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from django_statsd.clients import statsd
-
 import waffle
+
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import amo
+from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
 from olympia.reviewers.utils import ReviewHelper
-from olympia.versions.models import Version
 from olympia.scanners.tasks import run_action
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.reviewers.auto_approve')
@@ -46,6 +47,7 @@ class Command(BaseCommand):
         return Version.objects.auto_approvable().order_by(
             'nomination', 'created').distinct()
 
+    @use_primary_db
     def handle(self, *args, **options):
         """Command entry point."""
         self.dry_run = options.get('dry_run', False)
@@ -97,7 +99,7 @@ class Command(BaseCommand):
                         log.debug('Not running run_action() because it has '
                                   'already been executed')
                     else:
-                        run_action(version.id)
+                        run_action(version)
 
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)

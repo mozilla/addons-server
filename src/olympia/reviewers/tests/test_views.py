@@ -41,6 +41,7 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
+from olympia.blocklist.models import Block
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.lib.git import AddonGitRepository
@@ -4903,6 +4904,30 @@ class TestReview(ReviewBase):
         span = doc('#review-files-header .risk-high')
         assert span.length == 1
         assert span.text() == '4 versions flagged by scanners on other pages.'
+
+    def test_blocked_versions(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert b'Blocked' not in response.content
+
+        block = Block.objects.create(guid=self.addon.guid)
+        response = self.client.get(self.url)
+        assert b'Blocked' in response.content
+        span = pq(response.content)('#versions-history .blocked-version')
+        assert span.text() == 'Blocked'
+        assert span.length == 1  # addon only has 1 version
+
+        version_factory(addon=self.addon, version='99')
+        response = self.client.get(self.url)
+        span = pq(response.content)('#versions-history .blocked-version')
+        assert span.text() == 'Blocked Blocked'
+        assert span.length == 2  # a new version is blocked too
+
+        block.update(max_version='98')
+        response = self.client.get(self.url)
+        span = pq(response.content)('#versions-history .blocked-version')
+        assert span.text() == 'Blocked'
+        assert span.length == 1
 
 
 class TestAbuseReportsView(ReviewerTest):

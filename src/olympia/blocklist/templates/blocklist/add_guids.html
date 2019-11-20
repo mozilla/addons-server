@@ -36,9 +36,8 @@
       </p>
     {% endif %}
     <div class="form-row">
-      <textarea id="guids_input" name="guids" rows="10" cols="80" required></textarea>
+      <textarea id="guids_input" name="guids" rows="10" cols="80" required wrap="off"></textarea>
     </div>
-    <h3>Note: Multiple GUID input is not implemented yet!</h3>
     {% block submit_buttons_bottom %}
     <div class="submit-row">
       <input type="submit" value="{% trans 'Submit' %}" class="default" name="_save">

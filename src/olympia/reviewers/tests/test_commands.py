@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from olympia.constants.scanners import DELAY_AUTO_APPROVAL, YARA
 from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
@@ -22,6 +23,7 @@ from olympia.reviewers.management.commands import auto_approve
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, get_reviewing_cache)
+from olympia.scanners.models import ScannerResult, ScannerRule
 
 
 class AutoApproveTestsMixin(object):
@@ -191,6 +193,14 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         }, status=amo.STATUS_NULL)
         pure_unlisted_version = pure_unlisted.versions.get()
 
+        # Unlisted static theme.
+        unlisted_theme = addon_factory(name='Unlisted theme', version_kw={
+            'channel': amo.RELEASE_CHANNEL_UNLISTED,
+            'nomination': self.days_ago(13)}, file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+        unlisted_theme_version = unlisted_theme.versions.get()
+
         # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
@@ -251,6 +261,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             }
         )
 
+        # Listed static theme
+        addon_factory(name='Listed theme', file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME)
+
         # ---------------------------------------------------------------------
         # Gather the candidates.
         command = auto_approve.Command()
@@ -259,6 +274,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # We should find these versions, in this exact order.
         expected = [(version.addon, version) for version in [
+            unlisted_theme_version,
             pure_unlisted_version,
             user_disabled_addon_version,
             complex_addon_2_version,
@@ -471,7 +487,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
 
         assert run_action_mock.called
-        run_action_mock.assert_called_with(self.version.id)
+        run_action_mock.assert_called_with(self.version)
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.run_action'
@@ -484,12 +500,44 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
 
         assert run_action_mock.called
-        run_action_mock.assert_called_with(self.version.id)
+        run_action_mock.assert_called_with(self.version)
 
         run_action_mock.reset_mock()
         call_command('auto_approve')
 
         assert not run_action_mock.called
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_action_delay_approval(self, sign_file_mock):
+        # Functional test making sure that the scanners _delay_auto_approval()
+        # action properly delays auto-approval on the version it's applied to
+        def check_assertions():
+            aps = self.version.autoapprovalsummary
+            assert aps.has_auto_approval_disabled
+
+            flags = self.addon.addonreviewerflags
+            assert flags.auto_approval_delayed_until
+
+            assert not sign_file_mock.called
+
+        self.create_switch('run-action-in-auto-approve', active=True)
+        ScannerRule.objects.create(
+            is_active=True, name='foo', action=DELAY_AUTO_APPROVAL,
+            scanner=YARA)
+        result = ScannerResult.objects.create(
+            scanner=YARA, version=self.version,
+            results=[{'rule': 'foo', 'tags': [], 'meta': {}}])
+        assert result.has_matches
+
+        call_command('auto_approve')
+        check_assertions()
+
+        call_command('auto_approve')  # Shouldn't matter if it's called twice.
+        check_assertions()
+
+    def test_run_action_delay_approval_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.test_run_action_delay_approval()
 
 
 class TestAutoApproveCommandTransactions(

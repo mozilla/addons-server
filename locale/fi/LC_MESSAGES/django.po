@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-06 10:17+0000\n"
+"PO-Revision-Date: 2019-10-05 22:41+0000\n"
 "Last-Translator: Teemu <teemu.kaiturinmaki@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -1272,16 +1272,14 @@ msgstr "Erinomainen (3)"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Uusi lisäosan arviointi"
+msgstr "Uusi Legacy-lisäosa arvionti"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Ei vielä lisäosa-arvioita."
+msgstr "Päivitetty Legacy-lisäosan arviointi"
 
 # Plural in this context means many of the add-on type
 msgid "New Dictionary Review"
@@ -1317,9 +1315,8 @@ msgstr ""
 msgid "Updated Search Provider Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Täydelliset teemat"
+msgstr "Uusi kokonaisvaltainen teeman arviointi"
 
 msgid "Preliminary Complete Theme Review"
 msgstr ""
@@ -1327,9 +1324,8 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Ei vielä lisäosa-arvioita."
+msgstr "Valvottu lisäosan arviointi"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
@@ -2672,9 +2668,8 @@ msgstr "Muutos"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Upload Version"
-msgstr "Lisää versio"
+msgstr "Lähetä versio"
 
 #, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
@@ -5719,9 +5714,8 @@ msgstr "Arvioijan opas"
 
 #. "Content Review [add-on name]"
 # 100%
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Ei tarkastettu"
+msgstr "Sisältökatsaus {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5761,9 +5755,8 @@ msgstr ""
 msgid "Download"
 msgstr "Lataa"
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Android-lisäosat"
+msgstr "Ei automaattisesti hyväksytty, koska"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -5805,9 +5798,8 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Mobiilin lisäosat"
+msgstr "Pakota lisäosa päälle"
 
 msgid "Disable Auto-Approval"
 msgstr "Poista käytöstä automaattinen hyväksyminen"
@@ -5822,9 +5814,8 @@ msgid "Clear Admin Code Review Flag"
 msgstr ""
 
 # 100%
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Ei tarkastettu"
+msgstr "Poista järjestelmänvalvojan sisällön tarkistus-flag"
 
 # 100%
 #, fuzzy
@@ -5935,11 +5926,10 @@ msgstr[0] "Päivitä ({0})"
 msgstr[1] "Päivitä ({0})"
 
 # 100%
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Ei tarkastettu"
-msgstr[1] "Ei tarkastettu"
+msgstr[0] ""
+msgstr[1] ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,

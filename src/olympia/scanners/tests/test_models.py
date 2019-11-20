@@ -1,3 +1,6 @@
+import pytest
+
+from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
 from olympia.amo.tests import TestCase, addon_factory
@@ -195,3 +198,42 @@ class TestScannerResult(TestCase):
         result = self.create_wat_result()
         result.has_matches = True
         assert not result.can_report_feedback()
+
+
+class TestScannerRule(TestCase):
+    def test_clean_raises_for_yara_rule_without_a_definition(self):
+        rule = ScannerRule(name='some_rule', scanner=YARA)
+
+        with pytest.raises(ValidationError, match=r'should have a definition'):
+            rule.clean()
+
+    def test_clean_raises_for_yara_rule_without_same_rule_name(self):
+        rule = ScannerRule(
+            name='some_rule', scanner=YARA, definition='rule x {}'
+        )
+
+        with pytest.raises(ValidationError, match=r'should match the name of'):
+            rule.clean()
+
+    def test_clean_raises_when_yara_rule_has_two_rules(self):
+        rule = ScannerRule(
+            name='some_rule',
+            scanner=YARA,
+            definition='rule some_rule {} rule foo {}',
+        )
+
+        with pytest.raises(ValidationError, match=r'Only one Yara rule'):
+            rule.clean()
+
+    def test_clean_raises_when_yara_rule_is_invalid(self):
+        rule = ScannerRule(
+            name='some_rule',
+            scanner=YARA,
+            # Invalid because there is no `condition`.
+            definition='rule some_rule {}',
+        )
+
+        with pytest.raises(
+            ValidationError, match=r'The definition is not valid'
+        ):
+            rule.clean()

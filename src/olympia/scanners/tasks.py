@@ -24,7 +24,6 @@ from olympia.addons.models import AddonReviewerFlags
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
-from olympia.versions.models import Version
 
 from .models import ScannerResult, ScannerRule
 
@@ -229,14 +228,13 @@ def _delay_auto_approval_indefinitely(version):
         defaults={'auto_approval_delayed_until': datetime.max})
 
 
-def run_action(version_id):
+def run_action(version):
     """This function tries to find an action to execute for a given version,
     based on the scanner results and associated rules.
 
     It is not run as a Celery task but as a simple function, in the
     auto_approve CRON."""
-    log.info('Checking rules and actions for version %s.', version_id)
-    version = Version.objects.get(pk=version_id)
+    log.info('Checking rules and actions for version %s.', version.pk)
 
     rule = (
         ScannerRule.objects.filter(
@@ -250,7 +248,7 @@ def run_action(version_id):
     )
 
     if not rule:
-        log.info('No action to execute for version %s.', version_id)
+        log.info('No action to execute for version %s.', version.pk)
         return
 
     action_id = rule.action
@@ -272,6 +270,6 @@ def run_action(version_id):
         raise Exception("no implementation for action %s" % action_id)
 
     # We have a valid action to execute, so let's do it!
-    log.info('Starting action "%s" for version %s.', action_name, version_id)
+    log.info('Starting action "%s" for version %s.', action_name, version.pk)
     action_function(version)
-    log.info('Ending action "%s" for version %s.', action_name, version_id)
+    log.info('Ending action "%s" for version %s.', action_name, version.pk)
