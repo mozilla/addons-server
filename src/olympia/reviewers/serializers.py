@@ -392,4 +392,9 @@ class DraftCommentSerializer(serializers.ModelSerializer):
                 {'comment': ugettext(
                     'You can\'t submit a comment if `canned_response` is '
                     'defined.')})
+        if data.get('lineno') and not data.get('filename'):
+            raise serializers.ValidationError(
+                {'comment': ugettext(
+                    'You can\'t submit a line number without associating '
+                    'it to a filename.')})
         return data

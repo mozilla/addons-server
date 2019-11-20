@@ -6329,6 +6329,29 @@ class TestDraftCommentViewSet(TestCase):
             str(response.data['comment'][0]) ==
             "You can't submit a comment if `canned_response` is defined.")
 
+    def test_disallow_lineno_without_filename(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': None,
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+        })
+
+        response = self.client.post(url, data)
+        assert response.status_code == 400
+        assert (
+            str(response.data['comment'][0]) ==
+            'You can\'t submit a line number without associating it to a '
+            'filename.')
+
     def test_canned_response(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
