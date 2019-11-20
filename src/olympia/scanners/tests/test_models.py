@@ -2,6 +2,7 @@ import pytest
 
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
+from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, FALSE_POSITIVE
@@ -234,6 +235,20 @@ class TestScannerRule(TestCase):
         )
 
         with pytest.raises(
-            ValidationError, match=r'The definition is not valid'
+            ValidationError, match=r'The definition is not valid: line 1'
         ):
+            rule.clean()
+
+    @mock.patch('yara.compile')
+    def test_clean_raises_generic_error_when_yara_compile_failed(
+        self, yara_compile_mock
+    ):
+        rule = ScannerRule(
+            name='some_rule',
+            scanner=YARA,
+            definition='rule some_rule { condition: true }'
+        )
+        yara_compile_mock.side_effect = Exception()
+
+        with pytest.raises(ValidationError, match=r'An error occurred'):
             rule.clean()
