@@ -386,13 +386,30 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         # on `instance` being set correctly.
         self.fields['version'].output.instance = self.context['version']
 
+    def get_or_default(self, key, data, default=''):
+        """Return the value of ``key`` in ``data``
+
+        If that key is not present then return the value of ``key`` from
+        ``self.instance`, otherwise return the ``default``.
+
+        This method is a helper to simplify validation for partial updates.
+        """
+        return data.get(key, getattr(self.instance, key, default))
+
     def validate(self, data):
-        if data.get('comment') and data.get('canned_response'):
+        canned_response = self.get_or_default('canned_response', data)
+        comment = self.get_or_default('comment', data)
+
+        if comment and canned_response:
             raise serializers.ValidationError(
                 {'comment': ugettext(
                     'You can\'t submit a comment if `canned_response` is '
                     'defined.')})
-        if data.get('lineno') and not data.get('filename'):
+
+        lineno = self.get_or_default('lineno', data)
+        filename = self.get_or_default('filename', data)
+
+        if lineno and not filename:
             raise serializers.ValidationError(
                 {'comment': ugettext(
                     'You can\'t submit a line number without associating '
