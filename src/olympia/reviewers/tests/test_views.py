@@ -3744,8 +3744,7 @@ class TestReview(ReviewBase):
         assert '0.1' in ths.text()
 
     def test_no_versions(self):
-        """The review page should still load if there are no versions. But not
-        unless you have unlisted permissions."""
+        """The review page should still load if there are no versions."""
         assert self.client.get(self.url).status_code == 200
         response = self.client.post(self.url, {'action': 'comment',
                                                'comments': 'hello sailor'})
@@ -3754,7 +3753,18 @@ class TestReview(ReviewBase):
                        status_code=302)
 
         self.version.delete()
-        # Regular reviewer has no permission, gets a 404.
+        # Regular reviewer can still see it since the deleted version was
+        # listed.
+        assert self.client.get(self.url).status_code == 200
+        response = self.client.post(self.url, {'action': 'comment',
+                                               'comments': 'hello sailor'})
+        assert response.status_code == 302
+        self.assert3xx(response, reverse('reviewers.queue_extension'),
+                       status_code=302)
+
+        # Now they need unlisted permission cause we can't find a listed
+        # version, even deleted.
+        self.version.delete(hard=True)
         assert self.client.get(self.url).status_code == 404
         # Reviewer with more powers can look.
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')

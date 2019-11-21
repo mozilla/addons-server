@@ -620,6 +620,12 @@ class Addon(OnChangeMixin, ModelBase):
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
             self._ratings.all().delete()
+            # We avoid triggering signals for Version & File on purpose to
+            # avoid extra work. Files will be moved to the correct storage
+            # location with hide_disabled_files cron later.
+            File.objects.filter(version__addon=self).update(
+                status=amo.STATUS_DISABLED)
+            self.versions.all().update(deleted=True)
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
                                 str(self.guid), self)
@@ -1260,13 +1266,20 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_deleted(self):
         return not self.is_deleted
 
-    def has_listed_versions(self):
-        return self._current_version_id or self.versions.filter(
+    def has_listed_versions(self, include_deleted=False):
+        if include_deleted:
+            manager = self.versions(manager='unfiltered_for_relations')
+        else:
+            manager = self.versions
+        return self._current_version_id or manager.filter(
             channel=amo.RELEASE_CHANNEL_LISTED).exists()
 
-    def has_unlisted_versions(self):
-        return self.versions.filter(
-            channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
+    def has_unlisted_versions(self, include_deleted=False):
+        if include_deleted:
+            manager = self.versions(manager='unfiltered_for_relations')
+        else:
+            manager = self.versions
+        return manager.filter(channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
 
     @classmethod
     def featured_random(cls, app, lang):
