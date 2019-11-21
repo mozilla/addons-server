@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-21 10:11+0000\n"
+"PO-Revision-Date: 2019-11-21 10:16+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -5649,7 +5649,7 @@ msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
-msgstr ""
+msgstr "अधिक कार्रवाई"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -5664,10 +5664,10 @@ msgid "Disable Auto-Approval"
 msgstr ""
 
 msgid "Enable Auto-Approval"
-msgstr ""
+msgstr "ऑटो-स्वीकृति को सक्षम करें"
 
 msgid "Clear information request"
-msgstr ""
+msgstr "स्पष्ट सूचना अनुरोध"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -5679,34 +5679,34 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr ""
 
 msgid "(admin)"
-msgstr ""
+msgstr "(व्यवस्थापक)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "व्यवस्थापक पृष्ठ"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "इस ऐड-ऑन की समीक्षा करें"
 
 msgid "More Information"
-msgstr ""
+msgstr "अधिक सूचना"
 
 msgid "Resolution"
-msgstr ""
+msgstr "विश्लेषण"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "समीक्षक"
 
 msgid "Add-on has been deleted."
 msgstr ""
 
 msgid "Show Comments"
-msgstr ""
+msgstr "टिप्पणियां दिखाएं"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "टिप्पणियाँ छिपाएँ"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "इस अवधि के लिए कोई समीक्षा नहीं मिली।"
 
 msgid "Method:"
 msgstr ""
@@ -5716,29 +5716,29 @@ msgid "Source:"
 msgstr "स्रोत द्वारा"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "इस घोषणा को खारिज करें"
 
 msgid "Files in this version:"
 msgstr ""
 
 msgid "Contents"
-msgstr ""
+msgstr "सामग्री"
 
 msgid "Compare"
-msgstr ""
+msgstr "तुलना"
 
 msgid "Permissions:"
-msgstr ""
+msgstr "अनुमति‌:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
 
 msgid "Older"
-msgstr ""
+msgstr "पुराना"
 
 msgid "Newer"
-msgstr ""
+msgstr "नया"
 
 msgid "Recent Points"
 msgstr ""
@@ -5753,7 +5753,7 @@ msgid "No top reviewers yet."
 msgstr ""
 
 msgid "All Time"
-msgstr ""
+msgstr "सम्पूर्ण समय"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
@@ -5767,16 +5767,16 @@ msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s पर %(date)s [%(ip_address)s]"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "अस्वीकृत या अप्राप्त"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[स्थिति:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "अपडेट ({0})"
+msgstr[1] "अपडेट ({0})"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
@@ -5915,13 +5915,13 @@ msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "नियंत्रण:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "ज़ूम रीसेट करें"
 
 msgid "Group by:"
-msgstr ""
+msgstr "समूह द्वारा:"
 
 msgid "day"
 msgstr "दिन"
@@ -5966,10 +5966,10 @@ msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
 msgid "Change settings."
-msgstr ""
+msgstr "सेटिंग्स बदले।"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "दिनांक तक आवेदन का उपयोग"
 
 msgid "Downloaded by Date"
 msgstr ""
@@ -5989,37 +5989,37 @@ msgid "Platform usage by Date"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> डाउनलोड"
 
 msgid "Loading..."
-msgstr ""
+msgstr "लोड हो रहा है..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
 
 msgid "Top Applications"
-msgstr ""
+msgstr "शीर्ष अनुप्रयोग"
 
 msgid "See more applications&hellip;"
 msgstr ""
 
 msgid "Top Languages"
-msgstr ""
+msgstr "शीर्ष भाषाएँ"
 
 msgid "See more languages&hellip;"
 msgstr ""
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "शीर्ष प्लेटफार्म"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "और प्लेटफ़ॉर्म देखें &hellip;"
 
 msgid "Download sources by Date"
 msgstr ""
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "बाहरी स्रोतों पर नज़र रखने के बारे में..."
 
 #, python-format
 msgid ""
@@ -6045,7 +6045,7 @@ msgid ""
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "दिनांक द्वारा अनुप्रयोग संस्करण"
 
 msgid "Mozilla Add-ons"
 msgstr ""
@@ -6089,28 +6089,28 @@ msgid "Forum"
 msgstr ""
 
 msgid "Download Firefox"
-msgstr ""
+msgstr "Firefox डाउनलोड करें"
 
 msgid "Android Browser"
-msgstr ""
+msgstr "Android ब्राउज़र"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS ब्राउज़र"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus ब्राउज़र"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "डेस्कटॉप ब्राउज़र"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"
-msgstr ""
+msgstr "अन्य भाषाएँ"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "{0} ऐड-ऑन मुखपृष्ठ पर वापस लौटें"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
@@ -6119,10 +6119,10 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr ""
 
 msgid "My Account"
-msgstr ""
+msgstr "मेरा खाता"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "आपका स्वागत है, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6200,7 +6200,7 @@ msgid "Collections"
 msgstr "संग्रह"
 
 msgid "Activity Logs"
-msgstr ""
+msgstr "गतिविधि लॉग"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
@@ -6215,7 +6215,7 @@ msgid "Firefox user {id}"
 msgstr "Firefox उपयोगकर्ता {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "मेरा मोबाइल ऐड-ऑन"
 
 msgid "My Favorite Add-ons"
 msgstr "मेरा पसंदीदा ऐड-ऑन"
@@ -6248,7 +6248,7 @@ msgid ""
 msgstr ""
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "एक ऐड-ऑन डेवलपर मेरी समीक्षा का जवाब देता है"
 
 msgid "new add-ons or Firefox features are available"
 msgstr ""
@@ -6266,26 +6266,26 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "मेरे ऐड-ऑन की समीक्षा एक समीक्षक द्वारा की जाती है"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
-msgstr ""
+msgstr "उपयोगकर्ता सूचनाएं"
 
 msgid "Ban"
 msgstr ""
 
 msgid "Delete picture"
-msgstr ""
+msgstr "चित्र हटाएं"
 
 msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} और बाद में"
 
 msgid "Deleted versions can`t be changed."
 msgstr ""
