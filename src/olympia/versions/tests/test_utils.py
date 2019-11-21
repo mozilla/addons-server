@@ -15,7 +15,7 @@ from PIL import Image, ImageChops
 
 from olympia import amo, core
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.files.tests.test_utils_ import AppVersionsMixin
+from olympia.files.tests.test_utils import AppVersionsMixin
 from olympia.versions.utils import (
     AdditionalBackground, new_69_theme_properties_from_old,
     new_theme_version_with_69_properties, process_color_value, write_svg_to_png

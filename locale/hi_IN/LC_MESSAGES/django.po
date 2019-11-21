@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-07-22 18:36+0000\n"
+"PO-Revision-Date: 2019-11-21 10:57+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -237,8 +237,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"आप यह संदेश देख रहे हैं क्योंकि इस HTTPS साइट को आपके वेब ब्राउज़र द्वारा 'रेफरर हेडर' भेजने की आवश्यकता है, लेकिन कुछ भी नहीं भेजा गया था। सुरक्षा कारणों से यह हेडर आवश्यक है, यह सुनिश्चित करने के लिए कि आपके ब्राउज़र को तीसरे पक्ष "
-"द्वारा अपहरण नहीं किया जा रहा है।"
+"आप यह संदेश देख रहे हैं क्योंकि इस HTTPS साइट को आपके वेब ब्राउज़र द्वारा 'रेफरर हेडर' भेजने की आवश्यकता है, लेकिन कुछ भी नहीं भेजा गया था। सुरक्षा कारणों से यह हेडर आवश्यक है, यह सुनिश्चित करने के "
+"लिए कि आपके ब्राउज़र को तीसरे पक्ष द्वारा अपहरण नहीं किया जा रहा है।"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "यदि आपने अपने ब्राउज़र को 'रेफरर' हेडर अक्षम करने के लिए विन्यस्त किया है, तो कृपया कम से कम इस साइट के लिए, या HTTPS कनेक्शन के लिए, या 'समान-मूल' अनुरोधों के लिए उन्हें पुनः सक्षम करें।"
@@ -246,7 +246,9 @@ msgstr "यदि आपने अपने ब्राउज़र को 'र
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr "आप यह संदेश देख रहे हैं क्योंकि फॉर्म सबमिट करते समय इस साइट को CSRF कुकी की आवश्यकता होती है। सुरक्षा कारणों से यह कुकी आवश्यक है, यह सुनिश्चित करने के लिए कि आपके ब्राउज़र को तीसरे पक्ष द्वारा अपहरण नहीं किया जा रहा है।"
+msgstr ""
+"आप यह संदेश देख रहे हैं क्योंकि फॉर्म सबमिट करते समय इस साइट को CSRF कुकी की आवश्यकता होती है। सुरक्षा कारणों से यह कुकी आवश्यक है, यह सुनिश्चित करने के लिए कि आपके ब्राउज़र को तीसरे पक्ष द्वारा "
+"अपहरण नहीं किया जा रहा है।"
 
 msgid "Page Not Found"
 msgstr "पेज उपलब्ध नहीं है"
@@ -271,7 +273,9 @@ msgstr "ऐड-ऑन मुख पृष्ठ"
 
 #, fuzzy, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "यदि आपने कहीं से किसी लिंक का पालन किया है, तो कृपया %(open_bug_link)sएक समस्या दर्ज करें%(close_bug_link)s। हमें बताएं कि आप कहां से आए थे और आप क्या खोज रहे थे, और हम इसे ठीक करने के लिए अपनी पूरी कोशिश करेंगे।"
+msgstr ""
+"यदि आपने कहीं से किसी लिंक का पालन किया है, तो कृपया %(open_bug_link)sएक समस्या दर्ज करें%(close_bug_link)s। हमें बताएं कि आप कहां से आए थे और आप क्या खोज रहे थे, और हम इसे ठीक करने के लिए अपनी पूरी"
+" कोशिश करेंगे।"
 
 msgid "Not Found"
 msgstr "नहीं मिला"
@@ -279,16 +283,17 @@ msgstr "नहीं मिला"
 #, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>हमें खेद है, परंतु आपके द्वारा खोज की गई वस्तु हम ढूंढ नहीं पा रहे है।</h1> <p>आपके द्वारा अनुरोधित पृष्ठ या फ़ाइल हमारी साइट पर नहीं मिली थी। यह संभव है कि आपने एक पुराने लिंक पर क्लिक किया है या आपके द्वारा डाला गया पता गलत "
-"है। </p> <ul> <li>यदि आपने पता अपने आप डाला है, तो कृपया वर्तनी दोबारा जांचें। </li> <li>यदि आपने कहीं से किसी लिंक का पालन किया है, तो कृपया <a href=\"https://github.com/mozilla/addons-server/issues/new/\">एक "
-"समस्या दर्ज करें</a>। हमें बताएं कि आप कहां से आए थे और आप क्या खोज रहे थे, और हम इसे ठीक करने के लिए अपनी पूरी कोशिश करेंगे। </li> </ul> <p>या आप हमारी वेबसाइट पर कुछ लोकप्रिय पृष्ठों पर जा सकते हैं।</p> <ul> <li>क्या आप <a "
-"href=\"%(rec)s\">चुनिंदा ऐड-ऑन की सूची</a> में रूचि रखते हैं?</li> <li>क्या आप <a href=\"%(search)s\">ऐड-ऑन खोजना</a> चाहते हैं? आप <a href=\"%(search)s\">खोज पृष्ठ</a> पर जा सकते हैं या उपरोक्त खोज क्षेत्र का उपयोग कर "
-"सकते हैं। </li> <li> यदि आप शुरू करना पसंद करते हैं, तो बस <a href=\"%(home)s\">ऐड-ऑन फ्रंट पेज</a> पर जाएं। </li> </ul>"
+"<h1>हमें खेद है, परंतु आपके द्वारा खोज की गई वस्तु हम ढूंढ नहीं पा रहे है।</h1> <p>आपके द्वारा अनुरोधित पृष्ठ या फ़ाइल हमारी साइट पर नहीं मिली थी। यह संभव है कि आपने एक पुराने लिंक पर क्लिक किया है "
+"या आपके द्वारा डाला गया पता गलत है। </p> <ul> <li>यदि आपने पता अपने आप डाला है, तो कृपया वर्तनी दोबारा जांचें। </li> <li>यदि आपने कहीं से किसी लिंक का पालन किया है, तो कृपया <a "
+"href=\"https://github.com/mozilla/addons-server/issues/new/\">एक समस्या दर्ज करें</a>। हमें बताएं कि आप कहां से आए थे और आप क्या खोज रहे थे, और हम इसे ठीक करने के लिए अपनी पूरी कोशिश करेंगे। </li> "
+"</ul> <p>या आप हमारी वेबसाइट पर कुछ लोकप्रिय पृष्ठों पर जा सकते हैं।</p> <ul> <li>क्या आप <a href=\"%(rec)s\">चुनिंदा ऐड-ऑन की सूची</a> में रूचि रखते हैं?</li> <li>क्या आप <a href=\"%(search)s\">ऐड-"
+"ऑन खोजना</a> चाहते हैं? आप <a href=\"%(search)s\">खोज पृष्ठ</a> पर जा सकते हैं या उपरोक्त खोज क्षेत्र का उपयोग कर सकते हैं। </li> <li> यदि आप शुरू करना पसंद करते हैं, तो बस <a href=\"%(home)s\">ऐड-"
+"ऑन फ्रंट पेज</a> पर जाएं। </li> </ul>"
 
 msgid "Oops"
 msgstr "ओह"
@@ -330,8 +335,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> यदि <strong>आवश्यक हो तो एक स्थान से अलग</strong>, कृप्या नीचे दिए गए <strong>सभी शब्द</strong> दर्ज करें।</p><p> यदि इसे पढ़ना मुश्किल है, तो आप <a href=\"#\" id=\"recaptcha_different\">अलग-अलग शब्दों को आजमा "
-"सकते हैं</a> या इसके बजाय एक <a href=\"#\" id=\"recaptcha_audio\">अलग प्रकार की चुनौती का प्रयास कर सकते हैं</a>।</p>"
+"<p> यदि <strong>आवश्यक हो तो एक स्थान से अलग</strong>, कृप्या नीचे दिए गए <strong>सभी शब्द</strong> दर्ज करें।</p><p> यदि इसे पढ़ना मुश्किल है, तो आप <a href=\"#\" id=\"recaptcha_different\">अलग-अलग"
+" शब्दों को आजमा सकते हैं</a> या इसके बजाय एक <a href=\"#\" id=\"recaptcha_audio\">अलग प्रकार की चुनौती का प्रयास कर सकते हैं</a>।</p>"
 
 msgid "Most Popular"
 msgstr "सर्वाधिक लोकप्रिय"
@@ -458,11 +463,11 @@ msgstr "संस्करण"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"यदि आपके समर्थित एप्लिकेशन को एक मेनिफेस्ट फ़ाइल की आवश्यकता नहीं है, तो आपको अभी भी निर्दिष्ट गुणों के साथ एक को शामिल करना होगा जैसा कि %(amo_manifests_mdn_link_open)s यहां %(amo_manifests_mdn_link_close)s निर्दिष्ट "
-"है।"
+"यदि आपके समर्थित एप्लिकेशन को एक मेनिफेस्ट फ़ाइल की आवश्यकता नहीं है, तो आपको अभी भी निर्दिष्ट गुणों के साथ एक को शामिल करना होगा जैसा कि %(amo_manifests_mdn_link_open)s यहां "
+"%(amo_manifests_mdn_link_close)s निर्दिष्ट है।"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "यह कस्टम URL पहले से ही आपके संग्रह में से किसी एक द्वारा उपयोग में है।"
@@ -512,7 +517,7 @@ msgstr ""
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "{addon} स्थिति {status} में परिवर्तित हो गई है।"
 
 msgid "{version} added to {addon}."
 msgstr ""
@@ -555,7 +560,7 @@ msgid "Retained"
 msgstr "बनाए रखा"
 
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} आगे बढ़ा।"
 
 msgid "Super review requested"
 msgstr "उत्तम समीक्षा का अनुरोध किया"
@@ -570,7 +575,7 @@ msgid "{addon} {version} more information requested."
 msgstr ""
 
 msgid "More information requested"
-msgstr ""
+msgstr "अधिक जानकारी अनुरोधित"
 
 msgid "{addon} {version} super review requested."
 msgstr ""
@@ -628,7 +633,7 @@ msgid "{addon} policy changed."
 msgstr ""
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} आइकन बदला गया है।"
 
 msgid "{rating} for {addon} approved."
 msgstr ""
@@ -1578,8 +1583,7 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -1900,9 +1904,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 #, fuzzy
@@ -2128,8 +2130,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 #, python-format
@@ -2140,8 +2141,8 @@ msgid "Email"
 msgstr "ई-मेल"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2378,7 +2379,7 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> साप्ताहिक डाउनलोड"
+msgstr[0] ""
 msgstr[1] "<strong>{0}</strong> साप्ताहिक डाउनलोड"
 
 #. {0} is the number of active users.
@@ -2584,8 +2585,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -2702,8 +2703,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -3052,7 +3053,7 @@ msgid "Re-enable Version"
 msgstr ""
 
 msgid "Review History"
-msgstr "इतिहास की समीक्षा करें"
+msgstr ""
 
 msgid "Close Review History"
 msgstr ""
@@ -4861,8 +4862,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -4908,8 +4908,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5287,39 +5287,39 @@ msgid "Other Pending Review ({0})"
 msgstr ""
 
 msgid "Review Log"
-msgstr ""
+msgstr "लॉग की समीक्षा करें"
 
 msgid "Add-on Review Guide"
-msgstr ""
+msgstr "ऐड-ऑन रिव्यू गाइड"
 
 msgid "Auto-Approved Add-ons"
-msgstr ""
+msgstr "ऑटो-स्वीकृत ऐड-ऑन"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "ऑटो स्वीकृत ऐड-ऑन ({0})"
 
 msgid "Add-on Review Log"
 msgstr ""
 
 msgid "Review Guide"
-msgstr ""
+msgstr "गाइड की समीक्षा करें"
 
 msgid "Content Review"
-msgstr ""
+msgstr "सामग्री की समीक्षा"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "सामग्री की समीक्षा ({0})"
+msgstr[1] "सामग्री की समीक्षा ({0})"
 
 msgid "New ({0})"
-msgstr ""
+msgstr "नया ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "अपडेट ({0})"
 
 msgid "Theme Review Guide"
-msgstr ""
+msgstr "थीम समीक्षा गाइड"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5340,7 +5340,7 @@ msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Announcement"
-msgstr ""
+msgstr "घोषणा"
 
 msgid "Update message of the day"
 msgstr ""
@@ -5352,7 +5352,7 @@ msgid "An unknown error occurred"
 msgstr ""
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "स्व-समीक्षाओं की अनुमति नहीं है।"
 
 msgid "Review successfully processed."
 msgstr ""
@@ -5364,16 +5364,16 @@ msgid "{addon} :: EULA"
 msgstr ""
 
 msgid "{addon} :: Privacy Policy"
-msgstr ""
+msgstr "{addon} :: गोपनीयता नीति"
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: दुरुपयोग रिपोर्ट"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "{addon} और उसके डेवलपर्स ({num}) के लिए दुरुपयोग की रिपोर्ट करें"
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "दुर्व्यवहार की रिपोर्ट"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
@@ -5390,7 +5390,7 @@ msgid "Works with"
 msgstr ""
 
 msgid "Visibility"
-msgstr ""
+msgstr "दृश्यता"
 
 msgid "Visible"
 msgstr ""
@@ -5399,13 +5399,13 @@ msgid "View Statistics"
 msgstr ""
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "औसत दैनिक उपयोगकर्ता"
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "गोपनीयता नीति देखें"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "भुगतान की आवश्यकता है"
 
 msgid "EULA"
 msgstr ""
@@ -5414,10 +5414,10 @@ msgid "View End-User License Agreement"
 msgstr "एंड-यूज़र लायसेंस एग्रीमेंट देखें"
 
 msgid "Last Approval Date"
-msgstr ""
+msgstr "अंतिम स्वीकृति तिथि"
 
 msgid "Abuse Reports ({num})"
-msgstr ""
+msgstr "दुर्व्यवहार रिपोर्ट ({num})"
 
 msgid "Bad User Ratings ({num})"
 msgstr ""
@@ -5466,23 +5466,23 @@ msgid "More details."
 msgstr ""
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "इस अवधि के लिए कोई घटना नहीं मिली।"
 
 msgid "Log details"
-msgstr ""
+msgstr "लॉग विवरण"
 
 msgid "Review Author"
-msgstr ""
+msgstr "लेखक की समीक्षा करें"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "एड-ऑन शीर्षक"
 
 msgid "Review Text"
-msgstr ""
+msgstr "समीक्षा पाठ"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5500,28 +5500,28 @@ msgid "View statistics for user"
 msgstr ""
 
 msgid "Range"
-msgstr ""
+msgstr "रेंज"
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "आपकी समीक्षा"
 
 msgid "By {user_name}"
 msgstr ""
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "कुल समीक्षा"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "सक्रिय योगदानकर्ता"
 
 msgid "This Month"
-msgstr ""
+msgstr "इस महीने"
 
 msgid "This Year"
-msgstr ""
+msgstr "इस साल"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "मासिक प्रदर्शन"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
@@ -5539,10 +5539,10 @@ msgid "All-Time"
 msgstr ""
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "उन्नत खोज"
 
 msgid "clear search"
-msgstr ""
+msgstr "स्पष्ट खोज"
 
 msgid "Process Reviews"
 msgstr ""
@@ -5562,7 +5562,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr ""
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "वर्तमान में समीक्षा करने के लिए इस प्रकार के कोई ऐड-ऑन नहीं हैं।"
 
 msgid "Helpful Links:"
 msgstr ""
@@ -5571,11 +5571,11 @@ msgid "Add-on Policy"
 msgstr ""
 
 msgid "Reviewer's Guide"
-msgstr ""
+msgstr "समीक्षक गाइड"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
-msgstr ""
+msgstr "सामग्री की समीक्षा {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5601,16 +5601,16 @@ msgid "Compatibility:"
 msgstr ""
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "अतिरिक्त स्रोत:"
 
 msgid "Download files"
-msgstr ""
+msgstr "फ़ाइलें डाउनलोड करें"
 
 msgid "The developer has provided source code."
 msgstr ""
 
 msgid "Weight:"
-msgstr ""
+msgstr "वज़न:"
 
 msgid "Download"
 msgstr "डाउनलोड करें"
@@ -5622,7 +5622,7 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "इस संस्करण की समीक्षा नहीं की गई है।"
 
 msgid "Please select one or more versions in the list above."
 msgstr ""
@@ -5649,7 +5649,7 @@ msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
-msgstr ""
+msgstr "अधिक कार्रवाई"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -5664,10 +5664,10 @@ msgid "Disable Auto-Approval"
 msgstr ""
 
 msgid "Enable Auto-Approval"
-msgstr ""
+msgstr "ऑटो-स्वीकृति को सक्षम करें"
 
 msgid "Clear information request"
-msgstr ""
+msgstr "स्पष्ट सूचना अनुरोध"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -5679,34 +5679,34 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr ""
 
 msgid "(admin)"
-msgstr ""
+msgstr "(व्यवस्थापक)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "व्यवस्थापक पृष्ठ"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "इस ऐड-ऑन की समीक्षा करें"
 
 msgid "More Information"
-msgstr ""
+msgstr "अधिक सूचना"
 
 msgid "Resolution"
-msgstr ""
+msgstr "विश्लेषण"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "समीक्षक"
 
 msgid "Add-on has been deleted."
 msgstr ""
 
 msgid "Show Comments"
-msgstr ""
+msgstr "टिप्पणियां दिखाएं"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "टिप्पणियाँ छिपाएँ"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "इस अवधि के लिए कोई समीक्षा नहीं मिली।"
 
 msgid "Method:"
 msgstr ""
@@ -5716,29 +5716,29 @@ msgid "Source:"
 msgstr "स्रोत द्वारा"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "इस घोषणा को खारिज करें"
 
 msgid "Files in this version:"
 msgstr ""
 
 msgid "Contents"
-msgstr ""
+msgstr "सामग्री"
 
 msgid "Compare"
-msgstr ""
+msgstr "तुलना"
 
 msgid "Permissions:"
-msgstr ""
+msgstr "अनुमति‌:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
 
 msgid "Older"
-msgstr ""
+msgstr "पुराना"
 
 msgid "Newer"
-msgstr ""
+msgstr "नया"
 
 msgid "Recent Points"
 msgstr ""
@@ -5753,7 +5753,7 @@ msgid "No top reviewers yet."
 msgstr ""
 
 msgid "All Time"
-msgstr ""
+msgstr "सम्पूर्ण समय"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
@@ -5767,16 +5767,16 @@ msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s पर %(date)s [%(ip_address)s]"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "अस्वीकृत या अप्राप्त"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[स्थिति:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "अपडेट ({0})"
+msgstr[1] "अपडेट ({0})"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
@@ -5915,13 +5915,13 @@ msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "नियंत्रण:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "ज़ूम रीसेट करें"
 
 msgid "Group by:"
-msgstr ""
+msgstr "समूह द्वारा:"
 
 msgid "day"
 msgstr "दिन"
@@ -5966,10 +5966,10 @@ msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
 msgid "Change settings."
-msgstr ""
+msgstr "सेटिंग्स बदले।"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "दिनांक तक आवेदन का उपयोग"
 
 msgid "Downloaded by Date"
 msgstr ""
@@ -5989,45 +5989,45 @@ msgid "Platform usage by Date"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> डाउनलोड"
 
 msgid "Loading..."
-msgstr ""
+msgstr "लोड हो रहा है..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
 
 msgid "Top Applications"
-msgstr ""
+msgstr "शीर्ष अनुप्रयोग"
 
 msgid "See more applications&hellip;"
 msgstr ""
 
 msgid "Top Languages"
-msgstr ""
+msgstr "शीर्ष भाषाएँ"
 
 msgid "See more languages&hellip;"
 msgstr ""
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "शीर्ष प्लेटफार्म"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "और प्लेटफ़ॉर्म देखें &hellip;"
 
 msgid "Download sources by Date"
 msgstr ""
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "बाहरी स्रोतों पर नज़र रखने के बारे में..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6045,7 +6045,7 @@ msgid ""
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "दिनांक द्वारा अनुप्रयोग संस्करण"
 
 msgid "Mozilla Add-ons"
 msgstr ""
@@ -6089,28 +6089,28 @@ msgid "Forum"
 msgstr ""
 
 msgid "Download Firefox"
-msgstr ""
+msgstr "Firefox डाउनलोड करें"
 
 msgid "Android Browser"
-msgstr ""
+msgstr "Android ब्राउज़र"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS ब्राउज़र"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus ब्राउज़र"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "डेस्कटॉप ब्राउज़र"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"
-msgstr ""
+msgstr "अन्य भाषाएँ"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "{0} ऐड-ऑन मुखपृष्ठ पर वापस लौटें"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
@@ -6119,10 +6119,10 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr ""
 
 msgid "My Account"
-msgstr ""
+msgstr "मेरा खाता"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "आपका स्वागत है, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6200,7 +6200,7 @@ msgid "Collections"
 msgstr "संग्रह"
 
 msgid "Activity Logs"
-msgstr ""
+msgstr "गतिविधि लॉग"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
@@ -6215,7 +6215,7 @@ msgid "Firefox user {id}"
 msgstr "Firefox उपयोगकर्ता {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "मेरा मोबाइल ऐड-ऑन"
 
 msgid "My Favorite Add-ons"
 msgstr "मेरा पसंदीदा ऐड-ऑन"
@@ -6243,12 +6243,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "एक ऐड-ऑन डेवलपर मेरी समीक्षा का जवाब देता है"
 
 msgid "new add-ons or Firefox features are available"
 msgstr ""
@@ -6266,26 +6266,26 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "मेरे ऐड-ऑन की समीक्षा एक समीक्षक द्वारा की जाती है"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
-msgstr ""
+msgstr "उपयोगकर्ता सूचनाएं"
 
 msgid "Ban"
 msgstr ""
 
 msgid "Delete picture"
-msgstr ""
+msgstr "चित्र हटाएं"
 
 msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} और बाद में"
 
 msgid "Deleted versions can`t be changed."
 msgstr ""

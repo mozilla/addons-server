@@ -5,27 +5,27 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from django_statsd.clients import statsd
-
 import waffle
+
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
-from olympia.files.utils import atomic_lock
+from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
 from olympia.reviewers.utils import ReviewHelper
-from olympia.versions.models import Version
 from olympia.scanners.tasks import run_action
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.reviewers.auto_approve')
 
-LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
+LOCK_NAME = 'auto-approve'  # Name of the lock() used.
 
 
 class Command(BaseCommand):
@@ -60,8 +60,7 @@ class Command(BaseCommand):
 
         # Get a lock before doing anything, we don't want to have multiple
         # instances of the command running in parallel.
-        lock = atomic_lock(settings.TMP_PATH, LOCK_NAME, lifetime=15 * 60)
-        with lock as lock_attained:
+        with lock(settings.TMP_PATH, LOCK_NAME) as lock_attained:
             if lock_attained:
                 qs = self.fetch_candidates()
                 self.stats['total'] = len(qs)
