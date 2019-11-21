@@ -394,7 +394,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
 
         This method is a helper to simplify validation for partial updates.
         """
-        return data.get(key, getattr(self.instance, key, default))
+        return data.get(key, getattr(self.instance, key) or default)
 
     def validate(self, data):
         canned_response = self.get_or_default('canned_response', data)
