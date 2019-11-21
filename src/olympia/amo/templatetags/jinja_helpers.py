@@ -35,10 +35,6 @@ library.filter(utils.isotime)
 library.global_function(dict)
 library.global_function(utils.randslice)
 
-# Mark a lazy marked instance as safe but keep
-# it lazy
-mark_safe_lazy = lazy(mark_safe, str)
-
 
 @library.global_function
 def switch_is_active(switch_name):
