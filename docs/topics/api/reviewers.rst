@@ -335,7 +335,7 @@ These endpoints allow you to draft comments that can be submitted through the re
 
     :>json int id: The id of the draft comment object.
     :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
-    :>json string|null filename: The filename a specific comment is related to. Can be ``null`` in case a comment doesn't belong to a specific file but the whole version.
+    :>json string|null filename: The full file path a specific comment is related to. Can be ``null`` in case a comment doesn't belong to a specific file but the whole version.
     :>json int|null lineno: The line number a specific comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent. Can be ``null`` in case a comment belongs to the whole file and not to a specific line.
     :>json object version: Object holding the :ref:`version <reviewers-versions-browse-detail>`.
     :>json int user.id: The id for an author.
@@ -349,7 +349,7 @@ These endpoints allow you to draft comments that can be submitted through the re
     Create a draft comment for a specific version.
 
     :<json string comment: The comment that is being drafted as part of a review.
-    :<json string filename: The filename this comment is related to (optional).
+    :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to (optional). Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
     :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
 
@@ -373,7 +373,7 @@ These endpoints allow you to draft comments that can be submitted through the re
     Update a comment, it's filename or line number.
 
     :<json string comment: The comment that is being drafted as part of a review.
-    :<json string filename: The filename this comment is related to.
+    :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
     :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
 
