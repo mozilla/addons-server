@@ -9,7 +9,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.template import defaultfilters, loader
 from django.utils.encoding import smart_text
-from django.utils.functional import lazy
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import (
