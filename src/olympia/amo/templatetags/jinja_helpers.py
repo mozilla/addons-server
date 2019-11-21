@@ -9,7 +9,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.template import defaultfilters, loader
 from django.utils.encoding import smart_text
-from django.utils.functional import lazy
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import (
@@ -34,10 +33,6 @@ library.filter(utils.epoch)
 library.filter(utils.isotime)
 library.global_function(dict)
 library.global_function(utils.randslice)
-
-# Mark a lazy marked instance as safe but keep
-# it lazy
-mark_safe_lazy = lazy(mark_safe, str)
 
 
 @library.global_function

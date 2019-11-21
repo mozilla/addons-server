@@ -33,7 +33,6 @@ from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
@@ -1203,25 +1202,37 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
 
 class DistributionChoiceForm(forms.Form):
     LISTED_LABEL = _(
-        u'On this site. <span class="helptext">'
-        u'Your submission will be listed on this site and the Firefox '
-        u'Add-ons Manager for millions of users, after it passes code '
-        u'review. Automatic updates are handled by this site. This '
-        u'add-on will also be considered for Mozilla promotions and '
-        u'contests. Self-distribution of the reviewed files is also '
-        u'possible.</span>')
+        'On this site. <span class="helptext">'
+        'Your submission will be listed on this site and the Firefox '
+        'Add-ons Manager for millions of users, after it passes code '
+        'review. Automatic updates are handled by this site. This '
+        'add-on will also be considered for Mozilla promotions and '
+        'contests. Self-distribution of the reviewed files is also '
+        'possible.</span>')
     UNLISTED_LABEL = _(
-        u'On your own. <span class="helptext">'
-        u'Your submission will be immediately signed for '
-        u'self-distribution. Updates should be handled by you via an '
-        u'updateURL or external application updates.</span>')
+        'On your own. <span class="helptext">'
+        'Your submission will be immediately signed for '
+        'self-distribution. Updates should be handled by you via an '
+        'updateURL or external application updates.</span>')
 
     channel = forms.ChoiceField(
-        choices=(
-            ('listed', mark_safe_lazy(LISTED_LABEL)),
-            ('unlisted', mark_safe_lazy(UNLISTED_LABEL))),
+        choices=[],
         initial='listed',
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
+
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon', None)
+        super().__init__(*args, **kwargs)
+        choices = [
+            ('listed', mark_safe(self.LISTED_LABEL)),
+            ('unlisted', mark_safe(self.UNLISTED_LABEL))
+        ]
+        if self.addon and self.addon.disabled_by_user:
+            # If the add-on is disabled, 'listed' is not a valid choice,
+            # "invisible" add-ons can not upload new listed versions.
+            choices.pop(0)
+
+        self.fields['channel'].choices = choices
 
 
 class AgreementForm(forms.Form):

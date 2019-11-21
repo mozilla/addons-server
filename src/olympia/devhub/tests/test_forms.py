@@ -366,6 +366,33 @@ class TestDistributionChoiceForm(TestCase):
             label = str(label)
             assert label.startswith(expected)
 
+    def test_choices_addon(self):
+        # No add-on passed, all choices are present.
+        form = forms.DistributionChoiceForm()
+        assert len(form.fields['channel'].choices) == 2
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+
+        # Regular add-on, all choices are present.
+        addon = addon_factory()
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 2
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+
+        # "Invisible" addons don't get to choose "On this site.".
+        addon.disabled_by_user = True
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 1
+        assert form.fields['channel'].choices[0][0] == 'unlisted'
+
+        # Back to normal.
+        addon.disabled_by_user = False
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 2
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+
 
 class TestDescribeForm(TestCase):
     fixtures = ('base/addon_3615', 'base/addon_3615_categories',
