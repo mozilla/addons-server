@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-21 10:16+0000\n"
+"PO-Revision-Date: 2019-11-21 10:57+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -517,7 +517,7 @@ msgstr ""
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "{addon} स्थिति {status} में परिवर्तित हो गई है।"
 
 msgid "{version} added to {addon}."
 msgstr ""
@@ -560,7 +560,7 @@ msgid "Retained"
 msgstr "बनाए रखा"
 
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} आगे बढ़ा।"
 
 msgid "Super review requested"
 msgstr "उत्तम समीक्षा का अनुरोध किया"
@@ -575,7 +575,7 @@ msgid "{addon} {version} more information requested."
 msgstr ""
 
 msgid "More information requested"
-msgstr ""
+msgstr "अधिक जानकारी अनुरोधित"
 
 msgid "{addon} {version} super review requested."
 msgstr ""
@@ -633,7 +633,7 @@ msgid "{addon} policy changed."
 msgstr ""
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} आइकन बदला गया है।"
 
 msgid "{rating} for {addon} approved."
 msgstr ""
