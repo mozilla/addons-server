@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-21 14:28+0000\n"
+"PO-Revision-Date: 2019-11-21 14:33+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -730,22 +730,22 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "समीक्षक का उत्तर"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "स्वीकृति नोट्स बदल गए"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr ""
 
 msgid "Source code uploaded"
-msgstr ""
+msgstr "स्रोत कोड अपलोड किया गया"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} के लिए स्वचालित रूप से स्वीकृति की पुष्टि की गई।"
 
 msgid "Auto-Approval confirmed"
 msgstr ""
@@ -1499,10 +1499,10 @@ msgid "Slug incorrect."
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "विवरण"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "आपका लाइसेंस का नाम क्या है?"
 
 msgid "Custom License"
 msgstr "अनुकूलित लाइसेंस"
