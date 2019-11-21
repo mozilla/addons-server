@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-09-15 06:49+0000\n"
-"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
+"PO-Revision-Date: 2019-11-21 10:11+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -5287,39 +5287,39 @@ msgid "Other Pending Review ({0})"
 msgstr ""
 
 msgid "Review Log"
-msgstr ""
+msgstr "लॉग की समीक्षा करें"
 
 msgid "Add-on Review Guide"
-msgstr ""
+msgstr "ऐड-ऑन रिव्यू गाइड"
 
 msgid "Auto-Approved Add-ons"
-msgstr ""
+msgstr "ऑटो-स्वीकृत ऐड-ऑन"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "ऑटो स्वीकृत ऐड-ऑन ({0})"
 
 msgid "Add-on Review Log"
 msgstr ""
 
 msgid "Review Guide"
-msgstr ""
+msgstr "गाइड की समीक्षा करें"
 
 msgid "Content Review"
-msgstr ""
+msgstr "सामग्री की समीक्षा"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "सामग्री की समीक्षा ({0})"
+msgstr[1] "सामग्री की समीक्षा ({0})"
 
 msgid "New ({0})"
-msgstr ""
+msgstr "नया ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "अपडेट ({0})"
 
 msgid "Theme Review Guide"
-msgstr ""
+msgstr "थीम समीक्षा गाइड"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5340,7 +5340,7 @@ msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Announcement"
-msgstr ""
+msgstr "घोषणा"
 
 msgid "Update message of the day"
 msgstr ""
@@ -5352,7 +5352,7 @@ msgid "An unknown error occurred"
 msgstr ""
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "स्व-समीक्षाओं की अनुमति नहीं है।"
 
 msgid "Review successfully processed."
 msgstr ""
@@ -5364,16 +5364,16 @@ msgid "{addon} :: EULA"
 msgstr ""
 
 msgid "{addon} :: Privacy Policy"
-msgstr ""
+msgstr "{addon} :: गोपनीयता नीति"
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: दुरुपयोग रिपोर्ट"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "{addon} और उसके डेवलपर्स ({num}) के लिए दुरुपयोग की रिपोर्ट करें"
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "दुर्व्यवहार की रिपोर्ट"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
@@ -5390,7 +5390,7 @@ msgid "Works with"
 msgstr ""
 
 msgid "Visibility"
-msgstr ""
+msgstr "दृश्यता"
 
 msgid "Visible"
 msgstr ""
@@ -5399,13 +5399,13 @@ msgid "View Statistics"
 msgstr ""
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "औसत दैनिक उपयोगकर्ता"
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "गोपनीयता नीति देखें"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "भुगतान की आवश्यकता है"
 
 msgid "EULA"
 msgstr ""
@@ -5414,10 +5414,10 @@ msgid "View End-User License Agreement"
 msgstr "एंड-यूज़र लायसेंस एग्रीमेंट देखें"
 
 msgid "Last Approval Date"
-msgstr ""
+msgstr "अंतिम स्वीकृति तिथि"
 
 msgid "Abuse Reports ({num})"
-msgstr ""
+msgstr "दुर्व्यवहार रिपोर्ट ({num})"
 
 msgid "Bad User Ratings ({num})"
 msgstr ""
@@ -5466,23 +5466,23 @@ msgid "More details."
 msgstr ""
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "इस अवधि के लिए कोई घटना नहीं मिली।"
 
 msgid "Log details"
-msgstr ""
+msgstr "लॉग विवरण"
 
 msgid "Review Author"
-msgstr ""
+msgstr "लेखक की समीक्षा करें"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "एड-ऑन शीर्षक"
 
 msgid "Review Text"
-msgstr ""
+msgstr "समीक्षा पाठ"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5500,28 +5500,28 @@ msgid "View statistics for user"
 msgstr ""
 
 msgid "Range"
-msgstr ""
+msgstr "रेंज"
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "आपकी समीक्षा"
 
 msgid "By {user_name}"
 msgstr ""
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "कुल समीक्षा"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "सक्रिय योगदानकर्ता"
 
 msgid "This Month"
-msgstr ""
+msgstr "इस महीने"
 
 msgid "This Year"
-msgstr ""
+msgstr "इस साल"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "मासिक प्रदर्शन"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
@@ -5539,10 +5539,10 @@ msgid "All-Time"
 msgstr ""
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "उन्नत खोज"
 
 msgid "clear search"
-msgstr ""
+msgstr "स्पष्ट खोज"
 
 msgid "Process Reviews"
 msgstr ""
@@ -5562,7 +5562,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr ""
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "वर्तमान में समीक्षा करने के लिए इस प्रकार के कोई ऐड-ऑन नहीं हैं।"
 
 msgid "Helpful Links:"
 msgstr ""
@@ -5571,11 +5571,11 @@ msgid "Add-on Policy"
 msgstr ""
 
 msgid "Reviewer's Guide"
-msgstr ""
+msgstr "समीक्षक गाइड"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
-msgstr ""
+msgstr "सामग्री की समीक्षा {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5601,16 +5601,16 @@ msgid "Compatibility:"
 msgstr ""
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "अतिरिक्त स्रोत:"
 
 msgid "Download files"
-msgstr ""
+msgstr "फ़ाइलें डाउनलोड करें"
 
 msgid "The developer has provided source code."
 msgstr ""
 
 msgid "Weight:"
-msgstr ""
+msgstr "वज़न:"
 
 msgid "Download"
 msgstr "डाउनलोड करें"
@@ -5622,7 +5622,7 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "इस संस्करण की समीक्षा नहीं की गई है।"
 
 msgid "Please select one or more versions in the list above."
 msgstr ""
