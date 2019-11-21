@@ -186,7 +186,7 @@ class MultiBlockSubmit(ModelBase):
             block = (
                 blocks_to_update_dict.get(addon.guid, None) or (
                     Block(addon=addon) if load_full_objects else
-                    FakeBlock(addon.guid, addon, '0' , '*')
+                    FakeBlock(addon.guid, addon, '0', '*')
                 ))
             blocks.append(block)
 
