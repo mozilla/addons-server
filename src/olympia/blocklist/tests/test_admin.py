@@ -407,24 +407,28 @@ class TestBlockAdminAddMultiple(TestCase):
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
+        assert b'edit existing Block' not in response.content
 
         # Should work the same if partial block (exists but needs updating)
         existing_block = Block.objects.create(guid=addon.guid, min_version='8')
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
+        assert b'edit existing Block' in response.content
 
         # And an unlisted version
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
+        assert b'edit existing Block' in response.content
 
         # And delete the block again
         existing_block.delete()
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
+        assert b'edit existing Block' not in response.content
 
         addon.current_version.delete(hard=True)
         response = self.client.post(**post_kwargs)

@@ -143,7 +143,7 @@ class MultiBlockSubmit(ModelBase):
         FakeBlock = namedtuple(
             'FakeBlock', ('guid', 'addon', 'min_version', 'max_version'))
         FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
-        all_guids = guids.splitlines()
+        all_guids = set(guids.splitlines())
 
         # load all the Addon instances together
         addon_qs = Addon.unfiltered.filter(guid__in=all_guids).order_by(
@@ -191,7 +191,7 @@ class MultiBlockSubmit(ModelBase):
             blocks.append(block)
 
         invalid_guids = list(
-            set(all_guids) - {block.guid for block in blocks})
+            all_guids - set(existing_guids) - {block.guid for block in blocks})
 
         return {
             'invalid_guids': invalid_guids,
