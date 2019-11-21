@@ -146,7 +146,7 @@ class BlockAdminAddMixin():
             guids_data, load_full_objects=load_full_objects)
         context.update(objects)
         if load_full_objects:
-            Block.preload_addon_versions(objects['new'])
+            Block.preload_addon_versions(objects['blocks'])
         return TemplateResponse(
             request, 'blocklist/multiple_block.html', context)
 

@@ -128,40 +128,75 @@ class MultiBlockSubmit(ModelBase):
     @classmethod
     def process_input_guids(cls, guids, load_full_objects=True):
         """Process a line-return seperated list of guids into a list of invalid
-        guids, a list of existing Block instances (for guids that are already
-        blocked), and a list of new Block instances (unsaved).
+        guids, a list of guids that are fully blocked already (0 - *), and a
+        list of Block instances - including new Blocks (unsaved) and existing
+        partial Blocks.
 
         If `load_full_objects=False` is passed the Block instances are fake
         (namedtuples) with only minimal data available in the "Block" objects:
-         block.guid and block.addon.average_daily_users.
+        Block.guid,
+        Block.addon.guid,
+        Block.addon.average_daily_users,
+        Block.min_version,
+        Block.max_version.
         """
-        FakeBlock = namedtuple('FakeBlock', ('guid', 'addon'))
-        FakeAddon = namedtuple('FakeAddon', ('average_daily_users'))
-        all_guids = set(guids.splitlines())
+        FakeBlock = namedtuple(
+            'FakeBlock', ('guid', 'addon', 'min_version', 'max_version'))
+        FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
+        all_guids = guids.splitlines()
 
-        block_qs = Block.objects.filter(guid__in=all_guids)
-        existing = (
-            list(block_qs)
-            if load_full_objects else
-            [FakeBlock(guid=guid, addon=FakeAddon(0))
-             for guid in block_qs.values_list('guid', flat=True)])
-        remaining = all_guids - {block.guid for block in existing}
-
-        addon_qs = Addon.unfiltered.filter(guid__in=remaining).order_by(
+        # load all the Addon instances together
+        addon_qs = Addon.unfiltered.filter(guid__in=all_guids).order_by(
             '-average_daily_users')
-        new = (
-            [Block(addon=addon) for addon in addon_qs.only_translations()]
+        addons = (
+            list(addon_qs.only_translations())
             if load_full_objects else
-            [FakeBlock(guid=guid, addon=FakeAddon(addon_users))
+            [FakeAddon(guid, addon_users)
              for guid, addon_users in addon_qs.values_list(
                 'guid', 'average_daily_users')])
+        addon_guid_dict = {addon.guid: addon for addon in addons}
 
-        invalid = remaining - {block.guid for block in new}
+        # And then any existing block instances
+        block_qs = Block.objects.filter(guid__in=all_guids)
+        existing_blocks = (
+            list(block_qs)
+            if load_full_objects else
+            [FakeBlock(guid, addon_guid_dict[guid], min_version, max_version)
+             for guid, min_version, max_version in block_qs.values_list(
+                'guid', 'min_version', 'max_version')])
+        if load_full_objects:
+            # hook up block.addon cached_property (FakeBlock sets it above)
+            for block in existing_blocks:
+                block.addon = addon_guid_dict[block.guid]
+
+        # identify the blocks that need updating (i.e. not 0 - * already)
+        blocks_to_update_dict = {
+            block.guid: block for block in existing_blocks
+            if not (block.min_version == '0' and block.max_version == '*')}
+        existing_guids = [
+            block.guid for block in existing_blocks
+            if block.guid not in blocks_to_update_dict]
+
+        blocks = []
+        for addon in addons:
+            if addon.guid in existing_guids:
+                # it's an existing block but doesn't need updating
+                continue
+            # get the existing block object or create a new instance
+            block = (
+                blocks_to_update_dict.get(addon.guid, None) or (
+                    Block(addon=addon) if load_full_objects else
+                    FakeBlock(addon.guid, addon, '0' , '*')
+                ))
+            blocks.append(block)
+
+        invalid_guids = list(
+            set(all_guids) - {block.guid for block in blocks})
 
         return {
-            'invalid': list(invalid),
-            'existing': list(existing),
-            'new': list(new),
+            'invalid_guids': invalid_guids,
+            'existing_guids': existing_guids,
+            'blocks': blocks,
         }
 
     def save_to_blocks(self):
@@ -175,17 +210,15 @@ class MultiBlockSubmit(ModelBase):
         }
         processed_guids = self.process_input_guids(self.input_guids)
 
-        objects_to_add = processed_guids['new']
-        for obj in objects_to_add:
+        blocks = processed_guids['blocks']
+        modified_datetime = datetime.datetime.now()
+        for block in blocks:
+            change = bool(block.id)
             for field, val in common_args.items():
-                setattr(obj, field, val)
-            obj.save()
-            block_activity_log_save(obj, change=False)
+                setattr(block, field, val)
+            if change:
+                setattr(block, 'modified', modified_datetime)
+            block.save()
+            block_activity_log_save(block, change=change)
 
-        objects_to_update = processed_guids['existing']
-        common_args.update(modified=datetime.datetime.now())
-        for obj in objects_to_update:
-            obj.update(**common_args)
-            block_activity_log_save(obj, change=True)
-
-        return (objects_to_add, objects_to_update)
+        return blocks
