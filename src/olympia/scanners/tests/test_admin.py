@@ -90,7 +90,7 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.guid(result) == version.addon.guid
 
-    def test_no_guid(self):
+    def test_guid_without_version(self):
         result = ScannerResult(version=None)
 
         assert self.admin.guid(result) == '-'
