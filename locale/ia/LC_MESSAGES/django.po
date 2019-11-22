@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-22 18:16+0000\n"
+"PO-Revision-Date: 2019-11-22 19:51+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -957,8 +957,7 @@ msgstr "Confidentialitate & securitate"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"Discarga extensiones de Firefox pro navigar privatemente e con securitate. Iste categoria include extensiones pro blocar enoiose avisos publicitari, impedir le traciamento, gerer re-directiones e "
-"multo plus."
+"Discarga extensiones de Firefox pro navigar privatemente e con securitate. Iste categoria include extensiones pro blocar annuncios moleste, impedir le traciamento, gerer redirectiones e multo plus."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Discarga extensiones de Firefox pro cercar e filtrar. Iste categoria include extensiones que evidentia e cerca texto, consulta adresses/dominios internet, e multo plus."
@@ -1012,7 +1011,7 @@ msgid "Performance"
 msgstr "Prestationes"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Discarga extensiones que rende Firefox plus rapide. Trova extensiones que te adjuta a esser plus productive e efficiente per le blocada del enoiose avisos publicitari e multo plus."
+msgstr "Discarga extensiones que rende Firefox plus rapide. Trova extensiones que te adjuta a esser plus productive e efficiente per le blocage de annuncios moleste e multo plus."
 
 msgid "Photos & Media"
 msgstr "Photos & medios"
@@ -3733,7 +3732,7 @@ msgstr "Bloca le quadros emergente {start_sub_heading}con {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Activa le blocada per tote le quadros emergente, pois decide los que lassar aperte."
+msgstr "Bloca tote le fenestras emergente primo, postea decide quales tu vole aperir."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3953,7 +3952,7 @@ msgstr "Obtene traductiones experte de germano inter anglese, francese, espaniol
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Crea un lista de blocada de sitos web {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Crea un lista de sitos web a blocar {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
@@ -5417,7 +5416,7 @@ msgid "Review successfully processed."
 msgstr "Revision elaborate con successo."
 
 msgid "Review lock limit reached"
-msgstr "Limite de blocada del revisiones attingite"
+msgstr "Limite de serraturas pro recensiones attingite"
 
 msgid "{addon} :: EULA"
 msgstr "{addon} :: EULA"
