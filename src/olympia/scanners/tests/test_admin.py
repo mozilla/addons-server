@@ -90,6 +90,11 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.guid(result) == version.addon.guid
 
+    def test_no_guid(self):
+        result = ScannerResult(version=None)
+
+        assert self.admin.guid(result) == '-'
+
     def test_listed_channel(self):
         version = version_factory(
             addon=addon_factory(), channel=amo.RELEASE_CHANNEL_LISTED
