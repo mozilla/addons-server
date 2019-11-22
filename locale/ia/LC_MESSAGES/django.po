@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-22 16:29+0000\n"
+"PO-Revision-Date: 2019-11-22 18:16+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3248,13 +3248,11 @@ msgstr "Exeque recercas invertite de imagine ex un serie de motores."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocada del avisos publicitari & protection del confidentialitate {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Blocage de publicitate & protection del vita private {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
-"Blocada del avisos publicitari e protection del confidentialitate. Un simple configuration te pone in grado de prender controlo del avisos publicitari que tu vide e de como tu es traciate sur "
-"internet."
+msgstr "Blocage de publicitate e protection del vita private. Un simple installation te permitte prender le controlo sur le annuncios que tu vide e sur como tu es traciate sur internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3342,7 +3340,7 @@ msgstr "Meliora videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Gaude de un serie de nove functionalitates de YouTube, como: modo cinema, blocada del avisos publicitari, controlo del auto-reproduction, e multo plus."
+msgstr "Gaude de un serie de nove functionalitates de YouTube, como: modo cinema, blocage de publicitate, controlo del auto-reproduction, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4445,7 +4443,7 @@ msgstr "Coperi tu tracias {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Recerca con le blocada avantiate del traciatores, un cryptographia plus intelligente e altere cosas beneficios de confidentialitate."
+msgstr "Cerca con blocage avantiate de traciatores, cryptographia intelligente e altere beneficios de vita private."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
