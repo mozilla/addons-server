@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
@@ -7,6 +8,8 @@ from django.template.loader import render_to_string
 from django.utils.html import format_html
 from django.utils.http import urlencode
 from django.utils.translation import ugettext
+
+from urllib.parse import urljoin
 
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
@@ -142,7 +145,10 @@ class ScannerResultAdmin(admin.ModelAdmin):
             return format_html(
                 '<a href="{}">{} (version: {})</a>',
                 # We use the add-on's ID to support deleted add-ons.
-                reverse('reviewers.review', args=[obj.version.addon.id]),
+                urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('reviewers.review', args=[obj.version.addon.id]),
+                ),
                 obj.version.addon.name,
                 obj.version.id,
             )
