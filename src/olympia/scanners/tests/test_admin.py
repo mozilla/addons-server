@@ -84,6 +84,12 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.formatted_addon(result) == '-'
 
+    def test_guid(self):
+        version = version_factory(addon=addon_factory())
+        result = ScannerResult(version=version)
+
+        assert self.admin.guid(result) == version.addon.guid
+
     def test_listed_channel(self):
         version = version_factory(
             addon=addon_factory(), channel=amo.RELEASE_CHANNEL_LISTED
