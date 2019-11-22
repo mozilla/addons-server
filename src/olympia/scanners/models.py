@@ -99,6 +99,11 @@ class ScannerResult(ModelBase):
             self.has_matches and self.state == UNKNOWN and self.scanner != WAT
         )
 
+    def can_revert_feedback(self):
+        return (
+            self.has_matches and self.state != UNKNOWN and self.scanner != WAT
+        )
+
     def get_git_repository(self):
         return {
             CUSTOMS: settings.CUSTOMS_GIT_REPOSITORY,

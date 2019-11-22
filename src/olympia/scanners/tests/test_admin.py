@@ -262,6 +262,35 @@ class TestScannerResultAdmin(TestCase):
             in response['Location']
         )
 
+    def test_handle_revert_report(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.state = TRUE_POSITIVE
+        result.save()
+        assert result.state == TRUE_POSITIVE
+
+        response = self.client.get(
+            reverse(
+                'admin:scanners_scannerresult_handlerevert',
+                args=[result.pk],
+            ),
+            follow=True,
+        )
+
+        result.refresh_from_db()
+        assert result.state == UNKNOWN
+        # The action should send a redirect.
+        last_url, status_code = response.redirect_chain[-1]
+        assert status_code == 302
+        # The action should redirect to the list view and the default list
+        # filters should show the result (because its state is UNKNOWN again).
+        html = pq(response.content)
+        assert html('#result_list tbody tr').length == 1
+        # A confirmation message should also appear.
+        assert html('.messagelist .info').length == 1
+
 
 class TestScannerRuleAdmin(TestCase):
     def setUp(self):
