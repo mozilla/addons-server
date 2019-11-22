@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-14 18:04+0000\n"
+"PO-Revision-Date: 2019-11-22 16:29+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1263,13 +1263,13 @@ msgid "Manual Reviewer Points"
 msgstr "Punctos de revisores de manual"
 
 msgid "New Legacy Add-on Review"
-msgstr "Nove revision de additivo legate"
+msgstr "Nove recension de un additivo de typo ancian"
 
 msgid "Preliminary Add-on Review"
 msgstr "Revision preliminar del additivo"
 
 msgid "Updated Legacy Add-on Review"
-msgstr "Revision actualisate del additivo legate"
+msgstr "Recension actualisate de un additivo de typo ancian"
 
 msgid "New Dictionary Review"
 msgstr "Nove revision del dictionario"
@@ -1421,7 +1421,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Recente cambiamentos pro mi additivos"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Le extensiones legate non es plus supportate in Firefox."
+msgstr "Le extensiones de typo ancian non es plus supportate in Firefox."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
@@ -1429,7 +1429,7 @@ msgstr ""
 "Tu pote usar le mesme conto pro actualisar tu additivos sur le nove sito."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste processo. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo precedente."
+msgstr "Nos permitte e incoragia un actualisation, ma le processo es irreversibile. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo de typo ancian."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Iste identificator es ja in uso. Per favor elige un altere."
@@ -4914,8 +4914,8 @@ msgstr ""
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
-"Adjuta a meliorar iste sito web. Il es open-source, e tu pote indicar defectos e inviar pecias. <a href=\"%(url)s\">GitHub</a> contine tote nostre actual defectos, defectos legate pote ancora ser "
-"trovate in Bugzilla."
+"Adjuta a meliorar iste sito web. Su codice es libere e aperte, e tu pote indicar defectos e inviar correctiones. <a href=\"%(url)s\">GitHub</a> contine tote nostre defectos actual. Le ancian "
+"reportos de defectos se trova ancora in Bugzilla."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr "Si tu es interessate in additivos ma non bastante como technic, il ha ancora manieras pro adjutar:"
