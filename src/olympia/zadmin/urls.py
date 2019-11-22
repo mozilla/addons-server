@@ -38,11 +38,6 @@ urlpatterns = [
     url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
         views.download_file_upload, name='zadmin.download_file_upload'),
 
-    url(r'^features$', views.features, name='zadmin.features'),
-    url(r'^features/collections\.json$', views.collections_json,
-        name='zadmin.collections_json'),
-    url(r'^features/featured-collection$', views.featured_collection,
-        name='zadmin.featured_collection'),
     url(r'^elastic$', views.elastic, name='zadmin.elastic'),
     url(r'^mail$', views.mail, name='zadmin.mail'),
     url(r'^addon-search$', views.addon_search, name='zadmin.addon-search'),

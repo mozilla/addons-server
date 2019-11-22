@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import collections
 import itertools
 import os
 import re
@@ -26,13 +25,12 @@ import olympia.core.logger
 
 from olympia import activity, amo, core
 from olympia.access import acl
-from olympia.addons.utils import (
-    generate_addon_guid, get_creatured_ids, get_featured_ids)
+from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
     BasePreview, BaseQuerySet, LongNameIndex, ManagerBase, ModelBase,
-    OnChangeMixin, SaveUpdateMixin, SlugField, manual_order)
+    OnChangeMixin, SaveUpdateMixin, SlugField)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -167,13 +165,6 @@ class AddonQuerySet(BaseQuerySet):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.VALID_ADDON_STATUSES))
 
-    def featured(self, app, lang=None, type=None):
-        """
-        Filter for all featured add-ons for an application in all locales.
-        """
-        ids = get_featured_ids(app, lang, type)
-        return manual_order(self.listed(app), ids, 'addons.id')
-
     def listed(self, app, *status):
         """
         Return add-ons that support a given ``app``, have a version with a file
@@ -235,12 +226,6 @@ class AddonManager(ManagerBase):
     def valid(self):
         """Get valid, enabled add-ons only"""
         return self.get_queryset().valid()
-
-    def featured(self, app, lang=None, type=None):
-        """
-        Filter for all featured add-ons for an application in all locales.
-        """
-        return self.get_queryset().featured(app, lang=lang, type=type)
 
     def listed(self, app, *status):
         """
@@ -1281,32 +1266,12 @@ class Addon(OnChangeMixin, ModelBase):
             manager = self.versions
         return manager.filter(channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
 
-    @classmethod
-    def featured_random(cls, app, lang):
-        return get_featured_ids(app, lang)
-
     @property
     def is_restart_required(self):
         """Whether the add-on current version requires a browser restart to
         work."""
         return (
             self.current_version and self.current_version.is_restart_required)
-
-    def is_featured(self, app=None, lang=None):
-        """Is add-on globally featured for this app and language?"""
-        return self.id in get_featured_ids(app, lang)
-
-    def get_featured_by_app(self):
-        qset = (self.collections.filter(featuredcollection__isnull=False)
-                .distinct().values_list('featuredcollection__application',
-                                        'featuredcollection__locale'))
-        out = collections.defaultdict(set)
-        for app, locale in qset:
-            # Even if the locale for the FeaturedCollection is an empty string
-            # instead of None, we return it as None so that it keeps its
-            # special meaning.
-            out[app].add(locale or None)
-        return out
 
     @cached_property
     def is_recommended(self):
@@ -1713,25 +1678,17 @@ class AddonCategory(models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    feature = models.BooleanField(default=False)
-    feature_locales = models.CharField(max_length=255, default='', null=True)
 
     class Meta:
         db_table = 'addons_categories'
         indexes = [
             models.Index(fields=('category', 'addon'),
                          name='category_addon_idx'),
-            models.Index(fields=('feature', 'addon'),
-                         name='feature_addon_idx'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('addon', 'category'),
                                     name='addon_id'),
         ]
-
-    @classmethod
-    def creatured_random(cls, category, lang):
-        return get_creatured_ids(category, lang)
 
 
 class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):

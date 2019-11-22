@@ -417,6 +417,8 @@ class AddonAutoCompleteSearchView(AddonSearchView):
 
 
 class AddonFeaturedView(AddonSearchView):
+    """Featuring is gone, so this view is a hollowed out shim that returns
+    recommended addons for api/v3."""
     # We accept the 'page_size' parameter but we do not allow pagination for
     # this endpoint since the order is random.
     pagination_class = None
