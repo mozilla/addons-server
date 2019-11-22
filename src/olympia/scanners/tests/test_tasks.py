@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 import pytest
-import yara
 
 from django.test.utils import override_settings
 
@@ -284,17 +283,17 @@ class TestRunYara(UploadTest, TestCase):
         assert received_results == results
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_run_with_mocks(self, incr_mock):
+    def test_run(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for all files in the xpi.
+        rule = ScannerRule.objects.create(
+            name='always_true',
+            scanner=YARA,
+            definition='rule always_true { condition: true }',
+        )
 
-        rule = ScannerRule.objects.create(name='always_true', scanner=YARA)
-        # This compiled rule will match for all files in the xpi.
-        rules = yara.compile(source='rule %s { condition: true }' % rule.name)
-        with mock.patch('yara.compile') as yara_compile_mock:
-            yara_compile_mock.return_value = rules
-            received_results = run_yara(self.results, self.upload.pk)
+        received_results = run_yara(self.results, self.upload.pk)
 
-        assert yara_compile_mock.called
         yara_results = ScannerResult.objects.all()
         assert len(yara_results) == 1
         yara_result = yara_results[0]
@@ -322,14 +321,16 @@ class TestRunYara(UploadTest, TestCase):
         assert received_results == self.results
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_run_no_matches_with_mocks(self, incr_mock):
+    def test_run_no_matches(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
-
         # This compiled rule will never match.
-        rules = yara.compile(source='rule always_false { condition: false }')
-        with mock.patch('yara.compile') as yara_compile_mock:
-            yara_compile_mock.return_value = rules
-            received_results = run_yara(self.results, self.upload.pk)
+        ScannerRule.objects.create(
+            name='always_false',
+            scanner=YARA,
+            definition='rule always_false { condition: false }',
+        )
+
+        received_results = run_yara(self.results, self.upload.pk)
 
         yara_result = ScannerResult.objects.all()[0]
         assert yara_result.results == []
@@ -345,12 +346,14 @@ class TestRunYara(UploadTest, TestCase):
             **amo.VALIDATOR_SKELETON_RESULTS,
             'metadata': {'is_webextension': True},
         }
-        # This compiled rule will match for all files in the xpi.
-        rules = yara.compile(source='rule always_true { condition: true }')
+        # This rule will match for all files in the xpi.
+        ScannerRule.objects.create(
+            name='always_true',
+            scanner=YARA,
+            definition='rule always_true { condition: true }',
+        )
 
-        with mock.patch('yara.compile') as yara_compile_mock:
-            yara_compile_mock.return_value = rules
-            received_results = run_yara(results, upload.pk)
+        received_results = run_yara(results, upload.pk)
 
         yara_result = ScannerResult.objects.all()[0]
         assert yara_result.upload == upload
@@ -360,11 +363,27 @@ class TestRunYara(UploadTest, TestCase):
         # The task should always return the results.
         assert received_results == results
 
-    @override_settings(YARA_RULES_FILEPATH='unknown/path/to/rules.yar')
+    def test_run_skips_disabled_yara_rules(self):
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule should match for all files in the xpi but it is disabled.
+        ScannerRule.objects.create(
+            name='always_true',
+            scanner=YARA,
+            definition='rule always_true { condition: true }',
+            is_active=False,
+        )
+
+        run_yara(self.results, self.upload.pk)
+
+        yara_result = ScannerResult.objects.all()[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 0
+
+    @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_run_does_not_raise(self, incr_mock):
-        # This call should not raise even though there will be an error because
-        # YARA_RULES_FILEPATH is configured with a wrong path.
+    def test_run_does_not_raise(self, incr_mock, yara_compile_mock):
+        yara_compile_mock.side_effect = Exception()
+
         received_results = run_yara(self.results, self.upload.pk)
 
         assert incr_mock.called
@@ -410,7 +429,8 @@ class TestActions(TestCase):
         _delay_auto_approval(version)
         self.assertCloseToNow(
             addon.auto_approval_delayed_until,
-            now=datetime.now() + timedelta(hours=24))
+            now=datetime.now() + timedelta(hours=24),
+        )
         assert version.needs_human_review
 
     def test_delay_auto_approval_indefinitely(self):
@@ -466,7 +486,8 @@ class TestRunAction(TestCase):
 
     @mock.patch('olympia.scanners.tasks._delay_auto_approval_indefinitely')
     def test_runs_delay_auto_approval_indefinitely(
-            self, _delay_auto_approval_indefinitely_mock):
+        self, _delay_auto_approval_indefinitely_mock
+    ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
 
         run_action(self.version)
