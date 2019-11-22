@@ -84,6 +84,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'formatted_addon',
+        'guid',
         'channel',
         'scanner',
         'formatted_matched_rules',
@@ -98,6 +99,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'id',
         'upload',
         'formatted_addon',
+        'guid',
         'channel',
         'scanner',
         'created',
@@ -155,6 +157,14 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return '-'
 
     formatted_addon.short_description = 'Add-on'
+
+    def guid(self, obj):
+        if obj.version:
+            return obj.version.addon.guid
+        return '-'
+
+    guid.short_description = 'Add-on GUID'
+    guid.admin_order_field = 'version__addon__guid'
 
     def channel(self, obj):
         if obj.version:
