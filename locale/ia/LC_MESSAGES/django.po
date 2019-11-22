@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-22 19:51+0000\n"
+"PO-Revision-Date: 2019-11-22 20:02+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1024,8 +1024,8 @@ msgstr "Securitate & confidentialitate"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le furtive avisos publicitari que te tracia, rader facilemente le chronologia de navigation,"
-" e multo plus."
+"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le publicitate furtive que te tracia, rader facilemente le chronologia de navigation, e "
+"multo plus."
 
 msgid "Social Networking"
 msgstr "Retes social"
@@ -3219,7 +3219,7 @@ msgstr "Stoppa le traciatores furtive {start_sub_heading}con {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr "Bloca le traciatores invisibile e los que spia le avisos publicitari que tu seque circum le web."
+msgstr "Bloca le traciatores invisibile e le publicitate spiante que te seque per tote le web."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3327,11 +3327,11 @@ msgstr "Gestion de contrasignos simplificate. Synchronisa tote tu accessos sur p
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloca le avisos publicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Bloca publicitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Un blocator de annuncios efficace e legier. uBlock Origin applica milles de filtros al contento sin consumer un massa de memoria."
+msgstr "Un blocator de publicitate efficace e legier. uBlock Origin applica milles de filtros al contento sin consumer un massa de memoria."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3367,11 +3367,11 @@ msgstr "Adde automaticamente Britannica facts a tu resultatos del recerca."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Remove le avisos publicitari de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Remove le publicitate de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr "Impedi al enoiose avisos publicitari e al annotationes de parer sur YouTube."
+msgstr "Bloca le annuncios e annotationes moleste sur YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3520,11 +3520,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloca le avisos publicitari del web-email {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Bloca le publicitate in e-mail {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr "Recupera spatio de schermo eliminante avisos publicitari de tu cassa de entrata sur web."
+msgstr "Recupera spatio de schermo eliminante le annuncios de tu cassa de entrata sur web."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3700,7 +3700,7 @@ msgstr "Recerca con protection contra le traciamento {start_sub_heading}con {add
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Stoppa le avisos publicitari traciante quando tu clicca sur le retornos del recercas de Google o Yandex."
+msgstr "Stoppa le traciatores publicitari quando tu clicca sur resultatos de recerca de Google o Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3844,7 +3844,7 @@ msgstr "Rende tue YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Personalisa YouTube. Reguarda videos in un fenestra emergente, vide solo le avisos publicitari in le canales subscribite, prende instantaneos de videos, e tanto ancora."
+msgstr "Personalisa YouTube. Reguarda videos in un fenestra emergente, vide publicitate solmente in canales a que tu te ha subscribite, prende instantaneos de videos, e tanto ancora."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4124,11 +4124,11 @@ msgstr "Dele le chronologia de tu navigation. Specifica le numero de dies a rete
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Remove le avisos publicitari del recerca {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Remove le annuncios del motores de recerca {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr "Stoppa le avisos publicitari de parer in tu resultatos del recerca."
+msgstr "Impedi que le annuncios appare in tu resultatos de recerca."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4290,7 +4290,7 @@ msgstr "Immagazina contrasignos con securitate e authentica te automaticamente a
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "Un simple blocator de avisos publicitari focalisate a monstrar solo le contento que tu desira."
+msgstr "Un simple blocator de publicitate que se concentra a monstrar solmente le contento que tu vole."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4410,7 +4410,7 @@ msgstr "Rediger ante que imprimer {start_sub_heading}con {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Modifica un pagina web ante de imprimer lo. Apporta cambios visual drastic (p.ex. le elimination de avisos publicitari o contento disagradabile) a qualcunque pagina web que tu vole imprimer."
+msgstr "Modifica un pagina web ante de imprimer lo. Apporta cambios visual drastic (p.ex. le elimination de publicitate o contento disagradabile) a qualcunque pagina web que tu vole imprimer."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4506,11 +4506,11 @@ msgstr "Lege con plus claritate e facilitate. Remove le disordine circum le text
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloca le avisos publicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Bloca publicitate e multo plus {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Bloca avisos publicitari e obtene protection meliorate re malware e avisos publicitari traciante."
+msgstr "Bloca publicitate e obtene protection avantiate contra malware e traciatores."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4582,7 +4582,7 @@ msgstr "Mantene notas personal ubicunque sur le web. Usa simplemente un barra la
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Usa le recerca vocal {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Recerca activate per voce {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
@@ -5028,8 +5028,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Criticar un additivo pro un cosa que illo es destinate a facer. Per exemplo, lassar un recension negative de un additivo perque illo monstra avisos publicitari o require le collecta de datos, quando"
-" iste es le scopo explicite del additivo, o le additivo require le collecta de datos pro functionar."
+"Criticar un additivo pro un cosa que illo es destinate a facer. Per exemplo, lassar un recension negative de un additivo perque illo monstra annuncios o require le collecta de datos, quando iste es "
+"le scopo explicite del additivo, o le additivo require le collecta de datos pro functionar."
 
 msgid "How can I report a problematic review?"
 msgstr "Como pote io reportar un revision problematic?"
