@@ -1,11 +1,13 @@
 import json
 
+from django.conf import settings
 from django.contrib.admin.sites import AdminSite
 from django.test.utils import override_settings
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
 from pyquery import PyQuery as pq
+from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -73,7 +75,10 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.formatted_addon(result) == (
             '<a href="{}">{} (version: {})</a>'.format(
-                reverse('reviewers.review', args=[addon.id]),
+                urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('reviewers.review', args=[addon.id]),
+                ),
                 addon.name,
                 version.id,
             )
