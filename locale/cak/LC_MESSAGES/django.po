@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-15 22:35+0000\n"
+"PO-Revision-Date: 2019-11-23 22:31+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -74,9 +74,8 @@ msgstr "Majun ximonel ya'on q'ij chi re."
 msgid "This display name cannot be used."
 msgstr "Man tikirel ta nokisäx re b'i'aj xk'ut pe."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "Man tikirel ta nokisäx re b'i'aj re'."
+msgstr "Man tikirel ta nokisäx re rub'i' nik'onel re'."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Ri tikirib'äl ruxaq nokisäx richin yexim aj juk'an ajk'amaya'l ruxaq."
@@ -218,13 +217,11 @@ msgstr "CIDR"
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Yechup jumej jujun taq b'anikil ruma yojsamäj richin niqachojmirisaj ri Ajk'amaya'l ruxaq. Xkojtikïr chik xtik'oje' ronojel ri quchuq'a'."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "K'o chi k'o jun rajaw."
+msgstr "K'o chi k'o xa jun tz'ajel tz'ib'."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "K'o chi k'o jun rajaw."
+msgstr "Tanik'oj chi re k'ojlib'äl re' ruk'wa xa jun tz'ib' chuqa' jun ajilab'äl."
 
 msgid "Not allowed"
 msgstr "Man ya'on ta q'ij chi re"
@@ -275,9 +272,10 @@ msgstr "Kekanöx ronojel ri taq wachinel"
 msgid "Add-ons Home Page"
 msgstr "Kitikirib'al Ruxaq Tz'aqat"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "We xawojqaj jun ximonel pa jun chik ruxaq, %(open_bug_link)stiyak jun k'ayewal%(close_bug_link)s. Tatzijoj chi qe akuchi' xawïl chuqa' achike nakanoj richin niqatïj qaq'ij niqab'än ruk'ojlem."
+msgstr ""
+"We xawojqaj jun ximonel pa jun chik ruxaq, %(open_bug_link)stiyak jun k'ayewal %(close_bug_link)s. Tatzijoj chi qe akuchi' xawïl chuqa' achike nakanoj richin niqatïj qaq'ij niqab'än ruk'ojlem."
 
 msgid "Not Found"
 msgstr "Man Xilitäj ta"
@@ -1237,13 +1235,11 @@ msgstr "Mesilon Wachinel"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Jikomal Tojtob'enïk"
+msgstr "Jikomal"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Ichinan na'oj"
+msgstr "Ichinanem"
 
 #, fuzzy
 msgid "Development Practices"
@@ -1738,9 +1734,8 @@ msgstr "Re jotonem re' xuyüj ri junamanem ruma ri' toq rik'in jub'a' man tz'aq�
 msgid "Header area background"
 msgstr "Rupam ruk'ojlib'al jub'i'aj"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Ri rub'onil rupam ruk'ojlib'al b'i'aj, ri k'o pa ruk'ojlib'al b'i'an, ri man nojinäq ta o man tz'etel ta rik'in ri wachib'äl. Ruk'ojlib'al manifiesto:  accentcolor."
+msgstr "Ri rub'onil rupam ruk'ojlib'al b'i'aj, ri k'o pa ruk'ojlib'al b'i'an, ri man nojinäq ta o man tz'etel ta rik'in ri wachib'äl. Ruk'ojlib'al manifiesto:  frame."
 
 msgid "Header area text and icons"
 msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj"
@@ -1925,7 +1920,6 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Tik'ex ri K'amonem</a> <a href=\"%(version_url)s\" class=\"button\">Tijotob'äx K'ak'a' Ruwäch</a> o <a href=\"#\" "
 "class=\"close\">Tirepüx kan</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
 msgstr "Ketz'et chuqa' kek'ex ri kajilab'al kik'amonik chokoy."
 
@@ -2373,7 +2367,6 @@ msgstr "Taya' jun ch'utitzijol chi qe achike ruma nayüj el ri atz'aqat:"
 msgid "Actions"
 msgstr "Taq b'anoj"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
 msgstr "Tisamajïx chik el ri rub'eyal nitaq re tz'aqat re'."
 
@@ -2390,16 +2383,14 @@ msgstr "Tiyuj"
 msgid "Edit details on this add-on's product page"
 msgstr "Kenuk' kib'anikil re rucholajil wachinel re'."
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Tijotob'äx jun k'ak'a' ruwäch re tz'aqat re'."
+msgstr "Tijotob'äx jun k'ak'a' ruwäch re tz'aqat re'"
 
 msgid "New Version"
 msgstr "K'ak'a' Ruwäch"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel."
+msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel"
 
 msgid "Statistics"
 msgstr "Kimolob'a'"
@@ -2459,9 +2450,8 @@ msgstr "Ri b'i'aj pa ri rucholb'al re ruxaq k'amaya'l re' tikirel jun wi ri rub'
 msgid "Summary:"
 msgstr "Ch'utitzijol:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Tzijoxkil"
+msgstr "Tzijoxkil:"
 
 msgid "This add-on is experimental"
 msgstr "Re tz'aqat re' nitojtob'ëx"
@@ -2790,9 +2780,8 @@ msgstr "Xtak'ül jun taqoya'l toq xtik'is runik'oxik. Ruma k'a ri', ri atz'aqat 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Ri atz'aqat k'o pa ruwachib'al qochoch chuqa' ri okisanela' yekik'ül yonil taq k'exoj."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Jun nuk'samajel xuchüp ri atz'aqat ruma ri' toq man k'o ta chik pa wachib'äl qochochch. We k'o ak'utunik, katz'ib'an pa amo-admins@mozilla.org."
+msgstr "Jun nuk'samajel xuchüp ri atz'aqat ruma ri' toq man k'o ta chik pa wachib'äl qochochch. We k'o ak'utunik, katz'ib'an pa amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Man xtiq'alajin ta pe ri atz'aqat pa ri yekanöx, pa ri ruxaq xtitz'et chi xachüp. Man xkek'ul ta chik ri k'ak'a' ruwäch xketaq richin yecholajïx. "
@@ -2806,7 +2795,6 @@ msgid "Last Updated:"
 msgstr "Ruk'isib'äl k'exoj:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
 
@@ -2816,16 +2804,14 @@ msgstr "B'anikil:"
 msgid "Listed Version:"
 msgstr "Cholajin Ruwäch:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Ja ruwäch atz'aqat re', ri xtiyak we k'o xtipitz'on pa ri rupitz'b'al yakoj pa addons.mozilla.org."
+msgstr "Ja ruwäch atz'aqat re', ri xtiyak we k'o xtipitz'on pa ri rupitz'b'al yakoj pa addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Jun chik Cholajin Ruwäch:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Ja ruk'isib'äl ruwäch re', xa xe chi k'a man wachel ta pa ri ruxaq."
+msgstr "Ja ruk'isib'äl ruwäch re', xa xe chi k'a man wachel ta pa ri ruxaq"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Man yenik'öx ta ri taq jey pa rub'eyal rucholajem"
@@ -2843,9 +2829,8 @@ msgstr "Juxun richin ichin-jachoj. Ja rat ye'asamajij ri taq k'exoj."
 msgid "Latest Version:"
 msgstr "Ruk'isib'äl Ruwäch:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Ja ruk'isib'äl ruwäch re' k'o, ri man cholajin ta."
+msgstr "Ja ruk'isib'äl ruwäch re' k'o, ri man cholajin ta"
 
 msgid "Upload New Version"
 msgstr "Tijotob'äx K'ak'a' Ruwäch"
