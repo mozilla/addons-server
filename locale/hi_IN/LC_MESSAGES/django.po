@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-23 07:33+0000\n"
+"PO-Revision-Date: 2019-11-23 08:27+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -31,13 +31,11 @@ msgstr ""
 msgid "creation date"
 msgstr ""
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "ऐड-ऑन छुपाएँ"
+msgstr "उपयोगकर्ता / ऐड-ऑन"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "वर्णन"
+msgstr "वितरण"
 
 msgid "Reporter's country"
 msgstr ""
@@ -67,7 +65,7 @@ msgid "By %(filter_title)s"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "सभी"
 
 msgid "No links are allowed."
 msgstr "कोई भी लिंक की अनुमति नहीं है।"
@@ -75,9 +73,8 @@ msgstr "कोई भी लिंक की अनुमति नहीं ह
 msgid "This display name cannot be used."
 msgstr "इस डिस्प्ले नाम का उपयोग नहीं किया जा सकता है।"
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "इस नाम का उपयोग नहीं किया जा सकता है।"
+msgstr "इस समीक्षक नाम का उपयोग नहीं किया जा सकता है।"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "होमपेज फ़ील्ड का उपयोग केवल बाहरी वेबसाइटों से जोड़ने के लिए किया जा सकता है।"
@@ -212,7 +209,7 @@ msgid "Enter a valid IP4 or IP6 network."
 msgstr ""
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "वेबसाइट के रखरखाव के दौरान कुछ सुविधाएं अस्थायी रूप से अक्षम होती हैं। हम जल्द ही पूर्ण क्षमता पर वापस आ जाएंगे।"
@@ -738,7 +735,7 @@ msgid "Approval notes changed"
 msgstr "स्वीकृति नोट्स बदल गए"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr ""
+msgstr "{addon}{version} के लिए स्रोत कोड अपलोड किया गया।"
 
 msgid "Source code uploaded"
 msgstr "स्रोत कोड अपलोड किया गया"
@@ -762,7 +759,7 @@ msgid "Content approved"
 msgstr ""
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "{addon} {version} सामग्री अस्वीकृत।"
 
 msgid "Content rejected"
 msgstr "सामग्री अस्वीकृत"
@@ -774,13 +771,13 @@ msgid "Information request altered"
 msgstr "सूचना अनुरोध परिवर्तित"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
+msgstr "डेवलपर द्वारा {addon} {version} पर जानकारी अनुरोध को मंजूरी दी गई।"
 
 msgid "Information request removed"
 msgstr "सूचना अनुरोध निकाला गया"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr ""
+msgstr "{addon}{version} व्यवस्थापक ऐड-ऑन-समीक्षा का अनुरोध किया गया।"
 
 msgid "Admin add-on-review requested"
 msgstr "व्यवस्थापक एड-ऑन-समीक्षा का अनुरोध किया गया"
@@ -912,7 +909,7 @@ msgid "Appearance"
 msgstr "उपस्थिति"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "वेबसाइटों और ब्राउज़र Firefox की उपस्थिति को संशोधित करने वाले एक्सटेंशन डाउनलोड करें। इस श्रेणी में डार्क थीम, टैब प्रबंधन और बहुत कुछ के लिए एक्सटेंशन शामिल हैं।"
 
 msgid "Bookmarks"
 msgstr "बुकमार्क"
@@ -1551,7 +1548,7 @@ msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "संस्करण {version} पहले से मौजूद है।"
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -1563,10 +1560,10 @@ msgid "No"
 msgstr "नहीं‌"
 
 msgid "You have not uploaded a source file."
-msgstr ""
+msgstr "आपने एक स्रोत फ़ाइल अपलोड नहीं की है।"
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "स्रोत फ़ाइल अपलोड की गई लेकिन आपने संकेत दिया कि कोई स्रोत की आवश्यकता नहीं थी।"
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
@@ -1583,7 +1580,7 @@ msgid "Display Name"
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr ""
+msgstr "आपके एड-ऑन को दिखाए जाने पर श्रेणियों को बदला नहीं जा सकता है।"
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1639,25 +1636,25 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "थीम हटा दी गई।"
 
 msgid "Add-on deleted."
 msgstr "ऐड-ऑन हटाया गया।"
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL नाम गलत था। थीम नहीं हटाई गई।"
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL नाम गलत था। ऐड-ऑन नहीं हटाया गया।"
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "निमंत्रण स्वीकार किया गया।"
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "निमंत्रण अस्वीकार कर दिया।"
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "एक लेखक को आपके ऐड-ऑन में जोड़ा गया है"
 
 #, fuzzy
 msgid "Author invitation for {addon_name}"
@@ -1670,7 +1667,7 @@ msgid "An author role has been changed on your add-on"
 msgstr ""
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "आपके ऐड-ऑन से एक लेखक को हटा दिया गया है"
 
 msgid "Changes successfully saved."
 msgstr "परिवर्तन सफलतापूर्वक सहेजे गए।"
@@ -1698,14 +1695,14 @@ msgid "Icon must be square (same width and height)."
 msgstr ""
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "आपका पूर्वावलोकन अपलोड करने में त्रुटि हुई।"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "संस्करण %s अक्षम।"
 
 #, python-format
 msgid "Version %s deleted."
@@ -1758,13 +1755,13 @@ msgid "Review requested."
 msgstr ""
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "आगे बढ़ने के लिए आपको और विवरण देना होगा।"
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "नई API कुंजी बनाई गई"
 
 msgid "API key revoked"
 msgstr ""
@@ -1773,10 +1770,10 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr "मेरे ऐड-ऑन इन श्रेणियों में से किसी में फिट नही होते हैं"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox ऐड-ऑन वितरण समझौता"
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "नीतियों और नियमों की समीक्षा करें"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -1791,14 +1788,14 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "या <a href=\"{0}\">रद्द करें</a>"
 
 msgid "More information on Developer Accounts"
-msgstr ""
+msgstr "डेवलपर खातों पर अधिक जानकारी"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} ऐड-ऑन्स"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "DevHub मुखपृष्ठ पर लौटें"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -1815,7 +1812,7 @@ msgid "Documentation"
 msgstr "दस्तावेज़ीकरण"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "एक्सटेंशन डेवलपमेंट"
 
 msgid "Themes"
 msgstr "प्रसंग"
@@ -1837,7 +1834,7 @@ msgid "Add-ons Blog"
 msgstr "ऐड-ऑन्स ब्लॉग"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "एड-ऑन फोरम"
 
 msgid "More Resources"
 msgstr "और अधिक संसाधन"
@@ -1849,10 +1846,10 @@ msgid "Search"
 msgstr "खोजें"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "अपना ऐड-ऑन पैकेज अपलोड करने के लिए नीचे दिए गए फ़ील्ड का उपयोग करें।"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "अपलोड करने के बाद, स्वचालित फ़ाइल परीक्षण की एक श्रृंखला आपकी फ़ाइल पर चल दी जाएगी।"
 
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
