@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-08-02 06:56+0000\n"
-"Last-Translator: Arbaz Ahmad <arbaz6364@gmail.com>\n"
+"PO-Revision-Date: 2019-11-23 07:31+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -512,7 +512,7 @@ msgid "{addon} disabled."
 msgstr "{addon} अक्षम।"
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} सक्षम किया गया।"
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
@@ -565,7 +565,7 @@ msgid "Super review requested"
 msgstr "उत्तम समीक्षा का अनुरोध किया"
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} समीक्षा अनुरोधित है ।"
 
 msgid "Review requested"
 msgstr "समीक्षा अनुरोधित"
@@ -747,7 +747,7 @@ msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "{addon} {version} के लिए स्वचालित रूप से स्वीकृति की पुष्टि की गई।"
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "ऑटो स्वीकृति की पुष्टि की"
 
 msgid "{addon} {version} re-enabled."
 msgstr ""
@@ -771,7 +771,7 @@ msgid "{addon} information request altered or removed by admin."
 msgstr "{addon} जानकारी अनुरोध परिवर्तित या व्यवस्थापक द्वारा निकाल दिया।"
 
 msgid "Information request altered"
-msgstr ""
+msgstr "सूचना अनुरोध परिवर्तित"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
@@ -840,7 +840,7 @@ msgid "Deleted"
 msgstr "हटाए गए"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "असूचीबद्ध"
 
 msgid "Owner"
 msgstr "मालिक"
@@ -1159,7 +1159,7 @@ msgid "Multiple Search"
 msgstr "विभिन्न खोज"
 
 msgid "News & Blogs"
-msgstr ""
+msgstr "समाचार और ब्लॉग"
 
 msgid "Photos & Images"
 msgstr "चित्र और छवियाँ"
@@ -1270,7 +1270,7 @@ msgid "Preliminary Dictionary Review"
 msgstr "प्रारंभिक शब्दकोश समीक्षा"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "अद्यतन शब्दकोश समीक्षा"
 
 msgid "New Language Pack Review"
 msgstr "नई भाषा पैक समीक्षा"
@@ -1384,7 +1384,7 @@ msgid "Defamatory content"
 msgstr "मानहानिकारक सामग्री"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "ऑनलाइन जुआ"
 
 msgid "Spam content"
 msgstr ""
@@ -1403,7 +1403,7 @@ msgid "flag for human review"
 msgstr ""
 
 msgid "Core"
-msgstr ""
+msgstr "कोर"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -1475,19 +1475,19 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "अपनी स्थानीय भाषा को रूपान्तरित करने से पहले आपके पास सामान भाषा मैं नाम, सारांश तथा विवरण होना अनिवार्य है। आप %s को चूक रहे हैं।"
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "उपयोगकर्ताओं को सीधे नहीं जोड़ा जा सकता है"
 
 msgid "An author can only be present once."
-msgstr ""
+msgstr "एक लेखक केवल एक बार उपस्थित हो सकता है।"
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "लेखक के रूप में जोड़े जाने से पहले खाते को एक प्रदर्शन नाम की आवश्यकता होती है।"
 
 msgid "Must have at least one owner."
 msgstr "कम से कम एक मालिक होना चाहिए."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "कम से कम एक लेखक सूचीबद्ध होना चाहिए।"
 
 msgid "Slug incorrect."
 msgstr ""
