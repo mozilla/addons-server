@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-23 21:28+0000\n"
+"PO-Revision-Date: 2019-11-23 21:45+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -54,7 +54,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Επισήμανση επιλεγμένων αναφορών κατάχρησης ως ύποπτων"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Παρακαλούμε βεβαιωθείτε ότι αυτό το πεδίο δεν περιέχει πάνω από {max_length} χαρακτήρες."
 
 msgid "Modified on:"
 msgstr "Τροποποίηση στις:"
@@ -1537,7 +1537,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Για να αλλάξετε την αρχική γλώσσα, θα πρέπει πρώτα να διαθέτετε το όνομα, την περιγραφή, και τη σύνοψη σ' αυτή τη γλώσσα. Σας λείπει %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Δεν είναι δυνατή η απευθείας προσθήκη χρηστών"
 
 msgid "An author can only be present once."
 msgstr "Ένα δημιουργός μπορεί να εμφανίζεται μόνο μια φορά."
@@ -1726,7 +1726,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Πρόσκληση δημιουργού για το {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Ένα email επιβεβαίωσης έχει σταλεί στο {email}"
 
 msgid "An author role has been changed on your add-on"
 msgstr "Ο ρόλος ενός δημιουργού έχει αλλάξει στο πρόσθετό σας"
