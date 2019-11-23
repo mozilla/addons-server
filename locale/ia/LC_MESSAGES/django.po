@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-22 23:18+0000\n"
+"PO-Revision-Date: 2019-11-23 23:28+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -197,7 +197,7 @@ msgstr "Integre positive"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Iste campo pote esser usate solo pro ligamine a sitos web externe. URLs sur %(domain)s non es consentite."
+msgstr "Iste campo pote esser usate solmente pro ligar a sitos web externe. Le URLs in %(domain)s non es permittite."
 
 msgid "Incorrect, please try again."
 msgstr "Error, per favor reproba."
@@ -1921,7 +1921,7 @@ msgid "Update Compatibility"
 msgstr "Actualisar le compatibilitate"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Adjustar le informationes del application ci consentira al usatores de installar tu additivo mesmo si le file manifest de installation in le pacchetto indica que le additivo es incompatibile."
+msgstr "Adjustar le informationes del application hic permittera al usatores de installar tu additivo mesmo si le manifesto de installation in le pacchetto indica que le additivo es incompatibile."
 
 msgid "Application"
 msgstr "Application"
@@ -2865,7 +2865,7 @@ msgstr "Per favor elige un licentia appropriate pro le derectos que tu accorda s
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr "Tags HTML consentite: %(allowed_html)s"
+msgstr "Tags HTML permittite: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Alcun HTML supportate."
@@ -4326,7 +4326,7 @@ msgstr "Naviga con securitate {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Consenti de fluer contento web solo a sitos que tu fide. Naviga con securitate."
+msgstr "Permitte le execution de contento web solmente a sitos in que tu ha confidentia. Naviga con securitate."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5410,7 +5410,7 @@ msgid "An unknown error occurred"
 msgstr "Un error incognite occurreva"
 
 msgid "Self-reviews are not allowed."
-msgstr "Le revisiones del proprie additivos non es consentite."
+msgstr "Le auto-recensiones non er permittite."
 
 msgid "Review successfully processed."
 msgstr "Revision elaborate con successo."
