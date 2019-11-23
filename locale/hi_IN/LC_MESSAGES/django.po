@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-23 08:33+0000\n"
+"PO-Revision-Date: 2019-11-23 17:46+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -1824,7 +1824,7 @@ msgid "Add-on Validator"
 msgstr "ऐड-ऑन प्रमाणनकर्ता"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "डेवलपमेंट ऐड-ऑन्स"
 
 msgid "Community & Support"
 msgstr "समुदाय व समर्थन"
@@ -1851,11 +1851,11 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr "अपलोड करने के बाद, स्वचालित फ़ाइल परीक्षण की एक श्रृंखला आपकी फ़ाइल पर चल दी जाएगी।"
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "क्या आप चाहते हैं कि आपकी ऐड-ऑन को इस साइट पर वितरित किया जाए?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "{0} के लिए सत्यापन परिणाम"
 
 msgid "Validation Results"
 msgstr "प्रमाणीकरण परिणाम"
@@ -1864,18 +1864,18 @@ msgid "Validated at:"
 msgstr "पर प्रमाणित:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "मेरे एड-ऑनस के लिए हालिया गतिविधि"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "{0} के लिए हालिया गतिविधि"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "कोई परिणाम नहीं मिला।"
 
 msgid "Refine Activity"
 msgstr "गतिविधि परिशोधित करें"
