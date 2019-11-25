@@ -3491,6 +3491,8 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#force_disable_addon')
         assert not doc('#force_enable_addon')
+        assert not doc('#block_addon')
+        assert not doc('#edit_addon_block')
         assert not doc('#clear_admin_code_review')
         assert not doc('#clear_admin_content_review')
         assert not doc('#clear_admin_theme_review')
@@ -3530,6 +3532,27 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#clear_auto_approval_delayed_until')
+
+    def test_admin_block_actions(self):
+        self.login_as_admin()
+        assert not self.addon.block
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#block_addon')
+        assert not doc('#edit_addon_block')
+        assert doc('#block_addon')[0].attrib.get('href') == (
+            reverse('admin:blocklist_block_add_single') + '?guid=' +
+            self.addon.guid)
+
+        block = Block.objects.create(addon=self.addon)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#block_addon')
+        assert doc('#edit_addon_block')
+        assert doc('#edit_addon_block')[0].attrib.get('href') == (
+            reverse('admin:blocklist_block_change', args=(block.id,)))
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()

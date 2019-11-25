@@ -230,6 +230,17 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
+        {% if not addon.block %}
+        <li>
+          <a href="{{ url('admin:blocklist_block_add_single') }}?guid={{ addon.guid }}" class="button"
+                  id="block_addon" type="button">{{ _('Block add-on') }}</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{{ url('admin:blocklist_block_change', addon.block.id) }}" class="button"
+                  id="edit_addon_block" type="button">{{ _('Update add-on block') }}</a>
+        </li>
+        {% endif %}
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_SEARCH) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
