@@ -9,6 +9,11 @@ DESKTOP = (1080, 1920)
 MOBILE = (414, 738)
 
 
+@pytest.fixture(scope="session")
+def base_url(base_url):
+    return "http://olympia.test"
+
+
 @pytest.fixture
 def firefox_options(firefox_options):
     """Firefox options.
