@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
+from django.forms import modelform_factory
 from django.forms.fields import ChoiceField
+from django.forms.widgets import HiddenInput
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
@@ -14,8 +16,13 @@ from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
-from .forms import MultiBlockForm
-from .models import Block
+from .models import Block, MultiBlockSubmit
+from .tasks import create_blocks_from_multi_block
+from .utils import block_activity_log_delete, block_activity_log_save
+
+
+# The limit for how many GUIDs should be fully loaded with all metadata
+GUID_FULL_LOAD_LIMIT = 100
 
 
 class BlockAdminAddMixin():
@@ -94,23 +101,25 @@ class BlockAdminAddMixin():
             raise PermissionDenied
         guids_data = request.POST.get('guids', request.GET.get('guids'))
         context = {}
+        fields = (
+            'input_guids', 'min_version', 'max_version', 'url', 'reason',
+            'include_in_legacy')
+        MultiBlockForm = modelform_factory(
+            MultiBlockSubmit, fields=fields,
+            widgets={'input_guids': HiddenInput()})
         if guids_data:
             # If we get a guids param it's a redirect from input_guids_view.
-            form = MultiBlockForm(
-                initial={'input_guids': guids_data}, request=request)
+            form = MultiBlockForm(initial={'input_guids': guids_data})
         elif request.method == 'POST':
             # Otherwise, if its a POST try to process the form.
-            form = MultiBlockForm(request.POST, request=request)
+            form = MultiBlockForm(request.POST)
             if form.is_valid():
-                # Create and/or update the blocks.
-                added_blocks, updated_blocks = form.save()
-                # Then log what we did, both ActivityLog and django's LogEntry.
-                for obj in added_blocks:
-                    self.log_addition(request, obj, [{'added': {}}])
-                    self.activity_log_save(obj, change=False)
-                for obj in updated_blocks:
-                    self.log_change(request, obj, {'changed': {'fields': []}})
-                    self.activity_log_save(obj, change=True)
+                # Save the object so we have the guids
+                obj = form.save()
+                obj.update(updated_by=request.user)
+                self.log_addition(request, obj, [{'added': {}}])
+                # Then launch a task to async save the individual blocks
+                create_blocks_from_multi_block.delay(obj.id)
                 if request.POST.get('_addanother'):
                     return redirect('admin:blocklist_block_add')
                 else:
@@ -132,11 +141,14 @@ class BlockAdminAddMixin():
             'title': 'Block Add-ons',
             'save_as': False,
         })
-        objects = form.process_input_guids(guids_data)
+        load_full_objects = guids_data.count('\n') < GUID_FULL_LOAD_LIMIT
+        objects = MultiBlockSubmit.process_input_guids(
+            guids_data, load_full_objects=load_full_objects)
         context.update(objects)
-        Block.preload_addon_versions(objects['new'])
+        if load_full_objects:
+            Block.preload_addon_versions(objects['blocks'])
         return TemplateResponse(
-            request, "blocklist/multiple_block.html", context)
+            request, 'blocklist/multiple_block.html', context)
 
 
 def format_block_history(logs):
@@ -271,35 +283,16 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         if not change:
             obj.guid = self.get_request_guid(request)
         super().save_model(request, obj, form, change)
-        self.activity_log_save(obj, change)
-
-    def activity_log_save(self, obj, change):
-        action = (
-            amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
-            amo.LOG.BLOCKLIST_BLOCK_ADDED)
-        details = {
-            'guid': obj.guid,
-            'min_version': obj.min_version,
-            'max_version': obj.max_version,
-            'url': obj.url,
-            'reason': obj.reason,
-            'include_in_legacy': obj.include_in_legacy,
-        }
-        ActivityLog.create(action, obj.addon, obj.guid, obj, details=details)
+        block_activity_log_save(obj, change)
 
     def delete_model(self, request, obj):
-        self.activity_log_delete(obj)
+        block_activity_log_delete(obj, request.user)
         super().delete_model(request, obj)
 
     def delete_queryset(self, request, queryset):
         for obj in queryset:
-            self.activity_log_delete(obj)
+            block_activity_log_delete(obj, request.user)
         super().delete_queryset(request, queryset)
-
-    def activity_log_delete(self, obj):
-        ActivityLog.create(
-            amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid, obj,
-            details={'guid': obj.guid})
 
     def _get_version_choices(self, obj, field):
         default = obj._meta.get_field(field).default

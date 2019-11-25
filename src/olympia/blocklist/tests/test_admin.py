@@ -1,5 +1,7 @@
 import datetime
 
+from unittest import mock
+
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -253,29 +255,46 @@ class TestBlockAdminAddMultiple(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
 
-        addon = addon_factory(guid='guid@', name='Danger Danger')
-        existing = Block.objects.create(
-            addon=addon_factory(guid='foo@baa'),
-            min_version="1",
-            max_version="99",
+        new_addon = addon_factory(guid='any@new', name='New Danger')
+        existing_and_full = Block.objects.create(
+            addon=addon_factory(guid='full@existing', name='Full Danger'),
+            min_version='0',
+            max_version='*',
+            include_in_legacy=True)
+        partial_addon = addon_factory(
+            guid='partial@existing', name='Partial Danger')
+        existing_and_partial = Block.objects.create(
+            addon=partial_addon,
+            min_version='1',
+            max_version='99',
             include_in_legacy=True)
         response = self.client.post(
             self.multi_url,
-            {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
             follow=True)
         content = response.content.decode('utf-8')
+        # meta data for new blocks and existing ones needing update:
         assert 'Add-on GUIDs (one per line)' not in content
-        assert 'guid@' in content
-        assert 'Danger Danger' in content
-        assert str(addon.average_daily_users) in content
-        assert 'foo@baa' in content
+        assert 'any@new' in content
+        assert 'New Danger' in content
+        assert str(new_addon.average_daily_users) in content
+        assert 'partial@existing' in content
+        assert 'Partial Danger' in content
+        assert str(partial_addon.average_daily_users) in content
+        # but not for existing blocks already 0 - *
+        assert 'full@existing' in content
+        assert 'Full Danger' not in content
+        assert str(existing_and_full.addon.average_daily_users) not in content
+        # no metadata for an invalid guid but it should be shown
         assert 'invalid@' in content
-        assert Block.objects.count() == 1  # Check we didn't create already
+        # Check we didn't create the block already
+        assert Block.objects.count() == 2
 
         # Create the block
         response = self.client.post(
             self.multi_url, {
-                'input_guids': 'guid@\nfoo@baa\ninvalid@',
+                'input_guids': (
+                    'any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'min_version': '0',
                 'max_version': '*',
                 'url': 'dfd',
@@ -284,13 +303,14 @@ class TestBlockAdminAddMultiple(TestCase):
             },
             follow=True)
         assert response.status_code == 200
-        assert Block.objects.count() == 2
+        assert Block.objects.count() == 3
+        all_blocks = Block.objects.all()
 
-        new_block = Block.objects.last()
-        assert new_block.addon == addon
-        log = ActivityLog.objects.for_addons(addon).last()
+        new_block = all_blocks[2]
+        assert new_block.addon == new_addon
+        log = ActivityLog.objects.for_addons(new_addon).get()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
-        assert log.arguments == [addon, addon.guid, new_block]
+        assert log.arguments == [new_addon, new_addon.guid, new_block]
         assert log.details['min_version'] == '0'
         assert log.details['max_version'] == '*'
         assert log.details['reason'] == 'some reason'
@@ -298,61 +318,122 @@ class TestBlockAdminAddMultiple(TestCase):
             action=log.action).last()
         assert block_log == log
 
-        existing = existing.reload()
-        assert Block.objects.first() == existing
+        existing_and_partial = existing_and_partial.reload()
+        assert all_blocks[1] == existing_and_partial
         # confirm properties were updated
-        assert existing.min_version == '0'
-        assert existing.max_version == '*'
-        assert existing.reason == 'some reason'
-        assert existing.url == 'dfd'
-        assert existing.include_in_legacy is False
-        log = ActivityLog.objects.for_addons(existing.addon).last()
+        assert existing_and_partial.min_version == '0'
+        assert existing_and_partial.max_version == '*'
+        assert existing_and_partial.reason == 'some reason'
+        assert existing_and_partial.url == 'dfd'
+        assert existing_and_partial.include_in_legacy is False
+        log = ActivityLog.objects.for_addons(partial_addon).get()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
-        assert log.arguments == [existing.addon, existing.guid, existing]
+        assert log.arguments == [
+            partial_addon, partial_addon.guid, existing_and_partial]
         assert log.details['min_version'] == '0'
         assert log.details['max_version'] == '*'
         assert log.details['reason'] == 'some reason'
-        block_log = ActivityLog.objects.for_block(existing).filter(
+        block_log = ActivityLog.objects.for_block(existing_and_partial).filter(
             action=log.action).last()
         assert block_log == log
+
+        existing_and_full = existing_and_full.reload()
+        assert all_blocks[0] == existing_and_full
+        # confirm properties *were not* updated.
+        assert existing_and_full.reason != 'some reason'
+        assert existing_and_full.url != 'dfd'
+        assert existing_and_full.include_in_legacy is True
+        assert not ActivityLog.objects.for_addons(
+            existing_and_full.addon).exists()
+
+    @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
+    def test_add_multiple_bulk_so_fake_block_objects(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        new_addon = addon_factory(guid='any@new', name='New Danger')
+        Block.objects.create(
+            addon=addon_factory(guid='full@existing', name='Full Danger'),
+            min_version='0',
+            max_version='*',
+            include_in_legacy=True)
+        partial_addon = addon_factory(
+            guid='partial@existing', name='Partial Danger')
+        Block.objects.create(
+            addon=partial_addon,
+            min_version='1',
+            max_version='99',
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
+            follow=True)
+        content = response.content.decode('utf-8')
+        # This metadata should exist
+        assert new_addon.guid in content
+        assert str(new_addon.average_daily_users) in content
+        assert partial_addon.guid in content
+        assert str(partial_addon.average_daily_users) in content
+        assert 'full@existing' in content
+        assert 'invalid@' in content
+
+        # But Addon names or review links shouldn't have been loaded
+        assert 'New Danger' not in content
+        assert 'Partial Danger' not in content
+        assert 'Full Danger' not in content
+        assert 'Review Listed' not in content
+        assert 'Review Unlisted' not in content
 
     def test_review_links(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
+        post_kwargs = {
+            'path': self.multi_url,
+            'data': {'guids': 'guid@\nfoo@baa\ninvalid@'},
+            'follow': True}
 
+        # An addon with only listed versions should have listed link
         addon = addon_factory(guid='guid@', name='Danger Danger')
+        # This is irrelevant because a complete block doesn't have links
         Block.objects.create(
             addon=addon_factory(guid='foo@baa'),
-            min_version="1",
-            max_version="99",
+            min_version="0",
+            max_version="*",
             include_in_legacy=True)
-        response = self.client.post(
-            self.multi_url,
-            {'guids': 'guid@\nfoo@baa\ninvalid@'},
-            follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' in content
-        assert 'Review Unlisted' not in content
+        response = self.client.post(**post_kwargs)
+        assert b'Review Listed' in response.content
+        assert b'Review Unlisted' not in response.content
+        assert b'edit existing Block' not in response.content
 
+        # Should work the same if partial block (exists but needs updating)
+        existing_block = Block.objects.create(guid=addon.guid, min_version='8')
+        response = self.client.post(**post_kwargs)
+        assert b'Review Listed' in response.content
+        assert b'Review Unlisted' not in response.content
+        assert b'edit existing Block' in response.content
+
+        # And an unlisted version
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        response = self.client.post(
-            self.multi_url,
-            {'guids': 'guid@\nfoo@baa\ninvalid@'},
-            follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' in content
-        assert 'Review Unlisted' in content, content
+        response = self.client.post(**post_kwargs)
+        assert b'Review Listed' in response.content
+        assert b'Review Unlisted' in response.content
+        assert b'edit existing Block' in response.content
+
+        # And delete the block again
+        existing_block.delete()
+        response = self.client.post(**post_kwargs)
+        assert b'Review Listed' in response.content
+        assert b'Review Unlisted' in response.content
+        assert b'edit existing Block' not in response.content
 
         addon.current_version.delete(hard=True)
-        response = self.client.post(
-            self.multi_url,
-            {'guids': 'guid@\nfoo@baa\ninvalid@'},
-            follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' not in content
-        assert 'Review Unlisted' in content
+        response = self.client.post(**post_kwargs)
+        assert b'Review Listed' not in response.content
+        assert b'Review Unlisted' in response.content
 
     def test_can_not_add_without_permission(self):
         user = user_factory()
