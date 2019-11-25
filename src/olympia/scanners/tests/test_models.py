@@ -200,6 +200,17 @@ class TestScannerResult(TestCase):
         result.has_matches = True
         assert not result.can_report_feedback()
 
+    def test_can_revert_feedback_for_triaged_result(self):
+        result = self.create_yara_result()
+        result.has_matches = True
+        result.state = FALSE_POSITIVE
+        assert result.can_revert_feedback()
+
+    def test_cannot_revert_feedback_for_untriaged_result(self):
+        result = self.create_yara_result()
+        result.has_matches = True
+        assert not result.can_revert_feedback()
+
 
 class TestScannerRule(TestCase):
     def test_clean_raises_for_yara_rule_without_a_definition(self):
