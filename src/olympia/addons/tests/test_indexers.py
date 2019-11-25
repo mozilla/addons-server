@@ -6,9 +6,7 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, Preview, attach_tags, attach_translations)
 from olympia.amo.models import SearchMixin
-from olympia.amo.tests import (
-    ESTestCase, TestCase, collection_factory, file_factory)
-from olympia.bandwagon.models import FeaturedCollection
+from olympia.amo.tests import ESTestCase, TestCase, file_factory
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
@@ -51,10 +49,9 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app', 'boost', 'category', 'colors', 'current_version',
-            'description', 'featured_for', 'has_eula', 'has_privacy_policy',
-            'is_featured', 'listed_authors', 'name',
-            'platforms', 'previews', 'public_stats', 'ratings', 'summary',
-            'tags',
+            'description', 'has_eula', 'has_privacy_policy', 'listed_authors',
+            'name', 'platforms', 'previews', 'public_stats', 'ratings',
+            'summary', 'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -185,53 +182,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['tags'] == []
         assert extracted['has_eula'] is True
         assert extracted['has_privacy_policy'] is True
-        assert extracted['is_featured'] is False
         assert extracted['colors'] is None
-
-    def test_extract_is_featured(self):
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=collection.application)
-        collection.add_addon(self.addon)
-        assert self.addon.is_featured()
-        extracted = self._extract()
-        assert extracted['is_featured'] is True
-
-    def test_extract_featured_for(self):
-        collection = collection_factory()
-        featured_collection = FeaturedCollection.objects.create(
-            collection=collection, application=amo.FIREFOX.id)
-        collection.add_addon(self.addon)
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None]}]
-
-        # Even if the locale for the FeaturedCollection is an empty string
-        # instead of None, we extract it as None so that it keeps its special
-        # meaning.
-        featured_collection.update(locale='')
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None]}]
-
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=amo.FIREFOX.id,
-                                          locale='fr')
-        collection.add_addon(self.addon)
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']}]
-
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=amo.ANDROID.id,
-                                          locale='de-DE')
-        collection.add_addon(self.addon)
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']},
-            {'application': [amo.ANDROID.id], 'locales': ['de-DE']}]
 
     def test_extract_eula_privacy_policy(self):
         # Remove eula.

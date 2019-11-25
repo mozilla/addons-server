@@ -849,51 +849,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         qs = self._filter(data={'featured': 'true'})
         assert 'must' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
-        assert {'term': {'is_featured': True}} in filter_
+        assert {'term': {'is_recommended': True}} in filter_
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'featured': 'false'})
         assert context.exception.detail == ['Invalid "featured" parameter.']
-
-    def test_search_by_featured_yes_app_no_locale(self):
-        qs = self._filter(data={'featured': 'true', 'app': 'firefox'})
-        assert 'must' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 2
-        assert filter_[0] == {'term': {'app': amo.FIREFOX.id}}
-        inner = filter_[1]['nested']['query']['bool']['filter']
-        assert len(inner) == 1
-        assert {'term': {'featured_for.application': amo.FIREFOX.id}} in inner
-
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'featured': 'true', 'app': 'foobaa'})
-        assert context.exception.detail == ['Invalid "app" parameter.']
-
-    def test_search_by_featured_yes_app_yes_locale(self):
-        qs = self._filter(data={'featured': 'true', 'app': 'firefox',
-                                'lang': 'fr'})
-        assert 'must' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 2
-        assert filter_[0] == {'term': {'app': amo.FIREFOX.id}}
-        inner = filter_[1]['nested']['query']['bool']['filter']
-        assert len(inner) == 2
-        assert {'term': {'featured_for.application': amo.FIREFOX.id}} in inner
-        assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
-
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'featured': 'true', 'app': 'foobaa'})
-        assert context.exception.detail == ['Invalid "app" parameter.']
-
-    def test_search_by_featured_no_app_yes_locale(self):
-        qs = self._filter(data={'featured': 'true', 'lang': 'fr'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        inner = filter_[0]['nested']['query']['bool']['filter']
-        assert len(inner) == 1
-        assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
     def test_search_by_recommended(self):
         qs = self._filter(data={'recommended': 'true'})

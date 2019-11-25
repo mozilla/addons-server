@@ -329,31 +329,7 @@ class AddonFeaturedQueryParam(AddonQueryParam):
     query_param = 'featured'
     reverse_dict = {'true': True}
     valid_values = [True]
-
-    def get_es_query(self):
-        self.get_value()  # Call to validate the value - we only want True.
-        app_filter = AddonAppQueryParam(self.request)
-        app = (app_filter.get_value()
-               if self.request.GET.get(app_filter.query_param) else None)
-        locale = self.request.GET.get('lang')
-        if not app and not locale:
-            # If neither app nor locale is specified fall back on is_featured.
-            # It's a simple term clause.
-            return [Q('term', is_featured=True)]
-        # If either app or locale are specified then we need to do a nested
-        # query to look for the right featured_for fields.
-        clauses = []
-        if app:
-            # Search for featured collections targeting `app`.
-            clauses.append(
-                Q('term', **{'featured_for.application': app}))
-        if locale:
-            # Search for featured collections targeting `locale` or all locales
-            # ('ALL' is the null_value for featured_for.locales).
-            clauses.append(
-                Q('terms', **{'featured_for.locales': [locale, 'ALL']}))
-        return [Q('nested', path='featured_for', query=query.Bool(
-            filter=clauses))]
+    es_field = 'is_recommended'
 
 
 class AddonRecommendedQueryParam(AddonQueryParam):

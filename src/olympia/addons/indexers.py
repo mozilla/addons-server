@@ -123,18 +123,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'current_version': version_mapping,
                     'default_locale': {'type': 'keyword', 'index': False},
                     'description': {'type': 'text', 'analyzer': 'snowball'},
-                    'featured_for': {
-                        'type': 'nested',
-                        'properties': {
-                            'application': {'type': 'byte'},
-                            'locales': {
-                                'type': 'keyword',
-                                # A null locale means not targeted to a locale,
-                                # so shown to all locales.
-                                'null_value': 'ALL',
-                            },
-                        },
-                    },
                     'guid': {'type': 'keyword'},
                     'has_eula': {'type': 'boolean', 'index': False},
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
@@ -143,7 +131,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'icon_type': {'type': 'keyword', 'index': False},
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
-                    'is_featured': {'type': 'boolean'},
                     'is_recommended': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
                     'listed_authors': {
@@ -339,12 +326,6 @@ class AddonIndexer(BaseSearchIndexer):
              'is_public': a.is_public}
             for a in obj.listed_authors
         ]
-
-        data['is_featured'] = obj.is_featured(None, None)
-        data['featured_for'] = [
-            {'application': [app], 'locales': list(sorted(
-                locales, key=lambda x: x or ''))}
-            for app, locales in obj.get_featured_by_app().items()]
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)
