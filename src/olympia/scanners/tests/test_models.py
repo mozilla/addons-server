@@ -5,7 +5,8 @@ from django.test.utils import override_settings
 from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.constants.scanners import CUSTOMS, WAT, YARA, FALSE_POSITIVE
+from olympia.constants.scanners import (CUSTOMS, WAT, YARA, FALSE_POSITIVE,
+                                        UNKNOWN)
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult, ScannerRule
 
@@ -209,6 +210,7 @@ class TestScannerResult(TestCase):
     def test_cannot_revert_feedback_for_untriaged_result(self):
         result = self.create_yara_result()
         result.has_matches = True
+        assert result.state == UNKNOWN
         assert not result.can_revert_feedback()
 
 
