@@ -232,6 +232,18 @@ class ScannerResultAdmin(admin.ModelAdmin):
             )
         )
 
+    def handle_revert(self, request, pk, *args, **kwargs):
+        result = self.get_object(request, pk)
+        result.update(state=UNKNOWN)
+
+        messages.add_message(
+            request,
+            messages.INFO,
+            'Scanner result {} report has been reverted.'.format(pk),
+        )
+
+        return redirect('admin:scanners_scannerresult_changelist')
+
     def get_urls(self):
         urls = super().get_urls()
         custom_urls = [
@@ -245,26 +257,38 @@ class ScannerResultAdmin(admin.ModelAdmin):
                 self.admin_site.admin_view(self.handle_true_positive),
                 name='scanners_scannerresult_handletruepositive',
             ),
+            url(
+                r'^(?P<pk>.+)/revert-report/$',
+                self.admin_site.admin_view(self.handle_revert),
+                name='scanners_scannerresult_handlerevert',
+            ),
         ]
         return custom_urls + urls
 
     def result_actions(self, obj):
-        if not obj.can_report_feedback():
-            return
-
-        return format_html(
-            '<a class="button" href="{}">Report as false positive</a>'
-            '&nbsp;'
-            '<a class="button default" href="{}">Mark as true positive</a>',
-            reverse(
-                'admin:scanners_scannerresult_handlefalsepositive',
-                args=[obj.pk],
-            ),
-            reverse(
-                'admin:scanners_scannerresult_handletruepositive',
-                args=[obj.pk],
-            ),
-        )
+        if obj.can_report_feedback():
+            return format_html(
+                '<a class="button" href="{}">Report as false positive</a>'
+                '&nbsp;'
+                '<a class="button default" href="{}">'
+                'Mark as true positive</a>',
+                reverse(
+                    'admin:scanners_scannerresult_handlefalsepositive',
+                    args=[obj.pk],
+                ),
+                reverse(
+                    'admin:scanners_scannerresult_handletruepositive',
+                    args=[obj.pk],
+                ),
+            )
+        elif obj.can_revert_feedback():
+            return format_html(
+                '<a class="button default" href="{}">Revert report</a>',
+                reverse(
+                    'admin:scanners_scannerresult_handlerevert',
+                    args=[obj.pk],
+                ),
+            )
 
     result_actions.short_description = 'Actions'
     result_actions.allow_tags = True
