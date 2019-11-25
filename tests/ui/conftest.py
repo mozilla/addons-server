@@ -13,6 +13,7 @@ MOBILE = (414, 738)
 def base_url(base_url):
     return "http://olympia.test"
 
+
 @pytest.fixture
 def firefox_options(firefox_options):
     """Firefox options.
