@@ -14,6 +14,12 @@ def base_url(base_url):
     return "http://olympia.test"
 
 
+@pytest.fixture(scope="session")
+def sensitive_url(request, base_url):
+    # Override sensitive url check
+    return False
+
+
 @pytest.fixture
 def firefox_options(firefox_options):
     """Firefox options.
