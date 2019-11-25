@@ -131,11 +131,12 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # 10 queries:
             # - 2 transaction savepoints because of tests
             # - 2 user and groups
             # - 2 COUNT(*) on scanners results for pagination and total display
+            # - 1 get all available rules for filtering
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all add-ons translations in one query
@@ -149,6 +150,58 @@ class TestScannerResultAdmin(TestCase):
         assert html('#result_list tbody tr').length == expected_length
         # The name of the deleted add-on should be displayed.
         assert str(deleted_addon.name) in html.text()
+
+    def test_list_filters(self):
+        rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('All', '?'),
+            ('customs', '?scanner__exact=1'),
+            ('wat', '?scanner__exact=2'),
+            ('yara', '?scanner__exact=3'),
+
+            ('All', '?has_matches=all'),
+            (' With matched rules only', '?'),
+
+            ('All', '?state=all'),
+            ('Unknown', '?'),
+            ('True positive', '?state=1'),
+            ('False positive', '?state=2'),
+
+            ('All', '?'),
+            ('foo (customs)', f'?matched_rules__id__exact={rule_foo.pk}'),
+            ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
+            ('hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
+        ]
+        filters = [
+            (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
+        ]
+        assert filters == expected
+
+    def test_list_filter_matched_rules(self):
+        rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+        with_bar_matches = ScannerResult(scanner=YARA)
+        with_bar_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_matches.add_yara_result(rule=rule_hello.name)
+        with_bar_matches.save()
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]})
+        with_hello_match = ScannerResult(scanner=YARA)
+        with_hello_match.add_yara_result(rule=rule_hello.name)
+
+        response = self.client.get(
+            self.list_url, {'matched_rules__id__exact': rule_bar.pk})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-formatted_matched_rules').text() == 'bar, hello'
 
     def test_list_shows_matches_and_unknown_state_only_by_default(self):
         # Create one entry without matches

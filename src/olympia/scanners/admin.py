@@ -73,6 +73,17 @@ class StateFilter(SimpleListFilter):
         return queryset.filter(state=self.value())
 
 
+class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
+    include_empty_choice = False
+
+    def field_choices(self, field, request, model_admin):
+        return [
+            (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
+            for rule in ScannerRule.objects.only(
+                'pk', 'scanner', 'name').order_by('scanner', 'name')
+        ]
+
+
 @admin.register(ScannerResult)
 class ScannerResultAdmin(admin.ModelAdmin):
     actions = None
@@ -88,7 +99,12 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'state',
         'result_actions',
     )
-    list_filter = ('scanner', MatchesFilter, StateFilter)
+    list_filter = (
+        'scanner',
+        MatchesFilter,
+        StateFilter,
+        ('matched_rules', ScannerRuleListFilter),
+    )
     list_select_related = ('version',)
 
     fields = (
@@ -99,6 +115,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'scanner',
         'created',
         'state',
+        'formatted_matched_rules',
         'formatted_results',
     )
 
