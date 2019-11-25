@@ -1,3 +1,4 @@
+import functools
 import json
 import time
 
@@ -37,7 +38,7 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import (
     ActivityLog, CommentLog, DraftComment)
 from olympia.addons.decorators import (
-    addon_view, addon_view_factory, owner_or_unlisted_reviewer)
+    addon_view, owner_or_unlisted_reviewer)
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, ReusedGUID)
 from olympia.amo.decorators import (
@@ -76,6 +77,13 @@ from olympia.zadmin.models import get_config, set_config
 from .decorators import (
     any_reviewer_or_moderator_required, any_reviewer_required,
     permission_or_tools_view_required, unlisted_addons_reviewer_required)
+
+
+def reviewer_addon_view_factory(f):
+    decorator = functools.partial(
+        addon_view, qs=Addon.unfiltered.all,
+        include_deleted_when_checking_versions=True)
+    return decorator(f)
 
 
 def context(**kw):
@@ -659,7 +667,7 @@ def perform_review_permission_checks(
     """
     unlisted_only = (
         channel == amo.RELEASE_CHANNEL_UNLISTED or
-        not addon.has_listed_versions())
+        not addon.has_listed_versions(include_deleted=True))
     was_auto_approved = (
         channel == amo.RELEASE_CHANNEL_LISTED and
         addon.current_version and addon.current_version.was_auto_approved)
@@ -719,7 +727,7 @@ def determine_channel(channel_as_text):
 # Permission checks for this view are done inside, depending on type of review
 # needed, using perform_review_permission_checks().
 @login_required
-@addon_view_factory(qs=Addon.unfiltered.all)
+@reviewer_addon_view_factory
 def review(request, addon, channel=None):
     whiteboard_url = reverse(
         'reviewers.whiteboard',
@@ -1058,7 +1066,7 @@ def reviewlog(request):
 
 
 @any_reviewer_required
-@addon_view
+@reviewer_addon_view_factory
 def abuse_reports(request, addon):
     developers = addon.listed_authors
     reports = AbuseReport.objects.filter(
@@ -1082,7 +1090,7 @@ def leaderboard(request):
 # Permission checks for this view are done inside, depending on type of review
 # needed, using perform_review_permission_checks().
 @login_required
-@addon_view_factory(qs=Addon.unfiltered.all)
+@reviewer_addon_view_factory
 def whiteboard(request, addon, channel):
     channel_as_text = channel
     channel, content_review_only = determine_channel(channel)
@@ -1135,7 +1143,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
 
 
 @login_required
-@addon_view_factory(qs=Addon.unfiltered.all)
+@reviewer_addon_view_factory
 def eula(request, addon):
     return policy_viewer(request, addon, addon.eula,
                          page_title=ugettext('{addon} :: EULA'),
@@ -1143,7 +1151,7 @@ def eula(request, addon):
 
 
 @login_required
-@addon_view_factory(qs=Addon.unfiltered.all)
+@reviewer_addon_view_factory
 def privacy(request, addon):
     return policy_viewer(request, addon, addon.privacy_policy,
                          page_title=ugettext('{addon} :: Privacy Policy'),

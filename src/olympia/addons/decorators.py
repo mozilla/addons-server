@@ -15,7 +15,8 @@ def owner_or_unlisted_reviewer(request, addon):
             acl.check_addon_ownership(request, addon, admin=False, dev=True))
 
 
-def addon_view(f, qs=Addon.objects.all):
+def addon_view(
+        f, qs=Addon.objects.all, include_deleted_when_checking_versions=False):
     @functools.wraps(f)
     def wrapper(request, addon_id=None, *args, **kw):
         """Provides an addon instance to the view given addon_id, which can be
@@ -40,9 +41,11 @@ def addon_view(f, qs=Addon.objects.all):
                     url += '?' + request.GET.urlencode()
                 return http.HttpResponsePermanentRedirect(url)
 
-        # If the addon is unlisted it needs either an owner/viewer/dev/support,
-        # or an unlisted addon reviewer.
-        if not (addon.has_listed_versions() or
+        # If the addon has no listed versions it needs either an author
+        # (owner/viewer/dev/support) or an unlisted addon reviewer.
+        has_listed_versions = addon.has_listed_versions(
+            include_deleted=include_deleted_when_checking_versions)
+        if not (has_listed_versions or
                 owner_or_unlisted_reviewer(request, addon)):
             raise http.Http404
         return f(request, addon, *args, **kw)

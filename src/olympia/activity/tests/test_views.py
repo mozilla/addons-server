@@ -117,18 +117,14 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         self._login_developer()
         self._test_url()
 
-    def test_deleted_version_reviewer(self):
-        self.version.delete()
-        self._login_unlisted_reviewer()
-        self._test_url()
-
     def test_deleted_version_regular_reviewer(self):
         self.version.delete()
 
-        # No version left, only unlisted reviewers can access.
+        # There was a listed version, it has been deleted but still, it was
+        # there, so listed reviewers should still be able to access.
         self._login_reviewer()
         response = self.client.get(self.url)
-        assert response.status_code == 403
+        assert response.status_code == 200
 
     def test_deleted_version_developer(self):
         self.version.delete()

@@ -109,6 +109,34 @@ class TestAddonView(TestCase):
         request, addon_ = self.func.call_args[0]
         assert addon_ == addon
 
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer',
+                lambda r: False)
+    @mock.patch('olympia.access.acl.check_addon_ownership',
+                lambda *args, **kwargs: False)
+    def test_no_versions_404(self):
+        self.addon.current_version.delete()
+        view = dec.addon_view_factory(qs=Addon.objects.all)(self.func)
+        with self.assertRaises(http.Http404):
+            view(self.request, self.addon.slug)
+
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer',
+                lambda r: False)
+    @mock.patch('olympia.access.acl.check_addon_ownership',
+                lambda *args, **kwargs: True)
+    def test_no_versions_developer(self):
+        self.addon.current_version.delete()
+        res = self.view(self.request, self.addon.slug)
+        assert res == mock.sentinel.OK
+
+    def test_no_versions_include_deleted_when_checking(self):
+        self.addon.current_version.delete()
+        view = dec.addon_view(  # Not available on the factory
+            self.func,
+            qs=Addon.objects.all,
+            include_deleted_when_checking_versions=True)
+        res = view(self.request, self.addon.slug)
+        assert res == mock.sentinel.OK
+
 
 class TestAddonViewWithUnlisted(TestAddonView):
 

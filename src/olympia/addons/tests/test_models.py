@@ -624,6 +624,28 @@ class TestAddonModels(TestCase):
         addon.update(type=11)
         self._delete(3615)
 
+    def test_soft_delete_disables_files_and_soft_deletes_versions(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        files = File.objects.filter(version__addon=addon)
+        versions = Version.unfiltered.filter(addon=addon)
+        assert versions
+        assert files
+        for file_ in files:
+            assert file_.status != amo.STATUS_DISABLED
+        for version in versions:
+            assert not version.deleted
+
+        self._delete(3615)
+
+        files = File.objects.filter(version__addon=addon)
+        versions = Version.unfiltered.filter(addon=addon)
+        assert versions
+        assert files
+        for file_ in files:
+            assert file_.status == amo.STATUS_DISABLED
+        for version in versions:
+            assert version.deleted
+
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
         assert a.incompatible_latest_apps() == []
@@ -1795,6 +1817,23 @@ class TestHasListedAndUnlistedVersions(TestCase):
         # current_version.
         self.addon._current_version_id = 123
         assert self.addon.has_listed_versions()
+
+    def test_has_listed_versions_soft_delete(self):
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon, deleted=True)
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
+        assert not self.addon.has_listed_versions()
+        assert self.addon.has_listed_versions(include_deleted=True)
+
+    def test_has_unlisted_versions_soft_delete(self):
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon,
+            deleted=True)
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
+        assert not self.addon.has_unlisted_versions()
+        assert self.addon.has_unlisted_versions(include_deleted=True)
 
 
 class TestAddonNomination(TestCase):
