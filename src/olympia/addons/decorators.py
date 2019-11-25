@@ -43,8 +43,9 @@ def addon_view(
 
         # If the addon has no listed versions it needs either an author
         # (owner/viewer/dev/support) or an unlisted addon reviewer.
-        if not (addon.has_listed_versions(
-            include_deleted=include_deleted_when_checking_versions) or
+        has_listed_versions = addon.has_listed_versions(
+            include_deleted=include_deleted_when_checking_versions)
+        if not (has_listed_versions or
                 owner_or_unlisted_reviewer(request, addon)):
             raise http.Http404
         return f(request, addon, *args, **kw)
