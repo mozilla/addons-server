@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-23 17:46+0000\n"
-"Last-Translator: ravi <ravi.103151@gmail.com>\n"
+"PO-Revision-Date: 2018-08-30 16:00+0000\n"
+"Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -5055,7 +5055,7 @@ msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "और"
 
 msgid "Filter by type/action"
 msgstr ""
@@ -5064,10 +5064,10 @@ msgid "containing"
 msgstr ""
 
 msgid "start"
-msgstr ""
+msgstr "शुरू करें"
 
 msgid "end"
-msgstr ""
+msgstr "समाप्त"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
@@ -5080,10 +5080,10 @@ msgid "Needs Admin Code Review"
 msgstr ""
 
 msgid "yes"
-msgstr ""
+msgstr "हाँ"
 
 msgid "no"
-msgstr ""
+msgstr "नहीं"
 
 msgid "Add-on Types"
 msgstr ""
@@ -5110,7 +5110,7 @@ msgid "Require developer to respond in less than…"
 msgstr ""
 
 msgid "days"
-msgstr ""
+msgstr "दिन"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -5125,7 +5125,7 @@ msgid "Skip for now"
 msgstr ""
 
 msgid "Delete review"
-msgstr ""
+msgstr "समीक्षा हटायें"
 
 msgid "Needs Admin Content Review"
 msgstr ""
@@ -5377,7 +5377,7 @@ msgid "Visible"
 msgstr ""
 
 msgid "View Statistics"
-msgstr ""
+msgstr "सांख्यिकी देखें"
 
 msgid "Average Daily Users"
 msgstr "औसत दैनिक उपयोगकर्ता"
@@ -5389,7 +5389,7 @@ msgid "Requires Payment"
 msgstr "भुगतान की आवश्यकता है"
 
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 msgid "View End-User License Agreement"
 msgstr "एंड-यूज़र लायसेंस एग्रीमेंट देखें"
@@ -5428,17 +5428,17 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr ""
+msgstr "पद"
 
 msgid "Score"
-msgstr ""
+msgstr "स्कोर"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "फिल्टर करें"
 
 msgid "Date"
-msgstr ""
+msgstr "दिनांक"
 
 msgid "Event"
 msgstr ""
@@ -5472,7 +5472,7 @@ msgid "Undelete"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "सहेजें"
 
 msgid "Add-on Reviewer Performance"
 msgstr ""
@@ -5508,16 +5508,16 @@ msgid "All-time Point Breakdown by Type"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "कुल"
 
 msgid "Month"
-msgstr ""
+msgstr "महीना"
 
 msgid "Year"
-msgstr ""
+msgstr "वर्ष"
 
 msgid "All-Time"
-msgstr ""
+msgstr "हमेशा"
 
 msgid "Advanced Search"
 msgstr "उन्नत खोज"
@@ -5840,7 +5840,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "अवलोकन"
 
 msgid "by Source"
 msgstr "स्रोत द्वारा"
@@ -5849,7 +5849,7 @@ msgid "Daily Users"
 msgstr "दैनिक उपयोगकर्ता"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "ऐड-ऑन संस्करण द्वारा"
 
 msgid "by Application"
 msgstr "अनुप्रयोग द्वारा"
@@ -5861,13 +5861,13 @@ msgid "by Platform"
 msgstr "प्लेटफार्म द्वारा"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "ऐड-ऑन स्थिति द्वारा"
 
 msgid "Custom Date Range"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "द्वारा"
 
 msgid "To"
 msgstr "को"
@@ -5914,7 +5914,7 @@ msgid "month"
 msgstr "महीना"
 
 msgid "For last:"
-msgstr ""
+msgstr "पिछले के लिए:"
 
 msgid "7 days"
 msgstr "7 दिन"
@@ -6029,7 +6029,7 @@ msgid "Application versions by Date"
 msgstr "दिनांक द्वारा अनुप्रयोग संस्करण"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla ऐड-ऑन"
 
 msgid "Back to Add-ons"
 msgstr "ऐड-ऑन्स पर वापस जाएँ"
@@ -6041,19 +6041,19 @@ msgid "Legal Notices"
 msgstr "वैध सूचना"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "व्यापरमार्क के कुप्रयोग का विवरण"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
-msgstr ""
+msgstr "नई साइट देखें"
 
 msgid "Site Status"
-msgstr ""
+msgstr "साइट की स्थिति"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "त्रुटि की रिपोर्ट करें"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -6067,7 +6067,7 @@ msgid "About"
 msgstr "के बारे में"
 
 msgid "Forum"
-msgstr ""
+msgstr "फोरम"
 
 msgid "Download Firefox"
 msgstr "Firefox डाउनलोड करें"
@@ -6256,7 +6256,7 @@ msgid "User Notifications"
 msgstr "उपयोगकर्ता सूचनाएं"
 
 msgid "Ban"
-msgstr ""
+msgstr "प्रतिबंध"
 
 msgid "Delete picture"
 msgstr "चित्र हटाएं"
