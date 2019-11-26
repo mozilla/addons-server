@@ -222,6 +222,13 @@ class VersionView(APIView):
                 else:
                     channel = amo.RELEASE_CHANNEL_UNLISTED  # Treat as new.
 
+            if (addon.disabled_by_user and
+                    channel == amo.RELEASE_CHANNEL_LISTED):
+                msg = ugettext(
+                    'You cannot add listed versions to an addon set to '
+                    '"Invisible" state.')
+                raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
+
             will_have_listed = channel == amo.RELEASE_CHANNEL_LISTED
             if not addon.has_complete_metadata(
                     has_listed_versions=will_have_listed):

@@ -370,6 +370,29 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED])
         assert error_msg in response.data['error']
 
+    def test_no_listed_version_upload_for_user_disabled_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        addon.update(disabled_by_user=True)
+        assert not addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0')
+        assert response.status_code == 400
+        error_msg = 'cannot add listed versions to an addon set to "Invisible"'
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0', channel='listed')
+        assert response.status_code == 400
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0',
+            channel='unlisted')
+        assert response.status_code == 202
+        assert addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
     def test_channel_ignored_for_new_addon(self):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
