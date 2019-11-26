@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-08-30 16:00+0000\n"
+"PO-Revision-Date: 2018-08-30 17:51+0000\n"
 "Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2318,7 +2318,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "कार्रवाई"
 
 msgid "Resume the submission process for this add-on"
 msgstr ""
@@ -2348,7 +2348,7 @@ msgid "Statistics"
 msgstr "आंकड़े"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "स्थिति और संस्करण प्रबंधित करें"
 
 msgid "View Recent Changes"
 msgstr "हालिया परिवर्तन देखें"
@@ -2372,7 +2372,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "एक नया संस्करण जमा करें"
 
 msgid "Name and Summary:"
 msgstr ""
@@ -2387,7 +2387,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on URL:"
-msgstr ""
+msgstr "एड-ऑन का URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
@@ -2406,7 +2406,7 @@ msgid "Description:"
 msgstr "वर्णन"
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "यह ऐड-ऑन प्रयोगात्मक है"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -2415,10 +2415,10 @@ msgid "Select a category for this add-on:"
 msgstr ""
 
 msgid "Support email:"
-msgstr ""
+msgstr "समर्थन ईमेल:"
 
 msgid "Support website:"
-msgstr ""
+msgstr "समर्थन वेबसाइट:"
 
 msgid "License:"
 msgstr "लाइसेंस:"
@@ -2430,13 +2430,13 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "समीक्षकों के लिए टिप्पणियाँ:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "याद रखें"
 
 #, python-format
 msgid ""
@@ -2448,16 +2448,16 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Submit Version"
-msgstr ""
+msgstr "संस्करण सबमिट करें"
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "संस्करण रद्द और अक्षम करें"
 
 msgid "Describe Version"
-msgstr ""
+msgstr "संस्करण का वर्णन करें"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "रिलीज नोट्स:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -2484,7 +2484,7 @@ msgid "You’re done! This version will be available after it passes review. You
 msgstr ""
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "संस्करण सबमिट किया गया"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -2505,16 +2505,16 @@ msgid "You can also edit this version to add version notes, or source code if yo
 msgstr ""
 
 msgid "Edit version {0}"
-msgstr ""
+msgstr "संस्करण {0} संपादित करें"
 
 msgid "Version Signed"
-msgstr ""
+msgstr "संस्करण हस्ताक्षरित"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} डाउनलोड"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -2575,7 +2575,7 @@ msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside fro
 msgstr ""
 
 msgid "How to Submit:"
-msgstr ""
+msgstr "सबमिट कैसे करें:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -2584,7 +2584,7 @@ msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
 msgid "Upload source code:"
-msgstr ""
+msgstr "स्रोत कोड अपलोड करें:"
 
 msgid "Add-on Distribution Agreement"
 msgstr ""
@@ -2678,10 +2678,10 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr ""
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT जारीकर्ता"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT गुप्त"
 
 #, python-format
 msgid ""
@@ -2874,10 +2874,10 @@ msgid "Web-Ext: build & test extensions"
 msgstr ""
 
 msgid "Promote"
-msgstr ""
+msgstr "उन्नत करें"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "\"Get The Add-on\" बटन"
 
 msgid "Recommended Extensions program"
 msgstr ""
@@ -2886,7 +2886,7 @@ msgid "Contribute"
 msgstr "योगदान करें"
 
 msgid "Review Add-ons"
-msgstr ""
+msgstr "ऐड-ऑन की समीक्षा करें"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
@@ -2926,19 +2926,19 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr ""
+msgstr "सभी सबमिशन देखें"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "अपना पहला एड-ऑन सबमिट करें"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "अपनी पहली थीम सबमिट करें"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "एड-ऑन डेवलपर हब"
 
 msgid "Docs"
 msgstr "दस्तावेज़"
@@ -3059,7 +3059,7 @@ msgid "by"
 msgstr "द्वारा"
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "उत्तर छोड़ दें"
 
 msgid "Reply"
 msgstr "जवाब दें"
@@ -3087,7 +3087,7 @@ msgid "Delete/Disable"
 msgstr ""
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "इस ऐड-ऑन का अगला संस्करण"
 
 msgid "Other versions"
 msgstr "अन्य संस्करण"
