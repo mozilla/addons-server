@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-26 04:21+0000\n"
+"PO-Revision-Date: 2019-11-26 18:18+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -3543,11 +3543,11 @@ msgstr "Hantera dina öppna flikar i en snygg sidopanel."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Undvik lömska trackers och restriktioner {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Undvik lömska spårare och restriktioner {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Undvik lömska trackers och restriktioner. Dölj din navigering genom att dölja identiteten på din webbläsare och operativsystem."
+msgstr "Undvik lömska spårare och restriktioner. Dölj din navigering genom att dölja identiteten på din webbläsare och operativsystem."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3567,7 +3567,7 @@ msgstr "Separera dina onlineliv. Skilj mellan dina olika onlineidentiteter—arb
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stoppa trackers {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stoppa spårare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
@@ -3591,7 +3591,7 @@ msgstr "Spela YouTube-videor som standard i högsta kvalitet, stäng av kommenta
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Spåra trackers {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Spåra spårarna {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
@@ -3651,7 +3651,7 @@ msgstr "Ett överlägset nedladdningsverktyg endast för Windows."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lär känna dina trackers {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Lär känna dina spårare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
@@ -3707,7 +3707,7 @@ msgstr "Sökspårningsskydd {start_sub_heading}med {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Stoppa trackers när du klickar på sökresultaten på Google och Yandex."
+msgstr "Stoppa spårare när du klickar på sökresultaten på Google och Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4027,7 +4027,7 @@ msgstr "Visa direkt alla länkar från en webbsida i nya flikar."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hoppa över omdirigeringar och trackers {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Hoppa över omdirigeringar och spårare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
@@ -4035,7 +4035,7 @@ msgstr "Avlägsna omdirigeringssidor och URL-spårningsparametrar från webblän
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stoppa söktrackers {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stoppa sökspårare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
@@ -4255,7 +4255,7 @@ msgstr "Massor av öppna flikar? Hoppa över rullning och sök via tangentbordsg
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förhindra omdirigeringar och trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Förhindra omdirigeringar och spårare {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -4439,7 +4439,7 @@ msgstr "Sekretessskydd {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr "Skydda dig mot lömska trackers."
+msgstr "Skydda dig mot lömska spårare."
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4447,7 +4447,7 @@ msgstr "Dölj dina spår {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Sök med förbättrad tracker-blockering, smart kryptering och andra integritetsfördelar."
+msgstr "Sök med förbättrad spårblockering, smart kryptering och andra integritetsfördelar."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
