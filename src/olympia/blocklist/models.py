@@ -82,6 +82,14 @@ class Block(ModelBase):
         return addon_version_int(self.max_version)
 
     def clean(self):
+        if self.id:
+            # We're only concerned with edits - self.guid isn't set at this
+            # point for new instances anyway.
+            choices = list(self.addon_versions.keys())
+            if self.min_version not in choices + ['0']:
+                raise ValidationError({'min_version': _('Invalid version')})
+            if self.max_version not in choices + ['*']:
+                raise ValidationError({'max_version': _('Invalid version')})
         if self.min_version_vint > self.max_version_vint:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
