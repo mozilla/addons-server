@@ -1683,9 +1683,8 @@ msgstr "प्रतीकों को एनिमेट नहीं कि�
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "चित्र या तो PNG या JPG होनी चाहिए।"
+msgstr ""
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr ""
@@ -1816,9 +1815,8 @@ msgstr "एक्सटेंशन डेवलपमेंट"
 msgid "Themes"
 msgstr "प्रसंग"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "डेवलेपर समाचार"
+msgstr ""
 
 msgid "Add-on Validator"
 msgstr "ऐड-ऑन प्रमाणनकर्ता"
@@ -2002,9 +2000,8 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "ऐड-ऑन विवरण"
+msgstr ""
 
 msgid "Edit"
 msgstr "संपादन"
@@ -2060,9 +2057,8 @@ msgstr ""
 msgid "Describe {0}"
 msgstr "संस्करण {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "सारांश"
+msgstr ""
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2081,9 +2077,8 @@ msgstr ""
 msgid "View Listing"
 msgstr "सूची देखें"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "स्रोत देखें?"
+msgstr ""
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2340,9 +2335,8 @@ msgstr "हटाएँ"
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "इस ऐड-ऑन की सभी समीक्षाएं देखें"
+msgstr ""
 
 msgid "New Version"
 msgstr "नया संस्करण"
@@ -2380,9 +2374,8 @@ msgstr[1] ""
 msgid "Submit a New Version"
 msgstr ""
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "सारांश:"
+msgstr ""
 
 msgid "required"
 msgstr "जरूरी"
@@ -4991,9 +4984,8 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#, fuzzy
 msgid "IP Address"
-msgstr "ईमेल पता"
+msgstr ""
 
 msgid "Spam or otherwise non-review content"
 msgstr ""
