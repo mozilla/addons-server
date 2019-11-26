@@ -453,6 +453,34 @@ class TestBlockAdminAddMultiple(TestCase):
         assert b'Review Listed' not in response.content
         assert b'Review Unlisted' in response.content
 
+    def test_can_not_set_min_version_above_max_version(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        new_addon = addon_factory(guid='any@new', name='New Danger')
+        partial_addon = addon_factory(
+            guid='partial@existing', name='Partial Danger')
+        existing_and_partial = Block.objects.create(
+            addon=partial_addon,
+            min_version='1',
+            max_version='99',
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url, {
+                'input_guids': 'any@new\npartial@existing\ninvalid@',
+                'min_version': '5',
+                'max_version': '3',
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 200
+        assert b'Min version can not be greater than Max' in response.content
+        assert Block.objects.count() == 1
+
     def test_can_not_add_without_permission(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')

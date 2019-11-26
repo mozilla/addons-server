@@ -119,10 +119,8 @@ class Block(ModelBase):
 
 class MultiBlockSubmit(ModelBase):
     input_guids = models.TextField()
-    min_version = models.CharField(
-        choices=(('0', '0'),), default='0', max_length=1)
-    max_version = models.CharField(
-        choices=(('*', '*'),), default='*', max_length=1)
+    min_version = models.CharField(max_length=255, blank=False, default='0')
+    max_version = models.CharField(max_length=255, blank=False, default='*')
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
@@ -131,9 +129,16 @@ class MultiBlockSubmit(ModelBase):
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
 
+    def clean(self):
+        min_vint = addon_version_int(self.min_version)
+        max_vint = addon_version_int(self.max_version)
+        if min_vint > max_vint:
+            raise ValidationError(
+                _('Min version can not be greater than Max version'))
+
     @classmethod
     def process_input_guids(cls, guids, load_full_objects=True):
-        """Process a line-return seperated list of guids into a list of invalid
+        """Process a line-return separated list of guids into a list of invalid
         guids, a list of guids that are fully blocked already (0 - *), and a
         list of Block instances - including new Blocks (unsaved) and existing
         partial Blocks.
