@@ -73,18 +73,24 @@ class Block(ModelBase):
         for block in blocks:
             block.addon_versions = addons_versions[str(block.addon.id)]
 
+    @cached_property
+    def min_version_vint(self):
+        return addon_version_int(self.min_version)
+
+    @cached_property
+    def max_version_vint(self):
+        return addon_version_int(self.max_version)
+
     def clean(self):
-        min_vint = addon_version_int(self.min_version)
-        max_vint = addon_version_int(self.max_version)
-        if min_vint > max_vint:
+        if self.min_version_vint > self.max_version_vint:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
     def is_version_blocked(self, version):
         version_vint = addon_version_int(version)
-        min_vint = addon_version_int(self.min_version)
-        max_vint = addon_version_int(self.max_version)
-        return version_vint >= min_vint and version_vint <= max_vint
+        return (
+            version_vint >= self.min_version_vint and
+            version_vint <= self.max_version_vint)
 
     def review_listed_link(self):
         has_listed = any(
@@ -211,6 +217,7 @@ class MultiBlockSubmit(ModelBase):
         processed_guids = self.process_input_guids(self.input_guids)
 
         blocks = processed_guids['blocks']
+        Block.preload_addon_versions(blocks)
         modified_datetime = datetime.datetime.now()
         for block in blocks:
             change = bool(block.id)

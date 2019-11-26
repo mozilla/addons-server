@@ -2,15 +2,14 @@ from olympia import amo
 from olympia.activity import log_create
 
 
-def add_to_latest_version_in_channel(obj, al, channel):
+def add_version_log_for_blocked_versions(obj, al):
     from olympia.activity.models import VersionLog
 
-    version_ids = [
-        id_ for id_, chan in obj.addon_versions.values()
-        if chan == channel]
-    if not version_ids:
-        return
-    VersionLog.objects.create(activity_log=al, version_id=version_ids[-1])
+    VersionLog.objects.bulk_create([
+        VersionLog(activity_log=al, version_id=id_chan[0])
+        for version, id_chan in obj.addon_versions.items()
+        if obj.is_version_blocked(version)
+    ])
 
 
 def block_activity_log_save(obj, change):
@@ -29,8 +28,7 @@ def block_activity_log_save(obj, change):
     al = log_create(
         action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
 
-    add_to_latest_version_in_channel(obj, al, amo.RELEASE_CHANNEL_LISTED)
-    add_to_latest_version_in_channel(obj, al, amo.RELEASE_CHANNEL_UNLISTED)
+    add_version_log_for_blocked_versions(obj, al)
 
 
 def block_activity_log_delete(obj, user):
@@ -38,5 +36,4 @@ def block_activity_log_delete(obj, user):
         amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid, obj,
         details={'guid': obj.guid}, user=user)
 
-    add_to_latest_version_in_channel(obj, al, amo.RELEASE_CHANNEL_LISTED)
-    add_to_latest_version_in_channel(obj, al, amo.RELEASE_CHANNEL_UNLISTED)
+    add_version_log_for_blocked_versions(obj, al)

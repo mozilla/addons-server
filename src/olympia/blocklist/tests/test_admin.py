@@ -113,8 +113,13 @@ class TestBlockAdminAdd(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
 
-        addon = addon_factory(guid='guid@', name='Danger Danger')
-        version_factory(addon=addon)
+        addon = addon_factory(
+            guid='guid@', name='Danger Danger', version_kw={'version': '1.2a'})
+        first_version = addon.current_version
+        second_version = version_factory(addon=addon, version='3')
+        pending_version = version_factory(
+            addon=addon, version='5.999',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         response = self.client.get(
             self.single_url + '?guid=guid@', follow=True)
         content = response.content.decode('utf-8')
@@ -152,8 +157,9 @@ class TestBlockAdminAdd(TestCase):
             action=log.action).last()
         assert block_log_by_guid == log
 
-        vlog = ActivityLog.objects.for_version(addon.current_version).last()
-        assert vlog == log
+        assert log == ActivityLog.objects.for_version(first_version).last()
+        assert log == ActivityLog.objects.for_version(second_version).last()
+        assert not ActivityLog.objects.for_version(pending_version).exists()
 
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
