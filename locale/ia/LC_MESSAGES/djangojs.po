@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-22 23:12+0000\n"
+"PO-Revision-Date: 2019-11-27 02:49+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -264,7 +264,7 @@ msgid "Subscribers"
 msgstr "Subscriptores"
 
 msgid "Ratings"
-msgstr "Valutationes"
+msgstr "Evalutationes"
 
 msgid "Sales"
 msgstr "Venditas"
@@ -363,7 +363,7 @@ msgid "Browse Listing Users Sort"
 msgstr "Explora le lista ordinate per usatores"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Explora le lista ordinate per valutationes"
+msgstr "Explora le lista ordinate per evalutationes"
 
 msgid "Browse Listing Created Sort"
 msgstr "Explora le lista ordinate per data de creation"
@@ -572,11 +572,11 @@ msgstr "Subscriptores ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "Valutationes, ultime {0} dies"
+msgstr "Evalutationes, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr "Valutationes ab{0} a {1}"
+msgstr "Evalutationes del {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"

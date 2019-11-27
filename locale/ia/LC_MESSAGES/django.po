@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-25 05:18+0000\n"
+"PO-Revision-Date: 2019-11-27 02:51+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -124,7 +124,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Solmente le ultime versiones del additivos pote haber notas addite."
 
 msgid "Ratings"
-msgstr "Valutationes"
+msgstr "Evalutationes"
 
 msgid "Status"
 msgstr "Stato"
@@ -338,7 +338,7 @@ msgid "Most Popular"
 msgstr "Plus popular"
 
 msgid "Top Rated"
-msgstr "Los melio valutate"
+msgstr "Melio evalutate"
 
 msgid "Newest"
 msgstr "Le plus recente"
@@ -1626,7 +1626,7 @@ msgid "Downloads"
 msgstr "Discargamentos"
 
 msgid "Rating"
-msgstr "Valutation"
+msgstr "Evalutation"
 
 msgid "All My Add-ons"
 msgstr "Tote mi additivos"
@@ -5051,7 +5051,7 @@ msgstr ""
 "discussiones."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Io es un autor de additivos, pote io deler revisiones o valutationes non favorabile?"
+msgstr "Io es le autor de un additivo, pote io deler recensiones o evalutationes non favorabile?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -5115,14 +5115,14 @@ msgstr[0] "{num} revision"
 msgstr[1] "{num} revisiones"
 
 msgid "Not yet rated"
-msgstr "Nondum valutate"
+msgstr "Non ancora evalutate"
 
 msgid "Rated {0} out of 5 stars"
-msgstr "Valutate {0} de 5 stellas"
+msgstr "Evalutate con {0} de 5 stellas"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "Valutate %(rating)s de 5 stellas"
+msgstr "Evalutate con %(rating)s de 5 stellas"
 
 msgid "Approved reviews"
 msgstr "Revisiones approbate"
