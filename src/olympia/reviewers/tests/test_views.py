@@ -4729,7 +4729,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
-            'reject_multiple_versions|')
+            'reject_multiple_versions|confirm_multiple_versions|')
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
@@ -4760,7 +4760,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
-            'reject_multiple_versions|')
+            'reject_multiple_versions|confirm_multiple_versions|')
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
@@ -4788,7 +4788,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
-            'reject_multiple_versions|')
+            'reject_multiple_versions|confirm_multiple_versions|')
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==

@@ -288,7 +288,9 @@ class ReviewForm(forms.Form):
         widget=forms.SelectMultiple(
             attrs={
                 'class': 'data-toggle',
-                'data-value': 'reject_multiple_versions|'
+                'data-value': (
+                    'reject_multiple_versions|confirm_multiple_versions|'
+                )
             }),
         required=False,
         queryset=Version.objects.none())  # queryset is set later in __init__.
@@ -336,12 +338,17 @@ class ReviewForm(forms.Form):
 
         # With the helper, we now have the add-on and can set queryset on the
         # versions field correctly. Small optimization: we only need to do this
-        # if the reject_multiple_versions action is available, otherwise we
-        # don't really care about this field.
-        if 'reject_multiple_versions' in self.helper.actions:
+        # if the reject_multiple_versions/confirm_multiple_versions actions are
+        # available, otherwise we don't really care about this field.
+        if ('reject_multiple_versions' in self.helper.actions or
+                'confirm_multiple_versions' in self.helper.actions):
+            if self.helper.version:
+                channel = self.helper.version.channel
+            else:
+                channel = amo.RELEASE_CHANNEL_LISTED
             self.fields['versions'].queryset = (
                 self.helper.addon.versions.distinct().filter(
-                    channel=amo.RELEASE_CHANNEL_LISTED,
+                    channel=channel,
                     files__status__in=(amo.STATUS_APPROVED,
                                        amo.STATUS_AWAITING_REVIEW)).
                 order_by('created'))

@@ -961,62 +961,71 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.current_version.reload()
         assert self.addon.current_version.needs_human_review is False
 
-    def test_unlisted_version_addon_confirm_auto_approval(self):
+    def test_unlisted_version_addon_confirm_multiple_versions(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.version = version_factory(
+
+        # This add-on will have 4 versions:
+        # - one listed (the initial one from setup)
+        # - one unlisted we'll confirm approval of (has an AutoApprovalSummary)
+        # - one unlisted we'll confirm approval of (no AutoApprovalSummary) and
+        #   flagged by scanners
+        # - one unlisted flagged by scanners we'll leave alone
+        first_unlisted = version_factory(
             addon=self.addon, version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True},
+            created=self.days_ago(7))
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED)
+            version=first_unlisted, verdict=amo.AUTO_APPROVED)
+        second_unlisted = version_factory(
+            addon=self.addon, version='4.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True},
+            needs_human_review=True,
+            created=self.days_ago(6))
+        self.version = version_factory(
+            addon=self.addon, version='5.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            needs_human_review=True,
+            file_kw={'is_webextension': True},
+            created=self.days_ago(5))
         self.file = self.version.files.all()[0]
         self.helper = self.get_helper()  # To make it pick up the new version.
-        self.helper.set_data(self.get_data())
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.filter(
+            pk__in=(first_unlisted.pk, second_unlisted.pk))
+        self.helper.set_data(data)
 
-        # Confirm approval action should be available since the version
-        # we are looking at is unlisted and reviewer has permission.
-        assert 'confirm_auto_approved' in self.helper.actions
+        # Confirm multiple versions action should be available since we're
+        # looking at an unlisted version and the reviewer has permission.
+        assert 'confirm_multiple_versions' in self.helper.actions
 
-        self.helper.handler.confirm_auto_approved()
+        self.helper.handler.confirm_multiple_versions()
 
         summary.reload()
         assert summary.confirmed is True
 
-        assert (
-            AddonApprovalsCounter.objects.filter(addon=self.addon).count() ==
-            0)  # Not incremented since it was unlisted.
+        self.version.reload()
+        assert self.version.needs_human_review  # Untouched.
 
-        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
-        activity = (ActivityLog.objects.for_addons(self.addon)
-                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
-                               .get())
-        assert activity.arguments == [self.addon, self.version]
-
-    def test_unlisted_version_addon_confirm_auto_approval_no_summary(self):
-        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.version = version_factory(
-            addon=self.addon, version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.file = self.version.files.all()[0]
-        self.helper = self.get_helper()  # To make it pick up the new version.
-        self.helper.set_data(self.get_data())
-
-        # Confirm approval action should be available since the version
-        # we are looking at is unlisted and reviewer has permission.
-        assert 'confirm_auto_approved' in self.helper.actions
-
-        self.helper.handler.confirm_auto_approved()
+        second_unlisted.reload()
+        assert not second_unlisted.needs_human_review  # Cleared.
 
         assert (
             AddonApprovalsCounter.objects.filter(addon=self.addon).count() ==
             0)  # Not incremented since it was unlisted.
 
-        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
-        activity = (ActivityLog.objects.for_addons(self.addon)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 2
+        activities = (
+            ActivityLog.objects.for_addons(self.addon)
                                .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
-                               .get())
-        assert activity.arguments == [self.addon, self.version]
+                               .order_by('-pk')
+        )
+        activity = activities[0]
+        assert activity.arguments == [self.addon, first_unlisted]
+        activity = activities[1]
+        assert activity.arguments == [self.addon, second_unlisted]
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_null_to_public_unlisted(self, sign_mock):
@@ -1046,47 +1055,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
-
-    def test_confirm_auto_approval_unlisted_need_human_review(self):
-        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED)
-        self.old_version = version_factory(
-            addon=self.addon, version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
-            created=self.days_ago(1),
-            needs_human_review=True)
-        self.version = version_factory(
-            addon=self.addon, version='4.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
-            needs_human_review=True)
-        self.file = self.version.files.all()[0]
-        self.helper = self.get_helper()  # To make it pick up the new version.
-        self.helper.set_data(self.get_data())
-
-        # Confirm approval action should be available since the version
-        # we are looking at is unlisted and reviewer has permission.
-        assert 'confirm_auto_approved' in self.helper.actions
-
-        self.helper.handler.confirm_auto_approved()
-
-        assert (
-            AddonApprovalsCounter.objects.filter(addon=self.addon).count() ==
-            0)  # Not incremented since it was unlisted.
-
-        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
-        activity = (ActivityLog.objects.for_addons(self.addon)
-                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
-                               .get())
-        assert activity.arguments == [self.addon, self.version]
-
-        # Needs human review flag should have been removed only on the version
-        # that was reviewed.
-        self.old_version.reload()
-        self.version.reload()
-        assert self.old_version.needs_human_review
-        assert not self.version.needs_human_review
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_nomination_to_public_failed_signing(self, sign_mock):
