@@ -2,7 +2,6 @@
 import json
 import os
 
-from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
 
@@ -17,11 +16,8 @@ from olympia.amo.tests import TestCase, formset, initial, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
-from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.forms import DescribeForm
-from olympia.lib.cache import memoize_key
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
@@ -41,7 +37,6 @@ class BaseTestEdit(TestCase):
         if self.listed:
             self.make_addon_listed(addon)
             ac = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
-            ac.feature = False
             ac.save()
             AddonCategory.objects.filter(addon=addon,
                                          category__id__in=[1, 71]).delete()
@@ -310,15 +305,6 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         assert selected_link is True
 
-    def _feature_addon(self, addon_id=3615):
-        c_addon = CollectionAddon.objects.create(
-            addon_id=addon_id, collection=Collection.objects.create())
-        FeaturedCollection.objects.create(collection=c_addon.collection,
-                                          application=amo.FIREFOX.id)
-
-        # Clear relevant featured caches
-        cache.delete(memoize_key('addons:featured', amo.FIREFOX, None))
-
     def test_edit_xss(self):
         """
         Let's try to put xss in our description, and safe html, and verify
@@ -458,50 +444,6 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [1, 22]
-
-    def test_edit_categories_add_featured(self):
-        """Ensure that categories cannot be changed for featured add-ons."""
-        self._feature_addon()
-        self.cat_initial['categories'] = [22, 1]
-
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-
-        assert response.context['cat_form'].errors[0]['categories'] == (
-            ['Categories cannot be changed while your add-on is featured for '
-             'this application.'])
-        # This add-on's categories should not change.
-        assert sorted(addon_cats) == [22]
-
-    def test_edit_categories_add_new_creatured_admin(self):
-        """Ensure that admins can change categories for creatured add-ons."""
-        assert self.client.login(email='admin@mozilla.com')
-        self._feature_addon()
-        response = self.client.get(self.describe_edit_url)
-        doc = pq(response.content)
-        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
-        assert doc('#addon-categories-edit > p').length == 0
-        self.cat_initial['categories'] = [22, 1]
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert 'categories' not in response.context['cat_form'].errors[0]
-        # This add-on's categories should change.
-        assert sorted(addon_cats) == [1, 22]
-
-    def test_edit_categories_disable_creatured(self):
-        """Ensure that other forms are okay when disabling category changes."""
-        self._feature_addon()
-        self.cat_initial['categories'] = [22, 1]
-        data = self.get_dict()
-        self.client.post(self.describe_edit_url, data)
-        assert str(self.get_addon().name) == data['name']
-
-    def test_edit_categories_no_disclaimer(self):
-        """Ensure that there is a not disclaimer for non-creatured add-ons."""
-        response = self.client.get(self.describe_edit_url)
-        doc = pq(response.content)
-        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
-        assert doc('#addon-categories-edit > p').length == 0
 
     def test_edit_no_previous_categories(self):
         AddonCategory.objects.filter(addon=self.addon).delete()
@@ -1550,49 +1492,6 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
         assert response.status_code == 200
         self.assertFormError(
             response, 'cat_form', 'category', 'This field is required.')
-
-    def test_edit_categories_add_featured(self):
-        """Ensure that categories cannot be changed for featured add-ons."""
-        category_desktop = Category.objects.get(id=308)
-        category_android = Category.objects.get(id=408)
-        AddonCategory(addon=self.addon, category=category_desktop).save()
-        AddonCategory(addon=self.addon, category=category_android).save()
-        self._feature_addon(self.addon.id)
-
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-
-        # This add-on's categories should not change.
-        assert sorted(addon_cats) == [308, 408]
-        self.assertFormError(
-            response, 'cat_form', 'category',
-            'Categories cannot be changed while your add-on is featured.')
-
-    def test_edit_categories_add_new_creatured_admin(self):
-        """Ensure that admins can change categories for creatured add-ons."""
-        assert self.client.login(email='admin@mozilla.com')
-        category_desktop = Category.objects.get(id=308)
-        category_android = Category.objects.get(id=408)
-        AddonCategory(addon=self.addon, category=category_desktop).save()
-        AddonCategory(addon=self.addon, category=category_android).save()
-        self._feature_addon(self.addon.id)
-
-        response = self.client.get(self.describe_edit_url)
-        doc = pq(response.content)
-        assert doc('#addon-categories-edit').length == 1
-        assert doc('#addon-categories-edit > p').length == 0
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert 'category' not in response.context['cat_form'].errors
-        # This add-on's categories should change.
-        assert sorted(addon_cats) == [300, 400]
-
-    def test_edit_categories_disable_creatured(self):
-        """Ensure that other forms are okay when disabling category changes."""
-        self._feature_addon()
-        data = self.get_dict()
-        self.client.post(self.describe_edit_url, data)
-        assert str(self.get_addon().name) == data['name']
 
     def test_theme_preview_shown(self):
         response = self.client.get(self.url)

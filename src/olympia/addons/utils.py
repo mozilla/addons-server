@@ -1,14 +1,11 @@
 import json
 import os.path
-import random
 import re
 import uuid
 import zipfile
 
 from django import forms
 from django.conf import settings
-from django.core.cache import cache
-from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
@@ -16,93 +13,12 @@ import waffle
 
 from olympia import amo
 from olympia.amo.utils import normalize_string, to_language
-from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.discovery.utils import call_recommendation_server
-from olympia.lib.cache import memoize, memoize_key
 from olympia.translations.fields import LocaleErrorMessage
 
 
 def generate_addon_guid():
     return '{%s}' % str(uuid.uuid4())
-
-
-def clear_get_featured_ids_cache(*args, **kwargs):
-    cache_key = memoize_key('addons:featured', *args, **kwargs)
-    cache.delete(cache_key)
-
-
-@memoize('addons:featured', timeout=60 * 10)
-def get_featured_ids(app=None, lang=None, type=None, types=None):
-    from olympia.addons.models import Addon
-    ids = []
-    is_featured = Q(collections__featuredcollection__isnull=False)
-    if app:
-        is_featured &= Q(collections__featuredcollection__application=app.id)
-    qs = Addon.objects.valid()
-
-    if type:
-        qs = qs.filter(type=type)
-    elif types:
-        qs = qs.filter(type__in=types)
-    if lang:
-        has_locale = qs.filter(
-            is_featured &
-            Q(collections__featuredcollection__locale__iexact=lang))
-        if has_locale.exists():
-            ids += list(has_locale.distinct().values_list('id', flat=True))
-        none_qs = qs.filter(
-            is_featured &
-            Q(collections__featuredcollection__locale__isnull=True))
-        blank_qs = qs.filter(is_featured &
-                             Q(collections__featuredcollection__locale=''))
-        qs = none_qs | blank_qs
-    else:
-        qs = qs.filter(is_featured)
-    other_ids = list(qs.distinct().values_list('id', flat=True))
-    random.shuffle(ids)
-    random.shuffle(other_ids)
-    ids += other_ids
-    return list(map(int, ids))
-
-
-@memoize('addons:creatured', timeout=60 * 10)
-def get_creatured_ids(category, lang=None):
-    from olympia.addons.models import Addon
-    from olympia.bandwagon.models import FeaturedCollection
-    if lang:
-        lang = lang.lower()
-    per_locale = set()
-    if isinstance(category, int):
-        category = CATEGORIES_BY_ID[category]
-    app_id = category.application
-
-    others = (Addon.objects.public()
-              .filter(
-                  Q(collections__featuredcollection__locale__isnull=True) |
-                  Q(collections__featuredcollection__locale=''),
-                  collections__featuredcollection__isnull=False,
-                  collections__featuredcollection__application=app_id,
-                  category=category.id)
-              .distinct()
-              .values_list('id', flat=True))
-
-    if lang is not None and lang != '':
-        possible_lang_match = FeaturedCollection.objects.filter(
-            locale__icontains=lang,
-            application=app_id,
-            collection__addons__category=category.id).distinct()
-        for fc in possible_lang_match:
-            if lang in fc.locale.lower().split(','):
-                per_locale.update(
-                    fc.collection.addons
-                    .filter(category=category.id)
-                    .values_list('id', flat=True))
-
-    others = list(others)
-    per_locale = list(per_locale)
-    random.shuffle(others)
-    random.shuffle(per_locale)
-    return list(map(int, filter(None, per_locale + others)))
 
 
 def verify_mozilla_trademark(name, user, form=None):

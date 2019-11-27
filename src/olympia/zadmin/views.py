@@ -26,8 +26,7 @@ from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.versions.models import Version
 
 from .decorators import admin_required
-from .forms import (
-    AddonStatusForm, FeaturedCollectionFormSet, FileFormSet)
+from .forms import AddonStatusForm, FileFormSet
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -85,32 +84,6 @@ def collections_json(request):
                      'slug': str(c.slug),
                      'url': c.get_url_path()})
     return data
-
-
-@admin_required
-@post_required
-def featured_collection(request):
-    try:
-        pk = int(request.POST.get('collection', 0))
-    except ValueError:
-        pk = 0
-    c = get_object_or_404(Collection, pk=pk)
-    return render(request, 'zadmin/featured_collection.html',
-                  dict(collection=c))
-
-
-@admin_required
-def features(request):
-    form = FeaturedCollectionFormSet(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save(commit=False)
-
-        for obj in form.deleted_objects:
-            obj.delete()
-
-        messages.success(request, 'Changes successfully saved.')
-        return redirect('zadmin.features')
-    return render(request, 'zadmin/features.html', dict(form=form))
 
 
 @admin_required

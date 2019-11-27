@@ -5,7 +5,6 @@ from django.db import models
 from olympia import activity, amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.addons.utils import clear_get_featured_ids_cache
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -172,9 +171,6 @@ class Collection(ModelBase):
     def is_public(self):
         return self.listed
 
-    def is_featured(self):
-        return FeaturedCollection.objects.filter(collection=self).exists()
-
     @staticmethod
     def transformer(collections):
         if not collections:
@@ -191,24 +187,6 @@ class Collection(ModelBase):
         if kwargs.get('raw'):
             return
         tasks.collection_meta.delay(instance.id)
-        if instance.is_featured():
-            Collection.update_featured_status(sender, instance, **kwargs)
-
-    @staticmethod
-    def post_delete(sender, instance, **kwargs):
-        if kwargs.get('raw'):
-            return
-        if instance.is_featured():
-            Collection.update_featured_status(sender, instance, **kwargs)
-
-    @staticmethod
-    def update_featured_status(sender, instance, **kwargs):
-        from olympia.addons.tasks import index_addons
-        addons = kwargs.get(
-            'addons', [addon.id for addon in instance.addons.all()])
-        if addons:
-            clear_get_featured_ids_cache(None, None)
-            index_addons.delay(addons)
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
@@ -224,8 +202,6 @@ models.signals.post_save.connect(Collection.post_save, sender=Collection,
                                  dispatch_uid='coll.post_save')
 models.signals.pre_save.connect(save_signal, sender=Collection,
                                 dispatch_uid='coll_translations')
-models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
-                                   dispatch_uid='coll.post_delete')
 
 
 class CollectionAddon(ModelBase):
@@ -278,48 +254,13 @@ class CollectionAddon(ModelBase):
                 instance.collection)
         tasks.collection_meta.delay(instance.collection.id)
 
-        if instance.collection.is_featured():
-            Collection.update_featured_status(
-                sender, instance.collection,
-                addons=[instance.addon.pk], **kwargs)
-
 
 models.signals.pre_save.connect(save_signal, sender=CollectionAddon,
                                 dispatch_uid='coll_addon_translations')
-# Update Collection.addon_count and potentially featured state when a
-# collectionaddon changes.
+# Update Collection.addon_count when a collectionaddon changes.
 models.signals.post_save.connect(CollectionAddon.post_save,
                                  sender=CollectionAddon,
                                  dispatch_uid='coll.post_save')
 models.signals.post_delete.connect(CollectionAddon.post_delete,
                                    sender=CollectionAddon,
                                    dispatch_uid='coll.post_delete')
-
-
-class FeaturedCollection(ModelBase):
-    id = PositiveAutoField(primary_key=True)
-    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
-                                              db_column='application_id')
-    collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
-    locale = models.CharField(max_length=10, null=True)
-
-    class Meta:
-        db_table = 'featured_collections'
-        indexes = [
-            models.Index(fields=('application',), name='application_id_idx'),
-        ]
-
-    def __str__(self):
-        return u'%s (%s: %s)' % (self.collection, self.application,
-                                 self.locale)
-
-    @staticmethod
-    def post_save_or_delete(sender, instance, **kwargs):
-        Collection.update_featured_status(
-            FeaturedCollection, instance.collection, **kwargs)
-
-
-models.signals.post_save.connect(FeaturedCollection.post_save_or_delete,
-                                 sender=FeaturedCollection)
-models.signals.post_delete.connect(FeaturedCollection.post_save_or_delete,
-                                   sender=FeaturedCollection)

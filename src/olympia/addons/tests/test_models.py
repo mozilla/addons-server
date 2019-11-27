@@ -17,11 +17,10 @@ from olympia.addons.models import (
     AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
     Preview, ReusedGUID, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import (
-    TestCase, addon_factory, collection_factory, version_factory)
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
-from olympia.bandwagon.models import Collection, FeaturedCollection
+from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
@@ -198,10 +197,9 @@ class TestCleanSlug(TestCase):
 
 
 class TestAddonManager(TestCase):
-    fixtures = ['base/appversion', 'base/users',
-                'base/addon_3615', 'addons/featured', 'addons/test_manager',
-                'base/collections', 'base/featured',
-                'bandwagon/featured_collections', 'base/addon_5299_gcal']
+    fixtures = ['base/appversion', 'base/users', 'base/addon_3615',
+                'addons/test_manager', 'base/collections', 'base/featured',
+                'base/addon_5299_gcal']
 
     def setUp(self):
         super(TestAddonManager, self).setUp()
@@ -227,9 +225,6 @@ class TestAddonManager(TestCase):
         self.addon.update(status=amo.STATUS_DELETED)
         assert self.addon not in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
-
-    def test_featured(self):
-        assert Addon.objects.featured(amo.FIREFOX).count() == 2
 
     def test_listed(self):
         # We need this for the fixtures, but it messes up the tests.
@@ -274,13 +269,6 @@ class TestAddonManager(TestCase):
         for addon in objs:
             assert addon.status in amo.VALID_ADDON_STATUSES
             assert not addon.disabled_by_user
-
-    def test_new_featured(self):
-        addons = Addon.objects.featured(amo.FIREFOX)
-        assert addons.count() == 2
-        assert sorted(x.id for x in addons) == (
-            [2464, 7661])
-        assert not Addon.objects.featured(amo.ANDROID).exists()
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
@@ -330,17 +318,14 @@ class TestAddonManager(TestCase):
 class TestAddonModels(TestCase):
     fixtures = ['base/appversion',
                 'base/collections',
-                'base/featured',
                 'base/users',
                 'base/addon_5299_gcal',
                 'base/addon_3615',
                 'base/addon_3723_listed',
                 'base/addon_4594_a9',
                 'base/addon_4664_twitterbar',
-                'addons/featured',
                 'addons/invalid_latest_version',
-                'addons/denied',
-                'bandwagon/featured_collections']
+                'addons/denied']
 
     def setUp(self):
         super(TestAddonModels, self).setUp()
@@ -743,45 +728,6 @@ class TestAddonModels(TestCase):
         addon.versions.all().delete()
         addon._current_version = None
         assert not addon.is_restart_required
-
-    def test_is_featured(self):
-        """Test if an add-on is globally featured"""
-        a = Addon.objects.get(pk=1003)
-        assert a.is_featured(amo.FIREFOX, 'en-US'), (
-            'globally featured add-on not recognized')
-
-    def test_get_featured_by_app(self):
-        addon = Addon.objects.get(pk=1003)
-        featured_coll = addon.collections.get().featuredcollection_set.get()
-        assert featured_coll.locale is None
-        # Get the applications this addon is featured for.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
-
-        featured_coll.update(locale='')
-        # Check that an empty string is considered None.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
-
-        featured_coll.update(locale='fr')
-        # Check the locale works.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr'}}
-
-        pt_coll = collection_factory()
-        pt_coll.add_addon(addon)
-        FeaturedCollection.objects.create(collection=pt_coll,
-                                          application=amo.FIREFOX.id,
-                                          locale='pt-PT')
-        # Add another featured collection for the same application.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr', 'pt-PT'}}
-
-        mobile_coll = collection_factory()
-        mobile_coll.add_addon(addon)
-        FeaturedCollection.objects.create(collection=mobile_coll,
-                                          application=amo.ANDROID.id,
-                                          locale='pt-PT')
-        # Add a featured collection for the a different application.
-        assert addon.get_featured_by_app() == {
-            amo.FIREFOX.id: {'fr', 'pt-PT'},
-            amo.ANDROID.id: {'pt-PT'}}
 
     def newlines_helper(self, string_before):
         addon = Addon.objects.get(pk=3615)
@@ -2062,29 +2008,6 @@ class TestAddonGetURLPath(TestCase):
         addon = addon_factory(
             slug='woo', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         assert addon.get_url_path() == ''
-
-
-class TestAddonModelsFeatured(TestCase):
-    fixtures = ['base/appversion', 'base/users',
-                'addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured']
-
-    def setUp(self):
-        super(TestAddonModelsFeatured, self).setUp()
-        # Addon._featured keeps an in-process cache we need to clear.
-        if hasattr(Addon, '_featured'):
-            del Addon._featured
-
-    def _test_featured_random(self):
-        featured = Addon.featured_random(amo.FIREFOX, 'en-US')
-        assert sorted(featured) == [1001, 1003, 2464, 3481, 7661]
-        featured = Addon.featured_random(amo.FIREFOX, 'fr')
-        assert sorted(featured) == [1001, 1003, 2464, 7661]
-        featured = Addon.featured_random(amo.ANDROID, 'en-US')
-        assert featured == []
-
-    def test_featured_random(self):
-        self._test_featured_random()
 
 
 class TestBackupVersion(TestCase):

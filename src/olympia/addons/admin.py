@@ -126,12 +126,6 @@ class AddonAdmin(admin.ModelAdmin):
         )
 
 
-class FeatureAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addon',)
-    list_filter = ('application', 'locale')
-    list_display = ('addon', 'application', 'locale')
-
-
 class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
 

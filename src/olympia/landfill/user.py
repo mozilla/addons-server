@@ -10,8 +10,7 @@ def generate_addon_user_and_category(addon, user, category):
 
     """
     AddonUser.objects.create(addon=addon, user=user)
-    AddonCategory.objects.create(addon=addon, category=category,
-                                 feature=True)
+    AddonCategory.objects.create(addon=addon, category=category)
 
 
 def generate_user(email):

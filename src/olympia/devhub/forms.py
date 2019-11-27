@@ -197,10 +197,6 @@ class CategoryForm(forms.Form):
         total = categories.count()
         max_cat = amo.MAX_CATEGORIES
 
-        if getattr(self, 'disabled', False) and total:
-            raise forms.ValidationError(ugettext(
-                'Categories cannot be changed while your add-on is featured '
-                'for this application.'))
         if total > max_cat:
             # L10n: {0} is the number of categories.
             raise forms.ValidationError(ungettext(
@@ -246,12 +242,6 @@ class BaseCategoryFormSet(BaseFormSet):
             form.app = app
             cats = sorted(app_cats[key], key=lambda x: x.name)
             form.fields['categories'].choices = [(c.id, c.name) for c in cats]
-
-            # If this add-on is featured for this application, category
-            # changes are forbidden.
-            if not acl.action_allowed(self.request,
-                                      amo.permissions.ADDONS_EDIT):
-                form.disabled = (app and self.addon.is_featured(app))
 
     def save(self):
         for f in self.forms:
@@ -1282,12 +1272,6 @@ class SingleCategoryForm(forms.Form):
         self.fields['category'].choices = [
             (slug, c.name) for slug, c in sorted_cats]
 
-        # If this add-on is featured for any application, category changes are
-        # forbidden.
-        if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            self.disabled = any(
-                (self.addon.is_featured(app) for app in amo.APP_USAGE))
-
     def save(self):
         category_slug = self.cleaned_data['category']
         # Clear any old categor[y|ies]
@@ -1300,10 +1284,3 @@ class SingleCategoryForm(forms.Form):
                 AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
-
-    def clean_category(self):
-        if getattr(self, 'disabled', False) and self.cleaned_data['category']:
-            raise forms.ValidationError(ugettext(
-                'Categories cannot be changed while your add-on is featured.'))
-
-        return self.cleaned_data['category']
