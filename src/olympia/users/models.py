@@ -228,8 +228,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         from olympia.zadmin.models import get_config
 
         # Fallback date in case the config date value is invalid or set to the
-        # future. The current fallback date is the last update on June 10, 2019
-        dev_agreement_change_fallback = datetime(2019, 6, 10, 12, 00)
+        # future. The current fallback date is the last update on Dec 2, 2019
+        dev_agreement_change_fallback = datetime(2019, 12, 2, 12, 00)
 
         if self.read_dev_agreement is None:
             return False
