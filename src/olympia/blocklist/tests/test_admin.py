@@ -65,7 +65,7 @@ class TestBlockAdminAdd(TestCase):
     def setUp(self):
         self.add_url = reverse('admin:blocklist_block_add')
         self.single_url = reverse('admin:blocklist_block_add_single')
-        self.multi_url = reverse('admin:blocklist_block_add_multiple')
+        self.multi_url = reverse('admin:blocklist_multiblocksubmit_add')
 
     def test_add(self):
         user = user_factory()
@@ -247,7 +247,7 @@ class TestBlockAdminAdd(TestCase):
 
 class TestBlockAdminAddMultiple(TestCase):
     def setUp(self):
-        self.multi_url = reverse('admin:blocklist_block_add_multiple')
+        self.multi_url = reverse('admin:blocklist_multiblocksubmit_add')
 
     def test_add_multiple(self):
         user = user_factory()

@@ -6,11 +6,9 @@ from django.forms.widgets import HiddenInput
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
-from django.utils.html import format_html, conditional_escape
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
@@ -18,7 +16,8 @@ from olympia.amo.utils import HttpResponseTemporaryRedirect
 
 from .models import Block, MultiBlockSubmit
 from .tasks import create_blocks_from_multi_block
-from .utils import block_activity_log_delete, block_activity_log_save
+from .utils import (
+    block_activity_log_delete, block_activity_log_save, format_block_history)
 
 
 # The limit for how many GUIDs should be fully loaded with all metadata
@@ -40,10 +39,6 @@ class BlockAdminAddMixin():
                 'add_single/',
                 self.admin_site.admin_view(self.add_single_view),
                 name='blocklist_block_add_single'),
-            path(
-                'add_mutiple/',
-                self.admin_site.admin_view(self.add_multiple_view),
-                name='blocklist_block_add_multiple'),
         ]
         return my_urls + urls
 
@@ -73,7 +68,7 @@ class BlockAdminAddMixin():
             elif len(guids) > 1:
                 # If there's > 1 guid go to multi view.
                 return HttpResponseTemporaryRedirect(
-                    reverse('admin:blocklist_block_add_multiple'))
+                    reverse('admin:blocklist_multiblocksubmit_add'))
 
         context = {}
         context.update({
@@ -96,7 +91,13 @@ class BlockAdminAddMixin():
         return self.add_view(
             request, form_url=form_url, extra_context=extra_context)
 
-    def add_multiple_view(self, request, **kwargs):
+
+@admin.register(MultiBlockSubmit)
+class MultiBlockSubmitAdmin(admin.ModelAdmin):
+    ordering = ['-modified']
+    view_on_site = False
+
+    def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
             raise PermissionDenied
         guids_data = request.POST.get('guids', request.GET.get('guids'))
@@ -149,47 +150,6 @@ class BlockAdminAddMixin():
             Block.preload_addon_versions(objects['blocks'])
         return TemplateResponse(
             request, 'blocklist/multiple_block.html', context)
-
-
-def format_block_history(logs):
-    def format_html_join_kw(sep, format_string, kwargs_generator):
-        return mark_safe(conditional_escape(sep).join(
-            format_html(format_string, **kwargs)
-            for kwargs in kwargs_generator
-        ))
-
-    history_format_string = (
-        '<li>'
-        '{date}. {action} by {name}: {guid}{versions}. {legacy}'
-        '<ul><li>{reason}</li></ul>'
-        '</li>')
-    guid_url_format_string = '<a href="{url}">{text}</a>'
-    versions_format_string = ', versions {min} - {max}'
-
-    log_entries_gen = (
-        {'date': (
-            format_html(
-                guid_url_format_string,
-                url=log.details.get('url'),
-                text=log.created.date())
-            if log.details.get('url') else log.created.date()),
-         'action': amo.LOG_BY_ID[log.action].short,
-         'name': log.author_name,
-         'guid': log.details.get('guid'),
-         'versions': (
-            format_html(
-                versions_format_string, **{
-                    'min': log.details.get('min_version'),
-                    'max': log.details.get('max_version')})
-            if 'min_version' in log.details else ''),
-         'legacy': (
-            'Included in legacy blocklist.'
-            if log.details.get('include_in_legacy') else ''),
-         'reason': log.details.get('reason') or ''}
-        for log in logs)
-    return format_html(
-        '<ul>\n{}\n</ul>',
-        format_html_join_kw('\n', history_format_string, log_entries_gen))
 
 
 @admin.register(Block)
