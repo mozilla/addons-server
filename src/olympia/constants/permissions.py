@@ -117,6 +117,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'blocklist.change_block': REVIEWS_ADMIN,
     'blocklist.delete_block': REVIEWS_ADMIN,
     'blocklist.add_multiblocksubmit': REVIEWS_ADMIN,
+    'blocklist.view_multiblocksubmit': REVIEWS_ADMIN,
 
     'discovery.add_discoveryitem': DISCOVERY_EDIT,
     'discovery.change_discoveryitem': DISCOVERY_EDIT,

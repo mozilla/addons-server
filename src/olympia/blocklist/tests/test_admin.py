@@ -10,7 +10,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import Block
+from ..models import Block, MultiBlockSubmit
 
 
 class TestBlockAdminList(TestCase):
@@ -245,9 +245,11 @@ class TestBlockAdminAdd(TestCase):
         assert Block.objects.count() == 0
 
 
-class TestBlockAdminAddMultiple(TestCase):
+class TestMultiBlockSubmitAdmin(TestCase):
     def setUp(self):
         self.multi_url = reverse('admin:blocklist_multiblocksubmit_add')
+        self.multi_list_url = reverse(
+            'admin:blocklist_multiblocksubmit_changelist')
 
     def test_add_multiple(self):
         user = user_factory()
@@ -255,14 +257,16 @@ class TestBlockAdminAddMultiple(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
 
-        new_addon = addon_factory(guid='any@new', name='New Danger')
+        new_addon = addon_factory(
+            guid='any@new', name='New Danger', average_daily_users=100)
         existing_and_full = Block.objects.create(
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
             include_in_legacy=True)
         partial_addon = addon_factory(
-            guid='partial@existing', name='Partial Danger')
+            guid='partial@existing', name='Partial Danger',
+            average_daily_users=99)
         existing_and_partial = Block.objects.create(
             addon=partial_addon,
             min_version='1',
@@ -289,6 +293,7 @@ class TestBlockAdminAddMultiple(TestCase):
         assert 'invalid@' in content
         # Check we didn't create the block already
         assert Block.objects.count() == 2
+        assert MultiBlockSubmit.objects.count() == 0
 
         # Create the block
         response = self.client.post(
@@ -304,6 +309,7 @@ class TestBlockAdminAddMultiple(TestCase):
             follow=True)
         assert response.status_code == 200
         assert Block.objects.count() == 3
+        assert MultiBlockSubmit.objects.count() == 1
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
@@ -345,6 +351,23 @@ class TestBlockAdminAddMultiple(TestCase):
         assert existing_and_full.include_in_legacy is True
         assert not ActivityLog.objects.for_addons(
             existing_and_full.addon).exists()
+
+        multi = MultiBlockSubmit.objects.get()
+        assert multi.input_guids == (
+            'any@new\npartial@existing\nfull@existing\ninvalid@')
+        assert multi.min_version == new_block.min_version
+        assert multi.max_version == new_block.max_version
+        assert multi.url == new_block.url
+        assert multi.reason == new_block.reason
+
+        assert multi.processed_guids == {
+            'invalid_guids': ['invalid@'],
+            'existing_guids': ['full@existing'],
+            'blocks': ['any@new', 'partial@existing'],
+            'blocks_saved': [
+                [new_block.id, 'any@new'],
+                [existing_and_partial.id, 'partial@existing']],
+        }
 
     @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
     def test_add_multiple_bulk_so_fake_block_objects(self):
@@ -468,6 +491,75 @@ class TestBlockAdminAddMultiple(TestCase):
         assert Block.objects.count() == 1
         existing = existing.reload()
         assert existing.min_version == '1'  # check the values didn't update.
+
+    def test_can_list(self):
+        mbs = MultiBlockSubmit.objects.create(
+            updated_by=user_factory(display_name='Bób'))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+        response = self.client.get(self.multi_list_url, follow=True)
+        assert response.status_code == 200
+        assert 'Bób' in response.content.decode('utf-8')
+
+        # add some guids to the multi block to test out the counts in the list
+        addon_factory(guid='guid@', name='Danger Danger')
+        mbs.update(input_guids='guid@\ninvalid@\nsecond@invalid')
+        mbs.save()
+        assert mbs.processed_guids['existing_guids'] == []
+        # the order of invalid_guids is indeterminate.
+        assert set(mbs.processed_guids['invalid_guids']) == {
+            'invalid@', 'second@invalid'}
+        assert len(mbs.processed_guids['invalid_guids']) == 2
+        assert mbs.processed_guids['blocks'] == ['guid@']
+        response = self.client.get(self.multi_list_url, follow=True)
+        doc = pq(response.content)
+        assert doc('td.field-invalid_guid_count').text() == '2'
+        assert doc('td.field-existing_guid_count').text() == '0'
+        assert doc('td.field-blocks_count').text() == '1'
+        assert doc('td.field-blocks_submitted_count').text() == '0'
+
+    def test_can_not_list_without_permission(self):
+        MultiBlockSubmit.objects.create(
+            updated_by=user_factory(display_name='Bób'))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(self.multi_list_url, follow=True)
+        assert response.status_code == 403
+        assert 'Bób' not in response.content.decode('utf-8')
+
+    def test_view(self):
+        addon_factory(guid='guid@', name='Danger Danger')
+        mbs = MultiBlockSubmit.objects.create(
+            input_guids='guid@\ninvalid@\nsecond@invalid')
+        assert mbs.processed_guids['existing_guids'] == []
+        # the order of invalid_guids is indeterminate.
+        assert set(mbs.processed_guids['invalid_guids']) == {
+            'invalid@', 'second@invalid'}
+        assert len(mbs.processed_guids['invalid_guids']) == 2
+        assert mbs.processed_guids['blocks'] == ['guid@']
+        mbs.save_to_blocks()
+        block = Block.objects.get()
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+        multi_view_url = reverse(
+            'admin:blocklist_multiblocksubmit_change', args=(mbs.id,))
+
+        response = self.client.get(multi_view_url, follow=True)
+        assert response.status_code == 200
+
+        assert b'guid@<br>invalid@<br>second@invalid' in response.content
+
+        doc = pq(response.content)
+        guid_link = doc('div.field-blocks_submitted div div a')
+        assert guid_link.attr('href') == reverse(
+            'admin:blocklist_block_change', args=(block.pk,))
+        assert guid_link.text() == 'guid@'
 
 
 class TestBlockAdminEdit(TestCase):

@@ -94,8 +94,37 @@ class BlockAdminAddMixin():
 
 @admin.register(MultiBlockSubmit)
 class MultiBlockSubmitAdmin(admin.ModelAdmin):
-    ordering = ['-modified']
+    list_display = (
+        'created',
+        'min_version',
+        'max_version',
+        'updated_by',
+        'invalid_guid_count',
+        'existing_guid_count',
+        'blocks_count',
+        'blocks_submitted_count',
+        'submission_complete',
+    )
+    fields = (
+        'input_guids',
+        'blocks_submitted',
+        'min_version',
+        'max_version',
+        'url',
+        'reason',
+        'updated_by',
+        'include_in_legacy',
+    )
+    ordering = ['-created']
     view_on_site = False
+    list_select_related = ('updated_by',)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    # Read-only mode
+    def has_change_permission(self, request, obj=None):
+        return False
 
     def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
@@ -136,7 +165,6 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
             'change': False,
             'has_view_permission': self.has_view_permission(request, None),
             'has_add_permission': self.has_add_permission(request),
-            'has_change_permission': self.has_change_permission(request, None),
             'app_label': 'blocklist',
             'opts': self.model._meta,
             'title': 'Block Add-ons',
