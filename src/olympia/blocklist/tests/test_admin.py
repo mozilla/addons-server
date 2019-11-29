@@ -551,7 +551,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
     def test_view(self):
         addon_factory(guid='guid@', name='Danger Danger')
         mbs = MultiBlockSubmit.objects.create(
-            input_guids='guid@\ninvalid@\nsecond@invalid')
+            input_guids='guid@\ninvalid@\nsecond@invalid',
+            updated_by=user_factory())
         assert mbs.processed_guids['existing_guids'] == []
         # the order of invalid_guids is indeterminate.
         assert set(mbs.processed_guids['invalid_guids']) == {
