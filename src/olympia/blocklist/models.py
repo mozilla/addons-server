@@ -1,5 +1,5 @@
 import datetime
-from collections import defaultdict, namedtuple
+from collections import defaultdict, namedtuple, OrderedDict
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -64,32 +64,38 @@ class Block(ModelBase):
         # set cached_property self.addon in a db efficient way beforehand.
         """
         addon_ids = [block.addon.id for block in blocks]
-        qs = Version.unfiltered.filter(addon_id__in=addon_ids).values(
-            'addon_id', 'version', 'channel')
-        addons_versions = defaultdict(dict)
+        qs = Version.unfiltered.filter(addon_id__in=addon_ids).order_by(
+            'id').values('addon_id', 'version', 'id', 'channel')
+        addons_versions = defaultdict(OrderedDict)
         for version in qs:
             addons_versions[str(version['addon_id'])][version['version']] = (
-                version['channel'])
+                version['id'], version['channel'])
         for block in blocks:
             block.addon_versions = addons_versions[str(block.addon.id)]
 
+    @cached_property
+    def min_version_vint(self):
+        return addon_version_int(self.min_version)
+
+    @cached_property
+    def max_version_vint(self):
+        return addon_version_int(self.max_version)
+
     def clean(self):
-        min_vint = addon_version_int(self.min_version)
-        max_vint = addon_version_int(self.max_version)
-        if min_vint > max_vint:
+        if self.min_version_vint > self.max_version_vint:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
     def is_version_blocked(self, version):
         version_vint = addon_version_int(version)
-        min_vint = addon_version_int(self.min_version)
-        max_vint = addon_version_int(self.max_version)
-        return version_vint >= min_vint and version_vint <= max_vint
+        return (
+            version_vint >= self.min_version_vint and
+            version_vint <= self.max_version_vint)
 
     def review_listed_link(self):
         has_listed = any(
-            True for v in self.addon_versions.values()
-            if v == amo.RELEASE_CHANNEL_LISTED)
+            True for id_, chan in self.addon_versions.values()
+            if chan == amo.RELEASE_CHANNEL_LISTED)
         if has_listed:
             url = reverse(
                 'reviewers.review',
@@ -100,8 +106,8 @@ class Block(ModelBase):
 
     def review_unlisted_link(self):
         has_unlisted = any(
-            True for v in self.addon_versions.values()
-            if v == amo.RELEASE_CHANNEL_UNLISTED)
+            True for id_, chan in self.addon_versions.values()
+            if chan == amo.RELEASE_CHANNEL_UNLISTED)
         if has_unlisted:
             url = reverse(
                 'reviewers.review',
@@ -211,6 +217,7 @@ class MultiBlockSubmit(ModelBase):
         processed_guids = self.process_input_guids(self.input_guids)
 
         blocks = processed_guids['blocks']
+        Block.preload_addon_versions(blocks)
         modified_datetime = datetime.datetime.now()
         for block in blocks:
             change = bool(block.id)

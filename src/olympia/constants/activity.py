@@ -660,6 +660,7 @@ class BLOCKLIST_BLOCK_ADDED(_LOG):
     id = 156
     keep = True
     action_class = 'add'
+    hide_developer = True
     format = _('Block for {0} added to Blocklist.')
     short = _('Block added')
 
@@ -668,6 +669,7 @@ class BLOCKLIST_BLOCK_EDITED(_LOG):
     id = 157
     keep = True
     action_class = 'edit'
+    hide_developer = True
     format = _('Block for {0} edited in Blocklist.')
     short = _('Block edited')
 
@@ -676,6 +678,7 @@ class BLOCKLIST_BLOCK_DELETED(_LOG):
     id = 158
     keep = True
     action_class = 'delete'
+    hide_developer = True
     format = _('Block for {0} deleted from Blocklist.')
     short = _('Block deleted')
 
