@@ -339,11 +339,9 @@ class ReviewHelper(object):
             ))
         reviewable_because_pending = (
             self.version and self.version.is_unreviewed)
-        # Note: approval/content confirmation do not care about self.version,
-        # only self.addon.current_version. This allows reviewers to approve
-        # add-ons even when their latest submitted version is disabled for some
-        # reason.
-        was_auto_approved_and_user_can_post_review = (
+        is_listed_was_auto_approved_and_user_can_post_review = (
+            self.version and
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             self.addon.current_version and
             self.addon.current_version.was_auto_approved and
             is_post_reviewer and
@@ -410,8 +408,8 @@ class ReviewHelper(object):
             'comments': False,
             'available': (
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                (was_auto_approved_and_user_can_post_review or
-                 is_unlisted_and_user_can_review_unlisted))
+                is_listed_was_auto_approved_and_user_can_post_review
+            ),
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -425,8 +423,21 @@ class ReviewHelper(object):
                 self.addon.type != amo.ADDON_STATICTHEME and
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
                 (is_public_and_listed_and_user_can_post_review or
-                 is_valid_and_listed_and_user_can_content_review)
-            )
+                 is_valid_and_listed_and_user_can_content_review or
+                 is_unlisted_and_user_can_review_unlisted)
+            ),
+        }
+        actions['confirm_multiple_versions'] = {
+            'method': self.handler.confirm_multiple_versions,
+            'label': _('Confirm Multiple Versions'),
+            'minimal': True,
+            'versions': True,
+            'details': _('This will confirm approval of the selected '
+                         'versions without notifying the developer.'),
+            'comments': False,
+            'available': (
+                is_unlisted_and_user_can_review_unlisted
+            ),
         }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,
@@ -901,6 +912,9 @@ class ReviewBase(object):
                 self.user, self.addon, status, version=latest_version,
                 post_review=True, content_review=self.content_review_only)
 
+    def confirm_multiple_versions(self):
+        raise NotImplementedError  # only implemented for unlisted below.
+
 
 class ReviewAddon(ReviewBase):
     set_addon_status = True
@@ -946,3 +960,23 @@ class ReviewUnlisted(ReviewBase):
         log.info(u'Making %s files %s public' %
                  (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
+
+    def confirm_multiple_versions(self):
+        """Confirm approval on a list of versions."""
+        # There shouldn't be any comments for this action.
+        self.data['comments'] = ''
+
+        timestamp = datetime.now()
+        for version in self.data['versions']:
+            self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version,
+                            timestamp=timestamp)
+            if self.human_review:
+                # Mark summary as confirmed if it exists.
+                try:
+                    version.autoapprovalsummary.update(confirmed=True)
+                except AutoApprovalSummary.DoesNotExist:
+                    pass
+                # Unset needs_human_review on rejected versions, we consider
+                # that the reviewer looked at all versions they are approving.
+                if version.needs_human_review:
+                    version.update(needs_human_review=False)

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-23 22:31+0000\n"
+"PO-Revision-Date: 2019-11-28 23:45+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -917,49 +917,58 @@ msgid "Appearance"
 msgstr "Rutzub'al"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq k'amal nikijäl ri kiwa ajk'amaya'l ruxaq chuq'a ruwa ri Firefox. Re ruwäch re' ruk'wan taq k'amal richin q'equ'm taq wachinel, runuk'samajixik ruwi' chuqa' ch'aqa' chik."
 
 msgid "Bookmarks"
 msgstr "Taq yaketal"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq k'amal yekutzilaj ri taq yaketal rik'in yechajïx rik'in ewan tzij, rukanoxik ri e kamulun, taq yaketal man yesamäj ta chik chuqa' ch'aqa' chik."
 
 msgid "Download Management"
 msgstr "Kinuk'samejel Qasanïk"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox yatkito' richin naqasaj q'ojom, silowäch chuqa' rupam ajk'amaya'l. Chuqa' xke'awïl taq k'amal richin ye'anuk'samajij taq qasanïk, kikomonik taq yakb'äl chuqa' ch'aqa' "
+"chik."
 
 msgid "Feeds, News & Blogging"
 msgstr "Taq b'ey, Taq Tzijol & Taq Ichinya'l"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox nikiyüj ri b'achanïk richin yatkito' chi natz'ët q'ij q'ij ronojel pa winaqil taq k'amab'ey, achi'el ri taq ichinya'l, ri taq RSS b'ey, man kan ta tiköx ri runaq' "
+"awäch chuqa' ch'aqa' chik. "
 
 msgid "Games & Entertainment"
 msgstr "Taq Etz'anem & K'astanib'alil"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox richin nawutzilaj ri awetamab'al richin etz'anem. Re ruwäch re' ruk'wan taq k'amal ri yekutzilaj ri taq etz'anem, nikichajij ri rutzijik silowäch chuqa' ch'aqa' chik."
 
 msgid "Language Support"
 msgstr "Rutob'al Ch'ab'äl"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq ruk'amal Firefox ri nikiya' kitob'al ch'ab'äl, achi'el nikinik'oj ri kemchi', nikikanoj junatzij, nikitzalq'omij tzij chuqa' ch'aqa' chik."
 
 msgid "Photos, Music & Videos"
 msgstr "Taq Wachib'äl, Q'ojom & taq Silowäch"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox ri nikijotob'a' awetamab'al chi kij ri taq wachib'äl, q'ojom chuqa' taq silowäch. Ri taq ruk'amal re ruwäch re' yekijäl taq k'oxom chuqa' taq silowäch, yekikanoj "
+"piskolin taq wachib'äl chuqa' ch'aqa' chik."
 
 msgid "Privacy & Security"
 msgstr "Ichinanem & Jikomal"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox richin ütz chuqa' jikïl yatok pa k'amaya'l. Re ruwäch re' ruk'wan taq k'amal yekiq'ät ri itzel taq eltzijol, man nikiya' ta q'ij richin yatkikanoj, nikinuk'samajij ri "
+"nikanöx chik chuqa' ch'aqa' chik."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""

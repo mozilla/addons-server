@@ -113,7 +113,13 @@ class TestBlockAdminAdd(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
 
-        addon = addon_factory(guid='guid@', name='Danger Danger')
+        addon = addon_factory(
+            guid='guid@', name='Danger Danger', version_kw={'version': '1.2a'})
+        first_version = addon.current_version
+        second_version = version_factory(addon=addon, version='3')
+        pending_version = version_factory(
+            addon=addon, version='5.999',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         response = self.client.get(
             self.single_url + '?guid=guid@', follow=True)
         content = response.content.decode('utf-8')
@@ -150,6 +156,10 @@ class TestBlockAdminAdd(TestCase):
         block_log_by_guid = ActivityLog.objects.for_guidblock('guid@').filter(
             action=log.action).last()
         assert block_log_by_guid == log
+
+        assert log == ActivityLog.objects.for_version(first_version).last()
+        assert log == ActivityLog.objects.for_version(second_version).last()
+        assert not ActivityLog.objects.for_version(pending_version).exists()
 
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
@@ -323,6 +333,9 @@ class TestMultiBlockSubmitAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(new_block).filter(
             action=log.action).last()
         assert block_log == log
+        vlog = ActivityLog.objects.for_version(
+            new_addon.current_version).last()
+        assert vlog == log
 
         existing_and_partial = existing_and_partial.reload()
         assert all_blocks[1] == existing_and_partial
@@ -342,6 +355,9 @@ class TestMultiBlockSubmitAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(existing_and_partial).filter(
             action=log.action).last()
         assert block_log == log
+        vlog = ActivityLog.objects.for_version(
+            partial_addon.current_version).last()
+        assert vlog == log
 
         existing_and_full = existing_and_full.reload()
         assert all_blocks[0] == existing_and_full
@@ -351,6 +367,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert existing_and_full.include_in_legacy is True
         assert not ActivityLog.objects.for_addons(
             existing_and_full.addon).exists()
+        assert not ActivityLog.objects.for_version(
+            existing_and_full.addon.current_version).exists()
 
         multi = MultiBlockSubmit.objects.get()
         assert multi.input_guids == (
@@ -613,6 +631,9 @@ class TestBlockAdminEdit(TestCase):
         block_log_by_guid = ActivityLog.objects.for_guidblock('guid@').filter(
             action=log.action).last()
         assert block_log_by_guid == log
+        vlog = ActivityLog.objects.for_version(
+            self.addon.current_version).last()
+        assert vlog == log
 
         # Check the block history contains the edit just made.
         content = response.content.decode('utf-8')
@@ -672,6 +693,9 @@ class TestBlockAdminEdit(TestCase):
         # The BlockLog is still there too so it can be referenced by guid
         blocklog = ActivityLog.objects.for_guidblock(guid).first()
         assert log == blocklog
+        vlog = ActivityLog.objects.for_version(
+            self.addon.current_version).last()
+        assert vlog == log
 
         # And if we try to add the guid again the old history is there
         response = self.client.get(
