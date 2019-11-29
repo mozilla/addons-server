@@ -19,9 +19,11 @@ from .utils import block_activity_log_save
 
 
 class Block(ModelBase):
+    MIN = '0'
+    MAX = '*'
     guid = models.CharField(max_length=255, unique=True, null=False)
-    min_version = models.CharField(max_length=255, blank=False, default='0')
-    max_version = models.CharField(max_length=255, blank=False, default='*')
+    min_version = models.CharField(max_length=255, blank=False, default=MIN)
+    max_version = models.CharField(max_length=255, blank=False, default=MAX)
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
@@ -86,9 +88,9 @@ class Block(ModelBase):
             # We're only concerned with edits - self.guid isn't set at this
             # point for new instances anyway.
             choices = list(self.addon_versions.keys())
-            if self.min_version not in choices + ['0']:
+            if self.min_version not in choices + [self.MIN]:
                 raise ValidationError({'min_version': _('Invalid version')})
-            if self.max_version not in choices + ['*']:
+            if self.max_version not in choices + [self.MAX]:
                 raise ValidationError({'max_version': _('Invalid version')})
         if self.min_version_vint > self.max_version_vint:
             raise ValidationError(
@@ -127,8 +129,10 @@ class Block(ModelBase):
 
 class MultiBlockSubmit(ModelBase):
     input_guids = models.TextField()
-    min_version = models.CharField(max_length=255, blank=False, default='0')
-    max_version = models.CharField(max_length=255, blank=False, default='*')
+    min_version = models.CharField(
+        max_length=255, blank=False, default=Block.MIN)
+    max_version = models.CharField(
+        max_length=255, blank=False, default=Block.MAX)
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
@@ -191,7 +195,8 @@ class MultiBlockSubmit(ModelBase):
         # identify the blocks that need updating (i.e. not 0 - * already)
         blocks_to_update_dict = {
             block.guid: block for block in existing_blocks
-            if not (block.min_version == '0' and block.max_version == '*')}
+            if not (block.min_version == Block.MIN and
+                    block.max_version == Block.MAX)}
         existing_guids = [
             block.guid for block in existing_blocks
             if block.guid not in blocks_to_update_dict]
@@ -205,7 +210,7 @@ class MultiBlockSubmit(ModelBase):
             block = (
                 blocks_to_update_dict.get(addon.guid, None) or (
                     Block(addon=addon) if load_full_objects else
-                    FakeBlock(addon.guid, addon, '0', '*')
+                    FakeBlock(addon.guid, addon, Block.MIN, Block.MAX)
                 ))
             blocks.append(block)
 
