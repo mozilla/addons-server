@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-02 02:51+0000\n"
+"PO-Revision-Date: 2019-12-02 03:03+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4185,9 +4185,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}搜尋 Firefox{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "簡單存取您開啟的分頁、書籤與上網紀錄。"
+msgstr "簡單搜尋 Firefox 當中開啟過的分頁、書籤與上網紀錄。"
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4270,9 +4269,8 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}安全上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "只允許您信任的網站執行 Web 內容。"
+msgstr "只允許您信任的網站執行 Web 內容。上網更安全。"
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4347,7 +4345,6 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}封鎖討人厭的音效{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "網站的聲音太小聲或太大聲？SoundFixer 可以幫忙。"
 
@@ -4396,9 +4393,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}簡化分頁功能{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "使用垂直的側邊欄管理開啟的分頁。"
+msgstr "簡化分頁管理，使用垂直側邊欄管理開啟的分頁。"
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4534,7 +4530,7 @@ msgstr "{addon_name} {start_sub_heading}使用語音進行搜尋{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "使用語音識別功能在 Google、Yahoo、DuckDuckGo 進行搜型。"
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4558,7 +4554,7 @@ msgstr "{addon_name} {start_sub_heading}加強 Android 搜尋功能{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "於 Firefox for Android 使用更進階的搜尋頁面。"
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4569,13 +4565,12 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr "某些網站無法在 Firefox for Android 上正常播放影片。此擴充套件可修正此問題。"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Firefox 已不再支援傳統擴充套件。"
+msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "它們為 Firefox 新增功能，讓上網變得更快、更安全、更好玩。"
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4583,15 +4578,15 @@ msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "在不同裝置間同步擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "瀏覽器擴充套件外的隱私保護"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Firefox 媒體內容加強器"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
