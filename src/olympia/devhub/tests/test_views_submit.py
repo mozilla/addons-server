@@ -127,26 +127,31 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
             assert doc(selector).text() == 'This field is required.'
 
     def test_read_dev_agreement_skip(self):
+        set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         after_agreement_last_changed = (
             datetime(2019, 6, 10) + timedelta(days=1))
         self.user.update(read_dev_agreement=after_agreement_last_changed)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
-    def test_read_dev_agreement_set_to_future(self):
+    @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(
+        2019, 6, 10, 12, 00))
+    def test_read_dev_agreement_fallback_with_config_set_to_future(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
-    def test_read_dev_agreement_set_to_future_not_agreed_yet(self):
+    def test_read_dev_agreement_fallback_with_conf_future_and_not_agreed(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
+    @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(
+        2019, 6, 10, 12, 00))
     def test_read_dev_agreement_invalid_date_agreed_post_fallback(self):
         set_config('last_dev_agreement_change_date', '2099-25-75 00:00')
         read_dev_date = datetime(2019, 6, 11)
