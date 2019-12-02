@@ -2,14 +2,14 @@
 
 {% if obj.can_report_feedback %}
   <button class="button" formaction="{% url 'admin:scanners_scannerresult_handlefalsepositive' obj.pk %}">
-    Report as false positive
+    {% trans 'Report as false positive' %}
   </button>
   &nbsp;
   <button class="button default" formaction="{% url 'admin:scanners_scannerresult_handletruepositive' obj.pk %}">
-    Mark as true positive
+    {% trans 'Mark as true positive' %}
   </button>
 {% elif obj.can_revert_feedback %}
   <button class="button default" formaction="{% url 'admin:scanners_scannerresult_handlerevert' obj.pk %}">
-    Revert report
+    {% trans 'Revert report' %}
   </button>
 {% endif %}
