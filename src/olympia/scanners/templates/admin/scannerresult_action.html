@@ -1,0 +1,15 @@
+{% load i18n admin_urls %}
+
+{% if obj.can_report_feedback %}
+  <a class="button" href="{% url 'admin:scanners_scannerresult_handlefalsepositive' obj.pk %}">
+    Report as false positive
+  </a>
+  &nbsp;
+  <a class="button default" href="{% url 'admin:scanners_scannerresult_handletruepositive' obj.pk %}">
+    Mark as true positive
+  </a>
+{% elif obj.can_revert_feedback %}
+  <a class="button default" href="{% url 'admin:scanners_scannerresult_handlerevert' obj.pk %}">
+    Revert report
+  </a>
+{% endif %}
