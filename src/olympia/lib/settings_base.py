@@ -7,6 +7,8 @@ import logging
 import os
 import socket
 
+from datetime import datetime
+
 import raven
 from kombu import Queue
 
@@ -1587,11 +1589,12 @@ IN_TEST_SUITE = False
 # support it natively.
 SIMULATE_NAV_PAY = False
 
-# When the dev. agreement gets updated and you need users to re-accept it
-# change this date. You won't want to do this for minor format changes.
+# When the dev. agreement gets updated, you need users to re-accept it and the
+# config 'last_dev_agreement_change_date' is not set, use this fallback.
+# You won't want to do this for minor format changes.
 # The tuple is passed through to datetime.date, so please use a valid date
-# tuple. If the value is None, then it will just not be used at all.
-DEV_AGREEMENT_LAST_UPDATED = None
+# tuple.
+DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2019, 12, 2, 12, 00)
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
