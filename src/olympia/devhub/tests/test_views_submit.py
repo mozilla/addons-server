@@ -134,8 +134,9 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
+    @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(
+        2019, 6, 10, 12, 00))
     def test_read_dev_agreement_set_to_future(self):
-        settings.DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2019, 6, 10, 12, 00)
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
@@ -149,8 +150,9 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
+    @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(
+        2019, 6, 10, 12, 00))
     def test_read_dev_agreement_invalid_date_agreed_post_fallback(self):
-        settings.DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2019, 6, 10, 12, 00)
         set_config('last_dev_agreement_change_date', '2099-25-75 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
