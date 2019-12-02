@@ -3,6 +3,7 @@ from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Prefetch
+from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils.html import format_html
@@ -212,6 +213,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
     formatted_matched_rules.short_description = 'Matched rules'
 
     def handle_true_positive(self, request, pk, *args, **kwargs):
+        if request.method != "POST":
+            raise Http404
+
         result = self.get_object(request, pk)
         result.update(state=TRUE_POSITIVE)
 
@@ -224,6 +228,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return redirect('admin:scanners_scannerresult_changelist')
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
+        if request.method != "POST":
+            raise Http404
+
         result = self.get_object(request, pk)
         result.update(state=FALSE_POSITIVE)
 
@@ -235,8 +242,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
             [
                 # Default label added to all issues
                 'false positive report'
-            ]
-            + [
+            ] + [
                 'rule: {}'.format(rule.name)
                 for rule in result.matched_rules.all()
             ]
@@ -250,6 +256,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
         )
 
     def handle_revert(self, request, pk, *args, **kwargs):
+        if request.method != "POST":
+            raise Http404
+
         result = self.get_object(request, pk)
         result.update(state=UNKNOWN)
 

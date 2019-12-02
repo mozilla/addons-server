@@ -208,12 +208,14 @@ class TestScannerResultAdmin(TestCase):
         with_bar_matches.add_yara_result(rule=rule_hello.name)
         with_bar_matches.save()
         ScannerResult.objects.create(
-            scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]})
+            scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]}
+        )
         with_hello_match = ScannerResult(scanner=YARA)
         with_hello_match.add_yara_result(rule=rule_hello.name)
 
         response = self.client.get(
-            self.list_url, {'matched_rules__id__exact': rule_bar.pk})
+            self.list_url, {'matched_rules__id__exact': rule_bar.pk}
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
@@ -270,7 +272,7 @@ class TestScannerResultAdmin(TestCase):
         result.save()
         assert result.state == UNKNOWN
 
-        response = self.client.get(
+        response = self.client.post(
             reverse(
                 'admin:scanners_scannerresult_handletruepositive',
                 args=[result.pk],
@@ -300,7 +302,7 @@ class TestScannerResultAdmin(TestCase):
         result.save()
         assert result.state == UNKNOWN
 
-        response = self.client.get(
+        response = self.client.post(
             reverse(
                 'admin:scanners_scannerresult_handlefalsepositive',
                 args=[result.pk],
@@ -340,10 +342,9 @@ class TestScannerResultAdmin(TestCase):
         result.save()
         assert result.state == TRUE_POSITIVE
 
-        response = self.client.get(
+        response = self.client.post(
             reverse(
-                'admin:scanners_scannerresult_handlerevert',
-                args=[result.pk],
+                'admin:scanners_scannerresult_handlerevert', args=[result.pk]
             ),
             follow=True,
         )
