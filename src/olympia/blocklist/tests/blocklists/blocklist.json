@@ -1,0 +1,144 @@
+{
+  "data": [
+    {
+      "guid": "/^((_qdMembers_@extmys\\.mysearch\\.com)|(_qjMembers_@www\\.taxcenternow\\.com)|(_ohMembers_@www\\.whizds1\\.com)|(_opMembers_@tvhero\\.thewhizmarketing\\.com)|(_oqMembers_@sportsaddict\\.thewhizproducts\\.com)|(_ooMembers_@yourdailytrailer\\.yournewtab\\.com)|(_olMembers_@screendream\\.yournewtab\\.com)|(_orMembers_@sporthero\\.thewhizmarketing\\.com)|(_osMembers_@gogamego\\.thewhizproducts\\.com)|(_r3Members_@www\\.mysearch\\.com)|(_ojMembers_@www\\.whizds2\\.com)|(_flMemberstest_@free\\.myformsfinder\\.com)|(_dqMemberstest_@www\\.downspeedtest\\.com)|(_flMembersAlt_@free\\.myformsfinder\\.com)|(_dqMembersAlt_@www\\.downspeedtest\\.com)|(_rcMembers_@www\\.extsb\\.searchbetter\\.com)|(_piMembers_@install\\.mysporttab\\.com)|(_phMembers_@install\\.streamfrenzy\\.com)|(_pfMembers_@install\\.myvideotab\\.com)|(_qxMembers_@install\\.utili-site\\.com)|(_qyMembers_@install\\.cryptoconvertertab\\.com)|(_r4Members_@install\\.salah-time\\.com)|(_r9Members_@install\\.speed-exam\\.com)|(_rbMembers_@Install\\.movie-canal\\.com)|(_poMembers_@www\\.linkuryds1\\.com)|(_l9Members_@www\\.plaskodss3\\.com)|(_ppMembers_@www\\.firstofferzds1\\.com)|(_qkMembers_@www\\.exploreads\\.com)|(_kfMembers_@www\\.bluecpads\\.com)|(_k2Members_@www\\.arcadejetds\\.com)|(_qiMembers_@tvguru-lp\\.olympuswaymarketing\\.com)|(_p8Members_@www\\.easywatch\\.online)|(_kcMembers_@www\\.utilitytab\\.com)|(_kdMembers_@www\\.utilitytab\\.com)|(_qrMembers_@www\\.install\\.utilitytab\\.com)|(_qsMembers_@www\\.utilitytab\\.com)|(_izMembers_@www\\.geteasyarcade\\.com)|(_qgMembers_@www\\.getinstantpdf\\.com)|(_p7Members_@www\\.tigersdeal\\.com)|(_jgMembers_@www\\.greathippo\\.com)|(_jdMembers_@www\\.greathippo\\.com)|(_juMembers_@arcadejet\\.com)|(\\{90ac1d06-caf8-46b9-9325-59c82190b687\\}))$/",
+      "prefs": [],
+      "schema": 1575056491406,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1600273",
+        "why": "These add-ons collect ancillary user data among other policy violations.",
+        "name": "New Tab Data Collection Extensions"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "196e36b5-3225-4f8d-a1a0-6696ea8885f9",
+      "last_modified": 1575066166785
+    },
+    {
+      "guid": "{99454877-875a-473e-a0c7-03ab910a8461}",
+      "prefs": [],
+      "schema": 1575040644063,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1600327",
+        "why": "The add-on violates Mozilla's add-on policies by using obfuscated code.",
+        "name": "Smart Screen Capture"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "3f98e9e7-40d0-4af5-969c-9ea1aadbf280",
+      "last_modified": 1575041576477
+    },
+    {
+      "guid": "Stark-vpn.5.14@firefox.com",
+      "prefs": [],
+      "schema": 1574438767458,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1598688",
+        "why": "This add-on violates Mozilla’s add-on policies by executing remote code.",
+        "name": "Stark VPN"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "5d2478e3-cbaa-4192-89f0-5abf3ea10656",
+      "last_modified": 1574441398416
+    },
+    {
+      "guid": "/^({bf9194c2-b86d-4ebc-9b53-1c08b6ff779e}|{61a83e16-7198-49c6-8874-3e4e8faeb4f3}|{f0af464e-5167-45cf-9cf0-66b396d1918c}|{5d9968c3-101c-4944-ba71-72d77393322d}|{01e86e69-a2f8-48a0-b068-83869bdba3d0})$/",
+      "prefs": [],
+      "schema": 1480343836083,
+      "blockID": "i515",
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=947473",
+        "who": "All Firefox users who have this add-on installed. Users who wish to continue using it can enable it in the Add-ons Manager.",
+        "why": "The installer that includes this add-on violates the <a href=\"https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Add-on_guidelines\">Add-on Guidelines</a> by using multiple add-on IDs and making unwanted settings changes.",
+        "name": "VisualBee Toolbar",
+        "created": "2013-12-20T12:26:49Z"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 1,
+          "maxVersion": "*",
+          "minVersion": "0",
+          "targetApplication": []
+        }
+      ],
+      "id": "029fa6f9-2351-40b7-5443-9a66e057f199",
+      "last_modified": 1480349193449
+    },
+    {
+      "guid": "{0D2172E4-C5AE-465A-B80D-53A840275B5E}",
+      "prefs": [],
+      "schema": 1493332768943,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1359473",
+        "who": "All users of Thunderbird 52 and above, using a version of the Priority Switcher add-on before version 0.7",
+        "why": "This add-on is causing recurring startup crashes in Thunderbird.",
+        "name": "Priority Switcher for Thunderbird before version 0.7"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 1,
+          "maxVersion": "0.6.999",
+          "minVersion": "0",
+          "targetApplication": [
+            {
+              "guid": "{3550f703-e582-4d05-9a08-453d09bdfdc6}",
+              "maxVersion": "*",
+              "minVersion": "52.0a1"
+            }
+          ]
+        }
+      ],
+      "id": "8c8af415-46db-40be-a66e-38e3762493bd",
+      "last_modified": 1493332986987
+    },
+    {
+      "guid": "/^(test2@test\\.com)|(test3@test\\.com)|(mozilla_cc2\\.2@internetdownloadmanager\\.com)$/",
+      "prefs": [],
+      "schema": 1490557289817,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1351095",
+        "who": "All users who have any of these add-ons installed.",
+        "why": "Old versions of the Internet Download Manager Integration add-on cause performance and stability problems in Firefox 53 and above.",
+        "name": "IDM Integration forks"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0",
+          "targetApplication": [
+            {
+              "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+              "maxVersion": "*",
+              "minVersion": "53.0a1"
+            }
+          ]
+        }
+      ],
+      "id": "9085fdba-8498-46a9-b9fd-4c7343a15c62",
+      "last_modified": 1490653926191
+    }
+  ]
+}
