@@ -522,6 +522,7 @@ class TestDownloadSource(TestCase):
     def test_download_for_admin(self):
         """File downloading is allowed for admins."""
         self.grant_permission(self.user, 'Reviews:Admin')
+        self.addon.authors.clear()
         self.client.login(email=self.user.email)
         assert self.client.get(self.url).status_code == 200
 

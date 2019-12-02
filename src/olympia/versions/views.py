@@ -152,14 +152,18 @@ def download_source(request, version_id):
     addon = version.addon
 
     # Channel doesn't matter, source code is only available to admin reviewers
-    # or developers of the add-on. We do need to check if the version or add-on
-    # has been deleted though.
-    if version.deleted or version.addon.is_deleted:
-        has_permission = acl.action_allowed(
-            request, amo.permissions.REVIEWS_ADMIN)
-    else:
-        has_permission = acl.check_addon_ownership(
-            request, addon, admin=False, dev=True, ignore_disabled=True)
+    # or developers of the add-on. If the add-on, version or file is deleted or
+    # disabled, then only admins can access.
+    has_permission = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+
+    if (addon.status != amo.STATUS_DISABLED and
+            not version.files.filter(status=amo.STATUS_DISABLED).exists() and
+            not version.deleted and
+            not addon.is_deleted):
+        # Don't rely on 'admin' parameter for check_addon_ownership(), it
+        # doesn't check the permission we want to check.
+        has_permission = has_permission or acl.check_addon_ownership(
+            request, addon, admin=False, dev=True)
     if not has_permission:
         raise http.Http404()
 
