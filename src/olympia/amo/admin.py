@@ -6,6 +6,8 @@ from django.core.exceptions import FieldDoesNotExist
 from django.db import models
 from django.db.models.constants import LOOKUP_SEP
 
+from .models import FakeEmail
+
 
 class CommaSearchInAdminMixin:
     def get_search_id_field(self, request):
@@ -120,3 +122,19 @@ class CommaSearchInAdminMixin:
                 queryset = queryset.filter(
                     functools.reduce(joining_operator, filters))
         return queryset, use_distinct
+
+
+@admin.register(FakeEmail)
+class FakeEmailAdmin(admin.ModelAdmin):
+    list_display = (
+        'created',
+        'message',
+    )
+    actions = ['delete_selected']
+    view_on_site = False
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False

@@ -39,7 +39,6 @@ urlpatterns = [
         views.download_file_upload, name='zadmin.download_file_upload'),
 
     url(r'^elastic$', views.elastic, name='zadmin.elastic'),
-    url(r'^mail$', views.mail, name='zadmin.mail'),
     url(r'^addon-search$', views.addon_search, name='zadmin.addon-search'),
 
     # The Django admin.
