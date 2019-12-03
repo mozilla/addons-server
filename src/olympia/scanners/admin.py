@@ -339,7 +339,11 @@ class ScannerRuleAdmin(admin.ModelAdmin):
         count = ScannerResult.objects.filter(matched_rules=obj).count()
         url = reverse('admin:{}_{}_changelist'.format(
             ScannerResult._meta.app_label, ScannerResult._meta.model_name))
-        url = (f'{url}?matched_rules__id__exact={obj.pk}&has_version=all'
-               f'&state=all&scanner={obj.scanner}')
+        url = (
+            f'{url}?matched_rules__id__exact={obj.pk}'
+            f'&{WithVersionFilter.parameter_name}=all'
+            f'&{StateFilter.parameter_name}=all'
+            f'&scanner={obj.scanner}'
+        )
         return format_html('<a href="{}">{}</a>', url, count)
     matched_results_link.short_description = 'Matched Results'
