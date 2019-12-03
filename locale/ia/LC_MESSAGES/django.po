@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-03 02:41+0000\n"
+"PO-Revision-Date: 2019-12-03 22:05+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3612,7 +3612,7 @@ msgstr "Naviga con securitate {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Adde securitate cryptate a omne sito que supporta HTTPS. Naviga con securitate."
+msgstr "Adde securitate cryptographic a omne sito que supporta HTTPS. Naviga con securitate."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
