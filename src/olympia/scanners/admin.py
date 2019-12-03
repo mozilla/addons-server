@@ -323,3 +323,27 @@ class ScannerRuleAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'scanner', 'action', 'is_active')
     list_filter = ('scanner', 'action', 'is_active')
+    fields = (
+        'name',
+        'scanner',
+        'action',
+        'created',
+        'modified',
+        'definition',
+        'matched_results_link',
+        'is_active',
+    )
+    readonly_fields = ('created', 'modified', 'matched_results_link',)
+
+    def matched_results_link(self, obj):
+        count = ScannerResult.objects.filter(matched_rules=obj).count()
+        url = reverse('admin:{}_{}_changelist'.format(
+            ScannerResult._meta.app_label, ScannerResult._meta.model_name))
+        url = (
+            f'{url}?matched_rules__id__exact={obj.pk}'
+            f'&{WithVersionFilter.parameter_name}=all'
+            f'&{StateFilter.parameter_name}=all'
+            f'&scanner={obj.scanner}'
+        )
+        return format_html('<a href="{}">{}</a>', url, count)
+    matched_results_link.short_description = 'Matched Results'
