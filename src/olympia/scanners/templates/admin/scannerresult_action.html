@@ -1,7 +1,11 @@
 {% load i18n admin_urls %}
 
 {% if obj.can_report_feedback %}
-  <button class="button" formaction="{% url 'admin:scanners_scannerresult_handlefalsepositive' obj.pk %}">
+  <button
+    class="button report-false-positive-button"
+    formaction="{% url 'admin:scanners_scannerresult_handlefalsepositive' obj.pk %}"
+    formtarget="_blank"
+  >
     {% trans 'Report as false positive' %}
   </button>
   &nbsp;
