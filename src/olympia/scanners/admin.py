@@ -324,11 +324,11 @@ class ScannerRuleAdmin(admin.ModelAdmin):
     list_display = ('name', 'scanner', 'action', 'is_active')
     list_filter = ('scanner', 'action', 'is_active')
     fields = (
-        'created',
-        'modified',
         'name',
         'scanner',
         'action',
+        'created',
+        'modified',
         'definition',
         'matched_results_link',
         'is_active',
