@@ -3,13 +3,16 @@ from collections import defaultdict, namedtuple, OrderedDict
 
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.functional import cached_property
+
+from django_extensions.db.fields.json import JSONField
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
 from django.utils.translation import gettext_lazy as _
 from olympia.versions.compare import addon_version_int
@@ -129,6 +132,7 @@ class Block(ModelBase):
 
 class MultiBlockSubmit(ModelBase):
     input_guids = models.TextField()
+    processed_guids = JSONField(default={})
     min_version = models.CharField(
         max_length=255, blank=False, default=Block.MIN)
     max_version = models.CharField(
@@ -147,6 +151,44 @@ class MultiBlockSubmit(ModelBase):
         if min_vint > max_vint:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
+
+    @property
+    def invalid_guid_count(self):
+        return len(self.processed_guids.get('invalid_guids', []))
+
+    @property
+    def existing_guid_count(self):
+        return len(self.processed_guids.get('existing_guids', []))
+
+    @property
+    def blocks_count(self):
+        return len(self.processed_guids.get('blocks', []))
+
+    @property
+    def blocks_submitted_count(self):
+        return len(self.processed_guids.get('blocks_saved', []))
+
+    def submission_complete(self):
+        return self.blocks_count == self.blocks_submitted_count
+    submission_complete.boolean = True
+
+    def blocks_submitted(self):
+        blocks = self.processed_guids.get('blocks_saved', [])
+        return format_html_join(
+            '\n',
+            '<a href="{}">{}</a>',
+            ((reverse('admin:blocklist_block_change', args=(id_,)), guid)
+                for (id_, guid) in blocks))
+
+    def save(self, *args, **kwargs):
+        if self.input_guids and not self.processed_guids:
+            processed_guids = self.process_input_guids(
+                self.input_guids, load_full_objects=False)
+            # flatten blocks back to just the guids
+            processed_guids['blocks'] = [
+                block.guid for block in processed_guids['blocks']]
+            self.processed_guids = processed_guids
+        super().save(*args, **kwargs)
 
     @classmethod
     def process_input_guids(cls, guids, load_full_objects=True):
@@ -223,6 +265,34 @@ class MultiBlockSubmit(ModelBase):
             'blocks': blocks,
         }
 
+    @classmethod
+    def _get_blocks_from_list(cls, guids_to_block):
+        """Cut down version of `process_input_guids` for saving - we've already
+        filtered the guids so we know they all need to be either created or
+        updated.
+        """
+        # load all the Addon instances together
+        addons = list(Addon.unfiltered.filter(
+            guid__in=guids_to_block).no_transforms())
+
+        # And then any existing block instances
+        existing_blocks = {
+            block.guid: block
+            for block in Block.objects.filter(guid__in=guids_to_block)}
+
+        blocks = []
+        for addon in addons:
+            # get the existing block object or create a new instance
+            block = existing_blocks.get(addon.guid, None)
+            if block:
+                # if it exists hook up the addon instance
+                block.addon = addon
+            else:
+                # otherwise create a new Block
+                block = Block(addon=addon)
+            blocks.append(block)
+        return blocks
+
     def save_to_blocks(self):
         common_args = {
             'min_version': self.min_version,
@@ -232,18 +302,24 @@ class MultiBlockSubmit(ModelBase):
             'updated_by': self.updated_by,
             'include_in_legacy': self.include_in_legacy,
         }
-        processed_guids = self.process_input_guids(self.input_guids)
 
-        blocks = processed_guids['blocks']
-        Block.preload_addon_versions(blocks)
         modified_datetime = datetime.datetime.now()
-        for block in blocks:
-            change = bool(block.id)
-            for field, val in common_args.items():
-                setattr(block, field, val)
-            if change:
-                setattr(block, 'modified', modified_datetime)
-            block.save()
-            block_activity_log_save(block, change=change)
+        all_guids_to_block = self.processed_guids.get('blocks', [])
+        self.processed_guids['blocks_saved'] = []
+        blocks_saved = []
+        for guids_chunk in chunked(all_guids_to_block, 100):
+            blocks = self._get_blocks_from_list(guids_chunk)
+            Block.preload_addon_versions(blocks)
+            for block in blocks:
+                change = bool(block.id)
+                for field, val in common_args.items():
+                    setattr(block, field, val)
+                if change:
+                    setattr(block, 'modified', modified_datetime)
+                block.save()
+                block_activity_log_save(block, change=change)
+                blocks_saved.append((block.id, block.guid))
+            self.processed_guids['blocks_saved'] = blocks_saved
+            self.save()
 
         return blocks

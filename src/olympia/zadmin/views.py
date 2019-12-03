@@ -18,9 +18,7 @@ from olympia.addons.models import Addon
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
     json_view, permission_required, post_required)
-from olympia.amo.mail import DevEmailBackend
 from olympia.amo.utils import HttpResponseXSendFile, render
-from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.versions.models import Version
@@ -62,31 +60,6 @@ def fix_disabled_file(request):
 
 
 @admin_required
-@json_view
-def collections_json(request):
-    app = request.GET.get('app', '')
-    q = request.GET.get('q', '')
-    data = []
-    if not q:
-        return data
-    qs = Collection.objects.all()
-    try:
-        qs = qs.filter(pk=int(q))
-    except ValueError:
-        qs = qs.filter(slug__startswith=q)
-    try:
-        qs = qs.filter(application=int(app))
-    except ValueError:
-        pass
-    for c in qs[:7]:
-        data.append({'id': c.id,
-                     'name': str(c.name),
-                     'slug': str(c.slug),
-                     'url': c.get_url_path()})
-    return data
-
-
-@admin_required
 def elastic(request):
     INDEX = settings.ES_INDEXES['default']
     es = search.get_es()
@@ -104,15 +77,6 @@ def elastic(request):
         'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
     }
     return render(request, 'zadmin/elastic.html', ctx)
-
-
-@admin.site.admin_view
-def mail(request):
-    backend = DevEmailBackend()
-    if request.method == 'POST':
-        backend.clear()
-        return redirect('zadmin.mail')
-    return render(request, 'zadmin/mail.html', dict(mail=backend.view_all()))
 
 
 @permission_required(amo.permissions.ANY_ADMIN)

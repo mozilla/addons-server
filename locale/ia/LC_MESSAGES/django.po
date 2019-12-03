@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-27 03:48+0000\n"
+"PO-Revision-Date: 2019-12-03 02:41+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4510,7 +4510,7 @@ msgstr "Bloca publicitate e multo plus {start_sub_heading}con {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Bloca publicitate e obtene protection avantiate contra malware e traciatores."
+msgstr "Bloca publicitate e obtene protection reinfortiate contra malware e traciatores."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5057,8 +5057,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"In general, no. Ma si le revision non incontrava le lineas guida del revisiones sumite supra, tu pote cliccar \"Reportar iste revision\" e haber illo moderate. Si un revision includeva un querela "
-"que non es plus valide debite a un nove version de tu additivo, nos pote considerar de deler le revision."
+"In general, no. Ma si le recension non respecta le directivas enumerate hic supra, tu pote cliccar sur \"Signalar iste recension\" pro demandar que un moderator lo examina. Si un recension include "
+"un querela que non es plus valide post que tu ha publicate un nove version de tu additivo, nos pote considerar deler le recension."
 
 msgid "User"
 msgstr "Usator"
@@ -5204,7 +5204,7 @@ msgid "Skip for now"
 msgstr "Saltar pro iste momento"
 
 msgid "Delete review"
-msgstr "Deler le revision"
+msgstr "Deler recension"
 
 msgid "Needs Admin Content Review"
 msgstr "Il es necesse revision de contento per administrator"
