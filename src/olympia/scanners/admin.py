@@ -24,12 +24,7 @@ from olympia.constants.scanners import (
 from .models import ScannerResult, ScannerRule
 
 
-class MatchesFilter(SimpleListFilter):
-    title = ugettext('matches')
-    parameter_name = 'has_matches'
-
-    def lookups(self, request, model_admin):
-        return (('all', 'All'), (None, ' With matched rules only'))
+class PresenceFilter(SimpleListFilter):
 
     def choices(self, cl):
         for lookup, title in self.lookup_choices:
@@ -40,6 +35,14 @@ class MatchesFilter(SimpleListFilter):
                 ),
                 'display': title,
             }
+
+
+class MatchesFilter(PresenceFilter):
+    title = ugettext('presence of matched rules')
+    parameter_name = 'has_matched_rules'
+
+    def lookups(self, request, model_admin):
+        return (('all', 'All'), (None, ' With matched rules only'))
 
     def queryset(self, request, queryset):
         if self.value() == 'all':
@@ -89,6 +92,19 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
         ]
 
 
+class WithVersionFilter(PresenceFilter):
+    title = ugettext('presence of a version')
+    parameter_name = 'has_version'
+
+    def lookups(self, request, model_admin):
+        return (('all', 'All'), (None, ' With version only'))
+
+    def queryset(self, request, queryset):
+        if self.value() == 'all':
+            return queryset
+        return queryset.exclude(version=None)
+
+
 @admin.register(ScannerResult)
 class ScannerResultAdmin(admin.ModelAdmin):
     actions = None
@@ -110,6 +126,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         MatchesFilter,
         StateFilter,
         ('matched_rules', ScannerRuleListFilter),
+        WithVersionFilter,
     )
     list_select_related = ('version',)
 

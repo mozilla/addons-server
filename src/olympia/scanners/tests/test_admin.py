@@ -29,6 +29,7 @@ from olympia.scanners.admin import (
     MatchesFilter,
     ScannerResultAdmin,
     StateFilter,
+    WithVersionFilter,
 )
 from olympia.scanners.models import ScannerResult, ScannerRule
 
@@ -181,7 +182,7 @@ class TestScannerResultAdmin(TestCase):
             ('wat', '?scanner__exact=2'),
             ('yara', '?scanner__exact=3'),
 
-            ('All', '?has_matches=all'),
+            ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),
 
             ('All', '?state=all'),
@@ -193,6 +194,9 @@ class TestScannerResultAdmin(TestCase):
             ('foo (customs)', f'?matched_rules__id__exact={rule_foo.pk}'),
             ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
             ('hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
+
+            ('All', '?has_version=all'),
+            (' With version only', '?'),
         ]
         filters = [
             (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
@@ -213,26 +217,41 @@ class TestScannerResultAdmin(TestCase):
         with_hello_match = ScannerResult(scanner=YARA)
         with_hello_match.add_yara_result(rule=rule_hello.name)
 
-        response = self.client.get(
-            self.list_url, {'matched_rules__id__exact': rule_bar.pk}
-        )
+        response = self.client.get(self.list_url, {
+            'matched_rules__id__exact': rule_bar.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == 'bar, hello'
 
-    def test_list_shows_matches_and_unknown_state_only_by_default(self):
-        # Create one entry without matches
-        ScannerResult.objects.create(scanner=YARA)
-        # Create one entry with matches
+    def test_list_default(self):
+        # Create one entry without matches, it will not be shown by default
+        ScannerResult.objects.create(
+            scanner=YARA,
+            version=version_factory(addon=addon_factory()),
+        )
+        # Create one entry with matches, it will be shown by default
         rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        with_matches = ScannerResult(scanner=YARA)
+        with_matches = ScannerResult(
+            scanner=YARA,
+            version=version_factory(addon=addon_factory()),
+        )
         with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
-        # Create a false positive
-        false_positive = ScannerResult(scanner=YARA, state=FALSE_POSITIVE)
+        # Create a false positive, it will not be shown by default
+        false_positive = ScannerResult(
+            scanner=YARA,
+            state=FALSE_POSITIVE,
+            version=version_factory(addon=addon_factory()),
+        )
         false_positive.add_yara_result(rule=rule.name)
         false_positive.save()
+        # Create an entry without a version, it will not be shown by default
+        without_version = ScannerResult(scanner=YARA)
+        without_version.add_yara_result(rule=rule.name)
+        without_version.save()
 
         response = self.client.get(self.list_url)
         assert response.status_code == 200
@@ -251,12 +270,17 @@ class TestScannerResultAdmin(TestCase):
         false_positive = ScannerResult(scanner=YARA, state=FALSE_POSITIVE)
         false_positive.add_yara_result(rule=rule.name)
         false_positive.save()
+        # Create an entry without a version
+        without_version = ScannerResult(scanner=YARA)
+        without_version.add_yara_result(rule=rule.name)
+        without_version.save()
 
         response = self.client.get(
             self.list_url,
             {
                 MatchesFilter.parameter_name: 'all',
                 StateFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
             },
         )
         assert response.status_code == 200
@@ -336,7 +360,10 @@ class TestScannerResultAdmin(TestCase):
     def test_handle_revert_report(self):
         # Create one entry with matches
         rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
+        result = ScannerResult(
+            scanner=YARA,
+            version=version_factory(addon=addon_factory())
+        )
         result.add_yara_result(rule=rule.name)
         result.state = TRUE_POSITIVE
         result.save()
