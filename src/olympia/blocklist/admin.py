@@ -284,11 +284,15 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
 
     def _get_version_choices(self, obj, field):
         default = obj._meta.get_field(field).default
-        return (
+        choices = [
             (version, version) for version in (
                 [default] + list(obj.addon_versions.keys())
             )
-        )
+        ]
+        value = getattr(obj, field)
+        if value and (value, value) not in choices:
+            choices = [(getattr(obj, field), '(invalid)')] + choices
+        return choices
 
     def get_request_guid(self, request):
         return request.GET.get('guid')

@@ -476,6 +476,34 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert b'Review Listed' not in response.content
         assert b'Review Unlisted' in response.content
 
+    def test_can_not_set_min_version_above_max_version(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        addon_factory(guid='any@new', name='New Danger')
+        partial_addon = addon_factory(
+            guid='partial@existing', name='Partial Danger')
+        Block.objects.create(
+            addon=partial_addon,
+            min_version='1',
+            max_version='99',
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url, {
+                'input_guids': 'any@new\npartial@existing\ninvalid@',
+                'min_version': '5',
+                'max_version': '3',
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 200
+        assert b'Min version can not be greater than Max' in response.content
+        assert Block.objects.count() == 1
+
     def test_can_not_add_without_permission(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -643,6 +671,71 @@ class TestBlockAdminEdit(TestCase):
         assert f'Block edited by {user.name}: {self.block.guid}' in content
         assert f'versions 0 - {self.addon.current_version.version}' in content
         assert f'Included in legacy blocklist' in content
+
+    def test_invalid_versions_not_accepted(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        self.addon.current_version.update(version='123.4b5')
+        version_factory(addon=self.addon, version='678')
+        # Update min_version in self.block to a version that doesn't exist
+        self.block.update(min_version='444.4a')
+
+        response = self.client.get(self.change_url, follow=True)
+        content = response.content.decode('utf-8')
+        doc = pq(content)
+        ver_list = doc('#id_min_version option')
+        assert len(ver_list) == 4
+        assert ver_list.eq(0).attr['value'] == '444.4a'
+        assert ver_list.eq(0).text() == '(invalid)'
+        assert ver_list.eq(1).attr['value'] == '0'
+        assert ver_list.eq(2).attr['value'] == '123.4b5'
+        assert ver_list.eq(3).attr['value'] == '678'
+        ver_list = doc('#id_max_version option')
+        assert len(ver_list) == 3
+        assert ver_list.eq(0).attr['value'] == '*'
+        assert ver_list.eq(1).attr['value'] == '123.4b5'
+        assert ver_list.eq(2).attr['value'] == '678'
+
+        data = {
+            'url': 'https://foo.baa',
+            'reason': 'some other reason',
+            'include_in_legacy': True,
+            '_continue': 'Save and continue editing',
+        }
+        # Try saving the form with the same min_version
+        response = self.client.post(
+            self.change_url, dict(
+                min_version='444.4a',  # current value, but not a version.
+                max_version=self.addon.current_version.version,  # valid
+                **data),
+            follow=True)
+        assert response.status_code == 200
+        assert b'Invalid version' in response.content
+        self.block = self.block.reload()
+        assert self.block.min_version == '444.4a'  # not changed
+        assert self.block.max_version == '*'  # not changed either.
+        assert not ActivityLog.objects.for_addons(self.addon).exists()
+        doc = pq(content)
+        assert doc('#id_min_version option').eq(0).attr['value'] == '444.4a'
+
+        # Change to a version that exists
+        response = self.client.post(
+            self.change_url, dict(
+                min_version='123.4b5',
+                max_version='*',
+                **data),
+            follow=True)
+        assert response.status_code == 200
+        assert b'Invalid version' not in response.content
+        self.block = self.block.reload()
+        assert self.block.min_version == '123.4b5'  # changed
+        assert self.block.max_version == '*'
+        assert ActivityLog.objects.for_addons(self.addon).exists()
+        # the value shouldn't be in the list of versions either any longer.
+        assert b'444.4a' not in response.content
 
     def test_can_not_edit_without_permission(self):
         user = user_factory()

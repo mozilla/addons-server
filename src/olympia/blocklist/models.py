@@ -22,9 +22,11 @@ from .utils import block_activity_log_save
 
 
 class Block(ModelBase):
+    MIN = '0'
+    MAX = '*'
     guid = models.CharField(max_length=255, unique=True, null=False)
-    min_version = models.CharField(max_length=255, blank=False, default='0')
-    max_version = models.CharField(max_length=255, blank=False, default='*')
+    min_version = models.CharField(max_length=255, blank=False, default=MIN)
+    max_version = models.CharField(max_length=255, blank=False, default=MAX)
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
@@ -85,6 +87,14 @@ class Block(ModelBase):
         return addon_version_int(self.max_version)
 
     def clean(self):
+        if self.id:
+            # We're only concerned with edits - self.guid isn't set at this
+            # point for new instances anyway.
+            choices = list(self.addon_versions.keys())
+            if self.min_version not in choices + [self.MIN]:
+                raise ValidationError({'min_version': _('Invalid version')})
+            if self.max_version not in choices + [self.MAX]:
+                raise ValidationError({'max_version': _('Invalid version')})
         if self.min_version_vint > self.max_version_vint:
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
@@ -124,9 +134,9 @@ class MultiBlockSubmit(ModelBase):
     input_guids = models.TextField()
     processed_guids = JSONField(default={})
     min_version = models.CharField(
-        choices=(('0', '0'),), default='0', max_length=1)
+        max_length=255, blank=False, default=Block.MIN)
     max_version = models.CharField(
-        choices=(('*', '*'),), default='*', max_length=1)
+        max_length=255, blank=False, default=Block.MAX)
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(
@@ -134,6 +144,13 @@ class MultiBlockSubmit(ModelBase):
     include_in_legacy = models.BooleanField(
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
+
+    def clean(self):
+        min_vint = addon_version_int(self.min_version)
+        max_vint = addon_version_int(self.max_version)
+        if min_vint > max_vint:
+            raise ValidationError(
+                _('Min version can not be greater than Max version'))
 
     @property
     def invalid_guid_count(self):
@@ -175,7 +192,7 @@ class MultiBlockSubmit(ModelBase):
 
     @classmethod
     def process_input_guids(cls, guids, load_full_objects=True):
-        """Process a line-return seperated list of guids into a list of invalid
+        """Process a line-return separated list of guids into a list of invalid
         guids, a list of guids that are fully blocked already (0 - *), and a
         list of Block instances - including new Blocks (unsaved) and existing
         partial Blocks.
@@ -220,7 +237,8 @@ class MultiBlockSubmit(ModelBase):
         # identify the blocks that need updating (i.e. not 0 - * already)
         blocks_to_update_dict = {
             block.guid: block for block in existing_blocks
-            if not (block.min_version == '0' and block.max_version == '*')}
+            if not (block.min_version == Block.MIN and
+                    block.max_version == Block.MAX)}
         existing_guids = [
             block.guid for block in existing_blocks
             if block.guid not in blocks_to_update_dict]
@@ -234,7 +252,7 @@ class MultiBlockSubmit(ModelBase):
             block = (
                 blocks_to_update_dict.get(addon.guid, None) or (
                     Block(addon=addon) if load_full_objects else
-                    FakeBlock(addon.guid, addon, '0', '*')
+                    FakeBlock(addon.guid, addon, Block.MIN, Block.MAX)
                 ))
             blocks.append(block)
 

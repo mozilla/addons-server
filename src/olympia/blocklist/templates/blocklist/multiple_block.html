@@ -67,6 +67,11 @@
         </ul>
       </div>
     </div>
+    {% if form.non_field_errors %}
+    <div class="form-row">
+      {{ form.non_field_errors }}
+    </div>
+    {% endif %}
     <div class="form-row">
       <div>
         {{ form.min_version.errors }}
