@@ -408,3 +408,23 @@ class TestScannerRuleAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
+
+    def test_change_view_contains_link_to_results(self):
+        rule = ScannerRule.objects.create(name='bar', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        ScannerResult.objects.create(scanner=YARA)  # Doesn't match
+        url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        link = doc('.field-matched_results_link a')
+        assert link
+        results_list_url = reverse('admin:scanners_scannerresult_changelist')
+        expected_href = (
+            f'{results_list_url}?matched_rules__id__exact={rule.pk}'
+            f'&has_version=all&state=all&scanner={rule.scanner}'
+        )
+        assert link.attr('href') == expected_href
+        assert link.text() == '1'
