@@ -3,6 +3,7 @@ from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Prefetch
+from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils.html import format_html
@@ -83,7 +84,8 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
         return [
             (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
             for rule in ScannerRule.objects.only(
-                'pk', 'scanner', 'name').order_by('scanner', 'name')
+                'pk', 'scanner', 'name'
+            ).order_by('scanner', 'name')
         ]
 
 
@@ -127,9 +129,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     ordering = ('-created',)
 
     class Media:
-        css = {
-            'all': ('css/admin/scannerresult.css',)
-        }
+        css = {'all': ('css/admin/scannerresult.css',)}
 
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
@@ -213,6 +213,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
     formatted_matched_rules.short_description = 'Matched rules'
 
     def handle_true_positive(self, request, pk, *args, **kwargs):
+        if request.method != "POST":
+            raise Http404
+
         result = self.get_object(request, pk)
         result.update(state=TRUE_POSITIVE)
 
@@ -225,6 +228,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return redirect('admin:scanners_scannerresult_changelist')
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
+        if request.method != "POST":
+            raise Http404
+
         result = self.get_object(request, pk)
         result.update(state=FALSE_POSITIVE)
 
@@ -250,6 +256,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
         )
 
     def handle_revert(self, request, pk, *args, **kwargs):
+        if request.method != "POST":
+            raise Http404
+
         result = self.get_object(request, pk)
         result.update(state=UNKNOWN)
 
@@ -283,29 +292,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return custom_urls + urls
 
     def result_actions(self, obj):
-        if obj.can_report_feedback():
-            return format_html(
-                '<a class="button" href="{}">Report as false positive</a>'
-                '&nbsp;'
-                '<a class="button default" href="{}">'
-                'Mark as true positive</a>',
-                reverse(
-                    'admin:scanners_scannerresult_handlefalsepositive',
-                    args=[obj.pk],
-                ),
-                reverse(
-                    'admin:scanners_scannerresult_handletruepositive',
-                    args=[obj.pk],
-                ),
-            )
-        elif obj.can_revert_feedback():
-            return format_html(
-                '<a class="button default" href="{}">Revert report</a>',
-                reverse(
-                    'admin:scanners_scannerresult_handlerevert',
-                    args=[obj.pk],
-                ),
-            )
+        return render_to_string(
+            'admin/scannerresult_action.html', {'obj': obj}
+        )
 
     result_actions.short_description = 'Actions'
     result_actions.allow_tags = True

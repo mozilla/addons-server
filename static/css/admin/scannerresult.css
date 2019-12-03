@@ -3,6 +3,10 @@
   white-space: nowrap;
 }
 
-.button.default {
+.field-result_actions .button {
+  padding: 4px 6px;
+}
+
+.field-result_actions .button.default {
   float: none;
 }
