@@ -346,11 +346,15 @@ class ReviewForm(forms.Form):
                 channel = self.helper.version.channel
             else:
                 channel = amo.RELEASE_CHANNEL_LISTED
+            # For unlisted, we only care about approved versions, reviewers
+            # aren't actively monitoring that queue.
+            if channel == amo.RELEASE_CHANNEL_UNLISTED:
+                statuses = (amo.STATUS_APPROVED, )
+            else:
+                statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
             self.fields['versions'].queryset = (
                 self.helper.addon.versions.distinct().filter(
-                    channel=channel,
-                    files__status__in=(amo.STATUS_APPROVED,
-                                       amo.STATUS_AWAITING_REVIEW)).
+                    channel=channel, files__status__in=statuses).
                 order_by('created'))
 
         # For the canned responses, we're starting with an empty one, which

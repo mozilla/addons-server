@@ -148,8 +148,8 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == [
             self.addon.current_version]
 
-    def test_versions_queryset_contains_pending_version(self):
-        addon_factory()
+    def test_versions_queryset_contains_pending_files_for_listed(self):
+        addon_factory()  # Extra add-on, shouldn't be included.
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
                         file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         form = self.get_form()
@@ -165,6 +165,27 @@ class TestReviewForm(TestCase):
         assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == list(
             self.addon.versions.all().order_by('pk'))
+        assert form.fields['versions'].queryset.count() == 2
+
+    def test_versions_queryset_doesnt_contain_pending_files_for_unlisted(self):
+        addon_factory()  # Extra add-on, shouldn't be included.
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+                        file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        form = self.get_form()
+        assert not form.is_bound
+        assert form.fields['versions'].required is False
+        assert list(form.fields['versions'].queryset) == []
+
+        # With Addons:ReviewUnlisted permission, the reject_multiple_versions
+        # action will be available, resetting the queryset of allowed choices.
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        form = self.get_form()
+        assert not form.is_bound
+        assert form.fields['versions'].required is False
+        # The extra version isn't included, because it's not approved and we're
+        # looking at unlisted.
+        assert list(form.fields['versions'].queryset) == [self.version]
 
     def test_versions_required(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
