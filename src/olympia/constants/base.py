@@ -192,6 +192,10 @@ ADDON_TYPE_CHOICES_API = {
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
+CONTRIBUTE_UTM_PARAMS = (
+    'utm_content=product-page-contribute&'
+    'utm_medium=referral&'
+    'utm_source=addons.mozilla.org')
 VALID_CONTRIBUTION_DOMAINS = (
     'donate.mozilla.org',
     'flattr.com',
