@@ -1,3 +1,4 @@
+from django.forms import ModelForm
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin, messages
@@ -324,14 +325,14 @@ class ScannerRuleAdmin(admin.ModelAdmin):
     list_display = ('name', 'scanner', 'action', 'is_active')
     list_filter = ('scanner', 'action', 'is_active')
     fields = (
-        'name',
         'scanner',
+        'name',
         'action',
         'created',
         'modified',
-        'definition',
         'matched_results_link',
         'is_active',
+        'definition',
     )
     readonly_fields = ('created', 'modified', 'matched_results_link',)
 
