@@ -1605,6 +1605,11 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 
+        # That flag only applies to listed.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is False
+
     def test_check_has_auto_approval_delayed_until(self):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is False
@@ -1620,6 +1625,11 @@ class TestAutoApprovalSummary(TestCase):
 
         future_date = datetime.now() + timedelta(hours=1)
         flags.update(auto_approval_delayed_until=future_date)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
+            self.version) is True
+
+        # *That* flag applies to both listed and unlisted.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 
@@ -1665,6 +1675,13 @@ class TestAutoApprovalSummary(TestCase):
         # Update nomination date in the past, it should no longer be delayed.
         self.version.update(nomination=self.days_ago(2))
         assert AutoApprovalSummary.check_should_be_delayed(
+            self.version) is False
+
+        # Unlisted shouldn't be affected.
+        self.version.update(
+            nomination=datetime.now() - timedelta(hours=22),
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is False
 
     def test_check_should_be_delayed_only_until_first_content_review(self):
@@ -1903,7 +1920,7 @@ class TestAutoApprovalSummary(TestCase):
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
-            'Has auto-approval disabled flag set',
+            'Has auto-approval disabled/delayed flag set',
             'Is locked by a reviewer',
             'Is recommendable',
             "Delayed because it's the first listed version",

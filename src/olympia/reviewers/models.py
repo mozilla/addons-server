@@ -836,7 +836,8 @@ class AutoApprovalSummary(ModelBase):
     is_locked = models.BooleanField(
         default=False, help_text=_('Is locked by a reviewer'))
     has_auto_approval_disabled = models.BooleanField(
-        default=False, help_text=_('Has auto-approval disabled flag set'))
+        default=False,
+        help_text=_('Has auto-approval disabled/delayed flag set'))
     is_recommendable = models.BooleanField(
         default=False, help_text=_('Is recommendable'))
     should_be_delayed = models.BooleanField(
@@ -1144,11 +1145,13 @@ class AutoApprovalSummary(ModelBase):
     @classmethod
     def check_has_auto_approval_disabled(cls, version):
         """Check whether the add-on has auto approval disabled by a reviewer
-        or automated scanners.
+        (only applies to listed) or automated scanners
+        (applies to every channel).
         """
         addon = version.addon
+        is_listed = version.channel == amo.RELEASE_CHANNEL_LISTED
         return (
-            bool(addon.auto_approval_disabled) or
+            (is_listed and bool(addon.auto_approval_disabled)) or
             bool(addon.auto_approval_delayed_until and
                  datetime.now() < addon.auto_approval_delayed_until)
         )
