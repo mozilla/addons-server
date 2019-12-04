@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-04 02:59+0000\n"
+"PO-Revision-Date: 2019-12-04 03:12+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3267,7 +3267,7 @@ msgstr "Stoppa le traciamento de Facebook {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Stop al traciamento de Facebook. Isola tu identitate de Facebook in un scheda contextual separate pro impedir a Facebook de traciar te per tote le Web."
+msgstr "Stop al traciamento de Facebook! Isola tu identitate de Facebook in un “scheda contextual” separate pro impedir a Facebook de traciar te per tote le Web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
