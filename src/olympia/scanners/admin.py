@@ -336,6 +336,8 @@ class ScannerRuleAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'modified', 'matched_results_link',)
 
     def matched_results_link(self, obj):
+        if not obj.pk or not obj.scanner:
+            return '-'
         count = ScannerResult.objects.filter(matched_rules=obj).count()
         url = reverse('admin:{}_{}_changelist'.format(
             ScannerResult._meta.app_label, ScannerResult._meta.model_name))
