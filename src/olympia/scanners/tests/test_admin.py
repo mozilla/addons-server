@@ -428,3 +428,14 @@ class TestScannerRuleAdmin(TestCase):
         )
         assert link.attr('href') == expected_href
         assert link.text() == '1'
+
+    def test_create_view_doesnt_contain_link_to_results(self):
+        url = reverse('admin:scanners_scannerrule_add')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-matched_results_link')
+        assert field
+        assert field.text() == 'Matched Results:\n-'
+        link = doc('.field-matched_results_link a')
+        assert not link
