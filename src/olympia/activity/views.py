@@ -24,7 +24,6 @@ from olympia.activity.utils import (
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
-from olympia.versions.models import Version
 
 
 class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,

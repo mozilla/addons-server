@@ -79,7 +79,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         }
 
     def test_should_highlight(self):
-        result = self.serialize(context={'to_highlight': [self.entry]})
+        result = self.serialize(context={'to_highlight': [self.entry.pk]})
 
         assert result['id'] == self.entry.pk
         assert result['highlight']
@@ -87,7 +87,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
     def test_should_not_highlight(self):
         no_highlight = self.log(u'something élse', amo.LOG.REJECT_VERSION)
 
-        result = self.serialize(context={'to_highlight': [no_highlight]})
+        result = self.serialize(context={'to_highlight': [no_highlight.pk]})
 
         assert result['id'] == self.entry.pk
         assert not result['highlight']
