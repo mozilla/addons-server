@@ -183,7 +183,8 @@ class MultiBlockSubmit(ModelBase):
     def save(self, *args, **kwargs):
         if self.input_guids and not self.processed_guids:
             processed_guids = self.process_input_guids(
-                self.input_guids, load_full_objects=False)
+                self.input_guids, self.min_version, self.max_version,
+                load_full_objects=False)
             # flatten blocks back to just the guids
             processed_guids['blocks'] = [
                 block.guid for block in processed_guids['blocks']]
@@ -191,9 +192,9 @@ class MultiBlockSubmit(ModelBase):
         super().save(*args, **kwargs)
 
     @classmethod
-    def process_input_guids(cls, guids, load_full_objects=True):
+    def process_input_guids(cls, guids, v_min, v_max, load_full_objects=True):
         """Process a line-return separated list of guids into a list of invalid
-        guids, a list of guids that are fully blocked already (0 - *), and a
+        guids, a list of guids that are blocked already for v_min - vmax, and a
         list of Block instances - including new Blocks (unsaved) and existing
         partial Blocks.
 
@@ -234,11 +235,10 @@ class MultiBlockSubmit(ModelBase):
             for block in existing_blocks:
                 block.addon = addon_guid_dict[block.guid]
 
-        # identify the blocks that need updating (i.e. not 0 - * already)
+        # identify the blocks that need updating -i.e. not v_min - vmax already
         blocks_to_update_dict = {
             block.guid: block for block in existing_blocks
-            if not (block.min_version == Block.MIN and
-                    block.max_version == Block.MAX)}
+            if not (block.min_version == v_min and block.max_version == v_max)}
         existing_guids = [
             block.guid for block in existing_blocks
             if block.guid not in blocks_to_update_dict]
