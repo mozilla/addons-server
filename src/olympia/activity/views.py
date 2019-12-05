@@ -24,7 +24,6 @@ from olympia.activity.utils import (
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
-from olympia.versions.models import Version
 
 
 class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
@@ -43,9 +42,15 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
             permission_classes=self.permission_classes)
 
     def get_version_object(self):
-        return get_object_or_404(
-            Version.unfiltered.filter(addon=self.get_addon_object()),
-            pk=self.kwargs['version_pk'])
+        if not hasattr(self, 'version_object'):
+            addon = self.get_addon_object()
+            self.version_object = get_object_or_404(
+                # Fetch the version without transforms, using the addon related
+                # manager to avoid reloading it from the database.
+                addon.versions(
+                    manager='unfiltered_for_relations').all().no_transforms(),
+                pk=self.kwargs['version_pk'])
+        return self.version_object
 
     def check_object_permissions(self, request, obj):
         """Check object permissions against the Addon, not the ActivityLog."""
@@ -55,8 +60,8 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
 
     def get_serializer_context(self):
         ctx = super(VersionReviewNotesViewSet, self).get_serializer_context()
-        ctx['to_highlight'] = filter_queryset_to_pending_replies(
-            self.get_queryset())
+        ctx['to_highlight'] = list(filter_queryset_to_pending_replies(
+            self.get_queryset()).values_list('pk', flat=True))
         return ctx
 
     def create(self, request, *args, **kwargs):

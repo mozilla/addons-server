@@ -380,10 +380,11 @@ NOT_PENDING_IDS = (
 
 
 def filter_queryset_to_pending_replies(queryset, log_type_ids=NOT_PENDING_IDS):
-    latest_reply = queryset.filter(action__in=log_type_ids).first()
-    if not latest_reply:
+    latest_reply_date = queryset.filter(
+        action__in=log_type_ids).values_list('created', flat=True).first()
+    if not latest_reply_date:
         return queryset
-    return queryset.filter(created__gt=latest_reply.created)
+    return queryset.filter(created__gt=latest_reply_date)
 
 
 def bounce_mail(message, reason):

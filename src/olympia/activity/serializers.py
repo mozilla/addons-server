@@ -36,7 +36,7 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         return self.get_action_label(obj).replace(' ', '-').lower()
 
     def get_highlight(self, obj):
-        return obj in self.to_highlight
+        return obj.pk in self.to_highlight
 
     def get_user(self, obj):
         """Return minimal user information using ActivityLog.author_name to
