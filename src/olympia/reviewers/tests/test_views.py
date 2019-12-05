@@ -4474,6 +4474,36 @@ class TestReview(ReviewBase):
             file_ = version.files.all().get()
             assert file_.status == amo.STATUS_DISABLED
 
+    def test_block_multiple_versions(self):
+        self.url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.slug))
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        self.make_addon_unlisted(self.addon)
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, 'Admin:Tools')
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+
+        response = self.client.post(self.url, {
+            'action': 'block_multiple_versions',
+            'comments': 'multiblock!',  # should be ignored anyway
+            'versions': [old_version.pk, self.version.pk],
+        })
+
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needs_human_review
+            file_ = version.files.all().get()
+            assert file_.status == amo.STATUS_DISABLED
+
+        assert response.status_code == 302
+        new_block_url = (
+            reverse('admin:blocklist_block_add_single') +
+            '?guid=%s&min_version=%s&max_version=%s' % (
+                self.addon.guid, old_version.version, self.version.version))
+        self.assertRedirects(response, new_block_url)
+
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.
         # Create an activy log for each of the following: user addition, role
@@ -4729,7 +4759,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
-            'reject_multiple_versions|confirm_multiple_versions|')
+            'reject_multiple_versions|')
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
@@ -4758,9 +4788,7 @@ class TestReview(ReviewBase):
             act.attrib['data-value'] for act in
             doc('.data-toggle.review-actions-desc')] == expected_actions_values
 
-        assert (
-            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
-            'reject_multiple_versions|confirm_multiple_versions|')
+        assert 'data-value' not in doc('select#id_versions.data-toggle')[0]
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
@@ -4786,9 +4814,7 @@ class TestReview(ReviewBase):
             act.attrib['data-value'] for act in
             doc('.data-toggle.review-actions-desc')] == expected_actions_values
 
-        assert (
-            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
-            'reject_multiple_versions|confirm_multiple_versions|')
+        assert 'data-value' not in doc('select#id_versions.data-toggle')[0]
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
