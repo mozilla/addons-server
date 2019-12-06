@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-05 22:00+0000\n"
+"PO-Revision-Date: 2019-12-06 04:05+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -738,10 +738,10 @@ msgid "Approval notes changed"
 msgstr "Notas de approbation cambiate"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Codice fonte cargate pro {addon} {version}."
+msgstr "Codice fonte incargate pro {addon} {version}."
 
 msgid "Source code uploaded"
-msgstr "Codice fonte cargate"
+msgstr "Codice fonte incargate"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "Auto-approbation confirmate pro {addon} {version}."
@@ -1529,7 +1529,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Per favor specifica tu Politica de confidentialitate del additivo:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Typo de file non tractate, per favor carga un file archivo {extensions}."
+msgstr "Typo de file non supportate, per favor incarga un file de archivo {extensions}."
 
 msgid "Invalid or broken archive."
 msgstr "Archivo non valide o rupte."
@@ -1544,7 +1544,7 @@ msgid "Need at least one compatible application."
 msgstr "Il necesse al minus un application compatibile."
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Il ha habite un error con tu cargamento. Per favor prova de novo."
+msgstr "Ha occurrite un error con tu incargamento. Per favor tenta lo de novo."
 
 msgid "Override failed validation"
 msgstr "Supplantar validation mancate"
@@ -1556,13 +1556,13 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Tu ha incargate troppo de files recentemente. Reproba post alcun tempore."
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Le version {version} esseva jam cargate e delite."
+msgstr "Le version {version} ha jam essite incargate e delite."
 
 msgid "Version {version} already exists."
 msgstr "Le version {version} ja existe."
 
 msgid "Continue with existing upload instead?"
-msgstr "Continuar in vice con le cargamento existente?"
+msgstr "Continuar con le incargamento existente?"
 
 msgid "Yes"
 msgstr "Si"
@@ -1571,10 +1571,10 @@ msgid "No"
 msgstr "No"
 
 msgid "You have not uploaded a source file."
-msgstr "Tu non ha cargate un file fonte."
+msgstr "Tu non ha incargate un file de codice fonte."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr "File fonte cargate, ma tu indicava que nulle fonte era necessari."
+msgstr "File de fonte incargate, ma tu indicava que nulle fonte es necessari."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Cura que nomine e summario combinate non supera {limit_value} characteres total (il ha {show_value})."
@@ -1707,7 +1707,7 @@ msgid "Icon must be square (same width and height)."
 msgstr "Le icone debe ser quadrate (altessa equal al largessa)."
 
 msgid "There was an error uploading your preview."
-msgstr "Error durante le cargamento de tu vista preliminar."
+msgstr "Error durante le incargamento de tu vista preliminar."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
 msgstr "Le ultime version approbate de un extension recommendate non pote esser delite o disactivate. Contacta le administratores de AMO si te require adjuta pro isto."
