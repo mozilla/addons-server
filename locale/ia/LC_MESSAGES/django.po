@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-06 05:11+0000\n"
+"PO-Revision-Date: 2019-12-06 05:13+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4757,7 +4757,7 @@ msgid "You cannot submit a language pack"
 msgstr "Impossibile cargar un pacchetto linguistic"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Typo de file non tractate, carga un file {extensions} supportate."
+msgstr "Typo de file non supportate. Incarga un file supportate: {extensions}"
 
 msgid "Unexpected error."
 msgstr "Error inexpectate."
@@ -5886,7 +5886,7 @@ msgid "You do not own this addon."
 msgstr "Tu non es proprietario de iste additivo."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr "Clave de cargamento mancante in le file de datos multipart."
+msgstr "Clave “upload” mancante in le datos del file multiparte."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
@@ -5912,7 +5912,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr "Tu non pote usar le API pro adder un version jam in lista de presentation pro iste additivo, perque il ha metadatos mancante. Per favor invia lo per le sito web"
 
 msgid "No uploaded file for that addon and version."
-msgstr "Nulle file cargate pro ille additivo e version."
+msgstr "Nulle file incargate pro ille additivo e version."
 
 msgid "Overview"
 msgstr "Panorama"
