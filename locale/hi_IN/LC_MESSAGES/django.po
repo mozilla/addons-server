@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-08-30 17:51+0000\n"
+"PO-Revision-Date: 2018-08-19 07:10+0000\n"
 "Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -1917,7 +1917,7 @@ msgid "Remove"
 msgstr "हटाएँ"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "एक और आवेदन जोड़ें &hellip;"
 
 msgid "Save Changes"
 msgstr "परिवर्तन सहेजें"
@@ -1934,11 +1934,11 @@ msgstr "बंद करें"
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> ऐड-ऑन"
+msgstr[1] "<b>{0}</b> ऐड-ऑन्स"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "हाल की गतिविधि"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
