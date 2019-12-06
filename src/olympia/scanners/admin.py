@@ -19,6 +19,7 @@ from olympia.constants.scanners import (
     RESULT_STATES,
     TRUE_POSITIVE,
     UNKNOWN,
+    YARA,
 )
 
 from .models import ScannerResult, ScannerRule
@@ -253,7 +254,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
 
         title = 'False positive report for ScannerResult {}'.format(pk)
         body = render_to_string(
-            'admin/false_positive_report.md', {'result': result}
+            'admin/false_positive_report.md', {'result': result, 'YARA': YARA}
         )
         labels = ','.join(
             [
@@ -333,7 +334,7 @@ class ScannerRuleAdmin(admin.ModelAdmin):
         'is_active',
         'definition',
     )
-    readonly_fields = ('created', 'modified', 'matched_results_link',)
+    readonly_fields = ('created', 'modified', 'matched_results_link')
 
     def matched_results_link(self, obj):
         if not obj.pk or not obj.scanner:
@@ -348,4 +349,5 @@ class ScannerRuleAdmin(admin.ModelAdmin):
             f'&scanner={obj.scanner}'
         )
         return format_html('<a href="{}">{}</a>', url, count)
+
     matched_results_link.short_description = 'Matched Results'

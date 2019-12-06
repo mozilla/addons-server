@@ -318,7 +318,7 @@ class TestScannerResultAdmin(TestCase):
         assert html('.messagelist .info').length == 1
 
     @override_settings(YARA_GIT_REPOSITORY='git/repo')
-    def test_handle_false_positive(self):
+    def test_handle_yara_false_positive(self):
         # Create one entry with matches
         rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
         result = ScannerResult(scanner=YARA)
@@ -356,6 +356,30 @@ class TestScannerResultAdmin(TestCase):
             urlencode({'labels': 'false positive report'})
             in response['Location']
         )
+        assert 'Raw+scanner+results' in response['Location']
+
+    @override_settings(CUSTOMS_GIT_REPOSITORY='git/repo')
+    def test_handle_customs_false_positive(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=CUSTOMS)
+        result = ScannerResult(
+            scanner=CUSTOMS, results={'matchedRules': [rule.name]}
+        )
+        result.save()
+        assert result.state == UNKNOWN
+
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handlefalsepositive',
+                args=[result.pk],
+            )
+        )
+
+        result.refresh_from_db()
+        assert result.state == FALSE_POSITIVE
+        # This action should send a redirect to GitHub.
+        assert response.status_code == 302
+        assert 'Raw+scanner+results' not in response['Location']
 
     def test_handle_revert_report(self):
         # Create one entry with matches
