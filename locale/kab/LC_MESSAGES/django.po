@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-26 12:32+0000\n"
+"PO-Revision-Date: 2019-12-06 10:46+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1031,13 +1031,13 @@ msgid "Sports & Games"
 msgstr "Addal & uraren"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Sader isiɣzaf Firefox akken ad tmuddeḍ tarmit-ik n zhu afus s imesnernayen n usuddem srid, ileqman n uwaddal, d wayen-nniḍen."
 
 msgid "User Interface"
 msgstr "Agrudem n useqdac"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Sader isiɣzaf Firefox n ugrudem n useqdac akken ad tbeddleḍ isebtar web i tɣuri yelhan ugar, anadi, tunigin, d wayen-nniḍen."
 
 msgid "Animals"
 msgstr "Iγeṛsiwen"
@@ -1070,13 +1070,13 @@ msgid "Abstract"
 msgstr "Agzul"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Sader isental Firefox n tẓuri d ufeṣṣel. Taggayt-a tegber initen, talɣiwin, udmawen n unecṛaḥ, imcac, ijeggigen."
 
 msgid "Causes"
 msgstr "Tignatin"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Sader isental Firefox i yisental d wayen i tḥemmleḍ. Taggayt-a tegber isental n waddal, imuṛas, leqdic n tcemlit, timura d wayen-nniḍen."
 
 msgid "Fashion"
 msgstr "Amaynut"
@@ -1097,7 +1097,7 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Sader isental Firefox s Firefox Ajapuni. Taggayt-a tegber isental i yessebganen tiḥerztin FocKeh tucbiḥin s ddeqs n wudmawen."
 
 msgid "Holiday"
 msgstr "Amras"
