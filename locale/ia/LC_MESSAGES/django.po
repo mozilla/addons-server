@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-06 04:26+0000\n"
+"PO-Revision-Date: 2019-12-06 05:11+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2670,7 +2670,7 @@ msgid "Theme generator"
 msgstr "Generator de thema"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr "Aviso: le proprietates del manifesto sequente que le plus recente cargamento de version usava in iste manifesto non es supportate in iste procedura guidate e essera ignorate:"
+msgstr "Aviso: le sequente proprietates usate in le manifesto de tu ultime version incargate non es supportate per iste assistente e essera ignorate:"
 
 msgid "Theme name"
 msgstr "Nomine del thema"
@@ -2703,7 +2703,7 @@ msgid "Browser preview"
 msgstr "Vista preliminar del navigator"
 
 msgid "Uploading Theme"
-msgstr "Cargamento de thema"
+msgstr "Incargamento de thema"
 
 msgid "Finish Theme"
 msgstr "Finir le thema"
@@ -2805,7 +2805,7 @@ msgid "Next Listed Version:"
 msgstr "Version successive in le lista de presentation:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Isto es le version ultime cargate, totevia illo non es ancora active sur le sito"
+msgstr "Iste es le ultime version incargate, ma illo non es ancora publicate sur le sito"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Le caudas de revision non es revidite strictemente in ordine"
@@ -2824,10 +2824,10 @@ msgid "Latest Version:"
 msgstr "Ultime version:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr "Isto es le version plus recente cargate e non listate"
+msgstr "Iste es le ultime version incargate e non listate"
 
 msgid "Upload New Version"
-msgstr "Cargar nove version"
+msgstr "Incargar nove version"
 
 msgid "View All"
 msgstr "Vider toto"
@@ -2895,7 +2895,7 @@ msgstr ""
 "additivos listate publicamente."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr "Si tu additivo contine codice binari o offuscate in ultra al note bibliothecas, carga su fontes pro le revision."
+msgstr "Si tu additivo contine codice binari o offuscate (excepte bibliothecas cognoscite), incarga su codice fonte pro revision."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Per favor include instructiones sur como reproducer le file final del additivo, o in un file README o le Notas pro le revisor de iste version."
@@ -3151,7 +3151,7 @@ msgid "All versions"
 msgstr "Tote le versiones"
 
 msgid "Upload a New Version"
-msgstr "Cargar un nove version"
+msgstr "Incargar un nove version"
 
 msgid "Version"
 msgstr "Version"
@@ -3169,7 +3169,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Deler iste version delera permanentemente:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Importante:</strong> Un vice que un version ha essite delite, tu non pote cargar un nove version con le mesme numero de version."
+msgstr "<strong>Importante:</strong> Un vice que un version ha essite delite, tu non pote incargar un nove version con le mesme numero de version."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Desira tu vermente deler iste version?"
@@ -3187,7 +3187,7 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr "Celar tu additivo impedira a illo de parer ubicunque in nostre galeria e stoppara al usatores de reciper le actualisationes automatic."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr "Le files attendente revision sera disactivate e tu debera cargar nove versiones."
+msgstr "Le files attendente revision essera disactivate e tu debera incargar nove versiones."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Desira tu vermente celar tu additivo?"
@@ -4693,7 +4693,7 @@ msgstr "“strict_min_version” {appver} incognite pro {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Impossibile tractar le file cargate, elemento <%s> mancante o vacue"
+msgstr "Impossibile tractar le file incargate: elemento <%s> mancante o vacue"
 
 msgid "OpenSearch: XML Security error."
 msgstr "OpenSearch: Error de securitate XML."
@@ -4702,7 +4702,7 @@ msgid "OpenSearch: XML Parse Error."
 msgstr "OpenSearch: Error de analyse XML."
 
 msgid "Could not parse uploaded file."
-msgstr "Impossibile tractar le file cargate."
+msgstr "Impossibile tractar le file incargate."
 
 msgid "Unsupported archive type."
 msgstr "Typo de archivo non admittite."
