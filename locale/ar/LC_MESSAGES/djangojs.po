@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 15:12+0000\n"
+"PO-Revision-Date: 2019-12-09 15:31+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -291,7 +291,7 @@ msgid "Details for {0}"
 msgstr "تفاصيل {0}"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "أُنشئت المجموعات"
 
 msgid "Add-ons in Use"
 msgstr "الإضافات المستخدمة"
@@ -435,10 +435,10 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "متوسّط المساهمات"
 
 msgid "Usage"
-msgstr ""
+msgstr "الاستخدام"
 
 msgid "Firefox"
 msgstr "فَيَرفُكس"
@@ -459,11 +459,11 @@ msgid "Fennec"
 msgstr ""
 
 msgid "Android"
-msgstr ""
+msgstr "أندرويد"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "التنزيلات والاستخدام اليومي في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
@@ -471,7 +471,7 @@ msgstr "التنزيلات والاستخدام اليومي من {0} إلى {1}
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "التثبيتات والاستخدام اليومي في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
@@ -479,7 +479,7 @@ msgstr "التثبيتات والاستخدام اليومي من {0} إلى {1}
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "التنزيلات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
@@ -487,7 +487,7 @@ msgstr "التنزيلات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "الاستخدام اليومي في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
@@ -495,7 +495,7 @@ msgstr "الاستخدام اليومي من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "التطبيقات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
@@ -503,7 +503,7 @@ msgstr "التطبيقات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "المنصّات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
@@ -511,7 +511,7 @@ msgstr "المنصات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "اللغات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
@@ -519,7 +519,7 @@ msgstr "اللغات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "إصدارات الإضافات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
@@ -527,7 +527,7 @@ msgstr "إصدارات الإضافة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "حالة الإضافة في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
@@ -535,7 +535,7 @@ msgstr "إحصاءات الإضافة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "مصادر التنزيلات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -543,7 +543,7 @@ msgstr "مصادر التنزيل من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "المساهمات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -559,7 +559,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "الإضافات المستخدمة في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
@@ -567,7 +567,7 @@ msgstr "الإضافات المستخدمة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "الإضافات المنزّلة في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -575,7 +575,7 @@ msgstr "الإضافات المنزّلة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "الإضافات المُنشأة في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
@@ -583,7 +583,7 @@ msgstr "الإضافات المنشأة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "الإضافات المحدّثة في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
@@ -599,7 +599,7 @@ msgstr "المراجعات المكتوبة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "المستخدمين المسجّلين في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
@@ -607,7 +607,7 @@ msgstr "تسجيلات المستخدمين من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "المجموعات المُنشأة في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
@@ -615,7 +615,7 @@ msgstr "المجموعات المنشأة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "المشتركون في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
@@ -623,7 +623,7 @@ msgstr "المشتركين من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "التقييمات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
@@ -631,7 +631,7 @@ msgstr "التقييمات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "المبيعات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
@@ -639,7 +639,7 @@ msgstr "المبيعات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "عمليات التثبيت في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -647,7 +647,7 @@ msgstr "التثبيتات من {0} إلى {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> في آخر {1} من الأيام"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
@@ -655,7 +655,7 @@ msgstr "<b>{0}</b> من {1} إلى {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "بمعدّل <b>{0}</b> في آخر {1} من الأيام"
 
 msgid "No data available."
 msgstr "لا بيانات متوفرة."
@@ -671,21 +671,21 @@ msgstr "اختر تطبيقًا أولًا"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا تضبط أيّ إضافة لتكون أقصى إصدارة هي {1} ولا تُرسل بريدًا لمؤلّفيها."
+msgstr[1] "اضبط إضافة واحدة لتكون أقصى إصدارة لها هي {1} وأرسِل بريدًا إلى مؤلّفها."
+msgstr[2] "اضبط إضافتين لتكون أقصى إصدارة لهما هي {1} وأرسِل بريدًا إلى مؤلّفيها."
+msgstr[3] "اضبط {0} إضافات لتكون أقصى إصدارة لها هي {1} وأرسِل بريدًا إلى مؤلّفيها."
+msgstr[4] "اضبط {0} إضافة لتكون أقصى إصدارة لها هي {1} وأرسِل بريدًا إلى مؤلّفيها."
+msgstr[5] "اضبط {0} إضافة لتكون أقصى إصدارة لها هي {1} وأرسِل بريدًا إلى مؤلّفيها."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا تُرسل بريدًا لأيّ مؤلّفي إضافات فشل التثبّت منها."
+msgstr[1] "أرسِل بريدًا إلى مؤلّف الإضافة التي فشل التثبّت منها."
+msgstr[2] "أرسِل بريدًا إلى مؤلّفا الإضافتين التي فشل التثبّت منهما."
+msgstr[3] "أرسِل بريدًا إلى مؤلّفو الإضافات الـ {2} التي فشل التثبّت منها."
+msgstr[4] "أرسِل بريدًا إلى مؤلّفو الإضافات الـ {2} التي فشل التثبّت منها."
+msgstr[5] "أرسِل بريدًا إلى مؤلّفو الإضافات الـ {2} التي فشل التثبّت منها."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -744,11 +744,11 @@ msgstr[5] "{files} ملف"
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "لا مراجعات من المستخدمين"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[1] "مراجعة واحدة من المستخدمين"
+msgstr[2] "مراجعتان من المستخدمين"
+msgstr[3] "{reviews} مراجعات من المستخدمين"
+msgstr[4] "{reviews} مراجعة من المستخدمين"
+msgstr[5] "{reviews} مراجعة من المستخدمين"
 
 msgid "Image changes being processed"
 msgstr "يُعالج التغييرات على الصورة"
@@ -788,22 +788,22 @@ msgid "Remove this localization"
 msgstr "أزِل هذا التوطين"
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "كان {name} أوّل من يطالع هذه الصفحة."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "كان {name} أوّل من يطالع هذه الإضافة."
 
 msgid "Loading&hellip;"
 msgstr "يُحمّل&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "ملاحظات الإصدارة"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "ملاحظات للمراجعين"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "لم نجد أيّ ملاحظات إصدارات"
 
 msgid "Review Text"
 msgstr ""
