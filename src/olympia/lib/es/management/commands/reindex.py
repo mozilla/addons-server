@@ -5,7 +5,6 @@ import time
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from celery import group
 from elasticsearch.exceptions import NotFoundError
 
 import olympia.core.logger
@@ -16,29 +15,39 @@ from olympia.amo.search import get_es
 from olympia.lib.es.utils import (
     flag_reindexing_amo, is_reindexing_amo, timestamp_index,
     unflag_reindexing_amo)
-from olympia.stats import search as stats_search
+from olympia.stats import search as stats_indexer
 
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
 ES = get_es()
 
 
-def get_modules(with_stats=True):
-    """Return python modules containing functions reindex needs.
-
-    The `with_stats` parameter can be passed to omit the stats index module.
+def get_indexer(alias):
+    """Return indexer python module for a given alias.
 
     This needs to be dynamic to work with testing correctly, since tests change
-    the value of settings.ES_INDEXES to hit test-specific aliases."""
-    rval = {
-        # The keys are the index alias names, the values the python modules.
-        # The 'default' in ES_INDEXES is actually named 'addons'
+    the value of settings.ES_INDEXES to hit test-specific aliases.
+    """
+    modules = {
         settings.ES_INDEXES['default']: addons_indexer,
+        settings.ES_INDEXES['stats']: stats_indexer
     }
-    if with_stats:
-        rval[settings.ES_INDEXES['stats']] = stats_search
+    return modules[alias]
 
-    return rval
+
+def get_alias(data_name):
+    """
+    Return ES alias name for the kind of data we're interested in
+    ("addons" or "stats").
+
+    This needs to be dynamic to work with testing correctly, since tests change
+    the value of settings.ES_INDEXES to hit test-specific aliases.
+    """
+    aliases = {
+        'addons': settings.ES_INDEXES['default'],
+        'stats': settings.ES_INDEXES['stats']
+    }
+    return aliases[data_name]
 
 
 @task
@@ -58,7 +67,7 @@ def update_aliases(actions):
 def create_new_index(alias, new_index):
     logger.info(
         'Create the index {0}, for alias: {1}'.format(new_index, alias))
-    get_modules()[alias].create_new_index(new_index)
+    get_indexer(alias).create_new_index(new_index)
 
 
 @task(ignore_result=False)
@@ -80,13 +89,11 @@ def gather_index_data_tasks(alias, index):
     Return a group of indexing tasks for that index.
     """
     logger.info('Returning reindexing group for {0}'.format(index))
-    return get_modules()[alias].reindex_tasks_group(index)
+    return get_indexer(alias).reindex_tasks_group(index)
 
 
 _SUMMARY = """
 *** Reindexation done ***
-
-Reindexed %d indexes.
 
 Current Aliases configuration:
 
@@ -111,10 +118,11 @@ class Command(BaseCommand):
             help=('Deletes AMO indexes prior to reindexing.'),
             default=False),
         parser.add_argument(
-            '--with-stats',
-            action='store_true',
-            help=('Whether to also reindex AMO stats. Default: False'),
-            default=False),
+            '--data',
+            action='store',
+            help=('Data to reindex. Can be "addons" or "stats". '
+                  'Default: "addons".'),
+            default='addons'),
         parser.add_argument(
             '--noinput',
             action='store_true',
@@ -125,23 +133,25 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         """Reindexing work.
 
-        Creates a task chain that creates new indexes
-        over the old ones so the search feature
-        works while the indexation occurs.
+        Creates a task chain that creates new indexes over the old ones so the
+        search feature works while the indexation occurs.
 
         """
-        force = kwargs.get('force', False)
+        force = kwargs['force']
 
         if is_reindexing_amo() and not force:
             raise CommandError('Indexation already occurring - use --force to '
                                'bypass')
 
+        if kwargs['data'] not in ('addons', 'stats'):
+            raise CommandError('--data should be "addons" or "stats".')
+
+        alias = get_alias(kwargs['data'])
+
         self.stdout.write('Starting the reindexation')
 
-        modules = get_modules(with_stats=kwargs.get('with_stats', False))
-
-        if kwargs.get('wipe', False):
-            skip_confirmation = kwargs.get('noinput', False)
+        if kwargs['wipe']:
+            skip_confirmation = kwargs['noinput']
             confirm = ''
             if not skip_confirmation:
                 confirm = input('Are you sure you want to wipe all AMO '
@@ -152,13 +162,16 @@ class Command(BaseCommand):
 
             if (confirm == 'yes' or skip_confirmation):
                 unflag_database()
-                for index in set(modules.keys()):
-                    ES.indices.delete(index, ignore=404)
+                ES.indices.delete(alias, ignore=404)
             else:
-                raise CommandError("Aborted.")
+                raise CommandError('Aborted.')
         elif force:
             unflag_database()
 
+        workflow = self.create_workflow(alias)
+        self.execute_workflow(workflow)
+
+    def create_workflow(self, alias):
         alias_actions = []
 
         def add_alias_action(action, index, alias):
@@ -171,59 +184,51 @@ class Command(BaseCommand):
         self.stdout.write('Building the task chain')
 
         to_remove = []
-        workflow = []
+        old_index = None
 
-        # For each alias, we create a new time-stamped index.
-        for alias, module in modules.items():
-            old_index = None
+        try:
+            olds = ES.indices.get_alias(alias)
+            for old_index in olds:
+                # Mark the index to be removed later.
+                to_remove.append(old_index)
+                # Mark the alias to be removed from that index.
+                add_alias_action('remove', old_index, alias)
+        except NotFoundError:
+            # If the alias dit not exist, ignore it, don't try to remove
+            # it.
+            pass
 
-            try:
-                olds = ES.indices.get_alias(alias)
-                for old_index in olds:
-                    # Mark the index to be removed later.
-                    to_remove.append(old_index)
-                    # Mark the alias to be removed from that index.
-                    add_alias_action('remove', old_index, alias)
-            except NotFoundError:
-                # If the alias dit not exist, ignore it, don't try to remove
-                # it.
-                pass
+        # Create a new index, using the alias name with a timestamp.
+        new_index = timestamp_index(alias)
+        # Mark the alias to be added at the end.
+        add_alias_action('add', new_index, alias)
 
-            # Create a new index, using the alias name with a timestamp.
-            new_index = timestamp_index(alias)
+        # If old_index is None that could mean it's a full index.
+        # In that case we want to continue index in it.
+        if ES.indices.exists(alias):
+            old_index = alias
 
-            # If old_index is None that could mean it's a full index.
-            # In that case we want to continue index in it.
-            if ES.indices.exists(alias):
-                old_index = alias
+        # Main chain for this alias that:
+        # - creates the new index
+        # - then, flags the database (which in turn makes every index call
+        #   index data on both the old and the new index).
+        workflow = (
+            create_new_index.si(alias, new_index) |
+            flag_database.si(new_index, old_index, alias)
+        )
+        # ... Then start indexing data. gather_index_data_tasks() is a
+        # function returning a group of indexing tasks.
+        index_data_tasks = gather_index_data_tasks(alias, new_index)
 
-            # Main chain for this alias: flag the database, then create the new
-            # index...
-            _chain = (
-                flag_database.si(new_index, old_index, alias) |
-                create_new_index.si(alias, new_index)
-            )
-            # ... Then start indexing data. gather_index_data_tasks() is a
-            # function returning a group of indexing tasks.
-            index_data_tasks = gather_index_data_tasks(alias, new_index)
-            if index_data_tasks.tasks:
-                _chain |= index_data_tasks
+        if index_data_tasks.tasks:
+            # Add the group to the chain, if it's not empty.
+            workflow |= index_data_tasks
 
-            # Append that chain to the workflow we're going to execute.
-            workflow.append(_chain)
-
-            # Adding new index to the alias.
-            add_alias_action('add', new_index, alias)
-
-        # Group each alias chain so that they are executed in parallel if there
-        # is more than one alias to deal with.
-        workflow = group(workflow)
-
-        # Chain the global group with a task that updates the aliases to point
-        # to the new indexes and remove the old aliases, if any.
+        # Chain with a task that updates the aliases to point to the new
+        # index and remove the old aliases, if any.
         workflow |= update_aliases.si(alias_actions)
 
-        # Chain that with a task that unflags the database - there's no need to
+        # Chain with a task that unflags the database - there's no need to
         # duplicate the indexing anymore.
         workflow |= unflag_database.si()
 
@@ -231,6 +236,9 @@ class Command(BaseCommand):
         if to_remove:
             workflow |= delete_indexes.si(to_remove)
 
+        return workflow
+
+    def execute_workflow(self, workflow):
         # Let's do it.
         self.stdout.write('Running all indexation tasks')
 
@@ -239,7 +247,7 @@ class Command(BaseCommand):
         try:
             workflow.apply_async()
 
-            if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
+            if not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False):
                 time.sleep(10)   # give celeryd some time to flag the DB
             while is_reindexing_amo():
                 self.stdout.write('.')
@@ -253,5 +261,5 @@ class Command(BaseCommand):
         # Let's return the /_aliases values.
         aliases = ES.indices.get_alias()
         aliases = json.dumps(aliases, sort_keys=True, indent=4)
-        summary = _SUMMARY % (len(modules), aliases)
+        summary = _SUMMARY % aliases
         self.stdout.write(summary)

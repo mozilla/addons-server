@@ -1062,6 +1062,7 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
+    'olympia.stats.management.commands.index_stats',
 )
 
 CELERY_TASK_QUEUES = (

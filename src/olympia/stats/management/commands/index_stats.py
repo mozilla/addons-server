@@ -34,7 +34,7 @@ To limit the  date range:
 
 def gather_index_stats_tasks(index, addons=None, dates=None):
     """
-    Return the list of task groups to execute to index statistics for the given
+    Return list of tasks to execute to index statistics for the given
     index/dates/addons.
     """
     queries = [
@@ -85,11 +85,12 @@ def gather_index_stats_tasks(index, addons=None, dates=None):
                     '%s__range' % date_field: date_range
                 }))
                 if data:
-                    jobs.append(create_chunked_tasks_signatures(
-                        task, data, CHUNK_SIZE, task_args=(index,)))
+                    jobs.extend(create_chunked_tasks_signatures(
+                        task, data, CHUNK_SIZE, task_args=(index,)).tasks)
         else:
-            jobs.append(create_chunked_tasks_signatures(
-                task, list(qs), CHUNK_SIZE, task_args=(index,)))
+            jobs.extend(create_chunked_tasks_signatures(
+                task, list(qs), CHUNK_SIZE, task_args=(index,)).tasks)
+
     return jobs
 
 
