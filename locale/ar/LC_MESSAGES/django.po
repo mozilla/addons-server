@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 16:11+0000\n"
+"PO-Revision-Date: 2019-12-09 16:32+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -744,9 +744,8 @@ msgstr "رُفع الكود المصدري"
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "رخصة الكود المصدري لـ {addon}"
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "المحدّثة مؤخرًا"
+msgstr "تأكّدت الموافقة الآلية"
 
 msgid "{addon} {version} re-enabled."
 msgstr ""
@@ -777,9 +776,8 @@ msgstr "التعليق"
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "التعليق"
+msgstr "أُزيل طلب المعلومات"
 
 msgid "{addon} {version} admin add-on-review requested."
 msgstr ""
@@ -836,10 +834,10 @@ msgid "Incomplete"
 msgstr ""
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "ينتظر المراجعة"
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "عطّلته Mozilla"
 
 msgid "Deleted"
 msgstr ""
@@ -1015,13 +1013,8 @@ msgstr "تجريبية"
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
 
-#, fuzzy
 msgid "Performance"
-msgstr ""
-"#-#-#-#-#  django.po (messages)  #-#-#-#-#\n"
-"الأداء\n"
-"#-#-#-#-#  django.po (messages)  #-#-#-#-#\n"
-"أداء"
+msgstr "الأداء"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
@@ -1065,13 +1058,8 @@ msgstr "سمات مضغوطة"
 msgid "Large"
 msgstr "كبيرة"
 
-#, fuzzy
 msgid "Miscellaneous"
-msgstr ""
-"#-#-#-#-#  django.po (messages)  #-#-#-#-#\n"
-"متنوعات\n"
-"#-#-#-#-#  django.po (messages)  #-#-#-#-#\n"
-"منوعات"
+msgstr "متنوّع"
 
 msgid "Modern"
 msgstr "سمات حديثة"
@@ -1200,7 +1188,7 @@ msgid "Video"
 msgstr "فيديو"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "كافة الحقوق محفوظة"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -1254,17 +1242,14 @@ msgstr "أنشئ سمتك الخاصة بنفسك"
 msgid "Persona"
 msgstr ""
 
-#, fuzzy
 msgid "Security"
-msgstr "الخصوصية والسريّة"
+msgstr "الأمان"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "سياسة الخصوصية"
+msgstr "الخصوصية"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "أخبار المطور"
+msgstr "ممارسات التطوير"
 
 #, fuzzy
 msgid "No Reputation"
@@ -1370,34 +1355,34 @@ msgid "Add-on Review (Low Risk)"
 msgstr "أضِف تعليقًا"
 
 msgid "Level 1"
-msgstr ""
+msgstr "مستوى 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "مستوى 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "مستوى 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "مستوى 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "مستوى 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "مستوى 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "مستوى 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "مستوى 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "مستوى 9"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "اطلب معلومات أكثر"
 
 msgid "Flag"
 msgstr ""
@@ -1412,25 +1397,25 @@ msgid "Approve"
 msgstr ""
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "محتوى جنسي أو إباحي"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "محتوى غير ملائم أو بذيء"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "محتوى عن العنف أو الحرب أو الأسلحة"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "محتوى نازي أو غيره من أنواع الكراهية"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "محتوى افترائي"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "مقامرة عبر الإنترنت"
 
 msgid "Spam content"
-msgstr ""
+msgstr "محتوًى سخام"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr ""
@@ -1474,44 +1459,44 @@ msgstr ""
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "وسم غير صالح: {0}"
+msgstr[1] "وسم غير صالح: {0}"
+msgstr[2] "وسمان غير صالحان: {0}"
+msgstr[3] "وسوم غير صالحة: {0}"
+msgstr[4] "وسوم غير صالحة: {0}"
+msgstr[5] "وسوم غير صالحة: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "الوسوم ”{0}“ محجوزة ولا يمكن استعمالها."
+msgstr[1] "الوسم ”{0}“ محجوز ولا يمكن استعماله."
+msgstr[2] "الوسمان ”{0}“ محجوزان ولا يمكن استعمالهما."
+msgstr[3] "الوسوم ”{0}“ محجوزة ولا يمكن استعمالها."
+msgstr[4] "الوسوم ”{0}“ محجوزة ولا يمكن استعمالها."
+msgstr[5] "الوسوم ”{0}“ محجوزة ولا يمكن استعمالها."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "ليس لديك أيّ وسوم فوق المسموح."
+msgstr[1] "لديك وسم واحد فوق المسموح."
+msgstr[2] "لديك وسمان فوق المسموح."
+msgstr[3] "لديك {0} وسوم فوق المسموح."
+msgstr[4] "لديك {0} وسمًا فوق المسموح."
+msgstr[5] "لديك {0} وسم فوق المسموح."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "يجب أن يكون طول الوسوم كاملةً %s من المحارف أو أقل بعدما تُزال المحارف غير الصالحة."
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "يجب ألا يقلّ طول كل الوسوم عن {0} محارف."
+msgstr[1] "يجب ألا يقلّ طول كل الوسوم عن محرف واحد."
+msgstr[2] "يجب ألا يقلّ طول كل الوسوم عن محرفين اثنين."
+msgstr[3] "يجب ألا يقلّ طول كل الوسوم عن {0} محارف."
+msgstr[4] "يجب ألا يقلّ طول كل الوسوم عن {0} محرفًا."
+msgstr[5] "يجب ألا يقلّ طول كل الوسوم عن {0} محرف."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "التصنيفات لا يمكن تغييرها بينما إضافتك ضمن الإضافات المتميزة لهذا التطبيق."
@@ -1527,7 +1512,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "لا يمكنك مزج فئة ”متنوّع“ مع فئات أخرى غيرها."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -1680,19 +1665,19 @@ msgid "Rating"
 msgstr "التقييم"
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "إضافاتي كلّها"
 
 msgid "All Activity"
-msgstr ""
+msgstr "نشاطي كلّه"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "تحديثات الإضافات"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "حالة الإضافة"
 
 msgid "User Collections"
-msgstr ""
+msgstr "مجموعات المستخدمين"
 
 msgid "User Reviews"
 msgstr "تعليقات المستخدمين"
@@ -1701,7 +1686,7 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "لا يمكن حذف الإضافة. يمكنك تعطيل الإضافة بدلا من ذلك."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "حُذفت السمة."
 
 msgid "Add-on deleted."
 msgstr "حُذفت الإضافة."
@@ -1828,7 +1813,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "أُنشئ مفتاح API جديد"
 
 msgid "API key revoked"
 msgstr ""
@@ -1909,7 +1894,7 @@ msgid "More Resources"
 msgstr ""
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "ابحث في توثيق المطوّرين"
 
 msgid "Search"
 msgstr "بحث"
@@ -1938,7 +1923,7 @@ msgstr ""
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "نشاط {0} الحديث"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -1951,7 +1936,7 @@ msgid "Refine Activity"
 msgstr ""
 
 msgid "Activity"
-msgstr ""
+msgstr "النشاط"
 
 msgid "Subscribe to this feed"
 msgstr "اشترك في هذه التغذية"
@@ -2008,12 +1993,12 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "لا إضافات"
-msgstr[1] "إضافة واحدة"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "<b>لا</b> إضافات"
+msgstr[1] "<b>إضافة واحدة</b>"
+msgstr[2] "<b>إضافتان</b>"
+msgstr[3] "<b>{0}</b> إضافات"
+msgstr[4] "<b>{0}</b> إضافة"
+msgstr[5] "<b>{0}</b> إضافة"
 
 msgid "Recent Activity"
 msgstr ""
@@ -2026,12 +2011,11 @@ msgid "Older activity for My Add-ons"
 msgstr ""
 
 #. {0} is an integer.
-#, fuzzy
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> مستخدمين"
-msgstr[1] "<b>{0}</b> مستخدمين"
-msgstr[2] ""
+msgstr[0] "<b>لا</b> سمات"
+msgstr[1] "<b>سمة واحدة</b>"
+msgstr[2] "<b>سمتان</b>"
 msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
