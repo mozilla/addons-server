@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-08-22 14:59+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"PO-Revision-Date: 2019-12-09 12:46+0000\n"
+"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,8 @@ msgstr "A apărut o problemă la contactarea serverului."
 msgid "Select a file..."
 msgstr "Selectează un fișier..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Suplimentul trebuie să aibă extensia .zip, .xpi, .crx, .jar sau .xml"
+msgstr "Suplimentul trebuie să aibă extensia .zip, .xpi, .crx sau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
