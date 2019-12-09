@@ -2,6 +2,7 @@ import re
 from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
+from django.http.request import QueryDict
 
 from rest_framework import exceptions, serializers
 
@@ -421,10 +422,11 @@ class AddonSerializer(serializers.ModelSerializer):
             # don't add anything when it's not set.
             return obj.contributions
         parts = urlsplit(obj.contributions)
-        query = '&'.join(
-            s for s in (parts.query, amo.CONTRIBUTE_UTM_PARAMS) if s)
+        query = QueryDict(parts.query, mutable=True)
+        query.update(amo.CONTRIBUTE_UTM_PARAMS)
         return urlunsplit(
-            (parts.scheme, parts.netloc, parts.path, query, parts.fragment))
+            (parts.scheme, parts.netloc, parts.path, query.urlencode(),
+             parts.fragment))
 
     def get_edit_url(self, obj):
         return absolutify(obj.get_dev_url())
