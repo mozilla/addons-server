@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 15:52+0000\n"
+"PO-Revision-Date: 2019-12-09 16:11+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -196,13 +196,13 @@ msgid "Developer Hub"
 msgstr "مركز المطورين"
 
 msgid "Manage API Keys"
-msgstr "نظّم مفاتيح API"
+msgstr "أدِر مفاتيح API"
 
 msgid "Reviewer Tools"
 msgstr "أدوات المُراجع"
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "أدوات الإدارة"
 
 msgid "Positive integer"
 msgstr ""
@@ -212,10 +212,10 @@ msgid "This field can only be used to link to external websites. URLs on %(domai
 msgstr ""
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "خطأ. من فضلك أعِد المحاولة."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "حدث عُطل أثناء التثبّت ممّا أدخلت. من فضلك أعِد المحاولة."
 
 msgid "Enter a valid IP4 or IP6 network."
 msgstr ""
@@ -227,7 +227,7 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr ""
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "يجب أن يحتوي محرف مطبوع واحد أقلّه."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr ""
@@ -236,7 +236,7 @@ msgid "Not allowed"
 msgstr ""
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "آخ! غير مسموح."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr "لقد حاولت أن تفعل شيئًا أنت غير مخول بفعله."
@@ -261,14 +261,13 @@ msgid "Firefox Add-ons"
 msgstr "إضافات فيرفكس"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "معذرةً ولكنّا لم نجد شيئًا في العنوان الذي أدخلته. لو اتّبعت رابطًا إلى إضافة محدّدة فربّما أزالها مؤلّفها."
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "الصفحات المقترحة"
 
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "تصفح كل الإضافات"
+msgstr "تصفّح كل الامتدادات"
 
 msgid "Browse all themes"
 msgstr "تصفح كل السِمات"
@@ -314,7 +313,7 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr ""
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "الصيانة جارية"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr "هذه الميزة مُعطّلة مؤقتا بينما يُصان الموقع حاليًا. رجاءً استخدم زر العودة في المتصفح وحاول مجددا بعض قليل."
@@ -363,7 +362,7 @@ msgid "Previous"
 msgstr "السابق"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "انتقل إلى آخر صفحة"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -387,31 +386,31 @@ msgid "Title"
 msgstr "العنوان"
 
 msgid "Body"
-msgstr ""
+msgstr "المتن"
 
 msgid "Another Title"
 msgstr "عنوان آخر"
 
 msgid "Another Body"
-msgstr ""
+msgstr "المتن الثاني"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "ترويسة الاستيثاق غير صالحة. لم تقدّم معلومات الولوج."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "ترويسة الاستيثاق غير صالحة. يجب ألا يكون في معلومات الولوج أيّ مسافات."
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "انقضى التوقيع."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "حدث عُطل في فكّ ترميز التوقيع."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "أحد مفاتيح الحمولة/payload (أو أكثر) نوعه خطأ."
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "أمارة JWT غير صالحة."
 
 msgid "Invalid token or hash."
 msgstr ""
@@ -424,10 +423,10 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "رمز اللغة {lang_code} غير صالح."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "عليك تقديم كائن نوعه {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -446,11 +445,11 @@ msgid "Valid Application Versions"
 msgstr "إصدارات التطبيقات الصالحة"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
+msgstr "يجب أن تحتوي الإضافات المرسَلة إلى Mozilla على ملف بيان يحوي على الأقل تطبيقًا واحدًا مدعومًا من التطبيقات أسفله. الإصدارات المُسردة أسفله هي المسموح بها لهذه التطبيقات فقط."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "لاحظ أنّ WebExtensions لا تدعم علامة النجمة ”*“ في %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "المعرّف الفريد"
@@ -472,7 +471,7 @@ msgid "Name cannot be empty."
 msgstr "لا يُمكن أن يكون الاسم فارغًا."
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "لا يمكن استخدام هذا الاسم."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "هذا الرابط URL المخصص يجب أن يتكون من أحرف، أرقام، شرطات سفلية أو علوية."
@@ -485,16 +484,16 @@ msgid "This add-on already belongs to the collection"
 msgstr "هذا الرابط مستخدم بالفعل من مجموعة أخرى"
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "أُنشأت {addon}."
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "حُرّرت خصائص {addon}."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "حُرّر وصف {addon}."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "حُرّرت فئات {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
 msgstr ""
@@ -507,27 +506,27 @@ msgid "Contributions for {addon}."
 msgstr ""
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "عُطّلت {addon}."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "فُعّلت {addon}."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "تغيّرت حالة {addon} إلى {status}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "أُضيفت {version} إلى {addon}."
 
 msgid "{version} edited for {addon}."
 msgstr ""
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "حُذفت الإصدارة {0} من {addon}."
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "أُضيف الملف {0.name} إلى {version} للإضافة {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr ""
@@ -566,13 +565,13 @@ msgid "{addon} {version} review requested."
 msgstr ""
 
 msgid "Review requested"
-msgstr ""
+msgstr "طُلبت المراجعة"
 
 msgid "{addon} {version} more information requested."
 msgstr ""
 
 msgid "More information requested"
-msgstr ""
+msgstr "طُلبت معلومات أكثر"
 
 msgid "{addon} {version} super review requested."
 msgstr ""
@@ -587,16 +586,16 @@ msgid "Commented"
 msgstr "علّق"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "أُضيف {tag} إلى {addon}."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "أُزيل {tag} من {addon}."
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "أُضيفت {addon} إلى {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "أُزيلت {addon} من {collection}."
 
 msgid "{rating} for {addon} written."
 msgstr ""
@@ -617,20 +616,20 @@ msgstr ""
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "أُضيفت الإصدارة {1} من {0}."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "أصبحت {addon} برخصة {0}."
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "تغيّرت سياسة {addon}."
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "تغيّرت أيقونة {addon}."
 
 msgid "{rating} for {addon} approved."
 msgstr ""
@@ -654,7 +653,7 @@ msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
 msgid "Password changed."
-msgstr ""
+msgstr "تغيّرت كلمة السر."
 
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
@@ -663,7 +662,7 @@ msgid "Approved but waiting"
 msgstr ""
 
 msgid "Account updated."
-msgstr ""
+msgstr "حُدّث الحساب."
 
 msgid "Created: {0}."
 msgstr ""
@@ -733,15 +732,13 @@ msgid "Approval notes changed for {addon} {version}."
 msgstr ""
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "تغيّرت ملاحظات الموافقة"
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "رخصة الكود المصدري لـ {addon}"
+msgstr "رُفع الكود المصدري للإصدارة {version} من {addon}."
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "رخصة الكود المصدري"
+msgstr "رُفع الكود المصدري"
 
 #, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
