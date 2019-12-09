@@ -156,9 +156,9 @@ dennis==0.9 \
 django-aesfield==2.2 \
     --hash=sha256:3b5f8816ed2e57f233bbcc10ea6f815aa5c07eeadfc7a27895729a3c99792d7a \
     --hash=sha256:b3b09351df1bc272506e47a37889dbfe539d7075ba27470379a4964a1a8325f2
-django-admin-rangefilter==0.5.1 \
-    --hash=sha256:0997b82d01b3791efd8b94063def7a7f4afb8b7986ec6776fbfee86715230274 \
-    --hash=sha256:b867ecf893c049900964a9ac6495255a108905592a4030d338b231473f4f708f
+django-admin-rangefilter==0.5.2 \
+    --hash=sha256:44a62eca17dcc36ea60312c6076463c11b81294420c727fa667d0f8ec6d5c54c \
+    --hash=sha256:9de20ff967ee55e7e40a0fb38529f3fb5df346efe20b1e46e1865c3021093cfa
 django-cors-headers==3.2.0 \
     --hash=sha256:84933651fbbde8f2bc084bef2f077b79db1ec1389432f21dd661eaae6b3d6a95 \
     --hash=sha256:a8b2772582e8025412f4d4b54b617d8b707076ffd53a2b961bd24f10ec207a7c
