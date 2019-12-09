@@ -1,6 +1,8 @@
 import re
+from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
+from django.http.request import QueryDict
 
 from rest_framework import exceptions, serializers
 
@@ -289,7 +291,7 @@ class AddonDeveloperSerializer(BaseUserSerializer):
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
-    contributions_url = serializers.URLField(source='contributions')
+    contributions_url = serializers.SerializerMethodField()
     current_version = CurrentVersionSerializer()
     description = TranslationSerializerField()
     developer_comments = TranslationSerializerField()
@@ -414,6 +416,17 @@ class AddonSerializer(serializers.ModelSerializer):
         # get_url_path() which does an extra check on current_version that is
         # annoying in subclasses which don't want to load that version.
         return absolutify(obj.get_detail_url())
+
+    def get_contributions_url(self, obj):
+        if not obj.contributions:
+            # don't add anything when it's not set.
+            return obj.contributions
+        parts = urlsplit(obj.contributions)
+        query = QueryDict(parts.query, mutable=True)
+        query.update(amo.CONTRIBUTE_UTM_PARAMS)
+        return urlunsplit(
+            (parts.scheme, parts.netloc, parts.path, query.urlencode(),
+             parts.fragment))
 
     def get_edit_url(self, obj):
         return absolutify(obj.get_dev_url())

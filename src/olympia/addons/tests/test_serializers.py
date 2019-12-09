@@ -208,7 +208,11 @@ class AddonSerializerOutputTestMixin(object):
         self._test_author(first_author, result['authors'][0])
         self._test_author(second_author, result['authors'][1])
 
-        assert result['contributions_url'] == self.addon.contributions
+        utm_string = '&'.join(
+            f'{key}={value}'
+            for key, value in amo.CONTRIBUTE_UTM_PARAMS.items())
+        assert result['contributions_url'] == (
+            self.addon.contributions + '?' + utm_string)
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
@@ -290,8 +294,11 @@ class AddonSerializerOutputTestMixin(object):
             support_url=u'https://support.example.org/support/my-âddon/')
         self.request = APIRequestFactory().get('/', {'wrap_outgoing_links': 1})
         result = self.serialize()
-        assert result['contributions_url'] == (
-            get_outgoing_url(str(self.addon.contributions)))
+        utm_string = '&'.join(
+            f'{key}={value}'
+            for key, value in amo.CONTRIBUTE_UTM_PARAMS.items())
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '?' + utm_string)
         assert result['homepage'] == {
             'en-US': get_outgoing_url(str(self.addon.homepage)),
         }
@@ -303,8 +310,8 @@ class AddonSerializerOutputTestMixin(object):
         self.request = APIRequestFactory().get('/', {
             'lang': 'en-US', 'wrap_outgoing_links': 1})
         result = self.serialize()
-        assert result['contributions_url'] == (
-            get_outgoing_url(str(self.addon.contributions)))
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '?' + utm_string)
         assert result['homepage'] == {
             'en-US': get_outgoing_url(str(self.addon.homepage)),
         }
@@ -315,8 +322,8 @@ class AddonSerializerOutputTestMixin(object):
         gates = {None: ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-        assert result['contributions_url'] == (
-            get_outgoing_url(str(self.addon.contributions)))
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '?' + utm_string)
         assert result['homepage'] == (
             get_outgoing_url(str(self.addon.homepage))
         )
@@ -331,6 +338,13 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
         assert result['contributions_url'] == ''
         assert result['homepage'] is None
+
+        # Check the contribute utm parameters are added correctly when the url
+        # already has query parameters.
+        self.addon.update(contributions='https://paypal.me/has?query=params')
+        result = self.serialize()
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '&' + utm_string)
 
     def test_latest_unlisted_version(self):
         self.addon = addon_factory()
