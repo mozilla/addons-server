@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-06 11:48+0000\n"
+"PO-Revision-Date: 2019-12-09 23:48+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4644,7 +4644,7 @@ msgstr "Rozšíření jsou jako aplikace pro Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Přidávají do Firefoxu funkce s kterými je brouzdání rychlejší, bezpečnější nebo prostě jen zábavnější."
+msgstr "Přidávají do Firefoxu funkce, s kterými je brouzdání rychlejší, bezpečnější nebo prostě jen zábavnější."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
