@@ -4,6 +4,8 @@ The [scanner result {{ result.id }}]({{ result.get_admin_absolute_url }}) report
 
 {% for rule in result.matched_rules.all %}
 - `{{ rule.name }}`
+{% empty %}
+(no matched rules)
 {% endfor %}
 
 However, it is not correct for the following reasons:
@@ -22,7 +24,7 @@ However, it is not correct for the following reasons:
 {% if not result.version %}
 :warning: Some information is missing because there is no version attached to these results.
 {% endif %}
-
+{% if result.scanner == YARA %}
 ### Raw scanner results
 
 <details>
@@ -32,3 +34,4 @@ However, it is not correct for the following reasons:
 {{ result.get_pretty_results|safe }}
 ```
 </details>
+{% endif %}
