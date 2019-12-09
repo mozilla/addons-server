@@ -1639,9 +1639,6 @@ SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
 TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
 
-YARA_ROOT = env('YARA_ROOT', default=path('private', 'addons-yara'))
-YARA_RULES_FILEPATH = os.path.join(YARA_ROOT, 'rules', 'all_rules.yar')
-
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
 # {'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),}
