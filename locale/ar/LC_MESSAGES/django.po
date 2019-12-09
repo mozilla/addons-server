@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 17:12+0000\n"
+"PO-Revision-Date: 2019-12-09 17:23+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -5356,7 +5356,7 @@ msgid "Type"
 msgstr ""
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "وقت الانتظار"
 
 #, fuzzy
 msgid "Flags"
@@ -5370,30 +5370,30 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "أقل من دقيقة"
 msgstr[1] "دقيقة واحدة"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[2] "دقيقتان"
+msgstr[3] "{0} دقائق"
+msgstr[4] "{0} دقيقة"
+msgstr[5] "{0} دقيقة"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "أقل من ساعة"
 msgstr[1] "ساعة واحدة"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[2] "ساعتان"
+msgstr[3] "{0} ساعات"
+msgstr[4] "{0} ساعة"
+msgstr[5] "{0} ساعة"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "أقل من يوم"
 msgstr[1] "يوم واحد"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[2] "يومان"
+msgstr[3] "{0} أيام"
+msgstr[4] "{0} يومًا"
+msgstr[5] "{0} يوم"
 
 msgid "Last Review"
 msgstr "آخر مراجعة"
@@ -5909,7 +5909,7 @@ msgid "(admin)"
 msgstr ""
 
 msgid "Admin Page"
-msgstr ""
+msgstr "صفحة الإدارة"
 
 msgid "Review This Add-on"
 msgstr "تعليق على هذه الإضافة"
@@ -6217,7 +6217,7 @@ msgid "This dashboard is currently <b>private</b>."
 msgstr "هذه اللوحة <b>خاصة</b> حاليا."
 
 msgid "Change settings."
-msgstr ""
+msgstr "غيّر الإعدادات."
 
 msgid "Application usage by Date"
 msgstr "استخدام التطبيق حسب التاريخ"
@@ -6240,7 +6240,7 @@ msgid "Platform usage by Date"
 msgstr "استخدام المنصة حسب التاريخ"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> من التنزيلات"
 
 msgid "Loading..."
 msgstr "يجري التحميل..."
@@ -6322,7 +6322,7 @@ msgid "View the new site"
 msgstr "عرض موقع الهواتف الذكية"
 
 msgid "Site Status"
-msgstr ""
+msgstr "حالة الموقع"
 
 #, fuzzy
 msgid "Report a bug"
@@ -6351,13 +6351,13 @@ msgid "Android Browser"
 msgstr "إضافات أندرويد"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "متصفّح آي‌أوإس"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "متصفّح Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "متصفّح سطح المكتب"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
@@ -6397,31 +6397,31 @@ msgstr "(اختياري)"
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "وطّن إلى: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
 msgstr ""
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "المحليّات الموجودة"
 
 msgid "New Locales"
-msgstr ""
+msgstr "المحليّات الجديدة"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr ""
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "أهمِل التعديلات"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "احذف المحليّة"
 
 #, fuzzy
 msgid "User Restriction History"
@@ -6465,7 +6465,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr ""
 
 msgid "No user with that email."
-msgstr ""
+msgstr "ما من مستخدم بهذا البريد الإلكتروني."
 
 #, fuzzy
 msgid "Firefox user {id}"
