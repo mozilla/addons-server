@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 16:49+0000\n"
+"PO-Revision-Date: 2019-12-09 17:12+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -5399,10 +5399,10 @@ msgid "Last Review"
 msgstr "آخر مراجعة"
 
 msgid "Last Update"
-msgstr ""
+msgstr "آخر تحديث"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "لا مراجعات"
 
 msgid "Weight"
 msgstr ""
@@ -5478,9 +5478,8 @@ msgstr "التعليق على {0}"
 msgid "Review Log"
 msgstr "التعليق"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "أضِف تعليقًا"
+msgstr "دليل مراجعة الإضافات"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5519,9 +5518,8 @@ msgstr[5] ""
 msgid "New ({0})"
 msgstr "إضافات {0}"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "آخر تحديث في {0}"
+msgstr "التحديثات ({0})"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -5622,7 +5620,7 @@ msgid "EULA"
 msgstr "اتفاقية ترخيص المستخدم"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "اعرض اتفاقية ترخيص المستخدم النهائي"
 
 #, fuzzy
 msgid "Last Approval Date"
@@ -5664,23 +5662,23 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr ""
+msgstr "الرتبة"
 
 msgid "Score"
-msgstr ""
+msgstr "الدرجة"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "التاريخ"
 
 msgid "Event"
-msgstr ""
+msgstr "الحدث"
 
 msgid "More details."
-msgstr ""
+msgstr "تفاصيل أكثر."
 
 msgid "No events found for this period."
 msgstr ""
@@ -5700,13 +5698,13 @@ msgid "Add-on Title"
 msgstr ""
 
 msgid "Review Text"
-msgstr ""
+msgstr "نصّ المراجعة"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
+msgstr "ألغِ حذفها"
 
 msgid "Save"
 msgstr "احفظ"
@@ -5724,7 +5722,7 @@ msgid "Your Reviews"
 msgstr ""
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "كتبها {user_name}"
 
 msgid "Total Reviews"
 msgstr "كل التعليقات"
@@ -5736,16 +5734,16 @@ msgid "This Month"
 msgstr "هذا الشهر"
 
 msgid "This Year"
-msgstr ""
+msgstr "هذه السنة"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "الأداء الشهري"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "المجموع"
 
 msgid "Month"
 msgstr ""
