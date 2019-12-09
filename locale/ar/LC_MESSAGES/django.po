@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 16:32+0000\n"
+"PO-Revision-Date: 2019-12-09 16:49+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -2016,9 +2016,9 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>لا</b> سمات"
 msgstr[1] "<b>سمة واحدة</b>"
 msgstr[2] "<b>سمتان</b>"
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[3] "<b>{0}</b> سمات"
+msgstr[4] "<b>{0}</b> سمة"
+msgstr[5] "<b>{0}</b> سمة"
 
 msgid "Edit Product Page"
 msgstr ""
@@ -2049,14 +2049,13 @@ msgid "Decline"
 msgstr ""
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "أدِر المؤلّفين والرُخص"
 
-#, fuzzy
 msgid "Authors"
-msgstr "Authors"
+msgstr "المؤلّفون"
 
 msgid "About author roles"
-msgstr ""
+msgstr "عن أدوار المؤلّفين"
 
 msgid "Authors pending confirmation"
 msgstr ""
@@ -2114,9 +2113,8 @@ msgstr "Contributions"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
 
-#, fuzzy
 msgid "Default Locale"
-msgstr "Default Locale"
+msgstr "المحلية المبدئية"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -2168,16 +2166,14 @@ msgstr ""
 msgid "Description"
 msgstr "الوصف"
 
-#, fuzzy
 msgid "Experimental?"
-msgstr "تجريبية"
+msgstr "أهي تجريبية؟"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "هذه الإضافة أزالها مطوّرها."
+msgstr "هذه الإضافة تجريبية."
 
 msgid "This add-on is ready for general use."
 msgstr ""
@@ -2223,7 +2219,7 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "الصور"
 
 msgid "Technical Details"
 msgstr "التفاصيل التقنية"
@@ -2317,16 +2313,16 @@ msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr ""
+msgstr "اللقطات"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "من فضلك ضع وصفًا للقطة الشاشة هذه:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "أضِف لقطة شاشة..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
@@ -2359,25 +2355,25 @@ msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
-msgstr ""
+msgstr "اختر رخصة أخرى."
 
 msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "General Tests"
-msgstr ""
+msgstr "الفحوص العامة"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "فحوص الأمان"
 
 msgid "Extension Tests"
 msgstr ""
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "فحوص التوطين"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "فحوص التوافق"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -2389,7 +2385,7 @@ msgid "Top"
 msgstr "فوق"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "احذف الإضافة"
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -2409,10 +2405,10 @@ msgid "Resume the submission process for this add-on"
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "استأنف"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "احذف هذه الإضافة."
 
 msgid "Delete"
 msgstr "احذف"
@@ -2437,7 +2433,7 @@ msgid "Manage Status & Versions"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "طالعِ آخر التعديلات"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -2482,9 +2478,8 @@ msgid ""
 "submission process is complete."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "رابط الإضافة"
+msgstr "رابط الإضافة:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
@@ -2498,9 +2493,8 @@ msgstr ""
 msgid "Summary:"
 msgstr ""
 
-#, fuzzy
 msgid "Description:"
-msgstr "الوصف"
+msgstr "الوصف:"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -2521,9 +2515,8 @@ msgstr "بريد الدعم"
 msgid "Support website:"
 msgstr "موقع الدعم"
 
-#, fuzzy
 msgid "License:"
-msgstr "الرخصة"
+msgstr "الرخصة:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -2531,9 +2524,8 @@ msgstr ""
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "غير مراجعة"
+msgstr "ملاحظات للمراجع:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -2627,7 +2619,7 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
+msgstr "نزّل {0}"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -2900,7 +2892,7 @@ msgstr ""
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s من أصل %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
@@ -2915,7 +2907,7 @@ msgid "Upload New Version"
 msgstr "رفع إصدارة جديدة"
 
 msgid "View All"
-msgstr ""
+msgstr "اعرض الكل"
 
 #, fuzzy
 msgid "Listed Review Page"
@@ -3036,7 +3028,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "انضم إلينا!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3136,12 +3128,11 @@ msgstr ""
 
 #. {0} is an add-on name.
 # {0} is the name of the collection
-#, fuzzy
 msgid "Manage {0}"
-msgstr "Manage {0}"
+msgstr "أدِر {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "الملفات"
 
 msgid "Version Notes"
 msgstr "ملاحظات الإصدارة"
@@ -3152,22 +3143,22 @@ msgid ""
 msgstr ""
 
 msgid "Approval Status"
-msgstr ""
+msgstr "حالة الموافقة"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "ملاحظات للمراجعين"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
 
 msgid "Source code"
-msgstr ""
+msgstr "الكود المصدري"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "الملف {file_id} ‏({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -3184,13 +3175,13 @@ msgid "Edit this version"
 msgstr ""
 
 msgid "0 files"
-msgstr ""
+msgstr "0 ملفات"
 
 msgid "Re-enable Version"
 msgstr ""
 
 msgid "Review History"
-msgstr ""
+msgstr "تأريخ المراجعات"
 
 #, fuzzy
 msgid "Close Review History"
@@ -3201,10 +3192,10 @@ msgid "Request Review"
 msgstr "تعليق مُفصّل"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "ألغِ طلب المراجعة"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "يُحمّل تأريخ المراجعات..."
 
 msgid "We had a problem retrieving review notes"
 msgstr ""
@@ -3261,35 +3252,35 @@ msgid "All versions"
 msgstr "عرض جميع الإصدارات"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "ارفع إصدارة جديدة"
 
 msgid "Version"
 msgstr "الإصدارة"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "احذف الإصدارة {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "أنت على وشك حذف الإصدارة الحالية من إضافتك. يمكن لهذا أن يسبّب بتغيّر حالة الإضافة أو بألا تظهر على العموم لو كانت هذه الإصدارة هي الوحيدة من إصدارات إضافتك."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "بحذف هذه الإصدارة تحذف للأبد الآتي:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "أمتأكّد تمام التأكّد بحذف هذه الإصدارة؟"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "احذف الإصدارة"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "عطّل الإصدارة"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "أخفِ الإضافة"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -3298,7 +3289,7 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "أمتأكّد أنّك تريد إخفاء إضافتك؟"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
@@ -4839,7 +4830,7 @@ msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "الأرشيف غير صالح."
 
 msgid "Could not find an add-on ID."
 msgstr ""
@@ -4926,7 +4917,7 @@ msgid "Files:"
 msgstr "الملفات:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "الملفات المحذوفة:"
 
 msgid "Hide known files"
 msgstr ""
@@ -4971,10 +4962,10 @@ msgid "Fetching file."
 msgstr ""
 
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "عن إضافات Mozilla"
 
 msgid "What is this website?"
-msgstr ""
+msgstr "ما هذا الموقع؟"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
@@ -4982,7 +4973,7 @@ msgid ""
 msgstr ""
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "من يصنع هذه الإضافات؟"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -5041,7 +5032,7 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr ""
 
 msgid "I have a question"
-msgstr ""
+msgstr "عندي سؤال"
 
 #, fuzzy, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
@@ -5052,7 +5043,7 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr ""
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "من يعمل على هذا الموقع؟"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
@@ -5405,7 +5396,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Last Review"
-msgstr ""
+msgstr "آخر مراجعة"
 
 msgid "Last Update"
 msgstr ""
