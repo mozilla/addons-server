@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 12:49+0000\n"
+"PO-Revision-Date: 2019-12-09 13:17+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4728,7 +4728,7 @@ msgstr "Extensiile obsolete nu mai sunt suportate în Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Acestea adaugă funcționalități în Firefox pentru a face navigarea mai rapidă, mai sigură sau doar distractivă."
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -4737,15 +4737,15 @@ msgstr "Răsfoiește toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "Sincronizează extensiile pe dispozitive"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Confidențialitate dincolo de extensiile browserului"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Accesorii media pentru Firefox"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
