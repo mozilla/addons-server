@@ -23,6 +23,8 @@ from olympia.amo.utils import (
 
 pytestmark = pytest.mark.django_db
 
+IMAGE_FILESIZE_MAX = 200 * 1024
+
 
 class TestAttachTransDict(TestCase):
     """
@@ -254,3 +256,14 @@ class TestHttpResponseXSendFile(TestCase):
         etag = '123'
         resp = HttpResponseXSendFile(request=None, path='/', etag=etag)
         assert resp['ETag'] == quote_etag(etag)
+
+
+def test_images_are_small():
+    """A test that will fail if we accidentally include a large image."""
+    large_images = []
+    img_path = os.path.join(settings.ROOT, 'static', 'img')
+    for root, dirs, files in os.walk(img_path):
+        large_images += [
+            os.path.join(root, name) for name in files
+            if os.path.getsize(os.path.join(root, name)) > IMAGE_FILESIZE_MAX]
+    assert not large_images
