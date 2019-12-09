@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 15:31+0000\n"
+"PO-Revision-Date: 2019-12-09 15:42+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -806,64 +806,64 @@ msgid "No version notes found"
 msgstr "لم نجد أيّ ملاحظات إصدارات"
 
 msgid "Review Text"
-msgstr ""
+msgstr "نصّ المراجعة"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "وجدنا على ملاحظات مراجعة"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "معدّل المراجعات"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "عدد المراجعات"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "أقصى حجم للرفع هو {0}. اختر صورة خلفية أصغر من هذه."
 
 msgid "Requested Info"
-msgstr ""
+msgstr "طُلبت معلومات"
 
 msgid "Flagged"
-msgstr ""
+msgstr "وُضع عليها علامة"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "مكرّرة"
 
 msgid "Rejected"
-msgstr ""
+msgstr "مرفوضة"
 
 msgid "Approved"
-msgstr ""
+msgstr "موافق عليها"
 
 msgid "No results found"
 msgstr "لم يُعثر على نتائج"
 
 msgid "Theme"
-msgstr ""
+msgstr "السمة"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "المُراجع"
 
 msgid "Status"
-msgstr ""
+msgstr "الحالة"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "مرّت كافة الاختبارات بنجاح."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "لم تُشغّل هذه الاختبارات."
 
 msgid "Tests"
-msgstr ""
+msgstr "الاختبارات"
 
 msgid "Error"
 msgstr "خطأ"
 
 msgid "Warning"
-msgstr ""
+msgstr "تحذير"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} سطر {1} عمود {2}"
 
 #, fuzzy
 msgid "{0} line {1}"
@@ -877,21 +877,21 @@ msgstr "نجح التثبّت من الإضافة."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا أخطاء"
+msgstr[1] "خطأ واحد"
+msgstr[2] "خطأين"
+msgstr[3] "{0} أخطاء"
+msgstr[4] "{0} خطأ"
+msgstr[5] "{0} خطأ"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا تحذيرات"
+msgstr[1] "تحذير واحد"
+msgstr[2] "تحذيران"
+msgstr[3] "{0} تحذيرات"
+msgstr[4] "{0} تحذيرًا"
+msgstr[5] "{0} تحذير"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"

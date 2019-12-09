@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-02 19:10+0000\n"
-"Last-Translator: Amer Hussam <Amer.h@msc-jo.com>\n"
+"PO-Revision-Date: 2019-12-09 15:52+0000\n"
+"Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -42,9 +42,8 @@ msgstr "تاريخ الإنشاء"
 msgid "User / Add-on"
 msgstr "إضافات أندرويد"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "الوصف"
+msgstr "التوزيعة"
 
 msgid "Reporter's country"
 msgstr ""
@@ -68,7 +67,7 @@ msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Modified on:"
-msgstr ""
+msgstr "تاريخ التعديل:"
 
 #, python-format
 msgid "By %(filter_title)s"
@@ -81,14 +80,14 @@ msgid "No links are allowed."
 msgstr "لا يسمح بالروابط الخارجية."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "لا يمكنك استعمال اسم العرض هذا."
 
 #, fuzzy
 msgid "This reviewer name cannot be used."
 msgstr "هذا الرابط URL المخصص لا يمكن استخدامه."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "لا يمكنك استعمال حقل الصفحة الرئيسية إلّا للإشارة إلى مواقع خارجية."
 
 msgid "Images must be either PNG or JPG."
 msgstr "يجب أن تكون الصور إما PNG أو JPG."
@@ -101,26 +100,26 @@ msgid "Please use images smaller than %dMB."
 msgstr "رجاءً استخدم صورًا أصغر من %d م.بايت."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "أنت والج بالفعل."
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "تعذّر علينا أن نجد حسابك على Firefox. من فضلك أعِد المحاولة."
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "تعذّر الولوج. من فضلك أعِد المحاولة."
 
 msgid "Need help?"
-msgstr ""
+msgstr "أتريد يد العون والمساعدة؟"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "لا يمكن لمطوّري الإضافات أو السمات حذف حساباتهم. عليك أولًا حذف إضافاتك وسماتك المرتبطة بحسابك كلها، أو نقلها إلى مستخدمين آخرين."
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "الإخطار [%s] غير موجود"
 
 msgid "Review"
 msgstr ""
@@ -132,16 +131,16 @@ msgid "Review note"
 msgstr "مراجعة الملاحظة"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "لا يمكنك إضافة ملاحظات إصدارات الإضافات إلا للنسخ الأخيرة."
 
 msgid "Ratings"
-msgstr ""
+msgstr "التقييمات"
 
 msgid "Status"
-msgstr ""
+msgstr "الحالة"
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- الإضافة ليست على AMO -"
 
 # Column name in a table.
 #, fuzzy
@@ -149,10 +148,10 @@ msgid "Listed"
 msgstr "Listed"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "يجب أن ينتهي مسارا الإضافة والمجموعة بعلامة ”/“"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "لا يمكنك استعمال العلامتين التجارتين Mozilla أو Firefox في أسماء الإضافات."
 
 msgid "Sort by:"
 msgstr "ترتيب حسب:"
@@ -164,7 +163,7 @@ msgid "My Add-ons"
 msgstr "إضافاتي"
 
 msgid "My Themes"
-msgstr ""
+msgstr "سِماتي"
 
 msgid "Tools"
 msgstr "أدوات"
@@ -191,13 +190,13 @@ msgid "Submit a New Add-on"
 msgstr "تقديم إضافة جديدة"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "أرسِل سمة جديدة"
 
 msgid "Developer Hub"
 msgstr "مركز المطورين"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "نظّم مفاتيح API"
 
 msgid "Reviewer Tools"
 msgstr "أدوات المُراجع"
