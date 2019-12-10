@@ -85,7 +85,7 @@ class TestBlockAdminAdd(TestCase):
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
-        assert b'Addon with specified GUID does not exist' in response.content
+        assert b'Addon with GUID guid@ does not exist' in response.content
 
         # But should continue to the django admin add page if it exists
         addon = addon_factory(guid='guid@')
@@ -819,3 +819,56 @@ class TestBlockAdminEdit(TestCase):
             action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
         assert not ActivityLog.objects.for_block(self.block).filter(
             action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
+
+
+class TestBlockAdminBulkDelete(TestCase):
+    def setUp(self):
+        self.delete_url = reverse('admin:blocklist_block_delete_multiple')
+
+    def test_input(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        response = self.client.get(self.delete_url, follow=True)
+        assert b'Add-on GUIDs (one per line)' in response.content
+
+        # Submit an empty list of guids should redirect back to the page
+        response = self.client.post(
+            self.delete_url, {'guids': ''}, follow=False)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'This field is required' in response.content
+
+        # Any invalid guids should redirect back to the page too, with an error
+        block_with_addon = Block.objects.create(
+            addon=addon_factory(guid='guid@'))
+        response = self.client.post(
+            self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=False)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'Block with GUID {12345-6789} not found' in response.content
+
+        # We're purposely not creating the add-on here to test the edge-case
+        # where the addon has been hard-deleted or otherwise doesn't exist.
+        block_no_addon = Block.objects.create(guid='{12345-6789}')
+        assert Block.objects.count() == 2
+        # But should continue to django's deleted_selected if they all exist
+        response = self.client.post(
+            self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=True)
+        assert b'Add-on GUIDs (one per line)' not in response.content
+        assert b'Are you sure?' in response.content
+
+        # The delete selected form is different but submits to the current url,
+        # so we have to redirect to the changelist page to takeover and
+        # actually delete.
+        data = {
+            'action': 'delete_selected',
+            'post': 'yes',
+            '_selected_action': (
+                str(block_with_addon.id), str(block_no_addon.id)),
+        }
+        response = self.client.post(self.delete_url, data, follow=True)
+        self.assertRedirects(
+            response,
+            reverse('admin:blocklist_block_changelist'), status_code=307)
+        assert Block.objects.count() == 0

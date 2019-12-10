@@ -35,10 +35,14 @@ def block_activity_log_save(obj, change):
 
 
 def block_activity_log_delete(obj, user):
+    args = (
+        [amo.LOG.BLOCKLIST_BLOCK_DELETED] +
+        ([obj.addon] if obj.addon else []) +
+        [obj.guid, obj])
     al = log_create(
-        amo.LOG.BLOCKLIST_BLOCK_DELETED, obj.addon, obj.guid, obj,
-        details={'guid': obj.guid}, user=user)
-    add_version_log_for_blocked_versions(obj, al)
+        *args, details={'guid': obj.guid}, user=user)
+    if obj.addon:
+        add_version_log_for_blocked_versions(obj, al)
 
 
 def format_block_history(logs):

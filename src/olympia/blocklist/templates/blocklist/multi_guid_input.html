@@ -26,17 +26,14 @@
   {% csrf_token %}
   <div>
     <h2>{% trans 'Add-on GUIDs (one per line)' %}</h2>
-    {% if errors %}
+    {% if form.non_field_errors %}
       <p>
-        <ul class="errornote">
-          {% for error in errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
+        {{ form.non_field_errors }}
       </p>
     {% endif %}
     <div class="form-row">
-      <textarea id="guids_input" name="guids" rows="10" cols="80" required wrap="off"></textarea>
+      {{ form.guids.errors }}
+      {{ form.guids }}
     </div>
     {% block submit_buttons_bottom %}
     <div class="submit-row">
