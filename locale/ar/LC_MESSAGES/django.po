@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 17:23+0000\n"
+"PO-Revision-Date: 2019-12-10 04:37+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -529,7 +529,7 @@ msgid "File {0.name} added to {version} of {addon}."
 msgstr "أُضيف الملف {0.name} إلى {version} للإضافة {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "حُذف الملف {0} من {version} للإضافة {addon}."
 
 msgid "{addon} {version} approved."
 msgstr ""
@@ -1520,7 +1520,7 @@ msgstr ""
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "قبل أن تغيّر المحليّة المبدئية يجب أن يكون الاسم والملخص والوصف متاحًا بتلك المحليّة الجديدة. ليس لديك %s."
 
 msgid "Users can not be added directly"
 msgstr ""
@@ -2445,22 +2445,22 @@ msgstr "هذه الإضافة غير متوافقة مع الإصدارة الح
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "لا تنزيلات"
-msgstr[1] "تنزيل واحد أسبوعيا"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "<strong>لا</strong> تنزيلات أسبوعية"
+msgstr[1] "<strong>تنزيل واحد</strong> أسبوعيًا"
+msgstr[2] "<strong>تنزيلان</strong> أسبوعيًا"
+msgstr[3] "<strong>{0}</strong> تنزيلات أسبوعيًا"
+msgstr[4] "<strong>{0}</strong> تنزيلًا أسبوعيًا"
+msgstr[5] "<strong>{0}</strong> تنزيل أسبوعيًا"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "لا مستخدمين نشطين"
-msgstr[1] "مستخدم واحد نشط"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "<strong>لا</strong> مستخدمين نشطين"
+msgstr[1] "<strong>مستخدم واحد</strong> نشط"
+msgstr[2] "<strong>مستخدمين</strong> نشطين"
+msgstr[3] "<strong>{0}</strong> مستخدمين نشطين"
+msgstr[4] "<strong>{0}</strong> مستخدمًا نشطًا"
+msgstr[5] "<strong>{0}</strong> مستخدم نشط"
 
 #, fuzzy
 msgid "Submit a New Version"
@@ -2607,9 +2607,8 @@ msgstr "View Listing"
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "إصدارة تجريبية {0}"
+msgstr "حرّر الإصدارة {0}"
 
 #, fuzzy
 msgid "Version Signed"
@@ -2857,11 +2856,11 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "تاريخ الإنشاء:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr ""
+msgstr "آخر تحديث:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -3306,10 +3305,10 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "لا أخطاء"
 msgstr[1] "خطأ واحد"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[2] "خطأين"
+msgstr[3] "{0} أخطاء"
+msgstr[4] "{0} خطأ"
+msgstr[5] "{0} خطأ"
 
 #. L10n: first parameter is the number of warnings
 # {0} is a number
@@ -3317,10 +3316,10 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "لا تحذيرات"
 msgstr[1] "تحذير واحد"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[2] "تحذيران"
+msgstr[3] "{0} تحذيرات"
+msgstr[4] "{0} تحذيرًا"
+msgstr[5] "{0} تحذير"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5152,9 +5151,8 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 
-#, fuzzy
 msgid "User"
-msgstr "اسم المستخدم"
+msgstr "المستخدم"
 
 #, fuzzy
 msgid "IP Address"
@@ -5207,12 +5205,12 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "لا تعليقات"
-msgstr[1] "تعليق واحد"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لا مراجعات"
+msgstr[1] "مراجعة واحدة"
+msgstr[2] "مراجعتان"
+msgstr[3] "{num} مراجعات"
+msgstr[4] "{num} مراجعة"
+msgstr[5] "{num} مراجعة"
 
 msgid "Not yet rated"
 msgstr "بلا تقييم حتى الآن"
@@ -6360,7 +6358,7 @@ msgid "Desktop Browser"
 msgstr "متصفّح سطح المكتب"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "النسخة التجريبية والنسخة الليلية ونسخة المطوّرين"
 
 msgid "Other languages"
 msgstr "لغات أخرى"
