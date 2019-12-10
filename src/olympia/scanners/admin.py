@@ -142,6 +142,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'state',
         'formatted_matched_rules',
         'formatted_results',
+        'result_actions',
     )
 
     ordering = ('-created',)
@@ -259,6 +260,12 @@ class ScannerResultAdmin(admin.ModelAdmin):
         result = self.get_object(request, pk)
         result.update(state=FALSE_POSITIVE)
 
+        messages.add_message(
+            request,
+            messages.INFO,
+            'Scanner result {} has been marked as false positive.'.format(pk),
+        )
+
         title = 'False positive report for ScannerResult {}'.format(pk)
         body = render_to_string(
             'admin/false_positive_report.md', {'result': result, 'YARA': YARA}
@@ -318,7 +325,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
 
     def result_actions(self, obj):
         return render_to_string(
-            'admin/scannerresult_action.html', {'obj': obj}
+            'admin/scannerresult_actions.html', {'obj': obj}
         )
 
     result_actions.short_description = 'Actions'
