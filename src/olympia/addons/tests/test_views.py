@@ -2010,6 +2010,21 @@ class TestAddonFeaturedView(ESTestCase):
         ids = {result['id'] for result in data['results']}
         assert ids == {addon1.id, addon2.id}
 
+    def test_page_size(self):
+        for _ in range(0, 15):
+            addon = addon_factory()
+            DiscoveryItem.objects.create(addon=addon, recommendable=True)
+            addon.current_version.update(recommendation_approved=True)
+
+        self.refresh()
+
+        # ask for > 10, to check we're not hitting the default ES page size.
+        response = self.client.get(self.url + '?page_size=11')
+        assert response.status_code == 200
+        data = json.loads(force_text(response.content))
+        assert data['results']
+        assert len(data['results']) == 11
+
     def test_invalid_app(self):
         response = self.client.get(
             self.url, {'app': 'foxeh', 'type': 'extension'})
