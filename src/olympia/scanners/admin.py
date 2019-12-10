@@ -196,7 +196,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
                     ),
                 ),
                 obj.version.addon.name,
-                obj.version.id,
+                obj.version.version,
             )
         return '-'
 

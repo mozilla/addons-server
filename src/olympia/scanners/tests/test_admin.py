@@ -81,7 +81,7 @@ class TestScannerResultAdmin(TestCase):
                     reverse('reviewers.review', args=['listed', addon.id]),
                 ),
                 addon.name,
-                version.id,
+                version.version,
             )
         )
 
@@ -99,7 +99,7 @@ class TestScannerResultAdmin(TestCase):
                     reverse('reviewers.review', args=['unlisted', addon.id]),
                 ),
                 addon.name,
-                version.id,
+                version.version,
             )
         )
     def test_formatted_addon_without_version(self):
