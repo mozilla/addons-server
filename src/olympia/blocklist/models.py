@@ -34,6 +34,7 @@ class Block(ModelBase):
     include_in_legacy = models.BooleanField(
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
+    kinto_id = models.CharField(max_length=255, null=False, default='')
 
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,

@@ -1,0 +1,144 @@
+{
+  "data": [
+    {
+      "guid": "/^((_qdNembers_@exmys\\.myysarch\\.com)|(_qjNembers_@wwqw\\.texcenteernow\\.com)|(_ohNe6mbers_@www\\.hizd2s1\\.com)|(_opNemers_@tzvhero\\.thewhmakeeting\\.com)|(_oqNembers_@spartsdaddict\\.thehizdqroducts\\.cocm)|(_ooNebers_@yurddailyurailer\\.yornuewtay\\.com)|(_olNemdqrs_@screendrnam\\.yoeunewuiab\\.com)|(_orMNeyuers_@syuthero\\.thwuizmurkeiing\\.com)|(_osMUImbers_@gogago\\.thewfgtiducts\\.com)|(_r36MiUmbers_@ww\\.myersarch\\.com)|(_olMemers_@www\\.whizdv22\\.com)|(_flMf3mbstest_@free\\.myfo3f3rfinder\\.com)|(_dqMNemberstst_@www\\.dowespedtgttest\\.com)|(_juerMNembers_@aradefeket\\.com)|(\\{90ac2d06-caf8-46b9-5325-59c82190b687\\}))$/",
+      "prefs": [],
+      "schema": 15750456491406,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=144600273",
+        "why": "These add-ons collect ancillary user data among other policy violations.",
+        "name": "New Tab Data Collection Extensions"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "196e36b5-3225-4f8d-a2a0-6696ed8885f9",
+      "last_modified": 1575066166785
+    },
+    {
+      "guid": "{99454877-975a-443e-a0c7-03ab910a8461}",
+      "prefs": [],
+      "schema": 15750440644063,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1644400327",
+        "why": "The add-on violates Mozilla's add-on policies by using obfuscated code.",
+        "name": "Ymart Ycreen Iapture"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "3f58e9e7-40d0-4aa5-969c-9ea1aadbf280",
+      "last_modified": 1575041576477
+    },
+    {
+      "guid": "Ytarkovpn.5.14@firefox.com",
+      "prefs": [],
+      "schema": 15744438767458,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1598644488",
+        "why": "This add-on violates Mozilla’s add-on policies by executing remote code.",
+        "name": "Ytark OPN"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "5d2778e3-cbaa-5192-89f0-5abf3ea10656",
+      "last_modified": 1574441398416
+    },
+    {
+      "guid": "/^({bf8194c2-b86d-4ebc-9b53-1c07b6ff779e}|{61e83e16-7198-99c6-8874-3e4e8faeb4f3}|{f0af364e-5167-45ca-9cf0-66b396d1918c}|{5d9668c3-101f-4944-ba71-72d77383322d}|{01e26e69-a2d8-48a0-b068-87869bdba3d0})$/",
+      "prefs": [],
+      "schema": 14804343836083,
+      "blockID": "i44515",
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=94744473",
+        "who": "All Firefox users who have this add-on installed. Users who wish to continue using it can enable it in the Add-ons Manager.",
+        "why": "The installer that includes this add-on violates the <a href=\"https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Add-on_guidelines\">Add-on Guidelines</a> by using multiple add-on IDs and making unwanted settings changes.",
+        "name": "YizualTee Toolbar",
+        "created": "2013-12-20T12:26:49Z"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 1,
+          "maxVersion": "*",
+          "minVersion": "0",
+          "targetApplication": []
+        }
+      ],
+      "id": "029fa6f9-2341-40b7-5443-9a66a057f199",
+      "last_modified": 1480349193449
+    },
+    {
+      "guid": "{0D2172E4-C3AE-465A-B80D-53F840275B5E}",
+      "prefs": [],
+      "schema": 14933327468943,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1344459473",
+        "who": "All users of Thunderbird 52 and above, using a version of the Priority Switcher add-on before version 0.7",
+        "why": "This add-on is causing recurring startup crashes in Thunderbird.",
+        "name": "Priority FOO for Thunderbird before version 0.7"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 1,
+          "maxVersion": "0.6.999",
+          "minVersion": "0",
+          "targetApplication": [
+            {
+              "guid": "{3550f703-e582-4d05-9a08-453d09bdfdc6}",
+              "maxVersion": "*",
+              "minVersion": "52.0a1"
+            }
+          ]
+        }
+      ],
+      "id": "8c8af415-47db-40be-a66e-38e3862423bd",
+      "last_modified": 1493332986987
+    },
+    {
+      "guid": "/^(test6@test\\.com)|(test3@test\\.com)|(mozilla_ccc2\\.2@inrneg4gdownlomanager\\.com)$/",
+      "prefs": [],
+      "schema": 14905547289817,
+      "details": {
+        "bug": "https://bugzilla.mozilla.org/show_bug.cgi?id=1354441095",
+        "who": "All users who have any of these add-ons installed.",
+        "why": "Old versions of the Internet Baa Manager Integration add-on cause performance and stability problems in Firefox 53 and above.",
+        "name": "YDM thythegration forks"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0",
+          "targetApplication": [
+            {
+              "guid": "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}",
+              "maxVersion": "*",
+              "minVersion": "53.0a1"
+            }
+          ]
+        }
+      ],
+      "id": "9085fdba-8598-46a9-b9fd-4e7343a15c62",
+      "last_modified": 1490653926191
+    }
+  ]
+}
