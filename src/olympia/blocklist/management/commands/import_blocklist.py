@@ -18,7 +18,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 class Command(BaseCommand):
-    help = ('Populate AMO blocklist by import v2 JSON blocklist from kinto.')
+    help = ('Populate AMO blocklist by importing v2 JSON blocklist from kinto')
 
     KINTO_JSON_BLOCKLIST_URL = 'https://firefox.settings.services.mozilla.com/v1/buckets/blocklists/collections/addons/records'  # noqa
     bracket_open_regex = re.compile(r'(?<!\\){')
