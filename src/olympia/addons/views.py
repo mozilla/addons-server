@@ -423,6 +423,10 @@ class AddonFeaturedView(AddonSearchView):
     # this endpoint since the order is random.
     pagination_class = None
 
+    filter_backends = [
+        ReviewedContentFilter, SearchParameterFilter,
+    ]
+
     def get(self, request, *args, **kwargs):
         try:
             page_size = int(
@@ -438,7 +442,10 @@ class AddonFeaturedView(AddonSearchView):
     def filter_queryset(self, qs):
         qs = super().filter_queryset(qs)
         qs = qs.query(query.Bool(filter=[Q('term', is_recommended=True)]))
-        return qs.query('function_score', functions=[query.SF('random_score')])
+        return (
+            qs.query('function_score', functions=[query.SF('random_score')])
+              .sort('_score')
+        )
 
 
 class StaticCategoryView(ListAPIView):
