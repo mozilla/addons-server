@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 23:48+0000\n"
+"PO-Revision-Date: 2019-12-10 00:01+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3317,7 +3317,7 @@ msgstr "Reverzní vyhledávání obrázků {start_sub_heading}díky {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr "Narazili jste na webu na zajímavý obrázek? S tímto doplňkem o něm zjistíte více."
+msgstr "Narazili jste na webu na zajímavý obrázek? S tímto nástrojem pro vyhledávání obrázků o něm zjistíte více."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4644,7 +4644,7 @@ msgstr "Rozšíření jsou jako aplikace pro Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Přidávají do Firefoxu funkce, s kterými je brouzdání rychlejší, bezpečnější nebo prostě jen zábavnější."
+msgstr "Přidávají do Firefoxu funkce, se kterými je brouzdání rychlejší, bezpečnější nebo prostě jen zábavnější."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
