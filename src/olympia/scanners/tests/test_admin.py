@@ -67,7 +67,7 @@ class TestScannerResultAdmin(TestCase):
     def test_has_change_permission(self):
         assert self.admin.has_change_permission(request=None) is False
 
-    def test_formatted_addon(self):
+    def test_formatted_listed_addon(self):
         addon = addon_factory()
         version = version_factory(
             addon=addon, channel=amo.RELEASE_CHANNEL_LISTED
@@ -78,13 +78,30 @@ class TestScannerResultAdmin(TestCase):
             '<a href="{}">{} (version: {})</a>'.format(
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
-                    reverse('reviewers.review', args=[addon.id]),
+                    reverse('reviewers.review', args=['listed', addon.id]),
                 ),
                 addon.name,
                 version.id,
             )
         )
 
+    def test_formatted_unlisted_addon(self):
+        addon = addon_factory()
+        version = version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+        result = ScannerResult(version=version)
+
+        assert self.admin.formatted_addon(result) == (
+            '<a href="{}">{} (version: {})</a>'.format(
+                urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('reviewers.review', args=['unlisted', addon.id]),
+                ),
+                addon.name,
+                version.id,
+            )
+        )
     def test_formatted_addon_without_version(self):
         result = ScannerResult(version=None)
 

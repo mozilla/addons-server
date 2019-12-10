@@ -12,6 +12,7 @@ from django.utils.translation import ugettext
 
 from urllib.parse import urljoin
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
@@ -26,7 +27,6 @@ from .models import ScannerResult, ScannerRule
 
 
 class PresenceFilter(SimpleListFilter):
-
     def choices(self, cl):
         for lookup, title in self.lookup_choices:
             yield {
@@ -184,7 +184,16 @@ class ScannerResultAdmin(admin.ModelAdmin):
                 # We use the add-on's ID to support deleted add-ons.
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
-                    reverse('reviewers.review', args=[obj.version.addon.id]),
+                    reverse(
+                        'reviewers.review',
+                        args=[
+                            'listed'
+                            if obj.version.channel
+                            == amo.RELEASE_CHANNEL_LISTED
+                            else 'unlisted',
+                            obj.version.addon.id,
+                        ],
+                    ),
                 ),
                 obj.version.addon.name,
                 obj.version.id,
@@ -340,8 +349,11 @@ class ScannerRuleAdmin(admin.ModelAdmin):
         if not obj.pk or not obj.scanner:
             return '-'
         count = ScannerResult.objects.filter(matched_rules=obj).count()
-        url = reverse('admin:{}_{}_changelist'.format(
-            ScannerResult._meta.app_label, ScannerResult._meta.model_name))
+        url = reverse(
+            'admin:{}_{}_changelist'.format(
+                ScannerResult._meta.app_label, ScannerResult._meta.model_name
+            )
+        )
         url = (
             f'{url}?matched_rules__id__exact={obj.pk}'
             f'&{WithVersionFilter.parameter_name}=all'
