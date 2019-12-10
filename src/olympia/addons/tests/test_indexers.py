@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from itertools import chain
+from unittest import mock
 
 from olympia import amo
-from olympia.addons.indexers import AddonIndexer
+from olympia.addons.indexers import AddonIndexer, reindex_tasks_group
 from olympia.addons.models import (
     Addon, Preview, attach_tags, attach_translations)
 from olympia.amo.models import SearchMixin
-from olympia.amo.tests import ESTestCase, TestCase, file_factory
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
@@ -425,6 +426,24 @@ class TestAddonIndexer(TestCase):
         assert extracted['id'] == self.addon.pk
         assert extracted['previews'] == []
         assert extracted['colors'] is None
+
+    @mock.patch('olympia.addons.indexers.create_chunked_tasks_signatures')
+    def test_reindex_tasks_group(self, create_chunked_tasks_signatures_mock):
+        from olympia.addons.tasks import index_addons
+
+        expected_ids = [
+            self.addon.pk,
+            addon_factory(status=amo.STATUS_DELETED).pk,
+            addon_factory(
+                status=amo.STATUS_NULL,
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}).pk,
+        ]
+        rval = reindex_tasks_group('addons')
+        assert create_chunked_tasks_signatures_mock.call_count == 1
+        assert create_chunked_tasks_signatures_mock.call_args[0] == (
+            index_addons, expected_ids, 150
+        )
+        assert rval == create_chunked_tasks_signatures_mock.return_value
 
 
 class TestAddonIndexerWithES(ESTestCase):
