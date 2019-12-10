@@ -424,20 +424,20 @@ class AddonFeaturedView(AddonSearchView):
     pagination_class = None
 
     def get(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-
         try:
             page_size = int(
                 self.request.GET.get('page_size', api_settings.PAGE_SIZE))
         except ValueError:
             raise exceptions.ParseError('Invalid page_size parameter')
+
         # Simulate pagination-like results, without actual pagination.
-        return Response({'results': serializer.data[:page_size]})
+        queryset = self.filter_queryset(self.get_queryset()[:page_size])
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
 
     def filter_queryset(self, qs):
         qs = super().filter_queryset(qs)
-        qs = qs.query(query.Bool(must=[Q('term', is_recommended=True)]))
+        qs = qs.query(query.Bool(filter=[Q('term', is_recommended=True)]))
         return qs.query('function_score', functions=[query.SF('random_score')])
 
 
