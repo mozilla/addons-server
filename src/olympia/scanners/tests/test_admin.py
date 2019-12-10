@@ -102,6 +102,7 @@ class TestScannerResultAdmin(TestCase):
                 version.version,
             )
         )
+
     def test_formatted_addon_without_version(self):
         result = ScannerResult(version=None)
 
