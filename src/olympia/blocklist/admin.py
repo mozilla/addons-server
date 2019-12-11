@@ -157,14 +157,13 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
         elif request.method == 'POST':
             # Otherwise, if its a POST try to process the form.
             form = MultiBlockForm(request.POST)
-            form_valid = form.is_valid()
-            frm_data = form.cleaned_data
+            frm_data = form.data
             # Check if the versions specified were the ones we calculated which
             # Blocks would be updated or skipped on.
             versions_unchanged = (
                 frm_data['min_version'] == frm_data['existing_min_version'] and
                 frm_data['max_version'] == frm_data['existing_max_version'])
-            if form_valid and versions_unchanged:
+            if form.is_valid() and versions_unchanged:
                 # Save the object so we have the guids
                 obj = form.save()
                 obj.update(updated_by=request.user)
