@@ -31,8 +31,8 @@
   <div>
     <div class="form-row horizontal-grid">
       <div>
-        <h3>{% blocktrans with count=existing_guids|length %}{{ count }} Add-on GUIDs are already blocked{% endblocktrans %}:</h3>
-        <ul class="guid_list">
+        <h3>{% blocktrans with count=existing_guids|length v_min=form.min_version.value v_max=form.max_version.value %}{{ count }} Add-on GUIDs are already blocked for {{ v_min }} to {{ v_max }}{% endblocktrans %}:</h3>
+        <ul class="guid_list field-existing-guids">
           {% for guid in existing_guids %}
           <li>{{ guid }}</li>
           {% endfor %}
@@ -77,12 +77,16 @@
         {{ form.min_version.errors }}
         {{ form.min_version.label_tag }}
         {{ form.min_version }}
+        <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
+        {{ form.existing_min_version }}
       </div>
     </div>
     <div class="form-row">
       {{ form.max_version.errors }}
       {{ form.max_version.label_tag }}
       {{ form.max_version }}
+      <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
+      {{ form.existing_max_version }}
     </div>
     <div class="form-row">
       {{ form.url.errors }}

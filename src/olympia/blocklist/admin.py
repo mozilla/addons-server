@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
 from django.forms import modelform_factory
-from django.forms.fields import ChoiceField
+from django.forms.fields import CharField, ChoiceField
 from django.forms.widgets import HiddenInput
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -105,6 +105,7 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
         'blocks_submitted_count',
         'submission_complete',
     )
+    # Only used for the change view
     fields = (
         'input_guids',
         'blocks_submitted',
@@ -113,6 +114,14 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
         'url',
         'reason',
         'updated_by',
+        'include_in_legacy',
+    )
+    add_fields = (
+        'input_guids',
+        'min_version',
+        'max_version',
+        'url',
+        'reason',
         'include_in_legacy',
     )
     ordering = ['-created']
@@ -129,21 +138,32 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
     def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
             raise PermissionDenied
-        guids_data = request.POST.get('guids', request.GET.get('guids'))
-        context = {}
-        fields = (
-            'input_guids', 'min_version', 'max_version', 'url', 'reason',
-            'include_in_legacy')
+
+        ModelForm = type(
+            self.form.__name__, (self.form,), {
+                'existing_min_version': CharField(widget=HiddenInput),
+                'existing_max_version': CharField(widget=HiddenInput)})
         MultiBlockForm = modelform_factory(
-            MultiBlockSubmit, fields=fields,
+            MultiBlockSubmit, fields=self.add_fields, form=ModelForm,
             widgets={'input_guids': HiddenInput()})
+
+        guids_data = request.POST.get('guids', request.GET.get('guids'))
         if guids_data:
             # If we get a guids param it's a redirect from input_guids_view.
-            form = MultiBlockForm(initial={'input_guids': guids_data})
+            form = MultiBlockForm(initial={
+                'input_guids': guids_data,
+                'existing_min_version': Block.MIN,
+                'existing_max_version': Block.MAX})
         elif request.method == 'POST':
             # Otherwise, if its a POST try to process the form.
             form = MultiBlockForm(request.POST)
-            if form.is_valid():
+            frm_data = form.data
+            # Check if the versions specified were the ones we calculated which
+            # Blocks would be updated or skipped on.
+            versions_unchanged = (
+                frm_data['min_version'] == frm_data['existing_min_version'] and
+                frm_data['max_version'] == frm_data['existing_max_version'])
+            if form.is_valid() and versions_unchanged:
                 # Save the object so we have the guids
                 obj = form.save()
                 obj.update(updated_by=request.user)
@@ -156,10 +176,15 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
                     return redirect('admin:blocklist_block_changelist')
             else:
                 guids_data = request.POST.get('input_guids')
+                form_data = form.data.copy()
+                form_data['existing_min_version'] = form_data['min_version']
+                form_data['existing_max_version'] = form_data['max_version']
+                form.data = form_data
         else:
             # if its not a POST and no ?guids there's nothing to do so go back
             return redirect('admin:blocklist_block_add')
-        context.update({
+
+        context = {
             'form': form,
             'add': True,
             'change': False,
@@ -169,10 +194,13 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
             'opts': self.model._meta,
             'title': 'Block Add-ons',
             'save_as': False,
-        })
+        }
         load_full_objects = guids_data.count('\n') < GUID_FULL_LOAD_LIMIT
         objects = MultiBlockSubmit.process_input_guids(
-            guids_data, load_full_objects=load_full_objects)
+            guids_data,
+            v_min=request.POST.get('min_version', Block.MIN),
+            v_max=request.POST.get('max_version', Block.MAX),
+            load_full_objects=load_full_objects)
         context.update(objects)
         if load_full_objects:
             Block.preload_addon_versions(objects['blocks'])

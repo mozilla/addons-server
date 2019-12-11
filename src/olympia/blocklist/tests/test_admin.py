@@ -312,6 +312,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
                     'any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'min_version': '0',
                 'max_version': '*',
+                'existing_min_version': '0',
+                'existing_max_version': '*',
                 'url': 'dfd',
                 'reason': 'some reason',
                 '_save': 'Save',
@@ -385,6 +387,153 @@ class TestMultiBlockSubmitAdmin(TestCase):
             'blocks_saved': [
                 [new_block.id, 'any@new'],
                 [existing_and_partial.id, 'partial@existing']],
+        }
+
+    def test_add_and_edit_with_different_min_max_versions(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
+        new_addon = addon_factory(
+            guid='any@new', average_daily_users=100,
+            version_kw={'version': '5.56'})
+        existing_one_to_ten = Block.objects.create(
+            addon=addon_factory(guid='partial@existing'),
+            min_version='1',
+            max_version='10',
+            include_in_legacy=True)
+        existing_zero_to_max = Block.objects.create(
+            addon=addon_factory(
+                guid='full@existing', average_daily_users=99,
+                version_kw={'version': '10'}),
+            min_version='0',
+            max_version='*',
+            include_in_legacy=True)
+        response = self.client.post(
+            self.multi_url,
+            {'guids': 'any@new\npartial@existing\nfull@existing'},
+            follow=True)
+
+        # Check we've processed the guids correctly.
+        doc = pq(response.content)
+        assert 'full@existing' in doc('.field-existing-guids').text()
+        assert 'partial@existing' in doc('.field-blocks-to-add').text()
+        assert 'any@new' in doc('.field-blocks-to-add').text()
+
+        # Check we didn't create the block already
+        assert Block.objects.count() == 2
+        assert MultiBlockSubmit.objects.count() == 0
+
+        # Change the min/max versions
+        response = self.client.post(
+            self.multi_url, {
+                'input_guids': (
+                    'any@new\npartial@existing\nfull@existing'),
+                'min_version': '1',  # this is the field we can change
+                'max_version': '10',  # this is the field we can change
+                'existing_min_version': '0',  # this is a hidden field
+                'existing_max_version': '*',  # this is a hidden field
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 200
+        # No Block should have been changed or added
+        assert Block.objects.count() == 2
+        assert MultiBlockSubmit.objects.count() == 0
+
+        # The guids should have been processed differently now
+        doc = pq(response.content)
+        assert 'partial@existing' in doc('.field-existing-guids').text()
+        assert 'full@existing' in doc('.field-blocks-to-add').text()
+        assert 'any@new' in doc('.field-blocks-to-add').text()
+
+        # We're submitting again, but now existing_min|max_version is the same
+        response = self.client.post(
+            self.multi_url, {
+                'input_guids': (
+                    'any@new\npartial@existing\nfull@existing'),
+                'min_version': '1',  # this is the field we can change
+                'max_version': '10',  # this is the field we can change
+                'existing_min_version': '1',  # this is a hidden field
+                'existing_max_version': '10',  # this is a hidden field
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+
+        # This time the blocks are updated
+        assert Block.objects.count() == 3
+        assert MultiBlockSubmit.objects.count() == 1
+        all_blocks = Block.objects.all()
+
+        new_block = all_blocks[2]
+        assert new_block.addon == new_addon
+        log = ActivityLog.objects.for_addons(new_addon).get()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert log.arguments == [new_addon, new_addon.guid, new_block]
+        assert log.details['min_version'] == '1'
+        assert log.details['max_version'] == '10'
+        assert log.details['reason'] == 'some reason'
+        block_log = ActivityLog.objects.for_block(new_block).filter(
+            action=log.action).last()
+        assert block_log == log
+        vlog = ActivityLog.objects.for_version(
+            new_addon.current_version).last()
+        assert vlog == log
+
+        existing_zero_to_max = existing_zero_to_max.reload()
+        assert all_blocks[1] == existing_zero_to_max
+        # confirm properties were updated
+        assert existing_zero_to_max.min_version == '1'
+        assert existing_zero_to_max.max_version == '10'
+        assert existing_zero_to_max.reason == 'some reason'
+        assert existing_zero_to_max.url == 'dfd'
+        assert existing_zero_to_max.include_in_legacy is False
+        log = ActivityLog.objects.for_addons(existing_zero_to_max.addon).get()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
+        assert log.arguments == [
+            existing_zero_to_max.addon, existing_zero_to_max.guid,
+            existing_zero_to_max]
+        assert log.details['min_version'] == '1'
+        assert log.details['max_version'] == '10'
+        assert log.details['reason'] == 'some reason'
+        block_log = ActivityLog.objects.for_block(existing_zero_to_max).filter(
+            action=log.action).last()
+        assert block_log == log
+        vlog = ActivityLog.objects.for_version(
+            existing_zero_to_max.addon.current_version).last()
+        assert vlog == log
+
+        existing_one_to_ten = existing_one_to_ten.reload()
+        assert all_blocks[0] == existing_one_to_ten
+        # confirm properties *were not* updated.
+        assert existing_one_to_ten.reason != 'some reason'
+        assert existing_one_to_ten.url != 'dfd'
+        assert existing_one_to_ten.include_in_legacy is True
+        assert not ActivityLog.objects.for_addons(
+            existing_one_to_ten.addon).exists()
+        assert not ActivityLog.objects.for_version(
+            existing_one_to_ten.addon.current_version).exists()
+
+        multi = MultiBlockSubmit.objects.get()
+        assert multi.input_guids == (
+            'any@new\npartial@existing\nfull@existing')
+        assert multi.min_version == new_block.min_version
+        assert multi.max_version == new_block.max_version
+        assert multi.url == new_block.url
+        assert multi.reason == new_block.reason
+
+        assert multi.processed_guids == {
+            'invalid_guids': [],
+            'existing_guids': ['partial@existing'],
+            'blocks': ['any@new', 'full@existing'],
+            'blocks_saved': [
+                [new_block.id, 'any@new'],
+                [existing_zero_to_max.id, 'full@existing']],
         }
 
     @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
@@ -495,6 +644,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
                 'input_guids': 'any@new\npartial@existing\ninvalid@',
                 'min_version': '5',
                 'max_version': '3',
+                'existing_min_version': '5',
+                'existing_max_version': '3',
                 'url': 'dfd',
                 'reason': 'some reason',
                 '_save': 'Save',
@@ -528,6 +679,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
                 'min_version': '0',
                 'max_version': '*',
+                'existing_min_version': '0',
+                'existing_max_version': '*',
                 'url': 'dfd',
                 'reason': 'some reason',
                 '_save': 'Save',
