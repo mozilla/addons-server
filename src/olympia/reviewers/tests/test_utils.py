@@ -19,6 +19,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
+from olympia.blocklist.models import Block
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
@@ -26,8 +27,8 @@ from olympia.lib.crypto.tests.test_signing import (
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ViewExtensionQueue)
 from olympia.reviewers.utils import (
-    ReviewAddon, ReviewFiles, ReviewHelper, ViewUnlistedAllListTable,
-    view_table_factory)
+    ReviewAddon, ReviewFiles, ReviewHelper, ReviewUnlisted,
+    ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 from pyquery import PyQuery as pq
 
@@ -1451,6 +1452,62 @@ class TestReviewHelper(TestReviewHelperBase):
             self.test_nomination_to_public()
         assert self.addon.current_version.recommendation_approved is False
         assert not self.addon.is_recommended
+
+    def _test_block_multiple_unlisted_versions(self, redirect_url):
+        old_version = self.version
+        self.version = version_factory(addon=self.addon, version='3.0')
+        # An extra file should not change anything.
+        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        self.setup_data(
+            amo.STATUS_NULL, file_status=amo.STATUS_APPROVED,
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewUnlisted)
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_APPROVED
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_DISABLED
+        # We rejected all versions so there aren't any left that need human
+        # review.
+        assert not self.addon.versions.filter(needs_human_review=True).exists()
+
+        # No mails
+        assert len(mail.outbox) == 0
+
+        # Normal logs though
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+        logs = (ActivityLog.objects.for_addons(self.addon)
+                                   .filter(action=amo.LOG.REJECT_VERSION.id))
+        assert logs[0].created == logs[1].created
+
+        # We should have set redirect_url to point to the Block admin page
+        assert self.helper.redirect_url == redirect_url % (
+            old_version.version, self.version.version)
+
+    def test_new_block_multiple_unlisted_versions(self):
+        redirect_url = (
+            reverse('admin:blocklist_block_add_single') +
+            '?min_version=%s&max_version=%s' + '&guid=' + self.addon.guid)
+        assert Block.objects.count() == 0
+        self._test_block_multiple_unlisted_versions(redirect_url)
+
+    def test_existing_block_multiple_unlisted_versions(self):
+        block = Block.objects.create(guid=self.addon.guid)
+        redirect_url = (
+            reverse('admin:blocklist_block_change', args=(block.id,)) +
+            '?min_version=%s&max_version=%s')
+        self._test_block_multiple_unlisted_versions(redirect_url)
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

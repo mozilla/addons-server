@@ -9,6 +9,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import loader
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _, ungettext
+
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -24,6 +25,7 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ViewUnlistedAllList, get_flags,
     get_flags_for_row)
 from olympia.users.models import UserProfile
+from olympia.versions.compare import addon_version_int
 
 import jinja2
 
@@ -282,6 +284,10 @@ class ReviewHelper(object):
         self.set_review_handler(request)
         self.actions = self.get_actions(request)
 
+    @property
+    def redirect_url(self):
+        return self.handler.redirect_url
+
     def set_data(self, data):
         self.handler.set_data(data)
 
@@ -423,8 +429,22 @@ class ReviewHelper(object):
                 self.addon.type != amo.ADDON_STATICTHEME and
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
                 (is_public_and_listed_and_user_can_post_review or
-                 is_valid_and_listed_and_user_can_content_review or
-                 is_unlisted_and_user_can_review_unlisted)
+                 is_valid_and_listed_and_user_can_content_review)
+            ),
+        }
+        actions['block_multiple_versions'] = {
+            'method': self.handler.reject_multiple_versions,
+            'label': _('Block Multiple Versions'),
+            'minimal': True,
+            'versions': True,
+            'comments': False,
+            'details': _('This will disable the selected approved '
+                         'versions silently, and open up the block creation '
+                         'admin page.'),
+            'available': (
+                self.addon.type != amo.ADDON_STATICTHEME and
+                reviewable_because_not_reserved_for_admins_or_user_is_admin and
+                is_unlisted_and_user_can_review_unlisted
             ),
         }
         actions['confirm_multiple_versions'] = {
@@ -498,6 +518,7 @@ class ReviewBase(object):
              else 'extension_%s') % review_type)
         self.files = self.version.unreviewed_files if self.version else []
         self.content_review_only = content_review_only
+        self.redirect_url = None
 
     def set_addon(self, **kw):
         """Alter addon, set reviewed timestamp on version being reviewed."""
@@ -960,6 +981,49 @@ class ReviewUnlisted(ReviewBase):
         log.info(u'Making %s files %s public' %
                  (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
+
+    def reject_multiple_versions(self):
+        # self.version and self.files won't point to the versions we want to
+        # modify in this action, so set them to None before finding the right
+        # versions.
+        self.version = None
+        self.files = None
+        action_id = amo.LOG.REJECT_VERSION
+        timestamp = datetime.now()
+        min_version = ('0', 0)
+        max_version = ('*', 0)
+        for version in self.data['versions']:
+            files = version.files.all()
+            self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
+            self.log_action(action_id, version=version, files=files,
+                            timestamp=timestamp)
+            if self.human_review:
+                # Unset needs_human_review on rejected versions, we consider
+                # that the reviewer looked at them before disabling.
+                if version.needs_human_review:
+                    version.update(needs_human_review=False)
+            version_int = addon_version_int(version.version)
+            if not min_version[1] or version_int < min_version[1]:
+                min_version = (version, version_int)
+            if not max_version[1] or version_int > max_version[1]:
+                max_version = (version, version_int)
+        log.info(
+            'Making %s versions %s disabled' % (
+                self.addon,
+                ', '.join(str(v.pk) for v in self.data['versions'])))
+
+        params = (
+            f'?min_version={min_version[0]}&max_version={max_version[0]}')
+        if self.addon.block:
+            self.redirect_url = (
+                reverse(
+                    'admin:blocklist_block_change',
+                    args=(self.addon.block.pk,)
+                ) + params)
+        else:
+            self.redirect_url = (
+                reverse('admin:blocklist_block_add_single') + params +
+                f'&guid={self.addon.guid}')
 
     def confirm_multiple_versions(self):
         """Confirm approval on a list of versions."""

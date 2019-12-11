@@ -832,7 +832,7 @@ def review(request, addon, channel=None):
         amo.messages.success(
             request, ugettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
-        return redirect(redirect_url)
+        return redirect(form.helper.redirect_url or redirect_url)
 
     # Kick off validation tasks for any files in this version which don't have
     # cached validation, since reviewers will almost certainly need to access
