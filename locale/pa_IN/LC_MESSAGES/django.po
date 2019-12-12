@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-08-16 16:22+0000\n"
-"Last-Translator: Sanjna <randhawasanjna75@gmail.com>\n"
+"PO-Revision-Date: 2019-07-03 17:47+0000\n"
+"Last-Translator: Suhail Singh Bains <suhail.singhyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -4602,7 +4602,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿ
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "ਵੈਬ ਪੇਜਜ਼ ਨੂੰ ਵਧੇਰੇ ਨੇਤਰਹੀਣ ਬਣਾਉਣ ਲਈ ਹਲਕੇ ਅਤੇ ਹਨੇਰਾ ਦੇ ਸ਼ੇਡ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -6344,7 +6344,7 @@ msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into
 msgstr ""
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਸਿਰਫ਼ ਇੱਕ ਹੀ ਦਰਜ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ ਤਾਂ IP ਐਡਰੈੱਸ ਜਾਂ ਨੈਟਵਰਕ।"
 
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ।"
