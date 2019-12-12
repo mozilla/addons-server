@@ -18,7 +18,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import waffle
-
+from django_statsd.clients import statsd
 from rest_framework.exceptions import Throttled
 
 from olympia import amo
@@ -27,7 +27,7 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonReviewerFlags, AddonUser,
+    Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
     AddonUserPendingConfirmation, Category, DeniedSlug, Preview)
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
@@ -39,7 +39,8 @@ from olympia.amo.utils import (
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
-from olympia.devhub.utils import UploadRestrictionChecker
+from olympia.devhub.utils import (
+    fetch_existing_translations_from_addon, UploadRestrictionChecker)
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
@@ -126,6 +127,7 @@ def clean_tags(request, tags):
 
 
 class AddonFormBase(TranslationFormMixin, forms.ModelForm):
+    fields_to_trigger_content_review = ('name', 'summary')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -161,6 +163,26 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         else:
             return list(addon.tags.filter(restricted=False)
                         .values_list('tag_text', flat=True))
+
+    def save(self, *args, **kwargs):
+        metadata_content_review = waffle.switch_is_active(
+            'metadata-content-review')
+        existing_data = (
+            fetch_existing_translations_from_addon(
+                self.instance, self.fields_to_trigger_content_review)
+            if self.instance and metadata_content_review else {})
+        obj = super().save(*args, **kwargs)
+        if not metadata_content_review:
+            return obj
+        new_data = (
+            fetch_existing_translations_from_addon(
+                obj, self.fields_to_trigger_content_review)
+        )
+        if existing_data != new_data:
+            # flag for content review
+            statsd.incr('devhub.metadata_content_review_triggered')
+            AddonApprovalsCounter.reset_content_for_addon(addon=obj)
+        return obj
 
 
 class CategoryForm(forms.Form):

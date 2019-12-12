@@ -1837,6 +1837,17 @@ class AddonApprovalsCounter(ModelBase):
             addon=addon, defaults={'last_content_review': now})
         return obj
 
+    @classmethod
+    def reset_content_for_addon(cls, addon):
+        """
+        Reset the last_content_review date for this addon so it triggers
+        another review.
+        """
+        try:
+            cls.objects.update(addon=addon, last_content_review=None)
+        except cls.NotFoundException:
+            pass
+
 
 class DeniedGuid(ModelBase):
     id = PositiveAutoField(primary_key=True)
