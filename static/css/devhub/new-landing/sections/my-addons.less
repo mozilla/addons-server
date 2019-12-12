@@ -121,7 +121,7 @@
   align-items: flex-start;
   justify-content: flex-start;
 
-  @media @large {
+  @media only screen and (min-width: 730px) {
     flex-direction: row;
   }
 }
@@ -140,8 +140,12 @@
     margin-right: auto;
     margin-left: 0;
   }
+}
 
-  @media @large {
-    display: inline;
+.DevHub-MyAddons-item-buttons-submit > .Button{
+  width: 100%;
+
+  @media @small{
+    width: auto;
   }
 }
