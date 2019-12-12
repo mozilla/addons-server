@@ -1,6 +1,6 @@
 import json
 from collections import OrderedDict
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 from django.conf import settings
 from django.utils.http import urlencode
@@ -28,6 +28,16 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     request_kwargs = {
         'timeout': settings.RECOMMENDATION_ENGINE_TIMEOUT
     }
+    # Don't blindly trust client_id_or_guid, urljoin() will use its host name
+    # and/or scheme if present.
+    # https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urljoin
+    try:
+        client_id_or_guid = urlsplit(client_id_or_guid).path
+    except ValueError:
+        client_id_or_guid = None
+    if not client_id_or_guid or client_id_or_guid.startswith('/'):
+        # That parameter was weird, don't call the recommendation server.
+        return None
     if verb == 'get':
         params = OrderedDict(sorted(data.items(), key=lambda t: t[0]))
         endpoint = urljoin(server, '%s/%s%s' % (
