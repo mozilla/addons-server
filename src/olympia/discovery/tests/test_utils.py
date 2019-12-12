@@ -94,6 +94,82 @@ def test_call_recommendation_server_post_no_parameters(
         url + '4815162342/', json=None, timeout=taar_timeout)
 
 
+@mock.patch('olympia.discovery.utils.requests.post')
+@mock.patch('olympia.discovery.utils.requests.get')
+def test_call_recommendation_server_get_parameter_is_an_url(
+        requests_get, requests_post):
+    url = 'http://example.com/taar_is_awesome/'
+    requests_get.return_value = HttpResponse(json.dumps({'results': []}))
+
+    assert call_recommendation_server(
+        url, 'http://evil.com', {}, verb='get') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, 'http://evil.com/', {}, verb='get') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, 'http://[evil.com/', {}, verb='get') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, 'http://evil.com/foo', {}, verb='get') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, '/foo', {}, verb='get') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, '//foo', {}, verb='get') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+
+@mock.patch('olympia.discovery.utils.requests.post')
+@mock.patch('olympia.discovery.utils.requests.get')
+def test_call_recommendation_server_post_parameter_is_an_url(
+        requests_get, requests_post):
+    url = 'http://example.com/taar_is_awesome/'
+    requests_post.return_value = HttpResponse(json.dumps({'results': []}))
+
+    assert call_recommendation_server(
+        url, 'http://evil.com', {}, verb='post') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, 'http://evil.com/', {}, verb='post') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, 'http://[evil.com/', {}, verb='post') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, 'http://evil.com/foo', {}, verb='post') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, '/foo', {}, verb='post') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+    assert call_recommendation_server(
+        url, '//foo', {}, verb='post') is None
+    assert not requests_get.called
+    assert not requests_post.called
+
+
 @mock.patch('olympia.discovery.utils.call_recommendation_server')
 @pytest.mark.django_db
 def test_get_disco_recommendations(call_recommendation_server):
