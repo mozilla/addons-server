@@ -1,6 +1,7 @@
 import os
 import json
 from datetime import datetime
+from unittest import mock
 
 from django.core.management import call_command
 from django.conf import settings
@@ -132,3 +133,29 @@ class TestImportBlocklist(TestCase):
                 this_block['versionRange'][0]['maxVersion'])
             assert block.kinto_id == '*' + this_block['id']
             assert block.include_in_legacy
+
+    @mock.patch('olympia.blocklist.management.commands.import_blocklist.'
+                'import_block_from_blocklist.delay')
+    def test_blocks_are_not_imported_twice(self, import_task_mock):
+        addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
+        addon_factory()
+        imported = Block.objects.create(
+            addon=addon_factory(guid='Ytarkovpn.5.14@firefox.com'),
+            kinto_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656')
+        assert Block.objects.count() == 1
+        assert len(blocklist_json['data']) == 6
+
+        call_command('import_blocklist')
+        assert import_task_mock.call_count == 5
+        assert import_task_mock.call_args_list[0][0] == (
+            blocklist_json['data'][0],)
+        assert import_task_mock.call_args_list[1][0] == (
+            blocklist_json['data'][1],)
+        # blocklist_json['data'][2] is the already imported block
+        assert imported.guid == blocklist_json['data'][2]['guid']
+        assert import_task_mock.call_args_list[2][0] == (
+            blocklist_json['data'][3],)
+        assert import_task_mock.call_args_list[3][0] == (
+            blocklist_json['data'][4],)
+        assert import_task_mock.call_args_list[4][0] == (
+            blocklist_json['data'][5],)
