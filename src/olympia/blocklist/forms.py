@@ -18,6 +18,8 @@ class MultiDeleteForm(MultiGUIDInputForm):
     def clean(self):
         guids = self.cleaned_data.get('guids', '').splitlines()
         if len(guids) >= 1:
+            # Note: we retrieve a full queryset here because we later need one
+            # to pass to admin.actions.delete_selected in delete_multiple_view.
             self.existing_block_qs = Block.objects.filter(guid__in=guids)
             matching_guids = [block.guid for block in self.existing_block_qs]
             missing_guids = [
