@@ -77,6 +77,9 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         scanner_result.results = data
         scanner_result.save()
 
+        if scanner_result.has_matches:
+            statsd.incr('devhub.{}.has_matches'.format(scanner_name))
+
         statsd.incr('devhub.{}.success'.format(scanner_name))
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
                  upload_pk)

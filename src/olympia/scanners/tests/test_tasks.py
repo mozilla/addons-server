@@ -75,7 +75,8 @@ class TestRunScanner(UploadTest, TestCase):
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
     def test_run_with_mocks(self, requests_mock, incr_mock):
-        scanner_data = {'some': 'results'}
+        rule = ScannerRule.objects.create(name='r', scanner=self.FAKE_SCANNER)
+        scanner_data = {'matchedRules': [rule.name]}
         requests_mock.return_value = self.create_response(data=scanner_data)
         assert len(ScannerResult.objects.all()) == 0
 
@@ -102,7 +103,13 @@ class TestRunScanner(UploadTest, TestCase):
         assert result.results == scanner_data
         scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
         assert incr_mock.called
-        incr_mock.assert_called_with('devhub.{}.success'.format(scanner_name))
+        assert incr_mock.call_count == 2
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.{}.has_matches'.format(scanner_name)),
+                mock.call('devhub.{}.success'.format(scanner_name))
+            ]
+        )
         assert returned_results == self.results
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
