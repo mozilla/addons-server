@@ -7,13 +7,12 @@ from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
 
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
+from .forms import MultiAddForm, MultiDeleteForm
 from .models import Block, MultiBlockSubmit
 from .tasks import create_blocks_from_multi_block
 from .utils import (
@@ -39,52 +38,68 @@ class BlockAdminAddMixin():
                 'add_single/',
                 self.admin_site.admin_view(self.add_single_view),
                 name='blocklist_block_add_single'),
+            path(
+                'delete_multiple/',
+                self.admin_site.admin_view(self.delete_multiple_view),
+                name='blocklist_block_delete_multiple'),
         ]
         return my_urls + urls
 
     def input_guids_view(self, request, form_url='', extra_context=None):
-        errors = []
         if request.method == 'POST':
-            guids_data = request.POST.get('guids')
-            guids = guids_data.splitlines() if guids_data else []
-            if len(guids) == 1:
-                guid = guids[0]
-                # If the guid already has a Block go to the change view
-                existing = Block.objects.filter(guid=guid).first()
-                if existing:
-                    return redirect(
-                        'admin:blocklist_block_change', existing.id)
+            form = MultiAddForm(request.POST)
+            if form.is_valid():
+                guids = form.data.get('guids', '').splitlines()
+                if len(guids) == 1:
+                    # If the guid already has a Block go to the change view
+                    if form.existing_block:
+                        return redirect(
+                            'admin:blocklist_block_change',
+                            form.existing_block.id)
+                    else:
+                        # Otherwise proceed to the single guid add view
+                        return redirect(
+                            reverse('admin:blocklist_block_add_single') +
+                            f'?guid={guids[0]}')
+                elif len(guids) > 1:
+                    # If there's > 1 guid go to multi view.
+                    return HttpResponseTemporaryRedirect(
+                        reverse('admin:blocklist_multiblocksubmit_add'))
+        else:
+            form = MultiAddForm()
+        return self._render_multi_guid_input(
+            request, form, title='Block Add-ons')
 
-                if not Addon.unfiltered.filter(guid=guid).exists():
-                    # We might want to do something better than this eventually
-                    # - e.g. go to the multi_view once implemented.
-                    errors.append(
-                        _('Addon with specified GUID does not exist'))
-                else:
-                    # Otherwise proceed to the single guid add view
-                    return redirect(
-                        reverse('admin:blocklist_block_add_single') +
-                        f'?guid={guid}')
-            elif len(guids) > 1:
-                # If there's > 1 guid go to multi view.
+    def delete_multiple_view(self, request, form_url='', extra_context=None):
+        if request.method == 'POST':
+            if request.POST.get('action') == 'delete_selected':
+                # it's the confirmation so redirect to changelist to handle
                 return HttpResponseTemporaryRedirect(
-                    reverse('admin:blocklist_multiblocksubmit_add'))
+                    reverse('admin:blocklist_block_changelist'))
+            form = MultiDeleteForm(request.POST)
+            if form.is_valid():
+                return admin.actions.delete_selected(
+                    self, request, form.existing_block_qs)
+        else:
+            form = MultiDeleteForm()
+        return self._render_multi_guid_input(
+            request, form, title='Delete Blocks', add=False)
 
-        context = {}
-        context.update({
-            'add': True,
+    def _render_multi_guid_input(self, request, form, title, add=True):
+        context = {
+            'form': form,
+            'add': add,
             'change': False,
             'has_view_permission': self.has_view_permission(request, None),
             'has_add_permission': self.has_add_permission(request),
             'has_change_permission': self.has_change_permission(request, None),
             'app_label': 'blocklist',
             'opts': self.model._meta,
-            'title': 'Block Add-ons',
+            'title': title,
             'save_as': False,
-            'errors': errors,
-        })
+        }
         return TemplateResponse(
-            request, "blocklist/add_guids.html", context)
+            request, 'blocklist/multi_guid_input.html', context)
 
     def add_single_view(self, request, form_url='', extra_context=None):
         """This is just the default django add view."""
@@ -230,6 +245,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     view_on_site = False
     list_select_related = ('updated_by',)
     actions = ['delete_selected']
+    change_list_template = 'blocklist/block_change_list.html'
 
     class Media:
         css = {
