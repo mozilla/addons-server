@@ -597,28 +597,36 @@ class TestMultiBlockSubmitAdmin(TestCase):
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
-        assert b'edit existing Block' not in response.content
+        assert b'edit Block' not in response.content
+        assert not pq(response.content)('.existing_block')
 
         # Should work the same if partial block (exists but needs updating)
         existing_block = Block.objects.create(guid=addon.guid, min_version='8')
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
-        assert b'edit existing Block' in response.content
+        assert pq(response.content)('.existing_block a').attr('href') == (
+            reverse('admin:blocklist_block_change', args=(existing_block.pk,)))
+        assert pq(response.content)('.existing_block').text() == (
+            '[edit Block: %s - %s]' % (existing_block.min_version, '*'))
 
         # And an unlisted version
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
-        assert b'edit existing Block' in response.content
+        assert pq(response.content)('.existing_block a').attr('href') == (
+            reverse('admin:blocklist_block_change', args=(existing_block.pk,)))
+        assert pq(response.content)('.existing_block').text() == (
+            '[edit Block: %s - %s]' % (existing_block.min_version, '*'))
 
         # And delete the block again
         existing_block.delete()
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
-        assert b'edit existing Block' not in response.content
+        assert b'edit Block' not in response.content
+        assert not pq(response.content)('.existing_block')
 
         addon.current_version.delete(hard=True)
         response = self.client.post(**post_kwargs)
