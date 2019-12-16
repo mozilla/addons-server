@@ -62,7 +62,7 @@
               {{ block_obj.review_listed_link }}
               {{ block_obj.review_unlisted_link }}
               {% if block_obj.id %}
-                <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">{% trans 'edit Block' %}</a>: {{ block_obj.min_version }} - {{ block_obj.max_version }}]</span>
+                <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">{% trans 'Edit Block' %}</a>: {{ block_obj.min_version }} - {{ block_obj.max_version }}]</span>
               {% endif %}
             </li>
           {% endfor %}

@@ -597,7 +597,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
-        assert b'edit Block' not in response.content
+        assert b'Edit Block' not in response.content
         assert not pq(response.content)('.existing_block')
 
         # Should work the same if partial block (exists but needs updating)
@@ -608,7 +608,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert pq(response.content)('.existing_block a').attr('href') == (
             reverse('admin:blocklist_block_change', args=(existing_block.pk,)))
         assert pq(response.content)('.existing_block').text() == (
-            '[edit Block: %s - %s]' % (existing_block.min_version, '*'))
+            '[Edit Block: %s - %s]' % (existing_block.min_version, '*'))
 
         # And an unlisted version
         version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -618,14 +618,14 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert pq(response.content)('.existing_block a').attr('href') == (
             reverse('admin:blocklist_block_change', args=(existing_block.pk,)))
         assert pq(response.content)('.existing_block').text() == (
-            '[edit Block: %s - %s]' % (existing_block.min_version, '*'))
+            '[Edit Block: %s - %s]' % (existing_block.min_version, '*'))
 
         # And delete the block again
         existing_block.delete()
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
-        assert b'edit Block' not in response.content
+        assert b'Edit Block' not in response.content
         assert not pq(response.content)('.existing_block')
 
         addon.current_version.delete(hard=True)
