@@ -4,19 +4,27 @@ from django import http, forms
 from django.conf import settings
 from django.contrib import admin
 from django.core import validators
+from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.utils.html import format_html
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.urlresolvers import reverse
+from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.zadmin.admin import related_content_link
 
 from . import models
+from .forms import AdminBaseFileFormSet, FileStatusForm
+
+
+log = olympia.core.logger.getLogger('z.addons.admin')
 
 
 class AddonUserInline(admin.TabularInline):
@@ -36,19 +44,62 @@ class AddonUserInline(admin.TabularInline):
     user_profile_link.short_description = 'User Profile'
 
 
+class FileInline(admin.TabularInline):
+    model = File
+    extra = 0
+    max_num = 0
+    fields = (
+        'created', 'version__version', 'version__channel', 'platform',
+        'status', 'hash_link')
+    editable_fields = ('status',)
+    readonly_fields = tuple(set(fields) - set(editable_fields))
+    can_delete = False
+    view_on_site = False
+    template = 'addons/admin/file_inline.html'
+
+    def version__version(self, obj):
+        return obj.version.version + (
+            ' - Deleted' if obj.version.deleted else '')
+    version__version.short_description = 'Version'
+
+    def version__channel(self, obj):
+        return obj.version.get_channel_display()
+    version__channel.short_description = 'Channel'
+
+    def hash_link(self, obj):
+        url = reverse('zadmin.recalc_hash', args=(obj.id,))
+        template = '<a href="{}" class="recalc" title="{}">Recalc Hash</a>'
+        return format_html(template, url, obj.hash)
+    hash_link.short_description = 'Hash'
+
+    def get_formset(self, request, obj=None, **kwargs):
+        Formset = modelformset_factory(
+            File,
+            form=FileStatusForm,
+            formset=AdminBaseFileFormSet,
+            extra=self.get_extra(request, obj, **kwargs),
+            min_num=self.get_min_num(request, obj, **kwargs),
+            max_num=self.get_max_num(request, obj, **kwargs),
+        )
+        Formset.request = request
+        return Formset
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+
 class AddonAdmin(admin.ModelAdmin):
     class Media:
         css = {
             'all': ('css/admin/l10n.css',)
         }
-        js = ('js/admin/l10n.js',)
+        js = ('js/admin/l10n.js', 'js/admin/recalc_hash.js')
 
     exclude = ('authors',)
-    list_display = ('__str__', 'type', 'guid',
-                    'status_with_admin_manage_link', 'average_rating')
+    list_display = ('__str__', 'type', 'guid', 'status', 'average_rating')
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
-    inlines = (AddonUserInline,)
+    inlines = (AddonUserInline, FileInline)
     readonly_fields = ('id', 'status_with_admin_manage_link',
                        'average_rating', 'bayesian_rating',
                        'total_ratings_link', 'text_ratings_count',
@@ -58,7 +109,7 @@ class AddonAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('id', 'name', 'slug', 'guid', 'default_locale', 'type',
-                       'status_with_admin_manage_link'),
+                       'status', 'status_with_admin_manage_link'),
         }),
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
@@ -100,7 +151,6 @@ class AddonAdmin(admin.ModelAdmin):
         link = reverse('zadmin.addon_manage', args=(obj.slug,))
         return format_html(u'<a href="{}">{}</a>',
                            link, obj.get_status_display())
-    status_with_admin_manage_link.short_description = _(u'Status')
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
@@ -124,6 +174,14 @@ class AddonAdmin(admin.ModelAdmin):
         return super(AddonAdmin, self).change_view(
             request, object_id, form_url, extra_context=None,
         )
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if 'status' in form.changed_data:
+            ActivityLog.create(
+                amo.LOG.CHANGE_STATUS, obj, form.cleaned_data['status'])
+            log.info('Addon "%s" status changed to: %s' % (
+                obj.slug, form.cleaned_data['status']))
 
 
 class FrozenAddonAdmin(admin.ModelAdmin):
