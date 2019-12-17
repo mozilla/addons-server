@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-12-06 00:28+0000\n"
+"PO-Revision-Date: 2019-12-17 21:22+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -632,7 +632,7 @@ msgid "Accept and Install"
 msgstr "Godta og installer"
 
 msgid "Add to {0}"
-msgstr "Legg till i {0}"
+msgstr "Legg til i {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
