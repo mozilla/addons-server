@@ -380,6 +380,11 @@ class TestDeliverHotness(TestCase):
     def setUp(self):
         self.extension = addon_factory()
         self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.unpopular_extension = addon_factory()
+        self.unpopular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.barely_popular_theme = addon_factory(
+            type=amo.ADDON_STATICTHEME)
+        self.same_stats_as_barely_popular_theme = addon_factory()
         self.awaiting_review = addon_factory(status=amo.STATUS_NOMINATED)
 
         today = datetime.date.today()
@@ -395,11 +400,46 @@ class TestDeliverHotness(TestCase):
 
             )]
 
+        unpopular_stats = [
+            (today - datetime.timedelta(days=days_in_past), update_count)
+            for days_in_past, update_count in (
+                (1, 99), (2, 76), (3, 25), (4, 32),
+                (5, 289), (6, 34), (7, 45), (8, 25), (9, 78),
+                (10, 36), (11, 25), (12, 100), (13, 156),
+                (14, 24), (15, 9), (16, 267), (17, 176),
+                (18, 16), (19, 156), (20, 187), (21, 149),
+
+            )]
+
+        barely_popular_stats = [
+            (today - datetime.timedelta(days=days_in_past), update_count)
+            for days_in_past, update_count in (
+                (1, 399), (2, 276), (3, 215), (4, 312),
+                (5, 289), (6, 234), (7, 345), (8, 205), (9, 178),
+                (10, 336), (11, 325), (12, 400), (13, 456),
+                (14, 324), (15, 290), (16, 267), (17, 276),
+                (18, 216), (19, 256), (20, 287), (21, 249),
+
+            )]
+
         for obj in (self.extension, self.static_theme,
                     self.awaiting_review):
             UpdateCount.objects.bulk_create([
                 UpdateCount(addon=obj, date=date, count=count)
                 for date, count in stats
+            ])
+
+        for obj in (self.unpopular_extension, self.unpopular_theme):
+            UpdateCount.objects.bulk_create([
+                UpdateCount(addon=obj, date=date, count=count)
+                for date, count in unpopular_stats
+            ])
+
+        for obj in (self.barely_popular_theme,
+                    self.same_stats_as_barely_popular_theme):
+            UpdateCount.objects.bulk_create([
+                UpdateCount(addon=obj, date=date, count=count)
+                for date, count in barely_popular_stats
             ])
 
     @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
@@ -408,6 +448,20 @@ class TestDeliverHotness(TestCase):
 
         assert self.extension.reload().hotness == 1.652672126445855
         assert self.static_theme.reload().hotness == 1.652672126445855
+
+        # Unpopular extensions and static themes have a hotness of 0
+        assert self.unpopular_extension.reload().hotness == 0
+        assert self.unpopular_theme.reload().hotness == 0
+
+        # A barely popular static theme should have a hotness value > 0
+        # but when the same stats are applied to an extension,
+        # it should have a hotness of 0
+        assert (
+            self.barely_popular_theme.reload().hotness ==
+            0.0058309523809523135)
+        assert (
+            self.same_stats_as_barely_popular_theme.reload().hotness ==
+            0)
 
         # Only public add-ons get hotness calculated
         assert self.awaiting_review.reload().hotness == 0
