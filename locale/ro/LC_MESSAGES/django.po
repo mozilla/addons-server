@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-17 00:50+0000\n"
+"PO-Revision-Date: 2019-12-17 01:11+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1213,13 +1213,13 @@ msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Atribuire Creative Commons-Necomercială-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Atribuire Creative Commons-Necomercială-Partajare similare 3.0"
+msgstr "Creative Commons cu atribuire, necomercial și distribuire în condiții identice 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Atribuire Creative Commons-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Atribuire Creative Commons-Partajare similare 3.0"
+msgstr "Creative Commons cu atribuire și distribuire în condiții identice 3.0"
 
 msgid "Any"
 msgstr "Oricare"
@@ -3265,7 +3265,7 @@ msgstr "Blochează elementele de urmărire insidioase {start_sub_heading}cu {add
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr "Blochează elementele de urmărire invizibile și reclamele care te spionează și te urmăresc pe web."
+msgstr "Blochează elementele de urmărire invizibile și reclamele spionătoare care te urmăresc pe web."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3297,7 +3297,7 @@ msgstr "Blocarea reclamelor și protecția datelor cu caracter personal {start_s
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Blocarea de reclame și protecția vieții private. O configurare simplă îți permite să preiei controlul asupra reclamelor pe care le vezi și cum ești urmărit pe internet."
+msgstr "Blocator de reclame și protecție pentru viața privată. O configurare simplă îți permite să preiei controlul asupra reclamelor pe care le vezi și cum ești urmărit pe internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3481,7 +3481,7 @@ msgstr "Personalizează gesturile din mouse {start_sub_heading}cu {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Particularizează gesturi de mouse. Descoperă un nou mod de navigare cu peste 50 de gesturi utile de mouse."
+msgstr "Personalizează gesturile din mouse. Descoperă o nouă modalitate de navigare cu peste 50 de gesturi utile din mouse."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4161,9 +4161,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Bucură-te de muzică de pe tot globul {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Accesează peste 30.000+ de stații de radio de pe tot globul."
+msgstr "Bucură-te de muzică de la peste 30.000 de posturi radio de pe întreg globul."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
