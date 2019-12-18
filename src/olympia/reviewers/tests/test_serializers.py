@@ -97,7 +97,7 @@ class TestFileEntriesSerializer(TestCase):
         assert ja_locale_data['depth'] == 1
         assert ja_locale_data['mime_category'] == 'directory'
         assert ja_locale_data['filename'] == 'ja'
-        assert ja_locale_data['sha256'] == ''
+        assert ja_locale_data['sha256'] is None
         assert ja_locale_data['mimetype'] == 'application/octet-stream'
         assert ja_locale_data['path'] == u'_locales/ja'
         assert ja_locale_data['size'] is None
@@ -173,12 +173,43 @@ class TestFileEntriesSerializer(TestCase):
         assert serializer._entries == data['entries']
 
         key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
-        assert cache.get(key) == data['entries']
+        cached_data = cache.get(key)
+
+        # We exclude `manifest.json` here to test that in a separate step
+        # because the sha256 calculation will overwrite `serializer._entries`
+        # but doesn't update the cache (yet at least) to avoid cache
+        # cache syncronisation issues
+        expected_keys = {
+            'README.md',
+            '_locales', '_locales/de', '_locales/en', '_locales/nb_NO',
+            '_locales/nl', '_locales/ru', '_locales/sv', '_locales/ja',
+            '_locales/de/messages.json', '_locales/en/messages.json',
+            '_locales/ja/messages.json', '_locales/nb_NO/messages.json',
+            '_locales/nl/messages.json', '_locales/ru/messages.json',
+            '_locales/sv/messages.json', 'background-script.js',
+            'content-script.js', 'icons', 'icons/LICENSE', 'icons/link-48.png'}
+
+        for key in expected_keys:
+            assert cached_data[key] == data['entries'][key]
 
     def test_dont_render_content_binary_file(self):
         file = self.addon.current_version.current_file
         data = self.serialize(file, file='icons/link-48.png')
         assert data['content'] == ''
+
+    def test_sha256_only_calculated_or_fetched_for_selected_file(self):
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, file='icons/LICENSE')
+
+        assert data['entries']['manifest.json']['sha256'] is None
+        assert data['entries']['icons/LICENSE']['sha256'] == (
+            'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55')
+
+        data = self.serialize(file, file='manifest.json')
+        assert data['entries']['manifest.json']['sha256'] == (
+            '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
+        assert data['entries']['icons/LICENSE']['sha256'] is None
 
 
 class TestFileEntriesDiffSerializer(TestCase):
@@ -287,8 +318,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         test_txt_data = data['entries']['test.txt']
         assert test_txt_data['depth'] == 0
         assert test_txt_data['filename'] == u'test.txt'
-        assert test_txt_data['sha256'] == (
-            'f8b40fc302692ea4f552cb3d60bc89dd8b4616e398de5585e471cee73e2c0618')
+        assert test_txt_data['sha256'] is None
         assert test_txt_data['mimetype'] == 'text/plain'
         assert test_txt_data['mime_category'] == 'text'
         assert test_txt_data['path'] == u'test.txt'
