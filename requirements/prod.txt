@@ -377,9 +377,9 @@ webencodings==0.5.1 \
 premailer==3.6.1 \
     --hash=sha256:d5aa0cba8687a231a2a43d9021735ed02a166dbf9c2b1669df22bfc863e5d948 \
     --hash=sha256:fcc1062329ba37668f95b2bf95e78d730eebf7851d742028251384a04e87fa22
-cachetools==3.1.1 \
-    --hash=sha256:428266a1c0d36dc5aca63a2d7c5942e88c2c898d72139fca0e97fdd2380517ae \
-    --hash=sha256:8ea2d3ce97850f31e4a08b0e2b5e6c34997d7216a9d2c98e0f3978630d4da69a
+cachetools==4.0.0 \
+    --hash=sha256:9a52dd97a85f257f4e4127f15818e71a0c7899f121b34591fcc1173ea79a0198 \
+    --hash=sha256:b304586d357c43221856be51d73387f93e2a961598a9b6b6670664746f3b6c6c
 # sqlparse is required by django2.2+
 sqlparse==0.3.0 \
     --hash=sha256:40afe6b8d4b1117e7dff5504d7a8ce07d9a1b15aeeade8a2d10f130a834f8177 \
