@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-06 05:13+0000\n"
+"PO-Revision-Date: 2019-12-20 20:22+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1017,7 +1017,7 @@ msgid "Photos & Media"
 msgstr "Photos & medios"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Discarga extensiones de Firefox pro meliorar photos e medios. Discarga extensiones de Firefox pro meliorar photos e medios."
+msgstr "Discarga extensiones de Firefox pro meliorar photos e multimedia. Iste categoria include extensiones pro inverter imagines cercate, facer capturas de schermo de tote le pagina, e plus."
 
 msgid "Security & Privacy"
 msgstr "Securitate & confidentialitate"
@@ -2266,25 +2266,25 @@ msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Le icones sera redimensionate a 128x128 pixels si plus grande."
 
 msgid "Screenshots"
-msgstr "Instantaneos de schermo"
+msgstr "Capturas de schermo"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr "Per favor forni al minus un instantaneo de schermo de tu additivo:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "Per favor forni un legenda pro iste instantaneo de schermo:"
+msgstr "Per favor forni un legenda pro iste captura de schermo:"
 
 msgid "Add a Screenshot..."
-msgstr "Adder un instantaneo de schermo..."
+msgstr "Adder un captura de schermo..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr "Le formatos PNG e JPG es supportate, PNG recommendate. Le formato maxime e recommendate es 2400x1800 pixels."
+msgstr "Le formatos PNG e JPG es supportate, PNG recommendate. Le formato maxime e recommendate pro capturas de schermo es 2400x1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr "Haber instantaneos de schermo in le pagina de tu producto augmenta multo su chance de esser installate e promovite sur le pagina initial."
+msgstr "Haber capturas de schermo in le pagina de tu producto augmenta multo su chance de esser installate e promovite sur le pagina initial."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -2536,7 +2536,7 @@ msgid "Your listing will be more successful by adding a detailed description. Ge
 msgstr "Tu lista de presentation habera plus successo per le addition de un detaliate description. Rende tu lista de presentation preste pro le publication:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Tu lista de presentation habera plus successo per le addition de un detaliate description e de instantaneos de schermo. Rende tu lista de presentation preste pro le publication:"
+msgstr "Tu entrata habera plus successo si tu adde un description detaliate e alcun capturas de schermo. Prepara tu entrata pro publication:"
 
 msgid "Manage Listing"
 msgstr "Gerer le lista de presentation"
@@ -3636,7 +3636,7 @@ msgstr "Captura le web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr "Prende un instantaneo de pagina web, face modificationes, e comparti lo."
+msgstr "Face capturas de schermo de paginas web, face modificationes, e comparti los."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -3844,7 +3844,7 @@ msgstr "Rende tue YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Personalisa YouTube. Reguarda videos in un fenestra emergente, vide publicitate solmente in canales a que tu te ha subscribite, prende instantaneos de videos, e tanto ancora."
+msgstr "Personalisa YouTube. Reguarda videos in un fenestra emergente, vide publicitate solmente in canales a que tu te ha subscribite, prende capturas de schermo de videos, e tanto ancora."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
