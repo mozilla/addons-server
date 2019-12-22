@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-22 17:52+0000\n"
+"PO-Revision-Date: 2019-12-22 17:56+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -3570,20 +3570,20 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "No dejes ningún rastro digital {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Haz que Firefox olvide los datos del sitio, como cookies y almacenamiento local, pero solo en los dominios que elijas."
+msgstr "Deja un rastro digital limpio. Haz que Firefox olvide los datos del sitio, como cookies y almacenamiento local, pero solo en los dominios que elijas."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Guarda un texto para más tarde {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
-msgstr "¡Deja de escribir lo mismo una y otra vez! Si reutilizas con frecuencia las mismas frases en tu trabajo u otras comunicaciones, guárdalas en Clippings y pégalas fácilmente cuando quieras."
+msgstr ""
+"Guarda el texto para luego. ¡Deja de escribir lo mismo una y otra vez! Si reutilizas con frecuencia las mismas frases en tu trabajo u otras comunicaciones, guárdalas en Clippings y pégalas "
+"fácilmente cuando quieras."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3606,9 +3606,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Evita los rastreadores ocultos y las restricciones {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Oculta tu navegación enmascarando la identidad de tu navegador y sistema operativo."
+msgstr "Evita a los rastreadores y restricciones. Oculta tu navegación enmascarando la identidad de tu navegador y sistema operativo."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3623,9 +3622,10 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Separa tus distintas vidas online {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Separa en privado tus distintas identidades online, como, por ejemplo, trabajo, personal, etc. mediante pestañas de distintos colores que dividen tu rastro de cookies digitales."
+msgstr ""
+"Separa tus vidas en línea. Separa en privado tus distintas identidades online, como, por ejemplo, trabajo, personal, etc. mediante pestañas de distintos colores que dividen tu rastro de cookies "
+"digitales."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3640,34 +3640,30 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Lee archivos ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Disfruta de los archivos ePub directamente en Firefox: aumenta el tamaño de la fuente, las dimensiones de la página y mucho más."
+msgstr "Lee archivos ePub directamente en Firefox: aumenta el tamaño de la fuente, las dimensiones de la página y mucho más."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mejora tu experiencia de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Reproduce vídeos de forma predeterminada con la máxima calidad, desactiva las anotaciones y mucho más."
+msgstr "Reproduce vídeos de YouTube de forma predeterminada con la máxima calidad, desactiva las anotaciones y mucho más."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rastrea a los rastreadores {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Averigua quién te está siguiendo con un solo clic."
+msgstr "Rastrea a los rastreadores. Averigua quién te está siguiendo con un solo clic."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cambia tu servidor proxy {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
 msgstr "Navega por la web con una configuración proxy determinada por ti."
 
@@ -3684,9 +3680,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navega de forma segura {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Añade seguridad cifrada a cualquier sitio que admita HTTPS."
+msgstr "Añade seguridad cifrada a cualquier sitio que admita HTTPS. Navega de forma segura."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3729,14 +3724,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navega de forma anónima {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Navega por la web con una identidad disfrazada, incluso como si estuvieras navegando desde otro país."
+msgstr "Navega de forma anónima. Navega por la web con una identidad disfrazada, incluso como si estuvieras navegando desde otro país."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Accede a tus sitios favoritos, pestañas cerradas recientemente y mucho más, a través de magníficos iconos dinámicos."
+msgstr "Disfruta de los marcadores visuales. Accede a tus sitios favoritos, pestañas cerradas recientemente y mucho más, a través de magníficos iconos dinámicos."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3759,9 +3752,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Obtén un potente gestor de descargas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Comprueba el estado de tus descargas a través de una barra de estado, página de historial de descargas y mucho más."
+msgstr "Gestión de descargas eficiente. Comprueba el estado de tus descargas a través de una barra de estado, página de historial de descargas y mucho más."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3776,7 +3768,6 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Busca la protección contra rastreo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "No permitas ser rastreado al hacer clic en los resultados de búsqueda de Google y Yandex."
 
@@ -3793,7 +3784,6 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Añade imágenes a los resultados de búsquedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Disfruta de imágenes en miniatura junto a los resultados de búsqueda."
 
@@ -3818,7 +3808,6 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Personaliza tus sitios web favoritos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "¡Cambia la apariencia de cualquier sitio web! Cambia los colores, los fondos de página y mucho más."
 
@@ -3827,7 +3816,6 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Personaliza tu nueva pestaña {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "Edita la página de la nueva pestaña para visualizar tus preferencias en cuanto al número de iconos dinámicos, la imagen de fondo y mucho más."
 
@@ -3844,25 +3832,22 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Sé consciente de dónde te encuentras en la web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Obtén la ubicación del país de los sitios web que visitas. Sé un viajero web informado."
+msgstr "Conoce tu destino web. Obtén la ubicación del país de los sitios web que visitas. Sé un viajero web informado."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mejora tu experiencia de lectura {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Haz que el texto que estás leyendo sea más atractivo eliminando los elementos innecesarios que lo rodean."
+msgstr "Mejora tu experiencia lectora. Haz que el texto que estás leyendo sea más atractivo eliminando los elementos innecesarios que lo rodean."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Abre varios enlaces {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Haz clic con el botón derecho y arrastra el cursor por encima de los enlaces que deseas abrir en las nuevas pestañas."
 
