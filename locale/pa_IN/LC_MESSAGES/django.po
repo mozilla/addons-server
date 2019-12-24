@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-07-03 17:47+0000\n"
-"Last-Translator: Suhail Singh Bains <suhail.singhyo@gmail.com>\n"
+"PO-Revision-Date: 2019-12-24 11:29+0000\n"
+"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -275,7 +275,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "ਨਹੀਂ ਮਿਲਿਆ"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -284,11 +284,11 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>ਸਾਨੂੰ ਅਫ਼ਸੋਸ ਹੈ, ਪਰ ਤੁਸੀਂ ਜਿਸਦੀ ਭਾਲ ਕਰ ਰਹੇ ਹੋ ਅਸੀਂ ਉਹ ਲੱਭ ਨਹੀਂ ਸਕੇ।</h1> <p> ਜਿਸ ਵਰਕੇ ਜਾਂ ਫ਼ਾਈਲ ਦੀ ਬੇਨਤੀ ਤੁਸੀਂ ਕੀਤੀ ਸੀ, ਉਹ ਸਾਡੀ ਸਾਈਟ ਤੇ ਨਹੀਂ ਲੱਭੀ। ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਿਸੇ ਵੇਲਾ ਵਿਹਾ ਚੁੱਕੀ ਕਿਸੇ ਤੰਦ"
-" ਤੇ ਕਲਿੱਕ ਕੀਤਾ ਹੋਵੇ, ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਗਲਤ ਪਤਾ ਲਿਖ ਦਿੱਤਾ ਹੋਵੇ। </p> <ul> <li>ਜੇਕਰ ਤੁਸੀਂ ਪਤਾ ਲਿਖਿਆ ਹੈ ਤਾਂ ਸ਼ਬਦ ਜੋੜ ਦੀ ਪੜਤਾਲ ਕਰੋ।</li> <li> ਜੇਕਰ ਤੁਸੀਂ ਤੰਦ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਲਈ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ<a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\"> ਮਾਮਲਾ ਦਰਜ ਕਰਾਉ</a>। ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਅਤੇ ਕੀ ਭਾਲ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸਦੀ ਮੁਰੰਮਤ ਲਈ ਪੂਰਾ ਜ਼ੋਰ ਲਾਵਾਂਗੇ। </li> </ul> <p>ਜਾਂ ਫਿਰ "
-"ਤੁਸੀਂ ਸਾਡੀ ਸਾਈਟ ਦੇ ਕੁੱਝ ਮਸ਼ਹੂਰ ਸਫ਼ਿਆਂ ਨੂੰ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।<p> <ul> <li>ਕੀ ਤੁਹਾਨੂੰ <a href=\"%(rec)s\">ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨਾਂ ਦੀ ਸੂਚੀ</a> ਵਿੱਚ ਦਿਲਚਸਪੀ ਹੈ?</li> <li> ਕੀ ਤੁਸੀਂ <a href=\"%(search)s\">ਐਡ-ਆਨਾਂ "
-"ਲਈ ਖੋਜ</a> ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਤੁਸੀਂ <a href=\"%(search)s\">ਖੋਜ ਸਫ਼ੇ</a> ਤੇ ਜਾ ਸਕਦੇ ਹੋ ਜਾਂ ਫਿਰ ਉੱਪਰ ਦਿੱਤਾ ਖੋਜ ਖਾਨਾ ਵਰਤ ਸਕਦੇ ਹੋ। </li> <li> ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ ਤੋਂ ਸ਼ੁਰੂਆਤ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦੇਣੀ ਚਾਹੋ, ਤਾਂ ਤੁਸੀਂ <a"
-" href=\"%(home)s\">ਐਡ-ਆਨ ਦੇ ਮੁੱਖ ਸਫ਼ੇ</a> ਤੇ ਜਾਉ।</li> </ul>"
+" ਤੇ ਕਲਿੱਕ ਕੀਤਾ ਹੋਵੇ, ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਗਲਤ ਪਤਾ ਲਿਖ ਦਿੱਤਾ ਹੋਵੇ। </p> <ul> <li>ਜੇਕਰ ਤੁਸੀਂ ਪਤਾ ਲਿਖਿਆ ਹੈ ਤਾਂ ਸ਼ਬਦ ਜੋੜ ਦੀ ਪੜਤਾਲ ਕਰੋ।</li> <li> ਜੇਕਰ ਤੁਸੀਂ ਤੰਦ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਲਈ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ "
+"%(open_bug_link)sਮਾਮਲਾ ਦਰਜ ਕਰਾਉ%(close_bug_link)s। ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਅਤੇ ਕੀ ਭਾਲ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸਦੀ ਮੁਰੰਮਤ ਲਈ ਪੂਰਾ ਜ਼ੋਰ ਲਾਵਾਂਗੇ। </li> </ul> <p>ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਸਾਡੀ ਸਾਈਟ ਦੇ ਕੁੱਝ ਮਸ਼ਹੂਰ "
+"ਸਫ਼ਿਆਂ ਨੂੰ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।<p> <ul> <li>ਕੀ ਤੁਹਾਨੂੰ <a href=\"%(rec)s\">ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨਾਂ ਦੀ ਸੂਚੀ</a> ਵਿੱਚ ਦਿਲਚਸਪੀ ਹੈ?</li> <li> ਕੀ ਤੁਸੀਂ <a href=\"%(search)s\">ਐਡ-ਆਨਾਂ ਲਈ ਖੋਜ</a> ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? "
+"ਤੁਸੀਂ <a href=\"%(search)s\">ਖੋਜ ਸਫ਼ੇ</a> ਤੇ ਜਾ ਸਕਦੇ ਹੋ ਜਾਂ ਫਿਰ ਉੱਪਰ ਦਿੱਤਾ ਖੋਜ ਖਾਨਾ ਵਰਤ ਸਕਦੇ ਹੋ। </li> <li> ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ ਤੋਂ ਸ਼ੁਰੂਆਤ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦੇਣੀ ਚਾਹੋ, ਤਾਂ ਤੁਸੀਂ <a href=\"%(home)s\">ਐਡ-ਆਨ ਦੇ "
+"ਮੁੱਖ ਸਫ਼ੇ</a> ਤੇ ਜਾਉ।</li> </ul>"
 
 msgid "Oops"
 msgstr "ਓ ਹੋ"
@@ -4531,7 +4531,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿ
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "ਇੱਕ ਸਿੰਗਲ HTML ਫਾਈਲ ਵਜੋਂ—ਸੰਪੂਰਨ ਪੰਨਿਆਂ—ਜਾਂ ਸਿਰਫ਼ ਕੁਝ ਭਾਗਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4832,7 +4832,7 @@ msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ਕਿਸਮ (%s) AMO (%s) ਤੇ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਿਸਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
 
 msgid "Back to review"
 msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
@@ -6359,7 +6359,7 @@ msgid "My Favorite Add-ons"
 msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "ਇੱਕ ਜਾਇਜ IPv6 ਜਾਂ IPv6 ਸੀਆਈਡੀਆਰ ਨੈਟਵਰਕ ਰੇਂਜ ਦਰਜ ਕਰੋ, ਉਦਾਹਰਨ ਲਈ। 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
