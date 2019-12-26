@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-24 11:34+0000\n"
+"PO-Revision-Date: 2019-12-26 16:12+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -432,9 +432,8 @@ msgstr "{lang-code:value} ਦੀ ਕੋਈ ਇਕਾਈ ਮੁਹੱਈਆ ਕ�
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "ਗੈਰ-ਪ੍ਰਮਾਣਿਤ pk ਜਾਂ ਸਲੱਗ \"%s\" - ਇਕਾਈ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਲਾਇਸੈਂਸ ਤੇ ਹੋਰ ਜਾਣਕਾਰੀ"
+msgstr "ਡਿਵੈਲਪਰ API ਕੁੰਜੀਆਂ ਲਈ ਪੁਸ਼ਟੀਕਰਣ"
 
 msgid "Application Versions"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
@@ -801,9 +800,8 @@ msgstr "ਐਡਮਿਨ ਥੀਮ-ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕ�
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} ਇੱਕ ਹਲਕੇ ਥੀਮ ਤੋਂ ਪਰਵਾਸ ਕੀਤਾ ਗਿਆ ਸੀ।"
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "ਵਰਤੋਂਕਾਰ {user} ਦੀ ਤਸਵੀਰ ਮਿਟਾਈ ਗਈ।"
+msgstr ""
 
 msgid "Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ"
@@ -1679,9 +1677,8 @@ msgstr "{addon} ਲਈ ਯੋਗਦਾਨ।"
 msgid "A confirmation email has been sent to {email}"
 msgstr "ਤਸਦੀਕੀ ਈਮੇਲ {email} ਨੂੰ ਭੇਜੀ ਗਈ ਹੈ"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਇੱਕ ਲੇਖਕ ਦੀ ਭੂਮਿਕਾ ਬਦਲੀ ਗਈ"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਲੇਖਕ ਦੀ ਭੂਮਿਕਾ ਬਦਲੀ ਗਈ"
 
 msgid "An author has been removed from your add-on"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂੰ ਹਟਾਇਆ ਗਿਆ"
@@ -2758,9 +2755,8 @@ msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ
 msgid "Invisible"
 msgstr "ਅਦਿੱਖ"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "ਮਨਜ਼ੂਰ ਸਮੀਖਿਆਵਾਂ"
+msgstr "ਮਨਜ਼ੂਰ ਅਤੇ ਸਿਫਾਰਸ਼ ਕੀਤੀ"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "ਮਿਹਰਬਾਨੀ ਕਰ ਕੇ ਕੋਈ ਵੰਨਗੀ ਜਾਂ ਗੁਆਚਿਆ ਹੋਇਆ ਮੇਟਾਡੇਟਾ ਜੋੜ ਕੇ ਆਪਣਾ ਐਡ-ਔਨ ਪੂਰਾ ਕਰੋ।"
@@ -5839,9 +5835,8 @@ msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮੀਖਿਆ ਨਹ�
 msgid "Method:"
 msgstr "ਢੰਗ:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "ਸੋਰਸ ਦੁਆਰਾ"
+msgstr "ਸਰੋਤ:"
 
 msgid "Dismiss this announcement"
 msgstr "ਇਹ ਐਲਾਨ ਖਾਰਜ ਕਰੋ"
