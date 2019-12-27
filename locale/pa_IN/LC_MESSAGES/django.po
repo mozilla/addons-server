@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-27 06:10+0000\n"
+"PO-Revision-Date: 2019-12-27 06:23+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1737,7 +1737,7 @@ msgid "Header area text and icons"
 msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr ""
+msgstr "ਐਕਟਿਵ ਟੈਬ ਨੂੰ ਛੱਡ ਕੇ ਸਿਰਲੇਖ ਦੇ ਖੇਤਰ ਵਿਚ ਟੈਕਸਟ ਅਤੇ ਆਈਕਾਨ ਦਾ ਰੰਗ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  tab_background_text।"
 
 msgid "Toolbar area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
@@ -2743,9 +2743,8 @@ msgstr "ਰੱਦ ਕਰੋ"
 msgid "Revoke and regenerate credentials"
 msgstr "ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਰੱਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਬਣਾਉ"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ"
+msgstr "ਪੁਸ਼ਟੀ ਕਰੋ ਅਤੇ ਨਵੇਂ ਪ੍ਰਮਾਣ ਪੱਤਰ ਬਣਾਓ"
 
 msgid "Generate new credentials"
 msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ"
@@ -5351,9 +5350,8 @@ msgstr "ਭਾਰ"
 msgid "Information Request Deadline"
 msgstr "ਜਾਣਕਾਰੀ ਬੇਨਤੀ ਦੀ ਆਖਰੀ ਤਾਰੀਖ"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "ਆਖਰੀ ਵਾਰ ਨਵਿਆਇਆ ਗਿਆ:"
+msgstr "ਆਖਰੀ ਵਾਰ ਨਵਿਆਇਆ ਗਿਆ"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "ਇਹ ਇਸ ਸੰਸਕਰਣ ਦੀ ਮਨਜ਼ੂਰੀ, ਹਸਤਾਖਰ ਅਤੇ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੇਗਾ। ਟਿੱਪਣੀ ਵਿਕਾਸਕਾਰ ਨੂੰ ਭੇਜੀ ਜਾਵੇਗੀ।"
@@ -5397,16 +5395,14 @@ msgstr "ਟਿੱਪਣੀ"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "ਇਸ ਸੰਸਕਰਣ ਤੇ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਡਿਵੈਲਪਰ ਇਸ ਨੂੰ ਨਹੀਂ ਦੇਖ ਸਕੋਗੇ।"
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "ਐਡਆਨ ਦੀ ਪੜਤਾਲ ਕਰੋ"
+msgstr "ਐਡਆਨ ਦੀ ਪੂਰਵ-ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "Recommended ({0})"
 msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "ਰੇਟਿੰਗ ਸਮੀਖਿਆ ({0})"
+msgstr "ਹੋਰ ਬਕਾਇਆ ਸਮੀਖਿਆ ({0})"
 
 msgid "Review Log"
 msgstr "ਰੀਵਿਊ ਲੌਗ"
@@ -5708,9 +5704,8 @@ msgstr "ਐਡ-ਆਨ ਉਪਭੋਗੀ ਨੇ ਇਤਿਹਾਸ ਬਦਲਿ�
 msgid "Add-on History"
 msgstr "ਐਡ-ਆਨ ਇਤਿਹਾਸ"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "ਪਿਛਲਾ ਨੋਟ"
+msgstr "ਪਹਿਲਾਂ ਮਿਟਾਏ ਗਏ ਐਂਟਰੀਆਂ"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
