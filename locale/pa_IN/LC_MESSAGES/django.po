@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-26 16:12+0000\n"
+"PO-Revision-Date: 2019-12-27 06:10+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1670,9 +1670,8 @@ msgstr "ਸੱਦਾ ਨਾਮਨਜ਼ੂਰ ਕਰ ਦਿੱਤਾ।"
 msgid "An author has been added to your add-on"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਵਿੱਚ ਇੱਕ ਲੇਖਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "{addon} ਲਈ ਯੋਗਦਾਨ।"
+msgstr "{addon_name} ਲਈ ਲੇਖਕ ਦਾ ਸੱਦਾ"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "ਤਸਦੀਕੀ ਈਮੇਲ {email} ਨੂੰ ਭੇਜੀ ਗਈ ਹੈ"
@@ -1737,9 +1736,8 @@ msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਊਂਡ �
 msgid "Header area text and icons"
 msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "ਸਰਗਰਮ ਟੈਬ ਤੋਂ ਇਲਾਵਾ ਹੈਡਰ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ ਦਾ ਰੰਗ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਟੈਕਸਟ ਰੰਗ।"
+msgstr ""
 
 msgid "Toolbar area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
