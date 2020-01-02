@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-02 17:51+0000\n"
+"PO-Revision-Date: 2020-01-02 17:57+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -870,7 +870,7 @@ msgid "Plugin"
 msgstr "ਪਲੱਗਇਨ"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "ਛੱਡੇ ਗਏ LWT"
 
 msgid "Theme (Static)"
 msgstr "ਥੀਮ (ਸਥਿਰ)"
@@ -4709,9 +4709,8 @@ msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "ਵਾਧਰੇ"
+msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4814,9 +4813,8 @@ msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆ�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
+msgstr "ਤੁਸੀਂ ਭਾਸ਼ਾ ਪੈਕ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "ਗ਼ੈਰਸਮਰਥਿਤ ਫਾਈਲ ਕਿਸਮ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮਰਥਿਤ ਫਾਈਲ {extensions} ਅਪਲੋਡ ਕਰੋੋ।"
@@ -6293,9 +6291,8 @@ msgstr "ਕੀ ਤੁਸੀਂ ਸਾਰੀਆਂ <b>{0}</b> ਟਰਾਂਸਲ�
 msgid "Delete Locale"
 msgstr "ਲੋਕੇਲ ਹਟਾਓ"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "ਪੜਤਾਲ ਅਤੀਤ ਬੰਦ ਕਰੋ"
+msgstr "ਉਪਭੋਗਤਾ ਪ੍ਰਤੀਬੰਧਨ ਅਤੀਤ"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
