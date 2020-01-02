@@ -10,6 +10,8 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import Addon
+from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
@@ -42,12 +44,21 @@ def gc(test_result=True):
         tasks.delete_logs.delay(chunk)
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
-    # Incomplete addons cannot be deleted here because when an addon is
-    # rejected during a review it is marked as incomplete. See bug 670295.
+
+    a_week_ago = days_ago(7)
+    # Delete stale add-ons with no versions. Should soft-delete add-ons that
+    # are somehow not in incomplete status, hard-delete the rest. No email
+    # should be sent in either case.
+    versionless_addons = (
+        Addon.objects.filter(versions__pk=None, created__lte=a_week_ago)
+        .values_list('pk', flat=True)
+    )
+    for chunk in chunked(versionless_addons, 100):
+        delete_addons.delay(chunk)
 
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(
-        created__lte=days_ago(7)).order_by('id')
+        created__lte=a_week_ago).order_by('id')
     for file_upload in stale_uploads:
         log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
                   .format(uuid=file_upload.uuid, path=file_upload.path))
