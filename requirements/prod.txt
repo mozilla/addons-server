@@ -220,9 +220,9 @@ feedparser==5.2.1 \
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-geoip2==2.9.0 \
-    --hash=sha256:a37ddac2d200ffb97c736da8b8ba9d5d8dc47da6ec0f162a461b681ecac53a14 \
-    --hash=sha256:f7ffe9d258e71a42cf622ce6350d976de1d0312b9f2fbce3975c7d838b57ecf0
+geoip2==3.0.0 \
+    --hash=sha256:5869e987bc54c0d707264fec4710661332cc38d2dca5a7f9bb5362d0308e2ce0 \
+    --hash=sha256:99ec12d2f1271a73a0a4a2b663fe6ce25fd02289c0a6bef05c0a1c3b30ee95a4
 # html5lib is required by rdflib
 html5lib==1.0.1 \
     --hash=sha256:20b159aa3badc9d5ee8f5c647e5efd02ed2a66ab8d354930bd9ff139fc1dc0a3 \
