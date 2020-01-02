@@ -43,9 +43,8 @@ pickleshare==0.7.5 \
 prompt_toolkit==3.0.2 \
     --hash=sha256:0278d2f51b5ceba6ea8da39f76d15684e84c996b325475f6e5720edc584326a7 \
     --hash=sha256:63daee79aa8366c8f1c637f1a4876b890da5fc92a19ebd2f7080ebacb901e990
-wcwidth==0.1.7 \
-    --hash=sha256:f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c \
-    --hash=sha256:3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e
+wcwidth==0.1.8 \
+    --hash=sha256:8fd29383f539be45b20bd4df0dc29c20ba48654a41e661925e612311e9f3c603
 simplegeneric==0.8.1 \
     --hash=sha256:dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173
 isort==4.3.21 \
