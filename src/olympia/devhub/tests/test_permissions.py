@@ -12,6 +12,7 @@ class TestIsSubmissionAllowedFor(TestCase):
         self.permission = IsSubmissionAllowedFor()
         self.view = object()
         self.request = RequestFactory().post('/')
+        self.request.is_api = False
         self.request.user = user_factory(
             email='test@example.com', read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
@@ -31,6 +32,16 @@ class TestIsSubmissionAllowedFor(TestCase):
             'Distribution Agreement as well as our Review Policies and Rules. '
             'The Firefox Add-on Distribution Agreement also links to our '
             'Privacy Notice which explains how we handle your information.')
+
+    def test_has_permission_user_has_not_read_agreement_when_using_API(self):
+        self.request.is_api = True
+        self.request.user.update(read_dev_agreement=None)
+        assert not self.permission.has_permission(self.request, self.view)
+        assert self.permission.message == (
+            'Please read and accept our Firefox on Distribution Agreement '
+            'as well as our Review Policies and Rules by visiting '
+            'http://testserver/en-US/developers/addon/api/key/'
+        )
 
     def test_has_permission_disposable_email(self):
         DisposableEmailDomainRestriction.objects.create(domain='example.com')
