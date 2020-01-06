@@ -125,7 +125,7 @@
 }
 
 .DevHub-MyAddons-item-buttons-submit {
-
+  width: 100%;
   margin-left: auto;
   float: right;
 
@@ -134,12 +134,16 @@
     margin-left: 0;
     float: left;
   }
-}
 
-.DevHub-MyAddons-item-buttons-submit > .Button {
-  width: 100%;
+  .Button {
+    width: 100%;
+  }
 
   @media @medium {
     width: auto;
+
+    .Button {
+      width: auto;
+    }
   }
 }
