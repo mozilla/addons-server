@@ -116,15 +116,6 @@
 
 .DevHub-MyAddons-item-buttons {
   margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  @media @medium {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
 }
 
 .DevHub-MyAddons-item-buttons-all {
@@ -136,11 +127,19 @@
 .DevHub-MyAddons-item-buttons-submit {
 
   margin-left: auto;
-  align-self: flex-end;
-
+  float: right;
 
   html[dir=rtl] & {
     margin-right: auto;
     margin-left: 0;
+    float: left;
+  }
+}
+
+.DevHub-MyAddons-item-buttons-submit > .Button {
+  width: 100%;
+
+  @media @medium {
+    width: auto;
   }
 }
