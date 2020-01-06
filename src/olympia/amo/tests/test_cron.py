@@ -1,8 +1,12 @@
 from unittest import mock
 
+from django.core import mail
+
+from olympia import amo
 from olympia.amo.cron import gc
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.scanners import YARA
+from olympia.addons.models import Addon
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
 
@@ -77,3 +81,33 @@ class TestGC(TestCase):
 
         assert ScannerResult.objects.count() == 3
         assert storage_mock.delete.call_count == 1
+
+    def test_stale_addons_deletion(self, storage_mock):
+        in_the_past = self.days_ago(8)
+        to_delete = [
+            Addon.objects.create(),
+            Addon.objects.create(status=amo.STATUS_NULL),
+            # Shouldn't be possible to have a public add-on with no versions,
+            # but just in case it should still work.
+            Addon.objects.create(status=amo.STATUS_APPROVED),
+        ]
+        for addon in to_delete:
+            addon.update(created=in_the_past)
+        to_keep = [
+            Addon.objects.create(),
+            Addon.objects.create(status=amo.STATUS_NULL),
+            addon_factory(
+                created=in_the_past, version_kw={'deleted': True}),
+            addon_factory(
+                created=in_the_past, status=amo.STATUS_NULL),
+        ]
+
+        gc()
+
+        for addon in to_delete:
+            assert not Addon.objects.filter(pk=addon.pk).exists()
+        for addon in to_keep:
+            assert Addon.objects.filter(pk=addon.pk).exists()
+
+        # Make sure no email was sent.
+        assert len(mail.outbox) == 0

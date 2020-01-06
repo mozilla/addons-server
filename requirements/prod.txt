@@ -1,9 +1,9 @@
 Django==2.2.9 \
     --hash=sha256:662a1ff78792e3fd77f16f71b1f31149489434de4b62a74895bd5d6534e635a5 \
     --hash=sha256:687c37153486cf26c3fdcbdd177ef16de38dc3463f094b5f9c9955d91f277b14 # pyup: <3.0
-Babel==2.7.0 \
-    --hash=sha256:af92e6106cb7c55286b25b38ad7695f8b4efb36a90ba483d7f7a6628c46158ab \
-    --hash=sha256:e86135ae101e31e2c8ec20a4e0c5220f4eed12487d5cf3f78be7e98d3a57fc28
+Babel==2.8.0 \
+    --hash=sha256:1aac2ae2d0d8ea368fa90906567f5c08463d98ade155c0c4bfedd6a0f7160e38 \
+    --hash=sha256:d670ea0b10f8b723672d3a6abeb87b565b244da220d76b4dba1b66269ec152d4
 # Jinja2 is required by Sphinx
 Jinja2==2.10.3 \
     --hash=sha256:74320bb91f31270f9551d46522e33af46a80c3d619f4a4bf42b3164d30b5911f \
@@ -39,8 +39,8 @@ MarkupSafe==1.1.1 \
     --hash=sha256:cd5df75523866410809ca100dc9681e301e3c27567cf498077e8551b6d20e42f \
     --hash=sha256:e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7
 # maxminddb is required by geoip2
-maxminddb==1.5.1 \
-    --hash=sha256:449a1713d37320d777d0db286286ab22890f0a176492ecf3ad8d9319108f2f79
+maxminddb==1.5.2 \
+    --hash=sha256:d0ce131d901eb11669996b49a59f410efd3da2c6dbe2c0094fe2fef8d85b6336
 mysqlclient==1.4.6 \
     --hash=sha256:4c82187dd6ab3607150fbb1fa5ef4643118f3da122b8ba31c3149ddd9cf0cb39 \
     --hash=sha256:9e6080a7aee4cc6a06b58b59239f20f1d259c1d2fddf68ddeed242d2311c7087 \
@@ -113,9 +113,9 @@ billiard==3.6.0.0 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.10.39 \
-    --hash=sha256:67211b7454183a4b61a269003f8b3add76bbaf282236221632eafa0e2ec62e09 \
-    --hash=sha256:c53f274991616dc6d84d1b3b4e57a86f146df2132e3bd1b02ce10209bf7a2c49
+boto3==1.10.46 \
+    --hash=sha256:c532564961b4c589a0fcf64b892ca215ccef898155faf4c3ba77e6338bb3a8ac \
+    --hash=sha256:f2cf6fd3d1ee4aba511ba323b3d13a4331bbe4ff805eecca7d7a5aecb8482290
 celery==4.3.0 \
     --hash=sha256:4c4532aa683f170f40bd76f928b70bc06ff171a959e06e71bf35f2f9d6031ef9 \
     --hash=sha256:528e56767ae7e43a16cfef24ee1062491f5754368d38fcfffa861cdb9ef219be
@@ -156,12 +156,12 @@ dennis==0.9 \
 django-aesfield==2.2 \
     --hash=sha256:3b5f8816ed2e57f233bbcc10ea6f815aa5c07eeadfc7a27895729a3c99792d7a \
     --hash=sha256:b3b09351df1bc272506e47a37889dbfe539d7075ba27470379a4964a1a8325f2
-django-admin-rangefilter==0.5.2 \
-    --hash=sha256:44a62eca17dcc36ea60312c6076463c11b81294420c727fa667d0f8ec6d5c54c \
-    --hash=sha256:9de20ff967ee55e7e40a0fb38529f3fb5df346efe20b1e46e1865c3021093cfa
-django-cors-headers==3.2.0 \
-    --hash=sha256:84933651fbbde8f2bc084bef2f077b79db1ec1389432f21dd661eaae6b3d6a95 \
-    --hash=sha256:a8b2772582e8025412f4d4b54b617d8b707076ffd53a2b961bd24f10ec207a7c
+django-admin-rangefilter==0.5.3 \
+    --hash=sha256:5ca64adebc29c4756a796101114e39242d82ac95df6c4796cf9332adf2cefb2f \
+    --hash=sha256:9f90d1e1de0481e9bf853c71753430e25c583cb96b9f8398a99be6c4de834647
+django-cors-headers==3.2.1 \
+    --hash=sha256:a5960addecc04527ab26617e51b8ed42f0adab4594b24bb0f3c33e2bd3857c3f \
+    --hash=sha256:a785b5f446f6635810776d9f5f5d23e6a2a2f728ea982648370afaf0dfdf2627
 django-csp==3.5 \
     --hash=sha256:8b9997df89a7a936d7c397e051367f974aa1d1a97d0b32acb4300087b3bed071 \
     --hash=sha256:04600237701e6d6ff78ed7d41209ff923988148bf292c128f6b474b9befe444f
@@ -220,9 +220,9 @@ feedparser==5.2.1 \
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-geoip2==2.9.0 \
-    --hash=sha256:a37ddac2d200ffb97c736da8b8ba9d5d8dc47da6ec0f162a461b681ecac53a14 \
-    --hash=sha256:f7ffe9d258e71a42cf622ce6350d976de1d0312b9f2fbce3975c7d838b57ecf0
+geoip2==3.0.0 \
+    --hash=sha256:5869e987bc54c0d707264fec4710661332cc38d2dca5a7f9bb5362d0308e2ce0 \
+    --hash=sha256:99ec12d2f1271a73a0a4a2b663fe6ce25fd02289c0a6bef05c0a1c3b30ee95a4
 # html5lib is required by rdflib
 html5lib==1.0.1 \
     --hash=sha256:20b159aa3badc9d5ee8f5c647e5efd02ed2a66ab8d354930bd9ff139fc1dc0a3 \
