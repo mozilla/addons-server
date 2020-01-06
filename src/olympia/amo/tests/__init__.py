@@ -52,6 +52,7 @@ from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
@@ -666,6 +667,8 @@ def addon_factory(
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
 
+    should_be_recommended = kw.pop('recommended', False)
+
     kwargs = {
         # Set artificially the status to STATUS_APPROVED for now, the real
         # status will be set a few lines below, after the update_version()
@@ -693,6 +696,8 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
+    if should_be_recommended:
+        version_kw['recommendation_approved'] = True
     version = version_factory(file_kw, addon=addon, **version_kw)
 
     addon.update_version()
@@ -710,6 +715,9 @@ def addon_factory(
             CATEGORIES[application][addon.type].values()))
         category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
+
+    if should_be_recommended:
+        DiscoveryItem.objects.create(addon=addon, recommendable=True)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -923,7 +931,7 @@ class ESTestCase(TestCase):
     @classmethod
     def empty_index(cls, index):
         # Try to make sure that all changes are properly flushed.
-        cls.refresh()
+        cls.refresh(index)
         cls.es.delete_by_query(
             settings.ES_INDEXES[index],
             body={'query': {'match_all': {}}},
