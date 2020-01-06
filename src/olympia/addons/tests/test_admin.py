@@ -416,6 +416,13 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
 
+        version_factory(addon=addon)
+        with self.assertNumQueries(35):
+            # confirm it scales
+            response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
     def test_version_pagination(self):
         addon = addon_factory(users=[user_factory()])
         first_file = addon.current_version.all_files[0]
