@@ -381,7 +381,8 @@ class UploadRestrictionChecker:
         restriction applying.
         """
         try:
-            msg = self.failed_restrictions[0].error_message
+            msg = self.failed_restrictions[0].get_error_message(
+                is_api=self.request.is_api)
         except IndexError:
             msg = None
         return msg
