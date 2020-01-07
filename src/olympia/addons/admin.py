@@ -17,6 +17,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
 from olympia.ratings.models import Rating
+from olympia.versions.models import Version
 from olympia.zadmin.admin import related_content_link
 
 from . import models
@@ -81,6 +82,7 @@ class FileInline(admin.TabularInline):
     hash_link.short_description = 'Hash'
 
     def get_formset(self, request, obj=None, **kwargs):
+        self.instance = obj
         Formset = modelformset_factory(
             File,
             form=FileStatusForm,
@@ -89,11 +91,23 @@ class FileInline(admin.TabularInline):
             min_num=self.get_min_num(request, obj, **kwargs),
             max_num=self.get_max_num(request, obj, **kwargs),
         )
-        Formset.request = request
         return Formset
 
     def has_add_permission(self, request, obj=None):
         return False
+
+    def get_queryset(self, request):
+        self.pager = amo.utils.paginate(
+            request,
+            Version.unfiltered.filter(addon=self.instance).values_list(
+                'pk', flat=True),
+            30)
+        # A list coercion so this doesn't result in a subquery with a LIMIT
+        # which MySQL doesn't support (at this time).
+        versions = list(self.pager.object_list)
+        qs = super().get_queryset(request).filter(
+            version__in=versions).order_by('-version__id')
+        return qs.select_related('version')
 
 
 class AddonAdmin(admin.ModelAdmin):

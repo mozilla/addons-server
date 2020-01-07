@@ -2,9 +2,7 @@ from django.forms import ModelForm
 from django.forms.models import BaseModelFormSet
 
 import olympia.core.logger
-from olympia import amo
 from olympia.files.models import File
-from olympia.versions.models import Version
 
 
 admin_log = olympia.core.logger.getLogger('z.addons.admin')
@@ -36,22 +34,6 @@ class AdminBaseFileFormSet(BaseModelFormSet):
     @classmethod
     def get_default_prefix(cls):
         return 'files'
-
-    def get_queryset(self):
-        if not hasattr(self, '_queryset'):
-            self.pager = amo.utils.paginate(
-                self.request,
-                Version.unfiltered.filter(addon=self.instance).values_list(
-                    'pk', flat=True),
-                30)
-            # A list coercion so this doesn't result in a subquery with a LIMIT
-            # which MySQL doesn't support (at this time).
-            versions = list(self.pager.object_list)
-            qs = super().get_queryset().filter(
-                version__in=versions).order_by('-version__id')
-
-            self._queryset = qs.select_related('version')
-        return self._queryset
 
     def save_existing_objects(self, commit=True):
         objs = super().save_existing_objects(commit=commit)
