@@ -6,6 +6,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
@@ -186,7 +187,13 @@ class TestBlockAdminAdd(TestCase):
             self.single_url + '?guid=guid@', follow=True)
         content = response.content.decode('utf-8')
         assert 'Review Listed' in content
+        listed_review_url = absolutify(reverse(
+            'reviewers.review', kwargs={'addon_id': addon.pk}))
+        assert listed_review_url in content
         assert 'Review Unlisted' in content, content
+        unlisted_review_url = absolutify(reverse(
+            'reviewers.review', args=('unlisted', addon.pk)))
+        assert unlisted_review_url in content
 
         addon.current_version.delete(hard=True)
         response = self.client.get(
