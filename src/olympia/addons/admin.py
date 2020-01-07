@@ -5,7 +5,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.core import validators
 from django.forms.models import modelformset_factory
-from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.utils.html import format_html
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -163,14 +162,12 @@ class AddonAdmin(admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
-        if lookup_field == 'pk':
-            addon = get_object_or_404(Addon.unfiltered.all(), id=object_id)
-        else:
+        if lookup_field != 'pk':
             try:
                 if lookup_field == 'slug':
-                    addon = Addon.unfiltered.all().get(slug=object_id)
+                    addon = self.queryset(request).all().get(slug=object_id)
                 elif lookup_field == 'guid':
-                    addon = Addon.unfiltered.all().get(guid=object_id)
+                    addon = self.queryset(request).get(guid=object_id)
             except Addon.DoesNotExist:
                 raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().

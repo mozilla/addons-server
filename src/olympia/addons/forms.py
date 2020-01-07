@@ -41,7 +41,8 @@ class AdminBaseFileFormSet(BaseModelFormSet):
         if not hasattr(self, '_queryset'):
             self.pager = amo.utils.paginate(
                 self.request,
-                Version.unfiltered.filter(addon=self.instance),
+                Version.unfiltered.filter(addon=self.instance).values_list(
+                    'pk', flat=True),
                 30)
             # A list coercion so this doesn't result in a subquery with a LIMIT
             # which MySQL doesn't support (at this time).

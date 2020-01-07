@@ -409,7 +409,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
-        with self.assertNumQueries(35):
+        with self.assertNumQueries(23):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             response = self.client.get(self.detail_url, follow=True)
@@ -417,7 +417,7 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(35):
+        with self.assertNumQueries(23):
             # confirm it scales
             response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
