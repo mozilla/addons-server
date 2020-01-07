@@ -44,6 +44,14 @@ class AddonUserInline(admin.TabularInline):
     user_profile_link.short_description = 'User Profile'
 
 
+class FileInlineChecks(admin.checks.InlineModelAdminChecks):
+    def _check_relation(self, obj, parent_model):
+        """File doesn't have a direct FK to Addon (it's via Version) so we have
+        to bypass this check.
+        """
+        return []
+
+
 class FileInline(admin.TabularInline):
     model = File
     extra = 0
@@ -56,6 +64,7 @@ class FileInline(admin.TabularInline):
     can_delete = False
     view_on_site = False
     template = 'addons/admin/file_inline.html'
+    checks_class = FileInlineChecks
 
     def version__version(self, obj):
         return obj.version.version + (
