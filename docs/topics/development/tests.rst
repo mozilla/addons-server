@@ -38,6 +38,6 @@ run using different methods:
 
 For more, see the `Pytest usage documentation`_.
 
-.. _marked: http://pytest.org/latest/mark.html
+.. _marked: http://pytest.org/en/latest/mark.html
 .. _Pytest usage documentation:
-    http://pytest.org/latest/usage.html#specifying-tests-selecting-tests
+    http://pytest.org/en/latest/usage.html#specifying-tests-selecting-tests
