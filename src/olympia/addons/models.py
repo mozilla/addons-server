@@ -1833,20 +1833,17 @@ class AddonApprovalsCounter(ModelBase):
         """
         if now is None:
             now = datetime.now()
-        obj, created = cls.objects.update_or_create(
-            addon=addon, defaults={'last_content_review': now})
-        return obj
+        return cls.reset_content_for_addon(addon, reset_to=now)
 
     @classmethod
-    def reset_content_for_addon(cls, addon):
+    def reset_content_for_addon(cls, addon, reset_to=None):
         """
         Reset the last_content_review date for this addon so it triggers
         another review.
         """
-        try:
-            cls.objects.update(addon=addon, last_content_review=None)
-        except cls.NotFoundException:
-            pass
+        obj, created = cls.objects.update_or_create(
+            addon=addon, defaults={'last_content_review': reset_to})
+        return obj
 
 
 class DeniedGuid(ModelBase):
