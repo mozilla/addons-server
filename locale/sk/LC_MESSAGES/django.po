@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-07 21:12+0000\n"
+"PO-Revision-Date: 2020-01-07 21:13+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -18,25 +18,25 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "typ"
 
 msgid "Users"
-msgstr ""
+msgstr "Používatelia"
 
 msgid "Addons"
 msgstr "Doplnky"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "minimálny počet nahlásení (zoskupené podľa guid)"
 
 msgid "creation date"
-msgstr ""
+msgstr "dátum vytvorenia"
 
 msgid "User / Add-on"
-msgstr ""
+msgstr "Používateľ / Doplnok"
 
 msgid "Distribution"
-msgstr ""
+msgstr "Distribúcia"
 
 msgid "Reporter's country"
 msgstr ""
@@ -208,10 +208,10 @@ msgid "Error verifying input, please try again."
 msgstr "Chyba pri kontrole vstupu, skúste to prosím znovu."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Zadajte platnú IP4 alebo IP6 sieť."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Niektoré funkcie sú dočasne vypnuté kvôli údržbe stránok. Stránka bude plne dostupná onedlho."
@@ -4600,7 +4600,7 @@ msgstr "Rozšírenia sú ako aplikácie pre Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Pridávajú do Firefoxu funkcie, vďaka čomu je prehliadanie rýchlejšie, bezpečnejšie či zábavnejšie."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
