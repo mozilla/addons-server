@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-08 14:15+0000\n"
+"PO-Revision-Date: 2020-01-08 14:51+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -71,19 +71,19 @@ msgid "No links are allowed."
 msgstr "Le ligamines non es permittite."
 
 msgid "This display name cannot be used."
-msgstr "Iste nomine de schermo non pote ser usate."
+msgstr "Iste nomine de schermo non pote esser usate."
 
 msgid "This reviewer name cannot be used."
-msgstr "Iste nomine de revisor non pote ser usate."
+msgstr "Iste nomine de revisor non pote esser usate."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Le campo del pagina principal pote esser usate solo pro ligamine a sitos web externe."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Le imagines debe ser PNG o JPG."
+msgstr "Le imagines debe esser in formato PNG o JPG."
 
 msgid "Images cannot be animated."
-msgstr "Le imagines non pote ser animate."
+msgstr "Le imagines non pote esser animate."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -470,16 +470,16 @@ msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste URL personalisate es jam usate per un altere de tu collectiones."
 
 msgid "Name cannot be empty."
-msgstr "Le nomine non pote ser vacue."
+msgstr "Le nomine non pote esser vacue."
 
 msgid "This name cannot be used."
-msgstr "Iste nomine non pote ser usate."
+msgstr "Iste nomine non pote esser usate."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Le URL personalisate debe consister de litteras, numeros, lineettas basse o lineettas."
 
 msgid "This custom URL cannot be used."
-msgstr "Iste URL personalisate non pote ser usate."
+msgstr "Iste URL personalisate non pote esser usate."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
@@ -659,7 +659,7 @@ msgid "Password changed."
 msgstr "Contrasigno cambiate."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} approbate, ma attendente de ser rendite public."
+msgstr "{addon} {version} ha essite approbate, ma ancora attende publication."
 
 msgid "Approved but waiting"
 msgstr "Approbate, ma attendente"
@@ -993,7 +993,7 @@ msgid "Other"
 msgstr "Altere"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, totevia utile pro ille labores curiose."
+msgstr "Discarga extensiones de Firefox que pote esser surprendente e creative, ma utile pro ille travalios peculiar."
 
 msgid "Device Features & Location"
 msgstr "Functiones e position del apparato"
@@ -1446,8 +1446,8 @@ msgstr[1] "Tags non valide: {0}"
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" es un tag reservate e non pote ser usate."
-msgstr[1] "\"{0}\" es tags reservate e non pote ser usate."
+msgstr[0] "\"{0}\" es un etiquetta reservate e non pote esser usate."
+msgstr[1] "\"{0}\" es etiquettas reservate e non pote esser usate."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1460,8 +1460,8 @@ msgstr "Tote le tags debe esser de %s characteres o minus, postea la characteres
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Tote le tags debe ser al minus de {0} character."
-msgstr[1] "Tote le tags debe ser al minus de {0} characteres."
+msgstr[0] "Tote le etiquettas debe haber al minus {0} character."
+msgstr[1] "Tote le etiquettas debe haber al minus {0} characteres."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Le categorias non pote esser cambiate durante que tu additivo es promovite pro iste application."
@@ -1473,7 +1473,7 @@ msgstr[0] "Tu pote haber solo {0} categoria."
 msgstr[1] "Tu pote haber solo {0} categorias."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Le categoria miscellanea non pote ser combinate con le altere categorias."
+msgstr "Le categoria Miscellanea non pote esser combinate con altere categorias."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -1496,7 +1496,7 @@ msgid "Must have at least one owner."
 msgstr "Debe haber al minus un proprietario."
 
 msgid "At least one author must be listed."
-msgstr "Al minus un autor debe ser listate."
+msgstr "Al minus un autor debe esser listate."
 
 msgid "Slug incorrect."
 msgstr "Identificator non correcte."
@@ -1647,7 +1647,7 @@ msgid "User Reviews"
 msgstr "Revisiones del usator"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "Le additivo non pote ser delite, disactiva lo, in vice."
+msgstr "Le additivo non pote esser delite. In vice de isto, disactiva lo."
 
 msgid "Theme deleted."
 msgstr "Thema delite."
@@ -1689,22 +1689,22 @@ msgid "Validate Add-on"
 msgstr "Validar additivo"
 
 msgid "Icons must be either PNG or JPG."
-msgstr "Le icones debe ser PNG o JPG."
+msgstr "Le icones debe esser in formato PNG o JPG."
 
 msgid "Icons cannot be animated."
-msgstr "Le icones non pote ser animate."
+msgstr "Le icones non pote esser animate."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Le imagine debe ser al minus large {0} pixels e alte {1} pixels."
+msgstr "Le imagine debe mesurar al minus {0} pixels de latitude e {1} pixels de altitude."
 
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Le dimensiones del imagines debe ser il le ration 4:3."
+msgstr "Le dimensiones del imagine debe esser in le ration 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Le imagine debe ser large e alte al minus {0} pixels."
+msgstr "Le imagine debe mesurar al minus {0} pixels de latitude e de altitude."
 
 msgid "Icon must be square (same width and height)."
-msgstr "Le icone debe ser quadrate (altessa equal al largessa)."
+msgstr "Le icone debe esser quadrate (altitude equal al latitude)."
 
 msgid "There was an error uploading your preview."
 msgstr "Error durante le incargamento de tu vista preliminar."
