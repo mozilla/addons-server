@@ -376,8 +376,12 @@ ADDON_GUID_PATTERN = re.compile(
     r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
 
 SYSTEM_ADDON_GUIDS = (
-    u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org',
-    u'@mozilla.com')
+    '@mozilla.com',
+    '@mozilla.org',
+    '@pioneer.mozilla.org',
+    '@search.mozilla.org',
+    '@shield.mozilla.org'
+)
 
 MOZILLA_TRADEMARK_SYMBOLS = (
     'mozilla', 'firefox')
