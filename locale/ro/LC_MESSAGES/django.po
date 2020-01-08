@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-08 06:48+0000\n"
+"PO-Revision-Date: 2020-01-08 06:57+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4601,9 +4601,8 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Blochează site-urile ce distrag atenția {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Enumeră paginile web pe care vrei să le blocheze extensia. Disciplină instant!"
+msgstr "Blochezi site-urile web care îți distrag atenția. Pur și simplu enumeri site-urile pe care vrei să le blocheze extensia. Disciplină instant!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4618,9 +4617,8 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Schimbă aspectul Firefox {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Proiectează ușor propriile tale teme vizuale ca să dai Firefox un aspect pe gustul tău."
+msgstr "Schimbă-ți aspectul browserului. Îți creezi ușor propriile teme vizuale și dai Firefox-ului un aspect pe gustul tău."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4643,9 +4641,8 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Urmărește prețurile produselor {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Primești notificări când scad prețurile la articolele de care ești interesat(ă) pe Amazon, Best Buy, eBay, Home Depot și Walmart."
+msgstr "Urmărești produse și primești notificări când scad prețurile la articolele de care ești interesat(ă) pe Amazon, Best Buy, eBay, Home Depot și Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4656,18 +4653,16 @@ msgid "Turn the web dark or select a custom color scheme to visually tailor the 
 msgstr "Navighează pe web cu o temă întunecată sau selectează o paletă de culori personalizată pentru a plia vizual Internetul pe gustul tău."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Oprește elementele de urmărire a căutărilor {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Îmbunătățirea căutărilor pe Android {start_sub_heading} cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Obține o pagină de căutare mai avansată în Firefox pentru Android."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Găsește videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Asistență video pe Android {start_sub_heading} cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
@@ -5285,13 +5280,11 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr "Analiza riscurilor nu este disponibilă."
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "Este blocat de un revizor."
+msgstr "Este blocat de un revizor"
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "Are setată o semnalizare de aprobare automată dezactivată."
+msgstr "Are setată o semnalizare de aprobare automată dezactivată"
 
 msgid "Is recommendable"
 msgstr "Se recomandă"
@@ -5838,9 +5831,8 @@ msgstr "Nu s-a găsit nicio recenzie pentru această perioadă."
 msgid "Method:"
 msgstr "Metodă:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "după sursă"
+msgstr "Sursă:"
 
 msgid "Dismiss this announcement"
 msgstr "Respinge acest anunț"
@@ -6314,9 +6306,8 @@ msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea nu poate 
 msgid "Delete Locale"
 msgstr "Șterge traducerea"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Închide istoricul examinărilor"
+msgstr "Istoricul restricțiilor utilizatorului"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6333,13 +6324,12 @@ msgstr "Utilizatorilor „%(users)s” li s-a pus interdicție."
 msgid "Ban selected users"
 msgstr "Pune o interdicție utilizatorilor selectați"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Utilizatorilor „%(users)s” li s-a pus interdicție."
+msgstr "Utilizatorilor „%(users)s” li s-a resetat cheia API."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Gestionează cheile API"
+msgstr "Resetează cheia API"
 
 msgid "Profile Photo"
 msgstr "Fotografie de profil"
