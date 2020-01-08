@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
-from django.template import defaultfilters, loader
+from django.template import defaultfilters, Library, loader
 from django.utils.encoding import smart_text
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
@@ -25,6 +25,9 @@ from rest_framework.settings import api_settings
 from olympia.amo import urlresolvers, utils
 from olympia.lib.jingo_minify_helpers import (
     _build_html, get_css_urls, get_js_urls)
+
+
+register = Library()
 
 
 # Registering some utils as filters:
@@ -105,6 +108,11 @@ def services_url(viewname, *args, **kwargs):
 @library.filter
 def paginator(pager):
     return PaginationRenderer(pager).render()
+
+
+@register.filter(needs_autoescape=True)
+def dj_paginator(pager, autoescape=True):
+    return mark_safe(PaginationRenderer(pager).render())
 
 
 @library.filter

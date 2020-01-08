@@ -278,6 +278,14 @@ class TestAddonManagement(TestCase):
         # But no change.
         assert file.status == 4
 
+
+class TestRecalculateHash(TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        super().setUp()
+        self.client.login(email='admin@mozilla.com')
+
     @mock.patch.object(File, 'file_path',
                        amo.tests.AMOPaths().file_fixture_path(
                            'delicious_bookmarks-2.1.106-fx.xpi'))
