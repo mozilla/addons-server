@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-08 14:51+0000\n"
+"PO-Revision-Date: 2020-01-08 15:04+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2101,7 +2101,7 @@ msgid "View Product Page"
 msgstr "Vide le pagina de producto"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Iste summario debe explicar clarmente lo que tu additivo face. Illo sera monstrate in listas e recercas, e illo sera usate per le revisores pro testar tu additivo."
+msgstr "Iste summario debe explicar clarmente lo que tu additivo face. Illo apparera in listas e recercas, e essera usate per le revisores pro testar tu additivo."
 
 msgid "Description"
 msgstr "Description"
@@ -2110,7 +2110,7 @@ msgid "Experimental?"
 msgstr "Experimental?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Si tu additivo es experimental o alias non preste pro uso general. Le additivo sera listate ma habera reducite visibilitate."
+msgstr "Si tu additivo es experimental o alteremente non preste pro uso general.  Le additivo essera listate ma minus visibile. "
 
 msgid "This add-on is experimental."
 msgstr "Iste additivo es experimental."
@@ -2125,7 +2125,7 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr "Marca iste option si le functiones essential del additivo require un forma de pagamento in avantia o post un periodo de prova pro poter functionar."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr "Iste additivo necessita pagamento, servicios o software non-libere, o altere hardware."
+msgstr "Iste additivo require pagamento, servicios o software non libere, o hardware additional."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Iste additivo non require pagamentos additional, servicios o software pagate, o hardware additional."
@@ -2260,10 +2260,10 @@ msgid "PNG and JPG supported."
 msgstr "PNG e JPG supportate."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr "Le icone debe ser quadrate al minus dimensiones de 128x128 pixels."
+msgstr "Le icone debe esser quadrate con un dimension minime de 128x128 pixels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Le icones sera redimensionate a 128x128 pixels si plus grande."
+msgstr "Le icones essera redimensionate a 128x128 pixels si es plus grande."
 
 msgid "Screenshots"
 msgstr "Capturas de schermo"
@@ -2344,8 +2344,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
-"Deler tu additivo removera permanentemente tote le versiones e files que tu ha submittite pro iste additivo, listate o non. Le ID del additivo continuara a ser ligate a tu conto, assi alteres non "
-"potera inviar versiones per le mesme ID."
+"Deler tu additivo removera permanentemente tote le versiones e files que tu ha submittite pro iste additivo, listate o non. Le ID del additivo continuara a esser ligate a tu conto, de sorta que "
+"alteres non potera inviar versiones con le mesme ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Insere le sequente texto pro confirmar tu decision: {slug}"
@@ -2390,7 +2390,7 @@ msgid "View Recent Changes"
 msgstr "Vider recente cambiamentos"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr "Iste additivo manca de alcun requirite informationes ante que illo pote ser submittite pro publication."
+msgstr "A iste additivo manca alcun informationes necessari pro poter esser inviate pro publication."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Iste additivo non ha versiones."
@@ -2421,8 +2421,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"Attention: tu ha nomine/summario in altere localisationes que sera automaticamente secate pro plenar sub le limite de %(max_length)s characteres.  Pro lo rediger va al pagina de redaction del "
-"producto post que le invio es complete."
+"Attention: tu ha valores de nomine/summario in altere linguas que essera automaticamente truncate pro restar sub le limite de %(max_length)s characteres.  Pro modificar istes, va al pagina Modificar"
+" Producto post que le processo de submission es concludite."
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -6335,7 +6335,7 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr "remane ajornate con novas e eventos pertinente al disveloppatores de additivos (anque le littera de novas about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr "le compatibilitate de mi additivo non pote ser promovite"
+msgstr "le compatibilitate de mi additivo non pote esser actualisate"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mi additivos es revidite per un revisor"
