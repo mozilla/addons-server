@@ -3,6 +3,7 @@ import datetime
 from unittest import mock
 
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -270,7 +271,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         self.multi_list_url = reverse(
             'admin:blocklist_multiblocksubmit_changelist')
 
-    def test_add_multiple(self):
+    def _test_add_multiple_submit(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Reviews:Admin')
@@ -314,7 +315,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert Block.objects.count() == 2
         assert MultiBlockSubmit.objects.count() == 0
 
-        # Create the block
+        # Create the block submission
         response = self.client.post(
             self.multi_url, {
                 'input_guids': (
@@ -329,6 +330,11 @@ class TestMultiBlockSubmitAdmin(TestCase):
             },
             follow=True)
         assert response.status_code == 200
+        return (
+            new_addon, existing_and_full, partial_addon, existing_and_partial)
+
+    def _test_add_multiple_verify_blocks(self, new_addon, existing_and_full,
+                                         partial_addon, existing_and_partial):
         assert Block.objects.count() == 3
         assert MultiBlockSubmit.objects.count() == 1
         all_blocks = Block.objects.all()
@@ -398,6 +404,26 @@ class TestMultiBlockSubmitAdmin(TestCase):
                 [existing_and_partial.id, 'partial@existing']],
         }
 
+    @override_switch('blocklist_admin_dualsignoff_disabled', active=True)
+    def test_submit_no_dual_signoff(self):
+        new_addon, existing_and_full, partial_addon, existing_and_partial = (
+            self._test_add_multiple_submit())
+        self._test_add_multiple_verify_blocks(
+            new_addon, existing_and_full, partial_addon, existing_and_partial)
+
+    @override_switch('blocklist_admin_dualsignoff_disabled', active=False)
+    def test_submit_dual_signoff(self):
+        new_addon, existing_and_full, partial_addon, existing_and_partial = (
+            self._test_add_multiple_submit())
+        assert Block.objects.count() == 2
+        multi = MultiBlockSubmit.objects.get()
+        multi.update(signoff_by=user_factory())
+        assert multi.is_save_to_blocks_permitted
+        multi.save_to_blocks()
+        self._test_add_multiple_verify_blocks(
+            new_addon, existing_and_full, partial_addon, existing_and_partial)
+
+    @override_switch('blocklist_admin_dualsignoff_disabled', active=True)
     def test_add_and_edit_with_different_min_max_versions(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -752,7 +778,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
         addon_factory(guid='guid@', name='Danger Danger')
         mbs = MultiBlockSubmit.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
-            updated_by=user_factory())
+            updated_by=user_factory(),
+            signoff_by=user_factory())
         assert mbs.processed_guids['existing_guids'] == []
         # the order of invalid_guids is indeterminate.
         assert set(mbs.processed_guids['invalid_guids']) == {

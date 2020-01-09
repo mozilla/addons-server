@@ -183,8 +183,9 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
                 obj = form.save()
                 obj.update(updated_by=request.user)
                 self.log_addition(request, obj, [{'added': {}}])
-                # Then launch a task to async save the individual blocks
-                create_blocks_from_multi_block.delay(obj.id)
+                if obj.is_save_to_blocks_permitted:
+                    # Then launch a task to async save the individual blocks
+                    create_blocks_from_multi_block.delay(obj.id)
                 if request.POST.get('_addanother'):
                     return redirect('admin:blocklist_block_add')
                 else:

@@ -1,11 +1,13 @@
 import datetime
 from collections import defaultdict, namedtuple, OrderedDict
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.html import format_html, format_html_join
 from django.utils.functional import cached_property
 
+import waffle
 from django_extensions.db.fields.json import JSONField
 
 from olympia import amo
@@ -146,6 +148,8 @@ class MultiBlockSubmit(ModelBase):
     include_in_legacy = models.BooleanField(
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
+    signoff_by = models.ForeignKey(
+        UserProfile, null=True, on_delete=models.SET_NULL, related_name='+')
 
     def clean(self):
         min_vint = addon_version_int(self.min_version)
@@ -181,6 +185,23 @@ class MultiBlockSubmit(ModelBase):
             '<a href="{}">{}</a>',
             ((reverse('admin:blocklist_block_change', args=(id_,)), guid)
                 for (id_, guid) in blocks))
+
+    @property
+    def is_save_to_blocks_permitted(self):
+        """Has this submission been signed off, or sign-off isn't required."""
+        # TODO: something more fine-grained that looks at user counts
+        signoff_disabled = waffle.switch_is_active(
+            'blocklist_admin_dualsignoff_disabled')
+        if signoff_disabled:
+            return True
+
+        require_different_users = not settings.DEBUG
+        different_users = (
+            self.updated_by and self.signoff_by and
+            self.updated_by != self.signoff_by)
+        return (
+            self.signoff_by and
+            (not require_different_users or different_users))
 
     def save(self, *args, **kwargs):
         if self.input_guids and not self.processed_guids:
@@ -296,6 +317,7 @@ class MultiBlockSubmit(ModelBase):
         return blocks
 
     def save_to_blocks(self):
+        assert self.is_save_to_blocks_permitted
         common_args = {
             'min_version': self.min_version,
             'max_version': self.max_version,
