@@ -1398,11 +1398,12 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[upload.uuid.hex, 'json']))
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
-            {u'tier': 1,
-             u'message': u'You cannot submit an add-on with a guid ending '
-                         u'"@mozilla.org" or "@shield.mozilla.org" or '
-                         u'"@pioneer.mozilla.org" or "@mozilla.com"',
-             u'fatal': True, u'type': u'error'}]
+            {'tier': 1,
+             'message': 'You cannot submit an add-on using a guid ending with '
+                        '"@mozilla.com" or "@mozilla.org" or '
+                        '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
+                        '"@shield.mozilla.org"',
+             'fatal': True, 'type': 'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')

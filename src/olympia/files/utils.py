@@ -1062,8 +1062,8 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         guids = ' or '.join(
                 '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
         raise forms.ValidationError(
-            ugettext(u'You cannot submit an add-on with a guid ending '
-                     u'%s' % guids))
+            ugettext('You cannot submit an add-on using a guid ending with '
+                     '%s' % guids))
 
     if not mozilla_signed_extension_submission_allowed(user, xpi_info):
         raise forms.ValidationError(

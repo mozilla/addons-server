@@ -315,9 +315,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                      'mozilla_guid.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
-            u'You cannot submit an add-on with a guid ending "@mozilla.org" '
-            u'or "@shield.mozilla.org" or "@pioneer.mozilla.org" '
-            u'or "@mozilla.com"')
+            'You cannot submit an add-on using a guid ending with '
+            '"@mozilla.com" or "@mozilla.org" or "@pioneer.mozilla.org" or '
+            '"@search.mozilla.org" or "@shield.mozilla.org"')
 
     def test_system_addon_update_allowed(self):
         """Updates to system addons are allowed from anyone."""
