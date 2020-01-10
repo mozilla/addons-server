@@ -469,18 +469,14 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert self.log_final_summary_mock.call_count == 0
         assert self.file.reload().status == amo.STATUS_AWAITING_REVIEW
 
-    @mock.patch(
-        'olympia.reviewers.management.commands.auto_approve.run_action'
-    )
+    @mock.patch.object(ScannerResult, 'run_action')
     def test_does_not_execute_run_action_when_switch_is_inactive(
             self, run_action_mock):
         call_command('auto_approve')
 
         assert not run_action_mock.called
 
-    @mock.patch(
-        'olympia.reviewers.management.commands.auto_approve.run_action'
-    )
+    @mock.patch.object(ScannerResult, 'run_action')
     def test_executes_run_action_when_switch_is_active(self, run_action_mock):
         self.create_switch('run-action-in-auto-approve', active=True)
 
@@ -489,9 +485,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert run_action_mock.called
         run_action_mock.assert_called_with(self.version)
 
-    @mock.patch(
-        'olympia.reviewers.management.commands.auto_approve.run_action'
-    )
+    @mock.patch.object(ScannerResult, 'run_action')
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_only_executes_run_action_once(self,
                                            sign_file_mock,
