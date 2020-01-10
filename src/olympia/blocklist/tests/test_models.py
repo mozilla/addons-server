@@ -5,7 +5,7 @@ from waffle.testutils import override_switch
 from olympia.amo.tests import TestCase, user_factory
 from olympia.versions.compare import MAX_VERSION_PART
 
-from ..models import Block, MultiBlockSubmit
+from ..models import Block, BlockSubmission
 
 
 class TestBlock(TestCase):
@@ -32,17 +32,19 @@ class TestBlock(TestCase):
         assert block.is_version_blocked('10.1')
         assert block.is_version_blocked('10.%s' % (MAX_VERSION_PART + 1))
 
-class TestMultiBlockSubmit(TestCase):
+
+class TestMultiBlockSubmission(TestCase):
     def test_is_save_to_blocks_permitted(self):
         submitter = user_factory()
         signoffer = user_factory()
-        block = MultiBlockSubmit.objects.create()
+        block = BlockSubmission.objects.create()
 
         # No signoff_by so not permitted
         assert not block.is_save_to_blocks_permitted
 
         # Except when the disabled waffle is turned on.
-        with override_switch('blocklist_admin_dualsignoff_disabled', active=True):
+        with override_switch('blocklist_admin_dualsignoff_disabled',
+                             active=True):
             assert block.is_save_to_blocks_permitted
 
         # If different users update and signoff, it's permitted.

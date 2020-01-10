@@ -13,7 +13,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
 from .forms import MultiAddForm, MultiDeleteForm
-from .models import Block, MultiBlockSubmit
+from .models import Block, BlockSubmission
 from .tasks import create_blocks_from_multi_block
 from .utils import (
     block_activity_log_delete, block_activity_log_save, format_block_history)
@@ -64,7 +64,7 @@ class BlockAdminAddMixin():
                 elif len(guids) > 1:
                     # If there's > 1 guid go to multi view.
                     return HttpResponseTemporaryRedirect(
-                        reverse('admin:blocklist_multiblocksubmit_add'))
+                        reverse('admin:blocklist_blocksubmission_add'))
         else:
             form = MultiAddForm()
         return self._render_multi_guid_input(
@@ -107,20 +107,14 @@ class BlockAdminAddMixin():
             request, form_url=form_url, extra_context=extra_context)
 
 
-@admin.register(MultiBlockSubmit)
-class MultiBlockSubmitAdmin(admin.ModelAdmin):
+@admin.register(BlockSubmission)
+class BlockSubmissionAdmin(admin.ModelAdmin):
     list_display = (
-        'created',
-        'min_version',
-        'max_version',
-        'updated_by',
-        'invalid_guid_count',
-        'existing_guid_count',
         'blocks_count',
-        'blocks_submitted_count',
-        'submission_complete',
+        'all_blocks_saved',
+        'updated_by',
+        'modified',
     )
-    # Only used for the change view
     fields = (
         'input_guids',
         'blocks_submitted',
@@ -131,17 +125,14 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
         'updated_by',
         'include_in_legacy',
     )
-    add_fields = (
-        'input_guids',
-        'min_version',
-        'max_version',
-        'url',
-        'reason',
-        'include_in_legacy',
+    readonly_fields = (
+        'blocks_submitted',
+        'updated_by',
     )
     ordering = ['-created']
     view_on_site = False
-    list_select_related = ('updated_by',)
+    list_select_related = ('updated_by', 'signoff_by')
+    change_form_template = 'blocklist/block_submission_change_form.html'
 
     def has_delete_permission(self, request, obj=None):
         return False
@@ -149,6 +140,11 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
     # Read-only mode
     def has_change_permission(self, request, obj=None):
         return False
+    def get_readonly_fields(self, request, obj=None):
+        ro_fields = super().get_readonly_fields(request, obj=obj)
+        if obj:
+            ro_fields += ('input_guids', 'min_version', 'max_version')
+        return ro_fields
 
     def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
@@ -158,8 +154,11 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
             self.form.__name__, (self.form,), {
                 'existing_min_version': CharField(widget=HiddenInput),
                 'existing_max_version': CharField(widget=HiddenInput)})
+        fields = [
+            field for field in self.get_fields(request, obj=None)
+            if field not in self.readonly_fields]
         MultiBlockForm = modelform_factory(
-            MultiBlockSubmit, fields=self.add_fields, form=ModelForm,
+            self.model, fields=fields, form=ModelForm,
             widgets={'input_guids': HiddenInput()})
 
         guids_data = request.POST.get('guids', request.GET.get('guids'))
@@ -212,7 +211,7 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
             'save_as': False,
         }
         load_full_objects = guids_data.count('\n') < GUID_FULL_LOAD_LIMIT
-        objects = MultiBlockSubmit.process_input_guids(
+        objects = self.model.process_input_guids(
             guids_data,
             v_min=request.POST.get('min_version', Block.MIN),
             v_max=request.POST.get('max_version', Block.MAX),
@@ -221,7 +220,8 @@ class MultiBlockSubmitAdmin(admin.ModelAdmin):
         if load_full_objects:
             Block.preload_addon_versions(objects['blocks'])
         return TemplateResponse(
-            request, 'blocklist/multiple_block.html', context)
+            request, 'blocklist/block_submission_add_form.html', context)
+
 
 
 @admin.register(Block)

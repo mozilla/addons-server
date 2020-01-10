@@ -12,7 +12,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import Block, MultiBlockSubmit
+from ..models import Block, BlockSubmission
 
 
 class TestBlockAdminList(TestCase):
@@ -67,7 +67,7 @@ class TestBlockAdminAdd(TestCase):
     def setUp(self):
         self.add_url = reverse('admin:blocklist_block_add')
         self.single_url = reverse('admin:blocklist_block_add_single')
-        self.multi_url = reverse('admin:blocklist_multiblocksubmit_add')
+        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_add(self):
         user = user_factory()
@@ -265,11 +265,11 @@ class TestBlockAdminAdd(TestCase):
         assert Block.objects.count() == 0
 
 
-class TestMultiBlockSubmitAdmin(TestCase):
+class TestBlockSubmissionAdmin(TestCase):
     def setUp(self):
-        self.multi_url = reverse('admin:blocklist_multiblocksubmit_add')
+        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
         self.multi_list_url = reverse(
-            'admin:blocklist_multiblocksubmit_changelist')
+            'admin:blocklist_blocksubmission_changelist')
 
     def _test_add_multiple_submit(self):
         user = user_factory()
@@ -313,7 +313,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert 'invalid@' in content
         # Check we didn't create the block already
         assert Block.objects.count() == 2
-        assert MultiBlockSubmit.objects.count() == 0
+        assert BlockSubmission.objects.count() == 0
 
         # Create the block submission
         response = self.client.post(
@@ -336,7 +336,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
     def _test_add_multiple_verify_blocks(self, new_addon, existing_and_full,
                                          partial_addon, existing_and_partial):
         assert Block.objects.count() == 3
-        assert MultiBlockSubmit.objects.count() == 1
+        assert BlockSubmission.objects.count() == 1
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
@@ -387,7 +387,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_and_full.addon.current_version).exists()
 
-        multi = MultiBlockSubmit.objects.get()
+        multi = BlockSubmission.objects.get()
         assert multi.input_guids == (
             'any@new\npartial@existing\nfull@existing\ninvalid@')
         assert multi.min_version == new_block.min_version
@@ -415,9 +415,12 @@ class TestMultiBlockSubmitAdmin(TestCase):
     def test_submit_dual_signoff(self):
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit())
+        # no new Block objects yet
         assert Block.objects.count() == 2
-        multi = MultiBlockSubmit.objects.get()
+        # and existing block wasn't updated
+
         multi.update(signoff_by=user_factory())
+        multi = BlockSubmission.objects.get()
         assert multi.is_save_to_blocks_permitted
         multi.save_to_blocks()
         self._test_add_multiple_verify_blocks(
@@ -458,7 +461,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
 
         # Check we didn't create the block already
         assert Block.objects.count() == 2
-        assert MultiBlockSubmit.objects.count() == 0
+        assert BlockSubmission.objects.count() == 0
 
         # Change the min/max versions
         response = self.client.post(
@@ -477,7 +480,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert response.status_code == 200
         # No Block should have been changed or added
         assert Block.objects.count() == 2
-        assert MultiBlockSubmit.objects.count() == 0
+        assert BlockSubmission.objects.count() == 0
 
         # The guids should have been processed differently now
         doc = pq(response.content)
@@ -502,7 +505,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
 
         # This time the blocks are updated
         assert Block.objects.count() == 3
-        assert MultiBlockSubmit.objects.count() == 1
+        assert BlockSubmission.objects.count() == 1
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
@@ -554,7 +557,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_one_to_ten.addon.current_version).exists()
 
-        multi = MultiBlockSubmit.objects.get()
+        multi = BlockSubmission.objects.get()
         assert multi.input_guids == (
             'any@new\npartial@existing\nfull@existing')
         assert multi.min_version == new_block.min_version
@@ -737,7 +740,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert existing.min_version == '1'  # check the values didn't update.
 
     def test_can_list(self):
-        mbs = MultiBlockSubmit.objects.create(
+        mbs = BlockSubmission.objects.create(
             updated_by=user_factory(display_name='Bób'))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -759,13 +762,10 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert mbs.processed_guids['blocks'] == ['guid@']
         response = self.client.get(self.multi_list_url, follow=True)
         doc = pq(response.content)
-        assert doc('td.field-invalid_guid_count').text() == '2'
-        assert doc('td.field-existing_guid_count').text() == '0'
-        assert doc('td.field-blocks_count').text() == '1'
-        assert doc('td.field-blocks_submitted_count').text() == '0'
+        assert doc('th.field-blocks_count').text() == '1 add-ons'
 
     def test_can_not_list_without_permission(self):
-        MultiBlockSubmit.objects.create(
+        BlockSubmission.objects.create(
             updated_by=user_factory(display_name='Bób'))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -776,7 +776,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
 
     def test_view(self):
         addon_factory(guid='guid@', name='Danger Danger')
-        mbs = MultiBlockSubmit.objects.create(
+        mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
             signoff_by=user_factory())
@@ -794,7 +794,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
         multi_view_url = reverse(
-            'admin:blocklist_multiblocksubmit_change', args=(mbs.id,))
+            'admin:blocklist_blocksubmission_change', args=(mbs.id,))
 
         response = self.client.get(multi_view_url, follow=True)
         assert response.status_code == 200

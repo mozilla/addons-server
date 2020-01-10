@@ -134,7 +134,7 @@ class Block(ModelBase):
         return ''
 
 
-class MultiBlockSubmit(ModelBase):
+class BlockSubmission(ModelBase):
     input_guids = models.TextField()
     processed_guids = JSONField(default={})
     min_version = models.CharField(
@@ -158,25 +158,14 @@ class MultiBlockSubmit(ModelBase):
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
-    @property
-    def invalid_guid_count(self):
-        return len(self.processed_guids.get('invalid_guids', []))
-
-    @property
-    def existing_guid_count(self):
-        return len(self.processed_guids.get('existing_guids', []))
-
-    @property
     def blocks_count(self):
-        return len(self.processed_guids.get('blocks', []))
+        return f"{len(self.processed_guids.get('blocks', []))} add-ons"
 
-    @property
-    def blocks_submitted_count(self):
-        return len(self.processed_guids.get('blocks_saved', []))
-
-    def submission_complete(self):
-        return self.blocks_count == self.blocks_submitted_count
-    submission_complete.boolean = True
+    def all_blocks_saved(self):
+        blocks_to_submit = len(self.processed_guids.get('blocks', []))
+        blocks_submitted = len(self.processed_guids.get('blocks_saved', []))
+        return bool(blocks_to_submit == blocks_submitted)
+    all_blocks_saved.boolean = True
 
     def blocks_submitted(self):
         blocks = self.processed_guids.get('blocks_saved', [])
