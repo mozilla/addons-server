@@ -13,13 +13,14 @@ from csp.decorators import csp as set_csp
 import olympia.core.logger
 
 from olympia.access import acl
-from olympia.lib.cache import Message, Token
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseXSendFile, render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
 from olympia.files.file_viewer import extract_file
+from olympia.lib.cache import Message, Token
 
 from .models import FileUpload
 from . import forms
@@ -209,6 +210,7 @@ def serve(request, viewer, key):
     return response
 
 
+@use_primary_db
 def serve_file_upload(request, uuid):
     """
     This is to serve file uploads using authenticated download URLs. This is
