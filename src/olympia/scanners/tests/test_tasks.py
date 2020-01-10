@@ -94,11 +94,14 @@ class TestRunScanner(UploadTest, TestCase):
         assert result.results == scanner_data
         scanner_name = self.MOCK_SCANNERS.get(self.FAKE_SCANNER)
         assert incr_mock.called
-        assert incr_mock.call_count == 2
+        assert incr_mock.call_count == 3
         incr_mock.assert_has_calls(
             [
                 mock.call('devhub.{}.has_matches'.format(scanner_name)),
-                mock.call('devhub.{}.success'.format(scanner_name))
+                mock.call(
+                    'devhub.{}.rule.{}.match'.format(scanner_name, rule.id)
+                ),
+                mock.call('devhub.{}.success'.format(scanner_name)),
             ]
         )
         assert returned_results == self.results
@@ -308,10 +311,11 @@ class TestRunYara(UploadTest, TestCase):
             'meta': {'filename': 'manifest.json'},
         }
         assert incr_mock.called
-        assert incr_mock.call_count == 2
+        assert incr_mock.call_count == 3
         incr_mock.assert_has_calls(
             [
                 mock.call('devhub.yara.has_matches'),
+                mock.call(f'devhub.yara.rule.{rule.id}.match'),
                 mock.call('devhub.yara.success'),
             ]
         )
