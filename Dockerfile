@@ -56,12 +56,6 @@ RUN apt-get update && apt-get -t stretch install -y \
         libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
-ADD http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz /tmp
-
-RUN mkdir -p /usr/local/share/GeoIP \
- && gunzip -c /tmp/GeoLite2-Country.mmdb.gz > /usr/local/share/GeoIP/GeoLite2-Country.mmdb \
- && rm -f /tmp/GeoLite2-Country.mmdb.gz
-
 # Install `file` and `libmagic` from the `buster` repositories for an up-to-date
 # file-detection.
 RUN apt-get update && apt-get -t buster install -y \
