@@ -1,2 +1,3 @@
 # New PRS will be automatically distributed via this team.
-*     @mozilla/addons-engineering
+# Disabled currently due to https://github.com/mozilla/addons/issues/1150
+# *     @mozilla/addons-engineering
