@@ -77,6 +77,12 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
         if scanner_result.has_matches:
             statsd.incr('devhub.{}.has_matches'.format(scanner_name))
+            for scanner_rule in scanner_result.matched_rules.all():
+                statsd.incr(
+                    'devhub.{}.rule.{}.match'.format(
+                        scanner_name, scanner_rule.id
+                    )
+                )
 
         statsd.incr('devhub.{}.success'.format(scanner_name))
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
@@ -167,6 +173,10 @@ def run_yara(results, upload_pk):
 
         if scanner_result.has_matches:
             statsd.incr('devhub.yara.has_matches')
+            for scanner_rule in scanner_result.matched_rules.all():
+                statsd.incr(
+                    'devhub.yara.rule.{}.match'.format(scanner_rule.id)
+                )
 
         statsd.incr('devhub.yara.success')
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)
