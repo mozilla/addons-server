@@ -420,7 +420,6 @@ class ReviewHelper(object):
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
             'label': _('Reject Multiple Versions'),
-            'minimal': True,
             'versions': True,
             'details': _('This will reject the selected public '
                          'versions. The comments will be sent to the '
