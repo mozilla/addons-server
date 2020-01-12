@@ -204,6 +204,7 @@ VALID_CONTRIBUTION_DOMAINS = (
     'opencollective.com',
     'patreon.com',
     'paypal.com',
+    'buymeacoffee.com',
     'paypal.me'
 )
 
