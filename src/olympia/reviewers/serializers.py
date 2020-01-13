@@ -84,8 +84,12 @@ class FileEntriesSerializer(FileSerializer):
     def _get_hash_for_selected_file(self, obj):
         selected_file = self.get_selected_file(obj)
 
-        if hasattr(self, '_entries') and self._entries[selected_file]['sha256']:
-            return self._entries[selected_file]['sha256']
+        # Return the hash if we already saved it to the locally cached
+        # `self._entries` dictionary.
+        _entries = getattr(self, '_entries', {})
+
+        if _entries:
+            return _entries[selected_file]['sha256']
 
         commit = self._get_commit(obj)
         tree = self.repo.get_root_tree(commit)
