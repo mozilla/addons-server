@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-13 03:52+0000\n"
+"PO-Revision-Date: 2020-01-13 04:07+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -992,38 +992,38 @@ msgid "Other"
 msgstr "ਹੋਰ"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਅਣਹੋਣੀ ਅਤੇ ਸਿਰਜਣਾਤਮਕ ਹੋ ਸਕਦੀਆਂ ਹਨ, ਫਿਰ ਵੀ ਇਹਨਾਂ ਔਪ ਕੰਮਾਂ ਲਈ ਉਪਯੋਗੀ ਹਨ।"
+msgstr "ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਅਣਹੋਣੀ ਅਤੇ ਸਿਰਜਣਾਤਮਕ ਹੋ ਸਕਦੀਆਂ ਹਨ, ਫਿਰ ਵੀ ਇਹਨਾਂ ਕਸੂਤੇ ਕੰਮਾਂ ਲਈ ਫਾਇਦੇਮੰਦ ਹਨ।"
 
 msgid "Device Features & Location"
-msgstr "ਯੰਤਰ ਦੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਈਆਂ ਅਤੇ ਟਿਕਾਣਾ"
+msgstr "ਡਿਵਾਈਸ ਫ਼ੀਚਰ ਤੇ ਟਿਕਾਣਾ"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "ਐਡਰਾਇਡ ਲਈ ਫਾਇਰਫਾਕਸ ਵਧਾਉਣ ਲਈ ਐਕਸਟੈਂਸ਼ਨ ਡਾਊਨਲੋਡ ਤੇਜ਼ ਕਰੋ। ਖੋਜਾਂ ਕਰੋ, ਸਿਸਟਮ ਸਰੋਤਾਂ ਨੂੰ ਖਾਲੀ ਕਰੋ, ਸੂਚਨਾਵਾਂ ਲਉ ਅਤੇ ਹੋਰ ਵੀ ਕਰੋ।"
+msgstr "ਐਡਰਾਇਡ ਲਈ ਫਾਇਰਫਾਕਸ ਵਧਾਉਣ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਤੇਜ਼ ਕਰੋ। ਖੋਜਾਂ ਕਰੋ, ਸਿਸਟਮ ਸਰੋਤਾਂ ਨੂੰ ਖਾਲੀ ਕਰੋ, ਸੂਚਨਾਵਾਂ ਲਉ ਅਤੇ ਹੋਰ ਵੀ ਕਰੋ।"
 
 msgid "Experimental"
-msgstr "ਪ੍ਰਯੋਗੀ"
+msgstr "ਤਜਰਬੇ-ਅਧੀਨ"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਜਨਤਕ ਜਾਂਚ ਲਈ ਨਿਯਮਤ ਹਨ। ਤੁਹਾਡਾ ਫੀਡਬੈਕ ਡਿਵੈਲਪਰ ਨੂੰ ਆਗਾਮੀ ਵਰਜਨ ਵਿੱਚ ਤਬਦੀਲੀਆਂ ਲਈ ਸੂਚਿਤ ਕਰਦਾ ਹੈ।"
+msgstr "ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਜਨਤਕ ਜਾਂਚ ਲਈ ਨਿਯਮਤ ਹਨ। ਤੁਹਾਡਾ ਫੀਡਬੈਕ ਡਿਵੈਲਪਰ ਨੂੰ ਆਗਾਮੀ ਵਰਜਨ ਵਿੱਚ ਤਬਦੀਲੀਆਂ ਲਈ ਸੂਚਿਤ ਕਰਦਾ ਹੈ।"
 
 msgid "Performance"
 msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "ਇਕਸਟੈਂਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫਾਇਰਫਾਕਸ ਨੂੰ ਕਾਰਗੁਜ਼ਾਰੀ ਸੁਧਾਰਨ ਲਈ। ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕ ਕੇ ਅਤੇ ਉਹਨਾਂ ਰਾਹੀਂ ਹੋਰ ਜ਼ਿਆਦਾ ਉਤਪਾਦਕ ਅਤੇ ਕਾਰਜਸ਼ੀਲ ਹੋਣ ਵਿੱਚ ਇਕਸਟੈਂਸ਼ਨਾਂ ਲੱਭੋ।"
+msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫਾਇਰਫਾਕਸ ਨੂੰ ਕਾਰਗੁਜ਼ਾਰੀ ਸੁਧਾਰਨ ਲਈ। ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕ ਕੇ ਅਤੇ ਉਹਨਾਂ ਰਾਹੀਂ ਹੋਰ ਜ਼ਿਆਦਾ ਉਤਪਾਦਕ ਅਤੇ ਕਾਰਜਸ਼ੀਲ ਹੋਣ ਵਿੱਚ ਇਕਸਟੈਨਸ਼ਨਾਂ ਲੱਭੋ।"
 
 msgid "Photos & Media"
 msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਮੀਡੀਆ"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "ਫੋਟੋਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਵਧਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸ਼ਟੇਸ਼ਨ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਖੋਜ ਚਿੱਤਰਾਂ ਨੂੰ ਉਲਟਾਉਣ, ਪੂਰੇ ਸਫੇ ਦੇ ਸਕ੍ਰੀਨਸ਼ਾਟ ਕੈਪਚਰ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਐਕਸਟੈਂਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
+msgstr "ਫੋਟੋਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਵਧਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਖੋਜ ਚਿੱਤਰਾਂ ਨੂੰ ਉਲਟਾਉਣ, ਪੂਰੇ ਸਫੇ ਦੇ ਸਕ੍ਰੀਨਸ਼ਾਟ ਕੈਪਚਰ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Security & Privacy"
 msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਪਰਦੇਦਾਰੀ"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਲੁਕਾਏ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ ਅਤੀਤ"
+"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਲੁਕਾਏ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ ਅਤੀਤ"
 " ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
 
 msgid "Social Networking"
@@ -1419,22 +1419,20 @@ msgid "Recent Changes for My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਪੁਰਾਣੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ।"
+msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਪੁਰਾਣੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ।"
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "ਥੰਡਰਬਰਡ ਅਤੇ ਸੀਮੌਂਕੀ ਲਈ ਐਡਆਨ ਹੁਣ addons.thunderbird.net ਤੇ ਸੂਚੀਬੱਧ ਅਤੇ ਰੱਖੇ ਜਾ ਰਹੇ ਹਨ। ਤੁਸੀਂ ਨਵੀਂ ਸਾਈਟ ਤੇ ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਉਸੇ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"ਅਸੀਂ ਅਪਗ੍ਰੇਡ ਦੀ ਆਗਿਆ ਦਿੰਦੇ ਹਾਂ ਅਤੇ ਉਤਸ਼ਾਹਤ ਕਰਦੇ ਹਾਂ ਪਰ ਤੁਸੀਂ ਇਸ ਪ੍ਰਕਿਰਿਆ ਨੂੰ ਉਲਟਾ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਇੱਕ ਵਾਰ ਜਦੋਂ ਤੁਹਾਡੇ ਉਪਭੋਗਤਾਵਾਂ ਨੇ ਵੈਬ ਐਕਸਟੈਂਸ਼ਨ ਸਥਾਪਤ ਕਰ ਲਿਆ, ਤਾਂ ਉਹ ਪੁਰਾਤਨ ਐਡ-ਆਨ ਸਥਾਪਤ ਕਰਨ ਦੇ ਯੋਗ "
-"ਨਹੀਂ ਹੋਣਗੇ।"
+msgstr "ਅਸੀਂ ਇੱਕ ਅੱਪਗਰੇਡ ਦੀ ਇਜ਼ਾਜ਼ਤ ਅਤੇ ਪ੍ਰੇਰਿਤ ਕਰਦੇ ਹਾਂ ਪਰ ਤੁਸੀਂ ਇਸ ਪ੍ਰਕਿਰਿਆ ਨੂੰ ਉਲਟਾ ਨਹੀਂ ਕਰ ਸਕਦੇ । ਇੱਕ ਵਾਰ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਕੋਲ ਵੈਬ ਇਕਸਟੈਨਸ਼ਨ ਹੋਵੇ, ਉਹ ਇੱਕ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਸਥਾਪਿਤ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।"
 
 msgid "This slug is already in use. Please choose another."
-msgstr "ਇਹ ਸਲੱਗ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
+msgstr "ਇਹ ਸਲੱਗ ਪਹਿਲਾਂ ਹੀ ਵਰਤੋਂ ਵਿੱਚ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਹੋਰ ਚੁਣੋ।"
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "ਸਲਗ \"%(slug)s\"ਨਹੀਂ ਹੋ ਸਕਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਹੋਰ ਚੁਣੋ।"
+msgstr "ਸਲਗ \"%(slug)s\" ਨਹੀਂ ਹੋ ਸਕਦਾ। ਕੋਈ ਹੋਰ ਚੁਣੋ।"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1504,22 +1502,22 @@ msgid "Details"
 msgstr "ਵੇਰਵੇ"
 
 msgid "What is your license's name?"
-msgstr "ਤੁਹਾਡੇ ਲਾਇਸੰਸ ਦਾ ਨਾਂ ਕੀ ਹੈ?"
+msgstr "ਤੁਹਾਡੇ ਲਸੰਸ ਦਾ ਨਾਂ ਕੀ ਹੈ?"
 
 msgid "Custom License"
 msgstr "ਚੋਣਵਾਂ ਲਸੰਸ"
 
 msgid "Provide the text of your license."
-msgstr "ਤੁਹਾਡੇ ਲਾਇਸੰਸ ਦੀ ਲਿਖਤ ਦਵੋ।"
+msgstr "ਤੁਹਾਡੇ ਲਸੰਸ ਦੀ ਲਿਖਤ ਦਵੋ।"
 
 msgid "License text is required when choosing Other."
 msgstr "ਲਸੰਸ ਲਿਖਤ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਜਦੋਂ ਹੋਰ ਦੀ ਚੋਣ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
 msgid "This add-on has an End-User License Agreement"
-msgstr "ਇਸ ਐਡ-ਆਨ ਕੋਲ ਇੱਕ ਅੰਤਿਮ-ਯੂਜ਼ਰ ਲਾਇਸੰਸ ਸਮਝੌਤਾ ਹੈ"
+msgstr "ਇਸ ਐਡ-ਆਨ ਕੋਲ ਅੰਤਮ-ਵਰਤੋਂਕਾਰ ਲਸੰਸ ਸਮਝੌਤਾ ਹੈ"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਅੰਤਿਮ-ਯੂਜ਼ਰ ਲਾਇਸੰਸ ਸਮਝੌਤਾ ਨਿਰਧਾਰਤ ਕਰੋ:"
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਅੰਤਿਮ-ਵਰਤੋਂਕਾਰ ਲਸੰਸ ਸਮਝੌਤਾ ਨਿਰਧਾਰਤ ਕਰੋ:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਪਰਦੇਦਾਰੀ ਨੀਤੀ ਹੈ"
@@ -1537,7 +1535,7 @@ msgid "View current"
 msgstr "ਮੌਜੂਦਾ ਵੇਖੋ"
 
 msgid "Invalid version range."
-msgstr "ਗਲਤ ਵੰਨਗੀ ਹੱਦ।"
+msgstr "ਗਲਤ ਵਰਜ਼ਨ ਹੱਦ।"
 
 msgid "Need at least one compatible application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅਨੁਕੂਲ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਲੋੜ।"
@@ -1653,10 +1651,10 @@ msgid "Add-on deleted."
 msgstr "ਐਡ-ਆਨ ਹਟਾਇਆ।"
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "URL ਨਾਮ ਗਲਤ ਸੀ। ਥੀਮ ਮਿਟਾਇਆ ਨਹੀਂ ਗਿਆ ਸੀ।"
+msgstr "URL ਨਾਂ ਗਲਤ ਸੀ। ਥੀਮ ਹਟਾਇਆ ਨਹੀਂ ਗਿਆ ਸੀ।"
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr "URL ਨਾਮ ਗਲਤ ਸੀ। ਐਡ-ਆਨ ਨਹੀਂਂ ਹਟਾਇਆ ਗਿਆ।"
+msgstr "URL ਨਾਂ ਗਲਤ ਸੀ। ਐਡ-ਆਨ ਨਹੀਂਂ ਹਟਾਇਆ ਗਿਆ।"
 
 msgid "Invitation accepted."
 msgstr "ਸੱਦਾ ਮਨਜ਼ੂਰ ਕੀਤਾ ਗਿਆ।"
@@ -1686,7 +1684,7 @@ msgid "Validate Add-on"
 msgstr "ਐਡ-ਆਨ ਦੀ ਪੜਤਾਲ"
 
 msgid "Icons must be either PNG or JPG."
-msgstr "ਆਈਕਾਨ PNG ਜਾਂJPG ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
+msgstr "ਆਈਕਾਨ PNG ਜਾਂ JPG ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
 msgid "Icons cannot be animated."
 msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
@@ -1711,15 +1709,15 @@ msgstr "ਸਿਫਾਰਸ਼ੀ ਐਕਸਟੈਂਸ਼ਨ ਦਾ ਨਵੀਨ
 
 #, python-format
 msgid "Version %s disabled."
-msgstr "ਵੰਨਗੀ %s ਅਯੋਗ ਹੋਈ।"
+msgstr "ਵਰਜ਼ਨ %s ਅਸਮਰੱਥ ਹੈ।"
 
 #, python-format
 msgid "Version %s deleted."
-msgstr "ਵੰਨਗੀ %s ਮਿਟਾਈ ਗਈ।"
+msgstr "ਵਰਜ਼ਨ %s ਹਟਾਇਆ ਗਿਆ।"
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr "ਵੰਨਗੀ %s ਮੁੜ-ਯੋਗ ਕੀਤੀ ਗਈ।"
+msgstr "ਵਰਜ਼ਨ %s ਮੁੜ-ਸਮਰੱਥ ਕੀਤਾ।"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
@@ -1964,7 +1962,7 @@ msgstr[0] "<b>{0}</b> ਥੀਮ"
 msgstr[1] "<b>{0}</b> ਥੀਮ"
 
 msgid "Edit Product Page"
-msgstr "ਉਤਪਾਦ ਪੇਜ ਸੰਪਾਦਿਤ ਕਰੋ"
+msgstr "ਉਤਪਾਦ ਸਫ਼ਾ ਸੋਧੋ"
 
 msgid "None"
 msgstr "ਕੋਈ ਨਹੀਂ"
@@ -2000,7 +1998,7 @@ msgid "About author roles"
 msgstr "ਲੇਖਕ ਦੀਆਂ ਭੂਮਿਕਾਵਾਂ ਬਾਰੇ"
 
 msgid "Authors pending confirmation"
-msgstr "ਲੇਖਕਾਂ ਦੀ ਪੁਸ਼ਟੀਕਰਣ ਲੰਬਤ ਹੈ"
+msgstr "ਲੇਖਕਾਂ ਦੀ ਤਸਦੀਕ ਬਾਕੀ ਹੈ"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "ਲੇਖਕ ਜੋ ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤੇ ਗਏ ਹਨ ਪਰ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕੀਤੀ ਹੈ।"
@@ -2019,10 +2017,10 @@ msgid "Edit"
 msgstr "ਸੋਧੋ"
 
 msgid "Additional Details for {0}"
-msgstr "{0} ਲਈ ਵਧੀਕ ਵੇਰਵਾ"
+msgstr "{0} ਲਈ ਵਧੀਕ ਵੇਰਵੇ"
 
 msgid "Tags"
-msgstr "ਨਿਸ਼ਾਨਬੱਧ"
+msgstr "ਟੈਗ"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "ਟੈਗਸ ਤੁਹਾਡੇ ਐਡਆਨ ਨੂੰ ਲੱਭਣ ਵਿੱਚ ਉਪਯੋਗਕਰਤਾਵਾਂ ਦੀ ਮਦਦ ਕਰਦੇ ਹਨ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਛੋਟੇ ਵਰਣਨਕਾਰ, ਜਿਵੇਂ ਕਿ ਟੈਬ, ਟੂਲਬਾਰ, ਜਾਂ ਟਵਿੱਟਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ। ਤੁਹਾਡੇ ਕੋਲ ਵੱਧ ਤੋਂ ਵੱਧ {0} ਟੈਗ ਹੋ ਸਕਦੇ ਹਨ।"
@@ -2067,7 +2065,7 @@ msgstr "ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
 
 #. {0} is the addon name
 msgid "Describe {0}"
-msgstr "ਵਰਣਨ ਕਰੋ {0}"
+msgstr "{0} ਵਰਣਨ ਕਰੋ"
 
 msgid "Name and Summary"
 msgstr "ਨਾਂ ਅਤੇ ਸੰਖੇਪ"
@@ -2101,28 +2099,28 @@ msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
 msgid "Experimental?"
-msgstr "ਪ੍ਰਯੋਗਾਤਮਕ?"
+msgstr "ਤਜਰਬੇ-ਅਧੀਨ?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "ਜੇ ਤੁਹਾਡੀ ਐਡ-ਔਨ ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ ਜਾਂ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਨਹੀਂ ਹੈ।   ਐਡ-ਓਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕੀਤਾ ਜਾਵੇਗਾ ਪਰੰਤੂ ਦ੍ਰਿਸ਼ਟੀ ਘਟਾਈ ਹੋਵੇਗੀ। "
+msgstr "ਜੇ ਤੁਹਾਡੀ ਐਡ-ਆਨ ਤਜਰਬੇ-ਅਧੀਨ ਹੈ ਜਾਂ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਨਹੀਂ ਹੈ।   ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕੀਤਾ ਜਾਵੇਗਾ ਪਰੰਤੂ ਦ੍ਰਿਸ਼ਟੀ ਘਟਾਈ ਹੋਵੇਗੀ। "
 
 msgid "This add-on is experimental."
-msgstr "ਇਹ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈੈ।"
+msgstr "ਇਹ ਐਡ-ਆਨ ਤਜਰਬੇ-ਅਧੀਨ ਹੈੈ।"
 
 msgid "This add-on is ready for general use."
-msgstr "ਇਹ ਐਡਆਨ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਹੈ।"
+msgstr "ਇਹ ਐਡ-ਆਨ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਹੈ।"
 
 msgid "Requires Payment?"
 msgstr "ਭੁਗਤਾਨ ਦੀ ਲੋੜ ਹੈ?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr "ਇਸ ਬਕਸੇ ਨੂੰ ਚੈਕ ਕਰੋ ਜੇਕਰ ਇਸ ਐਡ-ਓਨ ਦੀਆਂ ਮੁੱਖ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਲਈ ਕੰਮ ਕਰਨ ਲਈ ਇੱਕ ਅਦਾਇਗੀ ਦੀ ਮਿਆਦ ਦੇ ਅਗਾਊਂ ਜਾਂ ਭੁਗਤਾਨ ਕਰਨ ਦੇ ਸਮੇਂ ਦੀ ਲੋੜ ਹੈ।"
+msgstr "ਇਸ ਬਕਸੇ ਨੂੰ ਚੈਕ ਕਰੋ ਜੇਕਰ ਇਸ ਐਡ-ਆਨ ਦੀਆਂ ਮੁੱਖ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਲਈ ਕੰਮ ਕਰਨ ਲਈ ਇੱਕ ਅਦਾਇਗੀ ਦੀ ਮਿਆਦ ਦੇ ਅਗਾਊਂ ਜਾਂ ਭੁਗਤਾਨ ਕਰਨ ਦੇ ਸਮੇਂ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr "ਇਸ ਐਡ-ਓਨ ਲਈ ਭੁਗਤਾਨ, ਗੈਰ-ਮੁਫ਼ਤ ਸੇਵਾਵਾਂ ਜਾਂ ਸੌਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਭੁਗਤਾਨ, ਗੈਰ-ਮੁਫ਼ਤ ਸੇਵਾਵਾਂ ਜਾਂ ਸਾਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "ਇਸ ਐਡ-ਓਨ ਲਈ ਕਿਸੇ ਵਾਧੂ ਭੁਗਤਾਨ, ਅਦਾਇਗੀ ਸੇਵਾਵਾਂ ਜਾਂ ਸੌਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਨਹੀਂ ਹੁੰਦੀ।"
+msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਕਿਸੇ ਵਾਧੂ ਭੁਗਤਾਨ, ਅਦਾਇਗੀ ਸੇਵਾਵਾਂ ਜਾਂ ਸਾਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਨਹੀਂ ਹੁੰਦੀ।"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਐਡ-ਆਨ ਵੇਖਣ ਦਾ ਮੁੱਖ ਢੰਗ ਸੰਗ੍ਰਹਿ ਹਨ। ਕਿਸੇ ਨੂੰ ਵੀ ਚੁਣੋ ਜੋ ਜਿਆਦਾ ਪ੍ਰਭਾਵ ਪਾਉਣ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਠੀਕ ਹੋਵੇ।"
