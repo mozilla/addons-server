@@ -94,6 +94,24 @@ class AbstractScannerResult(ModelBase):
     def get_pretty_results(self):
         return json.dumps(self.results, indent=2)
 
+    def get_files_by_matched_rules(self):
+        res = dict()
+        if self.scanner is YARA:
+            for item in self.results:
+                if item['rule'] not in res:
+                    res[item['rule']] = []
+                res[item['rule']].append(item['meta']['filename'])
+        elif self.scanner is CUSTOMS:
+            scanMap = (self.results['scanMap'] if 'scanMap' in self.results
+                       else {})
+            for filename, rules in scanMap.items():
+                for ruleId, data in rules.items():
+                    if data.get('RULE_HAS_MATCHED', False):
+                        if ruleId not in res:
+                            res[ruleId] = []
+                        res[ruleId].append(filename)
+        return res
+
     def can_report_feedback(self):
         return (
             self.has_matches and self.state == UNKNOWN and self.scanner != WAT
