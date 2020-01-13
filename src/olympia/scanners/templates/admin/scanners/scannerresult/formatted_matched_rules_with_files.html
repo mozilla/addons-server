@@ -1,0 +1,25 @@
+{% load admin_urls %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Rule name</th>
+      <th>Files</th>
+    </tr>
+  </thead>
+  {% for rule in matched_rules %}
+  <tr>
+    <td><a href="{% url 'admin:scanners_scannerrule_change' rule.pk %}">{{ rule.name }}</a></td>
+    <td>
+      {% for file in rule.files %}
+        {% if addon_id %}
+          <a href="{% url 'files.list' addon_id 'file' file %}">{{ file }}</a>
+        {% else %}
+          {{ file }}
+        {% endif %}
+        <br>
+      {% endfor %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
