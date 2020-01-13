@@ -203,12 +203,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
                     reverse(
                         'reviewers.review',
                         args=[
-                            (
-                                'listed'
-                                if obj.version.channel
-                                == amo.RELEASE_CHANNEL_LISTED
-                                else 'unlisted'
-                            ),
+                            ('listed' if obj.version.channel ==
+                             amo.RELEASE_CHANNEL_LISTED else 'unlisted'),
                             obj.version.addon.id,
                         ],
                     ),
