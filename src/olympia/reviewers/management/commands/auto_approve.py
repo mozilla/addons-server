@@ -19,7 +19,7 @@ from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
 from olympia.reviewers.utils import ReviewHelper
-from olympia.scanners.tasks import run_action
+from olympia.scanners.models import ScannerResult
 from olympia.versions.models import Version
 
 
@@ -99,7 +99,7 @@ class Command(BaseCommand):
                         log.debug('Not running run_action() because it has '
                                   'already been executed')
                     else:
-                        run_action(version)
+                        ScannerResult.run_action(version)
 
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)

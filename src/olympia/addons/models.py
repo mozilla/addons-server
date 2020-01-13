@@ -1833,8 +1833,16 @@ class AddonApprovalsCounter(ModelBase):
         """
         if now is None:
             now = datetime.now()
+        return cls.reset_content_for_addon(addon, reset_to=now)
+
+    @classmethod
+    def reset_content_for_addon(cls, addon, reset_to=None):
+        """
+        Reset the last_content_review date for this addon so it triggers
+        another review.
+        """
         obj, created = cls.objects.update_or_create(
-            addon=addon, defaults={'last_content_review': now})
+            addon=addon, defaults={'last_content_review': reset_to})
         return obj
 
 

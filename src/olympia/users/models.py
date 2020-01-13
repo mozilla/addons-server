@@ -650,7 +650,14 @@ class DeniedName(ModelBase):
         return any(n in name for n in blocked_list)
 
 
-class IPNetworkUserRestriction(ModelBase):
+class GetErrorMessageMixin():
+
+    @classmethod
+    def get_error_message(cls, is_api):
+        return cls.error_message
+
+
+class IPNetworkUserRestriction(GetErrorMessageMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     network = CIDRField(
         blank=True, null=True,
@@ -686,7 +693,7 @@ class IPNetworkUserRestriction(ModelBase):
 
         for restriction in restrictions:
             if (remote_addr in restriction.network or
-               user_last_login_ip in restriction.network):
+                    user_last_login_ip in restriction.network):
                 log.info('Restricting request from %s %s, %s %s (%s)',
                          'ip', remote_addr,
                          'last_login_ip', user_last_login_ip,
@@ -711,7 +718,8 @@ class NormalizeEmailMixin:
         return normalized_email
 
 
-class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
+class EmailUserRestriction(
+        GetErrorMessageMixin, NormalizeEmailMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     email_pattern = models.CharField(
         _('Email Pattern'),
@@ -760,7 +768,7 @@ class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
         return True
 
 
-class DisposableEmailDomainRestriction(ModelBase):
+class DisposableEmailDomainRestriction(GetErrorMessageMixin, ModelBase):
     domain = models.CharField(
         unique=True,
         max_length=255,
@@ -837,7 +845,8 @@ class ReputationRestrictionMixin:
         return True
 
 
-class IPReputationRestriction(ReputationRestrictionMixin):
+class IPReputationRestriction(
+        GetErrorMessageMixin, ReputationRestrictionMixin):
     error_message = IPNetworkUserRestriction.error_message
 
     @classmethod
@@ -852,7 +861,7 @@ class IPReputationRestriction(ReputationRestrictionMixin):
 
 
 class EmailReputationRestriction(
-        NormalizeEmailMixin, ReputationRestrictionMixin):
+        GetErrorMessageMixin, NormalizeEmailMixin, ReputationRestrictionMixin):
     error_message = EmailUserRestriction.error_message
 
     @classmethod
@@ -864,12 +873,23 @@ class EmailReputationRestriction(
             request.user.email))
 
 
-class DeveloperAgreementRestriction:
+class DeveloperAgreementRestriction(GetErrorMessageMixin):
     error_message = _('Before starting, please read and accept our Firefox'
                       ' Add-on Distribution Agreement as well as our Review'
                       ' Policies and Rules. The Firefox Add-on Distribution'
                       ' Agreement also links to our Privacy Notice which'
                       ' explains how we handle your information.')
+
+    @classmethod
+    def get_error_message(cls, is_api):
+        if is_api:
+            from olympia.amo.templatetags.jinja_helpers import absolutify
+            url = absolutify(reverse('devhub.api_key'))
+            return _('Please read and accept our Firefox on Distribution '
+                     'Agreement as well as our Review Policies and Rules '
+                     'by visiting {url}'.format(url=url))
+        else:
+            return cls.error_message
 
     @classmethod
     def allow_request(cls, request):

@@ -332,6 +332,7 @@ def test_wizard_unsupported_properties():
 class TestUploadRestrictionChecker(TestCase):
     def setUp(self):
         self.request = RequestFactory(REMOTE_ADDR='10.0.0.1').get('/')
+        self.request.is_api = False
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
 

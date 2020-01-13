@@ -1,5 +1,4 @@
 import os
-from datetime import datetime, timedelta
 
 import requests
 import yara
@@ -10,22 +9,21 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia.constants.scanners import (
-    ACTIONS,
     CUSTOMS,
-    DELAY_AUTO_APPROVAL,
-    DELAY_AUTO_APPROVAL_INDEFINITELY,
-    FLAG_FOR_HUMAN_REVIEW,
-    NO_ACTION,
     SCANNERS,
     WAT,
     YARA,
 )
-from olympia.addons.models import AddonReviewerFlags
+from olympia.amo.celery import task
+from olympia.amo.decorators import use_primary_db
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
+from olympia.versions.models import Version
 
-from .models import ScannerResult, ScannerRule
+from .models import (
+    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
+)
 
 log = olympia.core.logger.getLogger('z.scanners.task')
 
@@ -79,6 +77,12 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
         if scanner_result.has_matches:
             statsd.incr('devhub.{}.has_matches'.format(scanner_name))
+            for scanner_rule in scanner_result.matched_rules.all():
+                statsd.incr(
+                    'devhub.{}.rule.{}.match'.format(
+                        scanner_name, scanner_rule.id
+                    )
+                )
 
         statsd.incr('devhub.{}.success'.format(scanner_name))
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
@@ -161,41 +165,18 @@ def run_yara(results, upload_pk):
                  'webextension.', upload_pk)
         return results
 
-    upload = FileUpload.objects.get(pk=upload_pk)
-
     try:
+        upload = FileUpload.objects.get(pk=upload_pk)
         scanner_result = ScannerResult(upload=upload, scanner=YARA)
-
-        with statsd.timer('devhub.yara'):
-            # Retrieve then concatenate all the active/valid Yara rules.
-            all_yara_definitions = '\n'.join(
-                ScannerRule.objects.filter(
-                    scanner=YARA, is_active=True, definition__isnull=False
-                ).values_list('definition', flat=True)
-            )
-
-            rules = yara.compile(source=all_yara_definitions)
-
-            zip_file = SafeZip(source=upload.path)
-            for zip_info in zip_file.info_list:
-                if not zip_info.is_dir():
-                    file_content = zip_file.read(zip_info).decode(
-                        errors='ignore'
-                    )
-                    for match in rules.match(data=file_content):
-                        # Add the filename to the meta dict.
-                        meta = {**match.meta, 'filename': zip_info.filename}
-                        scanner_result.add_yara_result(
-                            rule=match.rule,
-                            tags=match.tags,
-                            meta=meta
-                        )
-            zip_file.close()
-
+        _run_yara_for_path(scanner_result, upload.path)
         scanner_result.save()
 
         if scanner_result.has_matches:
             statsd.incr('devhub.yara.has_matches')
+            for scanner_rule in scanner_result.matched_rules.all():
+                statsd.incr(
+                    'devhub.yara.rule.{}.match'.format(scanner_rule.id)
+                )
 
         statsd.incr('devhub.yara.success')
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)
@@ -209,77 +190,60 @@ def run_yara(results, upload_pk):
     return results
 
 
-def _no_action(version):
-    """Do nothing."""
-    pass
+def _run_yara_for_path(scanner_result, path, definition=None):
+    with statsd.timer('devhub.yara'):
+        if definition is None:
+            # Retrieve then concatenate all the active/valid Yara rules.
+            definition = '\n'.join(
+                ScannerRule.objects.filter(
+                    scanner=YARA, is_active=True, definition__isnull=False
+                ).values_list('definition', flat=True)
+            )
+
+        rules = yara.compile(source=definition)
+
+        zip_file = SafeZip(source=path)
+        for zip_info in zip_file.info_list:
+            if not zip_info.is_dir():
+                file_content = zip_file.read(zip_info).decode(
+                    errors='ignore'
+                )
+                for match in rules.match(data=file_content):
+                    # Add the filename to the meta dict.
+                    meta = {**match.meta, 'filename': zip_info.filename}
+                    scanner_result.add_yara_result(
+                        rule=match.rule,
+                        tags=match.tags,
+                        meta=meta
+                    )
+        zip_file.close()
 
 
-def _flag_for_human_review(version):
-    """Flag the version for human review."""
-    version.update(needs_human_review=True)
+@task
+@use_primary_db
+def run_yara_query_rule_on_version(query_rule_pk, version_pk):
+    """
+    Run a specific ScannerQueryRule on a Version.
+    """
+    log.info(
+        'Starting run_yara_query_rule_on_version task for Version %s.',
+        version_pk)
 
+    try:
+        rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
+        version = Version.objects.get(pk=version_pk)
+        file_ = version.all_files[0]
+        scanner_result = ScannerQueryResult(version=version, scanner=YARA)
+        _run_yara_for_path(
+            scanner_result, file_.current_file_path,
+            definition=rule.definition)
+        scanner_result.save()
+        # We run the associated action immediately if it matched.
+        ScannerQueryResult.run_action(version)
 
-def _delay_auto_approval(version):
-    """Delay auto-approval for the whole add-on for 24 hours."""
-    # Always flag for human review.
-    _flag_for_human_review(version)
-    in_twenty_four_hours = datetime.now() + timedelta(hours=24)
-    AddonReviewerFlags.objects.update_or_create(
-        addon=version.addon,
-        defaults={'auto_approval_delayed_until': in_twenty_four_hours})
-
-
-def _delay_auto_approval_indefinitely(version):
-    """Delay auto-approval for the whole add-on indefinitely."""
-    # Always flag for human review.
-    _flag_for_human_review(version)
-    AddonReviewerFlags.objects.update_or_create(
-        addon=version.addon,
-        defaults={'auto_approval_delayed_until': datetime.max})
-
-
-def run_action(version):
-    """This function tries to find an action to execute for a given version,
-    based on the scanner results and associated rules.
-
-    It is not run as a Celery task but as a simple function, in the
-    auto_approve CRON."""
-    log.info('Checking rules and actions for version %s.', version.pk)
-
-    rule = (
-        ScannerRule.objects.filter(
-            scannerresult__version=version, is_active=True
-        )
-        .order_by(
-            # The `-` sign means descending order.
-            '-action'
-        )
-        .first()
-    )
-
-    if not rule:
-        log.info('No action to execute for version %s.', version.pk)
-        return
-
-    action_id = rule.action
-    action_name = ACTIONS.get(action_id, None)
-
-    if not action_name:
-        raise Exception("invalid action %s" % action_id)
-
-    ACTION_FUNCTIONS = {
-        NO_ACTION: _no_action,
-        FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
-        DELAY_AUTO_APPROVAL: _delay_auto_approval,
-        DELAY_AUTO_APPROVAL_INDEFINITELY: _delay_auto_approval_indefinitely,
-    }
-
-    action_function = ACTION_FUNCTIONS.get(action_id, None)
-
-    if not action_function:
-        raise Exception("no implementation for action %s" % action_id)
-
-    # We have a valid action to execute, so let's do it!
-    log.info('Starting action "%s" for version %s.', action_name, version.pk)
-    action_function(version)
-    log.info('Ending action "%s" for version %s.', action_name, version.pk)
+        statsd.incr('scanners.run_yara_query_rule_on_version.success')
+    except Exception:
+        statsd.incr('scanners.run_yara_query_rule_on_version.failure')
+        log.exception(
+            'Error in run_yara_query_rule_on_version task for Version %s.',
+            version_pk)

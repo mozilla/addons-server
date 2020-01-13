@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-08-19 07:10+0000\n"
-"Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
+"PO-Revision-Date: 2020-01-09 18:28+0000\n"
+"Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Modified on:"
-msgstr ""
+msgstr "रूपांतरि‌त:"
 
 #, python-format
 msgid "By %(filter_title)s"
@@ -109,7 +109,7 @@ msgstr "एड-ऑन या थीम के डेवलपर अपने �
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "अधिसूचना [%s] मौजूद नहीं है"
 
 msgid "Review"
 msgstr "समीक्षा"
@@ -206,7 +206,7 @@ msgid "Error verifying input, please try again."
 msgstr "इनपुट सत्यापित करने में त्रुटि, कृपया पुन: प्रयास करें।"
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "एक मान्य IP4 या IP6 नेटवर्क दर्ज करें।"
 
 msgid "CIDR"
 msgstr "CIDR"
@@ -487,10 +487,10 @@ msgid "{addon} was created."
 msgstr ""
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} गुण संपादित किए गए।"
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} विवरण संपादित किया गया।"
 
 msgid "Categories edited for {addon}."
 msgstr ""
@@ -529,22 +529,22 @@ msgid "File {0.name} added to {version} of {addon}."
 msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "{addon} के {version} से फ़ाइल {0} को हटा दिया गया।"
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} स्वीकृत।"
 
 msgid "Approved"
 msgstr "अनुमोदित"
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} को प्रारंभिक समीक्षा दी गई है।"
 
 msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} अस्वीकृत।"
 
 msgid "Rejected"
 msgstr "खारिज"
@@ -5182,19 +5182,19 @@ msgstr ""
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} मिनट"
-msgstr[1] ""
+msgstr[1] "{0} मिनट"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} घंटा"
-msgstr[1] ""
+msgstr[1] "{0} घंटे"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} दिन"
-msgstr[1] ""
+msgstr[1] "{0} दिन"
 
 msgid "Last Review"
 msgstr "पिछली समीक्षा"

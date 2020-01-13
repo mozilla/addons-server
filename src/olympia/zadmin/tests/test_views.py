@@ -91,6 +91,32 @@ class TestHomeAndIndex(TestCase):
         # but they don't see any modules.
         assert len(modules) == 0
 
+    @mock.patch('olympia.accounts.utils.default_fxa_login_url')
+    def test_django_login_page(self, default_fxa_login_url):
+        login_url = 'https://example.com/fxalogin'
+        default_fxa_login_url.return_value = login_url
+        # Check we can actually access the /login page - django admin uses it.
+        url = reverse('admin:login')
+        response = self.client.get(url)
+        # if you're already logged in, redirect to the index
+        self.assert3xx(response, '/en-US/admin/models/')
+
+        # Redirected to fxa because no permissions if not logged in.
+        self.client.logout()
+        response = self.client.get(url)
+        self.assert3xx(response, login_url)
+
+        # But if logged in and not enough permissions return a 403.
+        user = user_factory(username='staffperson', email='staffperson@m.c')
+        self.client.login(email='staffperson@m.c')
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+        # But can access with a "is_staff" user.
+        self.grant_permission(user, 'Admin:Tools')
+        response = self.client.get(url)
+        self.assert3xx(response, '/en-US/admin/models/')
+
     def test_django_admin_logout(self):
         url = reverse('admin:logout')
         response = self.client.get(url, follow=False)
@@ -251,6 +277,14 @@ class TestAddonManagement(TestCase):
         assert r.status_code == 200
         # But no change.
         assert file.status == 4
+
+
+class TestRecalculateHash(TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        super().setUp()
+        self.client.login(email='admin@mozilla.com')
 
     @mock.patch.object(File, 'file_path',
                        amo.tests.AMOPaths().file_fixture_path(

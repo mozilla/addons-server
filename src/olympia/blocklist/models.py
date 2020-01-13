@@ -11,6 +11,7 @@ from django_extensions.db.fields.json import JSONField
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
@@ -111,9 +112,9 @@ class Block(ModelBase):
             True for id_, chan in self.addon_versions.values()
             if chan == amo.RELEASE_CHANNEL_LISTED)
         if has_listed:
-            url = reverse(
+            url = absolutify(reverse(
                 'reviewers.review',
-                kwargs={'addon_id': self.addon.pk})
+                kwargs={'addon_id': self.addon.pk}))
             return format_html(
                 '<a href="{}">{}</a>', url, _('Review Listed'))
         return ''
@@ -123,9 +124,9 @@ class Block(ModelBase):
             True for id_, chan in self.addon_versions.values()
             if chan == amo.RELEASE_CHANNEL_UNLISTED)
         if has_unlisted:
-            url = reverse(
+            url = absolutify(reverse(
                 'reviewers.review',
-                args=('unlisted', self.addon.pk))
+                args=('unlisted', self.addon.pk)))
             return format_html(
                 '<a href="{}">{}</a>', url, _('Review Unlisted'))
         return ''

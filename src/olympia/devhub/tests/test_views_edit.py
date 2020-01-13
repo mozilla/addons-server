@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+from unittest import mock
 
 from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
@@ -10,7 +11,8 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonCategory, Category
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonCategory, Category)
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import TestCase, formset, initial, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
@@ -304,6 +306,61 @@ class BaseTestEditDescribe(BaseTestEdit):
                          .hasClass('selected'))
 
         assert selected_link is True
+
+    @override_switch('metadata-content-review', active=False)
+    @mock.patch('olympia.devhub.forms.fetch_existing_translations_from_addon')
+    def test_metadata_content_review_waffle_off(self, fetch_mock):
+        data = self.get_dict()
+
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        fetch_mock.assert_not_called()
+
+    @override_switch('metadata-content-review', active=True)
+    def test_metadata_change_triggers_content_review(self):
+        data = self.get_dict()
+        addon = self.addon = self.get_addon()
+        AddonApprovalsCounter.approve_content_for_addon(addon=addon)
+        assert AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
+
+        # make the edit
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        addon = self.addon = self.get_addon()
+
+        # last_content_review should have been reset and the metadata updated
+        assert not AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
+        assert str(addon.name) == data['name']
+        assert str(addon.summary) == data['summary']
+
+        # Now repeat, but we won't be changing either name or summary
+        AddonApprovalsCounter.approve_content_for_addon(addon=addon)
+        assert AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
+        data['description'] = 'its a totally new description!'
+        self.describe_edit_url = self.get_url('describe', edit=True)
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        addon = self.addon = self.get_addon()
+
+        # Still keeps its date this time, so no new content review
+        assert AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
+        # And metadata was updated
+        assert str(addon.description) == data['description']
+
+        # Check this still works on an (old) addon without a content review
+        AddonApprovalsCounter.objects.get(addon=addon).delete()
+        data['summary'] = 'some change'
+        self.describe_edit_url = self.get_url('describe', edit=True)
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        addon = self.addon = self.get_addon()
+        assert not AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
+        assert str(addon.summary) == data['summary']
 
     def test_edit_xss(self):
         """

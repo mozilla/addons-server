@@ -4,10 +4,11 @@ from django.conf import settings
 from django.contrib import admin
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.admin import ReplacementAddonAdmin
 from olympia.addons.models import ReplacementAddon
 from olympia.amo.tests import (
-    TestCase, addon_factory, collection_factory, user_factory)
+    TestCase, addon_factory, collection_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import django_reverse, reverse
 
 
@@ -130,7 +131,8 @@ class TestAddonAdmin(TestCase):
             'bayesian_rating': addon.bayesian_rating,
             'reputation': addon.reputation,
             'type': addon.type,
-            'slug': addon.slug
+            'slug': addon.slug,
+            'status': addon.status,
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -170,7 +172,8 @@ class TestAddonAdmin(TestCase):
             'average_daily_users': addon.average_daily_users,
             'bayesian_rating': addon.bayesian_rating,
             'type': addon.type,
-            'slug': addon.slug
+            'slug': addon.slug,
+            'status': addon.status,
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -222,8 +225,44 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
 
-    def test_can_edit_addonuser_if_has_admin_advanced(self):
+    def _get_full_post_data(self, addon, addonuser):
+        return {
+            # Django wants the whole form to be submitted, unfortunately.
+            'total_ratings': addon.total_ratings,
+            'text_ratings_count': addon.text_ratings_count,
+            'default_locale': addon.default_locale,
+            'weekly_downloads': addon.weekly_downloads,
+            'total_downloads': addon.total_downloads,
+            'average_rating': addon.average_rating,
+            'average_daily_users': addon.average_daily_users,
+            'bayesian_rating': addon.bayesian_rating,
+            'reputation': addon.reputation,
+            'type': addon.type,
+            'slug': addon.slug,
+            'status': addon.status,
+            'guid': addon.guid,
+            'addonuser_set-TOTAL_FORMS': 1,
+            'addonuser_set-INITIAL_FORMS': 1,
+            'addonuser_set-MIN_NUM_FORMS': 0,
+            'addonuser_set-MAX_NUM_FORMS': 1000,
+            'addonuser_set-0-id': addonuser.pk,
+            'addonuser_set-0-addon': addon.pk,
+            'addonuser_set-0-user': addonuser.user.pk,
+            'addonuser_set-0-role': amo.AUTHOR_ROLE_OWNER,
+            'addonuser_set-0-listed': 'on',
+            'addonuser_set-0-position': 0,
+
+            'files-TOTAL_FORMS': 1,
+            'files-INITIAL_FORMS': 1,
+            'files-MIN_NUM_FORMS': 0,
+            'files-MAX_NUM_FORMS': 0,
+            'files-0-id': addon.current_version.all_files[0].pk,
+            'files-0-status': addon.current_version.all_files[0].status,
+        }
+
+    def test_can_edit_addonuser_and_files_if_has_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
+        file = addon.current_version.all_files[0]
         addonuser = addon.addonuser_set.get()
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
@@ -236,42 +275,24 @@ class TestAddonAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
-
-        post_data = {
-            # Django wants the whole form to be submitted, unfortunately.
-            'total_ratings': addon.total_ratings,
-            'text_ratings_count': addon.text_ratings_count,
-            'default_locale': addon.default_locale,
-            'weekly_downloads': addon.weekly_downloads,
-            'total_downloads': addon.total_downloads,
-            'average_rating': addon.average_rating,
-            'average_daily_users': addon.average_daily_users,
-            'bayesian_rating': addon.bayesian_rating,
-            'reputation': addon.reputation,
-            'type': addon.type,
-            'slug': addon.slug,
-            'addonuser_set-TOTAL_FORMS': 1,
-            'addonuser_set-INITIAL_FORMS': 1,
-            'addonuser_set-MIN_NUM_FORMS': 0,
-            'addonuser_set-MAX_NUM_FORMS': 1000,
-            'addonuser_set-0-id': addonuser.pk,
-            'addonuser_set-0-addon': addon.pk,
+        post_data = self._get_full_post_data(addon, addonuser)
+        post_data.update(**{
+            'guid': '@bar',  # update it.
             'addonuser_set-0-user': user.pk,  # Different user than initial.
-            'addonuser_set-0-role': amo.AUTHOR_ROLE_OWNER,
-            'addonuser_set-0-listed': 'on',
-            'addonuser_set-0-position': 0,
-
-        }
-        post_data['guid'] = '@bar'
+            'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
+        })
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reload()
         assert addon.guid == '@bar'
         addonuser.reload()
         assert addonuser.user == user
+        file.reload()
+        assert file.status == amo.STATUS_AWAITING_REVIEW
 
-    def test_can_not_edit_addonuser_if_doesnt_have_admin_advanced(self):
+    def test_can_not_edit_addonuser_files_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
+        file = addon.current_version.all_files[0]
         addonuser = addon.addonuser_set.get()
         self.detail_url = reverse(
             'admin:addons_addon_change', args=(addon.pk,)
@@ -284,40 +305,147 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
 
-        post_data = {
-            # Django wants the whole form to be submitted, unfortunately.
-            'total_ratings': addon.total_ratings,
-            'text_ratings_count': addon.text_ratings_count,
-            'default_locale': addon.default_locale,
-            'weekly_downloads': addon.weekly_downloads,
-            'total_downloads': addon.total_downloads,
-            'average_rating': addon.average_rating,
-            'average_daily_users': addon.average_daily_users,
-            'bayesian_rating': addon.bayesian_rating,
-            'reputation': addon.reputation,
-            'type': addon.type,
-            'slug': addon.slug,
-
-            # This won't work:
-            'addonuser_set-TOTAL_FORMS': 1,
-            'addonuser_set-INITIAL_FORMS': 1,
-            'addonuser_set-MIN_NUM_FORMS': 0,
-            'addonuser_set-MAX_NUM_FORMS': 1000,
-            'addonuser_set-0-id': addonuser.pk,
-            'addonuser_set-0-addon': addon.pk,
+        post_data = self._get_full_post_data(addon, addonuser)
+        post_data.update(**{
+            'guid': '@bar',  # update it.
             'addonuser_set-0-user': user.pk,  # Different user than initial.
-            'addonuser_set-0-role': amo.AUTHOR_ROLE_OWNER,
-            'addonuser_set-0-listed': 'on',
-            'addonuser_set-0-position': 0,
-
-        }
-        post_data['guid'] = '@bar'
+            'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
+        })
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reload()
         assert addon.guid == '@bar'
         addonuser.reload()
         assert addonuser.user != user
+        file.reload()
+        assert file.status != amo.STATUS_AWAITING_REVIEW
+
+    def test_can_manage_unlisted_versions_and_change_addon_status(self):
+        addon = addon_factory(guid='@foo', users=[user_factory()])
+        unlisted_version = version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        listed_version = addon.current_version
+        addonuser = addon.addonuser_set.get()
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+        doc = pq(response.content)
+        assert doc('#id_files-0-id').attr('value') == str(
+            unlisted_version.all_files[0].id)
+        assert doc('#id_files-1-id').attr('value') == str(
+            addon.current_version.all_files[0].id)
+
+        # pagination links aren't shown for less than page size (30) files.
+        next_url = self.detail_url + '?page=2'
+        assert next_url not in response.content.decode('utf-8')
+
+        post_data = self._get_full_post_data(addon, addonuser)
+        post_data.update(**{
+            'status': amo.STATUS_DISABLED,
+            'files-TOTAL_FORMS': 2,
+            'files-INITIAL_FORMS': 2,
+            'files-0-id': unlisted_version.all_files[0].pk,
+            'files-0-status': amo.STATUS_DISABLED,
+            'files-1-id': listed_version.all_files[0].pk,
+            'files-1-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
+        })
+        # Confirm the original statuses so we know they're actually changing.
+        assert addon.status != amo.STATUS_DISABLED
+        assert listed_version.all_files[0].status != amo.STATUS_AWAITING_REVIEW
+        assert unlisted_version.all_files[0].status != amo.STATUS_DISABLED
+
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reload()
+        assert addon.status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_STATUS.id).exists()
+        listed_version = addon.versions.get(id=listed_version.id)
+        assert listed_version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
+        unlisted_version = addon.versions.get(id=unlisted_version.id)
+        assert unlisted_version.all_files[0].status == amo.STATUS_DISABLED
+
+    def test_status_cannot_change_for_deleted_version(self):
+        addon = addon_factory(guid='@foo', users=[user_factory()])
+        file = addon.current_version.all_files[0]
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
+        file.version.delete()
+
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert f'{file.version} - Deleted' in response.content.decode('utf-8')
+        assert 'disabled' in (
+            pq(response.content)('#id_files-0-status')[0].attrib)
+        post_data.update(**{
+            'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
+        })
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        file.reload()
+        assert file.status != amo.STATUS_AWAITING_REVIEW
+
+    def test_query_count(self):
+        addon = addon_factory(guid='@foo', users=[user_factory()])
+        user = user_factory()
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,))
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.login(email=user.email)
+        with self.assertNumQueries(23):
+            # It's very high because most of AddonAdmin is unoptimized but we
+            # don't want it unexpectedly increasing.
+            response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+        version_factory(addon=addon)
+        with self.assertNumQueries(23):
+            # confirm it scales
+            response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+    def test_version_pagination(self):
+        addon = addon_factory(users=[user_factory()])
+        first_file = addon.current_version.all_files[0]
+        [version_factory(addon=addon) for i in range(0, 30)]
+        user = user_factory()
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,))
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+        assert len(pq(response.content)('.field-version__version')) == 30
+        next_url = self.detail_url + '?page=2'
+        assert next_url in response.content.decode('utf-8')
+        response = self.client.get(next_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+        assert len(pq(response.content)('.field-version__version')) == 1
+        assert pq(response.content)('#id_files-0-id')[0].attrib['value'] == (
+            str(first_file.id))
 
 
 class TestReplacementAddonList(TestCase):

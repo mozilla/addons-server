@@ -283,6 +283,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/submission_api_key_revocation.txt',
     r'^devhub\/email\/api_key_confirmation.ltxt',
     r'^blocklist\/',
+    r'^addons\/admin\/',
 
     # Django specific templates
     r'^registration\/',

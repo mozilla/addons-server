@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-05 21:19+0000\n"
+"PO-Revision-Date: 2020-01-07 13:17+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "tür"
 
 msgid "Users"
 msgstr "Kullanıcılar"
@@ -28,7 +28,7 @@ msgid "Addons"
 msgstr "Eklentiler"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "minimum rapor sayısı (guid'e göre gruplandırılmış)"
 
 msgid "creation date"
 msgstr "oluşturma tarihi"
@@ -40,7 +40,7 @@ msgid "Distribution"
 msgstr "Dağıtım"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Bildirenin ülkesi"
 
 msgid "Message excerpt"
 msgstr ""
@@ -51,23 +51,23 @@ msgstr "Seçilen %d rapor geçerli olarak işaretlendi."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Seçilen %d rapor şüpheli olarak işaretlendi."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Seçilen suistimal raporlarını şüpheli olarak işaretle"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Bu alan {max_length} karakterden daha uzun olamaz."
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Değişme tarihi:"
 
 #, python-format
 msgid "By %(filter_title)s"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "Tümü"
 
 msgid "No links are allowed."
 msgstr "Bağlantılara izin verilmez."
@@ -112,7 +112,7 @@ msgstr "Eklenti veya tema geliştirenler hesaplarını silemezler. Bunun için h
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Bildirim [%s] mevcut değil"
 
 msgid "Review"
 msgstr "İnceleme"
@@ -211,10 +211,10 @@ msgid "Error verifying input, please try again."
 msgstr "Girdi doğrulanmasında hata oluştu, lütfen tekrar deneyiniz."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Geçerli bir IP4 veya IP6 ağı girin."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Web sitemizde bakım çalışması yapıldığından bazı özellikler geçici olarak devre dışı bırakılmıştır. Kısa süre içinde normal işleyişimize döneceğiz."
@@ -489,13 +489,11 @@ msgstr "Bu isim kullanılamaz."
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Harfler, rakamlar, alt çizgiler veya tirelerden oluşan geçerli bir kullanıcı adı girin."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Bu kullanıcı adı kullanılamaz."
+msgstr "Bu özel URL kullanılamaz."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
+msgstr "Bu eklenti zaten bir koleksiyona ait"
 
 msgid "{addon} was created."
 msgstr "{addon} oluşturuldu."
@@ -613,9 +611,8 @@ msgstr "{addon}, {collection} koleksiyonuna eklendi."
 msgid "{addon} removed from {collection}."
 msgstr "{addon}, {collection} koleksiyonundan çıkarıldı."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{addon} için {review} yazıldı."
+msgstr "{addon} için {rating} yazıldı."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -648,9 +645,8 @@ msgstr "{addon} politikası değiştirildi."
 msgid "{addon} icon changed."
 msgstr "{addon} simgesi değiştirildi."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{addon} için {review} onaylandı."
+msgstr "{addon} için {rating} onaylandı."
 
 #, fuzzy
 msgid "{user} approved {rating} for {addon}."
@@ -704,7 +700,7 @@ msgid "User {user} restricted."
 msgstr "{user} adlı kullanıcı kısıtlandı."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Yönetici {0}, {user} kullanıcısının etkinlik kaydını görüntüledi."
 
 msgid "{rating} for {addon} updated."
 msgstr "{addon} için {rating} güncellendi."
@@ -712,9 +708,8 @@ msgstr "{addon} için {rating} güncellendi."
 msgid "{addon} reviewed."
 msgstr "{addon} incelendi."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "{user} adlı kullanıcı anonimleştirildi."
+msgstr "Kullanıcı {user} engellendi."
 
 msgid "User {user} picture deleted."
 msgstr "{user} kullanıcısının resmi silindi."
@@ -1270,9 +1265,8 @@ msgstr "Güvenlik"
 msgid "Privacy"
 msgstr "Gizlilik"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Geliştirici Politikaları"
+msgstr ""
 
 #, fuzzy
 msgid "No Reputation"
@@ -1515,7 +1509,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Varsaılan dilinizi değiştirmek için o dilde bir adınız, özetiniz ve açıklamanız olmalıdır. %s mevcut değil."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Kullanıcılar doğrudan eklenemez"
 
 #, fuzzy
 msgid "An author can only be present once."
@@ -1635,7 +1629,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "Gönderilen dosyada bir ortak yazarın geliştirici API'si anahtarı bulundu. Eklentinizi korumak için bu anahtar iptal edilecektir."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla Güvenlik Bildirimi: AMO API kimlik bilgileriniz iptal edildi"
@@ -1762,7 +1756,7 @@ msgid "Version %s re-enabled."
 msgstr "Sürüm %s yeniden etkinleştirildi."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Bu yükleme doğrulamadan geçemedi. Tam doğrulama sonuçları eksik olabilir. Lütfen gözden geçirirken dikkatli olun."
 
 msgid "Header area background"
 msgstr "Başlık alanı arka planı"
@@ -1860,9 +1854,8 @@ msgid "more add-ons..."
 msgstr "daha fazla eklenti..."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Eklentiler"
+msgstr "Eklenti Atölyesi"
 
 msgid "Documentation"
 msgstr "Belgelendirme"
@@ -2044,7 +2037,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "Reddet"
 
 msgid "Manage Authors & License"
 msgstr "Yazarları ve lisansı yönet"
@@ -2467,9 +2460,8 @@ msgstr[1] "<strong>{0}</strong> etkin kullanıcı"
 msgid "Submit a New Version"
 msgstr "Yeni sürüm gönder"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Özet:"
+msgstr "İsim ve Özet:"
 
 msgid "required"
 msgstr "gerekli"
@@ -2580,7 +2572,7 @@ msgid "Version Submitted"
 msgstr "Sürüm gönderildi"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Hepsi bu kadar! Bu sürüm sitemizde kısa süre içerisinde kullanılabilir olacak."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
@@ -2670,9 +2662,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Gönder"
+msgstr "Nasıl Gönderilir:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr "Talimatları kaynak kodunuzdaki bir README dosyasına ekleyin,"
@@ -2702,9 +2693,8 @@ msgstr "Sürüm yükle"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Eklenti paketinizi göndermek için aşağıdaki alanları kullanın. Karşıya yüklemeden sonra dosya üzerinde bir dizi doğrulama testi uygulanacak."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Bu dosya hangi platformlarla uyumlu?"
+msgstr "Bu sürüm hangi uygulamalarla uyumlu?"
 
 msgid "Administrative overrides"
 msgstr "Yönetsel kural istisnaları"
@@ -2734,9 +2724,8 @@ msgstr "Tema adı"
 msgid "Select a header image for your theme"
 msgstr "Temanız için üstbilgi resmi seçin."
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Resim yüksekliği 200 piksel olmalıdır"
+msgstr "Önerilen yükseklik: 200 piksel"
 
 msgid "6.9MB max"
 msgstr "en fazla 6,9 MB"

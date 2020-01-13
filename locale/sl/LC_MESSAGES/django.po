@@ -5386,9 +5386,8 @@ msgstr "Komentar"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Oddajte pripombo za to različico. Avtor tega ne bo mogel videti."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Preglejte dodatke"
+msgstr ""
 
 msgid "Recommended ({0})"
 msgstr "Priporočeno ({0})"

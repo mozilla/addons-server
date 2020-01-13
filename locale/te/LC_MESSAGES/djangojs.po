@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-08-16 18:03+0000\n"
+"PO-Revision-Date: 2019-12-25 14:26+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -26,9 +26,8 @@ msgstr "సర్వర్‌ని సంప్రదించడంలో స�
 msgid "Select a file..."
 msgstr "ఫైలును ఎంచుకోండి..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "మీ పొడగింతను .zip, .xpi, .crx, .jar లేదా .xml తో ముగించాలి"
+msgstr "మీ పొడగింతను .zip, .xpi, .crx, లేదా .xml తో ముగించాలి"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
