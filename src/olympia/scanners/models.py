@@ -1,6 +1,8 @@
 import json
 import re
 
+from collections import defaultdict
+
 import yara
 
 from django.conf import settings
@@ -93,6 +95,19 @@ class AbstractScannerResult(ModelBase):
 
     def get_pretty_results(self):
         return json.dumps(self.results, indent=2)
+
+    def get_files_by_matched_rules(self):
+        res = defaultdict(list)
+        if self.scanner is YARA:
+            for item in self.results:
+                res[item['rule']].append(item['meta']['filename'])
+        elif self.scanner is CUSTOMS:
+            scanMap = self.results.get('scanMap', {})
+            for filename, rules in scanMap.items():
+                for ruleId, data in rules.items():
+                    if data.get('RULE_HAS_MATCHED', False):
+                        res[ruleId].append(filename)
+        return res
 
     def can_report_feedback(self):
         return (

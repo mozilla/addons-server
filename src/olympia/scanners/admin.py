@@ -140,7 +140,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         'scanner',
         'created',
         'state',
-        'formatted_matched_rules',
+        'formatted_matched_rules_with_files',
         'formatted_results',
         'result_actions',
     )
@@ -237,6 +237,25 @@ class ScannerResultAdmin(admin.ModelAdmin):
         )
 
     formatted_matched_rules.short_description = 'Matched rules'
+
+    def formatted_matched_rules_with_files(self, obj):
+        files_by_matched_rules = obj.get_files_by_matched_rules()
+        return render_to_string(
+            'admin/scanners/scannerresult/formatted_matched_rules_with_files.html',  # noqa
+            {
+                'addon_id': obj.version.addon.id if obj.version else None,
+                'matched_rules': [
+                    {
+                        'pk': rule.pk,
+                        'name': rule.name,
+                        'files': files_by_matched_rules[rule.name],
+                    }
+                    for rule in obj.matched_rules.all()
+                ]
+            },
+        )
+
+    formatted_matched_rules_with_files.short_description = 'Matched rules'
 
     def handle_true_positive(self, request, pk, *args, **kwargs):
         if request.method != "POST":

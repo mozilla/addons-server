@@ -30,10 +30,16 @@ class TestScannerResultMixin:
         return self.model.objects.create(scanner=WAT)
 
     def create_fake_yara_match(
-        self, rule='some-yara-rule', tags=None, description='some description'
+        self, rule='some-yara-rule', tags=None, description='some description',
+        filename='some/file.js'
     ):
         return FakeYaraMatch(
-            rule=rule, tags=tags or [], meta={'description': description}
+            rule=rule,
+            tags=tags or [],
+            meta={
+                'description': description,
+                'filename': filename,
+            }
         )
 
     def create_yara_result(self):
@@ -176,6 +182,88 @@ class TestScannerResultMixin:
         result.has_matches = True
         assert result.state == UNKNOWN
         assert not result.can_revert_feedback()
+
+    def test_get_files_by_matched_rules_for_wat(self):
+        result = self.create_wat_result()
+        assert result.get_files_by_matched_rules() == {}
+
+    def test_get_files_by_matched_rules_with_no_yara_results(self):
+        result = self.create_yara_result()
+        assert result.get_files_by_matched_rules() == {}
+
+    def test_get_files_by_matched_rules_for_yara(self):
+        result = self.create_yara_result()
+        rule1 = 'rule-1'
+        file1 = 'file/1.js'
+        match1 = self.create_fake_yara_match(rule=rule1, filename=file1)
+        result.add_yara_result(
+            rule=match1.rule, tags=match1.tags, meta=match1.meta
+        )
+        rule2 = 'rule-2'
+        file2 = 'file/2.js'
+        match2 = self.create_fake_yara_match(rule=rule2, filename=file2)
+        result.add_yara_result(
+            rule=match2.rule, tags=match2.tags, meta=match2.meta
+        )
+        # rule1 with file2
+        match3 = self.create_fake_yara_match(rule=rule1, filename=file2)
+        result.add_yara_result(
+            rule=match3.rule, tags=match3.tags, meta=match3.meta
+        )
+        assert result.get_files_by_matched_rules() == {
+            rule1: [file1, file2],
+            rule2: [file2],
+        }
+
+    def test_get_files_by_matched_rules_with_no_customs_results(self):
+        result = self.create_customs_result()
+        result.results = {'matchedRules': []}
+        assert result.get_files_by_matched_rules() == {}
+
+    def test_get_files_by_matched_rules_for_customs(self):
+        result = self.create_customs_result()
+        file1 = 'file/1.js'
+        rule1 = 'rule1'
+        file2 = 'file/2.js'
+        rule2 = 'rule2'
+        file3 = 'file/3.js'
+        rule3 = 'rule3'
+        file4 = 'file/4.js'
+        result.results = {
+            'scanMap': {
+                file1: {
+                    rule1: {
+                        'RULE_HAS_MATCHED': True,
+                    },
+                    rule2: {},
+                    # no rule3
+                },
+                file2: {
+                    rule1: {
+                        'RULE_HAS_MATCHED': False,
+                    },
+                    rule2: {},
+                    # no rule3
+                },
+                file3: {
+                    rule1: {},
+                    rule2: {},
+                    rule3: {
+                        'RULE_HAS_MATCHED': True,
+                    },
+                },
+                file4: {
+                    # no rule1 or rule2
+                    rule3: {
+                        'RULE_HAS_MATCHED': True,
+                    },
+                },
+            }
+        }
+        assert result.get_files_by_matched_rules() == {
+            rule1: [file1],
+            rule3: [file3, file4],
+        }
 
 
 class TestScannerResult(TestScannerResultMixin, TestCase):

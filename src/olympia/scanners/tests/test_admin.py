@@ -153,6 +153,38 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.formatted_results(result) == '<pre>[]</pre>'
 
+    def test_formatted_matched_rules_with_files(self):
+        addon = addon_factory()
+        result = ScannerResult.objects.create(
+            scanner=YARA, version=addon.current_version
+        )
+        rule = ScannerRule.objects.create(name='bar', scanner=YARA)
+        filename = 'some/file.js'
+        result.add_yara_result(rule=rule.name, meta={'filename': filename})
+        result.save()
+
+        expect_file_item = '<a href="{}">{}</a>'.format(
+            reverse('files.list', args=[addon.id, 'file', filename]),
+            filename
+        )
+        assert (expect_file_item in
+                self.admin.formatted_matched_rules_with_files(result))
+
+    def test_formatted_matched_rules_with_files_without_version(self):
+        result = ScannerResult.objects.create(scanner=YARA)
+        rule = ScannerRule.objects.create(name='bar', scanner=YARA)
+        filename = 'some/file.js'
+        result.add_yara_result(rule=rule.name, meta={'filename': filename})
+        result.save()
+
+        # We list the file related to the matched rule...
+        assert (filename in
+                self.admin.formatted_matched_rules_with_files(result))
+        # ...but we do not add a link to it because there is no associated
+        # version.
+        assert ('/file/' not in
+                self.admin.formatted_matched_rules_with_files(result))
+
     def test_list_queries(self):
         ScannerResult.objects.create(
             scanner=CUSTOMS, version=addon_factory().current_version
