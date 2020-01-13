@@ -7,7 +7,6 @@ from django.db import models
 from django.utils.html import format_html, format_html_join
 from django.utils.functional import cached_property
 
-import waffle
 from django_extensions.db.fields.json import JSONField
 
 from olympia import amo
@@ -135,6 +134,17 @@ class Block(ModelBase):
 
 
 class BlockSubmission(ModelBase):
+    SIGNOFF_PENDING = 0
+    SIGNOFF_APPROVED = 1
+    SIGNOFF_REJECTED = 2
+    SIGNOFF_NOTNEEDED = 3
+    SIGNOFF_STATES = {
+        SIGNOFF_PENDING: 'Pending',
+        SIGNOFF_APPROVED: 'Approved',
+        SIGNOFF_REJECTED: 'Rejected',
+        SIGNOFF_NOTNEEDED: 'No Sign-off'
+    }
+
     input_guids = models.TextField()
     processed_guids = JSONField(default={})
     min_version = models.CharField(
@@ -150,6 +160,8 @@ class BlockSubmission(ModelBase):
         help_text='Include in legacy xml blocklist too, as well as new v3')
     signoff_by = models.ForeignKey(
         UserProfile, null=True, on_delete=models.SET_NULL, related_name='+')
+    signoff_state = models.SmallIntegerField(
+        choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING)
 
     def clean(self):
         min_vint = addon_version_int(self.min_version)
@@ -175,22 +187,22 @@ class BlockSubmission(ModelBase):
             ((reverse('admin:blocklist_block_change', args=(id_,)), guid)
                 for (id_, guid) in blocks))
 
+    def can_user_signoff(self, signoff_user):
+        require_different_users = not settings.DEBUG
+        different_users = (
+            self.updated_by and signoff_user and
+            self.updated_by != signoff_user)
+        return not require_different_users or different_users
+
     @property
     def is_save_to_blocks_permitted(self):
         """Has this submission been signed off, or sign-off isn't required."""
-        # TODO: something more fine-grained that looks at user counts
-        signoff_disabled = waffle.switch_is_active(
-            'blocklist_admin_dualsignoff_disabled')
-        if signoff_disabled:
-            return True
-
-        require_different_users = not settings.DEBUG
-        different_users = (
-            self.updated_by and self.signoff_by and
-            self.updated_by != self.signoff_by)
         return (
-            self.signoff_by and
-            (not require_different_users or different_users))
+            self.signoff_state == self.SIGNOFF_NOTNEEDED or (
+                self.signoff_state == self.SIGNOFF_APPROVED and
+                self.can_user_signoff(self.signoff_by)
+            )
+        )
 
     def save(self, *args, **kwargs):
         if self.input_guids and not self.processed_guids:

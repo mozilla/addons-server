@@ -1869,5 +1869,3 @@ WAT_API_KEY = env('WAT_API_KEY', default=None)
 # Git(Hub) repository names, e.g., `owner/repo-name`
 CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
-
-BLOCKLIST_ADMIN_DUAL_SIGNOFF = True

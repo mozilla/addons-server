@@ -8,6 +8,8 @@ from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
 
+import waffle
+
 from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
@@ -111,6 +113,7 @@ class BlockAdminAddMixin():
 class BlockSubmissionAdmin(admin.ModelAdmin):
     list_display = (
         'blocks_count',
+        'signoff_state',
         'all_blocks_saved',
         'updated_by',
         'modified',
@@ -123,11 +126,13 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         'url',
         'reason',
         'updated_by',
+        'signoff_by',
         'include_in_legacy',
     )
     readonly_fields = (
         'blocks_submitted',
         'updated_by',
+        'signoff_by',
     )
     ordering = ['-created']
     view_on_site = False
@@ -135,11 +140,20 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     change_form_template = 'blocklist/block_submission_change_form.html'
 
     def has_delete_permission(self, request, obj=None):
+        # For now, keep all BlockSubmission records.
+        # TODO: define under what cirumstances records can be safely deleted.
         return False
 
-    # Read-only mode
     def has_change_permission(self, request, obj=None):
-        return False
+        has = super().has_change_permission(request, obj=obj)
+        pending = obj and obj.signoff_state == BlockSubmission.SIGNOFF_PENDING
+        return has and (not obj or pending)
+
+    def has_signoff_permission(self, request, obj=None):
+        has = self.has_change_permission(request, obj=obj)
+        pending = obj and obj.signoff_state == BlockSubmission.SIGNOFF_PENDING
+        return has and obj and pending and obj.can_user_signoff(request.user)
+
     def get_readonly_fields(self, request, obj=None):
         ro_fields = super().get_readonly_fields(request, obj=obj)
         if obj:
@@ -179,12 +193,10 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 frm_data['max_version'] == frm_data['existing_max_version'])
             if form.is_valid() and versions_unchanged:
                 # Save the object so we have the guids
-                obj = form.save()
-                obj.update(updated_by=request.user)
+                obj = form.save(commit=False)
+                obj.updated_by = request.user
+                self.save_model(request, obj, form, change=False)
                 self.log_addition(request, obj, [{'added': {}}])
-                if obj.is_save_to_blocks_permitted:
-                    # Then launch a task to async save the individual blocks
-                    create_blocks_from_multi_block.delay(obj.id)
                 if request.POST.get('_addanother'):
                     return redirect('admin:blocklist_block_add')
                 else:
@@ -222,6 +234,32 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         return TemplateResponse(
             request, 'blocklist/block_submission_add_form.html', context)
 
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        obj = self.model.objects.filter(id=object_id).latest()
+        extra_context['has_signoff_permission'] = self.has_signoff_permission(
+            request, obj)
+        return super().change_view(
+            request, object_id, form_url=form_url, extra_context=extra_context)
+
+    def save_model(self, request, obj, form, change):
+        if change:
+            is_signoff = '_signoff' in request.POST
+            is_reject = '_reject' in request.POST
+            if is_signoff:
+                obj.signoff_state = BlockSubmission.SIGNOFF_APPROVED
+                obj.signoff_by = request.user
+            elif is_reject:
+                obj.signoff_state = BlockSubmission.SIGNOFF_REJECTED
+        else:
+            # TODO: something more fine-grained that looks at user counts
+            if waffle.switch_is_active('blocklist_admin_dualsignoff_disabled'):
+                obj.signoff_state = BlockSubmission.SIGNOFF_NOTNEEDED
+
+        super().save_model(request, obj, form, change)
+        if obj.is_save_to_blocks_permitted:
+            # Then launch a task to async save the individual blocks
+            create_blocks_from_multi_block.delay(obj.id)
 
 
 @admin.register(Block)
