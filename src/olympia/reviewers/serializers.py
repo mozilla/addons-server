@@ -88,7 +88,7 @@ class FileEntriesSerializer(FileSerializer):
         # `self._entries` dictionary.
         _entries = getattr(self, '_entries', {})
 
-        if _entries:
+        if _entries and _entries[selected_file]['sha256']:
             return _entries[selected_file]['sha256']
 
         commit = self._get_commit(obj)
