@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
 
@@ -5,7 +6,6 @@ from olympia import amo
 from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.amo.utils import render
-from olympia.lib.cache import cache_get_or_set
 
 from .models import AppVersion
 
@@ -20,7 +20,7 @@ def get_versions(order=('application', 'version_int')):
         for app, version in qs:
             versions[app].append(version)
         return apps, versions
-    return cache_get_or_set('getv' + ':'.join(order), fetch_versions)
+    return cache.get_or_set('getv' + ':'.join(order), fetch_versions)
 
 
 @non_atomic_requests
