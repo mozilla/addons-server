@@ -197,6 +197,7 @@ CONTRIBUTE_UTM_PARAMS = {
     'utm_medium': 'referral',
     'utm_source': 'addons.mozilla.org'}
 VALID_CONTRIBUTION_DOMAINS = (
+    'buymeacoffee.com',
     'donate.mozilla.org',
     'flattr.com',
     'liberapay.com',
@@ -204,7 +205,6 @@ VALID_CONTRIBUTION_DOMAINS = (
     'opencollective.com',
     'patreon.com',
     'paypal.com',
-    'buymeacoffee.com',
     'paypal.me'
 )
 
