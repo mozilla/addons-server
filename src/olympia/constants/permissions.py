@@ -80,6 +80,10 @@ ABUSEREPORTS_EDIT = AclPermission('AbuseReports', 'Edit')
 # Can submit language packs. #11788 and #11793
 LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
 
+# Can access the scanners results admin.
+ADMIN_SCANNERS_RESULTS = AclPermission('Admin', 'ScannersResults')
+# Can access the scanners rules admin.
+ADMIN_SCANNERS_RULES = AclPermission('Admin', 'ScannersRules')
 
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
@@ -140,7 +144,8 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'scanners.add_scannerrule': ADMIN_ADVANCED,
     'scanners.change_scannerrule': ADMIN_ADVANCED,
     'scanners.delete_scannerrule': ADMIN_ADVANCED,
-    'scanners.view_scannerresult': ADMIN_ADVANCED,
+    'scanners.view_scannerrule': ADMIN_SCANNERS_RULES,
+    'scanners.view_scannerresult': ADMIN_SCANNERS_RESULTS,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,
