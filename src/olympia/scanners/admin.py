@@ -239,7 +239,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     formatted_matched_rules.short_description = 'Matched rules'
 
     def formatted_matched_rules_with_files(self, obj):
-        files_by_matched_rule = obj.get_files_by_matched_rules()
+        files_by_matched_rules = obj.get_files_by_matched_rules()
         return render_to_string(
             'admin/scanners/scannerresult/formatted_matched_rules_with_files.html',
             {
@@ -248,7 +248,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
                     {
                         'pk': rule.pk,
                         'name': rule.name,
-                        'files': files_by_matched_rule[rule.name],
+                        'files': files_by_matched_rules[rule.name],
                     }
                     for rule in obj.matched_rules.all()
                 ]
