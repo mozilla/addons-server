@@ -4,8 +4,7 @@ from django.core.cache import cache
 
 from unittest import TestCase
 from olympia.lib.cache import (
-    Message, Token, memoize, memoize_key, cache_get_or_set,
-    make_key)
+    Message, Token, memoize, memoize_key, make_key)
 
 
 def test_make_key():
@@ -31,21 +30,6 @@ def test_make_key():
         assert (
             make_key(u'é@øel', normalize=True) ==
             'bc5208e905c8dfcc521e4196e16cfa1a')
-
-
-def test_cache_get_or_set():
-    # Compatibility test, since cache_get_or_set is a 1:1 backport from
-    # Django 1.11, their unittests apply.
-
-    def some_function():
-        some_function.call_count += 1
-        return 'something'  # Needed for cache_get_or_set() to work.
-    some_function.call_count = 0
-
-    cache_get_or_set('my-key', some_function)
-    cache_get_or_set('my-key', some_function)
-
-    assert some_function.call_count == 1
 
 
 def test_memoize_key():

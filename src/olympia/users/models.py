@@ -15,6 +15,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
+from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.utils import timezone
@@ -32,7 +33,6 @@ from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
-from olympia.lib.cache import cache_get_or_set
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
 
@@ -646,7 +646,7 @@ class DeniedName(ModelBase):
         def fetch_names():
             return [n.lower() for n in qs.values_list('name', flat=True)]
 
-        blocked_list = cache_get_or_set('denied-name:blocked', fetch_names)
+        blocked_list = cache.get_or_set('denied-name:blocked', fetch_names)
         return any(n in name for n in blocked_list)
 
 
