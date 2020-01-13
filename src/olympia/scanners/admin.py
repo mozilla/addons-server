@@ -241,7 +241,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     def formatted_matched_rules_with_files(self, obj):
         files_by_matched_rules = obj.get_files_by_matched_rules()
         return render_to_string(
-            'admin/scanners/scannerresult/formatted_matched_rules_with_files.html',
+            'admin/scanners/scannerresult/formatted_matched_rules_with_files.html',  # noqa
             {
                 'addon_id': obj.version.addon.id if obj.version else None,
                 'matched_rules': [

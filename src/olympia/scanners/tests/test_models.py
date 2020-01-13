@@ -265,6 +265,7 @@ class TestScannerResultMixin:
             rule3: [file3, file4],
         }
 
+
 class TestScannerResult(TestScannerResultMixin, TestCase):
     __test__ = True
     model = ScannerResult
