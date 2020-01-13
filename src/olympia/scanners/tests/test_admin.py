@@ -48,8 +48,31 @@ class TestScannerResultAdmin(TestCase):
         )
 
     def test_list_view(self):
+        rule = ScannerRule.objects.create(name='rule', scanner=CUSTOMS)
+        ScannerResult.objects.create(
+            scanner=CUSTOMS,
+            version=addon_factory().current_version,
+            results={'matchedRules': [rule.name]}
+        )
         response = self.client.get(self.list_url)
         assert response.status_code == 200
+        html = pq(response.content)
+        assert html('.column-result_actions').length == 1
+
+    def test_list_view_for_non_admins(self):
+        rule = ScannerRule.objects.create(name='rule', scanner=CUSTOMS)
+        ScannerResult.objects.create(
+            scanner=CUSTOMS,
+            version=addon_factory().current_version,
+            results={'matchedRules': [rule.name]}
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:ScannersResultsView')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        html = pq(response.content)
+        assert html('.column-result_actions').length == 0
 
     def test_list_view_is_restricted(self):
         user = user_factory()
