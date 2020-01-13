@@ -39,7 +39,7 @@ class TestScannerResultAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:Advanced')
+        self.grant_permission(self.user, 'Admin:*')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerresult_changelist')
 
@@ -430,13 +430,52 @@ class TestScannerResultAdmin(TestCase):
         # A confirmation message should also appear.
         assert html('.messagelist .info').length == 1
 
+    def test_handle_true_positive_and_non_admin_user(self):
+        result = ScannerResult(scanner=CUSTOMS)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:ScannersResultsView')
+        self.client.login(email=user.email)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handletruepositive',
+                args=[result.pk],
+            )
+        )
+        assert response.status_code == 404
+
+    def test_handle_false_positive_and_non_admin_user(self):
+        result = ScannerResult(scanner=CUSTOMS)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:ScannersResultsView')
+        self.client.login(email=user.email)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handlefalsepositive',
+                args=[result.pk],
+            )
+        )
+        assert response.status_code == 404
+
+    def test_handle_revert_report_and_non_admin_user(self):
+        result = ScannerResult(scanner=CUSTOMS)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:ScannersResultsView')
+        self.client.login(email=user.email)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handlerevert',
+                args=[result.pk],
+            )
+        )
+        assert response.status_code == 404
+
 
 class TestScannerRuleAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
         self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:Advanced')
+        self.grant_permission(self.user, 'Admin:*')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerrule_changelist')
 

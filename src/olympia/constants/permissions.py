@@ -81,9 +81,11 @@ ABUSEREPORTS_EDIT = AclPermission('AbuseReports', 'Edit')
 LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
 
 # Can access the scanners results admin.
-ADMIN_SCANNERS_RESULTS = AclPermission('Admin', 'ScannersResults')
+ADMIN_SCANNERS_RESULTS_VIEW = AclPermission('Admin', 'ScannersResultsView')
 # Can access the scanners rules admin.
-ADMIN_SCANNERS_RULES = AclPermission('Admin', 'ScannersRules')
+ADMIN_SCANNERS_RULES_VIEW = AclPermission('Admin', 'ScannersRulesView')
+# Can edit the scanners rules.
+ADMIN_SCANNERS_RULES_EDIT = AclPermission('Admin', 'ScannersRulesEdit')
 
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
@@ -141,11 +143,11 @@ DJANGO_PERMISSIONS_MAPPING.update({
 
     'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
 
-    'scanners.add_scannerrule': ADMIN_ADVANCED,
-    'scanners.change_scannerrule': ADMIN_ADVANCED,
-    'scanners.delete_scannerrule': ADMIN_ADVANCED,
-    'scanners.view_scannerrule': ADMIN_SCANNERS_RULES,
-    'scanners.view_scannerresult': ADMIN_SCANNERS_RESULTS,
+    'scanners.add_scannerrule': ADMIN_SCANNERS_RULES_EDIT,
+    'scanners.change_scannerrule': ADMIN_SCANNERS_RULES_EDIT,
+    'scanners.delete_scannerrule': ADMIN_SCANNERS_RULES_EDIT,
+    'scanners.view_scannerrule': ADMIN_SCANNERS_RULES_VIEW,
+    'scanners.view_scannerresult': ADMIN_SCANNERS_RESULTS_VIEW,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,

@@ -13,6 +13,7 @@ from django.utils.translation import ugettext
 from urllib.parse import urljoin
 
 from olympia import amo
+from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
@@ -178,6 +179,20 @@ class ScannerResultAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
+    def get_list_display(self, request):
+        fields = super().get_list_display(request)
+        return self._excludes_admin_fields(request=request, fields=fields)
+
+    def get_fields(self, request, obj=None):
+        fields = super().get_fields(request, obj)
+        return self._excludes_admin_fields(request=request, fields=fields)
+
+    def _excludes_admin_fields(self, request, fields):
+        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        if not is_admin:
+            return list(filter(lambda x: x != 'result_actions', fields))
+        return fields
+
     def formatted_addon(self, obj):
         if obj.version:
             return format_html(
@@ -188,8 +203,12 @@ class ScannerResultAdmin(admin.ModelAdmin):
                     reverse(
                         'reviewers.review',
                         args=[
-                            ('listed' if obj.version.channel ==
-                             amo.RELEASE_CHANNEL_LISTED else 'unlisted'),
+                            (
+                                'listed'
+                                if obj.version.channel
+                                == amo.RELEASE_CHANNEL_LISTED
+                                else 'unlisted'
+                            ),
                             obj.version.addon.id,
                         ],
                     ),
@@ -239,7 +258,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
     formatted_matched_rules.short_description = 'Matched rules'
 
     def handle_true_positive(self, request, pk, *args, **kwargs):
-        if request.method != "POST":
+        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        if not is_admin or request.method != "POST":
             raise Http404
 
         result = self.get_object(request, pk)
@@ -254,7 +274,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return redirect('admin:scanners_scannerresult_changelist')
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
-        if request.method != "POST":
+        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        if not is_admin or request.method != "POST":
             raise Http404
 
         result = self.get_object(request, pk)
@@ -288,7 +309,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
         )
 
     def handle_revert(self, request, pk, *args, **kwargs):
-        if request.method != "POST":
+        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        if not is_admin or request.method != "POST":
             raise Http404
 
         result = self.get_object(request, pk)
