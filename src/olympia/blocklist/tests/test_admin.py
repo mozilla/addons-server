@@ -175,14 +175,16 @@ class TestBlockAdminAdd(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
 
-        addon = addon_factory(guid='guid@', name='Danger Danger')
+        addon = addon_factory(
+            guid='guid@', name='Danger Danger', version_kw={'version': '0.1'})
         response = self.client.get(
             self.single_url + '?guid=guid@', follow=True)
         content = response.content.decode('utf-8')
         assert 'Review Listed' in content
         assert 'Review Unlisted' not in content  # Theres only a listed version
 
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.2')
         response = self.client.get(
             self.single_url + '?guid=guid@', follow=True)
         content = response.content.decode('utf-8')
@@ -594,7 +596,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
             'follow': True}
 
         # An addon with only listed versions should have listed link
-        addon = addon_factory(guid='guid@', name='Danger Danger')
+        addon = addon_factory(
+            guid='guid@', name='Danger Danger', version_kw={'version': '0.1'})
         # This is irrelevant because a complete block doesn't have links
         Block.objects.create(
             addon=addon_factory(guid='foo@baa'),
@@ -618,7 +621,8 @@ class TestMultiBlockSubmitAdmin(TestCase):
             '[Edit Block: %s - %s]' % (existing_block.min_version, '*'))
 
         # And an unlisted version
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.2')
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
