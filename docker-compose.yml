@@ -1,8 +1,5 @@
 version: "2.4"
 
-# If you're changing the &env mapping
-# please make sure to update tests/ui/docker-compose.selenium.yml
-# accordingly.
 x-env-mapping: &env
   environment:
     - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
