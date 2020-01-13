@@ -7,6 +7,8 @@ import logging
 import os
 import socket
 
+from datetime import datetime
+
 import raven
 from kombu import Queue
 
@@ -95,10 +97,9 @@ ADDONS_LINTER_BIN = env(
 
 DELETION_EMAIL = 'amo-notifications+deletion@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
-ABUSE_EMAIL = 'amo-notifications+abuse@mozilla.org'
 
-DRF_API_VERSIONS = ['v3', 'v4', 'v5']
-DRF_API_REGEX = r'^/?api/(?:v3|v4|v5)/'
+DRF_API_VERSIONS = ['auth', 'v3', 'v4', 'v5']
+DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
 
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
@@ -280,6 +281,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
     r'^devhub\/email\/submission_api_key_revocation.txt',
+    r'^devhub\/email\/api_key_confirmation.ltxt',
+    r'^blocklist\/',
+    r'^addons\/admin\/',
 
     # Django specific templates
     r'^registration\/',
@@ -468,20 +472,24 @@ INSTALLED_APPS = (
     'olympia.api',
     'olympia.applications',
     'olympia.bandwagon',
+    'olympia.blocklist',
     'olympia.browse',
     'olympia.devhub',
     'olympia.discovery',
     'olympia.files',
+    'olympia.hero',
     'olympia.lib.es',
     'olympia.lib.akismet',
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
+    'olympia.scanners',
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
     'olympia.users',
     'olympia.versions',
+    'olympia.yara',
     'olympia.zadmin',
 
     # Third party apps
@@ -507,14 +515,16 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
-# This needs to point to prod, because that's where the database lives. You can
+# These need to point to prod, because that's where the database lives. You can
 # change it locally to test the extraction process, but be careful not to
 # accidentally nuke translations when doing that!
 DISCOVERY_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v4/discovery/editorial/')
+SECONDARY_HERO_EDITORIAL_CONTENT_API = (
+    'https://addons.mozilla.org/api/v4/hero/secondary/?all=true')
 
 # Filename where the strings will be stored. Used in puente config below.
-DISCOVERY_EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
+EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
 
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction. The puente library expects this.
@@ -530,7 +540,7 @@ PUENTE = {
             # disco pane recommendations using jinja2 parser. It's not a real
             # template, but it uses jinja2 syntax for convenience, hence why
             # it's not in templates/ with a .html extension.
-            (DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2'),
+            (EDITORIAL_CONTENT_FILENAME, 'jinja2'),
 
             # Make sure we're parsing django-admin templates with the django
             # template extractor
@@ -592,7 +602,6 @@ MINIFY_BUNDLES = {
             'css/impala/moz-tab.css',
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
-            'css/zamboni/themes.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -626,7 +635,6 @@ MINIFY_BUNDLES = {
             'css/impala/search.less',
             'css/impala/suggestions.less',
             'css/node_lib/jquery.minicolors.css',
-            'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
             'css/impala/apps.less',
@@ -638,7 +646,6 @@ MINIFY_BUNDLES = {
             'css/impala/stats.less',
         ),
         'zamboni/discovery-pane': (
-            'css/zamboni/discovery-pane.css',
             'css/impala/promos.less',
             'css/legacy/jquery-lightbox.css',
         ),
@@ -647,7 +654,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/developers.css',
             'css/zamboni/docs.less',
             'css/impala/developers.less',
-            'css/impala/personas.less',
             'css/devhub/listing.less',
             'css/devhub/popups.less',
             'css/devhub/compat.less',
@@ -694,7 +700,7 @@ MINIFY_BUNDLES = {
         ),
     },
     'js': {
-        # JS files common to the entire site (pre-impala).
+        # JS files common to the entire site, apart from dev-landing.
         'common': (
             'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
@@ -750,10 +756,7 @@ MINIFY_BUNDLES = {
             'js/impala/abuse.js',
             'js/zamboni/ratings.js',
 
-            # Personas
             'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
 
             # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
@@ -843,15 +846,10 @@ MINIFY_BUNDLES = {
             # Browse listing pages
             'js/impala/listing.js',
 
-            # Personas
             'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
 
-            # Persona creation
             'js/common/upload-image.js',
             'js/node_lib/jquery.minicolors.js',
-            'js/impala/persona_creation.js',
 
             # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
@@ -886,21 +884,11 @@ MINIFY_BUNDLES = {
             'js/zamboni/buttons.js',
             'js/lib/ui.lightbox.js',
 
-            # Personas
             'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/personas.js',
 
             'js/zamboni/debouncer.js',
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
-
-            'js/zamboni/discovery_addons.js',
-            'js/zamboni/discovery_pane.js',
-        ),
-        'zamboni/discovery-video': (
-            'js/lib/popcorn-1.0.js',
-            'js/zamboni/discovery_video.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
@@ -915,6 +903,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/static_theme.js',
             'js/node_lib/jquery.minicolors.js',
             'js/node_lib/jszip.js',
+        ),
+        'devhub/new-landing/js': (
+            'js/common/lang_switcher.js',
+            'js/lib/basket-client.js',
         ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',
@@ -1060,9 +1052,18 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
+# When testing, we always want tasks to raise exceptions. Good for sanity.
+CELERY_TASK_EAGER_PROPAGATES = True
+
+# Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
+# The task can catch that and recover but should exit ASAP. Note that there is
+# a separate, shorter timeout for validation tasks.
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
+
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
+    'olympia.stats.management.commands.index_stats',
 )
 
 CELERY_TASK_QUEUES = (
@@ -1095,14 +1096,16 @@ CELERY_TASK_ROUTES = {
     # are routed to the priority queue.
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
-    'olympia.addons.tasks.save_theme': {'queue': 'priority'},
-    'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {
         'queue': 'priority'},
 
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
+    'olympia.devhub.tasks.create_initial_validation_results': {
+        'queue': 'devhub'},
+    'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
@@ -1113,7 +1116,9 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
-    'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1137,12 +1142,8 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
 
     # Addons
-    'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
-    'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.addons.tasks.update_incompatible_appversions': {
-        'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
 
     # API
@@ -1159,8 +1160,6 @@ CELERY_TASK_ROUTES = {
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
     # Reviewers
-    'olympia.reviewers.tasks.add_commentlog': {'queue': 'reviewers'},
-    'olympia.reviewers.tasks.add_versionlog': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.approve_rereview': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.reject_rereview': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.send_mail': {'queue': 'reviewers'},
@@ -1186,13 +1185,10 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
-    'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
-
 
     # Stats
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
 
     # Tags
@@ -1215,14 +1211,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
 }
-
-# When testing, we always want tasks to raise exceptions. Good for sanity.
-CELERY_TASK_EAGER_PROPAGATES = True
-
-# Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
-# The task can catch that and recover but should exit ASAP. Note that there is
-# a separate, shorter timeout for validation tasks.
-CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # See PEP 391 for formatting help.
 LOGGING = {
@@ -1296,6 +1284,11 @@ LOGGING = {
             'handlers': ['mozlog'],
             'level': logging.WARNING,
             'propagate': False,
+        },
+        'parso': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
         },
         'post_request_task': {
             'handlers': ['mozlog'],
@@ -1448,7 +1441,6 @@ MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
-MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
 MAX_ZIP_UNCOMPRESSED_SIZE = 200 * 1024 * 1024
 
@@ -1468,12 +1460,8 @@ NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
 
-# Performance for persona pagination, we hardcode the number of
-# available pages when the filter is up-and-coming.
-PERSONA_DEFAULT_PAGES = 10
-
 # Number of seconds before celery tasks will abort addon validation:
-VALIDATOR_TIMEOUT = 110
+VALIDATOR_TIMEOUT = 360
 
 # Max number of warnings/errors to show from validator. Set to None for no
 # limit.
@@ -1482,9 +1470,8 @@ VALIDATOR_MESSAGE_LIMIT = 500
 # Feature flags
 UNLINK_SITE_STATS = True
 
-# Set to True if we're allowed to use X-SENDFILE.
-XSENDFILE = True
-XSENDFILE_HEADER = 'X-SENDFILE'
+# See: https://www.nginx.com/resources/wiki/start/topics/examples/xsendfile/
+XSENDFILE_HEADER = 'X-Accel-Redirect'
 
 MOBILE_COOKIE = 'mamo'
 
@@ -1499,14 +1486,6 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 
 # How long to delay tasks relying on file system to cope with NFS lag.
 NFS_LAG_DELAY = 3
-
-# An approved list of domains that the authentication script will redirect to
-# upon successfully logging in or out.
-VALID_LOGIN_REDIRECTS = {
-    'builder': 'https://builder.addons.mozilla.org',
-    'builderstage': 'https://builder-addons.allizom.org',
-    'buildertrunk': 'https://builder-addons-dev.allizom.org',
-}
 
 # Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
@@ -1612,11 +1591,12 @@ IN_TEST_SUITE = False
 # support it natively.
 SIMULATE_NAV_PAY = False
 
-# When the dev. agreement gets updated and you need users to re-accept it
-# change this date. You won't want to do this for minor format changes.
+# When the dev. agreement gets updated, you need users to re-accept it and the
+# config 'last_dev_agreement_change_date' is not set, use this fallback.
+# You won't want to do this for minor format changes.
 # The tuple is passed through to datetime.date, so please use a valid date
-# tuple. If the value is None, then it will just not be used at all.
-DEV_AGREEMENT_LAST_UPDATED = None
+# tuple.
+DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2019, 12, 2, 12, 00)
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
@@ -1652,7 +1632,6 @@ STATICFILES_DIRS = (
 # Make sure to check overwrites in conftest.py if new settings are added
 # or changed.
 STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
-
 ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
 GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
 GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
@@ -1672,6 +1651,11 @@ AES_KEYS = env.dict('AES_KEYS', default={})
 # set the expiration any longer than this.
 MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 
+# Time in seconds before the email containing the link allowing developers to
+# see their api keys the first time they request one is sent. A value of None
+# means it's sent instantaneously.
+API_KEY_CONFIRMATION_DELAY = None
+
 # django-rest-framework-jwt settings:
 JWT_AUTH = {
     # Use HMAC using SHA-256 hash algorithm. It should be the default, but we
@@ -1688,6 +1672,7 @@ JWT_AUTH = {
 }
 
 DRF_API_GATES = {
+    'auth': (),
     'v3': (
         'ratings-rating-shim',
         'ratings-title-shim',
@@ -1700,6 +1685,8 @@ DRF_API_GATES = {
         'del-ratings-flags',
         'activity-user-shim',
         'autocomplete-sort-param',
+        'is-source-public-shim',
+        'is-featured-addon-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1799,6 +1786,9 @@ SHELL_PLUS_POST_IMPORTS = (
     ('olympia', 'amo'),
 )
 
+FXA_CONTENT_HOST = 'https://accounts.firefox.com'
+FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
+FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 
@@ -1812,7 +1802,6 @@ CRON_JOBS = {
     'hide_disabled_files': 'olympia.addons.cron',
     'unhide_disabled_files': 'olympia.addons.cron',
     'deliver_hotness': 'olympia.addons.cron',
-    'cleanup_image_files': 'olympia.addons.cron',
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
@@ -1855,20 +1844,28 @@ FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
 
-MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
-
 MIGRATED_LWT_UPDATES_ENABLED = True
-
-ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS = ('release+addons@mozilla.org',)
 
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
-
-AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
-AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
-AKISMET_API_TIMEOUT = 5
-AKISMET_REAL_SUBMIT = False
+MOZILLA_NEWLETTER_URL = env(
+    'MOZILLA_NEWSLETTER_URL',
+    default='https://www.mozilla.org/en-US/newsletter/')
 
 GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
+
+EXTENSION_WORKSHOP_URL = env(
+    'EXTENSION_WORKSHOP_URL',
+    default='https://extensionworkshop-dev.allizom.org')
+
+# Sectools
+SCANNER_TIMEOUT = 60  # seconds
+CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
+CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
+WAT_API_URL = env('WAT_API_URL', default=None)
+WAT_API_KEY = env('WAT_API_KEY', default=None)
+# Git(Hub) repository names, e.g., `owner/repo-name`
+CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
+YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)

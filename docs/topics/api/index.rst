@@ -40,6 +40,7 @@ using the API.
    collections
    discovery
    download_sources
+   hero
    ratings
    reviewers
    signing

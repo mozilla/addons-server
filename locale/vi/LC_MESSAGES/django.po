@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-07-04 13:27+0000\n"
-"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2020-01-01 04:10+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -50,9 +50,11 @@ msgstr "%d báo cáo được chọn đã được đánh dấu là hợp lệ."
 msgid "The %d selected reports have been marked as suspicious."
 msgstr "%d báo cáo được chọn đã được đánh dấu là đáng ngờ."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Yêu cầu hỗ trợ hoặc báo cáo lỗi bị đặt nhầm"
+msgstr ""
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
 
 msgid "Modified on:"
 msgstr "Được chỉnh sửa lúc:"
@@ -139,51 +141,6 @@ msgstr "Đường dẫn tiện ích và bộ sưu tập cần kết thúc bằng
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
-
-msgid "Awaiting Review"
-msgstr "Đang chờ xét duyệt"
-
-msgid "Rejected"
-msgstr "Từ chối"
-
-msgid "Approved"
-msgstr "Chấp thuận"
-
-msgid "Added {0}"
-msgstr "Đã thêm {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> người dùng"
-
-msgid "Hover to Preview"
-msgstr "Rê chuột lên để Xem trước"
-
-msgid "Add"
-msgstr "Thêm"
-
-msgid "Edit"
-msgstr "Chỉnh sửa"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "bởi {0} ngày {1}"
-
-msgid "Not yet rated"
-msgstr "Chưa được xếp hạng"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> người dùng"
-
-msgid "by"
-msgstr "bởi"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} Người dùng mỗi ngày"
 
 msgid "Sort by:"
 msgstr "Sắp xếp theo:"
@@ -319,17 +276,17 @@ msgstr "Không tìm thấy"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Chúng tôi xin lỗi, nhưng chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm.</h1> <p> Trang hoặc tập tin bạn yêu cầu không được tìm thấy trên trang web của chúng tôi. Có thể bạn đã nhấp "
-"vào một liên kết đã lỗi thời hoặc nhập sai địa chỉ. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đã theo một liên kết từ một nơi nào đó, xin vui lòng "
+"<h1>Chúng tôi xin lỗi, nhưng chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm.</h1> <p> Trang hoặc tập tin bạn yêu cầu không được tìm thấy trên trang web của chúng tôi. Có thể bạn đã nhấp vào"
+" một liên kết đã lỗi thời hoặc nhập sai địa chỉ. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đã theo một liên kết từ một nơi nào đó, xin vui lòng "
 "%(open_bug_link)sgửi một vấn đề%(close_bug_link)s. Hãy cho chúng tôi biết bạn đến từ đâu và những gì bạn đang tìm kiếm, và chúng tôi sẽ cố gắng hết sức để khắc phục nó. </li> </ul> <p>Hoặc bạn chỉ "
-"có thể chuyển qua một số trang phổ biến trên trang web của chúng tôi.</p> <ul> <li>Bạn có quan tâm đến <a href=\"%(rec)s\">danh sách các tiện ích nổi bật</a> không?</li> <li> Bạn có muốn <a href="
-"\"%(search)s\">tìm kiếm tiện ích</a> không? Bạn có thể truy cập <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ sử dụng trường tìm kiếm ở trên. </li> <li> Nếu bạn muốn bắt đầu lại, chỉ cần truy "
-"cập <a href=\"%(home)s\">trang trước tiện ích</a>. </li> </ul>"
+"có thể chuyển qua một số trang phổ biến trên trang web của chúng tôi.</p> <ul> <li>Bạn có quan tâm đến <a href=\"%(rec)s\">danh sách các tiện ích nổi bật</a> không?</li> <li> Bạn có muốn <a "
+"href=\"%(search)s\">tìm kiếm tiện ích</a> không? Bạn có thể truy cập <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ sử dụng trường tìm kiếm ở trên. </li> <li> Nếu bạn muốn bắt đầu lại, chỉ cần "
+"truy cập <a href=\"%(home)s\">trang trước tiện ích</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ôi"
@@ -337,9 +294,6 @@ msgstr "Ôi"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Oops!  Chúng ta gặp lỗi rồi.</h1> <p>Chúng tôi sẽ bắt tay vào sửa sớm.</p> <p> Bạn có thể thử tải lại trang, hoặc quay về lại <a href=\"%(home)s\">trang chủ Tiện ích</a>. </p>"
-
-msgid "Some rights reserved"
-msgstr "Một số quyền được bảo lưu"
 
 msgid "No results found"
 msgstr "Không tìm thấy kết quả nào"
@@ -423,9 +377,6 @@ msgstr "Tiện ích {0}"
 msgid "Add-ons"
 msgstr "Tiện ích"
 
-msgid "Custom License"
-msgstr "Giấy phép Tùy biến"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} trước"
@@ -479,6 +430,10 @@ msgstr "Bạn phải cung cấp một đối tượng của {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Thông tin thêm về tài khoản nhà phát triển"
+
 msgid "Application Versions"
 msgstr "Phiên bản Ứng dụng"
 
@@ -503,12 +458,9 @@ msgstr "Phiên bản"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-
-msgid "The text entered has been flagged as spam."
-msgstr "Các văn bản đã nhập vào đã được gắn cờ là spam."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Một bộ sưu tập khác của bạn đã được sử dụng URL tùy chỉnh này."
@@ -579,6 +531,9 @@ msgstr "Tập tin {0} được xóa khỏi {version} của {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} đã được phê duyệt."
 
+msgid "Approved"
+msgstr "Chấp thuận"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} đã được xét duyệt sơ bộ."
 
@@ -587,6 +542,9 @@ msgstr ""
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} bị từ chối."
+
+msgid "Rejected"
+msgstr "Từ chối"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} giữ nguyên."
@@ -815,29 +773,30 @@ msgstr "Yêu cầu thông tin đã bị xóa bởi nhà phát triển trên {add
 msgid "Information request removed"
 msgstr "Yêu cầu thông tin đã bị xóa"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr ""
 
 msgid "Admin add-on-review requested"
 msgstr "Yêu cầu đánh giá add-on của quản trị viên"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr ""
 
 msgid "Admin content-review requested"
 msgstr "Yêu cầu xem xét nội dung của quản trị viên"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} yêu cầu xét duyệt."
+msgstr ""
 
 msgid "Admin theme-review requested"
 msgstr "Yêu cầu đánh giá chủ đề của quản trị viên"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} đã được di chuyển từ một chủ đề nhẹ."
+
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Đã xóa hình ảnh người dùng {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -866,17 +825,14 @@ msgstr "Không rõ"
 msgid "Incomplete"
 msgstr "Chưa hoàn tất"
 
+msgid "Awaiting Review"
+msgstr "Đang chờ xét duyệt"
+
 msgid "Disabled by Mozilla"
 msgstr "Bị vô hiệu bởi Mozilla"
 
 msgid "Deleted"
 msgstr "Đã xóa"
-
-msgid "Pending approval"
-msgstr "Đang chờ chấp thuận"
-
-msgid "Flagged for further review"
-msgstr "Được gắn cờ để xem xét thêm"
 
 msgid "Unlisted"
 msgstr ""
@@ -909,8 +865,8 @@ msgstr "Gói ngôn ngữ (Tiện ích)"
 msgid "Plugin"
 msgstr "Phần bổ trợ"
 
-msgid "Theme"
-msgstr "Giao diện"
+msgid "Deprecated LWT"
+msgstr ""
 
 msgid "Theme (Static)"
 msgstr "Chủ đề (Tĩnh)"
@@ -939,8 +895,8 @@ msgstr "Các gói ngôn ngữ (Tiện ích)"
 msgid "Plugins"
 msgstr "Phần bổ trợ"
 
-msgid "Themes"
-msgstr "Giao diện"
+msgid "Deprecated LWTs"
+msgstr ""
 
 msgid "Themes (Static)"
 msgstr "Các chủ đề (Tĩnh)"
@@ -1061,8 +1017,8 @@ msgstr "Hình ảnh & Đa phương tiện"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
-"Tải xuống tiện ích mở rộng Firefox để nâng cao hình ảnh và phương tiện truyền thông. Danh mục này bao gồm các tiện ích mở rộng để đảo ngược hình ảnh tìm kiếm, chụp ảnh màn hình toàn trang và hơn "
-"thế nữa."
+"Tải xuống tiện ích mở rộng Firefox để nâng cao hình ảnh và phương tiện truyền thông. Danh mục này bao gồm các tiện ích mở rộng để đảo ngược hình ảnh tìm kiếm, chụp ảnh màn hình toàn trang và hơn thế"
+" nữa."
 
 msgid "Security & Privacy"
 msgstr "Bảo mật & Riêng tư"
@@ -1448,6 +1404,13 @@ msgstr "Chất lượng thấp, kéo dài hoặc hình ảnh trống"
 msgid "Header image alignment problem"
 msgstr ""
 
+#, fuzzy
+msgid "no action"
+msgstr "Hành động thêm"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr ""
 
@@ -1467,9 +1430,6 @@ msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Văn bản trong trường \"{field}\" đã bị gắn cờ là spam."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug này đã được sử dụng. Vui lòng chọn cái khác."
@@ -1519,14 +1479,20 @@ msgstr "Tên miền URL phải là một trong [%s], hoặc tên miền phụ."
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Trước khi thay đổi bản địa mặc định, bạn phải có tên, tóm tắt và mô tả trong bản địa đó. Bạn đang thiếu %s."
 
+msgid "Users can not be added directly"
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr ""
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr "Phải có ít nhất một người sở hữu."
 
 msgid "At least one author must be listed."
 msgstr "Ít nhất một tác giả phải được liệt kê."
-
-msgid "An author can only be listed once."
-msgstr "Một tác giả chỉ có thể được liệt kê một lần."
 
 msgid "Slug incorrect."
 msgstr "Slug không chính xác."
@@ -1536,6 +1502,9 @@ msgstr "Chi tiết"
 
 msgid "What is your license's name?"
 msgstr "Tên giấy phép của bạn là gì?"
+
+msgid "Custom License"
+msgstr "Giấy phép Tùy biến"
 
 msgid "Provide the text of your license."
 msgstr "Cung cấp nội dung cho giấy phép của bạn"
@@ -1550,10 +1519,10 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Vui lòng chỉ định Thỏa thuận cấp phép người dùng cuối của tiện ích mở rộng của bạn:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "Tiện ích này có một Chính sách Riêng tư"
+msgstr "Tiện ích này có một chính sách riêng tư"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Vui lòng chỉ định Chính sách Riêng tư cho tiện ích của bạn:"
+msgstr "Vui lòng chỉ định chính sách riêng tư cho tiện ích của bạn:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Kiểu tập tin không được hỗ trợ, vui lòng tải lên tệp lưu trữ {extensions}."
@@ -1611,8 +1580,7 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -1685,10 +1653,22 @@ msgstr ""
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
+msgid "Invitation accepted."
+msgstr ""
+
+msgid "Invitation declined."
+msgstr ""
+
 msgid "An author has been added to your add-on"
 msgstr ""
 
-msgid "An author has a role changed on your add-on"
+msgid "Author invitation for {addon_name}"
+msgstr ""
+
+msgid "A confirmation email has been sent to {email}"
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
 msgstr ""
 
 msgid "An author has been removed from your add-on"
@@ -1781,9 +1761,6 @@ msgstr "Yêu cầu đánh giá."
 msgid "You must provide further details to proceed."
 msgstr ""
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
@@ -1840,6 +1817,9 @@ msgstr "Tài liệu"
 
 msgid "Extension Development"
 msgstr "Phát triển tiện ích mở rộng"
+
+msgid "Themes"
+msgstr "Giao diện"
 
 msgid "Developer Policies"
 msgstr "Chính sách nhà phát triển"
@@ -1919,12 +1899,10 @@ msgstr ""
 "lên phiên bản mới cho tiện ích này."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Cập nhật Tính tương thích</a> <a href=\"%(version_url)s\" class=\"button\">Tải lên Phiên bản Mới</a> hoặc <a href=\"#"
-"\" class=\"close\">Bỏ qua</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Cập nhật Tính tương thích</a> <a href=\"%(version_url)s\" class=\"button\">Tải lên Phiên bản Mới</a> hoặc <a href=\"#\""
+" class=\"close\">Bỏ qua</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Xem và cập nhật khoảng tương thích với ứng dụng"
@@ -1999,6 +1977,18 @@ msgstr "Xem trước phiên bản được liệt kê"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Xem trước vẫn đang được tạo - quay lại sau hoặc làm mới trang."
 
+msgid "You have been invited to become an author of {addon_name}."
+msgstr ""
+
+msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
+msgstr ""
+
+msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "Quản lí Tác giả & Giấy phép"
 
@@ -2008,6 +1998,12 @@ msgstr "Tác giả"
 msgid "About author roles"
 msgstr "Giới thiệu vai trò tác giả"
 
+msgid "Authors pending confirmation"
+msgstr ""
+
+msgid "Authors that have been added to this add-on but haven't confirmed."
+msgstr ""
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
@@ -2015,6 +2011,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Chi tiết bổ sung"
+
+msgid "Edit"
+msgstr "Chỉnh sửa"
 
 msgid "Additional Details for {0}"
 msgstr "Chi tiết bổ sung cho {0}"
@@ -2120,8 +2119,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 #, python-format
@@ -2132,8 +2130,8 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2161,18 +2159,6 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-
-msgid "View Source?"
-msgstr "Xem mã nguồn?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Mã nguồn của tiện ích này có thể được xem công khai."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Không, mã nguồn của tiện ích này không thể xem công khai."
 
 msgid "Public Stats?"
 msgstr ""
@@ -2583,8 +2569,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -2653,7 +2639,7 @@ msgid "Select a header image for your theme"
 msgstr "Chọn một hình ảnh tiêu đề cho chủ đề của bạn"
 
 msgid "Recommended height: 200 pixels"
-msgstr "Chiều cao đề xuất: 200 pixel"
+msgstr "Chiều cao khuyến nghị: 200 pixel"
 
 msgid "6.9MB max"
 msgstr "Tối đa 6.9MB"
@@ -2703,8 +2689,15 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
+msgstr ""
+
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -2714,6 +2707,10 @@ msgid "Revoke"
 msgstr "Thu hồi"
 
 msgid "Revoke and regenerate credentials"
+msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
 msgstr "Thu hồi và tạo lại thông tin xác thực đăng nhập"
 
 msgid "Generate new credentials"
@@ -2842,13 +2839,11 @@ msgstr[0] "Chọn <b>nhiều nhất {0}</b> {1} phân mục cho tiện ích này
 msgid "End-User License Agreement"
 msgstr "Thỏa thuận Giấy phép Người dùng Cuối"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "Privacy Policy"
-msgstr "Chính sách Riêng tư"
+msgstr "Chính sách riêng tư"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -2862,42 +2857,24 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr ""
 
-msgid "Latest News"
-msgstr "Tin mới nhất"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Xem thêm chi tiết tại blog của chúng tôi"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Extension Workshop"
 
 msgid "Resources"
 msgstr "Tài nguyên"
 
-msgid "Porting"
-msgstr "Chuyển đổi"
-
-msgid "Community"
-msgstr "Cộng đồng"
-
-msgid "About"
-msgstr "Giới thiệu"
-
-msgid "Forum"
-msgstr "Diễn đàn"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Liên hệ với chúng tôi"
-
-msgid "Support"
-msgstr "Hỗ trợ"
-
-msgid "Report Bug"
-msgstr "Báo cáo lỗi"
-
-msgid "Site Status"
-msgstr "Trạng thái trang"
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "Tiện ích mở rộng"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: xây dựng và thử nghiệm tiện ích"
@@ -2905,20 +2882,11 @@ msgstr "Web-Ext: xây dựng và thử nghiệm tiện ích"
 msgid "Promote"
 msgstr ""
 
-msgid "Get Your Add-on Featured"
-msgstr "Nhận tiện ích mở rộng của bạn"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Nút \"Nhận tiện ích mở rộng\""
 
-msgid "Legal"
-msgstr "Pháp lí"
-
-msgid "Report Trademark Abuse"
-msgstr "Báo cáo lạm dụng nhãn hiệu"
-
-msgid "Legal Notices"
-msgstr "Lưu ý Pháp lí"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Đóng góp"
@@ -2950,41 +2918,13 @@ msgstr ""
 msgid "See how"
 msgstr "Tìm hiểu cách làm"
 
-msgid "Manage Your Add-on"
-msgstr "Quản lý tiện ích của bạn"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Đăng nhập để chỉnh sửa và cập nhật tiện ích của bạn"
-
-msgid "Write one code base for many browsers"
-msgstr "Viết một mã cơ sở cho nhiều trình duyệt"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr ""
-"Với API WebExtensions, nó dễ dàng tạo các tiện ích mở rộng sẽ chạy trên Firefox, Chrome, Opera và Edge chỉ với một vài thay đổi nhỏ. Tìm hiểu thêm về sự khác biệt trong phát triển tiện ích mở rộng "
-"giữa bốn trình duyệt chính và cách bạn có thể làm cho tiện ích mở rộng trình duyệt chéo của mình tương thích."
-
-msgid "View Best Practices for Cross-Browser Development"
+msgid "Get involved"
 msgstr ""
 
-msgid "Welcome Back"
-msgstr "Chào mừng trở lại"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-"Muốn tiện ích mở rộng của bạn được làm nổi bật trên %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Các chính sách tiện ích mở rộng nổi bật của chúng tôi sẽ cho bạn biết những gì bạn cần "
-"biết."
-
-msgid "Learn More"
-msgstr "Tìm hiểu Thêm"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "See Best Practices"
+msgid "Learn more about the developer community"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3010,6 +2950,13 @@ msgstr "Trung tâm nhà phát triển tiện ích"
 msgid "Docs"
 msgstr "Tài liệu"
 
+msgid "Support"
+msgstr "Hỗ trợ"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Đăng xuất"
 
@@ -3020,70 +2967,30 @@ msgid "User Photo"
 msgstr "Ảnh người dùng"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Đăng ký</a> hoặc <a href=\"%(login)s\">Đăng nhập</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Tùy biến Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Tiện ích cho phép hàng triệu người dùng Firefox nâng cao trải nghiệm duyệt web của họ. Nếu bạn biết %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s và "
-"%(css_link_open)sCSS%(link_close)s, bạn đã có tất cả các kỹ năng cần thiết để tạo ra một tiện ích."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Tìm hiểu cách tạo một tiện ích"
 
-msgid "Port a Chrome Extension"
-msgstr "Tạo từ một tiện ích mở rộng của Chrome"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox hỗ trợ API WebExtension, mà trong hầu hết các trường hợp đều tương thích với các API mở rộng mà Chrome, Opera và Edge hỗ trợ, vì vậy các tiện ích mở rộng của bạn sẽ chạy trong Firefox chỉ "
-"với một vài thay đổi."
 
-msgid "Learn How"
-msgstr "Tìm hiểu cách thức"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Xuất bản tiện ích của bạn"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Có sẵn một tiện ích chưa? Gửi tiện ích mở rộng hoặc chủ đề của bạn để được liệt kê trên addons.mozilla.org hoặc ký tên và tự phân phối tiện ích mở rộng của bạn."
-
-msgid "Sign In"
-msgstr "Đăng nhập"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Một công cụ dòng lệnh để xây dựng, chạy và thử nghiệm các tiện ích mở rộng."
-
-msgid "Automated code tests for your add-on."
-msgstr "Kiểm tra mã tự động cho tiện ích của bạn."
-
-msgid "Compatibility Test"
-msgstr "Kiểm tra tính tương thích"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Kiểm tra xem tiện ích mở rộng của bạn có tương thích với Firefox hay không."
-
-msgid "Live Testing"
-msgstr "Thử nghiệm trực tiếp"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "Tạm thời cài đặt tiện ích của bạn trong Firefox để thử nghiệm và gỡ lỗi trực tiếp."
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Quản lí Phiên bản {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Quản lí {0}"
 
@@ -3144,12 +3051,6 @@ msgstr "Xem lại lịch sử"
 msgid "Close Review History"
 msgstr "Đóng lịch sử đánh giá"
 
-msgid "Not validated."
-msgstr "Không được kiểm định."
-
-msgid "Validate now."
-msgstr "Kiểm định ngay."
-
 msgid "Request Review"
 msgstr "Yêu cầu đánh giá"
 
@@ -3164,6 +3065,9 @@ msgstr ""
 
 msgid "Load older..."
 msgstr ""
+
+msgid "by"
+msgstr "bởi"
 
 msgid "Leave a reply"
 msgstr "Để lại một trả lời"
@@ -3216,8 +3120,8 @@ msgstr "Xóa phiên bản {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Bạn sắp xóa phiên bản hiện tại của tiện ích mở rộng. Điều này có thể khiến trạng thái tiện ích của bạn thay đổi hoặc danh sách của bạn mất khả năng hiển thị công khai, nếu đây là phiên bản công "
-"khai duy nhất của tiện ích."
+"Bạn sắp xóa phiên bản hiện tại của tiện ích mở rộng. Điều này có thể khiến trạng thái tiện ích của bạn thay đổi hoặc danh sách của bạn mất khả năng hiển thị công khai, nếu đây là phiên bản công khai"
+" duy nhất của tiện ích."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Xóa phiên bản này sẽ xóa vĩnh viễn:"
@@ -3255,14 +3159,14 @@ msgstr "Bạn có chắc chắn là bạn muốn hủy bỏ yêu cầu xét duy�
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Tài liệu tiện ích :: Trung tâm nhà phát triển"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} lỗi"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
@@ -3304,8 +3208,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Chặn quảng cáo và bảo vệ quyền riêng tư {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Một thiết lập đơn giản cho phép bạn kiểm soát các quảng cáo bạn nhìn thấy và cách nó theo dõi bạn trên internet."
+msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3320,24 +3224,24 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Dừng việc Facebook theo dõi {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr "Cô lập danh tính Facebook của bạn thành một “ngăn chứa” riêng biệt, điều này khiến Facebook khó theo dõi các chuyển động của bạn trên web hơn."
+msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Đơn giản hóa tìm kiếm {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Chỉ cần đánh dấu văn bản trên bất kỳ trang web nào để tìm kiếm cụm từ từ một loạt các công cụ."
+msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cập nhật thời tiết tức thì {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get instant global weather information right in Firefox."
-msgstr "Nhận ngay thông tin thời tiết toàn cầu ngay trong Firefox."
+msgid "Instant weather updates from around the world."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3360,15 +3264,15 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tải xuống video {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Hoạt động với YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope và hàng trăm trang web video khác."
+msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Dozens of amazing emojis for every occasion—always just a click away."
+msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3376,16 +3280,16 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Quản lý mật khẩu {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Đơn giản hóa và đồng bộ tất cả các thông tin đăng nhập trang web khác nhau của bạn trên các thiết bị với một mật khẩu để thống trị tất cả."
+msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Chặn quảng cáo {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Trình chặn quảng cáo nhẹ và hiệu quả. uBlock Origin thực thi hàng ngàn bộ lọc nội dung mà không chiếm nhiều bộ nhớ."
+msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3408,8 +3312,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Thưởng thức dấu trang trực quan {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites from a tile layout."
-msgstr "Truy cập các trang web yêu thích của bạn từ một bố cục ô."
+msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3472,15 +3376,15 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dịch dễ dàng {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Đánh dấu văn bản trên bất kỳ trang web nào—hay chọn toàn bộ trang của Google— để dịch ngay lập tức."
+msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy free access to 10+ million research papers."
+msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3488,8 +3392,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Tùy chỉnh cử chỉ chuột {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Khám phá một cách mới để điều hướng với hơn 50 cử chỉ chuột hữu ích."
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3525,7 +3429,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Simply hover over an image to magnify it."
+msgid "Hover over an image to magnify it."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3557,7 +3461,7 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3565,9 +3469,10 @@ msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Lưu văn bản để sau {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+msgid ""
+"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
+"when needed."
 msgstr ""
-"Ngừng viết điều tương tự lặp đi lặp lại! Nếu bạn thường xuyên sử dụng lại các cụm từ tương tự trong công việc hoặc các liên lạc khác, hãy lưu chúng trong Clippings và dễ dàng dán chúng khi cần."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3590,7 +3495,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3606,7 +3511,7 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3622,7 +3527,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3630,7 +3535,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Play videos by default in the highest quality, turn off annotations, and more."
+msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3638,7 +3543,7 @@ msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get a glimpse into who's tracking you with just a click."
+msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3646,7 +3551,7 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Surf the web through self-defined proxy settings."
+msgid "Change your proxy server and surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3662,7 +3567,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supports HTTPS."
+msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3706,11 +3611,11 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3734,7 +3639,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3750,7 +3655,7 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Stop trackers when you click Google and Yandex search returns."
+msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3766,7 +3671,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy thumbnail images alongside your search returns."
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3790,7 +3695,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3798,7 +3703,7 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3814,7 +3719,7 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3822,7 +3727,7 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3830,7 +3735,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Right-click and drag over links you want open in new tabs."
+msgid "Right-click and drag links you want open in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3846,7 +3751,7 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3894,7 +3799,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3910,7 +3815,7 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Applies a fresh and modern appearance to Wikipedia."
+msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3918,7 +3823,7 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to get to things done—quicker."
+msgid "Use mouse gestures to get to things done quicker."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3934,7 +3839,7 @@ msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Grab images from any website and download them."
+msgid "Download images you find on the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3958,7 +3863,7 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3966,7 +3871,7 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Easily customize the built-in privacy settings in Firefox."
+msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3974,7 +3879,7 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3990,7 +3895,7 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4006,7 +3911,7 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Restrict Firefox from accessing websites you define."
+msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4046,7 +3951,7 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "A better way to save bookmarks if you use multiple bookmark folders."
+msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4066,16 +3971,16 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Trích xuất liên kết {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Instantly display all links from a webpage in new tabs."
-msgstr "Hiển thị ngay lập tức tất cả các liên kết từ một trang web trong các thẻ mới."
+msgid "Instantly display all links from a web page in new tabs."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bỏ qua chuyển hướng & trình theo dõi {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Strip away redirect pages and URL tracking parameters."
-msgstr "Loại bỏ các trang chuyển hướng và các thông số theo dõi URL."
+msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4090,8 +3995,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Tải xuống video YouTube {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Download video and/or audio."
-msgstr "Tải xuống video và/hoặc âm thanh."
+msgid "Download YouTube videos and/or audio."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4114,7 +4019,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4130,7 +4035,7 @@ msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgid "Highlight text on web pages to save and access later."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4138,7 +4043,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 30,000+ radio stations from all over the globe."
+msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4162,7 +4067,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Navigate to the secure version of a website if it's available."
+msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4170,7 +4075,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4194,7 +4099,7 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save entered data once and it will autofill next time."
+msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4202,7 +4107,7 @@ msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Jump into private browsing mode with a click."
+msgid "Search privately with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4210,7 +4115,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4218,7 +4123,7 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4242,7 +4147,7 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4250,7 +4155,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4258,7 +4163,7 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Load a random Wikipedia article each time you open a new tab."
+msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4290,12 +4195,12 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Easily access your open tabs, bookmarks, and history."
+msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Rất nhiều thẻ đang mở? Bỏ qua việc cuộn và tìm kiếm thông qua các phím tắt."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4346,7 +4251,7 @@ msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make informed shopping decisions."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4354,7 +4259,7 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4362,11 +4267,11 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4374,7 +4279,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Only allow web content to run from sites you trust."
+msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4414,7 +4319,7 @@ msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_head
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Simply click a button to close annoying pop-up overlays."
+msgid "Close annoying pop-ups with a simple click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4450,7 +4355,7 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4458,7 +4363,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4466,7 +4371,7 @@ msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4490,7 +4395,7 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4498,7 +4403,7 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Organize your many open tabs in a vertical sidebar."
+msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4514,8 +4419,8 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Xem bức ảnh lớn {start_sub_heading}với {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "With a mouse click you can watch videos in full screen glory."
-msgstr "Với một cú click chuột, bạn có thể xem video trong toàn màn hình."
+msgid "With a simple click of the mouse you can watch videos in full screen glory."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4538,7 +4443,7 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4550,7 +4455,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4558,7 +4463,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4574,7 +4479,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Grab just images from your current tab."
+msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4582,11 +4487,11 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get the benefits of strong password management."
+msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4602,7 +4507,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "List the websites you want the extension to block. Instant discipline!"
+msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4618,7 +4523,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Easily design your own visual themes to make Firefox look as you please."
+msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4626,7 +4531,7 @@ msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4642,7 +4547,7 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4650,7 +4555,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Custom color schemes let you shade the web to your own liking."
+msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4668,6 +4573,42 @@ msgstr ""
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Extensions are like apps for Firefox."
+msgstr "Các tiện ích mở rộng cũ không còn được hỗ trợ trong Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Khám phá tất cả tiện ích"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Tìm hiểu Thêm"
+
+#. editorial content for the secondary hero shelves.
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Tiện ích mở rộng"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4724,7 +4665,6 @@ msgstr ""
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
@@ -4732,7 +4672,11 @@ msgstr ""
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
+msgstr ""
+
+msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
@@ -4863,42 +4807,6 @@ msgstr "Không có tập tin nào trong tập tin được tải lên."
 msgid "Fetching file."
 msgstr "Đang truy xuất tập tin."
 
-msgid "Reported Status"
-msgstr "Tình trạng báo cáo"
-
-msgid "Reported Spam"
-msgstr "Thư rác được báo cáo"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Báo cáo không phải Spam"
-
-msgid "Not Reported"
-msgstr "Không có báo cáo"
-
-msgid "Content Submitted"
-msgstr "Đã gửi nội dung"
-
-msgid "View Rating on site"
-msgstr "Xem xếp hạng trên trang web"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Báo cáo là không phải Spam đến Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Báo cáo Spam đến Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr ""
 
@@ -4953,8 +4861,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -5000,8 +4907,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5144,6 +5051,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} đánh giá"
 
+msgid "Not yet rated"
+msgstr "Chưa được xếp hạng"
+
 msgid "Rated {0} out of 5 stars"
 msgstr ""
 
@@ -5269,6 +5179,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
 msgid "Type"
 msgstr "Kiểu"
 
@@ -5311,9 +5224,8 @@ msgstr ""
 msgid "Information Request Deadline"
 msgstr "Thời hạn yêu cầu thông tin"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Cập nhật lần cuối:"
+msgstr ""
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5357,12 +5269,11 @@ msgstr "Bình luận"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Đánh giá tiện ích mở rộng"
+msgstr ""
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Được đề xuất ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Đánh giá đang chờ xử lý khác ({0})"
@@ -5485,7 +5396,7 @@ msgid "Average Daily Users"
 msgstr "Người dùng Hàng ngày Trung bình"
 
 msgid "View Privacy Policy"
-msgstr "Xem Chính sách Riêng tư"
+msgstr "Xem chính sách riêng tư"
 
 msgid "Requires Payment"
 msgstr "Yêu cầu thanh toán"
@@ -5791,6 +5702,12 @@ msgstr "Ẩn bình luận"
 msgid "No reviews found for this period."
 msgstr "Không tìm thấy đánh giá nào trong khoảng thời gian này."
 
+msgid "Method:"
+msgstr ""
+
+msgid "Source:"
+msgstr "Nguồn:"
+
 msgid "Dismiss this announcement"
 msgstr "Bỏ thông báo này"
 
@@ -5835,6 +5752,9 @@ msgstr "Từ Trước đến Nay"
 msgid "You have <span>{0}</span> points."
 msgstr ""
 
+msgid "Theme"
+msgstr "Giao diện"
+
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr ""
@@ -5863,6 +5783,12 @@ msgstr[0] "Tự động phê duyệt ({0})"
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Yêu cầu thông tin đã hết hạn ({0})"
+
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6088,11 +6014,11 @@ msgstr "Giới thiệu về theo dõi nguồn bên ngoài…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6103,11 +6029,6 @@ msgstr "Người dùng Hàng ngày theo Ngày"
 
 msgid "What are daily users?"
 msgstr "Người dùng hàng ngày là ai?"
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
-"people using your theme by day. </p>"
-msgstr ""
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -6126,11 +6047,20 @@ msgstr "Trở lại Tiện ích"
 msgid "Footer logo"
 msgstr ""
 
+msgid "Legal Notices"
+msgstr "Lưu ý Pháp lí"
+
+msgid "Report Trademark Abuse"
+msgstr "Báo cáo lạm dụng nhãn hiệu"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
 msgstr "Xem trang mới"
+
+msgid "Site Status"
+msgstr "Trạng thái trang"
 
 msgid "Report a bug"
 msgstr "Báo cáo lỗi"
@@ -6142,6 +6072,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "biết thêm về <b>tiện ích</b>"
+
+msgid "About"
+msgstr "Giới thiệu"
+
+msgid "Forum"
+msgstr "Diễn đàn"
 
 msgid "Download Firefox"
 msgstr "Tải xuống Firefox"
@@ -6222,6 +6158,9 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
+msgid "User Restriction History"
+msgstr ""
+
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr ""
@@ -6236,6 +6175,13 @@ msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr ""
+
+msgid "Reset API Key"
+msgstr "Đặt lại khóa API"
 
 msgid "Profile Photo"
 msgstr "Hình ảnh Hồ sơ"
@@ -6287,8 +6233,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "an add-on developer replies to my review"

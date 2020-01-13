@@ -18,6 +18,9 @@ from olympia.discovery.utils import (
 # Permissive regexp for client IDs passed to the API, just to avoid sending
 # garbage to TAAR.
 VALID_CLIENT_ID = re.compile('^[a-zA-Z0-9-]+$')
+EDITION_ALIASES = {
+    'mozillaonline': 'china',
+}
 
 
 class DiscoveryViewSet(ListModelMixin, GenericViewSet):
@@ -25,8 +28,12 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = DiscoverySerializer
 
+    def get_edition(self):
+        edition = self.request.GET.get('edition', 'default').lower()
+        return EDITION_ALIASES.get(edition, edition)
+
     def get_queryset(self):
-        edition = self.request.GET.get('edition', 'default')
+        edition = self.get_edition()
         position_field = 'position_china' if edition == 'china' else 'position'
 
         # Base queryset for editorial content.
@@ -55,7 +62,7 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
             if recommendations:
                 # if we got some recommendations then replace the
                 # extensions in the queryset with them.
-                # Leave the non-extensions (personas) alone.
+                # Leave the non-extensions (themes) alone.
                 qs = replace_extensions(qs, recommendations)
 
         return qs

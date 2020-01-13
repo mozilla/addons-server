@@ -2,14 +2,13 @@
 import os.path
 
 from django.conf import settings
-from django.forms import ValidationError
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from unittest import mock
 import pytest
-from waffle.testutils import override_switch
 
+from celery import chord
 from celery.result import AsyncResult
 
 from olympia import amo
@@ -18,9 +17,11 @@ from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
+from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
-from olympia.lib.akismet.models import AkismetReport
-from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
+from olympia.scanners.tasks import run_customs, run_wat, run_yara
+from olympia.users.models import (
+    EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
 
 
 class TestAddonsLinterListed(UploadTest, TestCase):
@@ -38,16 +39,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         self.file_upload = self.get_upload(
             abspath=self.file.current_file_path, with_validation=False)
 
-        # Patch validation tasks that we expect the validator to call.
-        self.save_file = self.patch(
-            'olympia.devhub.tasks.handle_file_validation_result').s
-        self.save_upload = self.patch(
-            'olympia.devhub.tasks.handle_upload_validation_result').s
-
-        self.validate_file = self.patch(
-            'olympia.devhub.tasks.validate_file').si
-        self.validate_upload = self.patch(
-            'olympia.devhub.tasks.validate_upload').si
+        self.mock_chain = self.patch('olympia.devhub.utils.chain')
 
     def patch(self, thing):
         """Patch the given "thing", and revert the patch on test teardown."""
@@ -60,40 +52,43 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         # Run validator.
         utils.Validator(file_upload, listed=listed)
 
-        # We shouldn't be attempting to call validate_file task when dealing
-        # with an upload.
-        assert not self.validate_file.called
-
         channel = (amo.RELEASE_CHANNEL_LISTED if listed
                    else amo.RELEASE_CHANNEL_UNLISTED)
 
-        # Make sure we run the correct validation task for the upload and we
-        # set up an error handler.
-        self.validate_upload.assert_called_once_with(
-            file_upload.pk, channel=channel)
-        assert self.validate_upload.return_value.on_error.called
-
-        # Make sure we run the correct save validation task.
-        self.save_upload.assert_called_once_with(
-            file_upload.pk, channel, False)
+        # Make sure we setup the correct validation task.
+        self.mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
 
     def check_file(self, file_):
         """Check that the given file is validated properly."""
+        # Mock tasks that we should not execute.
+        repack_fileupload = self.patch('olympia.files.tasks.repack_fileupload')
+        validate_upload = self.patch('olympia.devhub.tasks.validate_upload')
+
         # Run validator.
         utils.Validator(file_)
 
-        # We shouldn't be attempting to call validate_upload task when
+        # We shouldn't be attempting to call the `validate_upload` tasks when
         # dealing with a file.
-        assert not self.validate_upload.called
+        assert not repack_fileupload.called
+        assert not validate_upload.called
 
-        # Make sure we run the correct validation task and we set up an error
-        # handler.
-        self.validate_file.assert_called_once_with(file_.pk)
-        assert self.validate_file.return_value.on_error.called
-
-        # Make sure we run the correct save validation task.
-        self.save_file.assert_called_once_with(
-            file_.pk, file_.version.channel, False)
+        # Make sure we setup the correct validation task.
+        self.mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            tasks.validate_file.s(file_.pk),
+            tasks.handle_file_validation_result.s(file_.pk),
+        )
 
     @mock.patch.object(utils.Validator, 'get_task')
     def test_run_once_per_file(self, get_task_mock):
@@ -273,152 +268,6 @@ class TestFixAddonsLinterOutput(TestCase):
             assert fixed['metadata'][key] == value
 
 
-@override_switch('akismet-spam-check', active=True)
-class TestGetAddonAkismetReports(UploadTest, TestCase):
-    def setUp(self):
-        super(TestGetAddonAkismetReports, self).setUp()
-
-        patcher = mock.patch.object(
-            AkismetReport, 'create_for_addon')
-        self.addCleanup(patcher.stop)
-        self.create_for_addon_mock = patcher.start()
-        self.parse_addon_mock = self.patch('olympia.devhub.utils.parse_addon')
-
-    @override_switch('akismet-spam-check', active=False)
-    def test_waffle_off(self):
-        reports = utils.get_addon_akismet_reports(
-            None, '', '')
-        assert reports == []
-        self.create_for_addon_mock.assert_not_called()
-
-    def test_upload(self):
-        user = user_factory()
-        upload = self.get_upload('webextension.xpi')
-        self.parse_addon_mock.return_value = {'description': u'fóó'}
-        user_agent = 'Mr User/Agent'
-        referrer = 'http://foo.baa/'
-        reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, upload=upload)
-        assert len(reports) == 1
-        self.create_for_addon_mock.assert_called_with(
-            upload=upload, addon=None, user=user, property_name='description',
-            property_value=u'fóó', user_agent=user_agent, referrer=referrer)
-        self.create_for_addon_mock.assert_called_once()
-
-    def test_upload_with_addon(self):
-        # Give addon some existing metadata.
-        addon = addon_factory()
-        user = user_factory()
-        upload = self.get_upload('webextension.xpi', addon=addon)
-        # summary is parsed but it's in existing_data - i.e. should have
-        # been spam checked previous it so will be ignored.
-        self.parse_addon_mock.return_value = {
-            'name': u'fóó', 'summary': u'summáry'}
-        user_agent = 'Mr User/Agent'
-        referrer = 'http://foo.baa/'
-        reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, upload=upload,
-            existing_data=[u'summáry'])
-        # only one, no summary because it's in existing data
-        assert len(reports) == 1
-        self.create_for_addon_mock.assert_called_with(
-            upload=upload, addon=addon, user=user, property_name='name',
-            property_value=u'fóó', user_agent=user_agent, referrer=referrer)
-        self.create_for_addon_mock.assert_called_once()
-
-    def test_upload_locales(self):
-        addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
-        user = user_factory()
-        upload = self.get_upload('webextension.xpi', addon=addon)
-        existing_data = utils.fetch_existing_translations_from_addon(
-            addon, ('summary', 'name', 'description'))
-        # check fetch_existing_translations_from_addon worked okay
-        assert existing_data == {str(addon.name), u'¡Ochó!'}
-        self.parse_addon_mock.return_value = {
-            'description': {
-                'en-US': u'fóó',
-                'fr': u'lé foo',
-                'de': '',  # should be ignored because empty
-                'es-ES': u'¡Ochó!'  # ignored because in existing_data
-            },
-            'name': u'just one name',
-            'summary': None,  # should also be ignored because None
-        }
-        user_agent = 'Mr User/Agent'
-        referrer = 'http://foo.baa/'
-        reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, upload=upload,
-            existing_data=existing_data)
-        assert len(reports) == 3
-        assert self.create_for_addon_mock.call_count == 3
-        calls = [
-            mock.call(
-                upload=upload, addon=addon, user=user,
-                property_name='name', property_value=u'just one name',
-                user_agent=user_agent, referrer=referrer),
-            mock.call(
-                upload=upload, addon=addon, user=user,
-                property_name='description', property_value=u'fóó',
-                user_agent=user_agent, referrer=referrer),
-            mock.call(
-                upload=upload, addon=addon, user=user,
-                property_name='description', property_value=u'lé foo',
-                user_agent=user_agent, referrer=referrer)]
-        self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
-
-    def test_addon_update(self):
-        addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
-        user = user_factory()
-        existing_data = utils.fetch_existing_translations_from_addon(
-            addon, ('summary', 'name', 'description'))
-        # check fetch_existing_translations_from_addon worked okay
-        assert existing_data == {str(addon.name), u'¡Ochó!'}
-        cleaned_data = {
-            'description': {
-                'en-US': u'fóó',
-                'fr': u'lé foo',
-                'de': '',  # should be ignored because empty
-                'es-ES': u'¡Ochó!'  # ignored because in exist_data
-            },
-            'name': {
-                'en-GB': u'just one name',
-                'fr': None,
-            },
-        }
-        user_agent = 'Mr User/Agent'
-        referrer = 'http://foo.baa/'
-        reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, addon=addon, data=cleaned_data,
-            existing_data=existing_data)
-        assert len(reports) == 3
-        assert self.create_for_addon_mock.call_count == 3
-        calls = [
-            mock.call(
-                upload=None, addon=addon, user=user,
-                property_name='name', property_value=u'just one name',
-                user_agent=user_agent, referrer=referrer),
-            mock.call(
-                upload=None, addon=addon, user=user,
-                property_name='description', property_value=u'fóó',
-                user_agent=user_agent, referrer=referrer),
-            mock.call(
-                upload=None, addon=addon, user=user,
-                property_name='description', property_value=u'lé foo',
-                user_agent=user_agent, referrer=referrer)]
-        self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
-
-    def test_broken_upload(self):
-        user = user_factory()
-        upload = self.get_upload('webextension.xpi')
-        self.parse_addon_mock.side_effect = ValidationError('foo')
-        user_agent = 'Mr User/Agent'
-        referrer = 'http://foo.baa/'
-        reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, upload=upload)
-        assert reports == []
-        self.create_for_addon_mock.assert_not_called()
-
-
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     'zip_file', (
@@ -479,17 +328,23 @@ def test_wizard_unsupported_properties():
     assert properties == ['extrathing', 'extracolor', 'additionalBackground']
 
 
+@mock.patch('django_statsd.clients.statsd.incr')
 class TestUploadRestrictionChecker(TestCase):
     def setUp(self):
-        self.request = RequestFactory().get('/')
+        self.request = RequestFactory(REMOTE_ADDR='10.0.0.1').get('/')
+        self.request.is_api = False
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
 
-    def test_is_submission_allowed_pass(self):
+    def test_is_submission_allowed_pass(self, incr_mock):
         checker = utils.UploadRestrictionChecker(self.request)
         assert checker.is_submission_allowed()
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.success',)
+        assert not UserRestrictionHistory.objects.exists()
 
-    def test_is_submission_allowed_hasnt_read_agreement(self):
+    def test_is_submission_allowed_hasnt_read_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
@@ -499,22 +354,59 @@ class TestUploadRestrictionChecker(TestCase):
             'The Firefox Add-on Distribution Agreement also links to our '
             'Privacy Notice which explains how we handle your information.'
         )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.DeveloperAgreementRestriction'
+            '.failure',)
+        assert incr_mock.call_args_list[1][0] == (
+            'devhub.is_submission_allowed.failure',)
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == (
+            'DeveloperAgreementRestriction')
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'
 
-    def test_is_submission_allowed_bypassing_read_dev_agreement(self):
+    def test_is_submission_allowed_bypassing_read_dev_agreement(
+            self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
         checker = utils.UploadRestrictionChecker(self.request)
         assert checker.is_submission_allowed(check_dev_agreement=False)
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.success',)
+        assert not UserRestrictionHistory.objects.exists()
 
-    def test_is_submission_allowed_ip_restricted(self):
-        IPNetworkUserRestriction.objects.create(network='127.0.0.0/24')
+    def test_user_is_allowed_to_bypass_restrictions(self, incr_mock):
+        IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
+        self.request.user.update(bypass_upload_restrictions=True)
+        checker = utils.UploadRestrictionChecker(self.request)
+        assert checker.is_submission_allowed()
+        assert not UserRestrictionHistory.objects.exists()
+        assert incr_mock.call_count == 0
+
+    def test_is_submission_allowed_ip_restricted(self, incr_mock):
+        IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
         checker = utils.UploadRestrictionChecker(self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
             'Multiple add-ons violating our policies have been submitted '
             'from your location. The IP address has been blocked.'
         )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.IPNetworkUserRestriction.failure',)
+        assert incr_mock.call_args_list[1][0] == (
+            'devhub.is_submission_allowed.failure',)
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'IPNetworkUserRestriction'
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'
 
-    def test_is_submission_allowed_email_restricted(self):
+    def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(
             email_pattern=self.request.user.email)
         checker = utils.UploadRestrictionChecker(self.request)
@@ -522,4 +414,273 @@ class TestUploadRestrictionChecker(TestCase):
         assert checker.get_error_message() == (
             'The email address used for your account is not '
             'allowed for add-on submission.'
+        )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'devhub.is_submission_allowed.EmailUserRestriction.failure',)
+        assert incr_mock.call_args_list[1][0] == (
+            'devhub.is_submission_allowed.failure',)
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'
+
+
+def test_process_validation_ending_tier_is_preserved():
+    results = {
+        "errors": 0,
+        "success": True,
+        "warnings": 0,
+        "notices": 0,
+        "message_tree": {},
+        "messages": [],
+        "ending_tier": 5,
+        "metadata": {
+            "contains_binary_extension": True,
+            "version": "1.0",
+            "name": "gK0Bes Bot",
+            "id": "gkobes@gkobes"
+        }
+    }
+    data = utils.process_validation(results)
+    assert not data['errors']
+    assert data['ending_tier'] == 5
+
+
+class TestValidator(UploadTest, TestCase):
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_appends_final_task_for_file_uploads(self, mock_chain):
+        final_task = mock.Mock()
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True, final_task=final_task)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+            final_task,
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_appends_final_task_for_files(self, mock_chain):
+        final_task = mock.Mock()
+        file = version_factory(addon=addon_factory()).files.get()
+
+        utils.Validator(file, final_task=final_task)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            tasks.validate_file.s(file.pk),
+            tasks.handle_file_validation_result.s(file.pk),
+            final_task,
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_run_yara_when_enabled(self, mock_chain):
+        self.create_switch('enable-yara', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_yara.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_does_not_add_run_yara_when_disabled(self, mock_chain):
+        self.create_switch('enable-yara', active=False)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_run_customs_when_enabled(self, mock_chain):
+        self.create_switch('enable-customs', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_customs.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_does_not_add_run_customs_when_disabled(self, mock_chain):
+        self.create_switch('enable-customs', active=False)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_run_wat_when_enabled(self, mock_chain):
+        self.create_switch('enable-wat', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_wat.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_does_not_add_run_wat_when_disabled(self, mock_chain):
+        self.create_switch('enable-wat', active=False)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [tasks.forward_linter_results.s(file_upload.pk)],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_yara_and_customs(self, mock_chain):
+        self.create_switch('enable-customs', active=True)
+        self.create_switch('enable-yara', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_yara.s(file_upload.pk),
+                    run_customs.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_adds_all_scanners(self, mock_chain):
+        self.create_switch('enable-customs', active=True)
+        self.create_switch('enable-wat', active=True)
+        self.create_switch('enable-yara', active=True)
+        file_upload = self.get_upload('webextension.xpi',
+                                      with_validation=False)
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        utils.Validator(file_upload, listed=True)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            chord(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    run_yara.s(file_upload.pk),
+                    run_customs.s(file_upload.pk),
+                    run_wat.s(file_upload.pk),
+                ],
+                tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                        channel,
+                                                        False)
+            ),
         )

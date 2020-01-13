@@ -206,7 +206,7 @@ class TestAllowReviewer(TestCase):
         request.user = AnonymousUser()
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda: True
+        obj.has_listed_versions = lambda include_deleted=False: True
 
         assert not self.permission.has_permission(request, myview)
         assert not self.permission.has_object_permission(
@@ -217,7 +217,7 @@ class TestAllowReviewer(TestCase):
         request.user = user_factory()
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda: True
+        obj.has_listed_versions = lambda include_deleted=False: True
         assert self.permission.has_permission(request, myview)
         assert not self.permission.has_object_permission(
             request, myview, obj)
@@ -231,7 +231,7 @@ class TestAllowReviewer(TestCase):
             request.user = user
             obj = Mock(spec=[])
             obj.type = amo.ADDON_EXTENSION
-            obj.has_listed_versions = lambda: True
+            obj.has_listed_versions = lambda include_deleted=False: True
             assert self.permission.has_permission(request, myview)
             assert self.permission.has_object_permission(
                 request, myview, obj)
@@ -241,7 +241,7 @@ class TestAllowReviewer(TestCase):
         self.grant_permission(user, 'ReviewerTools:View')
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda: True
+        obj.has_listed_versions = lambda include_deleted=False: True
 
         for method in self.safe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -264,7 +264,7 @@ class TestAllowReviewer(TestCase):
         self.grant_permission(user, 'Addons:Review')
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda: True
+        obj.has_listed_versions = lambda include_deleted=False: True
 
         for method in self.safe_methods + self.unsafe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -289,7 +289,7 @@ class TestAllowReviewer(TestCase):
         self.grant_permission(user, 'Addons:PostReview')
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda: True
+        obj.has_listed_versions = lambda include_deleted=False: True
 
         for method in self.safe_methods + self.unsafe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -314,7 +314,7 @@ class TestAllowReviewer(TestCase):
         self.grant_permission(user, 'Addons:ThemeReview')
         obj = Mock(spec=[])
         obj.type = amo.ADDON_STATICTHEME
-        obj.has_listed_versions = lambda: True
+        obj.has_listed_versions = lambda include_deleted=False: True
 
         for method in self.safe_methods + self.unsafe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -339,7 +339,7 @@ class TestAllowReviewer(TestCase):
         self.grant_permission(user, 'Addons:Review')
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda: False
+        obj.has_listed_versions = lambda include_deleted=False: False
 
         for method in self.safe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -410,7 +410,7 @@ class TestAllowAnyKindOfReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: True
+        obj.has_unlisted_versions = lambda include_deleted=False: True
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -435,7 +435,7 @@ class TestAllowUnlistedReviewer(TestCase):
     def test_user_cannot_be_anonymous(self):
         self.request.user = AnonymousUser()
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: True
+        obj.has_unlisted_versions = lambda include_deleted=False: True
         assert not self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(
             self.request, myview, obj)
@@ -443,7 +443,7 @@ class TestAllowUnlistedReviewer(TestCase):
     def test_authenticated_but_not_reviewer(self):
         self.request.user = user_factory()
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: True
+        obj.has_unlisted_versions = lambda include_deleted=False: True
         assert not self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(
             self.request, myview, obj)
@@ -452,7 +452,7 @@ class TestAllowUnlistedReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, '*:*')
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: True
+        obj.has_unlisted_versions = lambda include_deleted=False: True
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -461,7 +461,7 @@ class TestAllowUnlistedReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, 'Addons:Review')
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: True
+        obj.has_unlisted_versions = lambda include_deleted=False: True
 
         assert not self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(
@@ -471,7 +471,7 @@ class TestAllowUnlistedReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: True
+        obj.has_unlisted_versions = lambda include_deleted=False: True
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -480,8 +480,8 @@ class TestAllowUnlistedReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: False
-        obj.has_listed_versions = lambda: True
+        obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_listed_versions = lambda include_deleted=False: True
 
         assert self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(
@@ -491,8 +491,8 @@ class TestAllowUnlistedReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda: False
-        obj.has_listed_versions = lambda: False
+        obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_listed_versions = lambda include_deleted=False: False
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(

@@ -24,8 +24,7 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.amo.utils import days_ago
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION,
-    ADDON_PERSONA
+    ADDON_EXTENSION, ADDON_STATICTHEME
 )
 from olympia.devhub.forms import icons
 from olympia.landfill.collection import generate_collection
@@ -34,6 +33,7 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
 from olympia.discovery.models import DiscoveryItem
+from olympia.hero.models import PrimaryHero, SecondaryHero
 
 from .version import generate_version
 
@@ -100,14 +100,22 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 })
             AddonUser.objects.create(
                 user=user_factory(), addon=addon)
-            DiscoveryItem.objects.create(
-                recommendable=True, addon=addon)
+            item = DiscoveryItem.objects.create(
+                addon=addon, recommendable=True)
+
+            PrimaryHero.objects.create(disco_addon=item)
+            SecondaryHero.objects.create(
+                enabled=True,
+                headline="This is a headline",
+                description="Hero Description")
+            item.addon.current_version.update(recommendation_approved=True)
+            item.primaryhero.update(enabled=True)
 
     def create_generic_featured_themes(self):
         for _ in range(10):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
-                type=ADDON_PERSONA,
+                type=ADDON_STATICTHEME,
                 version_kw={
                     'recommendation_approved': True,
                     'nomination': days_ago(6)
@@ -322,7 +330,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         addon = addon_factory(
             status=amo.STATUS_APPROVED,
-            type=ADDON_PERSONA,
+            type=ADDON_STATICTHEME,
             average_daily_users=4242,
             users=[self.user],
             average_rating=5,
@@ -379,7 +387,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(6):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
-                type=ADDON_PERSONA,
+                type=ADDON_STATICTHEME,
                 file_kw={
                     'is_webextension': True
                 },

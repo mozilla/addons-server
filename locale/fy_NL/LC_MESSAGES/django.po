@@ -2,13 +2,13 @@
 # Copyright (C) 2006 Mozilla Corporation
 # This file is distributed under the same license as the REMORA package.
 # Wil Clouser <clouserw@mozilla.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-07-02 11:53+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-12-18 07:17+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "type"
 
 msgid "Users"
 msgstr "Brûkers"
@@ -29,7 +29,7 @@ msgid "Addons"
 msgstr "Add-ons"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "minimum oantal rapporten (groepearre op guid)"
 
 msgid "creation date"
 msgstr "oanmaakdatum"
@@ -41,31 +41,34 @@ msgid "Distribution"
 msgstr "Sprieding"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Lân fan melder"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Uttreksel berjocht"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "De %d selektearre rapporten binne as jildich markearre."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "De %d selektearre rapporten binne as fertocht markearre."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Selektearre misbrûkrapporten as fertocht markearje"
 
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Soargje derfoar dat dit fjild net mear as {max_length} tekens befettet."
+
 msgid "Modified on:"
-msgstr ""
+msgstr "Wizige:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Per %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 msgid "No links are allowed."
 msgstr "Keppelingen binne net tastien."
@@ -77,7 +80,7 @@ msgid "This reviewer name cannot be used."
 msgstr "Dizze beoardielersnamme kin net brûkt wurde."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "It startsidefjild mei allinnich brûkt wurde foar keppelingen nei eksterne websites."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
@@ -109,7 +112,7 @@ msgstr "Untwikkelers fan add-ons of tema’s kinne harren account net fuortsmite
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Notifikaasje [%s] bestiet net"
 
 msgid "Review"
 msgstr "Beoardieling"
@@ -141,53 +144,6 @@ msgstr "Paden nei add-ons en kolleksjes moatte mei ‘/’ einigje"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nammen fan add-ons meie de Mozilla- of Firefox-hannelsmerken net befetsje."
-
-msgid "Awaiting Review"
-msgstr "Wacht op beoardieling"
-
-msgid "Rejected"
-msgstr "Ofwezen"
-
-msgid "Approved"
-msgstr "Goedkard"
-
-msgid "Added {0}"
-msgstr "Tafoege op {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> brûker"
-msgstr[1] "<strong>{0}</strong> brûkers"
-
-msgid "Hover to Preview"
-msgstr "Wiis oan foar foarbyld"
-
-msgid "Add"
-msgstr "Tafoegje"
-
-msgid "Edit"
-msgstr "Bewurkje"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "troch {0} op {1}"
-
-msgid "Not yet rated"
-msgstr "Noch net wurdearre"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> brûkers"
-
-msgid "by"
-msgstr "troch"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} deistige brûker"
-msgstr[1] "{0} deistige brûkers"
 
 msgid "Sort by:"
 msgstr "Sortearje op:"
@@ -241,11 +197,11 @@ msgid "Admin Tools"
 msgstr "Behearark"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Posityf hiel getal"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Dit fjild mei allinnich brûkt wurde foar keppelingen nei eksterne websites. URL’s op %(domain)s binne net tastien."
 
 msgid "Incorrect, please try again."
 msgstr "Net krekt, probearje it opnij."
@@ -254,10 +210,10 @@ msgid "Error verifying input, please try again."
 msgstr "Flater by kontrolearjen ynfier, probearje it opnij."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Fier in jildich IP4- of IP6-netwurk yn."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
@@ -281,14 +237,20 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Jo sjogge dit berjocht omdat dizze HTTPS-website it ferstjoeren fan in ‘Referer header’ troch jo webbrowser fereasket, mar dizze net ferstjoerd is. Dizze header is om befeiligingsredenen fereaske om"
+" wis te wêzen dat jo browser net troch tredden hackt wurdt."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"As jo jo browser sa konfigurearre hawwe dat ‘Referer’-headers útskeakele binne, skeakelje dizze dan wer yn, op syn minst foar dizze website, of foar HTTPS-ferbiningen, of foar ‘same-"
+"origin’-oanfragen."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Jo sjogge dit berjocht omdat dizze website in CSRF-cookie fereasket by it ferstjoeren fan formulieren. Dizze cookie is om befeiligingsredenen fereaske om wis te wêzen dat jo browser net troch "
+"tredden hackt wurdt."
 
 msgid "Page Not Found"
 msgstr "Side net fûn"
@@ -323,16 +285,16 @@ msgstr "Net fûn"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>It spyt ús, mar wy kinne net fine wêr't jo nei sykje.</h1> <p>De troch jo oanfrege side of bestân is net op ús website oantroffen. Mooglik hawwe jo op in ferâldere keppeling klikt, of it adres "
-"ferkeard yntypt.</p> <ul> <li>As jo it adres yntypt hawwe, kontrolearje dan de stavering nochris.</li> <li>As jo in keppeling earne fan folge hawwe, %(open_bug_link)smeld dan it probleem"
-"%(close_bug_link)s. Fertel ús wêr't jo fan kamen en wat jo sochten, en wy sille probearje it probleem op te lossen.</li> </ul> <p>Jo kinne ek gewoanwei nei inkelde populêre siden op ús website "
-"springe.</p> <ul> <li>Binne jo ynteressearre yn in <a href=\"%(rec)s\">list mei oanrekommandearre add-ons</a>?</li> <li>Wolle jo nei <a href=\"%(search)s\">add-ons sykje</a>? Jo kinne nei de <a "
-"href=\"%(search)s\">sykside</a> gean of gewoanwei boppesteand sykfjild brûke.</li> <li>As jo leaver opnij begjinne, gean dan nei de <a href=\"%(home)s\">startside foar add-ons</a>.</li> </ul>"
+"ferkeard yntypt.</p> <ul> <li>As jo it adres yntypt hawwe, kontrolearje dan de stavering nochris.</li> <li>As jo in keppeling earne fan folge hawwe, %(open_bug_link)smeld dan it "
+"probleem%(close_bug_link)s. Fertel ús wêr't jo fan kamen en wat jo sochten, en wy sille probearje it probleem op te lossen.</li> </ul> <p>Jo kinne ek gewoanwei nei inkelde populêre siden op ús "
+"website springe.</p> <ul> <li>Binne jo ynteressearre yn in <a href=\"%(rec)s\">list mei oanrekommandearre add-ons</a>?</li> <li>Wolle jo nei <a href=\"%(search)s\">add-ons sykje</a>? Jo kinne nei de"
+" <a href=\"%(search)s\">sykside</a> gean of gewoanwei boppesteand sykfjild brûke.</li> <li>As jo leaver opnij begjinne, gean dan nei de <a href=\"%(home)s\">startside foar add-ons</a>.</li> </ul>"
 
 msgid "Oops"
 msgstr "Oeps"
@@ -340,9 +302,6 @@ msgstr "Oeps"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>Oeps! Der is in flater bard.</h1> <p>Dat sille wy fluch reparearje</p> <p>Jo kinne probearje de side te fernijen, of weromgean nei de <a href=\"%(home)s\">startside fan Add-ons</a>.</p>"
-
-msgid "Some rights reserved"
-msgstr "Guon rjochten foarbehâlden"
 
 msgid "No results found"
 msgstr "Gjin resultaten fûn"
@@ -426,9 +385,6 @@ msgstr "Add-ons foar {0}"
 msgid "Add-ons"
 msgstr "Add-ons"
 
-msgid "Custom License"
-msgstr "Oanpaste lisinsje"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} lyn"
@@ -458,7 +414,7 @@ msgid "Error decoding signature."
 msgstr "Flater by dekodearjen ûndertekening."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Ien of mear kaaien yn de payload binne fan it ferkearde type"
 
 msgid "Invalid JWT Token."
 msgstr "Unjildich JWT-token."
@@ -481,6 +437,9 @@ msgstr "Jo moatte in objekt fan {lang-code:value} opjaan."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Unjildige pk of identifikator ‘%s’ - objekt bestiet net."
+
+msgid "Confirmation for developer API keys"
+msgstr "Befêstiging foar API-kaaien foar ûntwikkelers"
 
 msgid "Application Versions"
 msgstr "Tapassingsferzjes"
@@ -508,14 +467,11 @@ msgstr "Ferzjes"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"As jo stipe tapassing gjin manifest-bestân fereasket, dan moatte jo der noch hieltyd ien tafoegje mei de fereaske eigenskippen lykas %(amo_manifests_mdn_link_open)shjir"
-"%(amo_manifests_mdn_link_close)s spesifisearre."
-
-msgid "The text entered has been flagged as spam."
-msgstr ""
+"As jo stipe tapassing gjin manifest-bestân fereasket, dan moatte jo der noch hieltyd ien tafoegje mei de fereaske eigenskippen lykas "
+"%(amo_manifests_mdn_link_open)shjir%(amo_manifests_mdn_link_close)s spesifisearre."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dizze oanpaste URL wurdt al troch ien fan jo oare kolleksje brûkt."
@@ -586,6 +542,9 @@ msgstr "Bestân {0} út {version} fan {addon} fuortsmiten."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} goedkard."
 
+msgid "Approved"
+msgstr "Goedkard"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} is foarearst beoardiele."
 
@@ -594,6 +553,9 @@ msgstr "Foarearst beoardiele"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ôfwêzen."
+
+msgid "Rejected"
+msgstr "Ofwezen"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} behâlde."
@@ -845,6 +807,9 @@ msgstr "Temabeoardieling troch admin oanfrege"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} is migrearre fan in ljochtgewicht tema ôf."
 
+msgid "User {user} api key reset."
+msgstr "Api-kaai foar brûker {user} opnij inisjalisearre."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -872,17 +837,14 @@ msgstr "Unbekend"
 msgid "Incomplete"
 msgstr "Net folslein"
 
+msgid "Awaiting Review"
+msgstr "Wacht op beoardieling"
+
 msgid "Disabled by Mozilla"
 msgstr "Utskeakele troch Mozilla"
 
 msgid "Deleted"
 msgstr "Fuortsmiten"
-
-msgid "Pending approval"
-msgstr "Wacht op goedkarring"
-
-msgid "Flagged for further review"
-msgstr "Markearre foar fierdere beoardieling"
 
 msgid "Unlisted"
 msgstr "Net fermeld"
@@ -915,8 +877,8 @@ msgstr "Taalpakket (add-on)"
 msgid "Plugin"
 msgstr "Ynstekker"
 
-msgid "Theme"
-msgstr "Tema"
+msgid "Deprecated LWT"
+msgstr "Ferâldere LWT"
 
 msgid "Theme (Static)"
 msgstr "Tema (statysk)"
@@ -945,8 +907,8 @@ msgstr "Taalpakketten (add-on)"
 msgid "Plugins"
 msgstr "Ynstekkers"
 
-msgid "Themes"
-msgstr "Tema’s"
+msgid "Deprecated LWTs"
+msgstr "Ferâldere LWT’s"
 
 msgid "Themes (Static)"
 msgstr "Tema's (statysk)"
@@ -956,136 +918,142 @@ msgstr "Warskôgingen en fernijingen"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Download Firefox-útwreidingen dy't jo helpe by-de-tiid te bliuwen, taken te folgjen en jo effisjinsje te ferbetterjen. Sykje útwreidingen dy't ljepblêden opnij lade, produktiviteit beheare, en mear."
 
 msgid "Appearance"
 msgstr "Foarmjouwing"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Download útwreidingen dy't de werjefte fan websites en de browser Firefox oanpasse. Dizze kategory omfettet útwreidingen foar donkere tema’s, ljepblêdbehear, en mear."
 
 msgid "Bookmarks"
 msgstr "Blêdwizers"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Download útwreidingen dy't blêdwizers ferbetterje troch se mei in wachtwurd te befeiligjen, nei dûbele of defekte blêdwizers te sykjen, en mear."
 
 msgid "Download Management"
 msgstr "Downloadbehear"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen dy't helpe kinne mei downloaden fan web-, muzyk- en fideo-ynhâld. Jo kinne ek útwreidingen fine om downloads te behearen, bestannen te dielen, en mear."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds, nijs en blogging"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen dy't fersteuringen opromje, sadat jo by-de-tiid bliuwe kinne by sosjale media, blogs en RSS-feeds folgje kin, eachfermoeidheid tsjingean kinne, en mear."
 
 msgid "Games & Entertainment"
 msgstr "Spultsjes en amusemint"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
+"Download Firefox-útwreidingen om jo entertainmentûnderfining te ferbetterjen. Dizze kategory omfettet útwreidingen dy't it spyljen fan spultsjes ferbetterje, ôfspyljen fan fideo’s beheare, en mear."
 
 msgid "Language Support"
 msgstr "Taalstipe"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen dy't taalstipe biede, lykas grammatikakontrôle, wurdsykjen, tekstoersetting, tekst-nei-spraak, en mear."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto’s, muzyk en fideo’s"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen dy't jo ûnderfining fan foto’s, muzyk en fideo ferbetterje. Utwreidingen yn dizze kategory passe audio en fideo oan, biede omkeard ôfbylding sykje, en mear."
 
 msgid "Privacy & Security"
 msgstr "Privacy en befeiliging"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Download Firefox-útwreidingen om privee en feilich te navigearjen. Dizze kategory omfettet útwreidingen om ferfelende advertinsjes te blokkearjen, folgjen foar te kommen, trochstjoeringen te "
+"behearen, en mear."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om te sykjen. Dizze kategory omfettet útwreidingen dy't tekst markearret en siket, IP-adressen/domeinen opsiket, en mear."
 
 msgid "Shopping"
 msgstr "Winkelje"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Dowload Firefox-útwreidingen dy't jo online winkelbelibbing ferbetteret mei kortingsbonsikers, oanbiedingssikers, beoardielingsanalyses, en mear."
 
 msgid "Social & Communication"
 msgstr "Sosjaal en kommunikaasje"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om sosjale media en chatten te ferbetterjen. Dizze kategory omfettet ferbettere ljepblêdnotifikaasjes, fideodownloaders, en mear."
 
 msgid "Tabs"
 msgstr "Ljepblêden"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om ljepblêden en de nij-ljepblêdside oan te passen. Untdek útwreidingen dy't ljepblêden oanstjoere kinne, de manier wêrop jo dermei omgean wizigje, en mear."
 
 msgid "Web Development"
 msgstr "Webûntwikkeling"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen mei webûntwikkelhelpmiddelen. Dizze kategory omfettet útwreidingen foar GitHub, wikseljen fan user agent, cookiebehear, en mear."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Oars"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Download Firefox-útwreidingen dy't ûnfoarspelber en kreatyf wêze kinne, mar wol handich binne foar dat soarte fan ûngebrûklike taken."
 
 msgid "Device Features & Location"
 msgstr "Apparaatfunksjes en -lokaasje"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Download útwreidingen om Firefox foar Android te ferbetterjen. Fier flugge sykopdrachten út, skjin it systeem op, meitsje notysjes, en mear."
 
 msgid "Experimental"
 msgstr "Eksperiminteel"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Download Firefox-útwreidingen dy't regelmjittich bywurke wurde en ree binne foar testen troch it publyk. Jo kommentaar ynformearret ûntwikkelers oer wizigingen dy't se yn kommende ferzjes meitsje "
+"kinne."
 
 msgid "Performance"
 msgstr "Prestaasjes"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Download útwreidingen dy't Firefox in prestaasjeboost jaan. Fyn útwreidingen dy't jo helpe produktiver en effisjinter te wêzen troch ferfelende advertinsjes te blokkearjen en mear."
 
 msgid "Photos & Media"
 msgstr "Foto’s en media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om foto's en media te ferbetterjen. Dizze kategory omfettet útwreidingen foar omkeard sykjen fan ôfbyldingen, it meitsjen fan folsleine skermôfdrukken, en mear."
 
 msgid "Security & Privacy"
 msgstr "Befeiliging en privacy"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om feilich en privee te sneupen. Untdek útwreidingen dy't stikeme advertinsjetrackers stopje kinne, maklik sneupskiednis wiskje kinne, en mear."
 
 msgid "Social Networking"
 msgstr "Sosjale netwurken"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om jo ûnderfining op populêre websites foar sosjale netwurken lykas YouTube, GitHub, Reddit, en mear te ferbetterjen."
 
 msgid "Sports & Games"
 msgstr "Sport en spul"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen om jo ferdivedaasjeûnderfining in ympuls te jaan mei livestreamferbettering, sportupdates, en mear."
 
 msgid "User Interface"
 msgstr "Brûkersinterface"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Download Firefox-útwreidingen foar jo brûkersynterface om websiden te wizigjen foar makliker lêzen, sykjen, sneupen, en mear."
 
 msgid "Animals"
 msgstr "Bisten"
@@ -1118,79 +1086,79 @@ msgid "Abstract"
 msgstr "Abstrakt"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Download Firefox artistike en konseptuele tema's. Dizze kategory omfettet kleurige paletten en foarmen, fantasy-lânskippen, boartlike katten, psychedelyske blommen."
 
 msgid "Causes"
 msgstr "Goede doelen"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Download Firefox-tema's foar bysûndere ynteressen en ûnderwerpen. Dizze kategory omfettet sporttema's, fakânsjes, filantropyske oarsaken, nasjonaliteiten, en noch folle mear."
 
 msgid "Fashion"
 msgstr "Moade"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Download Firefox-tema's dy't fan alle stylfoarmen fiere – patroanen, blomfoarmen, tekstueren, modellen en mear."
 
 msgid "Film and TV"
 msgstr "Film en telefyzje"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei films en telefyzje. Dizze kategory omfettet anime lykas Uchiha Madara, films lykas The Matrix, searjes (Game of Thrones), en mear."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Download Firefox-tema's mei it Firefox-browsertema. Dizze kategory omfettet kleurige, ferskate ôfbyldingen fan it Firefox-logo, ynklusyf mear algemiene foks-tema's."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Download Firefox-tema's mei de Japanske Firefox. Dizze kategory omfettet tema's dy't de aardige Foxkeh-maskotte yn ferskate poazen op ferskate lânskippen werjaan."
 
 msgid "Holiday"
 msgstr "Fakânsje"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei fakânsjes. Dizze kategory omfettet Kryst, Halloween, Thanksgiving, Sint Patricks Dei, Peaske, 4 july, en mear."
 
 msgid "Music"
 msgstr "Muzyk"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Download Firefox-tema's foar muzikale ynteressen en artysten. Dizze kategory omfettet populêre bands lykas Nirvana en BTS, ynstruminten, muzykfideo's, en folle mear."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei bisten en natuerlike lânskippen. Dizze kategory omfettet blommen, sinneûndergongen, foksen, seizoenen, planeten, katten, fûgels, en mear."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Download ynteressante, kreative en unike Firefox-tema's."
 
 msgid "Scenery"
 msgstr "Lânskip"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei de omjouwing en de natuer. Dizze kategory omfettet sinneûndergongen, strannen, yllustraasjes, stêdsgesichten, en mear."
 
 msgid "Seasonal"
 msgstr "Seizoensbûn"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Download Firefox-tema's foar alle fjouwer seizoenen — hjerst, winter, maitiid en simmer. Hjerstblêden, sniewite berchtoppen, sinnige simmerdagen, en maitiidsblommen."
 
 msgid "Solid"
 msgstr "Fêst"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Download Firefox-tema's mei solide en skakearde kleuren om jo browser te personalisearjen. Dizze kategory omfettet fet read, pastelkleuren, sêft griis, en noch folle mear."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Download Firefox-tema's mei in ferskaat oan sporten. Dizze kategory omfettet lânflaggen, sportteams, fuotbal, hockey, en mear."
 
 msgid "Websites"
 msgstr "Websites"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Download Firefox-tema's dy't de essinsje fan it web fêstlizze — boeiend, ûngewoan en bysûnder."
 
 msgid "General"
 msgstr "Algemien"
@@ -1446,6 +1414,13 @@ msgstr "Ofbylding fan lege kwaliteit, oprekt of leech"
 msgid "Header image alignment problem"
 msgstr "Probleem mei útrjochtsjen headerôfbylding"
 
+#, fuzzy
+msgid "no action"
+msgstr "Mear aksjes"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "Kearn"
 
@@ -1457,7 +1432,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Resinte wizigingen foar myn add-ons"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Ferâldere útwreidingen wurde yn Firefox net mear stipe."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Add-ons foar Thunderbird en SeaMonkey wurde no fermeld en ûnderhâlden op addons.thunderbird.net. Foar it bywurkjen fan jo add-ons op de nije website kinne jo deselde account brûke."
@@ -1466,9 +1441,6 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 "Wy stean in fernijing ta en riede dit ek oan, mar jo kinne dit proses net ûngedien meitsje. As jo brûkers de WebExtension ien kear ynstallearre hawwe, kinne se gjin ferâldere add-on mear "
 "ynstallearje."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Dizze identifikator wurdt al brûkt. Kies in oar."
@@ -1523,14 +1495,20 @@ msgstr "URL-domein moat ta [%s] hearre of in subdomein wêze."
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Eardat jo jo standertlocale wizigje, moatte jo in namme, gearfetting en beskriuwing foar dy locale yn jaan. %s ûntbrekt."
 
+msgid "Users can not be added directly"
+msgstr "Brûkers kinne net direkt tafoege wurde"
+
+msgid "An author can only be present once."
+msgstr "In skriuwer kin mar ien kear fermeld wurde."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "De account hat inskermnamme nedich foardat dizze as auteur tafoege wurde kin."
+
 msgid "Must have at least one owner."
 msgstr "Der moat op syn minst ien eigener wêze."
 
 msgid "At least one author must be listed."
 msgstr "Der moat op syn minst ien skriuwer fermeld wurde."
-
-msgid "An author can only be listed once."
-msgstr "In skriuwer kin mar ien kear fermeld wurde."
 
 msgid "Slug incorrect."
 msgstr "Koade net krekt."
@@ -1540,6 +1518,9 @@ msgstr "Details"
 
 msgid "What is your license's name?"
 msgstr "Wat is de namme fan jo lisinsje?"
+
+msgid "Custom License"
+msgstr "Oanpaste lisinsje"
 
 msgid "Provide the text of your license."
 msgstr "Jou de tekst fan jo lisinsje."
@@ -1584,7 +1565,7 @@ msgid "Need to select at least one application."
 msgstr "Jo moatte op syn minst ien tapassing selektearje."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Jo hawwe koartlyn te folle oplaads yntsjinne. Probearje it nei in skoft opnij."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Ferzje {version} is earder al opladen fuortsmiten."
@@ -1605,27 +1586,26 @@ msgid "You have not uploaded a source file."
 msgstr "Jo hawwe gjin boarnebestân opladen."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Boarnebestân opladen, mar jo hawwe oanjûn dat der gjin boarne nedich wie."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Soargje derfoar dat namme en gearfetting tegearre op syn heechst {limit_value} tekens bestiet (se hawwe no {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 "Op dizze website. <span class=\"helptext\">Nei suksesfolle beoardieling fan de koade wurdt jo ynstjoering foar miljoenen brûkers op dizze website en yn de Add-onbehearder fan Firefox fermeld. "
-"Automatyske fernijingen wurde troch dizze website fersoarge. Dizze add-on komt ek yn oanmerking foar Mozilla-promoasjes en -wedstriden. Eigen distribúsje fan de beoardiele bestannen is ek mooglik.</"
-"span>"
+"Automatyske fernijingen wurde troch dizze website fersoarge. Dizze add-on komt ek yn oanmerking foar Mozilla-promoasjes en -wedstriden. Eigen distribúsje fan de beoardiele bestannen is ek "
+"mooglik.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Op dy fan josels. <span class=\"helptext\">Jo ynstjoering wurdt daliks ûndertekene foar eigen distribúsje. Fernijingen moatte troch josels fersoarge wurde fia in fernijings-URL of eksterne "
 "tapassingsfernijingen.</span>"
 
 msgid "Display Name"
-msgstr ""
+msgstr "Werjeftenamme"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategoryen kinne net wizige wurde as jo add-on foarsteld wurdt."
@@ -1694,10 +1674,22 @@ msgstr "URL-namme net krekt. Tema is net fuortsmiten."
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL-namme net krekt. Add-on is net fuortsmiten."
 
+msgid "Invitation accepted."
+msgstr "Utnûging akseptearre."
+
+msgid "Invitation declined."
+msgstr "Utnûging wegere."
+
 msgid "An author has been added to your add-on"
 msgstr "Der is in skriuwer oan jo add-on tafoege"
 
-msgid "An author has a role changed on your add-on"
+msgid "Author invitation for {addon_name}"
+msgstr "Auteurútnûging foar {addon_name}"
+
+msgid "A confirmation email has been sent to {email}"
+msgstr "Der is in befêstigingsberjocht ferstjoerd nei {email}"
+
+msgid "An author role has been changed on your add-on"
 msgstr "In skriuwer hat in wizige rol foar jo add-on"
 
 msgid "An author has been removed from your add-on"
@@ -1725,13 +1717,13 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Piktogram moat op syn minst {0} piksels breed en heech wêze."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Piktogram moat fjouwerkant wêze (deselde breedte en hichte)."
 
 msgid "There was an error uploading your preview."
 msgstr "Der is in flater bard by it opladen fan jo foarbyld."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "De lêste goedkarre ferzje fan in oanrekommandearre útwreiding kin net fuortsmiten of útskeakele wurde. Nim kontakt op mei AMO-behearders as jo hjir help by nedich hawwe."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1790,9 +1782,6 @@ msgstr "Beoardieling oanfrege."
 msgid "You must provide further details to proceed."
 msgstr "Jo moatte mear details opjaan om fierder te gean."
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Jo âlde referinsjes binne ynlutsen en net mear jildich. Soargje derfoar dat jo alle API-clients bywurkje mei de nije referinsjes."
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Jo âlde oanmeldgegevens binne ynlutsen en binne net mear jildich."
 
@@ -1815,7 +1804,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ik haw dizze Oerienkomst en de Rigels en it Belied lêzen en akseptearje dizze"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Jo account hat in werjeftenamme nedich, sadat brûkers witte fan wa't jo add-on ôfkomstich is. Fier der hjirûnder ien yn."
 
 msgid "Accept"
 msgstr "Akseptearje"
@@ -1849,6 +1838,9 @@ msgstr "Dokumintaasje"
 
 msgid "Extension Development"
 msgstr "Utwreidingsûntwikling"
+
+msgid "Themes"
+msgstr "Tema’s"
 
 msgid "Developer Policies"
 msgstr "Untwikkelersbelied"
@@ -1928,9 +1920,7 @@ msgstr ""
 "fan dizze add-on op te laden."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibiliteit bywurkje</a> <a href=\"%(version_url)s\" class=\"button\">Nije ferzje oplade</a> of <a href=\"#\" "
 "class=\"close\">Negearje</a>"
@@ -1996,7 +1986,7 @@ msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> tema’s"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Produktside bewurkje"
 
 msgid "None"
 msgstr "Gjin"
@@ -2010,6 +2000,18 @@ msgstr "Foarbyld fan fermelde ferzje"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Foarbyld wurdt noch oanmakke - kom letter werom of ferfarskje de side."
 
+msgid "You have been invited to become an author of {addon_name}."
+msgstr "Jo binne útnûge om in skriuwer te wurden fan {addon_name}."
+
+msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
+msgstr "As jo de útnûging akseptearje, krije jo tagong om de add-on te bewurkjen en wurdt jo namme mooglik werjûn yn de skriuwerslist op de website. "
+
+msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr "Klik hjirûnder op de knop Akseptearje om te befêstigjen dat jo tafoege wurde wolle as auteur foar {addon_name}."
+
+msgid "Decline"
+msgstr "Wegerje"
+
 msgid "Manage Authors & License"
 msgstr "Skriuwers en lisinsje beheare"
 
@@ -2018,6 +2020,12 @@ msgstr "Skriuwers"
 
 msgid "About author roles"
 msgstr "Oer ûntwikkelersfunksjes"
+
+msgid "Authors pending confirmation"
+msgstr "Auteurs wachtsje op befêstiging"
+
+msgid "Authors that have been added to this add-on but haven't confirmed."
+msgstr "Auteurs dy't oan dizze add-on tafoege binne, mar noch net befêstige hawwe."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2029,6 +2037,9 @@ msgstr ""
 
 msgid "Additional Details"
 msgstr "Oanfoljende details"
+
+msgid "Edit"
+msgstr "Bewurkje"
 
 msgid "Additional Details for {0}"
 msgstr "Oanfoljende details foar {0}"
@@ -2087,6 +2098,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"De gearfetting moat útlizze wat jo add-on docht, dúdlik en konkreet. Sawol de namme as de gearfetting sille ferskine op jo produktside en yn sykresultaten. Se hawwe in kombinearre maksimale lingte "
+"fan 70 karakters en in minimale lingte fan 2 tekens foar elk."
 
 msgid "Summary"
 msgstr "Gearfetting"
@@ -2128,32 +2141,30 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr "Finkje dit fekje oan as de basisfunksjes fan dizze add-on in bepaalde foarm fan betelling foarôf oan of nei in proefperioade fereasket om wurkje te kinnen."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr "Dizze add-on fereasket betelling, net-fergese tsjinsten of software, of oanfoljende hardware."
+msgstr "Dizze add-on fereasket betelling, net-fergeze tsjinsten of software, of oanfoljende hardware."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "Dizze add-on fereasket gjin oanfoljende betellingen, net-fergese tsjinsten of software, of oanfoljende hardware."
+msgstr "Dizze add-on fereasket gjin oanfoljende betellingen, net-fergeze tsjinsten of software, of oanfoljende hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Kategoryen binne de ferneamdste manier wêrop brûkers troch add-ons blêdzje. Kies der ien dy't de funksjonaliteit fan jo add-on yn de measte gefallen beskriuwt."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Kategoryen kinne net wizige wurde as jo add-on foar dizze tapassing oanrekommandearre wurdt. Stjoer in e-mailberjocht nei <a href=\"mailto:%(email)s\">%(email)s</a> as jo in reden hawwe om jo "
 "kategoryen te wizigjen."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
-"Kategoryen kinne net wizige wurde as jo add-on oanrekommandearre wurdt. Stjoer in e-mailberjocht nei <a href=\"mailto:%(email)s\">%(email)s</a> as jo in reden hawwe om jo kategoryen te wizigjen."
+msgstr "Kategoryen kinne net wizige wurde as jo add-on oanrekommandearre wurdt. Stjoer in e-mailberjocht nei <a href=\"mailto:%(email)s\">%(email)s</a> as jo in reden hawwe om jo kategoryen te wizigjen."
 
 msgid "Email"
 msgstr "E-mailadres"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "As jo in e-mailadres foar stipefragen werjaan wolle, fier it hjir dan yn. As jo ferskate adressen foar elke taal hawwe kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar "
 "fermelde add-ons."
@@ -2188,18 +2199,6 @@ msgstr ""
 "Alle ynformaasje dêr't brûkers mooglik yn ynteressearre binne dy't net needsaaklikerwize fan tapassing is op de gearfetting of beskriuwing fan de add-on. Wurdt faaks brûkt foar in list mei bekende "
 "bugs, ynformaasje oer hoe't bugs meld wurde kinne, de ferwachte publikaasjedatum fan in nije ferzje, ensfh. Allinnich relevant foar fermelde add-ons."
 
-msgid "View Source?"
-msgstr "Boarne besjen?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Of de boarnekoade fan jo add-on yn ús online werjefte werjûn wurde kin. Allinnich relevant foar fermelde add-ons."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "De boarnekoade fan dizze add-on mei ynsjoen wurde."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Nee, de boarnekoade fan dizze add-on is net beskikber foar it publyk."
-
 msgid "Public Stats?"
 msgstr "Publike statistiken?"
 
@@ -2228,8 +2227,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist "
-"oare behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
+"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
+" behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 msgid "Add-on Media for {0}"
 msgstr "Add-onmedia foar {0}"
@@ -2263,7 +2262,7 @@ msgstr "Brûkt op de add-on-detailsiden."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128 px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr "Wurdt standert brûkt op takomstige add-on-detailsiden."
@@ -2272,10 +2271,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Oanpaste piktogram oplade…"
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG en JPG wurde stipe."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Piktogrammen moatte fjouwerkant wêze en in minimale grutte fan 128x128 piksels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Piktogrammen wurde ferlytse oant 128x128 piksels wannear grutter."
@@ -2293,7 +2292,7 @@ msgid "Add a Screenshot..."
 msgstr "In skermôfbylding tafoegje…"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG en JPG wurde stipe, PNG wurdt oanrekommandearre. De maksimale en oanrekommandearre grutte foar skermôfbyldingen is 2400x1800 piksels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr ""
@@ -2359,8 +2358,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
-"Troch jo add-on fuort te smiten wurde alle ferzjes en bestannen dy't jo foar dizze add-on yntsjinne hawwe foar altyd fuortsmiten, fermeld of net. De add-on-ID bliuwt noch wol oan jo account "
-"keppele, sadat oaren gjin ferzjes fia deselde ID yntsjinje kinne."
+"Troch jo add-on fuort te smiten wurde alle ferzjes en bestannen dy't jo foar dizze add-on yntsjinne hawwe foar altyd fuortsmiten, fermeld of net. De add-on-ID bliuwt noch wol oan jo account keppele,"
+" sadat oaren gjin ferzjes fia deselde ID yntsjinje kinne."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Fier de folgjende tekst yn om jo beslissing te befêstigjen: {slug}"
@@ -2488,7 +2487,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr "Is der earne wat ús beoardielers yn tinzen hâlde moatte by de beoardieling fan dizze add-on?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Unthâlde"
 
 #, python-format
 msgid ""
@@ -2619,8 +2618,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -2690,7 +2689,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Oanrekommandearre hichte: 200 pixels"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "Maksimaal 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG of GIF (net animearre)"
@@ -2737,11 +2736,18 @@ msgstr "JWT-geheim"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Stjoer in <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as de autorisaasjeheader om API-oanfragen te dwaan. Jo  moatte foar elke oanfraach in JWT generearje, lykas útlein yn de <a href="
-"\"%(docs_url)s\">API-dokumintaasje</a>."
+"Stjoer in <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as de autorisaasjeheader om API-oanfragen te dwaan. Jo  moatte foar elke oanfraach in JWT generearje, lykas útlein yn de <a "
+"href=\"%(docs_url)s\">API-dokumintaasje</a>."
+
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
 
 msgid "You don't have any API credentials."
 msgstr "Jo hawwe gjin API-oanmeldgegevens."
@@ -2751,6 +2757,9 @@ msgstr "Ynlûke"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Referinsjes ynlûke en opnij generearje"
+
+msgid "Confirm and generate new credentials"
+msgstr "Befêstigje en nije referinsjes generearje"
 
 msgid "Generate new credentials"
 msgstr "Nije referinsjes generearje"
@@ -2881,12 +2890,8 @@ msgstr[1] "Selektearje <b>maksimaal {0}</b> {1} kategoryen foar dizze add-on:"
 msgid "End-User License Agreement"
 msgstr "Einbrûkerslisinsjeoerienkomst"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"Brûkers moatte ferplicht de folgjende Brûkersoerienkomst (EULA) akseptearje eardat se jo add-on ynstallearje kinne. De oanwêzichheid fan in EULA hat grutte ynfloed op it oantal downloads fan in add-"
-"on. Merk op dat in EULA net itselde is as in koadelisinsje as de GPL of de MPL. Allinnich relevant foar fermelde add-ons."
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "Tink derom dat in EULA net itselde is as in koadelisinsje, lykas de GPL of MPL. It is allinnich relevant foar oanhelle add-ons."
 
 msgid "Privacy Policy"
 msgstr "Privacybelied"
@@ -2905,42 +2910,23 @@ msgstr "Nim ynstruksjes op oer hoe't it úteinlike add-onbestân reprodusearre w
 msgid "Read more about the source code review policy."
 msgstr "Lês mear oer it belied oangeande boarnekoadebeoardieling."
 
-msgid "Latest News"
-msgstr "Lêste nijs"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Lês mear op ús blog"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Utwreidingsworkshop"
 
 msgid "Resources"
 msgstr "Helpboarnen"
 
-msgid "Porting"
-msgstr "Portearje"
-
-msgid "Community"
-msgstr "Mienskip"
-
-msgid "About"
-msgstr "Oer"
-
-msgid "Forum"
-msgstr "Foarum"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "Blog"
-
-msgid "Contact Us"
-msgstr "Kontakt opnimme"
-
-msgid "Support"
-msgstr "Stipe"
-
-msgid "Report Bug"
-msgstr "Bug melde"
-
-msgid "Site Status"
-msgstr "Websitesteat"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: útwreidingen bouwe en teste"
@@ -2948,20 +2934,11 @@ msgstr "Web-Ext: útwreidingen bouwe en teste"
 msgid "Promote"
 msgstr "Promoatsje"
 
-msgid "Get Your Add-on Featured"
-msgstr "Jo add-on Oanrekommandearre krije"
-
 msgid "\"Get The Add-on\" button"
 msgstr "Knop “Add-on downloade”"
 
-msgid "Legal"
-msgstr "Juridysk"
-
-msgid "Report Trademark Abuse"
-msgstr "Misbrûk fan hannelsmerk melde"
-
-msgid "Legal Notices"
-msgstr "Juridyske betingsten"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Bydrage"
@@ -2993,39 +2970,15 @@ msgstr "Jo hawwe gjin koadefeardichheden nedich om Firefox de meast oanpasbere b
 msgid "See how"
 msgstr "Lês hoe"
 
-msgid "Manage Your Add-on"
-msgstr "Jo add-on beheare"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Meld jo oan om jo add-on te bewurkjen en by te wurkjen"
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr "Wolkom werom"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
-"Wolle jo dat jo útwreiding oanrekommandearre wurdt op %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Us beliedsrigels foar oanrekommandearre útwreidingen jouwe oan wat jo witte moatte."
-
-msgid "Learn More"
-msgstr "Mear ynfo"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Lês mear oer it belied oangeande boarnekoadebeoardieling."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Fermeld op dizze website nei suksesfolle koadebeoardieling. Automatyske fernijingen wurde troch dizze website fersoarge."
@@ -3049,6 +3002,13 @@ msgstr "Add-on-ûntwikkelershub"
 msgid "Docs"
 msgstr "Dokuminten"
 
+msgid "Support"
+msgstr "Stipe"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "Blog"
+
 msgid "Sign Out"
 msgstr "Ofmelde"
 
@@ -3059,70 +3019,30 @@ msgid "User Photo"
 msgstr "Brûkersfoto"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Registrearje</a> of <a href=\"%(login)s\">oanmelde</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Firefox oanpasse"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Mei add-ons kinne miljoenen Firefox-brûkers harren sneupûnderfining ferbetterje. As jo %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s en %(css_link_open)sCSS"
-"%(link_close)s kinne, hawwe jo al de nedige feardichheden om in geweldige add-on te meitsjen."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Ynformaasje oer it meitsjen fan in add-on"
 
-msgid "Port a Chrome Extension"
-msgstr "In Chrome-útwreiding portearje"
-
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgid "Ready to submit or manage your extension?"
 msgstr ""
-"Firefox stipet WebExtension-API’s, dy't yn de measte gefallen kompatibel binne mei de útwreidings-API’s dy't troch Chrome, Opera en Edge stipe wurde, dus jo útwreidingen kinne mei mar in pear "
-"oanpassingen yn Firefox wurkje."
 
-msgid "Learn How"
-msgstr "Mear ynfo"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Publish Your Add-on"
-msgstr "Jo add-on publisearje"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Hawwe jo in add-on klear? Tsjinje jo útwreiding of tema yn foar fermelding op addons.mozilla.org, of ûndertekenje en distribuearje jo útwreiding sels."
-
-msgid "Sign In"
-msgstr "Oanmelde"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "In opdrachtrigelhelpprogramma foar it bouwen, útfieren en testen fan útwreidingen."
-
-msgid "Automated code tests for your add-on."
-msgstr "Automatisearre koadetests foar jo add-on."
-
-msgid "Compatibility Test"
-msgstr "Kompatibiliteitstests"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Kontrolearje oft jo útwreiding kompatibel is mei Firefox."
-
-msgid "Live Testing"
-msgstr "Live teste"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "Ferzje {0} beheare"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "{0} beheare"
 
@@ -3183,12 +3103,6 @@ msgstr "Beoardielingsskiednis"
 msgid "Close Review History"
 msgstr "Beoardielingsskiednis slute"
 
-msgid "Not validated."
-msgstr "Net falidearre."
-
-msgid "Validate now."
-msgstr "No falidearje."
-
 msgid "Request Review"
 msgstr "Beoardieling oanfreegje"
 
@@ -3203,6 +3117,9 @@ msgstr "Wy hiene in probleem by it opheljen fan beoardielingsopmerkingen"
 
 msgid "Load older..."
 msgstr "Aldere lade…"
+
+msgid "by"
+msgstr "troch"
 
 msgid "Leave a reply"
 msgstr "Beantwurdzje"
@@ -3219,8 +3136,8 @@ msgstr "{label_open}Sichtber:{label_close} Sichtber foar elkenien op {site_url} 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Unsichtber:{label_close} Wurdt net yn sykresultaten opnommen, en de produktside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar it produkt wurde "
-"yn dizze tastân net akseptearre."
+"{label_open}Unsichtber:{label_close} Wurdt net yn sykresultaten opnommen, en de produktside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar it produkt wurde yn"
+" dizze tastân net akseptearre."
 
 msgid "Listed versions"
 msgstr "Fermelde ferzjes"
@@ -3256,8 +3173,8 @@ msgstr "Ferzje {version} fuortsmite"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Jo stean op it punt om de aktuele ferzje fan jo add-on fuort te smiten. Hjirtroch kin de steat fan jo add-on wizigje of, as dit de iennichste publike ferzje fan jo add-on is, de sichtberheid foar "
-"it publyk ferdwine kin."
+"Jo stean op it punt om de aktuele ferzje fan jo add-on fuort te smiten. Hjirtroch kin de steat fan jo add-on wizigje of, as dit de iennichste publike ferzje fan jo add-on is, de sichtberheid foar it"
+" publyk ferdwine kin."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Troch fuortsmiten fan dizze ferzje wurdt fuortsmiten:"
@@ -3295,15 +3212,15 @@ msgstr "Bine jo wis dat jo jo beoardielingsfersyk annulearje wolle?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Add-ondokumintaasje :: Untwikkelershub"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} flater"
 msgstr[1] "{0} flaters"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} warskôging"
@@ -3346,7 +3263,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Advertinsjes blokkearje en privacybeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3362,7 +3279,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Stop folgjen fan Facebook {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3370,7 +3287,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sykjen ferienfâldigje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3378,7 +3295,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Daliks waarfernijingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get instant global weather information right in Firefox."
+msgid "Instant weather updates from around the world."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3402,7 +3319,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3410,15 +3327,15 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Tsientallen geweldige emoji’s foar elke gelegenheid – altyd fia ien mûsklik."
+msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
+msgstr "Noch mear emoji's. Tsientallen geweldige emoji's foar elke gelegenheid – altyd beskikber yn ien klik."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Behear wachtwurden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3426,8 +3343,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "In ljochtgewicht en effektive adblocker. uBlock Origin hantearret tûzenen ynhâldsfilters sûnder in protte ûnthâld te brûken."
+msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "In effektive en ljochtgewicht adblocker. uBlock Origin hantearret tûzenen ynhâldsfilters sûnder in protte ûnthâld te brûken."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3450,8 +3367,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Genietsje fan fisuele blêdwizers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites from a tile layout."
-msgstr "Benaderje jo favorite websites fan in tegellayout út."
+msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
+msgstr "Genietsje fan fisuele blêdwizers. Benaderje jo favorite websites fan in tegelyndieling út."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3514,7 +3431,7 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Maklike oersettingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3522,7 +3439,7 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Untskoattelje akademyske kennis {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy free access to 10+ million research papers."
+msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3530,7 +3447,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Pas mûsbewegingen oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3567,7 +3484,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Fergrutsje ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply hover over an image to magnify it."
+msgid "Hover over an image to magnify it."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3599,15 +3516,17 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Lit in skjin digitaal spoar nei {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Lit Firefox websitegegevens lykas cookies en lokale opslach ferjitte, mar allinnich foar keazen domeinen."
+msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Lit in skjin digitaal spoar efter. Lit Firefox websitegegevens lykas cookies en lokale ûnthâld ferjitte, mar allinnich foar keazen domeinen."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bewarje tekst foar letter {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+msgid ""
+"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
+"when needed."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3631,7 +3550,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Stop stikeme folgers en beheinigen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3647,7 +3566,7 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Skied jo online libben {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3663,7 +3582,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Lês ePub-bestannen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3671,7 +3590,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Ferbetterje jo YouTube-ûnderfining {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos by default in the highest quality, turn off annotations, and more."
+msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3679,7 +3598,7 @@ msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Folgje de folgers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get a glimpse into who's tracking you with just a click."
+msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3687,7 +3606,7 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Wizigje jo proxyserver {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Surf the web through self-defined proxy settings."
+msgid "Change your proxy server and surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3703,7 +3622,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sneup feilich {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supports HTTPS."
+msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3747,11 +3666,11 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sneup anonym {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3775,7 +3694,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Robúst downloadbehear {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3791,7 +3710,7 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Sykfolchbeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop trackers when you click Google and Yandex search returns."
+msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3807,7 +3726,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Foegje ôfbyldingen ta oan sykresultaten {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy thumbnail images alongside your search returns."
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3831,7 +3750,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Pas jo favorite websites oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3839,7 +3758,7 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Pas jo nij-ljepblêd oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3855,7 +3774,7 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Wit wêr't jo hinne gean op it ynternet {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3863,7 +3782,7 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr "Ferbetterje jo lêsûnderfining {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3871,7 +3790,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Iepenje meardere keppelingen {start_sub_heading}mei {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Right-click and drag over links you want open in new tabs."
+msgid "Right-click and drag links you want open in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3887,7 +3806,7 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Ynspirearje produktiviteit {start_sub_heading}mei {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3935,7 +3854,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Meitsje YouTube fan jo {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3951,7 +3870,7 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wizigje de styl fan Wikiperdia {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Applies a fresh and modern appearance to Wikipedia."
+msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3959,7 +3878,7 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Wurkje tûker {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to get to things done—quicker."
+msgid "Use mouse gestures to get to things done quicker."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3975,8 +3894,8 @@ msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab images from any website and download them."
-msgstr ""
+msgid "Download images you find on the web."
+msgstr "Download ôfbyldingen dy't jo op ynternet fine."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3999,7 +3918,7 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bestriid spam {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4007,7 +3926,7 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bewurkje jo privacy {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily customize the built-in privacy settings in Firefox."
+msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4015,7 +3934,7 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Krij daliks oersettingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4031,7 +3950,7 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp op it ynternet {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4047,7 +3966,7 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Meitsje in blokkearlist fan websites {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Restrict Firefox from accessing websites you define."
+msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4087,7 +4006,7 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Ienfâldich blêdwizerlokaasjes selektearje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A better way to save bookmarks if you use multiple bookmark folders."
+msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4107,7 +4026,7 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Keppelingen ekstrahearje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Instantly display all links from a webpage in new tabs."
+msgid "Instantly display all links from a web page in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4115,7 +4034,7 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Mij trochferwizingen en folgers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Strip away redirect pages and URL tracking parameters."
+msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4131,7 +4050,7 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Download YouTube-fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Download video and/or audio."
+msgid "Download YouTube videos and/or audio."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4155,7 +4074,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Skowe as in snoadfoan {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4171,7 +4090,7 @@ msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Markearje tekst {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgid "Highlight text on web pages to save and access later."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4179,12 +4098,12 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Genietsje fan wrâldmuzyk {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 30,000+ radio stations from all over the globe."
+msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lústerje nei fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Harkje nei fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -4203,7 +4122,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sneup feilich {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Navigate to the secure version of a website if it's available."
+msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4211,7 +4130,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Smyt jo navigaasjeskiednis fuort {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4235,7 +4154,7 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Folje formulieren automatysk {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Save entered data once and it will autofill next time."
+msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4243,7 +4162,7 @@ msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sneup privee {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Jump into private browsing mode with a click."
+msgid "Search privately with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4251,7 +4170,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Stop it oernimmen fan ljepblêden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4259,7 +4178,7 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Ienfâldich tagong ta Wikipedia {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4283,7 +4202,7 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Krij koarting op Amazon {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4291,7 +4210,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Ultym ljepblêdkontrôle {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4299,8 +4218,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Genietsje fan in frjemde edukaasje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "Laad samar in Wikipedia-artikel yn elk nij ljepblêd."
+msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
+msgstr "Genietsje fan in aparte edukaasje. Laad samar in Wikipedia-artikel elke kear as jo in nij ljepblêd iepenje."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4331,7 +4250,7 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sykje troch Firefox {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily access your open tabs, bookmarks, and history."
+msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4387,7 +4306,7 @@ msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub
 msgstr "Folgje it priisferrin op Amazon {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make informed shopping decisions."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4395,7 +4314,7 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Winkelje mei fetrouwen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4403,11 +4322,11 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bring produktiviteit yn byld {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4415,7 +4334,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sneup feilich {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Only allow web content to run from sites you trust."
+msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4455,7 +4374,7 @@ msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Slút steurende overlays {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply click a button to close annoying pop-up overlays."
+msgid "Close annoying pop-ups with a simple click."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4491,7 +4410,7 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Reparearje steurend lûd {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4499,7 +4418,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Bewurkje foar it ôfdrukken {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4507,7 +4426,7 @@ msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub
 msgstr "Folgje it priisferrin op Amazon {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4531,7 +4450,7 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferstopje jo spoaren {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4539,7 +4458,7 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferienfâldigje ljepblêden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Organize your many open tabs in a vertical sidebar."
+msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4555,7 +4474,7 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Besjoch it grutte gehiel {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "With a mouse click you can watch videos in full screen glory."
+msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4579,7 +4498,7 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Negearje de ûnsin {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4591,7 +4510,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Ferbetterje jo lêsûnderfining {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4599,7 +4518,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkearje advertinsjes en mear {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4615,7 +4534,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bewarje ienfâldich ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab just images from your current tab."
+msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4623,11 +4542,11 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mjit websiden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get the benefits of strong password management."
+msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4643,7 +4562,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Blokkearje ôfliedende websites {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "List the websites you want the extension to block. Instant discipline!"
+msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4659,7 +4578,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Wizigje it úterlik fan Firefox {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily design your own visual themes to make Firefox look as you please."
+msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4667,7 +4586,7 @@ msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hâld notysjes by {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4683,7 +4602,7 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Hâld produktprizen by {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4691,7 +4610,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Meitsje it web donker {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Custom color schemes let you shade the web to your own liking."
+msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4709,6 +4628,39 @@ msgstr "Help by fideo’s op Android {start_sub_heading}mei {addon_name}{end_sub
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr "Utwreidingen binne as apps foar Firefox."
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "Se foegje funksjes ta oan Firefox om navigearjen flugger, feiliger of gewoan aardich te meitsjen."
+
+#. editorial content for the secondary hero shelves.
+msgid "See all extensions"
+msgstr "Alle útwreidingen besjen"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr "Utwreidingen tusken apparaten syngronisearje"
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr "Privacy foarby browserútwreidingen"
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr "Mediaferbetteraars foar Firefox"
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Mear ynfo"
+
+#. editorial content for the secondary hero shelves.
+# Plural in this context means many of the add-on type
+msgid "Explore extensions"
+msgstr "Utwreidingen ferkenne"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4747,25 +4699,24 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Leechste stipe ‘strict_min_version’ is 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Unbekende ‘strict_min_version’ {appver} foar {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Koe oplade bestân net útpakke; ûntbrekkend of leech <%s>-elemint"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: XML-befeiligingsflater."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: XML-parseflater."
 
 msgid "Could not parse uploaded file."
 msgstr "Kin opladen bestân net útpakke."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Net-stipe argyftype."
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Unjildige bestânsnamme yn argyf. Soargje derfoar dat alle bestânsnammen utf-8- of latin1-kodearre binne."
 
@@ -4773,8 +4724,12 @@ msgstr "Unjildige bestânsnamme yn argyf. Soargje derfoar dat alle bestânsnamme
 msgid "Invalid file name in archive: {0}"
 msgstr "Unjildige bestânsnamme yn argyf: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Te grut bestân yn argyf: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr "Net-komprimearre omfang is te grut"
 
 msgid "Invalid archive."
 msgstr "Unjildich argyf."
@@ -4796,7 +4751,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens befetsje: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "De maksimale grutte foar WebExtension-tema’s is {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Jo kinne dit type add-on net yntsjinje"
@@ -4808,9 +4763,8 @@ msgstr "Jo kinne gjin add-on yntsjinje mei in GUID dy't op %s einiget"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
+msgstr "Jo kinne gjin taalpakket yntsjinje"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Net-stipe bestânstype, laad in stipe bestân {extensions} op."
@@ -4905,42 +4859,6 @@ msgstr "Gjin bestannen yn oplaad bestân."
 msgid "Fetching file."
 msgstr "Bestân ophelje."
 
-msgid "Reported Status"
-msgstr "Rapportearre steat"
-
-msgid "Reported Spam"
-msgstr "Rapportearre spam"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Rapportearre ham"
-
-msgid "Not Reported"
-msgstr "Net rapportearre"
-
-msgid "Content Submitted"
-msgstr "Ynhâld ynstjinne"
-
-msgid "View Rating on site"
-msgstr "Wurdearring op website besjen"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Ham by Akismet yntsjinje"
-
-msgid "Submit Spam to Akismet"
-msgstr "Spam by Akismet yntsjinje"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "Oer Mozilla Add-ons"
 
@@ -4961,8 +4879,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"De hjir fermelde add-ons binne makke troch tûzenen ûntwikkelers út ús mienskip, fariearjend fan yndividuele hobbyisten oant grutte bedriuwen. Alle iepenlik fermelde add-ons wurde beoardiele troch "
-"in team fan beoardielers eardat se frijjûn wurde. As Eksperiminteel markearre add-ons binne net beoardiele en moatte allinnich mei omtinken ynstallearre wurde."
+"De hjir fermelde add-ons binne makke troch tûzenen ûntwikkelers út ús mienskip, fariearjend fan yndividuele hobbyisten oant grutte bedriuwen. Alle iepenlik fermelde add-ons wurde beoardiele troch in"
+" team fan beoardielers eardat se frijjûn wurde. As Eksperiminteel markearre add-ons binne net beoardiele en moatte allinnich mei omtinken ynstallearre wurde."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Hoe hâld ik de ûntwikkelingen by AMO yn 'e gaten?"
@@ -5001,8 +4919,7 @@ msgstr ""
 "koadekwaliteit en stabiliteit."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Help dizze website te ferbetterjen. It is iepen boarne, en jo kinne bugs melde en patches yntsjinje. <a href=\"%(url)s\"> GitHub</a> befettet al ús aktuele bugs, âlde bugs binne noch yn Bugzilla te "
 "finen."
@@ -5050,8 +4967,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Faakstelde fragen oer beoardielingen"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Add-on-beoardielingen binne in manier om jo mieningen oer de troch jo ynstallearre en brûkte add-ons te jaan. Us evaluaasjeteam behâldt harren it rjocht foar om elke beoardieling dy't net konfoarm "
 "dizze rjochtlinen te wegerjen of fuort te smiten is."
@@ -5120,8 +5037,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"In add-on bekritisearje foar op wat foar it bedoeld is. Bygelyks in negative beoardieling fan in add-on jaan foar it werjaan fan advertinsjes of ferplichte gegevenssamling, wannear't dat it doel "
-"fan de add-on is, of as de add-on gegevens sammelje moat om te wurkjen."
+"In add-on bekritisearje foar op wat foar it bedoeld is. Bygelyks in negative beoardieling fan in add-on jaan foar it werjaan fan advertinsjes of ferplichte gegevenssamling, wannear't dat it doel fan"
+" de add-on is, of as de add-on gegevens sammelje moat om te wurkjen."
 
 msgid "How can I report a problematic review?"
 msgstr "Hoe kin ik in problematyske beoardieling rapportearje?"
@@ -5191,7 +5108,7 @@ msgstr "Jo kinne net mear beoardielingen foar deselde ferzje fan in add-on skriu
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Unjildich label [%s] – moat der ien fan [%s] wêze"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Dizze wurdearring kin net markearre wurde, omdat hy gjin beoardielingstekst befettet."
@@ -5203,6 +5120,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} beoardieling"
 msgstr[1] "{num} beoardielingen"
+
+msgid "Not yet rated"
+msgstr "Noch net wurdearre"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Wurdearring: {0} fan de 5 stjerren"
@@ -5315,7 +5235,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Risiko-útwurking net beskikber."
 
 msgid "Is locked by a reviewer"
 msgstr "Is beskoattele troch in beoardieler"
@@ -5324,10 +5244,13 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Hat markearring ‘automatysk goedkarre útskeakele’"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Is oan te rekommandearjen"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Fertrage omdat it de earste ferzje yn de list is"
+
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "Jo kinne gjin kommentaar yntsjinje as ‘canned_response’ definiearre is."
 
 msgid "Type"
 msgstr "Type"
@@ -5374,9 +5297,8 @@ msgstr "Gewicht"
 msgid "Information Request Deadline"
 msgstr "Deadline foar fersyk om ynformaasje"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Lêst bywurke:"
+msgstr "Lêst bywurke"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Hjirtroch wurdt dizze ferzje goedkard, ûndertekene en publisearre. De opmerkingen wurde nei de ûntwikkeler stjoerd."
@@ -5424,7 +5346,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Add-ons yn it foar beoardiele"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Oanrekommandearre ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Oere wachtsjend op beoardieling ({0})"
@@ -5528,7 +5450,7 @@ msgid "Add-on ID"
 msgstr "Add-on-ID"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Ynterne AMO-ID"
 
 msgid "Works with"
 msgstr "Wurket mei"
@@ -5731,9 +5653,8 @@ msgstr "Wizigingsskiednis fan add-onbrûker"
 msgid "Add-on History"
 msgstr "Add-onskiednis"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Foargeande opmerking"
+msgstr "Earder fuortsmiten ynjeftes"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -5786,8 +5707,8 @@ msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as j
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
-"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist "
-"oare behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
+"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
+" behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "It priveenotysjeboerd wurdt brûkt foar de útwikseling fan ferzjeûnôfhinklike ynformaasje tusken beoardielers. Hâld it taalgebrûk objektyf. Dit is allinnich sichtber foar beoardielers."
@@ -5855,6 +5776,12 @@ msgstr "Opmerkingen ferstopje"
 msgid "No reviews found for this period."
 msgstr "Gjin beoardielingen yn dizze perioade fûn."
 
+msgid "Method:"
+msgstr "Metoade:"
+
+msgid "Source:"
+msgstr "Boarne:"
+
 msgid "Dismiss this announcement"
 msgstr "Dizze oankundiging fuortsmite"
 
@@ -5899,6 +5826,9 @@ msgstr "Altyd"
 msgid "You have <span>{0}</span> points."
 msgstr "Jo hawwe <span>{0}</span> punten."
 
+msgid "Theme"
+msgstr "Tema"
+
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s op %(date)s [%(ip_address)s]"
@@ -5930,26 +5860,32 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Ferrûn fersyk om ynformaasje ({0})"
 msgstr[1] "Ferrûne fersiken om ynformaasje ({0})"
 
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Unjildige parameter ‘%s’."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Unjildige kombinaasje fan parameters ‘%s’ en ‘%s’."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Return To AMO is op dit stuit útskeakele"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Unjildige GUID foar Return To AMO (net yn base64url-yndieling?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Unjildige GUID foar Return To AMO (gjin kurearre add-on)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Unjildige kombinaasje fan parameters ‘%s’, ‘%s’ en ‘%s’."
 
 msgid "Maximum query length exceeded."
 msgstr "Maksimale lingte fan sykopdracht oerskreaun."
@@ -6158,17 +6094,18 @@ msgstr "Oer folgjen fan eksterne boarnen…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Folgjen fan eksterne boarnen</h2> <p> As jo fan in eksterne website ôf in keppeling jouwe nei de detailside fan jo add-on of streekrjocht nei it bestân, lykas jo blog of website, kinne jo "
-"dêroan in parameter tafoegje dy folge wurde kin as oanfoljende downloadboarne op dizze side. Sa wurde bygelyks de folgjende keppelingen werjûn as kommend fan jo blog: <dl> <dt>Add-on-detailside</"
-"dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Streekrjochte bestânskeppeling</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest."
-"xpi?src=<b>external-blog</b></dd> </dl> <p> Allinnich src-parameters dy't mei ‘external-’ begjinne wurde folge, oant 61 oanfoljende tekens. Jo kinne in tekst nei ‘external-’ brûke om de boarne te "
-"beskriuwen, lykas ‘external-blog’, ‘external-sidebalke’, ‘external-campagne225’, ensfh. De folgjende URL-feilige tekens binne tastien: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Folgjen fan eksterne boarnen</h2> <p> As jo fan in eksterne website ôf in keppeling jouwe nei de detailside fan jo add-on of streekrjocht nei it bestân, lykas jo blog of website, kinne jo dêroan"
+" in parameter tafoegje dy folge wurde kin as oanfoljende downloadboarne op dizze side. Sa wurde bygelyks de folgjende keppelingen werjûn as kommend fan jo blog: <dl> <dt>Add-on-detailside</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Streekrjochte bestânskeppeling</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Allinnich src-parameters dy't mei ‘external-’ begjinne wurde folge, oant 61 "
+"oanfoljende tekens. Jo kinne in tekst nei ‘external-’ brûke om de boarne te beskriuwen, lykas ‘external-blog’, ‘external-sidebalke’, ‘external-campagne225’, ensfh. De folgjende URL-feilige tekens "
+"binne tastien: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Add-onsteat op datum"
@@ -6178,13 +6115,6 @@ msgstr "Deistige brûkers op datum"
 
 msgid "What are daily users?"
 msgstr "Wat binne deistige brûkers?"
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
-"people using your theme by day. </p>"
-msgstr ""
-"<h2>Wat binne deistige brûkers?</h2> <p> Tema’s dy't fan dizze website ôf ynstallearre wurde kontrolearje deistich op fernijingen. It totale oantal fan dizze fernijings-pings stiet ek wol bekend as "
-"Aktive deistige brûkers, oftewol it totaal oantal persoanen per dei dat jo tema brûkt. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -6205,11 +6135,20 @@ msgstr "Tebek nei add-ons"
 msgid "Footer logo"
 msgstr "Foettekstlogo"
 
+msgid "Legal Notices"
+msgstr "Juridyske betingsten"
+
+msgid "Report Trademark Abuse"
+msgstr "Misbrûk fan hannelsmerk melde"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "De nije website stipet mobile en desktopclients"
 
 msgid "View the new site"
 msgstr "De nije website besjen"
+
+msgid "Site Status"
+msgstr "Websitesteat"
 
 msgid "Report a bug"
 msgstr "In bug melde"
@@ -6223,6 +6162,12 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "kom yn 'e kunde mei <b>add-ons</b>"
+
+msgid "About"
+msgstr "Oer"
+
+msgid "Forum"
+msgstr "Foarum"
 
 msgid "Download Firefox"
 msgstr "Firefox downloade"
@@ -6303,6 +6248,9 @@ msgstr "Binne jo wis dat jo alle <b>{0}</b> oersettingen fuortsmite wolle? Dit k
 msgid "Delete Locale"
 msgstr "Taal fuortsmite"
 
+msgid "User Restriction History"
+msgstr "Skiednis brûkersrestriksjes"
+
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "De brûker ‘%(user)s’ is ferballe."
@@ -6318,6 +6266,13 @@ msgstr "De brûkers ‘%(users)s’ binne ferballe."
 msgid "Ban selected users"
 msgstr "Selektearre brûkers ferbalje"
 
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "De API-kaaien fan de brûkers ‘%(users)s’ binne opnij inisjalisearre."
+
+msgid "Reset API Key"
+msgstr "API-kaai opnij inisjalisearje"
+
 msgid "Profile Photo"
 msgstr "Profylfoto"
 
@@ -6328,10 +6283,10 @@ msgid "Activity Logs"
 msgstr "Aktiviteitenlochboek"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Fier in jildich IPv4- of IPv6-adres yn, byg. 127.0.0.1. Wurdt konvertearre nei in /32-netwurk."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Jo kinne der mar ien ynfiere, in IP-adres of in netwerk."
 
 msgid "No user with that email."
 msgstr "Der is gjin brûker mei dat e-mailadres."
@@ -6346,30 +6301,34 @@ msgid "My Favorite Add-ons"
 msgstr "Myn favorite add-ons"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Fier in jildige IPv6- of IPv6 CIDR-netwurkrange yn, byg. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Fan jo lokaasje ôf binne mear add-ons dy't stridich binne mei ús belied yntsjinne. It IP-adres is blokkearre."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "E-mailpatroan"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Fier in folslein domein of e-mailadres in dat blokkearre wurde moat, of brûk  glob-eftige wildcards dy't oerienkomme mei oare patroanen. Byg. ‘@*mail.com’\n"
+" Merk op dat wy ‘@’ net yn de opdracht opnimme, dus dat moatte jo sels dwaan yn it patroan."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "It e-mailadres dat jo foar jo account brûkt hawwe is net tastien foar it yntsjinjen fan add-ons."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Fier in folslein domein foar tydlike e-mailadressen yn dat blokkearre wurde moat. Wildcards wurde net stipe: as jo dizze nedich hawwe, of as jo matche wolle tsjin it folsleine e-mailadres en net "
+"allinnich it domeinpart, brûk dan ‘Beheiningen e-mailbrûker’."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst en ús Beoardielingsrigels en belied. Dizze ferwiist ek nei ús Privacyferklearring, dy't útleit hoe't wy mei jo "
 "gegevens omgean."

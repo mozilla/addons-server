@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-02 13:38+0000\n"
-"Last-Translator: Dag7 <dag7@protonmail.com>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-05 09:14+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,8 @@ msgstr "Si è verificato un problema con la connessione al server."
 msgid "Select a file..."
 msgstr "Selezionare un file…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Il nome del file del componente aggiuntivo deve terminare in .zip, .xpi, .crx, .jar o .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Il componente aggiuntivo deve avere estensione .zip, .xpi, .crx, o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -151,30 +151,6 @@ msgstr "I video devono essere in formato WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Questo tema non è compatibile con la versione di {0} in uso"
-
-msgid "All Rights Reserved"
-msgstr "Tutti i diritti riservati"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribuzione 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribuzione-Non Commerciale 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribuzione-Non Commerciale-Non opere derivate 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribuzione-Non Commerciale-Condividi allo stesso modo 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribuzione-Non opere derivate 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribuzione-Condividi allo stesso modo 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Il nome del tema"
 
 msgid "Flagged for review"
 msgstr "Segnalato per revisione"
@@ -741,12 +717,6 @@ msgstr "Rimuovi questa localizzazione"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} stava visualizzando questa pagina per primo."
-
-msgid "Receipt checked by app."
-msgstr "Ricevuta verificata dalla App."
-
-msgid "Receipt was not checked by app."
-msgstr "La ricevuta non è stata verificata dalla App."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} stava visualizzando questo componente aggiuntivo per primo."

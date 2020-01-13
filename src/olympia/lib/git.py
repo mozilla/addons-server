@@ -52,6 +52,9 @@ GIT_DIFF_LINE_MAPPING = {
     GIT_DIFF_LINE_CONTEXT: 'normal',
     GIT_DIFF_LINE_ADDITION: 'insert',
     GIT_DIFF_LINE_DELETION: 'delete',
+    GIT_DIFF_LINE_CONTEXT_EOFNL: 'normal-eofnl',
+    GIT_DIFF_LINE_ADD_EOFNL: 'insert-eofnl',
+    GIT_DIFF_LINE_DEL_EOFNL: 'delete-eofnl',
 }
 
 # Prefix folder name we are using to store extracted add-on or source
@@ -365,7 +368,7 @@ class AddonGitRepository(object):
 
     def get_author(self, user=None):
         if user is not None:
-            author_name = user.name
+            author_name = f'User {user.id}'
             author_email = user.email
         else:
             author_name = 'Mozilla Add-ons Robot'
@@ -584,13 +587,10 @@ class AddonGitRepository(object):
 
                 if origin == GIT_DIFF_LINE_CONTEXT_EOFNL:
                     old_ending_new_line = new_ending_new_line = False
-                    origin = ' '
                 elif origin == GIT_DIFF_LINE_ADD_EOFNL:
                     old_ending_new_line = False
-                    origin = '+'
                 elif origin == GIT_DIFF_LINE_DEL_EOFNL:
                     new_ending_new_line = False
-                    origin = '-'
 
                 changes.append({
                     'content': line.content.rstrip('\r\n'),

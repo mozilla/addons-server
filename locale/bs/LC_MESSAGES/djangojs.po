@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2018-02-08 08:22+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,8 @@ msgstr "Došlo je do greške u kontaktu sa serverom."
 msgid "Select a file..."
 msgstr "Izaberite datoteku..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Vaš dodatak treba završavati sa .zip, .xpi, .crx, .jar ili .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -150,30 +151,6 @@ msgstr ""
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
-
-msgid "All Rights Reserved"
-msgstr ""
-
-msgid "Creative Commons Attribution 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-msgid "Your Theme's Name"
 msgstr ""
 
 msgid "Flagged for review"
@@ -754,12 +731,6 @@ msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
-msgstr ""
-
-msgid "Receipt checked by app."
-msgstr ""
-
-msgid "Receipt was not checked by app."
 msgstr ""
 
 msgid "{name} was viewing this add-on first."

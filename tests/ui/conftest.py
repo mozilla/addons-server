@@ -9,6 +9,17 @@ DESKTOP = (1080, 1920)
 MOBILE = (414, 738)
 
 
+@pytest.fixture(scope="session")
+def base_url(base_url):
+    return "http://olympia.test"
+
+
+@pytest.fixture(scope="session")
+def sensitive_url(request, base_url):
+    # Override sensitive url check
+    return False
+
+
 @pytest.fixture
 def firefox_options(firefox_options):
     """Firefox options.
@@ -101,5 +112,5 @@ def devhub_upload(devhub_login):
 
     """
     devhub = devhub_login
-    addon = devhub.upload_addon('ui-test_devhub_ext-1.0.xpi')
+    addon = devhub.upload_addon('ui-test_devhub_ext-1.0.zip')
     return addon.fill_addon_submission_form()

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2018-10-29 11:19+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-08-12 14:39+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -25,7 +25,8 @@ msgstr "サーバーへの接続中に問題が発生しました。"
 msgid "Select a file..."
 msgstr "ファイルを選択..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "アドオンは .zip .xpi .crx .jar .xml のいずれかの拡張子を持つファイルにしてください"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -47,7 +48,7 @@ msgid "Error with {0}"
 msgstr "{0} にエラーがありました"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "lint 関連の問題は必ず GitHub で報告してください"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -141,30 +142,6 @@ msgstr "動画は WebM 形式でなければなりません。"
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "このテーマはお使いの {0} のバージョンと互換性がありません"
-
-msgid "All Rights Reserved"
-msgstr "All Rights Reserved"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons 表示 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons 表示-非営利 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons 表示-非営利-改変禁止 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons 表示-非営利-継承 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons 表示-改変禁止 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons 表示-継承 3.0"
-
-msgid "Your Theme's Name"
-msgstr "テーマの名前"
 
 msgid "Flagged for review"
 msgstr "レビューフラグ付き"
@@ -714,12 +691,6 @@ msgstr "このローカライズを削除"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} が初めてこのページを見ました。"
-
-msgid "Receipt checked by app."
-msgstr "レシートがアプリによって検証されました。"
-
-msgid "Receipt was not checked by app."
-msgstr "レシートがアプリによって検証されませんでした。"
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} が初めてこのアドオンを見ました。"

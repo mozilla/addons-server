@@ -341,7 +341,7 @@ class TestSigning(TestCase):
             'Digest-Algorithms: SHA1 SHA256\n'
         )
 
-    def test_call_signing_recommendable(self):
+    def test_call_signing_recommended(self):
         # This is the usual process for recommended add-ons, they're
         # in "pending recommendation" and only *after* we approve and sign
         # them they will become "recommended". Once the `recommendable`
@@ -368,6 +368,25 @@ class TestSigning(TestCase):
             self.file_.current_file_path)
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert recommendation_data['states'] == ['recommended']
+
+    def test_call_signing_recommendable_unlisted(self):
+        # Unlisted versions, even when the add-on is recommendable, should
+        # never be recommended.
+        DiscoveryItem.objects.create(
+            addon=self.file_.version.addon,
+            recommendable=True)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 4
+
+        assert 'Name: mozilla-recommendation.json' not in manifest
 
     def test_call_signing_not_recommendable(self):
         DiscoveryItem.objects.create(
@@ -494,12 +513,10 @@ class TestTasks(TestCase):
             with amo.tests.copy_file(fpath, self.file_.file_path):
                 file_hash = self.file_.generate_hash()
                 assert self.version.version == '0.0.1'
-                assert self.version.version_int == version_int('0.0.1')
                 tasks.sign_addons([self.addon.pk])
                 assert not mock_sign_file.called
                 self.version.reload()
                 assert self.version.version == '0.0.1'
-                assert self.version.version_int == version_int('0.0.1')
                 assert file_hash == self.file_.generate_hash()
                 self.assert_no_backup()
 
@@ -519,13 +536,10 @@ class TestTasks(TestCase):
                     file_hash = self.file_.generate_hash()
                     file2_hash = self.file2.generate_hash()
                     assert self.version.version == '0.0.1'
-                    assert self.version.version_int == version_int('0.0.1')
                     tasks.sign_addons([self.addon.pk])
                     assert mock_sign_file.call_count == 2
                     self.version.reload()
                     assert self.version.version == '0.0.1.1-signed'
-                    assert self.version.version_int == version_int(
-                        '0.0.1.1-signed')
                     assert file_hash != self.file_.generate_hash()
                     assert file2_hash != self.file2.generate_hash()
                     self.assert_backup()
@@ -548,7 +562,6 @@ class TestTasks(TestCase):
         assert not mock_sign_file.called
         self.version.reload()
         assert self.version.version == '0.0.1'
-        assert self.version.version_int == version_int('0.0.1')
         assert file_hash == self.file_.generate_hash()
         self.assert_no_backup()
 
@@ -561,12 +574,10 @@ class TestTasks(TestCase):
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '0.0.1.1-signed'
-            assert self.version.version_int == version_int('0.0.1.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
@@ -579,12 +590,10 @@ class TestTasks(TestCase):
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == u'é0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == u'é0.0.1.1-signed'
-            assert self.version.version_int == version_int(u'é0.0.1.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
@@ -596,13 +605,11 @@ class TestTasks(TestCase):
                 self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             self.set_max_appversion('4')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '0.0.1.1-signed'
-            assert self.version.version_int == version_int('0.0.1.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
@@ -615,12 +622,10 @@ class TestTasks(TestCase):
             self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '0.0.1.1-signed'
-            assert self.version.version_int == version_int('0.0.1.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
@@ -629,12 +634,10 @@ class TestTasks(TestCase):
         with amo.tests.copy_file(__file__, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             tasks.sign_addons([self.addon.pk])
             assert not mock_sign_file.called
             self.version.reload()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -645,12 +648,10 @@ class TestTasks(TestCase):
         with amo.tests.copy_file(fpath, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -661,12 +662,10 @@ class TestTasks(TestCase):
         with amo.tests.copy_file(fpath, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()
             assert self.version.version == '0.0.1'
-            assert self.version.version_int == version_int('0.0.1')
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
@@ -691,14 +690,11 @@ class TestTasks(TestCase):
 
                 new_current_version.reload()
                 assert new_current_version.version == '0.0.2.1-signed'
-                assert new_current_version.version_int == version_int(
-                    '0.0.2.1-signed')
                 assert new_file_hash != new_file.generate_hash()
 
                 # Verify that the old version hasn't been resigned
                 self.version.reload()
                 assert self.version.version == '0.0.1'
-                assert self.version.version_int == version_int('0.0.1')
                 assert file_hash == self.file_.generate_hash()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')

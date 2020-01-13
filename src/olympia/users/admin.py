@@ -18,6 +18,7 @@ from olympia.activity.models import ActivityLog, UserLog
 from olympia.addons.models import Addon
 from olympia.amo.admin import CommaSearchInAdminMixin
 from olympia.amo.utils import render
+from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.zadmin.admin import related_content_link
@@ -25,12 +26,26 @@ from olympia.zadmin.admin import related_content_link
 from . import forms
 from .models import (
     DeniedName, DisposableEmailDomainRestriction, EmailUserRestriction,
-    GroupUser, IPNetworkUserRestriction, UserProfile)
+    GroupUser, IPNetworkUserRestriction, UserProfile, UserRestrictionHistory)
 
 
 class GroupUserInline(admin.TabularInline):
     model = GroupUser
     raw_id_fields = ('user',)
+
+
+class UserRestrictionHistoryInline(admin.TabularInline):
+    model = UserRestrictionHistory
+    raw_id_fields = ('user',)
+    readonly_fields = ('restriction', 'ip_address', 'user',
+                       'last_login_ip', 'created')
+    extra = 0
+    can_delete = False
+    view_on_site = False
+    verbose_name_plural = _('User Restriction History')
+
+    def has_add_permission(self, request, obj):
+        return False
 
 
 @admin.register(UserProfile)
@@ -39,15 +54,16 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     search_fields = ('=id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
-    inlines = (GroupUserInline,)
+    inlines = (GroupUserInline, UserRestrictionHistoryInline)
     show_full_result_count = False  # Turn off to avoid the query.
 
-    readonly_fields = ('id', 'picture_img', 'deleted', 'is_public',
+    readonly_fields = ('id', 'picture_img', 'banned', 'deleted', 'is_public',
                        'last_login', 'last_login_ip', 'known_ip_adresses',
                        'last_known_activity_time', 'ratings_created',
                        'collections_created', 'addons_created', 'activity',
                        'abuse_reports_by_this_user',
-                       'abuse_reports_for_this_user')
+                       'abuse_reports_for_this_user',
+                       'has_active_api_key')
     fieldsets = (
         (None, {
             'fields': ('id', 'email', 'fxa_id', 'username', 'display_name',
@@ -67,11 +83,12 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         }),
         ('Admin', {
             'fields': ('last_login', 'last_known_activity_time', 'activity',
-                       'last_login_ip', 'known_ip_adresses', 'notes', ),
+                       'last_login_ip', 'known_ip_adresses', 'banned', 'notes',
+                       'bypass_upload_restrictions', 'has_active_api_key')
         }),
     )
 
-    actions = ['ban_action']
+    actions = ['ban_action', 'reset_api_key_action']
 
     def get_urls(self):
         def wrap(view):
@@ -81,8 +98,12 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
         urlpatterns = super(UserAdmin, self).get_urls()
         custom_urlpatterns = [
-            url(r'^(?P<object_id>.+)/ban/$', wrap(self.ban_view),
+            url(r'^(?P<object_id>.+)/ban/$',
+                wrap(self.ban_view),
                 name='users_userprofile_ban'),
+            url(r'^(?P<object_id>.+)/reset_api_key/$',
+                wrap(self.reset_api_key_view),
+                name='users_userprofile_reset_api_key'),
             url(r'^(?P<object_id>.+)/delete_picture/$',
                 wrap(self.delete_picture_view),
                 name='users_userprofile_delete_picture')
@@ -92,13 +113,15 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def get_actions(self, request):
         actions = super(UserAdmin, self).get_actions(request)
         if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
-            # You need Users:Edit to be able to ban users.
+            # You need Users:Edit to be able to ban users and reset their api
+            # key confirmation.
             actions.pop('ban_action')
+            actions.pop('reset_api_key_action')
         return actions
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        extra_context['can_ban'] = acl.action_allowed(
+        extra_context['has_users_edit_permission'] = acl.action_allowed(
             request, amo.permissions.USERS_EDIT)
         return super(UserAdmin, self).change_view(
             request, object_id, form_url, extra_context=extra_context,
@@ -135,6 +158,21 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             request, ugettext('The user "%(user)s" has been banned.' % kw))
         return HttpResponseRedirect('../')
 
+    def reset_api_key_view(self, request, object_id, extra_context=None):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+
+        obj = self.get_object(request, unquote(object_id))
+        if obj is None:
+            raise Http404()
+
+        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+            return HttpResponseForbidden()
+
+        self.reset_api_key_action(request, [obj])
+
+        return HttpResponseRedirect('../')
+
     def delete_picture_view(self, request, object_id, extra_context=None):
         if request.method != 'POST':
             return HttpResponseNotAllowed(['POST'])
@@ -166,6 +204,19 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             request, ugettext('The users "%(users)s" have been banned.' % kw))
     ban_action.short_description = _('Ban selected users')
 
+    def reset_api_key_action(self, request, qs):
+        users = []
+        APIKeyConfirmation.objects.filter(user__in=qs).delete()
+        APIKey.objects.filter(user__in=qs).update(is_active=None)
+        for user in qs:
+            ActivityLog.create(amo.LOG.ADMIN_API_KEY_RESET, user)
+            users.append(force_text(user))
+        kw = {'users': u', '.join(users)}
+        self.message_user(
+            request,
+            ugettext('The users "%(users)s" had their API Key reset.' % kw))
+    reset_api_key_action.short_description = _('Reset API Key')
+
     def picture_img(self, obj):
         return format_html(u'<img src="{}" />', obj.picture_url)
     picture_img.short_description = _(u'Profile Photo')
@@ -187,6 +238,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             UserLog.objects.filter(user=obj)
             .values_list('created', flat=True).first())
         return display_for_value(user_log, '')
+
+    def has_active_api_key(self, obj):
+        return obj.api_keys.filter(is_active=True).exists()
+    has_active_api_key.boolean = True
 
     def collections_created(self, obj):
         return related_content_link(obj, Collection, 'author')

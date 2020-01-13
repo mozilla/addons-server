@@ -14,13 +14,13 @@ couple of settings you should check.
 Checking your image settings
 ____________________________
 
-Check that ``CELERY_ALWAYS_EAGER`` is set to ``True`` in your settings file. This
+Check that ``CELERY_TASK_ALWAYS_EAGER`` is set to ``True`` in your settings file. This
 means it will process tasks without a celery worker running::
 
-    CELERY_ALWAYS_EAGER = True
+    CELERY_TASK_ALWAYS_EAGER = True
 
 If that yields no joy you can try running a celery worker in the foreground,
-set ``CELERY_ALWAYS_EAGER = False`` and run::
+set ``CELERY_TASK_ALWAYS_EAGER = False`` and run::
 
     celery -A olympia worker -E
 

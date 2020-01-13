@@ -7,7 +7,7 @@ $(document).ready(function() {
     $("#edit-addon").exists(initEditAddon);
 
     //Ownership
-    $("#author_list").exists(function() {
+    $("#authors_confirmed").exists(function() {
         initAuthorFields();
         initLicenseFields();
     });
@@ -280,7 +280,10 @@ function addonFormSubmit() {
 
 
 $("#user-form-template .author-email")
-    .attr("placeholder", gettext("Enter a new author's email address"));
+    .attr({
+        "placeholder": gettext("Enter a new author's email address"),
+        "readonly": false
+    });
 
 function initEditAddon() {
     if (z.noEdit) return;
@@ -540,7 +543,7 @@ function initVersions() {
             var el = $(d.click_target),
                 version = versions[el.data('version')],
                 is_current = el.data('is-current') === 1,
-                is_recommended = el.data('is-recommended') === 1,
+                can_be_disabled =  el.data('can-be-disabled') === 1,
                 header = $('h3', this),
                 files = $('#del-files', this),
                 reviews = $('#del-reviews', this);
@@ -555,8 +558,8 @@ function initVersions() {
             $('.current-version-warning', this).toggle(is_current);
             // If the version is recommended and current, show the warning and
             // hide the whole form.
-            $('.recommended-version-warning', this).toggle(is_recommended && is_current);
-            $('form', this).toggle(!(is_recommended && is_current));
+            $('.recommended-version-warning', this).toggle(!can_be_disabled);
+            $('form', this).toggle(can_be_disabled);
             return true;
         }});
 
@@ -824,13 +827,13 @@ function initAuthorFields() {
 
     var request = false,
         timeout = false,
-        manager = $("#id_form-TOTAL_FORMS"),
         empty_form = template($("#user-form-template").html().replace(/__prefix__/g, "{0}")),
-        author_list = $("#author_list");
-    author_list.sortable({
+        authors = $("#authors_confirmed"),
+        authors_pending_confirmation = $('#authors_pending_confirmation')
+    authors.sortable({
         items: ".author",
         handle: ".handle",
-        containment: author_list,
+        containment: authors,
         tolerance: "pointer",
         update: renumberAuthors
     });
@@ -845,22 +848,38 @@ function initAuthorFields() {
             .attr("title", $(this).text());
     });
 
-    $("#author_list")
-        .on("keypress", ".author-email", validateUser)
-        .on("keyup", ".author-email", validateUser)
+    authors
         .on("click", ".remove", function (e) {
             e.preventDefault();
             var tgt = $(this),
-                row = tgt.parents("li");
-            if (author_list.children(".author:visible").length > 1) {
+                row = tgt.parents("li"),
+                manager = $("#id_user_form-TOTAL_FORMS");
+            if (authors.children(".author:visible").length > 1) {
                 if (row.hasClass("initial")) {
                     row.find(".delete input").prop("checked", true);
                     row.hide();
                 } else {
                     row.remove();
-                    manager.val(author_list.children(".author").length);
+                    manager.val(authors.children(".author").length);
                 }
                 renumberAuthors();
+            }
+        });
+
+    authors_pending_confirmation
+        .on("keypress", ".author-email", validateUser)
+        .on("keyup", ".author-email", validateUser)
+        .on("click", ".remove", function (e) {
+            e.preventDefault();
+            var tgt = $(this),
+                row = tgt.parents("li"),
+                manager = $("#id_authors_pending_confirmation-TOTAL_FORMS");
+            if (row.hasClass("initial")) {
+                row.find(".delete input").prop("checked", true);
+                row.hide();
+            } else {
+                row.remove();
+                manager.val(authors.children(".author").length);
             }
         });
 
@@ -873,32 +892,34 @@ function initAuthorFields() {
                .attr("placeholder", undefined);
             row.removeClass("blank")
                .addClass("author");
+            // Now that we've added a user, if it was hidden we need to show
+            // the Authors pending confirmation section header.
+            authors_pending_confirmation.parents("tr").find("th").removeClass('invisible');
             addAuthorRow();
         }
     }
 
     function renumberAuthors() {
-        author_list.children(".author").each(function(i, el) {
+        authors.children(".author").each(function(i, el) {
             $(this).find(".position input").val(i);
         });
         if ($(".author:visible").length > 1) {
-            author_list.sortable("enable");
+            authors.sortable("enable");
             $(".author .remove").show();
             $(".author .handle").css('visibility','visible');
         } else {
-            author_list.sortable("disable");
+            authors.sortable("disable");
             $(".author .remove").hide();
             $(".author .handle").css('visibility','hidden');
         }
     }
     function addAuthorRow() {
-        var numForms = author_list.children(".author").length;
-        author_list.append(empty_form([numForms]))
-                   .sortable("refresh");
-        author_list.find(".blank .author-email")
+        var numForms = authors_pending_confirmation.children(".author").length,
+                manager = $("#id_authors_pending_confirmation-TOTAL_FORMS");
+        authors_pending_confirmation.append(empty_form([numForms]))
+        authors_pending_confirmation.find(".blank .author-email")
                    .placeholder();
-        manager.val(author_list.children(".author").length);
-        renumberAuthors();
+        manager.val(authors_pending_confirmation.children(".author").length);
     }
 }
 
@@ -1214,7 +1235,7 @@ function initCCLicense() {
                 licenseTxt = format('<a href="{0}">{1}</a>',
                                      url.attr('href'), licenseTxt);
             }
-            var $p = $('#persona-license');
+            var $p = $('#theme-license');
             $p.show().find('#cc-license').html(licenseTxt).attr('class', 'license icon ' + $license.data('cc'));
         }
     }
@@ -1237,7 +1258,7 @@ function initCCLicense() {
     });
     $('#submit-describe #license-list input[type=radio][name=license-builtin]').change(licenseChangeHandler);
 
-    $('#persona-license .select-license').click(_pd(function() {
+    $('#theme-license .select-license').click(_pd(function() {
         $('#license-list').toggle();
     }));
     licenseChangeHandler();

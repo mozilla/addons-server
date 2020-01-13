@@ -47,49 +47,45 @@ def generate_auth_id():
     return random.SystemRandom().randint(1, 4294967295)
 
 
-class UserForeignKey(models.ForeignKey):
+class UserEmailField(forms.ModelChoiceField):
     """
-    A replacement for  models.ForeignKey('users.UserProfile').
+    Field to use for ForeignKeys to UserProfile, to use email instead of pk.
+    Requires the form to set the email value in the initial data instead of the
+    pk.
 
-    This field uses UserEmailField to make form fields key off the user's email
-    instead of the primary key id.  We also hook up autocomplete automatically.
+    Displays disabled state as readonly thanks to UserEmailBoundField.
     """
+    default_error_messages = {
+        'invalid_choice': ugettext('No user with that email.')
+    }
+    widget = forms.EmailInput
 
     def __init__(self, *args, **kwargs):
-        # "to" is passed here from the migration framework; we ignore it
-        # since it's the same for every instance.
-        kwargs.pop('to', None)
-        self.to = 'users.UserProfile'
-        if 'on_delete' not in kwargs:
-            kwargs['on_delete'] = models.CASCADE
-        super(UserForeignKey, self).__init__(self.to, *args, **kwargs)
+        if kwargs.get('to_field_name') is None:
+            kwargs['to_field_name'] = 'email'
+        super().__init__(*args, **kwargs)
 
-    def value_from_object(self, obj):
-        return getattr(obj, self.name).email
-
-    def deconstruct(self):
-        name, path, args, kwargs = super(UserForeignKey, self).deconstruct()
-        kwargs['to'] = self.to
-        return (name, path, args, kwargs)
-
-    def formfield(self, **kw):
-        defaults = {'form_class': UserEmailField}
-        defaults.update(kw)
-        return models.Field.formfield(self, **defaults)
-
-
-class UserEmailField(forms.EmailField):
-
-    def clean(self, value):
-        if value in validators.EMPTY_VALUES:
-            raise forms.ValidationError(self.error_messages['required'])
-        try:
-            return UserProfile.objects.get(email=value)
-        except UserProfile.DoesNotExist:
-            raise forms.ValidationError(ugettext('No user with that email.'))
+    def limit_choices_to(self):
+        return {'deleted': False}
 
     def widget_attrs(self, widget):
         return {'class': 'author-email'}
+
+    def get_bound_field(self, form, field_name):
+        return UserEmailBoundField(form, self, field_name)
+
+
+class UserEmailBoundField(forms.BoundField):
+    """A BoundField that treats disabled as readonly (enabling users to select
+    the text, not suffer from low contrast etc. The form field underneath
+    behaves normally and django will still ignore incoming data for it)."""
+
+    def build_widget_attrs(self, *args, **kwargs):
+        attrs = super().build_widget_attrs(*args, **kwargs)
+        if attrs.get('disabled'):
+            attrs.pop('disabled')
+            attrs['readonly'] = True
+        return attrs
 
 
 class UserManager(BaseUserManager, ManagerBase):
@@ -151,6 +147,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     email_changed = models.DateTimeField(null=True, editable=False)
+    banned = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
     # Note: this is only used for API responses (thus addons-frontend) - all
@@ -171,12 +168,18 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # newsletter
     basket_token = models.CharField(blank=True, default='', max_length=128)
 
+    bypass_upload_restrictions = models.BooleanField(default=False)
+
     reviewer_name = models.CharField(
         max_length=50, default='', null=True, blank=True,
         validators=[validators.MinLengthValidator(2)])
 
     class Meta:
         db_table = 'users'
+        indexes = [
+            models.Index(fields=('created',), name='created'),
+            models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
+        ]
 
     def __init__(self, *args, **kw):
         super(UserProfile, self).__init__(*args, **kw)
@@ -224,10 +227,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_read_developer_agreement(self):
         from olympia.zadmin.models import get_config
 
-        # Fallback date in case the config date value is invalid or set to the
-        # future. The current fallback date is the last update on June 10, 2019
-        dev_agreement_change_fallback = datetime(2019, 6, 10, 12, 00)
-
         if self.read_dev_agreement is None:
             return False
         try:
@@ -239,14 +238,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             # If the config date is in the future, instead check against the
             # fallback date
             if change_config_date > datetime.now():
-                return self.read_dev_agreement > dev_agreement_change_fallback
+                return (self.read_dev_agreement >
+                        settings.DEV_AGREEMENT_CHANGE_FALLBACK)
 
             return self.read_dev_agreement > change_config_date
         except (ValueError, TypeError):
             log.exception('last_developer_agreement_change misconfigured, '
                           '"%s" is not a '
                           'datetime' % last_agreement_change_config)
-            return self.read_dev_agreement > dev_agreement_change_fallback
+            return (self.read_dev_agreement >
+                    settings.DEV_AGREEMENT_CHANGE_FALLBACK)
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 
@@ -354,7 +355,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_artist(self):
-        """Is this user a Personas Artist?"""
+        """Is this user a theme artist?"""
         return self.cached_developer_status['is_theme_developer']
 
     @use_primary_db
@@ -454,7 +455,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         are never able to log back in.
         """
         self.delete_or_disable_related_content(delete=False)
-        return self.delete(keep_fxa_id_and_email=True)
+        return self.delete(ban_user=True)
 
     @classmethod
     def ban_and_disable_related_content_bulk(cls, users, move_files=False):
@@ -494,7 +495,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # Status was already DISABLED so shouldn't fire watch_disabled again.
         for addon in addons_sole:
             addon.force_disable()
-        index_addons.delay(addon_ids - addon_joint_ids)
+        # Don't pass a set to a .delay - sets can't be serialized as JSON
+        index_addons.delay(list(addon_ids - addon_joint_ids))
 
         # delete the other content associated with the user
         Collection.objects.filter(author__in=users).delete()
@@ -502,9 +504,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             user_responsible=core.get_user())
         # And then delete the users.
         for user in users:
-            user.delete(keep_fxa_id_and_email=True)
+            user.delete(ban_user=True)
 
-    def delete(self, hard=False, keep_fxa_id_and_email=False):
+    def delete(self, hard=False, ban_user=False):
         # Cache the values in case we do a hard delete and loose
         # reference to the user-id.
         picture_path = self.picture_path
@@ -513,15 +515,19 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if hard:
             super(UserProfile, self).delete()
         else:
-            if keep_fxa_id_and_email:
-                log.info(u'User (%s: <%s>) is being partially anonymized.' % (
-                    self, self.email))
+            if ban_user:
+                log.info(
+                    f'User ({self}: <{self.email}>) is being partially '
+                    'anonymized and banned.')
+                # We don't clear email or fxa_id when banning
+                self.banned = datetime.now()
             else:
                 log.info(u'User (%s: <%s>) is being anonymized.' % (
                     self, self.email))
                 self.email = None
                 self.fxa_id = None
-                self.last_login_ip = ''
+            # last_login_ip is kept, deleted by clear_old_last_login_ip
+            # command after 6 months.
             self.biography = ''
             self.display_name = None
             self.homepage = ''
@@ -600,6 +606,9 @@ class UserNotification(ModelBase):
 
     class Meta:
         db_table = 'users_notifications'
+        indexes = [
+            models.Index(fields=('user',), name='user_id'),
+        ]
 
     @property
     def notification(self):
@@ -641,7 +650,14 @@ class DeniedName(ModelBase):
         return any(n in name for n in blocked_list)
 
 
-class IPNetworkUserRestriction(ModelBase):
+class GetErrorMessageMixin():
+
+    @classmethod
+    def get_error_message(cls, is_api):
+        return cls.error_message
+
+
+class IPNetworkUserRestriction(GetErrorMessageMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     network = CIDRField(
         blank=True, null=True,
@@ -677,7 +693,7 @@ class IPNetworkUserRestriction(ModelBase):
 
         for restriction in restrictions:
             if (remote_addr in restriction.network or
-               user_last_login_ip in restriction.network):
+                    user_last_login_ip in restriction.network):
                 log.info('Restricting request from %s %s, %s %s (%s)',
                          'ip', remote_addr,
                          'last_login_ip', user_last_login_ip,
@@ -702,7 +718,8 @@ class NormalizeEmailMixin:
         return normalized_email
 
 
-class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
+class EmailUserRestriction(
+        GetErrorMessageMixin, NormalizeEmailMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     email_pattern = models.CharField(
         _('Email Pattern'),
@@ -751,7 +768,7 @@ class EmailUserRestriction(NormalizeEmailMixin, ModelBase):
         return True
 
 
-class DisposableEmailDomainRestriction(ModelBase):
+class DisposableEmailDomainRestriction(GetErrorMessageMixin, ModelBase):
     domain = models.CharField(
         unique=True,
         max_length=255,
@@ -828,7 +845,8 @@ class ReputationRestrictionMixin:
         return True
 
 
-class IPReputationRestriction(ReputationRestrictionMixin):
+class IPReputationRestriction(
+        GetErrorMessageMixin, ReputationRestrictionMixin):
     error_message = IPNetworkUserRestriction.error_message
 
     @classmethod
@@ -843,7 +861,7 @@ class IPReputationRestriction(ReputationRestrictionMixin):
 
 
 class EmailReputationRestriction(
-        NormalizeEmailMixin, ReputationRestrictionMixin):
+        GetErrorMessageMixin, NormalizeEmailMixin, ReputationRestrictionMixin):
     error_message = EmailUserRestriction.error_message
 
     @classmethod
@@ -855,12 +873,23 @@ class EmailReputationRestriction(
             request.user.email))
 
 
-class DeveloperAgreementRestriction:
+class DeveloperAgreementRestriction(GetErrorMessageMixin):
     error_message = _('Before starting, please read and accept our Firefox'
                       ' Add-on Distribution Agreement as well as our Review'
                       ' Policies and Rules. The Firefox Add-on Distribution'
                       ' Agreement also links to our Privacy Notice which'
                       ' explains how we handle your information.')
+
+    @classmethod
+    def get_error_message(cls, is_api):
+        if is_api:
+            from olympia.amo.templatetags.jinja_helpers import absolutify
+            url = absolutify(reverse('devhub.api_key'))
+            return _('Please read and accept our Firefox on Distribution '
+                     'Agreement as well as our Review Policies and Rules '
+                     'by visiting {url}'.format(url=url))
+        else:
+            return cls.error_message
 
     @classmethod
     def allow_request(cls, request):
@@ -876,6 +905,28 @@ class DeveloperAgreementRestriction:
         return allowed
 
 
+class UserRestrictionHistory(ModelBase):
+    RESTRICTION_CLASSES_CHOICES = (
+        (0, DeveloperAgreementRestriction),
+        (1, DisposableEmailDomainRestriction),
+        (2, EmailUserRestriction),
+        (3, IPNetworkUserRestriction),
+        (4, EmailReputationRestriction),
+        (5, IPReputationRestriction),
+    )
+
+    user = models.ForeignKey(
+        UserProfile, related_name='restriction_history',
+        on_delete=models.CASCADE)
+    restriction = models.PositiveSmallIntegerField(
+        default=0, choices=tuple(
+            (num, klass.__name__) for num, klass in RESTRICTION_CLASSES_CHOICES
+        )
+    )
+    ip_address = models.CharField(default='', max_length=45)
+    last_login_ip = models.CharField(default='', max_length=45)
+
+
 class UserHistory(ModelBase):
     id = PositiveAutoField(primary_key=True)
     email = models.EmailField(max_length=75)
@@ -885,6 +936,10 @@ class UserHistory(ModelBase):
     class Meta:
         db_table = 'users_history'
         ordering = ('-created',)
+        indexes = [
+            models.Index(fields=('email',), name='users_history_email'),
+            models.Index(fields=('user',), name='users_history_user_idx'),
+        ]
 
 
 @UserProfile.on_change
@@ -894,19 +949,34 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
         old_attr = {}
     if new_attr is None:
         new_attr = {}
+    changes = {
+        x for x in new_attr
+        if not x.startswith('_') and new_attr[x] != old_attr.get(x)
+    }
+
     # Log email changes.
-    new_email, old_email = new_attr.get('email'), old_attr.get('email')
-    if old_email and new_email != old_email:
+    if 'email' in changes and new_attr['email'] is not None:
         log.debug('Creating user history for user: %s' % instance.pk)
-        UserHistory.objects.create(email=old_email, user_id=instance.pk)
+        UserHistory.objects.create(
+            email=old_attr.get('email'), user_id=instance.pk)
     # If username or display_name changes, reindex the user add-ons, if there
     # are any.
-    if (new_attr.get('username') != old_attr.get('username') or
-            new_attr.get('display_name') != old_attr.get('display_name')):
+    if 'username' in changes or 'display_name' in changes:
         from olympia.addons.tasks import index_addons
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
+
+    basket_relevant_changes = (
+        'deleted', 'display_name', 'email', 'homepage', 'last_login',
+        'location'
+    )
+    if any(field in changes for field in basket_relevant_changes):
+        from olympia.amo.tasks import sync_object_to_basket
+        log.info(
+            'Triggering a sync of %s %s with basket because of %s change',
+            'userprofile', instance.pk, 'attribute')
+        sync_object_to_basket.delay('userprofile', instance.pk)
 
 
 user_logged_in.connect(UserProfile.user_logged_in)

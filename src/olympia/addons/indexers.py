@@ -123,18 +123,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'current_version': version_mapping,
                     'default_locale': {'type': 'keyword', 'index': False},
                     'description': {'type': 'text', 'analyzer': 'snowball'},
-                    'featured_for': {
-                        'type': 'nested',
-                        'properties': {
-                            'application': {'type': 'byte'},
-                            'locales': {
-                                'type': 'keyword',
-                                # A null locale means not targeted to a locale,
-                                # so shown to all locales.
-                                'null_value': 'ALL',
-                            },
-                        },
-                    },
                     'guid': {'type': 'keyword'},
                     'has_eula': {'type': 'boolean', 'index': False},
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
@@ -143,7 +131,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'icon_type': {'type': 'keyword', 'index': False},
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
-                    'is_featured': {'type': 'boolean'},
                     'is_recommended': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
                     'listed_authors': {
@@ -170,17 +157,6 @@ class AddonIndexer(BaseSearchIndexer):
                                 'type': 'text',
                                 'analyzer': 'trigram',
                             }
-                        }
-                    },
-                    'persona': {
-                        'type': 'object',
-                        'properties': {
-                            'accentcolor': {'type': 'keyword', 'index': False},
-                            'author': {'type': 'keyword', 'index': False},
-                            'header': {'type': 'keyword', 'index': False},
-                            'footer': {'type': 'keyword', 'index': False},
-                            'is_new': {'type': 'boolean', 'index': False},
-                            'textcolor': {'type': 'keyword', 'index': False},
                         }
                     },
                     'platforms': {'type': 'byte'},
@@ -293,7 +269,7 @@ class AddonIndexer(BaseSearchIndexer):
                     # compatibility, so the max version essentially needs to be
                     # ignored - let's fake a super high one. We leave max_human
                     # alone to leave the API representation intact.
-                    max_ = version_int('9999')
+                    max_ = version_int('*')
             else:
                 # Fake wide compatibility for add-ons with no info. We don't
                 # want to reindex every time a new version of the app is
@@ -350,12 +326,6 @@ class AddonIndexer(BaseSearchIndexer):
              'is_public': a.is_public}
             for a in obj.listed_authors
         ]
-
-        data['is_featured'] = obj.is_featured(None, None)
-        data['featured_for'] = [
-            {'application': [app], 'locales': list(sorted(
-                locales, key=lambda x: x or ''))}
-            for app, locales in obj.get_featured_by_app().items()]
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)

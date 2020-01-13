@@ -40,42 +40,22 @@ from olympia.users.utils import UnsubscribeCode
 
 
 FXA_CONFIG = {
-    'oauth_host': 'https://accounts.firefox.com/v1',
     'client_id': 'amodefault',
-    'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
-    'scope': 'profile',
 }
 SKIP_REDIRECT_FXA_CONFIG = {
-    'oauth_host': 'https://accounts.firefox.com/v1',
     'client_id': 'amodefault',
-    'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
-    'scope': 'profile',
-    'skip_register_redirect': True,
 }
-
-
-@override_settings(FXA_CONFIG={
-    'default': FXA_CONFIG,
-    'skip': SKIP_REDIRECT_FXA_CONFIG,
-})
-class BaseAuthenticationView(TestCase, PatchMixin,
-                             InitializeSessionMixin):
-    client_class = APIClient
-
-    def setUp(self):
-        self.url = reverse_ns(self.view_name)
-        self.fxa_identify = self.patch(
-            'olympia.accounts.views.verify.fxa_identify')
 
 
 @override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/v1')
 class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
 
-    class LoginStartView(views.LoginStartBaseView):
+    class LoginStartView(views.LoginStartView):
         DEFAULT_FXA_CONFIG_NAME = 'current-config'
 
     def setUp(self):
-        super(TestLoginStartBaseView, self).setUp()
+        super().setUp()
         self.endpoint(self.LoginStartView, r'^login/start/')
         self.url = '/en-US/firefox/login/start/'
         self.initialize_session({})
@@ -103,7 +83,6 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         assert parse_qs(url.query) == {
             'action': ['signin'],
             'client_id': ['amodefault'],
-            'redirect_url': ['https://addons.mozilla.org/fxa-authenticate'],
             'scope': ['profile'],
             'state': ['arandomstring'],
         }
@@ -178,7 +157,7 @@ class TestLoginStartView(TestCase):
     def test_default_config_is_used(self):
         assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
         assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'local', 'code-manager'])
+            ['default', 'amo', 'local'])
 
 
 class TestLoginUserAndRegisterUser(TestCase):
@@ -297,9 +276,11 @@ class TestFindUser(TestCase):
 
 
 class TestRenderErrorHTML(TestCase):
+    api_version = 'auth'
 
     def make_request(self):
-        request = APIRequestFactory().get(reverse_ns('accounts.authenticate'))
+        request = APIRequestFactory().get(
+            reverse_ns('accounts.authenticate', api_version=self.api_version))
         request.user = AnonymousUser()
         return self.enable_messages(request)
 
@@ -349,7 +330,12 @@ class TestRenderErrorHTML(TestCase):
         assert_url_equal(response['location'], '/')
 
 
+class TestRenderErrorHTMLV3(TestRenderErrorHTML):
+    api_version = 'v3'
+
+
 class TestRenderErrorJSON(TestCase):
+    api_version = 'auth'
 
     def setUp(self):
         patcher = mock.patch('olympia.accounts.views.Response')
@@ -357,7 +343,8 @@ class TestRenderErrorJSON(TestCase):
         self.addCleanup(patcher.stop)
 
     def make_request(self):
-        return APIRequestFactory().post(reverse_ns('accounts.authenticate'))
+        return APIRequestFactory().post(
+            reverse_ns('accounts.authenticate', api_version=self.api_version))
 
     def render_error(self, error):
         views.render_error(self.make_request(), error, format='json')
@@ -377,6 +364,10 @@ class TestRenderErrorJSON(TestCase):
             {'error': views.ERROR_STATE_MISMATCH}, status=400)
 
 
+class TestRenderErrorJSONV3(TestRenderErrorJSON):
+    api_version = 'v3'
+
+
 class TestWithUser(TestCase):
 
     def setUp(self):
@@ -388,6 +379,9 @@ class TestWithUser(TestCase):
         self.user = AnonymousUser()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
+
+    def get_fxa_config(self, request):
+        return settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
 
     @views.with_user(format='json')
     def fn(*args, **kwargs):
@@ -624,7 +618,7 @@ class TestWithUser(TestCase):
             scheme=url.scheme, netloc=url.netloc, path=url.path)
         fxa_config = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
         assert base == '{host}{path}'.format(
-            host=fxa_config['oauth_host'],
+            host=settings.FXA_OAUTH_HOST,
             path='/authorization')
         query = parse_qs(url.query)
         next_path = base64.urlsafe_b64encode(b'/a/path/?').rstrip(b'=')
@@ -632,8 +626,7 @@ class TestWithUser(TestCase):
             'acr_values': ['AAL2'],
             'action': ['signin'],
             'client_id': [fxa_config['client_id']],
-            'redirect_url': [fxa_config['redirect_url']],
-            'scope': [fxa_config['scope']],
+            'scope': ['profile'],
             'state': ['some-blob:{next_path}'.format(
                 next_path=force_text(next_path))],
         }
@@ -752,11 +745,20 @@ def empty_view(*args, **kwargs):
     return http.HttpResponse()
 
 
-class TestAuthenticateView(BaseAuthenticationView):
+@override_settings(FXA_CONFIG={
+    'default': FXA_CONFIG,
+    'skip': SKIP_REDIRECT_FXA_CONFIG,
+})
+class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
     view_name = 'accounts.authenticate'
+    client_class = APIClient
+    api_version = 'auth'
 
     def setUp(self):
-        super(TestAuthenticateView, self).setUp()
+        super().setUp()
+        self.fxa_identify = self.patch(
+            'olympia.accounts.views.verify.fxa_identify')
+        self.url = reverse_ns(self.view_name, api_version=self.api_version)
         self.fxa_state = '1cd2ae9d'
         self.initialize_session({'fxa_state': self.fxa_state})
         self.login_user = self.patch('olympia.accounts.views.login_user')
@@ -834,32 +836,59 @@ class TestAuthenticateView(BaseAuthenticationView):
                      force_text(base64.urlsafe_b64encode(b'/go/here'))]),
             })
             self.assertRedirects(
-                response, reverse('users.edit'), target_status_code=200)
+                response,
+                reverse('users.edit') + '?to=/go/here',
+                target_status_code=200)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(
             views.AuthenticateView, mock.ANY, identity)
 
-    @mock.patch('olympia.accounts.views.AuthenticateView.ALLOWED_FXA_CONFIGS',
-                ['default', 'skip'])
-    def test_register_redirects_next_when_config_says_to(self):
+    def test_register_redirects_edit_absolute_to(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
         user = UserProfile(username='foo', email='me@yeahoo.com')
         self.register_user.return_value = user
-        response = self.client.get(self.url, {
-            'code': 'codes!!',
-            'state': ':'.join(
-                [self.fxa_state,
-                 force_text(base64.urlsafe_b64encode(b'/go/here'))]),
-            'config': 'skip',
-        })
-        self.fxa_identify.assert_called_with(
-            'codes!!', config=SKIP_REDIRECT_FXA_CONFIG)
-        self.assertRedirects(
-            response, '/go/here', fetch_redirect_response=False)
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            with override_settings(DOMAIN='supersafe.com'):
+                response = self.client.get(self.url, {
+                    'code': 'codes!!',
+                    'state': ':'.join(
+                        [self.fxa_state,
+                         force_text(base64.urlsafe_b64encode(
+                            b'https://supersafe.com/go/here'))]),
+                })
+            self.assertRedirects(
+                response,
+                reverse('users.edit') + '?to=https://supersafe.com/go/here',
+                target_status_code=200)
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert not self.login_user.called
+        self.register_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, identity)
+
+    def test_register_redirects_edit_ignores_to_when_unsafe(self):
+        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not user_qs.exists()
+        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        self.fxa_identify.return_value = identity
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            response = self.client.get(self.url, {
+                'code': 'codes!!',
+                'state': ':'.join(
+                    [self.fxa_state,
+                     force_text(base64.urlsafe_b64encode(
+                        b'https://go.go/here'))]),
+            })
+            self.assertRedirects(
+                response,
+                reverse('users.edit'),  # No '?to=...'
+                target_status_code=200)
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(
             views.AuthenticateView, mock.ANY, identity)
@@ -991,6 +1020,10 @@ class TestAuthenticateView(BaseAuthenticationView):
             })
         with mock.patch('olympia.amo.views._frontend_view', empty_view):
             self.assertRedirects(response, reverse('home'))
+
+
+class TestAuthenticateViewV3(TestAuthenticateView):
+    api_version = 'v3'
 
 
 class TestAccountViewSet(TestCase):
@@ -1594,6 +1627,8 @@ class TestParseNextPath(TestCase):
 
 
 class TestSessionView(TestCase):
+    api_version = 'auth'
+
     def login_user(self, user):
         identity = {
             'username': user.username,
@@ -1606,7 +1641,8 @@ class TestSessionView(TestCase):
                 lambda code, config: identity):
             response = self.client.get(
                 '{url}?code={code}&state={state}'.format(
-                    url=reverse_ns('accounts.authenticate'),
+                    url=reverse_ns(
+                        'accounts.authenticate', api_version=self.api_version),
                     state='myfxastate',
                     code='thecode'))
             token = response.cookies[views.API_TOKEN_COOKIE].value
@@ -1674,6 +1710,10 @@ class TestSessionView(TestCase):
         assert not response.has_header('Access-Control-Allow-Methods')
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Max-Age')
+
+
+class TestSessionViewV3(TestSessionView):
+    api_version = 'v3'
 
 
 class TestAccountNotificationViewSetList(TestCase):

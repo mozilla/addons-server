@@ -18,16 +18,13 @@ from olympia.addons.models import Addon
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
     json_view, permission_required, post_required)
-from olympia.amo.mail import DevEmailBackend
-from olympia.amo.utils import HttpResponseSendFile, render
-from olympia.bandwagon.models import Collection
+from olympia.amo.utils import HttpResponseXSendFile, render
 from olympia.files.models import File, FileUpload
 from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.versions.models import Version
 
 from .decorators import admin_required
-from .forms import (
-    AddonStatusForm, FeaturedCollectionFormSet, FileFormSet)
+from .forms import AddonStatusForm, FileFormSet
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -63,57 +60,6 @@ def fix_disabled_file(request):
 
 
 @admin_required
-@json_view
-def collections_json(request):
-    app = request.GET.get('app', '')
-    q = request.GET.get('q', '')
-    data = []
-    if not q:
-        return data
-    qs = Collection.objects.all()
-    try:
-        qs = qs.filter(pk=int(q))
-    except ValueError:
-        qs = qs.filter(slug__startswith=q)
-    try:
-        qs = qs.filter(application=int(app))
-    except ValueError:
-        pass
-    for c in qs[:7]:
-        data.append({'id': c.id,
-                     'name': str(c.name),
-                     'slug': str(c.slug),
-                     'url': c.get_url_path()})
-    return data
-
-
-@admin_required
-@post_required
-def featured_collection(request):
-    try:
-        pk = int(request.POST.get('collection', 0))
-    except ValueError:
-        pk = 0
-    c = get_object_or_404(Collection, pk=pk)
-    return render(request, 'zadmin/featured_collection.html',
-                  dict(collection=c))
-
-
-@admin_required
-def features(request):
-    form = FeaturedCollectionFormSet(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save(commit=False)
-
-        for obj in form.deleted_objects:
-            obj.delete()
-
-        messages.success(request, 'Changes successfully saved.')
-        return redirect('zadmin.features')
-    return render(request, 'zadmin/features.html', dict(form=form))
-
-
-@admin_required
 def elastic(request):
     INDEX = settings.ES_INDEXES['default']
     es = search.get_es()
@@ -131,15 +77,6 @@ def elastic(request):
         'mappings': [(index, es_mappings.get(index, {})) for index in indexes],
     }
     return render(request, 'zadmin/elastic.html', ctx)
-
-
-@admin.site.admin_view
-def mail(request):
-    backend = DevEmailBackend()
-    if request.method == 'POST':
-        backend.clear()
-        return redirect('zadmin.mail')
-    return render(request, 'zadmin/mail.html', dict(mail=backend.view_all()))
 
 
 @permission_required(amo.permissions.ANY_ADMIN)
@@ -241,8 +178,8 @@ def addon_manage(request, addon):
 def download_file_upload(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
 
-    return HttpResponseSendFile(request, upload.path,
-                                content_type='application/octet-stream')
+    return HttpResponseXSendFile(request, upload.path,
+                                 content_type='application/octet-stream')
 
 
 @admin.site.admin_view

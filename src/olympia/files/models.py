@@ -3,15 +3,17 @@ import json
 import os
 import posixpath
 import re
-import time
 import unicodedata
 import uuid
-import zipfile
 
+from urllib.parse import urljoin
+
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
+from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import cached_property
 
@@ -29,8 +31,7 @@ from olympia.amo.templatetags.jinja_helpers import (
     urlparams, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.files.utils import SafeZip, get_sha256, write_crx_as_xpi
-from olympia.lib.cache import memoize
+from olympia.files.utils import get_sha256, write_crx_as_xpi
 
 
 log = olympia.core.logger.getLogger('z.files')
@@ -67,7 +68,7 @@ class File(OnChangeMixin, ModelBase):
     # The `binary_components` field is used to store the flag from
     # amo-validator when it finds "binary-components" in the chrome manifest
     # file, used for default to compatible.
-    binary_components = models.BooleanField(default=False, db_index=True)
+    binary_components = models.BooleanField(default=False)
     # Serial number of the certificate use for the signature.
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
@@ -86,6 +87,15 @@ class File(OnChangeMixin, ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
+        indexes = [
+            models.Index(fields=('created', 'version'),
+                         name='created_idx'),
+            models.Index(fields=('binary_components',), name='files_cedd2560'),
+            models.Index(fields=('datestatuschanged', 'version'),
+                         name='statuschanged_idx'),
+            models.Index(fields=('platform',), name='platform_id'),
+            models.Index(fields=('status',), name='status'),
+        ]
 
     def __str__(self):
         return str(self.id)
@@ -146,8 +156,6 @@ class File(OnChangeMixin, ModelBase):
         file_ = cls(version=version, platform=platform)
         upload_path = force_text(nfd_str(upload.path))
         ext = force_text(os.path.splitext(upload_path)[1])
-        if ext == '.jar':
-            ext = '.xpi'
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload_path)
@@ -313,52 +321,6 @@ class File(OnChangeMixin, ModelBase):
         self.move_file(
             src, dst, 'Moving undisabled file: {source} => {destination}')
 
-    _get_localepicker = re.compile(r'^locale browser ([\w\-_]+) (.*)$', re.M)
-
-    @memoize(prefix='localepicker', timeout=None)
-    def get_localepicker(self):
-        """
-        For a file that is part of a language pack, extract
-        the chrome/localepicker.properties file and return as
-        a string.
-        """
-        start = time.time()
-
-        try:
-            zip_ = SafeZip(self.file_path)
-        except (zipfile.BadZipfile, IOError):
-            return ''
-
-        try:
-            manifest = force_text(zip_.read('chrome.manifest'))
-        except KeyError:
-            log.info('No file named: chrome.manifest in file: %s' % self.pk)
-            return ''
-
-        res = self._get_localepicker.search(manifest)
-        if not res:
-            log.error('Locale browser not in chrome.manifest: %s' % self.pk)
-            return ''
-
-        try:
-            path = res.groups()[1]
-            if 'localepicker.properties' not in path:
-                path = os.path.join(path, 'localepicker.properties')
-            res = zip_.extract_from_manifest(path)
-        except (zipfile.BadZipfile, IOError) as e:
-            log.error('Error unzipping: %s, %s in file: %s' % (
-                path, e, self.pk))
-            return ''
-        except (ValueError, KeyError) as e:
-            log.error('No file named: %s in file: %s' % (e, self.pk))
-            return ''
-
-        end = time.time() - start
-        log.info('Extracted localepicker file: %s in %.2fs' %
-                 (self.pk, end))
-        statsd.timing('files.extract.localepicker', (end * 1000))
-        return force_text(res)
-
     @cached_property
     def webext_permissions_list(self):
         if not self.is_webextension:
@@ -374,23 +336,6 @@ class File(OnChangeMixin, ModelBase):
 
         except WebextPermission.DoesNotExist:
             return []
-
-
-@receiver(models.signals.post_save, sender=File,
-          dispatch_uid='cache_localpicker')
-def cache_localepicker(sender, instance, **kw):
-    if kw.get('raw') or not kw.get('created'):
-        return
-
-    try:
-        addon = instance.version.addon
-    except models.ObjectDoesNotExist:
-        return
-
-    if addon.type == amo.ADDON_LPAPP and addon.status == amo.STATUS_APPROVED:
-        log.info('Updating localepicker for file: %s, addon: %s' %
-                 (instance.pk, addon.pk))
-        instance.get_localepicker()
 
 
 @use_primary_db
@@ -508,11 +453,19 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey(
         'addons.Addon', null=True, on_delete=models.CASCADE)
+    access_token = models.CharField(max_length=40, null=True)
 
     objects = ManagerBase()
 
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
+        indexes = [
+            models.Index(fields=('compat_with_app',),
+                         name='file_uploads_afe99c5e'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('uuid',), name='uuid'),
+        ]
 
     def __str__(self):
         return str(self.uuid.hex)
@@ -521,6 +474,8 @@ class FileUpload(ModelBase):
         if self.validation:
             if self.load_validation()['errors'] == 0:
                 self.valid = True
+        if not self.access_token:
+            self.access_token = self.generate_access_token()
         super(FileUpload, self).save(*args, **kw)
 
     def add_file(self, chunks, filename, size):
@@ -565,6 +520,22 @@ class FileUpload(ModelBase):
         self.name = filename
         self.hash = 'sha256:%s' % hash_func.hexdigest()
         self.save()
+
+    def generate_access_token(self):
+        """
+        Returns an access token used to secure download URLs.
+        """
+        return get_random_string(40)
+
+    def get_authenticated_download_url(self):
+        """
+        Returns a download URL containing an access token bound to this file.
+        """
+        absolute_url = urljoin(
+            settings.EXTERNAL_SITE_URL,
+            reverse('files.serve_file_upload', kwargs={'uuid': self.uuid.hex})
+        )
+        return '{}?access_token={}'.format(absolute_url, self.access_token)
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):

@@ -2,6 +2,8 @@ import collections
 
 from django.conf import settings
 
+from celery import group
+
 from olympia import amo
 from olympia.applications.models import AppVersion
 from olympia.lib.es.utils import create_index
@@ -142,7 +144,7 @@ def reindex_tasks_group(index_name):
     from olympia.stats.management.commands.index_stats import (
         gather_index_stats_tasks
     )
-    return gather_index_stats_tasks(index_name)
+    return group(gather_index_stats_tasks(index_name))
 
 
 def get_mappings():

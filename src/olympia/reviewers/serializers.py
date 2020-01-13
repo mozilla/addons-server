@@ -12,6 +12,7 @@ from rest_framework.exceptions import NotFound
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
+from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.activity.models import DraftComment
@@ -35,9 +36,14 @@ from olympia.lib.cache import cache_get_or_set
 class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddonReviewerFlags
-        fields = ('auto_approval_disabled', 'needs_admin_code_review',
-                  'needs_admin_content_review', 'needs_admin_theme_review',
-                  'pending_info_request')
+        fields = (
+            'auto_approval_disabled',
+            'auto_approval_delayed_until',
+            'needs_admin_code_review',
+            'needs_admin_content_review',
+            'needs_admin_theme_review',
+            'pending_info_request'
+        )
 
 
 class FileEntriesSerializer(FileSerializer):
@@ -340,23 +346,6 @@ class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
         pass
 
 
-class DraftCommentSerializer(serializers.ModelSerializer):
-    user = SplitField(
-        serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
-        BaseUserSerializer())
-    version = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=Version.unfiltered.all()),
-        VersionSerializer())
-
-    class Meta:
-        model = DraftComment
-        fields = (
-            'id', 'filename', 'lineno', 'comment',
-            'version', 'user'
-        )
-
-
 class CannedResponseSerializer(serializers.ModelSerializer):
     # Title is actually more fitting than the internal "name"
     title = serializers.CharField(source='name')
@@ -368,3 +357,73 @@ class CannedResponseSerializer(serializers.ModelSerializer):
 
     def get_category(self, obj):
         return amo.CANNED_RESPONSE_CATEGORY_CHOICES[obj.category]
+
+
+class DraftCommentSerializer(serializers.ModelSerializer):
+    user = SplitField(
+        serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
+        BaseUserSerializer())
+    version = SplitField(
+        serializers.PrimaryKeyRelatedField(
+            queryset=Version.unfiltered.all()),
+        AddonBrowseVersionSerializer())
+    canned_response = SplitField(
+        serializers.PrimaryKeyRelatedField(
+            queryset=CannedResponse.objects.all(),
+            required=False),
+        CannedResponseSerializer(),
+        allow_null=True,
+        required=False)
+
+    class Meta:
+        model = DraftComment
+        fields = (
+            'id', 'filename', 'lineno', 'comment',
+            'version', 'user', 'canned_response'
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the instance for `AddonBrowseVersionSerializer` which requires
+        # on `instance` being set correctly.
+        self.fields['version'].output.instance = self.context['version']
+
+    def get_or_default(self, key, data, default=''):
+        """Return the value of ``key`` in ``data``
+
+        If that key is not present then return the value of ``key`` from
+        ``self.instance`, otherwise return the ``default``.
+
+        This method is a helper to simplify validation for partial updates.
+        """
+        retval = data.get(key)
+
+        if retval is None and self.instance is not None:
+            retval = getattr(self.instance, key)
+
+        return retval or default
+
+    def validate(self, data):
+        canned_response = self.get_or_default('canned_response', data)
+        comment = self.get_or_default('comment', data)
+
+        if comment and canned_response:
+            raise serializers.ValidationError(
+                {'comment': ugettext(
+                    'You can\'t submit a comment if `canned_response` is '
+                    'defined.')})
+
+        if not canned_response and not comment:
+            raise serializers.ValidationError(
+                {'comment': ugettext(
+                    'You can\'t submit an empty comment.')})
+
+        lineno = self.get_or_default('lineno', data)
+        filename = self.get_or_default('filename', data)
+
+        if lineno and not filename:
+            raise serializers.ValidationError(
+                {'comment': ugettext(
+                    'You can\'t submit a line number without associating '
+                    'it to a filename.')})
+        return data

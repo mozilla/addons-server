@@ -17,7 +17,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -48,6 +48,11 @@ VIEW_QUEUE_FLAGS = (
     ('expired_info_request', 'expired-info', _('Expired Information Request')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
+    ('auto_approval_delayed_temporarily', 'auto-approval-delayed-temporarily',
+        _('Auto-approval delayed temporarily')),
+    ('auto_approval_delayed_indefinitely',
+        'auto-approval-delayed-indefinitely',
+        _('Auto-approval delayed indefinitely')),
 )
 
 
@@ -121,6 +126,8 @@ class ViewQueue(RawSQLModel):
     latest_version = models.CharField(max_length=255)
     pending_info_request = models.DateTimeField()
     expired_info_request = models.NullBooleanField()
+    auto_approval_delayed_temporarily = models.NullBooleanField()
+    auto_approval_delayed_indefinitely = models.NullBooleanField()
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
@@ -147,6 +154,16 @@ class ViewQueue(RawSQLModel):
                 ('expired_info_request', (
                     'TIMEDIFF(addons_addonreviewerflags.pending_info_request,'
                     'NOW()) < 0')),
+                ('auto_approval_delayed_temporarily', (
+                    'TIMEDIFF(addons_addonreviewerflags.'
+                    'auto_approval_delayed_until, NOW()) > 0 AND '
+                    'EXTRACT(YEAR FROM addons_addonreviewerflags.'
+                    'auto_approval_delayed_until) != 9999')),
+                ('auto_approval_delayed_indefinitely', (
+                    'TIMEDIFF(addons_addonreviewerflags.'
+                    'auto_approval_delayed_until, NOW()) > 0 AND '
+                    'EXTRACT(YEAR FROM addons_addonreviewerflags.'
+                    'auto_approval_delayed_until) = 9999')),
                 ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
@@ -221,11 +238,14 @@ class ExtensionQueueMixin:
     def base_query(self):
         query = super().base_query()
         types = _int_join(
-            set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH} | {amo.ADDON_THEME})
+            set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH})
         query['where'].append(
             f'((addons.addontype_id IN ({types}) '
             'AND files.is_webextension = 0) '
-            'OR addons_addonreviewerflags.auto_approval_disabled = 1)')
+            'OR addons_addonreviewerflags.auto_approval_disabled = 1 '
+            'OR addons_addonreviewerflags.auto_approval_delayed_until > NOW()'
+            ')'
+        )
         return query
 
 
@@ -260,28 +280,21 @@ class ViewUnlistedAllList(RawSQLModel):
     addon_name = models.CharField(max_length=255)
     addon_slug = models.CharField(max_length=30)
     guid = models.CharField(max_length=255)
-    version_date = models.DateTimeField()
     _author_ids = models.CharField(max_length=255)
     _author_usernames = models.CharField()
-    review_date = models.DateField()
-    review_version_num = models.CharField(max_length=255)
-    review_log_id = models.IntegerField()
     addon_status = models.IntegerField()
-    latest_version = models.CharField(max_length=255)
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
     is_deleted = models.BooleanField()
 
     def base_query(self):
-        review_ids = ','.join([str(r) for r in amo.LOG_REVIEWER_REVIEW_ACTION])
         return {
             'select': OrderedDict([
                 ('id', 'addons.id'),
                 ('addon_name', 'tr.localized_string'),
                 ('addon_status', 'addons.status'),
                 ('addon_slug', 'addons.slug'),
-                ('latest_version', 'versions.version'),
                 ('guid', 'addons.guid'),
                 ('_author_ids', 'GROUP_CONCAT(authors.user_id)'),
                 ('_author_usernames', 'GROUP_CONCAT(users.username)'),
@@ -292,55 +305,25 @@ class ViewUnlistedAllList(RawSQLModel):
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('is_deleted', 'IF (addons.status=11, true, false)'),
-                ('version_date', 'versions.nomination'),
-                ('review_date', 'reviewed_versions.created'),
-                ('review_version_num', 'reviewed_versions.version'),
-                ('review_log_id', 'reviewed_versions.log_id'),
             ]),
             'from': [
                 'addons',
                 """
-                JOIN (
-                    SELECT MAX(id) AS latest_version, addon_id FROM versions
-                    WHERE channel = {channel}
-                    GROUP BY addon_id
-                    ) AS latest_version
-                    ON latest_version.addon_id = addons.id
                 LEFT JOIN addons_addonreviewerflags ON (
                     addons.id = addons_addonreviewerflags.addon_id)
                 LEFT JOIN versions
-                    ON (latest_version.latest_version = versions.id)
+                    ON (versions.addon_id = addons.id)
                 JOIN translations AS tr ON (
                     tr.id = addons.name AND
                     tr.locale = addons.defaultlocale)
                 LEFT JOIN addons_users AS authors
                     ON addons.id = authors.addon_id
                 LEFT JOIN users as users ON users.id = authors.user_id
-                LEFT JOIN (
-                    SELECT versions.id AS id, addon_id, log.created, version,
-                           log.id AS log_id
-                    FROM versions
-                    JOIN log_activity_version AS log_v ON (
-                        log_v.version_id=versions.id)
-                    JOIN log_activity as log ON (
-                        log.id=log_v.activity_log_id)
-                    WHERE log.user_id <> {task_user} AND
-                        log.action in ({review_actions}) AND
-                        versions.channel = {channel}
-                    ORDER BY id desc
-                    ) AS reviewed_versions
-                    ON reviewed_versions.addon_id = addons.id
-                """.format(task_user=settings.TASK_USER_ID,
-                           review_actions=review_ids,
-                           channel=amo.RELEASE_CHANNEL_UNLISTED),
+                """
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
                 'versions.channel = %s' % amo.RELEASE_CHANNEL_UNLISTED,
-                """((reviewed_versions.id = (select max(reviewed_versions.id)))
-                    OR
-                    (reviewed_versions.id IS NULL))
-                """,
                 'addons.status <> %s' % amo.STATUS_DISABLED
             ],
             'group_by': 'id'}
@@ -412,11 +395,11 @@ class ReviewerSubscription(ModelBase):
                   use_deny_list=False)
 
 
-def send_notifications(signal=None, sender=None, **kw):
-    if sender.channel != amo.RELEASE_CHANNEL_LISTED:
+def send_notifications(sender=None, instance=None, signal=None, **kw):
+    if instance.channel != amo.RELEASE_CHANNEL_LISTED:
         return
 
-    subscribers = sender.addon.reviewersubscription_set.all()
+    subscribers = instance.addon.reviewersubscription_set.all()
 
     if not subscribers:
         return
@@ -427,7 +410,7 @@ def send_notifications(signal=None, sender=None, **kw):
             user and not user.deleted and user.email and
             acl.is_user_any_kind_of_reviewer(user))
         if is_reviewer:
-            subscriber.send_notification(sender)
+            subscriber.send_notification(instance)
 
 
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
@@ -453,6 +436,16 @@ class ReviewerScore(ModelBase):
     class Meta:
         db_table = 'reviewer_scores'
         ordering = ('-created',)
+        indexes = [
+            models.Index(fields=('addon',),
+                         name='reviewer_scores_addon_id_fk'),
+            models.Index(fields=('created',),
+                         name='reviewer_scores_created_idx'),
+            models.Index(fields=('user',),
+                         name='reviewer_scores_user_id_idx'),
+            models.Index(fields=('version',),
+                         name='reviewer_scores_version_id'),
+        ]
 
     @classmethod
     def get_key(cls, key=None, invalidate=False):
@@ -529,8 +522,6 @@ class ReviewerScore(ModelBase):
                 reviewed_score_name = 'REVIEWED_STATICTHEME'
             elif addon.type == amo.ADDON_SEARCH and queue:
                 reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
-            elif addon.type == amo.ADDON_THEME and queue:
-                reviewed_score_name = 'REVIEWED_XUL_THEME_%s' % queue
 
         if reviewed_score_name:
             return getattr(amo, reviewed_score_name)
@@ -842,10 +833,16 @@ class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
     version = models.OneToOneField(
         Version, on_delete=models.CASCADE, primary_key=True)
-    is_locked = models.BooleanField(default=False)
-    has_auto_approval_disabled = models.BooleanField(default=False)
-    is_recommendable = models.BooleanField(default=False)
-    should_be_delayed = models.BooleanField(default=False)
+    is_locked = models.BooleanField(
+        default=False, help_text=_('Is locked by a reviewer'))
+    has_auto_approval_disabled = models.BooleanField(
+        default=False,
+        help_text=_('Has auto-approval disabled/delayed flag set'))
+    is_recommendable = models.BooleanField(
+        default=False, help_text=_('Is recommendable'))
+    should_be_delayed = models.BooleanField(
+        default=False,
+        help_text=_("Delayed because it's the first listed version"))
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -855,6 +852,19 @@ class AutoApprovalSummary(ModelBase):
 
     class Meta:
         db_table = 'editors_autoapprovalsummary'
+
+    # List of fields to check when determining whether a version should be
+    # auto-approved or not. Each should be a boolean, a value of true means
+    # the version will *not* auto-approved. Each should have a corresponding
+    # check_<reason>(version) classmethod defined that will be used by
+    # create_summary_for_version() to set the corresponding field on the
+    # instance.
+    auto_approval_verdict_fields = (
+        'has_auto_approval_disabled',
+        'is_locked',
+        'is_recommendable',
+        'should_be_delayed'
+    )
 
     def __str__(self):
         return u'%s %s' % (self.version.addon.name, self.version)
@@ -1030,21 +1040,9 @@ class AutoApprovalSummary(ModelBase):
             success_verdict = amo.AUTO_APPROVED
             failure_verdict = amo.NOT_AUTO_APPROVED
 
-        # Currently the only thing that can prevent approval are:
-        # - a reviewer lock (someone is currently looking at this add-on)
-        # - auto-approval disabled flag set on the add-on
-        # - recommendable flag set to True - such add-ons need to be manually
-        #   reviewed.
-        # - no listed versions published yet and submission is too recent: this
-        #   is the first version to be  approved, and those are delayed 24
-        #   hours to catch potential spam.
-        #
-        # create_summary_for_version() should set properties accordingly.
         verdict_info = {
-            'is_locked': self.is_locked,
-            'has_auto_approval_disabled': self.has_auto_approval_disabled,
-            'is_recommendable': self.is_recommendable,
-            'should_be_delayed': self.should_be_delayed,
+            key: bool(getattr(self, key))
+            for key in self.auto_approval_verdict_fields
         }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
@@ -1060,16 +1058,11 @@ class AutoApprovalSummary(ModelBase):
     def verdict_info_prettifier(cls, verdict_info):
         """Return a generator of strings representing the a verdict_info
         (as computed by calculate_verdict()) in human-readable form."""
-        mapping = {
-            'is_locked': ugettext('Is locked by a reviewer'),
-            'has_auto_approval_disabled': ugettext(
-                'Has auto-approval disabled flag set'),
-            'is_recommendable': ugettext('Is recommendable'),
-            'should_be_delayed': ugettext(
-                "Delayed because it's the first listed version")
-        }
-        return (mapping[key] for key, value in sorted(verdict_info.items())
-                if value)
+        return (
+            str(cls._meta.get_field(key).help_text)
+            for key, value in sorted(verdict_info.items())
+            if value
+        )
 
     @classmethod
     def _count_linter_flag(cls, version, flag):
@@ -1138,9 +1131,10 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_is_locked(cls, version):
-        # Langpacks are submitted as part of Firefox release process and should
-        # never be blocked by a reviewer having opened the review page - they
-        # should always be auto-approved anyway.
+        """Check whether the add-on is locked by a reviewer.
+
+        Doesn't apply to langpacks, which are submitted as part of Firefox
+        release process and should always be auto-approved."""
         is_langpack = version.addon.type == amo.ADDON_LPAPP
         locked_by = get_reviewing_cache(version.addon.pk)
         return (
@@ -1150,31 +1144,57 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_has_auto_approval_disabled(cls, version):
-        return bool(version.addon.auto_approval_disabled)
+        """Check whether the add-on has auto approval disabled by a reviewer
+        (only applies to listed) or automated scanners
+        (applies to every channel).
+        """
+        addon = version.addon
+        is_listed = version.channel == amo.RELEASE_CHANNEL_LISTED
+        return (
+            (is_listed and bool(addon.auto_approval_disabled)) or
+            bool(addon.auto_approval_delayed_until and
+                 datetime.now() < addon.auto_approval_delayed_until)
+        )
 
     @classmethod
     def check_is_recommendable(cls, version):
+        """Check whether the add-on is recommendable.
+
+        Only applies to listed versions."""
         try:
             item = version.addon.discoveryitem
         except DiscoveryItem.DoesNotExist:
             recommendable = False
         else:
             recommendable = item.recommendable
-        return bool(recommendable)
+        return (
+            version.channel == amo.RELEASE_CHANNEL_LISTED and
+            bool(recommendable)
+        )
 
     @classmethod
     def check_should_be_delayed(cls, version):
-        # 'Nominated' addons - add-ons that are waiting for approval of their
-        # first listed version - should have their auto-approval delayed for
-        # 24 hours to give us time to catch spam. Langpacks are exempted from
-        # this since they are submitted as part of Firefox release process.
-        is_langpack = version.addon.type == amo.ADDON_LPAPP
+        """Check whether the add-on new enough that the auto-approval of the
+        version should be delayed for 24 hours to catch spam.
+
+        Doesn't apply to langpacks, which are submitted as part of Firefox
+        release process and should always be auto-approved.
+        Only applies to listed versions.
+        """
+        addon = version.addon
+        is_langpack = addon.type == amo.ADDON_LPAPP
         now = datetime.now()
-        nomination = version.nomination or version.addon.created
+        nomination = version.nomination or addon.created
+        try:
+            content_review = addon.addonapprovalscounter.last_content_review
+        except AddonApprovalsCounter.DoesNotExist:
+            content_review = None
         return (
             not is_langpack and
+            version.channel == amo.RELEASE_CHANNEL_LISTED and
             version.addon.status == amo.STATUS_NOMINATED and
-            now - nomination < timedelta(hours=24))
+            now - nomination < timedelta(hours=24) and
+            content_review is None)
 
     @classmethod
     def create_summary_for_version(cls, version, dry_run=False):
@@ -1196,14 +1216,10 @@ class AutoApprovalSummary(ModelBase):
             raise AutoApprovalNotEnoughFilesError()
 
         data = {
-            'version': version,
-            'is_locked': cls.check_is_locked(version),
-            'has_auto_approval_disabled': cls.check_has_auto_approval_disabled(
-                version),
-            'is_recommendable': cls.check_is_recommendable(version),
-            'should_be_delayed': cls.check_should_be_delayed(version),
+            field: getattr(cls, f'check_{field}')(version)
+            for field in cls.auto_approval_verdict_fields
         }
-        instance = cls(**data)
+        instance = cls(version=version, **data)
         verdict_info = instance.calculate_verdict(dry_run=dry_run)
         instance.calculate_weight()
         # We can't do instance.save(), because we want to handle the case where

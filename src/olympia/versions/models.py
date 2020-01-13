@@ -26,7 +26,7 @@ from olympia import activity, amo
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
-    BasePreview, ManagerBase, ModelBase, OnChangeMixin)
+    BasePreview, LongNameIndex, ManagerBase, ModelBase, OnChangeMixin)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -35,8 +35,9 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.scanners.models import ScannerResult
 
-from .compare import version_dict, version_int
+from .compare import version_int
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -84,15 +85,49 @@ class VersionManager(ManagerBase):
     def auto_approvable(self):
         """Returns a queryset filtered with just the versions that should
         attempted for auto-approval by the cron job."""
-        qs = self.filter(
-            addon__type__in=(
-                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
-                amo.ADDON_SEARCH),
-            addon__disabled_by_user=False,
-            addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
-            files__status=amo.STATUS_AWAITING_REVIEW).filter(
-            Q(files__is_webextension=True) | Q(addon__type=amo.ADDON_SEARCH))
+        qs = (
+            self
+            .filter(
+                files__status=amo.STATUS_AWAITING_REVIEW)
+            .filter(
+                Q(files__is_webextension=True) |
+                Q(addon__type=amo.ADDON_SEARCH)
+            )
+            .filter(
+                # For listed, add-on can't be incomplete, deleted or disabled.
+                # It also cannot be disabled by user ("invisible"), and can not
+                # be a theme either.
+                Q(
+                    channel=amo.RELEASE_CHANNEL_LISTED, addon__status__in=(
+                        amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
+                    addon__disabled_by_user=False,
+                    addon__type__in=(
+                        amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT,
+                        amo.ADDON_SEARCH),
+                ) |
+                # For unlisted, add-on can't be deleted or disabled.
+                Q(
+                    channel=amo.RELEASE_CHANNEL_UNLISTED, addon__status__in=(
+                        amo.STATUS_NULL, amo.STATUS_NOMINATED,
+                        amo.STATUS_APPROVED),
+                )
+            )
+        )
         return qs
+
+
+class UnfilteredVersionManagerForRelations(VersionManager):
+    """Like VersionManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of Versions like this:
+    <Addon>.versions(manager='unfiltered_for_relations').all(), for when you
+    want to use the related manager but need to include deleted versions.
+
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations() is
+    defined in Version for this to work.
+    """
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
 
 
 def source_upload_path(instance, filename):
@@ -127,7 +162,6 @@ class Version(OnChangeMixin, ModelBase):
     approval_notes = models.TextField(
         db_column='approvalnotes', default='', null=True, blank=True)
     version = models.CharField(max_length=255, default='0.1')
-    version_int = models.BigIntegerField(null=True, editable=False)
 
     nomination = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
@@ -145,10 +179,18 @@ class Version(OnChangeMixin, ModelBase):
 
     recommendation_approved = models.BooleanField(null=False, default=False)
 
+    # FIXME: Convert needs_human_review into a BooleanField(default=False) in
+    # future push following the one where the field was introduced.
+    needs_human_review = models.NullBooleanField(default=None)
+
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
+
+    # See UnfilteredVersionManagerForRelations() docstring for usage of this
+    # special manager.
+    unfiltered_for_relations = UnfilteredVersionManagerForRelations()
 
     class Meta(ModelBase.Meta):
         db_table = 'versions'
@@ -156,28 +198,13 @@ class Version(OnChangeMixin, ModelBase):
         # description
         base_manager_name = 'unfiltered'
         ordering = ['-created', '-modified']
-
-    def __init__(self, *args, **kwargs):
-        super(Version, self).__init__(*args, **kwargs)
-        self.__dict__.update(version_dict(self.version or ''))
+        indexes = [
+            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('license',), name='license_id'),
+        ]
 
     def __str__(self):
         return jinja2.escape(self.version)
-
-    def save(self, *args, **kw):
-        if not self.version_int and self.version:
-            v_int = version_int(self.version)
-            # Magic number warning, this is the maximum size
-            # of a big int in MySQL to prevent version_int overflow, for
-            # people who have rather crazy version numbers.
-            # http://dev.mysql.com/doc/refman/5.5/en/numeric-types.html
-            if v_int < 9223372036854775807:
-                self.version_int = v_int
-            else:
-                log.error('No version_int written for version %s, %s' %
-                          (self.pk, self.version))
-        super(Version, self).save(*args, **kw)
-        return self
 
     @classmethod
     def from_upload(cls, upload, addon, selected_apps, channel,
@@ -258,9 +285,22 @@ class Version(OnChangeMixin, ModelBase):
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
+
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
-        version_uploaded.send(sender=version)
+        upload.path = ''
+        upload.save()
+
+        version_uploaded.send(instance=version, sender=Version)
+
+        if version.is_webextension:
+            if (
+                    waffle.switch_is_active('enable-yara') or
+                    waffle.switch_is_active('enable-customs') or
+                    waffle.switch_is_active('enable-wat')
+            ):
+                ScannerResult.objects.filter(upload_id=upload.id).update(
+                    version=version)
 
         # Extract this version into git repository
         transaction.on_commit(
@@ -342,14 +382,15 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_activity(self):
-        from olympia.activity.models import VersionLog  # yucky
-        al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related('activity_log', 'version'))
-        return al
+        # prefetch_related() and not select_related() the ActivityLog to make
+        # sure its transformer is called.
+        return (
+            self.versionlog_set.prefetch_related('activity_log')
+                               .order_by('created'))
 
     @property
     def compatible_apps(self):
-        # Dicts, search providers and personas don't have compatibility info.
+        # Dicts and search providers don't have compatibility info.
         # Fake one for them.
         if self.addon and self.addon.type in amo.NO_COMPAT:
             return {app: None for app in amo.APP_TYPE_SUPPORT[self.addon.type]}
@@ -361,28 +402,12 @@ class Version(OnChangeMixin, ModelBase):
     @cached_property
     def _compatible_apps(self):
         """Get a mapping of {APP: ApplicationsVersions}."""
-        avs = self.apps.select_related('version')
-        return self._compat_map(avs)
+        return self._compat_map(self.apps.all().select_related('min', 'max'))
 
     @cached_property
     def compatible_apps_ordered(self):
         apps = self.compatible_apps.items()
         return sorted(apps, key=lambda v: v[0].short)
-
-    def compatible_platforms(self):
-        """Returns a dict of compatible file platforms for this version.
-
-        The result is based on which app(s) the version targets.
-        """
-        app_ids = [a.application for a in self.apps.all()]
-        targets_mobile = amo.ANDROID.id in app_ids
-        targets_other = any((id_ != amo.ANDROID.id) for id_ in app_ids)
-        all_plats = {}
-        if targets_other:
-            all_plats.update(amo.DESKTOP_PLATFORMS)
-        if targets_mobile:
-            all_plats.update(amo.MOBILE_PLATFORMS)
-        return all_plats
 
     @cached_property
     def is_compatible_by_default(self):
@@ -501,10 +526,10 @@ class Version(OnChangeMixin, ModelBase):
     def sources_provided(self):
         return bool(self.source)
 
-    @classmethod
-    def _compat_map(cls, avs):
+    def _compat_map(self, avs):
         apps = {}
         for av in avs:
+            av.version = self
             app_id = av.application
             if app_id in amo.APP_IDS:
                 apps[amo.APP_IDS[app_id]] = av
@@ -529,7 +554,8 @@ class Version(OnChangeMixin, ModelBase):
 
         for version in versions:
             v_id = version.id
-            version._compatible_apps = cls._compat_map(av_dict.get(v_id, []))
+            version._compatible_apps = version._compat_map(
+                av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
             for f in version.all_files:
                 f.version = version
@@ -537,14 +563,22 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def transformer_activity(cls, versions):
         """Attach all the activity to the versions."""
-        from olympia.activity.models import VersionLog  # yucky
+        from olympia.activity.models import VersionLog
 
         ids = set(v.id for v in versions)
         if not versions:
             return
 
-        al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related('activity_log', 'version'))
+        # Ideally, we'd start from the ActivityLog, but because VersionLog
+        # to ActivityLog isn't a OneToOneField, we wouldn't be able to find
+        # the version easily afterwards - we can't even do a
+        # select_related('versionlog') and try to traverse the relation to find
+        # the version. So, instead, start from VersionLog, but make sure to use
+        # prefetch_related() (and not select_related() - yes, it's one extra
+        # query, but it's worth it to benefit from the default transformer) so
+        # that the ActivityLog default transformer is called.
+        al = VersionLog.objects.prefetch_related('activity_log').filter(
+            version__in=ids).order_by('created')
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
@@ -558,8 +592,8 @@ class Version(OnChangeMixin, ModelBase):
 
     def disable_old_files(self):
         """
-        Disable files from versions older than the current one and awaiting
-        review. Used when uploading a new version.
+        Disable files from versions older than the current one in the same
+        channel and awaiting review. Used when uploading a new version.
 
         Does nothing if the current instance is unlisted.
         """
@@ -567,8 +601,8 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
-                                     status__in=[amo.STATUS_AWAITING_REVIEW,
-                                                 amo.STATUS_PENDING])
+                                     version__channel=self.channel,
+                                     status=amo.STATUS_AWAITING_REVIEW)
             # Use File.update so signals are triggered.
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
@@ -624,6 +658,17 @@ class Version(OnChangeMixin, ModelBase):
             for name, background in utils.get_background_images(
                 file_obj, theme_data=None, header_only=header_only).items()}
 
+    def can_be_disabled_and_deleted(self):
+        addon = self.addon
+        if self.recommendation_approved and self == addon.current_version:
+            previous_version = addon.versions.valid().filter(
+                channel=self.channel).exclude(id=self.id).first()
+            previous_approved = (
+                previous_version and previous_version.recommendation_approved)
+            if addon.is_recommended and not previous_approved:
+                return False
+        return True
+
 
 def generate_static_theme_preview(theme_data, version_pk):
     """This redirection is so we can mock generate_static_theme_preview, where
@@ -653,6 +698,12 @@ class VersionPreview(BasePreview, ModelBase):
     class Meta:
         db_table = 'version_previews'
         ordering = ('position', 'created')
+        indexes = [
+            LongNameIndex(fields=('version',),
+                          name='version_previews_version_id_fk_versions_id'),
+            models.Index(fields=('version', 'position', 'created'),
+                         name='version_position_created_idx'),
+        ]
 
     @cached_property
     def caption(self):
@@ -692,21 +743,6 @@ def inherit_nomination(sender, instance, **kw):
         instance.inherit_nomination()
 
 
-def update_incompatible_versions(sender, instance, **kw):
-    """
-    When a new version is added or deleted, send to task to update if it
-    matches any compat overrides.
-    """
-    try:
-        if not instance.addon.type == amo.ADDON_EXTENSION:
-            return
-    except ObjectDoesNotExist:
-        return
-
-    from olympia.addons import tasks
-    tasks.update_incompatible_appversions.delay([instance.id])
-
-
 def cleanup_version(sender, instance, **kw):
     """On delete of the version object call the file delete and signals."""
     if kw.get('raw'):
@@ -716,21 +752,47 @@ def cleanup_version(sender, instance, **kw):
 
 
 @Version.on_change
-def watch_recommendation_changes(old_attr=None, new_attr=None, instance=None,
-                                 sender=None, **kwargs):
-    from olympia.addons.models import update_search_index
+def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None,
+                  **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
+    changes = {
+        x for x in new_attr
+        if not x.startswith('_') and new_attr[x] != old_attr.get(x)
+    }
 
-    if ('recommendation_approved' in old_attr or
-            'recommendation_approved' in new_attr):
-        old_value = old_attr.get('recommendation_approved')
-        new_value = new_attr.get('recommendation_approved')
-        if old_value != new_value:
-            # Update ES because Addon.is_recommended depends on it.
-            update_search_index(
-                sender=sender, instance=instance.addon, **kwargs)
+    if 'recommendation_approved' in changes:
+        from olympia.addons.models import update_search_index
+        # Update ES because Addon.is_recommended depends on it.
+        update_search_index(
+            sender=sender, instance=instance.addon, **kwargs)
+
+    if (instance.channel == amo.RELEASE_CHANNEL_UNLISTED and
+            'deleted' in changes) or 'recommendation_approved' in changes:
+        # Sync the related add-on to basket when recommendation_approved is
+        # changed or when an unlisted version is deleted. (When a listed
+        # version is deleted, watch_changes() in olympia.addon.models should
+        # take care of it (since _current_version will change).
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.addon.pk)
+
+
+def watch_new_unlisted_version(sender=None, instance=None, **kwargs):
+    # Sync the related add-on to basket when an unlisted version is uploaded.
+    # Listed version changes for `recommendation_approved` and unlisted version
+    # deletion is handled by watch_changes() above, and new version approval
+    # changes are handled by watch_changes() in olympia.addon.models (since
+    # _current_version will change).
+    # What's left here is unlisted version upload.
+    if instance and instance.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        from olympia.amo.tasks import sync_object_to_basket
+        sync_object_to_basket.delay('addon', instance.addon.pk)
 
 
 version_uploaded = django.dispatch.Signal()
+version_uploaded.connect(watch_new_unlisted_version)
 models.signals.pre_save.connect(
     save_signal, sender=Version, dispatch_uid='version_translations')
 models.signals.post_save.connect(
@@ -738,17 +800,11 @@ models.signals.post_save.connect(
 models.signals.post_save.connect(
     inherit_nomination, sender=Version,
     dispatch_uid='version_inherit_nomination')
-models.signals.post_save.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
 
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version')
 models.signals.post_delete.connect(
     update_status, sender=Version, dispatch_uid='version_update_status')
-models.signals.post_delete.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
 
 
 class LicenseManager(ManagerBase):
@@ -779,6 +835,9 @@ class License(ModelBase):
 
     class Meta:
         db_table = 'licenses'
+        indexes = [
+            models.Index(fields=('builtin',), name='builtin_idx')
+        ]
 
     def __str__(self):
         license = self._constant or self
@@ -807,8 +866,11 @@ class ApplicationsVersions(models.Model):
         on_delete=models.CASCADE)
 
     class Meta:
-        db_table = u'applications_versions'
-        unique_together = (("application", "version"),)
+        db_table = 'applications_versions'
+        constraints = [
+            models.UniqueConstraint(fields=('application', 'version'),
+                                    name='application_id'),
+        ]
 
     def get_application_display(self):
         return str(amo.APPS_ALL[self.application].pretty)

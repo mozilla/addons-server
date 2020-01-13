@@ -1,33 +1,28 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-import time
-
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 
+import pytest
 from django import forms
 from django.conf import settings
 from django.core import mail
 from django.utils import translation
-
-import pytest
-
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
-    AppSupport, Category, CompatOverride, CompatOverrideRange, DeniedGuid,
-    DeniedSlug, FrozenAddon, IncompatibleVersions, MigratedLWT, Persona,
+    AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
     Preview, ReusedGUID, track_addon_status_change)
-from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
-from olympia.amo.tests import (
-    TestCase, addon_factory, collection_factory, version_factory)
+from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
-from olympia.bandwagon.models import Collection, FeaturedCollection
-from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.bandwagon.models import Collection
+from olympia.blocklist.models import Block
+from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
@@ -202,10 +197,9 @@ class TestCleanSlug(TestCase):
 
 
 class TestAddonManager(TestCase):
-    fixtures = ['base/appversion', 'base/users',
-                'base/addon_3615', 'addons/featured', 'addons/test_manager',
-                'base/collections', 'base/featured',
-                'bandwagon/featured_collections', 'base/addon_5299_gcal']
+    fixtures = ['base/appversion', 'base/users', 'base/addon_3615',
+                'addons/test_manager', 'base/collections', 'base/featured',
+                'base/addon_5299_gcal']
 
     def setUp(self):
         super(TestAddonManager, self).setUp()
@@ -232,16 +226,13 @@ class TestAddonManager(TestCase):
         assert self.addon not in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
-    def test_featured(self):
-        assert Addon.objects.featured(amo.FIREFOX).count() == 3
-
     def test_listed(self):
         # We need this for the fixtures, but it messes up the tests.
         self.addon.update(disabled_by_user=True)
         # Now continue as normal.
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED)
-        assert len(q.all()) == 4
+        assert len(q.all()) == 3
 
         # Pick one of the listed addons.
         addon = Addon.objects.get(pk=2464)
@@ -251,20 +242,20 @@ class TestAddonManager(TestCase):
         addon.disabled_by_user = True
         addon.save()
 
-        # Should be 3 now, since the one is now disabled.
-        assert q.count() == 3
+        # Should be 2 now, since the one is now disabled.
+        assert q.count() == 2
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert q.count() == 3
+        assert q.count() == 2
         assert Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED,
-                                    amo.STATUS_NOMINATED).count() == 4
+                                    amo.STATUS_NOMINATED).count() == 3
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
-        assert q.count() == 3
+        assert q.count() == 2
 
     def test_public(self):
         for a in Addon.objects.public():
@@ -278,52 +269,6 @@ class TestAddonManager(TestCase):
         for addon in objs:
             assert addon.status in amo.VALID_ADDON_STATUSES
             assert not addon.disabled_by_user
-
-    def test_valid_disabled_by_user(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(disabled_by_user=True)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == before
-
-    def test_valid_disabled_by_admin(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(status=amo.STATUS_DISABLED)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == before
-
-    def test_invalid_deleted(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        addon = Addon.objects.get(pk=5299)
-        addon.update(status=amo.STATUS_DELETED)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == (
-            before - 1)
-
-    def test_valid_disabled_pending(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-        amo.tests.addon_factory(status=amo.STATUS_PENDING)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == (
-            before + 1)
-
-    def test_valid_disabled_version(self):
-        before = Addon.objects.valid_and_disabled_and_pending().count()
-
-        # Add-on, no version. Doesn't count.
-        addon = amo.tests.addon_factory()
-        addon.update(_current_version=None, _signal=False)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == before
-
-        # Theme, no version. Counts.
-        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        addon.update(_current_version=None, _signal=False)
-        assert Addon.objects.valid_and_disabled_and_pending().count() == (
-            before + 1)
-
-    def test_new_featured(self):
-        addons = Addon.objects.featured(amo.FIREFOX)
-        assert addons.count() == 3
-        assert sorted(x.id for x in addons) == (
-            [2464, 7661, 15679])
-        assert not Addon.objects.featured(amo.ANDROID).exists()
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
@@ -373,18 +318,14 @@ class TestAddonManager(TestCase):
 class TestAddonModels(TestCase):
     fixtures = ['base/appversion',
                 'base/collections',
-                'base/featured',
                 'base/users',
                 'base/addon_5299_gcal',
                 'base/addon_3615',
                 'base/addon_3723_listed',
-                'base/addon_6704_grapple.json',
                 'base/addon_4594_a9',
                 'base/addon_4664_twitterbar',
-                'addons/featured',
                 'addons/invalid_latest_version',
-                'addons/denied',
-                'bandwagon/featured_collections']
+                'addons/denied']
 
     def setUp(self):
         super(TestAddonModels, self).setUp()
@@ -571,11 +512,6 @@ class TestAddonModels(TestCase):
         # with unique constraints on fields that got nullified.
         self._delete(5299)
 
-    def test_delete_persona(self):
-        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        assert addon.guid is None  # Personas don't have GUIDs.
-        self._delete(addon.pk)
-
     @patch('olympia.addons.tasks.Preview.delete_preview_files')
     @patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
     def test_delete_deletes_preview_files(self, dpf_vesions_mock,
@@ -673,6 +609,28 @@ class TestAddonModels(TestCase):
         addon.update(type=11)
         self._delete(3615)
 
+    def test_soft_delete_disables_files_and_soft_deletes_versions(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        files = File.objects.filter(version__addon=addon)
+        versions = Version.unfiltered.filter(addon=addon)
+        assert versions
+        assert files
+        for file_ in files:
+            assert file_.status != amo.STATUS_DISABLED
+        for version in versions:
+            assert not version.deleted
+
+        self._delete(3615)
+
+        files = File.objects.filter(version__addon=addon)
+        versions = Version.unfiltered.filter(addon=addon)
+        assert versions
+        assert files
+        for file_ in files:
+            assert file_.status == amo.STATUS_DISABLED
+        for version in versions:
+            assert version.deleted
+
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
         assert a.incompatible_latest_apps() == []
@@ -714,11 +672,6 @@ class TestAddonModels(TestCase):
         addon.icon_hash = 'somehash'
         assert addon.get_icon_url(32).endswith(
             '/3/3615-32.png?modified=somehash')
-
-        addon = Addon.objects.get(pk=6704)
-        addon.icon_type = None
-        assert addon.get_icon_url(32).endswith('/icons/default-theme.png'), (
-            'No match for %s' % addon.get_icon_url(32))
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
@@ -775,45 +728,6 @@ class TestAddonModels(TestCase):
         addon.versions.all().delete()
         addon._current_version = None
         assert not addon.is_restart_required
-
-    def test_is_featured(self):
-        """Test if an add-on is globally featured"""
-        a = Addon.objects.get(pk=1003)
-        assert a.is_featured(amo.FIREFOX, 'en-US'), (
-            'globally featured add-on not recognized')
-
-    def test_get_featured_by_app(self):
-        addon = Addon.objects.get(pk=1003)
-        featured_coll = addon.collections.get().featuredcollection_set.get()
-        assert featured_coll.locale is None
-        # Get the applications this addon is featured for.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
-
-        featured_coll.update(locale='')
-        # Check that an empty string is considered None.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
-
-        featured_coll.update(locale='fr')
-        # Check the locale works.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr'}}
-
-        pt_coll = collection_factory()
-        pt_coll.add_addon(addon)
-        FeaturedCollection.objects.create(collection=pt_coll,
-                                          application=amo.FIREFOX.id,
-                                          locale='pt-PT')
-        # Add another featured collection for the same application.
-        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr', 'pt-PT'}}
-
-        mobile_coll = collection_factory()
-        mobile_coll.add_addon(addon)
-        FeaturedCollection.objects.create(collection=mobile_coll,
-                                          application=amo.ANDROID.id,
-                                          locale='pt-PT')
-        # Add a featured collection for the a different application.
-        assert addon.get_featured_by_app() == {
-            amo.FIREFOX.id: {'fr', 'pt-PT'},
-            amo.ANDROID.id: {'pt-PT'}}
 
     def newlines_helper(self, string_before):
         addon = Addon.objects.get(pk=3615)
@@ -1443,6 +1357,57 @@ class TestAddonModels(TestCase):
         flags.update(auto_approval_disabled=True)
         assert addon.auto_approval_disabled is True
 
+    def test_auto_approval_delayed_until_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_until is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.auto_approval_delayed_until is None
+        assert addon.auto_approval_delayed_until is None
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(auto_approval_delayed_until=in_the_past)
+        assert addon.auto_approval_delayed_until == in_the_past
+
+    def test_auto_approval_delayed_indefinitely_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_indefinitely is False
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(auto_approval_delayed_until=in_the_past)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # In the future, but not far enough.
+        in_the_future = datetime.now() + timedelta(hours=24)
+        flags.update(auto_approval_delayed_until=in_the_future)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # This time it's truly delayed indefinitely.
+        flags.update(auto_approval_delayed_until=datetime.max)
+        assert addon.auto_approval_delayed_indefinitely is True
+
+    def test_auto_approval_delayed_temporarily_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_temporarily is False
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert addon.auto_approval_delayed_temporarily is False
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(auto_approval_delayed_until=in_the_past)
+        assert addon.auto_approval_delayed_temporarily is False
+        # Flag present, now properly in the future.
+        in_the_future = datetime.now() + timedelta(hours=24)
+        flags.update(auto_approval_delayed_until=in_the_future)
+        assert addon.auto_approval_delayed_temporarily is True
+        # Not considered temporary any more if it's until the end of time!
+        flags.update(auto_approval_delayed_until=datetime.max)
+        assert addon.auto_approval_delayed_temporarily is False
+
     def test_needs_admin_code_review_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
@@ -1592,6 +1557,127 @@ class TestAddonModels(TestCase):
         # but not when it's removed.
         assert not addon.is_recommended
 
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_field_changes_not_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.update(
+            average_rating=4.5, weekly_downloads=666, average_daily_users=999,
+            last_updated=self.days_ago(1), public_stats=True,
+            contributions='http://payme.example.com/',
+            is_experimental=True)
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+        addon.homepage = 'http://home.example.com/'
+        addon.description = 'Blâh Desc'
+        addon.summary = 'Blâh Sum'
+        addon.save()
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_field_changes_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.update(default_locale='es')
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+        sync_object_to_basket_mock.reset_mock()
+        addon.update(slug='some-fancy-slug')
+        addon = Addon.objects.get(pk=3615)
+        assert addon.slug == 'some-fancy-slug'
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+        sync_object_to_basket_mock.reset_mock()
+        addon.update(disabled_by_user=True)
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_name_changes_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.name = 'Blah'
+        addon.save()
+
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_deletion_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        addon.delete()
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_add_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=addon, user=user)
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_change_not_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        extra_author = AddonUser.objects.create(addon=addon, user=user)
+
+        sync_object_to_basket_mock.reset_mock()
+        extra_author.update(role=amo.AUTHOR_ROLE_DEV, listed=False)
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_delete_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        extra_author = AddonUser.objects.create(addon=addon, user=user)
+
+        sync_object_to_basket_mock.reset_mock()
+        extra_author.delete()
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_delete_not_synced_to_basket_if_addon_is_deleted(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        extra_author = AddonUser.objects.create(addon=addon, user=user)
+        addon.delete()
+
+        sync_object_to_basket_mock.reset_mock()
+        extra_author.delete()
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+    def test_block_property(self):
+        addon = Addon.objects.get(id=3615)
+        assert addon.block is None
+        assert not addon.is_addon_blocklisted
+
+        del addon.block
+        block = Block.objects.create(guid=addon.guid)
+        assert addon.block == addon.block
+        assert addon.is_addon_blocklisted
+
+        del addon.block
+        block.update(guid='not-a-guid')
+        assert addon.block is None
+        assert not addon.is_addon_blocklisted
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']
@@ -1671,6 +1757,29 @@ class TestHasListedAndUnlistedVersions(TestCase):
         version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
         assert self.addon.has_listed_versions()
         assert self.addon.has_unlisted_versions()
+
+    def test_has_listed_versions_current_version_shortcut(self):
+        # We shouldn't even do a exists() query if the add-on has a
+        # current_version.
+        self.addon._current_version_id = 123
+        assert self.addon.has_listed_versions()
+
+    def test_has_listed_versions_soft_delete(self):
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon, deleted=True)
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
+        assert not self.addon.has_listed_versions()
+        assert self.addon.has_listed_versions(include_deleted=True)
+
+    def test_has_unlisted_versions_soft_delete(self):
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon,
+            deleted=True)
+        version_factory(
+            channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
+        assert not self.addon.has_unlisted_versions()
+        assert self.addon.has_unlisted_versions(include_deleted=True)
 
 
 class TestAddonNomination(TestCase):
@@ -1772,23 +1881,6 @@ class TestAddonNomination(TestCase):
         self.check_nomination_reset_with_new_version(addon, nomination)
 
 
-class TestThemeDelete(TestCase):
-
-    def setUp(self):
-        super(TestThemeDelete, self).setUp()
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-
-        # Taking the creation and modified time back 1 day
-        self.addon.update(created=self.days_ago(1), modified=self.days_ago(1))
-
-    def test_remove_theme_update_m_time(self):
-        m_time_before = self.addon.modified
-        self.addon.delete('enough', 'no reason at all')
-        m_time_after = self.addon.modified
-
-        assert m_time_before != m_time_after
-
-
 class TestAddonDelete(TestCase):
 
     def test_cascades(self):
@@ -1800,10 +1892,7 @@ class TestAddonDelete(TestCase):
         AddonUser.objects.create(
             addon=addon, user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon, app=1)
-        CompatOverride.objects.create(addon=addon)
         FrozenAddon.objects.create(addon=addon)
-        Persona.objects.create(addon=addon, persona_id=0)
-        Preview.objects.create(addon=addon)
 
         AddonLog.objects.create(
             addon=addon, activity_log=ActivityLog.objects.create(action=0))
@@ -1921,29 +2010,6 @@ class TestAddonGetURLPath(TestCase):
         assert addon.get_url_path() == ''
 
 
-class TestAddonModelsFeatured(TestCase):
-    fixtures = ['base/appversion', 'base/users',
-                'addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured']
-
-    def setUp(self):
-        super(TestAddonModelsFeatured, self).setUp()
-        # Addon._featured keeps an in-process cache we need to clear.
-        if hasattr(Addon, '_featured'):
-            del Addon._featured
-
-    def _test_featured_random(self):
-        featured = Addon.featured_random(amo.FIREFOX, 'en-US')
-        assert sorted(featured) == [1001, 1003, 2464, 3481, 7661, 15679]
-        featured = Addon.featured_random(amo.FIREFOX, 'fr')
-        assert sorted(featured) == [1001, 1003, 2464, 7661, 15679]
-        featured = Addon.featured_random(amo.ANDROID, 'en-US')
-        assert featured == []
-
-    def test_featured_random(self):
-        self._test_featured_random()
-
-
 class TestBackupVersion(TestCase):
     fixtures = ['addons/update', 'base/appversion']
 
@@ -1988,18 +2054,6 @@ class TestBackupVersion(TestCase):
         version.save()
         assert Addon.objects.get(pk=1865).current_version
 
-    def test_update_version_theme(self):
-        # Test versions do not get deleted when calling with theme.
-        self.addon.update(type=amo.ADDON_PERSONA)
-        assert not self.addon.update_version()
-        assert self.addon._current_version
-
-        # Test latest version copied to current version if no current version.
-        self.addon.update(_current_version=None, _signal=False)
-        assert self.addon.update_version()
-        assert self.addon._current_version == (
-            self.addon.find_latest_version(None))
-
 
 class TestCategoryModel(TestCase):
 
@@ -2028,181 +2082,6 @@ class TestCategoryModel(TestCase):
         assert category.name == u''
         with translation.override('fr'):
             assert category.name == u''
-
-
-class TestPersonaModel(TestCase):
-    fixtures = ['addons/persona']
-
-    def setUp(self):
-        super(TestPersonaModel, self).setUp()
-        self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        self.persona.header = 'header.png'
-        self.persona.footer = 'footer.png'
-        self.persona.popularity = 12345
-        self.persona.save()
-
-    def _expected_url(self, img_name, modified_suffix):
-        return '/15663/%s?modified=%s' % (img_name, modified_suffix)
-
-    def test_image_urls(self):
-        self.persona.persona_id = 0
-        self.persona.checksum = 'fakehash'
-        self.persona.save()
-        modified = 'fakehash'
-        assert self.persona.thumb_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.icon_url.endswith(
-            self._expected_url('icon.png', modified))
-        assert self.persona.preview_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.header_url.endswith(
-            self._expected_url('header.png', modified))
-        assert self.persona.footer_url.endswith(
-            self._expected_url('footer.png', modified))
-
-    def test_image_urls_no_checksum(self):
-        # AMO-uploaded themes have `persona_id=0`.
-        self.persona.persona_id = 0
-        self.persona.save()
-        modified = int(time.mktime(self.persona.addon.modified.timetuple()))
-        assert self.persona.thumb_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.icon_url.endswith(
-            self._expected_url('icon.png', modified))
-        assert self.persona.preview_url.endswith(
-            self._expected_url('preview.png', modified))
-        assert self.persona.header_url.endswith(
-            self._expected_url('header.png', modified))
-        assert self.persona.footer_url.endswith(
-            self._expected_url('footer.png', modified))
-
-    def test_old_image_urls(self):
-        self.persona.addon.modified = None
-        modified = 0
-        assert self.persona.thumb_url.endswith(
-            self._expected_url('preview.jpg', modified))
-        assert self.persona.icon_url.endswith(
-            self._expected_url('preview_small.jpg', modified))
-        assert self.persona.preview_url.endswith(
-            self._expected_url('preview_large.jpg', modified))
-        assert self.persona.header_url.endswith(
-            self._expected_url('header.png', modified))
-        assert self.persona.footer_url.endswith(
-            self._expected_url('footer.png', modified))
-
-    def test_update_url(self):
-        with self.settings(LANGUAGE_CODE='fr', LANGUAGE_URL_MAP={}):
-            url_ = self.persona.update_url
-            assert url_.endswith('/fr/themes/update-check/15663')
-
-    def test_json_data(self):
-        self.persona.addon.all_categories = [
-            Category.from_static_category(CATEGORIES_BY_ID[100])
-        ]
-
-        with self.settings(LANGUAGE_CODE='fr',
-                           LANGUAGE_URL_MAP={},
-                           VAMO_URL='https://vamo',
-                           EXTERNAL_SITE_URL='https://omgsh.it'):
-            data = self.persona.theme_data
-
-            id_ = str(self.persona.addon.id)
-
-            assert data['id'] == id_
-            assert data['name'] == str(self.persona.addon.name)
-            assert data['accentcolor'] == '#8d8d97'
-            assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Abstract'
-            assert data['author'] == 'persona_author ®'
-            assert data['description'] == str(self.addon.description)
-
-            assert data['headerURL'].startswith(
-                '%s%s/header.png?' % (user_media_url('addons'), id_))
-            assert data['footerURL'].startswith(
-                '%s%s/footer.png?' % (user_media_url('addons'), id_))
-            assert data['previewURL'].startswith(
-                '%s%s/preview_large.jpg?' % (user_media_url('addons'), id_))
-            assert data['iconURL'].startswith(
-                '%s%s/preview_small.jpg?' % (user_media_url('addons'), id_))
-
-            assert data['detailURL'] == (
-                'https://omgsh.it%s' % self.persona.addon.get_url_path())
-            assert data['updateURL'] == (
-                'https://vamo/fr/themes/update-check/' + id_)
-            assert data['version'] == '1.0'
-
-    def test_json_data_new_persona(self):
-        self.persona.persona_id = 0  # Make this a "new" theme.
-        self.persona.save()
-
-        self.persona.addon.all_categories = [
-            Category.from_static_category(CATEGORIES_BY_ID[100])
-        ]
-
-        with self.settings(LANGUAGE_CODE='fr',
-                           LANGUAGE_URL_MAP={},
-                           VAMO_URL='https://vamo',
-                           EXTERNAL_SITE_URL='https://omgsh.it'):
-            data = self.persona.theme_data
-
-            id_ = str(self.persona.addon.id)
-
-            assert data['id'] == id_
-            assert data['name'] == str(self.persona.addon.name)
-            assert data['accentcolor'] == '#8d8d97'
-            assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Abstract'
-            assert data['author'] == 'persona_author ®'
-            assert data['description'] == str(self.addon.description)
-
-            assert data['headerURL'].startswith(
-                '%s%s/header.png?' % (user_media_url('addons'), id_))
-            assert data['footerURL'].startswith(
-                '%s%s/footer.png?' % (user_media_url('addons'), id_))
-            assert data['previewURL'].startswith(
-                '%s%s/preview.png?' % (user_media_url('addons'), id_))
-            assert data['iconURL'].startswith(
-                '%s%s/icon.png?' % (user_media_url('addons'), id_))
-
-            assert data['detailURL'] == (
-                'https://omgsh.it%s' % self.persona.addon.get_url_path())
-            assert data['updateURL'] == (
-                'https://vamo/fr/themes/update-check/' + id_)
-            assert data['version'] == '1.0'
-
-    def test_json_data_missing_colors(self):
-        self.persona.accentcolor = ''
-        self.persona.textcolor = ''
-        self.persona.save()
-
-        data = self.persona.theme_data
-        assert data['accentcolor'] is None
-        assert data['textcolor'] is None
-
-        self.persona.accentcolor = None
-        self.persona.textcolor = None
-        self.persona.save()
-
-        data = self.persona.theme_data
-        assert data['accentcolor'] is None
-        assert data['textcolor'] is None
-
-    def test_image_urls_without_footer(self):
-        self.persona.footer = ''
-        self.persona.save()
-        assert self.persona.footer_url == ''
-
-    def test_json_data_without_footer(self):
-        self.persona.footer = ''
-        self.persona.save()
-        data = self.persona.theme_data
-        assert data['footerURL'] == ''
-        assert data['footer'] == ''
-
-    def test_theme_data_with_null_description(self):
-        addon = addon_factory(type=amo.ADDON_PERSONA, description=None)
-        assert addon.persona.theme_data['description'] is None
 
 
 class TestPreviewModel(BasePreviewMixin, TestCase):
@@ -2240,9 +2119,8 @@ class TestAddonFromUpload(UploadTest):
 
     def setUp(self):
         super(TestAddonFromUpload, self).setUp()
-        u = UserProfile.objects.get(pk=999)
-        core.set_user(u)
         self.selected_app = amo.FIREFOX.id
+        self.user = UserProfile.objects.get(pk=999)
         self.addCleanup(translation.deactivate)
 
         def _app(application):
@@ -2269,13 +2147,13 @@ class TestAddonFromUpload(UploadTest):
         in order to prevent resubmission after deletion """
         DeniedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
-            parse_addon(self.get_upload('extension.xpi'), user=Mock())
+            parse_addon(self.get_upload('extension.xpi'), user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid(self):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
         deleted.update(status=amo.STATUS_APPROVED)
@@ -2285,17 +2163,17 @@ class TestAddonFromUpload(UploadTest):
         # Now upload the same add-on again (so same guid).
         with self.assertRaises(forms.ValidationError) as e:
             self.upload = self.get_upload('extension.xpi')
-            parse_addon(self.upload, user=Mock())
+            parse_addon(self.upload, user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid_same_author(self):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
         # Claim the add-on.
-        AddonUser(addon=deleted, user=UserProfile.objects.get(pk=999)).save()
+        AddonUser(addon=deleted, user=self.user).save()
         deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
         assert deleted.guid == 'guid@xpi'
@@ -2303,7 +2181,7 @@ class TestAddonFromUpload(UploadTest):
         # Now upload the same add-on again (so same guid), checking no
         # validationError is raised this time.
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         deleted.reload()
@@ -2325,8 +2203,8 @@ class TestAddonFromUpload(UploadTest):
         deleted2 = Addon.from_upload(
             self.get_upload('alt-rdf.xpi'), [self.selected_app],
             parsed_data=self.dummy_parsed_data)
-        AddonUser(addon=deleted1, user=UserProfile.objects.get(pk=999)).save()
-        AddonUser(addon=deleted2, user=UserProfile.objects.get(pk=999)).save()
+        AddonUser(addon=deleted1, user=self.user).save()
+        AddonUser(addon=deleted2, user=self.user).save()
 
         # Soft delete them like they were before, by nullifying their GUIDs.
         deleted1.update(status=amo.STATUS_APPROVED, guid=None)
@@ -2338,13 +2216,13 @@ class TestAddonFromUpload(UploadTest):
         # None, but many are returned. So make sure we're not trying to reclaim
         # the GUID.
         self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
     def test_xpi_attributes(self):
         self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         assert addon.name == 'xpi name'
@@ -2381,7 +2259,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_search_attributes(self):
         self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         assert addon.name == 'search tool'
@@ -2395,7 +2273,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_search_version(self):
         self.upload = self.get_upload('search.xml')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
         version = addon.versions.get()
@@ -2466,7 +2344,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_webextension_generate_guid(self):
         self.upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
@@ -2476,7 +2354,7 @@ class TestAddonFromUpload(UploadTest):
 
         # Uploading the same addon without a id works.
         self.upload = self.get_upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         new_addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
         assert new_addon.guid is not None
@@ -2486,7 +2364,7 @@ class TestAddonFromUpload(UploadTest):
 
     def test_webextension_reuse_guid(self):
         self.upload = self.get_upload('webextension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
@@ -2495,14 +2373,14 @@ class TestAddonFromUpload(UploadTest):
         # Uploading the same addon with pre-existing id fails
         with self.assertRaises(forms.ValidationError) as e:
             self.upload = self.get_upload('webextension.xpi')
-            parsed_data = parse_addon(self.upload, user=Mock())
+            parsed_data = parse_addon(self.upload, user=self.user)
             Addon.from_upload(self.upload, [self.selected_app],
                               parsed_data=parsed_data)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_webextension_resolve_translations(self):
         self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
+        parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, [self.selected_app], parsed_data=parsed_data)
 
@@ -2591,7 +2469,7 @@ class TestRemoveLocale(TestCase):
         assert sorted(qs.filter(id=a.description_id)) == ['en-US', 'he']
 
     def test_remove_version_locale(self):
-        addon = Addon.objects.create(type=amo.ADDON_THEME)
+        addon = Addon.objects.create(type=amo.ADDON_DICT)
         version = Version.objects.create(addon=addon)
         version.release_notes = {'fr': 'oui'}
         version.save()
@@ -2604,7 +2482,7 @@ class TestAddonWatchDisabled(TestCase):
 
     def setUp(self):
         super(TestAddonWatchDisabled, self).setUp()
-        self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,
+        self.addon = Addon(type=amo.ADDON_DICT, disabled_by_user=False,
                            status=amo.STATUS_APPROVED)
         self.addon.save()
 
@@ -2665,7 +2543,7 @@ class TestTrackAddonStatusChange(TestCase):
     def test_ignore_non_status_changes(self):
         addon = self.create_addon()
         with patch('olympia.addons.models.track_addon_status_change') as mock_:
-            addon.update(type=amo.ADDON_THEME)
+            addon.update(type=amo.ADDON_DICT)
         assert not mock_.called, (
             'Unexpected call: {}'.format(self.mock_incr.call_args)
         )
@@ -2677,242 +2555,6 @@ class TestTrackAddonStatusChange(TestCase):
         mock_incr.assert_any_call(
             'addon_status_change.all.status_{}'.format(amo.STATUS_APPROVED)
         )
-
-
-class TestLanguagePack(TestCase, amo.tests.AMOPaths):
-
-    def setUp(self):
-        super(TestLanguagePack, self).setUp()
-        self.addon = amo.tests.addon_factory(type=amo.ADDON_LPAPP,
-                                             status=amo.STATUS_APPROVED)
-        self.platform_all = amo.PLATFORM_ALL.id
-        self.platform_mob = amo.PLATFORM_ANDROID.id
-        self.version = self.addon.current_version
-
-    def test_extract(self):
-        File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker()
-        assert 'title=Select a language' in self.addon.get_localepicker()
-
-    def test_extract_no_file(self):
-        File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker() == ''
-
-    def test_extract_no_files(self):
-        assert self.addon.get_localepicker() == ''
-
-    def test_extract_not_language_pack(self):
-        File.objects.create(platform=self.platform_mob, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker()
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        assert self.addon.get_localepicker() == ''
-
-    def test_extract_not_platform_mobile(self):
-        File.objects.create(platform=self.platform_all, version=self.version,
-                            filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_APPROVED)
-        assert self.addon.reload().get_localepicker() == ''
-
-
-class TestCompatOverride(TestCase):
-
-    def setUp(self):
-        super(TestCompatOverride, self).setUp()
-        self.app = amo.APP_IDS[1]
-
-        one = CompatOverride.objects.create(guid='one')
-        CompatOverrideRange.objects.create(compat=one, app=self.app.id)
-
-        two = CompatOverride.objects.create(guid='two')
-        CompatOverrideRange.objects.create(compat=two, app=self.app.id,
-                                           min_version='1', max_version='2')
-        CompatOverrideRange.objects.create(compat=two, app=self.app.id,
-                                           min_version='1', max_version='2',
-                                           min_app_version='3',
-                                           max_app_version='4')
-
-    def check(self, obj, **kw):
-        """Check that key/value pairs in kw match attributes of obj."""
-        for key, expected in kw.items():
-            actual = getattr(obj, key)
-            assert actual == expected
-
-    def test_override_type(self):
-        one = CompatOverride.objects.get(guid='one')
-
-        # The default is incompatible.
-        c = CompatOverrideRange.objects.create(compat=one, app=1)
-        assert c.override_type() == 'incompatible'
-
-        c = CompatOverrideRange.objects.create(compat=one, app=1, type=0)
-        assert c.override_type() == 'compatible'
-
-    def test_guid_match(self):
-        # We hook up the add-on automatically if we see a matching guid.
-        addon = Addon.objects.create(id=1, guid='oh yeah', type=1)
-        c = CompatOverride.objects.create(guid=addon.guid)
-        assert c.addon_id == addon.id
-
-        c = CompatOverride.objects.create(guid='something else')
-        assert c.addon is None
-
-    def test_transformer(self):
-        compats = list(CompatOverride.objects
-                       .transform(CompatOverride.transformer))
-        ranges = list(CompatOverrideRange.objects.all())
-        # If the transformer works then we won't have any more queries.
-        with self.assertNumQueries(0):
-            for c in compats:
-                assert c.compat_ranges == (
-                    [r for r in ranges if r.compat_id == c.id])
-
-    def test_collapsed_ranges(self):
-        # Test that we get back the right structures from collapsed_ranges().
-        c = CompatOverride.objects.get(guid='one')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 1
-        compat_range = r[0]
-        self.check(compat_range, type='incompatible', min='0', max='*')
-
-        assert len(compat_range.apps) == 1
-        self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
-
-    def test_collapsed_ranges_multiple_versions(self):
-        c = CompatOverride.objects.get(guid='one')
-        CompatOverrideRange.objects.create(compat=c, app=1,
-                                           min_version='1', max_version='2',
-                                           min_app_version='3',
-                                           max_app_version='3.*')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 2
-
-        self.check(r[0], type='incompatible', min='0', max='*')
-        assert len(r[0].apps) == 1
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
-
-        self.check(r[1], type='incompatible', min='1', max='2')
-        assert len(r[1].apps) == 1
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='3', max='3.*')
-
-    def test_collapsed_ranges_different_types(self):
-        # If the override ranges have different types they should be separate
-        # entries.
-        c = CompatOverride.objects.get(guid='one')
-        CompatOverrideRange.objects.create(compat=c, app=1, type=0,
-                                           min_app_version='3',
-                                           max_app_version='3.*')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 2
-
-        self.check(r[0], type='compatible', min='0', max='*')
-        assert len(r[0].apps) == 1
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='3', max='3.*')
-
-        self.check(r[1], type='incompatible', min='0', max='*')
-        assert len(r[1].apps) == 1
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
-
-    def test_collapsed_ranges_multiple_apps(self):
-        c = CompatOverride.objects.get(guid='two')
-        r = c.collapsed_ranges()
-
-        assert len(r) == 1
-        compat_range = r[0]
-        self.check(compat_range, type='incompatible', min='1', max='2')
-
-        assert len(compat_range.apps) == 2
-        self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
-        self.check(compat_range.apps[1], app=amo.FIREFOX, min='3', max='4')
-
-    def test_collapsed_ranges_multiple_versions_and_apps(self):
-        c = CompatOverride.objects.get(guid='two')
-        CompatOverrideRange.objects.create(min_version='5', max_version='6',
-                                           compat=c, app=1)
-        r = c.collapsed_ranges()
-
-        assert len(r) == 2
-        self.check(r[0], type='incompatible', min='1', max='2')
-
-        assert len(r[0].apps) == 2
-        self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
-        self.check(r[0].apps[1], app=amo.FIREFOX, min='3', max='4')
-
-        self.check(r[1], type='incompatible', min='5', max='6')
-        assert len(r[1].apps) == 1
-        self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
-
-
-class TestIncompatibleVersions(TestCase):
-
-    def setUp(self):
-        super(TestIncompatibleVersions, self).setUp()
-        self.app = amo.APP_IDS[amo.FIREFOX.id]
-        self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
-
-    def test_signals_min(self):
-        assert IncompatibleVersions.objects.count() == 0
-
-        c = CompatOverride.objects.create(guid='r@b')
-        CompatOverrideRange.objects.create(compat=c, app=self.app.id,
-                                           min_version='0',
-                                           max_version='1.0')
-
-        # Test the max version matched.
-        version1 = Version.objects.create(id=2, addon=self.addon,
-                                          version='1.0')
-        assert IncompatibleVersions.objects.filter(
-            version=version1).count() == 1
-        assert IncompatibleVersions.objects.count() == 1
-
-        # Test the lower range.
-        version2 = Version.objects.create(id=1, addon=self.addon,
-                                          version='0.5')
-        assert IncompatibleVersions.objects.filter(
-            version=version2).count() == 1
-        assert IncompatibleVersions.objects.count() == 2
-
-        # Test delete signals.
-        version1.delete()
-        assert IncompatibleVersions.objects.count() == 1
-
-        version2.delete()
-        assert IncompatibleVersions.objects.count() == 0
-
-    def test_signals_max(self):
-        assert IncompatibleVersions.objects.count() == 0
-
-        c = CompatOverride.objects.create(guid='r@b')
-        CompatOverrideRange.objects.create(compat=c, app=self.app.id,
-                                           min_version='1.0',
-                                           max_version='*')
-
-        # Test the min_version matched.
-        version1 = Version.objects.create(addon=self.addon, version='1.0')
-        assert IncompatibleVersions.objects.filter(
-            version=version1).count() == 1
-        assert IncompatibleVersions.objects.count() == 1
-
-        # Test the upper range.
-        version2 = Version.objects.create(addon=self.addon, version='99.0')
-        assert IncompatibleVersions.objects.filter(
-            version=version2).count() == 1
-        assert IncompatibleVersions.objects.count() == 2
-
-        # Test delete signals.
-        version1.delete()
-        assert IncompatibleVersions.objects.count() == 1
-
-        version2.delete()
-        assert IncompatibleVersions.objects.count() == 0
 
 
 class TestAddonApprovalsCounter(TestCase):
@@ -2992,18 +2634,14 @@ class TestAddonApprovalsCounter(TestCase):
 
 class TestMigratedLWTModel(TestCase):
     def setUp(self):
-        self.lwt = addon_factory(type=amo.ADDON_PERSONA)
-        self.lwt.persona.persona_id = 999
-        self.lwt.persona.save()
         self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         MigratedLWT.objects.create(
-            lightweight_theme=self.lwt,
+            lightweight_theme_id=666,
+            getpersonas_id=999,
             static_theme=self.static_theme)
 
     def test_addon_id_lookup(self):
-        match = MigratedLWT.objects.get(lightweight_theme=self.lwt)
-        assert match.static_theme == self.static_theme
-        match = MigratedLWT.objects.get(lightweight_theme_id=self.lwt.id)
+        match = MigratedLWT.objects.get(lightweight_theme_id=666)
         assert match.static_theme == self.static_theme
 
     def test_getpersonas_id_lookup(self):

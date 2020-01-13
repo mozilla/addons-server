@@ -1,0 +1,28 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Author invitation for {addon_name}')|format_html(addon_name=addon.name) %}
+
+{% block title %}
+    {{ dev_page_title(title, addon) }}
+{% endblock %}
+
+{% block content %}
+<header>
+    <h2>{{ addon.name }}</h2>
+</header>
+<section class="devhub-form" role="main">
+    <form method="post" class="item">
+        {% csrf_token %}
+        <div class="item_wrapper">
+            <p>
+                {{ _('You have been invited to become an author of {addon_name}.')|format_html(addon_name=addon.name) }}
+            </p>
+            <p>
+                {{ _('Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. ') }}
+                {{ _('Click on the Accept button below to confirm you want to be added as an author for {addon_name}.')|format_html(addon_name=addon.name) }}
+            </p>
+            <p> <button type="submit" name="accept" value="yes">{{ _('Accept') }}</button> <button class="delete-button" type="submit" name="accept" value="no">{{ _('Decline') }}</button> </p>
+        </div>
+    </form>
+</section>
+{% endblock %}

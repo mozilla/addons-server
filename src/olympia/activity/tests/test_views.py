@@ -117,18 +117,14 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         self._login_developer()
         self._test_url()
 
-    def test_deleted_version_reviewer(self):
-        self.version.delete()
-        self._login_unlisted_reviewer()
-        self._test_url()
-
     def test_deleted_version_regular_reviewer(self):
         self.version.delete()
 
-        # No version left, only unlisted reviewers can access.
+        # There was a listed version, it has been deleted but still, it was
+        # there, so listed reviewers should still be able to access.
         self._login_reviewer()
         response = self.client.get(self.url)
-        assert response.status_code == 403
+        assert response.status_code == 200
 
     def test_deleted_version_developer(self):
         self.version.delete()
@@ -187,15 +183,38 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.user = user_factory()
         self.note = self.log(u'noôo!', amo.LOG.APPROVE_VERSION,
-                             self.days_ago(2))
+                             self.days_ago(3))
         self.note2 = self.log(u'réply!', amo.LOG.DEVELOPER_REPLY_VERSION,
-                              self.days_ago(1))
+                              self.days_ago(2))
         self.note3 = self.log(u'yéss!', amo.LOG.REVIEWER_REPLY_VERSION,
-                              self.days_ago(0))
+                              self.days_ago(1))
 
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
         self._set_tested_url()
+
+    def test_queries(self):
+        self.note4 = self.log(u'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION,
+                              self.days_ago(0))
+        self._login_developer()
+        with self.assertNumQueries(19):
+            # - 2 savepoints because of tests
+            # - 2 user and groups
+            # - 2 addon and its translations
+            # - 1 addon author lookup (permission check)
+            # - 1 version (no transforms at all)
+            # - 1 activity log version to find relevant activity logs
+            # - 1 count of activity logs
+            # - 1 activity logs themselves
+            # - 1 user
+            # - 2 addon and its translations (repeated because we aren't smart
+            #   enough yet to pass that to the activity log queryset, it's
+            #   difficult since it's not a FK)
+            # - 2 version and its translations (same issue)
+            # - 3 for highlighting (repeats the query to fetch the activity log
+            #   per version)
+            response = self.client.get(self.url)
+            assert response.status_code == 200
 
     def _test_url(self, **kwargs):
         response = self.client.get(self.url, data=kwargs)

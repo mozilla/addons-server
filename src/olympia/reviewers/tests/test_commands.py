@@ -3,10 +3,10 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from olympia.constants.scanners import DELAY_AUTO_APPROVAL, YARA
 from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
-
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
@@ -17,12 +17,13 @@ from olympia.amo.tests import (
 from olympia.amo.utils import days_ago
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileValidation
-from olympia.files.utils import atomic_lock
+from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.management.commands import auto_approve
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, get_reviewing_cache)
+from olympia.scanners.models import ScannerResult, ScannerRule
 
 
 class AutoApproveTestsMixin(object):
@@ -47,7 +48,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.user = user_factory(
             id=settings.TASK_USER_ID, username='taskuser',
             email='taskuser@mozilla.com')
-        self.addon = addon_factory(average_daily_users=666)
+        self.addon = addon_factory(name='Basic Addøn', average_daily_users=666)
         self.version = version_factory(
             addon=self.addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
@@ -63,6 +64,10 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # be considered. Make sure its nomination date is in the past to test
         # ordering.
         self.version.update(nomination=self.days_ago(1))
+        # Add a second file to self.version to test the distinct().
+        file_factory(
+            version=self.version, status=amo.STATUS_AWAITING_REVIEW,
+            is_webextension=True)
         # Add reviewer flags disabling auto-approval for this add-on. It would
         # still be fetched as a candidate, just rejected later on when
         # calculating the verdict.
@@ -70,9 +75,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             addon=self.addon, auto_approval_disabled=True)
 
         # Add nominated add-on: it should be considered.
-        new_addon = addon_factory(status=amo.STATUS_NOMINATED, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
+        new_addon = addon_factory(
+            name='New Addon',
+            status=amo.STATUS_NOMINATED, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
         new_addon_version = new_addon.versions.all()[0]
         new_addon_version.update(nomination=self.days_ago(2))
         # Even add an empty reviewer flags instance, that should not matter.
@@ -80,6 +87,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # Add langpack: it should be considered.
         langpack = addon_factory(
+            name='Langpack',
             type=amo.ADDON_LPAPP, status=amo.STATUS_NOMINATED, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
@@ -88,6 +96,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         # Add a dictionary: it should also be considered.
         dictionary = addon_factory(
+            name='Dictionary',
             type=amo.ADDON_DICT, status=amo.STATUS_NOMINATED, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
@@ -95,8 +104,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         dictionary_version.update(nomination=self.days_ago(4))
 
         # search engine plugins are considered now
-        search_addon = addon_factory(type=amo.ADDON_SEARCH)
-        version_factory(
+        search_addon = addon_factory(name='Search', type=amo.ADDON_SEARCH)
+        search_addon_version = version_factory(
             addon=search_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
@@ -107,6 +116,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # weight assigned etc - they will not be auto-approved but that's
         # handled at a later stage, when calculating the verdict.
         recommendable_addon_nominated = addon_factory(
+            name='Recommendable Addon',
             status=amo.STATUS_NOMINATED,
             version_kw={
                 'recommendation_approved': True,
@@ -116,71 +126,169 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
         )
-        recommended_addon = version_factory(
-            addon=addon_factory(),
+        DiscoveryItem.objects.create(
+            recommendable=True, addon=recommendable_addon_nominated)
+
+        recommended_addon = addon_factory(name='Recommended Addon',)
+        recommended_addon_version = version_factory(
+            addon=recommended_addon,
             recommendation_approved=True,
             nomination=self.days_ago(7),
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True
-            }).addon
-        DiscoveryItem.objects.create(
-            recommendable=True, addon=recommendable_addon_nominated)
+            })
         DiscoveryItem.objects.create(
             recommendable=True, addon=recommended_addon)
 
+        # Add-on with 3 versions:
+        # - one webext, listed, public.
+        # - one non-listed webext version awaiting review.
+        # - one listed non-webext awaiting review (should be ignored)
+        complex_addon = addon_factory(
+            name='Complex Addon', file_kw={'is_webextension': True})
+        complex_addon_version = version_factory(
+            nomination=self.days_ago(8),
+            addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True,
+                     'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            nomination=self.days_ago(9),
+            addon=complex_addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW}
+        )
+
+        # Add-on with an already public version and an unlisted webext
+        # awaiting review.
+        complex_addon_2 = addon_factory(
+            name='Second Complex Addon', file_kw={'is_webextension': True})
+        complex_addon_2_version = version_factory(
+            addon=complex_addon_2, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            nomination=self.days_ago(10),
+            file_kw={'is_webextension': True,
+                     'status': amo.STATUS_AWAITING_REVIEW}
+        )
+
+        # Disabled version with a webext waiting review (Still has to be
+        # considered because unlisted doesn't care about disabled by user
+        # state.
+        user_disabled_addon = addon_factory(
+            name='Disabled by user waiting review',
+            disabled_by_user=True)
+        user_disabled_addon_version = version_factory(
+            nomination=self.days_ago(11),
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            addon=user_disabled_addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True}
+        )
+
+        # Pure unlisted upload. Addon status is "incomplete" as a result, but
+        # it should still be considered because unlisted versions don't care
+        # about that.
+        pure_unlisted = addon_factory(name='Pure unlisted', version_kw={
+            'channel': amo.RELEASE_CHANNEL_UNLISTED,
+            'nomination': self.days_ago(12)}, file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NULL)
+        pure_unlisted_version = pure_unlisted.versions.get()
+
+        # Unlisted static theme.
+        unlisted_theme = addon_factory(name='Unlisted theme', version_kw={
+            'channel': amo.RELEASE_CHANNEL_UNLISTED,
+            'nomination': self.days_ago(13)}, file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+        unlisted_theme_version = unlisted_theme.versions.get()
+
+        # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
-        addon_factory(file_kw={'is_webextension': True})
+        addon_factory(name='Already Public', file_kw={'is_webextension': True})
 
-        # Disabled add-on with updates.
-        disabled_addon = addon_factory(disabled_by_user=True)
+        # Mozilla Disabled add-on with updates.
+        disabled_addon = addon_factory(
+            name='Mozilla Disabled', status=amo.STATUS_DISABLED,
+        )
         version_factory(addon=disabled_addon, file_kw={
             'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
+            'is_webextension': True}
+        )
 
         # Add-on with deleted version.
-        addon_with_deleted_version = addon_factory()
+        addon_with_deleted_version = addon_factory(
+            name='With deleted version awaiting review')
         deleted_version = version_factory(
             addon=addon_with_deleted_version, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
-                'is_webextension': True})
+                'is_webextension': True}
+        )
         deleted_version.delete()
 
         # Add-on with a non-webextension update.
-        non_webext_addon = addon_factory()
+        non_webext_addon = addon_factory(name='Non Webext waiting review')
         version_factory(addon=non_webext_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW})
+            'status': amo.STATUS_AWAITING_REVIEW}
+        )
 
-        # Add-on with 3 versions:
-        # - one webext, listed, public.
-        # - one non-listed webext version
-        # - one listed non-webext awaiting review.
-        complex_addon = addon_factory(file_kw={'is_webextension': True})
+        # Somehow deleted add-on with a file still waiting for review.
+        deleted_addon = addon_factory(
+            name='Deleted Awaiting Review Somehow', status=amo.STATUS_DELETED,
+        )
         version_factory(
-            addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True})
-        version_factory(addon=complex_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW})
+            addon=deleted_addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True}
+        )
 
-        # Finally, add a second file to self.version to test the distinct().
-        file_factory(
-            version=self.version, status=amo.STATUS_AWAITING_REVIEW,
-            is_webextension=True)
+        # listed version belonging to an add-on disabled by user
+        addon_factory(
+            name='Listed Disabled by user',
+            disabled_by_user=True,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True
+            }
+        )
 
+        # Incomplete listed addon
+        addon_factory(
+            name='Incomplete listed',
+            status=amo.STATUS_NULL,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True
+            }
+        )
+
+        # Listed static theme
+        addon_factory(name='Listed theme', file_kw={
+            'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
+        }, status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME)
+
+        # ---------------------------------------------------------------------
         # Gather the candidates.
         command = auto_approve.Command()
         command.post_review = True
         qs = command.fetch_candidates()
 
-        # 5 versions should be found. Because of the nomination date,
-        # search_version should be first (its nomination date is the
-        # oldest) followed etc.
-        assert len(qs) == 7
-        assert [v.addon.pk for v in qs] == [a.pk for a in (
-            recommended_addon, recommendable_addon_nominated,
-            search_addon, dictionary, langpack, new_addon, self.addon,
-        )]
+        # We should find these versions, in this exact order.
+        expected = [(version.addon, version) for version in [
+            unlisted_theme_version,
+            pure_unlisted_version,
+            user_disabled_addon_version,
+            complex_addon_2_version,
+            complex_addon_version,
+            recommended_addon_version,
+            recommendable_addon_nominated.current_version,
+            search_addon_version,
+            dictionary.current_version,
+            langpack.current_version,
+            new_addon.current_version,
+            self.version,
+        ]]
+
+        assert [(version.addon, version) for version in qs] == expected
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.statsd.incr')
@@ -196,7 +304,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert review_helper_mock().handler.process_public.call_count == 1
         assert statsd_incr_mock.call_count == 1
         assert statsd_incr_mock.call_args == (
-            ('reviewers.auto_approve.approve',), {}
+            ('reviewers.auto_approve.approve.success',), {}
         )
 
     @mock.patch('olympia.reviewers.utils.sign_file')
@@ -294,10 +402,14 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
         assert sign_file_mock.call_count == 1
         assert get_reviewing_cache(self.addon.pk) is None
-        self._check_stats({'total': 1, 'error': 1, 'is_locked': 0,
-                           'has_auto_approval_disabled': 0,
-                           'is_recommendable': 0,
-                           'should_be_delayed': 0})
+        self._check_stats({
+            'total': 1,
+            'error': 1,
+            'has_auto_approval_disabled': 0,
+            'is_locked': 0,
+            'is_recommendable': 0,
+            'should_be_delayed': 0
+        })
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
@@ -351,11 +463,75 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
         # doing anything.
-        with atomic_lock(settings.TMP_PATH, auto_approve.LOCK_NAME):
+        with lock(settings.TMP_PATH, auto_approve.LOCK_NAME):
             call_command('auto_approve')
 
         assert self.log_final_summary_mock.call_count == 0
         assert self.file.reload().status == amo.STATUS_AWAITING_REVIEW
+
+    @mock.patch.object(ScannerResult, 'run_action')
+    def test_does_not_execute_run_action_when_switch_is_inactive(
+            self, run_action_mock):
+        call_command('auto_approve')
+
+        assert not run_action_mock.called
+
+    @mock.patch.object(ScannerResult, 'run_action')
+    def test_executes_run_action_when_switch_is_active(self, run_action_mock):
+        self.create_switch('run-action-in-auto-approve', active=True)
+
+        call_command('auto_approve')
+
+        assert run_action_mock.called
+        run_action_mock.assert_called_with(self.version)
+
+    @mock.patch.object(ScannerResult, 'run_action')
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_only_executes_run_action_once(self,
+                                           sign_file_mock,
+                                           run_action_mock):
+        self.create_switch('run-action-in-auto-approve', active=True)
+        call_command('auto_approve')
+
+        assert run_action_mock.called
+        run_action_mock.assert_called_with(self.version)
+
+        run_action_mock.reset_mock()
+        call_command('auto_approve')
+
+        assert not run_action_mock.called
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_action_delay_approval(self, sign_file_mock):
+        # Functional test making sure that the scanners _delay_auto_approval()
+        # action properly delays auto-approval on the version it's applied to
+        def check_assertions():
+            aps = self.version.autoapprovalsummary
+            assert aps.has_auto_approval_disabled
+
+            flags = self.addon.addonreviewerflags
+            assert flags.auto_approval_delayed_until
+
+            assert not sign_file_mock.called
+
+        self.create_switch('run-action-in-auto-approve', active=True)
+        ScannerRule.objects.create(
+            is_active=True, name='foo', action=DELAY_AUTO_APPROVAL,
+            scanner=YARA)
+        result = ScannerResult.objects.create(
+            scanner=YARA, version=self.version,
+            results=[{'rule': 'foo', 'tags': [], 'meta': {}}])
+        assert result.has_matches
+
+        call_command('auto_approve')
+        check_assertions()
+
+        call_command('auto_approve')  # Shouldn't matter if it's called twice.
+        check_assertions()
+
+    def test_run_action_delay_approval_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.test_run_action_delay_approval()
 
 
 class TestAutoApproveCommandTransactions(
@@ -419,10 +595,15 @@ class TestAutoApproveCommandTransactions(
         assert get_reviewing_cache(self.addons[0].pk) is None
         assert get_reviewing_cache(self.addons[1].pk) is None
 
-        self._check_stats({'total': 2, 'error': 1, 'is_locked': 0,
-                           'has_auto_approval_disabled': 0,
-                           'auto_approved': 1, 'is_recommendable': 0,
-                           'should_be_delayed': 0})
+        self._check_stats({
+            'total': 2,
+            'error': 1,
+            'auto_approved': 1,
+            'has_auto_approval_disabled': 0,
+            'is_locked': 0,
+            'is_recommendable': 0,
+            'should_be_delayed': 0
+        })
 
 
 class TestRecalculatePostReviewWeightsCommand(TestCase):

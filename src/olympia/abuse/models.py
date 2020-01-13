@@ -11,7 +11,6 @@ from geoip2.errors import GeoIP2Error
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ManagerBase, ModelBase
-from olympia.amo.utils import send_mail
 from olympia.api.utils import APIChoicesWithNone
 from olympia.users.models import UserProfile
 
@@ -65,6 +64,9 @@ class AbuseReport(ModelBase):
         ('OTHER', 127, 'Other'),
     )
 
+    # https://searchfox.org
+    # /mozilla-central/source/toolkit/components/telemetry/Events.yaml#122-131
+    # Firefox submits values in lowercase, with '-' and ':' changed to '_'.
     ADDON_INSTALL_METHODS = APIChoicesWithNone(
         ('AMWEBAPI', 1, 'Add-on Manager Web API'),
         ('LINK', 2, 'Direct link'),
@@ -73,18 +75,49 @@ class AbuseReport(ModelBase):
         ('MANAGEMENT_WEBEXT_API', 5, 'Webext management API'),
         ('DRAG_AND_DROP', 6, 'Drag & Drop'),
         ('SIDELOAD', 7, 'Sideload'),
+        # Values between 8 and 13 are obsolete, we use to merge
+        # install source and method into addon_install_method before deciding
+        # to split the two like Firefox does, so these 6 values are only kept
+        # for backwards-compatibility with older reports and older versions of
+        # Firefox that still only submit that.
         ('FILE_URL', 8, 'File URL'),
         ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
         ('DISTRIBUTION', 10, 'Included in build'),
         ('SYSTEM_ADDON', 11, 'System Add-on'),
         ('TEMPORARY_ADDON', 12, 'Temporary Add-on'),
         ('SYNC', 13, 'Sync'),
+        # Back to normal values.
+        ('URL', 14, 'URL'),
+        # Our own catch-all. The serializer expects it to be called "OTHER".
+        ('OTHER', 127, 'Other'),
+    )
+    ADDON_INSTALL_SOURCES = APIChoicesWithNone(
+        ('ABOUT_ADDONS', 1, 'Add-ons Manager'),
+        ('ABOUT_DEBUGGING', 2, 'Add-ons Debugging'),
+        ('ABOUT_PREFERENCES', 3, 'Preferences'),
+        ('AMO', 4, 'AMO'),
+        ('APP_PROFILE', 5, 'App Profile'),
+        ('DISCO', 6, 'Disco Pane'),
+        ('DISTRIBUTION', 7, 'Included in build'),
+        ('EXTENSION', 8, 'Extension'),
+        ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
+        ('FILE_URL', 10, 'File URL'),
+        ('GMP_PLUGIN', 11, 'GMP Plugin'),
+        ('INTERNAL', 12, 'Internal'),
+        ('PLUGIN', 13, 'Plugin'),
+        ('RTAMO', 14, 'Return to AMO'),
+        ('SYNC', 15, 'Sync'),
+        ('SYSTEM_ADDON', 16, 'System Add-on'),
+        ('TEMPORARY_ADDON', 17, 'Temporary Add-on'),
+        ('UNKNOWN', 18, 'Unknown'),
+        # Our own catch-all. The serializer expects it to be called "OTHER".
         ('OTHER', 127, 'Other'),
     )
     REPORT_ENTRY_POINTS = APIChoicesWithNone(
         ('UNINSTALL', 1, 'Uninstall'),
         ('MENU', 2, 'Menu'),
         ('TOOLBAR_CONTEXT_MENU', 3, 'Toolbar context menu'),
+        ('AMO', 4, 'AMO'),
     )
     STATES = Choices(
         ('UNTRIAGED', 1, 'Untriaged'),
@@ -149,6 +182,9 @@ class AbuseReport(ModelBase):
     addon_install_method = models.PositiveSmallIntegerField(
         default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True,
         null=True)
+    addon_install_source = models.PositiveSmallIntegerField(
+        default=None, choices=ADDON_INSTALL_SOURCES.choices, blank=True,
+        null=True)
     report_entry_point = models.PositiveSmallIntegerField(
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True,
         null=True)
@@ -162,29 +198,9 @@ class AbuseReport(ModelBase):
         # be unfiltered to prevent exceptions when dealing with relations or
         # saving already deleted objects.
         base_manager_name = 'unfiltered'
-
-    def send(self):
-        if self.reporter:
-            user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
-        else:
-            user_name = 'An anonymous user'
-
-        # Give a URL pointing to the admin for that report. If there is a
-        # target (add-on or user in database) we can point directly to the
-        # admin url for that object, otherwise we use the admin url of the
-        # report itself.
-        if self.target:
-            target_url = self.target.get_admin_absolute_url()
-            target_name = self.target.name
-        else:
-            target_url = self.get_admin_absolute_url()
-            target_name = self.guid
-        metadata = '\n'.join(
-            ['%s => %s' % (k, v) for k, v in self.metadata.items()]
-        )
-        msg = '%s reported abuse for %s (%s).\n\n%s\n\n%s' % (
-            user_name, target_name, target_url, metadata, self.message)
-        send_mail(str(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
+        indexes = [
+            models.Index(fields=('created',), name='created_idx'),
+        ]
 
     @property
     def metadata(self):
@@ -210,12 +226,6 @@ class AbuseReport(ModelBase):
                     value = getattr(self, 'get_%s_display' % field_name)()
                 data[field_name] = value
         return data
-
-    def save(self, *args, **kwargs):
-        creation = not self.pk
-        super(AbuseReport, self).save(*args, **kwargs)
-        if creation:
-            self.send()
 
     def delete(self, *args, **kwargs):
         # AbuseReports are soft-deleted. Note that we keep relations, because

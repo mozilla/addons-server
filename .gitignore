@@ -46,3 +46,10 @@ storage/guarded-addons/*
 storage/shared_storage/*
 supervisord.pid
 tmp/*
+
+# private projects
+private/
+
+# do not ignore the following files
+!docker-compose.private.yml
+!private/README.md

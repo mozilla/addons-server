@@ -25,7 +25,7 @@ from olympia.core.languages import ALL_LANGUAGES
 from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
-from .models import DownloadCount, ThemeUserCount, UpdateCount
+from .models import DownloadCount, UpdateCount
 
 
 logger = olympia.core.logger.getLogger('z.apps.stats.views')
@@ -216,7 +216,7 @@ def usage_series(request, addon, group, start, end, format):
     check_stats_permission(request, addon)
 
     series = get_series(
-        ThemeUserCount if addon.type == amo.ADDON_PERSONA else UpdateCount,
+        UpdateCount,
         addon=addon.id, date__range=date_range)
 
     if format == 'csv':

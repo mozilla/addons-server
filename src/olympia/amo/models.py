@@ -75,8 +75,10 @@ class BaseQuerySet(models.QuerySet):
         """Remove all transforms except translations."""
         from olympia.translations import transformer
         # Add an extra select so these are cached separately.
-        return (self.no_transforms().extra(select={'_only_trans': 1})
-                .transform(transformer.get_trans))
+        qs = self.no_transforms()
+        if hasattr(self.model._meta, 'translated_fields'):
+            qs = qs.transform(transformer.get_trans)
+        return qs
 
 
 class RawQuerySet(models.query.RawQuerySet):
@@ -340,7 +342,7 @@ class SaveUpdateMixin(object):
         # and throws an error.
         # https://docs.djangoproject.com/en/1.9/topics/db/examples/one_to_one/
         if hasattr(self._meta, 'translated_fields'):
-            save_translations(id(self))
+            save_translations(self)
         return super(SaveUpdateMixin, self).save(**kwargs)
 
 
@@ -497,3 +499,9 @@ class BasePreview(object):
             except Exception as e:
                 log.error(
                     'Error deleting preview file (%s): %s' % (filename, e))
+
+
+class LongNameIndex(models.Index):
+    """Django's Index, but with a longer allowed name since we don't care about
+    compatibility with Oracle."""
+    max_name_length = 64  # Django default is 30, but MySQL can go up to 64.

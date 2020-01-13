@@ -6,7 +6,7 @@ from django.core.management import call_command
 
 from unittest.mock import ANY, patch
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, user_factory
 from olympia.users.management.commands.createsuperuser import (
     Command as CreateSuperUser)
 from olympia.users.models import UserProfile
@@ -70,3 +70,35 @@ class TestCreateSuperUser(TestCase):
             'api-secret': ANY,
             'fxa-id': fxa_id,
         }
+
+
+class TestClearOldLastLoginIp(TestCase):
+    def test_basic(self):
+        # Old but not deleted
+        old_date = self.days_ago(184)
+        user1 = user_factory(last_login_ip='127.0.0.1')
+        user1.update(modified=old_date)
+
+        # Deleted but recent
+        user2 = user_factory(last_login_ip='127.0.0.1', deleted=True)
+        user2.update(modified=self.days_ago(1))
+
+        # Deleted and old: last_login_ip must be cleared.
+        user3 = user_factory(last_login_ip='127.0.0.1', deleted=True)
+        user3.update(modified=old_date)
+
+        call_command('clear_old_last_login_ip')
+
+        user1.reload()
+        assert user1.last_login_ip == '127.0.0.1'
+        assert user1.deleted is False
+        assert user1.modified == old_date
+
+        user2.reload()
+        assert user2.last_login_ip == '127.0.0.1'
+        assert user2.deleted is True
+
+        user3.reload()
+        assert user3.last_login_ip == ''
+        assert user3.deleted is True
+        assert user3.modified == old_date

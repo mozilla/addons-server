@@ -8,12 +8,14 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import (
     BaseUserSerializer, PublicUserProfileSerializer,
-    UserNotificationSerializer, UserProfileSerializer)
+    UserNotificationSerializer, UserProfileBasketSyncSerializer,
+    UserProfileSerializer)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.amo.utils import urlparams
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
+from olympia.zadmin.models import Config, set_config
 
 
 class TestBaseUserSerializer(TestCase):
@@ -165,22 +167,22 @@ class PermissionsTestMixin(object):
             'Addons:Review']
 
         # Multiple permissions
-        group.update(rules='Addons:Review,Personas:Review,Addons:Edit')
+        group.update(rules='Addons:Review,Addons:Edit')
         del self.user.groups_list
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+            'Addons:Edit', 'Addons:Review']
 
         # Change order to test sort
-        group.update(rules='Personas:Review,Addons:Review,Addons:Edit')
+        group.update(rules='Addons:Edit,Addons:Review')
         del self.user.groups_list
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+            'Addons:Edit', 'Addons:Review']
 
         # Add a second group membership to test duplicates
         group2 = Group.objects.create(name='b', rules='Foo:Bar,Addons:Edit')
         GroupUser.objects.create(group=group2, user=self.user)
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Foo:Bar', 'Personas:Review']
+            'Addons:Edit', 'Addons:Review', 'Foo:Bar']
 
 
 class TestUserProfileSerializer(TestPublicUserProfileSerializer,
@@ -216,15 +218,10 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
 
     def test_expose_fxa_edit_email_url(self):
         fxa_host = 'http://example.com'
-        fxa_config = {
-            'default': {
-                'content_host': fxa_host,
-            },
-        }
         user_fxa_id = 'ufxa-id-123'
         self.user.update(fxa_id=user_fxa_id)
 
-        with override_settings(FXA_CONFIG=fxa_config):
+        with override_settings(FXA_CONTENT_HOST=fxa_host):
             expected_url = urlparams('{}/settings'.format(fxa_host),
                                      uid=user_fxa_id, email=self.user_email,
                                      entrypoint='addons')
@@ -248,6 +245,72 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
                 serializer.validate_homepage(u'http://{}'.format(domain))
             # It should not raise when value is allowed.
             assert serializer.validate_homepage(allowed_url) == allowed_url
+
+    def test_site_status(self):
+        data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': False,
+            'notice': None,
+        }
+
+        set_config('site_notice', 'THIS is NOT Á TEST!')
+        data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': False,
+            'notice': 'THIS is NOT Á TEST!',
+        }
+
+        with override_settings(READ_ONLY=True):
+            data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': True,
+            'notice': 'THIS is NOT Á TEST!',
+        }
+
+        Config.objects.get(key='site_notice').delete()
+        with override_settings(READ_ONLY=True):
+            data = super(TestUserProfileSerializer, self).test_basic()
+        assert data['site_status'] == {
+            'read_only': True,
+            'notice': None,
+        }
+
+
+class TestUserProfileBasketSyncSerializer(TestCase):
+    def setUp(self):
+        self.user = user_factory(
+            display_name=None, last_login=self.days_ago(1))
+
+    def test_basic(self):
+        serializer = UserProfileBasketSyncSerializer(self.user)
+        assert serializer.data == {
+            'deleted': False,
+            'display_name': None,
+            'email': self.user.email,
+            'homepage': '',
+            'id': self.user.pk,
+            'last_login': self.user.last_login.replace(
+                microsecond=0).isoformat() + 'Z',
+            'location': ''
+        }
+
+        self.user.update(display_name='Dîsplay Mé!')
+        serializer = UserProfileBasketSyncSerializer(self.user)
+        assert serializer.data['display_name'] == 'Dîsplay Mé!'
+
+    def test_deleted(self):
+        self.user.delete()
+        serializer = UserProfileBasketSyncSerializer(self.user)
+        assert serializer.data == {
+            'deleted': True,
+            'display_name': None,
+            'email': None,
+            'homepage': '',
+            'id': self.user.pk,
+            'last_login': self.user.last_login.replace(
+                microsecond=0).isoformat() + 'Z',
+            'location': ''
+        }
 
 
 class TestUserNotificationSerializer(TestCase):

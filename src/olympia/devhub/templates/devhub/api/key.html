@@ -15,17 +15,16 @@
         <legend>
           {{ _('API Credentials') }}
         </legend>
-        <p>
-        {% trans
-            docs_url='https://addons-server.readthedocs.io/en/latest/topics/api/index.html' %}
-          For detailed instructions, consult the <a href="{{ docs_url }}">API documentation</a>.
-        {% endtrans %}
-        </p>
-
-        <p class="notification-box error">
-          {{ _('Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors.') }}
-        </p>
         {% if credentials %}
+          <p>
+          {% trans
+              docs_url='https://addons-server.readthedocs.io/en/latest/topics/api/index.html' %}
+            For detailed instructions, consult the <a href="{{ docs_url }}">API documentation</a>.
+          {% endtrans %}
+          </p>
+          <p class="notification-box error">
+            {{ _('Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors.') }}
+          </p>
           <ul class="api-credentials">
             <li class="row api-input key-input">
               <label for="jwtkey" class="row">{{ _('JWT issuer') }}</label>
@@ -45,6 +44,21 @@
             <a href="{{ docs_url }}">API documentation</a>.
           {% endtrans %}
           </p>
+        {% elif confirmation and not confirmation.confirmed_once %}
+          {% if token %}
+            <p>
+              {% trans name=request.user.name %}
+                Please click the confirm button below to generate API credentials for user <strong>{{ name }}</strong>.
+              {% endtrans %}
+              <input type="hidden" name="confirmation_token" value="{{ token }}" />
+            </p>
+          {% else %}
+            <p>
+              {% trans %}
+                A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page.
+              {% endtrans %}
+            </p>
+          {% endif %}
         {% else %}
           <p>
           {% trans %}
@@ -62,6 +76,12 @@
             <button id="generate-key" class="button prominent" type="submit" name="action" value="generate">
               {{ _('Revoke and regenerate credentials') }}
             </button>
+          {% elif confirmation and not confirmation.confirmed_once %}
+            {% if token %}
+              <button id="generate-key" class="button prominent" type="submit" name="action" value="generate">
+                {{ _('Confirm and generate new credentials') }}
+              </button>
+            {% endif %}
           {% else %}
             <button id="generate-key" class="button prominent" type="submit" name="action" value="generate">
               {{ _('Generate new credentials') }}

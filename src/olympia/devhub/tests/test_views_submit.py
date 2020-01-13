@@ -33,7 +33,6 @@ from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
-from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.git import AddonGitRepository
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.versions.models import License, VersionPreview
@@ -128,26 +127,31 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
             assert doc(selector).text() == 'This field is required.'
 
     def test_read_dev_agreement_skip(self):
+        set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         after_agreement_last_changed = (
             datetime(2019, 6, 10) + timedelta(days=1))
         self.user.update(read_dev_agreement=after_agreement_last_changed)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
-    def test_read_dev_agreement_set_to_future(self):
+    @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(
+        2019, 6, 10, 12, 00))
+    def test_read_dev_agreement_fallback_with_config_set_to_future(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
 
-    def test_read_dev_agreement_set_to_future_not_agreed_yet(self):
+    def test_read_dev_agreement_fallback_with_conf_future_and_not_agreed(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
+    @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(
+        2019, 6, 10, 12, 00))
     def test_read_dev_agreement_invalid_date_agreed_post_fallback(self):
         set_config('last_dev_agreement_change_date', '2099-25-75 00:00')
         read_dev_date = datetime(2019, 6, 11)
@@ -479,7 +483,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
     def test_name_not_unique_between_types(self):
         """We don't enforce name uniqueness between add-ons types."""
-        addon_factory(name='Beastify', type=amo.ADDON_THEME)
+        addon_factory(name='Beastify', type=amo.ADDON_STATICTHEME)
         assert get_addon_count('Beastify') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
@@ -505,9 +509,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'New add-on creation never logged.')
         assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
-    @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_success_unlisted(self, mock_sign_file):
-        """Sign automatically."""
+    def test_success_unlisted(self):
         assert Addon.objects.count() == 0
         # No validation errors or warning.
         result = {
@@ -524,9 +526,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
+        assert version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_NULL
-        assert mock_sign_file.called
         assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_missing_compatible_apps(self):
@@ -563,23 +565,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # And check that compatible apps have a sensible default too
         apps = [app.id for app in addon.current_version.compatible_apps.keys()]
         assert sorted(apps) == sorted([amo.FIREFOX.id, amo.ANDROID.id])
-
-    @mock.patch('olympia.devhub.views.auto_sign_file')
-    def test_one_xpi_for_multiple_apps_unlisted_addon(
-            self, mock_auto_sign_file):
-        assert Addon.objects.count() == 0
-        response = self.post(
-            compatible_apps=[amo.FIREFOX, amo.ANDROID], listed=False)
-        addon = Addon.unfiltered.get()
-        latest_version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.assert3xx(
-            response, reverse('devhub.submit.source', args=[addon.slug]))
-        all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'beastify-1.0-an+fx.xpi']
-        mock_auto_sign_file.assert_has_calls([
-            mock.call(f)
-            for f in latest_version.all_files])
 
     def test_static_theme_wizard_button_shown(self):
         response = self.client.get(reverse(
@@ -621,8 +606,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
-            response = self.post(listed=False)
+        response = self.post(listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -680,8 +664,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
-            response = self.post(url=url, listed=False)
+        response = self.post(url=url, listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -716,8 +699,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             settings.ROOT,
             'src/olympia/devhub/tests/addons/valid_webextension.xpi')
         self.upload = self.get_upload(abspath=path)
-        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
-            response = self.post(listed=False)
+        response = self.post(listed=False)
         addon = Addon.objects.get()
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug]))
@@ -1112,81 +1094,6 @@ class DetailsPageMixin(object):
         del version.all_files
         assert version.statuses == [
             (version.all_files[0].id, amo.STATUS_DISABLED)]
-
-    @override_switch('akismet-spam-check', active=False)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_waffle_off(self, comment_check_mock):
-        data = self.get_dict(name=u'spám')
-        self.is_success(data)
-        comment_check_mock.assert_not_called()
-        assert AkismetReport.objects.count() == 0
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_spam_action_taken(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        data = self.get_dict(name=u'spám', summary=self.addon.summary)
-        response = self.client.post(self.url, data)
-
-        assert response.status_code == 200
-        self.assertFormError(
-            response, 'form', 'name',
-            'The text entered has been flagged as spam.')
-
-        # the summary won't be comment_check'd because it didn't change.
-        self.addon = self.addon.reload()
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == u'spám'
-        assert str(self.addon.name) != u'spám'
-
-        comment_check_mock.assert_called_once()
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_spam_logging_only(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        data = self.get_dict(name=u'spám', summary=self.addon.summary)
-        response = self.is_success(data)
-
-        # the summary won't be comment_check'd because it didn't change.
-        self.addon = self.addon.reload()
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == u'spám'
-        assert str(self.addon.name) == u'spám'
-        assert b'spam' not in response.content
-
-        comment_check_mock.assert_called_once()
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_ham(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        data = self.get_dict(name=u'spám', summary=self.addon.summary)
-
-        response = self.is_success(data)
-
-        # the summary won't be comment_check'd because it didn't change.
-        assert comment_check_mock.call_count == 1
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == u'spám'
-        assert b'spam' not in response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_no_changes(self, comment_check_mock):
-        # Don't change either name or summary from the upload.
-        data = self.get_dict(name=self.addon.name, summary=self.addon.summary)
-        self.is_success(data)
-        comment_check_mock.assert_not_called()
-        assert AkismetReport.objects.count() == 0
 
     @override_switch('content-optimization', active=False)
     def test_name_summary_lengths_short(self):
@@ -1637,7 +1544,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
         content = doc('.addon-submission-process')
         assert content('#cc-chooser')  # cc license wizard
-        assert content('#persona-license')  # cc license result
+        assert content('#theme-license')  # cc license result
         assert content('#id_license-builtin')  # license list
         # There should be one license - 11 we added in setUp - and no 'other'.
         assert len(content('input.license')) == 1
@@ -1759,22 +1666,16 @@ class TestAddonSubmitFinish(TestSubmitBase):
     def test_finish_submitting_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
 
-        latest_version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         content = doc('.addon-submission-process')
         links = content('a')
-        assert len(links) == 2
-        # First link is to the file download.
-        file_ = latest_version.all_files[-1]
-        assert links[0].attrib['href'] == file_.get_absolute_url('devhub')
-        assert links[0].text == (
-            'Download %s' % file_.filename)
-        # Second back to my submissions.
-        assert links[1].attrib['href'] == reverse('devhub.addons')
+        assert len(links) == 1
+        # Link leads back to my submissions.
+        assert links[0].attrib['href'] == reverse('devhub.addons')
 
     def test_addon_no_versions_redirects_to_versions(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -1827,22 +1728,16 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.make_addon_unlisted(self.addon)
 
-        latest_version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         content = doc('.addon-submission-process')
         links = content('a')
-        assert len(links) == 2
-        # First link is to the file download.
-        file_ = latest_version.all_files[-1]
-        assert links[0].attrib['href'] == file_.get_absolute_url('devhub')
-        assert links[0].text == (
-            'Download %s' % file_.filename)
-        # Second back to my submissions.
-        assert links[1].attrib['href'] == reverse('devhub.themes')
+        assert len(links) == 1
+        # Link leads back to my submissions.
+        assert links[0].attrib['href'] == reverse('devhub.themes')
 
 
 class TestAddonSubmitResume(TestSubmitBase):
@@ -1876,6 +1771,69 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             response,
             reverse('devhub.submit.version.upload', args=[
                 self.addon.slug, 'unlisted']))
+
+    def test_unlisted_redirects_to_next_step_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.post(self.url, {'channel': 'unlisted'})
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.upload', args=[
+                self.addon.slug, 'unlisted']))
+
+    def test_listed_not_available_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.post(self.url, {'channel': 'listed'})
+        # Not redirected, instead the page is shown with an error.
+        assert response.status_code == 200
+        doc = pq(response.content)
+        errorlist = doc('.errorlist')
+        assert errorlist.text().startswith('Select a valid choice.')
+
+    def test_preselected_channel(self):
+        response = self.client.get(self.url, {'channel': 'listed'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        channel_input = doc('form.addon-submit-distribute input.channel')
+        channel_input[0].attrib == {
+            'type': 'radio',
+            'name': 'channel',
+            'value': 'listed',
+            'class': 'channel',
+            'required': '',
+            'id': 'id_channel_0',
+            'checked': 'checked'
+        }
+        channel_input[1].attrib == {
+            'type': 'radio',
+            'name': 'channel',
+            'value': 'unlisted',
+            'class': 'channel',
+            'required': '',
+            'id': 'id_channel_1',
+        }
+        # There should not be a warning, the add-on is not disabled.
+        assert not doc('p.status-disabled')
+
+    def test_no_preselected_channel_if_addon_is_invisible(self):
+        # If add-on is "Invisible", the only choice available is "unlisted",
+        # and there is no preselection (there is no point for the user to
+        # land on this page in the first place, the link should be hidden).
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url, {'channel': 'unlisted'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        channel_input = doc('form.addon-submit-distribute input.channel')
+        assert len(channel_input) == 1
+        channel_input[0].attrib == {
+            'type': 'radio',
+            'name': 'channel',
+            'value': 'unlisted',
+            'class': 'channel',
+            'required': '',
+            'id': 'id_channel_0',
+        }
+        # There should be a warning.
+        assert doc('p.status-disabled')
 
     def test_no_redirect_for_metadata(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -2034,6 +1992,7 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('.addon-submit-distribute a').attr('href') == (
             distribution_url + '?channel=' + channel_text)
+        assert not doc('p.status-disabled')
 
     def test_url_is_404_for_disabled_addons(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -2108,10 +2067,7 @@ class VersionSubmitUploadMixin(object):
 
         version = self.addon.find_latest_version(channel=self.channel)
         assert version.channel == self.channel
-        assert version.all_files[0].status == (
-            amo.STATUS_AWAITING_REVIEW
-            if self.channel == amo.RELEASE_CHANNEL_LISTED else
-            amo.STATUS_APPROVED)
+        assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
@@ -2171,10 +2127,7 @@ class VersionSubmitUploadMixin(object):
 
         version = self.addon.find_latest_version(channel=self.channel)
         assert version.channel == self.channel
-        assert version.all_files[0].status == (
-            amo.STATUS_AWAITING_REVIEW
-            if self.channel == amo.RELEASE_CHANNEL_LISTED else
-            amo.STATUS_APPROVED)
+        assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
@@ -2219,34 +2172,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
 
-    @mock.patch('olympia.devhub.views.sign_file')
-    def test_experiments_inside_webext_are_auto_signed(self, mock_sign_file):
-        """Experiment extensions (bug 1220097) are auto-signed."""
-        self.grant_permission(
-            self.user, ':'.join(amo.permissions.EXPERIMENTS_SUBMIT))
-        self.upload = self.get_upload(
-            'experiment_inside_webextension.xpi',
-            validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
-            }))
-        self.addon.update(
-            guid='@experiment-inside-webextension-guid',
-            status=amo.STATUS_APPROVED)
-        self.post()
-        # Make sure the file created and signed is for this addon.
-        assert mock_sign_file.call_count == 1
-        mock_sign_file_call = mock_sign_file.call_args[0]
-        signed_file = mock_sign_file_call[0]
-        assert signed_file.version.addon == self.addon
-        assert signed_file.version.channel == amo.RELEASE_CHANNEL_LISTED
-        # There is a log for that file (with passed validation).
-        log = ActivityLog.objects.latest(field_name='id')
-        assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
-
-    @mock.patch('olympia.devhub.views.sign_file')
-    def test_experiment_inside_webext_upload_without_permission(
-            self, mock_sign_file):
+    def test_experiment_inside_webext_upload_without_permission(self):
         self.upload = self.get_upload(
             'experiment_inside_webextension.xpi',
             validation=json.dumps({
@@ -2261,11 +2187,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         assert pq(response.content)('ul.errorlist').text() == (
             'You cannot submit this type of add-on')
 
-        assert mock_sign_file.call_count == 0
-
-    @mock.patch('olympia.devhub.views.sign_file')
-    def test_theme_experiment_inside_webext_upload_without_permission(
-            self, mock_sign_file):
+    def test_theme_experiment_inside_webext_upload_without_permission(self):
         self.upload = self.get_upload(
             'theme_experiment_inside_webextension.xpi',
             validation=json.dumps({
@@ -2279,8 +2201,6 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
             'You cannot submit this type of add-on')
-
-        assert mock_sign_file.call_count == 0
 
     def test_incomplete_addon_now_nominated(self):
         """Uploading a new version for an incomplete addon should set it to
@@ -2321,19 +2241,26 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
                 'devhub.submit.version.source',
                 args=[self.addon.slug, version.pk]))
 
+    def test_redirect_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        # We should be redirected to the "distribution" page, because we tried
+        # to access the listed upload page while the add-on was "invisible".
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, reverse('devhub.submit.version.distribution',
+                              args=[self.addon.slug]), 302)
+
+        # Same for posts.
+        response = self.post(expected_status=302)
+        self.assert3xx(
+            response, reverse('devhub.submit.version.distribution',
+                              args=[self.addon.slug]), 302)
+
 
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
-    def setUp(self):
-        super(TestVersionSubmitUploadUnlisted, self).setUp()
-        # Mock sign_file() to avoid errors because signing is not enabled.
-        patch = mock.patch('olympia.reviewers.utils.sign_file')
-        self.sign_file_mock = patch.start()
-        self.addCleanup(patch.stop)
-
     def test_success(self):
-        """Sign automatically."""
         # No validation errors or warning.
         result = {
             'errors': 0,
@@ -2348,9 +2275,19 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert version.all_files[0].status == amo.STATUS_APPROVED
+        assert version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
-        assert self.sign_file_mock.call_count == 1
+
+    def test_show_warning_and_remove_change_link_if_addon_is_invisible(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Channel should be 'unlisted' with a warning shown, no choice about it
+        # since the add-on is "invisible".
+        assert doc('p.status-disabled')
+        # The link to select another distribution channel should be absent.
+        assert not doc('.addon-submit-distribute a')
 
 
 class TestVersionSubmitSource(TestAddonSubmitSource):
@@ -2555,99 +2492,6 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
                            args=['a3615', self.version.pk])
         self.next_step = reverse('devhub.submit.version.finish',
                                  args=['a3615', self.version.pk])
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_spam_action_taken(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        data = self.get_dict(name=u'spám', summary=self.addon.summary)
-        response = self.client.post(self.url, data)
-
-        assert response.status_code == 200
-        self.assertFormError(
-            response, 'form', 'name',
-            'The text entered has been flagged as spam.')
-        self.assertFormError(
-            response, 'form', 'summary',
-            'The text entered has been flagged as spam.')
-
-        # The summary WILL be comment_check'd, even though it didn't change,
-        # because we don't trust existing metadata when the previous versions
-        # were unlisted.
-        self.addon = self.addon.reload()
-        assert AkismetReport.objects.count() == 2
-        report = AkismetReport.objects.first()
-        assert report.comment_type == 'product-name'
-        assert report.comment == u'spám'
-        assert str(self.addon.name) != u'spám'
-        report = AkismetReport.objects.last()
-        assert report.comment_type == 'product-summary'
-        assert report.comment == u'Delicious Bookmarks is the official'
-
-        assert comment_check_mock.call_count == 2
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_spam_logging_only(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        data = self.get_dict(name=u'spám', summary=self.addon.summary)
-
-        response = self.is_success(data)
-
-        # The summary WILL be comment_check'd, even though it didn't change,
-        # because we don't trust existing metadata when the previous versions
-        # were unlisted.
-        self.addon = self.addon.reload()
-        assert AkismetReport.objects.count() == 2
-        report = AkismetReport.objects.first()
-        assert report.comment_type == 'product-name'
-        assert report.comment == u'spám'
-        assert str(self.addon.name) == u'spám'  # It changed
-        report = AkismetReport.objects.last()
-        assert report.comment_type == 'product-summary'
-        assert report.comment == u'Delicious Bookmarks is the official'
-        assert b'spam' not in response.content
-
-        assert comment_check_mock.call_count == 2
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_ham(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        data = self.get_dict(name=u'spám', summary=self.addon.summary)
-
-        response = self.is_success(data)
-
-        # The summary WILL be comment_check'd, even though it didn't change,
-        # because we don't trust existing metadata when the previous versions
-        # were unlisted.
-        self.addon = self.addon.reload()
-        assert AkismetReport.objects.count() == 2
-        report = AkismetReport.objects.first()
-        assert report.comment_type == 'product-name'
-        assert report.comment == u'spám'
-        assert str(self.addon.name) == u'spám'  # It changed
-        report = AkismetReport.objects.last()
-        assert report.comment_type == 'product-summary'
-        assert report.comment == u'Delicious Bookmarks is the official'
-        assert b'spam' not in response.content
-
-        assert comment_check_mock.call_count == 2
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_no_changes(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        # Don't change either name or summary from the upload.
-        data = self.get_dict(name=self.addon.name, summary=self.addon.summary)
-        response = self.is_success(data)
-
-        # No changes but both values were spam checked.
-        assert AkismetReport.objects.count() == 2
-        assert b'spam' not in response.content
-        assert comment_check_mock.call_count == 2
 
 
 class TestVersionSubmitFinish(TestAddonSubmitFinish):

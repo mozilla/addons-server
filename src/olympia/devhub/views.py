@@ -13,45 +13,44 @@ from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import waffle
 
+from csp.decorators import csp_update
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.utils import redirect_for_login, _is_safe_url
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
-from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.addons.models import (
+    Addon, AddonReviewerFlags, AddonUser, AddonUserPendingConfirmation)
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import MenuItem, escape_all, render, send_mail
-from olympia.api.models import APIKey
+from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
-    fetch_existing_translations_from_addon, get_addon_akismet_reports,
     UploadRestrictionChecker, wizard_unsupported_properties)
-from olympia.files.models import File, FileUpload, FileValidation
+from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
-from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
-from olympia.users.models import DeveloperAgreementRestriction, UserProfile
+from olympia.users.models import DeveloperAgreementRestriction
 from olympia.versions.models import Version
 from olympia.versions.tasks import extract_version_source_to_git
 from olympia.versions.utils import get_next_version_number
@@ -107,8 +106,10 @@ def addon_listing(request, theme=False):
     return filter_.qs, filter_
 
 
+@csp_update(CONNECT_SRC=settings.MOZILLA_NEWLETTER_URL,
+            FORM_ACTION=settings.MOZILLA_NEWLETTER_URL)
 def index(request):
-    ctx = {'blog_posts': _get_posts()}
+    ctx = {}
     if request.user.is_authenticated:
         user_addons = Addon.objects.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
@@ -163,10 +164,11 @@ def ajax_compat_error(request, addon_id, addon):
 def ajax_compat_update(request, addon_id, addon, version_id):
     if not addon.accepts_compatible_apps():
         raise http.Http404()
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
-    compat_form = forms.CompatFormSet(request.POST or None,
-                                      queryset=version.apps.all(),
-                                      form_kwargs={'version': version})
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
+    compat_form = forms.CompatFormSet(
+        request.POST or None,
+        queryset=version.apps.all().select_related('min', 'max'),
+        form_kwargs={'version': version})
     if request.method == 'POST' and compat_form.is_valid():
         for compat in compat_form.save(commit=False):
             compat.version = version
@@ -401,14 +403,75 @@ def disable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
+# Can't use @dev_required, as the user is not a developer yet. Can't use
+# @addon_view_factory either, because it requires a developer for unlisted
+# add-ons. So we just @login_required and retrieve the addon ourselves in the
+# function.
+@login_required
+def invitation(request, addon_id):
+    addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
+    try:
+        invitation = AddonUserPendingConfirmation.objects.get(
+            addon=addon, user=request.user)
+    except AddonUserPendingConfirmation.DoesNotExist:
+        # To be nice in case the user accidentally visited this page after
+        # having accepted an invite, redirect to the add-on base edit page.
+        # If they are an author, they will have access, otherwise will get the
+        # appropriate error.
+        return redirect(addon.get_dev_url())
+    if request.method == 'POST':
+        value = request.POST.get('accept')
+        if value == 'yes':
+            # There is a potential race condition on the position, but it's
+            # difficult to find a sensible value anyway. Should a position
+            # conflict happen, owners can easily fix it themselves.
+            last_position = AddonUser.objects.filter(
+                addon=invitation.addon).order_by('position').values_list(
+                'position', flat=True).last() or 0
+            AddonUser.objects.create(
+                addon=invitation.addon, user=invitation.user,
+                role=invitation.role, listed=invitation.listed,
+                position=last_position + 1)
+            messages.success(request, ugettext('Invitation accepted.'))
+            redirect_url = addon.get_dev_url()
+        else:
+            messages.success(request, ugettext('Invitation declined.'))
+            redirect_url = reverse('devhub.addons')
+        # Regardless of whether or not the invitation was accepted or not,
+        # it's now obsolete.
+        invitation.delete()
+        return redirect(redirect_url)
+    ctx = {
+        'addon': addon,
+        'invitation': invitation,
+    }
+    return render(request, 'devhub/addons/invitation.html', ctx)
+
+
 @dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
-    fs, ctx = [], {}
+    fs = []
+    ctx = {'addon': addon}
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
-    qs = AddonUser.objects.filter(addon=addon).order_by('position')
-    user_form = forms.AuthorFormSet(post_data, queryset=qs)
+    user_form = forms.AuthorFormSet(
+        post_data,
+        prefix='user_form',
+        queryset=AddonUser.objects.filter(addon=addon).order_by('position'),
+        form_kwargs={'addon': addon})
     fs.append(user_form)
+    ctx['user_form'] = user_form
+    # Authors pending confirmation (owner can still remove them before they
+    # accept).
+    authors_pending_confirmation_form = forms.AuthorWaitingConfirmationFormSet(
+        post_data,
+        prefix='authors_pending_confirmation',
+        queryset=AddonUserPendingConfirmation.objects.filter(
+            addon=addon).order_by('id'),
+        form_kwargs={'addon': addon})
+    fs.append(authors_pending_confirmation_form)
+    ctx['authors_pending_confirmation_form'] = (
+        authors_pending_confirmation_form)
     # Versions.
     license_form = forms.LicenseForm(post_data, version=addon.current_version)
     ctx.update(license_form.get_context())
@@ -417,80 +480,101 @@ def ownership(request, addon_id, addon):
     # Policy.
     if addon.type != amo.ADDON_STATICTHEME:
         policy_form = forms.PolicyForm(post_data, addon=addon)
-        ctx.update(policy_form=policy_form)
+        ctx['policy_form'] = policy_form
         fs.append(policy_form)
     else:
         policy_form = None
 
-    def mail_user_changes(author, title, template_part, recipients):
+    def mail_user_changes(author, title, template_part, recipients,
+                          extra_context=None):
         from olympia.amo.utils import send_mail
 
-        t = loader.get_template(
+        context_data = {
+            'author': author,
+            'addon': addon,
+            'DOMAIN': settings.DOMAIN,
+        }
+        if extra_context:
+            context_data.update(extra_context)
+        template = loader.get_template(
             'users/email/{part}.ltxt'.format(part=template_part))
-        send_mail(title,
-                  t.render({'author': author, 'addon': addon,
-                            'site_url': settings.SITE_URL}),
+        send_mail(title, template.render(context_data),
                   None, recipients, use_deny_list=False)
 
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        # Authors.
-        authors = user_form.save(commit=False)
-        addon_authors_emails = list(
-            addon.authors.values_list('email', flat=True))
-        authors_emails = set(addon_authors_emails +
-                             [author.user.email for author in authors])
-        for author in authors:
+    def process_author_changes(source_form, existing_authors_emails):
+        addon_users_to_process = source_form.save(commit=False)
+        for addon_user in addon_users_to_process:
             action = None
-            if not author.id or author.user_id != author._original_user_id:
+            addon_user.addon = addon
+            if not addon_user.pk:
                 action = amo.LOG.ADD_USER_WITH_ROLE
-                author.addon = addon
                 mail_user_changes(
-                    author=author,
+                    author=addon_user,
                     title=ugettext('An author has been added to your add-on'),
                     template_part='author_added',
-                    recipients=authors_emails)
-            elif author.role != author._original_role:
-                action = amo.LOG.CHANGE_USER_WITH_ROLE
-                title = ugettext('An author has a role changed on your add-on')
+                    recipients=existing_authors_emails)
                 mail_user_changes(
-                    author=author,
+                    author=addon_user,
+                    title=ugettext(
+                        'Author invitation for {addon_name}').format(
+                        addon_name=str(addon.name)),
+                    template_part='author_added_confirmation',
+                    recipients=[addon_user.user.email],
+                    extra_context={'author_confirmation_link': absolutify(
+                        reverse('devhub.addons.invitation', args=(addon.slug,))
+                    )})
+                messages.success(request, ugettext(
+                    'A confirmation email has been sent to {email}').format(
+                    email=addon_user.user.email))
+
+            elif addon_user.role != addon_user._original_role:
+                action = amo.LOG.CHANGE_USER_WITH_ROLE
+                title = ugettext(
+                    'An author role has been changed on your add-on')
+                recipients = list(
+                    set(existing_authors_emails + [addon_user.user.email])
+                )
+                mail_user_changes(
+                    author=addon_user,
                     title=title,
                     template_part='author_changed',
-                    recipients=authors_emails)
-
-            author.save()
+                    recipients=recipients)
+            addon_user.save()
             if action:
                 ActivityLog.create(
-                    action, author.user,
-                    str(author.get_role_display()), addon)
-            if (author._original_user_id and
-                    author.user_id != author._original_user_id):
-                ActivityLog.create(
-                    amo.LOG.REMOVE_USER_WITH_ROLE,
-                    (UserProfile, author._original_user_id),
-                    str(author.get_role_display()), addon)
-
-        for author in user_form.deleted_objects:
-            author.delete()
+                    action, addon_user.user,
+                    str(addon_user.get_role_display()), addon)
+        for addon_user in source_form.deleted_objects:
+            recipients = list(
+                set(existing_authors_emails + [addon_user.user.email])
+            )
             ActivityLog.create(
-                amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
-                str(author.get_role_display()), addon)
-            authors_emails.add(author.user.email)
+                amo.LOG.REMOVE_USER_WITH_ROLE, addon_user.user,
+                str(addon_user.get_role_display()), addon)
             mail_user_changes(
-                author=author,
+                author=addon_user,
                 title=ugettext('An author has been removed from your add-on'),
                 template_part='author_removed',
-                recipients=authors_emails)
+                recipients=recipients)
+            addon_user.delete()
 
+    if request.method == 'POST' and all([form.is_valid() for form in fs]):
         if license_form in fs:
             license_form.save()
         if policy_form and policy_form in fs:
             policy_form.save()
         messages.success(request, ugettext('Changes successfully saved.'))
 
+        existing_authors_emails = list(
+            addon.authors.values_list('email', flat=True))
+
+        process_author_changes(
+            authors_pending_confirmation_form, existing_authors_emails)
+        process_author_changes(
+            user_form, existing_authors_emails)
+
         return redirect(addon.get_dev_url('owner'))
 
-    ctx.update(addon=addon, user_form=user_form)
     return render(request, 'devhub/addons/owner.html', ctx)
 
 
@@ -511,33 +595,12 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
         automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
-    from olympia.lib.akismet.tasks import akismet_comment_check   # circ import
-
-    if (channel == amo.RELEASE_CHANNEL_LISTED):
-        existing_data = (
-            fetch_existing_translations_from_addon(
-                upload.addon, ('name', 'summary', 'description'))
-            if addon and addon.has_listed_versions() else ())
-        akismet_reports = get_addon_akismet_reports(
-            user=user,
-            user_agent=request.META.get('HTTP_USER_AGENT'),
-            referrer=request.META.get('HTTP_REFERER'),
-            upload=upload,
-            existing_data=existing_data)
-    else:
-        akismet_reports = []
-    if akismet_reports:
-        pretask = akismet_comment_check.si(
-            [report.id for _, report in akismet_reports])
-    else:
-        pretask = None
     if submit:
         tasks.validate_and_submit(
-            addon, upload, channel=channel, pretask=pretask)
+            addon, upload, channel=channel)
     else:
         tasks.validate(
-            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-            pretask=pretask)
+            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
     return upload
 
@@ -589,7 +652,7 @@ def upload_detail_for_version(request, addon_id, addon, uuid):
 
 @dev_required(allow_reviewers=True)
 def file_validation(request, addon_id, addon, file_id):
-    file_ = get_object_or_404(File, id=file_id)
+    file_ = get_object_or_404(File, version__addon=addon, id=file_id)
 
     validate_url = reverse('devhub.json_file_validation',
                            args=[addon.slug, file_.id])
@@ -609,18 +672,8 @@ def file_validation(request, addon_id, addon, file_id):
 @csrf_exempt
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
-    file = get_object_or_404(File, id=file_id)
-    try:
-        result = file.validation
-    except FileValidation.DoesNotExist:
-        if request.method != 'POST':
-            return http.HttpResponseNotAllowed(['POST'])
-
-        # This API is, unfortunately, synchronous, so wait for the
-        # task to complete and return the result directly.
-        pk = tasks.validate(file, synchronous=True).get()
-        result = FileValidation.objects.get(pk=pk)
-
+    file = get_object_or_404(File, version__addon=addon, id=file_id)
+    result = file.validation
     response = JsonResponse({
         'validation': result.processed_validation,
         'error': None,
@@ -939,7 +992,7 @@ def upload_image(request, addon_id, addon, upload_type):
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
     static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = forms.VersionForm(
         request.POST or None,
@@ -957,7 +1010,7 @@ def version_edit(request, addon_id, addon, version_id):
                                   amo.permissions.REVIEWS_ADMIN)
 
     if not static_theme and addon.accepts_compatible_apps():
-        qs = version.apps.all()
+        qs = version.apps.all().select_related('min', 'max')
         compat_form = forms.CompatFormSet(
             request.POST or None, queryset=qs,
             form_kwargs={'version': version})
@@ -1040,15 +1093,15 @@ def _log_max_version_change(addon, version, appversion):
 @transaction.atomic
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
-    if (addon.is_recommended and
-            version.recommendation_approved and
-            version == addon.current_version):
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
+    if not version.can_be_disabled_and_deleted():
         # Developers shouldn't be able to delete/disable the current version
         # of an approved add-on.
-        msg = ugettext('The latest approved version of a Recommended extension'
-                       ' cannot be deleted or disabled. Please contact AMO '
-                       'Admins if you need help with this.')
+        msg = ugettext(
+            'The latest approved version of this Recommended extension cannot '
+            'be deleted or disabled because the previous version was not '
+            'approved for recommendation. '
+            'Please contact AMO Admins if you need help with this.')
         messages.error(request, msg)
     elif 'disable_version' in request.POST:
         messages.success(
@@ -1069,7 +1122,7 @@ def version_delete(request, addon_id, addon):
 @transaction.atomic
 def version_reenable(request, addon_id, addon):
     version_id = request.POST.get('version_id')
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    version = get_object_or_404(addon.versions.all(), pk=version_id)
     messages.success(
         request,
         ugettext('Version %s re-enabled.') % version.version)
@@ -1091,33 +1144,9 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_):
-    """If the file should be automatically reviewed and signed, do it."""
-    addon = file_.version.addon
-
-    if file_.is_experiment:  # See bug 1220097.
-        ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_)
-    elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        # Sign automatically without manual review.
-        helper = ReviewHelper(request=None, addon=addon,
-                              version=file_.version)
-        # Provide the file to review/sign to the helper.
-        helper.set_data({'addon_files': [file_],
-                         'comments': 'automatic validation'})
-        helper.handler.process_public()
-        ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_)
-
-
-def auto_sign_version(version, **kwargs):
-    # Sign all the unapproved files submitted, one for each platform.
-    for file_ in version.files.exclude(status=amo.STATUS_APPROVED):
-        auto_sign_file(file_, **kwargs)
-
-
 @dev_required
 def version_list(request, addon_id, addon):
-    qs = addon.versions.order_by('-created').transform(Version.transformer)
+    qs = addon.versions.order_by('-created')
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWS_ADMIN)
@@ -1134,10 +1163,9 @@ def version_list(request, addon_id, addon):
 @dev_required
 def version_bounce(request, addon_id, addon, version):
     # Use filter since there could be dupes.
-    vs = (Version.objects.filter(version=version, addon=addon)
-          .order_by('-created'))
+    vs = addon.versions.filter(version=version).order_by('-created').first()
     if vs:
-        return redirect('devhub.versions.edit', addon.slug, vs[0].id)
+        return redirect('devhub.versions.edit', addon.slug, vs.id)
     else:
         raise http.Http404()
 
@@ -1145,7 +1173,7 @@ def version_bounce(request, addon_id, addon, version):
 @json_view
 @dev_required
 def version_stats(request, addon_id, addon):
-    qs = Version.objects.filter(addon=addon)
+    qs = addon.versions.all()
     reviews = (qs.annotate(review_count=Count('ratings'))
                .values('id', 'version', 'review_count'))
     data = {v['id']: v for v in reviews}
@@ -1179,10 +1207,16 @@ def submit_version_agreement(request, addon_id, addon):
 
 @transaction.atomic
 def _submit_distribution(request, addon, next_view):
-    # Accept GET for the first load so we can preselect the channel.
-    form = forms.DistributionChoiceForm(
-        request.POST if request.method == 'POST' else
-        request.GET if request.GET.get('channel') else None)
+    # Accept GET for the first load so we can preselect the channel, but only
+    # when there is no addon or the add-on is not "invisible".
+    if request.method == 'POST':
+        data = request.POST
+    elif 'channel' in request.GET and (
+            not addon or not addon.disabled_by_user):
+        data = request.GET
+    else:
+        data = None
+    form = forms.DistributionChoiceForm(data, addon=addon)
 
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
@@ -1190,7 +1224,7 @@ def _submit_distribution(request, addon, next_view):
         args.append(data['channel'])
         return redirect(next_view, *args)
     return render(request, 'devhub/addons/submit/distribute.html',
-                  {'distribution_form': form,
+                  {'addon': addon, 'distribution_form': form,
                    'submit_notification_warning':
                        get_config('submit_notification_warning'),
                    'submit_page': 'version' if addon else 'addon'})
@@ -1251,6 +1285,11 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
 
     next_view is the view that will be redirected to.
     """
+    if (addon and addon.disabled_by_user and
+            channel == amo.RELEASE_CHANNEL_LISTED):
+        # Listed versions can not be submitted while the add-on is set to
+        # "invisible" (disabled_by_user).
+        return redirect('devhub.submit.version.distribution', addon.slug)
     form = forms.NewUploadForm(
         request.POST or None,
         request.FILES or None,
@@ -1283,8 +1322,6 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
-        # auto-sign versions (the method checks eligibility)
-        auto_sign_version(version)
         add_dynamic_theme_tag(version)
         return redirect(next_view, *url_args)
     is_admin = acl.action_allowed(request,
@@ -1347,9 +1384,12 @@ def submit_version_upload(request, addon_id, addon, channel):
 def submit_version_auto(request, addon_id, addon):
     if not UploadRestrictionChecker(request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
-    # choose the channel we need from the last upload
+    # Choose the channel we need from the last upload, unless that channel
+    # would be listed and addon is set to "Invisible".
     last_version = addon.find_latest_version(None, exclude=())
-    if not last_version:
+    if not last_version or (
+            last_version.channel == amo.RELEASE_CHANNEL_LISTED and
+            addon.disabled_by_user):
         return redirect('devhub.submit.version.distribution', addon.slug)
     channel = last_version.channel
     return _submit_upload(
@@ -1428,7 +1468,7 @@ def submit_addon_source(request, addon_id, addon):
 
 @dev_required(submitting=True)
 def submit_version_source(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
+    version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_source(
         request, addon, version, 'devhub.submit.version.details')
 
@@ -1529,7 +1569,7 @@ def submit_addon_details(request, addon_id, addon):
 
 @dev_required(submitting=True)
 def submit_version_details(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
+    version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_details(request, addon, version)
 
 
@@ -1585,7 +1625,7 @@ def submit_addon_finish(request, addon_id, addon):
 
 @dev_required
 def submit_version_finish(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
+    version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_finish(request, addon, version)
 
 
@@ -1704,35 +1744,66 @@ def api_key(request):
     except APIKey.DoesNotExist:
         credentials = None
 
-    if request.method == 'POST' and request.POST.get('action') == 'generate':
-        if credentials:
-            log.info('JWT key was made inactive: {}'.format(credentials))
+    try:
+        confirmation = APIKeyConfirmation.objects.get(
+            user=request.user)
+    except APIKeyConfirmation.DoesNotExist:
+        confirmation = None
+
+    if request.method == 'POST':
+        has_confirmed_or_is_confirming = confirmation and (
+            confirmation.confirmed_once or confirmation.is_token_valid(
+                request.POST.get('confirmation_token'))
+        )
+
+        # Revoking credentials happens regardless of action, if there were
+        # credentials in the first place.
+        if (credentials and
+                request.POST.get('action') in ('revoke', 'generate')):
             credentials.update(is_active=None)
-            msg = _(
-                'Your old credentials were revoked and are no longer valid. '
-                'Be sure to update all API clients with the new credentials.')
+            log.info('revoking JWT key for user: {}, {}'
+                     .format(request.user.id, credentials))
+            send_key_revoked_email(request.user.email, credentials.key)
+            msg = ugettext(
+                'Your old credentials were revoked and are no longer valid.')
             messages.success(request, msg)
 
-        new_credentials = APIKey.new_jwt_credentials(request.user)
-        log.info('new JWT key created: {}'.format(new_credentials))
+        # If trying to generate with no confirmation instance, we don't
+        # generate the keys immediately but instead send you an email to
+        # confirm the generation of the key. This should only happen once per
+        # user, unless the instance is deleted by admins to reset the process
+        # for that user.
+        if confirmation is None and request.POST.get('action') == 'generate':
+            confirmation = APIKeyConfirmation.objects.create(
+                user=request.user, token=APIKeyConfirmation.generate_token())
+            confirmation.send_confirmation_email()
+        # If you have a confirmation instance, you need to either have it
+        # confirmed once already or have the valid token proving you received
+        # the email.
+        elif (has_confirmed_or_is_confirming and
+              request.POST.get('action') == 'generate'):
+            confirmation.update(confirmed_once=True)
+            new_credentials = APIKey.new_jwt_credentials(request.user)
+            log.info('new JWT key created: {}'.format(new_credentials))
+            send_key_change_email(request.user.email, new_credentials.key)
+        else:
+            # If we land here, either confirmation token is invalid, or action
+            # is invalid, or state is outdated (like user trying to revoke but
+            # there are already no credentials).
+            # We can just pass and let the redirect happen.
+            pass
 
-        send_key_change_email(request.user.email, new_credentials.key)
-
+        # In any case, redirect after POST.
         return redirect(reverse('devhub.api_key'))
 
-    if request.method == 'POST' and request.POST.get('action') == 'revoke':
-        credentials.update(is_active=None)
-        log.info('revoking JWT key for user: {}, {}'
-                 .format(request.user.id, credentials))
-        send_key_revoked_email(request.user.email, credentials.key)
-        msg = ugettext(
-            'Your old credentials were revoked and are no longer valid.')
-        messages.success(request, msg)
-        return redirect(reverse('devhub.api_key'))
+    context_data = {
+        'title': ugettext('Manage API Keys'),
+        'credentials': credentials,
+        'confirmation': confirmation,
+        'token': request.GET.get('token')  # For confirmation step.
+    }
 
-    return render(request, 'devhub/api/key.html',
-                  {'title': ugettext('Manage API Keys'),
-                   'credentials': credentials})
+    return render(request, 'devhub/api/key.html', context_data)
 
 
 def send_key_change_email(to_email, key):
@@ -1766,30 +1837,16 @@ def theme_background_image(request, addon_id, addon, channel):
             else {})
 
 
-def _clean_next_url(request):
-    gets = request.GET.copy()
-    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
-
-    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
-        log.info(u'Unsafe redirect to %s' % url)
-        url = settings.LOGIN_REDIRECT_URL
-
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
-
-    gets['to'] = url
-    request.GET = gets
-    return request
-
-
 def logout(request):
     user = request.user
     if not user.is_anonymous:
-        log.debug(u"User (%s) logged out" % user)
+        log.debug('User (%s) logged out' % user)
 
-    if 'to' in request.GET:
-        request = _clean_next_url(request)
+    if 'to' in request.GET and not _is_safe_url(request.GET['to'], request):
+        log.info('Unsafe redirect to %s' % request.GET['to'])
+        gets = request.GET.copy()
+        gets['to'] = settings.LOGIN_REDIRECT_URL
+        request.GET = gets
 
     next_url = request.GET.get('to')
     if not next_url:

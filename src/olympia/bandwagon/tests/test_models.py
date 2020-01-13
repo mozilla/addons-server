@@ -1,12 +1,10 @@
 import uuid
 
-from unittest import mock
-
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, addon_factory, collection_factory
-from olympia.bandwagon.models import Collection, FeaturedCollection
+from olympia.amo.tests import TestCase
+from olympia.bandwagon.models import Collection
 from olympia.users.models import UserProfile
 
 
@@ -105,101 +103,3 @@ class TestCollectionQuerySet(TestCase):
         collection.add_addon(addon)
 
         assert qset.first().has_addon
-
-
-class TestFeaturedCollectionSignals(TestCase):
-    """The signal needs to fire for all cases when Addon.is_featured would
-    potentially change."""
-    MOCK_TARGET = 'olympia.bandwagon.models.Collection.update_featured_status'
-
-    def setUp(self):
-        super(TestFeaturedCollectionSignals, self).setUp()
-        self.collection = collection_factory()
-        self.addon = addon_factory()
-        self.collection.add_addon(self.addon)
-
-    def test_update_featured_status_does_index_addons(self):
-        from olympia.addons.tasks import index_addons
-
-        extra_addon = addon_factory()
-
-        # Make sure index_addons is a mock, and then clear it.
-        assert index_addons.delay.call_count
-        index_addons.delay.reset_mock()
-
-        # Featuring the collection indexes the add-ons in it.
-        FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
-        assert index_addons.delay.call_count == 1
-        assert index_addons.delay.call_args[0] == ([self.addon.pk],)
-        index_addons.delay.reset_mock()
-
-        # Adding an add-on re-indexes all add-ons in the collection
-        # (we're not smart enough to know it's only necessary to do it for
-        # the one we just added and not the rest).
-        self.collection.add_addon(extra_addon)
-        assert index_addons.delay.call_count == 1
-        assert index_addons.delay.call_args[0] == (
-            [self.addon.pk, extra_addon.pk],)
-        index_addons.delay.reset_mock()
-
-        # Removing an add-on needs just reindexes the add-on that has been
-        # removed.
-        self.collection.remove_addon(extra_addon)
-        assert index_addons.delay.call_count == 1
-        assert index_addons.delay.call_args_list[0][0] == ([extra_addon.pk],)
-
-    def test_addon_added_to_featured_collection(self):
-        FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
-
-        with mock.patch(self.MOCK_TARGET) as function_mock:
-            self.collection.add_addon(addon_factory())
-            function_mock.assert_called()
-
-    def test_addon_removed_from_featured_collection(self):
-        addon = addon_factory()
-        self.collection.add_addon(addon)
-        FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
-
-        with mock.patch(self.MOCK_TARGET) as function_mock:
-            self.collection.remove_addon(addon)
-            function_mock.assert_called()
-
-    def test_featured_collection_deleted(self):
-        FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
-
-        with mock.patch(self.MOCK_TARGET) as function_mock:
-            self.collection.delete()
-            function_mock.assert_called()
-
-    def test_collection_becomes_featured(self):
-        with mock.patch(self.MOCK_TARGET) as function_mock:
-            FeaturedCollection.objects.create(
-                collection=self.collection,
-                application=self.collection.application)
-            function_mock.assert_called()
-
-    def test_collection_stops_being_featured(self):
-        featured = FeaturedCollection.objects.create(
-            collection=self.collection,
-            application=self.collection.application)
-
-        with mock.patch(self.MOCK_TARGET) as function_mock:
-            featured.delete()
-            function_mock.assert_called()
-
-    def test_signal_only_with_featured(self):
-        with mock.patch(self.MOCK_TARGET) as function_mock:
-            addon = addon_factory()
-            collection = collection_factory()
-            collection.add_addon(addon)
-            collection.remove_addon(addon)
-            collection.delete()
-            function_mock.assert_not_called()

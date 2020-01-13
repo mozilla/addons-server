@@ -7,13 +7,12 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser, Category, CompatOverride,
-    CompatOverrideRange, Preview, ReplacementAddon)
+    Addon, AddonCategory, AddonUser, Category, Preview, ReplacementAddon)
 from olympia.addons.serializers import (
-    AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
-    CompatOverrideSerializer, ESAddonAutoCompleteSerializer, ESAddonSerializer,
-    LanguageToolsSerializer, LicenseSerializer, ReplacementAddonSerializer,
-    SimpleVersionSerializer, VersionSerializer)
+    AddonBasketSyncSerializer, AddonDeveloperSerializer, AddonSerializer,
+    AddonSerializerWithUnlistedData, ESAddonAutoCompleteSerializer,
+    ESAddonSerializer, LanguageToolsSerializer, LicenseSerializer,
+    ReplacementAddonSerializer, SimpleVersionSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     AddonAutoCompleteSearchView, AddonSearchView, AddonViewSet)
@@ -22,7 +21,6 @@ from olympia.amo.tests import (
     ESTestCase, TestCase, addon_factory, collection_factory, file_factory,
     user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.discovery.models import DiscoveryItem
@@ -210,7 +208,11 @@ class AddonSerializerOutputTestMixin(object):
         self._test_author(first_author, result['authors'][0])
         self._test_author(second_author, result['authors'][1])
 
-        assert result['contributions_url'] == self.addon.contributions
+        utm_string = '&'.join(
+            f'{key}={value}'
+            for key, value in amo.CONTRIBUTE_UTM_PARAMS.items())
+        assert result['contributions_url'] == (
+            self.addon.contributions + '?' + utm_string)
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
@@ -228,9 +230,7 @@ class AddonSerializerOutputTestMixin(object):
         }
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
-        assert result['is_featured'] == self.addon.is_featured() is False
         assert result['is_recommended'] == self.addon.is_recommended is False
-        assert result['is_source_public'] == self.addon.view_source
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         assert result['name'] == {'en-US': self.addon.name}
@@ -294,8 +294,11 @@ class AddonSerializerOutputTestMixin(object):
             support_url=u'https://support.example.org/support/my-âddon/')
         self.request = APIRequestFactory().get('/', {'wrap_outgoing_links': 1})
         result = self.serialize()
-        assert result['contributions_url'] == (
-            get_outgoing_url(str(self.addon.contributions)))
+        utm_string = '&'.join(
+            f'{key}={value}'
+            for key, value in amo.CONTRIBUTE_UTM_PARAMS.items())
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '?' + utm_string)
         assert result['homepage'] == {
             'en-US': get_outgoing_url(str(self.addon.homepage)),
         }
@@ -307,8 +310,8 @@ class AddonSerializerOutputTestMixin(object):
         self.request = APIRequestFactory().get('/', {
             'lang': 'en-US', 'wrap_outgoing_links': 1})
         result = self.serialize()
-        assert result['contributions_url'] == (
-            get_outgoing_url(str(self.addon.contributions)))
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '?' + utm_string)
         assert result['homepage'] == {
             'en-US': get_outgoing_url(str(self.addon.homepage)),
         }
@@ -319,8 +322,8 @@ class AddonSerializerOutputTestMixin(object):
         gates = {None: ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-        assert result['contributions_url'] == (
-            get_outgoing_url(str(self.addon.contributions)))
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '?' + utm_string)
         assert result['homepage'] == (
             get_outgoing_url(str(self.addon.homepage))
         )
@@ -335,6 +338,13 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
         assert result['contributions_url'] == ''
         assert result['homepage'] is None
+
+        # Check the contribute utm parameters are added correctly when the url
+        # already has query parameters.
+        self.addon.update(contributions='https://paypal.me/has?query=params')
+        result = self.serialize()
+        assert result['contributions_url'] == get_outgoing_url(
+            str(self.addon.contributions) + '&' + utm_string)
 
     def test_latest_unlisted_version(self):
         self.addon = addon_factory()
@@ -355,10 +365,16 @@ class AddonSerializerOutputTestMixin(object):
         assert result['is_disabled'] is True
 
     def test_is_source_public(self):
-        self.addon = addon_factory(view_source=True)
+        self.addon = addon_factory()
         result = self.serialize()
 
-        assert result['is_source_public'] is True
+        assert 'is_source_public' not in result
+
+        # It's only present in v3
+        gates = {None: ('is-source-public-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert result['is_source_public'] is False
 
     def test_is_experimental(self):
         self.addon = addon_factory(is_experimental=True)
@@ -434,14 +450,20 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_is_featured(self):
         self.addon = addon_factory()
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=collection.application)
-        collection.add_addon(self.addon)
-        assert self.addon.is_featured()
-
+        # As we've dropped featuring, we're faking it with recommended status
+        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
         result = self.serialize()
-        assert result['is_featured'] is True
+
+        assert 'is_featured' not in result
+
+        # It's only present in v3
+        gates = {None: ('is-featured-addon-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert result['is_featured'] is False
+            self.addon.current_version.update(recommendation_approved=True)
+            result = self.serialize()
+            assert result['is_featured'] is True
 
     def test_is_recommended(self):
         self.addon = addon_factory()
@@ -534,8 +556,8 @@ class AddonSerializerOutputTestMixin(object):
         self.addon.update(type=amo.ADDON_SEARCH)
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
-            'android': {'max': '9999', 'min': '11.0'},
-            'firefox': {'max': '9999', 'min': '4.0'},
+            'android': {'max': '65535', 'min': '11.0'},
+            'firefox': {'max': '65535', 'min': '4.0'},
         }
         assert result_version['is_strict_compatibility_enabled'] is False
 
@@ -1122,7 +1144,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         # Set a filename to make sure the file actually exists.
         # file_factory (used via addon_factory) copies files that exists
         # as fixtures in src/olympia/files/fixtures/files to their rightful
-        # place. We need that to test the localepicker properly.
+        # place.
         file_kw = {'filename': 'langpack-localepicker.xpi'}
         self.addon = addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
 
@@ -1241,6 +1263,100 @@ class TestAddonDeveloperSerializer(TestBaseUserSerializer):
         assert '%s.png' % self.user.id in serialized['picture_url']
 
 
+class TestAddonBasketSyncSerializer(TestCase):
+    def serialize(self):
+        serializer = AddonBasketSyncSerializer(self.addon)
+        return serializer.to_representation(self.addon)
+
+    def test_basic(self):
+        category = Category.from_static_category(
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
+        category.save()
+        self.addon = addon_factory(category=category)
+        data = self.serialize()
+        expected_data = {
+            'authors': [],
+            'average_daily_users': self.addon.average_daily_users,
+            'categories': {'firefox': ['bookmarks']},
+            'current_version': {
+                'id': self.addon.current_version.pk,
+                'compatibility': {
+                    'firefox': {
+                        'min': '4.0.99',
+                        'max': '5.0.99',
+                    }
+                },
+                'is_strict_compatibility_enabled': False,
+                'version': self.addon.current_version.version,
+            },
+            'default_locale': 'en-US',
+            'guid': self.addon.guid,
+            'id': self.addon.pk,
+            'is_disabled': self.addon.is_disabled,
+            'is_recommended': self.addon.is_recommended,
+            'last_updated': self.addon.last_updated.replace(
+                microsecond=0).isoformat() + 'Z',
+            'latest_unlisted_version': None,
+            'name': str(self.addon.name),  # No translations.
+            'ratings': {
+                'average': 0.0,
+                'bayesian_average': 0.0,
+                'count': 0,
+                'text_count': 0
+            },
+            'slug': self.addon.slug,
+            'status': 'public',
+            'type': 'extension'
+        }
+        assert expected_data == data
+
+    def test_with_unlisted_version(self):
+        self.addon = addon_factory()
+        version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        data = self.serialize()
+        assert data['latest_unlisted_version'] == {
+            'id': version.pk,
+            'compatibility': {
+                'firefox': {
+                    'min': '4.0.99',
+                    'max': '5.0.99',
+                }
+            },
+            'is_strict_compatibility_enabled': False,
+            'version': version.version,
+        }
+
+    def test_non_listed_author(self):
+        self.addon = addon_factory()
+        user1 = user_factory()
+        user2 = user_factory()
+        AddonUser.objects.create(
+            addon=self.addon, user=user1, listed=True,
+            role=amo.AUTHOR_ROLE_OWNER, position=1)
+        AddonUser.objects.create(
+            addon=self.addon, user=user2, listed=False,
+            role=amo.AUTHOR_ROLE_DEV, position=2)
+        data = self.serialize()
+        assert data['authors'] == [{
+            'id': user1.pk,
+            'deleted': False,
+            'display_name': '',
+            'email': user1.email,
+            'homepage': user1.homepage,
+            'last_login': user1.last_login,
+            'location': user1.location
+        }, {
+            'id': user2.pk,
+            'deleted': False,
+            'display_name': '',
+            'email': user2.email,
+            'homepage': user2.homepage,
+            'last_login': user2.last_login,
+            'location': user2.location
+        }]
+
+
 class TestReplacementAddonSerializer(TestCase):
 
     def serialize(self, replacement):
@@ -1336,144 +1452,3 @@ class TestReplacementAddonSerializer(TestCase):
         addon.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
         assert result['replacement'] == [u'newstuff@mozilla']
-
-
-class TestCompatOverrideSerializer(TestCase):
-
-    def serialize(self, override):
-        serializer = CompatOverrideSerializer()
-        return serializer.to_representation(override)
-
-    def test_linked_addon(self):
-        addon = addon_factory(guid='extrabad@thing')
-        override = CompatOverride.objects.create(
-            name='override with addon', guid=addon.guid, addon=addon)
-        CompatOverrideRange.objects.create(
-            compat=override, app=amo.FIREFOX.id)
-        result = self.serialize(override)
-
-        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
-            result.keys())
-        assert result['addon_guid'] == 'extrabad@thing'
-        assert result['addon_id'] == addon.id
-        assert result['name'] == 'override with addon'
-        version_range = {
-            'addon_min_version': '0',
-            'addon_max_version': '*',
-            'applications': [{
-                'name': amo.FIREFOX.pretty,
-                'id': amo.FIREFOX.id,
-                'min_version': '0',
-                'max_version': '*',
-                'guid': amo.FIREFOX.guid
-            }]
-        }
-        assert result['version_ranges'] == [version_range]
-
-    def test_no_addon(self):
-        override = CompatOverride.objects.create(
-            name='override', guid='foo@baa')
-        CompatOverrideRange.objects.create(
-            compat=override, app=amo.FIREFOX.id)
-        result = self.serialize(override)
-
-        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
-            result.keys())
-        assert result['addon_guid'] == 'foo@baa'
-        assert result['addon_id'] is None
-        assert result['name'] == 'override'
-        version_range = {
-            'addon_min_version': '0',
-            'addon_max_version': '*',
-            'applications': [{
-                'name': amo.FIREFOX.pretty,
-                'id': amo.FIREFOX.id,
-                'min_version': '0',
-                'max_version': '*',
-                'guid': amo.FIREFOX.guid
-            }]
-        }
-        assert result['version_ranges'] == [version_range]
-
-    def test_multiple_ranges(self):
-        override = CompatOverride.objects.create(
-            name='override with multiple ranges', guid='foo@baa')
-        CompatOverrideRange.objects.create(
-            compat=override, app=amo.FIREFOX.id, min_version='23.4',
-            max_version='56.7.*')
-        CompatOverrideRange.objects.create(
-            compat=override, app=amo.ANDROID.id, min_app_version='1.35',
-            max_app_version='90.*')
-        result = self.serialize(override)
-
-        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
-            result.keys())
-        assert result['addon_guid'] == 'foo@baa'
-        assert result['addon_id'] is None
-        assert result['name'] == 'override with multiple ranges'
-        assert len(result['version_ranges']) == 2
-        version_range_firefox = {
-            'addon_min_version': '23.4',
-            'addon_max_version': '56.7.*',
-            'applications': [{
-                'name': amo.FIREFOX.pretty,
-                'id': amo.FIREFOX.id,
-                'min_version': '0',
-                'max_version': '*',
-                'guid': amo.FIREFOX.guid
-            }]
-        }
-        assert version_range_firefox in result['version_ranges']
-        version_range_android = {
-            'addon_min_version': '0',
-            'addon_max_version': '*',
-            'applications': [{
-                'name': amo.ANDROID.pretty,
-                'id': amo.ANDROID.id,
-                'min_version': '1.35',
-                'max_version': '90.*',
-                'guid': amo.ANDROID.guid
-            }]
-        }
-        assert version_range_android in result['version_ranges']
-
-    def test_collapsed_ranges(self):
-        """Collapsed ranges are where there is a single version range of
-        affected addons, but multiple applications affected."""
-        override = CompatOverride.objects.create(
-            name='override with single version range', guid='foo@baa')
-        CompatOverrideRange.objects.create(
-            compat=override, app=amo.FIREFOX.id,
-            min_version='23.4', max_version='56.7.*')
-        CompatOverrideRange.objects.create(
-            compat=override, app=amo.ANDROID.id,
-            min_version='23.4', max_version='56.7.*',
-            min_app_version='1.35', max_app_version='90.*')
-        result = self.serialize(override)
-
-        assert ['addon_guid', 'addon_id', 'name', 'version_ranges'] == sorted(
-            result.keys())
-        assert result['addon_guid'] == 'foo@baa'
-        assert result['addon_id'] is None
-        assert result['name'] == 'override with single version range'
-        assert len(result['version_ranges']) == 1
-        assert result['version_ranges'][0]['addon_min_version'] == '23.4'
-        assert result['version_ranges'][0]['addon_max_version'] == '56.7.*'
-        applications = result['version_ranges'][0]['applications']
-        assert len(applications) == 2
-        application_firefox = {
-            'name': amo.FIREFOX.pretty,
-            'id': amo.FIREFOX.id,
-            'min_version': '0',
-            'max_version': '*',
-            'guid': amo.FIREFOX.guid
-        }
-        assert application_firefox in applications
-        application_android = {
-            'name': amo.ANDROID.pretty,
-            'id': amo.ANDROID.id,
-            'min_version': '1.35',
-            'max_version': '90.*',
-            'guid': amo.ANDROID.guid
-        }
-        assert application_android in applications

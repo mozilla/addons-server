@@ -122,4 +122,4 @@ def test_long_terms_dont_break_suggestions(base_url, selenium):
 def test_blank_search_loads_results_page(base_url, selenium):
     page = Home(selenium, base_url).open()
     results = page.search.search_for('', execute=True)
-    assert results.result_list.extensions[0].name == 'Ui-Addon-Install'
+    assert 'Ui-Addon' in results.result_list.extensions[0].name

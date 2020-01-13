@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-01 22:14+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-06 12:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -29,8 +29,8 @@ msgstr "Pśi kontaktěrowanju serwera jo problem nastał."
 msgid "Select a file..."
 msgstr "Wubjeŕśo dataju..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Waš dodank by dejał datajowu kóńcowku .zip, .xpi, .crx, .jar abo .xml měś"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Waš dodank by dejał datajowu kóńcowku .zip, .xpi, .crx abo .xml měś"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -157,30 +157,6 @@ msgstr "Wideo muse we formaśe WebM byś."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Toś ta drastwa njejo kompatibelna z wašeju wersiju {0}"
-
-msgid "All Rights Reserved"
-msgstr "Wšykne pšawa wuměnjone"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Mě wašeje drastwy"
 
 msgid "Flagged for review"
 msgstr "Za pśeglědowanje markěrowany"
@@ -772,12 +748,6 @@ msgstr "Toś ten pśełožk wótpóraś"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} jo se toś ten bok ako prědny woglědał."
-
-msgid "Receipt checked by app."
-msgstr "Kwitowanka jo se pśez nałoženje pśeglědała."
-
-msgid "Receipt was not checked by app."
-msgstr "Kwitowanka njejo se pśez nałoženje pśeglědała."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} jo se toś ten dodank ako prědny woglědał."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr ""
 
 #: static/js/common/upload-addon.js:65
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -189,38 +189,6 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:49
-msgid "All Rights Reserved"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:53
-msgid "Creative Commons Attribution 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:58
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:63
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:68
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:73
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:78
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
-
-#: static/js/impala/persona_creation.js:280
-msgid "Your Theme's Name"
 msgstr ""
 
 #: static/js/impala/ratings.js:23 static/js/zamboni/ratings.js:18
@@ -825,8 +793,8 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1146
-#: static/js/zamboni/reviewers.js:445
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1167
+#: static/js/zamboni/reviewers.js:430
 msgid "Select an application first"
 msgstr ""
 
@@ -881,11 +849,11 @@ msgstr ""
 msgid "Works with {app}"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:277
+#: static/js/zamboni/buttons.js:273
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:321
+#: static/js/zamboni/buttons.js:317
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
 " plugin."
@@ -895,27 +863,27 @@ msgstr ""
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:283
+#: static/js/zamboni/devhub.js:284
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:402
+#: static/js/zamboni/devhub.js:405
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:548
+#: static/js/zamboni/devhub.js:551
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:551
+#: static/js/zamboni/devhub.js:554
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1047
+#: static/js/zamboni/devhub.js:1068
 msgid "Image changes being processed"
 msgstr ""
 
@@ -955,47 +923,39 @@ msgstr ""
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:190
-msgid "Receipt checked by app."
-msgstr ""
-
-#: static/js/zamboni/reviewers.js:192
-msgid "Receipt was not checked by app."
-msgstr ""
-
-#: static/js/zamboni/reviewers.js:373
+#: static/js/zamboni/reviewers.js:358
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:384 static/js/zamboni/reviewers.js:406
+#: static/js/zamboni/reviewers.js:369 static/js/zamboni/reviewers.js:391
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:389
+#: static/js/zamboni/reviewers.js:374
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:394
+#: static/js/zamboni/reviewers.js:379
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:399
+#: static/js/zamboni/reviewers.js:384
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:411
+#: static/js/zamboni/reviewers.js:396
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:416
+#: static/js/zamboni/reviewers.js:401
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:480
+#: static/js/zamboni/reviewers.js:465
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:535
+#: static/js/zamboni/reviewers.js:520
 msgid "Number of Reviews"
 msgstr ""
 

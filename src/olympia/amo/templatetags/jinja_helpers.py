@@ -7,9 +7,8 @@ from urllib.parse import urljoin
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
-from django.template import defaultfilters, loader
+from django.template import defaultfilters, Library, loader
 from django.utils.encoding import smart_text
-from django.utils.functional import lazy
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import (
@@ -24,9 +23,11 @@ from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 
 from olympia.amo import urlresolvers, utils
-from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
     _build_html, get_css_urls, get_js_urls)
+
+
+register = Library()
 
 
 # Registering some utils as filters:
@@ -35,10 +36,6 @@ library.filter(utils.epoch)
 library.filter(utils.isotime)
 library.global_function(dict)
 library.global_function(utils.randslice)
-
-# Mark a lazy marked instance as safe but keep
-# it lazy
-mark_safe_lazy = lazy(mark_safe, str)
 
 
 @library.global_function
@@ -111,6 +108,11 @@ def services_url(viewname, *args, **kwargs):
 @library.filter
 def paginator(pager):
     return PaginationRenderer(pager).render()
+
+
+@register.filter(needs_autoescape=True)
+def dj_paginator(pager, autoescape=True):
+    return mark_safe(PaginationRenderer(pager).render())
 
 
 @library.filter
@@ -220,31 +222,6 @@ def shuffle(sequence):
     """Shuffle a sequence."""
     random.shuffle(sequence)
     return sequence
-
-
-@library.global_function
-def license_link(license):
-    """Link to a code license, including icon where applicable."""
-    # If passed in an integer, try to look up the License.
-    from olympia.versions.models import License
-    if isinstance(license, int):
-        if license in PERSONA_LICENSES_IDS:
-            # Grab built-in license.
-            license = PERSONA_LICENSES_IDS[license]
-        else:
-            # Grab custom license.
-            license = License.objects.filter(id=license)
-            if not license.exists():
-                return ''
-            license = license[0]
-    elif not license:
-        return ''
-
-    if not getattr(license, 'builtin', True):
-        return ugettext('Custom License')
-
-    template = loader.get_template('amo/license_link.html')
-    return jinja2.Markup(template.render({'license': license}))
 
 
 @library.global_function

@@ -4,8 +4,7 @@ from datetime import date, datetime, timedelta
 import django  # noqa
 
 from django import forms
-from django.db import migrations, models
-from django.db.migrations.writer import MigrationWriter
+from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core.files.storage import default_storage as storage
@@ -21,14 +20,14 @@ import olympia  # noqa
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, DisposableEmailDomainRestriction, generate_auth_id,
     EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
-    IPReputationRestriction, UserEmailField, UserForeignKey, UserProfile)
+    IPReputationRestriction, UserEmailField, UserProfile)
 from olympia.zadmin.models import set_config
 
 
@@ -47,25 +46,6 @@ class TestUserProfile(TestCase):
         assert user.is_developer
         assert user.is_addon_developer
         assert not user.is_artist
-
-        addon.delete()
-        del user.cached_developer_status
-        assert not user.is_developer
-        assert not user.is_addon_developer
-        assert not user.is_artist
-
-    def test_is_artist(self):
-        user = user_factory()
-        assert not user.addonuser_set.exists()
-        assert not user.is_developer
-        assert not user.is_addon_developer
-        assert not user.is_artist
-
-        addon = addon_factory(users=[user], type=amo.ADDON_PERSONA)
-        del user.cached_developer_status  # it's a cached property.
-        assert user.is_developer
-        assert not user.is_addon_developer
-        assert user.is_artist
 
         addon.delete()
         del user.cached_developer_status
@@ -126,7 +106,9 @@ class TestUserProfile(TestCase):
         assert user.display_name is None
         assert user.homepage == ''
         assert user.picture_type is None
-        assert user.last_login_ip == ''
+        # last_login_ip is kept during deletion, deleted 6 months later via
+        # clear_old_last_login_ip command
+        assert user.last_login_ip
         assert user.has_anonymous_username
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
@@ -138,6 +120,7 @@ class TestUserProfile(TestCase):
         user.ban_and_disable_related_content()
         user.reload()
         assert user.deleted
+        self.assertCloseToNow(user.banned)
         assert user.email == 'jbalogh@mozilla.com'
         assert user.auth_id
         assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
@@ -192,11 +175,13 @@ class TestUserProfile(TestCase):
         assert not storage.exists(user_multi.picture_path_original)
 
         assert user_sole.deleted
+        self.assertCloseToNow(user_sole.banned)
         assert user_sole.email == 'sole@foo.baa'
         assert user_sole.auth_id
         assert user_sole.fxa_id == '13579'
         assert user_sole.last_login_ip == '127.0.0.1'
         assert user_multi.deleted
+        self.assertCloseToNow(user_multi.banned)
         assert user_multi.email == 'multi@foo.baa'
         assert user_multi.auth_id
         assert user_multi.fxa_id == '24680'
@@ -617,6 +602,41 @@ class TestUserProfile(TestCase):
         addon.delete()
         assert not user.reload().is_public
 
+    @mock.patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_user_field_changes_not_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        user = UserProfile.objects.get(id=4043307)
+        # Note that basket_token is for newsletters, and is irrelevant here.
+        user.update(
+            basket_token='FOO', fxa_id='BAR', is_public=True,
+            read_dev_agreement=self.days_ago(42), notes='Blah',
+            biography='Something', auth_id=12345)
+        assert sync_object_to_basket_mock.delay.call_count == 0
+
+    @mock.patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_user_field_changes_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        user = UserProfile.objects.get(id=4043307)
+        user.update(last_login=self.days_ago(0))
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'userprofile', 4043307)
+
+        sync_object_to_basket_mock.reset_mock()
+        user.update(display_name='Fôoo')
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'userprofile', 4043307)
+
+    @mock.patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_user_deletion_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        user = UserProfile.objects.get(id=4043307)
+        user.delete()
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'userprofile', 4043307)
+
 
 class TestDeniedName(TestCase):
     fixtures = ['users/test_backends']
@@ -923,16 +943,19 @@ class TestUserEmailField(TestCase):
 
     def test_success(self):
         user = UserProfile.objects.get(pk=2519)
-        assert UserEmailField().clean(user.email) == user
+        assert UserEmailField(
+            queryset=UserProfile.objects.all()).clean(user.email) == user
 
     def test_failure(self):
         with pytest.raises(forms.ValidationError):
-            UserEmailField().clean('xxx')
+            UserEmailField(
+                queryset=UserProfile.objects.all()).clean('xxx')
 
     def test_empty_email(self):
         UserProfile.objects.create(email='')
         with pytest.raises(forms.ValidationError) as exc_info:
-            UserEmailField().clean('')
+            UserEmailField(
+                queryset=UserProfile.objects.all()).clean('')
 
         assert exc_info.value.messages[0] == 'This field is required.'
 
@@ -1038,41 +1061,6 @@ class TestUserManager(TestCase):
         Group.objects.get(name="Admins") in user.groups.all()
         assert user.is_staff
         assert user.is_superuser
-
-
-def test_user_foreign_key_supports_migration():
-    """Tests serializing UserForeignKey in a simple migration.
-
-    Since `UserForeignKey` is a ForeignKey migrations pass `to=` explicitly
-    and we have to pop it in our __init__.
-    """
-    fields = {
-        'charfield': UserForeignKey(),
-    }
-
-    migration = type(str('Migration'), (migrations.Migration,), {
-        'operations': [
-            migrations.CreateModel(
-                name='MyModel', fields=tuple(fields.items()),
-                bases=(models.Model,)
-            ),
-        ],
-    })
-    writer = MigrationWriter(migration)
-    output = writer.as_string()
-
-    # Just make sure it runs and that things look alright.
-    result = safe_exec(output, globals_=globals())
-
-    assert 'Migration' in result
-
-
-def test_user_foreign_key_field_deconstruct():
-    field = UserForeignKey()
-    name, path, args, kwargs = field.deconstruct()
-    new_field_instance = UserForeignKey()
-
-    assert kwargs['to'] == new_field_instance.to
 
 
 @pytest.mark.django_db

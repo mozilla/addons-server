@@ -196,6 +196,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         'install_date',
         'addon_install_origin',
         'addon_install_method',
+        'addon_install_source',
         'report_entry_point',
         'addon_card',
     )
@@ -217,6 +218,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             'install_date',
             'addon_install_origin',
             'addon_install_method',
+            'addon_install_source',
             'report_entry_point'
         )})
     )
@@ -362,6 +364,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 (Rating.without_replies
                     .filter(addon=addon, rating__lte=3, body__isnull=False)
                     .order_by('-created')), 5).page(1),
+            'version': addon.current_version,
         }
         return template.render(context)
     addon_card.short_description = ''

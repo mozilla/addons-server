@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2018-12-06 00:28+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-12-17 21:22+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -27,7 +27,8 @@ msgstr "Det gjekk ikkje å kontakte tenaren."
 msgid "Select a file..."
 msgstr "Vel ei fil…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Utvidinga di må slutte på .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -147,30 +148,6 @@ msgstr "Videoar må vere i formatet WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
-
-msgid "All Rights Reserved"
-msgstr "Alle rettar med atterhald"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Namn på temaet ditt"
 
 msgid "Flagged for review"
 msgstr "Flagga for vurdering"
@@ -655,7 +632,7 @@ msgid "Accept and Install"
 msgstr "Godta og installer"
 
 msgid "Add to {0}"
-msgstr "Legg till i {0}"
+msgstr "Legg til i {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -734,12 +711,6 @@ msgstr "Fjern denne omsettinga"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} såg på sida først."
-
-msgid "Receipt checked by app."
-msgstr "Kvittering kontrollert av appen."
-
-msgid "Receipt was not checked by app."
-msgstr "Kvitteringa vart ikkje kontrollert av appen."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} såg på utvidinga først."

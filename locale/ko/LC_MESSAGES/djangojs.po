@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2019-04-04 18:19+0000\n"
 "Last-Translator: lego37yoon <lego37yoon@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,8 @@ msgstr "서버와 연결 도중 문제가 발생했습니다."
 msgid "Select a file..."
 msgstr "파일을 선택하세요..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "부가 기능의 확장자는 .zip, .xpi, .crx, .jar, 또는 .xml을 사용해야 합니다"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -141,30 +142,6 @@ msgstr "동영상은 WebM으로 된 것만 사용 가능합니다."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "이 테마는 현재 {0} 버전과 호환되지 않습니다"
-
-msgid "All Rights Reserved"
-msgstr "All Rights Reserved"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "테마 이름"
 
 msgid "Flagged for review"
 msgstr "검토를 위해 표시됨"
@@ -723,12 +700,6 @@ msgstr "이 번역 삭제"
 
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
-
-msgid "Receipt checked by app."
-msgstr "앱이 영수증을 확인했습니다."
-
-msgid "Receipt was not checked by app."
-msgstr "앱이 영수증을 확인하지 못했습니다."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."

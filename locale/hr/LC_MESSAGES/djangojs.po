@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-03-22 09:12+0000\n"
-"Last-Translator: Mikeyy <mihovil@miho.im>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-11-13 17:37+0000\n"
+"Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -30,8 +30,8 @@ msgstr "Dogodio se problem u povezivanju na poslužitelja."
 msgid "Select a file..."
 msgstr "Odaberite datoteku..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Vaš dodatak bi trebao završavati sa .zip, .xpi, .crx, .jar ili .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Tvoj dodatak bi trebao završiti sa .zip, .xpi, .crx, .jar ili .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -76,10 +76,10 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Vaš dodatak premašuje maksimalnu veličinu od {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Primljen prazni odgovor od servera; status: {0}"
+msgstr "Primljen prazni odgovor od servera; stanje: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "Neočekivana pogreška poslužitelja tijekom ovjere."
+msgstr "Neočekivana greška poslužitelja tijekom provjere."
 
 msgid "Finished validating {0}"
 msgstr "Završavanje provjere {0}"
@@ -153,31 +153,7 @@ msgstr "Video mora biti u WebM formatu."
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema nije kompatibilna sa vašom verzijom {0}"
-
-msgid "All Rights Reserved"
-msgstr "Sva prava pridržana"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-Nekomercijalno 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-Nekomercijalno-Bez prerade 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-Nekomercijalno-dijeli po istim uvjetima 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-Bez prerade 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-dijeli po istim uvjetima 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Naziv vaše teme"
+msgstr "Motiv nije kompatibilan s tvojom {0} verzijom"
 
 msgid "Flagged for review"
 msgstr "Označeno za pregled"
@@ -195,7 +171,7 @@ msgid "Category"
 msgstr "Kategorija"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "Pretraži teme za <b>{0}</b>"
+msgstr "Pretraži motive za <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
 msgstr "Pretraži aplikacije za <b>{0}</b>"
@@ -313,19 +289,19 @@ msgid "Unknown"
 msgstr "Nepoznato"
 
 msgid "Add-ons Manager"
-msgstr "Upravitelj dodataka"
+msgstr "Upravljač dodataka"
 
 msgid "Add-ons Manager Promo"
-msgstr "Promocija upravitelja dodataka"
+msgstr "Upravljač dodataka, unaprijeđeno"
 
 msgid "Add-ons Manager Featured"
-msgstr "Istaknuto u upravitelju dodataka"
+msgstr "Upravljač dodataka, istaknuto"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Naučite više o upravitelju dodataka"
+msgstr "Upravljač dodataka, nauči više"
 
 msgid "Search Suggestions"
-msgstr "Prijedlozi pretrage"
+msgstr "Prijedlozi za pretragu"
 
 msgid "Search Results"
 msgstr "Rezultati pretrage"
@@ -698,7 +674,7 @@ msgid "Works with {app}"
 msgstr "Radi sa {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Samo sa Firefoxom — Nabavite Firefox odmah!"
+msgstr "Samo s Firefoxom – nabavi Firefox odmah!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Žao nam je, potreban vam je Mozillin preglednik (kao što je Firefox) da biste instalirali priključak za tražilicu."
@@ -756,12 +732,6 @@ msgstr "Ukloni ovaj prijevod"
 msgid "{name} was viewing this page first."
 msgstr "{name} je prvi pregledao stranicu."
 
-msgid "Receipt checked by app."
-msgstr "Račun provjeren sa aplikacijom."
-
-msgid "Receipt was not checked by app."
-msgstr "Račun nije provjeren sa aplikacijom."
-
 msgid "{name} was viewing this add-on first."
 msgstr "{name} je pregledao ovaj dodatak prvi."
 
@@ -772,7 +742,7 @@ msgid "Version Notes"
 msgstr "Bilješke verzije"
 
 msgid "Notes for Reviewers"
-msgstr "Bilješke za ocjenitelje"
+msgstr "Bilješke za recenzente"
 
 msgid "No version notes found"
 msgstr "Nema bilješki verzije"
@@ -811,7 +781,7 @@ msgid "No results found"
 msgstr "Nema rezultata"
 
 msgid "Theme"
-msgstr "Tema"
+msgstr "Motiv"
 
 msgid "Reviewer"
 msgstr "Ocjenitelj"
@@ -835,10 +805,10 @@ msgid "Warning"
 msgstr "Upozorenje"
 
 msgid "{0} line {1} column {2}"
-msgstr "{0} linija {1} kolona {2}"
+msgstr "{0} redak {1} stupac {2}"
 
 msgid "{0} line {1}"
-msgstr "{0} linija {1}"
+msgstr "{0} redak {1}"
 
 msgid "Add-on failed validation."
 msgstr "Dodatak nije prošao ovjeru."

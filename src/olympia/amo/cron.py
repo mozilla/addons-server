@@ -1,9 +1,6 @@
 import itertools
 
 from datetime import datetime, timedelta
-from subprocess import PIPE, Popen
-
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import connection
 
@@ -13,13 +10,14 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.templatetags.jinja_helpers import user_media_path
+from olympia.addons.models import Addon
+from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.files.models import FileUpload
-from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.es.utils import raise_if_reindex_in_progress
+from olympia.scanners.models import ScannerResult
 
 from . import tasks
 
@@ -41,49 +39,26 @@ def gc(test_result=True):
         Collection.objects.filter(created__lt=days_ago(2),
                                   type=amo.COLLECTION_ANONYMOUS)
         .values_list('id', flat=True))
-    akismet_reports_to_delete = (
-        AkismetReport.objects.filter(created__lt=days_ago(90))
-        .values_list('id', flat=True))
 
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
-    for chunk in chunked(akismet_reports_to_delete, 100):
-        tasks.delete_akismet_reports.delay(chunk)
-    # Incomplete addons cannot be deleted here because when an addon is
-    # rejected during a review it is marked as incomplete. See bug 670295.
 
-    log.debug('Cleaning up test results extraction cache.')
-    # lol at check for '/'
-    if settings.MEDIA_ROOT and settings.MEDIA_ROOT != '/':
-        cmd = ('find', settings.MEDIA_ROOT, '-maxdepth', '1', '-name',
-               'validate-*', '-mtime', '+7', '-type', 'd',
-               '-exec', 'rm', '-rf', "{}", ';')
-
-        output = Popen(cmd, stdout=PIPE).communicate()[0]
-
-        for line in output.split(b'\n'):
-            log.debug(line)
-
-    else:
-        log.warning('MEDIA_ROOT not defined.')
-
-    USERPICS_PATH = user_media_path('userpics')
-    if USERPICS_PATH:
-        log.debug('Cleaning up uncompressed userpics.')
-
-        cmd = ('find', USERPICS_PATH,
-               '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
-               '-exec', 'rm', '{}', ';')
-        output = Popen(cmd, stdout=PIPE).communicate()[0]
-
-        for line in output.split(b'\n'):
-            log.debug(line)
+    a_week_ago = days_ago(7)
+    # Delete stale add-ons with no versions. Should soft-delete add-ons that
+    # are somehow not in incomplete status, hard-delete the rest. No email
+    # should be sent in either case.
+    versionless_addons = (
+        Addon.objects.filter(versions__pk=None, created__lte=a_week_ago)
+        .values_list('pk', flat=True)
+    )
+    for chunk in chunked(versionless_addons, 100):
+        delete_addons.delay(chunk)
 
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(
-        created__lte=days_ago(180)).order_by('id')
+        created__lte=a_week_ago).order_by('id')
     for file_upload in stale_uploads:
         log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
                   .format(uuid=file_upload.uuid, path=file_upload.path))
@@ -93,6 +68,9 @@ def gc(test_result=True):
             except OSError:
                 pass
         file_upload.delete()
+
+    # Delete stale ScannerResults.
+    ScannerResult.objects.filter(upload=None, version=None).delete()
 
 
 def category_totals():

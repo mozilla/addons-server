@@ -1,9 +1,7 @@
-import os
 import time
 
 from datetime import datetime, timedelta
 
-from django.conf import settings
 from django.db import connections
 from django.db.models import Avg, F, Q, Sum
 
@@ -170,7 +168,8 @@ def deliver_hotness():
 
     a = avg(users this week)
     b = avg(users three weeks before this week)
-    hotness = (a-b) / b if a > 1000 and b > 1 else 0
+    threshold = 250 if addon type is theme, else 1000
+    hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
     all_ids = list((Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
@@ -191,7 +190,8 @@ def deliver_hotness():
 
             # Update the hotness score but only update hotness if necessary.
             # We don't want to cause unnecessary re-indexes
-            if this > 1000 and three > 1:
+            threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
+            if this > threshold and three > 1:
                 hotness = (this - three) / float(three)
                 if addon.hotness != hotness:
                     addon.update(hotness=(this - three) / float(three))
@@ -201,25 +201,3 @@ def deliver_hotness():
 
         # Let the database catch its breath.
         time.sleep(10)
-
-
-def cleanup_image_files():
-    """
-    Clean up all header images files for themes.
-
-    We use these images to asynchronuously generate thumbnails with
-    tasks, here we delete images that are older than one day.
-
-    """
-    log.info('Removing one day old temporary image files for themes.')
-    for folder in ('persona_header', ):
-        root = os.path.join(settings.TMP_PATH, folder)
-        if not os.path.exists(root):
-            continue
-        for path in os.listdir(root):
-            full_path = os.path.join(root, path)
-            age = time.time() - os.stat(full_path).st_atime
-            if age > 60 * 60 * 24:  # One day.
-                log.debug('Removing image file: %s, %dsecs old.' %
-                          (full_path, age))
-                os.unlink(full_path)

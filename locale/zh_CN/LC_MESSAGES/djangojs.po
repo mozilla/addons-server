@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-01 13:40+0000\n"
-"Last-Translator: 우믿트 <eloli@foxmail.com>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-01 02:02+0000\n"
+"Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -25,8 +25,8 @@ msgstr "连接服务器时发生错误。"
 msgid "Select a file..."
 msgstr "选择文件..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "您的附加组件应以 .zip、.xpi、.jar 或 .xml 结尾"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "您的附加组件应以 .zip、.xpi、.crx 或 .xml 结尾"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -139,30 +139,6 @@ msgstr "视频必须是 WebM 格式。"
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "这个主题与您所使用的 {0} 版本不兼容"
-
-msgid "All Rights Reserved"
-msgstr "保留所有权利"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "知识共享“署名 3.0”"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "知识共享“署名-非商业性使用 3.0”"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "知识共享“署名-非商业性使用-禁止演绎 3.0”"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "知识共享“署名-非商业性使用-相同方式共享 3.0”"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "知识共享“署名-禁止演绎 3.0”"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "知识共享“署名-相同方式共享 3.0”"
-
-msgid "Your Theme's Name"
-msgstr "您的主题名称"
 
 msgid "Flagged for review"
 msgstr "待审的评价"
@@ -712,12 +688,6 @@ msgstr "移除此本地化"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} 第一个查看了这个页面。"
-
-msgid "Receipt checked by app."
-msgstr "交易收据已经应用核实。"
-
-msgid "Receipt was not checked by app."
-msgstr "交易收据未经应用核实。"
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 第一个查看了这个附加组件。"

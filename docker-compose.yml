@@ -1,4 +1,4 @@
-version: "2.3"
+version: "2.4"
 
 # If you're changing the &env mapping
 # please make sure to update tests/ui/docker-compose.selenium.yml
@@ -18,13 +18,14 @@ x-env-mapping: &env
     - TERM=xterm-256color
     - UITEST_FXA_EMAIL
     - UITEST_FXA_PASSWORD=uitester
+    - CIRCLECI=${CIRCLECI}
 
 services:
   worker: &worker
     <<: *env
     image: addons/addons-server:latest
     command: supervisord -n -c /code/docker/supervisor-celery.conf
-    entrypoint: ./scripts/start-docker.sh
+    user: olympia
     volumes:
       - .:/code
     extra_hosts:

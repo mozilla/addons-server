@@ -10,8 +10,7 @@ def admin_site_links():
         'addons': [
             ('Search for add-ons by name or id',
              reverse('zadmin.addon-search')),
-            ('Featured add-ons', reverse('zadmin.features')),
-            ('Fake mail', reverse('zadmin.mail')),
+            ('Fake mail', reverse('admin:amo_fakeemail_changelist')),
             ('Replacement Addons', reverse(
                 'admin:addons_replacementaddon_changelist')),
         ],

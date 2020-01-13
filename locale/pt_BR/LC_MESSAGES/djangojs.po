@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-06-25 14:12+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-09-30 20:47+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -26,8 +26,8 @@ msgstr "Houve um problema ao contatar o servidor."
 msgid "Select a file..."
 msgstr "Selecione um arquivo..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Sua extensão deve terminar com .zip, .xpi, .crx, .jar ou .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Sua extensão deve terminar com .zip, .xpi, .crx ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -147,30 +147,6 @@ msgstr "Os vídeos devem ser WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Este tema não é compatível com a sua versão do {0}"
-
-msgid "All Rights Reserved"
-msgstr "Todos os direitos reservados"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Atribuição 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial-Vedada a criação de obras derivadas 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Atribuição-Uso não-comercial-Compartilhamento pela mesma licença 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Atribuição-Vedada a criação de obras derivadas 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Atribuição-Compartilhamento pela mesma licença 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Nome do seu tema"
 
 msgid "Flagged for review"
 msgstr "Marcado para análise"
@@ -734,12 +710,6 @@ msgstr "Remover essa localização"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} estava visualizando essa página antes."
-
-msgid "Receipt checked by app."
-msgstr "Recibo verificado pelo aplicativo."
-
-msgid "Receipt was not checked by app."
-msgstr "Recibo não verificado pelo aplicativo."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} estava vendo esta extensão primeiro."

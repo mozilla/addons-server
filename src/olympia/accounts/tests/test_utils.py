@@ -22,9 +22,6 @@ FXA_CONFIG = {
     'default': {
         'client_id': 'foo',
         'client_secret': 'bar',
-        'oauth_host': 'https://accounts.firefox.com/oauth',
-        'redirect_url': 'https://testserver/fxa',
-        'scope': 'profile',
     },
 }
 
@@ -37,8 +34,9 @@ def test_fxa_config_anonymous():
     assert utils.fxa_config(request) == {
         'clientId': 'foo',
         'state': 'thestate!',
-        'oauthHost': 'https://accounts.firefox.com/oauth',
-        'redirectUrl': 'https://testserver/fxa',
+        'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
+        'contentHost': 'https://stable.dev.lcip.org',
+        'profileHost': 'https://stable.dev.lcip.org/profile/v1',
         'scope': 'profile',
     }
 
@@ -52,13 +50,15 @@ def test_fxa_config_logged_in():
         'clientId': 'foo',
         'state': 'thestate!',
         'email': 'me@mozilla.org',
-        'oauthHost': 'https://accounts.firefox.com/oauth',
-        'redirectUrl': 'https://testserver/fxa',
+        'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
+        'contentHost': 'https://stable.dev.lcip.org',
+        'profileHost': 'https://stable.dev.lcip.org/profile/v1',
         'scope': 'profile',
     }
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_default_fxa_login_url_with_state():
     path = u'/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
@@ -73,7 +73,6 @@ def test_default_fxa_login_url_with_state():
     assert query == {
         'action': ['signin'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
@@ -81,6 +80,7 @@ def test_default_fxa_login_url_with_state():
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_default_fxa_register_url_with_state():
     path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
@@ -95,7 +95,6 @@ def test_default_fxa_register_url_with_state():
     assert query == {
         'action': ['signup'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
@@ -103,6 +102,7 @@ def test_default_fxa_register_url_with_state():
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_without_requiring_two_factor_auth():
     path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
@@ -122,7 +122,6 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
     assert query == {
         'action': ['signin'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
@@ -130,6 +129,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_requiring_two_factor_auth():
     path = u'/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
@@ -150,7 +150,6 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'acr_values': ['AAL2'],
         'action': ['signin'],
         'client_id': ['foo'],
-        'redirect_url': ['https://testserver/fxa'],
         'scope': ['profile'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],

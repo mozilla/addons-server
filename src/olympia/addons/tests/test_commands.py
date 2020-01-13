@@ -1,5 +1,6 @@
+import random
 from contextlib import contextmanager
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.core import mail
 from django.core.management import call_command
@@ -13,7 +14,9 @@ import pytest
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.management.commands import process_addons
-from olympia.addons.models import Addon, AddonApprovalsCounter, MigratedLWT
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, MigratedLWT, ReusedGUID, GUID_REUSE_FORMAT)
+from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.files.models import FileValidation, WebextPermission
@@ -118,6 +121,30 @@ def test_process_addons_limit_addons():
         call_command('process_addons', task='resign_addons_for_cose', limit=2)
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
+
+
+@pytest.mark.django_db
+@mock.patch.object(process_addons.Command, 'get_pks')
+def test_process_addons_batch_size(mock_get_pks):
+    addon_ids = [
+        random.randrange(1000) for _ in range(101)
+    ]
+    mock_get_pks.return_value = addon_ids
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command('process_addons', task='recreate_previews')
+        assert len(calls) == 2
+        assert calls[0]['kwargs']['args'] == [addon_ids[:100]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[100:]]
+
+    with count_subtask_calls(process_addons.recreate_previews) as calls:
+        call_command(
+            'process_addons', task='recreate_previews',
+            **{'batch_size': 50})
+        assert len(calls) == 3
+        assert calls[0]['kwargs']['args'] == [addon_ids[:50]]
+        assert calls[1]['kwargs']['args'] == [addon_ids[50:100]]
+        assert calls[2]['kwargs']['args'] == [addon_ids[100:]]
 
 
 class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
@@ -226,6 +253,182 @@ class RecalculateWeightTestCase(TestCase):
         assert summary.weight == 10
 
 
+class ConstantlyRecalculateWeightTestCase(TestCase):
+    def test_affects_correct_addons(self):
+        # *not considered* - Non auto-approved add-on
+        addon_factory()
+
+        # *not considered* - Non auto-approved add-on that has an
+        # AutoApprovalSummary entry
+        AutoApprovalSummary.objects.create(
+            version=addon_factory().current_version,
+            verdict=amo.NOT_AUTO_APPROVED)
+
+        # *not considered* -Add-on with the current version not auto-approved
+        extra_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=extra_addon.current_version, verdict=amo.AUTO_APPROVED)
+        extra_addon.current_version.update(created=self.days_ago(1))
+        version_factory(addon=extra_addon)
+
+        # *not considered* - current version is auto-approved but doesn't
+        # have recent abuse reports or low ratings
+        auto_approved_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=auto_approved_addon.current_version,
+            verdict=amo.AUTO_APPROVED)
+
+        # *considered* - current version is auto-approved and
+        # has a recent rating with rating <= 3
+        auto_approved_addon1 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon1.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon1,
+            version=auto_approved_addon1.current_version,
+            rating=2, body='Apocalypse', user=user_factory()),
+
+        # *not considered* - current version is auto-approved but
+        # has a recent rating with rating > 3
+        auto_approved_addon2 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon2.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon2,
+            version=auto_approved_addon2.current_version,
+            rating=4, body='Apocalypse', user=user_factory()),
+
+        # *not considered* - current version is auto-approved but
+        # has a recent rating with rating > 3
+        auto_approved_addon3 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon3.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon3,
+            version=auto_approved_addon3.current_version,
+            rating=4, body='Apocalypse', user=user_factory()),
+
+        # *not considered* - current version is auto-approved but
+        # has a low rating that isn't recent enough
+        auto_approved_addon4 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon4.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified - timedelta(days=3),
+            addon=auto_approved_addon4,
+            version=auto_approved_addon4.current_version,
+            rating=1, body='Apocalypse', user=user_factory()),
+
+        # *considered* - current version is auto-approved and
+        # has a recent abuse report
+        auto_approved_addon5 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon5.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            addon=auto_approved_addon5,
+            created=summary.modified + timedelta(days=3))
+
+        # *not considered* - current version is auto-approved but
+        # has an abuse report that isn't recent enough
+        auto_approved_addon6 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon6.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            addon=auto_approved_addon6,
+            created=summary.modified - timedelta(days=3))
+
+        # *considered* - current version is auto-approved and
+        # has an abuse report through it's author that is recent enough
+        author = user_factory()
+        auto_approved_addon7 = addon_factory(users=[author])
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon7.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            user=author,
+            created=summary.modified + timedelta(days=3))
+
+        # *not considered* - current version is auto-approved and
+        # has an abuse report through it's author that is recent enough
+        # BUT the abuse report is deleted.
+        author = user_factory()
+        auto_approved_addon8 = addon_factory(users=[author])
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon8.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AbuseReport.objects.create(
+            user=author,
+            state=AbuseReport.STATES.DELETED,
+            created=summary.modified + timedelta(days=3))
+
+        # *not considered* - current version is auto-approved and
+        # has a recent rating with rating <= 3
+        # but the rating is deleted.
+        auto_approved_addon9 = addon_factory()
+        summary = AutoApprovalSummary.objects.create(
+            version=auto_approved_addon9.current_version,
+            verdict=amo.AUTO_APPROVED)
+        Rating.objects.create(
+            created=summary.modified + timedelta(days=3),
+            addon=auto_approved_addon9,
+            version=auto_approved_addon9.current_version,
+            deleted=True,
+            rating=2, body='Apocalypse', user=user_factory()),
+
+        # *considered* - current version is auto-approved and
+        # has an abuse report through it's author that is recent enough
+        # Used to test that we only recalculate the weight for
+        # the most recent version
+        author = user_factory()
+        auto_approved_addon8 = addon_factory(
+            users=[author], version_kw={'version': '0.1'})
+
+        AutoApprovalSummary.objects.create(
+            version=auto_approved_addon8.current_version,
+            verdict=amo.AUTO_APPROVED)
+
+        # Let's create a new `current_version` and summary
+        current_version = version_factory(
+            addon=auto_approved_addon8, version='0.2')
+
+        summary = AutoApprovalSummary.objects.create(
+            version=current_version,
+            verdict=amo.AUTO_APPROVED)
+
+        AbuseReport.objects.create(
+            user=author,
+            created=summary.modified + timedelta(days=3))
+
+        mod = 'olympia.reviewers.tasks.AutoApprovalSummary.calculate_weight'
+        with mock.patch(mod) as calc_weight_mock:
+            with count_subtask_calls(
+                    process_addons.recalculate_post_review_weight) as calls:
+                call_command(
+                    'process_addons',
+                    task='constantly_recalculate_post_review_weight')
+
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[
+            auto_approved_addon1.pk,
+            auto_approved_addon5.pk,
+            auto_approved_addon7.pk,
+            auto_approved_addon8.pk,
+        ]]
+
+        # Only 4 calls for each add-on, doesn't consider the extra version
+        # that got created for addon 8
+        assert calc_weight_mock.call_count == 4
+
+
 class TestExtractWebextensionsToGitStorage(TestCase):
     @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
     @mock.patch(
@@ -244,7 +447,6 @@ class TestExtractWebextensionsToGitStorage(TestCase):
 
         # Not supported, we focus entirely on WebExtensions
         # (except for search plugins)
-        addon_factory(type=amo.ADDON_THEME)
         addon_factory()
         addon_factory()
         addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': False})
@@ -376,7 +578,7 @@ class TestResignAddonsForCose(TestCase):
         addon_factory(type=amo.ADDON_SEARCH, file_kw=file_kw)
         addon_factory(status=amo.STATUS_DISABLED, file_kw=file_kw)
         addon_factory(status=amo.STATUS_AWAITING_REVIEW, file_kw=file_kw)
-        addon_factory(status=amo.STATUS_REVIEW_PENDING, file_kw=file_kw)
+        addon_factory(status=amo.STATUS_NULL, file_kw=file_kw)
 
         call_command('process_addons', task='resign_addons_for_cose')
 
@@ -403,7 +605,8 @@ class TestContentApproveMigratedThemes(TestCase):
         for addon in migrated_themes:
             MigratedLWT.objects.create(
                 static_theme=addon,
-                lightweight_theme=addon_factory(type=amo.ADDON_PERSONA),
+                lightweight_theme_id=9999,
+                getpersonas_id=0,
                 created=migration_date)
         # Add another that never went through migration, it was born that way.
         non_migrated_theme = addon_factory(type=amo.ADDON_STATICTHEME)
@@ -423,3 +626,90 @@ class TestContentApproveMigratedThemes(TestCase):
 
         assert not AddonApprovalsCounter.objects.filter(
             addon=static_theme_not_public).exists()
+
+
+@pytest.mark.django_db
+def test_backfill_reused_guid():
+    # shouldn't show up in the query but throw them in anyway
+    addon_factory(name='just a deleted addon', status=amo.STATUS_DELETED)
+    addon_factory(name='just a public addon')
+    # simple case - an add-on's guid is reused once.
+    single_reuse_deleted = addon_factory(
+        name='single reuse', status=amo.STATUS_DELETED)
+    single_reuse_addon = addon_factory(
+        name='single reuse', guid='single@reuse')
+    single_reuse_deleted.update(
+        guid=GUID_REUSE_FORMAT.format(single_reuse_addon.id))
+    # more complex case - a guid is reused multiple times.
+    multi_reuse_deleted_a = addon_factory(
+        name='multi reuse', status=amo.STATUS_DELETED)
+    multi_reuse_deleted_b = addon_factory(
+        name='multi reuse', status=amo.STATUS_DELETED)
+    multi_reuse_addon = addon_factory(
+        name='multi reuse', guid='multi@reuse')
+    multi_reuse_deleted_a.update(
+        guid=GUID_REUSE_FORMAT.format(multi_reuse_deleted_b.id))
+    multi_reuse_deleted_b.update(
+        guid=GUID_REUSE_FORMAT.format(multi_reuse_addon.id))
+    # a guid reuse referencing a pk that doesn't exist (addon hard delete?)
+    addon_factory(
+        name='missing reuse', status=amo.STATUS_DELETED,
+        guid=GUID_REUSE_FORMAT.format(999))
+    # reusedguid object already there
+    reused_exists_deleted = addon_factory(
+        name='reused_exists', status=amo.STATUS_DELETED)
+    reused_exists_addon = addon_factory(
+        name='reused_exists', guid='exists@reuse')
+    reused_exists_deleted.update(
+        guid=GUID_REUSE_FORMAT.format(reused_exists_addon.id))
+    ReusedGUID.objects.create(addon=reused_exists_deleted, guid='exists@reuse')
+
+    assert ReusedGUID.objects.count() == 1
+    call_command('backfill_reused_guid')
+    assert ReusedGUID.objects.count() == 4
+    qs_values = ReusedGUID.objects.all().order_by('id').values('addon', 'guid')
+    assert list(qs_values) == [
+        {'addon': reused_exists_deleted.id, 'guid': 'exists@reuse'},
+        {'addon': single_reuse_deleted.id, 'guid': 'single@reuse'},
+        {'addon': multi_reuse_deleted_a.id, 'guid': 'multi@reuse'},
+        {'addon': multi_reuse_deleted_b.id, 'guid': 'multi@reuse'},
+    ]
+
+
+class TestDeleteObsoleteAddons(TestCase):
+    def setUp(self):
+        # Some add-ons that shouldn't be deleted
+        self.extension = addon_factory()
+        self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.dictionary = addon_factory(type=amo.ADDON_DICT)
+        # And some obsolete ones
+        addon_factory(type=2)  # _ADDON_THEME
+        addon_factory().update(type=amo.ADDON_LPADDON)
+        addon_factory().update(type=amo.ADDON_PLUGIN)
+        addon_factory(type=9)  # _ADDON_PERSONA
+        addon_factory().update(type=11)  # webapp
+
+        assert Addon.unfiltered.count() == 8
+
+    def test_hard(self):
+        call_command(
+            'process_addons', task='delete_obsolete_addons', with_deleted=True)
+
+        assert Addon.unfiltered.count() == 3
+        assert Addon.unfiltered.get(id=self.extension.id)
+        assert Addon.unfiltered.get(id=self.static_theme.id)
+        assert Addon.unfiltered.get(id=self.dictionary.id)
+
+    def test_hard_with_already_deleted(self):
+        Addon.unfiltered.update(status=amo.STATUS_DELETED)
+        self.test_hard()
+
+    def test_normal(self):
+        call_command(
+            'process_addons', task='delete_obsolete_addons')
+
+        assert Addon.unfiltered.count() == 8
+        assert Addon.objects.count() == 3
+        assert Addon.objects.get(id=self.extension.id)
+        assert Addon.objects.get(id=self.static_theme.id)
+        assert Addon.objects.get(id=self.dictionary.id)

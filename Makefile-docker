@@ -1,5 +1,12 @@
-export PIP_COMMAND=pip3
 export PYTHON_COMMAND=python3
+
+# As we're using user-local installs inside the docker-container we need
+# to be cautious about uprading pip and not confusing it with the
+# globally installed version. This will take `$PYTHONUSERBASE` and `$PIP_USER`
+# into account.
+# See https://github.com/pypa/pip/issues/7205
+export PIP_COMMAND=$(PYTHON_COMMAND) -m pip
+APP=src/olympia/
 
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
@@ -59,32 +66,18 @@ jquery-ui/ui/widgets/sortable.js
 help_redirect:
 	@$(MAKE) help --no-print-directory
 
-.PHONY: help_submake
-help_submake:
-	@echo "Commands that are designed be run in the container:"
-	@echo "  initialize        to init the dependencies, the database, and assets"
-	@echo "  update            to update the dependencies, the database, and assets"
-	@echo "  initialize_db     to create a new database"
-	@echo "  populate_data     to populate a new database"
-	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
-	@echo "  update_deps       to update the pythondependencies"
-	@echo "  update_db         to run the database migrations"
-	@echo "  docs              to build the documentation"
-	@echo "  lint-codestyle    to lint the code"
-
 .PHONY: initialize_db
-initialize_db:
+initialize_db: ## create a new database
 	rm -rf ./user-media/* ./tmp/*
 	$(PYTHON_COMMAND) manage.py create_db --force
-	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
+	$(PYTHON_COMMAND) manage.py migrate --noinput
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py import_prod_versions
-	./schematic --fake src/olympia/migrations/
 	$(PYTHON_COMMAND) manage.py createsuperuser
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
 .PHONY: populate_data
-populate_data:
+populate_data: ## populate a new database
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
 	# make sure the mapping is correct before adding a bunch of add-ons.
 	$(PYTHON_COMMAND) manage.py reindex --wipe --force --noinput
@@ -118,7 +111,6 @@ install_python_test_dependencies:
 .PHONY: install_python_dev_dependencies
 install_python_dev_dependencies: install_python_test_dependencies setup-codestyle
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev_without_hash.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
 	$(PIP_COMMAND) install -e .
 
@@ -136,11 +128,11 @@ copy_node_js:
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
 .PHONY: update_deps
-update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies
+update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies ## update the python and node dependencies
 
 .PHONY: update_db
-update_db:
-	./schematic src/olympia/migrations
+update_db: ## run the database migrations
+	$(PYTHON_COMMAND) manage.py migrate --noinput
 
 .PHONY: update_assets
 update_assets:
@@ -150,10 +142,10 @@ update_assets:
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
 
 .PHONY: update
-update: update_deps update_db update_assets
+update: update_deps update_db update_assets ## update the dependencies, the database, and assets
 
 .PHONY: reindex
-reindex:
+reindex: ## reindex everything in elasticsearch, for AMO
 	$(PYTHON_COMMAND) manage.py reindex $(ARGS)
 
 .PHONY: setup-ui-tests
@@ -161,8 +153,7 @@ setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
 	$(PYTHON_COMMAND) manage.py create_db --force
-	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
-	./schematic --fake src/olympia/migrations/
+	$(PYTHON_COMMAND) manage.py migrate --noinput
 
 	# Reindex
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
@@ -181,6 +172,8 @@ setup-ui-tests:
 	$(PYTHON_COMMAND) manage.py generate_themes $(NUM_THEMES)
 	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
 
+	# Now that addons have been generated, reindex.
+	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 	# Also update category counts (denormalized field)
 	$(PYTHON_COMMAND) manage.py cron category_totals
 
@@ -201,12 +194,57 @@ setup-codestyle:
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
 
 .PHONY: lint-codestyle
-lint-codestyle:
+lint-codestyle: ## lint the code
 	flake8 src/ services/ tests/
 
 .PHONY: docs
-docs:
+docs: ## build the documentation
 	$(MAKE) -C docs html SPHINXOPTS='-nW'
 
+.PHONY: debug
+debug: ## connect for debugging
+	supervisorctl fg olympia
+
+.PHONY: djshell
+djshell: ## connect to django shell
+	$(PYTHON_COMMAND) ./manage.py shell_plus
+
+.PHONY: dbshell
+dbshell: ## connect to a database shell
+	$(PYTHON_COMMAND) ./manage.py dbshell
+
 .PHONY: initialize
-initialize: update_deps initialize_db update_assets populate_data
+initialize: update_deps initialize_db update_assets populate_data ## init the dependencies, the database, and assets
+
+.PHONY: reload-uwsgi
+reload-uwsgi: ## force django code reload
+	uwsgi --reload /code/docker/artifacts/addons-server-uwsgi-master.pid
+
+.PHONY: test
+test: ## run the entire test suite
+	pytest $(APP) $(ARGS)
+
+.PHONY: test_es
+test_es: ## run the ES tests
+	pytest -m es_tests $(APP) $(ARGS)
+
+.PHONY: test_no_es
+test_no_es: ## run all but the ES tests
+	pytest -m "not es_tests" $(APP) $(ARGS)
+
+.PHONY: test_force_db
+test_force_db: ## run the entire test suite with a new database
+	pytest --create-db $(APP) $(ARGS)
+
+.PHONY: tdd
+tdd: ## run the entire test suite, but stop on the first error
+	pytest -x --pdb $(ARGS) $(APP)
+
+.PHONY: test_failed
+test_failed: ## rerun the failed tests from the previous run
+	pytest --lf $(ARGS) $(APP)
+
+
+.PHONY: help_submake
+help_submake:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile-docker | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

@@ -285,11 +285,7 @@ class ReviewForm(forms.Form):
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     versions = ModelMultipleChoiceField(
-        widget=forms.SelectMultiple(
-            attrs={
-                'class': 'data-toggle',
-                'data-value': 'reject_multiple_versions|'
-            }),
+        widget=forms.SelectMultiple(attrs={'class': 'data-toggle'}),
         required=False,
         queryset=Version.objects.none())  # queryset is set later in __init__.
 
@@ -336,16 +332,32 @@ class ReviewForm(forms.Form):
 
         # With the helper, we now have the add-on and can set queryset on the
         # versions field correctly. Small optimization: we only need to do this
-        # if the reject_multiple_versions action is available, otherwise we
-        # don't really care about this field.
-        if 'reject_multiple_versions' in self.helper.actions:
+        # if the relevant actions are available, otherwise we don't really care
+        # about this field.
+        versions_actions = [
+            k for k in self.helper.actions
+            if self.helper.actions[k].get('versions')
+        ]
+        if versions_actions:
+            if self.helper.version:
+                channel = self.helper.version.channel
+            else:
+                channel = amo.RELEASE_CHANNEL_LISTED
+            # For unlisted, we only care about approved versions, reviewers
+            # aren't actively monitoring that queue.
+            if channel == amo.RELEASE_CHANNEL_UNLISTED:
+                statuses = (amo.STATUS_APPROVED, )
+            else:
+                statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
             self.fields['versions'].queryset = (
                 self.helper.addon.versions.distinct().filter(
-                    channel=amo.RELEASE_CHANNEL_LISTED,
-                    files__status__in=(amo.STATUS_APPROVED,
-                                       amo.STATUS_AWAITING_REVIEW)).
+                    channel=channel, files__status__in=statuses).
                 order_by('created'))
-
+            # Reset data-value depending on widget depending on actions
+            # available ([''] added to get an extra '|' at the end).
+            self.fields['versions'].widget.attrs['data-value'] = '|'.join(
+                versions_actions + ['']
+            )
         # For the canned responses, we're starting with an empty one, which
         # will be hidden via CSS.
         canned_choices = [

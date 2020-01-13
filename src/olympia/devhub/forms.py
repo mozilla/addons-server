@@ -18,7 +18,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import waffle
-
+from django_statsd.clients import statsd
 from rest_framework.exceptions import Throttled
 
 from olympia import amo
@@ -27,13 +27,12 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonReviewerFlags, AddonUser, Category,
-    DeniedSlug, Preview)
+    Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
+    AddonUserPendingConfirmation, Category, DeniedSlug, Preview)
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
@@ -41,8 +40,7 @@ from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
 from olympia.devhub.utils import (
-    fetch_existing_translations_from_addon, get_addon_akismet_reports,
-    UploadRestrictionChecker)
+    fetch_existing_translations_from_addon, UploadRestrictionChecker)
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
@@ -54,7 +52,8 @@ from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
-from olympia.users.models import EmailUserRestriction, UserProfile
+from olympia.users.models import (
+    EmailUserRestriction, UserEmailField, UserProfile)
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
@@ -127,44 +126,8 @@ def clean_tags(request, tags):
     return target
 
 
-class AkismetSpamCheckFormMixin(object):
-    fields_to_akismet_comment_check = []
-
-    def clean(self):
-        data = {
-            prop: value for prop, value in self.cleaned_data.items()
-            if prop in self.fields_to_akismet_comment_check}
-        request_meta = getattr(self.request, 'META', {})
-
-        # Find out if there is existing metadata that's been spam checked.
-        addon_listed_versions = self.instance.versions.filter(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        if self.version:
-            # If this is in the submission flow, exclude version in progress.
-            addon_listed_versions = addon_listed_versions.exclude(
-                id=self.version.id)
-        existing_data = (
-            fetch_existing_translations_from_addon(
-                self.instance, self.fields_to_akismet_comment_check)
-            if addon_listed_versions.exists() else ())
-
-        reports = get_addon_akismet_reports(
-            user=getattr(self.request, 'user', None),
-            user_agent=request_meta.get('HTTP_USER_AGENT'),
-            referrer=request_meta.get('HTTP_REFERER'),
-            addon=self.instance,
-            data=data,
-            existing_data=existing_data)
-        error_msg = ugettext('The text entered has been flagged as spam.')
-        error_if_spam = waffle.switch_is_active('akismet-addon-action')
-        for prop, report in reports:
-            is_spam = report.is_spam
-            if error_if_spam and is_spam:
-                self.add_error(prop, forms.ValidationError(error_msg))
-        return super(AkismetSpamCheckFormMixin, self).clean()
-
-
 class AddonFormBase(TranslationFormMixin, forms.ModelForm):
+    fields_to_trigger_content_review = ('name', 'summary')
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -201,6 +164,26 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
             return list(addon.tags.filter(restricted=False)
                         .values_list('tag_text', flat=True))
 
+    def save(self, *args, **kwargs):
+        metadata_content_review = waffle.switch_is_active(
+            'metadata-content-review')
+        existing_data = (
+            fetch_existing_translations_from_addon(
+                self.instance, self.fields_to_trigger_content_review)
+            if self.instance and metadata_content_review else {})
+        obj = super().save(*args, **kwargs)
+        if not metadata_content_review:
+            return obj
+        new_data = (
+            fetch_existing_translations_from_addon(
+                obj, self.fields_to_trigger_content_review)
+        )
+        if existing_data != new_data:
+            # flag for content review
+            statsd.incr('devhub.metadata_content_review_triggered')
+            AddonApprovalsCounter.reset_content_for_addon(addon=obj)
+        return obj
+
 
 class CategoryForm(forms.Form):
     application = forms.TypedChoiceField(
@@ -236,10 +219,6 @@ class CategoryForm(forms.Form):
         total = categories.count()
         max_cat = amo.MAX_CATEGORIES
 
-        if getattr(self, 'disabled', False) and total:
-            raise forms.ValidationError(ugettext(
-                'Categories cannot be changed while your add-on is featured '
-                'for this application.'))
         if total > max_cat:
             # L10n: {0} is the number of categories.
             raise forms.ValidationError(ungettext(
@@ -285,12 +264,6 @@ class BaseCategoryFormSet(BaseFormSet):
             form.app = app
             cats = sorted(app_cats[key], key=lambda x: x.name)
             form.fields['categories'].choices = [(c.id, c.name) for c in cats]
-
-            # If this add-on is featured for this application, category
-            # changes are forbidden.
-            if not acl.action_allowed(self.request,
-                                      amo.permissions.ADDONS_EDIT):
-                form.disabled = (app and self.addon.is_featured(app))
 
     def save(self):
         for f in self.forms:
@@ -424,7 +397,7 @@ class AddonFormTechnical(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('developer_comments', 'view_source', 'public_stats')
+        fields = ('developer_comments', 'public_stats')
 
 
 class AddonFormTechnicalUnlisted(AddonFormBase):
@@ -434,18 +407,63 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
 
 
 class AuthorForm(forms.ModelForm):
+    user = UserEmailField(required=True, queryset=UserProfile.objects.all())
+
     class Meta:
         model = AddonUser
         exclude = ('addon',)
 
-    # Note: AddonUser's user db field is a UserForeignKey(), which will expose
-    # the user email address in the form (and lookup users from the email
-    # submitted in the form data when adding/changing)
+    def __init__(self, *args, **kwargs):
+        # addon should be passed through form_kwargs={'addon': addon} when
+        # initializing the formset.
+        self.addon = kwargs.pop('addon')
+        super().__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            # Clients are not allowed to change existing authors. If they want
+            # to do that, they need to remove the existing author and add a new
+            # one. This makes the confirmation system easier to manage.
+            self.fields['user'].disabled = True
+
+            # Set the email to be displayed in the form instead of the pk.
+            self.initial['user'] = instance.user.email
+
+    def clean(self):
+        rval = super().clean()
+        if self._meta.model == AddonUser and (
+                self.instance is None or not self.instance.pk):
+            # This should never happen, the client is trying to add a user
+            # directly to AddonUser through the formset, they should have
+            # been added to AuthorWaitingConfirmation instead.
+            raise forms.ValidationError(
+                ugettext('Users can not be added directly'))
+        return rval
+
+
+class AuthorWaitingConfirmationForm(AuthorForm):
+    class Meta(AuthorForm.Meta):
+        model = AddonUserPendingConfirmation
 
     def clean_user(self):
         user = self.cleaned_data.get('user')
-        if user and not EmailUserRestriction.allow_email(user.email):
-            raise forms.ValidationError(EmailUserRestriction.error_message)
+        if user:
+            if not EmailUserRestriction.allow_email(user.email):
+                raise forms.ValidationError(EmailUserRestriction.error_message)
+
+            if self.addon.authors.filter(pk=user.pk).exists():
+                raise forms.ValidationError(
+                    ugettext('An author can only be present once.'))
+
+            name_validators = user._meta.get_field('display_name').validators
+            try:
+                if user.display_name is None:
+                    raise forms.ValidationError('')  # Caught below.
+                for validator in name_validators:
+                    validator(user.display_name)
+            except forms.ValidationError:
+                raise forms.ValidationError(ugettext(
+                    'The account needs a display name before it can be added '
+                    'as an author.'))
         return user
 
 
@@ -475,14 +493,28 @@ class BaseAuthorFormSet(BaseModelFormSet):
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
                 ugettext('At least one author must be listed.'))
+
+
+class BaseAuthorWaitingConfirmationFormSet(BaseModelFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+
+        # cleaned_data could be None if it's the empty extra form.
+        data = list(filter(None, [f.cleaned_data for f in self.forms
+                                  if not f.cleaned_data.get('DELETE', False)]))
         users = [d['user'].id for d in data]
-        if sorted(users) != sorted(set(users)):
+        if len(users) != len(set(users)):
             raise forms.ValidationError(
-                ugettext('An author can only be listed once.'))
+                ugettext('An author can only be present once.'))
 
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True, extra=0)
+
+AuthorWaitingConfirmationFormSet = modelformset_factory(
+    AddonUserPendingConfirmation, formset=BaseAuthorWaitingConfirmationFormSet,
+    form=AuthorWaitingConfirmationForm, can_delete=True, extra=0)
 
 
 class DeleteForm(forms.Form):
@@ -930,6 +962,15 @@ class NewUploadForm(forms.Form):
         self.addon = kw.pop('addon', None)
         super(NewUploadForm, self).__init__(*args, **kw)
 
+        # Preselect compatible apps based on the current version
+        if self.addon and self.addon.current_version:
+            # Fetch list of applications freshly from the database to not
+            # rely on potentially outdated data since `addon.compatible_apps`
+            # is a cached property
+            compat_apps = list(self.addon.current_version.apps.values_list(
+                'application', flat=True))
+            self.fields['compatible_apps'].initial = compat_apps
+
     def _clean_upload(self):
         if not (self.cleaned_data['upload'].valid or
                 self.cleaned_data['upload'].validation_timeout or
@@ -1020,7 +1061,7 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
         return super(SourceForm, self).clean_source()
 
 
-class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
+class DescribeForm(AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
@@ -1031,8 +1072,6 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
-
-    fields_to_akismet_comment_check = ['name', 'summary', 'description']
 
     class Meta:
         model = Addon
@@ -1113,15 +1152,13 @@ class DescribeFormContentOptimization(CombinedNameSummaryCleanMixin,
     summary = TransField(min_length=2)
 
 
-class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
+class DescribeFormUnlisted(AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
     description = TransField(widget=TransTextarea(attrs={'rows': 4}),
                              required=False)
-
-    fields_to_akismet_comment_check = ['name', 'summary', 'description']
 
     class Meta:
         model = Addon
@@ -1177,25 +1214,37 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
 
 class DistributionChoiceForm(forms.Form):
     LISTED_LABEL = _(
-        u'On this site. <span class="helptext">'
-        u'Your submission will be listed on this site and the Firefox '
-        u'Add-ons Manager for millions of users, after it passes code '
-        u'review. Automatic updates are handled by this site. This '
-        u'add-on will also be considered for Mozilla promotions and '
-        u'contests. Self-distribution of the reviewed files is also '
-        u'possible.</span>')
+        'On this site. <span class="helptext">'
+        'Your submission will be listed on this site and the Firefox '
+        'Add-ons Manager for millions of users, after it passes code '
+        'review. Automatic updates are handled by this site. This '
+        'add-on will also be considered for Mozilla promotions and '
+        'contests. Self-distribution of the reviewed files is also '
+        'possible.</span>')
     UNLISTED_LABEL = _(
-        u'On your own. <span class="helptext">'
-        u'Your submission will be immediately signed for '
-        u'self-distribution. Updates should be handled by you via an '
-        u'updateURL or external application updates.</span>')
+        'On your own. <span class="helptext">'
+        'Your submission will be immediately signed for '
+        'self-distribution. Updates should be handled by you via an '
+        'updateURL or external application updates.</span>')
 
     channel = forms.ChoiceField(
-        choices=(
-            ('listed', mark_safe_lazy(LISTED_LABEL)),
-            ('unlisted', mark_safe_lazy(UNLISTED_LABEL))),
+        choices=[],
         initial='listed',
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
+
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon', None)
+        super().__init__(*args, **kwargs)
+        choices = [
+            ('listed', mark_safe(self.LISTED_LABEL)),
+            ('unlisted', mark_safe(self.UNLISTED_LABEL))
+        ]
+        if self.addon and self.addon.disabled_by_user:
+            # If the add-on is disabled, 'listed' is not a valid choice,
+            # "invisible" add-ons can not upload new listed versions.
+            choices.pop(0)
+
+        self.fields['channel'].choices = choices
 
 
 class AgreementForm(forms.Form):
@@ -1245,12 +1294,6 @@ class SingleCategoryForm(forms.Form):
         self.fields['category'].choices = [
             (slug, c.name) for slug, c in sorted_cats]
 
-        # If this add-on is featured for any application, category changes are
-        # forbidden.
-        if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            self.disabled = any(
-                (self.addon.is_featured(app) for app in amo.APP_USAGE))
-
     def save(self):
         category_slug = self.cleaned_data['category']
         # Clear any old categor[y|ies]
@@ -1263,10 +1306,3 @@ class SingleCategoryForm(forms.Form):
                 AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
-
-    def clean_category(self):
-        if getattr(self, 'disabled', False) and self.cleaned_data['category']:
-            raise forms.ValidationError(ugettext(
-                'Categories cannot be changed while your add-on is featured.'))
-
-        return self.cleaned_data['category']

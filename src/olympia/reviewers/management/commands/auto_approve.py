@@ -5,27 +5,31 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+import waffle
+
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import amo
-from olympia.files.utils import atomic_lock
+from olympia.amo.decorators import use_primary_db
+from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
 from olympia.reviewers.utils import ReviewHelper
+from olympia.scanners.models import ScannerResult
 from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.reviewers.auto_approve')
 
-LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
+LOCK_NAME = 'auto-approve'  # Name of the lock() used.
 
 
 class Command(BaseCommand):
-    help = 'Auto-approve add-ons based on predefined criteria'
+    help = 'Auto-approve add-on versions based on predefined criteria'
 
     def add_arguments(self, parser):
         """Handle command arguments."""
@@ -34,7 +38,8 @@ class Command(BaseCommand):
             action='store_true',
             dest='dry_run',
             default=False,
-            help='Do everything except actually approving add-ons.')
+            help='Fetch version candidates and perform all checks but do not '
+                 'actually approve anything.')
 
     def fetch_candidates(self):
         """Return a queryset with the Version instances that should be
@@ -42,6 +47,7 @@ class Command(BaseCommand):
         return Version.objects.auto_approvable().order_by(
             'nomination', 'created').distinct()
 
+    @use_primary_db
     def handle(self, *args, **options):
         """Command entry point."""
         self.dry_run = options.get('dry_run', False)
@@ -54,8 +60,7 @@ class Command(BaseCommand):
 
         # Get a lock before doing anything, we don't want to have multiple
         # instances of the command running in parallel.
-        lock = atomic_lock(settings.TMP_PATH, LOCK_NAME, lifetime=15 * 60)
-        with lock as lock_attained:
+        with lock(settings.TMP_PATH, LOCK_NAME) as lock_attained:
             if lock_attained:
                 qs = self.fetch_candidates()
                 self.stats['total'] = len(qs)
@@ -84,6 +89,18 @@ class Command(BaseCommand):
                 log.info('Processing %s version %s...',
                          str(version.addon.name),
                          str(version.version))
+
+                if waffle.switch_is_active('run-action-in-auto-approve'):
+                    # We want to execute `run_action()` only once.
+                    summary_exists = AutoApprovalSummary.objects.filter(
+                        version=version
+                    ).exists()
+                    if summary_exists:
+                        log.debug('Not running run_action() because it has '
+                                  'already been executed')
+                    else:
+                        ScannerResult.run_action(version)
+
                 summary, info = AutoApprovalSummary.create_summary_for_version(
                     version, dry_run=self.dry_run)
                 self.stats.update({k: int(v) for k, v in info.items()})
@@ -114,6 +131,7 @@ class Command(BaseCommand):
                 'files or because it had no validation attached.', version)
             self.stats['error'] += 1
         except SigningError:
+            statsd.incr('reviewers.auto_approve.approve.failure')
             log.info(
                 'Version %s was skipped because of a signing error', version)
             self.stats['error'] += 1
@@ -122,24 +140,30 @@ class Command(BaseCommand):
             if not already_locked:
                 clear_reviewing_cache(version.addon.pk)
 
+    @statsd.timer('reviewers.auto_approve.approve')
     def approve(self, version):
         """Do the approval itself, caling ReviewHelper to change the status,
         sign the files, send the e-mail, etc."""
         # Note: this should automatically use the TASK_USER_ID user.
         helper = ReviewHelper(addon=version.addon, version=version)
-        helper.handler.data = {
-            # The comment is not translated on purpose, to behave like regular
-            # human approval does.
-            'comments': u'This version has been screened and approved for the '
-                        u'public. Keep in mind that other reviewers may look '
-                        u'into this version in the future and determine that '
-                        u'it requires changes or should be taken down. In '
-                        u'that case, you will be notified again with details '
-                        u'and next steps.'
-                        u'\r\n\r\nThank you!'
-        }
+        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+            helper.handler.data = {
+                # The comment is not translated on purpose, to behave like
+                # regular human approval does.
+                'comments':
+                    'This version has been screened and approved for the '
+                    'public. Keep in mind that other reviewers may look into '
+                    'this version in the future and determine that it '
+                    'requires changes or should be taken down. In that case, '
+                    'you will be notified again with details and next steps.'
+                    '\r\n\r\nThank you!'
+            }
+        else:
+            helper.handler.data = {
+                'comments': 'automatic validation'
+            }
         helper.handler.process_public()
-        statsd.incr('reviewers.auto_approve.approve')
+        statsd.incr('reviewers.auto_approve.approve.success')
 
     def log_final_summary(self, stats):
         """Log a summary of what happened."""

@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-01-04 17:45+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-12-05 21:19+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -26,8 +26,8 @@ msgstr "Sunucuyla bağlantı kurulurken bir hata oluştu."
 msgid "Select a file..."
 msgstr "Dosya seçin..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Eklentiniz .zip, .xpi, .crx, .jar veya .xml ile bitmelidir"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Eklentiniz .zip, .xpi, .crx veya .xml ile bitmelidir"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -122,8 +122,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
-"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri çevrilmesini"
+" önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
@@ -146,30 +146,6 @@ msgstr "Videolar WebM olmalıdır."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Bu tema sizin {0} sürümünüzle uyumlu değil"
-
-msgid "All Rights Reserved"
-msgstr "Tüm hakları saklıdır"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Temanızın Adı"
 
 msgid "Flagged for review"
 msgstr "İnceleme için işaretlendi"
@@ -720,11 +696,10 @@ msgstr[0] "<b>{0}</b> karakter"
 msgstr[1] "<b>{0}</b> karakter"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> karakter kaldı."
-msgstr[1] "<b>{0}</b> karakter kaldı."
+msgstr[0] "<b>{0}</b> karakter kaldı"
+msgstr[1] "<b>{0}</b> karakter kaldı"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha sonra tekrar deneyin."
@@ -734,12 +709,6 @@ msgstr "Bu yerelleştirmeyi kaldır"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} bu sayfayı ilk olarak inceliyordu."
-
-msgid "Receipt checked by app."
-msgstr "Alındı bilgisi uygulama tarafından denetlendi."
-
-msgid "Receipt was not checked by app."
-msgstr "Alındı bilgisi uygulama tarafından denetlenmedi."
 
 msgid "{name} was viewing this add-on first."
 msgstr "İlk {name} bu eklentiye bakıyordu."

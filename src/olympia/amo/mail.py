@@ -47,11 +47,3 @@ class DevEmailBackend(BaseEmailBackend):
             connection = mail.get_connection()
             connection.send_messages(qa_messages)
         return len(messages)
-
-    def view_all(self):
-        """Useful for displaying messages in admin panel."""
-        return (FakeEmail.objects.values_list('message', flat=True)
-                .order_by('-created'))
-
-    def clear(self):
-        return FakeEmail.objects.all().delete()

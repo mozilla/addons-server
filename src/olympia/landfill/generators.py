@@ -6,16 +6,16 @@ from itertools import cycle, islice
 
 from django.db.models.signals import post_save
 
-from olympia.addons.models import Addon, Persona, update_search_index
+from olympia.addons.models import Addon, update_search_index
 from olympia.amo.utils import slugify
-from olympia.constants.applications import APPS, FIREFOX
+from olympia.constants.applications import APPS
 from olympia.constants.base import (
-    ADDON_EXTENSION, ADDON_PERSONA, ADDON_STATICTHEME, STATUS_APPROVED)
+    ADDON_EXTENSION, ADDON_STATICTHEME, STATUS_APPROVED)
 from olympia.devhub.forms import icons
 
 from .categories import generate_categories
 from .collection import generate_collection
-from .images import generate_addon_preview, generate_theme_images
+from .images import generate_addon_preview
 from .names import generate_names
 from .ratings import generate_ratings
 from .translations import generate_translations
@@ -92,53 +92,6 @@ def generate_addons(num, owner, app_name, addon_type=ADDON_EXTENSION):
         generate_ratings(addon, 5)
 
 
-def create_theme(name, **extra_kwargs):
-    """
-    Create a theme with the given `name`, his version and Persona
-    instance.
-
-    """
-    kwargs = {
-        'status': STATUS_APPROVED,
-        'name': name,
-        'slug': slugify(name),
-        'bayesian_rating': random.uniform(1, 5),
-        'average_daily_users': random.randint(200, 2000),
-        'weekly_downloads': random.randint(200, 2000),
-        'created': datetime.now(),
-        'last_updated': datetime.now(),
-    }
-    kwargs.update(extra_kwargs)
-
-    # Themes need to start life as an extension for versioning.
-    theme = Addon.objects.create(type=ADDON_EXTENSION, **kwargs)
-    generate_version(addon=theme)
-    theme.update_version()
-    theme.status = STATUS_APPROVED
-    theme.type = ADDON_PERSONA
-    Persona.objects.create(addon=theme, popularity=theme.weekly_downloads,
-                           persona_id=0)
-    theme.save()
-    return theme
-
-
 def generate_themes(num, owner, **kwargs):
     """Generate `num` themes for the given `owner`."""
-    # Disconnect this signal given that we issue a reindex at the end.
-    post_save.disconnect(update_search_index, sender=Addon,
-                         dispatch_uid='addons.search.index')
-
-    user = generate_user(owner)
-
-    # Generate personas.
-    for name, category in _yield_name_and_cat(
-            num, app=FIREFOX, type=ADDON_PERSONA):
-        theme = create_theme(name=name, **kwargs)
-        generate_addon_user_and_category(theme, user, category)
-        generate_theme_images(theme)
-        generate_translations(theme)
-        generate_collection(theme)
-        generate_ratings(theme, 5)
-
-    # Generate static themes.
     generate_addons(num, owner, 'firefox', addon_type=ADDON_STATICTHEME)

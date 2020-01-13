@@ -40,14 +40,14 @@
 
   {% include 'reviewers/addon_details_box.html' %}
 
-  {% if user_changes %}
+  {% if user_changes_log %}
   <div id="user-changes-history">
     <h3>
       {{ _('Add-on user change history') }}
     </h3>
     <ul id="user-changes">
-      {% for user_change in user_changes %}
-        <li>{{ user_change.activity_log.created }}: {{ user_change.activity_log }}</li>
+      {% for user_change_log in user_changes_log %}
+        <li>{{ user_change_log.created }}: {{ user_change_log }}</li>
       {% endfor %}
     </ul>
   </div>
@@ -68,120 +68,16 @@
       </th></tr></table>
     </div>
     {% endif %}
-    <div id="review-files-paginate">
-      {% include "reviewers/includes/paginator_history.html"  %}
+    <div class="review-files-paginate">
+      {% include "reviewers/includes/paginator_history.html" %}
     </div>
   </div>
-  <div class="results">
+  <div id="versions-history" class="results">
     <div class="results-inner">
-      <table id="review-files" class="item-history">
+      <table class="review-files item-history">
+        {# We're paginating by newest first, but want to display the current page by oldest first #}
         {% for version in pager.object_list|reverse %}
-        <tr class="listing-header">
-          <th colspan="2">
-            {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
-            Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
-            {% endtrans %}
-
-            {% if version.autoapprovalsummary and version.autoapprovalsummary.confirmed %}
-            <span class="light">{{ _("(Confirmed)") }}</span>
-            {% endif %}
-          </th>
-        </tr>
-        <tr class="listing-body">
-          <td class="files">
-            {% if addon.type != amo.ADDON_STATICTHEME %}
-              {{ all_distinct_files(version) }}
-              {% if version.compatible_apps_ordered %}
-                <div><strong>{{ _('Compatibility:') }}</strong></div>
-                <ul>
-                  {% for app, compat in version.compatible_apps_ordered %}
-                  <li>
-                    <div class="app-icon ed-sprite-{{ app.short }}" title="{{ app.pretty }}"></div>
-                    {{ compat }}
-                  </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-              {% if version.source %}
-                  <div><strong>{{ _('Additional sources:') }}</strong></div>
-                  <div>
-                      {% if is_admin %}
-                          <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
-                      {% else %}
-                          {{ _('The developer has provided source code.')}}
-                      {% endif %}
-                  </div>
-              {% endif %}
-              {% if version.autoapprovalsummary %}
-                <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
-              {% endif %}
-            {% else %}
-              <ul>
-                <li class="file-info">
-                  <span class="light">
-                    <strong><a href="{{ version.all_files[0].get_url_path('reviewer') }}" class="reviewers-install"
-                      data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
-                    <div>
-                      {{ file_review_status(addon, version.all_files[0]) }}
-                    </div>
-                  </span>
-                </li>
-              </ul>
-            {% endif %}
-          </td>
-          <td>
-            <table class="activity">
-              {% if version.release_notes %}
-              <tr>
-                <th>{{ _('Version Notes') }}</th>
-                <td class="activity_version">
-                  <div class="history-notes">
-                    {{ version.release_notes|nl2br }}
-                  </div>
-                </td>
-              </tr>
-              {% endif %}
-              {% if version.approval_notes %}
-              <tr>
-                <th>{{ _('Notes for Reviewers') }}</th>
-                <td class="activity_approval">
-                  <div class="history-notes">
-                    {{ version.approval_notes|urlize(100)|nl2br }}
-                  </div>
-                </td>
-              </tr>
-              {% endif %}
-              {% set records = version.all_activity %}
-              {% for record_version in records %}
-                {% set record = record_version.activity_log %}
-                {% include 'reviewers/includes/history.html' %}
-              {% endfor %}
-              {% if version.pk in auto_approval_info %}
-                <tr>
-                  <th>{{ _('Not Auto Approved Because') }} </th>
-                  <td class="auto_approval">
-                    {% if auto_approval_info[version.pk] %}
-                      <ul>
-                      {% for info in auto_approval_info[version.pk] %}
-                        <li>{{ info }}</li>
-                      {% endfor %}
-                      </ul>
-                    {% else %}
-                      {{ _('Auto-Approval script has not run yet on this version.') }}
-                    {% endif %}
-                  </td>
-                </tr>
-              {% endif %}
-              {% if not version.release_notes and not version.approval_notes and not records %}
-              <tr>
-                <td class="no-activity">
-                  {{ _('This version has not been reviewed.') }}
-                </td>
-              </tr>
-              {% endif %}
-            </table>
-          </td>
-        </tr>
+          {% include "reviewers/includes/version.html" %}
         {% endfor %}
       </table>
     </div>
@@ -334,21 +230,42 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
-        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) %}
+        {% if not addon.block %}
+        <li>
+          <a href="{{ url('admin:blocklist_block_add_single') }}?guid={{ addon.guid }}" class="button"
+                  id="block_addon" type="button">{{ _('Block add-on') }}</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{{ url('admin:blocklist_block_change', addon.block.id) }}" class="button"
+                  id="edit_addon_block" type="button">{{ _('Update add-on block') }}</a>
+        </li>
+        {% endif %}
+        {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_SEARCH) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled&quot;: true}"
                     data-toggle-button-selector="#enable_auto_approval"
-                    id="disable_auto_approval" type="button">{{ _('Disable Auto-Approval') }}</button>
+                    id="disable_auto_approval" type="button">{{ _('Disable Listed Auto-Approval') }}</button>
           </li>
           <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled&quot;: false}"
                     data-toggle-button-selector="#disable_auto_approval"
-                    id="enable_auto_approval" type="button">{{ _('Enable Auto-Approval') }}</button>
+                    id="enable_auto_approval" type="button">{{ _('Enable Listed Auto-Approval') }}</button>
           </li>
+          {% if addon.auto_approval_delayed_until and addon.auto_approval_delayed_until > now %}
+            {# This flag is only meant to be enabled by scanners, but admins can still unset it. #}
+            <li>
+              <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                      data-api-method="patch"
+                      data-api-data="{&quot;auto_approval_delayed_until&quot;: null}"
+                      title="{{ _('Auto-Approval currently disabled until {date}')|format_html(date=addon.auto_approval_delayed_until|datetime) }}"
+                      id="clear_auto_approval_delayed_until" type="button">{{ _('Clear Auto-Approval Extra Delay') }}</button>
+            </li>
+          {% endif %}
         {% endif %}
         {% if addon.pending_info_request %}
           <li>

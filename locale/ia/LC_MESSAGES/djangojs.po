@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-06-13 13:30+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-12-06 04:01+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -27,8 +27,8 @@ msgstr "Il ha habite un problema con le connexion al servitor."
 msgid "Select a file..."
 msgstr "Elige un file..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, .jar o .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -43,7 +43,7 @@ msgid "Cancel"
 msgstr "Cancellar"
 
 msgid "Uploading {0}"
-msgstr "Cargamento de {0} in curso"
+msgstr "Se incarga {0}"
 
 msgid "Error with {0}"
 msgstr "Error con {0}"
@@ -84,16 +84,16 @@ msgstr "Le validation de tu additivo vadeva foras tempore limite, illo essera re
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Tu additivo esseva validate sin errores e con {0} aviso."
+msgstr[0] "Tu additivo ha essite validate sin errores e con {0} aviso."
 msgstr[1] "Tu additivo esseva validate sin errores e con {0} avisos."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Tu additivo esseva validate sin errores e {0} con message."
-msgstr[1] "Tu additivo esseva validate sin errores e {0} con messages."
+msgstr[0] "Tu additivo ha essite validate sin errores e con {0} message."
+msgstr[1] "Tu additivo ha essite validate sin errores e con {0} messages."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "Tu additivo esseva validate sin errores o avisos."
+msgstr "Tu additivo ha essite validate sin errores o avisos."
 
 msgid "Your submission will be automatically signed."
 msgstr "Tu submission essera signate automaticamente."
@@ -125,20 +125,20 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Files binari compilate, assi como scripts minificate o offuscate (salvo bibliothecas cognoscite) debe haber lor fontes submittite separatemente pro revision. Assecura te de usar le campo pro cargar "
-"codice fonte pro evitar que tu submission sia rejectate."
+"Files binari compilate, assi como scripts minificate o offuscate (salvo bibliothecas cognoscite) debe haber lor fontes submittite separatemente pro revision. Assecura te de usar le campo pro "
+"incargar codice fonte pro evitar que tu submission es rejectate."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Le processo de validation trovava iste problemas, que pote ducer al rejectiones:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Le typo de file que tu cargava non es recognoscite."
+msgstr "Le typo del file que tu ha incargate non es recognoscite."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Tu file excede le maxime dimension de {0}."
 
 msgid "You cancelled the upload."
-msgstr "Tu ha cancellate le cargamento."
+msgstr "Tu ha cancellate le incargamento."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Le imagines debe esser in formato PNG o JPG."
@@ -149,30 +149,6 @@ msgstr "Le videos debe esser in formato WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Iste thema es incompatibile con tu version de {0}"
-
-msgid "All Rights Reserved"
-msgstr "Tote le derectos es reservate"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Attribution 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Attribution-non commercial 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Attribution-NonCommercial-NoDerivs 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Attribution-NonCommercial-NoDerivs 3.0 de Creative Commons"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
-
-msgid "Your Theme's Name"
-msgstr "Le nomine de tu thema"
 
 msgid "Flagged for review"
 msgstr "Marcate pro revision"
@@ -288,7 +264,7 @@ msgid "Subscribers"
 msgstr "Subscriptores"
 
 msgid "Ratings"
-msgstr "Valutationes"
+msgstr "Evalutationes"
 
 msgid "Sales"
 msgstr "Venditas"
@@ -306,7 +282,7 @@ msgid "Add-ons Manager Promo"
 msgstr "Gestor de additivos in promotion"
 
 msgid "Add-ons Manager Featured"
-msgstr "Gestor de additivos in evidentia"
+msgstr "Promovite in le gestor de additivos"
 
 msgid "Add-ons Manager Learn More"
 msgstr "Gestor de additivos, Saper plus"
@@ -321,7 +297,7 @@ msgid "Homepage Promo"
 msgstr "Promotion del pagina principal"
 
 msgid "Homepage Featured"
-msgstr "Pagina principal consiliate"
+msgstr "Promovite in le pagina initial"
 
 msgid "Homepage Up and Coming"
 msgstr "Pagina principal emergente"
@@ -330,13 +306,13 @@ msgid "Homepage Most Popular"
 msgstr "Pagina principal plus popular"
 
 msgid "Detail Page"
-msgstr "Pagina de detalio del additivo"
+msgstr "Pagina de detalios"
 
 msgid "Detail Page (bottom)"
-msgstr "Pagina de detalio del additivo (fundo)"
+msgstr "Pagina de detalios (fundo)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Pagina de detalio del additivo (canal de disveloppamento)"
+msgstr "Pagina de detalios (canal de disveloppamento)"
 
 msgid "Often Used With"
 msgstr "Sovente usate con"
@@ -348,7 +324,7 @@ msgid "Dependencies"
 msgstr "Dependentias"
 
 msgid "Upsell"
-msgstr "Promotion"
+msgstr "Promotion additional"
 
 msgid "Meet the Developer"
 msgstr "Incontra le disveloppator"
@@ -357,10 +333,10 @@ msgid "User Profile"
 msgstr "Profilo de usator"
 
 msgid "Version History"
-msgstr "Chronologia del versiones"
+msgstr "Historia de versiones"
 
 msgid "Sharing"
-msgstr "Compartimento"
+msgstr "Compartition"
 
 msgid "Category Pages"
 msgstr "Paginas de categoria"
@@ -369,25 +345,25 @@ msgid "Collections"
 msgstr "Collectiones"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Galeria del categorias de accesso favorite"
+msgstr "Carosello de additivos promovite in le pagina initial del categoria"
 
 msgid "Category Landing Top Rated"
-msgstr "Categorias de accesso de los melio valutate"
+msgstr "Le additivos le melio evalutate in le pagina initial del categoria"
 
 msgid "Category Landing Most Popular"
-msgstr "Categorias de accesso de los plus popular"
+msgstr "Le additivos le plus popular in le pagina initial del categoria"
 
 msgid "Category Landing Recently Added"
-msgstr "Categorias de accesso de los plus recente"
+msgstr "Additivos recentemente addite in le pagina initial del categoria"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Explora le lista ordinate per los plus favorite"
+msgstr "Explora le lista ordinate per additivo promovite"
 
 msgid "Browse Listing Users Sort"
 msgstr "Explora le lista ordinate per usatores"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Explora le lista ordinate per valutationes"
+msgstr "Explora le lista ordinate per evalutationes"
 
 msgid "Browse Listing Created Sort"
 msgstr "Explora le lista ordinate per data de creation"
@@ -596,11 +572,11 @@ msgstr "Subscriptores ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "Valutationes, ultime {0} dies"
+msgstr "Evalutationes, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr "Valutationes ab{0} a {1}"
+msgstr "Evalutationes del {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -692,10 +668,10 @@ msgid "Changes Saved"
 msgstr "Cambios salvate"
 
 msgid "Enter a new author's email address"
-msgstr "Insere le adresse de email de un nove autor"
+msgstr "Insere le adresse de e-mail de un nove autor"
 
 msgid "There was an error uploading your file."
-msgstr "Error durante le cargamento de tu file."
+msgstr "Error durante le incargamento de tu file."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -737,12 +713,6 @@ msgstr "Remover iste localisation"
 msgid "{name} was viewing this page first."
 msgstr "{name} visualisava antea iste pagina."
 
-msgid "Receipt checked by app."
-msgstr "Quitantia verificate per le application."
-
-msgid "Receipt was not checked by app."
-msgstr "La quitantia non ha essite verificate per le application."
-
 msgid "{name} was viewing this add-on first."
 msgstr "{name} visualisava antea iste additivo."
 
@@ -765,13 +735,13 @@ msgid "Review notes found"
 msgstr "Notas de revision trovate"
 
 msgid "Average Reviews"
-msgstr "Recenciones medie"
+msgstr "Media de recensiones"
 
 msgid "Number of Reviews"
 msgstr "Numero de recensiones"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr "Le maxime dimension de cargamento es {0} - elige un imagine del fundo plus micre."
+msgstr "Le maxime dimension de incargamento es {0} - elige un imagine de fundo plus micre."
 
 msgid "Requested Info"
 msgstr "Informationes requirite"

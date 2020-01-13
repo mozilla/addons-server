@@ -10,26 +10,6 @@ Add-ons
     The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
---------
-Featured
---------
-
-.. _addon-featured:
-
-This endpoint allows you to list featured add-ons matching some parameters.
-Results are sorted randomly and therefore, the standard pagination parameters
-are not accepted. The query parameter ``page_size`` is allowed but only serves
-to customize the number of results returned, clients can not request a specific
-page.
-
-.. http:get:: /api/v4/addons/featured/
-
-    :query string app: **Required**. Filter by :ref:`add-on application <addon-detail-application>` availability.
-    :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
-    :query string lang: Request add-ons featured for this specific language to be returned alongside add-ons featured globally. Also activate translations for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
-    :query int page_size: Maximum number of results to return. Defaults to 25.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`.
 
 ------
 Search
@@ -48,9 +28,6 @@ This endpoint allows you to search through public add-ons.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string color: (Experimental) Filter by color in RGB hex format, trying to find themes that approximately match the specified color. Only works for static themes.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
-    :query boolean featured: Filter to only featured add-ons.  Only ``featured=true`` is supported.
-        If ``app`` is provided as a parameter then only featured collections targeted to that application are taken into account.
-        If ``lang`` is provided then only featured collections targeted to that language, (and collections for all languages), are taken into account. Both ``app`` and ``lang`` can be provided to filter to addons that are featured in collections that application and for that language, (and for all languages).
     :query string guid: Filter by exact add-on guid. Multiple guids can be specified, separated by comma(s), in which case any add-ons matching any of the guids will be returned.  As guids are unique there should be at most one add-on result per guid specified. For usage with Firefox, instead of separating multiple guids by comma(s), a single guid can be passed in base64url format, prefixed by the ``rta:`` string.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
@@ -76,8 +53,7 @@ This endpoint allows you to search through public add-ons.
          downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
             random  Random ordering. Only available when no search query is
-                    passed and when filtering to only return featured or
-                    recommended add-ons.
+                    passed and when filtering to only return recommended add-ons.
             rating  Bayesian rating, descending.
        recommended  Recommended add-ons above non-recommend add-ons. Only
                     available combined with another sort - ignored on its own.
@@ -188,9 +164,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object icons: An object holding the URLs to an add-ons icon including a cachebusting query string as values and their size as properties. Currently exposes 32, 64, 128 pixels wide icons.
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
-    :>json boolean is_featured: The add-on appears in a featured collection.
     :>json boolean is_recommended: The add-on is recommended by Mozilla.
-    :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
     :>json string|object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json object|null latest_unlisted_version: Object holding the latest unlisted :ref:`version <version-detail-object>` of the add-on. This field is only present if the user has unlisted reviewer permissions, or is listed as a developer of the add-on.
@@ -228,17 +202,12 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-              lite  Preliminarily Reviewed
             public  Fully Reviewed
            deleted  Deleted
-           pending  Pending approval (Valid for themes only)
           disabled  Disabled by Mozilla
-          rejected  Rejected (Valid for themes only)
          nominated  Awaiting Full Review
         incomplete  Incomplete
         unreviewed  Awaiting Preliminary Review
-    lite-nominated  Preliminarily Reviewed and Awaiting Full Review
-    review-pending  Flagged for further review (Valid for themes only)
     ==============  ==========================================================
 
 
@@ -278,17 +247,17 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. note::
 
-        For backwards-compatibility reasons, the value for type of Theme
-        currently live on production addons.mozilla.org is ``persona``
-        (Lightweight Theme). ``theme`` refers to a deprecated XUL Complete Theme.
+        For backwards-compatibility reasons, the value for type of ``theme``
+        refers to a deprecated XUL Complete Theme.  ``persona`` are another
+        type of depreated theme.
         New webextension packaged non-dynamic themes are ``statictheme``.
 
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-             theme  Theme (Complete Theme, XUL-based)
+             theme  Depreated.  Theme (Complete Theme, XUL-based)
             search  Search Engine
-           persona  Theme (Lightweight Theme, persona)
+           persona  Deprecated.  Theme (Lightweight Theme, persona)
           language  Language Pack (Application)
          extension  Extension
         dictionary  Dictionary
@@ -488,38 +457,6 @@ This endpoint returns a list of suggested replacements for legacy add-ons that a
     :>json array results: An array of replacements matches.
     :>json string results[].guid: The extension identifier of the legacy add-on.
     :>json string results[].replacement[]: An array of guids for the replacements add-ons.  If there is a direct replacement this will be a list of one add-on guid.  The list can be empty if all the replacement add-ons are invalid (e.g. not publicly available on AMO).  The list will also be empty if the replacement is to a url that is not an addon or collection.
-
-
----------------
-Compat Override
----------------
-
-.. _addon-compat-override:
-
-This endpoint allows compatibility overrides specified by AMO admins to be searched.
-Compatibilty overrides are used within Firefox i(and other toolkit applications e.g. Thunderbird) to change compatibility of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
-
-.. http:get:: /api/v4/addons/compat-override/
-
-    :query string guid: Filter by exact add-on guid. Multiple guids can be specified, separated by comma(s), in which case any add-ons matching any of the guids will be returned.  As guids are unique there should be at most one add-on result per guid specified.
-    :query int page: 1-based page number. Defaults to 1.
-    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
-    :>json int count: The number of results for this query.
-    :>json string next: The URL of the next page of results.
-    :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of compat overrides.
-    :>json int|null results[].addon_id: The add-on identifier on AMO, if specified.
-    :>json string results[].addon_guid: The add-on extension identifier.
-    :>json string results[].name: A description entered by AMO admins to describe the override.
-    :>json array results[].version_ranges: An array of affected versions of the add-on.
-    :>json string results[].version_ranges[].addon_min_version: minimum version of the add-on to be disabled.
-    :>json string results[].version_ranges[].addon_max_version: maximum version of the add-on to be disabled.
-    :>json array results[].version_ranges[].applications: An array of affected applications for this range of versions.
-    :>json string results[].version_ranges[].applications[].name: Application name (e.g. Firefox).
-    :>json int results[].version_ranges[].applications[].id: Application id on AMO.
-    :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
-    :>json string results[].version_ranges[].applications[].max_version: maximum version of the application to be disabled in.
-    :>json string results[].version_ranges[].applications[].guid: Application `guid <https://addons.mozilla.org/en-US/firefox/pages/appversions/>`_.
 
 
 ---------------

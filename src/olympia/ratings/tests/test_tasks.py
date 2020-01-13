@@ -1,15 +1,9 @@
 # -*- coding: utf-8 -*-
 from unittest import mock
-import pytest
-from waffle.testutils import override_switch
-
-from django.conf import settings
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.lib.akismet.models import AkismetReport
-from olympia.ratings.models import Rating, RatingFlag
-from olympia.ratings.tasks import (
-    addon_rating_aggregates, check_akismet_reports)
+from olympia.ratings.models import Rating
+from olympia.ratings.tasks import addon_rating_aggregates
 
 
 class TestAddonRatingAggregates(TestCase):
@@ -93,41 +87,3 @@ class TestAddonRatingAggregates(TestCase):
         assert addon.average_rating == 2.25
         assert addon2.bayesian_rating == 1.97915
         assert addon2.average_rating == 2.3333
-
-
-@pytest.mark.django_db
-@pytest.mark.parametrize(
-    'return_value,headers,waffle_on,flag_count',
-    [
-        (True, {}, True, 1),
-        (True, {'X-akismet-pro-tip': 'discard'}, True, 1),
-        (False, {}, True, 0),
-        # when the akismet-rating-action is off there shouldn't be any flagging
-        (True, {}, False, 0),
-        (True, {'X-akismet-pro-tip': 'discard'}, False, 0),
-    ])
-def test_check_akismet_reports(return_value, headers, waffle_on, flag_count):
-    task_user = user_factory(id=settings.TASK_USER_ID)
-    assert RatingFlag.objects.count() == 0
-    rating = Rating.objects.create(
-        addon=addon_factory(), user=user_factory(), rating=4, body=u'spám?',
-        ip_address='1.2.3.4')
-    akismet_report = AkismetReport.create_for_rating(rating, 'foo/baa', '')
-
-    with mock.patch('olympia.lib.akismet.models.requests.post') as post_mock:
-        # Mock a definitely spam response - same outcome
-        post_mock.return_value.json.return_value = return_value
-        post_mock.return_value.headers = headers
-        with override_switch('akismet-rating-action', active=waffle_on):
-            check_akismet_reports([akismet_report.id])
-
-    RatingFlag.objects.count() == flag_count
-    rating = rating.reload()
-    if flag_count > 0:
-        flag = RatingFlag.objects.get()
-        assert flag.rating == rating
-        assert flag.user == task_user
-        assert flag.flag == RatingFlag.SPAM
-        assert rating.editorreview
-    else:
-        assert not rating.editorreview

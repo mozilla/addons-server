@@ -8,11 +8,8 @@ from django.core import mail
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
-from unittest import mock
-
 from freezegun import freeze_time
 from rest_framework.exceptions import ErrorDetail
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -20,7 +17,6 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, reverse_ns, user_factory,
     version_factory)
-from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating, RatingFlag
 
 
@@ -185,22 +181,18 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        with self.assertNumQueries(5):
-            # 5 queries:
+        with self.assertNumQueries(7):
+            # 7 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count (pagination)
             # - One for the ratings themselves
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
-            #
-            # We patch get_addon_object() to avoid the add-on related queries,
-            # which would pollute the result.
-            with mock.patch('olympia.ratings.views.RatingViewSet'
-                            '.get_addon_object') as get_addon_object:
-                get_addon_object.return_value = self.addon
-                response = self.client.get(
-                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
+            # - One for the addon
+            # - One for its translations
+            response = self.client.get(
+                self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         assert data['count'] == 3
@@ -236,22 +228,17 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        with self.assertNumQueries(5):
-            # 5 queries:
+        with self.assertNumQueries(7):
+            # 7 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count
             # - One for the ratings
             # - One for the replies (using prefetch_related())
-            #
-            # We patch get_addon_object() to avoid the add-on related queries,
-            # which would pollute the result. In the real world those queries
-            # would often be in the cache.
-            with mock.patch('olympia.ratings.views.RatingViewSet'
-                            '.get_addon_object') as get_addon_object:
-                get_addon_object.return_value = self.addon
-                response = self.client.get(
-                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
+            # - One for the addon
+            # - One for its translations
+            response = self.client.get(
+                self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         assert data['count'] == 3
@@ -1292,25 +1279,6 @@ class TestRatingViewSetEdit(TestCase):
         self.rating.reload()
         assert str(self.rating.body) == u'yés!'
 
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.ratings.utils.check_akismet_reports.delay')
-    def test_edit_calls_akismet(self, check_akismet_reports_mock):
-        self.client.login_api(self.user)
-        response = self.client.patch(
-            self.url, {'score': 2, 'body': u'løl!'},
-            HTTP_USER_AGENT='. Gecko/20100101 Firefox/62.0',
-            HTTP_REFERER='https://mozilla.org/')
-        assert response.status_code == 200
-        self.rating.reload()
-        assert response.data['id'] == self.rating.pk
-
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.rating_instance == self.rating
-        assert report.user_agent == '. Gecko/20100101 Firefox/62.0'
-        assert report.referrer == 'https://mozilla.org/'
-        check_akismet_reports_mock.assert_called_with([report.id])
-
 
 class TestRatingViewSetPost(TestCase):
     client_class = APITestClient
@@ -1731,29 +1699,6 @@ class TestRatingViewSetPost(TestCase):
                 'addon': self.addon.pk, 'body': u'My réview',
                 'score': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.ratings.utils.check_akismet_reports.delay')
-    def test_post_rating_calls_akismet(self, check_akismet_reports_mock):
-        self.user = user_factory()
-        self.client.login_api(self.user)
-        assert not Rating.objects.exists()
-        response = self.client.post(
-            self.url, {
-                'addon': self.addon.pk, 'body': u'test bodyé',
-                'score': 5, 'version': self.addon.current_version.pk},
-            HTTP_USER_AGENT='. Gecko/20100101 Firefox/62.0',
-            HTTP_REFERER='https://mozilla.org/')
-        assert response.status_code == 201
-        rating = Rating.objects.latest('pk')
-        assert rating.pk == response.data['id']
-
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.rating_instance == rating
-        assert report.user_agent == '. Gecko/20100101 Firefox/62.0'
-        assert report.referrer == 'https://mozilla.org/'
-        check_akismet_reports_mock.assert_called_with([report.id])
 
 
 class TestRatingViewSetFlag(TestCase):

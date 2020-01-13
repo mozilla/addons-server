@@ -9,8 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
-    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
-    ADDON_SLUGS, ADDON_STATICTHEME, ADDON_THEME)
+    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_SEARCH,
+    ADDON_SLUGS, ADDON_STATICTHEME, _ADDON_THEME, _ADDON_PERSONA)
 
 
 @total_ordering
@@ -251,7 +251,7 @@ CATEGORIES_NO_APP = {
             )
         ),
     },
-    ADDON_THEME: {
+    _ADDON_THEME: {
         'animals': StaticCategory(name=_(u'Animals')),
         'compact': StaticCategory(name=_(u'Compact')),
         'large': StaticCategory(name=_(u'Large')),
@@ -409,7 +409,7 @@ CATEGORIES_NO_APP = {
     },
 }
 
-CATEGORIES_NO_APP[ADDON_PERSONA] = {
+CATEGORIES_NO_APP[_ADDON_PERSONA] = {
     slug: copy.copy(cat)
     for slug, cat in CATEGORIES_NO_APP[ADDON_STATICTHEME].items()}
 
@@ -444,7 +444,7 @@ CATEGORIES = {
             'web-development': 4,
             'other': 73,
         },
-        ADDON_THEME: {
+        _ADDON_THEME: {
             'animals': 30,
             'compact': 32,
             'large': 67,
@@ -494,7 +494,7 @@ CATEGORIES = {
         ADDON_LPAPP: {
             'general': 98,
         },
-        ADDON_PERSONA: {
+        _ADDON_PERSONA: {
             'abstract': 100,
             'causes': 120,
             'fashion': 124,
@@ -545,6 +545,7 @@ CATEGORIES = {
         },
     },
 }
+
 
 CATEGORIES_BY_ID = {}
 

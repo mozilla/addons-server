@@ -7,11 +7,9 @@ from celery import group
 
 import olympia.core.logger
 from olympia.amo.celery import create_chunked_tasks_signatures
-from olympia.stats.models import (
-    DownloadCount, ThemeUserCount, UpdateCount)
+from olympia.stats.models import DownloadCount, UpdateCount
 from olympia.stats.search import CHUNK_SIZE
-from olympia.stats.tasks import (
-    index_download_counts, index_theme_user_counts, index_update_counts)
+from olympia.stats.tasks import index_download_counts, index_update_counts
 
 
 log = olympia.core.logger.getLogger('z.stats')
@@ -36,7 +34,7 @@ To limit the  date range:
 
 def gather_index_stats_tasks(index, addons=None, dates=None):
     """
-    Return the list of task groups to execute to index statistics for the given
+    Return list of tasks to execute to index statistics for the given
     index/dates/addons.
     """
     queries = [
@@ -44,8 +42,6 @@ def gather_index_stats_tasks(index, addons=None, dates=None):
             {'date': 'date'}),
         (DownloadCount.objects, index_download_counts,
             {'date': 'date'}),
-        (ThemeUserCount.objects, index_theme_user_counts,
-            {'date': 'date'})
     ]
 
     jobs = []
@@ -89,11 +85,12 @@ def gather_index_stats_tasks(index, addons=None, dates=None):
                     '%s__range' % date_field: date_range
                 }))
                 if data:
-                    jobs.append(create_chunked_tasks_signatures(
-                        task, data, CHUNK_SIZE, task_args=(index,)))
+                    jobs.extend(create_chunked_tasks_signatures(
+                        task, data, CHUNK_SIZE, task_args=(index,)).tasks)
         else:
-            jobs.append(create_chunked_tasks_signatures(
-                task, list(qs), CHUNK_SIZE, task_args=(index,)))
+            jobs.extend(create_chunked_tasks_signatures(
+                task, list(qs), CHUNK_SIZE, task_args=(index,)).tasks)
+
     return jobs
 
 

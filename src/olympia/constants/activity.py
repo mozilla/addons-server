@@ -650,6 +650,39 @@ class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
     keep = True
 
 
+class ADMIN_API_KEY_RESET(_LOG):
+    id = 155
+    format = _(u'User {user} api key reset.')
+    admin_event = True
+
+
+class BLOCKLIST_BLOCK_ADDED(_LOG):
+    id = 156
+    keep = True
+    action_class = 'add'
+    hide_developer = True
+    format = _('Block for {0} added to Blocklist.')
+    short = _('Block added')
+
+
+class BLOCKLIST_BLOCK_EDITED(_LOG):
+    id = 157
+    keep = True
+    action_class = 'edit'
+    hide_developer = True
+    format = _('Block for {0} edited in Blocklist.')
+    short = _('Block edited')
+
+
+class BLOCKLIST_BLOCK_DELETED(_LOG):
+    id = 158
+    keep = True
+    action_class = 'delete'
+    hide_developer = True
+    format = _('Block for {0} deleted from Blocklist.')
+    short = _('Block deleted')
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

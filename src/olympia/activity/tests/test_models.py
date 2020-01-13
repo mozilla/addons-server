@@ -6,12 +6,14 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.activity.models import (
-    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken, AddonLog)
+    MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken, AddonLog,
+    DraftComment)
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import CannedResponse
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -115,7 +117,7 @@ class TestActivityLog(TestCase):
         Addon.objects.get(pk=3615).
         """
         activity_log = ActivityLog()
-        activity_log.arguments = [(Addon, 3615)]
+        activity_log.set_arguments([(Addon, 3615)])
         assert activity_log.arguments[0] == Addon.objects.get(pk=3615)
 
     def test_addon_logging_pseudo(self):
@@ -168,7 +170,8 @@ class TestActivityLog(TestCase):
         entry = ActivityLog.objects.get()
         entry._arguments = 'failboat?'
         entry.save()
-        assert entry.arguments is None
+        del entry.arguments  # Cached version
+        assert entry.arguments == []
 
     def test_arguments_old_reviews_app(self):
         addon = Addon.objects.get()
@@ -293,9 +296,9 @@ class TestActivityLog(TestCase):
                     'Disabled by Mozilla.')
         assert str(log) == expected
 
-        log.arguments = [addon, amo.STATUS_REJECTED]
+        log.arguments = [addon, amo.STATUS_NULL]
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
-                    'Delicious Bookmarks</a> status changed to Rejected.')
+                    'Delicious Bookmarks</a> status changed to Incomplete.')
         assert str(log) == expected
 
         log.arguments = [addon, 666]
@@ -413,3 +416,39 @@ class TestActivityLogCount(TestCase):
         ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
         assert len(ActivityLog.objects.admin_events()) == 0
         assert len(ActivityLog.objects.for_developer()) == 1
+
+
+class TestDraftComment(TestCase):
+
+    def test_default_requirements(self):
+        addon = addon_factory()
+        user = user_factory()
+        # user and version are the absolute minimum required to
+        # create a DraftComment
+        comment = DraftComment.objects.create(
+            user=user, version=addon.current_version)
+
+        assert comment.user == user
+        assert comment.version == addon.current_version
+        assert comment.filename is None
+        assert comment.lineno is None
+        assert comment.canned_response is None
+        assert comment.comment == ''
+
+    def test_canned_response_on_delete(self):
+        addon = addon_factory()
+        user = user_factory()
+
+        canned_response = CannedResponse.objects.create(
+            name=u'Terms of services',
+            response=u'test',
+            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
+            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+
+        DraftComment.objects.create(
+            user=user, version=addon.current_version,
+            canned_response=canned_response)
+
+        canned_response.delete()
+
+        assert DraftComment.objects.get().canned_response is None

@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-21 17:27+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-09-30 18:10+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -26,7 +26,7 @@ msgstr "Ha habido un problema al contactar con el servidor."
 msgid "Select a file..."
 msgstr "Seleccionar un archivo..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Tu complemento debería terminar con .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
@@ -147,30 +147,6 @@ msgstr "Los videos deben estar en el formato WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Este tema es incompatible con tu versión de {0}"
-
-msgid "All Rights Reserved"
-msgstr "Todos los derechos reservados"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Reconocimiento 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Reconocimiento-No Comercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Reconocimiento-No Comercial-No Derivadas 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Reconocimiento-No Derivadas 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
-
-msgid "Your Theme's Name"
-msgstr "El nombre de tu tema"
 
 msgid "Flagged for review"
 msgstr "Marcado para revisión"
@@ -734,12 +710,6 @@ msgstr "Eliminar esta localización"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} estuvo viendo esta página antes."
-
-msgid "Receipt checked by app."
-msgstr "El recibo fue comprobado por la aplicación."
-
-msgid "Receipt was not checked by app."
-msgstr "El recibo no fue comprobado por la aplicación."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} fue el primero en ver este complemento."

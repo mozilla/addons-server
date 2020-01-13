@@ -76,8 +76,6 @@ NEW_FEATURES = True
 
 ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
-XSENDFILE_HEADER = 'X-Accel-Redirect'
-
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
@@ -87,38 +85,11 @@ FXA_CONFIG = {
     'default': {
         'client_id': env('FXA_CLIENT_ID'),
         'client_secret': env('FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url':
-            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
-        'scope': 'profile',
-    },
-    'amo': {
-        'client_id': env('AMO_FXA_CLIENT_ID'),
-        'client_secret': env('AMO_FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url': 'https://addons.mozilla.org/api/v3/accounts/authenticate/?config=amo', # noqa
-        'scope': 'profile',
-        'skip_register_redirect': True,
-    },
-    'code-manager': {
-        'client_id': env('CODE_MANAGER_FXA_CLIENT_ID'),
-        'client_secret': env('CODE_MANAGER_FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url': 'https://addons.mozilla.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
-        'scope': 'profile',
-        'skip_register_redirect': True,
+        # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'code-manager']
-
-VALIDATOR_TIMEOUT = 360
+ALLOWED_FXA_CONFIGS = ['default']
 
 ES_DEFAULT_NUM_SHARDS = 10
 
@@ -134,3 +105,6 @@ TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-west-2.amazonaws.com/361527076523/'
     'amo-account-change-prod')
+
+EXTENSION_WORKSHOP_URL = env(
+    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com')

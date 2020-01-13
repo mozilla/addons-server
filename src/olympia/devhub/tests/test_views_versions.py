@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-import re
 import zipfile
 
 from django.core.files import temp
@@ -80,15 +79,6 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         doc = self.get_doc()
         assert '<strong>Invisible:</strong>' in doc.html()
-
-    def test_no_validation_results(self):
-        doc = self.get_doc()
-        v = doc('td.file-validation').text()
-        assert re.sub(r'\s+', ' ', v) == (
-            'All Platforms Not validated. Validate now.')
-        assert doc('td.file-validation a').attr('href') == (
-            reverse('devhub.file_validation',
-                    args=[self.addon.slug, self.version.all_files[0].id]))
 
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit',
@@ -195,6 +185,41 @@ class TestVersion(TestCase):
             action=amo.LOG.DELETE_VERSION.id).count() == 0
         assert ActivityLog.objects.filter(
             action=amo.LOG.DISABLE_VERSION.id).count() == 0
+
+    def test_can_disable_or_delete_current_ver_if_previous_recommended(self):
+        # If the add-on is recommended you *can* disable or delete the current
+        # version if the previous version is approved for recommendation too.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        previous_version = self.version
+        previous_version.update(recommendation_approved=True)
+        self.version = version_factory(
+            addon=self.addon, recommendation_approved=True)
+        self.addon.reload()
+        assert self.version == self.addon.current_version
+        assert previous_version != self.version
+        assert previous_version.recommendation_approved
+
+        self.delete_data['version_id'] = self.version.id
+        self.delete_data['disable_version'] = ''
+        self.client.post(self.delete_url, self.delete_data)
+        assert Version.objects.filter(pk=self.version.id).exists()
+        assert Version.objects.get(pk=self.version.id).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
+
+        del self.delete_data['disable_version']
+        self.client.post(self.delete_url, self.delete_data)
+        assert not Version.objects.filter(pk=self.version.id).exists()
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 1
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
+
+        self.addon.reload()
+        assert self.addon.current_version == previous_version
+        assert self.addon.is_recommended  # It's still recommended
 
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older

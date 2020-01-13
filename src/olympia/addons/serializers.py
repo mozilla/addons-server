@@ -1,11 +1,14 @@
 import re
+from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
+from django.http.request import QueryDict
 
 from rest_framework import exceptions, serializers
 
 from olympia import amo
-from olympia.accounts.serializers import BaseUserSerializer
+from olympia.accounts.serializers import (
+    BaseUserSerializer, UserProfileBasketSyncSerializer)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import (
@@ -24,8 +27,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions, License, Version, VersionPreview)
 
-from .models import (
-    Addon, CompatOverride, Preview, ReplacementAddon, attach_tags)
+from .models import Addon, Preview, ReplacementAddon, attach_tags
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -289,7 +291,7 @@ class AddonDeveloperSerializer(BaseUserSerializer):
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
-    contributions_url = serializers.URLField(source='contributions')
+    contributions_url = serializers.SerializerMethodField()
     current_version = CurrentVersionSerializer()
     description = TranslationSerializerField()
     developer_comments = TranslationSerializerField()
@@ -299,7 +301,7 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField()
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
-    is_source_public = serializers.BooleanField(source='view_source')
+    is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='current_previews')
@@ -369,6 +371,10 @@ class AddonSerializer(serializers.ModelSerializer):
                     data[key] = self.outgoingify(data[key])
         if request and is_gate_active(request, 'del-addons-created-field'):
             data.pop('created', None)
+        if request and not is_gate_active(request, 'is-source-public-shim'):
+            data.pop('is_source_public', None)
+        if request and not is_gate_active(request, 'is-featured-addon-shim'):
+            data.pop('is_featured', None)
         return data
 
     def outgoingify(self, data):
@@ -391,12 +397,9 @@ class AddonSerializer(serializers.ModelSerializer):
         return bool(getattr(obj, 'has_eula', obj.eula))
 
     def get_is_featured(self, obj):
-        # obj._is_featured is set from ES, so will only be present for list
-        # requests.
-        if not hasattr(obj, '_is_featured'):
-            # Any featuring will do.
-            obj._is_featured = obj.is_featured(app=None, lang=None)
-        return obj._is_featured
+        # featured is gone, but we need to keep the API backwards compatible so
+        # fake it with recommended status instead.
+        return obj.is_recommended
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -413,6 +416,17 @@ class AddonSerializer(serializers.ModelSerializer):
         # get_url_path() which does an extra check on current_version that is
         # annoying in subclasses which don't want to load that version.
         return absolutify(obj.get_detail_url())
+
+    def get_contributions_url(self, obj):
+        if not obj.contributions:
+            # don't add anything when it's not set.
+            return obj.contributions
+        parts = urlsplit(obj.contributions)
+        query = QueryDict(parts.query, mutable=True)
+        query.update(amo.CONTRIBUTE_UTM_PARAMS)
+        return urlunsplit(
+            (parts.scheme, parts.netloc, parts.path, query.urlencode(),
+             parts.fragment))
 
     def get_edit_url(self, obj):
         return absolutify(obj.get_dev_url())
@@ -439,6 +453,9 @@ class AddonSerializer(serializers.ModelSerializer):
             'count': obj.total_ratings,
             'text_count': obj.text_ratings_count,
         }
+
+    def get_is_source_public(self, obj):
+        return False
 
 
 class AddonSerializerWithUnlistedData(AddonSerializer):
@@ -590,8 +607,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # Attach related models (also faking them). `current_version` is a
         # property we can't write to, so we use the underlying field which
         # begins with an underscore.
+        data_version = data.get('current_version') or {}
         obj._current_version = self.fake_version_object(
-            obj, data.get('current_version'), amo.RELEASE_CHANNEL_LISTED)
+            obj, data_version, amo.RELEASE_CHANNEL_LISTED)
+        obj._current_version_id = data_version.get('id')
 
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
@@ -614,8 +633,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         obj.average_rating = ratings.get('average')
         obj.total_ratings = ratings.get('count')
         obj.text_ratings_count = ratings.get('text_count')
-
-        obj._is_featured = data.get('is_featured', False)
 
         return obj
 
@@ -640,10 +657,10 @@ class ESAddonAutoCompleteSerializer(ESAddonSerializer):
 
     def get_url(self, obj):
         # Addon.get_absolute_url() calls get_url_path(), which wants
-        # current_version to exist, but that's just a safeguard. We don't care
-        # and don't want to fetch the current version field to improve perf, so
-        # give it a fake one.
-        obj._current_version = Version()
+        # _current_version_id to exist, but that's just a safeguard. We don't
+        # care and don't want to fetch the current version field to improve
+        # perf, so give it a fake one.
+        obj._current_version_id = 1
         return obj.get_absolute_url()
 
 
@@ -704,6 +721,36 @@ class LanguageToolsSerializer(AddonSerializer):
         return data
 
 
+class VersionBasketSerializer(SimpleVersionSerializer):
+    class Meta:
+        model = Version
+        fields = ('id', 'compatibility', 'is_strict_compatibility_enabled',
+                  'version')
+
+
+class AddonBasketSyncSerializer(AddonSerializerWithUnlistedData):
+    # We want to send all authors to basket, not just listed ones, and have
+    # the full basket-specific serialization.
+    authors = UserProfileBasketSyncSerializer(many=True)
+    name = serializers.SerializerMethodField()
+    latest_unlisted_version = VersionBasketSerializer()
+    current_version = VersionBasketSerializer()
+
+    class Meta:
+        model = Addon
+        fields = ('authors', 'average_daily_users', 'categories',
+                  'current_version', 'default_locale', 'guid', 'id',
+                  'is_disabled', 'is_recommended', 'last_updated',
+                  'latest_unlisted_version', 'name', 'ratings', 'slug',
+                  'status', 'type')
+        read_only_fields = fields
+
+    def get_name(self, obj):
+        # Basket doesn't want translations, we run the serialization task under
+        # the add-on default locale so we can just return the name as string.
+        return str(obj.name)
+
+
 class ReplacementAddonSerializer(serializers.ModelSerializer):
     replacement = serializers.SerializerMethodField()
     ADDON_PATH_REGEX = r"""/addon/(?P<addon_id>[^/<>"']+)/$"""
@@ -748,30 +795,3 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
             return self._get_collection_guids(
                 coll_match.group('user_id'), coll_match.group('coll_slug'))
         return []
-
-
-class CompatOverrideSerializer(serializers.ModelSerializer):
-
-    class VersionRangeSerializer(serializers.Serializer):
-        class ApplicationSerializer(serializers.Serializer):
-            name = serializers.CharField(source='app.pretty')
-            id = serializers.IntegerField(source='app.id')
-            min_version = serializers.CharField(source='min')
-            max_version = serializers.CharField(source='max')
-            guid = serializers.CharField(source='app.guid')
-
-        addon_min_version = serializers.CharField(source='min')
-        addon_max_version = serializers.CharField(source='max')
-        applications = ApplicationSerializer(source='apps', many=True)
-
-    addon_id = serializers.IntegerField()
-    addon_guid = serializers.CharField(source='guid')
-    version_ranges = VersionRangeSerializer(
-        source='collapsed_ranges', many=True)
-
-    class Meta:
-        model = CompatOverride
-        fields = ('addon_id', 'addon_guid', 'name', 'version_ranges')
-
-    def get_addon_id(self, obj):
-        return obj.addon_id

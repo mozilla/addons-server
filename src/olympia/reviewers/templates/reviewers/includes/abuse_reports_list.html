@@ -38,7 +38,15 @@
             <time datetime="{{ report_install_date }}" title="{{ report_install_date }}">{{ report.install_date|timesince }}</time>
           {% endif %}
         </td>
-        <td>{{ report.addon_install_origin }} {{ report.get_addon_install_method_display() }}</td>
+        <td>
+          {{ report.addon_install_origin }}
+          {% if report.addon_install_method %}
+            <br><em>{{ _('Method:') }}</em> {{ report.get_addon_install_method_display() }}
+          {% endif %}
+          {% if report.addon_install_source %}
+            <br><em>{{ _('Source:') }}</em> {{ report.get_addon_install_source_display() }}
+          {% endif %}
+        </td>
         <td>{{ report.get_reason_display() }}</td>
         <td>{{ report.created|datetime }}</td>
         <td>

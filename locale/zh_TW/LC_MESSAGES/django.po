@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-07-17 12:02+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-12-31 03:34+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -52,6 +52,9 @@ msgstr "已將 %d 筆選擇的報告標示為可疑的。"
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr "將選擇的濫用報告標示為可疑的"
+
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "請確保此欄位長度不超過 {max_length} 字元。"
 
 msgid "Modified on:"
 msgstr "修改於:"
@@ -138,53 +141,8 @@ msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
 
-msgid "Awaiting Review"
-msgstr "等待審查"
-
-msgid "Rejected"
-msgstr "已被退回"
-
-msgid "Approved"
-msgstr "已審查通過"
-
-msgid "Added {0}"
-msgstr "{0} 新增"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> 位使用者"
-
-msgid "Hover to Preview"
-msgstr "移至上方預覽"
-
-msgid "Add"
-msgstr "新增"
-
-msgid "Edit"
-msgstr "編輯"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "作者：{0} 日期：{1}"
-
-msgid "Not yet rated"
-msgstr "未經評分"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> 位使用者"
-
-msgid "by"
-msgstr "作者:"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "每日使用者 {0}"
-
 msgid "Sort by:"
-msgstr "排列依照："
+msgstr "排序依照:"
 
 msgid "More"
 msgstr "更多"
@@ -331,9 +289,6 @@ msgstr "糟糕"
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>喔喔！發生問題了。</h1><p>我們會盡快修復。</p><p>您可以試試重新整理頁面，或回到 <a href=\"%(home)s\">附加元件站首頁</a>。</p>"
 
-msgid "Some rights reserved"
-msgstr "保留部份權利"
-
 msgid "No results found"
 msgstr "搜尋沒有結果"
 
@@ -414,9 +369,6 @@ msgstr "{0} 附加元件"
 msgid "Add-ons"
 msgstr "附加元件"
 
-msgid "Custom License"
-msgstr "自訂授權"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} 前"
@@ -470,6 +422,9 @@ msgstr "您必須提供 {lang-code:value} 的物件。"
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "PK 或 slug「%s」無效，物件不存在。"
 
+msgid "Confirmation for developer API keys"
+msgstr "確認開發者 API 金鑰"
+
 msgid "Application Versions"
 msgstr "應用程式版本"
 
@@ -497,9 +452,6 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "就算您支援的應用程式不需要安裝資訊檔，您還是要依照%(amo_manifests_mdn_link_open)s此處%(amo_manifests_mdn_link_close)s描述的內容，加入包含所有必要屬性的安裝資訊檔。"
-
-msgid "The text entered has been flagged as spam."
-msgstr "輸入的文字已被標示為垃圾留言。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "這個自訂網址已被您其他的收藏集使用。"
@@ -570,6 +522,9 @@ msgstr "{addon} {version} 已刪除檔案 {0}。"
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} 已審核通過。"
 
+msgid "Approved"
+msgstr "已審查通過"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} 已要求初步審核。"
 
@@ -580,6 +535,9 @@ msgstr "已通過初步審核"
 # 100%
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} 已被退回。"
+
+msgid "Rejected"
+msgstr "已被退回"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} 已被保留。"
@@ -835,6 +793,9 @@ msgstr "已要求管理員進行佈景主題審核"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} 是從輕量佈景主題移轉而來。"
 
+msgid "User {user} api key reset."
+msgstr "已重設使用者 {user} 的 API 金鑰。"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -862,17 +823,14 @@ msgstr "未知"
 msgid "Incomplete"
 msgstr "尚未完成"
 
+msgid "Awaiting Review"
+msgstr "等待審查"
+
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
 msgid "Deleted"
 msgstr "已刪除"
-
-msgid "Pending approval"
-msgstr "等待審核中"
-
-msgid "Flagged for further review"
-msgstr "已標記，等待進一步審核"
 
 msgid "Unlisted"
 msgstr "未上架"
@@ -905,8 +863,8 @@ msgstr "語言套件（附加元件）"
 msgid "Plugin"
 msgstr "外掛程式"
 
-msgid "Theme"
-msgstr "佈景主題"
+msgid "Deprecated LWT"
+msgstr "已棄用的 LWT"
 
 msgid "Theme (Static)"
 msgstr "主題（靜態）"
@@ -935,8 +893,8 @@ msgstr "語言套件（附加元件）"
 msgid "Plugins"
 msgstr "外掛程式"
 
-msgid "Themes"
-msgstr "佈景主題"
+msgid "Deprecated LWTs"
+msgstr "已棄用的 LWTs"
 
 msgid "Themes (Static)"
 msgstr "主題（靜態）"
@@ -957,13 +915,13 @@ msgid "Bookmarks"
 msgstr "書籤"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "下載可使用密碼保護書籤、檢查重複項目、尋找失效書籤等功能的擴充套件。"
 
 msgid "Download Management"
 msgstr "下載管理"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "安裝可幫助您下載網頁、音樂和影片內容的 Firefox 擴充套件。還可以找到管理下載項目、分享檔案等功能的附加元件。"
 
 msgid "Feeds, News & Blogging"
 msgstr "資訊來源、新聞、部落格"
@@ -1440,6 +1398,13 @@ msgstr "低品質、草稿或者空白圖片"
 msgid "Header image alignment problem"
 msgstr "標題圖片對齊問題"
 
+#, fuzzy
+msgid "no action"
+msgstr "更多操作"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "核心"
 
@@ -1458,9 +1423,6 @@ msgstr "現在起，Thunderbird 與 SeaMonkey 的附加元件將上架於 addons
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當您的使用者安裝 WebExtension 後，就無法再安裝傳統的附加元件。"
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}]「{field}」欄位當中輸入的文字已被標示為垃圾留言。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
@@ -1510,14 +1472,20 @@ msgstr "網址當中的網域名稱，必需是 [ %s ] 當中其中一個，或�
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "在您更動您的預設語系前，您必須為那個語系填入名稱、概要與敘述。您目前沒有填入 %s。"
 
+msgid "Users can not be added directly"
+msgstr "無法直接新增使用者"
+
+msgid "An author can only be present once."
+msgstr "每位作者只可列出一次。"
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "帳號需要先加入顯示名稱，才能被設定為作者。"
+
 msgid "Must have at least one owner."
 msgstr "至少需要一位擁有者。"
 
 msgid "At least one author must be listed."
 msgstr "至少需要列出一位作者。"
-
-msgid "An author can only be listed once."
-msgstr "每位作者只可被列出一次。"
 
 msgid "Slug incorrect."
 msgstr "Slug 不正確。"
@@ -1527,6 +1495,9 @@ msgstr "詳細資訊"
 
 msgid "What is your license's name?"
 msgstr "您的授權名稱？"
+
+msgid "Custom License"
+msgstr "自訂授權"
 
 msgid "Provide the text of your license."
 msgstr "敘述您的授權。"
@@ -1675,10 +1646,22 @@ msgstr "網址不正確，並未刪除佈景主題。"
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "網址不正確，並未刪除附加元件。"
 
+msgid "Invitation accepted."
+msgstr "已接受邀請函。"
+
+msgid "Invitation declined."
+msgstr "已拒絕邀請函。"
+
 msgid "An author has been added to your add-on"
 msgstr "已為您的附加元件新增作者"
 
-msgid "An author has a role changed on your add-on"
+msgid "Author invitation for {addon_name}"
+msgstr "{addon_name} 作者邀請函"
+
+msgid "A confirmation email has been sent to {email}"
+msgstr "已將確認信發送至 {email}"
+
+msgid "An author role has been changed on your add-on"
 msgstr "您的附加元件的某位作者的角色發生變更"
 
 msgid "An author has been removed from your add-on"
@@ -1712,7 +1695,7 @@ msgid "There was an error uploading your preview."
 msgstr "上傳擷圖的過程中發生錯誤。"
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "無法刪除或停用最新通過審核版本的推薦擴充套件。若需要幫助，請聯絡 AMO 管理員。"
 
 #, python-format
 msgid "Version %s disabled."
@@ -1771,9 +1754,6 @@ msgstr "已要求審核。"
 msgid "You must provide further details to proceed."
 msgstr "您必須提供更多資訊才能繼續。"
 
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "您的舊金鑰已被撤銷，不再有效。請記得更新所有 API 客戶端上使用的金鑰。"
-
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "已註銷您的舊存取權限，不再有效。"
 
@@ -1830,6 +1810,9 @@ msgstr "文件集"
 
 msgid "Extension Development"
 msgstr "擴充套件開發"
+
+msgid "Themes"
+msgstr "佈景主題"
 
 msgid "Developer Policies"
 msgstr "開發者政策"
@@ -1983,6 +1966,18 @@ msgstr "已上架版本預覽"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "正在產生預覽內容 - 請稍後再回來，或重新整理頁面。"
 
+msgid "You have been invited to become an author of {addon_name}."
+msgstr "您已被邀請成為 {addon_name} 的作者。"
+
+msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
+msgstr "接受邀請函後，可讓您編輯此附加元件，並可能會在附加元件網站的「作者清單」中顯示您的名字。"
+
+msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr "請點擊下方的「接受」按鈕，即可將您加入為 {addon_name} 的作者。"
+
+msgid "Decline"
+msgstr "拒絕"
+
 msgid "Manage Authors & License"
 msgstr "管理作者與授權條款"
 
@@ -1992,6 +1987,12 @@ msgstr "作者"
 msgid "About author roles"
 msgstr "關於作者"
 
+msgid "Authors pending confirmation"
+msgstr "等待確認中的作者"
+
+msgid "Authors that have been added to this add-on but haven't confirmed."
+msgstr "已將作者加入此附加元件，但尚未確認。"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
@@ -1999,6 +2000,9 @@ msgstr "<p>附加元件可以有許多作者，每位作者可擔當下列任一
 
 msgid "Additional Details"
 msgstr "其他詳細資訊"
+
+msgid "Edit"
+msgstr "編輯"
 
 msgid "Additional Details for {0}"
 msgstr "{0} 的其他詳細資訊"
@@ -2144,18 +2148,6 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr "任何使用者可能會想要知道但與附加元件概要、描述無關的內容可填於此處。一般來說可填入已知的重大 bug、如何回報 bug 的方式，或是預計下次發行新版本的時間等等。此欄位僅與公開上架的附加元件有關。"
-
-msgid "View Source?"
-msgstr "檢視原始碼？"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "是否要將附加元件原始碼顯示於我們的線上檢視器。此欄位僅與公開上架的附加元件有關。"
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "可公開瀏覽此附加元件的原始碼。"
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "噢，這個附加元件的原始碼不可公開瀏覽。"
 
 msgid "Public Stats?"
 msgstr "公開統計數據？"
@@ -2462,7 +2454,7 @@ msgid "Describe Version"
 msgstr "描述此版本"
 
 msgid "Release Notes:"
-msgstr "版本紀錄:"
+msgstr "發行公告:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr "讓您的使用者知道這個版本有什麼新鮮事、又有哪些不一樣的事情。"
@@ -2507,7 +2499,7 @@ msgid "Manage Listing"
 msgstr "管理上架資訊"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含 minified、擾亂過、編譯過的的程式碼的話也可放入原始碼。"
+msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含 minified、擾亂過、編譯過的程式碼的話也可放入原始碼。"
 
 msgid "Edit version {0}"
 msgstr "編輯版本 {0}"
@@ -2697,6 +2689,13 @@ msgid ""
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr "若要送出 API 請求，請傳送 <a href=\"%(jwt_url)s\">JSON Web Token（JWT）</a> 作為授權檔頭。您將需要在送出 <a href=\"%(docs_url)s\">API 文件</a> 中列出的每個請求時產生 JWT。"
 
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr "請點擊下面的確認按鈕，為使用者 <strong>%(name)s</strong> 產生 API 資訊。"
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr "將寄出確認鏈結到您的電子郵件信箱。確認後，即可於頁面找到您的 API 金鑰。"
+
 msgid "You don't have any API credentials."
 msgstr "您並沒有任何 API 存取權限。"
 
@@ -2705,6 +2704,9 @@ msgstr "撤銷"
 
 msgid "Revoke and regenerate credentials"
 msgstr "撤銷並重新產生金鑰"
+
+msgid "Confirm and generate new credentials"
+msgstr "確認並產生新金鑰"
 
 msgid "Generate new credentials"
 msgstr "產生新金鑰"
@@ -2832,10 +2834,8 @@ msgstr[0] "為此附加元件選擇<b>最多 {0} 個</b> {1} 分類："
 msgid "End-User License Agreement"
 msgstr "使用者授權合約"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr "使用者將需要先接受下列終端使用者授權合約（EULA）才能安裝您的附加元件。要求同意授權合約將大幅影響附加元件的下載數量。請注意 EULA 與 GPL 或 MPL 等程式碼的授權條款不同。此欄位僅與公開上架的附加元件有關。"
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "請注意，EULA 與原始碼的授權條款（例如 GPL 或 MPL）不同。僅與公開上架的附加元件有關。"
 
 msgid "Privacy Policy"
 msgstr "隱私權保護政策"
@@ -2852,44 +2852,23 @@ msgstr "請在 README 檔案或給審核者的留言中加入如何重製此版�
 msgid "Read more about the source code review policy."
 msgstr "了解完整的原始碼審查政策。"
 
-msgid "Latest News"
-msgstr "最新消息"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-# 79%
-# 100%
-msgid "Read more in our Blog"
-msgstr "到部落格閱讀更多資訊"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "擴充套件工作坊"
 
 msgid "Resources"
 msgstr "資源"
 
-msgid "Porting"
-msgstr "移植"
-
-msgid "Community"
-msgstr "社群"
-
-msgid "About"
-msgstr "關於"
-
-msgid "Forum"
-msgstr "討論區"
-
-# Link text to the AMO blog.
-msgid "Blog"
-msgstr "部落格"
-
-msgid "Contact Us"
-msgstr "聯絡我們"
-
-msgid "Support"
-msgstr "支援"
-
-msgid "Report Bug"
-msgstr "回報 Bug"
-
-msgid "Site Status"
-msgstr "網站狀態"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: 打造並測試擴充套件"
@@ -2897,20 +2876,11 @@ msgstr "Web-Ext: 打造並測試擴充套件"
 msgid "Promote"
 msgstr "推廣"
 
-msgid "Get Your Add-on Featured"
-msgstr "讓您的附加元件成為精選"
-
 msgid "\"Get The Add-on\" button"
 msgstr "「取得附加元件」按鈕"
 
-msgid "Legal"
-msgstr "法務"
-
-msgid "Report Trademark Abuse"
-msgstr "回報商標濫用"
-
-msgid "Legal Notices"
-msgstr "法律聲明"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "捐款"
@@ -2942,38 +2912,15 @@ msgstr "不需要會寫程式也能幫助 Firefox 成為最可自訂的瀏覽器
 msgid "See how"
 msgstr "看看怎麼做"
 
-msgid "Manage Your Add-on"
-msgstr "管理您的附加元件"
+msgid "Get involved"
+msgstr ""
 
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "登入後即可編輯並更新您的附加元件"
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
+msgstr ""
 
-msgid "Write one code base for many browsers"
-msgstr "寫一份 Code 就能給多套瀏覽器使用"
-
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
-msgstr "透過 WebExtensions API，只要一點點修改就能簡單打造可同時在 Firefox、Chrome、Opera 及 Edge 運作的擴充套件。了解四家主要瀏覽器廠商的擴充套件開發差異，以及要如何才能讓您的擴充套件跨平台通用。"
-
-msgid "View Best Practices for Cross-Browser Development"
-msgstr "閱讀跨瀏覽器開發的最佳實踐"
-
-msgid "Welcome Back"
-msgstr "歡迎回來"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "想讓您的擴充套件成為 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 上的精選套件嗎？我們的精選套件挑選原則將告訴您要注意哪些事項。"
-
-msgid "Learn More"
-msgstr "更多資訊"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr "您可以依照我們吸引使用者的最佳做法，來增加使用者對您的擴充套件的信心與信任程度。"
-
-msgid "See Best Practices"
-msgstr "參閱最佳實踐"
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "了解完整的原始碼審查政策。"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理。"
@@ -2998,6 +2945,13 @@ msgstr "附加元件開發者交流中心"
 msgid "Docs"
 msgstr "文件"
 
+msgid "Support"
+msgstr "支援"
+
+# Link text to the AMO blog.
+msgid "Blog"
+msgstr "部落格"
+
 msgid "Sign Out"
 msgstr "登出"
 
@@ -3008,60 +2962,24 @@ msgid "User Photo"
 msgstr "使用者相片"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">註冊</a>或<a href=\"%(login)s\">登入</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "自訂 Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr "附加元件可讓數以百萬的 Firefox 使用者增強上網體驗。若您是熟悉 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 與 %(css_link_open)sCSS%(link_close)s 的 Web 開發者，就已經具備了開發附加元件的必需能力。"
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "了解如何打造附加元件"
 
-msgid "Port a Chrome Extension"
-msgstr "移植 Chrome 擴充套件"
+msgid "Ready to submit or manage your extension?"
+msgstr ""
 
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox 支援 WebExtension API，大部分情況下都與 Chrome、Opera、Edge 所支援的擴充套件 API 相容。若您有這些平台的附加元件只要小改一下就可以移植過來。"
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Learn How"
-msgstr "更多資訊"
-
-msgid "Publish Your Add-on"
-msgstr "發布您的附加元件"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "寫好附加元件了嗎？請將您的附加元件或佈景主題上架到 addons.mozilla.org，也可以簽署後自行發布。"
-
-msgid "Sign In"
-msgstr "登入"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "一套用來打造、執行並測試擴充套件的命令行工具。"
-
-msgid "Automated code tests for your add-on."
-msgstr "自動化測試您附加元件的程式碼。"
-
-msgid "Compatibility Test"
-msgstr "相容性測試"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "看看您的擴充套件是否與 Firefox 相容。"
-
-msgid "Live Testing"
-msgstr "測試中"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr "在 Firefox 暫時安裝您的擴充套件，進行測試與除錯。"
+msgid "Register for a developer account or log in to the Developer Hub"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
@@ -3126,12 +3044,6 @@ msgstr "審核歷史"
 msgid "Close Review History"
 msgstr "關閉審查歷史"
 
-msgid "Not validated."
-msgstr "尚未驗證。"
-
-msgid "Validate now."
-msgstr "立刻驗證。"
-
 msgid "Request Review"
 msgstr "要求審核"
 
@@ -3146,6 +3058,9 @@ msgstr "取得審核註記時遇到問題"
 
 msgid "Load older..."
 msgstr "載入更舊的..."
+
+msgid "by"
+msgstr "作者:"
 
 msgid "Leave a reply"
 msgstr "留下回覆"
@@ -3283,8 +3198,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "{addon_name} {start_sub_heading}封鎖廣告並保護隱私{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "簡單安裝後，就能讓您控制要看到的廣告內容，以及您是在網路上如何被追蹤的。"
+msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "廣告封鎖與隱私保護。只要簡單安裝後，就能讓您控制要看到的廣告內容，以及您是在網路上如何被追蹤的。"
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3299,24 +3214,24 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "{addon_name} {start_sub_heading}停止 Facebook 追蹤{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr "將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
+msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
+msgstr "不被 Facebook 追蹤。將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}簡化搜尋功能{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "只要反白網頁上的任何文字，即可快速於不同搜尋引擎，進行搜尋。"
+msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
+msgstr "只要反白網頁上的任何文字，即可快速於不同搜尋引擎，輕鬆進行搜尋。"
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}即時天氣報告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get instant global weather information right in Firefox."
-msgstr "直接在 Firefox 取得全球天氣資訊。"
+msgid "Instant weather updates from around the world."
+msgstr "來自世界各地的即時天氣更新。"
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3339,23 +3254,23 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "可用於 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等數以百計的影片網站。"
+msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "輕鬆下載影片。可用於 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等數以百計的影片網站。"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "好幾打適用於任何情況的表情符號，讓您點一下即可輸入。"
+msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
+msgstr "顏文字大補包。好幾打適用於任何情況的顏文字，讓您點一下即可輸入。"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}管理密碼{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
 msgstr "簡化並在不同裝置間同步您所有網站的登入資訊，只要使用一組密碼即可管理。"
 
 #. editorial content for the discovery pane.
@@ -3363,8 +3278,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "uBlock Origin 是輕量而有效的廣告封鎖器，可套用數以千計的的內容過濾條件，而不花費太多記憶體。"
+msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "輕量而有效的廣告封鎖器。uBlock Origin 可套用數以千計的內容過濾條件，而不花費太多記憶體。"
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3387,8 +3302,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "{addon_name} {start_sub_heading}使用視覺化書籤{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites from a tile layout."
-msgstr "從九宮格版面開啟您最愛的網站。"
+msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
+msgstr "視覺化操作書籤。從九宮格版面開啟您最愛的網站。"
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3451,24 +3366,24 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}輕鬆翻譯{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "反白網頁上的任何文字，或選擇整張網頁，即可即時翻譯。"
+msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
+msgstr "輕鬆翻譯。反白網頁上的任何文字，或選擇整張網頁，即可即時翻譯。"
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}得到學術智慧{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy free access to 10+ million research papers."
-msgstr "免費取用超過 1000 萬篇研究論文。"
+msgid "Tap academic wisdom. Access 10+ million research papers for free."
+msgstr "收集學術智慧。免費取用超過 1000 萬篇研究論文。"
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}自訂滑鼠手勢{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "嘗試使用超過 50 種好用的滑鼠手勢來瀏覽頁面。"
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
+msgstr "自訂滑鼠手勢。嘗試使用超過 50 種好用的滑鼠手勢來瀏覽頁面。"
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3485,7 +3400,7 @@ msgstr "{addon_name} {start_sub_heading}用良心搜尋{end_sub_heading}"
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia 將 80％ 搜尋利潤用於世界各地的植樹計劃。將 Ecosia 直接加入 Firefox 搜尋框"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3504,8 +3419,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}放大圖片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply hover over an image to magnify it."
-msgstr "將游標停留在圖片上即可放大。"
+msgid "Hover over an image to magnify it."
+msgstr "將滑鼠游標停留在圖片上即可放大。"
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3536,16 +3451,18 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "{addon_name} {start_sub_heading}清除數位足跡{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "讓 Firefox 針對您指定的網域，忘記 Cookie、本機儲存空間等網站資料。"
+msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "清除數位軌跡。讓 Firefox 針對您指定的網域，忘記 Cookie、本機儲存空間等網站資料。"
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}儲存文字，稍後再讀{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr "不要再重複寫同樣的東西了！如果您會在工作或其他通訊上頻繁使用那些字詞，把它們存在 Clippings 裡，等需要用到時再輕鬆地貼上。"
+msgid ""
+"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
+"when needed."
+msgstr "保存文字稍後再用，不要再重複寫同樣的東西了！如果您會在工作或其他通訊上頻繁使用那些字詞，把它們存在 Clippings 裡，等需要用到時再輕鬆地貼上。"
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3568,7 +3485,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "{addon_name} {start_sub_heading}防止在背後追蹤您的追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3584,7 +3501,7 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{addon_name} {start_sub_heading}分隔開您的線上生活{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3600,32 +3517,32 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}讀取 ePub 電子書{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "在 Firefox 中直接開啟 ePub 檔案—有放大文字、頁面大小等功能。"
+msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
+msgstr "在 Firefox 中直接開啟閱讀 ePub 檔案—有放大文字、頁面大小等功能。"
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}加強 YouTube 使用體驗{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr "預設以高畫質播放，關閉註解等等。"
+msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
+msgstr "預設以高畫質播放，關閉註解等設定播放 YouTube 影片。"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}找出追蹤者{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get a glimpse into who's tracking you with just a click."
-msgstr "只要點一下就可以知道誰在追蹤你。"
+msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
+msgstr "找出追蹤者。只要點一下就可以知道誰在追蹤你。"
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}變更您的代理伺服器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Surf the web through self-defined proxy settings."
-msgstr "透過自訂 Proxy 設定上網。"
+msgid "Change your proxy server and surf the web through self-defined proxy settings."
+msgstr "更改 Proxy 設定，並透過自訂 Proxy 設定上網。"
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3640,8 +3557,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}安全上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supports HTTPS."
-msgstr "為所有支援 HTTPS 的網站加密，增加安全性。"
+msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
+msgstr "為所有支援 HTTPS 的網站開啟加密，上網更安全。"
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3684,11 +3601,11 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}匿名上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "用偽裝的身分來上網—甚至讓別人以為你在其他國家上網。"
+msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgstr "用偽裝的身分來匿名上網—甚至讓別人以為你在其他國家上網。"
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3712,7 +3629,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{addon_name} {start_sub_heading}強大的下載管理功能{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3728,8 +3645,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{addon_name} {start_sub_heading}搜尋追蹤保護{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr "防止在點擊 Google 和 Yandex 搜尋結果時的追蹤。"
+msgid "Stop ad trackers when you click Google and Yandex search returns."
+msgstr "防止在點擊 Google 和 Yandex 搜尋結果時的廣告追蹤。"
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3744,8 +3661,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "{addon_name} {start_sub_heading}新增圖片到搜尋結果{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy thumbnail images alongside your search returns."
-msgstr "在搜尋結果中顯示畫面擷圖。"
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "在搜尋結果中顯示網站畫面擷圖。"
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3768,15 +3685,15 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "{addon_name} {start_sub_heading}自訂您的最愛網站{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr "改變任何網站的外觀！切換顏色、頁面背景等等皆可調整。"
+msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
+msgstr "自訂任何網站外觀！頁面顏色、背景等等皆可調整。"
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}客製化新分頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3792,7 +3709,7 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "{addon_name} {start_sub_heading}知道您上了哪些網站{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3800,7 +3717,7 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr "{addon_name} {start_sub_heading}加強您的閱讀體驗{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3808,8 +3725,8 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "{addon_name} {start_sub_heading}開啟多個鏈結{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Right-click and drag over links you want open in new tabs."
-msgstr "按右鍵，拖曳您想要的鏈結在新分頁開啟。"
+msgid "Right-click and drag links you want open in new tabs."
+msgstr "按右鍵，拖曳鏈結在新分頁開啟。"
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3824,7 +3741,7 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{addon_name} {start_sub_heading}加強生產力{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3872,8 +3789,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{addon_name} {start_sub_heading}讓 YouTube 有您的風格{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "在彈出式視窗中播放影片，只看得到已訂閱頻道的廣告、和截取影片的螢幕截圖以及更多。"
+msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgstr "讓 YouTube 有您的風格。在彈出式視窗中播放影片，只看得到已訂閱頻道的廣告、和截取影片的螢幕截圖以及更多。"
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3888,16 +3805,16 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}讓維基百科變得更有型{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr "為維基百科加上現代化的全新外觀。"
+msgid "Applies a fresh, modern appearance to Wikipedia."
+msgstr "為維基百科加入現代化的全新外觀。"
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}讓工作變得更快{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to get to things done—quicker."
-msgstr "用滑鼠手勢讓工作更快完成。"
+msgid "Use mouse gestures to get to things done quicker."
+msgstr "使用滑鼠手勢讓工作更快完成。"
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3912,8 +3829,8 @@ msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}下載圖片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab images from any website and download them."
-msgstr "取得任何網站上的圖片，下載保存。"
+msgid "Download images you find on the web."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3936,7 +3853,7 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}征服垃圾信{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3944,15 +3861,15 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}控制隱私保護{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr "輕鬆自訂 Firefox 內建的隱私保護設定。"
+msgid "A direct path to customizing the built-in privacy settings in Firefox."
+msgstr "直接自訂 Firefox 內建的隱私保護設定。"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}即時進行翻譯{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3968,7 +3885,7 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "{addon_name} {start_sub_heading}WhatsApp 網頁版{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3977,15 +3894,15 @@ msgstr "{addon_name} {start_sub_heading}德語翻譯{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "德語與英語、法語、西班牙語及其他語言之間的專業翻譯。"
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}建立網頁封鎖清單{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Restrict Firefox from accessing websites you define."
-msgstr "限制 Firefox 只能開啟您指定的網站。"
+msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
+msgstr "限制 Firefox 只能開啟您指定的網站，適合用於限制上網功能。"
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4017,15 +3934,15 @@ msgstr "{addon_name} {start_sub_heading}搜尋圖片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "通過多套強大的搜尋引擎以圖找圖。"
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}輕鬆選擇書籤位置{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr "若您使用多個書籤資料夾，可用更好的方式來儲存。"
+msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
+msgstr "若您使用多個書籤資料夾，可用更有效率的方式來儲存。"
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4033,27 +3950,27 @@ msgstr "{addon_name} {start_sub_heading}Zero formatting{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "只複製純文字，清除不必要的格式設定。"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "使用滑鼠一點，即可將整個網頁翻譯為您想要的語言。"
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}抽出超連結{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgid "Instantly display all links from a web page in new tabs."
+msgstr "用新分頁即時顯示網頁中的所有鏈結。"
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}跳過重導與追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Strip away redirect pages and URL tracking parameters."
-msgstr "去除重導頁面和網址中的追蹤參數。"
+msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
+msgstr "自動清除重導頁面和網址中的追蹤參數。"
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4061,15 +3978,15 @@ msgstr "{addon_name} {start_sub_heading}防止搜尋追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "防止搜尋引擎知道您點擊的鏈結。"
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}下載 YouTube 影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Download video and/or audio."
-msgstr "下載影音內容。"
+msgid "Download YouTube videos and/or audio."
+msgstr "下載 YouTube 影音內容。"
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4085,15 +4002,15 @@ msgstr "{addon_name} {start_sub_heading}寫筆記{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "針對特定或所有網站留下筆記，供以後查看。"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}像手機一樣滾動畫面{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr "電腦版網頁可使用滑鼠「拖曳」功能。"
+msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4108,7 +4025,7 @@ msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}強調文字{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgid "Highlight text on web pages to save and access later."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4116,7 +4033,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "{addon_name} {start_sub_heading}享用來自世界各地的音樂{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 30,000+ radio stations from all over the globe."
+msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "聆聽全球超過 30,000 家廣播電台。"
 
 #. editorial content for the discovery pane.
@@ -4133,23 +4050,23 @@ msgstr "{addon_name} {start_sub_heading}將文字轉成圖片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "將文字轉化成漂亮的標題與覆蓋在圖片上的文字。"
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}安全上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgid "Automatically navigate to the secure version of a website if it's available."
+msgstr "網站有提供的話，就跳轉到安全版。"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}刪除上網紀錄{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
+msgstr "自動清除您的上網紀錄。也可指定要保留上網紀錄幾天，才自動清除。"
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4165,39 +4082,39 @@ msgstr "{addon_name} {start_sub_heading}安全地管理密碼{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "安全地儲存密碼並自動登入網站。"
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}自動填寫表單{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
+msgstr "自動填寫表單內容。只要儲存一次輸入的資料，下次即可自動代填。"
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}秘密上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Jump into private browsing mode with a click."
-msgstr "滑鼠輕鬆一點，即可進入隱私瀏覽模式。"
+msgid "Search privately with just a click."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}停止分頁綁架{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgstr "不讓點擊的鏈結控制您目前的分頁，並載入您原本沒打算開的內容。"
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}簡單使用維基百科{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgstr "在任何網站反白文字，按右鍵即可快速在維基百科上搜尋相關條目。"
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4205,7 +4122,7 @@ msgstr "{addon_name} {start_sub_heading}探索網站相關內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "在指定網域中搜尋您要找的內容。"
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4213,14 +4130,14 @@ msgstr "{addon_name} {start_sub_heading}尋找影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "在任何網站反白文字，按右鍵即可快速在 YouTube 上搜尋相關媒體內容。"
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}取得 Amazon 的優勢{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4228,7 +4145,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{addon_name} {start_sub_heading}終極分頁控制工具{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4236,7 +4153,7 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "{addon_name} {start_sub_heading}體驗奇怪的教育{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Load a random Wikipedia article each time you open a new tab."
+msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
 msgstr "當您每次開啟新分頁時，隨機開啟維基百科條目。"
 
 #. editorial content for the discovery pane.
@@ -4268,8 +4185,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}搜尋 Firefox{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily access your open tabs, bookmarks, and history."
-msgstr "簡單存取您開啟的分頁、書籤與上網紀錄。"
+msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
+msgstr "簡單搜尋 Firefox 當中開啟過的分頁、書籤與上網紀錄。"
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4324,7 +4241,7 @@ msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub
 msgstr "{addon_name} {start_sub_heading}追蹤 Amazon 的價格記錄{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make informed shopping decisions."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4332,7 +4249,7 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{addon_name} {start_sub_heading}購物更有信心{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4340,11 +4257,11 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}追蹤生產力{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4352,8 +4269,8 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}安全上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Only allow web content to run from sites you trust."
-msgstr "只允許您信任的網站執行 Web 內容。"
+msgid "Only allow web content to run from sites you trust. Surf securely."
+msgstr "只允許您信任的網站執行 Web 內容。上網更安全。"
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4392,8 +4309,8 @@ msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "{addon_name} {start_sub_heading}關閉討厭的覆疊內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply click a button to close annoying pop-up overlays."
-msgstr "只要點擊按鈕，即可關閉討厭的蓋版內容。"
+msgid "Close annoying pop-ups with a simple click."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4428,7 +4345,7 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}封鎖討人厭的音效{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "網站的聲音太小聲或太大聲？SoundFixer 可以幫忙。"
 
 #. editorial content for the discovery pane.
@@ -4436,7 +4353,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{addon_name} {start_sub_heading}列印前先編輯{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4444,7 +4361,7 @@ msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub
 msgstr "{addon_name} {start_sub_heading}追蹤 Amazon 的價格記錄{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4468,7 +4385,7 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}隱藏您的足跡{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4476,8 +4393,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}簡化分頁功能{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "使用垂直的側邊欄管理開啟的分頁。"
+msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
+msgstr "簡化分頁管理，使用垂直側邊欄管理開啟的分頁。"
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4492,7 +4409,7 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "{addon_name} {start_sub_heading}了解全貌{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "With a mouse click you can watch videos in full screen glory."
+msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4501,7 +4418,7 @@ msgstr "{addon_name} {start_sub_heading}儲存記憶{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "不讓未使用的分頁，浪費您寶貴的記憶體空間。"
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4516,7 +4433,7 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "{addon_name} {start_sub_heading}切掉不需要的部分{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4528,7 +4445,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "{addon_name} {start_sub_heading}更好的閱讀體驗{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4536,7 +4453,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4552,7 +4469,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}輕鬆儲存圖片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab just images from your current tab."
+msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4560,11 +4477,11 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}測量網頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get the benefits of strong password management."
+msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4580,7 +4497,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{addon_name} {start_sub_heading}封鎖讓人分心的網站{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "List the websites you want the extension to block. Instant discipline!"
+msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4596,7 +4513,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "{addon_name} {start_sub_heading}更改 Firefox 外觀{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily design your own visual themes to make Firefox look as you please."
+msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4604,7 +4521,7 @@ msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}留下筆記{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4613,14 +4530,14 @@ msgstr "{addon_name} {start_sub_heading}使用語音進行搜尋{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "使用語音識別功能在 Google、Yahoo、DuckDuckGo 進行搜型。"
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}追蹤商品價格{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4628,7 +4545,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}讓網頁關燈{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Custom color schemes let you shade the web to your own liking."
+msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4637,7 +4554,7 @@ msgstr "{addon_name} {start_sub_heading}加強 Android 搜尋功能{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "於 Firefox for Android 使用更進階的搜尋頁面。"
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4646,6 +4563,39 @@ msgstr "{addon_name} {start_sub_heading}幫助加強使用 Android 影片{end_su
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "某些網站無法在 Firefox for Android 上正常播放影片。此擴充套件可修正此問題。"
+
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "它們為 Firefox 新增功能，讓上網變得更快、更安全、更好玩。"
+
+#. editorial content for the secondary hero shelves.
+msgid "See all extensions"
+msgstr "瀏覽所有擴充套件"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr "在不同裝置間同步擴充套件"
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr "瀏覽器擴充套件外的隱私保護"
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr "Firefox 媒體內容加強器"
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "更多資訊"
+
+#. editorial content for the secondary hero shelves.
+# Plural in this context means many of the add-on type
+msgid "Explore extensions"
+msgstr "探索擴充套件"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4702,7 +4652,6 @@ msgstr "無法解析已上傳的檔案。"
 msgid "Unsupported archive type."
 msgstr "不支援的壓縮檔類型。"
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "壓縮檔案中的檔名不正確。請確認檔名使用 UTF-8 或 latin1 編碼。"
 
@@ -4710,8 +4659,12 @@ msgstr "壓縮檔案中的檔名不正確。請確認檔名使用 UTF-8 或 lati
 msgid "Invalid file name in archive: {0}"
 msgstr "壓縮檔中有無效檔名: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "壓縮檔中有超過大小限制的檔案: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr "未壓縮大小過大"
 
 msgid "Invalid archive."
 msgstr "無效的封存。"
@@ -4843,42 +4796,6 @@ msgstr "上傳的檔案當中沒有檔案。"
 
 msgid "Fetching file."
 msgstr "正在取得檔案。"
-
-msgid "Reported Status"
-msgstr "已回報狀態"
-
-msgid "Reported Spam"
-msgstr "已回報為垃圾留言"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "已回報為正常留言"
-
-msgid "Not Reported"
-msgstr "未經回報"
-
-msgid "Content Submitted"
-msgstr "送出的內容"
-
-msgid "View Rating on site"
-msgstr "到網站檢視評分"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "到 Akismet 回報為正常留言"
-
-msgid "Submit Spam to Akismet"
-msgstr "到 Akismet 回報為垃圾留言"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr "已將 %s 非垃圾報告送出為垃圾留言"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr "已將 %s 垃圾報告送出為非垃圾留言"
 
 msgid "About Mozilla Add-ons"
 msgstr "關於 Mozilla 附加元件站"
@@ -5124,6 +5041,9 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} 篇評論"
 
+msgid "Not yet rated"
+msgstr "未經評分"
+
 msgid "Rated {0} out of 5 stars"
 msgstr "評分: {0} / 5 顆星"
 
@@ -5208,7 +5128,7 @@ msgid "Keep review; remove flags"
 msgstr "保留意見並移除旗標"
 
 msgid "Skip for now"
-msgstr "馬上跳過"
+msgstr "先略過"
 
 msgid "Delete review"
 msgstr "刪除評論"
@@ -5248,6 +5168,9 @@ msgstr "可推薦"
 
 msgid "Delayed because it's the first listed version"
 msgstr "因為是首次上架的版本，已經推遲"
+
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "若定義了「canned_response」就不能送出評論。"
 
 msgid "Type"
 msgstr "類型"
@@ -5766,6 +5689,12 @@ msgstr "隱藏意見"
 msgid "No reviews found for this period."
 msgstr "此時間內，尚無審核。"
 
+msgid "Method:"
+msgstr "方法:"
+
+msgid "Source:"
+msgstr "來源:"
+
 msgid "Dismiss this announcement"
 msgstr "略過這個消息"
 
@@ -5810,6 +5739,9 @@ msgstr "全部時間"
 msgid "You have <span>{0}</span> points."
 msgstr "您有 <span>{0}</span> 點。"
 
+msgid "Theme"
+msgstr "佈景主題"
+
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s 在 %(date)s [%(ip_address)s]"
@@ -5836,6 +5768,12 @@ msgstr[0] "自動通過審核（{0}）"
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "過期的資訊要求（{0}）"
+
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6082,11 +6020,6 @@ msgid "What are daily users?"
 msgstr "每日使用者數是指？"
 
 msgid ""
-"<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
-"people using your theme by day. </p>"
-msgstr "<h2>每日使用者數是什麼？</h2><p>從這個網站下載並安裝的附加元件每日檢查更新。這些更新偵測的總次數稱為活躍的每日使用者數，或是每天使用您佈景主題的使用者總計。</p>"
-
-msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr "<h2>每日使用者數是什麼？</h2><p>從這個網站下載的附加元件每日檢查更新。這些更新偵測的總次數稱為活躍的每日使用者數。每日使用者數可以劃分為附加元件版本、作業系統、附加元件狀態、應用程式與地區。</p>"
@@ -6103,11 +6036,20 @@ msgstr "返回附加元件網站"
 msgid "Footer logo"
 msgstr "頁尾圖示"
 
+msgid "Legal Notices"
+msgstr "法律聲明"
+
+msgid "Report Trademark Abuse"
+msgstr "回報商標濫用"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "新網站支援行動裝置與桌機使用者"
 
 msgid "View the new site"
 msgstr "檢視新網站"
+
+msgid "Site Status"
+msgstr "網站狀態"
 
 msgid "Report a bug"
 msgstr "回報 Bug"
@@ -6119,6 +6061,12 @@ msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">提及</a>�
 
 msgid "get to know <b>add-ons</b>"
 msgstr "了解<b>附加元件</b>"
+
+msgid "About"
+msgstr "關於"
+
+msgid "Forum"
+msgstr "討論區"
 
 msgid "Download Firefox"
 msgstr "下載 Firefox"
@@ -6199,6 +6147,9 @@ msgstr "您確定要移除所有的 <b>{0}</b> 翻譯? 此動作無法復原。"
 msgid "Delete Locale"
 msgstr "刪除語系"
 
+msgid "User Restriction History"
+msgstr "使用者限制記錄"
+
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "已封鎖使用者「%(user)s」。"
@@ -6213,6 +6164,13 @@ msgstr "已封鎖使用者「%(users)s」。"
 
 msgid "Ban selected users"
 msgstr "封鎖所選的使用者"
+
+#, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "使用者「%(users)s」已重設 API 金鑰。"
+
+msgid "Reset API Key"
+msgstr "重設 API 金鑰"
 
 msgid "Profile Photo"
 msgstr "個人檔案照片"
@@ -6261,7 +6219,7 @@ msgstr "您的帳號不允許用來上架附加元件。"
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
-msgstr ""
+msgstr "輸入要封鎖的完整電子郵件網域。不支援萬用字元: 若您需要萬用字元，或需要符合整組 E-Mail 地址，請改用「電子郵件使用者限制」。"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"

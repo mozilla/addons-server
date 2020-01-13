@@ -1,0 +1,3 @@
+{% include "admin/edit_inline/tabular.html" %}
+{% load i18n admin_urls jinja_helpers %}
+{{ inline_admin_formset.opts.pager|dj_paginator }}

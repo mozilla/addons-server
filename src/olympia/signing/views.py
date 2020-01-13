@@ -1,7 +1,6 @@
 import functools
 
 from django import forms
-from django.conf import settings
 from django.utils.translation import ugettext
 
 from rest_framework import status
@@ -107,11 +106,10 @@ class VersionView(APIView):
     )
 
     def check_throttles(self, request):
-        # Let users in ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS bypass throttles.
+        # Let users with LanguagePack:Submit permission bypass throttles.
         # Used by releng automated signing scripts so that they can sign a
         # bunch of langpacks at once.
-        if (request.user.is_authenticated and request.user.email
-                in settings.ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS):
+        if acl.action_allowed(request, amo.permissions.LANGPACK_SUBMIT):
             return
         super().check_throttles(request)
 
@@ -223,6 +221,13 @@ class VersionView(APIView):
                     channel = last_version.channel
                 else:
                     channel = amo.RELEASE_CHANNEL_UNLISTED  # Treat as new.
+
+            if (addon.disabled_by_user and
+                    channel == amo.RELEASE_CHANNEL_LISTED):
+                msg = ugettext(
+                    'You cannot add listed versions to an addon set to '
+                    '"Invisible" state.')
+                raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
 
             will_have_listed = channel == amo.RELEASE_CHANNEL_LISTED
             if not addon.has_complete_metadata(

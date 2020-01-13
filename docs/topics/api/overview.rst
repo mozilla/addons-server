@@ -89,6 +89,8 @@ constants are as follows:
     ========================  =========================================================
 
 
+.. _api-overview-maintainance:
+
 ~~~~~~~~~~~~~~~~~
 Maintainance Mode
 ~~~~~~~~~~~~~~~~~
@@ -111,6 +113,7 @@ The response when returning ``HTTP 503 Service Unavailable`` in case of read-onl
     }
 
 In case we are not in read-only mode everything should be back working as normal.
+To check if the site is in read-only mode before submitting a response, the :ref:`site status api<api-site-status>` can be called.
 
 .. _api-overview-pagination:
 
@@ -246,6 +249,25 @@ specified.
 
 .. _api-versions-list:
 
+
+-----------
+Site Status
+-----------
+
+.. _`api-site-status`:
+
+This special endpoint returns if the site is in read only mode, and if there is a site notice currently in effect.
+See :ref:`maintainance mode <api-overview-maintainance>` for more details of when the site is read only and how requests are affected.
+
+
+.. http:get:: /api/v4/site/
+
+    .. _site-status-object:
+
+    :>json boolean read_only: Whether the site in read-only mode.
+    :>json string|null notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
+
+
 ------------
 API Versions
 ------------
@@ -321,6 +343,7 @@ v4 API changelog
 * 2019-01-10: added ``release_notes`` and ``license`` (except ``license.text``) to search API results ``current_version`` objects.
 * 2019-01-11: added new /reviewers/browse/ endpoint. https://github.com/mozilla/addons-server/issues/10322
 * 2019-01-16: removed /api/{v3,v4,v5}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
+* 2019-02-21: added new /api/v4/reviewers/addon/(addon_id)/versions/ endpoint. https://github.com/mozilla/addons-server/issues/10432
 * 2019-03-14: added new /reviewers/compare/ endpoint. https://github.com/mozilla/addons-server/issues/10323
 * 2019-04-11: removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
 * 2019-05-09: added ``is_recommended`` to addons API. https://github.com/mozilla/addons-server/issues/11278
@@ -329,6 +352,26 @@ v4 API changelog
 * 2019-05-23: changed the addons search API default sort when no query string is passed - now ``sort=recommended,downloads``.
   Also made ``recommended`` sort available generally to the addons search API.  https://github.com/mozilla/addons-server/issues/11432
 * 2019-06-27: removed ``sort`` parameter from addon autocomplete API.  https://github.com/mozilla/addons-server/issues/11664
+* 2019-07-18: completely changed the 2019-05-16 added draft-comment related APIs. See `#11380`_, `#11379`_, `#11378`_ and `#11374`_
+* 2019-07-25: added /hero/ endpoint to expose recommended addons and other content to frontend to allow customizable promos https://github.com/mozilla/addons-server/issues/11842.
+* 2019-08-01: added alias ``edition=MozillaOnline`` for ``edition=china`` in /discovery/ endpoint.
+* 2019-08-08: add support for externally hosted addons to /hero/ endpoints.  https://github.com/mozilla/addons-server/issues/11882
+* 2019-08-08: removed ``heading_text`` property from discovery api. https://github.com/mozilla/addons-server/issues/11817
+* 2019-08-08: add secondary shelf to /hero/ endpoint. https://github.com/mozilla/addons-server/issues/11779
+* 2019-08-15: dropped support for LWT specific statuses.
+* 2019-08-15: added promo modules to secondary hero shelves. https://github.com/mozilla/addons-server/issues/11780
+* 2019-08-15: removed /addons/compat-override/ from v4 and above.  Still exists in /v3/ but will always return an empty response. https://github.com/mozilla/addons-server/issues/12063
+* 2019-08-22: added ``canned_response`` property to draft comment api. https://github.com/mozilla/addons-server/issues/11807
+* 2019-09-19: added /site/ endpoint to expose read-only mode and any site notice.  Also added the same response to the /accounts/account/ non-public response as a convenience for logged in users. https://github.com/mozilla/addons-server/issues/11493)
+* 2019-10-17: moved /authenticate endpoint from api/v4/accounts/authenticate to version-less api/auth/authenticate-callback https://github.com/mozilla/addons-server/issues/10487
+* 2019-11-14: removed ``is_source_public`` property from addons API https://github.com/mozilla/addons-server/issues/12514
+* 2019-12-05: removed /addons/featured endpoint from v4+ and featured support from other addon api endpoints.  https://github.com/mozilla/addons-server/issues/12937
+
+.. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
+.. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
+.. _`#11378`: https://github.com/mozilla/addons-server/issues/11378/
+.. _`#11374`: https://github.com/mozilla/addons-server/issues/11374/
+
 
 ----------------
 v5 API changelog

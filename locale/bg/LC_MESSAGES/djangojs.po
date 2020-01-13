@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-03-11 12:57+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-05 20:51+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -26,8 +26,8 @@ msgstr "Има проблем при свързване със сървъра."
 msgid "Select a file..."
 msgstr "Избиране на файл..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Добавката трябва да е с разширение .zip, .xpi, .crx, .jar или .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Добавката трябва да е с разширение .zip, .xpi, .crx или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -147,30 +147,6 @@ msgstr "Видеото трябва да е във формат WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Тази тема е несъвместима с вашата версия на {0}"
-
-msgid "All Rights Reserved"
-msgstr "Всички права запазени"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Име на темата"
 
 msgid "Flagged for review"
 msgstr "Сигнализирана за преглед"
@@ -298,16 +274,16 @@ msgid "Unknown"
 msgstr "Непознат"
 
 msgid "Add-ons Manager"
-msgstr "Управление на добавки"
+msgstr "Управление на добавките"
 
 msgid "Add-ons Manager Promo"
-msgstr "Като промо в Управление на добавки"
+msgstr "Като промо в Управление на добавките"
 
 msgid "Add-ons Manager Featured"
-msgstr "Като препоръчана в Управление на добавки"
+msgstr "Като препоръчана в Управление на добавките"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Като научете повече в Управление на добавки"
+msgstr "Като научете повече в Управление на добавките"
 
 msgid "Search Suggestions"
 msgstr "Предложения при търсене"
@@ -586,7 +562,7 @@ msgstr "Списъци, създадени от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "Абонати последните {0} дни"
+msgstr "Абонати последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
@@ -594,7 +570,7 @@ msgstr "Абонати от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "Оценки последните {0} дни"
+msgstr "Оценки последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
@@ -602,7 +578,7 @@ msgstr "Оценки от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr "Продажби за последните {0} дни"
+msgstr "Продажби за последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
@@ -610,7 +586,7 @@ msgstr "Продажби от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr "Инсталации последните {0} дни"
+msgstr "Инсталации последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -618,7 +594,7 @@ msgstr "Инсталации от {0} до {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> за последните {1} дни"
+msgstr "<b>{0}</b> за последните {1} дена"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
@@ -626,7 +602,7 @@ msgstr "<b>{0}</b> от {1} до {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "Средно <b>{0}</b> за последните {1} дни"
+msgstr "Средно <b>{0}</b> за последните {1} дена"
 
 msgid "No data available."
 msgstr "Няма данни"
@@ -735,12 +711,6 @@ msgstr "Премахни тази локализация"
 msgid "{name} was viewing this page first."
 msgstr "{name} разглеждаше тази страница първо."
 
-msgid "Receipt checked by app."
-msgstr "Разписката проверена от приложението."
-
-msgid "Receipt was not checked by app."
-msgstr "Разписката не е проверена от приложението."
-
 msgid "{name} was viewing this add-on first."
 msgstr "{name} първи гледаше тази добавка."
 
@@ -748,13 +718,13 @@ msgid "Loading&hellip;"
 msgstr "Зареждане&hellip;"
 
 msgid "Version Notes"
-msgstr "Бележки по изданието"
+msgstr "Бележки към изданието"
 
 msgid "Notes for Reviewers"
 msgstr "Бележки за рецензенти"
 
 msgid "No version notes found"
-msgstr "Няма намерени бележки по изданието"
+msgstr "Няма намерени бележки към изданието"
 
 msgid "Review Text"
 msgstr "Текст на рецензията"

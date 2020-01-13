@@ -88,11 +88,7 @@ REDIRECT_URL = 'https://outgoing.stage.mozaws.net/v1/'
 
 ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
-XSENDFILE_HEADER = 'X-Accel-Redirect'
-
 ALLOW_SELF_REVIEWS = True
-
-PERSONA_DEFAULT_PAGES = 5
 
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
@@ -103,45 +99,16 @@ FXA_CONFIG = {
     'default': {
         'client_id': env('FXA_CLIENT_ID'),
         'client_secret': env('FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url':
-            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
-        'scope': 'profile',
-    },
-    'amo': {
-        'client_id': env('AMO_FXA_CLIENT_ID'),
-        'client_secret': env('AMO_FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url': 'https://addons.allizom.org/api/v3/accounts/authenticate/?config=amo', # noqa
-        'scope': 'profile',
-        'skip_register_redirect': True,
+        # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
     },
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
-        'content_host': 'https://stable.dev.lcip.org',
-        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
-        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/?config=local', # noqa
-        'scope': 'profile',
-    },
-    'code-manager': {
-        'client_id': env('CODE_MANAGER_FXA_CLIENT_ID'),
-        'client_secret': env('CODE_MANAGER_FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url': 'https://addons.allizom.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
-        'scope': 'profile',
-        'skip_register_redirect': True,
+        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local', 'code-manager']
+ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
@@ -153,3 +120,6 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-stage')
 
 VAMO_URL = 'https://versioncheck.allizom.org'
+
+EXTENSION_WORKSHOP_URL = env(
+    'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.allizom.org')

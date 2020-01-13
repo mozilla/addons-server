@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-01 13:27+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-20 07:42+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -26,8 +26,8 @@ msgstr "Det gick inte att kontakta servern."
 msgid "Select a file..."
 msgstr "Välj en fil..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Ditt tillägg bör sluta med .zip, .xpi, .crx, .jar eller .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Ditt tillägg bör sluta med .zip, .xpi, .crx eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -98,7 +98,7 @@ msgid "Your submission will be automatically signed."
 msgstr "Ditt bidrag kommer att signeras automatiskt."
 
 msgid "WebExtension upgrade"
-msgstr "WebExtension uppgradering"
+msgstr "WebExtension-uppgradering"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denna process. När användarna har WebExtension installerad, kommer de inte att kunna installera ett tillägg med arv."
@@ -147,30 +147,6 @@ msgstr "Videor måste vara i WebM."
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Detta tema är inte kompatibelt med din version av {0}"
 
-msgid "All Rights Reserved"
-msgstr "Med ensamrätt"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Ditt temas namn"
-
 msgid "Flagged for review"
 msgstr "Flaggad för granskning"
 
@@ -203,8 +179,8 @@ msgstr "Vecka för {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "{0} nedladdning"
-msgstr[1] "{0} nedladdningar"
+msgstr[0] "{0} hämtning"
+msgstr[1] "{0} hämtningar"
 
 msgid "{0} user"
 msgid_plural "{0} users"
@@ -242,7 +218,7 @@ msgstr[0] "{0} installation"
 msgstr[1] "{0} installationer"
 
 msgid "Downloads"
-msgstr "Nedladdningar"
+msgstr "Hämtningar"
 
 msgid "Daily Users"
 msgstr "Dagliga användare"
@@ -270,7 +246,7 @@ msgid "Add-ons Created"
 msgstr "Tillägg skapat"
 
 msgid "Add-ons Downloaded"
-msgstr "Tillägg nedladdat"
+msgstr "Hämtade tillägg"
 
 msgid "Add-ons Updated"
 msgstr "Tillägg uppdaterad"
@@ -537,11 +513,11 @@ msgstr "Tillägg i användning mellan {0} och {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Tillägg nedladdade de senaste {0} dagarna"
+msgstr "Hämtade tillägg de senaste {0} dagarna"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Tillägg nedladdade mellan {0} och {1}"
+msgstr "Hämtade tillägg mellan {0} och {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -733,12 +709,6 @@ msgstr "Ta bort denna översättning"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} tittade på sidan först."
-
-msgid "Receipt checked by app."
-msgstr "Kvitto kontrollerad av app."
-
-msgid "Receipt was not checked by app."
-msgstr "Kvitto inte kontrollerad av app."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} tittade på tillägget först."

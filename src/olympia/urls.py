@@ -9,6 +9,7 @@ from django.views.static import serve as serve_static
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.amo.views import frontend_view
+from olympia.files.urls import upload_patterns
 from olympia.versions import views as version_views
 from olympia.versions.urls import download_patterns
 
@@ -42,6 +43,9 @@ urlpatterns = [
 
     # Files
     url(r'^files/', include('olympia.files.urls')),
+    # Do not expose the `upload_patterns` under `files/` because of this issue:
+    # https://github.com/mozilla/addons-server/issues/12322
+    url(r'^uploads/', include(upload_patterns)),
 
     # Downloads.
     url(r'^downloads/', include(download_patterns)),
@@ -97,9 +101,6 @@ urlpatterns = [
 
     url(r'^addons/versions/(\d+)/?$',
         lambda r, id: redirect('addons.versions', id, permanent=True)),
-
-    url(r'^addons/versions/(\d+)/format:rss$',
-        lambda r, id: redirect('addons.versions.rss', id, permanent=True)),
 
     # Legacy redirect. Requires a view to get extra data not provided in URL.
     url(r'^versions/updateInfo/(?P<version_id>\d+)',

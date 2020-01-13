@@ -1,7 +1,4 @@
-from django.core.serializers import serialize as object_serialize
 from django.utils.translation import ugettext, ugettext_lazy as _
-
-import waffle
 
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
@@ -14,42 +11,7 @@ from olympia.api.fields import (
     SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
 from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
-from olympia.lib.akismet.tasks import save_akismet_report
 from olympia.users.models import DeniedName
-
-from .utils import get_collection_akismet_reports
-
-
-class CollectionAkismetSpamValidator(object):
-    def __init__(self, fields):
-        self.fields = fields
-
-    def set_context(self, serializer):
-        self.serializer = serializer
-        self.context = getattr(serializer, 'context', {})
-
-    def __call__(self, attrs):
-        data = {
-            prop: value for prop, value in attrs.items()
-            if prop in self.fields}
-        if not data:
-            return
-        request = self.context.get('request')
-        request_meta = getattr(request, 'META', {})
-        reports = get_collection_akismet_reports(
-            user=getattr(request, 'user', None),
-            user_agent=request_meta.get('HTTP_USER_AGENT'),
-            referrer=request_meta.get('HTTP_REFERER'),
-            collection=self.serializer.instance,
-            data=data)
-        raise_if_spam = waffle.switch_is_active('akismet-collection-action')
-        if any((report.comment_check() for report in reports)):
-            # We have to serialize and send it off to a task because the DB
-            # transaction will be rolled back because of the ValidationError.
-            if raise_if_spam:
-                save_akismet_report.delay(object_serialize("json", reports))
-                raise serializers.ValidationError(ugettext(
-                    'The text entered has been flagged as spam.'))
 
 
 class CollectionSerializer(serializers.ModelSerializer):
@@ -75,9 +37,6 @@ class CollectionSerializer(serializers.ModelSerializer):
                           u'of your collections.'),
                 fields=('slug', 'author')
             ),
-            CollectionAkismetSpamValidator(
-                fields=('name', 'description')
-            )
         ]
 
     def get_url(self, obj):
@@ -116,11 +75,11 @@ class CollectionSerializer(serializers.ModelSerializer):
 
 
 class ThisCollectionDefault(object):
-    def set_context(self, serializer_field):
+    requires_context = True
+
+    def __call__(self, serializer_field):
         viewset = serializer_field.context['view']
         self.collection = viewset.get_collection()
-
-    def __call__(self):
         return self.collection
 
 

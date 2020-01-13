@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 from itertools import chain
+from unittest import mock
 
 from olympia import amo
-from olympia.addons.indexers import AddonIndexer
+from olympia.addons.indexers import AddonIndexer, reindex_tasks_group
 from olympia.addons.models import (
     Addon, Preview, attach_tags, attach_translations)
 from olympia.amo.models import SearchMixin
-from olympia.amo.tests import (
-    ESTestCase, TestCase, collection_factory, file_factory)
-from olympia.bandwagon.models import FeaturedCollection
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
 from olympia.files.models import WebextPermission
+from olympia.versions.compare import version_int
 from olympia.versions.models import License, VersionPreview
 
 
@@ -50,15 +50,14 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app', 'boost', 'category', 'colors', 'current_version',
-            'description', 'featured_for', 'has_eula', 'has_privacy_policy',
-            'is_featured', 'listed_authors', 'name',
-            'platforms', 'previews', 'public_stats', 'ratings', 'summary',
-            'tags',
+            'description', 'has_eula', 'has_privacy_policy', 'listed_authors',
+            'name', 'platforms', 'previews', 'public_stats', 'ratings',
+            'summary', 'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
         # for extraction because they can be null.
-        nullable_fields = ['persona']
+        nullable_fields = []
 
         # For each translated field that needs to be indexed, we store one
         # version for each language-specific analyzer we have.
@@ -101,11 +100,6 @@ class TestAddonIndexer(TestCase):
         name_translations = mapping_properties['name_translations']
         assert name_translations['properties']['lang']['index'] is False
         assert name_translations['properties']['string']['index'] is False
-
-        # Make sure nothing inside 'persona' is indexed, it's only there to be
-        # returned back to the API directly.
-        for field in mapping_properties['persona']['properties'].values():
-            assert field['index'] is False
 
         # Make sure current_version mapping is set.
         assert mapping_properties['current_version']['properties']
@@ -189,53 +183,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['tags'] == []
         assert extracted['has_eula'] is True
         assert extracted['has_privacy_policy'] is True
-        assert extracted['is_featured'] is False
         assert extracted['colors'] is None
-
-    def test_extract_is_featured(self):
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=collection.application)
-        collection.add_addon(self.addon)
-        assert self.addon.is_featured()
-        extracted = self._extract()
-        assert extracted['is_featured'] is True
-
-    def test_extract_featured_for(self):
-        collection = collection_factory()
-        featured_collection = FeaturedCollection.objects.create(
-            collection=collection, application=amo.FIREFOX.id)
-        collection.add_addon(self.addon)
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None]}]
-
-        # Even if the locale for the FeaturedCollection is an empty string
-        # instead of None, we extract it as None so that it keeps its special
-        # meaning.
-        featured_collection.update(locale='')
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None]}]
-
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=amo.FIREFOX.id,
-                                          locale='fr')
-        collection.add_addon(self.addon)
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']}]
-
-        collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=amo.ANDROID.id,
-                                          locale='de-DE')
-        collection.add_addon(self.addon)
-        extracted = self._extract()
-        assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']},
-            {'application': [amo.ANDROID.id], 'locales': ['de-DE']}]
 
     def test_extract_eula_privacy_policy(self):
         # Remove eula.
@@ -281,7 +229,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['current_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 2000000200100,
-                'max': 9999000000200100,
+                'max': version_int('*'),
                 'max_human': '4.0',
                 'min_human': '2.0',
             }
@@ -478,6 +426,24 @@ class TestAddonIndexer(TestCase):
         assert extracted['id'] == self.addon.pk
         assert extracted['previews'] == []
         assert extracted['colors'] is None
+
+    @mock.patch('olympia.addons.indexers.create_chunked_tasks_signatures')
+    def test_reindex_tasks_group(self, create_chunked_tasks_signatures_mock):
+        from olympia.addons.tasks import index_addons
+
+        expected_ids = [
+            self.addon.pk,
+            addon_factory(status=amo.STATUS_DELETED).pk,
+            addon_factory(
+                status=amo.STATUS_NULL,
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}).pk,
+        ]
+        rval = reindex_tasks_group('addons')
+        assert create_chunked_tasks_signatures_mock.call_count == 1
+        assert create_chunked_tasks_signatures_mock.call_args[0] == (
+            index_addons, expected_ids, 150
+        )
+        assert rval == create_chunked_tasks_signatures_mock.return_value
 
 
 class TestAddonIndexerWithES(ESTestCase):

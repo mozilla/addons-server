@@ -10,10 +10,9 @@ from olympia import amo
 from olympia.amo.tests import (
     APITestClient, ESTestCase, reverse_ns, create_switch)
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
-from olympia.discovery.models import DiscoveryItem
 
 
-class RankingScenariosMixin:
+class TestRankingScenarios(ESTestCase):
     client_class = APITestClient
 
     def _check_scenario(self, query, expected, **kwargs):
@@ -99,9 +98,8 @@ class RankingScenariosMixin:
         # This data was taken from our production add-ons to test
         # a few search scenarios. (2018-01-25)
         # Note that it's important to set average_daily_users for extensions
-        # and weekly_downloads for themes (personas) in every case,  because it
-        # affects the ranking score and otherwise addon_factory() sets a random
-        # value.
+        # in every case, because it affects the ranking score and otherwise
+        # addon_factory() sets a random value.
         amo.tests.addon_factory(
             average_daily_users=18981,
             description=None,
@@ -419,13 +417,14 @@ class RankingScenariosMixin:
                 'an unofficial client for the excellent Pocket service. '
                 'Hope you\'ll enjoy it!'),
             weekly_downloads=1123)
-        cls.tabbycat = amo.tests.addon_factory(
+        amo.tests.addon_factory(
             average_daily_users=4089,
             description=None,
             name='Tabby Cat',
             slug=u'tabby-cat-friend',
             summary='A new friend in every new tab.',
-            weekly_downloads=350)
+            weekly_downloads=350,
+            recommended=True)
         amo.tests.addon_factory(
             average_daily_users=5819,
             description=None,
@@ -523,9 +522,6 @@ class RankingScenariosMixin:
             average_daily_users=50, weekly_downloads=1, summary=None)
 
         cls.refresh()
-
-
-class TestRankingScenarios(RankingScenariosMixin, ESTestCase):
 
     def test_scenario_tabby_cat(self):
         self._check_scenario('Tabby cat', (
@@ -798,76 +794,69 @@ class TestRankingScenarios(RankingScenariosMixin, ESTestCase):
             [u'Foobar unique english', 4.957241],
         ), lang='en-US')
 
-
-@override_switch('api-recommendations-priority', active=True)
-class TestRankingScenariosWithRecommended(RankingScenariosMixin, ESTestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
-        # Make tabbycat recommended - it should jump to the top of the results
-        DiscoveryItem.objects.create(addon=cls.tabbycat, recommendable=True)
-        cls.tabbycat.current_version.update(recommendation_approved=True)
-        cls.refresh()
-
-    def test_scenario_tabby_cat(self):
+    @override_switch('api-recommendations-priority', active=True)
+    def test_scenario_tabby_cat_recommendations_priority(self):
         self._check_scenario('Tabby cat', (
-            ['Tabby Cat', 261.0998],
+            ['Tabby Cat', 283.8863],
         ))
 
-    def test_scenario_tabbycat(self):
+    @override_switch('api-recommendations-priority', active=True)
+    def test_scenario_tabbycat_recommendations_priority(self):
         self._check_scenario('tabbycat', (
-            ['Tabby Cat', 4.215731],
-            ['OneTab', 0.830401660],
-            ['FoxyTab', 0.71196246],
-            ['Authenticator', 0.6420107],
-            ['Tab Mix Plus', 0.483457770],
-            ['Open Bookmarks in New Tab', 0.37894645],
-            ['Tab Center Redux', 0.36477524],
-            ['Open image in a new tab', 0.29129007],
-            ['Open Image in New Tab', 0.22891109],
+            ['Tabby Cat', 4.7722564],
+            ['OneTab', 0.88809050],
+            ['FoxyTab', 0.76142323],
+            ['Authenticator', 0.68661183],
+            ['Tab Mix Plus', 0.517044070],
+            ['Open Bookmarks in New Tab', 0.40527225],
+            ['Tab Center Redux', 0.39011657],
+            ['Open image in a new tab', 0.3115263],
+            ['Open Image in New Tab', 0.24481377],
         ))
 
-    def test_scenario_tabbbycat(self):
+    @override_switch('api-recommendations-priority', active=True)
+    def test_scenario_tabbbycat_recommendations_priority(self):
         self._check_scenario('tabbbycat', (
-            ['Tabby Cat', 3.8696632],
-            ['OneTab', 0.8297480],
-            ['FoxyTab', 0.711402],
-            ['Authenticator', 0.6415053],
-            ['Tab Mix Plus', 0.4830772],
-            ['Open Bookmarks in New Tab', 0.37864816],
-            ['Tab Center Redux', 0.36448812],
-            ['Open image in a new tab', 0.29106078],
-            ['Open Image in New Tab', 0.22873089],
+            ['Tabby Cat', 4.364307],
+            ['OneTab', 0.887392040],
+            ['FoxyTab', 0.7608244],
+            ['Authenticator', 0.6860718],
+            ['Tab Mix Plus', 0.51663744],
+            ['Open Bookmarks in New Tab', 0.4049535],
+            ['Tab Center Redux', 0.38980976],
+            ['Open image in a new tab', 0.3112813],
+            ['Open Image in New Tab', 0.24462123],
         ))
 
-    def test_scenario_tabbicat(self):
+    @override_switch('api-recommendations-priority', active=True)
+    def test_scenario_tabbicat_recommendations_priority(self):
         self._check_scenario('tabbicat', (
-            ['Tabby Cat', 3.0745962],
-            ['OneTab', 0.83031404],
-            ['FoxyTab', 0.71188736],
-            ['Authenticator', 0.641943],
-            ['Tab Mix Plus', 0.48340675],
-            ['Open Bookmarks in New Tab', 0.3789065],
-            ['Tab Center Redux', 0.36473677],
-            ['Open image in a new tab', 0.29125935],
-            ['Open Image in New Tab', 0.22888695],
+            ['Tabby Cat', 3.4082708],
+            ['OneTab', 0.8880905],
+            ['FoxyTab', 0.76142323],
+            ['Authenticator', 0.68661183],
+            ['Tab Mix Plus', 0.51704407],
+            ['Open Bookmarks in New Tab', 0.40527225],
+            ['Tab Center Redux', 0.39011657],
+            ['Open image in a new tab', 0.3115263],
+            ['Open Image in New Tab', 0.24481377],
         ))
 
-    def test_scenario_tab(self):
+    @override_switch('api-recommendations-priority', active=True)
+    def test_scenario_tab_recommendations_priority(self):
         self._check_scenario('tab', (
-            ['Tabby Cat', 8.694547],
-            ['OneTab', 3.86240240],
-            ['Tab Mix Plus', 3.78842690],
-            ['FoxyTab', 2.9699721],
-            ['Tab Center Redux', 2.9458997],
-            ['Open Bookmarks in New Tab', 2.8534899],
-            ['Open image in a new tab', 2.4321914],
-            ['Open Image in New Tab', 1.9961225],
+            ['Tabby Cat', 9.2712755],
+            ['OneTab', 4.11413670],
+            ['Tab Mix Plus', 3.9676570],
+            ['FoxyTab', 3.1683707],
+            ['Tab Center Redux', 3.084665],
+            ['Open Bookmarks in New Tab', 2.9872396],
+            ['Open image in a new tab', 2.5463212],
+            ['Open Image in New Tab', 2.08934],
         ))
 
-    def test_scenario_websocket(self):
-        # But not when it doesn't match the search string at all
+    @override_switch('api-recommendations-priority', active=True)
+    def test_scenario_websocket_recommendations_priority(self):
         self._check_scenario('websocket', (
-            ['Simple WebSocket Client', 4.834485],
+            ['Simple WebSocket Client', 4.808697],
         ))

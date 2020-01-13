@@ -7,8 +7,7 @@ from unittest import mock
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.stats import cron
-from olympia.stats.models import (
-    DownloadCount, ThemeUserCount, UpdateCount)
+from olympia.stats.models import DownloadCount, UpdateCount
 
 
 @mock.patch('olympia.stats.management.commands.index_stats.group')
@@ -21,62 +20,49 @@ class TestIndexStats(TestCase):
                           .values_list('id', flat=True))
         self.updates = (UpdateCount.objects.order_by('-date')
                         .values_list('id', flat=True))
-        self.theme_users = (ThemeUserCount.objects.order_by('-date')
-                            .values_list('id', flat=True))
 
     def test_by_date(self, group_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
         qs = self.downloads.filter(date='2009-06-01')
-        download_group = group_mock.call_args[0][0][1]
-        assert len(download_group) == 1
-        task = download_group.tasks[0]
-        assert task.task == 'olympia.stats.tasks.index_download_counts'
-        assert task.args == (list(qs), None)
+        calls = group_mock.call_args[0][0]
+        assert calls[0].task == 'olympia.stats.tasks.index_update_counts'
+        assert calls[1].task == 'olympia.stats.tasks.index_download_counts'
+        assert calls[0].args == calls[1].args == (list(qs), None)
 
-    def test_called_three(self, group_mock):
-        call_command('index_stats', addons=None, date='2009-06-01')
-        assert len(group_mock.call_args[0][0]) == 3
-
-    def test_called_three_with_addons_param(self, group_mock):
+    def test_by_addon_and_date_no_match(self, group_mock):
         call_command('index_stats', addons='5', date='2009-06-01')
-        assert len(group_mock.call_args[0][0]) == 3
+        calls = group_mock.call_args[0][0]
+        assert len(calls) == 0
 
     def test_by_date_range(self, group_mock):
         call_command('index_stats', addons=None,
                      date='2009-06-01:2009-06-07')
         qs = self.downloads.filter(date__range=('2009-06-01', '2009-06-07'))
-        download_group = group_mock.call_args[0][0][1]
-        assert len(download_group) == 1
-        task = download_group.tasks[0]
-        assert task.task == 'olympia.stats.tasks.index_download_counts'
-        assert task.args == (list(qs), None)
+        calls = group_mock.call_args[0][0]
+        assert calls[0].task == 'olympia.stats.tasks.index_update_counts'
+        assert calls[1].task == 'olympia.stats.tasks.index_download_counts'
+        assert calls[0].args == calls[1].args == (list(qs), None)
 
     def test_by_addon(self, group_mock):
         call_command('index_stats', addons='5', date=None)
         qs = self.downloads.filter(addon=5)
-        download_group = group_mock.call_args[0][0][1]
-        assert len(download_group) == 1
-        task = download_group.tasks[0]
-        assert task.task == 'olympia.stats.tasks.index_download_counts'
-        assert task.args == (list(qs), None)
+        calls = group_mock.call_args[0][0]
+        assert calls[0].task == 'olympia.stats.tasks.index_download_counts'
+        assert calls[0].args == (list(qs), None)
 
     def test_by_addon_and_date(self, group_mock):
         call_command('index_stats', addons='4', date='2009-06-01')
         qs = self.downloads.filter(addon=4, date='2009-06-01')
-        download_group = group_mock.call_args[0][0][1]
-        assert len(download_group) == 1
-        task = download_group.tasks[0]
-        assert task.task == 'olympia.stats.tasks.index_download_counts'
-        assert task.args == (list(qs), None)
+        calls = group_mock.call_args[0][0]
+        assert calls[0].task == 'olympia.stats.tasks.index_update_counts'
+        assert calls[0].args == (list(qs), None)
 
     def test_multiple_addons_and_date(self, group_mock):
         call_command('index_stats', addons='4, 5', date='2009-10-03')
         qs = self.downloads.filter(addon__in=[4, 5], date='2009-10-03')
-        download_group = group_mock.call_args[0][0][1]
-        assert len(download_group) == 1
-        task = download_group.tasks[0]
-        assert task.task == 'olympia.stats.tasks.index_download_counts'
-        assert task.args == (list(qs), None)
+        calls = group_mock.call_args[0][0]
+        assert calls[0].task == 'olympia.stats.tasks.index_download_counts'
+        assert calls[0].args == (list(qs), None)
 
     def test_no_addon_or_date(self, group_mock):
         call_command('index_stats', addons=None, date=None)
@@ -86,8 +72,8 @@ class TestIndexStats(TestCase):
         # together that they'll be indexed in the same chunk, so we should have
         # 2 calls.
         update_counts_calls = [
-            c.tasks[0].args for c in calls
-            if c.tasks[0].task == 'olympia.stats.tasks.index_update_counts'
+            call.args for call in calls
+            if call.task == 'olympia.stats.tasks.index_update_counts'
         ]
         assert len(update_counts_calls) == 2
 
@@ -95,19 +81,10 @@ class TestIndexStats(TestCase):
         # together that they'll be indexed in the same chunk, so we should have
         # 9 calls.
         download_counts_calls = [
-            c.tasks[0].args for c in calls
-            if c.tasks[0].task == 'olympia.stats.tasks.index_download_counts'
+            call.args for call in calls
+            if call.task == 'olympia.stats.tasks.index_download_counts'
         ]
         assert len(download_counts_calls) == 9
-
-        # There should be 3 theme users, but 2 of them have a date close enough
-        # together that they'll be indexed in the same chunk, so we should have
-        # 2 calls.
-        theme_user_counts_calls = [
-            c.tasks[0].args for c in calls
-            if c.tasks[0].task == 'olympia.stats.tasks.index_theme_user_counts'
-        ]
-        assert len(theme_user_counts_calls) == 2
 
 
 class TestIndexLatest(amo.tests.ESTestCase):

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -29,7 +29,8 @@ msgstr "Tharla earráid agus dul i dteagmháil leis an bhfreastalaí."
 msgid "Select a file..."
 msgstr "Roghnaigh comhad..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "Ba chóir duit an breiseán a chur i gcomhad .zip, .xpi, .crx, .jar, nó .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -159,30 +160,6 @@ msgstr "Níl cead agat ach físeán WebM a úsáid."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
-
-msgid "All Rights Reserved"
-msgstr "Gach Ceart Ar Cosaint"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Ainm Do Théama"
 
 msgid "Flagged for review"
 msgstr ""
@@ -797,12 +774,6 @@ msgstr "Bain an logánú seo"
 
 msgid "{name} was viewing this page first."
 msgstr "Bhí {name} ag féachaint ar an leathanach seo ar dtús."
-
-msgid "Receipt checked by app."
-msgstr ""
-
-msgid "Receipt was not checked by app."
-msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr ""

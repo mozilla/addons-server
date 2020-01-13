@@ -1,0 +1,175 @@
+.DevHub-Connect{
+    h2 {
+        font-size: 24px;
+        @media @large {
+          font-size: 36px;
+        }
+    }
+    font-size: 14px;
+}
+
+.DevHub-content-container--Connect {
+    flex-direction: column;
+}
+
+.DevHub-content-header {
+    width: 100%
+}
+
+.Devhub-content-copy--Connect {
+    p, li {
+        color: @color-scheme-dark-items;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        line-height: 24px;
+        a {
+            .link(@color-scheme-dark-text);
+        }
+        margin-bottom: 20px;
+    }
+    ul.DevHub-content-copy--Connect-twitter-list li a {
+        display: block;
+    }
+
+    @media @medium {
+        display: flex;
+        max-width: 100%
+    }
+}
+
+.DevHub-Connect-section {
+    h4 {
+        margin: 10px 0;
+    }
+
+    @media @medium {
+        width: 33%;
+    }
+}
+
+.DevHub-Connect-newsletter-form {
+    display: flex;
+    flex-flow: row wrap;
+
+    label {
+        color: @color-scheme-dark-items;
+        font-size: 12px;
+    }
+
+    .form_group {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .form_group-agree {
+        padding-left: 1.5em; // roughly width of a checkbox
+        padding-right: 0;
+        text-indent: -1.5em;
+
+        html[dir=rtl] & {
+            padding-left: 0;
+            padding-right: 1.5em;
+        }
+    }
+
+    .form_input {
+        background: rgba(177,177,179,0.2);
+        color: @color-scheme-dark-text;
+        border: 0;
+        padding: 6px;
+        line-height: 20px;
+        width: 100%;
+    }
+
+    #newsletter_privacy {
+        order: 2;
+        a {
+            .link(@color-scheme-dark-text, @decoration: underline);
+        }
+        width: 100%;
+    }
+
+    #newsletter_email {
+        flex-basis: 100px;
+        min-width: 100px;
+        flex-grow: 1;
+
+        label {
+            display: none;
+        }
+    }
+
+    #newsletter_submit {
+        flex-basis: 90px;
+        padding: 0 10px;
+
+        button {
+            height: 32px;
+            .button(@color-scheme-dark-background, @color-scheme-dark-text);
+            font-size: 14px;
+            border-radius: 0.25rem;
+            border-width: 0;
+            cursor: pointer;
+            transition: all 0.25s ease-out;
+
+            &:active,
+            &:hover,
+            &:focus {
+                color: @color-button-register;
+            }
+        }
+    }
+
+    #newsletter_errors {
+        display: none; /* hide by default */
+        margin-bottom: 10px;
+        padding: 0 10px;
+
+        ul {
+            list-style-type: disc;
+            li {
+                color: @color-scheme-dark-text;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+
+.newsletter_thanks {
+    display: none;
+}
+
+a.Before-Icon::before {
+    padding: 0 0.3em 0 0;
+    display: inline-block;
+    line-height: 1.2;
+    vertical-align: middle;
+
+    html[dir=rtl] & {
+        padding: 0 0 0 0.3em;
+    }
+}
+
+a.Before-Icon-twitter::before {
+    content: url(../../../img/icons/twitter.svg);
+}
+
+a.Before-Icon-irc::before {
+    content: url(../../../img/icons/irc.svg);
+}
+
+a.Before-Icon-telegram::before {
+    content: url(../../../img/icons/telegram.svg);
+    filter: invert(100%);
+}
+
+a.Before-Icon-mail::before {
+    content: url(../../../img/icons/mail.svg);
+}

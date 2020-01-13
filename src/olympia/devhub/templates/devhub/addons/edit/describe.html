@@ -195,37 +195,11 @@
                 {{ cat_form.non_form_errors() }}
                 {{ cat_form.management_form }}
                 {% for form in cat_form.initial_forms %}
-                  {% if form.disabled %}
-                    <p class="addon-app-cats addon-app-cats-inline">
-                      <b>{{ form.app.pretty }}:</b>
-                      {% set cats = addon.app_categories.get(form.app.short, []) %}
-                      {{ cats|join(' &middot; ')|safe }}
-                    </p>
-                    <p>
-                      {% trans email='amo-admins@mozilla.com' %}
-                        Categories cannot be changed while your add-on is
-                        featured for this application. Please email
-                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
-                        a reason you need to modify your categories.
-                      {% endtrans %}
-                    </p>
-                  {% else %}
                     {{ select_cats(amo.MAX_CATEGORIES, form) }}
-                  {% endif %}
                 {% endfor %}
               {% elif editable and addon.type == amo.ADDON_STATICTHEME %}
                 {{ cat_form.category.errors }}
                 {{ cat_form.category }}
-                {% if cat_form.disabled %}
-                    <p>
-                      {% trans email='amo-admins@mozilla.com' %}
-                        Categories cannot be changed while your add-on is
-                        featured. Please email
-                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
-                        a reason you need to modify your categories.
-                      {% endtrans %}
-                    </p>
-                {% endif %}
               {% else %}
                 {% set categories = addon.app_categories %}
                 {% call empty_unless(categories) %}

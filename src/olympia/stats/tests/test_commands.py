@@ -4,7 +4,7 @@ import os
 import shutil
 
 from botocore.stub import Stubber, ANY
-from datetime import date, timedelta
+from datetime import date
 
 from django.conf import settings
 from django.core import management
@@ -14,14 +14,12 @@ from django.test.utils import override_settings
 from unittest import mock
 
 from olympia import amo
-from olympia.addons.models import Addon, MigratedLWT, Persona
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import addon_factory
 from olympia.stats.management.commands import get_stats_data
 from olympia.stats.management.commands.download_counts_from_file import \
     is_valid_source  # noqa
 from olympia.stats.management.commands.update_counts_from_file import Command
-from olympia.stats.models import (
-    DownloadCount, ThemeUpdateCount, ThemeUserCount, UpdateCount)
+from olympia.stats.models import DownloadCount, UpdateCount
 
 
 hive_folder = os.path.join(settings.ROOT, 'src/olympia/stats/fixtures/files')
@@ -52,8 +50,7 @@ class FixturesFolderMixin(object):
 
 
 class TestADICommand(FixturesFolderMixin, TransactionTestCase):
-    fixtures = ('base/addon_3615', 'base/featured', 'addons/persona',
-                'base/appversion.json')
+    fixtures = ('base/addon_3615', 'base/featured', 'base/appversion.json')
     date = '2014-07-10'
     source_folder = 'src'
     stats_source = 'file'
@@ -156,7 +153,7 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
     def test_update_locale(self):
         current_locales = [  # Taken from the language pack index.
             'ach', 'af', 'ak', 'an', 'ar', 'as', 'ast', 'ast-ES', 'az',
-            'bb-BK', 'be', 'bg', 'bn-BD', 'bn-IN', 'br', 'bs', 'ca',
+            'bb-BK', 'be', 'bg', 'bn', 'br', 'bs', 'ca',
             'ca-valencia', 'cs', 'csb', 'cy', 'cy-GB', 'da', 'de', 'dsb', 'el',
             'en-GB', 'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
             'eu', 'fa', 'ff', 'fi', 'fj-FJ', 'fr', 'fur-IT', 'fy-NL', 'ga-IE',
@@ -247,59 +244,6 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert DownloadCount.objects.all().count() == 2
         close_old_connections_mock.assert_called_once()
 
-    def test_theme_update_counts_from_file(self):
-        management.call_command('theme_update_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
-        assert ThemeUpdateCount.objects.all().count() == 1
-        # Persona 813 has addon id 15663: we need the count to be the sum of
-        # the "old" request on the persona_id 813 (only the one with the source
-        # "gp") and the "new" request on the addon_id 15663.
-        tuc2 = ThemeUpdateCount.objects.get(addon_id=15663)
-        assert tuc2.count == 15
-
-    def test_update_theme_popularity_movers(self):
-        # Create ThemeUpdateCount entries for the persona 559 with addon_id
-        # 15663 and the persona 575 with addon_id 15679 for the last 28 days.
-        # We start from the previous day, as the theme_update_counts_from_*
-        # scripts are gathering data for the day before.
-        today = date.today()
-        yesterday = today - timedelta(days=1)
-        for i in range(28):
-            d = yesterday - timedelta(days=i)
-            ThemeUpdateCount.objects.create(addon_id=15663, count=i, date=d)
-            ThemeUpdateCount.objects.create(addon_id=15679,
-                                            count=i * 100, date=d)
-        # Compute the popularity and movers.
-        management.call_command('update_theme_popularity_movers')
-
-        p1 = Persona.objects.get(pk=559)
-        p2 = Persona.objects.get(pk=575)
-
-        # The popularity is the average over the last 7 days, and as we created
-        # entries with one more user per day in the past (or 100 more), the
-        # calculation is "sum(range(7)) / 7" (or "sum(range(7)) * 100 / 7").
-        assert p1.popularity == 3  # sum(range(7)) / 7
-        assert p2.popularity == 300  # sum(range(7)) * 100 / 7
-
-        # A ThemeUserCount row should have been created for each Persona with
-        # today's date and the Persona popularity.
-        t1 = ThemeUserCount.objects.get(addon_id=15663)
-        t2 = ThemeUserCount.objects.get(addon_id=15679)
-        assert t1.date == today
-        assert t1.count == p1.popularity
-        assert t2.date == today
-        assert t2.count == p2.popularity
-
-        # Three weeks avg (sum(range(21)) / 21) = 10 so (3 - 10) / 10.
-        # The movers is computed with the following formula:
-        # previous_3_weeks: the average over the 21 days before the last 7 days
-        # movers: (popularity - previous_3_weeks) / previous_3_weeks
-        # The calculation for the previous_3_weeks is:
-        # previous_3_weeks: (sum(range(28) - sum(range(7))) * 100 / 21 == 1700.
-        assert p1.movers == 0.0  # Because the popularity is <= 100.
-        # We round the results to cope with floating point imprecision.
-        assert round(p2.movers, 5) == round((300.0 - 1700) / 1700, 5)
-
     def test_is_valid_source(self):
         assert is_valid_source('foo',
                                fulls=['foo', 'bar'],
@@ -315,36 +259,8 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
                                    prefixes=['baz', 'cruux'])
 
 
-class TestThemeADICommand(FixturesFolderMixin, TestCase):
-    date = '2014-11-06'
-    fixtures = ['base/appversion.json']
-    source_folder = '1093699'
-    stats_source = 'file'
-
-    def test_update_counts_from_file_bug_1093699(self):
-        addon_factory(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
-                      type=amo.ADDON_THEME)
-        management.call_command('update_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
-        assert UpdateCount.objects.all().count() == 1
-        uc = UpdateCount.objects.last()
-        # should be identical to `statuses.userEnabled`
-        assert uc.count == 1259
-        assert uc.date == date(2014, 11, 6)
-        assert (uc.versions ==
-                {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3,
-                 u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6})
-        assert (uc.statuses ==
-                {u'Unknown': 3, u'userEnabled': 1259, u'userDisabled': 58})
-        assert uc.oses == {u'WINNT': 1122, u'Darwin': 114, u'Linux': 84}
-        assert uc.locales[u'es-ES'] == 20
-        assert (uc.applications[u'{aa3c5121-dab2-40e2-81ca-7ea25febc110}'] ==
-                {u'2.0': 3})
-
-
 class TestADICommandS3(TransactionTestCase):
-    fixtures = ('base/addon_3615', 'base/featured', 'addons/persona',
-                'base/appversion.json')
+    fixtures = ('base/addon_3615', 'base/featured', 'base/appversion.json')
     date = '2014-07-10'
     stats_source = 's3'
 
@@ -408,57 +324,3 @@ class TestADICommandS3(TransactionTestCase):
         assert download_count.count == 3
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
-
-    @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
-    @mock.patch('olympia.stats.management.commands.boto3')
-    def test_theme_update_counts_from_s3(self, mock_boto3):
-        for x in range(2):
-            self.add_response('theme_update_counts')
-
-        mock_boto3.client.return_value = self.client
-        management.call_command('theme_update_counts_from_file',
-                                date=self.date, stats_source=self.stats_source)
-        assert ThemeUpdateCount.objects.all().count() == 1
-        # Persona 813 has addon id 15663: we need the count to be the sum of
-        # the "old" request on the persona_id 813 (only the one with the source
-        # "gp") and the "new" request on the addon_id 15663.
-        tuc2 = ThemeUpdateCount.objects.get(addon_id=15663)
-        assert tuc2.count == 15
-
-    @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
-    @mock.patch('olympia.stats.management.commands.boto3')
-    def test_lwt_stats_go_to_migrated_static_theme(self, mock_boto3):
-        lwt = Addon.objects.get(id=15663)
-        lwt.delete()
-        static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
-        MigratedLWT.objects.create(
-            lightweight_theme=lwt, static_theme=static_theme)
-        for x in range(2):
-            self.add_response('theme_update_counts')
-
-        mock_boto3.client.return_value = self.client
-        management.call_command('theme_update_counts_from_file',
-                                date=self.date, stats_source=self.stats_source)
-        assert ThemeUpdateCount.objects.all().count() == 0
-        assert UpdateCount.objects.all().count() == 1
-        assert UpdateCount.objects.get(addon_id=static_theme.id).count == 15
-
-    @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
-    @mock.patch('olympia.stats.management.commands.boto3')
-    def test_lwt_stats_go_to_migrated_with_stats_already(self, mock_boto3):
-        lwt = Addon.objects.get(id=15663)
-        lwt.delete()
-        static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
-        MigratedLWT.objects.create(
-            lightweight_theme=lwt, static_theme=static_theme)
-        UpdateCount.objects.create(
-            addon=static_theme, count=123, date=date(2014, 7, 10))
-        for x in range(2):
-            self.add_response('theme_update_counts')
-
-        mock_boto3.client.return_value = self.client
-        management.call_command('theme_update_counts_from_file',
-                                date=self.date, stats_source=self.stats_source)
-        assert ThemeUpdateCount.objects.all().count() == 0
-        assert UpdateCount.objects.all().count() == 1
-        assert UpdateCount.objects.get(addon_id=static_theme.id).count == 138

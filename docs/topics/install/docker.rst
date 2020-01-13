@@ -53,8 +53,8 @@ on your host machine::
     docker-compose pull  # Can take a while depending on your internet bandwidth.
     # Start up the containers
     docker-compose up -d
-    make initialize_docker  # Answer yes, and create your superuser when asked.
-    # On Windows you can substitute `make initialize_docker` for the command:
+    make initialize  # Answer yes, and create your superuser when asked.
+    # On Windows you can substitute `make initialize` for the command:
     docker-compose exec web make initialize
 
 .. note::
@@ -157,13 +157,13 @@ Another way to find out what's wrong is to run ``docker-compose logs``.
 Getting "Programming error [table] doesn't exist"?
 --------------------------------------------------
 
-Make sure you've run the ``make initialize_docker`` step as detailed in
+Make sure you've run the ``make initialize`` step as detailed in
 the initial setup instructions.
 
 
-ConnectionError during initialize_docker (elasticsearch container fails to start)
+ConnectionError during initialize (elasticsearch container fails to start)
 ---------------------------------------------------------------------------------
-When running ``make initialize_docker`` without a working elasticsearch container,
+When running ``make initialize`` without a working elasticsearch container,
 you'll get a ConnectionError. Check the logs with ``docker-compose logs``.
 If elasticsearch is complaining about ``vm.max_map_count``, run this command on your computer
 or your docker-machine VM:

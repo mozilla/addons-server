@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
 from urllib.parse import parse_qs, urlparse
+from unittest import mock
 from tempfile import NamedTemporaryFile
 
 from django import forms, test
@@ -27,7 +28,6 @@ from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
-from unittest import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
@@ -44,15 +44,15 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons import indexers as addons_indexers
 from olympia.addons.models import (
-    Addon, AddonCategory, Category, Persona,
+    Addon, AddonCategory, Category,
     update_search_index as addon_update_search_index)
-from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
@@ -195,7 +195,8 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            assert e.text() == text, u'Expected %s, got %s' % (text, e.text())
+            assert e.text() == text, (
+                f'At index {idx}, expected {text}, got {e.text()}')
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
@@ -359,10 +360,13 @@ ES_patchers = [
 
 
 def start_es_mocks():
-    # Before starting to mock, stop them first. That way we ensure we're not
-    # trying to mock over an existing mock, which would be problematic since
-    # we use spec=True.
-    stop_es_mocks()
+    # Before starting to mock, assert that none of the patches are actually
+    # active. That way we ensure we're not trying to mock over an existing
+    # mock, which would be problematic since we use spec=True.
+    for patch in ES_patchers:
+        if patch._active_patches:
+            raise AssertionError(f'Active patches found for {patch}')
+
     for patch in ES_patchers:
         patch.start()
 
@@ -421,16 +425,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
         self.client = self.client_class()
-
-    @classmethod
-    def setUpClass(cls):
-        start_es_mocks()
-        super(TestCase, cls).setUpClass()
-
-    @classmethod
-    def tearDownClass(cls):
-        stop_es_mocks()
-        super(TestCase, cls).tearDownClass()
 
     def trans_eq(self, trans, localized_string, locale):
         assert trans.id
@@ -620,7 +614,7 @@ class AMOPaths(object):
         return os.path.join(settings.ROOT, path)
 
     def xpi_path(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar']:
+        if os.path.splitext(name)[-1] not in ['.xml', '.xpi']:
             return self.file_fixture_path(name + '.xpi')
         return self.file_fixture_path(name)
 
@@ -661,7 +655,6 @@ def addon_factory(
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
-    persona_id = kw.pop('persona_id', None)
     tags = kw.pop('tags', [])
     users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
@@ -673,6 +666,8 @@ def addon_factory(
     slug = kw.pop('slug', None)
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
+
+    should_be_recommended = kw.pop('recommended', False)
 
     kwargs = {
         # Set artificially the status to STATUS_APPROVED for now, the real
@@ -688,12 +683,11 @@ def addon_factory(
         'created': when,
         'last_updated': when,
     }
-    if type_ != amo.ADDON_PERSONA and 'summary' not in kw:
-        # Assign a dummy summary if none was specified in keyword args, unless
-        # we're creating a Persona since they don't have summaries.
+    if 'summary' not in kw:
+        # Assign a dummy summary if none was specified in keyword args.
         kwargs['summary'] = u'Summary for %s' % name
-    if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
-        # Personas and search engines don't need guids
+    if type_ not in [amo.ADDON_SEARCH]:
+        # Search engines don't need guids
         kwargs['guid'] = kw.pop('guid', '{%s}' % str(uuid.uuid4()))
     kwargs.update(kw)
 
@@ -702,15 +696,9 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
+    if should_be_recommended:
+        version_kw['recommendation_approved'] = True
     version = version_factory(file_kw, addon=addon, **version_kw)
-    if addon.type == amo.ADDON_PERSONA:
-        addon._current_version = version
-        persona_id = persona_id if persona_id is not None else addon.id
-
-        # Save 3.
-        Persona.objects.create(
-            addon=addon, popularity=addon.average_daily_users,
-            persona_id=persona_id)
 
     addon.update_version()
     addon.status = status
@@ -728,19 +716,15 @@ def addon_factory(
         category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
 
+    if should_be_recommended:
+        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
                       dispatch_uid='addons.search.index')
 
     # Save 4.
     addon.save()
-
-    if addon.type == amo.ADDON_PERSONA:
-        # Personas only have one version and signals.version_changed is never
-        # fired for them - instead it gets updated through a cron (!). We do
-        # need to get it right in some tests like the ui tests, so we call the
-        # task ourselves.
-        version_changed(addon.pk)
 
     # Potentially update is_public on authors
     [user.update_is_public() for user in users]
@@ -891,7 +875,7 @@ def version_factory(file_kw=None, **kw):
         ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=ver, min=av_min,
                                                    max=av_max)
-    if addon_type != amo.ADDON_PERSONA and file_kw is not False:
+    if file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     return ver
@@ -903,12 +887,10 @@ class ESTestCase(TestCase):
     def get_index_name(cls, key):
         return get_es_index_name(key)
 
-    def setUp(self):
-        stop_es_mocks()
-        super(ESTestCase, self).setUp()
-
     @classmethod
     def setUpClass(cls):
+        # Stop the mock temporarily, the pytest fixture will start them
+        # right before each test.
         stop_es_mocks()
         cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
         cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
@@ -918,11 +900,15 @@ class ESTestCase(TestCase):
         }
         super(ESTestCase, cls).setUpClass()
 
+    def setUp(self):
+        # Stop the mocks again, we stopped them in `setUpClass` but our
+        # generic pytest fixture started the mocks in the meantime
+        stop_es_mocks()
+        super(ESTestCase, self).setUp()
+
     @classmethod
     def setUpTestData(cls):
-        stop_es_mocks()
         setup_es_test_data(cls.es)
-
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod
@@ -945,7 +931,7 @@ class ESTestCase(TestCase):
     @classmethod
     def empty_index(cls, index):
         # Try to make sure that all changes are properly flushed.
-        cls.refresh()
+        cls.refresh(index)
         cls.es.delete_by_query(
             settings.ES_INDEXES[index],
             body={'query': {'match_all': {}}},

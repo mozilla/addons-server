@@ -10,19 +10,48 @@ import responses
 
 from olympia.amo.tests import TestCase
 
-fake_data = {
-    u'results': [{
-        u'custom_heading': u'sïïïck custom heading',
-        u'custom_description': u'greât custom description'
+disco_fake_data = {
+    'results': [{
+        'custom_heading': 'sïïïck custom heading',
+        'custom_description': 'greât custom description'
     }, {
-        u'custom_heading': None,
-        u'custom_description': u'custom description is custom '
+        'custom_heading': None,
+        'custom_description': 'custom description is custom '
     }, {
-        u'custom_heading': u'{start_sub_heading}{addon_name}{end_sub_heading}',
-        u'custom_description': u''
+        'custom_heading': '{start_sub_heading}{addon_name}{end_sub_heading}',
+        'custom_description': ''
     }]}
 
-expected_content = u"""{# L10n: editorial content for the discovery pane. #}
+hero_fake_data = {
+    'results': [{
+        'headline': 'sïïïck headline',
+        'description': 'greât description',
+        'cta': {
+            'text': 'link to somewhere greât',
+            'url': 'https://great.place/',
+        },
+        'modules': [
+            {
+                'description': 'module description',
+            },
+            {
+                'description': None,
+                'cta': {
+                    'text': 'CALL TO ACTION',
+                    'url': None,
+                }
+            }
+        ]
+    }, {
+        'headline': None,
+        'description': 'not custom description is not custom '
+    }, {
+        'headline': '',
+        'description': None,
+        'modules': [],
+    }]}
+
+expected_content = """{# L10n: editorial content for the discovery pane. #}
 {% trans %}sïïïck custom heading{% endtrans %}
 {# L10n: editorial content for the discovery pane. #}
 {% trans %}greât custom description{% endtrans %}
@@ -32,24 +61,43 @@ expected_content = u"""{# L10n: editorial content for the discovery pane. #}
 
 {# L10n: editorial content for the discovery pane. #}
 {% trans %}{start_sub_heading}{addon_name}{end_sub_heading}{% endtrans %}
+
+{# L10n: editorial content for the secondary hero shelves. #}
+{% trans %}sïïïck headline{% endtrans %}
+{# L10n: editorial content for the secondary hero shelves. #}
+{% trans %}greât description{% endtrans %}
+{# L10n: editorial content for the secondary hero shelves. #}
+{% trans %}link to somewhere greât{% endtrans %}
+{# L10n: editorial content for the secondary hero shelves. #}
+{% trans %}module description{% endtrans %}
+{# L10n: editorial content for the secondary hero shelves. #}
+{% trans %}CALL TO ACTION{% endtrans %}
+
+{# L10n: editorial content for the secondary hero shelves. #}
+{% trans %}not custom description is not custom {% endtrans %}
+
 """
 
 
 class TestExtractDiscoStringsCommand(TestCase):
     def test_settings(self):
         assert (
-            (settings.DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2')
+            (settings.EDITORIAL_CONTENT_FILENAME, 'jinja2')
             in settings.PUENTE['DOMAIN_METHODS']['django'])
 
     def test_basic(self):
         responses.add(
             responses.GET, settings.DISCOVERY_EDITORIAL_CONTENT_API,
             content_type='application/json',
-            body=json.dumps(fake_data))
+            body=json.dumps(disco_fake_data))
+        responses.add(
+            responses.GET, settings.SECONDARY_HERO_EDITORIAL_CONTENT_API,
+            content_type='application/json',
+            body=json.dumps(hero_fake_data))
 
         with tempfile.NamedTemporaryFile() as file_, override_settings(
-                DISCOVERY_EDITORIAL_CONTENT_FILENAME=file_.name):
-            call_command('extract_disco_strings')
+                EDITORIAL_CONTENT_FILENAME=file_.name):
+            call_command('extract_content_strings')
 
             file_.seek(0)
             content = file_.read()

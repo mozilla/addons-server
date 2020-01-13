@@ -9,7 +9,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test import RequestFactory
-from django.test.utils import override_settings
 from django.utils.encoding import force_text
 from django.utils.translation import trim_whitespace
 
@@ -32,7 +31,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
+from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
@@ -40,7 +39,6 @@ from olympia.devhub.views import get_next_version_number
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
-from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
@@ -899,14 +897,15 @@ class TestAPIKeyPage(TestCase):
         response = self.client.get(reverse('devhub.api_key'))
         self.assert3xx(response, reverse('devhub.api_key_agreement'))
 
-    def test_view_without_credentials(self):
+    def test_view_without_credentials_not_confirmed_yet(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         submit = doc('#generate-key')
         assert submit.text() == 'Generate new credentials'
         inputs = doc('.api-input input')
-        assert len(inputs) == 0, 'Inputs should be hidden before keys exist'
+        assert len(inputs) == 0, 'Inputs should be absent before keys exist'
+        assert not doc('input[name=confirmation_token]')
 
     def test_view_with_credentials(self):
         APIKey.objects.create(user=self.user,
@@ -922,20 +921,127 @@ class TestAPIKeyPage(TestCase):
         key_input = doc('.key-input input').val()
         assert key_input == 'some-jwt-key'
 
-    def test_create_new_credentials(self):
+    def test_view_without_credentials_confirmation_requested_no_token(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=False)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Since confirmation has already been requested, there shouldn't be
+        # any buttons on the page if no token was passed in the URL - the user
+        # needs to follow the link in the email to continue.
+        assert not doc('input[name=confirmation_token]')
+        assert not doc('input[name=action]')
+
+    def test_view_without_credentials_confirmation_requested_with_token(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='secrettoken', confirmed_once=False)
+        self.url += '?token=secrettoken'
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('input[name=confirmation_token]')) == 1
+        token_input = doc('input[name=confirmation_token]')[0]
+        assert token_input.value == 'secrettoken'
+        submit = doc('#generate-key')
+        assert submit.text() == 'Confirm and generate new credentials'
+
+    def test_view_no_credentials_has_been_confirmed_once(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=True)
+        # Should look similar to when there are no credentials and no
+        # confirmation has been requested yet, the post action is where it
+        # will differ.
+        self.test_view_without_credentials_not_confirmed_yet()
+
+    def test_create_new_credentials_has_been_confirmed_once(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=True)
         patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
         with patch as mock_creator:
             response = self.client.post(self.url, data={'action': 'generate'})
         mock_creator.assert_called_with(self.user)
 
-        email = mail.outbox[0]
         assert len(mail.outbox) == 1
-        assert email.to == [self.user.email]
-        assert reverse('devhub.api_key') in email.body
+        message = mail.outbox[0]
+        assert message.to == [self.user.email]
+        assert message.subject == 'New API key created'
+        assert reverse('devhub.api_key') in message.body
 
         self.assert3xx(response, self.url)
 
-    def test_delete_and_recreate_credentials(self):
+    def test_create_new_credentials_confirming_with_token(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='secrettoken', confirmed_once=False)
+        patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
+        with patch as mock_creator:
+            response = self.client.post(self.url, data={
+                'action': 'generate', 'confirmation_token': 'secrettoken'
+            })
+        mock_creator.assert_called_with(self.user)
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.user.email]
+        assert message.subject == 'New API key created'
+        assert reverse('devhub.api_key') in message.body
+
+        confirmation.reload()
+        assert confirmation.confirmed_once
+
+        self.assert3xx(response, self.url)
+
+    def test_create_new_credentials_not_confirmed_yet(self):
+        assert not APIKey.objects.filter(user=self.user).exists()
+        assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
+        response = self.client.post(self.url, data={'action': 'generate'})
+        self.assert3xx(response, self.url)
+
+        # Since there was no credentials are no confirmation yet, this should
+        # create a confirmation, send an email with the token, but not create
+        # credentials yet.
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.user.email]
+        assert not APIKey.objects.filter(user=self.user).exists()
+        assert APIKeyConfirmation.objects.filter(user=self.user).exists()
+        confirmation = APIKeyConfirmation.objects.filter(user=self.user).get()
+        assert confirmation.token
+        assert not confirmation.confirmed_once
+        token = confirmation.token
+        expected_url = (
+            f'http://testserver/en-US/developers/addon/api/key/?token={token}'
+        )
+        assert message.subject == 'Confirmation for developer API keys'
+        assert expected_url in message.body
+
+    def test_create_new_credentials_confirmation_exists_no_token_passed(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=False)
+        response = self.client.post(self.url, data={'action': 'generate'})
+        assert len(mail.outbox) == 0
+        assert not APIKey.objects.filter(user=self.user).exists()
+        confirmation.reload()
+        assert not confirmation.confirmed_once  # Unchanged
+        self.assert3xx(response, self.url)
+
+    def test_create_new_credentials_confirmation_exists_token_is_wrong(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='sometoken', confirmed_once=False)
+        response = self.client.post(self.url, data={
+            'action': 'generate', 'confirmation_token': 'wrong'
+        })
+        # Nothing should have happened, the user will just be redirect to the
+        # page.
+        assert len(mail.outbox) == 0
+        assert not APIKey.objects.filter(user=self.user).exists()
+        confirmation.reload()
+        assert not confirmation.confirmed_once
+        self.assert3xx(response, self.url)
+
+    def test_delete_and_recreate_credentials_has_been_confirmed_once(self):
+        APIKeyConfirmation.objects.create(
+            user=self.user, token='doesnt matter', confirmed_once=True)
         old_key = APIKey.objects.create(user=self.user,
                                         type=SYMMETRIC_JWT_TYPE,
                                         key='some-jwt-key',
@@ -949,6 +1055,38 @@ class TestAPIKeyPage(TestCase):
         new_key = APIKey.get_jwt_key(user=self.user)
         assert new_key.key != old_key.key
         assert new_key.secret != old_key.secret
+
+    def test_delete_and_recreate_credentials_has_not_been_confirmed_yet(self):
+        old_key = APIKey.objects.create(user=self.user,
+                                        type=SYMMETRIC_JWT_TYPE,
+                                        key='some-jwt-key',
+                                        secret='some-jwt-secret')
+        response = self.client.post(self.url, data={'action': 'generate'})
+        self.assert3xx(response, self.url)
+
+        old_key = APIKey.objects.get(pk=old_key.pk)
+        assert old_key.is_active is None
+
+        # Since there was no confirmation, this should create a one, send an
+        # email with the token, but not create credentials yet. (Would happen
+        # for an user that had api keys from before we introduced confirmation
+        # mechanism, but decided to regenerate).
+        assert len(mail.outbox) == 2  # 2 because of key revocation email.
+        assert 'revoked' in mail.outbox[0].body
+        message = mail.outbox[1]
+        assert message.to == [self.user.email]
+        assert not APIKey.objects.filter(
+            user=self.user, is_active=True).exists()
+        assert APIKeyConfirmation.objects.filter(user=self.user).exists()
+        confirmation = APIKeyConfirmation.objects.filter(user=self.user).get()
+        assert confirmation.token
+        assert not confirmation.confirmed_once
+        token = confirmation.token
+        expected_url = (
+            f'http://testserver/en-US/developers/addon/api/key/?token={token}'
+        )
+        assert message.subject == 'Confirmation for developer API keys'
+        assert expected_url in message.body
 
     def test_delete_credentials(self):
         old_key = APIKey.objects.create(user=self.user,
@@ -1013,7 +1151,7 @@ class TestUpload(BaseUploadTest):
         assert msg['type'] == u'error'
         assert msg['message'] == (
             u'Unsupported file type, please upload a supported file '
-            '(.crx, .xpi, .jar, .xml, .json, .zip).')
+            '(.crx, .xpi, .xml, .zip).')
         assert not msg['description']
 
     def test_redirect(self):
@@ -1184,7 +1322,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         message = [(m['message'], m.get('type') == 'error')
                    for m in data['validation']['messages']]
-        expected = [(u'&#34;/version&#34; is a required property', True)]
+        expected = [(u'"/version" is a required property', True)]
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1206,7 +1344,7 @@ class TestUploadDetail(BaseUploadTest):
         # not valid instead of a generic exception.
         assert message == [
             ('Invalid or corrupt add-on file.', False),
-            ('Sorry, we couldn&#39;t load your WebExtension.', True),
+            ('Sorry, we couldn\'t load your WebExtension.', True),
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1260,11 +1398,12 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[upload.uuid.hex, 'json']))
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
-            {u'tier': 1,
-             u'message': u'You cannot submit an add-on with a guid ending '
-                         u'"@mozilla.org" or "@shield.mozilla.org" or '
-                         u'"@pioneer.mozilla.org" or "@mozilla.com"',
-             u'fatal': True, u'type': u'error'}]
+            {'tier': 1,
+             'message': 'You cannot submit an add-on using a guid ending with '
+                        '"@mozilla.com" or "@mozilla.org" or '
+                        '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
+                        '"@shield.mozilla.org"',
+             'fatal': True, 'type': 'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
@@ -1365,114 +1504,6 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
-
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        comment_check_mock.assert_called_once()
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get(upload_instance=upload)
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Beastify'  # the addon's name
-        assert b'spam' not in response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_logging_only(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get(upload_instance=upload)
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Beastify'  # the addon's name
-        assert report.result == AkismetReport.MAYBE_SPAM
-        assert b'spam' not in response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_action_taken(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        self.upload_file('valid_webextension.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get(upload_instance=upload)
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Beastify'  # the addon's name
-        assert b'spam' in response.content
-        assert report.result == AkismetReport.MAYBE_SPAM
-        data = json.loads(force_text(response.content))
-        assert data['validation']['messages'][0]['id'] == [
-            u'validation', u'messages', u'akismet_is_spam_name'
-        ]
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_reports_created_l10n(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        self.upload_file('notify-link-clicks-i18n-edited.xpi')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        # there are 8 because 4 locales and name and summary in each.
-        assert comment_check_mock.call_count == 8
-        assert AkismetReport.objects.count() == 8
-        assert AkismetReport.objects.filter(
-            upload_instance=upload).count() == 8
-        report = AkismetReport.objects.filter(upload_instance=upload).first()
-        # Just check the first one
-        assert report.comment_type == 'product-name'
-        names = [
-            u'Meine Beispielerweiterung',  # de
-            u'Notify link clicks i18n',  # en
-            u'リンクを通知する',  # ja
-            u'Varsling ved trykk på lenke i18n',  # nb_NO
-        ]
-        assert report.comment in names
-        assert b'spam' not in response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    def test_akismet_reports_not_created_for_unlisted(self):
-        self.upload_file('valid_webextension.xpi', 'devhub.upload_unlisted')
-
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
 
 
 def assert_json_error(request, field, msg):
@@ -1851,7 +1882,7 @@ def test_get_next_version_number():
     version_factory(addon=addon, version='2')
     assert get_next_version_number(addon) == '3.0'
     # We just iterate the major version number
-    addon.current_version.update(version='34.45.0a1pre', version_int=None)
+    addon.current_version.update(version='34.45.0a1pre')
     addon.current_version.save()
     assert get_next_version_number(addon) == '35.0'
     # "Take" 35.0
@@ -1907,16 +1938,16 @@ class TestLogout(UserViewBase):
         self.client.login(email=user.email)
         response = self.client.get(reverse('devhub.index'), follow=True)
         assert (
-            pq(response.content)('li.avatar a').attr('href') == (
+            pq(response.content)('li a.avatar').attr('href') == (
                 user.get_url_path()))
         assert (
-            pq(response.content)('li.avatar a img').attr('src') == (
+            pq(response.content)('li a.avatar img').attr('src') == (
                 user.picture_url))
 
         response = self.client.get('/en-US/developers/logout', follow=False)
         self.assert3xx(response, '/en-US/firefox/', status_code=302)
         response = self.client.get(reverse('devhub.index'), follow=True)
-        assert not pq(response.content)('li.avatar')
+        assert not pq(response.content)('li a.avatar')
 
     def test_redirect(self):
         self.client.login(email='jbalogh@mozilla.com')
@@ -1925,13 +1956,6 @@ class TestLogout(UserViewBase):
         response = self.client.get(urlparams(reverse('devhub.logout'), to=url),
                                    follow=True)
         self.assert3xx(response, url, status_code=302)
-
-        url = urlparams(reverse('devhub.logout'), to='/addon/new',
-                        domain='builder')
-        response = self.client.get(url, follow=False)
-        self.assert3xx(
-            response, 'https://builder.addons.mozilla.org/addon/new',
-            status_code=302)
 
         # Test an invalid domain
         url = urlparams(reverse('devhub.logout'), to='/en-US/about',

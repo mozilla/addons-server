@@ -20,6 +20,7 @@ detail_patterns = [
     url(r'^enable$', views.enable, name='devhub.addons.enable'),
     url(r'^cancel$', views.cancel, name='devhub.addons.cancel'),
     url(r'^ownership$', views.ownership, name='devhub.addons.owner'),
+    url(r'^invitation$', views.invitation, name='devhub.addons.invitation'),
     url(r'^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='devhub.addons.section'),
 

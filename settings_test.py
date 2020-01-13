@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from settings import *  # noqa
 
+
 # Make sure the apps needed to test translations and core are present.
 INSTALLED_APPS += (
     'olympia.translations.tests.testapp',
@@ -21,7 +22,6 @@ AUTHENTICATION_BACKENDS = (
     'olympia.users.backends.TestUserBackend',
 )
 
-CELERY_TASK_ALWAYS_EAGER = True
 DEBUG = False
 
 # We won't actually send an email.
@@ -56,9 +56,6 @@ TASK_USER_ID = 1337
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 1
 
-# Set to True if we're allowed to use X-SENDFILE.
-XSENDFILE = True
-
 # Don't enable the signing by default in tests, many would fail trying to sign
 # empty or bad zip files, or try posting to the endpoints. We don't want that.
 SIGNING_SERVER = ''
@@ -88,3 +85,11 @@ LOGGING['loggers'] = {
 PNGCRUSH_BIN = '/bin/true'
 
 BASKET_API_KEY = 'testkey'
+
+# By default all tests are run in always-eager mode. Use `CeleryWorkerTestCase`
+# to start an actual celery worker instead.
+CELERY_TASK_ALWAYS_EAGER = True
+
+CELERY_IMPORTS += (
+    'olympia.amo.tests.test_celery',
+)

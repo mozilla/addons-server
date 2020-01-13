@@ -28,8 +28,8 @@
         </ul>
       </li>
     {% endif %}
-    <li>
-      <a href="https://extensionworkshop.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link">
+    <li class="nomenu">
+      <a href="{{ settings.EXTENSION_WORKSHOP_URL }}/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link">
         {{ _('Extension Workshop') }}</a></li>
     <li>
       <a href="#" class="controller">{{ _('Documentation') }}</a>
@@ -58,7 +58,7 @@
           {{ _('Add-ons Blog') }}</a></li>
         <li><a href="https://discourse.mozilla-community.org/c/add-ons">
           {{ _('Add-ons Forum') }}</a></li>
-        <li><a href="https://extensionworkshop.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link#connect">
+        <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link#connect">
           {{ _('More Resources') }}</a></li>
       </ul>
     </li>

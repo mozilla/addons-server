@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 # Add-on and File statuses.
 STATUS_NULL = 0  # No review type chosen yet, add-on is incomplete.
 STATUS_AWAITING_REVIEW = 1  # File waiting for review.
-STATUS_PENDING = 2  # Personas (lightweight themes) waiting for review.
+_STATUS_PENDING = 2  # Deprecated. Was Personas waiting for review.
 STATUS_NOMINATED = 3  # Waiting for review.
 STATUS_APPROVED = 4  # Approved.
 STATUS_DISABLED = 5  # Rejected (single files) or disabled by Mozilla (addons).
@@ -16,8 +16,8 @@ _STATUS_BETA = 7  # Deprecated, see addons-server/issues/7163
 _STATUS_LITE = 8  # Deprecated, preliminary reviewed.
 _STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
-STATUS_REJECTED = 12  # This applies only to rejected personas.
-STATUS_REVIEW_PENDING = 14  # personas, needing further action.
+_STATUS_REJECTED = 12  # Deprecated. Applied only to rejected personas.
+_STATUS_REVIEW_PENDING = 14  # Deprecated. Was personas, needing further action
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
@@ -25,17 +25,6 @@ STATUS_CHOICES_ADDON = {
     STATUS_APPROVED: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_DELETED: _(u'Deleted'),
-}
-
-STATUS_CHOICES_PERSONA = {
-    STATUS_NULL: STATUS_CHOICES_ADDON[STATUS_NULL],
-    STATUS_PENDING: _(u'Pending approval'),
-    STATUS_APPROVED: STATUS_CHOICES_ADDON[STATUS_APPROVED],
-    STATUS_DISABLED: STATUS_CHOICES_ADDON[STATUS_DISABLED],
-    STATUS_DELETED: STATUS_CHOICES_ADDON[STATUS_DELETED],
-    STATUS_REJECTED: _(u'Rejected'),
-    # Approved, but the developer would like to put it public when they want.
-    STATUS_REVIEW_PENDING: _(u'Flagged for further review'),
 }
 
 STATUS_CHOICES_FILE = {
@@ -48,30 +37,24 @@ STATUS_CHOICES_FILE = {
 STATUS_CHOICES_API = {
     STATUS_NULL: 'incomplete',
     STATUS_AWAITING_REVIEW: 'unreviewed',
-    STATUS_PENDING: 'pending',
     STATUS_NOMINATED: 'nominated',
     STATUS_APPROVED: 'public',
     STATUS_DISABLED: 'disabled',
     STATUS_DELETED: 'deleted',
-    STATUS_REJECTED: 'rejected',
-    STATUS_REVIEW_PENDING: 'review-pending',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
     'incomplete': STATUS_NULL,
     'unreviewed': STATUS_AWAITING_REVIEW,
-    'pending': STATUS_PENDING,
     'nominated': STATUS_NOMINATED,
     'public': STATUS_APPROVED,
     'disabled': STATUS_DISABLED,
     'deleted': STATUS_DELETED,
-    'rejected': STATUS_REJECTED,
-    'review-pending': STATUS_REVIEW_PENDING,
 }
 
 REVIEWED_STATUSES = (STATUS_APPROVED,)
 UNREVIEWED_ADDON_STATUSES = (STATUS_NOMINATED,)
-UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PENDING)
+UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW,)
 VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_APPROVED)
 VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_APPROVED)
 
@@ -106,44 +89,45 @@ AUTHOR_CHOICES = (
 # Addon types
 ADDON_ANY = 0
 ADDON_EXTENSION = 1
-ADDON_THEME = 2
+_ADDON_THEME = 2
 ADDON_DICT = 3
 ADDON_SEARCH = 4
 ADDON_LPAPP = 5
 ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
-ADDON_PERSONA = 9
+_ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
 ADDON_STATICTHEME = 10
+_ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
 
 # Addon type groupings.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
                     ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
-GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA, ADDON_STATICTHEME]
+GROUP_TYPE_THEME = [ADDON_STATICTHEME]
 
 # Singular
 ADDON_TYPE = {
     ADDON_EXTENSION: _(u'Extension'),
-    ADDON_THEME: _(u'Complete Theme'),
+    _ADDON_THEME: _(u'Deprecated Complete Theme'),
     ADDON_DICT: _(u'Dictionary'),
     ADDON_SEARCH: _(u'Search Engine'),
     ADDON_LPAPP: _(u'Language Pack (Application)'),
     ADDON_LPADDON: _(u'Language Pack (Add-on)'),
     ADDON_PLUGIN: _(u'Plugin'),
-    ADDON_PERSONA: _(u'Theme'),
+    _ADDON_PERSONA: _(u'Deprecated LWT'),
     ADDON_STATICTHEME: _(u'Theme (Static)'),
 }
 
 # Plural
 ADDON_TYPES = {
     ADDON_EXTENSION: _(u'Extensions'),
-    ADDON_THEME: _(u'Complete Themes'),
+    _ADDON_THEME: _(u'Deprecated Complete Themes'),
     ADDON_DICT: _(u'Dictionaries'),
     ADDON_SEARCH: _(u'Search Tools'),
     ADDON_LPAPP: _(u'Language Packs (Application)'),
     ADDON_LPADDON: _(u'Language Packs (Add-on)'),
     ADDON_PLUGIN: _(u'Plugins'),
-    ADDON_PERSONA: _(u'Themes'),
+    _ADDON_PERSONA: _(u'Deprecated LWTs'),
     ADDON_STATICTHEME: _(u'Themes (Static)'),
 }
 
@@ -151,20 +135,13 @@ ADDON_TYPES = {
 ADDON_SEARCH_TYPES = [
     ADDON_ANY,
     ADDON_EXTENSION,
-    ADDON_THEME,
+    _ADDON_THEME,
     ADDON_DICT,
     ADDON_SEARCH,
     ADDON_LPAPP,
-    ADDON_PERSONA,
+    _ADDON_PERSONA,
     ADDON_STATICTHEME,
 ]
-
-# Icons
-ADDON_ICONS = {
-    ADDON_ANY: 'default-addon.png',
-    ADDON_THEME: 'default-theme.png',
-    ADDON_STATICTHEME: 'default-theme.png',
-}
 
 # We use these slugs in browse page urls.
 ADDON_SLUGS = {
@@ -178,12 +155,12 @@ ADDON_SLUGS = {
 # These are used in the update API.
 ADDON_SLUGS_UPDATE = {
     ADDON_EXTENSION: 'extension',
-    ADDON_THEME: 'theme',
+    _ADDON_THEME: 'theme',
     ADDON_DICT: 'extension',
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'item',
     ADDON_LPADDON: 'extension',
-    ADDON_PERSONA: 'background-theme',
+    _ADDON_PERSONA: 'background-theme',
     ADDON_PLUGIN: 'plugin',
     ADDON_STATICTHEME: 'static-theme',
 }
@@ -193,21 +170,21 @@ ADDON_SLUGS_UPDATE = {
 ADDON_SEARCH_SLUGS = {
     'any': ADDON_ANY,
     'extension': ADDON_EXTENSION,
-    'theme': ADDON_THEME,
+    'theme': _ADDON_THEME,
     'dictionary': ADDON_DICT,
     'search': ADDON_SEARCH,
     'language': ADDON_LPAPP,
-    'persona': ADDON_PERSONA,
+    'persona': _ADDON_PERSONA,
     'statictheme': ADDON_STATICTHEME,
 }
 
 ADDON_TYPE_CHOICES_API = {
     ADDON_EXTENSION: 'extension',
-    ADDON_THEME: 'theme',
+    _ADDON_THEME: 'theme',
     ADDON_DICT: 'dictionary',
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'language',
-    ADDON_PERSONA: 'persona',
+    _ADDON_PERSONA: 'persona',
     ADDON_STATICTHEME: 'statictheme',
 }
 
@@ -215,7 +192,12 @@ ADDON_TYPE_CHOICES_API = {
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
+CONTRIBUTE_UTM_PARAMS = {
+    'utm_content': 'product-page-contribute',
+    'utm_medium': 'referral',
+    'utm_source': 'addons.mozilla.org'}
 VALID_CONTRIBUTION_DOMAINS = (
+    'buymeacoffee.com',
     'donate.mozilla.org',
     'flattr.com',
     'liberapay.com',
@@ -256,13 +238,6 @@ THEME_PREVIEW_SIZES = {
 THEME_FRAME_COLOR_DEFAULT = 'rgba(229,230,232,1)'
 THEME_PREVIEW_TOOLBAR_HEIGHT = 92  # The template toolbar is this height.
 
-# Persona image sizes [preview, full]
-PERSONA_IMAGE_SIZES = {
-    'header': [(680, 100), (3000, 200)],
-    'footer': [None, (3000, 100)],
-    'icon': [None, (32, 32)],
-}
-
 # Accepted image extensions and MIME-types
 THEME_BACKGROUND_EXTS = ('.jpg', '.jpeg', '.png', '.apng', '.svg', '.gif')
 IMG_TYPES = ('image/png', 'image/jpeg')
@@ -274,16 +249,12 @@ SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 # Acceptable Add-on file extensions.
 # This is being used by `parse_addon` so please make sure we don't have
 # to touch add-ons before removing anything from this list.
-VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
+VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.xml', '.zip')
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
-NO_COMPAT = (ADDON_SEARCH, ADDON_DICT, ADDON_PERSONA)
+NO_COMPAT = (ADDON_SEARCH, ADDON_DICT)
 HAS_COMPAT = {t: t not in NO_COMPAT for t in ADDON_TYPES}
-
-# Personas
-PERSONAS_ADDON_ID = 10900  # Add-on ID of the Personas Plus Add-on
-PERSONAS_FIREFOX_MIN = '3.6'  # First Firefox version to support Personas
 
 # Collections.
 COLLECTION_NORMAL = 0
@@ -406,8 +377,12 @@ ADDON_GUID_PATTERN = re.compile(
     r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
 
 SYSTEM_ADDON_GUIDS = (
-    u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org',
-    u'@mozilla.com')
+    '@mozilla.com',
+    '@mozilla.org',
+    '@pioneer.mozilla.org',
+    '@search.mozilla.org',
+    '@shield.mozilla.org'
+)
 
 MOZILLA_TRADEMARK_SYMBOLS = (
     'mozilla', 'firefox')

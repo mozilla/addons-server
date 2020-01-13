@@ -11,17 +11,17 @@ from django.views.decorators.cache import cache_page
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import action
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
+from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
@@ -30,8 +30,7 @@ from olympia.api.permissions import (
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.search.filters import (
     AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
-    AddonCategoryQueryParam, AddonGuidQueryParam, AddonTypeQueryParam,
-    AutoCompleteSortFilter,
+    AddonTypeQueryParam, AutoCompleteSortFilter,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
 from olympia.translations.query import order_by_translation
@@ -39,21 +38,19 @@ from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, CompatOverride, ReplacementAddon
+from .models import Addon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
+    AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import (
     get_addon_recommendations, get_addon_recommendations_invalid,
-    get_creatured_ids, get_featured_ids, is_outcome_recommended)
+    is_outcome_recommended)
 
 
 log = olympia.core.logger.getLogger('z.addons')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
-addon_valid_disabled_pending_view = addon_view_factory(
-    qs=Addon.objects.valid_and_disabled_and_pending)
 
 
 class BaseFilter(object):
@@ -99,22 +96,6 @@ class BaseFilter(object):
     def filter(self, field):
         """Get the queryset for the given field."""
         return getattr(self, 'filter_{0}'.format(field))()
-
-    def filter_featured(self):
-        ids = self.model.featured_random(self.request.APP, self.request.LANG)
-        return manual_order(self.base_queryset, ids, 'addons.id')
-
-    def filter_free(self):
-        if self.model == Addon:
-            return self.base_queryset.top_free(self.request.APP, listed=False)
-        else:
-            return self.base_queryset.top_free(listed=False)
-
-    def filter_paid(self):
-        if self.model == Addon:
-            return self.base_queryset.top_paid(self.request.APP, listed=False)
-        else:
-            return self.base_queryset.top_paid(listed=False)
 
     def filter_popular(self):
         return self.base_queryset.order_by('-weekly_downloads')
@@ -180,11 +161,20 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         if (self.request.user.is_authenticated and
                 acl.action_allowed(self.request,
                                    amo.permissions.ADDONS_VIEW_DELETED)):
-            return Addon.unfiltered.all()
-        # Permission classes disallow access to non-public/unlisted add-ons
-        # unless logged in as a reviewer/addon owner/admin, so we don't have to
-        # filter the base queryset here.
-        return Addon.objects.all()
+            qs = Addon.unfiltered.all()
+        else:
+            # Permission classes disallow access to non-public/unlisted add-ons
+            # unless logged in as a reviewer/addon owner/admin, so we don't
+            # have to filter the base queryset here.
+            qs = Addon.objects.all()
+        if self.action == 'retrieve_from_related':
+            # Avoid default transformers if we're fetching a single instance
+            # from a related view: We're unlikely to need the preloading they
+            # bring, this would only cause extra useless queries. Still include
+            # translations because at least the addon name is likely to be
+            # needed in most cases.
+            qs = qs.only_translations()
+        return qs
 
     def get_serializer_class(self):
         # Override serializer to use serializer_class_with_unlisted_data if
@@ -252,8 +242,10 @@ class AddonChildMixin(object):
             permission_classes = AddonViewSet.permission_classes
 
         self.addon_object = AddonViewSet(
-            request=self.request, permission_classes=permission_classes,
-            kwargs={'pk': self.kwargs[lookup]}).get_object()
+            request=self.request,
+            permission_classes=permission_classes,
+            kwargs={'pk': self.kwargs[lookup]},
+            action='retrieve_from_related').get_object()
         return self.addon_object
 
 
@@ -332,27 +324,29 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             elif requested not in valid_filters:
                 raise serializers.ValidationError(
                     'Invalid "filter" parameter specified.')
-        # By default we restrict to valid, listed versions. Some filtering
-        # options are available when listing, and in addition, when returning
-        # a single instance, we don't filter at all.
+        # When listing, by default we only want to return listed, approved
+        # versions, matching frontend needs - this can be overridden by the
+        # filter in use. When fetching a single instance however, we use the
+        # same queryset as the less restrictive filter, that allows us to see
+        # all versions, even deleted ones. In any case permission checks will
+        # prevent access if necessary (meaning regular users will never see
+        # deleted or unlisted versions regardless of the queryset being used).
+        # We start with the <Addon>.versions manager in order to have the
+        # `addon` property preloaded on each version we return.
+        addon = self.get_addon_object()
         if requested == 'all_with_deleted' or self.action != 'list':
-            queryset = Version.unfiltered.all()
+            queryset = addon.versions(manager='unfiltered_for_relations').all()
         elif requested == 'all_with_unlisted':
-            queryset = Version.objects.all()
+            queryset = addon.versions.all()
         elif requested == 'all_without_unlisted':
-            queryset = Version.objects.filter(
+            queryset = addon.versions.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED)
         else:
-            # By default, we rely on queryset filtering to hide
-            # non-public/unlisted versions. get_queryset() might override this
-            # if we are asked to see non-valid, deleted and/or unlisted
-            # versions explicitly.
-            queryset = Version.objects.filter(
+            queryset = addon.versions.filter(
                 files__status=amo.STATUS_APPROVED,
                 channel=amo.RELEASE_CHANNEL_LISTED).distinct()
 
-        # Filter with the add-on.
-        return queryset.filter(addon=self.get_addon_object())
+        return queryset
 
 
 class AddonSearchView(ListAPIView):
@@ -422,73 +416,36 @@ class AddonAutoCompleteSearchView(AddonSearchView):
         return Response({'results': serializer.data})
 
 
-class AddonFeaturedView(GenericAPIView):
-    authentication_classes = []
-    permission_classes = []
-    serializer_class = AddonSerializer
+class AddonFeaturedView(AddonSearchView):
+    """Featuring is gone, so this view is a hollowed out shim that returns
+    recommended addons for api/v3."""
     # We accept the 'page_size' parameter but we do not allow pagination for
     # this endpoint since the order is random.
     pagination_class = None
 
+    filter_backends = [
+        ReviewedContentFilter, SearchParameterFilter,
+    ]
+
     def get(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-
-        # Simulate pagination-like results, without actual pagination.
-        return Response({'results': serializer.data})
-
-    @classmethod
-    def as_view(cls, **kwargs):
-        view = super(AddonFeaturedView, cls).as_view(**kwargs)
-        return non_atomic_requests(view)
-
-    def get_queryset(self):
-        return Addon.objects.valid()
-
-    def filter_queryset(self, queryset):
-        # We can pass the optional lang parameter to either get_creatured_ids()
-        # or get_featured_ids() below to get locale-specific results in
-        # addition to the generic ones.
-        lang = self.request.GET.get('lang')
-        if 'category' in self.request.GET:
-            # If a category is passed then the app and type parameters are
-            # mandatory because we need to find a category in the constants to
-            # pass to get_creatured_ids(), and category slugs are not unique.
-            # AddonCategoryQueryParam parses the request parameters for us to
-            # determine the category.
-            try:
-                categories = AddonCategoryQueryParam(self.request).get_value()
-            except ValueError:
-                raise exceptions.ParseError(
-                    'Invalid app, category and/or type parameter(s).')
-            ids = []
-            for category in categories:
-                ids.extend(get_creatured_ids(category, lang))
-        else:
-            # If no category is passed, only the app parameter is mandatory,
-            # because get_featured_ids() needs it to find the right collection
-            # to pick addons from. It can optionally filter by type, so we
-            # parse request for that as well.
-            try:
-                app = AddonAppQueryParam(
-                    self.request).get_object_from_reverse_dict()
-                types = None
-                if 'type' in self.request.GET:
-                    types = AddonTypeQueryParam(self.request).get_value()
-            except ValueError:
-                raise exceptions.ParseError(
-                    'Invalid app, category and/or type parameter(s).')
-            ids = get_featured_ids(app, lang=lang, types=types)
-        # ids is going to be a random list of ids, we just slice it to get
-        # the number of add-ons that was requested. We do it before calling
-        # manual_order(), since it'll use the ids as part of a id__in filter.
         try:
             page_size = int(
                 self.request.GET.get('page_size', api_settings.PAGE_SIZE))
         except ValueError:
             raise exceptions.ParseError('Invalid page_size parameter')
-        ids = ids[:page_size]
-        return manual_order(queryset, ids, 'addons.id')
+
+        # Simulate pagination-like results, without actual pagination.
+        queryset = self.filter_queryset(self.get_queryset()[:page_size])
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
+
+    def filter_queryset(self, qs):
+        qs = super().filter_queryset(qs)
+        qs = qs.query(query.Bool(filter=[Q('term', is_recommended=True)]))
+        return (
+            qs.query('function_score', functions=[query.SF('random_score')])
+              .sort('_score')
+        )
 
 
 class StaticCategoryView(ListAPIView):
@@ -679,43 +636,17 @@ class ReplacementAddonView(ListAPIView):
     serializer_class = ReplacementAddonSerializer
 
 
-class CompatOverrideView(ListAPIView):
-    """This view is used by Firefox so it's performance-critical.
-
-    Every firefox client requests the list of overrides approx. once per day.
-    Firefox requests the overrides via a list of GUIDs which makes caching
-    hard because the variation of possible GUID combinations prevent us to
-    simply add some dumb-caching and requires us to resolve cache-misses.
+class CompatOverrideView(APIView):
+    """This view is used by Firefox but we don't have any more overrides so we
+    just return an empty response.  This api is v3 only.
     """
-
-    queryset = CompatOverride.objects.all()
-    serializer_class = CompatOverrideSerializer
 
     @classmethod
     def as_view(cls, **initkwargs):
-        """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(
-            super(CompatOverrideView, cls).as_view(**initkwargs))
+        return non_atomic_requests(super().as_view(**initkwargs))
 
-    def get_guids(self):
-        # Use the same Filter we use for AddonSearchView for consistency.
-        guid_filter = AddonGuidQueryParam(self.request)
-        return guid_filter.get_value()
-
-    def filter_queryset(self, queryset):
-        guids = self.get_guids()
-        if not guids:
-            raise exceptions.ParseError(
-                'Empty, or no, guid parameter provided.')
-        # Evaluate the queryset and cast it into a list.
-        # This will force Django to simply use len(queryset) instead of
-        # calling .count() on it and avoids an additional COUNT query.
-        # The amount of GUIDs we should get in real-life won't be paginated
-        # most of the time so it's safe to simply evaluate the query.
-        # The advantage here is that we are saving ourselves a `COUNT` query
-        # and these are expensive.
-        return list(queryset.filter(guid__in=guids).transform(
-            CompatOverride.transformer).order_by('-pk'))
+    def get(self, request, format=None):
+        return Response({'results': []})
 
 
 class AddonRecommendationView(AddonSearchView):

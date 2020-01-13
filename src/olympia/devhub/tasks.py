@@ -34,12 +34,10 @@ from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
-from olympia.lib.akismet.models import AkismetReport
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     InvalidManifest, NoManifestFound, parse_addon, SafeZip,
     UnsupportedFileType)
-from olympia.files.tasks import repack_fileupload
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
 
@@ -47,48 +45,39 @@ from olympia.devhub import file_validation_annotations as annotations
 log = olympia.core.logger.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None, subtask=None, synchronous=False,
-             pretask=None):
+def validate(file_, listed=None, final_task=None):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that
     task.
 
-    file_ can be either a File or FileUpload; if File then listed must be
-    None; if FileUpload listed must be specified."""
+    file_ can be either a File or FileUpload; if File then listed must be None;
+    if FileUpload listed must be specified.
+
+    final_task can be either None or a task that gets called after all the
+    validation tasks.
+    """
 
     # Import loop.
     from .utils import Validator
 
-    validator = Validator(file_, listed=listed)
+    validator = Validator(file_, listed=listed, final_task=final_task)
 
     task_id = cache.get(validator.cache_key)
 
-    if not synchronous and task_id:
+    if task_id:
         return AsyncResult(task_id)
     else:
-        # Note: pretask should never have ignore_result=False, as passing a
-        # result this would modify the arguments expected by the tasks
-        # afterwards and that would make @validation_task fail with mismatched
-        # arguments.
-        task = validator.get_task()
-        chain = task if pretask is None else pretask | task
-        if subtask is not None:
-            chain |= subtask
-
-        if synchronous:
-            result = chain.apply()
-        else:
-            result = chain.delay()
-
-            cache.set(validator.cache_key, result.task_id, 5 * 60)
-
+        result = validator.get_task().delay()
+        cache.set(validator.cache_key, result.task_id, 5 * 60)
         return result
 
 
-def validate_and_submit(addon, file_, channel, pretask=None):
+def validate_and_submit(addon, file_, channel):
     return validate(
-        file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-        subtask=submit_file.si(addon.pk, file_.pk, channel), pretask=pretask)
+        file_,
+        listed=(channel == amo.RELEASE_CHANNEL_LISTED),
+        final_task=submit_file.si(addon.pk, file_.pk, channel)
+    )
 
 
 @task
@@ -115,7 +104,6 @@ def create_version_for_upload(addon, upload, channel):
     else:
         # Import loop.
         from olympia.devhub.utils import add_dynamic_theme_tag
-        from olympia.devhub.views import auto_sign_version
 
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
@@ -133,26 +121,59 @@ def create_version_for_upload(addon, upload, channel):
         if (addon.status == amo.STATUS_NULL and
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
-        auto_sign_version(version)
         add_dynamic_theme_tag(version)
 
 
-def validation_task(fn):
-    """Wrap a validation task so that it runs with the correct flags, then
-    parse and annotate the results before returning."""
+@task
+def create_initial_validation_results():
+    """Returns the initial validation results for the next tasks in the
+    validation chain. Should only be called directly by Validator."""
+    results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+    return results
 
-    @task(bind=True, ignore_result=False,  # We want to pass the results down.
+
+def validation_task(fn):
+    """Wrap a validation task so that it runs with the correct flags and
+    handles errors (mainly because Celery's error handling does not work for
+    us).
+
+    ALL the validation tasks but `create_initial_validation_results()` should
+    use this decorator. Tasks decorated with `@validation_task` should have the
+    following declaration:
+
+        @validation_task
+        def my_task(results, pk):
+            # ...
+            return results
+
+    Notes:
+
+    * `results` is automagically passed to each task in the validation chain
+      and created by `create_initial_validation_results()` at the beginning of
+      the chain. It MUST be the first argument of the task.
+    * `pk` is passed to each task when added to the validation chain.
+    * the validation chain is defined in the `Validator` class.
+    """
+    @task(bind=True,
+          ignore_result=False,  # We want to pass the results down.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
+    @use_primary_db
     @wraps(fn)
-    def wrapper(task, id_or_path, *args, **kwargs):
-        # This is necessary to prevent timeout exceptions from being set
-        # as our result, and replacing the partial validation results we'd
-        # prefer to return.
+    def wrapper(task, results, pk, *args, **kwargs):
+        # This is necessary to prevent timeout exceptions from being set as our
+        # result, and replacing the partial validation results we'd prefer to
+        # return.
         task.ignore_result = True
         try:
-            data = fn(id_or_path, **kwargs)
-            results = json.loads(force_text(data))
-            return results
+            # All validation tasks should receive `results`.
+            if not results:
+                raise Exception('Unexpected call to a validation task without '
+                                '`results`')
+
+            if results['errors'] > 0:
+                return results
+
+            return fn(results, pk, *args, **kwargs)
         except UnsupportedFileType as exc:
             results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
             annotations.insert_validation_message(
@@ -177,23 +198,27 @@ def validation_task(fn):
 
 
 @validation_task
-@use_primary_db
-def validate_upload(upload_pk, channel):
-    """
-    Repack and then validate a FileUpload.
+def validate_upload(results, upload_pk, channel):
+    """Validate a FileUpload instance.
 
-    This only exists to get repack_fileupload() and validate_file_path()
-    into a single task that is wrapped by @validation_task. We do this because
-    with Celery < 4.2, on_error is never executed for task chains, so we use
-    a task decorated by @validation_task which takes care of it for us. Once
-    we upgrade to Celery 4.2, we stop calling repack_fileupload() here and just
-    have Validator.task return a chain with those 2 tasks when it's dealing
-    with a FileUpload.
-    https://github.com/mozilla/addons-server/issues/9068#issuecomment-473255011
-    """
+    Should only be called directly by Validator."""
     upload = FileUpload.objects.get(pk=upload_pk)
-    repack_fileupload(upload.pk)
-    return validate_file_path(upload.path, channel)
+    data = validate_file_path(upload.path, channel)
+    return {**results, **json.loads(force_text(data))}
+
+
+@validation_task
+def validate_file(results, file_pk):
+    """Validate a File instance. If cached validation results exist, return
+    those, otherwise run the validator.
+
+    Should only be called directly by Validator."""
+    file = File.objects.get(pk=file_pk)
+    if file.has_been_validated:
+        data = file.validation.validation
+    else:
+        data = validate_file_path(file.current_file_path, file.version.channel)
+    return {**results, **json.loads(force_text(data))}
 
 
 def validate_file_path(path, channel):
@@ -214,7 +239,7 @@ def validate_file_path(path, channel):
         # search plugins are validated directly by addons-server
         # so that we don't have to call the linter or validator
         results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
-        annotations.annotate_search_plugin_validation(
+        annotations.annotate_search_plugin_restriction(
             results=results, file_path=path, channel=channel)
         return json.dumps(results)
 
@@ -231,6 +256,7 @@ def validate_file_path(path, channel):
         # Similarly, if we can't parse the manifest, let the linter pick that
         # up.
         data = {}
+
     is_legacy_extension = data.get('is_webextension', None) is False
     is_mozilla_signed = data.get('is_mozilla_signed_extension', None) is True
 
@@ -244,46 +270,32 @@ def validate_file_path(path, channel):
 
 
 @validation_task
-def validate_file(file_id):
-    """Validate a File instance. If cached validation results exist, return
-    those, otherwise run the validator.
-
-    Should only be called directly by Validator."""
-
-    file_ = File.objects.get(pk=file_id)
-    try:
-        return file_.validation.validation
-    except FileValidation.DoesNotExist:
-        return validate_file_path(
-            file_.current_file_path, file_.version.channel)
+def forward_linter_results(results, upload_pk):
+    """This task is used in the chord of the validation chain to pass the
+    linter results to `handle_upload_validation_result()` (the callback of the
+    chord).
+    """
+    log.info('Called forward_linter_results() for upload_pk = %d', upload_pk)
+    return results
 
 
 @task
 @use_primary_db
-def handle_upload_validation_result(
-        results, upload_pk, channel, is_mozilla_signed):
+def handle_upload_validation_result(all_results, upload_pk, channel,
+                                    is_mozilla_signed):
     """Annotate a set of validation results and save them to the given
-    FileUpload instance."""
+    FileUpload instance.
+
+    This task is the callback of the Celery chord in the validation chain. It
+    receives all the results returned by all the tasks in this chord (in
+    `all_results`).
+    """
+    # This task is the callback of a Celery chord and receives all the results
+    # returned by all the tasks in this chord. The first task registered in the
+    # chord is `forward_linter_results()`:
+    results = all_results[0]
+
     upload = FileUpload.objects.get(pk=upload_pk)
-
-    # Check for API keys in submissions.
-    # Make sure it is extension-like, e.g. no search plugin
-    try:
-        results = check_for_api_keys_in_file(results=results, upload=upload)
-    except (ValidationError, BadZipfile, IOError):
-        pass
-
-    # Annotate results with akismet reports results if there are any.
-    reports = AkismetReport.objects.filter(upload_instance=upload)
-    akismet_results = [
-        (report.comment_type, report.result) for report in reports]
-    annotations.annotate_akismet_spam_check(results, akismet_results)
-
-    # Annotate results with potential webext warnings on new versions.
-    if upload.addon_id and upload.version:
-        annotations.annotate_webext_incompatibilities(
-            results=results, file_=None, addon=upload.addon,
-            version_string=upload.version, channel=channel)
 
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
@@ -342,15 +354,13 @@ def handle_file_validation_result(results, file_id, *args):
     instance."""
 
     file_ = File.objects.get(pk=file_id)
-
-    annotations.annotate_webext_incompatibilities(
-        results=results, file_=file_, addon=file_.version.addon,
-        version_string=file_.version.version, channel=file_.version.channel)
-
     return FileValidation.from_json(file_, results).pk
 
 
-def check_for_api_keys_in_file(results, upload):
+@validation_task
+def check_for_api_keys_in_file(results, upload_pk):
+    upload = FileUpload.objects.get(pk=upload_pk)
+
     if upload.addon:
         users = upload.addon.authors.all()
     else:
@@ -364,35 +374,39 @@ def check_for_api_keys_in_file(results, upload):
         except APIKey.DoesNotExist:
             pass
 
-    if len(keys) > 0:
-        zipfile = SafeZip(source=upload.path)
-        for zipinfo in zipfile.info_list:
-            if zipinfo.file_size >= 64:
-                file_ = zipfile.read(zipinfo)
-                for key in keys:
-                    if key.secret in file_.decode(errors="ignore"):
-                        log.info('Developer API key for user %s found in '
-                                 'submission.' % key.user)
-                        if key.user == upload.user:
-                            msg = ugettext('Your developer API key was found '
-                                           'in the submitted file. To protect '
-                                           'your account, the key will be '
-                                           'revoked.')
-                        else:
-                            msg = ugettext('The developer API key of a '
-                                           'coauthor was found in the '
-                                           'submitted file. To protect your '
-                                           'add-on, the key will be revoked.')
-                        annotations.insert_validation_message(
-                            results, type_='error',
-                            message=msg, msg_id='api_key_detected',
-                            compatibility_type=None)
+    try:
+        if len(keys) > 0:
+            zipfile = SafeZip(source=upload.path)
+            for zipinfo in zipfile.info_list:
+                if zipinfo.file_size >= 64:
+                    file_ = zipfile.read(zipinfo)
+                    for key in keys:
+                        if key.secret in file_.decode(errors="ignore"):
+                            log.info('Developer API key for user %s found in '
+                                     'submission.' % key.user)
+                            if key.user == upload.user:
+                                msg = ugettext('Your developer API key was '
+                                               'found in the submitted file. '
+                                               'To protect your account, the '
+                                               'key will be revoked.')
+                            else:
+                                msg = ugettext('The developer API key of a '
+                                               'coauthor was found in the '
+                                               'submitted file. To protect '
+                                               'your add-on, the key will be '
+                                               'revoked.')
+                            annotations.insert_validation_message(
+                                results, type_='error',
+                                message=msg, msg_id='api_key_detected',
+                                compatibility_type=None)
 
-                        # Revoke after 2 minutes to allow the developer to
-                        # fetch the validation results
-                        revoke_api_key.apply_async(
-                            kwargs={'key_id': key.id}, countdown=120)
-        zipfile.close()
+                            # Revoke after 2 minutes to allow the developer to
+                            # fetch the validation results
+                            revoke_api_key.apply_async(
+                                kwargs={'key_id': key.id}, countdown=120)
+            zipfile.close()
+    except (ValidationError, BadZipfile, IOError):
+        pass
 
     return results
 

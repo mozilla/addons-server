@@ -1,0 +1,19 @@
+{% load i18n admin_urls %}
+
+{% if obj.can_report_feedback %}
+  <button
+    class="button report-false-positive-button"
+    formaction="{% url 'admin:scanners_scannerresult_handlefalsepositive' obj.pk %}"
+    formtarget="_blank"
+  >
+    {% trans 'Report as false positive' %}
+  </button>
+  &nbsp;
+  <button class="button default" formaction="{% url 'admin:scanners_scannerresult_handletruepositive' obj.pk %}">
+    {% trans 'Mark as true positive' %}
+  </button>
+{% elif obj.can_revert_feedback %}
+  <button class="button default" formaction="{% url 'admin:scanners_scannerresult_handlerevert' obj.pk %}">
+    {% trans 'Revert report' %}
+  </button>
+{% endif %}

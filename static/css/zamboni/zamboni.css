@@ -1,5 +1,4 @@
 /* Clearfix!!! */
-#persona #more-personas:after,
 .listing .item:after,
 .section:after,
 .notification .aux:after,
@@ -1027,317 +1026,6 @@ ul.license li.cc-noncom { background-position: 0 -130px; }
 ul.license li.cc-share { background-position: 0 -195px; }
 ul.license li.copyr { background-position: 0 -260px; }
 
-
-/** Personas *********/
-.persona-list,
-.persona-list-2col,
-.persona-list-3col {
-    overflow: hidden;
-}
-.persona-list-2col .persona {
-    float: left;
-    width: 50%;
-    margin-bottom: .6em;
-}
-.persona-list-3col .persona {
-    float: left;
-    width: 33.3%;
-    margin-bottom: .6em;
-}
-#more-artist .persona {
-    margin-bottom: .6em;
-}
-.persona-inner {
-    position: relative;
-    padding: .5em;
-    -moz-border-radius: .25em;
-    border-radius: .25em;
-}
-.persona-small .persona-inner {
-    max-width: 206px;
-}
-.persona-large .persona-inner {
-    max-width: 680px;
-}
-.persona-hover .persona-inner {
-    background: #c8e8f2;
-}
-.persona-preview > a,
-.persona-preview > div {
-    position: relative;
-}
-.persona-install {
-    border: 0.25em solid #C8E8F2;
-    bottom: -3px;
-    display: none;
-    left: -3px;
-    position: absolute;
-}
-.addons-column .persona-install {
-    left: -3px;
-}
-.persona-preview:hover .incompat-browser {
-    display: block;
-}
-.persona-install.incompat-browser {
-    left: 1px;
-}
-.addons-column .persona-install.incompat-browser {
-    left: -2px;
-}
-.persona-install button {
-    border-radius: 1px;
-    height: 25px;
-    min-width: 65px;
-}
-.persona .persona-install.incompat-browser button.disabled {
-    background: #fff;
-    border-color: #888;
-    text-shadow: none;
-}
-.persona-install.incompat-browser button img {
-    display: none;
-}
-.persona-install button .disabled-icon {
-    display: none;
-}
-.persona-install button span {
-    border-left: 0;
-    border-right: 0;
-    margin: 0;
-    padding: 0;
-    white-space: inherit;
-}
-.persona-install.incompat-browser button:hover {
-    cursor: default;
-}
-.persona-install.incompat-browser button .disabled-icon {
-    display: inline;
-}
-.persona-install button div {
-    bottom: 2px;
-    position: relative;
-}
-.persona-install button div img {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-.persona-hover .persona-install {
-    display: block;
-}
-#more-personas .persona-install {
-    bottom: 0;
-    left: 0;
-}
-.persona-preview {
-    position: relative;
-    display: block;
-    line-height: 1;
-}
-.persona-preview [data-browsertheme] {
-    display: block;
-    background: transparent no-repeat right top;
-    border: .25em solid #c8e8f2 !important;
-}
-.persona-preview span.review-decal {
-    border-radius: 0 0 1px 0;
-    font-weight: normal;
-    left: 3px;
-    padding: 3px 5px;
-    top: 3px;
-}
-.addons-column .persona-preview .review-decal {
-    left: 0;
-    top: 0;
-}
-.review-decal:hover {
-    cursor: pointer;
-}
-.persona-hover .review-decal {
-    background: #fff;
-}
-.persona-preview .approved {
-    color: #339900;
-}
-.persona-preview .rejected {
-    color: red;
-}
-.persona-preview .artist-tools {
-    background: #F5F5F5;
-    border-radius: 1px 0 0 0;
-    bottom: 0;
-    display: none;
-    opacity: .95;
-    padding: 4px 8px;
-    position: absolute;
-    right: 0;
-}
-.with-details .artist-tools {
-    bottom: 54px;
-}
-.persona-hover .artist-tools {
-    display: inline-block;
-}
-.persona-preview .artist-tools:hover {
-    opacity: 1;
-}
-.persona-inner .persona-preview span.artist-tools a {
-    padding: 0;
-    min-height: 0;
-}
-.persona-inner .persona-preview span.artist-tools a:hover {
-    background: none;
-}
-.persona-preview .artist-tools img {
-    height: 18px;
-    width: 18px;
-}
-.artist-tools.incompat-browser {
-    bottom: 55px;
-    right: 3px;
-}
-.addons-column .artist-tools.incompat-browser {
-    bottom: 3px;
-}
-.persona-hover .persona-preview [data-browsertheme] {
-    border-color: #fff !important;
-}
-.persona-small .persona-preview [data-browsertheme] {
-    height: 67px;
-}
-.persona-large .persona-preview [data-browsertheme] {
-    height: 100px;
-}
-#persona-summary .unreviewed {
-    background: none;
-}
-
-.persona.pending-notice {
-    padding-left: 10px;
-}
-
-.persona-preview .created,
-.persona-preview .users,
-.persona-preview .reviews,
-.persona-preview .review-decal {
-    background-color: #c8e8f2;
-    display: inline-block;
-    padding: .25em .5em;
-    font-size: .846em;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.html-rtl .persona-preview .created,
-.html-rtl .persona-preview .users,
-.html-rtl .persona-preview .reviews {
-    left: auto;
-    right: 0;
-}
-
-.persona-hover .created,
-.persona-hover .users,
-.persona-hover .reviews,
-.persona-hover .review-decal {
-    background-color: #fff;
-}
-
-.personas .created {
-    color: #222;
-}
-
-.personas .users b {
-    font-weight: bold;
-}
-
-.persona .users {
-    color: #390;
-}
-
-/** Persona Homepage **/
-.personas-featured .persona-list-3col {
-    border: 1px solid #E0EFFD;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    padding-top: .5em;
-}
-
-.featured.personas-home {
-    position: relative;
-}
-
-.personas-home .intro {
-    font-size: 1.4em;
-    width: 400px;
-}
-
-#featured-addons.personas-home .featured-inner.themes {
-    -moz-border-radius: 3px 3px 0 0;
-    -webkit-border-radius: 3px 3px 0 0;
-    border-radius: 3px 3px 0 0;
-}
-
-#featured-addons.personas-home .featured-inner.themes {
-    background: #fff url(../../img/zamboni/personas/theme-promo.png) no-repeat -392px 140px;
-    /* TODO(cvan): Retina-ize the right way. If cvan hasn't done this by the time you've read this, bug him. */
-    background-size: 120% auto;
-    height: 320px;
-}
-
-.html-rtl #featured-addons.personas-home .featured-inner.themes {
-    background-position: 260px 140px;
-}
-
-/*
-@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2) {
-    #featured-addons.personas-home .featured-inner.themes {
-        background-image: url(../../img/zamboni/personas/theme-promo.png);
-        background-size: 120% auto;
-    }
-}
-*/
-
-#featured-addons.personas-home .featured-inner.complete-themes {
-    -moz-border-radius: 0 0 3px 3px;
-    -webkit-border-radius: 0 0 3px 3px;
-    border-radius: 0 0 3px 3px;
-    border-top: 0;
-    background: #e5f0fc url(../../img/zamboni/personas/complete-theme-promo.png) no-repeat 367px 0;
-    background-size: 120% auto;
-}
-
-.html-rtl #featured-addons.personas-home .featured-inner.complete-themes {
-    background-position: -500px 0;
-}
-
-.featured-inner.complete-themes h2,
-.featured-inner.complete-themes .intro {
-    width: 350px;
-}
-
-.personas-home .intro .more-info {
-    background-position: 96% -151px;
-    float: none;
-}
-
-.html-rtl .personas-home .intro .more-info {
-    background-position: 0 -302px;
-}
-
-#featured-addons .personas-slider {
-    float: right;
-    height: 255px; /* 3 personas @ 85px; */
-    width: 30%;
-    overflow: hidden;
-    margin: 30px 0 0;
-}
-
-.html-rtl #featured-addons .personas-slider {
-    float: left;
-}
-
 /************************************/
 /*               PAGES              */
 /************************************/
@@ -1641,11 +1329,6 @@ form .error .note.error {
     width: 73.47%;
 }
 
-.personas .persona-inner,
-.category-landing .persona-inner {
-    margin: 0 auto;
-}
-
 #featured-addons {
     width: auto;
 }
@@ -1828,21 +1511,11 @@ form .error .note.error {
     font-weight: bold;
 }
 
-.category-landing .addons-column ul.personas {
-    padding: .5em 5px 1.2em;
-}
-
 .category-landing .addons-column ul li {
     border-top: 1px dotted #E0EFFD;
     overflow: hidden;
     padding: 0;
     position: relative;
-}
-
-.category-landing .addons-column ul.personas li {
-    background-color: inherit;
-    padding: .6em 0 0;
-    border: 0;
 }
 
 .html-rtl.category-landing .addons-column ul li {
@@ -1930,13 +1603,6 @@ form .error .note.error {
 .category-landing .view-all a:hover,
 .category-landing .view-all a:active {
     color: #003595;
-}
-
-.category-landing .featured.personas .view-all {
-    border-top: 1px dotted #E0EFFD;
-    padding: 2px 7px;
-    margin: -15px 0 0;
-    text-align: right;
 }
 
 .html-rtl .category-landing .featured .view-all {
@@ -2271,105 +1937,6 @@ form .error .note.error {
 .abuse textarea {
     border: 1px solid #5875A0;
     width: 60%;
-}
-
-
-/** =Personas Details page *********/
-.persona-img {
-    height: 100px;
-    overflow: hidden;
-}
-#persona-summary table {
-    display: block;
-    width: 320px;
-    float: right;
-}
-.html-rtl #persona-summary table {
-    float: left;
-}
-#persona-summary table th {
-    width: auto;
-    min-width: 120px;
-    vertical-align: top;
-}
-#persona-summary table .artist td {
-    font-weight: bold;
-}
-#persona-summary .share-arrow {
-    position: absolute;
-    z-index: 100;
-}
-#persona #more-personas {
-    margin-bottom: 3em;
-}
-#persona #more-personas h3 {
-    margin-top: 0;
-}
-#persona #more-category {
-    width: 65.6%;
-    float: left;
-}
-.html-rtl #persona #more-category {
-    float: right;
-}
-#persona #more-category.persona-list-3col {
-    width: 100%;
-}
-#persona #more-artist {
-    width: 32.5%;
-    float: right;
-}
-.html-rtl #persona #more-artist {
-    float: left;
-}
-#persona #more-personas .article {
-    margin-bottom: .3em;
-}
-#persona #more-personas .more-link {
-    font-weight: bold;
-}
-#persona-side .category-list h3 {
-    margin-top: 0;
-}
-
-/** Personas listing pages. **/
-.personas-grid {
-    padding: 0 10px;
-    margin: 1em auto;
-}
-.personas-grid li {
-    display: inline-block;
-    width: 32.9%;
-    vertical-align: top;
-    margin-bottom: .77em;
-}
-.personas-grid li .persona-inner {
-    margin: 0 auto;
-}
-.personas-grid li .details {
-    font-size: 0.846em;
-    line-height: 1.4;
-    margin: 0 .25em;
-}
-.personas-grid h6 {
-    margin: .5em .25em .25em;
-}
-.personas-grid li .details p {
-    margin: 0;
-}
-.personas-grid li .details .users {
-    background-color: inherit;
-    margin-left: 1em;
-    font-size: 1em;
-    padding: 0;
-    position: static;
-}
-.personas-grid li .details .users b {
-    font-weight: bold;
-}
-.html-rtl .personas-grid li .details .users {
-    margin-left: 0;
-    margin-right: 1em;
 }
 
 /** White category list **/
@@ -3210,17 +2777,6 @@ label > .optional {
     display: inline;
 }
 
-.collections-personas .personas-grid {
-    border: 1px solid #C9E8F3;
-    padding: 1em;
-    margin: 0 0 1em 0;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius :8px;
-    background-color: #ffffff;
-    clear:both;
-}
-
 .featured .meta {
     margin-top: 0;
 }
@@ -3471,8 +3027,7 @@ a.outlink:hover {
     margin-bottom: 1em;
     float: left;
 }
-.html-rtl #addon .widget,
-.html-rtl #persona .widget {
+.html-rtl #addon .widget {
     float: right;
 }
 

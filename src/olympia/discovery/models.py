@@ -31,7 +31,8 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         max_length=255, blank=True,
         help_text='Short text used in the header. Can contain the following '
                   'special tags: {start_sub_heading}, {addon_name}, '
-                  '{end_sub_heading}. Will be translated.')
+                  '{end_sub_heading}. Will be translated. '
+                  'Currently *not* visible to the user - #11817')
     custom_description = models.TextField(
         blank=True, help_text='Longer text used to describe an add-on. Should '
                               'not contain any HTML or special tags. Will be '
@@ -173,6 +174,11 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
                 self.addon.current_version.recommendation_approved) else
             self.PENDING_RECOMMENDATION if self.recommendable else
             self.NOT_RECOMMENDED)
+
+    def primary_hero_shelf(self):
+        return (self.primaryhero.enabled if hasattr(self, 'primaryhero')
+                else None)
+    primary_hero_shelf.boolean = True
 
 
 @DiscoveryItem.on_change

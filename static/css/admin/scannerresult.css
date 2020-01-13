@@ -1,0 +1,12 @@
+#changelist .field-result_actions {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.field-result_actions .button {
+  padding: 4px 6px;
+}
+
+.field-result_actions .button.default {
+  float: none;
+}

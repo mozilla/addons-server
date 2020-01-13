@@ -99,6 +99,8 @@ DJANGO_PERMISSIONS_MAPPING.update({
     # will be kept.
     'activity.delete_activitylog': ADMIN_ADVANCED,
     'addons.change_addon': ADDONS_EDIT,
+    'addons.add_addonuser': ADMIN_ADVANCED,
+    'addons.change_addonuser': ADMIN_ADVANCED,
     'addons.delete_addonuser': ADMIN_ADVANCED,
     # Users with Admin:Curation can do anything to ReplacementAddon.
     # In addition, the modeladmin will also check for Addons:Edit and give them
@@ -111,13 +113,34 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'bandwagon.change_collection': COLLECTIONS_EDIT,
     'bandwagon.delete_collection': ADMIN_ADVANCED,
 
+    'blocklist.add_block': REVIEWS_ADMIN,
+    'blocklist.change_block': REVIEWS_ADMIN,
+    'blocklist.delete_block': REVIEWS_ADMIN,
+    'blocklist.add_multiblocksubmit': REVIEWS_ADMIN,
+    'blocklist.view_multiblocksubmit': REVIEWS_ADMIN,
+
     'discovery.add_discoveryitem': DISCOVERY_EDIT,
     'discovery.change_discoveryitem': DISCOVERY_EDIT,
     'discovery.delete_discoveryitem': DISCOVERY_EDIT,
+    'discovery.add_secondaryheroshelf': DISCOVERY_EDIT,
+    'discovery.change_secondaryheroshelf': DISCOVERY_EDIT,
+    'discovery.delete_secondaryheroshelf': DISCOVERY_EDIT,
 
     'files.change_file': ADMIN_ADVANCED,
 
+    'hero.add_primaryhero': DISCOVERY_EDIT,
+    'hero.change_primaryhero': DISCOVERY_EDIT,
+    'hero.delete_primaryhero': DISCOVERY_EDIT,
+    'hero.add_secondaryheromodule': DISCOVERY_EDIT,
+    'hero.change_secondaryheromodule': DISCOVERY_EDIT,
+    'hero.delete_secondaryheromodule': DISCOVERY_EDIT,
+
     'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
+
+    'scanners.add_scannerrule': ADMIN_ADVANCED,
+    'scanners.change_scannerrule': ADMIN_ADVANCED,
+    'scanners.delete_scannerrule': ADMIN_ADVANCED,
+    'scanners.view_scannerresult': ADMIN_ADVANCED,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,

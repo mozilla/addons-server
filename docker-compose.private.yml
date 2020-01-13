@@ -1,0 +1,29 @@
+version: "2.4"
+
+services:
+  worker:
+    depends_on:
+      - customs
+      - wat
+
+  customs:
+    build:
+      context: ./private/addons-customs-scanner
+    environment:
+      - ALLOWED_ORIGIN=http://olympia.test
+      - PORT=10101
+    links:
+      - "nginx:olympia.test"
+    depends_on:
+      - web
+
+  wat:
+    build:
+      context: ./private/addons-wat
+    environment:
+      - ALLOWED_ORIGIN=http://olympia.test
+      - PORT=10102
+    links:
+      - "nginx:olympia.test"
+    depends_on:
+      - web

@@ -1,0 +1,120 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/admin/blocklist_block_multiple.css" %}">
+  {% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; {% if has_view_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {% if add %}{% blocktrans with name=opts.verbose_name %}Add Multiple {{ name }}{% endblocktrans %}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+</div>
+{% endblock %}
+
+{% block content %}<div id="content-main">
+  <form action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>
+  {% csrf_token %}
+  {{ form.input_guids }}
+  <div>
+    <div class="form-row horizontal-grid">
+      <div>
+        <h3>{% blocktrans with count=existing_guids|length v_min=form.min_version.value v_max=form.max_version.value %}{{ count }} Add-on GUIDs are already blocked for {{ v_min }} to {{ v_max }}{% endblocktrans %}:</h3>
+        <ul class="guid_list field-existing-guids">
+          {% for guid in existing_guids %}
+          <li>{{ guid }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3>{% blocktrans with count=invalid_guids|length %}{{ count }} Add-on GUIDs were not found{% endblocktrans %}:</h3>
+        <ul class="guid_list">
+          {% for guid in invalid_guids %}
+          <li>{{ guid }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <fieldset class="module aligned">
+    <h2>{% trans 'Add New Blocks' %}</h2>
+    <div class="form-row field-blocks-to-add">
+      <div>
+        <h3>{% blocktrans with count=blocks|length %}{{ count }} Add-on GUIDs to Block{% endblocktrans %}:</h3>
+         <ul class="guid_list">
+          {% for block_obj in blocks %}
+            <li>
+              {{ block_obj.guid }}.
+              <span class="addon-name">{{ block_obj.addon.name }}</span>
+              ({{ block_obj.addon.average_daily_users }} {% trans 'users' %}).
+              {{ block_obj.review_listed_link }}
+              {{ block_obj.review_unlisted_link }}
+              {% if block_obj.id %}
+                <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">{% trans 'Edit Block' %}</a>: {{ block_obj.min_version }} - {{ block_obj.max_version }}]</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% if form.non_field_errors %}
+    <div class="form-row">
+      {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+    <div class="form-row">
+      <div>
+        {{ form.min_version.errors }}
+        {{ form.min_version.label_tag }}
+        {{ form.min_version }}
+        <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
+        {{ form.existing_min_version }}
+      </div>
+    </div>
+    <div class="form-row">
+      {{ form.max_version.errors }}
+      {{ form.max_version.label_tag }}
+      {{ form.max_version }}
+      <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
+      {{ form.existing_max_version }}
+    </div>
+    <div class="form-row">
+      {{ form.url.errors }}
+      {{ form.url.label_tag }}
+      {{ form.url }}
+    </div>
+    <div class="form-row">
+      {{ form.reason.errors }}
+      {{ form.reason.label_tag }}
+      {{ form.reason }}
+    </div>
+    <div class="form-row">
+      <div class="checkbox-row">
+        {{ form.include_in_legacy }}
+        {{ form.include_in_legacy.label_tag }}
+        {{ form.include_in_legacy.errors }}
+        <div class="help">{{ form.include_in_legacy.help_text }}</div>
+      </div>
+    </div>
+    {% block submit_buttons_bottom %}
+    <div class="submit-row">
+      <input type="submit" value="{% trans 'Save' %}" class="default" name="_save">
+      <input type="submit" value="{% trans 'Save and add more' %}" name="_addanother">
+    </div>
+    {% endblock %}
+  </fieldset>
+  </form>
+</div>
+{% endblock %}

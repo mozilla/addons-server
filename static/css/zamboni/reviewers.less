@@ -13,7 +13,7 @@
 .app-icon, .platform-icon {
     float: left;
     margin-right: 4px;
-    background: url(../../img/developers/reviewer-sprite.png?10) no-repeat top left;
+    background: url(../../img/developers/reviewer-sprite.png?12) no-repeat top left;
     width: 16px; height: 16px;
     position: relative;
     top: 4px;
@@ -34,6 +34,8 @@
 .ed-sprite-sources-provided { background-position: 0 -192px; }
 .ed-sprite-webextension { background-position: 0 -208px; }
 .ed-sprite-expired-info { background-position: 0 -272px; }
+.ed-sprite-auto-approval-delayed-temporarily { background-position: 0 -288px; }
+.ed-sprite-auto-approval-delayed-indefinitely { background-position: 0 -304px; }
 
 .platform-icon {
     background: url(../../img/developers/platforms.png?8) no-repeat top left;
@@ -402,7 +404,7 @@ ul.tabnav a:hover {
 table.data-grid tr.comments td {
     border-top: none;
     background: #def;
-    overflow-wrap: break-word;
+    word-break: break-all;
     hyphens: auto;
 }
 
@@ -658,36 +660,36 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     top: 10px;
 }
 
-#review-files {
+.review-files {
     margin: 0;
     width: 100%;
 }
-#review-files .files {
+.review-files .files {
     background-color: #FAFAFA;
     border-right: 1px dotted #DDDDDD;
     border-top: 0 none;
     width: 255px;
     padding: 15px;
 }
-#review-files .files .file-permissions {
+.review-files .files .file-permissions {
     max-height: 25.5em;
     overflow: auto;
 }
-#review-files-header h3 {
+.review-files-header h3 {
     float: left;
 }
-#review-files-header h3 span {
+.review-files-header h3 span {
     font-size: 0.7em;
 }
-#review-files-header h3 a.on {
+.review-files-header h3 a.on {
     color: #333;
     font-weight: bold;
 }
-#review-files-header #review-files-paginate {
+.review-files-header .review-files-paginate {
     float: right;
     margin-top: 2em;
 }
-#review-files-paginate ol {
+.review-files-paginate ol {
     float: right;
     margin: 0;
     padding-left: 10px;
@@ -695,31 +697,41 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     top: -20px;
     width: auto;
 }
-#review-files table.activity {
+.review-files table.activity {
     margin: 0 10px;
     width: 100%;
 }
-#review-files table.activity th {
+.review-files table.activity th {
   width: 25%;
   padding-right: 1em;
 }
-#review-files table.activity tr {
+.review-files table.activity tr {
     border-top: 1px dotted #ccc;
 }
-#review-files table.activity tr:first-child {
+.review-files table.activity tr:first-child {
     border-top: 0 none;
 }
-#review-files .listing-header span.light {
+.review-files .listing-header span.light {
     font-weight: normal;
     color: #999;
 }
-#review-files tr.listing-header:first-child {
+.review-files tr.listing-header:first-child {
     border-top: none;
 }
-#review-files tr.listing-header {
+.review-files tr.listing-header {
      border-top: 1px solid #A5BFCE;
 }
-#review-files tr.listing-header:hover {
+.review-files tr.listing-header.needs-human-review {
+    background-color: #ffeec5;
+    border-top: 1px solid #fede94;
+}
+.review-files tr.listing-header.needs-human-review:hover {
+    background: linear-gradient(#FFFFFF, #ffcf5d);
+}
+.review-files tr.listing-header.needs-human-review:active {
+    background: linear-gradient(#ffcf5d, #FFF);
+}
+.review-files tr.listing-header:hover {
     cursor: pointer;
     background-color: #CCE6FF;
     background: -webkit-gradient(
@@ -731,7 +743,7 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     );
     background: linear-gradient(#FFFFFF, #CCE6FF);
 }
-#review-files tr.listing-header:active {
+.review-files tr.listing-header:active {
     cursor: pointer;
     background-color: #FFF;
     background: -webkit-gradient(
@@ -743,26 +755,26 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     );
     background: linear-gradient(#E0EFFD, #FFF);
 }
-#review-files tr.listing-header input[type=checkbox] {
+.review-files tr.listing-header input[type=checkbox] {
     float: right;
 }
-#review-files .files div:first-child {
+.review-files .files div:first-child {
     padding-top: 0;
 }
-#review-files .files li,
-#review-files .files > div {
+.review-files .files li,
+.review-files .files > div {
     padding-top: 5px;
     line-height: 1.3em;
 }
-#review-files .files ul {
+.review-files .files ul {
     margin: 0 0 5px 15px;
 }
-#review-files .no-activity {
+.review-files .no-activity {
     color: #777777;
     font-style: italic;
     text-align: center;
 }
-#review-files .install {
+.review-files .install {
     padding: 0;
 }
 form.review-form .data-toggle {

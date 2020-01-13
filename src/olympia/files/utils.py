@@ -7,13 +7,15 @@ import os
 import io
 import re
 import shutil
+import signal
 import stat
 import struct
 import tarfile
 import tempfile
 import zipfile
+import fcntl
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django import forms
 from django.conf import settings
@@ -24,7 +26,6 @@ from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
 
-import flufl.lock
 import rdflib
 
 from xml.parsers.expat import ExpatError
@@ -34,7 +35,7 @@ from defusedxml.common import DefusedXmlException
 
 import olympia.core.logger
 
-from olympia import amo, core
+from olympia import amo
 from olympia.access import acl
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
@@ -71,11 +72,6 @@ default = (
     'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
     'updateType=%UPDATE_TYPE%'
 )
-
-# number of times this lock has been aquired and not yet released
-# could be helpful to debug potential race-conditions and multiple-locking
-# scenarios.
-_lock_count = {}
 
 
 def get_filepath(fileorpath):
@@ -203,7 +199,7 @@ class RDFExtractor(object):
     # https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#type
     TYPES = {
         '2': amo.ADDON_EXTENSION,
-        '4': amo.ADDON_THEME,
+        '4': amo.ADDON_EXTENSION,  # Really a XUL theme but now unsupported.
         '8': amo.ADDON_LPAPP,
         '64': amo.ADDON_DICT,
         '128': amo.ADDON_EXTENSION,  # Telemetry Experiment
@@ -280,15 +276,6 @@ class RDFExtractor(object):
             # If it's an experiment, we need to store that for later.
             self.is_experiment = self.package_type in self.EXPERIMENT_TYPES
             return self.TYPES[self.package_type]
-
-        name = force_text(self.zip_file.source.name)
-
-        # Look for Complete Themes.
-        is_complete_theme = (
-            name.endswith('.jar') or self.find('internalName')
-        )
-        if is_complete_theme:
-            return amo.ADDON_THEME
 
         # Look for dictionaries.
         is_dictionary = (
@@ -615,8 +602,8 @@ def extract_search(content):
                 ugettext('Could not parse uploaded file, missing or empty '
                          '<%s> element') % tag)
 
-    # Only catch basic errors, most of that validation already happened in
-    # devhub.tasks:annotate_search_plugin_validation
+    # Only catch basic errors, we don't accept any new uploads and validation
+    # has happened on upload in the past.
     try:
         dom = minidom.parse(content)
     except DefusedXmlException:
@@ -712,7 +699,10 @@ def archive_member_validator(archive, member):
     """Validate a member of an archive member (TarInfo or ZipInfo)."""
     filename = getattr(member, 'filename', getattr(member, 'name', None))
     filesize = getattr(member, 'file_size', getattr(member, 'size', None))
+    _validate_archive_member_name_and_size(filename, filesize)
 
+
+def _validate_archive_member_name_and_size(filename, filesize):
     if filename is None or filesize is None:
         raise forms.ValidationError(ugettext('Unsupported archive type.'))
 
@@ -721,29 +711,23 @@ def archive_member_validator(archive, member):
     except UnicodeDecodeError:
         # We can't log the filename unfortunately since it's encoding
         # is obviously broken :-/
-        log.error('Extraction error, invalid file name encoding in '
-                  'archive: %s' % archive)
-        # L10n: {0} is the name of the invalid file.
-        msg = ugettext(
-            'Invalid file name in archive. Please make sure '
-            'all filenames are utf-8 or latin1 encoded.')
-        raise forms.ValidationError(msg.format(filename))
+        log.error('Extraction error, invalid file name encoding')
+        msg = ugettext('Invalid file name in archive. Please make sure '
+                       'all filenames are utf-8 or latin1 encoded.')
+        raise forms.ValidationError(msg)
 
-    if '..' in filename or filename.startswith('/'):
-        log.error('Extraction error, invalid file name (%s) in '
-                  'archive: %s' % (filename, archive))
+    if '../' in filename or '..' == filename or filename.startswith('/'):
+        log.error('Extraction error, invalid file name: %s' % (filename))
         # L10n: {0} is the name of the invalid file.
         msg = ugettext('Invalid file name in archive: {0}')
         raise forms.ValidationError(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
-        log.error('Extraction error, file too big (%s) for file (%s): '
-                  '%s' % (archive, filename, filesize))
+        log.error('Extraction error, file too big for file (%s): '
+                  '%s' % (filename, filesize))
         # L10n: {0} is the name of the invalid file.
-        raise forms.ValidationError(
-            ugettext(
-                'File exceeding size limit in archive: {0}'
-            ).format(filename))
+        msg = ugettext('File exceeding size limit in archive: {0}')
+        raise forms.ValidationError(msg.format(filename))
 
 
 class SafeZip(object):
@@ -849,9 +833,10 @@ class SafeZip(object):
         return self.zip_file.read(path)
 
 
-def extract_zip(source, remove=False, force_fsync=False):
+def extract_zip(source, remove=False, force_fsync=False, tempdir=None):
     """Extracts the zip file. If remove is given, removes the source file."""
-    tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
+    if tempdir is None:
+        tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
     try:
         zip_file = SafeZip(source, force_fsync=force_fsync)
@@ -1026,10 +1011,9 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         raise forms.ValidationError(ugettext('Could not find an add-on ID.'))
 
     if guid:
-        current_user = core.get_user()
-        if current_user:
+        if user:
             deleted_guid_clashes = Addon.unfiltered.exclude(
-                authors__id=current_user.id).filter(guid__iexact=guid)
+                authors__id=user.id).filter(guid=guid)
         else:
             deleted_guid_clashes = Addon.unfiltered.filter(guid__iexact=guid)
 
@@ -1066,7 +1050,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         # `resolve_webext_translations` modifies data in-place
         translations = Addon.resolve_webext_translations(
             xpi_info.copy(), xpi_file)
-        verify_mozilla_trademark(translations['name'], core.get_user())
+        verify_mozilla_trademark(translations['name'], user)
 
     # Parse the file to get and validate package data with the addon.
     if not acl.experiments_submission_allowed(user, xpi_info):
@@ -1078,8 +1062,8 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         guids = ' or '.join(
                 '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
         raise forms.ValidationError(
-            ugettext(u'You cannot submit an add-on with a guid ending '
-                     u'%s' % guids))
+            ugettext('You cannot submit an add-on using a guid ending with '
+                     '%s' % guids))
 
     if not mozilla_signed_extension_submission_allowed(user, xpi_info):
         raise forms.ValidationError(
@@ -1344,53 +1328,84 @@ def get_background_images(file_obj, theme_data, header_only=False):
 
 
 @contextlib.contextmanager
-def atomic_lock(lock_dir, lock_name, lifetime=60):
-    """A atomic, NFS safe implementation of a file lock.
+def run_with_timeout(seconds):
+    """Implement timeouts via `signal`.
 
-    Uses `flufl.lock` under the hood. Can be used as a context manager::
+    This is being used to implement timeout handling when acquiring locks.
+    """
+    def timeout_handler(signum, frame):
+        """
+        Since Python 3.5 `fcntl` is retried automatically when interrupted.
 
-        with atomic_lock(settings.TMP_PATH, 'extraction-1234'):
+        We need an exception to stop it. This exception will propagate on
+        to the main thread, make sure `flock` is called there.
+        """
+        raise TimeoutError
+
+    original_handler = signal.signal(signal.SIGALRM, timeout_handler)
+
+    try:
+        signal.alarm(seconds)
+        yield
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, original_handler)
+
+
+@contextlib.contextmanager
+def lock(lock_dir, lock_name, timeout=6):
+    """A wrapper around fcntl to be used as a context manager.
+
+    Additionally this helper allows the caller to wait for a lock for a certain
+    amount of time.
+
+    Example::
+
+        with lock(settings.TMP_PATH, 'extraction-1234'):
             extract_xpi(...)
 
+
+    The lock is properly released at the end of the context block.
+
+    This locking mechanism should work perfectly fine with NFS v4 and EFS
+    (which uses the NFS v4.1 protocol).
+
+    :param timeout: Timeout for how long we expect to wait for a lock in
+                    seconds. If 0 the function returns immediately, otherwise
+                    it blocks the execution.
     :return: `True` if the lock was attained, we are owning the lock,
              `False` if there is an already existing lock.
     """
-    lock_name = lock_name + '.lock'
-    count = _lock_count.get(lock_name, 0)
+    lock_name = f'{lock_name}.lock'
 
-    log.debug('Acquiring lock %s, count is %d.' % (lock_name, count))
+    log.debug(f'Acquiring lock {lock_name}.')
 
-    lock_name = os.path.join(lock_dir, lock_name)
-    lock = flufl.lock.Lock(lock_name, lifetime=timedelta(seconds=lifetime))
+    lock_path = os.path.join(lock_dir, lock_name)
 
-    try:
-        # set `timeout=0` to avoid any process blocking but catch the
-        # TimeOutError raised instead.
-        lock.lock(timeout=timedelta(seconds=0))
-    except flufl.lock.AlreadyLockedError:
-        # This process already holds the lock
-        yield False
-    except flufl.lock.TimeOutError:
-        # Some other process holds the lock.
-        # Let's break the lock if it has expired. Unfortunately
-        # there's a bug in flufl.lock so let's do this manually.
-        # Bug: https://gitlab.com/warsaw/flufl.lock/merge_requests/1
-        release_time = lock._releasetime
-        max_release_time = release_time + flufl.lock._lockfile.CLOCK_SLOP
+    with open(lock_path, 'w') as lockfd:
+        lockfd.write(f'{os.getpid()}')
+        fileno = lockfd.fileno()
 
-        if (release_time != -1 and datetime.now() > max_release_time):
-            # Break the lock and try to aquire again
-            lock._break()
-            lock.lock(timeout=timedelta(seconds=0))
-            yield lock.is_locked
-        else:
-            # Already locked
+        try:
+            with run_with_timeout(timeout):
+                fcntl.flock(fileno, fcntl.LOCK_EX)
+        except (BlockingIOError, TimeoutError):
+            # Another process already holds the lock.
+            # In theory, in this case we'd always catch
+            # `TimeoutError` but for the sake of completness let's
+            # catch `BlockingIOError` too to be on the safe side.
             yield False
-    else:
-        # Is usually `True` but just in case there were some weird `lifetime`
-        # values set we return the check if we really attained the lock.
-        yield lock.is_locked
+        else:
+            # We successfully acquired the lock.
+            yield True
+        finally:
+            # Always release the lock after the parent context
+            # block has finised.
+            log.debug(f'Releasing lock {lock_name}.')
+            fcntl.flock(fileno, fcntl.LOCK_UN)
+            lockfd.close()
 
-    if lock.is_locked:
-        log.debug('Releasing lock %s.' % lock.details[2])
-        lock.unlock()
+            try:
+                os.unlink(lock_path)
+            except FileNotFoundError:
+                pass

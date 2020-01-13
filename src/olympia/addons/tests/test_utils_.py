@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 from unittest import mock
-import os
 import pytest
 import tempfile
 import zipfile
@@ -13,20 +12,16 @@ from django.utils.encoding import force_text
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.models import Category
 from olympia.addons.utils import (
-    build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy,
+    build_webext_dictionary_from_legacy,
     get_addon_recommendations, get_addon_recommendations_invalid,
-    get_creatured_ids, get_featured_ids, is_outcome_recommended,
+    is_outcome_recommended,
     TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
     TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_CURATED,
     TAAR_LITE_OUTCOME_REAL_FAIL, TAAR_LITE_OUTCOME_REAL_SUCCESS,
     TAAR_LITE_FALLBACK_REASON_INVALID,
     verify_mozilla_trademark)
-from olympia.amo.tests import (
-    AMOPaths, TestCase, addon_factory, collection_factory, user_factory)
-from olympia.bandwagon.models import FeaturedCollection
-from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.amo.tests import AMOPaths, TestCase, addon_factory, user_factory
 
 
 @pytest.mark.django_db
@@ -96,103 +91,6 @@ def test_verify_mozilla_trademark(name, allowed, email, content_optmzn_waffle):
             verify_mozilla_trademark(name, user)
 
 
-class TestGetFeaturedIds(TestCase):
-    fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured',
-                'base/users']
-
-    no_locale = (1001, 1003, 2464, 7661, 15679)
-    en_us_locale = (3481,)
-    all_locales = no_locale + en_us_locale
-    no_locale_type_one = (1001, 1003, 2464, 7661)
-
-    def setUp(self):
-        super(TestGetFeaturedIds, self).setUp()
-
-    def test_by_app(self):
-        assert set(get_featured_ids(amo.FIREFOX)) == (
-            set(self.all_locales))
-
-    def test_by_type(self):
-        assert set(get_featured_ids(amo.FIREFOX, 'xx', 1)) == (
-            set(self.no_locale_type_one))
-
-    def test_by_locale(self):
-        assert set(get_featured_ids(amo.FIREFOX)) == (
-            set(self.all_locales))
-        assert set(get_featured_ids(amo.FIREFOX, 'xx')) == (
-            set(self.no_locale))
-        assert set(get_featured_ids(amo.FIREFOX, 'en-US')) == (
-            set(self.no_locale + self.en_us_locale))
-
-    def test_locale_shuffle(self):
-        # Make sure the locale-specific add-ons are at the front.
-        ids = get_featured_ids(amo.FIREFOX, 'en-US')
-        assert (ids[0],) == self.en_us_locale
-
-
-class TestGetCreaturedIds(TestCase):
-    fixtures = ['addons/featured', 'bandwagon/featured_collections',
-                'base/addon_3615', 'base/collections', 'base/featured',
-                'base/users']
-    category_id = 22
-
-    no_locale = (1001,)
-    en_us_locale = (3481,)
-
-    def setUp(self):
-        super(TestGetCreaturedIds, self).setUp()
-
-    def test_by_category_static(self):
-        category = CATEGORIES_BY_ID[self.category_id]
-        assert set(get_creatured_ids(category, None)) == (
-            set(self.no_locale))
-
-    def test_by_category_dynamic(self):
-        category = Category.objects.get(pk=self.category_id)
-        assert set(get_creatured_ids(category, None)) == (
-            set(self.no_locale))
-
-    def test_by_category_id(self):
-        assert set(get_creatured_ids(self.category_id, None)) == (
-            set(self.no_locale))
-
-    def test_by_category_app(self):
-        # Add an addon to the same category, but in a featured collection
-        # for a different app: it should not be returned.
-        extra_addon = addon_factory(
-            category=Category.objects.get(pk=self.category_id))
-        collection = collection_factory()
-        collection.add_addon(extra_addon)
-        FeaturedCollection.objects.create(
-            application=amo.ANDROID.id, collection=collection)
-
-        assert set(get_creatured_ids(self.category_id, None)) == (
-            set(self.no_locale))
-
-    def test_by_locale(self):
-        assert set(get_creatured_ids(self.category_id, 'en-US')) == (
-            set(self.no_locale + self.en_us_locale))
-
-    def test_by_category_app_and_locale(self):
-        # Add an addon to the same category and locale, but in a featured
-        # collection for a different app: it should not be returned.
-        extra_addon = addon_factory(
-            category=Category.objects.get(pk=self.category_id))
-        collection = collection_factory()
-        collection.add_addon(extra_addon)
-        FeaturedCollection.objects.create(
-            application=amo.ANDROID.id, collection=collection,
-            locale='en-US')
-
-        assert set(get_creatured_ids(self.category_id, 'en-US')) == (
-            set(self.no_locale + self.en_us_locale))
-
-    def test_shuffle(self):
-        ids = get_creatured_ids(self.category_id, 'en-US')
-        assert (ids[0],) == self.en_us_locale
-
-
 class TestGetAddonRecommendations(TestCase):
     def setUp(self):
         patcher = mock.patch(
@@ -259,66 +157,6 @@ class TestGetAddonRecommendations(TestCase):
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
         assert not self.recommendation_server_mock.called
-
-
-class TestBuildStaticThemeXpiFromLwt(TestCase):
-    def setUp(self):
-        self.background_png = os.path.join(
-            settings.ROOT, 'src/olympia/versions/tests/static_themes/weta.png')
-
-    def test_lwt(self):
-        # Create our persona.
-        lwt = addon_factory(
-            type=amo.ADDON_PERSONA, persona_id=0, name=u'Amáze',
-            description=u'It does all d£ things')
-        lwt.persona.accentcolor, lwt.persona.textcolor = '123', '456789'
-        # Give it a background header file.
-        lwt.persona.header = 'weta.png'
-        lwt.persona.header_path = self.background_png  # It's a cached_property
-
-        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
-        build_static_theme_xpi_from_lwt(lwt, static_xpi)
-
-        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
-            manifest = force_text(xpi.read('manifest.json'))
-            manifest_json = json.loads(manifest)
-            assert manifest_json['name'] == u'Amáze'
-            assert manifest_json['description'] == u'It does all d£ things'
-            assert manifest_json['theme']['images']['theme_frame'] == (
-                u'weta.png')
-            assert manifest_json['theme']['colors']['frame'] == (
-                u'#123')
-            assert manifest_json['theme']['colors']['tab_background_text'] == (
-                u'#456789')
-            assert (xpi.read('weta.png') ==
-                    open(self.background_png, 'rb').read())
-
-    def test_lwt_missing_info(self):
-        # Create our persona.
-        lwt = addon_factory(
-            type=amo.ADDON_PERSONA, persona_id=0)
-        lwt.update(name='')
-        # Give it a background header file with multiple dots.
-        lwt.persona.header = 'weta......png'
-        lwt.persona.header_path = self.background_png  # It's a cached_property
-
-        static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
-        build_static_theme_xpi_from_lwt(lwt, static_xpi)
-
-        with zipfile.ZipFile(static_xpi, 'r', zipfile.ZIP_DEFLATED) as xpi:
-            manifest = force_text(xpi.read('manifest.json'))
-            manifest_json = json.loads(manifest)
-
-            assert manifest_json['name'] == lwt.slug
-            assert 'description' not in manifest_json.keys()
-            assert manifest_json['theme']['images']['theme_frame'] == (
-                u'weta.png')
-            assert manifest_json['theme']['colors']['frame'] == (
-                amo.THEME_FRAME_COLOR_DEFAULT)
-            assert manifest_json['theme']['colors']['tab_background_text'] == (
-                u'#000')
-            assert (xpi.read('weta.png') ==
-                    open(self.background_png, 'rb').read())
 
 
 class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):

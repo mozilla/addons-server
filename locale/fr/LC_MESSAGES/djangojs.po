@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-22 11:23+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-10-03 09:35+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -30,8 +30,8 @@ msgstr "Un problème est survenu en essayant de joindre le serveur."
 msgid "Select a file..."
 msgstr "Sélectionner un fichier…"
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Le nom de votre module doit se terminer par .zip, .xpi, .crx, .jar ou .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Le nom de fichier de votre module doit se terminer par .zip, .xpi, .crx ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -155,30 +155,6 @@ msgstr "Les vidéos doivent être au format WebM."
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ce thème est incompatible avec votre version de {0}"
 
-msgid "All Rights Reserved"
-msgstr "Tous droits réservés"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Le nom de votre thème"
-
 msgid "Flagged for review"
 msgstr "Étiqueter pour révision"
 
@@ -253,7 +229,7 @@ msgid "Downloads"
 msgstr "Téléchargements"
 
 msgid "Daily Users"
-msgstr "Utilisateurs et utilisatrices quotidien⋅ne⋅s"
+msgstr "Utilisateurs et utilisatrices quotidien·ne·s"
 
 msgid "Amount, in USD"
 msgstr "Montant, $US"
@@ -741,12 +717,6 @@ msgstr "Retirer cette localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visitait cette page en premier."
-
-msgid "Receipt checked by app."
-msgstr "Reçu vérifié par l’application."
-
-msgid "Receipt was not checked by app."
-msgstr "Reçu non vérifié par l’application."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} regardait ce module en premier."

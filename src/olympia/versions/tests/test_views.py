@@ -5,7 +5,6 @@ from django.conf import settings
 from django.utils.encoding import smart_text
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.test.utils import override_settings
 from django.utils.http import urlquote
 
 from unittest import mock
@@ -188,11 +187,38 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         assert self.client.get(self.latest_url).status_code == 404
 
 
+class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
+    # Everything should work the same for unlisted when the addon is deleted
+    # except developers can no longer access.
+    def setUp(self):
+        super().setUp()
+        self.addon.delete()
+
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: True)
+    def test_download_for_unlisted_addon_owner(self):
+        """File downloading is allowed for addon owners."""
+        assert self.client.get(self.file_url).status_code == 404
+        assert self.client.get(self.latest_url).status_code == 404
+
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
+    @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
+    @mock.patch.object(acl, 'check_addon_ownership',
+                       lambda *args, **kwargs: False)
+    def test_download_for_unlisted_addon_unlisted_reviewer(self):
+        """File downloading is allowed for unlisted reviewers, using guarded
+        file path since the addon is deleted."""
+        self.assert_served_internally(self.client.get(self.file_url), True)
+        assert self.client.get(self.latest_url).status_code == 404
+
+
 class TestDownloads(TestDownloadsBase):
 
     def test_file_404(self):
-        r = self.client.get(reverse('downloads.file', args=[234]))
-        assert r.status_code == 404
+        response = self.client.get(reverse('downloads.file', args=[234]))
+        assert response.status_code == 404
 
     def test_public(self):
         assert self.addon.status == amo.STATUS_APPROVED
@@ -205,7 +231,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_locally(self.client.get(self.file_url))
 
     def test_unreviewed_addon(self):
-        self.addon.status = amo.STATUS_PENDING
+        self.addon.status = amo.STATUS_NULL
         self.addon.save()
         self.assert_served_locally(self.client.get(self.file_url))
 
@@ -225,6 +251,10 @@ class TestDownloads(TestDownloadsBase):
     def test_unicode_url(self):
         self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
         self.assert_served_by_cdn(self.client.get(self.file_url))
+
+    def test_deleted(self):
+        self.addon.delete()
+        assert self.client.get(self.file_url).status_code == 404
 
 
 class TestDisabledFileDownloads(TestDownloadsBase):
@@ -292,6 +322,30 @@ class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
             'Addons:ReviewUnlisted')
 
 
+class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
+    # Like TestDownloadsUnlistedAddonDeleted above, nothing should change for
+    # reviewers and admins if the add-on is deleted in addition to being
+    # disabled and the version unlisted. Authors should no longer have access.
+    def setUp(self):
+        super().setUp()
+        self.addon.delete()
+
+    def test_user_disabled_ok_for_author(self):
+        self.addon.update(disabled_by_user=True)
+        assert self.client.login(email='g@gmail.com')
+        assert self.client.get(self.file_url).status_code == 404
+
+    def test_admin_disabled_ok_for_author(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert self.client.login(email='g@gmail.com')
+        assert self.client.get(self.file_url).status_code == 404
+
+    def test_file_disabled_ok_for_author(self):
+        self.file.update(status=amo.STATUS_DISABLED)
+        assert self.client.login(email='g@gmail.com')
+        assert self.client.get(self.file_url).status_code == 404
+
+
 class TestDownloadsLatest(TestDownloadsBase):
 
     def setUp(self):
@@ -303,11 +357,11 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert self.client.get(url).status_code == 404
 
     def test_type_none(self):
-        r = self.client.get(self.latest_url)
-        assert r.status_code == 302
+        response = self.client.get(self.latest_url)
+        assert response.status_code == 302
         url = '%s?%s' % (self.file.filename,
                          urlencode({'filehash': self.file.hash}))
-        assert r['Location'].endswith(url), r['Location']
+        assert response['Location'].endswith(url), response['Location']
 
     def test_success(self):
         assert self.addon.current_version
@@ -348,14 +402,14 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_locally(self.client.get(url), attachment=True)
 
     def test_platform_multiple_objects(self):
-        f = File.objects.create(platform=3, version=self.file.version,
-                                filename='unst.xpi', status=self.file.status)
+        file_ = File.objects.create(
+            platform=3, version=self.file.version, filename='unst.xpi',
+            status=self.file.status)
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.slug, 'platform': 3})
-        self.assert_served_locally(self.client.get(url), file_=f)
+        self.assert_served_locally(self.client.get(url), file_=file_)
 
 
-@override_settings(XSENDFILE=True)
 class TestDownloadSource(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
@@ -443,20 +497,51 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
 
-    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
-                       lambda *args, **kwargs: False)
-    def test_download_for_unlisted_addon_reviewer(self):
-        """File downloading isn't allowed for reviewers."""
+                       lambda *args, **kwargs: True)
+    def test_download_for_addon_owner_deleted(self):
+        self.addon.delete()
+        assert self.client.get(self.url).status_code == 404
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
-    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
-    def test_download_for_unlisted_addon_unlisted_reviewer(self):
-        """File downloading is allowed for unlisted reviewers."""
+    def test_download_for_unlisted_addon_reviewer(self):
+        """File downloading isn't allowed for any kind of reviewer, need
+        admin."""
+        assert self.client.get(self.url).status_code == 404
+
         self.make_addon_unlisted(self.addon)
+        assert self.client.get(self.url).status_code == 404
+
+    def test_download_for_admin(self):
+        """File downloading is allowed for admins."""
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.addon.authors.clear()
+        self.client.login(email=self.user.email)
+        assert self.client.get(self.url).status_code == 200
+
+        # Even unlisted.
+        self.make_addon_unlisted(self.addon)
+        assert self.client.get(self.url).status_code == 200
+
+        # Even disabled.
+        self.addon.update(disabled_by_user=True)
+        assert self.client.get(self.url).status_code == 200
+
+        # Even disabled (bis).
+        self.version.files.all().update(status=amo.STATUS_DISABLED)
+        assert self.client.get(self.url).status_code == 200
+
+        # Even disabled (ter).
+        self.addon.update(status=amo.STATUS_DISABLED)
+        assert self.client.get(self.url).status_code == 200
+
+        # Even deleted!
+        self.addon.delete()
         assert self.client.get(self.url).status_code == 200

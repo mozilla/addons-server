@@ -104,7 +104,7 @@ or
 
     make test_es
 
-.. _pytest: http://pytest.org/latest/
+.. _pytest: http://pytest.org/
 
 
 Troubleshooting

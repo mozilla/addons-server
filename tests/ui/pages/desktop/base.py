@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 class Base(Page):
 
     _url = '{base_url}/{locale}'
-    _amo_header = (By.CLASS_NAME, 'Header-title')
+    _amo_header = (By.CLASS_NAME, 'Header')
 
     def __init__(self, selenium, base_url, locale='en-US', **kwargs):
         super(Base, self).__init__(

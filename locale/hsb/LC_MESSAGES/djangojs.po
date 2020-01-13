@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-01 14:23+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-09-30 21:15+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -29,8 +29,8 @@ msgstr "Při kontaktowanju serwera je problem wustupił."
 msgid "Select a file..."
 msgstr "Wubjerće dataju..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Waš přidatk dyrbi datajowu kóncowku .zip, .xpi, .crx, .jar abo .xml měć"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Waš přidatk dyrbi datajowu kóncowku .zip, .xpi, .crx abo .xml měć"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -157,30 +157,6 @@ msgstr "Wideja dyrbja we formaće WebM być."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tuta drasta z wašej wersiju {0} kompatibelna njeje"
-
-msgid "All Rights Reserved"
-msgstr "Wšě prawa wuměnjene"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Mjeno wašeje drasty"
 
 msgid "Flagged for review"
 msgstr "Za přepruwowanje woznamjenjeny"
@@ -772,12 +748,6 @@ msgstr "Tutón přełožk wotstronić"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} je sej tutu stronu jako prěni wobhladał."
-
-msgid "Receipt checked by app."
-msgstr "Kwitowanka je so přez nałoženje přepruwowała."
-
-msgid "Receipt was not checked by app."
-msgstr "Kwitowanka njeje so přez nałoženje přepruwowała."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} je sej tutón přidatk jako prěni wobhladał."

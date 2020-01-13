@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2019-02-01 13:15+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-09-30 19:11+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -27,8 +27,8 @@ msgstr "There was a problem contacting the server."
 msgid "Select a file..."
 msgstr "Select a file..."
 
-msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
+msgstr "Your add-on should end with .zip, .xpi, .crx or .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -147,30 +147,6 @@ msgstr "Videos must be in WebM."
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "This theme is incompatible with your version of {0}"
-
-msgid "All Rights Reserved"
-msgstr "All Rights Reserved"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Your Theme's Name"
-msgstr "Your Theme’s Name"
 
 msgid "Flagged for review"
 msgstr "Flagged for review"
@@ -734,12 +710,6 @@ msgstr "Remove this localization"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} was viewing this page first."
-
-msgid "Receipt checked by app."
-msgstr "Receipt checked by app."
-
-msgid "Receipt was not checked by app."
-msgstr "Receipt was not checked by app."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} was viewing this add-on first."

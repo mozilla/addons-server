@@ -59,8 +59,10 @@ class DiscoveryTestMixin(object):
 
         assert result['heading'] == item.heading
         assert result['description'] == item.description
-        assert result['heading_text'] == item.heading_text
         assert result['description_text'] == item.description_text
+
+        # https://github.com/mozilla/addons-server/issues/11817
+        assert 'heading_text' not in result
 
         self._check_disco_addon_version(
             result['addon']['current_version'], addon.current_version)
@@ -98,7 +100,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         with self.assertNumQueries(11):
             # 11 queries:
-            # - 1 to fetch the waffle switch 'disco-recommendations'
             # - 1 to fetch the discovery items
             # - 1 to fetch the add-ons (can't be joined with the previous one
             #   because we want to hit the Addon transformer)
@@ -109,7 +110,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             # - 1 to fetch the versions applications_versions
             # - 1 to fetch the versions files
             # - 1 to fetch the add-ons authors
-            # - 1 to fetch the add-ons personas
+            # - 1 to fetch the add-ons version previews (for static themes)
             # - 1 to fetch the add-ons previews
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
@@ -175,9 +176,9 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         assert results[2]['addon']['id'] == discopane_items[5].addon_id
         assert results[3]['addon']['id'] == discopane_items[6].addon_id
 
-    def test_china_edition_list(self):
+    def test_china_edition_list(self, edition='china'):
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'edition': 'china'})
+            self.url, {'lang': 'en-US', 'edition': edition})
         assert response.data
 
         discopane_items_china = DiscoveryItem.objects.all().filter(
@@ -188,6 +189,10 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
             self._check_disco_addon(result, discopane_items_china[i])
+
+    def test_china_edition_alias_list(self, edition='china'):
+        self.test_china_edition_list(edition='MozillaOnline')
+        self.test_china_edition_list(edition='mozillaonline')
 
     def test_invalid_edition_returns_default(self):
         response = self.client.get(

@@ -1,30 +1,25 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+from unittest import mock
 
-from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
-
-from unittest import mock
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonCategory, Category
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonCategory, Category)
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import TestCase, formset, initial, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
-from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.forms import DescribeForm
-from olympia.lib.akismet.models import AkismetReport
-from olympia.lib.cache import memoize_key
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
@@ -44,7 +39,6 @@ class BaseTestEdit(TestCase):
         if self.listed:
             self.make_addon_listed(addon)
             ac = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
-            ac.feature = False
             ac.save()
             AddonCategory.objects.filter(addon=addon,
                                          category__id__in=[1, 71]).delete()
@@ -304,126 +298,69 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.addon.find_latest_version(None).files.update(is_webextension=True)
         self.test_nav_links()
 
-    def _feature_addon(self, addon_id=3615):
-        c_addon = CollectionAddon.objects.create(
-            addon_id=addon_id, collection=Collection.objects.create())
-        FeaturedCollection.objects.create(collection=c_addon.collection,
-                                          application=amo.FIREFOX.id)
+    def test_nav_links_uri_match(self):
+        self.get_addon().update(slug='모질라')
 
-        # Clear relevant featured caches
-        cache.delete(memoize_key('addons:featured', amo.FIREFOX, None))
+        response = self.client.get(self.get_addon().get_dev_url())
+        selected_link = (pq(response.content)('#edit-addon-nav').find('li')
+                         .hasClass('selected'))
 
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
+        assert selected_link is True
+
+    @override_switch('metadata-content-review', active=False)
+    @mock.patch('olympia.devhub.forms.fetch_existing_translations_from_addon')
+    def test_metadata_content_review_waffle_off(self, fetch_mock):
         data = self.get_dict()
 
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
+        fetch_mock.assert_not_called()
 
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_ham(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
+    @override_switch('metadata-content-review', active=True)
+    def test_metadata_change_triggers_content_review(self):
         data = self.get_dict()
+        addon = self.addon = self.get_addon()
+        AddonApprovalsCounter.approve_content_for_addon(addon=addon)
+        assert AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
 
+        # make the edit
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
+        addon = self.addon = self.get_addon()
 
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 3
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.all()[1]
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-        description_report = AkismetReport.objects.all()[2]
-        assert description_report.comment_type == 'product-description'
-        assert description_report.comment == data['description']
-
-        assert comment_check_mock.call_count == 3
-        assert b'spam' not in response.content
-
-        # And metadata was updated
-        addon = self.get_addon()
+        # last_content_review should have been reset and the metadata updated
+        assert not AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
         assert str(addon.name) == data['name']
         assert str(addon.summary) == data['summary']
-        assert str(addon.description) == data['description']
 
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam_logging_only(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        data = self.get_dict()
-
+        # Now repeat, but we won't be changing either name or summary
+        AddonApprovalsCounter.approve_content_for_addon(addon=addon)
+        assert AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
+        data['description'] = 'its a totally new description!'
+        self.describe_edit_url = self.get_url('describe', edit=True)
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
+        addon = self.addon = self.get_addon()
 
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 3
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.all()[1]
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-        description_report = AkismetReport.objects.all()[2]
-        assert description_report.comment_type == 'product-description'
-        assert description_report.comment == data['description']
-
-        assert comment_check_mock.call_count == 3
-        # But because we're not taking any action from the spam, don't report.
-        assert b'spam' not in response.content
-
+        # Still keeps its date this time, so no new content review
+        assert AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
         # And metadata was updated
-        addon = self.get_addon()
-        assert str(addon.name) == data['name']
-        assert str(addon.summary) == data['summary']
         assert str(addon.description) == data['description']
 
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam_action_taken(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        old_name = self.addon.name
-        old_summary = self.addon.summary
-        old_description = self.addon.description
-        data = self.get_dict()
-
+        # Check this still works on an (old) addon without a content review
+        AddonApprovalsCounter.objects.get(addon=addon).delete()
+        data['summary'] = 'some change'
+        self.describe_edit_url = self.get_url('describe', edit=True)
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 3
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.all()[1]
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-        description_report = AkismetReport.objects.all()[2]
-        assert description_report.comment_type == 'product-description'
-        assert description_report.comment == data['description']
-
-        assert comment_check_mock.call_count == 3
-        self.assertFormError(
-            response, 'form', 'name',
-            'The text entered has been flagged as spam.')
-        self.assertFormError(
-            response, 'form', 'description',
-            'The text entered has been flagged as spam.')
-        self.assertFormError(
-            response, 'form', 'summary',
-            'The text entered has been flagged as spam.')
-
-        # And metadata was NOT updated
-        addon = self.get_addon()
-        assert str(addon.name) == str(old_name)
-        assert str(addon.summary) == str(old_summary)
-        assert str(addon.description) == str(old_description)
+        addon = self.addon = self.get_addon()
+        assert not AddonApprovalsCounter.objects.get(
+            addon=addon).last_content_review
+        assert str(addon.summary) == data['summary']
 
     def test_edit_xss(self):
         """
@@ -564,50 +501,6 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [1, 22]
-
-    def test_edit_categories_add_featured(self):
-        """Ensure that categories cannot be changed for featured add-ons."""
-        self._feature_addon()
-        self.cat_initial['categories'] = [22, 1]
-
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-
-        assert response.context['cat_form'].errors[0]['categories'] == (
-            ['Categories cannot be changed while your add-on is featured for '
-             'this application.'])
-        # This add-on's categories should not change.
-        assert sorted(addon_cats) == [22]
-
-    def test_edit_categories_add_new_creatured_admin(self):
-        """Ensure that admins can change categories for creatured add-ons."""
-        assert self.client.login(email='admin@mozilla.com')
-        self._feature_addon()
-        response = self.client.get(self.describe_edit_url)
-        doc = pq(response.content)
-        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
-        assert doc('#addon-categories-edit > p').length == 0
-        self.cat_initial['categories'] = [22, 1]
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert 'categories' not in response.context['cat_form'].errors[0]
-        # This add-on's categories should change.
-        assert sorted(addon_cats) == [1, 22]
-
-    def test_edit_categories_disable_creatured(self):
-        """Ensure that other forms are okay when disabling category changes."""
-        self._feature_addon()
-        self.cat_initial['categories'] = [22, 1]
-        data = self.get_dict()
-        self.client.post(self.describe_edit_url, data)
-        assert str(self.get_addon().name) == data['name']
-
-    def test_edit_categories_no_disclaimer(self):
-        """Ensure that there is a not disclaimer for non-creatured add-ons."""
-        response = self.client.get(self.describe_edit_url)
-        doc = pq(response.content)
-        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
-        assert doc('#addon-categories-edit > p').length == 0
 
     def test_edit_no_previous_categories(self):
         AddonCategory.objects.filter(addon=self.addon).delete()
@@ -1556,7 +1449,6 @@ class TestEditTechnical(BaseTestEdit):
         # Turn everything on
         data = {
             'developer_comments': 'Test comment!',
-            'view_source': 'on',
             'whiteboard-public': 'Whiteboard info.'
         }
 
@@ -1569,28 +1461,6 @@ class TestEditTechnical(BaseTestEdit):
                 assert str(getattr(addon, k)) == str(data[k])
             elif k == 'whiteboard-public':
                 assert str(addon.whiteboard.public) == str(data[k])
-            else:
-                assert getattr(addon, k) == (data[k] == 'on')
-
-        # Andddd offf
-        data = {'developer_comments': 'Test comment!'}
-        response = self.client.post(self.technical_edit_url, data)
-        addon = self.get_addon()
-
-        assert not addon.view_source
-
-    def test_technical_devcomment_notrequired(self):
-        data = {
-            'developer_comments': '',
-            'view_source': 'on'
-        }
-        response = self.client.post(self.technical_edit_url, data)
-        assert response.context['form'].errors == {}
-
-        addon = self.get_addon()
-        for k in data:
-            if k == 'developer_comments':
-                assert str(getattr(addon, k)) == str(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
@@ -1679,49 +1549,6 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
         assert response.status_code == 200
         self.assertFormError(
             response, 'cat_form', 'category', 'This field is required.')
-
-    def test_edit_categories_add_featured(self):
-        """Ensure that categories cannot be changed for featured add-ons."""
-        category_desktop = Category.objects.get(id=308)
-        category_android = Category.objects.get(id=408)
-        AddonCategory(addon=self.addon, category=category_desktop).save()
-        AddonCategory(addon=self.addon, category=category_android).save()
-        self._feature_addon(self.addon.id)
-
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-
-        # This add-on's categories should not change.
-        assert sorted(addon_cats) == [308, 408]
-        self.assertFormError(
-            response, 'cat_form', 'category',
-            'Categories cannot be changed while your add-on is featured.')
-
-    def test_edit_categories_add_new_creatured_admin(self):
-        """Ensure that admins can change categories for creatured add-ons."""
-        assert self.client.login(email='admin@mozilla.com')
-        category_desktop = Category.objects.get(id=308)
-        category_android = Category.objects.get(id=408)
-        AddonCategory(addon=self.addon, category=category_desktop).save()
-        AddonCategory(addon=self.addon, category=category_android).save()
-        self._feature_addon(self.addon.id)
-
-        response = self.client.get(self.describe_edit_url)
-        doc = pq(response.content)
-        assert doc('#addon-categories-edit').length == 1
-        assert doc('#addon-categories-edit > p').length == 0
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert 'category' not in response.context['cat_form'].errors
-        # This add-on's categories should change.
-        assert sorted(addon_cats) == [300, 400]
-
-    def test_edit_categories_disable_creatured(self):
-        """Ensure that other forms are okay when disabling category changes."""
-        self._feature_addon()
-        data = self.get_dict()
-        self.client.post(self.describe_edit_url, data)
-        assert str(self.get_addon().name) == data['name']
 
     def test_theme_preview_shown(self):
         response = self.client.get(self.url)

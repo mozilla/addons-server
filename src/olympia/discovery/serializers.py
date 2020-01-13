@@ -50,13 +50,12 @@ class DiscoveryAddonSerializer(AddonSerializer):
 class DiscoverySerializer(serializers.ModelSerializer):
     heading = serializers.CharField()
     description = serializers.CharField()
-    heading_text = serializers.CharField()
     description_text = serializers.CharField()
     addon = DiscoveryAddonSerializer()
     is_recommendation = serializers.SerializerMethodField()
 
     class Meta:
-        fields = ('heading', 'description', 'heading_text', 'description_text',
+        fields = ('heading', 'description', 'description_text',
                   'addon', 'is_recommendation')
         model = DiscoveryItem
 
@@ -64,8 +63,8 @@ class DiscoverySerializer(serializers.ModelSerializer):
         # If an object is ever returned without having a position set, that
         # means it's coming from the recommendation server, it wasn't an
         # editorial choice.
-        request = self.context.get('request')
-        if request and request.GET.get('edition') == 'china':
+        view = self.context.get('view')
+        if view and view.get_edition() == 'china':
             position_field = 'position_china'
         else:
             position_field = 'position'

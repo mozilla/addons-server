@@ -1,35 +1,29 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-
 from datetime import datetime, timedelta
+from unittest import mock
 
+import responses
 from django.conf import settings
 from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils import translation
-
-from unittest import mock
-import responses
 from freezegun import freeze_time
-from rest_framework.response import Response
-from waffle.testutils import override_switch
-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, create_default_webext_appversion, developer_factory,
-    get_random_ip, reverse_ns, TestCase)
+    TestCase, addon_factory, create_default_webext_appversion,
+    developer_factory, get_random_ip, reverse_ns)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.files.models import File, FileUpload
-from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
 from olympia.users.models import (
-    EmailUserRestriction, IPNetworkUserRestriction, UserProfile
-)
+    EmailUserRestriction, IPNetworkUserRestriction, UserProfile)
 from olympia.versions.models import Version
+from rest_framework.response import Response
 
 
 class SigningAPITestMixin(APIKeyAuthTestMixin):
@@ -53,11 +47,6 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             users=[self.user])
 
         self.view_class = VersionView
-
-        auto_sign_version_patcher = mock.patch(
-            'olympia.devhub.views.auto_sign_version')
-        self.auto_sign_version = auto_sign_version_patcher.start()
-        self.addCleanup(auto_sign_version_patcher.stop)
 
     def url(self, guid, version, pk=None):
         if guid is None:
@@ -124,7 +113,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
         assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_new_addon_random_slug_unlisted_channel(self):
@@ -197,7 +185,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
-        self.auto_sign_version.assert_called_with(version)
         assert not version.all_files[0].is_mozilla_signed_extension
         assert not version.addon.tags.filter(tag_text='dynamic theme').exists()
 
@@ -247,7 +234,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
 
     def test_version_added_is_experiment_reject_no_perm(self):
         guid = '@experiment-inside-webextension-guid'
@@ -281,7 +267,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
         assert latest_version.all_files[0].is_mozilla_signed_extension
 
     def test_mozilla_signed_not_allowed_not_mozilla(self):
@@ -317,7 +302,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(latest_version)
 
     def test_system_addon_not_allowed_not_mozilla(self):
         guid = 'systemaddon@mozilla.com'
@@ -331,9 +315,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                      'mozilla_guid.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
-            u'You cannot submit an add-on with a guid ending "@mozilla.org" '
-            u'or "@shield.mozilla.org" or "@pioneer.mozilla.org" '
-            u'or "@mozilla.com"')
+            'You cannot submit an add-on using a guid ending with '
+            '"@mozilla.com" or "@mozilla.org" or "@pioneer.mozilla.org" or '
+            '"@search.mozilla.org" or "@shield.mozilla.org"')
 
     def test_system_addon_update_allowed(self):
         """Updates to system addons are allowed from anyone."""
@@ -355,7 +339,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert addon.versions.count() == 2
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.auto_sign_version.assert_called_with(latest_version)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
     def test_invalid_version_response_code(self):
         # This raises an error in parse_addon which is not covered by
@@ -384,6 +369,29 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         error_msg = 'cannot add versions to an addon that has status: %s.' % (
             amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED])
         assert error_msg in response.data['error']
+
+    def test_no_listed_version_upload_for_user_disabled_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        addon.update(disabled_by_user=True)
+        assert not addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0')
+        assert response.status_code == 400
+        error_msg = 'cannot add listed versions to an addon set to "Invisible"'
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0', channel='listed')
+        assert response.status_code == 400
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0',
+            channel='unlisted')
+        assert response.status_code == 202
+        assert addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_channel_ignored_for_new_addon(self):
         guid = '@create-version'
@@ -455,86 +463,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         error_msg = (
             'You cannot add a listed version to this addon via the API')
         assert error_msg in response.data['error']
-
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert AkismetReport.objects.count() == 0
-        assert response.status_code == 202
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert response.status_code == 202
-        comment_check_mock.assert_called_once()
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Upload Version Test XPI'  # the addon's name
-
-        validation_response = self.get(self.url(self.guid, '3.0'))
-        assert validation_response.status_code == 200
-        assert b'spam' not in validation_response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=False)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_logging_only(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert response.status_code == 202
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Upload Version Test XPI'  # the addon's name
-        assert report.result == AkismetReport.MAYBE_SPAM
-
-        validation_response = self.get(self.url(self.guid, '3.0'))
-        assert validation_response.status_code == 200
-        assert b'spam' not in validation_response.content
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-addon-action', active=True)
-    @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome_action_taken(self):
-        akismet_url = settings.AKISMET_API_URL.format(
-            api_key='none', action='comment-check')
-        responses.add(responses.POST, akismet_url, json=True)
-        addon = Addon.objects.get(guid=self.guid)
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='listed')
-
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
-        assert response.status_code == 202
-        assert AkismetReport.objects.count() == 1
-        report = AkismetReport.objects.get()
-        assert report.comment_type == 'product-name'
-        assert report.comment == 'Upload Version Test XPI'  # the addon's name
-        assert report.result == AkismetReport.MAYBE_SPAM
-
-        validation_response = self.get(self.url(self.guid, '3.0'))
-        assert validation_response.status_code == 200
-        assert b'spam' in validation_response.content
-        data = json.loads(validation_response.content.decode('utf-8'))
-        assert data['validation_results']['messages'][0]['id'] == [
-            u'validation', u'messages', u'akismet_is_spam_name'
-        ]
 
     def _test_throttling_verb_ip_burst(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
@@ -729,8 +657,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT', url, expected_status=202)
 
     def test_throttling_ignored_for_special_users(self):
-        self.user.update(
-            email=settings.ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS[0])
+        self.grant_permission(
+            self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
         url = self.url(self.guid, '1.0')
         with freeze_time('2019-04-08 15:16:23.42'):
             for x in range(0, 60):
@@ -777,8 +705,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(
-            latest_version)
 
     def test_post_addon_restricted(self):
         Addon.objects.all().get().delete()
@@ -890,8 +816,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        self.auto_sign_version.assert_called_with(
-            latest_version)
 
     def test_addon_does_not_exist_webextension_with_invalid_guid_in_url(self):
         guid = 'custom-invalid-guid-provided'

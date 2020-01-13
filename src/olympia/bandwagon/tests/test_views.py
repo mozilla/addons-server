@@ -6,9 +6,7 @@ import django.test
 from django.conf import settings
 from django.test.utils import override_settings
 
-from unittest.mock import patch
 from rest_framework.fields import empty
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -16,7 +14,6 @@ from olympia.amo.tests import (
     user_factory)
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection, CollectionAddon
-from olympia.lib.akismet.models import AkismetReport
 
 
 class TestCollectionViewSetList(TestCase):
@@ -421,59 +418,6 @@ class CollectionViewSetDataMixin(object):
         assert response.status_code == 400
         assert u'This custom URL is already in use' in (
             ','.join(json.loads(response.content)['non_field_errors']))
-
-    @override_switch('akismet-spam-check', active=False)
-    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_waffle_off(self, comment_check_mock):
-        self.client.login_api(self.user)
-        response = self.send(data=self.data)
-        assert response.status_code in [200, 201]
-
-        # No AkismetReports
-        assert AkismetReport.objects.count() == 0
-        comment_check_mock.assert_not_called()
-
-    @override_switch('akismet-spam-check', active=True)
-    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_is_ham(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        self.client.login_api(self.user)
-        response = self.send(data=self.data)
-        assert response.status_code in [200, 201]
-
-        # AkismetReports are there
-        assert AkismetReport.objects.count() == 4
-        assert comment_check_mock.call_count == 4
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-collection-action', active=False)
-    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_is_spam_logging_only(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        self.client.login_api(self.user)
-        response = self.send(data=self.data)
-        assert response.status_code in [200, 201]
-
-        # AkismetReports are there
-        assert AkismetReport.objects.count() == 4
-        # After the first comment_check was spam, additional ones are skipped.
-        assert comment_check_mock.call_count == 1
-
-    @override_switch('akismet-spam-check', active=True)
-    @override_switch('akismet-collection-action', active=True)
-    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_is_spam_take_action(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        self.client.login_api(self.user)
-        response = self.send(data=self.data)
-        assert response.status_code == 400
-        assert json.loads(response.content)['non_field_errors'] == (
-            ['The text entered has been flagged as spam.'])
-
-        # AkismetReports are there
-        assert AkismetReport.objects.count() == 4
-        # After the first comment_check was spam, additional ones are skipped.
-        assert comment_check_mock.call_count == 1
 
 
 class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
@@ -918,6 +862,37 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.check_result_order(
             self.client.get(self.url + '?sort=-name&lang=de'),
             self.addon_b, self.addon_c, self.addon_a)
+
+    def test_name_sorting_no_english(self):
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_a).update(
+            created=self.days_ago(1))
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_b).update(
+            created=self.days_ago(3))
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_c).update(
+            created=self.days_ago(2))
+
+        # Change all english translations to be Spanish instead, making sure we
+        # don't have translations in settings.LANGUAGE_CODE (en-US).
+        from olympia.translations.models import Translation
+        Translation.objects.filter(locale=settings.LANGUAGE_CODE, id__in=(
+            self.addon_a.name_id,
+            self.addon_b.name_id,
+            self.addon_c.name_id)).update(locale='es')
+
+        # Then give a valid default_locale to the addons, 'de' (they already
+        # all have a german translation)
+        self.addon_a.update(default_locale='de')
+        self.addon_b.update(default_locale='de')
+        self.addon_c.update(default_locale='de')
+
+        # Sort by name ascending, in French (should fall back to their
+        # default_locale, # German).
+        self.check_result_order(
+            self.client.get(self.url + '?sort=name&lang=fr'),
+            self.addon_a, self.addon_c, self.addon_b)
 
     def test_only_one_sort_parameter_supported(self):
         response = self.client.get(self.url + '?sort=popularity,name')

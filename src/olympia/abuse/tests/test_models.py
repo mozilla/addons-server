@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 from unittest import mock
 
-from django.conf import settings
-from django.core import mail
-
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.users.models import UserProfile
 
 
 class TestAbuse(TestCase):
@@ -84,6 +80,7 @@ class TestAbuse(TestCase):
             (11, 'System Add-on'),
             (12, 'Temporary Add-on'),
             (13, 'Sync'),
+            (14, 'URL'),
             (127, 'Other')
         )
 
@@ -102,6 +99,53 @@ class TestAbuse(TestCase):
             (11, 'system_addon'),
             (12, 'temporary_addon'),
             (13, 'sync'),
+            (14, 'url'),
+            (127, 'other')
+        )
+
+        assert AbuseReport.ADDON_INSTALL_SOURCES.choices == (
+            (None, 'None'),
+            (1, 'Add-ons Manager'),
+            (2, 'Add-ons Debugging'),
+            (3, 'Preferences'),
+            (4, 'AMO'),
+            (5, 'App Profile'),
+            (6, 'Disco Pane'),
+            (7, 'Included in build'),
+            (8, 'Extension'),
+            (9, 'Enterprise Policy'),
+            (10, 'File URL'),
+            (11, 'GMP Plugin'),
+            (12, 'Internal'),
+            (13, 'Plugin'),
+            (14, 'Return to AMO'),
+            (15, 'Sync'),
+            (16, 'System Add-on'),
+            (17, 'Temporary Add-on'),
+            (18, 'Unknown'),
+            (127, 'Other')
+        )
+
+        assert AbuseReport.ADDON_INSTALL_SOURCES.api_choices == (
+            (None, None),
+            (1, 'about_addons'),
+            (2, 'about_debugging'),
+            (3, 'about_preferences'),
+            (4, 'amo'),
+            (5, 'app_profile'),
+            (6, 'disco'),
+            (7, 'distribution'),
+            (8, 'extension'),
+            (9, 'enterprise_policy'),
+            (10, 'file_url'),
+            (11, 'gmp_plugin'),
+            (12, 'internal'),
+            (13, 'plugin'),
+            (14, 'rtamo'),
+            (15, 'sync'),
+            (16, 'system_addon'),
+            (17, 'temporary_addon'),
+            (18, 'unknown'),
             (127, 'other')
         )
 
@@ -110,95 +154,21 @@ class TestAbuse(TestCase):
             (1, 'Uninstall'),
             (2, 'Menu'),
             (3, 'Toolbar context menu'),
+            (4, 'AMO'),
         )
         assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
             (None, None),
             (1, 'uninstall'),
             (2, 'menu'),
             (3, 'toolbar_context_menu'),
+            (4, 'amo'),
         )
-
-    def test_user(self):
-        user = UserProfile.objects.get(pk=999)
-        report = AbuseReport.objects.create(user=user)
-        report.send()
-        assert str(report) == u'[User] Abuse Report for regularuser التطب'
-        assert (
-            mail.outbox[0].subject ==
-            u'[User] Abuse Report for regularuser التطب')
-        assert user.get_admin_absolute_url() in mail.outbox[0].body
-
-        assert mail.outbox[0].to == [settings.ABUSE_EMAIL]
-
-    def test_addon(self):
-        addon = Addon.objects.get(pk=3615)
-        report = AbuseReport.objects.create(addon=addon)
-        assert (
-            str(report) ==
-            u'[Extension] Abuse Report for Delicious Bookmarks')
-        report.send()
-        assert (
-            mail.outbox[0].subject ==
-            u'[Extension] Abuse Report for Delicious Bookmarks')
-        assert addon.get_admin_absolute_url() in mail.outbox[0].body
-
-    def test_addon_send_metadata(self):
-        addon = Addon.objects.get(pk=3615)
-        in_the_past = addon.created
-        report = AbuseReport.objects.create(
-            addon=addon, addon_name='Fôo', addon_summary='Sûmmary',
-            install_date=in_the_past, reason=AbuseReport.REASONS.DAMAGE,
-            addon_signature=AbuseReport.ADDON_SIGNATURES.CURATED)
-        assert report.metadata == {
-            'addon_name': 'Fôo',
-            'addon_signature': 'Curated',
-            'addon_summary': 'Sûmmary',
-            'application': 'Firefox',
-            'install_date': in_the_past,
-            'reason': 'Damages computer and/or data'
-        }
-        report.send()
-        expected_mail_body = (
-            """An anonymous user reported abuse for Delicious Bookmarks (%s).
-
-addon_name => Fôo
-addon_summary => Sûmmary
-addon_signature => Curated
-application => Firefox
-install_date => 2006-10-23 12:57:41
-reason => Damages computer and/or data
-
-""" % addon.get_admin_absolute_url())
-        assert mail.outbox[0].body == expected_mail_body
 
     def test_type_unknown_addon_type(self):
         addon = Addon.objects.get(pk=3615)
         report = AbuseReport.objects.create(addon=addon)
         report.addon.type = -42  # Obviously that type isn't valid.
         assert report.type == 'Addon'  # Doesn't fail.
-
-    def test_addon_fr(self):
-        with self.activate(locale='fr'):
-            report = AbuseReport(addon_id=3615)
-            assert (
-                str(report) ==
-                u'[Extension] Abuse Report for Delicious Bookmarks')
-            report.send()
-        assert (
-            mail.outbox[0].subject ==
-            u'[Extension] Abuse Report for Delicious Bookmarks')
-
-    def test_guid(self):
-        report = AbuseReport.objects.create(guid='foo@bar.org')
-        report.send()
-        assert str(report) == u'[Addon] Abuse Report for foo@bar.org'
-        assert (
-            mail.outbox[0].subject ==
-            u'[Addon] Abuse Report for foo@bar.org')
-        assert (
-            'An anonymous user reported abuse for foo@bar.org '
-            in mail.outbox[0].body)
-        assert report.get_admin_absolute_url() in mail.outbox[0].body
 
     @mock.patch('olympia.abuse.models.GeoIP2')
     def test_lookup_country_code_from_ip(self, GeoIP2_mock):

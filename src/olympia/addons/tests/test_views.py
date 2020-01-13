@@ -16,9 +16,7 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.models import (
-    Addon, AddonUser, Category, CompatOverride,
-    CompatOverrideRange, Persona, ReplacementAddon)
+from olympia.addons.models import Addon, AddonUser, Category, ReplacementAddon
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -27,7 +25,7 @@ from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.bandwagon.models import FeaturedCollection, CollectionAddon
+from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.discovery.models import DiscoveryItem
 from olympia.users.models import UserProfile
@@ -36,7 +34,7 @@ from olympia.versions.models import ApplicationsVersions, AppVersion
 
 class TestStatus(TestCase):
     client_class = APITestClient
-    fixtures = ['base/addon_3615', 'addons/persona']
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         super(TestStatus, self).setUp()
@@ -47,18 +45,8 @@ class TestStatus(TestCase):
         self.url = reverse_ns(
             'addon-detail', api_version='v5', kwargs={'pk': self.addon.pk})
 
-        self.persona = Addon.objects.get(id=15663)
-        assert self.persona.status == amo.STATUS_APPROVED
-        self.persona_url = reverse_ns(
-            'addon-detail', api_version='v5',
-            kwargs={'pk': self.persona.pk})
-
     def test_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)
-        assert self.client.get(self.url).status_code == 401
-
-    def test_pending(self):
-        self.addon.update(status=amo.STATUS_PENDING)
         assert self.client.get(self.url).status_code == 401
 
     def test_nominated(self):
@@ -80,25 +68,6 @@ class TestStatus(TestCase):
     def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
         assert self.client.get(self.url).status_code == 401
-
-    def test_persona(self):
-        for status in Persona.STATUS_CHOICES.keys():
-            if status == amo.STATUS_DELETED:
-                continue
-            self.persona.status = status
-            self.persona.save()
-            assert self.client.head(self.persona_url).status_code == (
-                200 if status in [amo.STATUS_APPROVED]
-                else 401)
-
-    def test_persona_disabled(self):
-        for status in Persona.STATUS_CHOICES.keys():
-            if status == amo.STATUS_DELETED:
-                continue
-            self.persona.status = status
-            self.persona.disabled_by_user = True
-            self.persona.save()
-            assert self.client.head(self.persona_url).status_code == 401
 
 
 class TestFindReplacement(TestCase):
@@ -393,8 +362,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self._set_tested_url(self.addon.pk)
 
-    def _test_url(self):
-        response = self.client.get(self.url)
+    def _test_url(self, **kwargs):
+        response = self.client.get(self.url, data=kwargs)
         assert response.status_code == 200
         result = json.loads(force_text(response.content))
         assert result['id'] == self.addon.pk
@@ -407,6 +376,25 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def _set_tested_url(self, param):
         self.url = reverse_ns(
             'addon-detail', api_version='v5', kwargs={'pk': param})
+
+    def test_queries(self):
+        with self.assertNumQueries(15):
+            # 15 queries
+            # - 2 savepoints because of tests
+            # - 1 for the add-on
+            # - 1 for its translations
+            # - 1 for its categories
+            # - 1 for its current_version
+            # - 1 for translations of that version
+            # - 1 for applications versions of that version
+            # - 1 for files of that version
+            # - 1 for authors
+            # - 1 for previews
+            # - 1 for license
+            # - 1 for translations of the license
+            # - 1 for discovery item (is_recommended)
+            # - 1 for tags
+            self._test_url(lang='en-US')
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
@@ -735,6 +723,21 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def _set_tested_url(self, param):
         self.url = reverse_ns('addon-version-list', kwargs={'addon_pk': param})
+
+    def test_queries(self):
+        with self.assertNumQueries(13):
+            # 13 queries:
+            # - 2 savepoints because of tests
+            # - 2 user and its groups
+            # - 2 addon and its translations
+            # - 1 count for pagination
+            # - 1 versions themselves
+            # - 1 translations (release notes)
+            # - 1 applications versions
+            # - 1 files
+            # - 1 licenses
+            # - 1 licenses translations
+            self._test_url(lang='en-US')
 
     def test_bad_filter(self):
         response = self.client.get(self.url, data={'filter': 'ahahaha'})
@@ -1191,7 +1194,7 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_type(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
         theme = addon_factory(slug='my-theme', name=u'My Thème',
-                              type=amo.ADDON_THEME)
+                              type=amo.ADDON_STATICTHEME)
         addon_factory(slug='my-search', name=u'My Seárch',
                       type=amo.ADDON_SEARCH)
         self.refresh()
@@ -1201,97 +1204,29 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-        data = self.perform_search(self.url, {'type': 'theme'})
+        data = self.perform_search(self.url, {'type': 'statictheme'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == theme.pk
 
-        data = self.perform_search(self.url, {'type': 'theme,extension'})
+        data = self.perform_search(self.url, {'type': 'statictheme,extension'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         result_ids = (data['results'][0]['id'], data['results'][1]['id'])
         assert sorted(result_ids) == [addon.pk, theme.pk]
 
-    @patch('olympia.addons.models.get_featured_ids')
-    def test_filter_by_featured_no_app_no_lang(self, get_featured_ids_mock):
+    def test_filter_by_featured_no_app_no_lang(self):
         addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
         addon_factory(slug='other-addon', name=u'Other Addôn')
-        get_featured_ids_mock.return_value = [addon.pk]
-        assert addon.is_featured()
+        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        addon.current_version.update(recommendation_approved=True)
+        assert addon.is_recommended
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
-
-    def test_filter_by_featured_app_and_langs(self):
-        fx_addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
-        collection = collection_factory()
-        FeaturedCollection.objects.create(
-            collection=collection, application=amo.FIREFOX.id)
-        collection.add_addon(fx_addon)
-
-        fx_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Addôn')
-        collection = collection_factory()
-        FeaturedCollection.objects.create(
-            collection=collection, application=amo.FIREFOX.id, locale='fr')
-        collection.add_addon(fx_fr_addon)
-
-        fn_addon = addon_factory(slug='my-addon', name=u'Featured Addôn 2 go')
-        collection = collection_factory()
-        FeaturedCollection.objects.create(
-            collection=collection, application=amo.ANDROID.id)
-        collection.add_addon(fn_addon)
-
-        fn_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Mobil')
-        collection = collection_factory()
-        FeaturedCollection.objects.create(
-            collection=collection, application=amo.ANDROID.id, locale='fr')
-        collection.add_addon(fn_fr_addon)
-
-        addon_factory(slug='other-addon', name=u'Other Addôn')
-        self.reindex(Addon)
-
-        # Searching for just Firefox should return the two Firefox collections.
-        # The filter should be `Q('term', **{'featured_for.application': app})`
-        data = self.perform_search(self.url, {'featured': 'true',
-                                              'app': 'firefox'})
-        assert data['count'] == 2 == len(data['results'])
-        ids = {data['results'][0]['id'], data['results'][1]['id']}
-        self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
-
-        # If we specify lang 'fr' too it should be the same collections.
-        # In addition to the app query above, this will be executed too:
-        # `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))`
-        data = self.perform_search(
-            self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'fr'})
-        assert data['count'] == 2 == len(data['results'])
-        ids = {data['results'][0]['id'], data['results'][1]['id']}
-        self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
-
-        # But 'en-US' will exclude the 'fr' collection.
-        data = self.perform_search(
-            self.url, {'featured': 'true', 'app': 'firefox',
-                       'lang': 'en-US'})
-        assert data['count'] == 1 == len(data['results'])
-        assert data['results'][0]['id'] == fx_addon.pk
-
-        # If we only search for lang, application is ignored.
-        # Just `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))` now.
-        data = self.perform_search(
-            self.url, {'featured': 'true', 'lang': 'en-US'})
-        assert data['count'] == 2 == len(data['results'])
-        ids = {data['results'][0]['id'], data['results'][1]['id']}
-        self.assertSetEqual(ids, {fx_addon.pk, fn_addon.pk})
-
-        data = self.perform_search(
-            self.url, {'featured': 'true', 'lang': 'fr'})
-        assert data['count'] == 4 == len(data['results'])
-        ids = {data['results'][0]['id'], data['results'][1]['id'],
-               data['results'][2]['id'], data['results'][3]['id']}
-        self.assertSetEqual(
-            ids, {fx_addon.pk, fx_fr_addon.pk, fn_addon.pk, fn_fr_addon.pk})
 
     def test_filter_by_recommended(self):
         addon = addon_factory(slug='my-addon', name=u'Recomménded Addôn')
@@ -1920,7 +1855,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             type=amo.ADDON_STATICTHEME)
         addon_factory(slug='nonsense', name=u'Nope Nope Nope')
         addon_factory(
-            slug='whocares', name=u'My xul theme', type=amo.ADDON_THEME)
+            slug='whocares', name=u'My dict', type=amo.ADDON_DICT)
         self.refresh()
 
         # No db query.
@@ -2039,188 +1974,77 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
                 addon.pk, addon2.pk}
 
 
-class TestAddonFeaturedView(TestCase):
+class TestAddonFeaturedView(ESTestCase):
     client_class = APITestClient
 
+    fixtures = ['base/users']
+
     def setUp(self):
-        self.url = reverse_ns('addon-featured')
+        super().setUp()
+        # This api endpoint only still exists in v3.
+        self.url = reverse_ns('addon-featured', api_version='v3')
 
-    def test_no_parameters(self):
+    def tearDown(self):
+        super().tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def test_basic(self):
+        addon1 = addon_factory()
+        DiscoveryItem.objects.create(addon=addon1, recommendable=True)
+        addon1.current_version.update(recommendation_approved=True)
+        addon2 = addon_factory()
+        DiscoveryItem.objects.create(addon=addon2, recommendable=True)
+        addon2.current_version.update(recommendation_approved=True)
+        assert addon1.is_recommended
+        assert addon2.is_recommended
+        addon_factory()  # not recommended so shouldn't show up
+        self.refresh()
+
         response = self.client.get(self.url)
-        assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
-
-    @patch('olympia.addons.views.get_featured_ids')
-    def test_app_only(self, get_featured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
-
-        response = self.client.get(self.url, {'app': 'firefox'})
-        assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': None, 'lang': None})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         assert data['results']
         assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
+        # order is random
+        ids = {result['id'] for result in data['results']}
+        assert ids == {addon1.id, addon2.id}
 
-    @patch('olympia.addons.views.get_featured_ids')
-    def test_app_and_type(self, get_featured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
+    def test_page_size(self):
+        for _ in range(0, 15):
+            addon = addon_factory()
+            DiscoveryItem.objects.create(addon=addon, recommendable=True)
+            addon.current_version.update(recommendation_approved=True)
 
-        response = self.client.get(self.url, {
-            'app': 'firefox', 'type': 'extension'
-        })
-        assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': [amo.ADDON_EXTENSION], 'lang': None})
+        self.refresh()
+
+        # ask for > 10, to check we're not hitting the default ES page size.
+        response = self.client.get(self.url + '?page_size=11')
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         assert data['results']
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
-
-    @patch('olympia.addons.views.get_featured_ids')
-    def test_app_and_types(self, get_featured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
-
-        response = self.client.get(self.url, {
-            'app': 'firefox', 'type': 'extension,theme'
-        })
-        assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': [amo.ADDON_EXTENSION, amo.ADDON_THEME],
-                 'lang': None})
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert data['results']
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
-
-    @patch('olympia.addons.views.get_featured_ids')
-    def test_app_and_type_and_lang(self, get_featured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
-
-        response = self.client.get(self.url, {
-            'app': 'firefox', 'type': 'extension', 'lang': 'es'
-        })
-        assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': [amo.ADDON_EXTENSION], 'lang': 'es'})
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert data['results']
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
+        assert len(data['results']) == 11
 
     def test_invalid_app(self):
         response = self.client.get(
             self.url, {'app': 'foxeh', 'type': 'extension'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
+        assert json.loads(force_text(response.content)) == [
+            'Invalid "app" parameter.']
 
     def test_invalid_type(self):
         response = self.client.get(self.url, {'app': 'firefox', 'type': 'lol'})
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
-
-    def test_category_no_app_or_type(self):
-        response = self.client.get(self.url, {'category': 'lol'})
-        assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
+        assert json.loads(force_text(response.content)) == [
+            'Invalid "type" parameter.']
 
     def test_invalid_category(self):
         response = self.client.get(self.url, {
             'category': 'lol', 'app': 'firefox', 'type': 'extension'
         })
         assert response.status_code == 400
-        assert json.loads(force_text(response.content)) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
-
-    @patch('olympia.addons.views.get_creatured_ids')
-    def test_category(self, get_creatured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
-
-        response = self.client.get(self.url, {
-            'category': 'alerts-updates', 'app': 'firefox', 'type': 'extension'
-        })
-        assert get_creatured_ids_mock.call_count == 1
-        assert get_creatured_ids_mock.call_args_list[0][0][0] == 72  # category
-        assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert data['results']
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
-
-    @patch('olympia.addons.views.get_creatured_ids')
-    def test_category_with_multiple_types(self, get_creatured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
-
-        response = self.client.get(self.url, {
-            'category': 'nature', 'app': 'firefox',
-            'type': 'persona,statictheme'
-        })
-        assert get_creatured_ids_mock.call_count == 2
-        assert get_creatured_ids_mock.call_args_list[0][0][0] == 102  # cat
-        assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
-        assert get_creatured_ids_mock.call_args_list[1][0][0] == 302  # cat
-        assert get_creatured_ids_mock.call_args_list[1][0][1] is None  # lang
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert data['results']
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
-
-    @patch('olympia.addons.views.get_creatured_ids')
-    def test_category_with_lang(self, get_creatured_ids_mock):
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
-
-        response = self.client.get(self.url, {
-            'category': 'alerts-updates', 'app': 'firefox',
-            'type': 'extension', 'lang': 'fr',
-        })
-        assert get_creatured_ids_mock.call_count == 1
-        assert get_creatured_ids_mock.call_args_list[0][0][0] == 72  # cat id.
-        assert get_creatured_ids_mock.call_args_list[0][0][1] == 'fr'  # lang
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert data['results']
-        assert len(data['results']) == 2
-        assert data['results'][0]['id'] == addon1.pk
-        assert data['results'][1]['id'] == addon2.pk
+        assert json.loads(force_text(response.content)) == [
+            'Invalid "category" parameter.']
 
 
 class TestStaticCategoryView(TestCase):
@@ -2608,116 +2432,19 @@ class TestReplacementAddonView(TestCase):
 class TestCompatOverrideView(TestCase):
     """This view is used by Firefox directly and queried a lot.
 
-    That's why there are performance sensitive tests.
+    But now we don't have any CompatOverrides we just return an empty response.
     """
 
     client_class = APITestClient
 
-    def setUp(self):
-        self.addon = addon_factory(guid='extrabad@thing')
-        self.override_addon = CompatOverride.objects.create(
-            name='override with addon', guid=self.addon.guid, addon=self.addon)
-        CompatOverrideRange.objects.create(
-            compat=self.override_addon, app=amo.FIREFOX.id)
-        self.override_without = CompatOverride.objects.create(
-            name='override no addon', guid='bad@thing')
-        CompatOverrideRange.objects.create(
-            compat=self.override_without, app=amo.FIREFOX.id)
-
-    def test_single_guid(self):
+    def test_response(self):
         response = self.client.get(
-            reverse_ns('addon-compat-override'),
-            data={'guid': u'extrabad@thing'})
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        assert len(data['results']) == 1
-        result = data['results'][0]
-        assert result['addon_guid'] == 'extrabad@thing'
-        assert result['addon_id'] == self.addon.id
-        assert result['name'] == 'override with addon'
-
-    def test_multiple_guid(self):
-        response = self.client.get(
-            reverse_ns('addon-compat-override'),
+            reverse_ns('addon-compat-override', api_version='v3'),
             data={'guid': u'extrabad@thing,bad@thing'})
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         results = data['results']
-        assert len(results) == 2
-
-        assert results[0]['addon_guid'] == 'bad@thing'
-        assert results[0]['addon_id'] is None
-        assert results[0]['name'] == 'override no addon'
-        assert results[1]['addon_guid'] == 'extrabad@thing'
-        assert results[1]['addon_id'] == self.addon.id
-        assert results[1]['name'] == 'override with addon'
-
-        # Throw in some random invalid guids too that will be ignored.
-        response = self.client.get(
-            reverse_ns('addon-compat-override'),
-            data={'guid': (
-                u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing')})
-        assert response.status_code == 200
-        data = json.loads(force_text(response.content))
-        results = data['results']
-        assert len(results) == 2
-        assert results[0]['addon_guid'] == 'bad@thing'
-        assert results[1]['addon_guid'] == 'extrabad@thing'
-
-    def test_no_guid_param(self):
-        response = self.client.get(
-            reverse_ns('addon-compat-override'),
-            data={'guid': u'invalid@thing'})
-        # Searching for non-matching guids, it should be an empty 200 response.
-        assert response.status_code == 200
-        assert len(json.loads(force_text(response.content))['results']) == 0
-
-        response = self.client.get(
-            reverse_ns('addon-compat-override'), data={'guid': ''})
-        # Empty query is a 400 because a guid is required for overrides.
-        assert response.status_code == 400
-        assert b'Empty, or no, guid parameter provided.' in response.content
-
-        response = self.client.get(
-            reverse_ns('addon-compat-override'))
-        # And no guid param should be a 400 too
-        assert response.status_code == 400
-        assert b'Empty, or no, guid parameter provided.' in response.content
-
-    def test_performance_no_matching_guid(self):
-        # There is at least one query from the paginator, counting all objects
-        # We do not query on `compat_override` though if the count is 0.
-        with self.assertNumQueries(1):
-            response = self.client.get(
-                reverse_ns('addon-compat-override'),
-                data={'guid': u'unknownguid'})
-            assert response.status_code == 200
-            data = json.loads(force_text(response.content))
-            assert len(data['results']) == 0
-
-    def test_performance_matches_one_guid(self):
-        # 1. Query is querying compat_override
-        # 2. Query is adding CompatOverrideRange via the transformer
-        with self.assertNumQueries(2):
-            response = self.client.get(
-                reverse_ns('addon-compat-override'),
-                data={'guid': u'extrabad@thing'})
-            assert response.status_code == 200
-            data = json.loads(force_text(response.content))
-            assert len(data['results']) == 1
-
-    def test_performance_matches_multiple_guid(self):
-        # 1. Query is querying compat_override
-        # 2. Query is adding CompatOverrideRange via the transformer
-        with self.assertNumQueries(2):
-            response = self.client.get(
-                reverse_ns('addon-compat-override'),
-                data={'guid': (
-                    u'extrabad@thing,invalid@guid,notevenaguid$,'
-                    u'bad@thing')})
-            assert response.status_code == 200
-            data = json.loads(force_text(response.content))
-            assert len(data['results']) == 2
+        assert len(results) == 0
 
 
 class TestAddonRecommendationView(ESTestCase):

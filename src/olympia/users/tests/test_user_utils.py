@@ -21,9 +21,10 @@ def test_email_unsubscribe_code_parse():
 
 
 system_guids = pytest.mark.parametrize('guid', [
-    u'foø@mozilla.org', u'baa@shield.mozilla.org', u'moo@pioneer.mozilla.org',
-    u'blâh@mozilla.com', u'foø@Mozilla.Org', u'baa@ShielD.MozillA.OrG',
-    u'moo@PIONEER.mozilla.org', u'blâh@MOZILLA.COM'])
+    'foø@mozilla.org', 'baa@shield.mozilla.org', 'moo@pioneer.mozilla.org',
+    'blâh@mozilla.com', 'foø@Mozilla.Org', 'baa@ShielD.MozillA.OrG',
+    'moo@PIONEER.mozilla.org', 'blâh@MOZILLA.COM', 'flop@search.mozilla.org',
+])
 
 
 @system_guids

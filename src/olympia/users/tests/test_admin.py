@@ -19,6 +19,7 @@ from olympia.addons.models import AddonUser
 from olympia.amo.tests import (
     addon_factory, collection_factory, TestCase, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
+from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewerScore
@@ -218,7 +219,9 @@ class TestUserAdmin(TestCase):
 
         request.user = user_factory()
         self.grant_permission(request.user, 'Users:Edit')
-        assert list(user_admin.get_actions(request).keys()) == ['ban_action']
+        assert list(user_admin.get_actions(request).keys()) == [
+            'ban_action', 'reset_api_key_action'
+        ]
 
     def test_ban_action(self):
         another_user = user_factory()
@@ -254,6 +257,57 @@ class TestUserAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert ban_url in response.content.decode('utf-8')
+
+    def test_reset_api_key_action(self):
+        another_user = user_factory()
+        a_third_user = user_factory()
+
+        APIKey.objects.create(user=self.user, is_active=True, key='foo')
+        APIKeyConfirmation.objects.create(user=self.user)
+
+        APIKeyConfirmation.objects.create(user=another_user)
+
+        APIKey.objects.create(user=a_third_user, is_active=True, key='bar')
+        APIKeyConfirmation.objects.create(user=a_third_user)
+
+        users = UserProfile.objects.filter(
+            pk__in=(another_user.pk, self.user.pk))
+        user_admin = UserAdmin(UserProfile, admin.site)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        core.set_user(request.user)
+        request._messages = default_messages_storage(request)
+        user_admin.reset_api_key_action(request, users)
+        # APIKeys should have been deactivated, APIKeyConfirmation deleted.
+        assert self.user.api_keys.exists()
+        assert not self.user.api_keys.filter(is_active=True).exists()
+        assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
+
+        # This user didn't have api keys before, it shouldn't matter.
+        assert not another_user.api_keys.exists()
+        assert not another_user.api_keys.filter(is_active=True).exists()
+        assert not APIKeyConfirmation.objects.filter(
+            user=another_user).exists()
+
+        # The 3rd user should be unaffected.
+        assert a_third_user.api_keys.exists()
+        assert a_third_user.api_keys.filter(is_active=True).exists()
+        assert APIKeyConfirmation.objects.filter(user=a_third_user).exists()
+
+        # We should see 2 activity logs.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ADMIN_API_KEY_RESET.id).count() == 2
+
+    def test_reset_api_key_button_in_change_view(self):
+        reset_api_key_url = reverse(
+            'admin:users_userprofile_reset_api_key', args=(self.user.pk, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert reset_api_key_url in response.content.decode('utf-8')
 
     def test_delete_picture_button_in_change_view(self):
         delete_picture_url = reverse('admin:users_userprofile_delete_picture',
@@ -295,6 +349,43 @@ class TestUserAdmin(TestCase):
         alog = ActivityLog.objects.latest('pk')
         assert alog.action == amo.LOG.ADMIN_USER_BANNED.id
         assert alog.arguments == [self.user]
+
+    def test_reset_api_key(self):
+        APIKey.objects.create(user=self.user, is_active=True, key='foo')
+        APIKeyConfirmation.objects.create(user=self.user)
+
+        reset_api_key_url = reverse(
+            'admin:users_userprofile_reset_api_key', args=(self.user.pk, ))
+        wrong_reset_api_key_url = reverse(
+            'admin:users_userprofile_reset_api_key', args=(self.user.pk + 9, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        core.set_user(user)
+        response = self.client.post(reset_api_key_url, follow=True)
+        assert response.status_code == 403
+        self.grant_permission(user, 'Users:Edit')
+        response = self.client.get(reset_api_key_url, follow=True)
+        assert response.status_code == 405  # Wrong http method.
+        response = self.client.post(wrong_reset_api_key_url, follow=True)
+        assert response.status_code == 404  # Wrong pk.
+
+        assert self.user.api_keys.filter(is_active=True).exists()
+        assert APIKeyConfirmation.objects.filter(user=self.user).exists()
+
+        response = self.client.post(reset_api_key_url, follow=True)
+        assert response.status_code == 200
+        assert response.redirect_chain[-1][0].endswith(self.detail_url)
+        assert response.redirect_chain[-1][1] == 302
+
+        alog = ActivityLog.objects.latest('pk')
+        assert alog.action == amo.LOG.ADMIN_API_KEY_RESET.id
+        assert alog.arguments == [self.user]
+
+        # APIKeys should have been deactivated, APIKeyConfirmation deleted.
+        assert self.user.api_keys.exists()
+        assert not self.user.api_keys.filter(is_active=True).exists()
+        assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
 
     @mock.patch.object(UserProfile, 'delete_picture')
     def test_delete_picture(self, delete_picture_mock):
@@ -418,7 +509,7 @@ class TestUserAdmin(TestCase):
         addon_factory()
         another_user = user_factory()
         addon_factory(users=[self.user, another_user])
-        addon_factory(users=[self.user], status=amo.STATUS_PENDING)
+        addon_factory(users=[self.user], status=amo.STATUS_NOMINATED)
         addon_factory(users=[self.user], status=amo.STATUS_DELETED)
         addon_factory(users=[self.user],
                       version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})

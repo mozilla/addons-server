@@ -38,20 +38,6 @@
         }
     },
     {
-        "pk": 6,
-        "model": "addons.addon",
-        "fields": {
-            "slug": "6",
-            "type": 9,
-            "status": 4,
-            "description": null,
-            "public_stats": true,
-            "modified": "2008-05-22 11:59:13",
-            "name": null,
-            "created": "2004-06-11 18:23:31"
-        }
-    },
-    {
         "pk": 1,
         "model": "stats.downloadcount",
         "fields": {
@@ -190,33 +176,6 @@
             "applications": "{\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\": {\"4.0\": 1500}}",
             "oses": "{\"WINNT\": 500, \"Linux\": 400}",
             "locales": "{\"el\": 400, \"es-MX\": 400, \"en-US\": 300}",
-            "date": "2007-01-01"
-        }
-    },
-    {
-        "pk": 1,
-        "model": "stats.themeusercount",
-        "fields": {
-            "addon": 6,
-            "count": 1000,
-            "date": "2009-06-01"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "stats.themeusercount",
-        "fields": {
-            "addon": 6,
-            "count": 1500,
-            "date": "2009-06-02"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "stats.themeusercount",
-        "fields": {
-            "addon": 6,
-            "count": 10,
             "date": "2007-01-01"
         }
     }

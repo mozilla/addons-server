@@ -23,9 +23,9 @@ LANGUAGE_MAPPING = {
         'english': u'Bulgarian',
         'native': u'\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438'
     },
-    'bn-BD': {
-        'english': u'Bengali (Bangladesh)',
-        'native': u'\u09ac\u09be\u0982\u09b2\u09be (\u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6)'  # noqa
+    'bn': {
+        'english': u'Bengali',
+        'native': u'\u09ac\u09be\u0982\u09b2\u09be'
     },
     'bs': {
         'english': u'Bosnian',
@@ -293,10 +293,6 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     u'bm': {
         'english': u'Bambara',
         'native': u'Bamanankan'
-    },
-    u'bn-IN': {
-        'english': u'Bengali (India)',
-        'native': u'\u09ac\u09be\u0982\u09b2\u09be (\u09ad\u09be\u09b0\u09a4)'
     },
     u'br': {
         'english': u'Breton',

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.conf import settings
 from django.utils.html import format_html
 from django.urls import reverse
 
@@ -41,3 +42,4 @@ def related_single_content_link(obj, related_field):
 
 admin.site.register(models.Config)
 admin.site.disable_action('delete_selected')
+admin.site.site_url = settings.EXTERNAL_SITE_URL

@@ -2,13 +2,12 @@
 import collections
 
 from olympia import amo
-from olympia.addons.models import Addon, Persona
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.constants.applications import APPS
-from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
+from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
 from olympia.constants.categories import CATEGORIES
-from olympia.landfill.generators import (
-    _yield_name_and_cat, create_addon, create_theme)
+from olympia.landfill.generators import _yield_name_and_cat, create_addon
 from olympia.versions.models import Version
 
 
@@ -61,7 +60,7 @@ class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
 
 class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     app = APPS['firefox']
-    type = ADDON_PERSONA
+    type = ADDON_STATICTHEME
 
 
 class CreateGeneratorTests(TestCase):
@@ -73,11 +72,3 @@ class CreateGeneratorTests(TestCase):
         assert Version.objects.last() == addon._current_version
         assert addon.guid
         assert addon.slug
-
-    def test_create_theme(self):
-        theme = create_theme('bar')
-        assert Addon.objects.last().name == theme.name
-        assert amo.STATUS_APPROVED == theme.status
-        assert amo.ADDON_PERSONA == theme.type
-        assert Persona.objects.last() == theme.persona
-        assert Version.objects.last() == theme._current_version

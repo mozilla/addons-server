@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-07-17 11:18+0000\n"
-"PO-Revision-Date: 2018-11-24 21:09+0000\n"
+"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"PO-Revision-Date: 2019-11-28 23:45+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -17,9 +17,8 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "ruwäch"
 
-#, fuzzy
 msgid "Users"
 msgstr "Rub'i' okisanel"
 
@@ -27,47 +26,47 @@ msgid "Addons"
 msgstr "Taq tz'aqat"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "ko'öl rutzijol (molon ruma ri guid)"
 
-#, fuzzy
 msgid "creation date"
-msgstr "Kicholajil Etwachinela'"
+msgstr "ruq'ijul tz'ukuj"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Mecholajin taq Tz'aqat"
+msgstr "Winäq / Tz'aqat"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Tzijoxkil"
+msgstr "Rujachik"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Ramaq' ri ya'öl rutzijol"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Ch'uti tzijol"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
+msgstr "Xya' ketal chi ri taq %d rutzijol samaj echa'on e ütz."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Ri %d rutzijol xcha' xya' ketal achi'el e ya'öl k'ayewal. "
 
 #, fuzzy
 msgid "Mark selected abuse reports as suspicious"
 msgstr "Rutzijol k'ayewal o ruk'utuxik to'ïk pa jun itzel k'ojlib'äl"
 
+msgid "Please ensure this field has no more than {max_length} characters."
+msgstr "Tatz'eta' chi re k'ojlib'äl re' man nik'o ta chi re ri {max_length} taq tz'ib'."
+
 msgid "Modified on:"
-msgstr ""
+msgstr "Jalon pa:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Ruma %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Ronojel"
 
 msgid "No links are allowed."
 msgstr "Majun ximonel ya'on q'ij chi re."
@@ -75,9 +74,8 @@ msgstr "Majun ximonel ya'on q'ij chi re."
 msgid "This display name cannot be used."
 msgstr "Man tikirel ta nokisäx re b'i'aj xk'ut pe."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "Man tikirel ta nokisäx re b'i'aj re'."
+msgstr "Man tikirel ta nokisäx re rub'i' nik'onel re'."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Ri tikirib'äl ruxaq nokisäx richin yexim aj juk'an ajk'amaya'l ruxaq."
@@ -114,7 +112,7 @@ msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Man k'o ta ri Rutzijol [%s]"
 
 msgid "Review"
 msgstr "Tzijoxïk"
@@ -145,53 +143,6 @@ msgstr "Ri kib'i' tz'aqat chuqa' mol k'o chi nikik'isb'ej rik'in \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Ri kib'i' tz'aqat man tikirel ta nikik'waj ketal ri Mozilla chuqa' Firefox."
-
-msgid "Awaiting Review"
-msgstr "Noyob'ëx Nik'oxïk"
-
-msgid "Rejected"
-msgstr "Xutun"
-
-msgid "Approved"
-msgstr "Juch'un"
-
-msgid "Added {0}"
-msgstr "Tz'aqatisan {0}"
-
-#. {0} is the number of users.
-msgid "<strong>{0}</strong> user"
-msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> okisanel"
-msgstr[1] "<strong>{0}</strong> okisanela'"
-
-msgid "Hover to Preview"
-msgstr "Tiq'axäx choy pa ruwi' richin Nab'ey Tzub'al"
-
-msgid "Add"
-msgstr "Titz'aqatisäx"
-
-msgid "Edit"
-msgstr "Tinuk'"
-
-#. For datetime formatting, see the table on
-#. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-msgid "by {0} on {1}"
-msgstr "ruma {0} pa {1}"
-
-msgid "Not yet rated"
-msgstr "K'a man ya'on ta rejqalem"
-
-msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> okisanela'"
-
-msgid "by"
-msgstr "ruma"
-
-#. {0} is the number of users.
-msgid "{0} Daily User"
-msgid_plural "{0} Daily Users"
-msgstr[0] "{0} Q'ij chi Q'ij Okisanel"
-msgstr[1] "{0} Q'ij chi Qij Okisanela'"
 
 msgid "Sort by:"
 msgstr "Tichol chi:"
@@ -258,21 +209,19 @@ msgid "Error verifying input, please try again."
 msgstr "Xsach toq yerujikib'a' taq tzij, tatojtob'ej chik."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Tatz'ib'aj jun okel IP4 p IP 6 k'amab'ey."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Yechup jumej jujun taq b'anikil ruma yojsamäj richin niqachojmirisaj ri Ajk'amaya'l ruxaq. Xkojtikïr chik xtik'oje' ronojel ri quchuq'a'."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "K'o chi k'o jun rajaw."
+msgstr "K'o chi k'o xa jun tz'ajel tz'ib'."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "K'o chi k'o jun rajaw."
+msgstr "Tanik'oj chi re k'ojlib'äl re' ruk'wa xa jun tz'ib' chuqa' jun ajilab'äl."
 
 msgid "Not allowed"
 msgstr "Man ya'on ta q'ij chi re"
@@ -323,9 +272,10 @@ msgstr "Kekanöx ronojel ri taq wachinel"
 msgid "Add-ons Home Page"
 msgstr "Kitikirib'al Ruxaq Tz'aqat"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "We xawojqaj jun ximonel pa jun chik ruxaq, %(open_bug_link)stiyak jun k'ayewal%(close_bug_link)s. Tatzijoj chi qe akuchi' xawïl chuqa' achike nakanoj richin niqatïj qaq'ij niqab'än ruk'ojlem."
+msgstr ""
+"We xawojqaj jun ximonel pa jun chik ruxaq, %(open_bug_link)stiyak jun k'ayewal %(close_bug_link)s. Tatzijoj chi qe akuchi' xawïl chuqa' achike nakanoj richin niqatïj qaq'ij niqab'än ruk'ojlem."
 
 msgid "Not Found"
 msgstr "Man Xilitäj ta"
@@ -333,10 +283,10 @@ msgstr "Man Xilitäj ta"
 #, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Kojakuyu', man xqïl ta ri nakanoj.</h1> <p> Ri ruxaq o Yakb'äl xak'utuj man k'o ta pa ruxaq qak'amaya'l. Rik'in jub'a' xapïtz' pa ruwi' jun ojer ximonel o man ütz ta xatz'ib'aj ri ochochib'äl. "
 "</p> <ul> <li>We xatz'ib'aj ri ochochib'äl tanik'oj chik.</li> <li> We xawojqaj jun ximonel pa jun ruxaq k'amaya'l <a href=\"https://github.com/mozilla/addons-server/issues/new/\">tayaka' jun "
@@ -350,9 +300,6 @@ msgstr "Uy"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr "<h1>¡Uuy!  Xqapalb'ej jun sachoj.</h1> <p>Xtiqatïj qaq'ij richin niqasöl.</p> <p> Tatojtob'ej rik'in nak'ëx ri ruxaq o yatolin pa <a href=\"%(home)s\">Kitikirib'al ruxaq tz'aqat</a>. </p>"
-
-msgid "Some rights reserved"
-msgstr "Jujun q'atapun taq ch'ojib'äl"
 
 msgid "No results found"
 msgstr "Majun achike xilitäj"
@@ -434,9 +381,6 @@ msgstr "Kitz'aqat {0}"
 msgid "Add-ons"
 msgstr "Taq tz'aqat"
 
-msgid "Custom License"
-msgstr "Ichinan Ya'oj Q'ij"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} kan"
@@ -492,6 +436,10 @@ msgstr "K'o chi naya' jun ruwachinaq {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Man okel ta pk o slug \"%s\" - man k'o ta ri wachinäq."
 
+#, fuzzy
+msgid "Confirmation for developer API keys"
+msgstr "Ch'aqa' chik etamab'äl chi rij ri taq Ruya'öl Q'ij Creative Commons"
+
 msgid "Application Versions"
 msgstr "Taq Ruwäch Chokoy"
 
@@ -516,14 +464,11 @@ msgstr "Taq ruwäch"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol %(amo_manifests_mdn_link_open)swawe"
-"%(amo_manifests_mdn_link_close)s."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
+"Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol "
+"%(amo_manifests_mdn_link_open)swawe%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
@@ -594,6 +539,9 @@ msgstr "Yakb'äl {0} xyuj pa {version} richin {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ya'on q'ij."
 
+msgid "Approved"
+msgstr "Juch'un"
+
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} xuk'ül jun nab'ey runik'oxik."
 
@@ -602,6 +550,9 @@ msgstr "Nab'ey ya'on q'ij"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} xxutüx."
+
+msgid "Rejected"
+msgstr "Xutun"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} xk'am."
@@ -851,6 +802,10 @@ msgstr "Xk'utüx runik'oxik ruwachinel nuk'samajel"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} xb'e pa jun aninäq wachinel."
 
+#, fuzzy
+msgid "User {user} api key reset."
+msgstr "Okisanel {user} xyuj ruwachib'al."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -878,17 +833,14 @@ msgstr "Man etaman ta ruwäch"
 msgid "Incomplete"
 msgstr "Man tz'aqät ta"
 
+msgid "Awaiting Review"
+msgstr "Noyob'ëx Nik'oxïk"
+
 msgid "Disabled by Mozilla"
 msgstr "Xchup ruma Mozilla"
 
 msgid "Deleted"
 msgstr "Xyuj"
-
-msgid "Pending approval"
-msgstr "Royob'en nijuch'"
-
-msgid "Flagged for further review"
-msgstr "Ya'on retal richin ninik'öx na"
 
 msgid "Unlisted"
 msgstr "Man cholajin ta"
@@ -920,8 +872,8 @@ msgstr "Tanaj Ch'ab'äl (Tz'aqat)"
 msgid "Plugin"
 msgstr "Nak'ab'äl"
 
-msgid "Theme"
-msgstr "Wachinel"
+msgid "Deprecated LWT"
+msgstr "Man okel ta ri LWT"
 
 msgid "Theme (Static)"
 msgstr "Wachinel (Molob'a')"
@@ -947,8 +899,8 @@ msgstr "Taq Tanaj Ch'ab'äl (Tz'aqat)"
 msgid "Plugins"
 msgstr "Taq nak'ab'äl"
 
-msgid "Themes"
-msgstr "Taq wachinel"
+msgid "Deprecated LWTs"
+msgstr "Man okel ta ri LWTs"
 
 msgid "Themes (Static)"
 msgstr "Taq Wachinel (Molob'a')"
@@ -965,49 +917,58 @@ msgid "Appearance"
 msgstr "Rutzub'al"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq k'amal nikijäl ri kiwa ajk'amaya'l ruxaq chuq'a ruwa ri Firefox. Re ruwäch re' ruk'wan taq k'amal richin q'equ'm taq wachinel, runuk'samajixik ruwi' chuqa' ch'aqa' chik."
 
 msgid "Bookmarks"
 msgstr "Taq yaketal"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq k'amal yekutzilaj ri taq yaketal rik'in yechajïx rik'in ewan tzij, rukanoxik ri e kamulun, taq yaketal man yesamäj ta chik chuqa' ch'aqa' chik."
 
 msgid "Download Management"
 msgstr "Kinuk'samejel Qasanïk"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox yatkito' richin naqasaj q'ojom, silowäch chuqa' rupam ajk'amaya'l. Chuqa' xke'awïl taq k'amal richin ye'anuk'samajij taq qasanïk, kikomonik taq yakb'äl chuqa' ch'aqa' "
+"chik."
 
 msgid "Feeds, News & Blogging"
 msgstr "Taq b'ey, Taq Tzijol & Taq Ichinya'l"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox nikiyüj ri b'achanïk richin yatkito' chi natz'ët q'ij q'ij ronojel pa winaqil taq k'amab'ey, achi'el ri taq ichinya'l, ri taq RSS b'ey, man kan ta tiköx ri runaq' "
+"awäch chuqa' ch'aqa' chik. "
 
 msgid "Games & Entertainment"
 msgstr "Taq Etz'anem & K'astanib'alil"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox richin nawutzilaj ri awetamab'al richin etz'anem. Re ruwäch re' ruk'wan taq k'amal ri yekutzilaj ri taq etz'anem, nikichajij ri rutzijik silowäch chuqa' ch'aqa' chik."
 
 msgid "Language Support"
 msgstr "Rutob'al Ch'ab'äl"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq ruk'amal Firefox ri nikiya' kitob'al ch'ab'äl, achi'el nikinik'oj ri kemchi', nikikanoj junatzij, nikitzalq'omij tzij chuqa' ch'aqa' chik."
 
 msgid "Photos, Music & Videos"
 msgstr "Taq Wachib'äl, Q'ojom & taq Silowäch"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox ri nikijotob'a' awetamab'al chi kij ri taq wachib'äl, q'ojom chuqa' taq silowäch. Ri taq ruk'amal re ruwäch re' yekijäl taq k'oxom chuqa' taq silowäch, yekikanoj "
+"piskolin taq wachib'äl chuqa' ch'aqa' chik."
 
 msgid "Privacy & Security"
 msgstr "Ichinanem & Jikomal"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox richin ütz chuqa' jikïl yatok pa k'amaya'l. Re ruwäch re' ruk'wan taq k'amal yekiq'ät ri itzel taq eltzijol, man nikiya' ta q'ij richin yatkikanoj, nikinuk'samajij ri "
+"nikanöx chik chuqa' ch'aqa' chik."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -1283,13 +1244,11 @@ msgstr "Mesilon Wachinel"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Jikomal Tojtob'enïk"
+msgstr "Jikomal"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Ichinan na'oj"
+msgstr "Ichinanem"
 
 #, fuzzy
 msgid "Development Practices"
@@ -1451,6 +1410,13 @@ msgstr "B'achab'ïk, yuqun o pa saqil wachib'äl"
 msgid "Header image alignment problem"
 msgstr "Ruk'ayewal rucholajem wachib'äl pa ri jub'i'aj"
 
+#, fuzzy
+msgid "no action"
+msgstr "Ch'aqa' chik taq B'anoj"
+
+msgid "flag for human review"
+msgstr ""
+
 msgid "Core"
 msgstr "K'uxaj"
 
@@ -1469,10 +1435,6 @@ msgstr "Wakami ri taq rutz'aqat Thunderbird chuqa' SeaMonkey xtiq'alajin pa addo
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Nokisäx re slug re'. Tacha' jun chik."
@@ -1527,14 +1489,21 @@ msgstr "URL ajk'amal k'o chi jun [%s], o jun achajk'amal."
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Chuwäch najäl ri ach'ab'äl k'o wi, k'o chi k'o jun rub'i', jun ch'utitzijol chuqa' jun rucholaxik pa ri ch'ab'äl ri'. Nrajo' na %s."
 
+msgid "Users can not be added directly"
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "Jun b'anel xa xe tikirel nicholajïx jumul."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr "K'o chi k'o jun rajaw."
 
 msgid "At least one author must be listed."
 msgstr "K'o chi nicholajïx jun b'anel."
-
-msgid "An author can only be listed once."
-msgstr "Jun b'anel xa xe tikirel nicholajïx jumul."
 
 msgid "Slug incorrect."
 msgstr "Man ütz ta ri Slug."
@@ -1544,6 +1513,9 @@ msgstr "Kib'anikil"
 
 msgid "What is your license's name?"
 msgstr "¿Achike rub'i' ri aya'öl q'ij?"
+
+msgid "Custom License"
+msgstr "Ichinan Ya'oj Q'ij"
 
 msgid "Provide the text of your license."
 msgstr "Taya' ri cholan rutzij aya'öl q'ij."
@@ -1623,8 +1595,7 @@ msgstr ""
 "Pa re ruxaq re'. <span class=\"helptext\">Chi rij ninik'öx ri b'itz'ib', t'ijtäq okisanela' xketikïr xkekitz'ët ri taq atzijol pa re ruxaq re' chuqa' pa ri Kinuk'samajel Kitz'aqat Firefox. Ja ri "
 "ruxaq xkesamajin ri yonil taq k'exoj. Ri t'zaqat xtichap chuqa' richin kitalunem chuqa' ch'akoj kimoloj ri Mozilla. Chuqa' ri taq yakb'äl enik'on xketalüx achi'el kichin.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Awuma rat. <span class=\"helptext\">Re ruwäch re' xtijuch' richin nitalüx awuma. Ri taq k'exoj xkesamajïx chi q'ab'aj rik'in jun updateURL o chi kij taq ruk'exoj ri chokoy.</span>"
 
 msgid "Display Name"
@@ -1698,10 +1669,24 @@ msgstr "Man ütz ta ri rub'i' URL. Man xyuj ta ri wachinel."
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Man ütz ta ri rub'i' URL. Man xyuj ta ri tz'aqat."
 
+msgid "Invitation accepted."
+msgstr ""
+
+msgid "Invitation declined."
+msgstr ""
+
 msgid "An author has been added to your add-on"
 msgstr "Jun b'anel xutz'aqatisaj ri atz'aqat"
 
-msgid "An author has a role changed on your add-on"
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Taq ruto'ik {addon}."
+
+msgid "A confirmation email has been sent to {email}"
+msgstr ""
+
+#, fuzzy
+msgid "An author role has been changed on your add-on"
 msgstr "Jun b'anel xujäl jun samaj pan atz'aqat"
 
 msgid "An author has been removed from your add-on"
@@ -1758,9 +1743,8 @@ msgstr "Re jotonem re' xuyüj ri junamanem ruma ri' toq rik'in jub'a' man tz'aq�
 msgid "Header area background"
 msgstr "Rupam ruk'ojlib'al jub'i'aj"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Ri rub'onil rupam ruk'ojlib'al b'i'aj, ri k'o pa ruk'ojlib'al b'i'an, ri man nojinäq ta o man tz'etel ta rik'in ri wachib'äl. Ruk'ojlib'al manifiesto:  accentcolor."
+msgstr "Ri rub'onil rupam ruk'ojlib'al b'i'aj, ri k'o pa ruk'ojlib'al b'i'an, ri man nojinäq ta o man tz'etel ta rik'in ri wachib'äl. Ruk'ojlib'al manifiesto:  frame."
 
 msgid "Header area text and icons"
 msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj"
@@ -1799,9 +1783,6 @@ msgstr "Xk'utüx nik'oxïk."
 
 msgid "You must provide further details to proceed."
 msgstr "K'o chi naya' ch'aqa' chik rub'anikil richin nisamajïx chik el."
-
-msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik. Tajikib'a' chi ye'ak'ëx ronojel ri taq API winäq kik'in ri k'ak'a' taq wujil."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Ri ojer taq awujil xexutüx pe chuqa' man e okel ta chik."
@@ -1860,6 +1841,9 @@ msgstr "Yaköl wuj"
 
 msgid "Extension Development"
 msgstr "Kib'anik K'amal"
+
+msgid "Themes"
+msgstr "Taq wachinel"
 
 #, fuzzy
 msgid "Developer Policies"
@@ -1940,14 +1924,11 @@ msgstr ""
 "ruwäch re tz'aqat re'."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Tik'ex ri K'amonem</a> <a href=\"%(version_url)s\" class=\"button\">Tijotob'äx K'ak'a' Ruwäch</a> o <a href=\"#\" "
 "class=\"close\">Tirepüx kan</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
 msgstr "Ketz'et chuqa' kek'ex ri kajilab'al kik'amonik chokoy."
 
@@ -2021,6 +2002,18 @@ msgstr "Nab'ey rutzub'al ri cholajin ruwäch"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Tajin nisamajïx ri nab'ey tzub'al - katzolin chik pe o tatzolij ri ruxaq."
 
+msgid "You have been invited to become an author of {addon_name}."
+msgstr ""
+
+msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
+msgstr ""
+
+msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr ""
+
+msgid "Decline"
+msgstr ""
+
 msgid "Manage Authors & License"
 msgstr "Kenuk'samajïx B'anel & Ya'öl Q'ij"
 
@@ -2029,6 +2022,12 @@ msgstr "Taq b'anel"
 
 msgid "About author roles"
 msgstr "Chi rij kisamaj b'anel"
+
+msgid "Authors pending confirmation"
+msgstr ""
+
+msgid "Authors that have been added to this add-on but haven't confirmed."
+msgstr ""
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2040,6 +2039,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details"
 msgstr "Kib'anikil Tz'aqat"
+
+msgid "Edit"
+msgstr "Tinuk'"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -2153,8 +2155,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Ri taq ruwäch e nima'q rub'anikil richin yekanöx taq tz'aqat. Tacha' ri ütz, ri nuk'äm ri' rik'in ri rusamaj atz'aqat richin nawïl jeb'ël taq q'i'oj."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Man tikirel ta yejal ri taq ruwäch toq ya'on ruq'ij ri atz'aqat pa re chokoy re'. Katz'ib'an chi re <a href=\"mailto:%(email)s\">%(email)s</a> we k'o jun aruma toq nawajo' ye'ajäl ri taq ab'anikil."
 
@@ -2166,8 +2167,8 @@ msgid "Email"
 msgstr "Taqoya'l"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "We nawajo' nak'üt ri taqoya'l richin ye'asöl taq k'utunïk, tatz'ib'aj wawe'. We jalajöj taq ataqoya'l pa jujun ch'ab'äl, tikirel yetz'aqatisäx kitzalq'omen kichin jujun ch'ab'äl, tikirel "
 "yetz'aqatisäx taq tzalq'omanem richin re k'ojlib'äl re'. Okel xa xe pa cholajin taq tz'aqat."
@@ -2201,18 +2202,6 @@ msgid ""
 msgstr ""
 "Xab'achike etamab'äl nikajo' niketamaj ri okisanela' xa xe chi man k'o ta pa ruch'utitzijol o rutzijoxkil tz'aqat. Ri relik ta okisanem ja ri kicholb'al etaman taq sachoj, etamab'äl pa ruwi' "
 "rub'eyal ye'atäq sachoj, kiq'ijul k'ak'a' taq ruwäch, ch'aqa' chik. Okel xa xe pa cholajin taq tz'aqat."
-
-msgid "View Source?"
-msgstr "¿La Nitz'et Ruxe'el?"
-
-msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Yojtikïr niqak'üt ri ruxe'el atz'aqat pan online qatz'etob'al. Okel xa xe pa cholajin taq tz'aqat."
-
-msgid "This add-on's source code is publicly viewable."
-msgstr "Ri rub'itz'ib' ruxe'el re tz'aqat re' xab'achike nitz'eto."
-
-msgid "No, this add-on's source code is not publicly viewable."
-msgstr "Manäq, ri rub'itz'ib' ruxe'el re tz'aqat re' man xab'achike ta nitz'eto."
 
 msgid "Public Stats?"
 msgstr "¿La E Xab'achike Molob'a'?"
@@ -2387,7 +2376,6 @@ msgstr "Taya' jun ch'utitzijol chi qe achike ruma nayüj el ri atz'aqat:"
 msgid "Actions"
 msgstr "Taq b'anoj"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
 msgstr "Tisamajïx chik el ri rub'eyal nitaq re tz'aqat re'."
 
@@ -2404,16 +2392,14 @@ msgstr "Tiyuj"
 msgid "Edit details on this add-on's product page"
 msgstr "Kenuk' kib'anikil re rucholajil wachinel re'."
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Tijotob'äx jun k'ak'a' ruwäch re tz'aqat re'."
+msgstr "Tijotob'äx jun k'ak'a' ruwäch re tz'aqat re'"
 
 msgid "New Version"
 msgstr "K'ak'a' Ruwäch"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel."
+msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel"
 
 msgid "Statistics"
 msgstr "Kimolob'a'"
@@ -2473,9 +2459,8 @@ msgstr "Ri b'i'aj pa ri rucholb'al re ruxaq k'amaya'l re' tikirel jun wi ri rub'
 msgid "Summary:"
 msgstr "Ch'utitzijol:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Tzijoxkil"
+msgstr "Tzijoxkil:"
 
 msgid "This add-on is experimental"
 msgstr "Re tz'aqat re' nitojtob'ëx"
@@ -2640,8 +2625,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -2759,11 +2744,18 @@ msgstr "JWT jask'um"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 "Richin ye'ab'än API taq k'utunïk, tataqa' jun <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> achi'el rub'anikil b'i'aj richin niya' q'ij. K'o chi nab'än jun JWT toq natäq jun k'utunïk, achi'el "
 "nitzijöx pa <a href=\"%(docs_url)s\">API wujinem</a>."
+
+#, python-format
+msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+msgstr ""
 
 msgid "You don't have any API credentials."
 msgstr "Man k'o ta API awujil."
@@ -2773,6 +2765,10 @@ msgstr "Tiyuj"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Ketzolïx chuqa' keb'an taq wujil"
+
+#, fuzzy
+msgid "Confirm and generate new credentials"
+msgstr "Keb'an k'ak'a' wujil"
 
 msgid "Generate new credentials"
 msgstr "Keb'an k'ak'a' wujil"
@@ -2793,9 +2789,8 @@ msgstr "Xtak'ül jun taqoya'l toq xtik'is runik'oxik. Ruma k'a ri', ri atz'aqat 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Ri atz'aqat k'o pa ruwachib'al qochoch chuqa' ri okisanela' yekik'ül yonil taq k'exoj."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Jun nuk'samajel xuchüp ri atz'aqat ruma ri' toq man k'o ta chik pa wachib'äl qochochch. We k'o ak'utunik, katz'ib'an pa amo-admins@mozilla.org."
+msgstr "Jun nuk'samajel xuchüp ri atz'aqat ruma ri' toq man k'o ta chik pa wachib'äl qochochch. We k'o ak'utunik, katz'ib'an pa amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Man xtiq'alajin ta pe ri atz'aqat pa ri yekanöx, pa ri ruxaq xtitz'et chi xachüp. Man xkek'ul ta chik ri k'ak'a' ruwäch xketaq richin yecholajïx. "
@@ -2809,7 +2804,6 @@ msgid "Last Updated:"
 msgstr "Ruk'isib'äl k'exoj:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
 
@@ -2819,16 +2813,14 @@ msgstr "B'anikil:"
 msgid "Listed Version:"
 msgstr "Cholajin Ruwäch:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Ja ruwäch atz'aqat re', ri xtiyak we k'o xtipitz'on pa ri rupitz'b'al yakoj pa addons.mozilla.org."
+msgstr "Ja ruwäch atz'aqat re', ri xtiyak we k'o xtipitz'on pa ri rupitz'b'al yakoj pa addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Jun chik Cholajin Ruwäch:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Ja ruk'isib'äl ruwäch re', xa xe chi k'a man wachel ta pa ri ruxaq."
+msgstr "Ja ruk'isib'äl ruwäch re', xa xe chi k'a man wachel ta pa ri ruxaq"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Man yenik'öx ta ri taq jey pa rub'eyal rucholajem"
@@ -2846,9 +2838,8 @@ msgstr "Juxun richin ichin-jachoj. Ja rat ye'asamajij ri taq k'exoj."
 msgid "Latest Version:"
 msgstr "Ruk'isib'äl Ruwäch:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Ja ruk'isib'äl ruwäch re' k'o, ri man cholajin ta."
+msgstr "Ja ruk'isib'äl ruwäch re' k'o, ri man cholajin ta"
 
 msgid "Upload New Version"
 msgstr "Tijotob'äx K'ak'a' Ruwäch"
@@ -2907,12 +2898,9 @@ msgstr[1] "Kecha' <b>k'a {0}</b> {1} ruwäch re tz'aqat re':"
 msgid "End-User License Agreement"
 msgstr "Rutununa'oj Ya'öl Q'ij richin K'ixib'äl Okisanel"
 
-msgid ""
-"Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"Xtik'utüx chi ke ri okisanela' chi tikiya' kitzij chi rij ri Rujunamil Ya'oj Ruq'ij Ruk'isib'äl Okisanel (EULA rub'i' pan q'anchi') chuwäch nuyäk ri tz'aqat. Toq k'o re k'ultzij re' EULA nutz'ila' "
-"jarupe' taq kiqasaxik ri tz'aqat. Tanataj chi ri EULA man junam ta rik'in jun ruya'oj ruq'ij b'itz'ib' achi'el GPL o MPL.Okel xa xe pa cholajin tz'aqat."
+#, fuzzy
+msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
+msgstr "Tacha' jun ruk'amon ya'oj q'ij kichin ri taq ch'ojib'äl ye'ajikib'a' pa ri ruxe'el b'itz'ib'. Xa xe okel pa cholajin taq tz'aqat"
 
 msgid "Privacy Policy"
 msgstr "Ichinan na'oj"
@@ -2929,41 +2917,22 @@ msgstr "Ke'atz'aqatisaj taq rub'eyal tzij richin nitzij ri ruk'isib'äl ruyakb'a
 msgid "Read more about the source code review policy."
 msgstr "Tisik'ïx ch'aqa' chik chi rij ri runa'ojil kinik'oxik kixe'el b'itz'ib'."
 
-msgid "Latest News"
-msgstr "Ruk'isib'äl taq Rutzijol"
+msgid "Build best-in-class extensions and themes"
+msgstr ""
 
-msgid "Read more in our Blog"
-msgstr "Tisik'ïx ch'aqa' chik pa ri Qichinya'l"
+msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
+msgstr ""
+
+#, fuzzy
+msgid "Visit the Extension Workshop"
+msgstr "Taq k'amal"
 
 msgid "Resources"
 msgstr "Taq Tob'äl"
 
-msgid "Porting"
-msgstr "Niq'axäx"
-
-msgid "Community"
-msgstr "Tinamital"
-
-msgid "About"
-msgstr "Qawäch"
-
-msgid "Forum"
-msgstr "Molna'oj"
-
-msgid "Blog"
-msgstr "Ichinya'l"
-
-msgid "Contact Us"
-msgstr "Tzijonem Qik'in"
-
-msgid "Support"
-msgstr "To'ïk"
-
-msgid "Report Bug"
-msgstr "Tiya' Rutzijol Sachoj"
-
-msgid "Site Status"
-msgstr "Rub'anikil Ruxaq K'amaya'l"
+#, fuzzy
+msgid "WebExtensions API"
+msgstr "WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: okisan & tojtob'en taq k'amal"
@@ -2971,20 +2940,11 @@ msgstr "Web-Ext: okisan & tojtob'en taq k'amal"
 msgid "Promote"
 msgstr "To'ïk"
 
-msgid "Get Your Add-on Featured"
-msgstr "Tiya' Ruq'ij Atz'aqat"
-
 msgid "\"Get The Add-on\" button"
 msgstr "\"Tik'ul ri Tz'aqat\" pitz'b'äl"
 
-msgid "Legal"
-msgstr "Taqanel"
-
-msgid "Report Trademark Abuse"
-msgstr "Taya' Rutzijol Itzel Rokisaxik ri Retal B'i'aj"
-
-msgid "Legal Notices"
-msgstr "Taqanel Rutzijol"
+msgid "Recommended Extensions program"
+msgstr ""
 
 msgid "Contribute"
 msgstr "Kato'on"
@@ -3016,38 +2976,15 @@ msgstr "¡Man nik'atzin ta chawe chi awetaman pa ruwi' ri b'itz'ib' richin nato'
 msgid "See how"
 msgstr "Tatz'eta' Kwi' Rub'eyal"
 
-msgid "Manage Your Add-on"
-msgstr "Tanuk'samajij Atz'aqat"
-
-msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Tatikirisaj Molojri'ïl richin Nanük' chuqa' Nak'ëx ri Atz'aqat"
-
-msgid "Write one code base for many browsers"
+msgid "Get involved"
 msgstr ""
 
-msgid ""
-"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
-"between the four major browsers and how you can make your extension cross-browser compatible."
+msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
-
-msgid "Welcome Back"
-msgstr "Ütz Apetik"
-
-#, python-format
-msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "¿La nawajo' chi tiya' rutzijol ri ak'amal pa %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Xtawïl ronojel ri k'atzinel awetaman pa ri runa'ojil kitaluxik taq k'amal."
-
-msgid "Learn More"
-msgstr "Tetamäx Ch'aqa' Chik"
-
-msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
-
-msgid "See Best Practices"
-msgstr ""
+#, fuzzy
+msgid "Learn more about the developer community"
+msgstr "Tisik'ïx ch'aqa' chik chi rij ri runa'ojil kinik'oxik kixe'el b'itz'ib'."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
@@ -3071,6 +3008,12 @@ msgstr "Tz'aqat Rochoch B'anonel"
 msgid "Docs"
 msgstr "Wuj"
 
+msgid "Support"
+msgstr "To'ïk"
+
+msgid "Blog"
+msgstr "Ichinya'l"
+
 msgid "Sign Out"
 msgstr "Titz'apïx Molojri'ïl"
 
@@ -3081,62 +3024,23 @@ msgid "User Photo"
 msgstr "Ruwachib'al Okisanel"
 
 #, python-format
-msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Titz'ib'äx</a> o <a href=\"%(login)s\">Titikirisäx Molojri'ïl</a>"
+msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Tawichinaj Firefox"
 
-#, python-format
-msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"Ri taq tz'aqat nikiya' q'ij chi ke janila rokisanela' Firefox richin ütz ketamab'al rik'in ri okem pa k'amaya'l. We awetaman %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
-"%(link_close)s, chuqa' %(css_link_open)sCSS%(link_close)s, k'o chik ri k'atzinel awik'in richin natz'ük jun nïm tz'aqat."
-
-msgid "Learn How to Make an Add-on"
+#, fuzzy
+msgid "Learn how to make an extension"
 msgstr "Tawetamaj Rub'eyal Nab'än jun Tz'aqat"
 
-msgid "Port a Chrome Extension"
-msgstr "Tik'wäx jun Ruk'amal Chrome"
+msgid "Ready to submit or manage your extension?"
+msgstr ""
 
-msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox yeruk'ül ri WebExtension, k'ïy mul nikik'äm ki' kik'in ri taq k'amal APIs yekik'ül Google, Chrome chuqa' Opera. Ruma ri', ri taq k'amal xkesamäj pa Firefox rik'in ko'öl taq jaloj. "
+msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
+msgstr ""
 
-msgid "Learn How"
-msgstr "Tetamäx Achike Rub'eyal"
-
-msgid "Publish Your Add-on"
-msgstr "Tataluj Atz'aqat"
-
-msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "¿La k'o chik jun atz'aqat? Tataqa' ri ak'amal o awachinel  richin nicholajïx pa addons.mozilla.org o tatikirisaj molojri'ïl richin nataluj ruyon chawa."
-
-msgid "Sign In"
-msgstr "Titikirisäx Molojri'ïl"
-
-msgid "Web-Ext"
-msgstr "Web-Ext"
-
-msgid "A command line tool to build, run, and test extensions."
-msgstr "Jun rucholajem nuk'uj richin yetz'uk, yeb'an chuqa' yetojtob'ëx k'amal."
-
-msgid "Automated code tests for your add-on."
-msgstr "Kitojtob'enik yonil b'itz'ib' richin atz'aqat."
-
-msgid "Compatibility Test"
-msgstr "Rutojtob'enik K'amonïk"
-
-msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Tatojtob'ej we ri ak'amal nuk'äm ri' rik'in Firefox."
-
-#, fuzzy
-msgid "Live Testing"
-msgstr "Titz'et Cholb'äl"
-
-msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
@@ -3202,12 +3106,6 @@ msgstr "Runatab'al Tzijoxïk"
 msgid "Close Review History"
 msgstr "Titz'apïx Runatab'al Nik'oxik"
 
-msgid "Not validated."
-msgstr "Man xjikib'äx ta."
-
-msgid "Validate now."
-msgstr "Tijikib'äx wakami."
-
 msgid "Request Review"
 msgstr "Tik'utüx Runik'oxik"
 
@@ -3222,6 +3120,9 @@ msgstr "Xk'ulwachitäj jun k'ayewal toq yekol ri taq ruch'utitzijol nik'oxïk"
 
 msgid "Load older..."
 msgstr "Kesamajib'ëx e ojer..."
+
+msgid "by"
+msgstr "ruma"
 
 msgid "Leave a reply"
 msgstr "Titzolïx tzij"
@@ -3362,7 +3263,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Kiq'atik eltzijonem & ruchajixik ichinanem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+#, fuzzy
+msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Jun man k'ayew ta runuk'ulem nuya' q'ij chawe ye'achajij ri taq eltzijol ye'atz'ët chuqa' rub'eyal yatkojqaj pa k'amaya'l."
 
 #. editorial content for the discovery pane.
@@ -3378,7 +3280,8 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Taq'ata' rojqanik Facebook {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+#, fuzzy
+msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Tajech'ej ri ab'anikil pa Facebook pa jun “k'wayöl” ri k'ayew tub'ana' chi re ri Facebook yerojqaj asilonik pa ajk'amaya'l."
 
 #. editorial content for the discovery pane.
@@ -3386,7 +3289,8 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Anin Kanoxïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
+#, fuzzy
+msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Xa xe tacha' jun tz'ib'anïk pa xab'achike ajk'amaya'l ruxaq richin nakanoj ri rucholajem tzij pa jutanaj kanob'äl."
 
 #. editorial content for the discovery pane.
@@ -3394,8 +3298,8 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Anin taq kik'exoj rub'anikil q'ijul {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get instant global weather information right in Firefox."
-msgstr "Xtak'ül aninäq ri etamab'äl pa ruwi' ri kaq'iq'al chijun ruwach'ulew pa Firefox."
+msgid "Instant weather updates from around the world."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3418,7 +3322,8 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'aqasaj taq silowäch {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+#, fuzzy
+msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Nisamäj rik'in YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, chuqa' k'ïy ruxaq k'amaya'l richin silowäch."
 
 #. editorial content for the discovery pane.
@@ -3426,7 +3331,8 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Tawutzilaj ri emoji awetz'anem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Dozens of amazing emojis for every occasion—always just a click away."
+#, fuzzy
+msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
 msgstr "Tacha' chi kikojol jeb'ël taq emojis achike na ri nawajo'—junelïk rik'in jun pitz'oj."
 
 #. editorial content for the discovery pane.
@@ -3434,7 +3340,8 @@ msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kinuk'samajixik ewan taq tzij {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+#, fuzzy
+msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
 msgstr "Tach'utinisaj chuqa' ke'axima' ri tikirib'äl amolojri'ïl pa ri jalajöj ajk'amaya'l ruxaq pa ronojel ri taq awokisab'al rik'in xa jun ewan tzij richin ye'achajij konojel."
 
 #. editorial content for the discovery pane.
@@ -3442,7 +3349,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'aq'ata' eltzijol {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+#, fuzzy
+msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Jun aninäq chuqa' jeb'ël q'atöy eltzijol. uBlock Origin yerusamajij janila chi chayub'äl rupam, man k'ïy ta rupam rujolom nunojisaj."
 
 #. editorial content for the discovery pane.
@@ -3466,7 +3374,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Tak'owisaj ak'u'x chi kij ri tz'etel taq ruyaketal {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites from a tile layout."
+#, fuzzy
+msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
 msgstr "Katok pa ri jeb'ël taq awajk'amaya'l ruxaq rik'in silonel taq wachib'äl."
 
 #. editorial content for the discovery pane.
@@ -3530,7 +3439,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Anin katzalq'omin {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+#, fuzzy
+msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
 msgstr "Tacha' jun tz'ib'anïk pa xab'achike ajk'amaya'l ruxaq—o tacha' chijun ri ruxaq— richin chanin natzalq'omij."
 
 #. editorial content for the discovery pane.
@@ -3538,7 +3448,8 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Katok pan ajtij taq etamab'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy free access to 10+ million research papers."
+#, fuzzy
+msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "Tik'o ak'u'x richin sipan yatok pa 10+ t'ijtäq rucholna'oj jikib'alinem."
 
 #. editorial content for the discovery pane.
@@ -3546,7 +3457,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Tawichinaj ri ruwäch ch'oy {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+#, fuzzy
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr "Tawila' jun k'ak'a' rub'anikil richin yatok pa k'amaya'l rik'in 50+ ruwäch ch'oy."
 
 #. editorial content for the discovery pane.
@@ -3583,7 +3495,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'animirisaj ri taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply hover over an image to magnify it."
+#, fuzzy
+msgid "Hover over an image to magnify it."
 msgstr "Xa xe tak'owisaj ri ch'oy pa ruwi' jun wachib'äl richin nanimirisaj."
 
 #. editorial content for the discovery pane.
@@ -3615,7 +3528,8 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Majun retal ruwi' q'ab'aj taya' kan {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+#, fuzzy
+msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Tab'ana' chi re ri Firefox chi kerumestaj kitzij ajk'amaya'l ruxaq achi'el taq kaxlanwäy chuqa' yakoj rupam, xa xe pa ri taq ajk'amal ye'acha'."
 
 #. editorial content for the discovery pane.
@@ -3623,7 +3537,10 @@ msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Tayaka' jun tz'ib'anïk richin pa jumej {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+#, fuzzy
+msgid ""
+"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
+"when needed."
 msgstr "¡Man tatz'ib'aj chik junam jutaqil! We jutaqil ye'awokisaj taq pajtzij pan asamaj o ch'aqa' chik ch'owen, ke'ayaka' pa Clippings richin chanin ye'atz'ajb'a' qa toq nik'atzin pe chawe."
 
 #. editorial content for the discovery pane.
@@ -3647,7 +3564,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Tachajij awi' chi kiwäch ri ewan taq ojaqanela' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+#, fuzzy
+msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Tawewaj ri awokem pa k'amaya'l rik'in naya' ruk'oj ri rub'anikil awokik'amaya'l chuqa' samajel aq'inoj."
 
 #. editorial content for the discovery pane.
@@ -3663,7 +3581,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Ke'ajacha' ri jalajoj k'amab'ey ak'aslem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#, fuzzy
+msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr "Ke'ajacha' pa ichinanem ri jalajoj k'amab'ey ab'anikil—asamaj, ab'anikil, ch'aqa' chik.—rik'in ruya'ik kib'onil ri taq ruwi' ri nikijäch awetal kik'in kamatz'ib'il taq kaxlanwäy."
 
 #. editorial content for the discovery pane.
@@ -3679,7 +3598,8 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'asik'ij ePub taq yakb'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+#, fuzzy
+msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Ütz ke'atz'eta' ePub taq yakb'äl pa Firefox—tanimirisaj rupalem ri taq tz'ib', kinimilem taq ruxaq chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
@@ -3687,7 +3607,8 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Tawutzilaj awetamab'l pa YouTube {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos by default in the highest quality, turn off annotations, and more."
+#, fuzzy
+msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Ke'atzija' taq silowäch achi'el e k'o wi rik'in jeb'ël ruwachinik, ke'achupu' ri taq retal tz'ib'anïk chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
@@ -3695,7 +3616,8 @@ msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'awojqaj ri ojqanela' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get a glimpse into who's tracking you with just a click."
+#, fuzzy
+msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
 msgstr "Tawila' achike nojqan awichin rik'in xa jun pitz'oj."
 
 #. editorial content for the discovery pane.
@@ -3703,7 +3625,8 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Tajala' ri proxi ruk'u'x asamaj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Surf the web through self-defined proxy settings."
+#, fuzzy
+msgid "Change your proxy server and surf the web through self-defined proxy settings."
 msgstr "Katok pan ajk'amaya'l rik'in runuk'ulem proxi nuk'un awuma rat."
 
 #. editorial content for the discovery pane.
@@ -3719,7 +3642,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Jikïl katok pa k'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supports HTTPS."
+#, fuzzy
+msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Tatz'aqatisaj jikomal ewan sik'inïk pa xab'achike ruxaq nuk'ül HTTPS."
 
 #. editorial content for the discovery pane.
@@ -3763,11 +3687,13 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Katok akuchi' man niketamaj ta awäch {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+#, fuzzy
+msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
 msgstr "Katok pan ajk'amaya'l rik'in jun k'exoj b'anikil—chuqa' achi'el yatokik'amayin pa jun chik amaq'."
 
 #. editorial content for the discovery pane.
-msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+#, fuzzy
+msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
 msgstr "Katok pa ri jeb'ël taq ruxaq, k'ab'a' ketz'apïx taq ruwi' chuqa' ch'aqa' chik—rik'in silonel jeb'ël taq wachib'äl."
 
 #. editorial content for the discovery pane.
@@ -3791,7 +3717,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Tak'ulu' jun nïm ruchuq'a' runuk'samajel qasanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Check the state of your downloads through a status bar, download history page, and more."
+#, fuzzy
+msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Ke'anik'oj ri kib'anikil taq aqasanik rik'in jun rukajtz'ik b'anikil, ruxaq kinatab'al qasanïk chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
@@ -3807,7 +3734,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Tachajij awi' chi kiwäch ojqanem pa taq kanoxïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Stop trackers when you click Google and Yandex search returns."
+#, fuzzy
+msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "Man taya' q'ij richin yatojqäx toq napïtz' pa ruwi' ri nawïl toq yakanon pa Google chuqa' Yandex"
 
 #. editorial content for the discovery pane.
@@ -3823,7 +3751,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Tatz'aqatisaj wachib'äl pa ri xe'ilitäj toq nikanöx {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy thumbnail images alongside your search returns."
+#, fuzzy
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Tik'asäs ke'atz'eta' koköj taq wachib'äl junam kik'in ri ye'ilitäj toq yakanon."
 
 #. editorial content for the discovery pane.
@@ -3847,7 +3776,8 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Ke'awichinaj ri jeb'ël ajk'amaya'l taq ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+#, fuzzy
+msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "¡Tajala' ri rub'anikil xab'achike ajk'amaya'l ruxaq! Tajala' ri rub'onil, rupam ruxaq chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
@@ -3855,7 +3785,8 @@ msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Tawichinaj ri k'ak'a' ruwi' awichin {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+#, fuzzy
+msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr "Tanuk'u' ri ruxaq k'ak'a' ruwi' richin ye'ak'üt pe ri taq awajowab'al rik'in ri kajilab'al silonel taq wachib'äl, ri ruwachib'al rupam chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
@@ -3871,7 +3802,8 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Tik'oje' pan ak'u'x akuchi' at k'o pan ajk'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get the country location for websites you visit. Be an informed internet traveler."
+#, fuzzy
+msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr "Tatz'eta' ri amaq' kik'ojlib'al ri ajk'amaya'l ruxaq ye'atz'ët. Katok jun etamanel ajk'amaya'l b'yajinel."
 
 #. editorial content for the discovery pane.
@@ -3879,7 +3811,8 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr "Tawutzilaj awetamab'al richin nasik'ij wuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make the text you're reading more appealing by removing the clutter around it."
+#, fuzzy
+msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr "Tab'ana' jeb'ël chi re ri tz'ib'anïk nasik'ij rik'in ruyujik ruwi' taq ch'akulaj e k'o chuchi'."
 
 #. editorial content for the discovery pane.
@@ -3887,7 +3820,8 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Ke'ajaqa' jalajöj taq simonel {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Right-click and drag over links you want open in new tabs."
+#, fuzzy
+msgid "Right-click and drag links you want open in new tabs."
 msgstr "Tapitz'a' ri ajkiq'a' pitz'b'äl k'a ri' taqirirej ri retal ch'oy pa kiwi' ri taq ximonel nawajo' najäq pa k'ak'a' ruwi'."
 
 #. editorial content for the discovery pane.
@@ -3903,7 +3837,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Tel chak'u'x ri atzij richin jeb'ël ri asamaj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+#, fuzzy
+msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr "Tajala' ri k'ak'a' ruwi' ruxaq richin natz'ët jun jeb'ël rupam, natz'aqatisaj ri nawajo' natz'ët ronojel q'ij chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
@@ -3951,7 +3886,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Tipo' achi'el awichin ri YouTube {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3967,7 +3902,8 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'awutzilaj Rub'anikil ri Wikipedia {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Applies a fresh and modern appearance to Wikipedia."
+#, fuzzy
+msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Taya' ch'u'ül chuqa' k'ak'a' ruwa ri Wikipedia."
 
 #. editorial content for the discovery pane.
@@ -3975,7 +3911,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Anin kasamäj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to get to things done—quicker."
+#, fuzzy
+msgid "Use mouse gestures to get to things done quicker."
 msgstr "Ke'awokisaj ri taq ruwa ch'oy richin nab'än ronojel—aninäq."
 
 #. editorial content for the discovery pane.
@@ -3991,8 +3928,8 @@ msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'aqasaj taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab images from any website and download them."
-msgstr "Ke'ayaka' taq ruwachib'al xab'achike ajk'amaya'l ruxaq chuqa' ke'aqasaj."
+msgid "Download images you find on the web."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4015,7 +3952,8 @@ msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tach'aka' ri seq'tzijol {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+#, fuzzy
+msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr "Ke'awokisaj kochochib'al jumej na'owinäq taq taqoya'l richin man yatkitz'ët ta chuqa' richin yeq'at ri seq'tzijol."
 
 #. editorial content for the discovery pane.
@@ -4023,7 +3961,8 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tajala' runuk'ulem awichinanem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily customize the built-in privacy settings in Firefox."
+#, fuzzy
+msgid "A direct path to customizing the built-in privacy settings in Firefox."
 msgstr "Anin Tawichinaj runuk'ulem richinanem Firefox ri kan k'o wi."
 
 #. editorial content for the discovery pane.
@@ -4031,7 +3970,8 @@ msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Anin ke'ak'ulu' taq tzalq'omanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+#, fuzzy
+msgid "Get instant translations by highlighting text and clicking the button that pops up."
 msgstr "Tak'ulu' jun anin tzalq'omanïk rik'in toq nacha' jun tz'ib'anïk chuqa' napïtz' pa ri pitz'b'äl niwachin pe."
 
 #. editorial content for the discovery pane.
@@ -4047,7 +3987,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp pa ri ajk'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+#, fuzzy
+msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr "Katok pa WhatsApp rik'in ri rupas rukajtz'ik rusamajib'al Firefox richin ye'akül taq rutzijol chi kij ri taq tzijonem man e'asik'in ta."
 
 #. editorial content for the discovery pane.
@@ -4063,7 +4004,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Tak'uku' jun kicholb'al q'aton ajk'amaya'l taq ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Restrict Firefox from accessing websites you define."
+#, fuzzy
+msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Taq'ata' ri Firefox richin noka pa ajk'amaya'l ruxaq ri e'acha'on rat."
 
 #. editorial content for the discovery pane.
@@ -4103,7 +4045,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Anin tacha' ri kik'ojlib'al taq ayaketal {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A better way to save bookmarks if you use multiple bookmark folders."
+#, fuzzy
+msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
 msgstr "Jun jeb'ël rub'anikil richin ye'ayäk ri taq ayaketal we ye'awokisaj k'ïy kiyakwuj taq yaketal."
 
 #. editorial content for the discovery pane.
@@ -4123,7 +4066,8 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'ak'ama' taq ximonel {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Instantly display all links from a webpage in new tabs."
+#, fuzzy
+msgid "Instantly display all links from a web page in new tabs."
 msgstr "Anin ke'ak'utu' ronojel ri taq ruximonel ajk'amaya'l ruxaq pa k'ak'a' taq ruwi'."
 
 #. editorial content for the discovery pane.
@@ -4131,7 +4075,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Karopin pa kiwi' ri jech'un taq okem & ri ojqanela' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Strip away redirect pages and URL tracking parameters."
+#, fuzzy
+msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
 msgstr "Ke'ayuju' ri jech'un taq okem pa taq ruxaq chuqa' ri URL etab'äl taq ojqanem."
 
 #. editorial content for the discovery pane.
@@ -4147,7 +4092,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Taqasaj taq rusilowäch YouTube {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Download video and/or audio."
+#, fuzzy
+msgid "Download YouTube videos and/or audio."
 msgstr "Ke'aqasaj taq silowäch chuqa'/o taq k'oxom."
 
 #. editorial content for the discovery pane.
@@ -4171,8 +4117,8 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Kasilon achi'el pan oyonib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr "Taq b'anikil \"Chapoj-qirirenïk\" kichin ajch'atal taq ajk'amaya'l ruxaq."
+msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4187,15 +4133,15 @@ msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tiya' retal ruch'akulal jun tz'ib'anïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr "Ütz tawokisaj jun retab'al tz'ib'anïk ri nuk'ül rik'in jalajöj b'onil chuqa' kicha'oj yakb'äl."
+msgid "Highlight text on web pages to save and access later."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tawak'axaj jalajöj q'ojom k'o pa ruwach'ulew {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 30,000+ radio stations from all over the globe."
+msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4219,7 +4165,8 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ütz katok pa k'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Navigate to the secure version of a website if it's available."
+#, fuzzy
+msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Katok pa jun ütz ruwäch ajk'amaya'l ruxaq we k'o chik."
 
 #. editorial content for the discovery pane.
@@ -4227,7 +4174,8 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Tayuju' ri runatab'al awokem pa k'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+#, fuzzy
+msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Tajikib'a' jarupe' q'ij nawajo' chi niyake' ri runatab'al awokem pa k'amaya'l chuwäch pa ruyonil xtiyuj el."
 
 #. editorial content for the discovery pane.
@@ -4251,7 +4199,8 @@ msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Ruyon Kenojisäx ri taq nojwuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Save entered data once and it will autofill next time."
+#, fuzzy
+msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
 msgstr "Jumul ke'ayaka' ri taq tzij k'a ri' pa ruyonil xkenojisäx ri  jun chik mul."
 
 #. editorial content for the discovery pane.
@@ -4259,15 +4208,16 @@ msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Katok pan ichinan k'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Jump into private browsing mode with a click."
-msgstr "Rik'in jun pitz'oj tajala' ri rub'eyal ichinan okem pa k'amaya'l."
+msgid "Search privately with just a click."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Taq'ata' ri keleq'axik taq ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+#, fuzzy
+msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Man taya' q'ij chi ri taq ximonel xe'acha' kekichajij ri taq ruwi' k'o wakami chuqa' man kekisamajib'ej taq rupam ri man e'acha'on ta."
 
 #. editorial content for the discovery pane.
@@ -4275,7 +4225,8 @@ msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Anin katok pa Wikipedia {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+#, fuzzy
+msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr "Kakanon pa Wikipedia xa xe rik'in nacha' jun rutz'ib'anik xab'achike ajk'amaya'l ruxaq chuqa' napïtz ri rajkiq'a' rupitz'b'al ri ch'oy."
 
 #. editorial content for the discovery pane.
@@ -4299,7 +4250,8 @@ msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Jeb'ël tawokisaj ri rutzil Amazon {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+#, fuzzy
+msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr "We ri tikojil nakanoj pa xab'achike ajk'amab'ey k'ayij, k'o chuqa' pa Amazon, xa xe yapitz'on qa pa jun pitz'b'äl richin natz'ët pa Amazon."
 
 #. editorial content for the discovery pane.
@@ -4307,7 +4259,8 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Jeb'ël rusamajixik ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+#, fuzzy
+msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "E k'o k'ïy cha'oj richin yenuk'samajïx taq ruwi'—kitz'apixik kamulun taq ruwi', kitunik taq ruwi', kiwachib'exik kib'i' taq ruwi' chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
@@ -4315,7 +4268,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Tak'ulu' relik etamab'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Load a random Wikipedia article each time you open a new tab."
+#, fuzzy
+msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
 msgstr "Tasamajib'ej jun man cha'on ta rucholna'oj Wikipedia toq najäq jun k'ak'a' ruwi'."
 
 #. editorial content for the discovery pane.
@@ -4347,7 +4301,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tikanöx pa Firefox {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily access your open tabs, bookmarks, and history."
+#, fuzzy
+msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
 msgstr "Anin katok pa ejaqon taq ruwi', taq yaketal chuqa' natab'äl."
 
 #. editorial content for the discovery pane.
@@ -4403,15 +4358,16 @@ msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub
 msgstr "Tawojqaj Runatab'al ajil pan Amazon {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr "Tacha' etaman taq na'ojib'al rik'in nawojqaj kajil tikojil yesuj pa Amazon."
+msgid "Track Amazon pricing history. Make informed shopping decisions."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kaloq'on pa jikïl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+#, fuzzy
+msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr "Tab'ana' jun rutz'aqat nik'onïk richin najikib'a' chi ri nalöq' pa jun ruxaq ya'on retal chi ütz."
 
 #. editorial content for the discovery pane.
@@ -4419,11 +4375,13 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tawojqaj ri ramaj yasamäj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+#, fuzzy
+msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
 msgstr "Tawila' jarupe' ramaj at k'o chuwäch ri kematz'ib', o pa taq ruchokoy samaj achi'el Trello, JIRA, Basecamp, GitHub, chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
-msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+#, fuzzy
+msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr "Tak'ama' ajk'amaya'l rupam achi'el cholna'oj, silowäch, taq wachib'äl chuqa' ch'aqa' chik richin nayäk chuqa' nawokisaj pa taq anuk'samaj o rusamaj molaj pa ri mej ri'."
 
 #. editorial content for the discovery pane.
@@ -4431,7 +4389,8 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ütz katok pa k'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Only allow web content to run from sites you trust."
+#, fuzzy
+msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Xa xe nuya' q'ij chi ri rupam ajk'amaya'l tisamäj pa ri ütz kuqül taq ajk'amaya'l."
 
 #. editorial content for the discovery pane.
@@ -4471,8 +4430,8 @@ msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Ke'atz'apij ri itzel taq tzuwäch e k'o chuwäch {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Simply click a button to close annoying pop-up overlays."
-msgstr "Xa xe tapitz'a' jun pitz'b'äl richin ye'atz'apij ri itzel taq elenel tzuwäch e k'o chuwäch."
+msgid "Close annoying pop-ups with a simple click."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4507,7 +4466,8 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'achojmirisaj ri taq k'ayewal chi rij k'oxom {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+#, fuzzy
+msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "¿La yalan qajinäq ruch'ab'äl jun ajk'amaya'l ruxaq? ¿La janila' jotöl? SoundFixer nitikïr yaruto'."
 
 #. editorial content for the discovery pane.
@@ -4515,7 +4475,8 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Tanuk'u' rupam ajk'amaya'l chuwäch natz'ajb'a' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+#, fuzzy
+msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Tab'ana' nima'q taq k'exoj rik'in ri tz'etoj—tayuju' itzel taq eltzijol o taq rupam—pa xab'achike ajk'amaya'l ruxaq nawajo' natz'ajb'a'."
 
 #. editorial content for the discovery pane.
@@ -4523,8 +4484,8 @@ msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub
 msgstr "Tawojqaj kajil wachinäq pa Amazon {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr "Tacha' etaman taq na'ojib'al rik'in nawojqaj kajil tikojil yesuj pa Amazon chuqa' akuchi' ye'ak'ül taq rutzijol k'ayewal."
+msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4547,7 +4508,8 @@ msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Takuchi' ri awetal {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+#, fuzzy
+msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
 msgstr "Yalan jikïl kakanon rik'in q'atoj ojqanela', na'owinäq ewan rusik'ixik, ichinan kanoxïk chuqa' ch'aqa' chik k'atzinel taq ch'akulal."
 
 #. editorial content for the discovery pane.
@@ -4557,7 +4519,7 @@ msgstr "Anin Kanoxïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Organize your many open tabs in a vertical sidebar."
+msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
 msgstr "Ke'anuk'samajij ri taq ruwi' ye'ajaqon pa rucholajem pa jun rukajtz'ik ruchi'."
 
 #. editorial content for the discovery pane.
@@ -4575,7 +4537,7 @@ msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Tawelesaj jun twit {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "With a mouse click you can watch videos in full screen glory."
+msgid "With a simple click of the mouse you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4602,7 +4564,7 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Tawelesaj taq wachib'äl pan ajk'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4616,7 +4578,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Tawutzilaj awetamab'al richin nasik'ij wuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Remove the clutter around text on web pages. Read with more clarity and ease."
+msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4625,7 +4587,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'aq'ata' eltzijol {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Not only block annoying ads, but protect yourself against malware and ad tracking."
+msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4643,7 +4605,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'akanoj taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Grab just images from your current tab."
+msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4652,11 +4614,11 @@ msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kekanöx wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Draw a digital ruler across any web page to check height, width, and alignment of page elements."
+msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get the benefits of strong password management."
+msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4674,7 +4636,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Ke'ach'utinisaj ri rusachik k'u'x {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "List the websites you want the extension to block. Instant discipline!"
+msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4692,7 +4654,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Tikanöx pa Firefox {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Easily design your own visual themes to make Firefox look as you please."
+msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4701,7 +4663,7 @@ msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kek'ex ri taq ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Displays a sidebar that lets you keep notes per specific web pages."
+msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4719,7 +4681,7 @@ msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Tawojqaj ri ramaj yasamäj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
+msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4728,7 +4690,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tawelesaj taq wachib'äl pan ajk'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Custom color schemes let you shade the web to your own liking."
+msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4748,6 +4710,40 @@ msgstr "Ke'awila' taq silowäch {start_sub_heading}rik'in {addon_name}{end_sub_h
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extensions are like apps for Firefox."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "See all extensions"
+msgstr "Kekanöx ronojel ri taq k'amal"
+
+#. editorial content for the secondary hero shelves.
+msgid "Sync extensions across devices"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Privacy beyond browser extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Media enhancers for Firefox"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Tetamäx Ch'aqa' Chik"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Explore extensions"
+msgstr "Taq k'amal"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4804,7 +4800,6 @@ msgstr "Man niq'ax ta ri runa'oj ri yakb'äl xjotob'äx."
 msgid "Unsupported archive type."
 msgstr ""
 
-#. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Man okel ta rub'i' yakb'äl. Tatz'eta' chi ronojel ri kib'i' yakb'äl nuk'un rik'in utf-8 or latin1."
 
@@ -4812,8 +4807,12 @@ msgstr "Man okel ta rub'i' yakb'äl. Tatz'eta' chi ronojel ri kib'i' yakb'äl nu
 msgid "Invalid file name in archive: {0}"
 msgstr "Man okel ta rub'i' yakb'äl pa yakb'äl: {0}"
 
+#. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Nik'o runimilem yakb'äl pa yakb'äl: {0}"
+
+msgid "Uncompressed size is too large"
+msgstr ""
 
 msgid "Invalid archive."
 msgstr "Man okel ta yakb'äl."
@@ -4945,42 +4944,6 @@ msgstr "Majun yakb'äl pa ri yakb'äl xjotob'äx."
 msgid "Fetching file."
 msgstr "Nika'am yakb'äl."
 
-msgid "Reported Status"
-msgstr "Xsik'ïx Rub'anikil"
-
-msgid "Reported Spam"
-msgstr "Xsik'ïx Rub'anikil Seq'tzijol"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Reported Ham"
-msgstr "Xsik'ïx Ham"
-
-msgid "Not Reported"
-msgstr "Man Sik'in ta"
-
-msgid "Content Submitted"
-msgstr "Rupam Xtaq"
-
-msgid "View Rating on site"
-msgstr "Titz'et Rejqalem pa ri ruxaq"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-msgid "Submit Ham to Akismet"
-msgstr "Titaq Ham pan Akismet"
-
-msgid "Submit Spam to Akismet"
-msgstr "Titaq Seq'tzijol pan Akismet"
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Ham reports submitted as Spam"
-msgstr ""
-
-#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, python-format
-msgid "%s Spam reports submitted as Ham"
-msgstr ""
-
 msgid "About Mozilla Add-ons"
 msgstr "Chi rij Mozilla Add-ons"
 
@@ -5041,8 +5004,7 @@ msgstr ""
 "nikijikib'a' rutzil chuqa' ruchuq'a'."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Kojato' richin niqutzilaj re ajk'amaya'l ruxaq re'. Jaqäl rub'itz'ib' chuqa' yatikïr natäq rutzijol jun sachoj chuqa' natäq kisolik k'ayewal. <a href=\"%(url)s\"> GitHub</a> ruk'wan ronojel ri taq "
 "sachoj k'o wakami; ri taqanel taq sachoj yatikïr ye'awojqaj pa Bugzilla."
@@ -5090,8 +5052,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Junelïk taq K'utunïk pa kiwi' taq Tzijoxïk"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Ri kejqalem taq tz'aqat jun rub'anikil richin ye'akomonij ri taq ana'oj chi kij ri taq tz'aqat e'ayakon chuqa' e'awokisan. Pa kiq'a' ri qamolaj k'o richin yekipäj ri taq ejqalem richin yekixutuj o "
 "nikiyüj xab'achike ejqalem man rojqan ta xab'achike chi ke re taq rucholajil re'."
@@ -5249,6 +5211,9 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} rejqalem"
 msgstr[1] "{num} taq ejqalem"
 
+msgid "Not yet rated"
+msgstr "K'a man ya'on ta rejqalem"
+
 msgid "Rated {0} out of 5 stars"
 msgstr "Ya'on {0} richin 5 ch'umil"
 
@@ -5374,6 +5339,9 @@ msgid "Is recommendable"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
+msgstr ""
+
+msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
 msgid "Type"
@@ -5901,6 +5869,13 @@ msgstr "Ke'ewäx Ka'i' Oxi' Na'oj"
 msgid "No reviews found for this period."
 msgstr "Majun nik'oxïk xe'ilitäj pa re q'ijul re'."
 
+msgid "Method:"
+msgstr ""
+
+#, fuzzy
+msgid "Source:"
+msgstr "chi Ruxe'el"
+
 msgid "Dismiss this announcement"
 msgstr "Titz'apïx re rutzijol re'"
 
@@ -5945,6 +5920,9 @@ msgstr "Ronojel Q'ij"
 msgid "You have <span>{0}</span> points."
 msgstr "K'o <span>{0}</span> taq awajil."
 
+msgid "Theme"
+msgstr "Wachinel"
+
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s pa %(date)s [%(ip_address)s]"
@@ -5975,6 +5953,12 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Xk'is Ruq'ijul Ruk'utuxik Etamab'äl ({0})"
 msgstr[1] "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
+
+msgid "matches"
+msgstr ""
+
+msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6203,11 +6187,11 @@ msgstr "Chi rij rojqaxik ch rij kixe'el..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6218,13 +6202,6 @@ msgstr "Q'ij Q'ij Okisanela' chi Q'ijul"
 
 msgid "What are daily users?"
 msgstr "¿Achike ri q'ij q'ij okisanela'?"
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
-"people using your theme by day. </p>"
-msgstr ""
-"<h2>¿Achike nuq'ajuj q'ij q'ij okisanela'?</h2> <p> Ri taq wachinel eyakon rik'in re ruxaq re' nunik'oj we e k'o jun k'exoj pa jun q'ij. Ri kajilab'al re taq ruping k'exoj etaman kiwäch achi'el "
-"Tzijïl Q'ij Q'ij Okisanela', o ronojel ri winaqi' nikokisaj ri awachinel q'ij q'ij. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -6245,11 +6222,20 @@ msgstr "Titzolin pa Taq Tz'aqat"
 msgid "Footer logo"
 msgstr "Ruwachib'al kamuluntzij"
 
+msgid "Legal Notices"
+msgstr "Taqanel Rutzijol"
+
+msgid "Report Trademark Abuse"
+msgstr "Taya' Rutzijol Itzel Rokisaxik ri Retal B'i'aj"
+
 msgid "The new website supports mobile and desktop clients"
 msgstr "Ri k'ak'a' ajk'amaya'l ruxaq nuköch' oyonib'äl chuqa' ajch'atal taq okisanela'"
 
 msgid "View the new site"
 msgstr "Titz'et ri k'ak'a' ruxaq"
+
+msgid "Site Status"
+msgstr "Rub'anikil Ruxaq K'amaya'l"
 
 msgid "Report a bug"
 msgstr "Tiya' rutzijol jun sachoj"
@@ -6258,11 +6244,17 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a href=\"https://creativecommons.org/"
-"licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
+"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "tawetamaj kiwäch <b>tz'aqat</b>"
+
+msgid "About"
+msgstr "Qawäch"
+
+msgid "Forum"
+msgstr "Molna'oj"
 
 msgid "Download Firefox"
 msgstr "Taqasaj Firefox"
@@ -6342,6 +6334,10 @@ msgstr "¿La kan nawajo' ye'ayüj ri taq <b>{0}</b> tzalq'omanïk? Man xkatikïr
 msgid "Delete Locale"
 msgstr "Tiyuj Ch'ab'äl"
 
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Titz'apïx Runatab'al Nik'oxik"
+
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "Xyuj ri okisanel \"%(user)s\"."
@@ -6356,6 +6352,14 @@ msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
 
 msgid "Ban selected users"
 msgstr "Kech'aqïx el ri okisanela' echa'on"
+
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" had their API Key reset."
+msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
+
+#, fuzzy
+msgid "Reset API Key"
+msgstr "Kenuk'samajïx API Kik'u'x Tzij"
 
 msgid "Profile Photo"
 msgstr "Ruwachib'al Ruwäch B'i'aj"
@@ -6407,8 +6411,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Chuwäch natikirisaj, tasik'ij chuqa' tak'ulu' ri Qajunamil richin Kitaluxik Kitz'aqat Firefox chuqa' ri taq Qab'eyal chuqa' taq Qana'ojil richin Nik'oxïk. Pa ri Junamil chuqa' xtawïl jun ximonel "
 "yaruk'waj pa ri Qatzijol richin Ichinanem, chi ri' nitzijöx rub'eyal xtiqanuk'samajij ri awetamab'al."
