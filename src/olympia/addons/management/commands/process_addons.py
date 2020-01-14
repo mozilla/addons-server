@@ -126,9 +126,9 @@ tasks = {
         'method': migrate_webextensions_to_git_storage,
         'qs': [
             Q(type__in=(
-                  # Ignoring legacy add-ons and lightweight themes
-                  amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
-                  amo.ADDON_DICT, amo.ADDON_LPAPP)) |
+                # Ignoring legacy add-ons and lightweight themes
+                amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
+                amo.ADDON_DICT, amo.ADDON_LPAPP)) |
             Q(type=amo.ADDON_SEARCH)
         ],
         'distinct': True,
