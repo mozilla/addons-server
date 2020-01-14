@@ -177,9 +177,9 @@ class TestScannerResultAdmin(TestCase):
         assert self.admin.formatted_results(result) == '<pre>[]</pre>'
 
     def test_formatted_matched_rules_with_files(self):
-        addon = addon_factory()
+        version = addon_factory().current_version
         result = ScannerResult.objects.create(
-            scanner=YARA, version=addon.current_version
+            scanner=YARA, version=version
         )
         rule = ScannerRule.objects.create(name='bar', scanner=YARA)
         filename = 'some/file.js'
@@ -187,9 +187,11 @@ class TestScannerResultAdmin(TestCase):
         result.save()
 
         external_site_url = 'http://example.org'
+        file_id = version.all_files[0].id
+        assert file_id is not None
         expect_file_item = '<a href="{}{}">{}</a>'.format(
             external_site_url,
-            reverse('files.list', args=[addon.id, 'file', filename]),
+            reverse('files.list', args=[file_id, 'file', filename]),
             filename
         )
         with override_settings(EXTERNAL_SITE_URL=external_site_url):

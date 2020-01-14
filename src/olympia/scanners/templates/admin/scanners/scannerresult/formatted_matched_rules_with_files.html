@@ -12,8 +12,8 @@
     <td><a href="{% url 'admin:scanners_scannerrule_change' rule.pk %}">{{ rule.name }}</a></td>
     <td>
       {% for file in rule.files %}
-        {% if addon_id %}
-          <a href="{{ external_site_url }}{% url 'files.list' addon_id 'file' file %}">{{ file }}</a>
+        {% if file_id %}
+          <a href="{{ external_site_url }}{% url 'files.list' file_id 'file' file %}">{{ file }}</a>
         {% else %}
           {{ file }}
         {% endif %}
