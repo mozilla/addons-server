@@ -1,6 +1,9 @@
 import datetime
+import json
 
 from unittest import mock
+
+from django.contrib.admin.models import LogEntry
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -823,6 +826,17 @@ class TestBlockSubmissionAdmin(TestCase):
         assert mbs.signoff_state == BlockSubmission.SIGNOFF_PENDING
         assert Block.objects.count() == 0
 
+        log_entry = LogEntry.objects.get()
+        assert log_entry.user == user
+        assert log_entry.object_id == str(mbs.id)
+        assert log_entry.change_message == json.dumps(
+            [{'changed': {'fields': ['url', 'reason']}}])
+
+        response = self.client.get(multi_url, follow=True)
+        assert (
+            b'Changed &quot;BlockSubmission: guid@, ...; new.url; a reason' in
+            response.content)
+
     def test_signoff_approve(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs = BlockSubmission.objects.create(
@@ -850,6 +864,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert response.status_code == 200
         mbs = mbs.reload()
         assert mbs.is_save_to_blocks_permitted
+        assert mbs.signoff_by == user
 
         # the read-only values above weren't changed.
         assert mbs.input_guids == 'guid@\ninvalid@'
@@ -884,6 +899,16 @@ class TestBlockSubmissionAdmin(TestCase):
                 [new_block.id, 'guid@'],
             ],
         }
+
+        log_entry = LogEntry.objects.last()
+        assert log_entry.user == user
+        assert log_entry.object_id == str(mbs.id)
+
+        response = self.client.get(multi_url, follow=True)
+        assert (
+            b'Changed &quot;BlockSubmission: guid@, ...; new.url; '
+            b'a reason&quot; - Sign-off Approval' in
+            response.content)
 
     def test_signoff_reject(self):
         addon_factory(guid='guid@', name='Danger Danger')
@@ -924,6 +949,16 @@ class TestBlockSubmissionAdmin(TestCase):
         assert mbs.signoff_state == BlockSubmission.SIGNOFF_REJECTED
         assert Block.objects.count() == 0
         assert not mbs.is_save_to_blocks_permitted
+
+        log_entry = LogEntry.objects.last()
+        assert log_entry.user == user
+        assert log_entry.object_id == str(mbs.id)
+
+        response = self.client.get(multi_url, follow=True)
+        assert (
+            b'Changed &quot;BlockSubmission: guid@, ...; new.url; '
+            b'a reason&quot; - Sign-off Rejection' in
+            response.content)
 
     def test_signed_off_view(self):
         addon_factory(guid='guid@', name='Danger Danger')

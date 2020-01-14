@@ -163,6 +163,17 @@ class BlockSubmission(ModelBase):
     signoff_state = models.SmallIntegerField(
         choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING)
 
+    def __str__(self):
+        guids = (self.input_guids or '').splitlines()
+        repr = []
+        if len(guids) == 1:
+            repr.append(guids[0])
+        elif len(guids) > 1:
+            repr.append(guids[0] + ', ...')
+        repr.append(str(self.url))
+        repr.append(str(self.reason))
+        return f'BlockSubmission: {"; ".join(repr)}'
+
     def clean(self):
         min_vint = addon_version_int(self.min_version)
         max_vint = addon_version_int(self.max_version)

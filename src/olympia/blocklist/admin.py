@@ -128,11 +128,13 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         'updated_by',
         'signoff_by',
         'include_in_legacy',
+        'submission_logs',
     )
     readonly_fields = (
         'blocks_submitted',
         'updated_by',
         'signoff_by',
+        'submission_logs',
     )
     ordering = ['-created']
     view_on_site = False
@@ -260,6 +262,36 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         if obj.is_save_to_blocks_permitted:
             # Then launch a task to async save the individual blocks
             create_blocks_from_multi_block.delay(obj.id)
+
+    def log_change(self, request, obj, message):
+        log_entry = None
+        is_signoff = '_signoff' in request.POST
+        is_reject = '_reject' in request.POST
+        if is_signoff:
+            signoff_msg = 'Sign-off Approval'
+        elif is_reject:
+            signoff_msg = 'Sign-off Rejection'
+        else:
+            signoff_msg = ''
+
+        if not message and signoff_msg:
+            # if there's no message (i.e. no changed fields) just use ours.
+            log_entry = super().log_change(request, obj, signoff_msg)
+        else:
+            # otherwise let the message be built as normal
+            log_entry = super().log_change(request, obj, message)
+            if signoff_msg:
+                # before flattening it if we need to add on ours
+                log_entry.change_message = (
+                    signoff_msg + ' & ' + log_entry.get_change_message())
+                log_entry.save()
+
+        return log_entry
+
+    def submission_logs(self, obj):
+        logs = admin.models.LogEntry.objects.filter(object_id=obj.id)
+        return '\n'.join(
+            f'{log.action_time.date()}: {str(log)}' for log in logs)
 
 
 @admin.register(Block)
