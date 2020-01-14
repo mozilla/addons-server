@@ -110,7 +110,7 @@ class FileEntriesSerializer(FileSerializer):
             blob = self.git_repo[blob_or_tree.oid]
             return get_sha256(io.BytesIO(memoryview(blob)))
 
-        return cache_get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
+        return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
 
     def get_entries(self, obj):
         # Given that this is a very expensive operation we have a two-fold
