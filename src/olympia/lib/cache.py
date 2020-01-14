@@ -22,32 +22,6 @@ def make_key(key, with_locale=True, normalize=False):
     return force_text(key)
 
 
-def cache_get_or_set(key, default, timeout=DEFAULT_TIMEOUT, version=None):
-    """
-    Fetch a given key from the cache. If the key does not exist,
-    the key is added and set to the default value. The default value can
-    also be any callable. If timeout is given, that timeout will be used
-    for the key; otherwise the default cache timeout will be used.
-
-    Return the value of the key stored or retrieved.
-
-    Backport from Django 1.11.
-    """
-    val = cache.get(key, version=version)
-
-    if val is None:
-        if callable(default):
-            default = default()
-
-        if default is not None:
-            cache.add(key, default, timeout=timeout, version=version)
-            # Fetch the value again to avoid a race condition if another
-            # caller added a value between the first get() and the add()
-            # above.
-            return cache.get(key, default, version=version)
-    return val
-
-
 def memoize_key(prefix, *args, **kwargs):
     """
     For a prefix and arguments returns a key suitable for use in memcache.
@@ -83,7 +57,7 @@ def memoize(prefix, timeout=60):
             def wrapped_func():
                 return func(*args, **kwargs)
             key = memoize_key(prefix, *args, **kwargs)
-            return cache_get_or_set(key, wrapped_func, timeout=timeout)
+            return cache.get_or_set(key, wrapped_func, timeout=DEFAULT_TIMEOUT)
         return wrapper
     return decorator
 
