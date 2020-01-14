@@ -186,12 +186,15 @@ class TestScannerResultAdmin(TestCase):
         result.add_yara_result(rule=rule.name, meta={'filename': filename})
         result.save()
 
-        expect_file_item = '<a href="{}">{}</a>'.format(
+        external_site_url = 'http://example.org'
+        expect_file_item = '<a href="{}{}">{}</a>'.format(
+            external_site_url,
             reverse('files.list', args=[addon.id, 'file', filename]),
             filename
         )
-        assert (expect_file_item in
-                self.admin.formatted_matched_rules_with_files(result))
+        with override_settings(EXTERNAL_SITE_URL=external_site_url):
+            assert (expect_file_item in
+                    self.admin.formatted_matched_rules_with_files(result))
 
     def test_formatted_matched_rules_with_files_without_version(self):
         result = ScannerResult.objects.create(scanner=YARA)

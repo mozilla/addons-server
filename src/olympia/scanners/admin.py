@@ -259,6 +259,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
             'admin/scanners/scannerresult/formatted_matched_rules_with_files.html',  # noqa
             {
                 'addon_id': obj.version.addon.id if obj.version else None,
+                'external_site_url': settings.EXTERNAL_SITE_URL,
                 'matched_rules': [
                     {
                         'pk': rule.pk,
