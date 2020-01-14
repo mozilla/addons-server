@@ -81,7 +81,10 @@ class AbstractScannerResult(ModelBase):
     def save(self, *args, **kwargs):
         rule_model = self._meta.get_field('matched_rules').related_model
         matched_rules = rule_model.objects.filter(
-            scanner=self.scanner, name__in=self.extract_rule_names()
+            scanner=self.scanner,
+            name__in=self.extract_rule_names(),
+            # See: https://github.com/mozilla/addons-server/issues/13143
+            is_active=True,
         )
         self.has_matches = bool(matched_rules)
         # Save the instance first...
@@ -189,7 +192,13 @@ class AbstractScannerRule(ModelBase):
     action = models.PositiveSmallIntegerField(
         choices=ACTIONS.items(), default=NO_ACTION
     )
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(
+        default=True,
+        help_text=_(
+            'When unchecked, the scanner results will not be bound to this '
+            'rule and the action will not be executed.'
+        )
+    )
     definition = models.TextField(null=True, blank=True)
 
     class Meta(ModelBase.Meta):
