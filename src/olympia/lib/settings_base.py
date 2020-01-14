@@ -1120,7 +1120,6 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
     'olympia.scanners.mark_yara_query_rule_as_completed': {'queue': 'devhub'},
-    'olympia.scanners.mark_yara_query_rule_as_running': {'queue': 'devhub'},
     'olympia.scanners.run_yara_query_rule': {'queue': 'devhub'},
     'olympia.scanners.run_yara_query_rule_on_versions_chunk': {
         'queue': 'devhub'
