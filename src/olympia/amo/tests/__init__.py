@@ -620,9 +620,10 @@ class AMOPaths(object):
 
     def xpi_copy_over(self, file, name):
         """Copies over a file into place for tests."""
-        if not os.path.exists(os.path.dirname(file.file_path)):
-            os.makedirs(os.path.dirname(file.file_path))
-        shutil.copyfile(self.xpi_path(name), file.file_path)
+        path = file.current_file_path
+        if not os.path.exists(os.path.dirname(path)):
+            os.makedirs(os.path.dirname(path))
+        shutil.copyfile(self.xpi_path(name), path)
 
 
 def _get_created(created):
