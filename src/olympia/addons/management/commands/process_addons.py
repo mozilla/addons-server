@@ -161,6 +161,8 @@ tasks = {
         'allowed_kwargs': ('with_deleted',),
     },
     'disable_opensearch_addons': {
+        # We're re-using the `delete_addons` method but don't allow for hard
+        # deletes
         'method': delete_addons,
         'qs': [
             Q(type=amo.ADDON_SEARCH)
