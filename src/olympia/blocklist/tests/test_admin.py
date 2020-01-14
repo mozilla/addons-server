@@ -401,7 +401,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert multi.processed_guids == {
             'invalid_guids': ['invalid@'],
             'existing_guids': ['full@existing'],
-            'blocks': ['any@new', 'partial@existing'],
+            'toblock_guids': ['any@new', 'partial@existing'],
             'blocks_saved': [
                 [new_block.id, 'any@new'],
                 [existing_and_partial.id, 'partial@existing']],
@@ -573,7 +573,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert multi.processed_guids == {
             'invalid_guids': [],
             'existing_guids': ['partial@existing'],
-            'blocks': ['any@new', 'full@existing'],
+            'toblock_guids': ['any@new', 'full@existing'],
             'blocks_saved': [
                 [new_block.id, 'any@new'],
                 [existing_zero_to_max.id, 'full@existing']],
@@ -751,7 +751,7 @@ class TestBlockSubmissionAdmin(TestCase):
         addon_factory(guid='guid@', name='Danger Danger')
         mbs.update(input_guids='guid@\ninvalid@\nsecond@invalid')
         mbs.save()
-        assert mbs.processed_guids['blocks'] == ['guid@']
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -764,7 +764,6 @@ class TestBlockSubmissionAdmin(TestCase):
         doc = pq(response.content)
         assert doc('th.field-blocks_count').text() == '1 add-ons'
         assert doc('.field-signoff_state').text() == 'Pending'
-        assert doc('.field-all_blocks_saved img')[0].attrib['alt'] == 'False'
 
     def test_can_not_list_without_permission(self):
         BlockSubmission.objects.create(
@@ -783,7 +782,7 @@ class TestBlockSubmissionAdmin(TestCase):
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
             signoff_by=user_factory())
-        assert mbs.processed_guids['blocks'] == ['guid@']
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -834,7 +833,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;BlockSubmission: guid@, ...; new.url; a reason' in
+            b'Changed &quot;Pending: guid@, ...; new.url; a reason' in
             response.content)
 
     def test_signoff_approve(self):
@@ -843,7 +842,7 @@ class TestBlockSubmissionAdmin(TestCase):
             input_guids='guid@\ninvalid@',
             updated_by=user_factory(),
             signoff_by=user_factory())
-        assert mbs.processed_guids['blocks'] == ['guid@']
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -863,7 +862,6 @@ class TestBlockSubmissionAdmin(TestCase):
             follow=True)
         assert response.status_code == 200
         mbs = mbs.reload()
-        assert mbs.is_save_to_blocks_permitted
         assert mbs.signoff_by == user
 
         # the read-only values above weren't changed.
@@ -894,7 +892,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert mbs.processed_guids == {
             'invalid_guids': ['invalid@'],
             'existing_guids': [],
-            'blocks': ['guid@'],
+            'toblock_guids': ['guid@'],
             'blocks_saved': [
                 [new_block.id, 'guid@'],
             ],
@@ -906,7 +904,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;BlockSubmission: guid@, ...; new.url; '
+            b'Changed &quot;Approved: guid@, ...; new.url; '
             b'a reason&quot; - Sign-off Approval' in
             response.content)
 
@@ -916,7 +914,7 @@ class TestBlockSubmissionAdmin(TestCase):
             input_guids='guid@\ninvalid@',
             updated_by=user_factory(),
             signoff_by=user_factory())
-        assert mbs.processed_guids['blocks'] == ['guid@']
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -956,7 +954,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;BlockSubmission: guid@, ...; new.url; '
+            b'Changed &quot;Rejected: guid@, ...; new.url; '
             b'a reason&quot; - Sign-off Rejection' in
             response.content)
 
@@ -967,7 +965,7 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory(),
             signoff_by=user_factory(),
             signoff_state=BlockSubmission.SIGNOFF_APPROVED)
-        assert mbs.processed_guids['blocks'] == ['guid@']
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
         mbs.save_to_blocks()
         block = Block.objects.get()
 
@@ -982,10 +980,9 @@ class TestBlockSubmissionAdmin(TestCase):
         assert response.status_code == 200
         assert b'guid@<br>invalid@<br>second@invalid' in response.content
         doc = pq(response.content)
-        guid_link = doc('div.field-blocks_submitted div div a')
+        guid_link = doc('div.field-blocks div div a')
         assert guid_link.attr('href') == reverse(
             'admin:blocklist_block_change', args=(block.pk,))
-        assert guid_link.text() == 'guid@'
         assert not doc('submit-row input')
 
 

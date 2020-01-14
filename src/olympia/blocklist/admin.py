@@ -4,6 +4,7 @@ from django.forms import modelform_factory
 from django.forms.fields import CharField, ChoiceField
 from django.forms.widgets import HiddenInput
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
@@ -114,32 +115,27 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     list_display = (
         'blocks_count',
         'signoff_state',
-        'all_blocks_saved',
         'updated_by',
         'modified',
     )
+    # only used by add view currently - see get_fieldsets() for change view
     fields = (
         'input_guids',
-        'blocks_submitted',
         'min_version',
         'max_version',
         'url',
         'reason',
-        'updated_by',
-        'signoff_by',
         'include_in_legacy',
-        'submission_logs',
-    )
-    readonly_fields = (
-        'blocks_submitted',
-        'updated_by',
-        'signoff_by',
-        'submission_logs',
     )
     ordering = ['-created']
     view_on_site = False
     list_select_related = ('updated_by', 'signoff_by')
     change_form_template = 'blocklist/block_submission_change_form.html'
+
+    class Media:
+        css = {
+            'all': ('css/admin/blocklist_blocksubmission.css',)
+        }
 
     def has_delete_permission(self, request, obj=None):
         # For now, keep all BlockSubmission records.
@@ -156,10 +152,51 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         pending = obj and obj.signoff_state == BlockSubmission.SIGNOFF_PENDING
         return has and obj and pending and obj.can_user_signoff(request.user)
 
+    def get_fieldsets(self, request, obj):
+        input_guids = (
+            'Input Guids', {
+                'fields': (
+                    'input_guids',
+                ),
+                'classes': ('collapse',)
+            })
+        if not obj:
+            title = 'Add New Blocks'
+        elif obj.signoff_state == BlockSubmission.SIGNOFF_PUBLISHED:
+            title = 'Blocks Published'
+        else:
+            title = 'Proposed New Blocks'
+
+        edit = (
+            title, {
+                'fields': (
+                    'blocks',
+                    'min_version',
+                    'max_version',
+                    'url',
+                    'reason',
+                    'updated_by',
+                    'signoff_by',
+                    'include_in_legacy',
+                    'submission_logs',
+                ),
+            })
+
+        return (input_guids, edit)
+
     def get_readonly_fields(self, request, obj=None):
-        ro_fields = super().get_readonly_fields(request, obj=obj)
         if obj:
-            ro_fields += ('input_guids', 'min_version', 'max_version')
+            ro_fields = (
+                'blocks',
+                'updated_by',
+                'signoff_by',
+                'submission_logs',
+                'input_guids',
+                'min_version',
+                'max_version',
+            )
+        else:
+            ro_fields = ()
         return ro_fields
 
     def add_view(self, request, **kwargs):
@@ -170,9 +207,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             self.form.__name__, (self.form,), {
                 'existing_min_version': CharField(widget=HiddenInput),
                 'existing_max_version': CharField(widget=HiddenInput)})
-        fields = [
-            field for field in self.get_fields(request, obj=None)
-            if field not in self.readonly_fields]
+        fields = self.fields
         MultiBlockForm = modelform_factory(
             self.model, fields=fields, form=ModelForm,
             widgets={'input_guids': HiddenInput()})
@@ -224,25 +259,42 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             'title': 'Block Add-ons',
             'save_as': False,
         }
+        context.update(**self._get_enhanced_guid_context(request, guids_data))
+        return TemplateResponse(
+            request, 'blocklist/block_submission_add_form.html', context)
+
+    def _get_enhanced_guid_context(self, request, guids_data):
         load_full_objects = guids_data.count('\n') < GUID_FULL_LOAD_LIMIT
         objects = self.model.process_input_guids(
             guids_data,
             v_min=request.POST.get('min_version', Block.MIN),
             v_max=request.POST.get('max_version', Block.MAX),
             load_full_objects=load_full_objects)
-        context.update(objects)
         if load_full_objects:
             Block.preload_addon_versions(objects['blocks'])
-        return TemplateResponse(
-            request, 'blocklist/block_submission_add_form.html', context)
+        return objects
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         obj = self.model.objects.filter(id=object_id).latest()
         extra_context['has_signoff_permission'] = self.has_signoff_permission(
             request, obj)
+        if obj.signoff_state != BlockSubmission.SIGNOFF_PUBLISHED:
+            extra_context.update(
+                **self._get_enhanced_guid_context(request, obj.input_guids))
+        else:
+            extra_context['blocks'] = obj.blocks_saved
         return super().change_view(
             request, object_id, form_url=form_url, extra_context=extra_context)
+
+    def render_change_form(self, request, context, add=False, change=False,
+                           form_url='', obj=None):
+        if change:
+            # add this to the instance so blocks() below can reference it.
+            obj._blocks = context['blocks']
+        return super().render_change_form(
+            request, context, add=add, change=change, form_url=form_url,
+            obj=obj)
 
     def save_model(self, request, obj, form, change):
         if change:
@@ -292,6 +344,19 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         logs = admin.models.LogEntry.objects.filter(object_id=obj.id)
         return '\n'.join(
             f'{log.action_time.date()}: {str(log)}' for log in logs)
+
+    def blocks(self, obj):
+        # Annoyingly, we don't have the full context, but we stashed blocks
+        # earlier in render_change_form().
+        return render_to_string(
+            'blocklist/includes/enhanced_blocks.html',
+            {
+                'blocks': obj._blocks
+            },
+        )
+
+    def blocks_count(self, obj):
+        return f"{len(obj.toblock_guids)} add-ons"
 
 
 @admin.register(Block)

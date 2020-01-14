@@ -52,21 +52,7 @@
     <h2>{% trans 'Add New Blocks' %}</h2>
     <div class="form-row field-blocks-to-add">
       <div>
-        <h3>{% blocktrans with count=blocks|length %}{{ count }} Add-on GUIDs to Block{% endblocktrans %}:</h3>
-         <ul class="guid_list">
-          {% for block_obj in blocks %}
-            <li>
-              {{ block_obj.guid }}.
-              <span class="addon-name">{{ block_obj.addon.name }}</span>
-              ({{ block_obj.addon.average_daily_users }} {% trans 'users' %}).
-              {{ block_obj.review_listed_link }}
-              {{ block_obj.review_unlisted_link }}
-              {% if block_obj.id %}
-                <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">{% trans 'Edit Block' %}</a>: {{ block_obj.min_version }} - {{ block_obj.max_version }}]</span>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
+        {% include 'blocklist/includes/enhanced_blocks.html' %}
       </div>
     </div>
     {% if form.non_field_errors %}

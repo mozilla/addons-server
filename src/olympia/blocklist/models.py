@@ -138,11 +138,13 @@ class BlockSubmission(ModelBase):
     SIGNOFF_APPROVED = 1
     SIGNOFF_REJECTED = 2
     SIGNOFF_NOTNEEDED = 3
+    SIGNOFF_PUBLISHED = 4
     SIGNOFF_STATES = {
         SIGNOFF_PENDING: 'Pending',
         SIGNOFF_APPROVED: 'Approved',
         SIGNOFF_REJECTED: 'Rejected',
-        SIGNOFF_NOTNEEDED: 'No Sign-off'
+        SIGNOFF_NOTNEEDED: 'No Sign-off',
+        SIGNOFF_PUBLISHED: 'Published to Blocks',
     }
 
     input_guids = models.TextField()
@@ -172,7 +174,7 @@ class BlockSubmission(ModelBase):
             repr.append(guids[0] + ', ...')
         repr.append(str(self.url))
         repr.append(str(self.reason))
-        return f'BlockSubmission: {"; ".join(repr)}'
+        return f'{self.get_signoff_state_display()}: {"; ".join(repr)}'
 
     def clean(self):
         min_vint = addon_version_int(self.min_version)
@@ -181,14 +183,16 @@ class BlockSubmission(ModelBase):
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
-    def blocks_count(self):
-        return f"{len(self.processed_guids.get('blocks', []))} add-ons"
+    @property
+    def toblock_guids(self):
+        return self.processed_guids.get('toblock_guids', [])
 
-    def all_blocks_saved(self):
-        blocks_to_submit = len(self.processed_guids.get('blocks', []))
-        blocks_submitted = len(self.processed_guids.get('blocks_saved', []))
-        return bool(blocks_to_submit == blocks_submitted)
-    all_blocks_saved.boolean = True
+    @property
+    def blocks_saved(self):
+        MinimalFakeBlock = namedtuple(
+            'MinimalFakeBlock', ('guid', 'id'))
+        blocks = self.processed_guids.get('blocks_saved', [])
+        return [MinimalFakeBlock(guid, id_) for (id_, guid) in blocks]
 
     def blocks_submitted(self):
         blocks = self.processed_guids.get('blocks_saved', [])
@@ -217,13 +221,13 @@ class BlockSubmission(ModelBase):
 
     def save(self, *args, **kwargs):
         if self.input_guids and not self.processed_guids:
-            processed_guids = self.process_input_guids(
+            processed = self.process_input_guids(
                 self.input_guids, self.min_version, self.max_version,
                 load_full_objects=False)
-            # flatten blocks back to just the guids
-            processed_guids['blocks'] = [
-                block.guid for block in processed_guids['blocks']]
-            self.processed_guids = processed_guids
+            # flatten blocks to just the guids and replace
+            blocks = processed.pop('blocks', [])
+            processed['toblock_guids'] = [block.guid for block in blocks]
+            self.processed_guids = processed
         super().save(*args, **kwargs)
 
     @classmethod
@@ -340,9 +344,8 @@ class BlockSubmission(ModelBase):
         }
 
         modified_datetime = datetime.datetime.now()
-        all_guids_to_block = self.processed_guids.get('blocks', [])
+        all_guids_to_block = self.processed_guids.get('toblock_guids', [])
         self.processed_guids['blocks_saved'] = []
-        blocks_saved = []
         for guids_chunk in chunked(all_guids_to_block, 100):
             blocks = self._get_blocks_from_list(guids_chunk)
             Block.preload_addon_versions(blocks)
@@ -354,8 +357,8 @@ class BlockSubmission(ModelBase):
                     setattr(block, 'modified', modified_datetime)
                 block.save()
                 block_activity_log_save(block, change=change)
-                blocks_saved.append((block.id, block.guid))
-            self.processed_guids['blocks_saved'] = blocks_saved
+                self.processed_guids['blocks_saved'].append(
+                    (block.id, block.guid))
             self.save()
 
-        return blocks
+        self.update(signoff_state=self.SIGNOFF_PUBLISHED)
