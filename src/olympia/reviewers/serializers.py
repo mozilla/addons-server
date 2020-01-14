@@ -9,6 +9,7 @@ import pygit2
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
 
+from django.core.cache import cache
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
@@ -30,7 +31,6 @@ from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.lib.git import AddonGitRepository, get_mime_type_for_blob
 from olympia.lib import unicodehelper
-from olympia.lib.cache import cache_get_or_set
 
 
 class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
@@ -123,7 +123,7 @@ class FileEntriesSerializer(FileSerializer):
                 }
             return result
 
-        self._entries = cache_get_or_set(
+        self._entries = cache.get_or_set(
             'reviewers:fileentriesserializer:entries:{}'.format(commit.hex),
             _fetch_entries,
             # Store information about this commit for 24h which should be

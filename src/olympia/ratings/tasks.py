@@ -1,7 +1,8 @@
 from datetime import datetime
 
-from django.db.models import Avg, Count, F
+from django.core.cache import cache
 from django.conf import settings
+from django.db.models import Avg, Count, F
 
 import olympia.core.logger
 
@@ -9,7 +10,6 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.lib.cache import cache_get_or_set
 from olympia.users.models import UserProfile
 
 from .models import GroupedRating, Rating
@@ -96,7 +96,7 @@ def addon_bayesian_rating(*addons, **kw):
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
 
-    avg = cache_get_or_set('task.bayes.avg', addon_aggregates, 60 * 60 * 60)
+    avg = cache.get_or_set('task.bayes.avg', addon_aggregates, 60 * 60 * 60)
     # Rating can be NULL in the DB, so don't update it if it's not there.
     if avg['rating'] is None:
         return
