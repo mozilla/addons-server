@@ -713,3 +713,24 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.static_theme.id)
         assert Addon.objects.get(id=self.dictionary.id)
+
+
+class TestDeleteOpenSearchAddons(TestCase):
+    def setUp(self):
+        # Some add-ons that shouldn't be deleted
+        self.extension = addon_factory()
+        self.dictionary = addon_factory(type=amo.ADDON_DICT)
+
+        # And some opensearch plugins
+        addon_factory(type=amo.ADDON_SEARCH)
+        addon_factory(type=amo.ADDON_SEARCH)
+
+        assert Addon.objects.count() == 4
+
+    def test_basic(self):
+        call_command(
+            'process_addons', task='disable_opensearch_addons')
+
+        assert Addon.objects.count() == 2
+        assert Addon.objects.get(id=self.extension.id)
+        assert Addon.objects.get(id=self.dictionary.id)

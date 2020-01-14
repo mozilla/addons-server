@@ -160,6 +160,12 @@ tasks = {
         ],
         'allowed_kwargs': ('with_deleted',),
     },
+    'disable_opensearch_addons': {
+        'method': delete_addons,
+        'qs': [
+            Q(type=amo.ADDON_SEARCH)
+        ]
+    }
 }
 
 
