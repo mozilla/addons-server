@@ -128,8 +128,7 @@ tasks = {
             Q(type__in=(
                 # Ignoring legacy add-ons and lightweight themes
                 amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
-                amo.ADDON_DICT, amo.ADDON_LPAPP)) |
-            Q(type=amo.ADDON_SEARCH)
+                amo.ADDON_DICT, amo.ADDON_LPAPP, amo.ADDON_SEARCH))
         ],
         'distinct': True,
         'allowed_kwargs': ('channel',),
@@ -219,7 +218,10 @@ class Command(BaseCommand):
             action='store',
             dest='channel',
             type=str,
-            choices=('listed', 'unlisted'))
+            choices=('listed', 'unlisted'),
+            help=(
+                'Only select add-ons who have either listed or unlisted '
+                'versions. Add-ons that have both will be returned too.'))
 
     def get_pks(self, manager, q_objects, distinct=False):
         pks = (manager.filter(q_objects)
