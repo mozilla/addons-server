@@ -46,8 +46,8 @@ class Command(BaseCommand):
             addon__status__in=(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW,
             files__is_webextension=True,
-            # To require approval of WebExt experiments, uncomment this line.
-            # files__is_experiment=False
+            # Require manual approval for web experiments.
+            files__is_experiment=False
         ).order_by('nomination', 'created').distinct())
 
     def handle(self, *args, **options):

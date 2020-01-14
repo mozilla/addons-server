@@ -506,8 +506,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
             qs = qs.filter(
                 Q(addon_type_id=amo.ADDON_STATICTHEME) |
                 Q(**{'files.is_webextension': False}) |
-                # To require approval of WebExt experiments, uncomment this line.
-                # Q(**{'files.is_experiment': True}) |
+                # Require approval of WebExt experiments.
+                Q(**{'files.is_experiment': True}) |
                 Q(**{'files.is_restart_required': True}) |
                 Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
             )

@@ -50,9 +50,12 @@ def submission_allowed(user, parsed_addon_data):
 
     See bug 1220097.
     """
-    return (
-        not parsed_addon_data.get('is_experiment', False) or
-        action_allowed_user(user, amo.permissions.EXPERIMENTS_SUBMIT))
+    # Allow anyone to submit experiments.
+    return True
+
+    # return (
+    #    not parsed_addon_data.get('is_experiment', False) or
+    #    action_allowed_user(user, amo.permissions.EXPERIMENTS_SUBMIT))
 
 
 def check_ownership(request, obj, require_owner=False, require_author=False,
