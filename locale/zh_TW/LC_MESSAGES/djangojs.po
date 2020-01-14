@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-15 02:25+0000\n"
+"PO-Revision-Date: 2020-01-14 05:45+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -23,7 +23,7 @@ msgid "There was a problem contacting the server."
 msgstr "連線到伺服器時發生問題。"
 
 msgid "Select a file..."
-msgstr "選擇檔案..."
+msgstr "選擇檔案…"
 
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
 msgstr "您的附加元件應以 .zip、.xpi、.crx 或 .xml 副檔名結尾"
@@ -215,7 +215,7 @@ msgid "Number of Contributions"
 msgstr "捐款次數"
 
 msgid "More Info..."
-msgstr "更多資訊..."
+msgstr "更多資訊…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -668,7 +668,7 @@ msgid "No results found."
 msgstr "找不到結果。"
 
 msgid "Loading..."
-msgstr "載入中..."
+msgstr "載入中…"
 
 #. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
