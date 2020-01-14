@@ -258,7 +258,9 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return render_to_string(
             'admin/scanners/scannerresult/formatted_matched_rules_with_files.html',  # noqa
             {
-                'addon_id': obj.version.addon.id if obj.version else None,
+                'external_site_url': settings.EXTERNAL_SITE_URL,
+                'file_id': (obj.version.all_files[0].id if obj.version else
+                            None),
                 'matched_rules': [
                     {
                         'pk': rule.pk,
