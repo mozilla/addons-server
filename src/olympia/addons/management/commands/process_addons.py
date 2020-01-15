@@ -125,13 +125,13 @@ tasks = {
     'extract_webextensions_to_git_storage': {
         'method': migrate_webextensions_to_git_storage,
         'qs': [
-            Q(_current_version__files__is_webextension=True,
-              type__in=(
-                  # Ignoring legacy add-ons and lightweight themes
-                  amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
-                  amo.ADDON_DICT, amo.ADDON_LPAPP)) |
-            Q(type=amo.ADDON_SEARCH)
-        ]
+            Q(type__in=(
+                # Ignoring legacy add-ons and lightweight themes
+                amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
+                amo.ADDON_DICT, amo.ADDON_LPAPP, amo.ADDON_SEARCH))
+        ],
+        'distinct': True,
+        'allowed_kwargs': ('channel',),
     },
     'extract_colors_from_static_themes': {
         'method': extract_colors_from_static_themes,
@@ -221,6 +221,16 @@ class Command(BaseCommand):
             default=100,
             help='Split the add-ons into X size chunks. Default 100.')
 
+        parser.add_argument(
+            '--channel',
+            action='store',
+            dest='channel',
+            type=str,
+            choices=('listed', 'unlisted'),
+            help=(
+                'Only select add-ons who have either listed or unlisted '
+                'versions. Add-ons that have both will be returned too.'))
+
     def get_pks(self, manager, q_objects, distinct=False):
         pks = (manager.filter(q_objects)
                       .values_list('pk', flat=True)
@@ -238,9 +248,13 @@ class Command(BaseCommand):
             addon_manager = Addon.unfiltered
         else:
             addon_manager = Addon.objects
+        if options.get('channel'):
+            channel = amo.CHANNEL_CHOICES_LOOKUP[options['channel']]
+            addon_manager = addon_manager.filter(versions__channel=channel)
         if options.get('ids'):
             ids_list = options.get('ids').split(',')
             addon_manager = addon_manager.filter(id__in=ids_list)
+
         pks = self.get_pks(
             addon_manager, *task['qs'], distinct=task.get('distinct'))
         if options.get('limit'):

@@ -72,6 +72,17 @@ class TestScannerResultMixin:
         result.save()
         assert result.has_matches is True
 
+    def test_save_ignores_disabled_rules(self):
+        result = self.create_yara_result()
+        rule = self.rule_model.objects.create(
+            name='some rule name', scanner=result.scanner, is_active=False
+        )
+
+        result.has_matches = None
+        result.results = [{'rule': rule.name}]  # Fake match
+        result.save()
+        assert result.has_matches is False
+
     def test_extract_rule_names_with_no_yara_results(self):
         result = self.create_yara_result()
         assert result.extract_rule_names() == []

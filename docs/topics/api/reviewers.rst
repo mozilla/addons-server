@@ -142,7 +142,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
-    :>json string file.entries[].sha256: SHA256 hash.
+    :>json string|null file.entries[].sha256: SHA256 hash. This is only set for the currently selected file.
     :>json string file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined.
     :>json string files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int file.entries[].size: The size in bytes.
@@ -177,7 +177,7 @@ This endpoint allows you to compare two Add-on versions with each other.
     :>json int|null file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
-    :>json string|null file.entries[].sha256: SHA256 hash.
+    :>json string|null file.entries[].sha256: SHA256 hash. This is only set for the currently selected file. It may also be `null` for deleted files.
     :>json string|null file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined. Can be ``null`` in case of a deleted file.
     :>json string|null files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int|null file.entries[].size: The size in bytes.

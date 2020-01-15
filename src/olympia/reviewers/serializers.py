@@ -81,6 +81,37 @@ class FileEntriesSerializer(FileSerializer):
             raise NotFound(
                 'Couldn\'t find the requested version in git-repository')
 
+    def _get_hash_for_selected_file(self, obj):
+        selected_file = self.get_selected_file(obj)
+
+        # Return the hash if we already saved it to the locally cached
+        # `self._entries` dictionary.
+        _entries = getattr(self, '_entries', {})
+
+        if _entries and _entries[selected_file]['sha256']:
+            return _entries[selected_file]['sha256']
+
+        commit = self._get_commit(obj)
+        tree = self.repo.get_root_tree(commit)
+
+        cache_key = (
+            f'reviewers:fileentriesserializer:hashes'
+            f':{commit.hex}:{selected_file}')
+
+        def _calculate_hash():
+            try:
+                blob_or_tree = tree[selected_file]
+            except KeyError:
+                return None
+
+            if blob_or_tree.type == 'tree':
+                return None
+
+            blob = self.git_repo[blob_or_tree.oid]
+            return get_sha256(io.BytesIO(memoryview(blob)))
+
+        return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
+
     def get_entries(self, obj):
         # Given that this is a very expensive operation we have a two-fold
         # cache, one that is stored on this instance for very-fast retrieval
@@ -94,14 +125,11 @@ class FileEntriesSerializer(FileSerializer):
 
         def _fetch_entries():
             tree = self.repo.get_root_tree(commit)
+
             for entry_wrapper in self.repo.iter_tree(tree):
                 entry = entry_wrapper.tree_entry
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
-
-                sha_hash = (
-                    get_sha256(io.BytesIO(memoryview(blob)))
-                    if not entry.type == 'tree' else '')
 
                 commit_tzinfo = FixedOffset(commit.commit_time_offset)
                 commit_time = datetime.fromtimestamp(
@@ -114,7 +142,7 @@ class FileEntriesSerializer(FileSerializer):
                 result[path] = {
                     'depth': path.count(os.sep),
                     'filename': force_text(entry.name),
-                    'sha256': sha_hash,
+                    'sha256': None,
                     'mime_category': entry_mime_category,
                     'mimetype': mimetype,
                     'path': path,
@@ -130,6 +158,10 @@ class FileEntriesSerializer(FileSerializer):
             # enough to cover regular review-times but not overflow our
             # cache
             60 * 60 * 24)
+
+        # Fetch and set the sha hash for the currently selected file.
+        sha256 = self._get_hash_for_selected_file(obj)
+        self._entries[self.get_selected_file(obj)]['sha256'] = sha256
 
         return self._entries
 
@@ -156,7 +188,8 @@ class FileEntriesSerializer(FileSerializer):
     def get_content(self, obj):
         commit = self._get_commit(obj)
         tree = self.repo.get_root_tree(commit)
-        blob_or_tree = tree[self.get_selected_file(obj)]
+        selected_file = self.get_selected_file(obj)
+        blob_or_tree = tree[selected_file]
 
         if blob_or_tree.type == 'blob':
             blob = self.git_repo[blob_or_tree.oid]
@@ -167,8 +200,7 @@ class FileEntriesSerializer(FileSerializer):
             # data that actually can be rendered.
             if mime_category == 'text':
                 # Remove any BOM data if preset.
-                return unicodehelper.decode(
-                    self.git_repo[blob_or_tree.oid].read_raw())
+                return unicodehelper.decode(blob.read_raw())
 
         # By default return an empty string.
         # See https://github.com/mozilla/addons-server/issues/11782 for
