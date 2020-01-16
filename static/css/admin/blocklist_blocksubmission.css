@@ -1,0 +1,24 @@
+form ul.guid_list {
+    margin: 0;
+    border: solid 1px black;
+    max-height: 8em;
+    min-height: 8em;
+    overflow:hidden; overflow-y:scroll;
+    padding: 5px 20px;
+}
+
+form ul.guid_list li {
+    list-style-type: disc;
+}
+
+form ul.guid_list .addon-name {
+    font-weight: 800;
+}
+
+.field-blocks label {
+    display: none;
+}
+.field-blocks div.readonly {
+    margin-left: 0 !important;
+    margin-right: 0;
+}

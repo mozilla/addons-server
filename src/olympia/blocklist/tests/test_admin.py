@@ -1,8 +1,13 @@
 import datetime
+import json
 
 from unittest import mock
 
+from django.contrib.admin.models import LogEntry, ADDITION
+from django.contrib.contenttypes.models import ContentType
+
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -11,7 +16,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import Block, MultiBlockSubmit
+from ..models import Block, BlockSubmission
 
 
 class TestBlockAdminList(TestCase):
@@ -66,7 +71,7 @@ class TestBlockAdminAdd(TestCase):
     def setUp(self):
         self.add_url = reverse('admin:blocklist_block_add')
         self.single_url = reverse('admin:blocklist_block_add_single')
-        self.multi_url = reverse('admin:blocklist_multiblocksubmit_add')
+        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_add(self):
         user = user_factory()
@@ -264,13 +269,13 @@ class TestBlockAdminAdd(TestCase):
         assert Block.objects.count() == 0
 
 
-class TestMultiBlockSubmitAdmin(TestCase):
+class TestBlockSubmissionAdmin(TestCase):
     def setUp(self):
-        self.multi_url = reverse('admin:blocklist_multiblocksubmit_add')
+        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
         self.multi_list_url = reverse(
-            'admin:blocklist_multiblocksubmit_changelist')
+            'admin:blocklist_blocksubmission_changelist')
 
-    def test_add_multiple(self):
+    def _test_add_multiple_submit(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Reviews:Admin')
@@ -312,9 +317,9 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert 'invalid@' in content
         # Check we didn't create the block already
         assert Block.objects.count() == 2
-        assert MultiBlockSubmit.objects.count() == 0
+        assert BlockSubmission.objects.count() == 0
 
-        # Create the block
+        # Create the block submission
         response = self.client.post(
             self.multi_url, {
                 'input_guids': (
@@ -329,8 +334,13 @@ class TestMultiBlockSubmitAdmin(TestCase):
             },
             follow=True)
         assert response.status_code == 200
+        return (
+            new_addon, existing_and_full, partial_addon, existing_and_partial)
+
+    def _test_add_multiple_verify_blocks(self, new_addon, existing_and_full,
+                                         partial_addon, existing_and_partial):
         assert Block.objects.count() == 3
-        assert MultiBlockSubmit.objects.count() == 1
+        assert BlockSubmission.objects.count() == 1
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
@@ -381,7 +391,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_and_full.addon.current_version).exists()
 
-        multi = MultiBlockSubmit.objects.get()
+        multi = BlockSubmission.objects.get()
         assert multi.input_guids == (
             'any@new\npartial@existing\nfull@existing\ninvalid@')
         assert multi.min_version == new_block.min_version
@@ -392,12 +402,37 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert multi.processed_guids == {
             'invalid_guids': ['invalid@'],
             'existing_guids': ['full@existing'],
-            'blocks': ['any@new', 'partial@existing'],
+            'toblock_guids': ['any@new', 'partial@existing'],
             'blocks_saved': [
                 [new_block.id, 'any@new'],
                 [existing_and_partial.id, 'partial@existing']],
         }
 
+    @override_switch('blocklist_admin_dualsignoff_disabled', active=True)
+    def test_submit_no_dual_signoff(self):
+        new_addon, existing_and_full, partial_addon, existing_and_partial = (
+            self._test_add_multiple_submit())
+        self._test_add_multiple_verify_blocks(
+            new_addon, existing_and_full, partial_addon, existing_and_partial)
+
+    @override_switch('blocklist_admin_dualsignoff_disabled', active=False)
+    def test_submit_dual_signoff(self):
+        new_addon, existing_and_full, partial_addon, existing_and_partial = (
+            self._test_add_multiple_submit())
+        # no new Block objects yet
+        assert Block.objects.count() == 2
+        # and existing block wasn't updated
+
+        multi = BlockSubmission.objects.get()
+        multi.update(
+            signoff_state=BlockSubmission.SIGNOFF_APPROVED,
+            signoff_by=user_factory())
+        assert multi.is_save_to_blocks_permitted
+        multi.save_to_blocks()
+        self._test_add_multiple_verify_blocks(
+            new_addon, existing_and_full, partial_addon, existing_and_partial)
+
+    @override_switch('blocklist_admin_dualsignoff_disabled', active=True)
     def test_add_and_edit_with_different_min_max_versions(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -432,7 +467,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
 
         # Check we didn't create the block already
         assert Block.objects.count() == 2
-        assert MultiBlockSubmit.objects.count() == 0
+        assert BlockSubmission.objects.count() == 0
 
         # Change the min/max versions
         response = self.client.post(
@@ -451,7 +486,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert response.status_code == 200
         # No Block should have been changed or added
         assert Block.objects.count() == 2
-        assert MultiBlockSubmit.objects.count() == 0
+        assert BlockSubmission.objects.count() == 0
 
         # The guids should have been processed differently now
         doc = pq(response.content)
@@ -476,7 +511,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
 
         # This time the blocks are updated
         assert Block.objects.count() == 3
-        assert MultiBlockSubmit.objects.count() == 1
+        assert BlockSubmission.objects.count() == 1
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
@@ -528,7 +563,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_one_to_ten.addon.current_version).exists()
 
-        multi = MultiBlockSubmit.objects.get()
+        multi = BlockSubmission.objects.get()
         assert multi.input_guids == (
             'any@new\npartial@existing\nfull@existing')
         assert multi.min_version == new_block.min_version
@@ -539,7 +574,7 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert multi.processed_guids == {
             'invalid_guids': [],
             'existing_guids': ['partial@existing'],
-            'blocks': ['any@new', 'full@existing'],
+            'toblock_guids': ['any@new', 'full@existing'],
             'blocks_saved': [
                 [new_block.id, 'any@new'],
                 [existing_zero_to_max.id, 'full@existing']],
@@ -711,54 +746,237 @@ class TestMultiBlockSubmitAdmin(TestCase):
         assert existing.min_version == '1'  # check the values didn't update.
 
     def test_can_list(self):
-        mbs = MultiBlockSubmit.objects.create(
+        mbs = BlockSubmission.objects.create(
             updated_by=user_factory(display_name='Bób'))
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.grant_permission(user, 'Reviews:Admin')
-        self.client.login(email=user.email)
-        response = self.client.get(self.multi_list_url, follow=True)
-        assert response.status_code == 200
-        assert 'Bób' in response.content.decode('utf-8')
-
         # add some guids to the multi block to test out the counts in the list
         addon_factory(guid='guid@', name='Danger Danger')
         mbs.update(input_guids='guid@\ninvalid@\nsecond@invalid')
         mbs.save()
-        assert mbs.processed_guids['existing_guids'] == []
-        # the order of invalid_guids is indeterminate.
-        assert set(mbs.processed_guids['invalid_guids']) == {
-            'invalid@', 'second@invalid'}
-        assert len(mbs.processed_guids['invalid_guids']) == 2
-        assert mbs.processed_guids['blocks'] == ['guid@']
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+
         response = self.client.get(self.multi_list_url, follow=True)
+        assert response.status_code == 200
+        assert 'Bób' in response.content.decode('utf-8')
         doc = pq(response.content)
-        assert doc('td.field-invalid_guid_count').text() == '2'
-        assert doc('td.field-existing_guid_count').text() == '0'
-        assert doc('td.field-blocks_count').text() == '1'
-        assert doc('td.field-blocks_submitted_count').text() == '0'
+        assert doc('th.field-blocks_count').text() == '1 add-ons'
+        assert doc('.field-signoff_state').text() == 'Pending'
 
     def test_can_not_list_without_permission(self):
-        MultiBlockSubmit.objects.create(
+        BlockSubmission.objects.create(
             updated_by=user_factory(display_name='Bób'))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
+
         response = self.client.get(self.multi_list_url, follow=True)
         assert response.status_code == 403
         assert 'Bób' not in response.content.decode('utf-8')
 
-    def test_view(self):
+    def test_signoff_page(self):
         addon_factory(guid='guid@', name='Danger Danger')
-        mbs = MultiBlockSubmit.objects.create(
+        mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
-            updated_by=user_factory())
-        assert mbs.processed_guids['existing_guids'] == []
-        # the order of invalid_guids is indeterminate.
-        assert set(mbs.processed_guids['invalid_guids']) == {
-            'invalid@', 'second@invalid'}
-        assert len(mbs.processed_guids['invalid_guids']) == 2
-        assert mbs.processed_guids['blocks'] == ['guid@']
+            updated_by=user_factory(),
+            signoff_by=user_factory())
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+        multi_url = reverse(
+            'admin:blocklist_blocksubmission_change', args=(mbs.id,))
+
+        response = self.client.get(multi_url, follow=True)
+        assert response.status_code == 200
+        assert b'guid@<br>invalid@<br>second@invalid' in response.content
+        doc = pq(response.content)
+        buttons = doc('.submit-row input')
+        assert buttons[0].attrib['value'] == 'Update'
+        assert buttons[1].attrib['value'] == 'Reject Submission'
+        assert buttons[2].attrib['value'] == 'Approve Submission'
+
+        response = self.client.post(
+            multi_url, {
+                'input_guids': 'guid2@\nfoo@baa',  # should be ignored
+                'min_version': '1',  # should be ignored
+                'max_version': '99',  # should be ignored
+                'url': 'new.url',
+                'reason': 'a reason',
+                '_save': 'Update',
+            },
+            follow=True)
+        assert response.status_code == 200
+        mbs = mbs.reload()
+
+        # the read-only values above weren't changed.
+        assert mbs.input_guids == 'guid@\ninvalid@\nsecond@invalid'
+        assert mbs.min_version == '0'
+        assert mbs.max_version == '*'
+        # but the other details were
+        assert mbs.url == 'new.url'
+        assert mbs.reason == 'a reason'
+
+        # The blocksubmission wasn't approved or rejected though
+        assert mbs.signoff_state == BlockSubmission.SIGNOFF_PENDING
+        assert Block.objects.count() == 0
+
+        log_entry = LogEntry.objects.get()
+        assert log_entry.user == user
+        assert log_entry.object_id == str(mbs.id)
+        assert log_entry.change_message == json.dumps(
+            [{'changed': {'fields': ['url', 'reason']}}])
+
+        response = self.client.get(multi_url, follow=True)
+        assert (
+            b'Changed &quot;Pending: guid@, ...; new.url; a reason' in
+            response.content)
+
+    def test_signoff_approve(self):
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        mbs = BlockSubmission.objects.create(
+            input_guids='guid@\ninvalid@',
+            updated_by=user_factory(),
+            signoff_by=user_factory())
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+        multi_url = reverse(
+            'admin:blocklist_blocksubmission_change', args=(mbs.id,))
+        response = self.client.post(
+            multi_url, {
+                'input_guids': 'guid2@\nfoo@baa',  # should be ignored
+                'min_version': '1',  # should be ignored
+                'max_version': '99',  # should be ignored
+                'url': 'new.url',
+                'reason': 'a reason',
+                '_signoff': 'Approve Submission',
+            },
+            follow=True)
+        assert response.status_code == 200
+        mbs = mbs.reload()
+        assert mbs.signoff_by == user
+
+        # the read-only values above weren't changed.
+        assert mbs.input_guids == 'guid@\ninvalid@'
+        assert mbs.min_version == '0'
+        assert mbs.max_version == '*'
+        # but the other details were
+        assert mbs.url == 'new.url'
+        assert mbs.reason == 'a reason'
+
+        # As it was signed off, the block should have been created
+        assert Block.objects.count() == 1
+        new_block = Block.objects.get()
+
+        assert new_block.addon == addon
+        log = ActivityLog.objects.for_addons(addon).get()
+        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert log.arguments == [addon, addon.guid, new_block]
+        assert log.details['min_version'] == '0'
+        assert log.details['max_version'] == '*'
+        assert log.details['reason'] == 'a reason'
+        block_log = ActivityLog.objects.for_block(new_block).filter(
+            action=log.action).last()
+        assert block_log == log
+        vlog = ActivityLog.objects.for_version(addon.current_version).last()
+        assert vlog == log
+
+        assert mbs.processed_guids == {
+            'invalid_guids': ['invalid@'],
+            'existing_guids': [],
+            'toblock_guids': ['guid@'],
+            'blocks_saved': [
+                [new_block.id, 'guid@'],
+            ],
+        }
+
+        log_entry = LogEntry.objects.last()
+        assert log_entry.user == user
+        assert log_entry.object_id == str(mbs.id)
+        other_obj = addon_factory(id=mbs.id)
+        LogEntry.objects.log_action(
+            user_factory().id, ContentType.objects.get_for_model(other_obj).pk,
+            other_obj.id, repr(other_obj), ADDITION, 'not a Block!')
+
+        response = self.client.get(multi_url, follow=True)
+        assert (
+            b'Changed &quot;Approved: guid@, ...; new.url; '
+            b'a reason&quot; - Sign-off Approval' in
+            response.content)
+        assert b'not a Block!' not in response.content
+
+    def test_signoff_reject(self):
+        addon_factory(guid='guid@', name='Danger Danger')
+        mbs = BlockSubmission.objects.create(
+            input_guids='guid@\ninvalid@',
+            updated_by=user_factory(),
+            signoff_by=user_factory())
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Reviews:Admin')
+        self.client.login(email=user.email)
+        multi_url = reverse(
+            'admin:blocklist_blocksubmission_change', args=(mbs.id,))
+        response = self.client.post(
+            multi_url, {
+                'input_guids': 'guid2@\nfoo@baa',  # should be ignored
+                'min_version': '1',  # should be ignored
+                'max_version': '99',  # should be ignored
+                'url': 'new.url',
+                'reason': 'a reason',
+                '_reject': 'Reject Submission',
+            },
+            follow=True)
+        assert response.status_code == 200
+        mbs = mbs.reload()
+
+        # the read-only values above weren't changed.
+        assert mbs.input_guids == 'guid@\ninvalid@'
+        assert mbs.min_version == '0'
+        assert mbs.max_version == '*'
+        # but the other details were
+        assert mbs.url == 'new.url'
+        assert mbs.reason == 'a reason'
+
+        # And the blocksubmission was rejected, so no Blocks created
+        assert mbs.signoff_state == BlockSubmission.SIGNOFF_REJECTED
+        assert Block.objects.count() == 0
+        assert not mbs.is_save_to_blocks_permitted
+
+        log_entry = LogEntry.objects.last()
+        assert log_entry.user == user
+        assert log_entry.object_id == str(mbs.id)
+        other_obj = addon_factory(id=mbs.id)
+        LogEntry.objects.log_action(
+            user_factory().id, ContentType.objects.get_for_model(other_obj).pk,
+            other_obj.id, repr(other_obj), ADDITION, 'not a Block!')
+
+        response = self.client.get(multi_url, follow=True)
+        assert (
+            b'Changed &quot;Rejected: guid@, ...; new.url; '
+            b'a reason&quot; - Sign-off Rejection' in
+            response.content)
+        assert b'not a Block!' not in response.content
+
+    def test_signed_off_view(self):
+        addon_factory(guid='guid@', name='Danger Danger')
+        mbs = BlockSubmission.objects.create(
+            input_guids='guid@\ninvalid@\nsecond@invalid',
+            updated_by=user_factory(),
+            signoff_by=user_factory(),
+            signoff_state=BlockSubmission.SIGNOFF_APPROVED)
+        assert mbs.processed_guids['toblock_guids'] == ['guid@']
         mbs.save_to_blocks()
         block = Block.objects.get()
 
@@ -767,18 +985,16 @@ class TestMultiBlockSubmitAdmin(TestCase):
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
         multi_view_url = reverse(
-            'admin:blocklist_multiblocksubmit_change', args=(mbs.id,))
+            'admin:blocklist_blocksubmission_change', args=(mbs.id,))
 
         response = self.client.get(multi_view_url, follow=True)
         assert response.status_code == 200
-
         assert b'guid@<br>invalid@<br>second@invalid' in response.content
-
         doc = pq(response.content)
-        guid_link = doc('div.field-blocks_submitted div div a')
+        guid_link = doc('div.field-blocks div div a')
         assert guid_link.attr('href') == reverse(
             'admin:blocklist_block_change', args=(block.pk,))
-        assert guid_link.text() == 'guid@'
+        assert not doc('submit-row input')
 
 
 class TestBlockAdminEdit(TestCase):
