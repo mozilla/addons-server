@@ -20,6 +20,8 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     FLAG_FOR_HUMAN_REVIEW,
+    QUERY_RULE_STATES,
+    NEW,
     NO_ACTION,
     RESULT_STATES,
     SCANNERS,
@@ -50,9 +52,6 @@ class AbstractScannerResult(ModelBase):
         related_name="%(class)ss",
         on_delete=models.CASCADE,
         null=True,
-    )
-    matched_rules = models.ManyToManyField(
-        'ScannerRule', through='ScannerMatch'
     )
 
     class Meta(ModelBase.Meta):
@@ -267,6 +266,10 @@ class ScannerResult(AbstractScannerResult):
         on_delete=models.SET_NULL,
         null=True,
     )
+    matched_rules = models.ManyToManyField(
+        'ScannerRule', through='ScannerMatch',
+        related_name='results',
+    )
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_results'
@@ -285,6 +288,10 @@ class ScannerMatch(ModelBase):
 
 
 class ScannerQueryRule(AbstractScannerRule):
+    state = models.PositiveSmallIntegerField(
+        choices=QUERY_RULE_STATES.items(), default=NEW
+    )
+
     class Meta(AbstractScannerRule.Meta):
         db_table = 'scanners_query_rules'
 
@@ -292,7 +299,8 @@ class ScannerQueryRule(AbstractScannerRule):
 class ScannerQueryResult(AbstractScannerResult):
     # Has to be overridden, because the parent refers to ScannerMatch.
     matched_rules = models.ManyToManyField(
-        'ScannerQueryRule', through='ScannerQueryMatch'
+        'ScannerQueryRule', through='ScannerQueryMatch',
+        related_name='results',
     )
 
     class Meta(AbstractScannerResult.Meta):

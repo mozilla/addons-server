@@ -3,9 +3,13 @@ from unittest import mock
 from django.test.utils import override_settings
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, AMOPaths, TestCase
+from olympia.amo.tests import (
+    addon_factory, AMOPaths, TestCase, version_factory
+)
 from olympia.constants.scanners import (
+    COMPLETED,
     CUSTOMS,
+    NEW,
     WAT,
     YARA,
 )
@@ -18,7 +22,8 @@ from olympia.scanners.tasks import (
     run_customs,
     run_wat,
     run_yara,
-    run_yara_query_rule_on_version,
+    run_yara_query_rule,
+    run_yara_query_rule_on_versions_chunk,
 )
 
 
@@ -410,24 +415,79 @@ class TestRunYara(UploadTest, TestCase):
         assert received_results == self.results
 
 
-class TestRunYaraRuleOnVersion(AMOPaths, TestCase):
+class TestRunYaraQueryRule(AMOPaths, TestCase):
     def setUp(self):
         super().setUp()
 
-        self.version = addon_factory().current_version
+        self.version = addon_factory(
+            file_kw={'is_webextension': True}).current_version
         self.xpi_copy_over(self.version.all_files[0], 'webextension.xpi')
 
-    @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_run(self, incr_mock):
-        assert len(ScannerQueryResult.objects.all()) == 0
         # This rule will match for all files in the xpi.
-        rule = ScannerQueryRule.objects.create(
+        self.rule = ScannerQueryRule.objects.create(
             name='always_true',
             scanner=YARA,
             definition='rule always_true { condition: true }',
+            state=NEW,
         )
 
-        run_yara_query_rule_on_version(rule.pk, self.version.pk)
+        # Just to be sure we're always starting fresh.
+        assert len(ScannerQueryResult.objects.all()) == 0
+
+    def test_run(self):
+        # Similar to test_run_on_chunk() except it needs to find the versions
+        # by itself.
+        other_addon = addon_factory(
+            file_kw={'is_webextension': True},
+            version_kw={'created': self.days_ago(1)})
+        other_addon_previous_current_version = other_addon.current_version
+        included_versions = [
+            # Only listed webextension version on this add-on.
+            self.version,
+            # Unlisted webextension version of this add-on.
+            addon_factory(
+                disabled_by_user=True,  # Doesn't matter.
+                file_kw={'is_webextension': True},
+                version_kw={
+                    'channel': amo.RELEASE_CHANNEL_UNLISTED}).versions.get(),
+            # Unlisted webextension version of an add-on that has multiple
+            # versions.
+            version_factory(
+                addon=other_addon,
+                created=self.days_ago(42),
+                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                file_kw={'is_webextension': True}),
+            # Listed webextension version of an add-on that has multiple
+            # versions.
+            version_factory(
+                addon=other_addon, file_kw={'is_webextension': True}),
+        ]
+        for version in included_versions:
+            self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
+
+        # Ignored versions:
+        # Listed Webextension version belonging to mozilla disabled add-on.
+        addon_factory(
+            file_kw={'is_webextension': True},
+            status=amo.STATUS_DISABLED).current_version
+        # Non-Webextension
+        addon_factory(file_kw={'is_webextension': False}).current_version
+
+        # Listed webextension but not the latest one.
+        other_addon_previous_current_version
+
+        # Run the task.
+        run_yara_query_rule.delay(self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == len(included_versions)
+        assert sorted(
+            ScannerQueryResult.objects.values_list('version_id', flat=True)
+        ) == sorted(v.pk for v in included_versions)
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+
+    def test_run_on_chunk(self):
+        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         yara_results = ScannerQueryResult.objects.all()
         assert len(yara_results) == 1
@@ -435,19 +495,23 @@ class TestRunYaraRuleOnVersion(AMOPaths, TestCase):
         assert yara_result.version == self.version
         assert len(yara_result.results) == 2
         assert yara_result.results[0] == {
-            'rule': rule.name,
+            'rule': self.rule.name,
             'tags': [],
             'meta': {'filename': 'index.js'},
         }
         assert yara_result.results[1] == {
-            'rule': rule.name,
+            'rule': self.rule.name,
             'tags': [],
             'meta': {'filename': 'manifest.json'},
         }
-        assert incr_mock.called
-        assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls(
-            [
-                mock.call('scanners.run_yara_query_rule_on_version.success'),
-            ]
-        )
+        self.rule.reload()
+        assert self.rule.state == NEW  # Not touched by this.
+
+    def test_dont_generate_results_if_not_matching_rule(self):
+        # Unlike "regular" ScannerRule/ScannerResult, for query stuff we don't
+        # store a result instance if the version doesn't match the rule.
+        self.rule.update(definition='rule always_false { condition: false }')
+        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+        assert ScannerQueryResult.objects.count() == 0
+        self.rule.reload()
+        assert self.rule.state == NEW  # Not touched by this.
