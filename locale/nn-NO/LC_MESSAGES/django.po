@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-14 00:37+0000\n"
+"PO-Revision-Date: 2020-01-16 10:25+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -19,9 +19,8 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#, fuzzy
 msgid "Users"
-msgstr "Brukar"
+msgstr "Brukarar"
 
 msgid "Addons"
 msgstr "Tillegg"
@@ -29,17 +28,14 @@ msgstr "Tillegg"
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
 
-#, fuzzy
 msgid "creation date"
-msgstr "Retningslinjer for moderasjonar"
+msgstr "dato oppretta"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "Ulista utvidingar"
+msgstr "Brukar/Tillegg"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Skildring"
+msgstr "Distribusjon"
 
 msgid "Reporter's country"
 msgstr ""
@@ -77,9 +73,8 @@ msgstr "Ingen lenker er tillatne."
 msgid "This display name cannot be used."
 msgstr "Dette visingsnamnet kan ikkje brukast."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "Dette namnet kan ikkje brukast."
+msgstr "Dette vurderar-namnet kan ikkje brukast."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Heimesidefeltet kan berre brukast for å lenke til eksterne nettsider."
@@ -219,13 +214,11 @@ msgstr ""
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Må ha minst ein eigar."
+msgstr "Må innehalde minst eitt teikn som kan skrivast."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Må ha minst ein eigar."
+msgstr "Sjå til at dette feltet inneheld minst ein bokstav eller eitt siffer."
 
 msgid "Not allowed"
 msgstr "Ikkje tillate"
