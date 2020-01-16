@@ -19,7 +19,8 @@ from .forms import MultiAddForm, MultiDeleteForm
 from .models import Block, BlockSubmission
 from .tasks import create_blocks_from_multi_block
 from .utils import (
-    block_activity_log_delete, block_activity_log_save, format_block_history)
+    block_activity_log_delete, block_activity_log_save, format_block_history,
+    splitlines)
 
 
 # The limit for how many GUIDs should be fully loaded with all metadata
@@ -52,7 +53,7 @@ class BlockAdminAddMixin():
         if request.method == 'POST':
             form = MultiAddForm(request.POST)
             if form.is_valid():
-                guids = form.data.get('guids', '').splitlines()
+                guids = splitlines(form.data.get('guids'))
                 if len(guids) == 1:
                     # If the guid already has a Block go to the change view
                     if form.existing_block:

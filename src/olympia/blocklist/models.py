@@ -20,7 +20,7 @@ from django.utils.translation import gettext_lazy as _
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import Version
 
-from .utils import block_activity_log_save
+from .utils import block_activity_log_save, splitlines
 
 
 class Block(ModelBase):
@@ -166,7 +166,7 @@ class BlockSubmission(ModelBase):
         choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING)
 
     def __str__(self):
-        guids = (self.input_guids or '').splitlines()
+        guids = splitlines(self.input_guids)
         repr = []
         if len(guids) == 1:
             repr.append(guids[0])
@@ -248,7 +248,7 @@ class BlockSubmission(ModelBase):
         FakeBlock = namedtuple(
             'FakeBlock', ('guid', 'addon', 'min_version', 'max_version'))
         FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
-        all_guids = set(guids.splitlines())
+        all_guids = set(splitlines(guids))
 
         # load all the Addon instances together
         addon_qs = Addon.unfiltered.filter(guid__in=all_guids).order_by(

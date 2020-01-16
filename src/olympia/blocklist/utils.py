@@ -84,3 +84,7 @@ def format_block_history(logs):
     return format_html(
         '<ul>\n{}\n</ul>',
         format_html_join_kw('\n', history_format_string, log_entries_gen))
+
+
+def splitlines(text):
+    return [line.strip() for line in str(text or '').splitlines()]
