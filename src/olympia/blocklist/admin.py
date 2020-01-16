@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, contenttypes
 from django.core.exceptions import PermissionDenied
 from django.forms import modelform_factory
 from django.forms.fields import CharField, ChoiceField
@@ -341,7 +341,10 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         return log_entry
 
     def submission_logs(self, obj):
-        logs = admin.models.LogEntry.objects.filter(object_id=obj.id)
+        content_type = contenttypes.models.ContentType.objects.get_for_model(
+            self.model)
+        logs = admin.models.LogEntry.objects.filter(
+            object_id=obj.id, content_type=content_type)
         return '\n'.join(
             f'{log.action_time.date()}: {str(log)}' for log in logs)
 

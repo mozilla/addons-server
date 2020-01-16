@@ -3,7 +3,8 @@ import json
 
 from unittest import mock
 
-from django.contrib.admin.models import LogEntry
+from django.contrib.admin.models import LogEntry, ADDITION
+from django.contrib.contenttypes.models import ContentType
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -901,12 +902,17 @@ class TestBlockSubmissionAdmin(TestCase):
         log_entry = LogEntry.objects.last()
         assert log_entry.user == user
         assert log_entry.object_id == str(mbs.id)
+        other_obj = addon_factory(id=mbs.id)
+        LogEntry.objects.log_action(
+            user_factory().id, ContentType.objects.get_for_model(other_obj).pk,
+            other_obj.id, repr(other_obj), ADDITION, 'not a Block!')
 
         response = self.client.get(multi_url, follow=True)
         assert (
             b'Changed &quot;Approved: guid@, ...; new.url; '
             b'a reason&quot; - Sign-off Approval' in
             response.content)
+        assert b'not a Block!' not in response.content
 
     def test_signoff_reject(self):
         addon_factory(guid='guid@', name='Danger Danger')
@@ -951,12 +957,17 @@ class TestBlockSubmissionAdmin(TestCase):
         log_entry = LogEntry.objects.last()
         assert log_entry.user == user
         assert log_entry.object_id == str(mbs.id)
+        other_obj = addon_factory(id=mbs.id)
+        LogEntry.objects.log_action(
+            user_factory().id, ContentType.objects.get_for_model(other_obj).pk,
+            other_obj.id, repr(other_obj), ADDITION, 'not a Block!')
 
         response = self.client.get(multi_url, follow=True)
         assert (
             b'Changed &quot;Rejected: guid@, ...; new.url; '
             b'a reason&quot; - Sign-off Rejection' in
             response.content)
+        assert b'not a Block!' not in response.content
 
     def test_signed_off_view(self):
         addon_factory(guid='guid@', name='Danger Danger')
