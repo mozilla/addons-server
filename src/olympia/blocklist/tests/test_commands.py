@@ -12,7 +12,7 @@ from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.blocklist.management.commands import import_blocklist
 
-from ..models import Block
+from ..models import Block, KintoImport
 
 
 # This is a fragment of the actual json blocklist file
@@ -37,8 +37,14 @@ class TestImportBlocklist(TestCase):
         """
         addon_factory()
         assert Block.objects.count() == 0
+        assert KintoImport.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 0
+        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 5
 
     def test_regex(self):
         """ Test regex style "guids" are parsed and expanded to blocks."""
@@ -46,6 +52,7 @@ class TestImportBlocklist(TestCase):
         addon_factory(guid='_dqMNemberstst_@www.dowespedtgttest.com')
         addon_factory(guid='{90ac2d06-caf8-46b9-5325-59c82190b687}')
         addon_factory()
+        assert KintoImport.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 3
         blocks = list(Block.objects.all())
@@ -64,11 +71,21 @@ class TestImportBlocklist(TestCase):
             assert block.kinto_id == '*' + this_block['id']
             assert block.include_in_legacy
             assert block.modified == datetime(2019, 11, 29, 22, 22, 46, 785000)
+        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
+        kim = KintoImport.objects.get(
+            outcome=KintoImport.OUTCOME_REGEXBLOCKS)
+        assert kim.kinto_id == this_block['id']
+        assert kim.record == this_block
 
     def test_single_guid(self):
         addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
         addon_factory(guid='Ytarkovpn.5.14@firefox.com')
         addon_factory()
+        assert KintoImport.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 2
         blocks = list(Block.objects.all())
@@ -94,6 +111,18 @@ class TestImportBlocklist(TestCase):
         assert blocks[1].kinto_id == blocklist_json['data'][2]['id']
         assert blocks[1].include_in_legacy
         assert blocks[1].modified == datetime(2019, 11, 22, 16, 49, 58, 416000)
+        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 3
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
+        kims = KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_BLOCK).order_by('created')
+        assert kims.count() == 2
+        assert kims[0].kinto_id == blocks[0].kinto_id
+        assert kims[0].record == blocklist_json['data'][1]
+        assert kims[1].kinto_id == blocks[1].kinto_id
+        assert kims[1].record == blocklist_json['data'][2]
 
     def test_target_application(self):
         fx_addon = addon_factory(
@@ -109,6 +138,15 @@ class TestImportBlocklist(TestCase):
             this_block['versionRange'][0]['targetApplication'][0]['guid'] ==
             amo.FIREFOX.guid)
         assert Block.objects.get().guid == fx_addon.guid
+        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
+        kim = KintoImport.objects.get(
+            outcome=KintoImport.OUTCOME_REGEXBLOCKS)
+        assert kim.kinto_id == this_block['id']
+        assert kim.record == this_block
 
     def test_bracket_escaping(self):
         """Some regexs don't escape the {} which is invalid in mysql regex.
@@ -139,10 +177,8 @@ class TestImportBlocklist(TestCase):
     def test_blocks_are_not_imported_twice(self, import_task_mock):
         addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
         addon_factory()
-        imported = Block.objects.create(
-            addon=addon_factory(guid='Ytarkovpn.5.14@firefox.com'),
+        imported = KintoImport.objects.create(
             kinto_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656')
-        assert Block.objects.count() == 1
         assert len(blocklist_json['data']) == 6
 
         call_command('import_blocklist')
@@ -152,7 +188,7 @@ class TestImportBlocklist(TestCase):
         assert import_task_mock.call_args_list[1][0] == (
             blocklist_json['data'][1],)
         # blocklist_json['data'][2] is the already imported block
-        assert imported.guid == blocklist_json['data'][2]['guid']
+        assert imported.kinto_id == blocklist_json['data'][2]['id']
         assert import_task_mock.call_args_list[2][0] == (
             blocklist_json['data'][3],)
         assert import_task_mock.call_args_list[3][0] == (
