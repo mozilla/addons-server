@@ -166,7 +166,8 @@ tasks = {
         'method': delete_addons,
         'qs': [
             Q(type=amo.ADDON_SEARCH)
-        ]
+        ],
+        'allowed_kwargs': ('with_deleted',),
     }
 }
 
