@@ -143,11 +143,22 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         return False
 
     def has_change_permission(self, request, obj=None):
+        """ While a block submission is pending we want it to be partially
+        editable (the url and reason).  Once it's been rejected or approved it
+        can't be changed though.  Note: as sign-off uses the changeform this
+        can't conflict with `has_signoff_permission`."""
         has = super().has_change_permission(request, obj=obj)
         pending = obj and obj.signoff_state == BlockSubmission.SIGNOFF_PENDING
         return has and (not obj or pending)
 
     def has_signoff_permission(self, request, obj=None):
+        """ This controls whether the sign-off approve and reject actions are
+        available on the change form.  `BlockSubmission.can_user_signoff`
+        confirms the current user, who will signoff, is different from the user
+        who submitted the guids (unless settings.DEBUG is True or the check is
+        ignored)"""
+        # Because it uses the changeform, `has_change_permission` must also be
+        # true, so check it first.
         has = self.has_change_permission(request, obj=obj)
         pending = obj and obj.signoff_state == BlockSubmission.SIGNOFF_PENDING
         return has and obj and pending and obj.can_user_signoff(request.user)
