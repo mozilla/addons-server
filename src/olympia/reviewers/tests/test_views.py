@@ -4647,7 +4647,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('.abuse_reports')
         expected = [
-            'Target',
+            'Developer/Addon',
             'Application',
             'Install date',
             'Install origin',
@@ -4685,7 +4685,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('.abuse_reports')
         expected = [
-            'Target',
+            'Developer/Addon',
             'Application',
             'Install date',
             'Install origin',
@@ -5023,7 +5023,7 @@ class TestAbuseReportsView(ReviewerTest):
         doc = pq(response.content)
         assert len(doc('.abuse_reports')) == 1
         expected = [
-            'Target',
+            'Developer/Addon',
             'Application',
             'Install date',
             'Install origin',
