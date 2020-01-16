@@ -5,7 +5,7 @@ Testing
 =======
 
 We're using a mix of `Django's Unit Testing`_ and `pytest`_ with
-`pytest-django`_, and `Selenium`_ for our automated testing. This gives us a
+`pytest-django`_ for our automated testing. This gives us a
 lot of power and flexibility to test all aspects of the site.
 
 Configuration
@@ -73,43 +73,6 @@ If you wish to re-run only the tests failed from the previous run::
 
     make test_failed
 
-Selenium Integration Tests
---------------------------
-The selenium based tests require a separate docker-compose configuration, so to start
-the respective docker image, use the following command::
-
-    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
-
-To make sure the appropriate containers are setup run the following commands:
-
-Setup for ```worker``` container::
-
-    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec worker make -f Makefile-docker update_deps update_assets
-
-Followed by::
-
-    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml restart worker
-
-Setup for ```web``` container::
-
-    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec web make -f Makefile-docker update_deps update_assets
-
-Followed by::
-
-    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml restart web
-
-To setup the data within the database that the tests will look for run this command::
-
-    make -f Makefile-docker setup-ui-tests
-
-Now, to run the selenium based tests outside of the docker container use the following command::
-
-    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
-
-WARNING: This will WIPE the database as the test will create specific data for itself to look for.
-If you have anything you don't want to be deleted, please do not run these tests.
-
-For more detailed information on the integration tests, please see the Readme within the ``tests/ui`` directory.
 
 Database Setup
 ~~~~~~~~~~~~~~
@@ -144,10 +107,6 @@ Most tests are in this category.  Our test classes extend
 ``django.test.TestCase`` and follow the standard rules for unit tests.
 We're using JSON fixtures for the data.
 
-Selenium Integration Tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-The `Selenium`_ tests are written using a Page Object Model via `PyPom`_. Please
-view the documentation there to help you write integration tests.
 
 External calls
 ~~~~~~~~~~~~~~
@@ -180,7 +139,5 @@ need to recompile the .mo files manually, for example::
 .. _`PyPom`: http://pypom.readthedocs.io/en/latest/
 .. _`pytest`: http://pytest.org/
 .. _`pytest-django`: https://pytest-django.readthedocs.io/en/latest/
-.. _`Selenium`: http://www.seleniumhq.org/
-.. _`Selenium repository`: https://github.com/mozilla/Addon-Tests/
 .. _mock: http://pypi.python.org/pypi/mock
 .. _fixtures: http://pytest.org/en/latest/fixture.html
