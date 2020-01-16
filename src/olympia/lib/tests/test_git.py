@@ -21,6 +21,11 @@ from olympia.lib.git import (
 from olympia.files.utils import id_to_path
 
 
+# Aliases for easier and shorter access
+_blob_type = pygit2.GIT_OBJ_BLOB
+_tree_type = pygit2.GIT_OBJ_TREE
+
+
 def _run_process(cmd, repo):
     """Small helper to run git commands on the shell"""
     return subprocess.check_output(
@@ -482,28 +487,28 @@ def test_iter_tree():
 
     # path, filename mapping
     expected_files = [
-        ('README.md', 'README.md', 'blob'),
-        ('_locales', '_locales', 'tree'),
-        ('_locales/de', 'de', 'tree'),
-        ('_locales/de/messages.json', 'messages.json', 'blob'),
-        ('_locales/en', 'en', 'tree'),
-        ('_locales/en/messages.json', 'messages.json', 'blob'),
-        ('_locales/ja', 'ja', 'tree'),
-        ('_locales/ja/messages.json', 'messages.json', 'blob'),
-        ('_locales/nb_NO', 'nb_NO', 'tree'),
-        ('_locales/nb_NO/messages.json', 'messages.json', 'blob'),
-        ('_locales/nl', 'nl', 'tree'),
-        ('_locales/nl/messages.json', 'messages.json', 'blob'),
-        ('_locales/ru', 'ru', 'tree'),
-        ('_locales/ru/messages.json', 'messages.json', 'blob'),
-        ('_locales/sv', 'sv', 'tree'),
-        ('_locales/sv/messages.json', 'messages.json', 'blob'),
-        ('background-script.js', 'background-script.js', 'blob'),
-        ('content-script.js', 'content-script.js', 'blob'),
-        ('icons', 'icons', 'tree'),
-        ('icons/LICENSE', 'LICENSE', 'blob'),
-        ('icons/link-48.png', 'link-48.png', 'blob'),
-        ('manifest.json', 'manifest.json', 'blob'),
+        ('README.md', 'README.md', _blob_type),
+        ('_locales', '_locales', _tree_type),
+        ('_locales/de', 'de', _tree_type),
+        ('_locales/de/messages.json', 'messages.json', _blob_type),
+        ('_locales/en', 'en', _tree_type),
+        ('_locales/en/messages.json', 'messages.json', _blob_type),
+        ('_locales/ja', 'ja', _tree_type),
+        ('_locales/ja/messages.json', 'messages.json', _blob_type),
+        ('_locales/nb_NO', 'nb_NO', _tree_type),
+        ('_locales/nb_NO/messages.json', 'messages.json', _blob_type),
+        ('_locales/nl', 'nl', _tree_type),
+        ('_locales/nl/messages.json', 'messages.json', _blob_type),
+        ('_locales/ru', 'ru', _tree_type),
+        ('_locales/ru/messages.json', 'messages.json', _blob_type),
+        ('_locales/sv', 'sv', _tree_type),
+        ('_locales/sv/messages.json', 'messages.json', _blob_type),
+        ('background-script.js', 'background-script.js', _blob_type),
+        ('content-script.js', 'content-script.js', _blob_type),
+        ('icons', 'icons', _tree_type),
+        ('icons/LICENSE', 'LICENSE', _blob_type),
+        ('icons/link-48.png', 'link-48.png', _blob_type),
+        ('manifest.json', 'manifest.json', _blob_type),
     ]
 
     for idx, entry in enumerate(tree):
@@ -1138,35 +1143,35 @@ def test_get_raw_diff_cache_unmodified_file():
 @pytest.mark.parametrize(
     'entry, filename, expected_category, expected_mimetype',
     [
-        (MagicMock(type='blob'), 'blank.pdf', 'binary', 'application/pdf'),
-        (MagicMock(type='blob'), 'blank.txt', 'text', 'text/plain'),
-        (MagicMock(type='blob'), 'empty_bat.exe', 'binary',
-                                 'application/x-dosexec'),
-        (MagicMock(type='blob'), 'fff.gif', 'image', 'image/gif'),
-        (MagicMock(type='blob'), 'foo.css', 'text', 'text/css'),
-        (MagicMock(type='blob'), 'foo.html', 'text', 'text/html'),
-        (MagicMock(type='blob'), 'foo.js', 'text', 'text/javascript'),
-        (MagicMock(type='blob'), 'foo.py', 'text', 'text/x-python'),
-        (MagicMock(type='blob'), 'image.jpg', 'image', 'image/jpeg'),
-        (MagicMock(type='blob'), 'image.png', 'image', 'image/png'),
-        (MagicMock(type='blob'), 'search.xml', 'text', 'text/xml'),
-        (MagicMock(type='blob'), 'js_containing_png_data.js', 'text',
-                                 'text/javascript'),
-        (MagicMock(type='blob'), 'foo.json', 'text', 'application/json'),
-        (MagicMock(type='tree'), 'foo', 'directory',
-                                 'application/octet-stream'),
-        (MagicMock(type='blob'), 'image-svg-without-xml.svg', 'image',
-                                 'image/svg+xml'),
-        (MagicMock(type='blob'), 'bmp-v3.bmp', 'image', 'image/bmp'),
-        (MagicMock(type='blob'), 'bmp-v4.bmp', 'image', 'image/bmp'),
-        (MagicMock(type='blob'), 'bmp-v5.bmp', 'image', 'image/bmp'),
-        (MagicMock(type='blob'), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
+        (MagicMock(type=_blob_type), 'blank.pdf', 'binary','application/pdf'),
+        (MagicMock(type=_blob_type), 'blank.txt', 'text', 'text/plain'),
+        (MagicMock(type=_blob_type), 'empty_bat.exe', 'binary',
+                                     'application/x-dosexec'),
+        (MagicMock(type=_blob_type), 'fff.gif', 'image', 'image/gif'),
+        (MagicMock(type=_blob_type), 'foo.css', 'text', 'text/css'),
+        (MagicMock(type=_blob_type), 'foo.html', 'text', 'text/html'),
+        (MagicMock(type=_blob_type), 'foo.js', 'text', 'text/javascript'),
+        (MagicMock(type=_blob_type), 'foo.py', 'text', 'text/x-python'),
+        (MagicMock(type=_blob_type), 'image.jpg', 'image', 'image/jpeg'),
+        (MagicMock(type=_blob_type), 'image.png', 'image', 'image/png'),
+        (MagicMock(type=_blob_type), 'search.xml', 'text', 'text/xml'),
+        (MagicMock(type=_blob_type), 'js_containing_png_data.js', 'text',
+                                     'text/javascript'),
+        (MagicMock(type=_blob_type), 'foo.json', 'text', 'application/json'),
+        (MagicMock(type=_tree_type), 'foo', 'directory',
+                                     'application/octet-stream'),
+        (MagicMock(type=_blob_type), 'image-svg-without-xml.svg', 'image',
+                                     'image/svg+xml'),
+        (MagicMock(type=_blob_type), 'bmp-v3.bmp', 'image', 'image/bmp'),
+        (MagicMock(type=_blob_type), 'bmp-v4.bmp', 'image', 'image/bmp'),
+        (MagicMock(type=_blob_type), 'bmp-v5.bmp', 'image', 'image/bmp'),
+        (MagicMock(type=_blob_type), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
         # This is testing that a tag listed at
         # https://github.com/file/file/blob/master/magic/Magdir/sgml#L57
         # doesn't lead to the file being detected as HTML, which was fixed
         # in most recent libmagic versions.
-        (MagicMock(type='blob'), 'html-containing.json', 'text',
-                                 'application/json'),
+        (MagicMock(type=_blob_type), 'html-containing.json', 'text',
+                                     'application/json'),
     ]
 )
 def test_get_mime_type_for_blob(
@@ -1175,7 +1180,7 @@ def test_get_mime_type_for_blob(
         settings.ROOT,
         'src/olympia/files/fixtures/files/file_viewer_filetypes/')
 
-    if entry.type == 'tree':
+    if entry.type == pygit2.GIT_OBJ_TREE:
         mime, category = get_mime_type_for_blob(entry.type, filename, None)
     else:
         with open(os.path.join(root, filename), 'rb') as fobj:

@@ -98,7 +98,7 @@ def get_mime_type_for_blob(tree_or_blob, name, blob):
     The type category can be ``image``, ``directory``, ``text`` or
     ``binary``.
     """
-    if tree_or_blob == 'tree':
+    if tree_or_blob == pygit2.GIT_OBJ_TREE:
         return 'application/octet-stream', 'directory'
 
     # Hardcoding the maximum amount of bytes to read here

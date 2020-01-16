@@ -104,7 +104,7 @@ class FileEntriesSerializer(FileSerializer):
             except KeyError:
                 return None
 
-            if blob_or_tree.type == 'tree':
+            if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
                 return None
 
             blob = self.git_repo[blob_or_tree.oid]
@@ -191,7 +191,7 @@ class FileEntriesSerializer(FileSerializer):
         selected_file = self.get_selected_file(obj)
         blob_or_tree = tree[selected_file]
 
-        if blob_or_tree.type == 'blob':
+        if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
             blob = self.git_repo[blob_or_tree.oid]
             mimetype, mime_category = get_mime_type_for_blob(
                 tree_or_blob='blob', name=blob_or_tree.name, blob=blob)
@@ -218,7 +218,7 @@ class FileEntriesSerializer(FileSerializer):
             # This can happen when the file has been deleted.
             return None
 
-        if blob_or_tree.type == 'tree':
+        if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
             return None
 
         return absolutify(reverse(
