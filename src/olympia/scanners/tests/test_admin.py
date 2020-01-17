@@ -39,7 +39,8 @@ class TestScannerResultAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:*')
+        self.grant_permission(self.user, 'Admin:ScannersResultsEdit')
+        self.grant_permission(self.user, 'Admin:ScannersResultsView')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerresult_changelist')
 
