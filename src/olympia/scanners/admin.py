@@ -390,6 +390,15 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
 
+    def get_fields(self, request, obj=None):
+        fields = super().get_fields(request, obj)
+        if not self.has_change_permission(request, obj):
+            # Remove the 'definition' field...
+            fields = list(filter(lambda x: x != 'definition', fields))
+            # ...and add its readonly (and pretty!) alter-ego.
+            fields.append('formatted_definition')
+        return fields
+
     def matched_results_link(self, obj):
         if not obj.pk or not obj.scanner:
             return '-'
@@ -409,6 +418,10 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
         return format_html('<a href="{}">{}</a>', url, count)
 
     matched_results_link.short_description = 'Matched Results'
+
+    def formatted_definition(self, obj):
+        return format_html('<pre>{}</pre>', obj.definition)
+    formatted_definition.short_description = 'Definition'
 
 
 @admin.register(ScannerQueryResult)
