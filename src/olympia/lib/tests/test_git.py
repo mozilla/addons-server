@@ -1143,7 +1143,7 @@ def test_get_raw_diff_cache_unmodified_file():
 @pytest.mark.parametrize(
     'entry, filename, expected_category, expected_mimetype',
     [
-        (MagicMock(type=_blob_type), 'blank.pdf', 'binary','application/pdf'),
+        (MagicMock(type=_blob_type), 'blank.pdf', 'binary', 'application/pdf'),
         (MagicMock(type=_blob_type), 'blank.txt', 'text', 'text/plain'),
         (MagicMock(type=_blob_type), 'empty_bat.exe', 'binary',
                                      'application/x-dosexec'),
