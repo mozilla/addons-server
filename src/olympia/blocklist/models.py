@@ -1,6 +1,7 @@
 import datetime
 from collections import defaultdict, namedtuple, OrderedDict
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.html import format_html, format_html_join
@@ -19,7 +20,7 @@ from django.utils.translation import gettext_lazy as _
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import Version
 
-from .utils import block_activity_log_save
+from .utils import block_activity_log_save, splitlines
 
 
 class Block(ModelBase):
@@ -132,7 +133,20 @@ class Block(ModelBase):
         return ''
 
 
-class MultiBlockSubmit(ModelBase):
+class BlockSubmission(ModelBase):
+    SIGNOFF_PENDING = 0
+    SIGNOFF_APPROVED = 1
+    SIGNOFF_REJECTED = 2
+    SIGNOFF_NOTNEEDED = 3
+    SIGNOFF_PUBLISHED = 4
+    SIGNOFF_STATES = {
+        SIGNOFF_PENDING: 'Pending',
+        SIGNOFF_APPROVED: 'Approved',
+        SIGNOFF_REJECTED: 'Rejected',
+        SIGNOFF_NOTNEEDED: 'No Sign-off',
+        SIGNOFF_PUBLISHED: 'Published to Blocks',
+    }
+
     input_guids = models.TextField()
     processed_guids = JSONField(default={})
     min_version = models.CharField(
@@ -146,6 +160,21 @@ class MultiBlockSubmit(ModelBase):
     include_in_legacy = models.BooleanField(
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
+    signoff_by = models.ForeignKey(
+        UserProfile, null=True, on_delete=models.SET_NULL, related_name='+')
+    signoff_state = models.SmallIntegerField(
+        choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING)
+
+    def __str__(self):
+        guids = splitlines(self.input_guids)
+        repr = []
+        if len(guids) == 1:
+            repr.append(guids[0])
+        elif len(guids) > 1:
+            repr.append(guids[0] + ', ...')
+        repr.append(str(self.url))
+        repr.append(str(self.reason))
+        return f'{self.get_signoff_state_display()}: {"; ".join(repr)}'
 
     def clean(self):
         min_vint = addon_version_int(self.min_version)
@@ -155,24 +184,15 @@ class MultiBlockSubmit(ModelBase):
                 _('Min version can not be greater than Max version'))
 
     @property
-    def invalid_guid_count(self):
-        return len(self.processed_guids.get('invalid_guids', []))
+    def toblock_guids(self):
+        return self.processed_guids.get('toblock_guids', [])
 
     @property
-    def existing_guid_count(self):
-        return len(self.processed_guids.get('existing_guids', []))
-
-    @property
-    def blocks_count(self):
-        return len(self.processed_guids.get('blocks', []))
-
-    @property
-    def blocks_submitted_count(self):
-        return len(self.processed_guids.get('blocks_saved', []))
-
-    def submission_complete(self):
-        return self.blocks_count == self.blocks_submitted_count
-    submission_complete.boolean = True
+    def blocks_saved(self):
+        MinimalFakeBlock = namedtuple(
+            'MinimalFakeBlock', ('guid', 'id'))
+        blocks = self.processed_guids.get('blocks_saved', [])
+        return [MinimalFakeBlock(guid, id_) for (id_, guid) in blocks]
 
     def blocks_submitted(self):
         blocks = self.processed_guids.get('blocks_saved', [])
@@ -182,15 +202,32 @@ class MultiBlockSubmit(ModelBase):
             ((reverse('admin:blocklist_block_change', args=(id_,)), guid)
                 for (id_, guid) in blocks))
 
+    def can_user_signoff(self, signoff_user):
+        require_different_users = not settings.DEBUG
+        different_users = (
+            self.updated_by and signoff_user and
+            self.updated_by != signoff_user)
+        return not require_different_users or different_users
+
+    @property
+    def is_save_to_blocks_permitted(self):
+        """Has this submission been signed off, or sign-off isn't required."""
+        return (
+            self.signoff_state == self.SIGNOFF_NOTNEEDED or (
+                self.signoff_state == self.SIGNOFF_APPROVED and
+                self.can_user_signoff(self.signoff_by)
+            )
+        )
+
     def save(self, *args, **kwargs):
         if self.input_guids and not self.processed_guids:
-            processed_guids = self.process_input_guids(
+            processed = self.process_input_guids(
                 self.input_guids, self.min_version, self.max_version,
                 load_full_objects=False)
-            # flatten blocks back to just the guids
-            processed_guids['blocks'] = [
-                block.guid for block in processed_guids['blocks']]
-            self.processed_guids = processed_guids
+            # flatten blocks to just the guids and replace
+            blocks = processed.pop('blocks', [])
+            processed['toblock_guids'] = [block.guid for block in blocks]
+            self.processed_guids = processed
         super().save(*args, **kwargs)
 
     @classmethod
@@ -211,7 +248,7 @@ class MultiBlockSubmit(ModelBase):
         FakeBlock = namedtuple(
             'FakeBlock', ('guid', 'addon', 'min_version', 'max_version'))
         FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
-        all_guids = set(guids.splitlines())
+        all_guids = set(splitlines(guids))
 
         # load all the Addon instances together
         addon_qs = Addon.unfiltered.filter(guid__in=all_guids).order_by(
@@ -296,6 +333,7 @@ class MultiBlockSubmit(ModelBase):
         return blocks
 
     def save_to_blocks(self):
+        assert self.is_save_to_blocks_permitted
         common_args = {
             'min_version': self.min_version,
             'max_version': self.max_version,
@@ -306,9 +344,8 @@ class MultiBlockSubmit(ModelBase):
         }
 
         modified_datetime = datetime.datetime.now()
-        all_guids_to_block = self.processed_guids.get('blocks', [])
+        all_guids_to_block = self.processed_guids.get('toblock_guids', [])
         self.processed_guids['blocks_saved'] = []
-        blocks_saved = []
         for guids_chunk in chunked(all_guids_to_block, 100):
             blocks = self._get_blocks_from_list(guids_chunk)
             Block.preload_addon_versions(blocks)
@@ -320,8 +357,8 @@ class MultiBlockSubmit(ModelBase):
                     setattr(block, 'modified', modified_datetime)
                 block.save()
                 block_activity_log_save(block, change=change)
-                blocks_saved.append((block.id, block.guid))
-            self.processed_guids['blocks_saved'] = blocks_saved
+                self.processed_guids['blocks_saved'].append(
+                    (block.id, block.guid))
             self.save()
 
-        return blocks
+        self.update(signoff_state=self.SIGNOFF_PUBLISHED)

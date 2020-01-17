@@ -3,7 +3,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 from olympia.addons.models import Addon
-from olympia.blocklist.models import Block
+
+from .models import Block
+from .utils import splitlines
 
 
 class MultiGUIDInputForm(forms.Form):
@@ -16,7 +18,7 @@ class MultiDeleteForm(MultiGUIDInputForm):
     existing_block_qs = None
 
     def clean(self):
-        guids = self.cleaned_data.get('guids', '').splitlines()
+        guids = splitlines(self.cleaned_data.get('guids'))
         if len(guids) >= 1:
             # Note: we retrieve a full queryset here because we later need one
             # to pass to admin.actions.delete_selected in delete_multiple_view.
@@ -36,7 +38,7 @@ class MultiAddForm(MultiGUIDInputForm):
     existing_block = None
 
     def clean(self):
-        guids = self.cleaned_data.get('guids', '').splitlines()
+        guids = splitlines(self.cleaned_data.get('guids'))
         if len(guids) == 1:
             guid = guids[0]
             blk = self.existing_block = Block.objects.filter(guid=guid).first()

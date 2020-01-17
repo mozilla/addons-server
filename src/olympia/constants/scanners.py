@@ -30,3 +30,15 @@ RESULT_STATES = {
     TRUE_POSITIVE: _('True positive'),
     FALSE_POSITIVE: _('False positive'),
 }
+
+NEW = 1
+RUNNING = 2
+ABORTED = 3
+COMPLETED = 4
+
+QUERY_RULE_STATES = {
+    NEW: _('New'),
+    RUNNING: _('Running'),
+    ABORTED: _('Aborted'),
+    COMPLETED: _('Completed'),
+}

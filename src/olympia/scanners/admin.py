@@ -24,7 +24,9 @@ from olympia.constants.scanners import (
     YARA,
 )
 
-from .models import ScannerResult, ScannerRule
+from .models import (
+    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
+)
 
 
 class PresenceFilter(SimpleListFilter):
@@ -371,8 +373,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
     result_actions.allow_tags = True
 
 
-@admin.register(ScannerRule)
-class ScannerRuleAdmin(admin.ModelAdmin):
+class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     view_on_site = False
 
     list_display = ('name', 'scanner', 'action', 'is_active')
@@ -392,10 +393,11 @@ class ScannerRuleAdmin(admin.ModelAdmin):
     def matched_results_link(self, obj):
         if not obj.pk or not obj.scanner:
             return '-'
-        count = ScannerResult.objects.filter(matched_rules=obj).count()
+        count = obj.results.count()
+        ResultModel = obj.results.model
         url = reverse(
             'admin:{}_{}_changelist'.format(
-                ScannerResult._meta.app_label, ScannerResult._meta.model_name
+                ResultModel._meta.app_label, ResultModel._meta.model_name
             )
         )
         url = (
@@ -407,3 +409,29 @@ class ScannerRuleAdmin(admin.ModelAdmin):
         return format_html('<a href="{}">{}</a>', url, count)
 
     matched_results_link.short_description = 'Matched Results'
+
+
+@admin.register(ScannerQueryResult)
+class ScannerQueryResultAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ScannerRule)
+class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
+    pass
+
+
+@admin.register(ScannerQueryRule)
+class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
+    list_display = ('name', 'scanner', 'state')
+    list_filter = ('state',)
+    fields = (
+        'scanner',
+        'state',
+        'name',
+        'created',
+        'modified',
+        'matched_results_link',
+        'definition'
+    )
+    readonly_fields = ('created', 'modified', 'matched_results_link', 'state')

@@ -1,29 +1,28 @@
 import os
 
+from django.conf import settings
+from django.db.models import F, Q
+
 import requests
 import yara
 
-from django.conf import settings
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia.constants.scanners import (
-    CUSTOMS,
-    SCANNERS,
-    WAT,
-    YARA,
-)
-from olympia.amo.celery import task
+from olympia import amo
+from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.scanners import (
+    COMPLETED, CUSTOMS, RUNNING, SCANNERS, WAT, YARA)
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
 from olympia.versions.models import Version
 
 from .models import (
-    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
-)
+    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule)
+
 
 log = olympia.core.logger.getLogger('z.scanners.task')
 
@@ -221,29 +220,82 @@ def _run_yara_for_path(scanner_result, path, definition=None):
 
 @task
 @use_primary_db
-def run_yara_query_rule_on_version(query_rule_pk, version_pk):
+def mark_yara_query_rule_as_completed(query_rule_pk):
+    """
+    Mark a ScannerQueryRule as completed
+    """
+    rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
+    rule.update(state=COMPLETED)
+
+
+@task
+def run_yara_query_rule(query_rule_pk):
+    """
+    Run a specific ScannerQueryRule on multiple Versions.
+    """
+    # We're not forcing this task to happen on primary db to let the replicas
+    # handle the Version query below, but we want to fetch the rule using the
+    # primary db in all cases.
+    rule = ScannerQueryRule.objects.using('default').get(pk=query_rule_pk)
+    # Build a huge list of all pks we're going to run the tasks on.
+    pks = Version.unfiltered.all(
+    ).filter(
+        addon__type=amo.ADDON_EXTENSION,
+        files__is_webextension=True,
+    ).exclude(
+        addon__status=amo.STATUS_DISABLED,
+    ).filter(
+        Q(channel=amo.RELEASE_CHANNEL_UNLISTED) |
+        Q(channel=amo.RELEASE_CHANNEL_LISTED, pk=F('addon___current_version'))
+    ).values_list('id', flat=True).order_by('pk')
+    rule.update(state=RUNNING)
+    # Build the workflow using a group of tasks dealing with 250 files at a
+    # time, chained to a task that marks the query as completed.
+    chunk_size = 250
+    workflow = (
+        create_chunked_tasks_signatures(
+            run_yara_query_rule_on_versions_chunk, list(pks), chunk_size,
+            task_args=(query_rule_pk,)) |
+        mark_yara_query_rule_as_completed.si(query_rule_pk)
+    )
+    # Fire it up.
+    workflow.apply_async()
+
+
+@task
+@use_primary_db
+def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
+    """
+    Task to run a specific ScannerQueryRule on a list of versions.
+    """
+    log.info(
+        'Running Yara Query Rule %s on versions %s-%s.',
+        query_rule_pk, version_pks[0], version_pks[-1])
+    rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
+    for version_pk in version_pks:
+        try:
+            version = Version.unfiltered.all().no_transforms().get(
+                pk=version_pk)
+            _run_yara_query_rule_on_version(version, rule)
+        except Exception:
+            log.exception(
+                'Error in run_yara_query_rule_on_version task for Version %s.',
+                version_pk)
+
+
+def _run_yara_query_rule_on_version(version, rule):
     """
     Run a specific ScannerQueryRule on a Version.
     """
-    log.info(
-        'Starting run_yara_query_rule_on_version task for Version %s.',
-        version_pk)
-
-    try:
-        rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
-        version = Version.objects.get(pk=version_pk)
-        file_ = version.all_files[0]
-        scanner_result = ScannerQueryResult(version=version, scanner=YARA)
-        _run_yara_for_path(
-            scanner_result, file_.current_file_path,
-            definition=rule.definition)
+    file_ = version.all_files[0]
+    scanner_result = ScannerQueryResult(version=version, scanner=YARA)
+    _run_yara_for_path(
+        scanner_result, file_.current_file_path,
+        definition=rule.definition)
+    # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
+    # a match, there would be too many things to save otherwise and we don't
+    # really care about non-matches.
+    if scanner_result.results:
         scanner_result.save()
-        # We run the associated action immediately if it matched.
-        ScannerQueryResult.run_action(version)
-
-        statsd.incr('scanners.run_yara_query_rule_on_version.success')
-    except Exception:
-        statsd.incr('scanners.run_yara_query_rule_on_version.failure')
-        log.exception(
-            'Error in run_yara_query_rule_on_version task for Version %s.',
-            version_pk)
+    # FIXME: run_action ?
+    return scanner_result

@@ -1,0 +1,18 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block submit_buttons_bottom %}
+  <div class="submit-row">
+    {% if has_delete_permission and change and show_delete %}
+        {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+        <p class="deletelink-box"><a href="{% add_preserved_filters delete_url %}" class="deletelink">{% trans "Delete" %}</a></p>
+    {% endif %}
+    {% if has_change_permission and change %}
+        <input type="submit" value="{% trans 'Update' %}" class="default" name="_save">
+    {% endif %}
+    {% if has_signoff_permission and change %}
+      <input type="submit" value="{% trans 'Reject Submission' %}" name="_reject">
+      <input type="submit" value="{% trans 'Approve Submission' %}" name="_signoff">
+    {% endif %}
+  </div>
+{% endblock %}
