@@ -10,24 +10,25 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Q, Prefetch
+from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext
 from django.utils.http import urlquote
+from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 
-from rest_framework import status
-from rest_framework.exceptions import NotFound
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet
-from rest_framework.generics import ListAPIView
-from rest_framework.mixins import (
-    ListModelMixin, RetrieveModelMixin, CreateModelMixin, DestroyModelMixin,
-    UpdateModelMixin)
+import pygit2
 
 from csp.decorators import csp as set_csp
+from rest_framework import status
+from rest_framework.decorators import action
+from rest_framework.exceptions import NotFound
+from rest_framework.generics import ListAPIView
+from rest_framework.mixins import (
+    CreateModelMixin, DestroyModelMixin, ListModelMixin, RetrieveModelMixin,
+    UpdateModelMixin)
+from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 
@@ -35,10 +36,8 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import (
-    ActivityLog, CommentLog, DraftComment)
-from olympia.addons.decorators import (
-    addon_view, owner_or_unlisted_reviewer)
+from olympia.activity.models import ActivityLog, CommentLog, DraftComment
+from olympia.addons.decorators import addon_view, owner_or_unlisted_reviewer
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, ReusedGUID)
 from olympia.amo.decorators import (
@@ -46,8 +45,8 @@ from olympia.amo.decorators import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
-    AllowAnyKindOfReviewer, GroupPermission,
-    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
+    AllowAddonAuthor, AllowAnyKindOfReviewer, AllowReviewer,
+    AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.discovery.models import DiscoveryItem
@@ -57,15 +56,15 @@ from olympia.reviewers.forms import (
     RatingFlagFormSet, RatingModerationLogForm, ReviewForm, ReviewLogForm,
     WhiteboardForm)
 from olympia.reviewers.models import (
-    AutoApprovalSummary, PerformanceGraph, ReviewerScore, ReviewerSubscription,
-    ViewExtensionQueue, ViewRecommendedQueue,
-    ViewThemeFullReviewQueue, ViewThemePendingQueue,
-    Whiteboard, CannedResponse, clear_reviewing_cache, get_flags,
-    get_reviewing_cache, get_reviewing_cache_key, set_reviewing_cache)
+    AutoApprovalSummary, CannedResponse, PerformanceGraph, ReviewerScore,
+    ReviewerSubscription, ViewExtensionQueue, ViewRecommendedQueue,
+    ViewThemeFullReviewQueue, ViewThemePendingQueue, Whiteboard,
+    clear_reviewing_cache, get_flags, get_reviewing_cache,
+    get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
-    AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
-    DiffableVersionSerializer, AddonCompareVersionSerializer,
-    FileEntriesSerializer, DraftCommentSerializer, CannedResponseSerializer)
+    AddonBrowseVersionSerializer, AddonCompareVersionSerializer,
+    AddonReviewerFlagsSerializer, CannedResponseSerializer,
+    DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     NeedsHumanReviewTable, ReviewHelper, ViewUnlistedAllListTable,
@@ -1199,7 +1198,7 @@ def download_git_stored_file(request, version_id, filename):
     try:
         blob_or_tree = tree[serializer.get_selected_file(file)]
 
-        if blob_or_tree.type == 'tree':
+        if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
             return http.HttpResponseBadRequest('Can\'t serve directories')
         selected_file = serializer.get_entries(file)[filename]
     except (KeyError, NotFound):
