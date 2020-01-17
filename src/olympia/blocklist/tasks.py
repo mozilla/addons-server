@@ -32,18 +32,18 @@ def create_blocks_from_multi_block(multi_block_submit_id, **kw):
 def import_block_from_blocklist(record):
     kinto_id = record.get('id')
     log.debug('Processing block id: [%s]', kinto_id)
-    kin = KintoImport.objects.create(kinto_id=kinto_id, record=record)
+    kinto = KintoImport.objects.create(kinto_id=kinto_id, record=record)
 
     guid = record.get('guid')
     if not guid:
-        kin.update(outcome=KintoImport.OUTCOME_BADGUID)
+        kinto.update(outcome=KintoImport.OUTCOME_MISSINGGUID)
         log.error('Kinto %s: GUID is falsey, skipping.', kinto_id)
         return
     version_range = record.get('versionRange', [{}])[0]
     target_application = version_range.get('targetApplication') or [{}]
     target_GUID = target_application[0].get('guid')
     if target_GUID and target_GUID != amo.FIREFOX.guid:
-        kin.update(outcome=KintoImport.OUTCOME_NOTFIREFOX)
+        kinto.update(outcome=KintoImport.OUTCOME_NOTFIREFOX)
         log.error(
             'Kinto %s: targetApplication (%s) is not Firefox, skipping.',
             kinto_id, target_GUID)
@@ -89,9 +89,9 @@ def import_block_from_blocklist(record):
         else:
             log.debug('Kinto %s: Updated Block for [%s]', kinto_id, block.guid)
     if addons_qs:
-        kin.update(outcome=(KintoImport.OUTCOME_REGEXBLOCKS if regex else
-                            KintoImport.OUTCOME_BLOCK))
-    if not addons_qs:
-        kin.update(outcome=KintoImport.OUTCOME_NOMATCH)
+        kinto.update(outcome=(KintoImport.OUTCOME_REGEXBLOCKS if regex else
+                              KintoImport.OUTCOME_BLOCK))
+    else:
+        kinto.update(outcome=KintoImport.OUTCOME_NOMATCH)
         log.debug(
             'Kinto %s: No addon found', kinto_id)

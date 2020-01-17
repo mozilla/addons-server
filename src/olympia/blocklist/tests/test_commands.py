@@ -30,6 +30,7 @@ class TestImportBlocklist(TestCase):
             import_blocklist.Command.KINTO_JSON_BLOCKLIST_URL,
             json=blocklist_json)
         self.task_user = user_factory(id=settings.TASK_USER_ID)
+        assert KintoImport.objects.count() == 0
 
     def test_empty(self):
         """ Test nothing is added if none of the guids match - any nothing
@@ -37,10 +38,10 @@ class TestImportBlocklist(TestCase):
         """
         addon_factory()
         assert Block.objects.count() == 0
-        assert KintoImport.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 0
         assert KintoImport.objects.count() == 6
+        # the sample blocklist.json contains one regex for Thunderbird only
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
         assert KintoImport.objects.filter(
@@ -52,7 +53,6 @@ class TestImportBlocklist(TestCase):
         addon_factory(guid='_dqMNemberstst_@www.dowespedtgttest.com')
         addon_factory(guid='{90ac2d06-caf8-46b9-5325-59c82190b687}')
         addon_factory()
-        assert KintoImport.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 3
         blocks = list(Block.objects.all())
@@ -74,18 +74,15 @@ class TestImportBlocklist(TestCase):
         assert KintoImport.objects.count() == 6
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
-        kim = KintoImport.objects.get(
+        kinto = KintoImport.objects.get(
             outcome=KintoImport.OUTCOME_REGEXBLOCKS)
-        assert kim.kinto_id == this_block['id']
-        assert kim.record == this_block
+        assert kinto.kinto_id == this_block['id']
+        assert kinto.record == this_block
 
     def test_single_guid(self):
         addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
         addon_factory(guid='Ytarkovpn.5.14@firefox.com')
         addon_factory()
-        assert KintoImport.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 2
         blocks = list(Block.objects.all())
@@ -114,15 +111,13 @@ class TestImportBlocklist(TestCase):
         assert KintoImport.objects.count() == 6
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOMATCH).count() == 3
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
-        kims = KintoImport.objects.filter(
+        kintos = KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_BLOCK).order_by('created')
-        assert kims.count() == 2
-        assert kims[0].kinto_id == blocks[0].kinto_id
-        assert kims[0].record == blocklist_json['data'][1]
-        assert kims[1].kinto_id == blocks[1].kinto_id
-        assert kims[1].record == blocklist_json['data'][2]
+        assert kintos.count() == 2
+        assert kintos[0].kinto_id == blocks[0].kinto_id
+        assert kintos[0].record == blocklist_json['data'][1]
+        assert kintos[1].kinto_id == blocks[1].kinto_id
+        assert kintos[1].record == blocklist_json['data'][2]
 
     def test_target_application(self):
         fx_addon = addon_factory(
@@ -141,12 +136,10 @@ class TestImportBlocklist(TestCase):
         assert KintoImport.objects.count() == 6
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
-        kim = KintoImport.objects.get(
+        kinto = KintoImport.objects.get(
             outcome=KintoImport.OUTCOME_REGEXBLOCKS)
-        assert kim.kinto_id == this_block['id']
-        assert kim.record == this_block
+        assert kinto.kinto_id == this_block['id']
+        assert kinto.record == this_block
 
     def test_bracket_escaping(self):
         """Some regexs don't escape the {} which is invalid in mysql regex.

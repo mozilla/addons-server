@@ -23,8 +23,8 @@ class Command(BaseCommand):
 
         # filter out the blocks we've already imported
         kinto_ids = [record['id'] for record in response.json()['data']]
-        already_imported = list(KintoImport.objects.filter(
-            kinto_id__in=kinto_ids).values_list('kinto_id', flat=True))
+        already_imported = KintoImport.objects.filter(
+            kinto_id__in=kinto_ids).values_list('kinto_id', flat=True)
         records = [
             record for record in response.json()['data']
             if record['id'] not in already_imported]
