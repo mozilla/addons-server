@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib.admin.sites import AdminSite
+from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.utils.html import format_html
 from django.utils.http import urlencode
@@ -28,6 +29,7 @@ from olympia.constants.scanners import (
 from olympia.scanners.admin import (
     MatchesFilter,
     ScannerResultAdmin,
+    ScannerRuleAdmin,
     StateFilter,
     WithVersionFilter,
 )
@@ -538,6 +540,9 @@ class TestScannerRuleAdmin(TestCase):
         self.grant_permission(self.user, 'Admin:*')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerrule_changelist')
+        self.admin = ScannerRuleAdmin(
+            model=ScannerRule, admin_site=AdminSite()
+        )
 
     def test_list_view(self):
         response = self.client.get(self.list_url)
@@ -580,3 +585,18 @@ class TestScannerRuleAdmin(TestCase):
         assert field.text() == 'Matched Results:\n-'
         link = doc('.field-matched_results_link a')
         assert not link
+
+    def test_get_fields(self):
+        request = RequestFactory().get('/')
+        request.user = self.user
+        assert 'definition' in self.admin.get_fields(request=request)
+        assert ('formatted_definition' not in
+                self.admin.get_fields(request=request))
+
+    def test_get_fields_for_non_admins(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:ScannersRulesView')
+        request = RequestFactory().get('/')
+        request.user = user
+        assert 'definition' not in self.admin.get_fields(request=request)
+        assert 'formatted_definition' in self.admin.get_fields(request=request)
