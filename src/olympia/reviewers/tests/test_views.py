@@ -4484,6 +4484,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         self.grant_permission(self.reviewer, 'Admin:Tools')
         self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, 'Blocklist:Create')
 
         response = self.client.post(self.url, {
             'action': 'block_multiple_versions',
