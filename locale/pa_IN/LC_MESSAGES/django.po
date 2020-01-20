@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-13 04:07+0000\n"
+"PO-Revision-Date: 2019-08-16 15:01+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4131,7 +4131,6 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸਰਚ ਕਰੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "ਕਿਸੇ ਵੈਬਸਾਈਟ ਦੇ ਸੁਰੱਖਿਅਤ ਸੰਸਕਰਣ ਉੱਤੇ ਜਾਓ ਜੇਕਰ ਇਹ ਉਪਲਬਧ ਹੈ।"
 
@@ -4234,9 +4233,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਇੱਕ ਅਜੀਬ ਸਿੱਖਿਆ ਦਾ ਆਨੰਦ ਮਾਣੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "ਹਰ ਵਾਰ ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਨਵੀਂ ਟੈਬ ਖੋਲ੍ਹਦੇ ਹੋ ਤਾਂ ਇਕ ਲਗਾਤਾਰ ਵਿਕਿਪੀਡੀਆ ਲੇਖ ਨੂੰ ਲੋਡ ਕਰੋ।"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
