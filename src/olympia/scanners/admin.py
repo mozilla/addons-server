@@ -17,8 +17,11 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
+    ABORTING,
     FALSE_POSITIVE,
+    NEW,
     RESULT_STATES,
+    RUNNING,
     TRUE_POSITIVE,
     UNKNOWN,
     YARA,
@@ -27,6 +30,7 @@ from olympia.constants.scanners import (
 from .models import (
     ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
 )
+from .tasks import run_yara_query_rule
 
 
 class PresenceFilter(SimpleListFilter):
@@ -440,15 +444,104 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 
 @admin.register(ScannerQueryRule)
 class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
-    list_display = ('name', 'scanner', 'state')
+    list_display = (
+        'name', 'scanner', 'state_with_actions', 'matched_results_link',
+    )
     list_filter = ('state',)
     fields = (
         'scanner',
-        'state',
+        'state_with_actions',
         'name',
         'created',
         'modified',
         'matched_results_link',
-        'definition'
+        'definition',
     )
-    readonly_fields = ('created', 'modified', 'matched_results_link', 'state')
+    readonly_fields = (
+        'created', 'modified', 'matched_results_link', 'state_with_actions',
+    )
+
+    def handle_run(self, request, pk, *args, **kwargs):
+        is_admin = acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_QUERY)
+        if not is_admin or request.method != 'POST':
+            raise Http404
+
+        rule = self.get_object(request, pk)
+        if rule.state == NEW:
+            # Update state right away for the UI to be up to date after we
+            # redirect.
+            rule.update(state=RUNNING)
+            run_yara_query_rule.delay(rule.pk)
+
+            messages.add_message(
+                request,
+                messages.INFO,
+                'Scanner Query Rule {} has been successfully queued for '
+                'execution.'.format(rule.pk),
+            )
+        else:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Scanner Query Rule {} could not be queued for execution '
+                'because it was in "{}"" state.'.format(
+                    rule.pk, rule.get_state_display()),
+            )
+
+        return redirect('admin:scanners_scannerqueryrule_changelist')
+
+    def handle_abort(self, request, pk, *args, **kwargs):
+        is_admin = acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_QUERY)
+        if not is_admin or request.method != 'POST':
+            raise Http404
+
+        rule = self.get_object(request, pk)
+        if rule.state == RUNNING:
+            # FIXME: revoke existing tasks (would need to extract the
+            # GroupResult when executing the chord, store its id in the rule,
+            # then restore the GroupResult here to call revoke() on it)
+            rule.update(state=ABORTING)  # Tasks will take this into account.
+
+            messages.add_message(
+                request,
+                messages.INFO,
+                'Scanner Query Rule {} is being aborted.'.format(rule.pk),
+            )
+        else:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Scanner Query Rule {} could not be aborted because it was '
+                ' in "{}" state'.format(rule.pk, rule.get_state_display()),
+            )
+
+        return redirect('admin:scanners_scannerqueryrule_changelist')
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            url(
+                r'^(?P<pk>.+)/abort/$',
+                self.admin_site.admin_view(self.handle_abort),
+                name='scanners_scannerqueryrule_handle_abort',
+            ),
+            url(
+                r'^(?P<pk>.+)/run/$',
+                self.admin_site.admin_view(self.handle_run),
+                name='scanners_scannerqueryrule_handle_run',
+            ),
+        ]
+        return custom_urls + urls
+
+    def state_with_actions(self, obj):
+        return render_to_string(
+            'admin/scannerqueryrule_state_with_actions.html', {
+                'obj': obj,
+                'NEW': NEW,
+                'RUNNING': RUNNING,
+            }
+        )
+    state_with_actions.short_description = 'State'
+    state_with_actions.allow_tags = True

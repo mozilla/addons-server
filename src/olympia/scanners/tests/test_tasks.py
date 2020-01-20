@@ -7,9 +7,12 @@ from olympia.amo.tests import (
     addon_factory, AMOPaths, TestCase, version_factory
 )
 from olympia.constants.scanners import (
+    ABORTED,
+    ABORTING,
     COMPLETED,
     CUSTOMS,
     NEW,
+    RUNNING,
     WAT,
     YARA,
 )
@@ -18,6 +21,7 @@ from olympia.scanners.models import (
     ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
 )
 from olympia.scanners.tasks import (
+    mark_yara_query_rule_as_completed_or_aborted,
     run_scanner,
     run_customs,
     run_wat,
@@ -485,6 +489,27 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         ) == sorted(v.pk for v in included_versions)
         self.rule.reload()
         assert self.rule.state == COMPLETED
+
+    def test_mark_yara_query_rule_as_completed(self):
+        self.rule.update(state=RUNNING)
+        mark_yara_query_rule_as_completed_or_aborted(self.rule.pk)
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+
+    def test_mark_yara_query_rule_as_aborted(self):
+        self.rule.update(state=ABORTING)
+        mark_yara_query_rule_as_completed_or_aborted(self.rule.pk)
+        self.rule.reload()
+        assert self.rule.state == ABORTED
+
+    def test_run_on_chunk_aborting(self):
+        self.rule.update(state=ABORTING)
+        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == 0
+
+        self.rule.reload()
+        assert self.rule.state == ABORTING  # Not touched by this.
 
     def test_run_on_chunk(self):
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)

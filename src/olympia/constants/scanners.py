@@ -35,10 +35,12 @@ NEW = 1
 RUNNING = 2
 ABORTED = 3
 COMPLETED = 4
+ABORTING = 5
 
 QUERY_RULE_STATES = {
     NEW: _('New'),
     RUNNING: _('Running'),
     ABORTED: _('Aborted'),
+    ABORTING: _('Aborting'),
     COMPLETED: _('Completed'),
 }
