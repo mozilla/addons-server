@@ -362,3 +362,24 @@ class BlockSubmission(ModelBase):
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
+
+
+class KintoImport(ModelBase):
+    OUTCOME_INCOMPLETE = 0
+    OUTCOME_MISSINGGUID = 1
+    OUTCOME_NOTFIREFOX = 2
+    OUTCOME_BLOCK = 3
+    OUTCOME_REGEXBLOCKS = 4
+    OUTCOME_NOMATCH = 5
+    OUTCOMES = {
+        OUTCOME_INCOMPLETE: 'Incomplete',
+        OUTCOME_MISSINGGUID: 'Missing GUID',
+        OUTCOME_NOTFIREFOX: 'Wrong target application',
+        OUTCOME_BLOCK: 'Added block',
+        OUTCOME_REGEXBLOCKS: 'Added blocks from regex',
+        OUTCOME_NOMATCH: 'No matches',
+    }
+    kinto_id = models.CharField(max_length=255, null=False, default='')
+    record = JSONField(default={})
+    outcome = models.SmallIntegerField(
+        default=OUTCOME_INCOMPLETE, choices=OUTCOMES.items())

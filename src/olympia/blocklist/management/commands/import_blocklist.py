@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import KintoImport
 from olympia.blocklist.tasks import import_block_from_blocklist
 
 
@@ -23,11 +23,11 @@ class Command(BaseCommand):
 
         # filter out the blocks we've already imported
         kinto_ids = [record['id'] for record in response.json()['data']]
-        existing_blocks = Block.objects.filter(
+        already_imported = KintoImport.objects.filter(
             kinto_id__in=kinto_ids).values_list('kinto_id', flat=True)
         records = [
             record for record in response.json()['data']
-            if record['id'] not in existing_blocks]
+            if record['id'] not in already_imported]
         log.debug('%s records from blocklist to process', len(records))
         for record in records:
             import_block_from_blocklist.delay(record)
