@@ -190,7 +190,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return self._excludes_admin_fields(request=request, fields=fields)
 
     def _excludes_admin_fields(self, request, fields):
-        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        is_admin = acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
         if not is_admin:
             return list(filter(lambda x: x != 'result_actions', fields))
         return fields
@@ -277,7 +278,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
     formatted_matched_rules_with_files.short_description = 'Matched rules'
 
     def handle_true_positive(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        is_admin = acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
         if not is_admin or request.method != "POST":
             raise Http404
 
@@ -293,7 +295,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
         return redirect('admin:scanners_scannerresult_changelist')
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        is_admin = acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
         if not is_admin or request.method != "POST":
             raise Http404
 
@@ -328,7 +331,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
         )
 
     def handle_revert(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(request, amo.permissions.ADMIN_ADVANCED)
+        is_admin = acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
         if not is_admin or request.method != "POST":
             raise Http404
 

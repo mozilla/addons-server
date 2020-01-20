@@ -82,6 +82,8 @@ LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
 
 # Can access the scanners results admin.
 ADMIN_SCANNERS_RESULTS_VIEW = AclPermission('Admin', 'ScannersResultsView')
+# Can use "actions" on the scanners results.
+ADMIN_SCANNERS_RESULTS_EDIT = AclPermission('Admin', 'ScannersResultsEdit')
 # Can access the scanners rules admin.
 ADMIN_SCANNERS_RULES_VIEW = AclPermission('Admin', 'ScannersRulesView')
 # Can edit the scanners rules.
