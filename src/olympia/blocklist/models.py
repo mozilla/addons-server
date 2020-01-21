@@ -23,7 +23,8 @@ from olympia.versions.models import Version
 from .utils import block_activity_log_save, splitlines
 
 
-DUAL_SIGNOFF_ADU_THRESHOLD = 100_000
+# The Addon.average_daily_user count that forces dual sign-off for the Blocks
+DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
 
 
 class Block(ModelBase):
@@ -208,10 +209,12 @@ class BlockSubmission(ModelBase):
         return not require_different_users or different_users
 
     def check_needs_signoff(self):
-        def unsafe(adu):
-            return adu > DUAL_SIGNOFF_ADU_THRESHOLD or adu == 0
+        def unsafe(daily_users):
+            return (daily_users > DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD or
+                    daily_users == 0)
 
-        return any(unsafe(block['adu']) for block in self.to_block)
+        return any(
+            unsafe(block['average_daily_users']) for block in self.to_block)
 
     @property
     def is_save_to_blocks_permitted(self):
@@ -228,7 +231,7 @@ class BlockSubmission(ModelBase):
             return {
                 'id': block.id,
                 'guid': block.guid,
-                'adu': block.addon.average_daily_users,
+                'average_daily_users': block.addon.average_daily_users,
             }
         if self.input_guids and not self.to_block:
             processed = self.process_input_guids(

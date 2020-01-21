@@ -16,7 +16,8 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import Block, BlockSubmission, DUAL_SIGNOFF_ADU_THRESHOLD
+from ..models import (
+    Block, BlockSubmission, DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD)
 
 
 class TestBlockAdminList(TestCase):
@@ -403,21 +404,21 @@ class TestBlockSubmissionAdmin(TestCase):
 
         assert multi.to_block == [
             {'guid': 'any@new', 'id': 0,
-             'adu': new_addon.average_daily_users},
+             'average_daily_users': new_addon.average_daily_users},
             {'guid': 'partial@existing', 'id': existing_and_partial.id,
-             'adu': partial_addon.average_daily_users}
+             'average_daily_users': partial_addon.average_daily_users}
         ]
         assert set(multi.block_set.all()) == {new_block, existing_and_partial}
 
     def test_submit_no_dual_signoff(self):
-        addon_adu = DUAL_SIGNOFF_ADU_THRESHOLD
+        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit(addon_adu=addon_adu))
         self._test_add_multiple_verify_blocks(
             new_addon, existing_and_full, partial_addon, existing_and_partial)
 
     def test_submit_dual_signoff(self):
-        addon_adu = DUAL_SIGNOFF_ADU_THRESHOLD + 1
+        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit(addon_adu=addon_adu))
         # no new Block objects yet
@@ -574,9 +575,10 @@ class TestBlockSubmissionAdmin(TestCase):
 
         assert multi.to_block == [
             {'guid': 'any@new', 'id': 0,
-             'adu': new_addon.average_daily_users},
+             'average_daily_users': new_addon.average_daily_users},
             {'guid': 'full@existing', 'id': existing_zero_to_max.id,
-             'adu': existing_zero_to_max.addon.average_daily_users}
+             'average_daily_users':
+             existing_zero_to_max.addon.average_daily_users}
         ]
         assert set(multi.block_set.all()) == {new_block, existing_zero_to_max}
 
@@ -753,7 +755,9 @@ class TestBlockSubmissionAdmin(TestCase):
         mbs.update(input_guids='guid@\ninvalid@\nsecond@invalid')
         mbs.save()
         assert mbs.to_block == [
-            {'guid': 'guid@', 'id': 0, 'adu': addon.average_daily_users}]
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -781,13 +785,15 @@ class TestBlockSubmissionAdmin(TestCase):
     def test_signoff_page(self):
         addon = addon_factory(
             guid='guid@', name='Danger Danger',
-            average_daily_users=DUAL_SIGNOFF_ADU_THRESHOLD + 1)
+            average_daily_users=DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1)
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
             signoff_by=user_factory())
         assert mbs.to_block == [
-            {'guid': 'guid@', 'id': 0, 'adu': addon.average_daily_users}]
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -848,7 +854,9 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory(),
             signoff_by=user_factory())
         assert mbs.to_block == [
-            {'guid': 'guid@', 'id': 0, 'adu': addon.average_daily_users}]
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -896,7 +904,9 @@ class TestBlockSubmissionAdmin(TestCase):
         assert vlog == log
 
         assert mbs.to_block == [
-            {'guid': 'guid@', 'id': 0, 'adu': addon.average_daily_users}]
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
         assert list(mbs.block_set.all()) == [new_block]
 
         log_entry = LogEntry.objects.last()
@@ -921,7 +931,9 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory(),
             signoff_by=user_factory())
         assert mbs.to_block == [
-            {'guid': 'guid@', 'id': 0, 'adu': addon.average_daily_users}]
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -978,7 +990,9 @@ class TestBlockSubmissionAdmin(TestCase):
             signoff_by=user_factory(),
             signoff_state=BlockSubmission.SIGNOFF_APPROVED)
         assert mbs.to_block == [
-            {'guid': 'guid@', 'id': 0, 'adu': addon.average_daily_users}]
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
         mbs.save_to_blocks()
         block = Block.objects.get()
 

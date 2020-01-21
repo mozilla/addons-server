@@ -17,7 +17,8 @@ def set_block_and_to_block_from_processed_guids(apps, schema_editor):
         # Then backfill the to_block property
         to_block_guids = processed.get('toblock_guids', [])
         submission.update(to_block=[
-            {'guid': guid, 'id': 0, 'adu': 0} for guid in to_block_guids])
+            {'guid': guid, 'id': 0, 'average_daily_users': 0}
+            for guid in to_block_guids])
 
 
 class Migration(migrations.Migration):
