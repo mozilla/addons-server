@@ -9,8 +9,6 @@ from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
 
-import waffle
-
 from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
@@ -295,7 +293,13 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             extra_context.update(
                 **self._get_enhanced_guid_context(request, obj.input_guids))
         else:
-            extra_context['blocks'] = obj.blocks_saved
+            extra_context['blocks'] = obj.get_blocks_saved(
+                load_full_objects_threshold=GUID_FULL_LOAD_LIMIT)
+            if len(extra_context['blocks']) <= GUID_FULL_LOAD_LIMIT:
+                # if it's less than the limit we loaded full Block instances
+                # so preload the addon_versions so the review links are
+                # generated efficiently.
+                Block.preload_addon_versions(extra_context['blocks'])
         return super().change_view(
             request, object_id, form_url=form_url, extra_context=extra_context)
 
@@ -317,12 +321,13 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 obj.signoff_by = request.user
             elif is_reject:
                 obj.signoff_state = BlockSubmission.SIGNOFF_REJECTED
-        else:
-            # TODO: something more fine-grained that looks at user counts
-            if waffle.switch_is_active('blocklist_admin_dualsignoff_disabled'):
-                obj.signoff_state = BlockSubmission.SIGNOFF_NOTNEEDED
 
         super().save_model(request, obj, form, change)
+
+        if obj.signoff_state == BlockSubmission.SIGNOFF_PENDING:
+            if not obj.needs_signoff():
+                obj.update(signoff_state=BlockSubmission.SIGNOFF_NOTNEEDED)
+
         if obj.is_save_to_blocks_permitted:
             # Then launch a task to async save the individual blocks
             create_blocks_from_multi_block.delay(obj.id)
@@ -371,7 +376,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         )
 
     def blocks_count(self, obj):
-        return f"{len(obj.toblock_guids)} add-ons"
+        return f"{len(obj.to_block)} add-ons"
 
 
 @admin.register(Block)

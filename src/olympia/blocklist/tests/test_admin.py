@@ -16,7 +16,8 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import Block, BlockSubmission
+from ..models import (
+    Block, BlockSubmission, DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD)
 
 
 class TestBlockAdminList(TestCase):
@@ -275,14 +276,16 @@ class TestBlockSubmissionAdmin(TestCase):
         self.multi_list_url = reverse(
             'admin:blocklist_blocksubmission_changelist')
 
-    def _test_add_multiple_submit(self):
+    def _test_add_multiple_submit(self, addon_adu):
+        """addon_adu is important because whether dual signoff is needed is
+        based on what the average_daily_users is."""
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Reviews:Admin')
         self.client.login(email=user.email)
 
         new_addon = addon_factory(
-            guid='any@new', name='New Danger', average_daily_users=100)
+            guid='any@new', name='New Danger', average_daily_users=addon_adu)
         existing_and_full = Block.objects.create(
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
@@ -290,7 +293,7 @@ class TestBlockSubmissionAdmin(TestCase):
             include_in_legacy=True)
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger',
-            average_daily_users=99)
+            average_daily_users=(addon_adu - 1))
         existing_and_partial = Block.objects.create(
             addon=partial_addon,
             min_version='1',
@@ -399,26 +402,25 @@ class TestBlockSubmissionAdmin(TestCase):
         assert multi.url == new_block.url
         assert multi.reason == new_block.reason
 
-        assert multi.processed_guids == {
-            'invalid_guids': ['invalid@'],
-            'existing_guids': ['full@existing'],
-            'toblock_guids': ['any@new', 'partial@existing'],
-            'blocks_saved': [
-                [new_block.id, 'any@new'],
-                [existing_and_partial.id, 'partial@existing']],
-        }
+        assert multi.to_block == [
+            {'guid': 'any@new', 'id': 0,
+             'average_daily_users': new_addon.average_daily_users},
+            {'guid': 'partial@existing', 'id': existing_and_partial.id,
+             'average_daily_users': partial_addon.average_daily_users}
+        ]
+        assert set(multi.block_set.all()) == {new_block, existing_and_partial}
 
-    @override_switch('blocklist_admin_dualsignoff_disabled', active=True)
     def test_submit_no_dual_signoff(self):
+        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
-            self._test_add_multiple_submit())
+            self._test_add_multiple_submit(addon_adu=addon_adu))
         self._test_add_multiple_verify_blocks(
             new_addon, existing_and_full, partial_addon, existing_and_partial)
 
-    @override_switch('blocklist_admin_dualsignoff_disabled', active=False)
     def test_submit_dual_signoff(self):
+        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
-            self._test_add_multiple_submit())
+            self._test_add_multiple_submit(addon_adu=addon_adu))
         # no new Block objects yet
         assert Block.objects.count() == 2
         # and existing block wasn't updated
@@ -571,14 +573,14 @@ class TestBlockSubmissionAdmin(TestCase):
         assert multi.url == new_block.url
         assert multi.reason == new_block.reason
 
-        assert multi.processed_guids == {
-            'invalid_guids': [],
-            'existing_guids': ['partial@existing'],
-            'toblock_guids': ['any@new', 'full@existing'],
-            'blocks_saved': [
-                [new_block.id, 'any@new'],
-                [existing_zero_to_max.id, 'full@existing']],
-        }
+        assert multi.to_block == [
+            {'guid': 'any@new', 'id': 0,
+             'average_daily_users': new_addon.average_daily_users},
+            {'guid': 'full@existing', 'id': existing_zero_to_max.id,
+             'average_daily_users':
+             existing_zero_to_max.addon.average_daily_users}
+        ]
+        assert set(multi.block_set.all()) == {new_block, existing_zero_to_max}
 
     @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
     def test_add_multiple_bulk_so_fake_block_objects(self):
@@ -749,10 +751,13 @@ class TestBlockSubmissionAdmin(TestCase):
         mbs = BlockSubmission.objects.create(
             updated_by=user_factory(display_name='Bób'))
         # add some guids to the multi block to test out the counts in the list
-        addon_factory(guid='guid@', name='Danger Danger')
+        addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs.update(input_guids='guid@\ninvalid@\nsecond@invalid')
         mbs.save()
-        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -778,12 +783,17 @@ class TestBlockSubmissionAdmin(TestCase):
         assert 'Bób' not in response.content.decode('utf-8')
 
     def test_signoff_page(self):
-        addon_factory(guid='guid@', name='Danger Danger')
+        addon = addon_factory(
+            guid='guid@', name='Danger Danger',
+            average_daily_users=DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1)
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
             signoff_by=user_factory())
-        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -843,7 +853,10 @@ class TestBlockSubmissionAdmin(TestCase):
             input_guids='guid@\ninvalid@',
             updated_by=user_factory(),
             signoff_by=user_factory())
-        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -890,14 +903,11 @@ class TestBlockSubmissionAdmin(TestCase):
         vlog = ActivityLog.objects.for_version(addon.current_version).last()
         assert vlog == log
 
-        assert mbs.processed_guids == {
-            'invalid_guids': ['invalid@'],
-            'existing_guids': [],
-            'toblock_guids': ['guid@'],
-            'blocks_saved': [
-                [new_block.id, 'guid@'],
-            ],
-        }
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
+        assert list(mbs.block_set.all()) == [new_block]
 
         log_entry = LogEntry.objects.last()
         assert log_entry.user == user
@@ -915,12 +925,15 @@ class TestBlockSubmissionAdmin(TestCase):
         assert b'not a Block!' not in response.content
 
     def test_signoff_reject(self):
-        addon_factory(guid='guid@', name='Danger Danger')
+        addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@',
             updated_by=user_factory(),
             signoff_by=user_factory())
-        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -970,13 +983,16 @@ class TestBlockSubmissionAdmin(TestCase):
         assert b'not a Block!' not in response.content
 
     def test_signed_off_view(self):
-        addon_factory(guid='guid@', name='Danger Danger')
+        addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
             signoff_by=user_factory(),
             signoff_state=BlockSubmission.SIGNOFF_APPROVED)
-        assert mbs.processed_guids['toblock_guids'] == ['guid@']
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': 0,
+             'average_daily_users': addon.average_daily_users}]
         mbs.save_to_blocks()
         block = Block.objects.get()
 
@@ -991,8 +1007,11 @@ class TestBlockSubmissionAdmin(TestCase):
         assert response.status_code == 200
         assert b'guid@<br>invalid@<br>second@invalid' in response.content
         doc = pq(response.content)
-        guid_link = doc('div.field-blocks div div a')
-        assert guid_link.attr('href') == reverse(
+        review_link = doc('div.field-blocks div div a')[0]
+        assert review_link.attrib['href'] == absolutify(reverse(
+            'reviewers.review', args=(addon.pk,)))
+        guid_link = doc('div.field-blocks div div a')[1]
+        assert guid_link.attrib['href'] == reverse(
             'admin:blocklist_block_change', args=(block.pk,))
         assert not doc('submit-row input')
 

@@ -4,7 +4,7 @@ from collections import defaultdict, namedtuple, OrderedDict
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.html import format_html, format_html_join
+from django.utils.html import format_html
 from django.utils.functional import cached_property
 
 from django_extensions.db.fields.json import JSONField
@@ -23,6 +23,10 @@ from olympia.versions.models import Version
 from .utils import block_activity_log_save, splitlines
 
 
+# The Addon.average_daily_user count that forces dual sign-off for the Blocks
+DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
+
+
 class Block(ModelBase):
     MIN = '0'
     MAX = '*'
@@ -37,6 +41,7 @@ class Block(ModelBase):
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
     kinto_id = models.CharField(max_length=255, null=False, default='')
+    submission = models.ManyToManyField('BlockSubmission')
 
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
@@ -146,9 +151,12 @@ class BlockSubmission(ModelBase):
         SIGNOFF_NOTNEEDED: 'No Sign-off',
         SIGNOFF_PUBLISHED: 'Published to Blocks',
     }
+    FakeBlock = namedtuple(
+        'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version'))
+    FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
 
     input_guids = models.TextField()
-    processed_guids = JSONField(default={})
+    to_block = JSONField(default=[])
     min_version = models.CharField(
         max_length=255, blank=False, default=Block.MIN)
     max_version = models.CharField(
@@ -183,24 +191,15 @@ class BlockSubmission(ModelBase):
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
-    @property
-    def toblock_guids(self):
-        return self.processed_guids.get('toblock_guids', [])
-
-    @property
-    def blocks_saved(self):
-        MinimalFakeBlock = namedtuple(
-            'MinimalFakeBlock', ('guid', 'id'))
-        blocks = self.processed_guids.get('blocks_saved', [])
-        return [MinimalFakeBlock(guid, id_) for (id_, guid) in blocks]
-
-    def blocks_submitted(self):
-        blocks = self.processed_guids.get('blocks_saved', [])
-        return format_html_join(
-            '\n',
-            '<a href="{}">{}</a>',
-            ((reverse('admin:blocklist_block_change', args=(id_,)), guid)
-                for (id_, guid) in blocks))
+    def get_blocks_saved(self, load_full_objects_threshold=1_000_000_000):
+        blocks = self.block_set.all().order_by('id')
+        if blocks.count() > load_full_objects_threshold:
+            # If we'd be returning too many Block objects, fake them with the
+            # minimum needed to display the link to the Block change page.
+            blocks = [
+                self.FakeBlock(block.id, block.guid, None, None, None)
+                for block in blocks]
+        return blocks
 
     def can_user_signoff(self, signoff_user):
         require_different_users = not settings.DEBUG
@@ -208,6 +207,14 @@ class BlockSubmission(ModelBase):
             self.updated_by and signoff_user and
             self.updated_by != signoff_user)
         return not require_different_users or different_users
+
+    def needs_signoff(self):
+        def unsafe(daily_users):
+            return (daily_users > DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD or
+                    daily_users == 0)
+
+        return any(
+            unsafe(block['average_daily_users']) for block in self.to_block)
 
     @property
     def is_save_to_blocks_permitted(self):
@@ -220,14 +227,20 @@ class BlockSubmission(ModelBase):
         )
 
     def save(self, *args, **kwargs):
-        if self.input_guids and not self.processed_guids:
+        def serialize_block(block):
+            return {
+                'id': block.id,
+                'guid': block.guid,
+                'average_daily_users': block.addon.average_daily_users,
+            }
+        if self.input_guids and not self.to_block:
             processed = self.process_input_guids(
                 self.input_guids, self.min_version, self.max_version,
                 load_full_objects=False)
-            # flatten blocks to just the guids and replace
-            blocks = processed.pop('blocks', [])
-            processed['toblock_guids'] = [block.guid for block in blocks]
-            self.processed_guids = processed
+            # serialize blocks so we can save them as JSON
+            self.to_block = [
+                serialize_block(block) for block in processed.get('blocks', [])
+            ]
         super().save(*args, **kwargs)
 
     @classmethod
@@ -245,9 +258,6 @@ class BlockSubmission(ModelBase):
         Block.min_version,
         Block.max_version.
         """
-        FakeBlock = namedtuple(
-            'FakeBlock', ('guid', 'addon', 'min_version', 'max_version'))
-        FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
         all_guids = set(splitlines(guids))
 
         # load all the Addon instances together
@@ -256,7 +266,7 @@ class BlockSubmission(ModelBase):
         addons = (
             list(addon_qs.only_translations())
             if load_full_objects else
-            [FakeAddon(guid, addon_users)
+            [cls.FakeAddon(guid, addon_users)
              for guid, addon_users in addon_qs.values_list(
                 'guid', 'average_daily_users')])
         addon_guid_dict = {addon.guid: addon for addon in addons}
@@ -266,9 +276,10 @@ class BlockSubmission(ModelBase):
         existing_blocks = (
             list(block_qs)
             if load_full_objects else
-            [FakeBlock(guid, addon_guid_dict[guid], min_version, max_version)
-             for guid, min_version, max_version in block_qs.values_list(
-                'guid', 'min_version', 'max_version')])
+            [cls.FakeBlock(
+                id_, guid, addon_guid_dict[guid], min_version, max_version)
+             for id_, guid, min_version, max_version in block_qs.values_list(
+                'id', 'guid', 'min_version', 'max_version')])
         if load_full_objects:
             # hook up block.addon cached_property (FakeBlock sets it above)
             for block in existing_blocks:
@@ -291,7 +302,7 @@ class BlockSubmission(ModelBase):
             block = (
                 blocks_to_update_dict.get(addon.guid, None) or (
                     Block(addon=addon) if load_full_objects else
-                    FakeBlock(addon.guid, addon, Block.MIN, Block.MAX)
+                    cls.FakeBlock(0, addon.guid, addon, Block.MIN, Block.MAX)
                 ))
             blocks.append(block)
 
@@ -344,8 +355,7 @@ class BlockSubmission(ModelBase):
         }
 
         modified_datetime = datetime.datetime.now()
-        all_guids_to_block = self.processed_guids.get('toblock_guids', [])
-        self.processed_guids['blocks_saved'] = []
+        all_guids_to_block = [block['guid'] for block in self.to_block]
         for guids_chunk in chunked(all_guids_to_block, 100):
             blocks = self._get_blocks_from_list(guids_chunk)
             Block.preload_addon_versions(blocks)
@@ -356,9 +366,8 @@ class BlockSubmission(ModelBase):
                 if change:
                     setattr(block, 'modified', modified_datetime)
                 block.save()
+                block.submission.add(self)
                 block_activity_log_save(block, change=change)
-                self.processed_guids['blocks_saved'].append(
-                    (block.id, block.guid))
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
