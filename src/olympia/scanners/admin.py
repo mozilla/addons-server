@@ -296,7 +296,10 @@ class ScannerResultAdmin(admin.ModelAdmin):
             'Scanner result {} has been marked as true positive.'.format(pk),
         )
 
-        return redirect('admin:scanners_scannerresult_changelist')
+        return redirect(request.META.get(
+            'HTTP_REFERER',
+            'admin:scanners_scannerresult_changelist'
+        ))
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
@@ -349,7 +352,10 @@ class ScannerResultAdmin(admin.ModelAdmin):
             'Scanner result {} report has been reverted.'.format(pk),
         )
 
-        return redirect('admin:scanners_scannerresult_changelist')
+        return redirect(request.META.get(
+            'HTTP_REFERER',
+            'admin:scanners_scannerresult_changelist'
+        ))
 
     def get_urls(self):
         urls = super().get_urls()

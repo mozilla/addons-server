@@ -405,6 +405,27 @@ class TestScannerResultAdmin(TestCase):
         # A confirmation message should also appear.
         assert html('.messagelist .info').length == 1
 
+    def test_handle_true_positive_uses_referer_if_available(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.state == UNKNOWN
+
+        referer = '{}/en-US/firefox/previous/page'.format(settings.SITE_URL)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handletruepositive',
+                args=[result.pk],
+            ),
+            follow=True,
+            HTTP_REFERER=referer
+        )
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == referer
+
     @override_settings(YARA_GIT_REPOSITORY='git/repo')
     def test_handle_yara_false_positive(self):
         # Create one entry with matches
@@ -499,6 +520,30 @@ class TestScannerResultAdmin(TestCase):
         assert html('#result_list tbody tr').length == 1
         # A confirmation message should also appear.
         assert html('.messagelist .info').length == 1
+
+    def test_handle_revert_report_uses_referer_if_available(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(
+            scanner=YARA,
+            version=version_factory(addon=addon_factory())
+        )
+        result.add_yara_result(rule=rule.name)
+        result.state = TRUE_POSITIVE
+        result.save()
+        assert result.state == TRUE_POSITIVE
+
+        referer = '{}/en-US/firefox/previous/page'.format(settings.SITE_URL)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handlerevert', args=[result.pk]
+            ),
+            follow=True,
+            HTTP_REFERER=referer
+        )
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == referer
 
     def test_handle_true_positive_and_non_admin_user(self):
         result = ScannerResult(scanner=CUSTOMS)
