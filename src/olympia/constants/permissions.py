@@ -89,6 +89,9 @@ ADMIN_SCANNERS_RULES_VIEW = AclPermission('Admin', 'ScannersRulesView')
 # Can edit the scanners rules.
 ADMIN_SCANNERS_RULES_EDIT = AclPermission('Admin', 'ScannersRulesEdit')
 
+# Can use the scanners query admin (code search).
+ADMIN_SCANNERS_QUERY = AclPermission('Admin', 'ScannersQuery')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
@@ -152,6 +155,12 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'scanners.delete_scannerrule': ADMIN_SCANNERS_RULES_EDIT,
     'scanners.view_scannerrule': ADMIN_SCANNERS_RULES_VIEW,
     'scanners.view_scannerresult': ADMIN_SCANNERS_RESULTS_VIEW,
+
+    'scanners.add_scannerqueryrule': ADMIN_SCANNERS_QUERY,
+    'scanners.change_scannerqueryrule': ADMIN_SCANNERS_QUERY,
+    'scanners.delete_scannerqueryrule': ADMIN_SCANNERS_QUERY,
+    'scanners.view_scannerqueryrule': ADMIN_SCANNERS_QUERY,
+    'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,

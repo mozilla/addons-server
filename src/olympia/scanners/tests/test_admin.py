@@ -1,4 +1,5 @@
 import json
+from unittest import mock
 
 from django.conf import settings
 from django.contrib.admin.sites import AdminSite
@@ -19,8 +20,12 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
+    ABORTING,
+    COMPLETED,
     CUSTOMS,
     FALSE_POSITIVE,
+    NEW,
+    RUNNING,
     TRUE_POSITIVE,
     UNKNOWN,
     WAT,
@@ -33,7 +38,9 @@ from olympia.scanners.admin import (
     StateFilter,
     WithVersionFilter,
 )
-from olympia.scanners.models import ScannerResult, ScannerRule
+from olympia.scanners.models import (
+    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
+)
 
 
 class TestScannerResultAdmin(TestCase):
@@ -546,6 +553,7 @@ class TestScannerRuleAdmin(TestCase):
         )
 
     def test_list_view(self):
+        ScannerRule.objects.create(name='bar', scanner=YARA)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
 
@@ -561,7 +569,9 @@ class TestScannerRuleAdmin(TestCase):
         result = ScannerResult(scanner=YARA)
         result.add_yara_result(rule=rule.name)
         result.save()
-        ScannerResult.objects.create(scanner=YARA)  # Doesn't match
+        # Create an extra result that doesn't match the rule we'll be looking
+        # at: it shouldn't affect anything.
+        ScannerResult.objects.create(scanner=YARA)
         url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
@@ -574,7 +584,7 @@ class TestScannerRuleAdmin(TestCase):
             f'&has_version=all&state=all&scanner={rule.scanner}'
         )
         assert link.attr('href') == expected_href
-        assert link.text() == '1'
+        assert link.text() == '1'  # Our rule has only one result.
 
     def test_create_view_doesnt_contain_link_to_results(self):
         url = reverse('admin:scanners_scannerrule_add')
@@ -601,3 +611,215 @@ class TestScannerRuleAdmin(TestCase):
         request.user = user
         assert 'definition' not in self.admin.get_fields(request=request)
         assert 'formatted_definition' in self.admin.get_fields(request=request)
+
+
+class TestScannerQueryRuleAdmin(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:ScannersQuery')
+        self.client.login(email=self.user.email)
+        self.list_url = reverse('admin:scanners_scannerqueryrule_changelist')
+
+    def test_list_view(self):
+        ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+
+    def test_list_view_is_restricted(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403
+
+    def test_change_view_contains_link_to_results(self):
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        result = ScannerQueryResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        ScannerQueryResult.objects.create(scanner=YARA)  # Doesn't match
+        url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        link = doc('.field-matched_results_link a')
+        assert link
+        results_list_url = reverse(
+            'admin:scanners_scannerqueryresult_changelist')
+        expected_href = (
+            f'{results_list_url}?matched_rules__id__exact={rule.pk}'
+            f'&has_version=all&state=all&scanner={rule.scanner}'
+        )
+        assert link.attr('href') == expected_href
+        assert link.text() == '1'
+
+    def test_create_view_doesnt_contain_link_to_results(self):
+        url = reverse('admin:scanners_scannerqueryrule_add')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-matched_results_link')
+        assert field
+        assert field.text() == 'Matched Results:\n-'
+        link = doc('.field-matched_results_link a')
+        assert not link
+
+    def test_run_button_in_list_view_for_new_rule(self):
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=NEW)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-state_with_actions')
+        assert field
+        assert field.text() == 'New \xa0 Run'
+        url = reverse(
+            'admin:scanners_scannerqueryrule_handle_run', args=(rule.pk, ))
+        button = field.find('button')[0]
+        assert button.attrib['formaction'] == url
+
+    def test_abort_button_in_list_view_for_running_rule(self):
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=RUNNING)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-state_with_actions')
+        assert field
+        assert field.text() == 'Running \xa0 Abort'
+        url = reverse(
+            'admin:scanners_scannerqueryrule_handle_abort', args=(rule.pk, ))
+        button = field.find('button')[0]
+        assert button.attrib['formaction'] == url
+
+    def test_no_button_for_completed_rule_query(self):
+        ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=COMPLETED)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-state_with_actions')
+        assert field
+        assert field.text() == 'Completed'
+        assert not field.find('button')
+
+    def test_button_in_change_view(self):
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=RUNNING)
+        change_url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        response = self.client.get(change_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-state_with_actions')
+        assert field
+        assert field.text() == 'State:\nRunning \xa0 Abort'
+        url = reverse(
+            'admin:scanners_scannerqueryrule_handle_abort', args=(rule.pk, ))
+        button = field.find('button')[0]
+        assert button.attrib['formaction'] == url
+
+    @mock.patch('olympia.scanners.admin.run_yara_query_rule.delay')
+    def test_run_action(self, run_yara_query_rule_mock):
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=NEW)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerqueryrule_handle_run',
+                args=[rule.pk],
+            ), follow=True
+        )
+        assert response.status_code == 200
+        assert response.redirect_chain == [(self.list_url, 302)]
+        assert run_yara_query_rule_mock.call_count == 1
+        assert run_yara_query_rule_mock.call_args[0] == (rule.pk,)
+        messages = list(response.context['messages'])
+        assert len(messages) == 1
+        assert f'Rule {rule.pk} has been successfully' in str(messages[0])
+        rule.reload()
+        assert rule.state == RUNNING
+
+    @mock.patch('olympia.scanners.admin.run_yara_query_rule.delay')
+    def test_run_action_wrong_state(self, run_yara_query_rule_mock):
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=ABORTING)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerqueryrule_handle_run',
+                args=[rule.pk],
+            ), follow=True
+        )
+        assert response.status_code == 200
+        assert response.redirect_chain == [(self.list_url, 302)]
+        assert run_yara_query_rule_mock.call_count == 0
+        messages = list(response.context['messages'])
+        assert len(messages) == 1
+        assert f'Rule {rule.pk} could not be queued' in str(messages[0])
+        rule.reload()
+        assert rule.state == ABORTING
+
+    def test_run_action_no_permission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.login(email=user.email)
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=NEW)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerqueryrule_handle_run',
+                args=[rule.pk],
+            ), follow=True
+        )
+        assert response.status_code == 404
+
+    def test_abort_action(self):
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=RUNNING)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerqueryrule_handle_abort',
+                args=[rule.pk],
+            ), follow=True
+        )
+        assert response.status_code == 200
+        assert response.redirect_chain == [(self.list_url, 302)]
+        messages = list(response.context['messages'])
+        assert len(messages) == 1
+        assert f'Rule {rule.pk} is being aborted' in str(messages[0])
+        rule.reload()
+        assert rule.state == ABORTING
+
+    def test_abort_action_wrong_state(self):
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=COMPLETED)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerqueryrule_handle_abort',
+                args=[rule.pk],
+            ), follow=True
+        )
+        assert response.status_code == 200
+        assert response.redirect_chain == [(self.list_url, 302)]
+        messages = list(response.context['messages'])
+        assert len(messages) == 1
+        assert f'Rule {rule.pk} could not be aborted' in str(messages[0])
+        assert f'was in "{rule.get_state_display()}" state' in str(messages[0])
+        rule.reload()
+        assert rule.state == COMPLETED
+
+    def test_abort_action_no_permission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.login(email=user.email)
+        rule = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, state=RUNNING)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerqueryrule_handle_abort',
+                args=[rule.pk],
+            ), follow=True
+        )
+        assert response.status_code == 404

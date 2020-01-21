@@ -14,7 +14,7 @@ from olympia import amo
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
 from olympia.constants.scanners import (
-    COMPLETED, CUSTOMS, RUNNING, SCANNERS, WAT, YARA)
+    ABORTED, ABORTING, COMPLETED, CUSTOMS, NEW, RUNNING, SCANNERS, WAT, YARA)
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
@@ -220,23 +220,34 @@ def _run_yara_for_path(scanner_result, path, definition=None):
 
 @task
 @use_primary_db
-def mark_yara_query_rule_as_completed(query_rule_pk):
+def mark_yara_query_rule_as_completed_or_aborted(query_rule_pk):
     """
-    Mark a ScannerQueryRule as completed
+    Mark a ScannerQueryRule as completed/aborted.
     """
     rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
-    rule.update(state=COMPLETED)
+    if rule.state == RUNNING:
+        rule.update(state=COMPLETED)
+    elif rule.state == ABORTING:
+        rule.update(state=ABORTED)
 
 
 @task
 def run_yara_query_rule(query_rule_pk):
     """
     Run a specific ScannerQueryRule on multiple Versions.
+
+    Needs the rule to be a the NEW state, otherwise does nothing.
     """
     # We're not forcing this task to happen on primary db to let the replicas
     # handle the Version query below, but we want to fetch the rule using the
     # primary db in all cases.
     rule = ScannerQueryRule.objects.using('default').get(pk=query_rule_pk)
+    if rule.state == NEW:
+        rule.update(state=RUNNING)
+    else:
+        # We shouldn't be calling this task if the rule isn't in the NEW state.
+        return
+
     # Build a huge list of all pks we're going to run the tasks on.
     pks = Version.unfiltered.all(
     ).filter(
@@ -248,7 +259,6 @@ def run_yara_query_rule(query_rule_pk):
         Q(channel=amo.RELEASE_CHANNEL_UNLISTED) |
         Q(channel=amo.RELEASE_CHANNEL_LISTED, pk=F('addon___current_version'))
     ).values_list('id', flat=True).order_by('pk')
-    rule.update(state=RUNNING)
     # Build the workflow using a group of tasks dealing with 250 files at a
     # time, chained to a task that marks the query as completed.
     chunk_size = 250
@@ -256,7 +266,7 @@ def run_yara_query_rule(query_rule_pk):
         create_chunked_tasks_signatures(
             run_yara_query_rule_on_versions_chunk, list(pks), chunk_size,
             task_args=(query_rule_pk,)) |
-        mark_yara_query_rule_as_completed.si(query_rule_pk)
+        mark_yara_query_rule_as_completed_or_aborted.si(query_rule_pk)
     )
     # Fire it up.
     workflow.apply_async()
@@ -267,11 +277,15 @@ def run_yara_query_rule(query_rule_pk):
 def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
     """
     Task to run a specific ScannerQueryRule on a list of versions.
+
+    Needs the rule to be a the RUNNING state, otherwise does nothing.
     """
     log.info(
         'Running Yara Query Rule %s on versions %s-%s.',
         query_rule_pk, version_pks[0], version_pks[-1])
     rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
+    if rule.state != RUNNING:
+        return
     for version_pk in version_pks:
         try:
             version = Version.unfiltered.all().no_transforms().get(

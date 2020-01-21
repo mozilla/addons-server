@@ -7,9 +7,12 @@ from olympia.amo.tests import (
     addon_factory, AMOPaths, TestCase, version_factory
 )
 from olympia.constants.scanners import (
+    ABORTED,
+    ABORTING,
     COMPLETED,
     CUSTOMS,
     NEW,
+    RUNNING,
     WAT,
     YARA,
 )
@@ -18,6 +21,7 @@ from olympia.scanners.models import (
     ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
 )
 from olympia.scanners.tasks import (
+    mark_yara_query_rule_as_completed_or_aborted,
     run_scanner,
     run_customs,
     run_wat,
@@ -486,7 +490,48 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         self.rule.reload()
         assert self.rule.state == COMPLETED
 
+    def test_run_not_new(self):
+        self.rule.update(state=RUNNING)  # Not NEW.
+        run_yara_query_rule.delay(self.rule.pk)
+
+        # Nothing should have changed.
+        assert ScannerQueryResult.objects.count() == 0
+        self.rule.reload()
+        assert self.rule.state == RUNNING
+
+    def test_mark_yara_query_rule_as_completed(self):
+        self.rule.update(state=RUNNING)
+        mark_yara_query_rule_as_completed_or_aborted(self.rule.pk)
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+
+    def test_mark_yara_query_rule_as_aborted(self):
+        self.rule.update(state=ABORTING)
+        mark_yara_query_rule_as_completed_or_aborted(self.rule.pk)
+        self.rule.reload()
+        assert self.rule.state == ABORTED
+
+    def test_run_on_chunk_aborting(self):
+        self.rule.update(state=ABORTING)
+        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == 0
+
+        self.rule.reload()
+        assert self.rule.state == ABORTING  # Not touched by this.
+
+    def test_run_on_chunk_aborted(self):
+        # This shouldn't happen - if there are any tasks left, state should be
+        # RUNNING or ABORTING, but let's make sure we handle it.
+        self.rule.update(state=ABORTED)
+        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == 0
+        self.rule.reload()
+        assert self.rule.state == ABORTED  # Not touched by this.
+
     def test_run_on_chunk(self):
+        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         yara_results = ScannerQueryResult.objects.all()
@@ -505,7 +550,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
             'meta': {'filename': 'manifest.json'},
         }
         self.rule.reload()
-        assert self.rule.state == NEW  # Not touched by this.
+        assert self.rule.state == RUNNING  # Not touched by this task.
 
     def test_dont_generate_results_if_not_matching_rule(self):
         # Unlike "regular" ScannerRule/ScannerResult, for query stuff we don't
@@ -514,4 +559,4 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
         assert ScannerQueryResult.objects.count() == 0
         self.rule.reload()
-        assert self.rule.state == NEW  # Not touched by this.
+        assert self.rule.state == NEW  # Not touched by this task.
