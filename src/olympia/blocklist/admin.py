@@ -325,7 +325,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
         if obj.signoff_state == BlockSubmission.SIGNOFF_PENDING:
-            if not obj.check_needs_signoff():
+            if not obj.needs_signoff():
                 obj.update(signoff_state=BlockSubmission.SIGNOFF_NOTNEEDED)
 
         if obj.is_save_to_blocks_permitted:

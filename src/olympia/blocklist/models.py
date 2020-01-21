@@ -208,7 +208,7 @@ class BlockSubmission(ModelBase):
             self.updated_by != signoff_user)
         return not require_different_users or different_users
 
-    def check_needs_signoff(self):
+    def needs_signoff(self):
         def unsafe(daily_users):
             return (daily_users > DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD or
                     daily_users == 0)
