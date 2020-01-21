@@ -514,7 +514,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
                 request,
                 messages.ERROR,
                 'Scanner Query Rule {} could not be aborted because it was '
-                ' in "{}" state'.format(rule.pk, rule.get_state_display()),
+                'in "{}" state'.format(rule.pk, rule.get_state_display()),
             )
 
         return redirect('admin:scanners_scannerqueryrule_changelist')

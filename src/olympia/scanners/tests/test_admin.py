@@ -569,7 +569,9 @@ class TestScannerRuleAdmin(TestCase):
         result = ScannerResult(scanner=YARA)
         result.add_yara_result(rule=rule.name)
         result.save()
-        ScannerResult.objects.create(scanner=YARA)  # Doesn't match
+        # Create an extra result that doesn't match the rule we'll be looking
+        # at: it shouldn't affect anything.
+        ScannerResult.objects.create(scanner=YARA)
         url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
@@ -582,7 +584,7 @@ class TestScannerRuleAdmin(TestCase):
             f'&has_version=all&state=all&scanner={rule.scanner}'
         )
         assert link.attr('href') == expected_href
-        assert link.text() == '1'
+        assert link.text() == '1'  # Our rule has only one result.
 
     def test_create_view_doesnt_contain_link_to_results(self):
         url = reverse('admin:scanners_scannerrule_add')
@@ -736,7 +738,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert run_yara_query_rule_mock.call_args[0] == (rule.pk,)
         messages = list(response.context['messages'])
         assert len(messages) == 1
-        assert 'successfully queued' in str(messages[0])
+        assert f'Rule {rule.pk} has been successfully' in str(messages[0])
         rule.reload()
         assert rule.state == RUNNING
 
@@ -755,7 +757,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert run_yara_query_rule_mock.call_count == 0
         messages = list(response.context['messages'])
         assert len(messages) == 1
-        assert 'could not be queued' in str(messages[0])
+        assert f'Rule {rule.pk} could not be queued' in str(messages[0])
         rule.reload()
         assert rule.state == ABORTING
 
@@ -786,7 +788,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert response.redirect_chain == [(self.list_url, 302)]
         messages = list(response.context['messages'])
         assert len(messages) == 1
-        assert 'being aborted' in str(messages[0])
+        assert f'Rule {rule.pk} is being aborted' in str(messages[0])
         rule.reload()
         assert rule.state == ABORTING
 
@@ -803,7 +805,8 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert response.redirect_chain == [(self.list_url, 302)]
         messages = list(response.context['messages'])
         assert len(messages) == 1
-        assert 'could not be aborted' in str(messages[0])
+        assert f'Rule {rule.pk} could not be aborted' in str(messages[0])
+        assert f'was in "{rule.get_state_display()}" state' in str(messages[0])
         rule.reload()
         assert rule.state == COMPLETED
 
