@@ -174,15 +174,16 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
                 self.instance, self.fields_to_trigger_content_review)
             if metadata_content_review else {})
         obj = super().save(*args, **kwargs)
-        if metadata_content_review:
-            new_data = (
-                fetch_existing_translations_from_addon(
-                    obj, self.fields_to_trigger_content_review)
-            )
-            if existing_data != new_data:
-                # flag for content review
-                statsd.incr('devhub.metadata_content_review_triggered')
-                AddonApprovalsCounter.reset_content_for_addon(addon=obj)
+        if not metadata_content_review:
+            return obj
+        new_data = (
+            fetch_existing_translations_from_addon(
+                obj, self.fields_to_trigger_content_review)
+        )
+        if existing_data != new_data:
+            # flag for content review
+            statsd.incr('devhub.metadata_content_review_triggered')
+            AddonApprovalsCounter.reset_content_for_addon(addon=obj)
         return obj
 
 
