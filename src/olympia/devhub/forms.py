@@ -171,7 +171,7 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
             fetch_existing_translations_from_addon(
                 self.instance, self.fields_to_trigger_content_review)
             if self.instance and
-            self.instance.addon.has_listed_versions() and
+            self.instance.has_listed_versions() and
             metadata_content_review else {})
         obj = super().save(*args, **kwargs)
         if not metadata_content_review:
