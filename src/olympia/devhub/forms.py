@@ -165,12 +165,14 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
                         .values_list('tag_text', flat=True))
 
     def save(self, *args, **kwargs):
-        metadata_content_review = waffle.switch_is_active(
-            'metadata-content-review')
+        metadata_content_review = (waffle.switch_is_active(
+            'metadata-content-review') and
+            self.instance and
+            self.instance.has_listed_versions())
         existing_data = (
             fetch_existing_translations_from_addon(
                 self.instance, self.fields_to_trigger_content_review)
-            if self.instance and metadata_content_review else {})
+            if metadata_content_review else {})
         obj = super().save(*args, **kwargs)
         if not metadata_content_review:
             return obj
