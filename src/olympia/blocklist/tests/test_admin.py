@@ -48,7 +48,7 @@ class TestBlockAdminList(TestCase):
 
     def test_can_list(self):
         addon = addon_factory()
-        Block.objects.create(guid=addon.guid)
+        Block.objects.create(guid=addon.guid, updated_by=user_factory())
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
@@ -59,7 +59,7 @@ class TestBlockAdminList(TestCase):
 
     def test_can_not_list_without_permission(self):
         addon = addon_factory()
-        Block.objects.create(guid=addon.guid)
+        Block.objects.create(guid=addon.guid, updated_by=user_factory())
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
@@ -106,7 +106,8 @@ class TestBlockAdminAdd(TestCase):
         self.assertRedirects(response, self.multi_url, status_code=307)
 
         # An existing block will redirect to change view instead
-        block = Block.objects.create(guid=addon.guid)
+        block = Block.objects.create(
+            guid=addon.guid, updated_by=user_factory())
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(
@@ -290,7 +291,8 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger',
             average_daily_users=(addon_adu - 1))
@@ -298,7 +300,8 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
             self.multi_url,
             {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
@@ -448,14 +451,16 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='partial@existing'),
             min_version='1',
             max_version='10',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         existing_zero_to_max = Block.objects.create(
             addon=addon_factory(
                 guid='full@existing', average_daily_users=99,
                 version_kw={'version': '10'}),
             min_version='0',
             max_version='*',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
             self.multi_url,
             {'guids': 'any@new\npartial@existing\nfull@existing'},
@@ -594,14 +599,16 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger')
         Block.objects.create(
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
             self.multi_url,
             {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
@@ -640,7 +647,8 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='foo@baa'),
             min_version="0",
             max_version="*",
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
@@ -648,7 +656,8 @@ class TestBlockSubmissionAdmin(TestCase):
         assert not pq(response.content)('.existing_block')
 
         # Should work the same if partial block (exists but needs updating)
-        existing_block = Block.objects.create(guid=addon.guid, min_version='8')
+        existing_block = Block.objects.create(
+            guid=addon.guid, min_version='8', updated_by=user_factory())
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
@@ -694,7 +703,8 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
             self.multi_url, {
                 'input_guids': 'any@new\npartial@existing\ninvalid@',
@@ -723,7 +733,8 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='foo@baa'),
             min_version="1",
             max_version="99",
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
             self.multi_url,
             {'guids': 'guid@\nfoo@baa\ninvalid@'},
@@ -1113,7 +1124,8 @@ class TestBlockSubmissionAdmin(TestCase):
 class TestBlockAdminEdit(TestCase):
     def setUp(self):
         self.addon = addon_factory(guid='guid@', name='Danger Danger')
-        self.block = Block.objects.create(guid=self.addon.guid)
+        self.block = Block.objects.create(
+            guid=self.addon.guid, updated_by=user_factory())
         self.change_url = reverse(
             'admin:blocklist_block_change', args=(self.block.pk,))
         self.delete_url = reverse(
@@ -1343,7 +1355,7 @@ class TestBlockAdminBulkDelete(TestCase):
 
         # Any invalid guids should redirect back to the page too, with an error
         block_with_addon = Block.objects.create(
-            addon=addon_factory(guid='guid@'))
+            addon=addon_factory(guid='guid@'), updated_by=user_factory())
         response = self.client.post(
             self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
@@ -1351,7 +1363,8 @@ class TestBlockAdminBulkDelete(TestCase):
 
         # We're purposely not creating the add-on here to test the edge-case
         # where the addon has been hard-deleted or otherwise doesn't exist.
-        block_no_addon = Block.objects.create(guid='{12345-6789}')
+        block_no_addon = Block.objects.create(
+            guid='{12345-6789}', updated_by=user_factory())
         assert Block.objects.count() == 2
         # But should continue to django's deleted_selected if they all exist
         response = self.client.post(

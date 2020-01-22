@@ -3545,7 +3545,8 @@ class TestReview(ReviewBase):
             reverse('admin:blocklist_block_add_single') + '?guid=' +
             self.addon.guid)
 
-        block = Block.objects.create(addon=self.addon)
+        block = Block.objects.create(
+            addon=self.addon, updated_by=user_factory())
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4970,7 +4971,8 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Blocked' not in response.content
 
-        block = Block.objects.create(guid=self.addon.guid)
+        block = Block.objects.create(
+            guid=self.addon.guid, updated_by=user_factory())
         response = self.client.get(self.url)
         assert b'Blocked' in response.content
         span = pq(response.content)('#versions-history .blocked-version')

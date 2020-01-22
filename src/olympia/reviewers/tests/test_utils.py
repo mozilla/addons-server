@@ -16,7 +16,7 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    TestCase, addon_factory, file_factory, version_factory)
+    TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block
@@ -1503,7 +1503,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self._test_block_multiple_unlisted_versions(redirect_url)
 
     def test_existing_block_multiple_unlisted_versions(self):
-        block = Block.objects.create(guid=self.addon.guid)
+        block = Block.objects.create(
+            guid=self.addon.guid, updated_by=user_factory())
         redirect_url = (
             reverse('admin:blocklist_block_change', args=(block.id,)) +
             '?min_version=%s&max_version=%s')

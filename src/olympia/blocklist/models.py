@@ -59,6 +59,10 @@ class Block(ModelBase):
             self.addon = addon
         super().__init__(*args, **kwargs)
 
+    def save(self, **kwargs):
+        assert self.updated_by
+        return super().save(**kwargs)
+
     @cached_property
     def addon(self):
         return Addon.unfiltered.filter(

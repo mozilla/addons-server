@@ -17,7 +17,8 @@ from olympia.addons.models import (
     AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
     Preview, ReusedGUID, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -1669,7 +1670,8 @@ class TestAddonModels(TestCase):
         assert not addon.is_addon_blocklisted
 
         del addon.block
-        block = Block.objects.create(guid=addon.guid)
+        block = Block.objects.create(
+            guid=addon.guid, updated_by=user_factory())
         assert addon.block == addon.block
         assert addon.is_addon_blocklisted
 
