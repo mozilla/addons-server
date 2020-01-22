@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-08-16 15:01+0000\n"
-"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
+"PO-Revision-Date: 2020-01-22 18:28+0000\n"
+"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -3786,7 +3786,6 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਮਲਟੀਪਲ ਲਿੰਕਸ ਖੋਲ੍ਹੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "ਉਹ ਨਵੀਆਂ ਟੈਬਾਂ ਤੇ ਸੱਜਾ ਕਲਿੱਕ ਕਰੋ ਅਤੇ ਖੋਲੋ ਜੋ ਤੁਸੀਂ ਖੋਲ੍ਹਣਾ ਚਾਹੁੰਦੇ ਹੋ।"
 
@@ -4681,9 +4680,8 @@ msgid "They add features to Firefox to make browsing faster, safer, or just plai
 msgstr "ਇਹ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਫ਼ੀਚਰ ਜੋੜਦੇ ਹਨ, ਜੋ ਕਿ ਬਰਾਊਜ਼ ਕਰਨ ਨੂੰ ਹੋਰ ਵੱਧ ਤੇਜ਼, ਵੱਧ ਸੁਰੱਖਿਅਤ ਜਾਂ ਸਿਰਫ਼ ਆਨੰਦ ਬਣਾਓ।"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
@@ -5279,9 +5277,8 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr "ਖ਼ਤਰਾ ਟੁੱਟਣ ਤੇ ਉਪਲਬਧ ਨਹੀਂ।"
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "ਇੱਕ ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਲਾਕ ਕੀਤਾ ਗਿਆ ਹੈ।"
+msgstr "ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਬੰਦ ਕੀਤਾ ਗਿਆ ਹੈ"
 
 #, fuzzy
 msgid "Has auto-approval disabled flag set"
@@ -6306,9 +6303,8 @@ msgstr "ਚੁਣੇ ਹੋਏ ਵਰਤੋਂਕਾਰਾਂ ਉੱਤੇ ਪ�
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr "ਉਪਭੋਗੀ \"%(users)s\" ਤੇ ਪਾਬੰਦੀ ਲਗਾ ਦਿੱਤੀ ਗਈ ਹੈ।"
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰੋ"
+msgstr "API ਕੁੰਜੀ ਨੂੰ ਰੀਸੈਟ ਕਰੋ"
 
 msgid "Profile Photo"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
