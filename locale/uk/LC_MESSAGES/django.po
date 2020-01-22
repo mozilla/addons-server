@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-08 14:19+0000\n"
-"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
+"PO-Revision-Date: 2020-01-19 18:00+0000\n"
+"Last-Translator: Ігор <igor.ck.ua@pm.me>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgid "This reviewer name cannot be used."
 msgstr "Це ім'я рецензента не можна використати."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr "Поле домівки можна використовувати лише для посилань на сторонні веб-сайти."
+msgstr "Поле домівки можна використовувати лише для посилань на сторонні вебсайти."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Зображення повинні бути у форматі PNG чи JPG."
@@ -203,7 +203,7 @@ msgstr "Позитивне ціле число"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Це поле можна використовувати лише для посилання на зовнішні веб-сайти. URL-адреси на %(domain)s не дозволяються."
+msgstr "Це поле можна використовувати лише для посилання на зовнішні вебсайти. URL-адреси на %(domain)s не дозволяються."
 
 msgid "Incorrect, please try again."
 msgstr "Неправильно, спробуйте знову."
@@ -916,7 +916,7 @@ msgid "Appearance"
 msgstr "Налаштування інтерфейсу"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Завантажте розширення, що змінюють вигляд веб-сайтів та браузера Firefox. Ця категорія містить розширення для темних тем, керування вкладками та інші."
+msgstr "Завантажте розширення, що змінюють вигляд вебсайтів та браузера Firefox. Ця категорія містить розширення для темних тем, керування вкладками та інші."
 
 msgid "Bookmarks"
 msgstr "Закладки"
@@ -929,7 +929,7 @@ msgstr "Завантаження та керування файлами"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
-"Завантажте розширення для Firefox, які можуть допомогти завантажити веб-сторінки, музичний та відео вміст. Ви також можете знайти розширення для керування завантаженнями, обміну файлами та інші."
+"Завантажте розширення для Firefox, які можуть допомогти завантажити вебсторінки, музичний та відео вміст. Ви також можете знайти розширення для керування завантаженнями, обміну файлами та інші."
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS, новини та блоги"
@@ -1036,7 +1036,7 @@ msgid "Social Networking"
 msgstr "Соціальні мережі"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Завантажте розширення Firefox для покращення роботи з популярними веб-сайтами, наприклад, YouTube, GitHub, Reddit та інших."
+msgstr "Завантажте розширення Firefox для покращення роботи з популярними вебсайтами, наприклад, YouTube, GitHub, Reddit та інших."
 
 msgid "Sports & Games"
 msgstr "Спорт та ігри"
@@ -1048,7 +1048,7 @@ msgid "User Interface"
 msgstr "Інтерфейс користувача"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Завантажте розширення Firefox для користувацького інтерфейсу, щоб змінювати вигляд веб-сторінок для простішого читання, пошуку, перегляду тощо."
+msgstr "Завантажте розширення Firefox для користувацького інтерфейсу, щоб змінювати вигляд вебсторінок для простішого читання, пошуку, перегляду тощо."
 
 msgid "Animals"
 msgstr "Тварини"
@@ -1152,7 +1152,7 @@ msgid "Download Firefox themes that feature a variety of sports. This category i
 msgstr "Завантажте теми для Firefox присвячені спорту. Ця категорія включає прапори країн, спортивні команди, футбол, хокей та інші."
 
 msgid "Websites"
-msgstr "Веб-сайти"
+msgstr "Вебсайти"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
 msgstr "Завантажте теми Firefox, що відображають суть Інтернету — захопливі, незвичні й самобутні."
@@ -2001,7 +2001,7 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "Вас запросили стати автором для {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr "Прийнявши запрошення, ви отримаєте доступ до редагування додатка, а також можете відобразити своє ім'я в списку авторів на веб-сайті. "
+msgstr "Прийнявши запрошення, ви отримаєте доступ до редагування додатка, а також можете відобразити своє ім'я в списку авторів на вебсайті. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Натисніть кнопку Прийняти внизу, щоб підтвердити долучення до авторів {addon_name}."
@@ -2605,7 +2605,7 @@ msgid "Tools that combine multiple files into a single file, such as <span class
 msgstr "Засоби, що об'єднують багато файлів у один, наприклад, <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr "Рушії веб-шаблонів, обидва для HTML та CSS"
+msgstr "Рушії вебшаблонів, обидва для HTML та CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
 msgstr "Будь-який інший засіб, що використовує код чи файли, проводить обробку та генерує код чи файли для включення в додаток"
@@ -3298,7 +3298,7 @@ msgstr "Спростіть пошук {start_sub_heading}за допомогою
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Виконуйте простий пошук з багатьма пошуковими засобами, просто обравши текст на будь-якій веб-сторінці."
+msgstr "Виконуйте простий пошук з багатьма пошуковими засобами, просто обравши текст на будь-якій вебсторінці."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3418,7 +3418,7 @@ msgstr "Не дозволяйте майнинг криптовалют {start_s
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr "Не дозволяйте зловмисним веб-сайтам використовувати ваш комп'ютер для майнингу криптовалют."
+msgstr "Не дозволяйте зловмисним вебсайтам використовувати ваш комп'ютер для добування криптовалют."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3442,7 +3442,7 @@ msgstr "Простий переклад {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Простий переклад. Підсвічуйте текст на будь-якій веб-сторінці — або обирайте цілу сторінку — для миттєвого перекладу."
+msgstr "Простий переклад. Підсвічуйте текст на будь-якій вебсторінці — або обирайте цілу сторінку — для миттєвого перекладу."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3479,7 +3479,7 @@ msgstr "Ecosia віддає 80% свого прибутку від пошуку 
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Знаходьте втрачений веб-вміст  {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Знаходьте втрачений вебвміст  {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
@@ -3487,7 +3487,7 @@ msgstr "Сторінка, яку ви шукаєте, не доступна? С�
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Знаходьте втрачений веб-вміст {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Знаходьте втрачений вебвміст {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3527,7 +3527,7 @@ msgstr "Не залишайте цифрового сліду {start_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Не залишайте після себе цифрового сліду. Дозвольте Firefox забути локальні дані веб-сайтів, такі як куки й дані сховища, але лише для вибраних доменів."
+msgstr "Не залишайте після себе цифрового сліду. Дозвольте Firefox забути локальні дані вебсайтів, такі як куки й дані сховища, але лише для вибраних доменів."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3546,7 +3546,7 @@ msgstr "Блокуйте рекламу в електронній пошті {st
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr "Отримайте більше простору на екрані, прибравши рекламу з веб-версії своєї пошти."
+msgstr "Отримайте більше простору на екрані, прибравши рекламу з вебверсії своєї пошти."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3654,11 +3654,11 @@ msgstr "Змініть спосіб перегляду Reddit з викорис�
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Захоплюйте веб-вміст {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Захоплюйте вебвміст {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr "Робіть знімки екрану веб-сторінок, редагуйте і діліться з іншими."
+msgstr "Робіть знімки екрану вебсторінок, редагуйте і діліться з іншими."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -3710,7 +3710,7 @@ msgstr "Надійне керування завантаженнями. Стеж
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Захоплюйте веб-вміст {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Захоплюйте вебвміст {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
@@ -3738,7 +3738,7 @@ msgstr "Додавайте зображення до результатів по
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Переглядайте мініатюри зображень веб-сайтів поруч з результатами пошуку."
+msgstr "Переглядайте мініатюри зображень вебсайтів поруч з результатами пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3758,11 +3758,11 @@ msgstr "Блокуйте всі виринаючи вікна, потім вир
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Налаштуйте свої улюблені веб-сайти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Налаштуйте свої улюблені вебсайти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Змінюйте вигляд будь-якого веб-сайту. Змінюйте кольори, тло сторінок та багато іншого."
+msgstr "Змінюйте вигляд будь-якого вебсайту. Змінюйте кольори, тло сторінок та багато іншого."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3786,7 +3786,7 @@ msgstr "Знайте більше про те, куди ви переходит�
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Знайте, куди ви переходите в Інтернеті. Отримуйте дані про розташування відвідуваних веб-сайтів. Будьте інформованими."
+msgstr "Знайте, куди ви переходите в Інтернеті. Отримуйте дані про розташування відвідуваних вебсайтів. Будьте інформованими."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3870,11 +3870,11 @@ msgstr "Підлаштуйте YouTube для себе. Відтворюйте �
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Досліджуйте трафік веб-сайту {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Досліджуйте трафік вебсайту {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr "Отримуйте детальну інформацію про популярність та трафік будь-якого веб-сайту."
+msgstr "Отримуйте детальну інформацію про популярність та трафік будь-якого вебсайту."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3898,7 +3898,7 @@ msgstr "Замаскуйте сторінку {start_sub_heading}за допом
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr "Приховуйте частини веб-сайту, який ви переглядаєте."
+msgstr "Приховуйте частини вебсайту, який ви переглядаєте."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3954,11 +3954,11 @@ msgstr "Більше ніяких перенаправлень {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr "Переходьте безпосередньо на бажаний веб-сайт беж проміжного перенаправлення."
+msgstr "Переходьте безпосередньо на бажаний вебсайт беж проміжного перенаправлення."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Веб-версія WhatsApp {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Вебверсія WhatsApp {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -3974,11 +3974,11 @@ msgstr "Отримайте професійний переклад німець�
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Створіть чорний список веб-сайтів {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Створіть чорний список вебсайтів {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Обмежте для Firefox доступ до визначених вами веб-сайтів. Чудовий інструмент для самодисципліни."
+msgstr "Обмежте для Firefox доступ до визначених вами вебсайтів. Чудовий інструмент для самодисципліни."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4030,7 +4030,7 @@ msgstr "Усуньте непотрібне форматування й копі
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr "Змінюйте мову цілої веб-сторінки на бажану — одним натиском кнопки."
+msgstr "Змінюйте мову цілої вебсторінки на бажану — одним натиском кнопки."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4038,7 +4038,7 @@ msgstr "Видобувайте посилання {start_sub_heading}за доп
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Миттєво відображайте всі посилання з веб-сторінки в нових вкладках."
+msgstr "Миттєво відображайте всі посилання з вебсторінки в нових вкладках."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4078,7 +4078,7 @@ msgstr "Робіть нотатки {start_sub_heading}за допомогою {
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr "Створюйте загальні та пов'язані з веб-сайтом нотатки, щоб переглянути їх згодом."
+msgstr "Створюйте загальні та пов'язані з вебсайтом нотатки, щоб переглянути їх згодом."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4102,7 +4102,7 @@ msgstr "Підсвічуйте текст {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr "Підсвічуйте текст на веб-сторінках для його збереження і відкладеного доступу."
+msgstr "Підсвічуйте текст на вебсторінках для його збереження і відкладеного доступу."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4134,7 +4134,7 @@ msgstr "Переглядайте Інтернет безпечно {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Автоматично переходьте до захищеної версії веб-сайту, якщо вона доступна."
+msgstr "Автоматично переходьте до захищеної версії вебсайту, якщо вона доступна."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4158,7 +4158,7 @@ msgstr "Безпечно керуйте паролями {start_sub_heading}за
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr "Зберігайте паролі в безпеці й виконуйте автоматичний вхід на відомих веб-сайтах."
+msgstr "Зберігайте паролі в безпеці й виконуйте автоматичний вхід на відомих вебсайтах."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4306,7 +4306,7 @@ msgstr "Зберігайте паролі в безпеці {start_sub_heading}�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr "Надійно зберігайте паролі й автоматично виконуйте вхід на відомих веб-сайтах."
+msgstr "Надійно зберігайте паролі й автоматично виконуйте вхід на відомих вебсайтах."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4348,7 +4348,7 @@ msgstr "Безпечно переглядайте Інтернет {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Дозволяйте виконання веб-вмісту лише для сайтів, яким ви довіряєте. Користуйтесь Інтернетом безпечно."
+msgstr "Дозволяйте виконання вебвмісту лише для сайтів, яким ви довіряєте. Користуйтесь Інтернетом безпечно."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4364,7 +4364,7 @@ msgstr "Стирайте історію {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr "Автоматично видаляйте історію браузера для обраних веб-сайтів."
+msgstr "Автоматично видаляйте історію браузера для обраних вебсайтів."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4416,7 +4416,7 @@ msgstr "Орієнтуйтеся на місці {start_sub_heading}за доп�
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Дізнайтеся географічне розташування сервера веб-сайту. Будьте обізнаними в мережі."
+msgstr "Дізнайтеся географічне розташування сервера вебсайту. Будьте обізнаними в мережі."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4424,7 +4424,7 @@ msgstr "Розберіться з надокучливим аудіо {start_sub
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Виправте аудіо. Якщо звук на веб-сайті надто тихий чи гучний, SoundFixer може допомогти."
+msgstr "Виправте аудіо. Якщо звук на вебсайті надто тихий чи гучний, SoundFixer може допомогти."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4432,7 +4432,7 @@ msgstr "Редагування перед друком {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Редагуйте веб-сторінку перед друком. Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій веб-сторінці, яку ви хочете роздрукувати."
+msgstr "Редагуйте вебсторінку перед друком. Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій вебсторінці, яку ви хочете роздрукувати."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4500,7 +4500,7 @@ msgstr "Припиніть витрачати цінний обсяг пам'я�
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Зберігайте веб-сторінки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Зберігайте вебсторінки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
@@ -4524,7 +4524,7 @@ msgstr "Вдоскональте процес читання {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr "Читайте чіткіше й легше. Приберіть з веб-сторінок все зайве, окрім тексту."
+msgstr "Читайте чіткіше й легше. Приберіть з вебсторінок все зайве, окрім тексту."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4572,11 +4572,11 @@ msgstr "Налаштуйте відтінки світла і тіні, щоб �
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте надокучливі веб-сайти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Блокуйте надокучливі вебсайти {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Блокуйте відволікаючі веб-сайти. Вкажіть сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
+msgstr "Блокуйте відволікаючі вебсайти. Вкажіть сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4875,7 +4875,7 @@ msgid "About Mozilla Add-ons"
 msgstr "Про додатки Mozilla"
 
 msgid "What is this website?"
-msgstr "Що це за веб-сайт?"
+msgstr "Що це за вебсайт?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
@@ -4933,7 +4933,7 @@ msgstr ""
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
-"Допоможіть покращити цей веб-сайт. Його програмний код є відкритим і ви можете реєструвати помилки та відправляти виправлення. <a href=\"%(url)s\">GitHub</a> містить всі наші поточні помилки, "
+"Допоможіть покращити цей вебсайт. Його програмний код є відкритим і ви можете реєструвати помилки та відправляти виправлення. <a href=\"%(url)s\">GitHub</a> містить всі наші поточні помилки, "
 "успадковані помилки все ще можуть бути знайдені в Bugzilla."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -4961,10 +4961,10 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr "Якщо вам дійсно потрібно зв'язатися з кимось із команди Mozilla, перегляньте нашу сторінку з <a href=\"%(url)s\"> контактною інформацією</a>."
 
 msgid "Who works on this website?"
-msgstr "Хто працює над цим веб-сайтом?"
+msgstr "Хто працює над цим вебсайтом?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr "Протягом років, багато людей зробили свій внесок в цей веб-сайт, як добровільні помічники зі спільноти, так і окремо команда AMO."
+msgstr "Протягом років, багато людей зробили свій внесок в цей вебсайт, як добровільні помічники зі спільноти, так і окремо команда AMO."
 
 msgid "Review Guidelines"
 msgstr "Щодо відгуків"
@@ -5939,7 +5939,7 @@ msgid "Invalid GUID in URL"
 msgstr "Хибний GUID у URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr "Ви не можете додавати опубліковану версію для цього додатку через API, у зв'язку з відсутніми метаданими. Будь ласка, відправте через веб-сайт"
+msgstr "Ви не можете додавати опубліковану версію для цього додатку через API, у зв'язку з відсутніми метаданими. Будь ласка, відправте через вебсайт"
 
 msgid "No uploaded file for that addon and version."
 msgstr "Немає завантаженого файлу для цього додатка і версії."
@@ -6117,10 +6117,10 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Відстеження зовнішніх джерел</h2> <p> Якщо ви посилаєтеся на сторінку інформації про ваш додаток чи безпосередньо на його файл з стороннього сайту, такого як ваш блог або веб-сайт, ви можете "
+"<h2>Відстеження зовнішніх джерел</h2> <p> Якщо ви посилаєтеся на сторінку інформації про ваш додаток чи безпосередньо на його файл зі стороннього сайту, такого як ваш блог або вебсайт, ви можете "
 "додати параметр для відстеження додаткових джерел завантаження на цій сторінці. Наприклад, наступні посилання з'являться як ті, що виходять з вашого блогу: <dl> <dt>Сторінка інформації про "
 "додаток</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Пряме посилання на файл</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Будуть відслідковані тільки параметри src, що починаються з \"external-\", "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Будуть відстежені тільки параметри src, що починаються з \"external-\", "
 "довжиною до 61 додаткового символа. Будь-який текст після \"external-\" може бути використаний для опису джерела, наприклад \"external-blog\", \"external-sidebar\", \"external-campaign225\", і т.д. "
 "Дозволені наступні безпечні для створення URL символи: <code>a-z A-Z - . _ ~ %% +</code>"
 
@@ -6159,7 +6159,7 @@ msgid "Report Trademark Abuse"
 msgstr "Повідомити про зловживання торговою маркою"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr "Новий веб-сайт підтримує мобільні та комп'ютерні версії браузерів"
+msgstr "Новий вебсайт підтримує мобільні та комп'ютерні версії браузерів"
 
 msgid "View the new site"
 msgstr "Відвідати новий сайт"
