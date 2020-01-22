@@ -170,19 +170,22 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         existing_data = (
             fetch_existing_translations_from_addon(
                 self.instance, self.fields_to_trigger_content_review)
-            if self.instance and metadata_content_review else {})
+            if self.instance and
+            self.instance.addon.has_listed_versions() and
+            metadata_content_review else {})
         obj = super().save(*args, **kwargs)
         if not metadata_content_review:
             return obj
-        new_data = (
-            fetch_existing_translations_from_addon(
-                obj, self.fields_to_trigger_content_review)
-        )
-        if obj.has_listed_versions() and existing_data != new_data:
-            # flag for content review
-            statsd.incr('devhub.metadata_content_review_triggered')
-            AddonApprovalsCounter.reset_content_for_addon(addon=obj)
-        return obj
+        if obj.has_listed_versions():
+            new_data = (
+                fetch_existing_translations_from_addon(
+                    obj, self.fields_to_trigger_content_review)
+            )
+            if existing_data != new_data:
+                # flag for content review
+                statsd.incr('devhub.metadata_content_review_triggered')
+                AddonApprovalsCounter.reset_content_for_addon(addon=obj)
+            return obj
 
 
 class CategoryForm(forms.Form):
