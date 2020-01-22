@@ -14,7 +14,17 @@ from olympia import amo
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
 from olympia.constants.scanners import (
-    ABORTED, ABORTING, COMPLETED, CUSTOMS, NEW, RUNNING, SCANNERS, WAT, YARA)
+    ABORTED,
+    ABORTING,
+    COMPLETED,
+    CUSTOMS,
+    ML_API,
+    NEW,
+    RUNNING,
+    SCANNERS,
+    WAT,
+    YARA,
+)
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip
@@ -313,3 +323,60 @@ def _run_yara_query_rule_on_version(version, rule):
         scanner_result.save()
     # FIXME: run_action ?
     return scanner_result
+
+
+@validation_task
+def call_ml_api(results, upload_pk):
+    """
+    Call the machine learning (ML) API for a given FileUpload.
+
+    - `results` are the validation results passed in the validation chain. This
+       task is a validation task, which is why it must receive the validation
+       results as first argument.
+    - `upload_pk` is the FileUpload ID.
+    """
+    log.info('Starting ML API task for FileUpload %s.', upload_pk)
+
+    if not results['metadata']['is_webextension']:
+        log.info(
+            'Not calling ML API for FileUpload %s, it is not a webextension.',
+            upload_pk,
+        )
+        return results
+
+    try:
+        # TODO: retrieve all scanner results and pass each result to the API.
+        customs_results = ScannerResult.objects.get(
+            upload_id=upload_pk, scanner=CUSTOMS
+        )
+
+        with statsd.timer('devhub.ml_api'):
+            json_payload = {'customs': customs_results.results}
+            response = requests.post(
+                url=settings.ML_API_URL,
+                json=json_payload,
+                timeout=settings.ML_API_TIMEOUT,
+            )
+
+        try:
+            data = response.json()
+        except ValueError:
+            # Log the response body when JSON decoding has failed.
+            raise ValueError(response.text)
+
+        if response.status_code != 200:
+            raise ValueError(data)
+
+        ScannerResult.objects.create(
+            upload_id=upload_pk, scanner=ML_API, results=data
+        )
+
+        statsd.incr('devhub.ml_api.success')
+        log.info('Ending ML API task for FileUpload %s.', upload_pk)
+    except Exception:
+        statsd.incr('devhub.ml_api.failure')
+        # We log the exception but we do not raise to avoid perturbing the
+        # submission flow.
+        log.exception('Error in ML API task for FileUpload %s.', upload_pk)
+
+    return results
