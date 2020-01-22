@@ -3542,7 +3542,7 @@ class TestReview(ReviewBase):
         assert doc('#block_addon')
         assert not doc('#edit_addon_block')
         assert doc('#block_addon')[0].attrib.get('href') == (
-            reverse('admin:blocklist_block_add_single') + '?guid=' +
+            reverse('admin:blocklist_blocksubmission_add') + '?guids=' +
             self.addon.guid)
 
         block = Block.objects.create(
@@ -4501,8 +4501,8 @@ class TestReview(ReviewBase):
 
         assert response.status_code == 302
         new_block_url = (
-            reverse('admin:blocklist_block_add_single') +
-            '?guid=%s&min_version=%s&max_version=%s' % (
+            reverse('admin:blocklist_blocksubmission_add') +
+            '?guids=%s&min_version=%s&max_version=%s' % (
                 self.addon.guid, old_version.version, self.version.version))
         self.assertRedirects(response, new_block_url)
 

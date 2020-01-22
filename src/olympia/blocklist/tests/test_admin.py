@@ -20,10 +20,12 @@ from ..models import (
     Block, BlockSubmission, DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD)
 
 
-class TestBlockAdminList(TestCase):
+class TestBlockAdmin(TestCase):
     def setUp(self):
         self.admin_home_url = reverse('admin:index')
         self.list_url = reverse('admin:blocklist_block_changelist')
+        self.add_url = reverse('admin:blocklist_block_add')
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_can_see_addon_module_in_admin_with_review_admin(self):
         user = user_factory()
@@ -67,13 +69,6 @@ class TestBlockAdminList(TestCase):
         assert response.status_code == 403
         assert addon.guid not in response.content.decode('utf-8')
 
-
-class TestBlockAdminAdd(TestCase):
-    def setUp(self):
-        self.add_url = reverse('admin:blocklist_block_add')
-        self.single_url = reverse('admin:blocklist_block_add_single')
-        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
-
     def test_add(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -98,12 +93,12 @@ class TestBlockAdminAdd(TestCase):
         addon = addon_factory(guid='guid@')
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
-        self.assertRedirects(response, self.single_url + '?guid=guid@')
+        self.assertRedirects(response, self.submission_url, status_code=307)
 
         # Multiple guids are redirected to the multiple guid view
         response = self.client.post(
             self.add_url, {'guids': 'guid@\nfoo@baa'}, follow=True)
-        self.assertRedirects(response, self.multi_url, status_code=307)
+        self.assertRedirects(response, self.submission_url, status_code=307)
 
         # An existing block will redirect to change view instead
         block = Block.objects.create(
@@ -114,6 +109,13 @@ class TestBlockAdminAdd(TestCase):
             response,
             reverse('admin:blocklist_block_change', args=(block.pk,))
         )
+
+
+class TestBlockSubmissionAdmin(TestCase):
+    def setUp(self):
+        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
+        self.multi_list_url = reverse(
+            'admin:blocklist_blocksubmission_changelist')
 
     def test_add_single(self):
         user = user_factory()
@@ -129,7 +131,7 @@ class TestBlockAdminAdd(TestCase):
             addon=addon, version='5.999',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
+            self.multi_url + '?guids=guid@', follow=True)
         content = response.content.decode('utf-8')
         assert 'Add-on GUIDs (one per line)' not in content
         assert 'guid@' in content
@@ -137,15 +139,19 @@ class TestBlockAdminAdd(TestCase):
         assert str(addon.average_daily_users) in content
         assert Block.objects.count() == 0  # Check we didn't create it already
         assert 'Block History' in content
+        assert 'changing this will force' not in content
 
         # Create the block
         response = self.client.post(
-            self.single_url + '?guid=guid@', {
+            self.multi_url, {
+                'input_guids': 'guid@',
                 'min_version': '0',
                 'max_version': addon.current_version.version,
+                'existing_min_version': '0',
+                'existing_max_version': addon.current_version.version,
                 'url': 'dfd',
                 'reason': 'some reason',
-                '_continue': 'Save',
+                '_save': 'Save',
             },
             follow=True)
         assert response.status_code == 200
@@ -169,113 +175,14 @@ class TestBlockAdminAdd(TestCase):
         assert log == ActivityLog.objects.for_version(second_version).last()
         assert not ActivityLog.objects.for_version(pending_version).exists()
 
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.pk,)))
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}: guid@' in content
         assert f'versions 0 - {addon.current_version.version}' in content
         assert f'Included in legacy blocklist' not in content
-
-    def test_review_links(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.grant_permission(user, 'Blocklist:Create')
-        self.client.login(email=user.email)
-
-        addon = addon_factory(
-            guid='guid@', name='Danger Danger', version_kw={'version': '0.1'})
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' in content
-        assert 'Review Unlisted' not in content  # Theres only a listed version
-
-        version_factory(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.2')
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' in content
-        listed_review_url = absolutify(reverse(
-            'reviewers.review', kwargs={'addon_id': addon.pk}))
-        assert listed_review_url in content
-        assert 'Review Unlisted' in content, content
-        unlisted_review_url = absolutify(reverse(
-            'reviewers.review', args=('unlisted', addon.pk)))
-        assert unlisted_review_url in content
-
-        addon.current_version.delete(hard=True)
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' not in content
-        assert 'Review Unlisted' in content
-
-    def test_can_not_set_min_version_above_max_version(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.grant_permission(user, 'Blocklist:Create')
-        self.client.login(email=user.email)
-
-        addon = addon_factory(
-            guid='guid@', name='Danger Danger', version_kw={'version': '3'})
-        version_factory(addon=addon, version='5')
-
-        response = self.client.post(
-            self.single_url + '?guid=guid@', {
-                'min_version': '5',
-                'max_version': '3',
-                'url': 'dfd',
-                'reason': 'some reason',
-                '_save': 'Save',
-            },
-            follow=True)
-        assert response.status_code == 200
-        assert b'Min version can not be greater than Max' in response.content
-        assert Block.objects.count() == 0
-
-        response = self.client.post(
-            self.single_url + '?guid=guid@', {
-                'min_version': '3',
-                'max_version': '5',
-                'url': 'dfd',
-                'reason': 'some reason',
-                '_save': 'Save',
-            },
-            follow=True)
-        assert response.status_code == 200
-        assert Block.objects.count() == 1
-
-    def test_can_not_add_without_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.client.login(email=user.email)
-
-        addon = addon_factory(guid='guid@', name='Danger Danger')
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        assert response.status_code == 403
-        assert b'Danger Danger' not in response.content
-
-        # Try to create the block anyway
-        response = self.client.post(
-            self.single_url + '?guid=guid@', {
-                'min_version': '0',
-                'max_version': addon.current_version.version,
-                'url': 'dfd',
-                'reason': 'some reason',
-                '_save': 'Save',
-            },
-            follow=True)
-        assert response.status_code == 403
-        assert Block.objects.count() == 0
-
-
-class TestBlockSubmissionAdmin(TestCase):
-    def setUp(self):
-        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
-        self.multi_list_url = reverse(
-            'admin:blocklist_blocksubmission_changelist')
 
     def _test_add_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
@@ -321,6 +228,8 @@ class TestBlockSubmissionAdmin(TestCase):
         assert str(existing_and_full.addon.average_daily_users) not in content
         # no metadata for an invalid guid but it should be shown
         assert 'invalid@' in content
+        # we show the warning when the versions can affect existing blocks
+        assert 'changing this will force' in content
         # Check we didn't create the block already
         assert Block.objects.count() == 2
         assert BlockSubmission.objects.count() == 0
@@ -1130,7 +1039,7 @@ class TestBlockAdminEdit(TestCase):
             'admin:blocklist_block_change', args=(self.block.pk,))
         self.delete_url = reverse(
             'admin:blocklist_block_delete', args=(self.block.pk,))
-        self.single_url = reverse('admin:blocklist_block_add_single')
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_edit(self):
         user = user_factory()
@@ -1306,7 +1215,7 @@ class TestBlockAdminEdit(TestCase):
 
         # And if we try to add the guid again the old history is there
         response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
+            self.submission_url, {'guids': 'guid@'}, follow=True)
         content = response.content.decode('utf-8')
         assert f'Block deleted by {user.name}: guid@.' in content
 

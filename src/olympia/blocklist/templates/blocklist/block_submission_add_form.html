@@ -8,7 +8,7 @@
 
 {% block extrastyle %}{{ block.super }}
 <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
-<link rel="stylesheet" type="text/css" href="{% static "css/admin/blocklist_block_multiple.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/admin/blocklist_blocksubmission.css" %}">
   {% endblock %}
 
 {% block coltype %}colM{% endblock %}
@@ -28,6 +28,7 @@
   <form action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>
   {% csrf_token %}
   {{ form.input_guids }}
+  {% if not existing_guids|length == 0 or not invalid_guids|length == 0 %}
   <div>
     <div class="form-row horizontal-grid">
       <div>
@@ -48,6 +49,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
   <fieldset class="module aligned">
     <h2>{% trans 'Add New Blocks' %}</h2>
     <div class="form-row field-blocks-to-add">
@@ -55,6 +57,12 @@
         {% include 'blocklist/includes/enhanced_blocks.html' %}
       </div>
     </div>
+    {% if block_history %}
+    <div class="form-row field-block_history">
+      <label for="id_min_version">Block History:</label>
+      <div class="readonly">{{ block_history }}</div>
+    </div>
+    {% endif %}
     {% if form.non_field_errors %}
     <div class="form-row">
       {{ form.non_field_errors }}
@@ -65,7 +73,9 @@
         {{ form.min_version.errors }}
         {{ form.min_version.label_tag }}
         {{ form.min_version }}
+        {% if not is_single_guid %}
         <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
+        {% endif %}
         {{ form.existing_min_version }}
       </div>
     </div>
@@ -73,7 +83,9 @@
       {{ form.max_version.errors }}
       {{ form.max_version.label_tag }}
       {{ form.max_version }}
+      {% if not is_single_guid %}
       <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
+      {% endif %}
       {{ form.existing_max_version }}
     </div>
     <div class="form-row">

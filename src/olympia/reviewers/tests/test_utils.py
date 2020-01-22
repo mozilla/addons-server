@@ -1497,8 +1497,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_new_block_multiple_unlisted_versions(self):
         redirect_url = (
-            reverse('admin:blocklist_block_add_single') +
-            '?min_version=%s&max_version=%s' + '&guid=' + self.addon.guid)
+            reverse('admin:blocklist_blocksubmission_add') +
+            '?min_version=%s&max_version=%s&guids=' + self.addon.guid)
         assert Block.objects.count() == 0
         self._test_block_multiple_unlisted_versions(redirect_url)
 

@@ -1022,8 +1022,8 @@ class ReviewUnlisted(ReviewBase):
                 ) + params)
         else:
             self.redirect_url = (
-                reverse('admin:blocklist_block_add_single') + params +
-                f'&guid={self.addon.guid}')
+                reverse('admin:blocklist_blocksubmission_add') + params +
+                f'&guids={self.addon.guid}')
 
     def confirm_multiple_versions(self):
         """Confirm approval on a list of versions."""

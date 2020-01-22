@@ -1,3 +1,9 @@
+div.horizontal-grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
 form ul.guid_list {
     margin: 0;
     border: solid 1px black;
@@ -13,6 +19,20 @@ form ul.guid_list li {
 
 form ul.guid_list .addon-name {
     font-weight: 800;
+}
+
+.form-row.field-block_history div.readonly {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.field-block_history div.readonly li {
+    list-style-type: disc;
+}
+
+.field-block_history div.readonly li ul li {
+    list-style-type: none;
+    font-style: italic;
 }
 
 .field-blocks label {
