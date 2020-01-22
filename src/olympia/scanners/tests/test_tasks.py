@@ -1,5 +1,6 @@
 from unittest import mock
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 from olympia import amo
@@ -11,6 +12,7 @@ from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
     CUSTOMS,
+    ML_API,
     NEW,
     RUNNING,
     WAT,
@@ -21,6 +23,7 @@ from olympia.scanners.models import (
     ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
 )
 from olympia.scanners.tasks import (
+    call_ml_api,
     mark_yara_query_rule_as_completed_or_aborted,
     run_scanner,
     run_customs,
@@ -560,3 +563,120 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert ScannerQueryResult.objects.count() == 0
         self.rule.reload()
         assert self.rule.state == NEW  # Not touched by this task.
+
+
+class TestCallMlApi(UploadTest, TestCase):
+    ML_API_URL = 'http://ml.example.org'
+
+    def setUp(self):
+        super(TestCallMlApi, self).setUp()
+
+        self.upload = self.get_upload('webextension.xpi')
+        self.results = {
+            **amo.VALIDATOR_SKELETON_RESULTS,
+            'metadata': {'is_webextension': True},
+        }
+        self.customs_result = ScannerResult.objects.create(
+            upload=self.upload,
+            scanner=CUSTOMS,
+            results={'some': 'customs results'}
+        )
+        self.yara_result = ScannerResult.objects.create(
+            upload=self.upload,
+            scanner=YARA,
+            results=[{'rule': 'fake'}]
+        )
+        self.default_results_count = len(ScannerResult.objects.all())
+
+    def create_response(self, status_code=200, data=None):
+        response = mock.Mock(status_code=status_code)
+        response.json.return_value = data if data else {}
+        return response
+
+    def test_skip_non_webextensions(self):
+        upload = self.get_upload('search.xml')
+        results = {
+            **amo.VALIDATOR_SKELETON_RESULTS,
+            'metadata': {'is_webextension': False},
+        }
+
+        returned_results = call_ml_api(results, upload.pk)
+
+        assert len(ScannerResult.objects.all()) == self.default_results_count
+        assert returned_results == results
+
+    @mock.patch('olympia.scanners.tasks.statsd.timer')
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock):
+        ml_results = {'some': 'results'}
+        requests_mock.return_value = self.create_response(data=ml_results)
+        assert len(ScannerResult.objects.all()) == self.default_results_count
+
+        returned_results = call_ml_api(self.results, self.upload.pk)
+
+        assert requests_mock.called
+        requests_mock.assert_called_with(
+            url=settings.ML_API_URL,
+            json={
+                'customs': self.customs_result.results,
+            },
+            timeout=settings.ML_API_TIMEOUT,
+        )
+        assert (
+            len(ScannerResult.objects.all()) == self.default_results_count + 1
+        )
+        last_result = ScannerResult.objects.latest()
+        assert last_result.upload == self.upload
+        assert last_result.scanner == ML_API
+        assert last_result.results == ml_results
+        assert returned_results == self.results
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.ml_api.success'),
+            ]
+        )
+        assert timer_mock.called
+        timer_mock.assert_called_with('devhub.ml_api')
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_handles_non_200_http_responses(self, requests_mock, incr_mock):
+        requests_mock.return_value = self.create_response(
+            status_code=504, data={'message': 'http timeout'}
+        )
+
+        returned_results = call_ml_api(self.results, self.upload.pk)
+
+        assert requests_mock.called
+        assert len(ScannerResult.objects.all()) == self.default_results_count
+        assert returned_results == self.results
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.ml_api.failure'),
+            ]
+        )
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_handles_non_json_responses(self, requests_mock, incr_mock):
+        response = mock.Mock(status_code=200)
+        response.json.side_effect = ValueError('not json')
+        requests_mock.return_value = response
+
+        returned_results = call_ml_api(self.results, self.upload.pk)
+
+        assert requests_mock.called
+        assert len(ScannerResult.objects.all()) == self.default_results_count
+        assert returned_results == self.results
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.ml_api.failure'),
+            ]
+        )
