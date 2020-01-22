@@ -321,17 +321,24 @@ class BaseTestEditDescribe(BaseTestEdit):
         data = self.get_dict()
         addon = self.addon = self.get_addon()
         AddonApprovalsCounter.approve_content_for_addon(addon=addon)
-        assert AddonApprovalsCounter.objects.get(
+        old_content_review = AddonApprovalsCounter.objects.get(
             addon=addon).last_content_review
+        assert old_content_review
 
         # make the edit
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         addon = self.addon = self.get_addon()
 
-        # last_content_review should have been reset and the metadata updated
-        assert not AddonApprovalsCounter.objects.get(
-            addon=addon).last_content_review
+        if self.listed:
+            # last_content_review should have been reset
+            assert not AddonApprovalsCounter.objects.get(
+                addon=addon).last_content_review
+        else:
+            # Do not reset last_content_review for unlisted-only add-ons
+            assert old_content_review == AddonApprovalsCounter.objects.get(
+                addon=addon).last_content_review
+        # Check metadata is updated in any case
         assert str(addon.name) == data['name']
         assert str(addon.summary) == data['summary']
 
@@ -351,16 +358,17 @@ class BaseTestEditDescribe(BaseTestEdit):
         # And metadata was updated
         assert str(addon.description) == data['description']
 
-        # Check this still works on an (old) addon without a content review
-        AddonApprovalsCounter.objects.get(addon=addon).delete()
-        data['summary'] = 'some change'
-        self.describe_edit_url = self.get_url('describe', edit=True)
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-        addon = self.addon = self.get_addon()
-        assert not AddonApprovalsCounter.objects.get(
-            addon=addon).last_content_review
-        assert str(addon.summary) == data['summary']
+        if self.listed:
+            # Check this still works on an (old) addon without a content review
+            AddonApprovalsCounter.objects.get(addon=addon).delete()
+            data['summary'] = 'some change'
+            self.describe_edit_url = self.get_url('describe', edit=True)
+            response = self.client.post(self.describe_edit_url, data)
+            assert response.status_code == 200
+            addon = self.addon = self.get_addon()
+            assert not AddonApprovalsCounter.objects.get(
+                addon=addon).last_content_review
+            assert str(addon.summary) == data['summary']
 
     def test_edit_xss(self):
         """
