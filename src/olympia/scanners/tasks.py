@@ -23,7 +23,7 @@ from olympia.constants.scanners import (
     RUNNING,
     SCANNERS,
     WAT,
-    YARA
+    YARA,
 )
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
