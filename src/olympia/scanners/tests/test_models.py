@@ -5,11 +5,23 @@ from django.test.utils import override_settings
 from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.constants.scanners import (CUSTOMS, WAT, YARA, FALSE_POSITIVE,
-                                        UNKNOWN)
+from olympia.constants.scanners import (
+    ABORTED,
+    ABORTING,
+    COMPLETED,
+    CUSTOMS,
+    FALSE_POSITIVE,
+    NEW,
+    RUNNING,
+    SCHEDULED,
+    UNKNOWN,
+    WAT,
+    YARA,
+)
 from olympia.files.models import FileUpload
 from olympia.scanners.models import (
-    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
+    ImproperScannerQueryRuleStateError, ScannerQueryResult, ScannerQueryRule,
+    ScannerResult, ScannerRule
 )
 
 
@@ -400,3 +412,49 @@ class TestScannerRule(TestScannerRuleMixin, TestCase):
 class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
     __test__ = True
     model = ScannerQueryRule
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('current_state,target_state', [
+    (NEW, SCHEDULED),
+    (SCHEDULED, RUNNING),
+    (NEW, ABORTING),  # Technically not exposed through the admin yet.
+    (SCHEDULED, ABORTING),  # Technically not exposed through the admin yet.
+    (RUNNING, ABORTING),
+    (ABORTING, ABORTED),
+    (RUNNING, COMPLETED),
+])
+def test_query_rule_change_state_to_valid(current_state, target_state):
+    rule = ScannerQueryRule(name='some_rule', scanner=YARA)
+    rule.state = current_state
+    rule.change_state_to(target_state)
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('current_state,target_state', [
+    (NEW, RUNNING),  # Should go through SCHEDULED first to work.
+    (NEW, ABORTED),  # Should go through ABORTING first to work.
+    (NEW, COMPLETED),  # Should go through RUNNING first to work.
+    (SCHEDULED, NEW),  # Can't reset to NEW.
+    (SCHEDULED, ABORTED),   # Should go through ABORTING first to work.
+    (SCHEDULED, COMPLETED),   # Should go through RUNNING first to work.
+    (RUNNING, NEW),  # Can't reset to NEW.
+    (RUNNING, ABORTED),  # Should go through ABORTING first to work.
+    (RUNNING, SCHEDULED),  # Can't reset to SCHEDULED
+    (ABORTING, NEW),  # Can't reset to NEW.
+    (ABORTING, RUNNING),    # Can't reset to RUNNING
+    (ABORTING, SCHEDULED),  # Can't reset to SCHEDULED
+    (ABORTED, NEW),  # Can't reset to NEW.
+    (ABORTED, RUNNING),  # Can't reset to RUNNING.
+    (ABORTED, SCHEDULED),  # Can't reset to SCHEDULED
+    (COMPLETED, NEW),  # Can't reset to... anything, it's completed!
+    (COMPLETED, RUNNING),  # As above.
+    (COMPLETED, ABORTED),  # As above.
+    (COMPLETED, ABORTING),  # As above.
+    (COMPLETED, SCHEDULED),  # As above.
+])
+def test_query_rule_change_state_to_invalid(current_state, target_state):
+    rule = ScannerQueryRule(name='some_rule', scanner=YARA)
+    rule.state = current_state
+    with pytest.raises(ImproperScannerQueryRuleStateError):
+        rule.change_state_to(target_state)

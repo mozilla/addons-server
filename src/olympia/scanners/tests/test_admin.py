@@ -13,6 +13,7 @@ from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
+    AMOPaths,
     TestCase,
     addon_factory,
     user_factory,
@@ -26,6 +27,7 @@ from olympia.constants.scanners import (
     FALSE_POSITIVE,
     NEW,
     RUNNING,
+    SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
     WAT,
@@ -659,7 +661,7 @@ class TestScannerRuleAdmin(TestCase):
         assert 'formatted_definition' in self.admin.get_fields(request=request)
 
 
-class TestScannerQueryRuleAdmin(TestCase):
+class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
     def setUp(self):
         super().setUp()
 
@@ -786,7 +788,35 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert len(messages) == 1
         assert f'Rule {rule.pk} has been successfully' in str(messages[0])
         rule.reload()
-        assert rule.state == RUNNING
+        assert rule.state == SCHEDULED
+
+    def test_run_action_functional(self):
+        version = addon_factory(
+            file_kw={'is_webextension': True}).current_version
+        self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
+        rule = ScannerQueryRule.objects.create(
+            name='always_true', scanner=YARA, state=NEW,
+            definition='rule always_true { condition: true }')
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerqueryrule_handle_run',
+                args=[rule.pk],
+            ), follow=True
+        )
+        assert response.status_code == 200
+        assert response.redirect_chain == [(self.list_url, 302)]
+        messages = list(response.context['messages'])
+        assert len(messages) == 1
+        assert f'Rule {rule.pk} has been successfully' in str(messages[0])
+        rule.reload()
+        # We're not mocking the task in this test so it's ran in eager mode
+        # directly.
+        # We should have gone through SCHEDULED, RUNNING, and then COMPLETED.
+        assert rule.state == COMPLETED
+        # The rule should have been executed, it should have matched our
+        # version.
+        assert ScannerQueryResult.objects.count() == 1
+        assert ScannerQueryResult.objects.get().version == version
 
     @mock.patch('olympia.scanners.admin.run_yara_query_rule.delay')
     def test_run_action_wrong_state(self, run_yara_query_rule_mock):
