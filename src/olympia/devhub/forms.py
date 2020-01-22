@@ -178,7 +178,7 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
             fetch_existing_translations_from_addon(
                 obj, self.fields_to_trigger_content_review)
         )
-        if existing_data != new_data:
+        if obj.has_listed_versions() and existing_data != new_data:
             # flag for content review
             statsd.incr('devhub.metadata_content_review_triggered')
             AddonApprovalsCounter.reset_content_for_addon(addon=obj)
