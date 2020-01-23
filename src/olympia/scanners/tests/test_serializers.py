@@ -11,5 +11,6 @@ class TestScannerResultSerializer(TestCase):
         assert data == {
             'id': result.id,
             'scanner': result.get_scanner_name(),
+            'label': None,
             'results': result.results,
         }

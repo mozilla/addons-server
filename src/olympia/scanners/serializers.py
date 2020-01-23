@@ -5,11 +5,12 @@ from .models import ScannerResult
 
 class ScannerResultSerializer(serializers.ModelSerializer):
     scanner = serializers.SerializerMethodField()
+    label = serializers.CharField(default=None)
     results = serializers.JSONField()
 
     class Meta:
         model = ScannerResult
-        fields = ('id', 'scanner', 'results')
+        fields = ('id', 'scanner', 'label', 'results')
 
     def get_scanner(self, obj):
         return obj.get_scanner_name()

@@ -47,3 +47,6 @@ QUERY_RULE_STATES = {
     COMPLETED: _('Completed'),
     SCHEDULED: _('Scheduled'),
 }
+
+LABEL_BAD = 'bad'
+LABEL_GOOD = 'good'

@@ -19,4 +19,5 @@ This endpoint returns a list of labelled scanner results.
 
     :>json int id: The scanner result ID.
     :>json string scanner: The scanner name.
+    :>json string label: Either ``good`` or ``bad``.
     :>json object results: The scanner (raw) results.
