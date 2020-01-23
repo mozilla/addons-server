@@ -488,15 +488,15 @@ class TestFileEntriesDiffSerializer(TestCase):
         entries_by_file = {
             e['path']: e for e in data['entries'].values()
         }
-        # Check that we correctly include grant-parent folders too
+        # Check that we correctly include grand-parent folders too
         # See https://github.com/mozilla/addons-server/issues/13092
-        grantparent_dir = 'chrome'
-        assert grantparent_dir in entries_by_file.keys()
+        grandparent_dir = 'chrome'
+        assert grandparent_dir in entries_by_file.keys()
 
-        parent = entries_by_file[grantparent_dir]
+        parent = entries_by_file[grandparent_dir]
         assert parent['mime_category'] == 'directory'
         assert parent['mimetype'] == 'application/octet-stream'
-        assert parent['path'] == grantparent_dir
+        assert parent['path'] == grandparent_dir
 
     def test_selected_file_unmodified(self):
         parent_version = self.addon.current_version
