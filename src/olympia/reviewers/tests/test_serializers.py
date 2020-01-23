@@ -471,7 +471,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         # modified timestamp.
         assert parent['modified'] is not None
 
-    def test_expose_grantparent_dir_deleted_subfolders(self):
+    def test_expose_grandparent_dir_deleted_subfolders(self):
         addon, repo, parent_version, new_version = \
             self.create_new_version_for_addon('deeply-nested.zip')
 
