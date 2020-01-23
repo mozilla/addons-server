@@ -686,6 +686,6 @@ class TestCallMlApi(UploadTest, TestCase):
     def test_does_not_run_when_switch_is_off(self, requests_mock):
         self.create_switch('enable-scanner-ml-api-call', active=False)
 
-        returned_results = call_ml_api(self.results, self.upload.pk)
+        call_ml_api(self.results, self.upload.pk)
 
         assert not requests_mock.called
