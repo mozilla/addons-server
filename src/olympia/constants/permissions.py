@@ -88,9 +88,13 @@ ADMIN_SCANNERS_RESULTS_EDIT = AclPermission('Admin', 'ScannersResultsEdit')
 ADMIN_SCANNERS_RULES_VIEW = AclPermission('Admin', 'ScannersRulesView')
 # Can edit the scanners rules.
 ADMIN_SCANNERS_RULES_EDIT = AclPermission('Admin', 'ScannersRulesEdit')
-
 # Can use the scanners query admin (code search).
 ADMIN_SCANNERS_QUERY = AclPermission('Admin', 'ScannersQuery')
+
+# Can create/edit a Block in the blocklist - the change may require signoff
+BLOCKLIST_CREATE = AclPermission('Blocklist', 'Create')
+# Can signoff a Block creation/edit submission
+BLOCKLIST_SIGNOFF = AclPermission('Blocklist', 'Signoff')
 
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
@@ -124,12 +128,13 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'bandwagon.change_collection': COLLECTIONS_EDIT,
     'bandwagon.delete_collection': ADMIN_ADVANCED,
 
-    'blocklist.add_block': REVIEWS_ADMIN,
-    'blocklist.change_block': REVIEWS_ADMIN,
-    'blocklist.delete_block': REVIEWS_ADMIN,
-    'blocklist.add_blocksubmission': REVIEWS_ADMIN,
-    'blocklist.change_blocksubmission': REVIEWS_ADMIN,
-    'blocklist.delete_blocksubmission': REVIEWS_ADMIN,
+    'blocklist.add_block': BLOCKLIST_CREATE,
+    'blocklist.change_block': BLOCKLIST_CREATE,
+    'blocklist.delete_block': BLOCKLIST_CREATE,
+    'blocklist.view_block': REVIEWS_ADMIN,
+    'blocklist.add_blocksubmission': BLOCKLIST_CREATE,
+    'blocklist.change_blocksubmission': BLOCKLIST_CREATE,
+    'blocklist.signoff_blocksubmission': BLOCKLIST_SIGNOFF,
     'blocklist.view_blocksubmission': REVIEWS_ADMIN,
 
     'discovery.add_discoveryitem': DISCOVERY_EDIT,
