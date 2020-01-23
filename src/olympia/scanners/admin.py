@@ -22,13 +22,15 @@ from olympia.constants.scanners import (
     NEW,
     RESULT_STATES,
     RUNNING,
+    SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
     YARA,
 )
 
 from .models import (
-    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
+    ImproperScannerQueryRuleStateError, ScannerQueryResult, ScannerQueryRule,
+    ScannerResult, ScannerRule
 )
 from .tasks import run_yara_query_rule
 
@@ -474,10 +476,11 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
             raise Http404
 
         rule = self.get_object(request, pk)
-        if rule.state == NEW:
-            # Update state right away for the UI to be up to date after we
-            # redirect.
-            rule.update(state=RUNNING)
+        try:
+            # SCHEDULED is a transitional state that allows us to update the UI
+            # right away before redirecting. Once it starts being processed the
+            # task will switch it to RUNNING.
+            rule.change_state_to(SCHEDULED)
             run_yara_query_rule.delay(rule.pk)
 
             messages.add_message(
@@ -486,7 +489,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
                 'Scanner Query Rule {} has been successfully queued for '
                 'execution.'.format(rule.pk),
             )
-        else:
+        except ImproperScannerQueryRuleStateError:
             messages.add_message(
                 request,
                 messages.ERROR,
@@ -504,18 +507,18 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
             raise Http404
 
         rule = self.get_object(request, pk)
-        if rule.state == RUNNING:
+        try:
+            rule.change_state_to(ABORTING)  # Tasks will take this into account
             # FIXME: revoke existing tasks (would need to extract the
             # GroupResult when executing the chord, store its id in the rule,
             # then restore the GroupResult here to call revoke() on it)
-            rule.update(state=ABORTING)  # Tasks will take this into account.
-
             messages.add_message(
                 request,
                 messages.INFO,
                 'Scanner Query Rule {} is being aborted.'.format(rule.pk),
             )
-        else:
+        except ImproperScannerQueryRuleStateError:
+            # We messed up somewhere.
             messages.add_message(
                 request,
                 messages.ERROR,

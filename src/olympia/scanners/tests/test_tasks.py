@@ -15,6 +15,7 @@ from olympia.constants.scanners import (
     ML_API,
     NEW,
     RUNNING,
+    SCHEDULED,
     WAT,
     YARA,
 )
@@ -442,6 +443,9 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert len(ScannerQueryResult.objects.all()) == 0
 
     def test_run(self):
+        # Pretend we went through the admin.
+        self.rule.update(state=SCHEDULED)
+
         # Similar to test_run_on_chunk() except it needs to find the versions
         # by itself.
         other_addon = addon_factory(
@@ -494,7 +498,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert self.rule.state == COMPLETED
 
     def test_run_not_new(self):
-        self.rule.update(state=RUNNING)  # Not NEW.
+        self.rule.update(state=RUNNING)  # Not SCHEDULED.
         run_yara_query_rule.delay(self.rule.pk)
 
         # Nothing should have changed.

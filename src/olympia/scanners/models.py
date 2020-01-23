@@ -15,7 +15,10 @@ import olympia.core.logger
 
 from olympia.amo.models import ModelBase
 from olympia.constants.scanners import (
+    ABORTED,
+    ABORTING,
     ACTIONS,
+    COMPLETED,
     CUSTOMS,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
@@ -24,7 +27,9 @@ from olympia.constants.scanners import (
     NEW,
     NO_ACTION,
     RESULT_STATES,
+    RUNNING,
     SCANNERS,
+    SCHEDULED,
     UNKNOWN,
     WAT,
     YARA,
@@ -287,6 +292,10 @@ class ScannerMatch(ModelBase):
     rule = models.ForeignKey(ScannerRule, on_delete=models.CASCADE)
 
 
+class ImproperScannerQueryRuleStateError(ValueError):
+    pass
+
+
 class ScannerQueryRule(AbstractScannerRule):
     state = models.PositiveSmallIntegerField(
         choices=QUERY_RULE_STATES.items(), default=NEW
@@ -294,6 +303,30 @@ class ScannerQueryRule(AbstractScannerRule):
 
     class Meta(AbstractScannerRule.Meta):
         db_table = 'scanners_query_rules'
+
+    def change_state_to(self, target):
+        """Immediately change state of the rule in database or raise
+        ImproperScannerQueryRuleStateError."""
+        prereqs = {
+            # New is the default state.
+            NEW: (),
+            # Scheduled should only happen through the admin. It's the
+            # prerequisite to running the task.
+            SCHEDULED: (NEW,),
+            # Running should only happen through the task, after we went
+            # through the admin to schedule the query.
+            RUNNING: (SCHEDULED,),
+            # Aborting can happen from various states.
+            ABORTING: (NEW, SCHEDULED, RUNNING,),
+            # Aborted should only happen after aborting.
+            ABORTED: (ABORTING,),
+            # Completed should only happen through the task
+            COMPLETED: (RUNNING,),
+        }
+        if self.state in prereqs[target]:
+            self.update(state=target)
+        else:
+            raise ImproperScannerQueryRuleStateError()
 
 
 class ScannerQueryResult(AbstractScannerResult):

@@ -1122,10 +1122,6 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.mark_yara_query_rule_as_completed_or_aborted': {
         'queue': 'devhub'
     },
-    'olympia.scanners.run_yara_query_rule': {'queue': 'devhub'},
-    'olympia.scanners.run_yara_query_rule_on_versions_chunk': {
-        'queue': 'devhub'
-    },
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1208,6 +1204,10 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
 
     # Zadmin
+    'olympia.scanners.run_yara_query_rule': {'queue': 'zadmin'},
+    'olympia.scanners.run_yara_query_rule_on_versions_chunk': {
+        'queue': 'zadmin'
+    },
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
 
