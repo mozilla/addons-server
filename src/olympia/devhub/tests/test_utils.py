@@ -19,7 +19,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
-from olympia.scanners.tasks import run_customs, run_wat, run_yara
+from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_ml_api
 from olympia.users.models import (
     EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
 
@@ -63,10 +63,11 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk)
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     def check_file(self, file_):
@@ -467,10 +468,11 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk)
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False),
             final_task,
         )
 
@@ -507,10 +509,11 @@ class TestValidator(UploadTest, TestCase):
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                 ],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk)
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -529,10 +532,11 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk),
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -554,10 +558,11 @@ class TestValidator(UploadTest, TestCase):
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_customs.s(file_upload.pk),
                 ],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk),
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -576,10 +581,11 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk),
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -601,10 +607,11 @@ class TestValidator(UploadTest, TestCase):
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_wat.s(file_upload.pk),
                 ],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk),
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -623,10 +630,11 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk),
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -650,10 +658,11 @@ class TestValidator(UploadTest, TestCase):
                     run_yara.s(file_upload.pk),
                     run_customs.s(file_upload.pk),
                 ],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk),
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -679,8 +688,9 @@ class TestValidator(UploadTest, TestCase):
                     run_customs.s(file_upload.pk),
                     run_wat.s(file_upload.pk),
                 ],
-                tasks.handle_upload_validation_result.s(file_upload.pk,
-                                                        channel,
-                                                        False)
+                call_ml_api.s(file_upload.pk),
             ),
+            tasks.handle_upload_validation_result.s(file_upload.pk,
+                                                    channel,
+                                                    False)
         )

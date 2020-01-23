@@ -224,7 +224,7 @@ class TestMeasureValidationTime(UploadTest, TestCase):
 
     def handle_upload_validation_result(self,
                                         channel=amo.RELEASE_CHANNEL_LISTED):
-        results = [amo.VALIDATOR_SKELETON_RESULTS.copy()]
+        results = amo.VALIDATOR_SKELETON_RESULTS.copy()
         tasks.handle_upload_validation_result(results, self.upload.pk,
                                               channel, False)
 

@@ -16,7 +16,7 @@ from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.scanners.tasks import run_customs, run_wat, run_yara
+from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_ml_api
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.users.models import (
@@ -234,12 +234,10 @@ class Validator(object):
                 repack_fileupload.s(file_.pk),
                 tasks.validate_upload.s(file_.pk, channel),
                 tasks.check_for_api_keys_in_file.s(file_.pk),
-                chord(
-                    tasks_in_parallel,
-                    tasks.handle_upload_validation_result.s(file_.pk,
-                                                            channel,
-                                                            is_mozilla_signed)
-                ),
+                chord(tasks_in_parallel, call_ml_api.s(file_.pk)),
+                tasks.handle_upload_validation_result.s(file_.pk,
+                                                        channel,
+                                                        is_mozilla_signed)
             ]
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from

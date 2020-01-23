@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models import F, Q
 
 import requests
+import waffle
 import yara
 
 from django_statsd.clients import statsd
@@ -338,16 +339,27 @@ def _run_yara_query_rule_on_version(version, rule):
     return scanner_result
 
 
-@validation_task
-def call_ml_api(results, upload_pk):
+@task
+@use_primary_db
+def call_ml_api(all_results, upload_pk):
     """
     Call the machine learning (ML) API for a given FileUpload.
 
-    - `results` are the validation results passed in the validation chain. This
-       task is a validation task, which is why it must receive the validation
-       results as first argument.
+    This task is the callback of the Celery chord in the validation chain. It
+    receives all the results returned by all the tasks in this chord.
+
+    - `all_results` are the results returned by all the tasks in the chord.
     - `upload_pk` is the FileUpload ID.
     """
+    # This task is the callback of a Celery chord and receives all the results
+    # returned by all the tasks in this chord. The first task registered in the
+    # chord is `forward_linter_results()`:
+    results = all_results[0]
+
+    if not waffle.switch_is_active('enable-scanner-ml-api-call'):
+        log.debug('Skipping ML API task, switch is off')
+        return results
+
     log.info('Starting ML API task for FileUpload %s.', upload_pk)
 
     if not results['metadata']['is_webextension']:

@@ -5,7 +5,10 @@ from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory, AMOPaths, TestCase, version_factory
+    addon_factory,
+    AMOPaths,
+    TestCase,
+    version_factory,
 )
 from olympia.constants.scanners import (
     ABORTED,
@@ -21,7 +24,10 @@ from olympia.constants.scanners import (
 )
 from olympia.files.tests.test_models import UploadTest
 from olympia.scanners.models import (
-    ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
+    ScannerQueryResult,
+    ScannerQueryRule,
+    ScannerResult,
+    ScannerRule,
 )
 from olympia.scanners.tasks import (
     call_ml_api,
@@ -428,7 +434,8 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         super().setUp()
 
         self.version = addon_factory(
-            file_kw={'is_webextension': True}).current_version
+            file_kw={'is_webextension': True}
+        ).current_version
         self.xpi_copy_over(self.version.all_files[0], 'webextension.xpi')
 
         # This rule will match for all files in the xpi.
@@ -450,7 +457,8 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # by itself.
         other_addon = addon_factory(
             file_kw={'is_webextension': True},
-            version_kw={'created': self.days_ago(1)})
+            version_kw={'created': self.days_ago(1)},
+        )
         other_addon_previous_current_version = other_addon.current_version
         included_versions = [
             # Only listed webextension version on this add-on.
@@ -459,19 +467,21 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
             addon_factory(
                 disabled_by_user=True,  # Doesn't matter.
                 file_kw={'is_webextension': True},
-                version_kw={
-                    'channel': amo.RELEASE_CHANNEL_UNLISTED}).versions.get(),
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            ).versions.get(),
             # Unlisted webextension version of an add-on that has multiple
             # versions.
             version_factory(
                 addon=other_addon,
                 created=self.days_ago(42),
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
-                file_kw={'is_webextension': True}),
+                file_kw={'is_webextension': True},
+            ),
             # Listed webextension version of an add-on that has multiple
             # versions.
             version_factory(
-                addon=other_addon, file_kw={'is_webextension': True}),
+                addon=other_addon, file_kw={'is_webextension': True}
+            ),
         ]
         for version in included_versions:
             self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
@@ -479,8 +489,8 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # Ignored versions:
         # Listed Webextension version belonging to mozilla disabled add-on.
         addon_factory(
-            file_kw={'is_webextension': True},
-            status=amo.STATUS_DISABLED).current_version
+            file_kw={'is_webextension': True}, status=amo.STATUS_DISABLED
+        ).current_version
         # Non-Webextension
         addon_factory(file_kw={'is_webextension': False}).current_version
 
@@ -576,21 +586,22 @@ class TestCallMlApi(UploadTest, TestCase):
         super(TestCallMlApi, self).setUp()
 
         self.upload = self.get_upload('webextension.xpi')
-        self.results = {
-            **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': True},
-        }
+        self.results = [
+            {
+                **amo.VALIDATOR_SKELETON_RESULTS,
+                'metadata': {'is_webextension': True},
+            }
+        ]
         self.customs_result = ScannerResult.objects.create(
             upload=self.upload,
             scanner=CUSTOMS,
-            results={'some': 'customs results'}
+            results={'some': 'customs results'},
         )
         self.yara_result = ScannerResult.objects.create(
-            upload=self.upload,
-            scanner=YARA,
-            results=[{'rule': 'fake'}]
+            upload=self.upload, scanner=YARA, results=[{'rule': 'fake'}]
         )
         self.default_results_count = len(ScannerResult.objects.all())
+        self.create_switch('enable-scanner-ml-api-call', active=True)
 
     def create_response(self, status_code=200, data=None):
         response = mock.Mock(status_code=status_code)
@@ -604,7 +615,7 @@ class TestCallMlApi(UploadTest, TestCase):
             'metadata': {'is_webextension': False},
         }
 
-        returned_results = call_ml_api(results, upload.pk)
+        returned_results = call_ml_api([results], upload.pk)
 
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert returned_results == results
@@ -622,9 +633,7 @@ class TestCallMlApi(UploadTest, TestCase):
         assert requests_mock.called
         requests_mock.assert_called_with(
             url=settings.ML_API_URL,
-            json={
-                'customs': self.customs_result.results,
-            },
+            json={'customs': self.customs_result.results},
             timeout=settings.ML_API_TIMEOUT,
         )
         assert (
@@ -634,14 +643,10 @@ class TestCallMlApi(UploadTest, TestCase):
         assert last_result.upload == self.upload
         assert last_result.scanner == ML_API
         assert last_result.results == ml_results
-        assert returned_results == self.results
+        assert returned_results == self.results[0]
         assert incr_mock.called
         assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls(
-            [
-                mock.call('devhub.ml_api.success'),
-            ]
-        )
+        incr_mock.assert_has_calls([mock.call('devhub.ml_api.success')])
         assert timer_mock.called
         timer_mock.assert_called_with('devhub.ml_api')
 
@@ -656,14 +661,10 @@ class TestCallMlApi(UploadTest, TestCase):
 
         assert requests_mock.called
         assert len(ScannerResult.objects.all()) == self.default_results_count
-        assert returned_results == self.results
+        assert returned_results == self.results[0]
         assert incr_mock.called
         assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls(
-            [
-                mock.call('devhub.ml_api.failure'),
-            ]
-        )
+        incr_mock.assert_has_calls([mock.call('devhub.ml_api.failure')])
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
@@ -676,11 +677,15 @@ class TestCallMlApi(UploadTest, TestCase):
 
         assert requests_mock.called
         assert len(ScannerResult.objects.all()) == self.default_results_count
-        assert returned_results == self.results
+        assert returned_results == self.results[0]
         assert incr_mock.called
         assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls(
-            [
-                mock.call('devhub.ml_api.failure'),
-            ]
-        )
+        incr_mock.assert_has_calls([mock.call('devhub.ml_api.failure')])
+
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_does_not_run_when_switch_is_off(self, requests_mock):
+        self.create_switch('enable-scanner-ml-api-call', active=False)
+
+        returned_results = call_ml_api(self.results, self.upload.pk)
+
+        assert not requests_mock.called
