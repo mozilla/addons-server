@@ -349,14 +349,12 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             # Now we can set the git-status.
             entries[path]['status'] = patch['mode']
 
-            parents = [x for x in pathlib.Path(path).parents if str(x) != '.']
-
-            for parent in parents:
+            for parent in pathlib.Path(path).parents:
                 parent = str(parent)
 
                 if (
                     path_deleted is True and
-                    parent != '' and
+                    parent != '.' and
                     parent not in entries
                 ):
                     # The parent directory of this deleted file does not
