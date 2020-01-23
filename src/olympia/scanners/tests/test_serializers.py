@@ -1,4 +1,3 @@
-from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.scanners import CUSTOMS
 from olympia.scanners.models import ScannerResult
