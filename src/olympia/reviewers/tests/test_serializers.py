@@ -497,6 +497,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert parent['mime_category'] == 'directory'
         assert parent['mimetype'] == 'application/octet-stream'
         assert parent['path'] == grandparent_dir
+        assert parent['depth'] == 0
 
     def test_selected_file_unmodified(self):
         parent_version = self.addon.current_version
