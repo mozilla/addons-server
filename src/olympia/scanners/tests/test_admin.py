@@ -31,8 +31,10 @@ from olympia.constants.scanners import (
     WAT,
     YARA,
 )
+from olympia.files.models import FileUpload
 from olympia.scanners.admin import (
     MatchesFilter,
+    ScannerQueryResultAdmin,
     ScannerResultAdmin,
     ScannerRuleAdmin,
     StateFilter,
@@ -585,6 +587,15 @@ class TestScannerResultAdmin(TestCase):
         )
         assert response.status_code == 404
 
+    def test_change_page(self):
+        upload = FileUpload.objects.create()
+        version = addon_factory().current_version
+        result = ScannerResult.objects.create(
+            scanner=YARA, upload=upload, version=version)
+        url = reverse('admin:scanners_scannerresult_change', args=(result.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+
 
 class TestScannerRuleAdmin(TestCase):
     def setUp(self):
@@ -768,6 +779,16 @@ class TestScannerQueryRuleAdmin(TestCase):
         button = field.find('button')[0]
         assert button.attrib['formaction'] == url
 
+    def test_no_run_button_in_add_view(self):
+        add_url = reverse('admin:scanners_scannerqueryrule_add')
+        response = self.client.get(add_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        field = doc('.field-state_with_actions')
+        assert field
+        assert field.text() == 'State:\nNew'
+        assert not field.find('button')
+
     @mock.patch('olympia.scanners.admin.run_yara_query_rule.delay')
     def test_run_action(self, run_yara_query_rule_mock):
         rule = ScannerQueryRule.objects.create(
@@ -869,3 +890,37 @@ class TestScannerQueryRuleAdmin(TestCase):
             ), follow=True
         )
         assert response.status_code == 404
+
+
+class TestScannerQueryResultAdmin(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:ScannersQuery')
+        self.client.login(email=self.user.email)
+        self.list_url = reverse('admin:scanners_scannerqueryresult_changelist')
+
+        self.admin = ScannerQueryResultAdmin(
+            model=ScannerQueryResult, admin_site=AdminSite()
+        )
+
+    def test_list_view(self):
+        rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
+        result = ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon_factory().current_version
+        )
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        html = pq(response.content)
+        assert html('.field-formatted_addon').length == 1
+
+    def test_change_page(self):
+        result = ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon_factory().current_version)
+        url = reverse(
+            'admin:scanners_scannerqueryresult_change', args=(result.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
