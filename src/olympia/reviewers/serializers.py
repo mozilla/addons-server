@@ -310,7 +310,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         # Initial commits have both set to the same version
         parent = parent if parent != commit else None
 
-        diff = self.repo.get_diff(
+        deltas = self.repo.get_deltas(
             commit=commit,
             parent=parent,
             pathspec=None)
@@ -321,9 +321,9 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         for path, value in entries.items():
             entries[path].setdefault('status', '')
 
-        # Now let's overwrite that with data from the actual patch
-        for patch in diff:
-            path = patch['path']
+        # Now let's overwrite that with data from the actual delta
+        for delta in deltas:
+            path = delta['path']
 
             path_depth = path.count(os.sep)
             path_deleted = False
@@ -347,7 +347,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                 }
 
             # Now we can set the git-status.
-            entries[path]['status'] = patch['mode']
+            entries[path]['status'] = delta['mode']
 
             for parent in pathlib.Path(path).parents:
                 parent = str(parent)
