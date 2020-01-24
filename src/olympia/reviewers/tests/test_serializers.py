@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from rest_framework.exceptions import NotFound
-from rest_framework.test import APIRequestFactory
-from rest_framework.settings import api_settings
-
 from django.core.cache import cache
 
+from rest_framework.exceptions import NotFound
+from rest_framework.settings import api_settings
+from rest_framework.test import APIRequestFactory
+
 from olympia import amo
-from olympia.reviewers.serializers import (
-    AddonBrowseVersionSerializer, FileEntriesSerializer,
-    FileEntriesDiffSerializer, CannedResponseSerializer)
-from olympia.reviewers.models import CannedResponse
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.versions.tasks import extract_version_to_git
-from olympia.versions.models import License
+from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.urlresolvers import reverse
 from olympia.lib.git import AddonGitRepository
 from olympia.lib.tests.test_git import apply_changes
+from olympia.reviewers.models import CannedResponse
+from olympia.reviewers.serializers import (
+    AddonBrowseVersionSerializer, CannedResponseSerializer,
+    FileEntriesDiffSerializer, FileEntriesSerializer)
+from olympia.versions.models import License
+from olympia.versions.tasks import extract_version_to_git
 
 
 class TestFileEntriesSerializer(TestCase):
@@ -470,6 +470,33 @@ class TestFileEntriesDiffSerializer(TestCase):
         # Since the directory is returned from git, it will have a real
         # modified timestamp.
         assert parent['modified'] is not None
+
+    def test_expose_grandparent_dir_deleted_subfolders(self):
+        addon, repo, parent_version, new_version = \
+            self.create_new_version_for_addon('deeply-nested.zip')
+
+        apply_changes(
+            repo,
+            new_version,
+            '',
+            'chrome/icons/de/foo.png',
+            delete=True)
+
+        data = self.serialize(
+            new_version.current_file, parent_version=parent_version)
+
+        entries_by_file = {
+            e['path']: e for e in data['entries'].values()
+        }
+        # Check that we correctly include grand-parent folders too
+        # See https://github.com/mozilla/addons-server/issues/13092
+        grandparent_dir = 'chrome'
+        assert grandparent_dir in entries_by_file.keys()
+
+        parent = entries_by_file[grandparent_dir]
+        assert parent['mime_category'] == 'directory'
+        assert parent['mimetype'] == 'application/octet-stream'
+        assert parent['path'] == grandparent_dir
 
     def test_selected_file_unmodified(self):
         parent_version = self.addon.current_version
