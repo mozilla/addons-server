@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-10 04:37+0000\n"
+"PO-Revision-Date: 2020-01-25 16:51+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -46,22 +46,21 @@ msgid "Distribution"
 msgstr "التوزيعة"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "بلد المُبلّغ"
 
 msgid "Message excerpt"
 msgstr ""
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "وضعت علامة ”صالحة“ على %d من التقارير المحدّدة."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "وضعت علامة ”مشبوهة“ على %d من التقارير المحدّدة."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "تبليغ عن علّة أو طلب دعم في غير مكانه"
+msgstr "ضَع علامة ”مشبوهة“ على تقارير الإساءة المحدّدة"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
@@ -82,9 +81,8 @@ msgstr "لا يسمح بالروابط الخارجية."
 msgid "This display name cannot be used."
 msgstr "لا يمكنك استعمال اسم العرض هذا."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "هذا الرابط URL المخصص لا يمكن استخدامه."
+msgstr "لا يمكن استخدام اسم المُراجع هذا."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "لا يمكنك استعمال حقل الصفحة الرئيسية إلّا للإشارة إلى مواقع خارجية."
@@ -103,7 +101,7 @@ msgid "You are already logged in."
 msgstr "أنت والج بالفعل."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "تعذّر على النظام فهم جلسة الولوج. من فضلك أعِد المحاولة."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "تعذّر علينا أن نجد حسابك على Firefox. من فضلك أعِد المحاولة."
@@ -420,7 +418,7 @@ msgid "Email address not found."
 msgstr "البريد الإلكتروني"
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "يجب أن يحتوي هذا الحقل على {num} من المحارف على الأقل."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "رمز اللغة {lang_code} غير صالح."
@@ -461,7 +459,7 @@ msgstr "الإصدارات"
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
+msgstr "لو لم يكن يحتاج تطبيقك إلى ملف بيان فما زال عليك تضمين واحدًا فيه الخصائص المطلوبة كما هو موضّح %(amo_manifests_mdn_link_open)sهنا%(amo_manifests_mdn_link_close)s."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -532,7 +530,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "حُذف الملف {0} من {version} للإضافة {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "قُبلت الإصدارة {version} من {addon}."
 
 msgid "Approved"
 msgstr ""
@@ -544,7 +542,7 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "رُفضت الإصدارة {version} من {addon}."
 
 msgid "Rejected"
 msgstr ""
@@ -831,7 +829,7 @@ msgid "Unknown"
 msgstr "غير معروف"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "غير مكتملة"
 
 msgid "Awaiting Review"
 msgstr "ينتظر المراجعة"
