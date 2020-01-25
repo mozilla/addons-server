@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-25 17:08+0000\n"
+"PO-Revision-Date: 2020-01-25 18:04+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -2786,7 +2786,7 @@ msgid "Back"
 msgstr ""
 
 msgid "API Credentials"
-msgstr ""
+msgstr "معلومات ولوج API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2818,7 +2818,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "اسحب الوصول"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
