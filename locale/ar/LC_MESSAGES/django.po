@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-25 16:51+0000\n"
+"PO-Revision-Date: 2020-01-25 17:08+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "النوع"
 
 msgid "Users"
 msgstr "المستخدمون"
@@ -838,7 +838,7 @@ msgid "Disabled by Mozilla"
 msgstr "عطّلته Mozilla"
 
 msgid "Deleted"
-msgstr ""
+msgstr "محذوفة"
 
 msgid "Unlisted"
 msgstr ""
@@ -847,9 +847,8 @@ msgstr ""
 msgid "Owner"
 msgstr "المالك"
 
-#, fuzzy
 msgid "Developer"
-msgstr "Developer"
+msgstr "مطوّر"
 
 msgid "Extension"
 msgstr "امتداد"
@@ -2003,7 +2002,7 @@ msgstr ""
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(user)s قبل %(ago)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -2397,7 +2396,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "الإجراءات"
 
 msgid "Resume the submission process for this add-on"
 msgstr ""
@@ -2489,7 +2488,7 @@ msgid "Name on listing on this site. May be different to the name inside the add
 msgstr ""
 
 msgid "Summary:"
-msgstr ""
+msgstr "ملخص:"
 
 msgid "Description:"
 msgstr "الوصف:"
@@ -5272,7 +5271,7 @@ msgid "Max. Version"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
+msgstr "اختر تطبيقًا أولًا"
 
 msgid "Comments:"
 msgstr "التعليقات:"
@@ -5317,7 +5316,7 @@ msgid "Requires Restart"
 msgstr "يتطلب إعادة التشغيل"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "طُلبت معلومات أكثر"
 
 #, fuzzy
 msgid "Expired Information Request"
@@ -5820,7 +5819,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "نزّل الملفات"
 
 msgid "The developer has provided source code."
 msgstr ""
