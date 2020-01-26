@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-26 16:12+0000\n"
+"PO-Revision-Date: 2020-01-26 16:15+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -5740,7 +5740,7 @@ msgid "Total"
 msgstr "المجموع"
 
 msgid "Month"
-msgstr ""
+msgstr "الشهر"
 
 #, fuzzy
 msgid "Year"
@@ -5912,10 +5912,10 @@ msgid "More Information"
 msgstr "مزيد من المعلومات"
 
 msgid "Resolution"
-msgstr ""
+msgstr "الحلّ"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "المُراجع"
 
 msgid "Add-on has been deleted."
 msgstr "حُذفت الإضافة."
@@ -5996,15 +5996,14 @@ msgstr ""
 msgid "[status:%s]"
 msgstr "الحالة:"
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "آخر تحديث في {0}"
-msgstr[1] "آخر تحديث في {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "التحديثات ({0})"
+msgstr[1] "التحديث ({0})"
+msgstr[2] "التحديثان ({0})"
+msgstr[3] "التحديثات ({0})"
+msgstr[4] "التحديثات ({0})"
+msgstr[5] "التحديثات ({0})"
 
 #, fuzzy
 msgid "Rating Review ({0})"
@@ -6140,7 +6139,7 @@ msgid "Update"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "صدّر"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
