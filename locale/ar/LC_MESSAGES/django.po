@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-25 18:04+0000\n"
+"PO-Revision-Date: 2020-01-26 16:12+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -30,7 +30,7 @@ msgid "Users"
 msgstr "المستخدمون"
 
 msgid "Addons"
-msgstr "إضافات"
+msgstr "الإضافات"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
@@ -38,9 +38,8 @@ msgstr ""
 msgid "creation date"
 msgstr "تاريخ الإنشاء"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "إضافات أندرويد"
+msgstr "مستخدم / إضافة"
 
 msgid "Distribution"
 msgstr "التوزيعة"
@@ -63,17 +62,17 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "ضَع علامة ”مشبوهة“ على تقارير الإساءة المحدّدة"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "من فضلك تحقّق من عدد الأحرف في الحقل، يجب ألا يزيد عن {max_length}."
 
 msgid "Modified on:"
 msgstr "تاريخ التعديل:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "حسب %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "الكل"
 
 msgid "No links are allowed."
 msgstr "لا يسمح بالروابط الخارجية."
@@ -494,11 +493,11 @@ msgid "Categories edited for {addon}."
 msgstr "حُرّرت فئات {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "أُضيف {0.name} ‏({1}) إلى {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "أُزيل {0.name} ‏({1}) من {addon}."
 
 msgid "Contributions for {addon}."
 msgstr ""
@@ -663,16 +662,16 @@ msgid "Account updated."
 msgstr "حُدّث الحساب."
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "أُنشِئ: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "تعدّل حقل: ضُبط {2} على: {0}."
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "حُذِف: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "تعدّل المستخدم {user}، السبب: {1}"
 
 msgid "User {user} anonymized."
 msgstr ""
