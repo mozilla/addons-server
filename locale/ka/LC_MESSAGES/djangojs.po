@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-02 01:37+0000\n"
+"PO-Revision-Date: 2020-01-27 19:44+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -74,7 +74,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "სერვერისგან მოვიდა უშინაარსო პასუხი; მდგომარეობა: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "გადამოწმებისას დაფიქსირდა სერვერის მოულოდნელი შეცდომა."
+msgstr "სერვერის მოულოდნელი შეცდომა დამოწმებისას."
 
 msgid "Finished validating {0}"
 msgstr "{0}-ის შემოწმება დასრულდა"
