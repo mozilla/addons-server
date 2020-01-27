@@ -1189,3 +1189,173 @@ def test_get_mime_type_for_blob(
 
     assert mime == expected_mimetype
     assert category == expected_category
+
+
+@pytest.mark.django_db
+def test_get_deltas_add_new_file():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    apply_changes(repo, version, '{"id": "random"}\n', 'new_file.json')
+
+    changes = repo.get_deltas(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert changes[0]['mode'] == 'A'
+    assert changes[0]['old_path'] == 'new_file.json'
+    assert changes[0]['path'] == 'new_file.json'
+    assert changes[0]['parent'] == original_version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+
+
+@pytest.mark.django_db
+def test_get_deltas_change_files():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    apply_changes(repo, version, '{"id": "random"}\n', 'manifest.json')
+    apply_changes(repo, version, 'Updated readme\n', 'README.md')
+
+    changes = repo.get_deltas(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert len(changes) == 2
+
+    assert changes[0]
+    assert changes[0]['mode'] == 'M'
+    assert changes[0]['old_path'] == 'README.md'
+    assert changes[0]['path'] == 'README.md'
+    assert changes[0]['parent'] == original_version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+
+
+@pytest.mark.django_db
+def test_get_deltas_initial_commit():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    version = addon.current_version
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_deltas(
+        commit=version.git_hash,
+        parent=None)
+
+    # This makes sure that sub-directories are diffed properly too
+    assert changes[1]['mode'] == 'A'
+    assert changes[1]['old_path'] == '_locales/de/messages.json'
+    assert changes[1]['parent'] == version.git_hash
+    assert changes[1]['hash'] == version.git_hash
+    assert changes[1]['path'] == '_locales/de/messages.json'
+
+
+@pytest.mark.django_db
+def test_get_deltas_initial_commit_pathspec():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    version = addon.current_version
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_deltas(
+        commit=version.git_hash,
+        parent=None,
+        pathspec=['_locales/de/messages.json'])
+
+    assert len(changes) == 1
+
+    # This makes sure that sub-directories are diffed properly too
+    assert changes[0]['mode'] == 'A'
+    assert changes[0]['old_path'] == '_locales/de/messages.json'
+    assert changes[0]['parent'] == version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+    assert changes[0]['path'] == '_locales/de/messages.json'
+
+
+@pytest.mark.django_db
+def test_get_deltas_change_files_pathspec():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    apply_changes(repo, version, '{"id": "random"}\n', 'manifest.json')
+    apply_changes(repo, version, 'Updated readme\n', 'README.md')
+
+    changes = repo.get_deltas(
+        commit=version.git_hash,
+        parent=original_version.git_hash,
+        pathspec=['README.md'])
+
+    assert len(changes) == 1
+
+    assert changes[0]
+    assert changes[0]['mode'] == 'M'
+    assert changes[0]['old_path'] == 'README.md'
+    assert changes[0]['path'] == 'README.md'
+    assert changes[0]['parent'] == original_version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+
+
+@pytest.mark.django_db
+def test_get_deltas_delete_file():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    apply_changes(repo, version, '', 'manifest.json', delete=True)
+
+    changes = repo.get_deltas(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert changes[0]['mode'] == 'D'
+
+
+@pytest.mark.django_db
+def test_get_deltas_unmodified_file_by_default_not_rendered():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_deltas(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert not changes

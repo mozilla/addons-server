@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-08 06:57+0000\n"
-"Last-Translator: robbp <robbpaun@gmail.com>\n"
+"PO-Revision-Date: 2020-01-26 01:04+0000\n"
+"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -2629,7 +2629,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "Nu este nevoie să depui codul sursă și ești gata pentru pasul următor."
 
 msgid "Your Submission Requires Source Code."
-msgstr "Propunerea ta impune trimiterea codului-sursă."
+msgstr "Propunerea ta impune trimiterea codului sursă."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -2660,7 +2660,7 @@ msgid "How to Submit:"
 msgstr "Cum se transmit propunerile:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr "Include instrucțiuni într-un fișier README la interiorul codului-sursă,"
+msgstr "Include instrucțiuni într-un fișier README la interiorul codului sursă,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr "sau în notele revizorului de pe pagina următoare (dacă este cazul)."
@@ -2939,7 +2939,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului final al suplimentului, fie într-un fișier README, fie în Notele către revizor pentru această versiune."
 
 msgid "Read more about the source code review policy."
-msgstr "Citește mai multe despre politica de revizuire a codului-sursă."
+msgstr "Citește mai multe despre politica de examinare a codului sursă."
 
 msgid "Build best-in-class extensions and themes"
 msgstr ""
@@ -6160,10 +6160,10 @@ msgid ""
 msgstr ""
 "<h2>Urmărirea surselor externe</h2> <p> Dacă faci un link pe un site extern, cum ar fi pe blogul sau pe site-ul tău, către pagina cu detaliile suplimentului sau direct către fișierul suplimentului, "
 "poți atașa un parametru care să fie urmărit ca sursă suplimentară de descărcări pe această pagină. De exemplu, următoarele linkuri ar apărea ca avându-și sursa pe blogul tău: <dl> <dt>Add-on Details"
-" Page</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
-">external-blog</b></dd> </dl> <p> Vor fi monitorizați numai parametrii src care încep cu „external-\", cu până la 61 de caractere suplimentare. Orice text care vine după „external-\" poate fi "
-"utilizat ca descriere a sursei, cum ar fi „external-blog\", „external-sidebar\", „external-campaign225\" etc. Sunt permise următoarele caractere, care prezintă siguranță URL: <code>a-z A-Z - . _ ~ "
-"%% +</code>"
+" Page</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Vor fi monitorizați numai parametrii src care încep cu „external-\", cu până la"
+" 61 de caractere suplimentare. Orice text care vine după „external-\" poate fi utilizat ca descriere a sursei, cum ar fi „external-blog\", „external-sidebar\", „external-campaign225\" etc. Sunt "
+"permise următoarele caractere, care prezintă siguranță URL: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Starea suplimentului în funcție de dată"

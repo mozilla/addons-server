@@ -564,6 +564,41 @@ class AddonGitRepository(object):
                     patch, commit, parent, pathspec))
         return changes
 
+    def get_deltas(self, commit, parent, pathspec=None):
+        """Only fetch deltas from `parent` to `commit`.
+
+        This method specifically does not render any textual changes
+        but fetches as few details as possible to use a different
+        `pygit2` API to retrieve changes and to improve performance
+        significantly.
+
+        The entries returned are fairly similar to what `get_diff`
+        returns but don't include `hunks`, `lines_deleted` / `lines_added`
+        as well as `new_ending_new_line` and `old_ending_new_line`
+
+        We also don't expose `size` and `is_binary` as it's unreliable since
+        the `deltas` iterator tries to not examine the files content if
+        possible - so they might have wrong values.
+        """
+        diff = self.get_raw_diff(
+            commit, parent=parent, include_unmodifed=pathspec is not None)
+
+        deltas = []
+
+        for delta in diff.deltas:
+            if pathspec and delta.old_file.path not in pathspec:
+                continue
+
+            deltas.append({
+                'path': delta.new_file.path,
+                'mode': delta.status_char(),
+                'old_path': delta.old_file.path,
+                'parent': commit if parent is None else parent,
+                'hash': commit,
+            })
+
+        return deltas
+
     def _render_patch(self, patch, commit, parent, pathspec=None):
         """
         This will be moved to a proper drf serializer in the future

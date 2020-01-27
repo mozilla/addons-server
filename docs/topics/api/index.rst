@@ -43,4 +43,5 @@ using the API.
    hero
    ratings
    reviewers
+   scanners
    signing

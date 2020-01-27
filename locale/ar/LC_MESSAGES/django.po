@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-10 04:37+0000\n"
+"PO-Revision-Date: 2020-01-26 16:15+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -24,13 +24,13 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "النوع"
 
 msgid "Users"
 msgstr "المستخدمون"
 
 msgid "Addons"
-msgstr "إضافات"
+msgstr "الإضافات"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
@@ -38,43 +38,41 @@ msgstr ""
 msgid "creation date"
 msgstr "تاريخ الإنشاء"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "إضافات أندرويد"
+msgstr "مستخدم / إضافة"
 
 msgid "Distribution"
 msgstr "التوزيعة"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "بلد المُبلّغ"
 
 msgid "Message excerpt"
 msgstr ""
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "وضعت علامة ”صالحة“ على %d من التقارير المحدّدة."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "وضعت علامة ”مشبوهة“ على %d من التقارير المحدّدة."
 
-#, fuzzy
 msgid "Mark selected abuse reports as suspicious"
-msgstr "تبليغ عن علّة أو طلب دعم في غير مكانه"
+msgstr "ضَع علامة ”مشبوهة“ على تقارير الإساءة المحدّدة"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "من فضلك تحقّق من عدد الأحرف في الحقل، يجب ألا يزيد عن {max_length}."
 
 msgid "Modified on:"
 msgstr "تاريخ التعديل:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "حسب %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "الكل"
 
 msgid "No links are allowed."
 msgstr "لا يسمح بالروابط الخارجية."
@@ -82,9 +80,8 @@ msgstr "لا يسمح بالروابط الخارجية."
 msgid "This display name cannot be used."
 msgstr "لا يمكنك استعمال اسم العرض هذا."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "هذا الرابط URL المخصص لا يمكن استخدامه."
+msgstr "لا يمكن استخدام اسم المُراجع هذا."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "لا يمكنك استعمال حقل الصفحة الرئيسية إلّا للإشارة إلى مواقع خارجية."
@@ -103,7 +100,7 @@ msgid "You are already logged in."
 msgstr "أنت والج بالفعل."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "تعذّر على النظام فهم جلسة الولوج. من فضلك أعِد المحاولة."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "تعذّر علينا أن نجد حسابك على Firefox. من فضلك أعِد المحاولة."
@@ -420,7 +417,7 @@ msgid "Email address not found."
 msgstr "البريد الإلكتروني"
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "يجب أن يحتوي هذا الحقل على {num} من المحارف على الأقل."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "رمز اللغة {lang_code} غير صالح."
@@ -461,7 +458,7 @@ msgstr "الإصدارات"
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
+msgstr "لو لم يكن يحتاج تطبيقك إلى ملف بيان فما زال عليك تضمين واحدًا فيه الخصائص المطلوبة كما هو موضّح %(amo_manifests_mdn_link_open)sهنا%(amo_manifests_mdn_link_close)s."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -496,11 +493,11 @@ msgid "Categories edited for {addon}."
 msgstr "حُرّرت فئات {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "أُضيف {0.name} ‏({1}) إلى {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "أُزيل {0.name} ‏({1}) من {addon}."
 
 msgid "Contributions for {addon}."
 msgstr ""
@@ -532,7 +529,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "حُذف الملف {0} من {version} للإضافة {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "قُبلت الإصدارة {version} من {addon}."
 
 msgid "Approved"
 msgstr ""
@@ -544,7 +541,7 @@ msgid "Preliminarily approved"
 msgstr ""
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "رُفضت الإصدارة {version} من {addon}."
 
 msgid "Rejected"
 msgstr ""
@@ -665,16 +662,16 @@ msgid "Account updated."
 msgstr "حُدّث الحساب."
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "أُنشِئ: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "تعدّل حقل: ضُبط {2} على: {0}."
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "حُذِف: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "تعدّل المستخدم {user}، السبب: {1}"
 
 msgid "User {user} anonymized."
 msgstr ""
@@ -831,7 +828,7 @@ msgid "Unknown"
 msgstr "غير معروف"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "غير مكتملة"
 
 msgid "Awaiting Review"
 msgstr "ينتظر المراجعة"
@@ -840,7 +837,7 @@ msgid "Disabled by Mozilla"
 msgstr "عطّلته Mozilla"
 
 msgid "Deleted"
-msgstr ""
+msgstr "محذوفة"
 
 msgid "Unlisted"
 msgstr ""
@@ -849,9 +846,8 @@ msgstr ""
 msgid "Owner"
 msgstr "المالك"
 
-#, fuzzy
 msgid "Developer"
-msgstr "Developer"
+msgstr "مطوّر"
 
 msgid "Extension"
 msgstr "امتداد"
@@ -2005,7 +2001,7 @@ msgstr ""
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(user)s قبل %(ago)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -2399,7 +2395,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "الإجراءات"
 
 msgid "Resume the submission process for this add-on"
 msgstr ""
@@ -2491,7 +2487,7 @@ msgid "Name on listing on this site. May be different to the name inside the add
 msgstr ""
 
 msgid "Summary:"
-msgstr ""
+msgstr "ملخص:"
 
 msgid "Description:"
 msgstr "الوصف:"
@@ -2789,7 +2785,7 @@ msgid "Back"
 msgstr ""
 
 msgid "API Credentials"
-msgstr ""
+msgstr "معلومات ولوج API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2821,7 +2817,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "اسحب الوصول"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
@@ -5274,7 +5270,7 @@ msgid "Max. Version"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
+msgstr "اختر تطبيقًا أولًا"
 
 msgid "Comments:"
 msgstr "التعليقات:"
@@ -5319,7 +5315,7 @@ msgid "Requires Restart"
 msgstr "يتطلب إعادة التشغيل"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "طُلبت معلومات أكثر"
 
 #, fuzzy
 msgid "Expired Information Request"
@@ -5744,7 +5740,7 @@ msgid "Total"
 msgstr "المجموع"
 
 msgid "Month"
-msgstr ""
+msgstr "الشهر"
 
 #, fuzzy
 msgid "Year"
@@ -5822,7 +5818,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "نزّل الملفات"
 
 msgid "The developer has provided source code."
 msgstr ""
@@ -5916,10 +5912,10 @@ msgid "More Information"
 msgstr "مزيد من المعلومات"
 
 msgid "Resolution"
-msgstr ""
+msgstr "الحلّ"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "المُراجع"
 
 msgid "Add-on has been deleted."
 msgstr "حُذفت الإضافة."
@@ -6000,15 +5996,14 @@ msgstr ""
 msgid "[status:%s]"
 msgstr "الحالة:"
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "آخر تحديث في {0}"
-msgstr[1] "آخر تحديث في {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "التحديثات ({0})"
+msgstr[1] "التحديث ({0})"
+msgstr[2] "التحديثان ({0})"
+msgstr[3] "التحديثات ({0})"
+msgstr[4] "التحديثات ({0})"
+msgstr[5] "التحديثات ({0})"
 
 #, fuzzy
 msgid "Rating Review ({0})"
@@ -6144,7 +6139,7 @@ msgid "Update"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "صدّر"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
