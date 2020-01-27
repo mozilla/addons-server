@@ -349,7 +349,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             # Now we can set the git-status.
             entries[path]['status'] = delta['mode']
 
-            for parent in pathlib.Path(path).parents:
+            for index, parent in enumerate(pathlib.Path(path).parents):
                 parent = str(parent)
 
                 if (
@@ -361,7 +361,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                     # exist. This could happen if no other files were
                     # modified within the directory.
                     entries[parent] = {
-                        'depth': path_depth - 1,
+                        'depth': path_depth - 1 - index,
                         'filename': os.path.basename(parent),
                         'sha256': None,
                         'mime_category': 'directory',
