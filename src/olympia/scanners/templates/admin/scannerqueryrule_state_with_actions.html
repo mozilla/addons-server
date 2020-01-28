@@ -4,12 +4,12 @@
 
 {{ obj.get_state_display }}
 
-{% if obj.state == RUNNING %}
+{% if obj.pk and obj.state == RUNNING %}
   &nbsp;
   <button class="button" formaction="{% url 'admin:scanners_scannerqueryrule_handle_abort' obj.pk %}">
     {% trans 'Abort' %}
   </button>
-{% elif obj.state == NEW %}
+{% elif obj.pk and obj.state == NEW %}
   &nbsp;
   <button class="button" formaction="{% url 'admin:scanners_scannerqueryrule_handle_run' obj.pk %}">
     {% trans 'Run' %}
