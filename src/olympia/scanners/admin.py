@@ -19,6 +19,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
     ABORTING,
     FALSE_POSITIVE,
+    INCONCLUSIVE,
     NEW,
     RESULT_STATES,
     RUNNING,
@@ -312,6 +313,25 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             'admin:scanners_scannerresult_changelist'
         ))
 
+    def handle_inconclusive(self, request, pk, *args, **kwargs):
+        can_use_actions = self.has_actions_permission(request)
+        if not can_use_actions or request.method != "POST":
+            raise Http404
+
+        result = self.get_object(request, pk)
+        result.update(state=INCONCLUSIVE)
+
+        messages.add_message(
+            request,
+            messages.INFO,
+            'Scanner result {} has been marked as inconclusive.'.format(pk),
+        )
+
+        return redirect(request.META.get(
+            'HTTP_REFERER',
+            'admin:scanners_scannerresult_changelist'
+        ))
+
     def handle_false_positive(self, request, pk, *args, **kwargs):
         can_use_actions = self.has_actions_permission(request)
         if not can_use_actions or request.method != "POST":
@@ -380,6 +400,11 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                 r'^(?P<pk>.+)/report-true-positive/$',
                 self.admin_site.admin_view(self.handle_true_positive),
                 name='%s_%s_handletruepositive' % info,
+            ),
+            url(
+                r'^(?P<pk>.+)/report-inconclusive/$',
+                self.admin_site.admin_view(self.handle_inconclusive),
+                name='%s_%s_handleinconclusive' % info,
             ),
             url(
                 r'^(?P<pk>.+)/revert-report/$',

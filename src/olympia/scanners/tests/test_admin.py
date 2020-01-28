@@ -25,6 +25,7 @@ from olympia.constants.scanners import (
     COMPLETED,
     CUSTOMS,
     FALSE_POSITIVE,
+    INCONCLUSIVE,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -282,6 +283,7 @@ class TestScannerResultAdmin(TestCase):
             ('Unknown', '?'),
             ('True positive', '?state=1'),
             ('False positive', '?state=2'),
+            ('Inconclusive', '?state=3'),
 
             ('All', '?'),
             ('foo (customs)', f'?matched_rules__id__exact={rule_foo.pk}'),
@@ -597,6 +599,49 @@ class TestScannerResultAdmin(TestCase):
         url = reverse('admin:scanners_scannerresult_change', args=(result.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
+
+    def test_handle_inconclusive(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.state == UNKNOWN
+
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handleinconclusive',
+                args=[result.pk],
+            ),
+            follow=True,
+        )
+
+        result.refresh_from_db()
+        assert result.state == INCONCLUSIVE
+        html = pq(response.content)
+        assert html('#result_list tbody tr').length == 0
+        # A confirmation message should also appear.
+        assert html('.messagelist .info').length == 1
+
+    def test_handle_inconclusive_uses_referer_if_available(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+
+        referer = '{}/en-US/firefox/previous/page'.format(settings.SITE_URL)
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handleinconclusive',
+                args=[result.pk],
+            ),
+            follow=True,
+            HTTP_REFERER=referer,
+        )
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == referer
 
 
 class TestScannerRuleAdmin(TestCase):
