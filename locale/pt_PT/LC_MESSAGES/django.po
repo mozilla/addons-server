@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-27 23:01+0000\n"
+"PO-Revision-Date: 2020-01-28 22:37+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3445,27 +3445,24 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Traduções simples {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Selecione texto em qualquer página web—ou selecione a página completa— para traduzir de forma instantânea."
+msgstr "Traduções fáceis. Destaque texto em qualquer página Web - ou selecione a página inteira - para ser traduzido de forma instantânea."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Aceda a conhecimentos académicos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Desfrute de acesso gratuito a mais de 10 milhões de artigos de investigação."
+msgstr "Fonte de sabedoria académica. Desfrute de acesso gratuito a mais de 10 milhões de artigos de investigação."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personalize os gestos do rato {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr "Descubra uma nova forma de navegar com mais de 50 gestos de rato úteis."
+msgstr "Personalize os gestos do rato. Descubra uma nova forma de navegar com mais de 50 gestos de rato úteis."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3501,9 +3498,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Aumente imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "Desloque sob uma imagem para a ampliar."
+msgstr "Coloque o rato sob uma imagem para a ampliar."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
