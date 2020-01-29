@@ -7,10 +7,10 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils.html import format_html
-from django.utils.http import urlencode
+from django.utils.http import urlencode, is_safe_url
 from django.utils.translation import ugettext
 
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 from olympia import amo
 from olympia.access import acl
@@ -34,6 +34,18 @@ from .models import (
     ScannerResult, ScannerRule
 )
 from .tasks import run_yara_query_rule
+
+
+def _is_safe_url(url, request):
+    """Override the Django `is_safe_url()` to pass a configured list of allowed
+    hosts and enforce HTTPS."""
+    allowed_hosts = (
+        settings.DOMAIN,
+        urlparse(settings.EXTERNAL_SITE_URL).netloc,
+    )
+    require_https = request.is_secure() if request else False
+    return is_safe_url(url, allowed_hosts=allowed_hosts,
+                       require_https=require_https)
 
 
 class PresenceFilter(SimpleListFilter):
@@ -294,6 +306,12 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     formatted_matched_rules_with_files.short_description = 'Matched rules'
 
+    def safe_referer_redirect(self, request, default_url):
+        referer = request.META.get('HTTP_REFERER')
+        if referer and _is_safe_url(referer, request):
+            return redirect(referer)
+        return redirect(default_url)
+
     def handle_true_positive(self, request, pk, *args, **kwargs):
         can_use_actions = self.has_actions_permission(request)
         if not can_use_actions or request.method != "POST":
@@ -308,10 +326,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             'Scanner result {} has been marked as true positive.'.format(pk),
         )
 
-        return redirect(request.META.get(
-            'HTTP_REFERER',
-            'admin:scanners_scannerresult_changelist'
-        ))
+        return self.safe_referer_redirect(
+            request, default_url='admin:scanners_scannerresult_changelist'
+        )
 
     def handle_inconclusive(self, request, pk, *args, **kwargs):
         can_use_actions = self.has_actions_permission(request)
@@ -327,10 +344,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             'Scanner result {} has been marked as inconclusive.'.format(pk),
         )
 
-        return redirect(request.META.get(
-            'HTTP_REFERER',
-            'admin:scanners_scannerresult_changelist'
-        ))
+        return self.safe_referer_redirect(
+            request, default_url='admin:scanners_scannerresult_changelist'
+        )
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
         can_use_actions = self.has_actions_permission(request)
@@ -382,10 +398,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             'Scanner result {} report has been reverted.'.format(pk),
         )
 
-        return redirect(request.META.get(
-            'HTTP_REFERER',
-            'admin:scanners_scannerresult_changelist'
-        ))
+        return self.safe_referer_redirect(
+            request, default_url='admin:scanners_scannerresult_changelist'
+        )
 
     def get_urls(self):
         urls = super().get_urls()
