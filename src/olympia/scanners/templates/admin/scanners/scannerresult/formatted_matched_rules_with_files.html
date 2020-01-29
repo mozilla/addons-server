@@ -1,4 +1,5 @@
 {% load admin_urls %}
+{# This template can be used for both scanner results and scanner query results. Keep it generic. #}
 
 <table>
   <thead>
@@ -9,7 +10,7 @@
   </thead>
   {% for rule in matched_rules %}
   <tr>
-    <td><a href="{% url 'admin:scanners_scannerrule_change' rule.pk %}">{{ rule.name }}</a></td>
+    <td><a href="{% url rule_change_urlname rule.pk %}">{{ rule.name }}</a></td>
     <td>
       {% for file in rule.files %}
         {% if file_id %}

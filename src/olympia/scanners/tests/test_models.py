@@ -238,6 +238,15 @@ class TestScannerResultMixin:
             rule2: [file2],
         }
 
+    def test_get_files_by_matched_rules_no_file_somehow(self):
+        result = self.create_yara_result()
+        rule = self.rule_model.objects.create(name='foobar', scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.get_files_by_matched_rules() == {
+            'foobar': ['???'],
+        }
+
     def test_get_files_by_matched_rules_with_no_customs_results(self):
         result = self.create_customs_result()
         result.results = {'matchedRules': []}

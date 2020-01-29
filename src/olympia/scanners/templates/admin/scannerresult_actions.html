@@ -1,27 +1,28 @@
 {% load i18n admin_urls %}
+{# This template can be used for both scanner results and scanner query results. Keep it generic. #}
 
 {% if obj.can_report_feedback %}
   <button
     class="button report-false-positive-button"
-    formaction="{% url 'admin:scanners_scannerresult_handlefalsepositive' obj.pk %}"
+    formaction="{% url handlefalsepositive_urlname obj.pk %}"
     formtarget="_blank"
   >
     {% trans 'Report as false positive' %}
   </button>
   &nbsp;
-  <button class="button default" formaction="{% url 'admin:scanners_scannerresult_handletruepositive' obj.pk %}">
+  <button class="button default" formaction="{% url handletruepositive_urlname obj.pk %}">
     {% trans 'Mark as true positive' %}
   </button>
   &nbsp;
   <button
     class="button secondary"
-    formaction="{% url 'admin:scanners_scannerresult_handleinconclusive' obj.pk %}"
+    formaction="{% url handleinconclusive_urlname obj.pk %}"
     title="{% trans 'Useful when the scanner result is a true positive but the add-on is not malicious' %}"
   >
     {% trans 'Mark as inconclusive' %}
   </button>
 {% elif obj.can_revert_feedback %}
-  <button class="button default" formaction="{% url 'admin:scanners_scannerresult_handlerevert' obj.pk %}">
+  <button class="button default" formaction="{% url handlerevert_urlname obj.pk %}">
     {% trans 'Revert report' %}
   </button>
 {% endif %}

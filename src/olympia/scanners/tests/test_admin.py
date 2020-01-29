@@ -1059,12 +1059,48 @@ class TestScannerQueryResultAdmin(TestCase):
         assert html('.field-formatted_addon').length == 1
 
     def test_change_page(self):
+        rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
         result = ScannerQueryResult.objects.create(
             scanner=YARA, version=addon_factory().current_version)
+        result.add_yara_result(rule=rule.name)
+        result.save()
         url = reverse(
             'admin:scanners_scannerqueryresult_change', args=(result.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
+
+        rule_url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        doc = pq(response.content)
+        link = doc('.field-formatted_matched_rules_with_files td a')
+        assert link.text() == 'darule ???'
+        assert link.attr('href') == rule_url
+
+    def test_formatted_matched_rules_with_files(self):
+        version = addon_factory().current_version
+        result = ScannerQueryResult.objects.create(
+            scanner=YARA, version=version
+        )
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        filename = 'some/file.js'
+        result.add_yara_result(rule=rule.name, meta={'filename': filename})
+        result.save()
+
+        rule_url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+
+        external_site_url = 'http://example.org'
+        file_id = version.all_files[0].id
+        assert file_id is not None
+        expect_file_item = '<a href="{}{}">{}</a>'.format(
+            external_site_url,
+            reverse('files.list', args=[file_id, 'file', filename]),
+            filename
+        )
+        with override_settings(EXTERNAL_SITE_URL=external_site_url):
+            content = self.admin.formatted_matched_rules_with_files(result)
+        assert expect_file_item in content
+        assert rule_url in content
 
 
 class TestIsSafeUrl(TestCase):
